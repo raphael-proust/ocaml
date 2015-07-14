@@ -365,19 +365,20 @@ let rec lam ppf = function
       let kind =
         if k = Self then "self" else if k = Cached then "cache" else "" in
       fprintf ppf "@[<2>(send%s@ %a@ %a%a)@]" kind lam obj lam met args largs
-  | Levent(expr, ev) ->
-      let kind =
-       match ev.lev_kind with
-       | Lev_before -> "before"
-       | Lev_after _  -> "after"
-       | Lev_function -> "funct-body" in
-      fprintf ppf "@[<2>(%s %s(%i)%s:%i-%i@ %a)@]" kind
-              ev.lev_loc.Location.loc_start.Lexing.pos_fname
-              ev.lev_loc.Location.loc_start.Lexing.pos_lnum
-              (if ev.lev_loc.Location.loc_ghost then "<ghost>" else "")
-              ev.lev_loc.Location.loc_start.Lexing.pos_cnum
-              ev.lev_loc.Location.loc_end.Lexing.pos_cnum
-              lam expr
+  | Levent(expr, _ev) ->
+      lam ppf expr
+      (* let kind = *)
+      (*  match ev.lev_kind with *)
+      (*  | Lev_before -> "before" *)
+      (*  | Lev_after _  -> "after" *)
+      (*  | Lev_function -> "funct-body" in *)
+      (* fprintf ppf "@[<2>(%s %s(%i)%s:%i-%i@ %a)@]" kind *)
+      (*         ev.lev_loc.Location.loc_start.Lexing.pos_fname *)
+      (*         ev.lev_loc.Location.loc_start.Lexing.pos_lnum *)
+      (*         (if ev.lev_loc.Location.loc_ghost then "<ghost>" else "") *)
+      (*         ev.lev_loc.Location.loc_start.Lexing.pos_cnum *)
+      (*         ev.lev_loc.Location.loc_end.Lexing.pos_cnum *)
+      (*         lam expr *)
   | Lifused(id, expr) ->
       fprintf ppf "@[<2>(ifused@ %a@ %a)@]" Ident.print id lam expr
 
@@ -390,3 +391,17 @@ and sequence ppf = function
 let structured_constant = struct_const
 
 let lambda = lam
+
+
+let seriaize (filename : string) (lambda : Lambda.lambda) : unit =
+  let ou = open_out filename  in
+  let old = Format.get_margin () in
+  let () = Format.set_margin 10000 in
+  let fmt = Format.formatter_of_out_channel ou in
+  begin
+    lam fmt lambda;
+    Format.pp_print_flush fmt ();
+    close_out ou;
+    Format.set_margin old
+  end
+    

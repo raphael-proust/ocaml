@@ -55,6 +55,11 @@ let print_if ppf flag printer arg =
 
 let (++) x f = f x
 
+let serialize_raw_lambda = 
+  try ignore @@ Sys.getenv "OCAML_RAW_LAMBDA" ; true with Not_found -> false
+let serialize_lambda = 
+  try ignore @@ Sys.getenv "OCAML_LAMBDA"; true with Not_found -> true
+
 let implementation ppf sourcefile outputprefix =
   Compmisc.init_path false;
   let modulename = module_of_filename ppf sourcefile outputprefix in
@@ -77,7 +82,18 @@ let implementation ppf sourcefile outputprefix =
         (typedtree, coercion)
         ++ Translmod.transl_implementation modulename
         ++ print_if ppf Clflags.dump_rawlambda Printlambda.lambda
+        ++ (fun lambda -> 
+          (if serialize_raw_lambda then 
+            Printlambda.seriaize (sourcefile ^ ".rawlambda") lambda;);
+            lambda
+           )
         ++ Simplif.simplify_lambda
+        ++ (fun lambda -> 
+          (if serialize_lambda then 
+            Printlambda.seriaize (sourcefile ^ ".lambda") lambda;);
+            lambda
+           )
+
         ++ print_if ppf Clflags.dump_lambda Printlambda.lambda
         ++ Bytegen.compile_implementation modulename
         ++ print_if ppf Clflags.dump_instr Printinstr.instrlist
