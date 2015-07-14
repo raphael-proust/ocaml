@@ -239,6 +239,47 @@ let primitive ppf = function
   | Pbbswap(bi) -> print_boxed_integer "bswap" ppf bi
   | Pint_as_pointer -> fprintf ppf "int_as_pointer"
 
+type print_kind = 
+  | Alias 
+  | Strict 
+  | StrictOpt 
+  | Variable 
+  | Recursive 
+
+let kind = function
+  | Alias -> "a"
+  | Strict -> ""
+  | StrictOpt -> "o"
+  | Variable -> "v" 
+  | Recursive -> "r"
+
+let to_print_kind (k : Lambda.let_kind) : print_kind = 
+  match k with 
+  | Alias -> Alias 
+  | Strict -> Strict
+  | StrictOpt -> StrictOpt
+  | Variable -> Variable
+  
+let rec aux (acc : (print_kind * Ident.t * lambda ) list) lam = 
+  match lam with 
+  | Llet (str3, id3, arg3, body3) ->
+      aux ((to_print_kind str3,id3, arg3)::acc) body3
+  | Lletrec (bind_args, body) ->
+      aux 
+        (List.map (fun (id,l) -> (Recursive,id,l)) bind_args 
+         @ acc) body
+  | e ->  (acc , e) 
+
+let  flatten lam : (print_kind * Ident.t * lambda ) list * lambda = 
+  match lam with 
+  | Llet(str,id, arg, body) ->
+      aux [to_print_kind str, id, arg] body
+  | Lletrec(bind_args, body) ->
+      aux 
+        (List.map (fun (id,l) -> (Recursive, id,l)) bind_args) 
+        body
+  | _ -> assert false
+
 let rec lam ppf = function
   | Lvar id ->
       Ident.print ppf id
@@ -263,28 +304,18 @@ let rec lam ppf = function
               params;
             fprintf ppf ")" in
       fprintf ppf "@[<2>(function%a@ %a)@]" pr_params params lam body
-  | Llet(str, id, arg, body) ->
-      let kind = function
-        Alias -> "a" | Strict -> "" | StrictOpt -> "o" | Variable -> "v" in
-      let rec letbody = function
-        | Llet(str, id, arg, body) ->
-            fprintf ppf "@ @[<2>%a =%s@ %a@]" Ident.print id (kind str) lam arg;
-            letbody body
-        | expr -> expr in
-      fprintf ppf "@[<2>(let@ @[<hv 1>(@[<2>%a =%s@ %a@]"
-        Ident.print id (kind str) lam arg;
-      let expr = letbody body in
-      fprintf ppf ")@]@ %a)@]" lam expr
-  | Lletrec(id_arg_list, body) ->
+  | Llet _ | Lletrec _ as x ->
+      let args, body =   flatten x  in
       let bindings ppf id_arg_list =
         let spc = ref false in
         List.iter
-          (fun (id, l) ->
+          (fun (k, id, l) ->
             if !spc then fprintf ppf "@ " else spc := true;
-            fprintf ppf "@[<2>%a@ %a@]" Ident.print id lam l)
+            fprintf ppf "@[<2>%a =%s@ %a@]" Ident.print id (kind k) lam l)
           id_arg_list in
       fprintf ppf
-        "@[<2>(letrec@ (@[<hv 1>%a@])@ %a)@]" bindings id_arg_list lam body
+        "@[<2>(let@ (@[<hv 1>%a@]" bindings (List.rev args);
+      fprintf ppf ")@ %a)@]"  lam body
   | Lprim(prim, largs) ->
       let lams ppf largs =
         List.iter (fun l -> fprintf ppf "@ %a" lam l) largs in
