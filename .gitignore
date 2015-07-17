@@ -2785,3 +2785,6 @@
 *.lambda
 *.rawlambda
 *.js
+*.compile
+stdlib/target_camlheader
+stdlib/target_camlheaderd
