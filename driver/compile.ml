@@ -59,6 +59,8 @@ let serialize_raw_lambda =
   try ignore @@ Sys.getenv "OCAML_RAW_LAMBDA" ; true with Not_found -> false
 let serialize_lambda = 
   try ignore @@ Sys.getenv "OCAML_LAMBDA"; true with Not_found -> true
+let serialize_js = 
+  try ignore @@ Sys.getenv "OCAML_JS"; true with Not_found -> false
 
 let implementation ppf sourcefile outputprefix =
   Compmisc.init_path false;
@@ -85,6 +87,9 @@ let implementation ppf sourcefile outputprefix =
         ++ (fun lambda -> 
           (if serialize_raw_lambda then 
             Printlambda.seriaize (sourcefile ^ ".rawlambda") lambda;);
+          (if serialize_js then 
+            !Printlambda.serialize_js sourcefile  lambda env
+          );
             lambda
            )
         ++ Simplif.simplify_lambda

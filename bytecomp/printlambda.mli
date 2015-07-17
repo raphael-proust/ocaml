@@ -20,3 +20,4 @@ val primitive: formatter -> primitive -> unit
 
 
 val seriaize: string -> lambda -> unit
+val serialize_js: (string  -> lambda -> Env.t -> unit) ref

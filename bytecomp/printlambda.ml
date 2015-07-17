@@ -316,6 +316,12 @@ let rec lam ppf = function
       fprintf ppf
         "@[<2>(let@ (@[<hv 1>%a@]" bindings (List.rev args);
       fprintf ppf ")@ %a)@]"  lam body
+  | Lprim(Pfield n, [ Lprim(Pgetglobal id,[])] ->
+      ()
+  | Lprim(Psetfield (n,ptr), [ Lprim(Pgetglobal id,[])]) ->
+      let instr = if ptr then "setfield_ptr " else "setfield_imm " in
+      fprintf ppf "%s%i" instr n
+      
   | Lprim(prim, largs) ->
       let lams ppf largs =
         List.iter (fun l -> fprintf ppf "@ %a" lam l) largs in
@@ -436,3 +442,4 @@ let seriaize (filename : string) (lambda : Lambda.lambda) : unit =
     Format.set_margin old
   end
     
+let serialize_js = ref (fun _ -> assert false)
