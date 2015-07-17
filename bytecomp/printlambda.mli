@@ -15,9 +15,11 @@ open Lambda
 open Format
 
 val structured_constant: formatter -> structured_constant -> unit
-val lambda: formatter -> lambda -> unit
+
+val env_lambda : Env.t -> formatter -> lambda -> unit
+val lambda : formatter -> lambda -> unit
 val primitive: formatter -> primitive -> unit
 
 
-val seriaize: string -> lambda -> unit
-val serialize_js: (string  -> lambda -> Env.t -> unit) ref
+val seriaize: Env.t -> string -> lambda -> unit
+val serialize_js: (Env.t -> string  -> lambda -> Env.t -> unit) ref

@@ -2784,3 +2784,4 @@
 /yacc/.gdb_history
 *.lambda
 *.rawlambda
+*.js

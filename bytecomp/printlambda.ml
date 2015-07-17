@@ -9,7 +9,7 @@
 (*  under the terms of the Q Public License version 1.0.               *)
 (*                                                                     *)
 (***********************************************************************)
-
+[@@@ocaml.warning "-40"]
 open Format
 open Asttypes
 open Primitive
@@ -280,7 +280,25 @@ let  flatten lam : (print_kind * Ident.t * lambda ) list * lambda =
         body
   | _ -> assert false
 
-let rec lam ppf = function
+
+let get_string ((id : Ident.t), (pos : int)) (env : Env.t) : string = 
+  match  Env.find_module (Pident id) env with 
+  | {md_type = Mty_signature signature  ; _ } -> 
+      (begin match List.nth signature pos  with 
+      | Sig_value (i,_) 
+      | Sig_module (i,_,_) -> i 
+      | Sig_typext (i,_,_) -> i 
+      | Sig_modtype(i,_) -> i 
+      | Sig_class (i,_,_) -> i 
+      | Sig_class_type(i,_,_) -> i 
+      | Sig_type(i,_,_) -> i 
+      end).name
+  | _ -> assert false
+
+
+
+let lambda use_env env ppf v  =
+  let rec lam ppf = function
   | Lvar id ->
       Ident.print ppf id
   | Lconst cst ->
@@ -316,12 +334,12 @@ let rec lam ppf = function
       fprintf ppf
         "@[<2>(let@ (@[<hv 1>%a@]" bindings (List.rev args);
       fprintf ppf ")@ %a)@]"  lam body
-  | Lprim(Pfield n, [ Lprim(Pgetglobal id,[])] ->
-      ()
-  | Lprim(Psetfield (n,ptr), [ Lprim(Pgetglobal id,[])]) ->
-      let instr = if ptr then "setfield_ptr " else "setfield_imm " in
-      fprintf ppf "%s%i" instr n
-      
+  | Lprim(Pfield n, [ Lprim(Pgetglobal id,[])]) when use_env ->
+      fprintf ppf "%s.%s" id.name (get_string (id,n) env)
+
+  | Lprim(Psetfield (n,_), [ Lprim(Pgetglobal id,[]) ;  e ]) when use_env  ->
+      fprintf ppf "@[<2>(%s.%s <- %a)@]" id.name (get_string (id,n) env)
+        lam e
   | Lprim(prim, largs) ->
       let lams ppf largs =
         List.iter (fun l -> fprintf ppf "@ %a" lam l) largs in
@@ -424,19 +442,21 @@ and sequence ppf = function
       fprintf ppf "%a@ %a" sequence l1 sequence l2
   | l ->
       lam ppf l
+  in 
+  lam ppf v
 
 let structured_constant = struct_const
 
-let lambda = lam
+let env_lambda = lambda true 
+let lambda = lambda false Env.empty
 
-
-let seriaize (filename : string) (lambda : Lambda.lambda) : unit =
+let seriaize env (filename : string) (lambda : Lambda.lambda) : unit =
   let ou = open_out filename  in
   let old = Format.get_margin () in
   let () = Format.set_margin 10000 in
   let fmt = Format.formatter_of_out_channel ou in
   begin
-    lam fmt lambda;
+    env_lambda env fmt lambda;
     Format.pp_print_flush fmt ();
     close_out ou;
     Format.set_margin old

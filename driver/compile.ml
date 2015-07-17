@@ -83,23 +83,23 @@ let implementation ppf sourcefile outputprefix =
       let bytecode =
         (typedtree, coercion)
         ++ Translmod.transl_implementation modulename
-        ++ print_if ppf Clflags.dump_rawlambda Printlambda.lambda
+        ++ print_if ppf Clflags.dump_rawlambda (Printlambda.env_lambda env)
         ++ (fun lambda -> 
           (if serialize_raw_lambda then 
-            Printlambda.seriaize (sourcefile ^ ".rawlambda") lambda;);
+            Printlambda.seriaize env (sourcefile ^ ".rawlambda") lambda;);
           (if serialize_js then 
-            !Printlambda.serialize_js sourcefile  lambda env
+            !Printlambda.serialize_js env sourcefile  lambda env
           );
             lambda
            )
         ++ Simplif.simplify_lambda
         ++ (fun lambda -> 
           (if serialize_lambda then 
-            Printlambda.seriaize (sourcefile ^ ".lambda") lambda;);
+            Printlambda.seriaize env (sourcefile ^ ".lambda") lambda;);
             lambda
            )
 
-        ++ print_if ppf Clflags.dump_lambda Printlambda.lambda
+        ++ print_if ppf Clflags.dump_lambda (Printlambda.env_lambda env)
         ++ Bytegen.compile_implementation modulename
         ++ print_if ppf Clflags.dump_instr Printinstr.instrlist
       in
