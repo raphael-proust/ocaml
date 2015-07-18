@@ -59,6 +59,10 @@ let serialize_raw_lambda =
   try ignore @@ Sys.getenv "OCAML_RAW_LAMBDA" ; true with Not_found -> false
 let serialize_lambda = 
   try ignore @@ Sys.getenv "OCAML_LAMBDA"; true with Not_found -> true
+
+let serialize_raw_js = 
+  try ignore @@ Sys.getenv "OCAML_RAW_JS"; true with Not_found -> false
+
 let serialize_js = 
   try ignore @@ Sys.getenv "OCAML_JS"; true with Not_found -> false
 
@@ -87,8 +91,8 @@ let implementation ppf sourcefile outputprefix =
         ++ (fun lambda -> 
           (if serialize_raw_lambda then 
             Printlambda.seriaize env (sourcefile ^ ".rawlambda") lambda;);
-          (if serialize_js then 
-            !Printlambda.serialize_js env sourcefile  lambda env
+          (if serialize_raw_js then 
+            !Printlambda.serialize_raw_js env sourcefile  lambda 
           );
             lambda
            )
@@ -96,7 +100,11 @@ let implementation ppf sourcefile outputprefix =
         ++ (fun lambda -> 
           (if serialize_lambda then 
             Printlambda.seriaize env (sourcefile ^ ".lambda") lambda;);
-            lambda
+            
+          (if serialize_js then 
+            !Printlambda.serialize_js env sourcefile  lambda 
+          );
+            lambda;
            )
 
         ++ print_if ppf Clflags.dump_lambda (Printlambda.env_lambda env)

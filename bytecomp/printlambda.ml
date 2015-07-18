@@ -530,5 +530,6 @@ let seriaize env (filename : string) (lambda : Lambda.lambda) : unit =
     close_out ou;
     Format.set_margin old
   end
-    
-let serialize_js = ref (fun _ -> assert false)
+
+let serialize_raw_js = ref(fun _ _ _ -> ())    
+let serialize_js = ref (fun _ _ _ -> ())
