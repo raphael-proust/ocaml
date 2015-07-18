@@ -270,6 +270,19 @@ let rec aux (acc : (print_kind * Ident.t * lambda ) list) lam =
          @ acc) body
   | e ->  (acc , e) 
 
+type left_var = 
+    {
+     kind : print_kind ;
+     id : Ident.t
+   }
+
+type left = 
+  | Id of left_var
+  | Nop
+
+
+
+
 let  flatten lam : (print_kind * Ident.t * lambda ) list * lambda = 
   match lam with 
   | Llet(str,id, arg, body) ->
@@ -280,11 +293,22 @@ let  flatten lam : (print_kind * Ident.t * lambda ) list * lambda =
         body
   | _ -> assert false
 
-
+        
 let get_string ((id : Ident.t), (pos : int)) (env : Env.t) : string = 
   match  Env.find_module (Pident id) env with 
   | {md_type = Mty_signature signature  ; _ } -> 
-      (begin match List.nth signature pos  with 
+      (* Env.prefix_idents, could be cached  *)
+      let serializable_sigs = 
+        List.filter (fun x ->
+            match x with 
+            | Sig_typext _ 
+            | Sig_module _
+            | Sig_class _ -> true
+            | Sig_value(_, {val_kind = Val_prim _}) -> false
+            | Sig_value _ -> true
+            | _ -> false
+                    ) signature  in
+      (begin match List.nth  serializable_sigs  pos  with 
       | Sig_value (i,_) 
       | Sig_module (i,_,_) -> i 
       | Sig_typext (i,_,_) -> i 
@@ -335,10 +359,10 @@ let lambda use_env env ppf v  =
         "@[<2>(let@ (@[<hv 1>%a@]" bindings (List.rev args);
       fprintf ppf ")@ %a)@]"  lam body
   | Lprim(Pfield n, [ Lprim(Pgetglobal id,[])]) when use_env ->
-      fprintf ppf "%s.%s" id.name (get_string (id,n) env)
+      fprintf ppf "%s.%s/%d" id.name (get_string (id,n) env) n
 
   | Lprim(Psetfield (n,_), [ Lprim(Pgetglobal id,[]) ;  e ]) when use_env  ->
-      fprintf ppf "@[<2>(%s.%s <- %a)@]" id.name (get_string (id,n) env)
+      fprintf ppf "@[<2>(%s.%s/%d <- %a)@]" id.name (get_string (id,n) env) n
         lam e
   | Lprim(prim, largs) ->
       let lams ppf largs =
@@ -450,13 +474,58 @@ let structured_constant = struct_const
 let env_lambda = lambda true 
 let lambda = lambda false Env.empty
 
+let rec flatten_seq acc lam =
+  match lam with 
+  | Lsequence(l1,l2) -> 
+      flatten_seq (flatten_seq acc l1) l2
+  | x -> x :: acc 
+
+exception Not_a_module
+
+let rec flat (acc : (left * lambda) list ) (lam : lambda) = 
+  match lam with 
+  | Llet (str,id,arg,body) ->
+      flat ( (Id {kind = to_print_kind str;  id}, arg) :: acc) body 
+  | Lletrec (bind_args, body) ->
+      flat ( List.map (fun (id, arg ) -> (Id {kind = Recursive;  id}, arg)) bind_args @ acc) body 
+  | Lsequence (l,r) -> 
+      flat (flat acc l) r
+  | x -> (Nop, x) :: acc 
+
+let lambda_as_module env  ppf lam = 
+  try
+  match lam with
+  | Lprim(Psetglobal(id), [biglambda])  (* might be wrong in toplevel *) ->
+      
+      begin match flat [] biglambda  with 
+      | (Nop, Lprim (Pmakeblock (_, _), toplevels)) :: rest ->
+          (* let spc = ref false in *)
+          List.iter
+            (fun (left, l) ->
+              match left with 
+              | Id { kind = k; id } ->
+                  fprintf ppf "@[<2>%a =%s@ %a@]@." Ident.print id (kind k) (env_lambda env) l
+              | Nop -> 
+
+                  fprintf ppf "@[<2>%a@]@."   (env_lambda env) l
+            )
+
+            @@ List.rev rest
+          
+          
+      | _ -> raise Not_a_module
+      end
+  | _ -> raise Not_a_module
+  with _ -> 
+    env_lambda env ppf lam;
+    fprintf ppf "; lambda-failure"
 let seriaize env (filename : string) (lambda : Lambda.lambda) : unit =
   let ou = open_out filename  in
   let old = Format.get_margin () in
   let () = Format.set_margin 10000 in
   let fmt = Format.formatter_of_out_channel ou in
   begin
-    env_lambda env fmt lambda;
+    lambda_as_module env fmt lambda;
     Format.pp_print_flush fmt ();
     close_out ou;
     Format.set_margin old

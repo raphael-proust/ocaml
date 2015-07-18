@@ -1,3 +1,3 @@
 #!/bin/sh
-# make -j9 world > build.compile
-make -j9 compilerlibs/ocamlbytecomp.cma > build.compile
+OCAMLPARAM='_,annot=1' make  world 2>build.compile
+# make  compilerlibs/ocamlbytecomp.cma > build.compile

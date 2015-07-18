@@ -20,6 +20,8 @@ val env_lambda : Env.t -> formatter -> lambda -> unit
 val lambda : formatter -> lambda -> unit
 val primitive: formatter -> primitive -> unit
 
+val lambda_as_module : Env.t  -> Format.formatter -> Lambda.lambda -> unit
+
 
 val seriaize: Env.t -> string -> lambda -> unit
 val serialize_js: (Env.t -> string  -> lambda -> Env.t -> unit) ref
