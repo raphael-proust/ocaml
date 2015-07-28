@@ -2784,7 +2784,7 @@
 /yacc/.gdb_history
 *.lambda
 *.rawlambda
-*.js
+oxml
 *.compile
 stdlib/target_camlheader
 stdlib/target_camlheaderd
