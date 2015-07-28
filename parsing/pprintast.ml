@@ -1210,7 +1210,7 @@ class printer  ()= object(self:'self)
         in
         begin match decls with
         | ({pmb_expr={pmod_desc=Pmod_constraint (expr, typ)}} as pmb) :: l2 ->
-            pp f "@[<hv>@[<hov2>module@ rec@ %s:%a@ =@ %a@]%a@ %a@]"
+            pp f "@[<hv>@[<hov2>module@ rec@ %s:%a@ =@ %a@]@ %a@ %a@]"
               pmb.pmb_name.txt
               self#module_type typ
               self#module_expr expr
