@@ -79,7 +79,7 @@ module rec
       then Bytes.unsafe_to_string output
       else Bytes.sub_string output 0 ((Bytes.length output) - padding_len)
   end
-and
+ and
   Gen_of_env:sig
                val get_string : (Ident.t* int) -> Env.t -> string
                val required_modules : unit -> J.block
@@ -152,98 +152,106 @@ and
             | Pfield i ->
                 (match args with
                  | e::[] -> EAccess (e, (ENum (float (i + 1))))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pnegint |Pnegbint _|Pnegfloat  ->
-                (match args with | e::[] -> EUn (Neg, e) | _ -> assert false)
+                (match args with
+                 | e::[] -> EUn (Neg, e)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pnot  ->
-                (match args with | e::[] -> EUn (Not, e) | _ -> assert false)
+                (match args with
+                 | e::[] -> EUn (Not, e)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Poffsetint n ->
                 (match args with
                  | e::[] -> EBin (Plus, (ENum (float_of_int n)), e)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Poffsetref 1 ->
                 (match args with
                  | e::[] -> EUn (IncrA, (EAccess (e, (ENum 0.))))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Poffsetref (-1) ->
                 (match args with
                  | e::[] -> EUn (DecrA, (EAccess (e, (ENum 0.))))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Poffsetref n ->
                 (match args with
                  | e::[] ->
                      EBin
                        (PlusEq, (EAccess (e, (ENum 0.))),
                          (ENum (float_of_int n)))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Paddint |Paddbint _|Paddfloat  ->
                 (match args with
                  | e1::e2::[] -> EBin (Plus, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Psubint |Psubbint _|Psubfloat  ->
                 (match args with
                  | e1::e2::[] -> EBin (Minus, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pmulint |Pmulbint _|Pmulfloat  ->
                 (match args with
                  | e1::e2::[] -> EBin (Mul, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pdivfloat |Pdivint |Pdivbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Div, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pmodint |Pmodbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Mod, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Plslint |Plslbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Lsl, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Plsrint |Plsrbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Lsr, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pasrint |Pasrbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Asr, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pandint |Pandbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Band, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Porint |Porbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Bor, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pxorint |Pxorbint _ ->
                 (match args with
                  | e1::e2::[] -> EBin (Bxor, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Psequand  ->
                 (match args with
                  | e1::e2::[] -> EBin (And, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Psequor  ->
                 (match args with
                  | e1::e2::[] -> EBin (Or, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pisout  ->
                 (match args with
                  | range::e::[] ->
                      J.EBin (Lt, range, (J.EBin (Lsr, e, (ENum 0.))))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pidentity  ->
-                (match args with | e::[] -> e | _ -> assert false)
+                (match args with
+                 | e::[] -> e
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pignore  -> J_helper.unit_val
             | Pbintcomp (_,cmp)|Pfloatcomp cmp|Pintcomp cmp ->
                 let op: J.binop = jsop_of_comp cmp in
                 (match args with
                  | e1::e2::[] -> J.EBin (op, e1, e2)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pgetglobal i ->
-                if Ident.global i then J.EVar i else assert false
-            | Praise _raise_kind -> assert false
+                if Ident.global i
+                then J.EVar i
+                else Gen_util.expr_of_unknow_primitive prim
+            | Praise _raise_kind -> Gen_util.expr_of_unknow_primitive prim
             | Prevapply _ ->
                 (match args with
                  | arg::f::[] -> J.ECall (f, [arg], J.N)
@@ -251,10 +259,12 @@ and
             | Pdirapply _ ->
                 (match args with
                  | f::arg::[] -> J.ECall (f, [arg], J.N)
-                 | _ -> assert false)
-            | Ploc kind -> assert false
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | Ploc kind -> Gen_util.expr_of_unknow_primitive prim
             | Pintoffloat  ->
-                (match args with | e::[] -> e | _ -> assert false)
+                (match args with
+                 | e::[] -> e
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Psetfield (i,_) ->
                 (match args with
                  | e0::e1::[] ->
@@ -262,22 +272,22 @@ and
                        ((EBin
                            (Eq, (EAccess (e0, (ENum (float (i + 1))))), e1)),
                          Gen_util.unit_val)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pfloatfield i ->
                 (match args with
                  | e::[] -> J.EAccess (e, (ENum (float i)))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Psetfloatfield i ->
                 (match args with
                  | e::e0::[] ->
                      J.ESeq
                        ((EBin (Eq, (EAccess (e, (ENum (float i)))), e0)),
                          Gen_util.unit_val)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Parraylength _|Pstringlength  ->
                 (match args with
                  | e::[] -> J.EAccess (e, (EStr ("length", `Utf8)))
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pmakearray i ->
                 (match i with
                  | Pgenarray |Paddrarray |Pintarray |Pfloatarray  ->
@@ -285,16 +295,18 @@ and
             | Parrayrefu _|Parrayrefs _|Pstringrefu |Pstringrefs  ->
                 (match args with
                  | e::e1::[] -> J.EAccess (e, e1)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Parraysetu _|Parraysets _|Pstringsetu |Pstringsets  ->
                 (match args with
                  | e::e0::e1::[] ->
                      J.ESeq
                        ((EBin (Eq, (J.EAccess (e, e0)), e1)),
                          Gen_util.unit_val)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pbintofint _|Pintofbint _|Pfloatofint  ->
-                (match args with | e::[] -> e | _ -> assert false)
+                (match args with
+                 | e::[] -> e
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pabsfloat  ->
                 (match args with
                  | e::[] ->
@@ -302,7 +314,7 @@ and
                        ((J.EAccess
                            ((EVar (Ident.create_persistent "Math")),
                              (EStr ("abs", `Utf8)))), [e], N)
-                 | _ -> assert false)
+                 | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pisint |Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
             | Pduprecord (_,_)|Plazyforce |Pccall _|Pbittest |Pcvtbint 
               (_,_)|Pbigarrayref (_,_,_,_)|Pbigarrayset (_,_,_,_)
@@ -345,11 +357,34 @@ and
                        val unknown_block : Lambda.lambda -> J.block
                        val expr_of_unknow_primitive :
                          Lambda.primitive -> J.expression
+                       val string_of_unknown_lam : Lambda.lambda -> string
                        val gen : ?name:string -> unit -> Ident.t
                        val exports : Ident.t list -> J.statement
                        val unit_val : J.expression
                      end =
             struct
+              let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
+                let buf = Buffer.create 37 in
+                let fmt = Format.formatter_of_buffer buf in
+                let () = f fmt v; Format.pp_print_flush fmt () in
+                Buffer.contents buf
+              let string_of_lambda = string_of_fmt Printlambda.lambda
+              let string_of_primitive = string_of_fmt Printlambda.primitive
+              let unknown_expr (lam : Lambda.lambda) =
+                (J.EStr (("unknown block:" ^ (string_of_lambda lam)), `Utf8) : 
+                J.expression)
+              let unknown_block (lam : Lambda.lambda) =
+                ([((J.Exp
+                      (EStr
+                         (("unknown block:" ^ (string_of_lambda lam)), `Utf8))),
+                    N)] : J.block)
+              let string_of_unknown_lam (lam : Lambda.lambda) =
+                ("unknown block:" ^ (string_of_lambda lam) : string)
+              let expr_of_unknow_primitive (lam : Lambda.primitive) =
+                (let open J in
+                   EStr
+                     (("unknown primitive:" ^ (string_of_primitive lam)),
+                       `Utf8) : J.expression)
               let rec is_pure (lam : Lambda.lambda) =
                 match lam with
                 | Lvar _|Lconst _|Lfunction _ -> true
@@ -369,27 +404,7 @@ and
                  | (None ,true ) -> [((Return (Some exp)), N)]
                  | (Some n,false ) ->
                      [((Variable [(n, (Some (exp, N)))]), N)]
-                 | (Some _,true ) -> assert false : J.block)
-              let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
-                let buf = Buffer.create 37 in
-                let fmt = Format.formatter_of_buffer buf in
-                let () = f fmt v; Format.pp_print_flush fmt () in
-                Buffer.contents buf
-              let string_of_lambda = string_of_fmt Printlambda.lambda
-              let string_of_primitive = string_of_fmt Printlambda.primitive
-              let unknown_expr (lam : Lambda.lambda) =
-                (J.EStr (("unknown block:" ^ (string_of_lambda lam)), `Utf8) : 
-                J.expression)
-              let unknown_block (lam : Lambda.lambda) =
-                ([((J.Exp
-                      (EStr
-                         (("unknown block:" ^ (string_of_lambda lam)), `Utf8))),
-                    N)] : J.block)
-              let expr_of_unknow_primitive (lam : Lambda.primitive) =
-                (let open J in
-                   EStr
-                     (("unknown primitive:" ^ (string_of_primitive lam)),
-                       `Utf8) : J.expression)
+                 | (Some _,true ) -> unknown_block lam : J.block)
               let gen ?(name= "$js")  () = Ident.create name
               let exports (idents : Ident.t list) =
                 (let properties: J.property_map =
@@ -661,6 +676,10 @@ and
                                      [@@@ocaml.text " Main entry "]
                                      val compile :
                                        Env.t -> Lambda.lambda -> J.block
+                                     val lambda_as_module :
+                                       bool ->
+                                         Env.t ->
+                                           string -> Lambda.lambda -> unit
                                    end =
                            struct
                              type print_kind =
@@ -876,7 +895,7 @@ and
                                                name = (Some s)
                                              } l in
                                          (match cases with
-                                          | [] -> assert false
+                                          | [] -> Gen_util.unknown_block lam
                                           | (s1,lam1)::xs ->
                                               v @
                                                 [((J.If
@@ -935,7 +954,8 @@ and
                                                 (int* Lambda.lambda) list)
                                               default =
                                               match table with
-                                              | [] -> assert false
+                                              | [] ->
+                                                  Gen_util.unknown_block lam
                                               | (i,lam1)::xs ->
                                                   [((J.If
                                                        ((EBin
@@ -1057,7 +1077,7 @@ and
                                                            ((ENum (float i)),
                                                              N)))]), N)]
                                           | exception Not_found  ->
-                                              assert false)
+                                              Gen_util.unknown_block lam)
                                      | Lstaticcatch _ ->
                                          let (code_table,body) =
                                            flat_catches [] lam in
@@ -1121,7 +1141,8 @@ and
                                           | (None ,true ) ->
                                               block @ J_helper.return_unit
                                           | (None ,false ) -> block
-                                          | (Some _,true ) -> assert false
+                                          | (Some _,true ) ->
+                                              Gen_util.unknown_block lam
                                           | (Some x,false ) ->
                                               block @
                                                 [((J.Variable
@@ -1204,7 +1225,8 @@ and
                                           | (None ,false ) -> block
                                           | (None ,true ) ->
                                               block @ J_helper.return_unit
-                                          | (Some _,true ) -> assert false
+                                          | (Some _,true ) ->
+                                              Gen_util.unknown_block lam
                                           | (Some x,false ) ->
                                               block @
                                                 [((J.Variable
@@ -1265,9 +1287,9 @@ and
                                            should_return lam
                                            (Gen_primitive.compile_const c)
                                      | Lsend (meth_kind,lam1,lam2,lams,loc)
-                                         -> assert false
-                                     | Levent (lam,lam_event) ->
-                                         [(J.Empty, J.N)]
+                                         -> Gen_util.unknown_block lam
+                                     | Levent (lam,_lam_event) ->
+                                         compile_lambda cxt lam
                                      | Lifused (_,lam) ->
                                          compile_lambda cxt lam) : J.block)
                              let compile env lam =
@@ -1282,8 +1304,11 @@ and
                                              (fun (t : Lambda.lambda)  ->
                                                 match t with
                                                 | Lvar id -> id
-                                                | _ -> assert false)
-                                             module_exports in
+                                                | _ ->
+                                                    Ident.create_persistent
+                                                      @@
+                                                      (Gen_util.string_of_unknown_lam
+                                                         t)) module_exports in
                                          let lambda =
                                            (Optimizer.simplify_lets
                                               export_idents)
@@ -1308,7 +1333,6 @@ and
                                 | _ -> raise Not_a_module : J.block)
                              let lambda_as_module raw env filename
                                (lam : Lambda.lambda) =
-                               let () = print_string "compiling to js" in
                                let out =
                                  open_out
                                    (filename ^
