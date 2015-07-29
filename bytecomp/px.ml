@@ -122,7 +122,7 @@ module rec
                    [(id,
                       (Some
                          ((J.ECall
-                             ((EVar (Ident.create_persistent "require")),
+                             ((EVar (Jident.create_js "require")),
                                [EStr ((id.name), `Utf8)], N)), N)))]), J.N)
                :: block) cached_tbl ([] : J.block)
   end and
@@ -312,7 +312,7 @@ module rec
                  | e::[] ->
                      J.ECall
                        ((J.EAccess
-                           ((EVar (Ident.create_persistent "Math")),
+                           ((EVar (Jident.create_js "Math")),
                              (EStr ("abs", `Utf8)))), [e], N)
                  | _ -> Gen_util.expr_of_unknow_primitive prim)
             | Pisint |Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
@@ -405,7 +405,7 @@ module rec
                  | (Some n,false ) ->
                      [((Variable [(n, (Some (exp, N)))]), N)]
                  | (Some _,true ) -> unknown_block lam : J.block)
-              let gen ?(name= "$js")  () = Ident.create name
+              let gen ?(name= "$js")  () = Jident.create name
               let exports (idents : Ident.t list) =
                 (let properties: J.property_map =
                    List.map
@@ -415,7 +415,7 @@ module rec
                    (EBin
                       (Eq,
                         (EAccess
-                           ((EVar (Ident.create_persistent "module")),
+                           ((EVar (Jident.create_js "module")),
                              (EStr ("exports", `Utf8)))), (EObj properties))) : 
                 J.statement)
               let unit_val = J.ENum 0.
@@ -660,260 +660,308 @@ module rec
                    and block = loc_statement list[@@ocaml.doc
                                                    " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
                  end and
-                      J_helper:sig
-                                 val return_unit : J.block[@@ocaml.doc
-                                                            " for ocaml function which returns unit \n    it will be compiled into [return 0] in js "]
-                                 val unit_val : J.expression[@@ocaml.doc
-                                                              " [unit] in ocaml will be compiled into [0]  in js"]
-                               end =
+                      Jident:sig
+                               val is_js : Ident.t -> bool
+                               val create_js : string -> Ident.t
+                               val create : string -> Ident.t
+                             end =
                       struct
-                        [@@@ocaml.text " A module help construct js ast "]
-                        let unit_val = J.ENum 0.
-                        let return_unit: J.block =
-                          [((J.Return (Some (J.ENum 0.))), N)]
+                        let js_flag = 8
+                        let is_js (i : Ident.t) = (i.flags land js_flag) <> 0
+                        let create_js (name : string) =
+                          ({ name; flags = js_flag; stamp = 0 } : Ident.t)
+                        let create = Ident.create
                       end and
-                           Js_main:sig
-                                     [@@@ocaml.text " Main entry "]
-                                     val compile :
-                                       Env.t -> Lambda.lambda -> J.block
-                                     val lambda_as_module :
-                                       bool ->
-                                         Env.t ->
-                                           string -> Lambda.lambda -> unit
-                                   end =
+                           J_helper:sig
+                                      val return_unit : J.block[@@ocaml.doc
+                                                                 " for ocaml function which returns unit \n    it will be compiled into [return 0] in js "]
+                                      val unit_val : J.expression[@@ocaml.doc
+                                                                   " [unit] in ocaml will be compiled into [0]  in js"]
+                                    end =
                            struct
-                             type print_kind =
-                               | Alias
-                               | Strict
-                               | StrictOpt
-                               | Variable
-                               | Recursive
-                             let kind =
-                               function
-                               | Alias  -> "a"
-                               | Strict  -> ""
-                               | StrictOpt  -> "o"
-                               | Variable  -> "v"
-                               | Recursive  -> "r"
-                             let to_print_kind (k : Lambda.let_kind) =
-                               (match k with
-                                | Alias  -> Alias
-                                | Strict  -> Strict
-                                | StrictOpt  -> StrictOpt
-                                | Variable  -> Variable : print_kind)
-                             type left_var = {
-                               kind: print_kind;
-                               id: Ident.t;}
-                             type left =
-                               | Id of left_var
-                               | Nop
-                             let rec flat (acc : (left* Lambda.lambda) list)
-                               (lam : Lambda.lambda) =
-                               match lam with
-                               | Llet (str,id,arg,body) ->
-                                   flat
-                                     (((Id { kind = (to_print_kind str); id }),
-                                        arg) :: acc) body
-                               | Lletrec (bind_args,body) ->
-                                   flat
-                                     ((List.map
-                                         (fun (id,arg)  ->
-                                            ((Id { kind = Recursive; id }),
-                                              arg)) bind_args)
-                                        @ acc) body
-                               | Lsequence (l,r) -> flat (flat acc l) r
-                               | x -> (Nop, x) :: acc
-                             exception Not_a_module
-                             type jbl_label = int
-                             module HandlerMap =
-                               Map.Make(struct
-                                          type t = jbl_label
-                                          let compare x y = compare (x : t) y
-                                        end)
-                             type value =
-                               {
-                               exit_id: Ident.t;
-                               args: Ident.t list;}
-                             let add_jmps (ls : (jbl_label* value) list) m =
-                               List.fold_left
-                                 (fun acc  ->
-                                    fun (l,s)  -> HandlerMap.add l s acc) m
-                                 ls
-                             type cxt =
-                               {
-                               name: J.ident option;
-                               should_return: bool;
-                               jmp_table: value HandlerMap.t;
-                               env: Env.t;}
-                             let rec flat_catches acc (x : Lambda.lambda) =
-                               (match x with
-                                | Lstaticcatch (l,(code,bindings),handler) ->
-                                    flat_catches ((code, handler, bindings)
-                                      :: acc) l
-                                | _ -> (acc, x) : ((int* Lambda.lambda*
-                                                    Ident.t list) list*
-                                                    Lambda.lambda))[@@ocaml.doc
-                                                                    " assume outer is [Lstaticcatch] "]
-                             exception Not_an_expression
-                             let rec expr_of_lambda cxt (lam : Lambda.lambda)
-                               =
-                               (match lam with
-                                | Lvar id -> J.EVar id
-                                | Lconst c -> Gen_primitive.compile_const c
-                                | Lfunction (kind,params,body) ->
-                                    J.EFun
-                                      (None, params,
-                                        (compile_lambda
-                                           {
-                                             cxt with
-                                             name = None;
-                                             should_return = true;
-                                             jmp_table = HandlerMap.empty
-                                           } body), N)
-                                | Lprim
-                                    (Pfield n,(Lprim (Pgetglobal id,[]))::[])
-                                    ->
-                                    J.EAccess
-                                      ((EVar id),
-                                        (EStr
-                                           ((Gen_of_env.get_string (id, n)
-                                               cxt.env), `Utf8)))
-                                | Lprim (prim,args_lambda) ->
-                                    Gen_primitive.compile_primitive prim
-                                      (List.map (expr_of_lambda cxt)
-                                         args_lambda)
-                                | _ -> raise Not_an_expression : J.expression)
-                             [@@ocaml.doc
-                               " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
-                             and compile_lambda
-                               ({ name; should_return; jmp_table } as cxt)
-                               (lam : Lambda.lambda) =
-                               (match expr_of_lambda cxt lam with
-                                | e ->
-                                    Gen_util.handle_name_tail name
-                                      should_return lam
-                                      (expr_of_lambda cxt lam)
-                                | exception Not_an_expression  ->
+                             [@@@ocaml.text
+                               " A module help construct js ast "]
+                             let unit_val = J.ENum 0.
+                             let return_unit: J.block =
+                               [((J.Return (Some (J.ENum 0.))), N)]
+                           end and
+                                Js_main:sig
+                                          [@@@ocaml.text " Main entry "]
+                                          val compile :
+                                            Env.t -> Lambda.lambda -> J.block
+                                          val lambda_as_module :
+                                            bool ->
+                                              Env.t ->
+                                                string ->
+                                                  Lambda.lambda -> unit
+                                        end =
+                                struct
+                                  type print_kind =
+                                    | Alias
+                                    | Strict
+                                    | StrictOpt
+                                    | Variable
+                                    | Recursive
+                                  let kind =
+                                    function
+                                    | Alias  -> "a"
+                                    | Strict  -> ""
+                                    | StrictOpt  -> "o"
+                                    | Variable  -> "v"
+                                    | Recursive  -> "r"
+                                  let to_print_kind (k : Lambda.let_kind) =
+                                    (match k with
+                                     | Alias  -> Alias
+                                     | Strict  -> Strict
+                                     | StrictOpt  -> StrictOpt
+                                     | Variable  -> Variable : print_kind)
+                                  type left_var =
+                                    {
+                                    kind: print_kind;
+                                    id: Ident.t;}
+                                  type left =
+                                    | Id of left_var
+                                    | Nop
+                                  let rec flat
+                                    (acc : (left* Lambda.lambda) list)
+                                    (lam : Lambda.lambda) =
+                                    match lam with
+                                    | Llet (str,id,arg,body) ->
+                                        flat
+                                          (((Id
+                                               {
+                                                 kind = (to_print_kind str);
+                                                 id
+                                               }), arg) :: acc) body
+                                    | Lletrec (bind_args,body) ->
+                                        flat
+                                          ((List.map
+                                              (fun (id,arg)  ->
+                                                 ((Id
+                                                     { kind = Recursive; id }),
+                                                   arg)) bind_args)
+                                             @ acc) body
+                                    | Lsequence (l,r) -> flat (flat acc l) r
+                                    | x -> (Nop, x) :: acc
+                                  exception Not_a_module
+                                  type jbl_label = int
+                                  module HandlerMap =
+                                    Map.Make(struct
+                                               type t = jbl_label
+                                               let compare x y =
+                                                 compare (x : t) y
+                                             end)
+                                  type value =
+                                    {
+                                    exit_id: Ident.t;
+                                    args: Ident.t list;}
+                                  let add_jmps (ls : (jbl_label* value) list)
+                                    m =
+                                    List.fold_left
+                                      (fun acc  ->
+                                         fun (l,s)  -> HandlerMap.add l s acc)
+                                      m ls
+                                  type cxt =
+                                    {
+                                    name: J.ident option;
+                                    should_return: bool;
+                                    jmp_table: value HandlerMap.t;
+                                    env: Env.t;}
+                                  let rec flat_catches acc
+                                    (x : Lambda.lambda) =
+                                    (match x with
+                                     | Lstaticcatch
+                                         (l,(code,bindings),handler) ->
+                                         flat_catches
+                                           ((code, handler, bindings) :: acc)
+                                           l
+                                     | _ -> (acc, x) : ((int* Lambda.lambda*
+                                                         Ident.t list) list*
+                                                         Lambda.lambda))
+                                    [@@ocaml.doc
+                                      " assume outer is [Lstaticcatch] "]
+                                  exception Not_an_expression
+                                  let rec expr_of_lambda cxt
+                                    (lam : Lambda.lambda) =
                                     (match lam with
-                                     | Lvar _|Lfunction _|Lprim
-                                       (Pfield _,(Lprim
-                                        (Pgetglobal _,[]))::[]) ->
+                                     | Lvar id -> J.EVar id
+                                     | Lconst c ->
+                                         Gen_primitive.compile_const c
+                                     | Lfunction (kind,params,body) ->
+                                         J.EFun
+                                           (None, params,
+                                             (compile_lambda
+                                                {
+                                                  cxt with
+                                                  name = None;
+                                                  should_return = true;
+                                                  jmp_table =
+                                                    HandlerMap.empty
+                                                } body), N)
+                                     | Lprim
+                                         (Pfield n,(Lprim
+                                          (Pgetglobal id,[]))::[])
+                                         ->
+                                         J.EAccess
+                                           ((EVar id),
+                                             (EStr
+                                                ((Gen_of_env.get_string
+                                                    (id, n) cxt.env), `Utf8)))
+                                     | Lprim (prim,args_lambda) ->
+                                         Gen_primitive.compile_primitive prim
+                                           (List.map (expr_of_lambda cxt)
+                                              args_lambda)
+                                     | _ -> raise Not_an_expression : 
+                                    J.expression)[@@ocaml.doc
+                                                   " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
+                                  and compile_lambda
+                                    ({ name; should_return; jmp_table } as
+                                       cxt)
+                                    (lam : Lambda.lambda) =
+                                    (match expr_of_lambda cxt lam with
+                                     | e ->
                                          Gen_util.handle_name_tail name
                                            should_return lam
                                            (expr_of_lambda cxt lam)
-                                     | Lprim (Praise _raise_kind,e::[]) ->
-                                         let v = Gen_util.gen () in
-                                         (compile_lambda
-                                            {
-                                              cxt with
-                                              should_return = false;
-                                              name = (Some v)
-                                            } e)
-                                           @ [((J.Throw (EVar v)), N)]
-                                     | Lprim (prim,args_lambda) ->
-                                         let (args_code,(args :
-                                                          J.expression list))
-                                           =
-                                           List.split @@
-                                             (List.map
-                                                (fun (x : Lambda.lambda)  ->
-                                                   match expr_of_lambda cxt x
-                                                   with
-                                                   | x -> ([], x)
-                                                   | exception
-                                                       Not_an_expression  ->
-                                                       let v =
-                                                         Gen_util.gen () in
-                                                       ((compile_lambda
-                                                           {
-                                                             cxt with
-                                                             name = (Some v);
-                                                             should_return =
-                                                               false
-                                                           } x), (J.EVar v)))
-                                                args_lambda) in
-                                         let args_code =
-                                           List.concat args_code in
-                                         let exp: J.expression =
-                                           Gen_primitive.compile_primitive
-                                             prim args in
-                                         args_code @
-                                           (Gen_util.handle_name_tail name
-                                              should_return lam exp)
-                                     | Llet (kind,id,arg,body) ->
-                                         (compile_lambda
-                                            {
-                                              cxt with
-                                              name = (Some id);
-                                              should_return = false
-                                            } arg)
-                                           @ (compile_lambda cxt body)
-                                     | Lletrec (id_args,body) ->
-                                         (List.concat
-                                            (List.map
-                                               (fun (ident,arg)  ->
-                                                  compile_lambda
-                                                    {
-                                                      cxt with
-                                                      name = (Some ident);
-                                                      should_return = false
-                                                    } arg) id_args))
-                                           @ (compile_lambda cxt body)
-                                     | Lsequence (l1,l2) ->
-                                         (compile_lambda
-                                            {
-                                              cxt with
-                                              name = None;
-                                              should_return = false
-                                            } l1)
-                                           @ (compile_lambda cxt l2)
-                                     | Lifthenelse (p,t_br,f_br) ->
-                                         let v = Gen_util.gen () in
-                                         (compile_lambda
-                                            {
-                                              cxt with
-                                              name = (Some v);
-                                              should_return = false
-                                            } p)
-                                           @
-                                           [((J.If
-                                                ((EVar v),
-                                                  ((Block
-                                                      (compile_lambda cxt
-                                                         t_br)), N),
-                                                  (Some
-                                                     ((Block
-                                                         (compile_lambda cxt
-                                                            f_br)), N)))), N)]
-                                     | Lstringswitch (l,cases,default) ->
-                                         let s = Gen_util.gen () in
-                                         let v =
-                                           compile_lambda
-                                             {
-                                               cxt with
-                                               should_return = false;
-                                               name = (Some s)
-                                             } l in
-                                         (match cases with
-                                          | [] -> Gen_util.unknown_block lam
-                                          | (s1,lam1)::xs ->
-                                              v @
+                                     | exception Not_an_expression  ->
+                                         (match lam with
+                                          | Lvar _|Lfunction _|Lprim
+                                            (Pfield _,(Lprim
+                                             (Pgetglobal _,[]))::[]) ->
+                                              Gen_util.handle_name_tail name
+                                                should_return lam
+                                                (expr_of_lambda cxt lam)
+                                          | Lprim (Praise _raise_kind,e::[])
+                                              ->
+                                              let v = Gen_util.gen () in
+                                              (compile_lambda
+                                                 {
+                                                   cxt with
+                                                   should_return = false;
+                                                   name = (Some v)
+                                                 } e)
+                                                @ [((J.Throw (EVar v)), N)]
+                                          | Lprim (prim,args_lambda) ->
+                                              let (args_code,(args :
+                                                               J.expression
+                                                                 list))
+                                                =
+                                                List.split @@
+                                                  (List.map
+                                                     (fun (x : Lambda.lambda)
+                                                         ->
+                                                        match expr_of_lambda
+                                                                cxt x
+                                                        with
+                                                        | x -> ([], x)
+                                                        | exception
+                                                            Not_an_expression 
+                                                            ->
+                                                            let v =
+                                                              Gen_util.gen () in
+                                                            ((compile_lambda
+                                                                {
+                                                                  cxt with
+                                                                  name =
+                                                                    (
+                                                                    Some v);
+                                                                  should_return
+                                                                    = false
+                                                                } x),
+                                                              (J.EVar v)))
+                                                     args_lambda) in
+                                              let args_code =
+                                                List.concat args_code in
+                                              let exp: J.expression =
+                                                Gen_primitive.compile_primitive
+                                                  prim args in
+                                              args_code @
+                                                (Gen_util.handle_name_tail
+                                                   name should_return lam exp)
+                                          | Llet (kind,id,arg,body) ->
+                                              (compile_lambda
+                                                 {
+                                                   cxt with
+                                                   name = (Some id);
+                                                   should_return = false
+                                                 } arg)
+                                                @ (compile_lambda cxt body)
+                                          | Lletrec (id_args,body) ->
+                                              (List.concat
+                                                 (List.map
+                                                    (fun (ident,arg)  ->
+                                                       compile_lambda
+                                                         {
+                                                           cxt with
+                                                           name =
+                                                             (Some ident);
+                                                           should_return =
+                                                             false
+                                                         } arg) id_args))
+                                                @ (compile_lambda cxt body)
+                                          | Lsequence (l1,l2) ->
+                                              (compile_lambda
+                                                 {
+                                                   cxt with
+                                                   name = None;
+                                                   should_return = false
+                                                 } l1)
+                                                @ (compile_lambda cxt l2)
+                                          | Lifthenelse (p,t_br,f_br) ->
+                                              let v = Gen_util.gen () in
+                                              (compile_lambda
+                                                 {
+                                                   cxt with
+                                                   name = (Some v);
+                                                   should_return = false
+                                                 } p)
+                                                @
                                                 [((J.If
-                                                     ((EBin
-                                                         (EqEq, (EVar s),
-                                                           (EStr (s1, `Utf8)))),
-                                                       ((J.Block
+                                                     ((EVar v),
+                                                       ((Block
                                                            (compile_lambda
-                                                              cxt lam1)), N),
-                                                       (List.fold_right
-                                                          (fun (x,lam)  ->
-                                                             fun
-                                                               (acc :
-                                                                 J.loc_statement
-                                                                   option)
-                                                                ->
-                                                               Some
-                                                                 ((J.If
+                                                              cxt t_br)), N),
+                                                       (Some
+                                                          ((Block
+                                                              (compile_lambda
+                                                                 cxt f_br)),
+                                                            N)))), N)]
+                                          | Lstringswitch (l,cases,default)
+                                              ->
+                                              let s = Gen_util.gen () in
+                                              let v =
+                                                compile_lambda
+                                                  {
+                                                    cxt with
+                                                    should_return = false;
+                                                    name = (Some s)
+                                                  } l in
+                                              (match cases with
+                                               | [] ->
+                                                   Gen_util.unknown_block lam
+                                               | (s1,lam1)::xs ->
+                                                   v @
+                                                     [((J.If
+                                                          ((EBin
+                                                              (EqEq,
+                                                                (EVar s),
+                                                                (EStr
+                                                                   (s1,
+                                                                    `Utf8)))),
+                                                            ((J.Block
+                                                                (compile_lambda
+                                                                   cxt lam1)),
+                                                              N),
+                                                            (List.fold_right
+                                                               (fun (x,lam) 
+                                                                  ->
+                                                                  fun
+                                                                    (acc :
+                                                                    J.loc_statement
+                                                                    option) 
+                                                                    ->
+                                                                    Some
+                                                                    ((J.If
                                                                     ((EBin
                                                                     (EqEq,
                                                                     (EVar s),
@@ -924,56 +972,64 @@ module rec
                                                                     (compile_lambda
                                                                     cxt lam)),
                                                                     N), acc)),
-                                                                   N)) xs
-                                                          (match default with
-                                                           | None  -> None
-                                                           | Some x ->
-                                                               Some
-                                                                 (((J.Block
+                                                                    N)) xs
+                                                               (match default
+                                                                with
+                                                                | None  ->
+                                                                    None
+                                                                | Some x ->
+                                                                    Some
+                                                                    (((J.Block
                                                                     (compile_lambda
                                                                     cxt x)),
                                                                     N) : 
-                                                                 J.loc_statement)) : 
-                                                       J.loc_statement option))),
-                                                   N)])
-                                     | Lswitch
-                                         (lam,{ sw_numconsts; sw_consts;
-                                                sw_numblocks; sw_blocks;
-                                                sw_failaction = default })
-                                         ->
-                                         let v = Gen_util.gen () in
-                                         (compile_lambda
-                                            {
-                                              cxt with
-                                              should_return = false;
-                                              name = (Some v)
-                                            } lam)
-                                           @
-                                           (let aux (v : J.expression)
-                                              (table :
-                                                (int* Lambda.lambda) list)
-                                              default =
-                                              match table with
-                                              | [] ->
-                                                  Gen_util.unknown_block lam
-                                              | (i,lam1)::xs ->
-                                                  [((J.If
-                                                       ((EBin
-                                                           (EqEq, v,
-                                                             (ENum (float i)))),
-                                                         ((J.Block
-                                                             (compile_lambda
-                                                                cxt lam1)),
-                                                           N),
-                                                         (List.fold_right
-                                                            (fun (x,lam)  ->
-                                                               fun
-                                                                 (acc :
-                                                                   J.loc_statement
-                                                                    option)
-                                                                  ->
-                                                                 Some
-                                                                   ((J.If
+                                                                    J.loc_statement)) : 
+                                                            J.loc_statement
+                                                              option))), N)])
+                                          | Lswitch
+                                              (lam,{ sw_numconsts; sw_consts;
+                                                     sw_numblocks; sw_blocks;
+                                                     sw_failaction = default
+                                                     })
+                                              ->
+                                              let v = Gen_util.gen () in
+                                              (compile_lambda
+                                                 {
+                                                   cxt with
+                                                   should_return = false;
+                                                   name = (Some v)
+                                                 } lam)
+                                                @
+                                                (let aux (v : J.expression)
+                                                   (table :
+                                                     (int* Lambda.lambda)
+                                                       list)
+                                                   default =
+                                                   match table with
+                                                   | [] ->
+                                                       Gen_util.unknown_block
+                                                         lam
+                                                   | (i,lam1)::xs ->
+                                                       [((J.If
+                                                            ((EBin
+                                                                (EqEq, v,
+                                                                  (ENum
+                                                                    (float i)))),
+                                                              ((J.Block
+                                                                  (compile_lambda
+                                                                    cxt lam1)),
+                                                                N),
+                                                              (List.fold_right
+                                                                 (fun 
+                                                                    (x,lam) 
+                                                                    ->
+                                                                    fun
+                                                                    (acc :
+                                                                    J.loc_statement
+                                                                    option) 
+                                                                    ->
+                                                                    Some
+                                                                    ((J.If
                                                                     ((EBin
                                                                     (EqEq, v,
                                                                     (ENum
@@ -983,148 +1039,164 @@ module rec
                                                                     cxt lam)),
                                                                     N), acc)),
                                                                     N)) xs
-                                                            (match default
-                                                             with
-                                                             | None  -> None
-                                                             | Some x ->
-                                                                 Some
-                                                                   (((J.Block
+                                                                 (match default
+                                                                  with
+                                                                  | None  ->
+                                                                    None
+                                                                  | Some x ->
+                                                                    Some
+                                                                    (((J.Block
                                                                     (compile_lambda
                                                                     cxt x)),
                                                                     N) : 
-                                                                   J.loc_statement)) : 
-                                                         J.loc_statement
-                                                           option))), J.N)] in
-                                            let tag_v = Gen_util.gen () in
-                                            let block_tag: J.block =
-                                              [((let open J in
-                                                   Variable
-                                                     [(tag_v,
-                                                        (Some
-                                                           ((EAccess
-                                                               ((EVar v),
-                                                                 (ENum 0.))),
-                                                             N)))]), J.N)] in
-                                            if sw_numconsts = 0
-                                            then
-                                              aux (J.EVar v) sw_blocks
-                                                default
-                                            else
-                                              if sw_numblocks = 0
-                                              then
-                                                block_tag @
-                                                  (aux (EVar tag_v) sw_consts
-                                                     default)
-                                              else
-                                                [((J.If
-                                                     ((EBin
-                                                         (EqEq,
-                                                           (J.EUn
-                                                              (Typeof,
-                                                                (EVar v))),
-                                                           (EStr
-                                                              ("number",
-                                                                `Utf8)))),
-                                                       ((J.Block
-                                                           (aux (J.EVar v)
-                                                              sw_consts None)),
-                                                         N),
-                                                       (Some
-                                                          ((J.Block
-                                                              (block_tag @
-                                                                 (aux
-                                                                    (
-                                                                    EVar
+                                                                    J.loc_statement)) : 
+                                                              J.loc_statement
+                                                                option))),
+                                                          J.N)] in
+                                                 let tag_v = Gen_util.gen () in
+                                                 let block_tag: J.block =
+                                                   [((let open J in
+                                                        Variable
+                                                          [(tag_v,
+                                                             (Some
+                                                                ((EAccess
+                                                                    ((EVar v),
+                                                                    (ENum 0.))),
+                                                                  N)))]),
+                                                      J.N)] in
+                                                 if sw_numconsts = 0
+                                                 then
+                                                   aux (J.EVar v) sw_blocks
+                                                     default
+                                                 else
+                                                   if sw_numblocks = 0
+                                                   then
+                                                     block_tag @
+                                                       (aux (EVar tag_v)
+                                                          sw_consts default)
+                                                   else
+                                                     [((J.If
+                                                          ((EBin
+                                                              (EqEq,
+                                                                (J.EUn
+                                                                   (Typeof,
+                                                                    (EVar v))),
+                                                                (EStr
+                                                                   ("number",
+                                                                    `Utf8)))),
+                                                            ((J.Block
+                                                                (aux
+                                                                   (J.EVar v)
+                                                                   sw_consts
+                                                                   None)), N),
+                                                            (Some
+                                                               ((J.Block
+                                                                   (block_tag
+                                                                    @
+                                                                    (aux
+                                                                    (EVar
                                                                     tag_v)
                                                                     sw_blocks
                                                                     default))),
-                                                            N)))), N)])
-                                     | Lstaticraise (i,largs) ->
-                                         (match HandlerMap.find i
-                                                  cxt.jmp_table
-                                          with
-                                          | { exit_id; args } ->
-                                              let args_code =
-                                                List.concat @@
-                                                  (List.map2
-                                                     (fun (x : Lambda.lambda)
-                                                         ->
-                                                        fun (arg : Ident.t) 
-                                                          ->
-                                                          match x with
-                                                          | Lvar id ->
-                                                              [((J.Exp
-                                                                   (EBin
+                                                                 N)))), N)])
+                                          | Lstaticraise (i,largs) ->
+                                              (match HandlerMap.find i
+                                                       cxt.jmp_table
+                                               with
+                                               | { exit_id; args } ->
+                                                   let args_code =
+                                                     List.concat @@
+                                                       (List.map2
+                                                          (fun
+                                                             (x :
+                                                               Lambda.lambda)
+                                                              ->
+                                                             fun
+                                                               (arg :
+                                                                 Ident.t)
+                                                                ->
+                                                               match x with
+                                                               | Lvar id ->
+                                                                   [((J.Exp
+                                                                    (EBin
                                                                     (Eq,
                                                                     (EVar arg),
                                                                     (EVar id)))),
-                                                                 J.N)]
-                                                          | _ ->
-                                                              (compile_lambda
-                                                                 {
-                                                                   cxt with
-                                                                   name =
+                                                                    J.N)]
+                                                               | _ ->
+                                                                   (compile_lambda
+                                                                    {
+                                                                    cxt with
+                                                                    name =
                                                                     (Some arg);
-                                                                   should_return
+                                                                    should_return
                                                                     = false
-                                                                 } x : 
-                                                              J.block)) largs
-                                                     args) in
-                                              args_code @
-                                                [((Variable
-                                                     [(exit_id,
-                                                        (Some
-                                                           ((ENum (float i)),
-                                                             N)))]), N)]
-                                          | exception Not_found  ->
-                                              Gen_util.unknown_block lam)
-                                     | Lstaticcatch _ ->
-                                         let (code_table,body) =
-                                           flat_catches [] lam in
-                                         let exit_id =
-                                           Gen_util.gen ~name:"exit" () in
-                                         let code_jmps =
-                                           List.map
-                                             (fun (i,_,bindings)  ->
-                                                (i,
-                                                  { exit_id; args = bindings
-                                                  })) code_table in
-                                         (compile_lambda
-                                            {
-                                              cxt with
-                                              jmp_table =
-                                                (add_jmps code_jmps jmp_table)
-                                            } body)
-                                           @
-                                           [((J.Switch
-                                                ((EVar exit_id),
-                                                  (List.map
-                                                     (fun (i,handler,_)  ->
-                                                        ((J.ENum (float i)),
-                                                          (compile_lambda cxt
-                                                             handler)))
-                                                     code_table), None, [])),
-                                              N)]
-                                     | Lwhile (p,body) ->
-                                         let pred_symbol = Gen_util.gen () in
-                                         let pred_block =
-                                           compile_lambda
-                                             {
-                                               cxt with
-                                               name = (Some pred_symbol);
-                                               should_return = false
-                                             } p in
-                                         let block =
-                                           [((J.For
-                                                ((Left None), None, None,
-                                                  ((J.Block
-                                                      (pred_block @
-                                                         [((J.If
-                                                              ((EVar
-                                                                  pred_symbol),
-                                                                ((J.Block
+                                                                    } x : 
+                                                                   J.block))
+                                                          largs args) in
+                                                   args_code @
+                                                     [((Variable
+                                                          [(exit_id,
+                                                             (Some
+                                                                ((ENum
                                                                     (
-                                                                    compile_lambda
+                                                                    float i)),
+                                                                  N)))]), N)]
+                                               | exception Not_found  ->
+                                                   Gen_util.unknown_block lam)
+                                          | Lstaticcatch _ ->
+                                              let (code_table,body) =
+                                                flat_catches [] lam in
+                                              let exit_id =
+                                                Gen_util.gen ~name:"exit" () in
+                                              let code_jmps =
+                                                List.map
+                                                  (fun (i,_,bindings)  ->
+                                                     (i,
+                                                       {
+                                                         exit_id;
+                                                         args = bindings
+                                                       })) code_table in
+                                              (compile_lambda
+                                                 {
+                                                   cxt with
+                                                   jmp_table =
+                                                     (add_jmps code_jmps
+                                                        jmp_table)
+                                                 } body)
+                                                @
+                                                [((J.Switch
+                                                     ((EVar exit_id),
+                                                       (List.map
+                                                          (fun (i,handler,_) 
+                                                             ->
+                                                             ((J.ENum
+                                                                 (float i)),
+                                                               (compile_lambda
+                                                                  cxt handler)))
+                                                          code_table), None,
+                                                       [])), N)]
+                                          | Lwhile (p,body) ->
+                                              let pred_symbol =
+                                                Gen_util.gen () in
+                                              let pred_block =
+                                                compile_lambda
+                                                  {
+                                                    cxt with
+                                                    name = (Some pred_symbol);
+                                                    should_return = false
+                                                  } p in
+                                              let block =
+                                                [((J.For
+                                                     ((Left None), None,
+                                                       None,
+                                                       ((J.Block
+                                                           (pred_block @
+                                                              [((J.If
+                                                                   ((EVar
+                                                                    pred_symbol),
+                                                                    ((J.Block
+                                                                    (compile_lambda
                                                                     {
                                                                     cxt with
                                                                     name =
@@ -1132,1131 +1204,1305 @@ module rec
                                                                     should_return
                                                                     = false
                                                                     } body)),
-                                                                  N),
-                                                                (Some
-                                                                   ((J.Break
+                                                                    N),
+                                                                    (Some
+                                                                    ((J.Break
                                                                     None), N)))),
-                                                            N)])), N))), J.N)] in
-                                         (match (name, should_return) with
-                                          | (None ,true ) ->
-                                              block @ J_helper.return_unit
-                                          | (None ,false ) -> block
-                                          | (Some _,true ) ->
-                                              Gen_util.unknown_block lam
-                                          | (Some x,false ) ->
-                                              block @
-                                                [((J.Variable
-                                                     [(x,
-                                                        (Some
-                                                           (J_helper.unit_val,
-                                                             N)))]), N)])
-                                     | Lfor (id,start,finish,direction,body)
-                                         ->
-                                         let start_id = Gen_util.gen () in
-                                         let finish_id = Gen_util.gen () in
-                                         let block =
-                                           (compile_lambda
-                                              {
-                                                cxt with
-                                                name = (Some start_id);
-                                                should_return = false
-                                              } start)
-                                             @
-                                             ((compile_lambda
-                                                 {
-                                                   cxt with
-                                                   name = (Some finish_id);
-                                                   should_return = false
-                                                 } finish)
-                                                @
-                                                [(let (cmp,inc) =
-                                                    match direction with
-                                                    | Upto  ->
-                                                        (J.Le, J.IncrA)
-                                                    | Downto  ->
-                                                        (J.Ge, J.DecrA) in
-                                                  ((J.For
-                                                      ((Right
-                                                          [(id,
+                                                                 N)])), N))),
+                                                   J.N)] in
+                                              (match (name, should_return)
+                                               with
+                                               | (None ,true ) ->
+                                                   block @
+                                                     J_helper.return_unit
+                                               | (None ,false ) -> block
+                                               | (Some _,true ) ->
+                                                   Gen_util.unknown_block lam
+                                               | (Some x,false ) ->
+                                                   block @
+                                                     [((J.Variable
+                                                          [(x,
                                                              (Some
-                                                                ((J.EVar
+                                                                (J_helper.unit_val,
+                                                                  N)))]), N)])
+                                          | Lfor
+                                              (id,start,finish,direction,body)
+                                              ->
+                                              let start_id = Gen_util.gen () in
+                                              let finish_id = Gen_util.gen () in
+                                              let block =
+                                                (compile_lambda
+                                                   {
+                                                     cxt with
+                                                     name = (Some start_id);
+                                                     should_return = false
+                                                   } start)
+                                                  @
+                                                  ((compile_lambda
+                                                      {
+                                                        cxt with
+                                                        name =
+                                                          (Some finish_id);
+                                                        should_return = false
+                                                      } finish)
+                                                     @
+                                                     [(let (cmp,inc) =
+                                                         match direction with
+                                                         | Upto  ->
+                                                             (J.Le, J.IncrA)
+                                                         | Downto  ->
+                                                             (J.Ge, J.DecrA) in
+                                                       ((J.For
+                                                           ((Right
+                                                               [(id,
+                                                                  (Some
+                                                                    ((J.EVar
                                                                     start_id),
-                                                                  J.N)))]),
-                                                        (Some
-                                                           (J.EBin
-                                                              (cmp,
-                                                                (EVar id),
-                                                                (EVar
-                                                                   finish_id)))),
-                                                        (Some
-                                                           (J.EUn
-                                                              (inc,
-                                                                (EVar id)))),
-                                                        ((J.Block
-                                                            (compile_lambda
-                                                               {
-                                                                 cxt with
-                                                                 should_return
-                                                                   = false;
-                                                                 name = None
-                                                               } body)), N))),
-                                                    J.N))]) in
-                                         (match name with
-                                          | None  -> block
-                                          | Some x ->
-                                              ((J.Variable
-                                                  [(x, (Some ((ENum 0.), N)))]),
-                                                N)
-                                              :: block)
-                                     | Lassign (id,lambda) ->
-                                         let v = Gen_util.gen () in
-                                         let block =
-                                           (compile_lambda
-                                              {
-                                                cxt with
-                                                name = (Some v);
-                                                should_return = false
-                                              } lambda)
-                                             @
-                                             [((J.Variable
-                                                  [(id, (Some ((EVar v), N)))]),
-                                                N)] in
-                                         (match (name, should_return) with
-                                          | (None ,false ) -> block
-                                          | (None ,true ) ->
-                                              block @ J_helper.return_unit
-                                          | (Some _,true ) ->
-                                              Gen_util.unknown_block lam
-                                          | (Some x,false ) ->
-                                              block @
-                                                [((J.Variable
-                                                     [(x,
-                                                        (Some
-                                                           ((J.ENum 0.), N)))]),
-                                                   J.N)])
-                                     | Ltrywith (lam,id,catch) ->
-                                         let block = compile_lambda cxt lam in
-                                         [((J.Try
-                                              (block,
-                                                (Some
-                                                   (id,
-                                                     (compile_lambda cxt
-                                                        catch))), None)),
-                                            J.N)]
-                                     | Lapply (fn,args_lambda,_) ->
-                                         let (fn_code,fn) =
-                                           match fn with
-                                           | Lvar id -> ([], id)
-                                           | _ ->
-                                               let v = Gen_util.gen () in
-                                               ((compile_lambda
+                                                                    J.N)))]),
+                                                             (Some
+                                                                (J.EBin
+                                                                   (cmp,
+                                                                    (EVar id),
+                                                                    (EVar
+                                                                    finish_id)))),
+                                                             (Some
+                                                                (J.EUn
+                                                                   (inc,
+                                                                    (EVar id)))),
+                                                             ((J.Block
+                                                                 (compile_lambda
+                                                                    {
+                                                                    cxt with
+                                                                    should_return
+                                                                    = false;
+                                                                    name =
+                                                                    None
+                                                                    } body)),
+                                                               N))), J.N))]) in
+                                              (match name with
+                                               | None  -> block
+                                               | Some x ->
+                                                   ((J.Variable
+                                                       [(x,
+                                                          (Some
+                                                             ((ENum 0.), N)))]),
+                                                     N)
+                                                   :: block)
+                                          | Lassign (id,lambda) ->
+                                              let v = Gen_util.gen () in
+                                              let block =
+                                                (compile_lambda
                                                    {
                                                      cxt with
                                                      name = (Some v);
                                                      should_return = false
-                                                   } fn), v) in
-                                         let (args_code,args) =
-                                           List.split @@
-                                             (List.map
-                                                (fun (x : Lambda.lambda)  ->
-                                                   match expr_of_lambda cxt x
-                                                   with
-                                                   | e -> ([], e)
-                                                   | exception
-                                                       Not_an_expression  ->
-                                                       let v =
-                                                         Gen_util.gen () in
-                                                       ((compile_lambda
-                                                           {
-                                                             cxt with
-                                                             name = (Some v);
-                                                             should_return =
-                                                               false
-                                                           } x), (J.EVar v)))
-                                                args_lambda) in
-                                         let args_code =
-                                           List.concat args_code in
-                                         let exp: J.expression =
-                                           ECall ((J.EVar fn), args, N) in
-                                         fn_code @
-                                           (args_code @
-                                              (Gen_util.handle_name_tail name
-                                                 should_return lam exp))
-                                     | Lconst c ->
-                                         Gen_util.handle_name_tail name
-                                           should_return lam
-                                           (Gen_primitive.compile_const c)
-                                     | Lsend (meth_kind,lam1,lam2,lams,loc)
-                                         -> Gen_util.unknown_block lam
-                                     | Levent (lam,_lam_event) ->
-                                         compile_lambda cxt lam
-                                     | Lifused (_,lam) ->
-                                         compile_lambda cxt lam) : J.block)
-                             let compile env lam =
-                               (match (lam : Lambda.lambda) with
-                                | Lprim (Psetglobal id,biglambda::[]) ->
-                                    (match flat [] biglambda with
-                                     | (Nop ,Lprim
-                                        (Pmakeblock (_,_),module_exports))::rest
-                                         ->
-                                         let export_idents =
-                                           List.map
-                                             (fun (t : Lambda.lambda)  ->
-                                                match t with
-                                                | Lvar id -> id
+                                                   } lambda)
+                                                  @
+                                                  [((J.Variable
+                                                       [(id,
+                                                          (Some ((EVar v), N)))]),
+                                                     N)] in
+                                              (match (name, should_return)
+                                               with
+                                               | (None ,false ) -> block
+                                               | (None ,true ) ->
+                                                   block @
+                                                     J_helper.return_unit
+                                               | (Some _,true ) ->
+                                                   Gen_util.unknown_block lam
+                                               | (Some x,false ) ->
+                                                   block @
+                                                     [((J.Variable
+                                                          [(x,
+                                                             (Some
+                                                                ((J.ENum 0.),
+                                                                  N)))]),
+                                                        J.N)])
+                                          | Ltrywith (lam,id,catch) ->
+                                              let block =
+                                                compile_lambda cxt lam in
+                                              [((J.Try
+                                                   (block,
+                                                     (Some
+                                                        (id,
+                                                          (compile_lambda cxt
+                                                             catch))), None)),
+                                                 J.N)]
+                                          | Lapply (fn,args_lambda,_) ->
+                                              let (fn_code,fn) =
+                                                match fn with
+                                                | Lvar id -> ([], id)
                                                 | _ ->
-                                                    Ident.create_persistent
-                                                      @@
-                                                      (Gen_util.string_of_unknown_lam
-                                                         t)) module_exports in
-                                         let lambda =
-                                           (Optimizer.simplify_lets
-                                              export_idents)
-                                             @@
-                                             (Simplif.simplify_exits
-                                                biglambda) in
-                                         let defs =
-                                           compile_lambda
-                                             {
-                                               name = None;
-                                               should_return = false;
-                                               jmp_table = HandlerMap.empty;
-                                               env
-                                             } lambda in
-                                         let js: J.block =
-                                           (Gen_of_env.required_modules ()) @
-                                             (defs @
-                                                [((Gen_util.exports
-                                                     export_idents), N)]) in
-                                         js
-                                     | _ -> raise Not_a_module)
-                                | _ -> raise Not_a_module : J.block)
-                             let lambda_as_module raw env filename
-                               (lam : Lambda.lambda) =
-                               let out =
-                                 open_out
-                                   (filename ^
-                                      (if raw then ".raw.js" else ".js")) in
-                               let js = compile env lam in
-                               (let open Pp_js in
-                                  program empty (Pp.to_out_channel out)) js;
-                               close_out out
-                             let () =
-                               Printlambda.serialize_raw_js :=
-                                 (lambda_as_module true)
-                           end and
-                                Js_pp_util:sig
-                                             val string_of_number :
-                                               float -> string
-                                           end =
-                                struct
-                                  let string_of_number v =
-                                    if v = infinity
-                                    then "Infinity"
-                                    else
-                                      if v = neg_infinity
-                                      then "-Infinity"
-                                      else
-                                        if v <> v
-                                        then "NaN"
-                                        else
-                                          (let vint = int_of_float v in
-                                           if (float_of_int vint) = v
-                                           then
-                                             let rec div n i =
-                                               if
-                                                 (n <> 0) && ((n mod 10) = 0)
-                                               then div (n / 10) (succ i)
-                                               else
-                                                 if i > 2
-                                                 then
-                                                   Printf.sprintf "%de%d" n i
-                                                 else string_of_int vint in
-                                             div vint 0
-                                           else
-                                             (let s1 =
-                                                Printf.sprintf "%.12g" v in
-                                              if v = (float_of_string s1)
-                                              then s1
-                                              else
-                                                (let s2 =
-                                                   Printf.sprintf "%.15g" v in
-                                                 if v = (float_of_string s2)
-                                                 then s2
-                                                 else
-                                                   Printf.sprintf "%.18g" v)))
+                                                    let v = Gen_util.gen () in
+                                                    ((compile_lambda
+                                                        {
+                                                          cxt with
+                                                          name = (Some v);
+                                                          should_return =
+                                                            false
+                                                        } fn), v) in
+                                              let (args_code,args) =
+                                                List.split @@
+                                                  (List.map
+                                                     (fun (x : Lambda.lambda)
+                                                         ->
+                                                        match expr_of_lambda
+                                                                cxt x
+                                                        with
+                                                        | e -> ([], e)
+                                                        | exception
+                                                            Not_an_expression 
+                                                            ->
+                                                            let v =
+                                                              Gen_util.gen () in
+                                                            ((compile_lambda
+                                                                {
+                                                                  cxt with
+                                                                  name =
+                                                                    (
+                                                                    Some v);
+                                                                  should_return
+                                                                    = false
+                                                                } x),
+                                                              (J.EVar v)))
+                                                     args_lambda) in
+                                              let args_code =
+                                                List.concat args_code in
+                                              let exp: J.expression =
+                                                ECall ((J.EVar fn), args, N) in
+                                              fn_code @
+                                                (args_code @
+                                                   (Gen_util.handle_name_tail
+                                                      name should_return lam
+                                                      exp))
+                                          | Lconst c ->
+                                              Gen_util.handle_name_tail name
+                                                should_return lam
+                                                (Gen_primitive.compile_const
+                                                   c)
+                                          | Lsend
+                                              (meth_kind,lam1,lam2,lams,loc)
+                                              -> Gen_util.unknown_block lam
+                                          | Levent (lam,_lam_event) ->
+                                              compile_lambda cxt lam
+                                          | Lifused (_,lam) ->
+                                              compile_lambda cxt lam) : 
+                                    J.block)
+                                  let compile env lam =
+                                    (match (lam : Lambda.lambda) with
+                                     | Lprim (Psetglobal id,biglambda::[]) ->
+                                         (match flat [] biglambda with
+                                          | (Nop ,Lprim
+                                             (Pmakeblock
+                                              (_,_),module_exports))::rest ->
+                                              let export_idents =
+                                                List.map
+                                                  (fun (t : Lambda.lambda) 
+                                                     ->
+                                                     match t with
+                                                     | Lvar id -> id
+                                                     | _ ->
+                                                         Jident.create_js @@
+                                                           (Gen_util.string_of_unknown_lam
+                                                              t))
+                                                  module_exports in
+                                              let lambda =
+                                                (Optimizer.simplify_lets
+                                                   export_idents)
+                                                  @@
+                                                  (Simplif.simplify_exits
+                                                     biglambda) in
+                                              let defs =
+                                                compile_lambda
+                                                  {
+                                                    name = None;
+                                                    should_return = false;
+                                                    jmp_table =
+                                                      HandlerMap.empty;
+                                                    env
+                                                  } lambda in
+                                              let js: J.block =
+                                                (Gen_of_env.required_modules
+                                                   ())
+                                                  @
+                                                  (defs @
+                                                     [((Gen_util.exports
+                                                          export_idents), N)]) in
+                                              js
+                                          | _ -> raise Not_a_module)
+                                     | _ -> raise Not_a_module : J.block)
+                                  let lambda_as_module raw env filename
+                                    (lam : Lambda.lambda) =
+                                    let out =
+                                      open_out
+                                        ((Filename.chop_extension filename) ^
+                                           ".js") in
+                                    let js = compile env lam in
+                                    (let open Pp_js in
+                                       program empty (Pp.to_out_channel out))
+                                      js;
+                                    close_out out
+                                  let () =
+                                    Printlambda.serialize_raw_js :=
+                                      (lambda_as_module true)
                                 end and
-                                     Json:sig
+                                     Js_pp_util:sig
+                                                  val string_of_number :
+                                                    float -> string
+                                                end =
+                                     struct
+                                       let string_of_number v =
+                                         if v = infinity
+                                         then "Infinity"
+                                         else
+                                           if v = neg_infinity
+                                           then "-Infinity"
+                                           else
+                                             if v <> v
+                                             then "NaN"
+                                             else
+                                               (let vint = int_of_float v in
+                                                if (float_of_int vint) = v
+                                                then
+                                                  let rec div n i =
+                                                    if
+                                                      (n <> 0) &&
+                                                        ((n mod 10) = 0)
+                                                    then
+                                                      div (n / 10) (succ i)
+                                                    else
+                                                      if i > 2
+                                                      then
+                                                        Printf.sprintf
+                                                          "%de%d" n i
+                                                      else string_of_int vint in
+                                                  div vint 0
+                                                else
+                                                  (let s1 =
+                                                     Printf.sprintf "%.12g" v in
+                                                   if
+                                                     v = (float_of_string s1)
+                                                   then s1
+                                                   else
+                                                     (let s2 =
+                                                        Printf.sprintf
+                                                          "%.15g" v in
+                                                      if
+                                                        v =
+                                                          (float_of_string s2)
+                                                      then s2
+                                                      else
+                                                        Printf.sprintf
+                                                          "%.18g" v)))
+                                     end and
+                                          Json:sig
+                                                 type t =
+                                                   [ `Null  | `Bool of bool 
+                                                   | `Float of float 
+                                                   | `String of string 
+                                                   | `A of t list 
+                                                   | `O of (string* t) list ]
+                                                 val pp : Pp.t -> t -> unit
+                                               end =
+                                          struct
                                             type t =
                                               [ `Null  | `Bool of bool 
                                               | `Float of float 
                                               | `String of string 
                                               | `A of t list 
                                               | `O of (string* t) list ]
-                                            val pp : Pp.t -> t -> unit
-                                          end =
-                                     struct
-                                       type t =
-                                         [ `Null  | `Bool of bool 
-                                         | `Float of float 
-                                         | `String of string  | `A of t list 
-                                         | `O of (string* t) list ]
-                                       let array_str1 =
-                                         Array.init 256
-                                           (fun i  ->
-                                              String.make 1 (Char.chr i))
-                                       let array_conv =
-                                         Array.init 16
-                                           (fun i  ->
-                                              String.make 1
-                                                ("0123456789abcdef".[i]))
-                                       let pp_string f s =
-                                         Pp.string f "\"";
-                                         (let l = String.length s in
-                                          for i = 0 to l - 1 do
-                                            (let c = s.[i] in
-                                             match c with
-                                             | '"' -> Pp.string f "\\\""
-                                             | '\\' -> Pp.string f "\\\\"
-                                             | '\n' -> Pp.string f "\\n"
-                                             | '\000'..'\031' ->
-                                                 let c = Char.code c in
-                                                 (Pp.string f "\\u00";
-                                                  Pp.string f
-                                                    (Array.unsafe_get
-                                                       array_conv (c lsr 4));
-                                                  Pp.string f
-                                                    (Array.unsafe_get
-                                                       array_conv (c land 15)))
-                                             | _ ->
-                                                 Pp.string f
-                                                   (Array.unsafe_get
-                                                      array_str1
-                                                      (Char.code c)))
-                                          done;
-                                          Pp.string f "\"")
-                                       let rec json f =
-                                         (function
-                                          | `Null -> Pp.string f "null"
-                                          | `Bool (true ) ->
-                                              Pp.string f "true"
-                                          | `Bool (false ) ->
-                                              Pp.string f "false"
-                                          | `Float v ->
-                                              let s =
-                                                Js_pp_util.string_of_number v in
-                                              Pp.string f s
-                                          | `String s -> pp_string f s
-                                          | `A l ->
-                                              (Pp.start_group f 1;
-                                               Pp.string f "[";
-                                               element_list f l;
-                                               Pp.string f "]";
-                                               Pp.end_group f)
-                                          | `O l ->
-                                              (Pp.start_group f 1;
-                                               Pp.string f "{";
-                                               property_name_and_value_list f
-                                                 l;
-                                               Pp.string f "}";
-                                               Pp.end_group f) : t -> unit)
-                                       and property_name_and_value_list f l =
-                                         match l with
-                                         | [] -> ()
-                                         | (s,e)::[] ->
-                                             (Pp.start_group f 0;
-                                              pp_string f s;
-                                              Pp.string f ":";
-                                              Pp.break f;
-                                              json f e;
-                                              Pp.end_group f)
-                                         | (s,e)::r ->
-                                             (Pp.start_group f 0;
-                                              pp_string f s;
-                                              Pp.string f ":";
-                                              Pp.break f;
-                                              json f e;
-                                              Pp.end_group f;
-                                              Pp.string f ",";
-                                              Pp.break f;
-                                              property_name_and_value_list f
-                                                r)
-                                       and element_list f el =
-                                         match el with
-                                         | [] -> ()
-                                         | e::[] ->
-                                             (Pp.start_group f 0;
-                                              json f e;
-                                              Pp.end_group f)
-                                         | e::r ->
-                                             (Pp.start_group f 0;
-                                              json f e;
-                                              Pp.end_group f;
-                                              Pp.string f ",";
-                                              Pp.break f;
-                                              element_list f r)
-                                       let pp = json
-                                     end and
-                                          Optimizer:sig
-                                                      val simplify_lets :
-                                                        Ident.t list ->
-                                                          Lambda.lambda ->
-                                                            Lambda.lambda
-                                                    end =
-                                          struct
-                                            open Asttypes
-                                            open Lambda
-                                            exception Real_reference
-                                            let rec eliminate_ref id =
-                                              function
-                                              | Lvar v as lam ->
-                                                  if Ident.same v id
-                                                  then raise Real_reference
-                                                  else lam
-                                              | Lconst cst as lam -> lam
-                                              | Lapply (e1,el,loc) ->
-                                                  Lapply
-                                                    ((eliminate_ref id e1),
-                                                      (List.map
-                                                         (eliminate_ref id)
-                                                         el), loc)
-                                              | Lfunction (kind,params,body)
-                                                  as lam ->
-                                                  if
-                                                    IdentSet.mem id
-                                                      (free_variables lam)
-                                                  then raise Real_reference
-                                                  else lam
-                                              | Llet (str,v,e1,e2) ->
-                                                  Llet
-                                                    (str, v,
-                                                      (eliminate_ref id e1),
-                                                      (eliminate_ref id e2))
-                                              | Lletrec (idel,e2) ->
-                                                  Lletrec
-                                                    ((List.map
-                                                        (fun (v,e)  ->
-                                                           (v,
-                                                             (eliminate_ref
-                                                                id e))) idel),
-                                                      (eliminate_ref id e2))
-                                              | Lprim (Pfield 0,(Lvar v)::[])
-                                                  when Ident.same v id ->
-                                                  Lvar id
-                                              | Lprim
-                                                  (Psetfield (0,_),(Lvar
-                                                   v)::e::[])
-                                                  when Ident.same v id ->
-                                                  Lassign
-                                                    (id,
-                                                      (eliminate_ref id e))
-                                              | Lprim
-                                                  (Poffsetref delta,(Lvar
-                                                   v)::[])
-                                                  when Ident.same v id ->
-                                                  Lassign
-                                                    (id,
-                                                      (Lprim
-                                                         ((Poffsetint delta),
-                                                           [Lvar id])))
-                                              | Lprim (p,el) ->
-                                                  Lprim
-                                                    (p,
-                                                      (List.map
-                                                         (eliminate_ref id)
-                                                         el))
-                                              | Lswitch (e,sw) ->
-                                                  Lswitch
-                                                    ((eliminate_ref id e),
-                                                      {
-                                                        sw_numconsts =
-                                                          (sw.sw_numconsts);
-                                                        sw_consts =
-                                                          (List.map
-                                                             (fun (n,e)  ->
-                                                                (n,
-                                                                  (eliminate_ref
-                                                                    id e)))
-                                                             sw.sw_consts);
-                                                        sw_numblocks =
-                                                          (sw.sw_numblocks);
-                                                        sw_blocks =
-                                                          (List.map
-                                                             (fun (n,e)  ->
-                                                                (n,
-                                                                  (eliminate_ref
-                                                                    id e)))
-                                                             sw.sw_blocks);
-                                                        sw_failaction =
-                                                          (Misc.may_map
-                                                             (eliminate_ref
-                                                                id)
-                                                             sw.sw_failaction)
-                                                      })
-                                              | Lstringswitch (e,sw,default)
-                                                  ->
-                                                  Lstringswitch
-                                                    ((eliminate_ref id e),
-                                                      (List.map
-                                                         (fun (s,e)  ->
-                                                            (s,
+                                            let array_str1 =
+                                              Array.init 256
+                                                (fun i  ->
+                                                   String.make 1 (Char.chr i))
+                                            let array_conv =
+                                              Array.init 16
+                                                (fun i  ->
+                                                   String.make 1
+                                                     ("0123456789abcdef".[i]))
+                                            let pp_string f s =
+                                              Pp.string f "\"";
+                                              (let l = String.length s in
+                                               for i = 0 to l - 1 do
+                                                 (let c = s.[i] in
+                                                  match c with
+                                                  | '"' -> Pp.string f "\\\""
+                                                  | '\\' ->
+                                                      Pp.string f "\\\\"
+                                                  | '\n' -> Pp.string f "\\n"
+                                                  | '\000'..'\031' ->
+                                                      let c = Char.code c in
+                                                      (Pp.string f "\\u00";
+                                                       Pp.string f
+                                                         (Array.unsafe_get
+                                                            array_conv
+                                                            (c lsr 4));
+                                                       Pp.string f
+                                                         (Array.unsafe_get
+                                                            array_conv
+                                                            (c land 15)))
+                                                  | _ ->
+                                                      Pp.string f
+                                                        (Array.unsafe_get
+                                                           array_str1
+                                                           (Char.code c)))
+                                               done;
+                                               Pp.string f "\"")
+                                            let rec json f =
+                                              (function
+                                               | `Null -> Pp.string f "null"
+                                               | `Bool (true ) ->
+                                                   Pp.string f "true"
+                                               | `Bool (false ) ->
+                                                   Pp.string f "false"
+                                               | `Float v ->
+                                                   let s =
+                                                     Js_pp_util.string_of_number
+                                                       v in
+                                                   Pp.string f s
+                                               | `String s -> pp_string f s
+                                               | `A l ->
+                                                   (Pp.start_group f 1;
+                                                    Pp.string f "[";
+                                                    element_list f l;
+                                                    Pp.string f "]";
+                                                    Pp.end_group f)
+                                               | `O l ->
+                                                   (Pp.start_group f 1;
+                                                    Pp.string f "{";
+                                                    property_name_and_value_list
+                                                      f l;
+                                                    Pp.string f "}";
+                                                    Pp.end_group f) : 
+                                              t -> unit)
+                                            and property_name_and_value_list
+                                              f l =
+                                              match l with
+                                              | [] -> ()
+                                              | (s,e)::[] ->
+                                                  (Pp.start_group f 0;
+                                                   pp_string f s;
+                                                   Pp.string f ":";
+                                                   Pp.break f;
+                                                   json f e;
+                                                   Pp.end_group f)
+                                              | (s,e)::r ->
+                                                  (Pp.start_group f 0;
+                                                   pp_string f s;
+                                                   Pp.string f ":";
+                                                   Pp.break f;
+                                                   json f e;
+                                                   Pp.end_group f;
+                                                   Pp.string f ",";
+                                                   Pp.break f;
+                                                   property_name_and_value_list
+                                                     f r)
+                                            and element_list f el =
+                                              match el with
+                                              | [] -> ()
+                                              | e::[] ->
+                                                  (Pp.start_group f 0;
+                                                   json f e;
+                                                   Pp.end_group f)
+                                              | e::r ->
+                                                  (Pp.start_group f 0;
+                                                   json f e;
+                                                   Pp.end_group f;
+                                                   Pp.string f ",";
+                                                   Pp.break f;
+                                                   element_list f r)
+                                            let pp = json
+                                          end and
+                                               Optimizer:sig
+                                                           val simplify_lets
+                                                             :
+                                                             Ident.t list ->
+                                                               Lambda.lambda
+                                                                 ->
+                                                                 Lambda.lambda
+                                                         end =
+                                               struct
+                                                 open Asttypes
+                                                 open Lambda
+                                                 exception Real_reference
+                                                 let rec eliminate_ref id =
+                                                   function
+                                                   | Lvar v as lam ->
+                                                       if Ident.same v id
+                                                       then
+                                                         raise Real_reference
+                                                       else lam
+                                                   | Lconst cst as lam -> lam
+                                                   | Lapply (e1,el,loc) ->
+                                                       Lapply
+                                                         ((eliminate_ref id
+                                                             e1),
+                                                           (List.map
                                                               (eliminate_ref
-                                                                 id e))) sw),
-                                                      (Misc.may_map
-                                                         (eliminate_ref id)
-                                                         default))
-                                              | Lstaticraise (i,args) ->
-                                                  Lstaticraise
-                                                    (i,
-                                                      (List.map
-                                                         (eliminate_ref id)
-                                                         args))
-                                              | Lstaticcatch (e1,i,e2) ->
-                                                  Lstaticcatch
-                                                    ((eliminate_ref id e1),
-                                                      i,
-                                                      (eliminate_ref id e2))
-                                              | Ltrywith (e1,v,e2) ->
-                                                  Ltrywith
-                                                    ((eliminate_ref id e1),
-                                                      v,
-                                                      (eliminate_ref id e2))
-                                              | Lifthenelse (e1,e2,e3) ->
-                                                  Lifthenelse
-                                                    ((eliminate_ref id e1),
-                                                      (eliminate_ref id e2),
-                                                      (eliminate_ref id e3))
-                                              | Lsequence (e1,e2) ->
-                                                  Lsequence
-                                                    ((eliminate_ref id e1),
-                                                      (eliminate_ref id e2))
-                                              | Lwhile (e1,e2) ->
-                                                  Lwhile
-                                                    ((eliminate_ref id e1),
-                                                      (eliminate_ref id e2))
-                                              | Lfor (v,e1,e2,dir,e3) ->
-                                                  Lfor
-                                                    (v,
-                                                      (eliminate_ref id e1),
-                                                      (eliminate_ref id e2),
-                                                      dir,
-                                                      (eliminate_ref id e3))
-                                              | Lassign (v,e) ->
-                                                  Lassign
-                                                    (v, (eliminate_ref id e))
-                                              | Lsend (k,m,o,el,loc) ->
-                                                  Lsend
-                                                    (k, (eliminate_ref id m),
-                                                      (eliminate_ref id o),
-                                                      (List.map
-                                                         (eliminate_ref id)
-                                                         el), loc)
-                                              | Levent (l,ev) ->
-                                                  Levent
-                                                    ((eliminate_ref id l),
-                                                      ev)
-                                              | Lifused (v,e) ->
-                                                  Lifused
-                                                    (v, (eliminate_ref id e))
-                                            let beta_reduce params body args
-                                              =
-                                              List.fold_left2
-                                                (fun l  ->
-                                                   fun param  ->
-                                                     fun arg  ->
+                                                                 id) el),
+                                                           loc)
+                                                   | Lfunction
+                                                       (kind,params,body) as
+                                                       lam ->
+                                                       if
+                                                         IdentSet.mem id
+                                                           (free_variables
+                                                              lam)
+                                                       then
+                                                         raise Real_reference
+                                                       else lam
+                                                   | Llet (str,v,e1,e2) ->
                                                        Llet
-                                                         (Strict, param, arg,
-                                                           l)) body params
-                                                args
-                                            let simplify_lets
-                                              (export_defs : Ident.t list)
-                                              lam =
-                                              let optimize =
-                                                (!Clflags.native_code) ||
-                                                  (not (!Clflags.debug)) in
-                                              let occ:
-                                                (Ident.t,int ref) Hashtbl.t =
-                                                Hashtbl.create 83 in
-                                              let count_var v =
-                                                try !(Hashtbl.find occ v)
-                                                with | Not_found  -> 0
-                                              and bind_var bv v =
-                                                let r = ref 0 in
-                                                Hashtbl.add occ v r;
-                                                Tbl.add v r bv
-                                              and use_var bv v n =
-                                                try
-                                                  let r = Tbl.find v bv in
-                                                  r := ((!r) + n)
-                                                with
-                                                | Not_found  ->
-                                                    (try
-                                                       let r =
-                                                         Hashtbl.find occ v in
-                                                       r := ((!r) + 2)
-                                                     with | Not_found  -> ()) in
-                                              let rec count bv =
-                                                function
-                                                | Lconst cst -> ()
-                                                | Lvar v -> use_var bv v 1
-                                                | Lapply
-                                                    (Lfunction
-                                                     (Curried ,params,body),args,_)
-                                                    when
-                                                    optimize &&
-                                                      ((List.length params) =
-                                                         (List.length args))
-                                                    ->
-                                                    count bv
-                                                      (beta_reduce params
-                                                         body args)
-                                                | Lapply
-                                                    (Lfunction
-                                                     (Tupled ,params,body),(Lprim
-                                                     (Pmakeblock _,args))::[],_)
-                                                    when
-                                                    optimize &&
-                                                      ((List.length params) =
-                                                         (List.length args))
-                                                    ->
-                                                    count bv
-                                                      (beta_reduce params
-                                                         body args)
-                                                | Lapply (l1,ll,_) ->
-                                                    (count bv l1;
-                                                     List.iter (count bv) ll)
-                                                | Lfunction (kind,params,l)
-                                                    -> count Tbl.empty l
-                                                | Llet (str,v,Lvar w,l2) when
-                                                    optimize ->
-                                                    (count (bind_var bv v) l2;
-                                                     use_var bv w
-                                                       (count_var v))
-                                                | Llet (str,v,l1,l2) ->
-                                                    (count (bind_var bv v) l2;
-                                                     if
-                                                       (str = Strict) ||
-                                                         ((count_var v) > 0)
-                                                     then count bv l1)
-                                                | Lletrec (bindings,body) ->
-                                                    (List.iter
-                                                       (fun (v,l)  ->
-                                                          count bv l)
-                                                       bindings;
-                                                     count bv body)
-                                                | Lprim (p,ll) ->
-                                                    List.iter (count bv) ll
-                                                | Lswitch (l,sw) ->
-                                                    (count_default bv sw;
-                                                     count bv l;
-                                                     List.iter
-                                                       (fun (_,l)  ->
-                                                          count bv l)
-                                                       sw.sw_consts;
-                                                     List.iter
-                                                       (fun (_,l)  ->
-                                                          count bv l)
-                                                       sw.sw_blocks)
-                                                | Lstringswitch (l,sw,d) ->
-                                                    (count bv l;
-                                                     List.iter
-                                                       (fun (_,l)  ->
-                                                          count bv l) sw;
-                                                     (match d with
-                                                      | Some d ->
-                                                          (match sw with
-                                                           | []|_::[] ->
-                                                               count bv d
-                                                           | _ ->
-                                                               (count bv d;
-                                                                count bv d))
-                                                      | None  -> ()))
-                                                | Lstaticraise (i,ls) ->
-                                                    List.iter (count bv) ls
-                                                | Lstaticcatch (l1,(i,_),l2)
-                                                    ->
-                                                    (count bv l1; count bv l2)
-                                                | Ltrywith (l1,v,l2) ->
-                                                    (count bv l1; count bv l2)
-                                                | Lifthenelse (l1,l2,l3) ->
-                                                    (count bv l1;
-                                                     count bv l2;
-                                                     count bv l3)
-                                                | Lsequence (l1,l2) ->
-                                                    (count bv l1; count bv l2)
-                                                | Lwhile (l1,l2) ->
-                                                    (count Tbl.empty l1;
-                                                     count Tbl.empty l2)
-                                                | Lfor (_,l1,l2,dir,l3) ->
-                                                    (count bv l1;
-                                                     count bv l2;
-                                                     count Tbl.empty l3)
-                                                | Lassign (v,l) -> count bv l
-                                                | Lsend (_,m,o,ll,_) ->
-                                                    List.iter (count bv) (m
-                                                      :: o :: ll)
-                                                | Levent (l,_) -> count bv l
-                                                | Lifused (v,l) ->
-                                                    if (count_var v) > 0
-                                                    then count bv l
-                                              and count_default bv sw =
-                                                match sw.sw_failaction with
-                                                | None  -> ()
-                                                | Some al ->
-                                                    let nconsts =
-                                                      List.length
-                                                        sw.sw_consts
-                                                    and nblocks =
-                                                      List.length
-                                                        sw.sw_blocks in
-                                                    if
-                                                      (nconsts <
-                                                         sw.sw_numconsts)
-                                                        &&
-                                                        (nblocks <
-                                                           sw.sw_numblocks)
-                                                    then
-                                                      (count bv al;
-                                                       count bv al)
-                                                    else
-                                                      (assert
-                                                         ((nconsts <
-                                                             sw.sw_numconsts)
-                                                            ||
-                                                            (nblocks <
-                                                               sw.sw_numblocks));
-                                                       count bv al) in
-                                              count Tbl.empty lam;
-                                              (let subst = Hashtbl.create 83 in
-                                               let mklet (kind,v,e1,e2) =
-                                                 match e2 with
-                                                 | Lvar w when
-                                                     optimize &&
-                                                       ((Ident.same v w) &&
-                                                          (not
-                                                             (List.mem v
-                                                                export_defs)))
-                                                     -> e1
-                                                 | _ ->
-                                                     Llet (kind, v, e1, e2) in
-                                               let rec simplif =
-                                                 function
-                                                 | Lvar v as l ->
-                                                     (try
-                                                        Hashtbl.find subst v
-                                                      with | Not_found  -> l)
-                                                 | Lconst cst as l -> l
-                                                 | Lapply
-                                                     (Lfunction
-                                                      (Curried ,params,body),args,_)
-                                                     when
-                                                     optimize &&
-                                                       ((List.length params)
-                                                          =
-                                                          (List.length args))
-                                                     ->
-                                                     simplif
-                                                       (beta_reduce params
-                                                          body args)
-                                                 | Lapply
-                                                     (Lfunction
-                                                      (Tupled ,params,body),(Lprim
-                                                      (Pmakeblock _,args))::[],_)
-                                                     when
-                                                     optimize &&
-                                                       ((List.length params)
-                                                          =
-                                                          (List.length args))
-                                                     ->
-                                                     simplif
-                                                       (beta_reduce params
-                                                          body args)
-                                                 | Lapply (l1,ll,loc) ->
-                                                     Lapply
-                                                       ((simplif l1),
-                                                         (List.map simplif ll),
-                                                         loc)
-                                                 | Lfunction (kind,params,l)
-                                                     ->
-                                                     Lfunction
-                                                       (kind, params,
-                                                         (simplif l))
-                                                 | Llet (str,v,Lvar w,l2)
-                                                     when
-                                                     optimize &&
-                                                       (not
-                                                          (List.mem v
-                                                             export_defs))
-                                                     ->
-                                                     (Hashtbl.add subst v
-                                                        (simplif (Lvar w));
-                                                      simplif l2)
-                                                 | Llet
-                                                     (Strict ,v,Lprim
-                                                      (Pmakeblock
-                                                       (0,Mutable ),linit::[]),lbody)
-                                                     when optimize ->
-                                                     let slinit =
-                                                       simplif linit in
-                                                     let slbody =
-                                                       simplif lbody in
-                                                     (try
-                                                        mklet
-                                                          (Variable, v,
-                                                            slinit,
-                                                            (eliminate_ref v
-                                                               slbody))
-                                                      with
-                                                      | Real_reference  ->
-                                                          mklet
-                                                            (Strict, v,
-                                                              (Lprim
-                                                                 ((Pmakeblock
-                                                                    (0,
-                                                                    Mutable)),
-                                                                   [slinit])),
-                                                              slbody))
-                                                 | Llet (Alias ,v,l1,l2) ->
-                                                     (match count_var v with
-                                                      | 0 -> simplif l2
-                                                      | 1 when
+                                                         (str, v,
+                                                           (eliminate_ref id
+                                                              e1),
+                                                           (eliminate_ref id
+                                                              e2))
+                                                   | Lletrec (idel,e2) ->
+                                                       Lletrec
+                                                         ((List.map
+                                                             (fun (v,e)  ->
+                                                                (v,
+                                                                  (eliminate_ref
+                                                                    id e)))
+                                                             idel),
+                                                           (eliminate_ref id
+                                                              e2))
+                                                   | Lprim
+                                                       (Pfield 0,(Lvar
+                                                        v)::[])
+                                                       when Ident.same v id
+                                                       -> Lvar id
+                                                   | Lprim
+                                                       (Psetfield (0,_),(Lvar
+                                                        v)::e::[])
+                                                       when Ident.same v id
+                                                       ->
+                                                       Lassign
+                                                         (id,
+                                                           (eliminate_ref id
+                                                              e))
+                                                   | Lprim
+                                                       (Poffsetref
+                                                        delta,(Lvar v)::[])
+                                                       when Ident.same v id
+                                                       ->
+                                                       Lassign
+                                                         (id,
+                                                           (Lprim
+                                                              ((Poffsetint
+                                                                  delta),
+                                                                [Lvar id])))
+                                                   | Lprim (p,el) ->
+                                                       Lprim
+                                                         (p,
+                                                           (List.map
+                                                              (eliminate_ref
+                                                                 id) el))
+                                                   | Lswitch (e,sw) ->
+                                                       Lswitch
+                                                         ((eliminate_ref id e),
+                                                           {
+                                                             sw_numconsts =
+                                                               (sw.sw_numconsts);
+                                                             sw_consts =
+                                                               (List.map
+                                                                  (fun 
+                                                                    (n,e)  ->
+                                                                    (n,
+                                                                    (eliminate_ref
+                                                                    id e)))
+                                                                  sw.sw_consts);
+                                                             sw_numblocks =
+                                                               (sw.sw_numblocks);
+                                                             sw_blocks =
+                                                               (List.map
+                                                                  (fun 
+                                                                    (n,e)  ->
+                                                                    (n,
+                                                                    (eliminate_ref
+                                                                    id e)))
+                                                                  sw.sw_blocks);
+                                                             sw_failaction =
+                                                               (Misc.may_map
+                                                                  (eliminate_ref
+                                                                    id)
+                                                                  sw.sw_failaction)
+                                                           })
+                                                   | Lstringswitch
+                                                       (e,sw,default) ->
+                                                       Lstringswitch
+                                                         ((eliminate_ref id e),
+                                                           (List.map
+                                                              (fun (s,e)  ->
+                                                                 (s,
+                                                                   (eliminate_ref
+                                                                    id e)))
+                                                              sw),
+                                                           (Misc.may_map
+                                                              (eliminate_ref
+                                                                 id) default))
+                                                   | Lstaticraise (i,args) ->
+                                                       Lstaticraise
+                                                         (i,
+                                                           (List.map
+                                                              (eliminate_ref
+                                                                 id) args))
+                                                   | Lstaticcatch (e1,i,e2)
+                                                       ->
+                                                       Lstaticcatch
+                                                         ((eliminate_ref id
+                                                             e1), i,
+                                                           (eliminate_ref id
+                                                              e2))
+                                                   | Ltrywith (e1,v,e2) ->
+                                                       Ltrywith
+                                                         ((eliminate_ref id
+                                                             e1), v,
+                                                           (eliminate_ref id
+                                                              e2))
+                                                   | Lifthenelse (e1,e2,e3)
+                                                       ->
+                                                       Lifthenelse
+                                                         ((eliminate_ref id
+                                                             e1),
+                                                           (eliminate_ref id
+                                                              e2),
+                                                           (eliminate_ref id
+                                                              e3))
+                                                   | Lsequence (e1,e2) ->
+                                                       Lsequence
+                                                         ((eliminate_ref id
+                                                             e1),
+                                                           (eliminate_ref id
+                                                              e2))
+                                                   | Lwhile (e1,e2) ->
+                                                       Lwhile
+                                                         ((eliminate_ref id
+                                                             e1),
+                                                           (eliminate_ref id
+                                                              e2))
+                                                   | Lfor (v,e1,e2,dir,e3) ->
+                                                       Lfor
+                                                         (v,
+                                                           (eliminate_ref id
+                                                              e1),
+                                                           (eliminate_ref id
+                                                              e2), dir,
+                                                           (eliminate_ref id
+                                                              e3))
+                                                   | Lassign (v,e) ->
+                                                       Lassign
+                                                         (v,
+                                                           (eliminate_ref id
+                                                              e))
+                                                   | Lsend (k,m,o,el,loc) ->
+                                                       Lsend
+                                                         (k,
+                                                           (eliminate_ref id
+                                                              m),
+                                                           (eliminate_ref id
+                                                              o),
+                                                           (List.map
+                                                              (eliminate_ref
+                                                                 id) el),
+                                                           loc)
+                                                   | Levent (l,ev) ->
+                                                       Levent
+                                                         ((eliminate_ref id l),
+                                                           ev)
+                                                   | Lifused (v,e) ->
+                                                       Lifused
+                                                         (v,
+                                                           (eliminate_ref id
+                                                              e))
+                                                 let beta_reduce params body
+                                                   args =
+                                                   List.fold_left2
+                                                     (fun l  ->
+                                                        fun param  ->
+                                                          fun arg  ->
+                                                            Llet
+                                                              (Strict, param,
+                                                                arg, l)) body
+                                                     params args
+                                                 let simplify_lets
+                                                   (export_defs :
+                                                     Ident.t list)
+                                                   lam =
+                                                   let optimize =
+                                                     (!Clflags.native_code)
+                                                       ||
+                                                       (not (!Clflags.debug)) in
+                                                   let occ:
+                                                     (Ident.t,int ref)
+                                                       Hashtbl.t
+                                                     = Hashtbl.create 83 in
+                                                   let count_var v =
+                                                     try
+                                                       !(Hashtbl.find occ v)
+                                                     with | Not_found  -> 0
+                                                   and bind_var bv v =
+                                                     let r = ref 0 in
+                                                     Hashtbl.add occ v r;
+                                                     Tbl.add v r bv
+                                                   and use_var bv v n =
+                                                     try
+                                                       let r = Tbl.find v bv in
+                                                       r := ((!r) + n)
+                                                     with
+                                                     | Not_found  ->
+                                                         (try
+                                                            let r =
+                                                              Hashtbl.find
+                                                                occ v in
+                                                            r := ((!r) + 2)
+                                                          with
+                                                          | Not_found  -> ()) in
+                                                   let rec count bv =
+                                                     function
+                                                     | Lconst cst -> ()
+                                                     | Lvar v ->
+                                                         use_var bv v 1
+                                                     | Lapply
+                                                         (Lfunction
+                                                          (Curried
+                                                           ,params,body),args,_)
+                                                         when
+                                                         optimize &&
+                                                           ((List.length
+                                                               params)
+                                                              =
+                                                              (List.length
+                                                                 args))
+                                                         ->
+                                                         count bv
+                                                           (beta_reduce
+                                                              params body
+                                                              args)
+                                                     | Lapply
+                                                         (Lfunction
+                                                          (Tupled
+                                                           ,params,body),(Lprim
+                                                          (Pmakeblock _,args))::[],_)
+                                                         when
+                                                         optimize &&
+                                                           ((List.length
+                                                               params)
+                                                              =
+                                                              (List.length
+                                                                 args))
+                                                         ->
+                                                         count bv
+                                                           (beta_reduce
+                                                              params body
+                                                              args)
+                                                     | Lapply (l1,ll,_) ->
+                                                         (count bv l1;
+                                                          List.iter
+                                                            (count bv) ll)
+                                                     | Lfunction
+                                                         (kind,params,l) ->
+                                                         count Tbl.empty l
+                                                     | Llet (str,v,Lvar w,l2)
+                                                         when optimize ->
+                                                         (count
+                                                            (bind_var bv v)
+                                                            l2;
+                                                          use_var bv w
+                                                            (count_var v))
+                                                     | Llet (str,v,l1,l2) ->
+                                                         (count
+                                                            (bind_var bv v)
+                                                            l2;
+                                                          if
+                                                            (str = Strict) ||
+                                                              ((count_var v)
+                                                                 > 0)
+                                                          then count bv l1)
+                                                     | Lletrec
+                                                         (bindings,body) ->
+                                                         (List.iter
+                                                            (fun (v,l)  ->
+                                                               count bv l)
+                                                            bindings;
+                                                          count bv body)
+                                                     | Lprim (p,ll) ->
+                                                         List.iter (count bv)
+                                                           ll
+                                                     | Lswitch (l,sw) ->
+                                                         (count_default bv sw;
+                                                          count bv l;
+                                                          List.iter
+                                                            (fun (_,l)  ->
+                                                               count bv l)
+                                                            sw.sw_consts;
+                                                          List.iter
+                                                            (fun (_,l)  ->
+                                                               count bv l)
+                                                            sw.sw_blocks)
+                                                     | Lstringswitch 
+                                                         (l,sw,d) ->
+                                                         (count bv l;
+                                                          List.iter
+                                                            (fun (_,l)  ->
+                                                               count bv l) sw;
+                                                          (match d with
+                                                           | Some d ->
+                                                               (match sw with
+                                                                | []|_::[] ->
+                                                                    count bv
+                                                                    d
+                                                                | _ ->
+                                                                    (
+                                                                    count bv
+                                                                    d;
+                                                                    count bv
+                                                                    d))
+                                                           | None  -> ()))
+                                                     | Lstaticraise (i,ls) ->
+                                                         List.iter (count bv)
+                                                           ls
+                                                     | Lstaticcatch
+                                                         (l1,(i,_),l2) ->
+                                                         (count bv l1;
+                                                          count bv l2)
+                                                     | Ltrywith (l1,v,l2) ->
+                                                         (count bv l1;
+                                                          count bv l2)
+                                                     | Lifthenelse (l1,l2,l3)
+                                                         ->
+                                                         (count bv l1;
+                                                          count bv l2;
+                                                          count bv l3)
+                                                     | Lsequence (l1,l2) ->
+                                                         (count bv l1;
+                                                          count bv l2)
+                                                     | Lwhile (l1,l2) ->
+                                                         (count Tbl.empty l1;
+                                                          count Tbl.empty l2)
+                                                     | Lfor (_,l1,l2,dir,l3)
+                                                         ->
+                                                         (count bv l1;
+                                                          count bv l2;
+                                                          count Tbl.empty l3)
+                                                     | Lassign (v,l) ->
+                                                         count bv l
+                                                     | Lsend (_,m,o,ll,_) ->
+                                                         List.iter (count bv)
+                                                           (m :: o :: ll)
+                                                     | Levent (l,_) ->
+                                                         count bv l
+                                                     | Lifused (v,l) ->
+                                                         if (count_var v) > 0
+                                                         then count bv l
+                                                   and count_default bv sw =
+                                                     match sw.sw_failaction
+                                                     with
+                                                     | None  -> ()
+                                                     | Some al ->
+                                                         let nconsts =
+                                                           List.length
+                                                             sw.sw_consts
+                                                         and nblocks =
+                                                           List.length
+                                                             sw.sw_blocks in
+                                                         if
+                                                           (nconsts <
+                                                              sw.sw_numconsts)
+                                                             &&
+                                                             (nblocks <
+                                                                sw.sw_numblocks)
+                                                         then
+                                                           (count bv al;
+                                                            count bv al)
+                                                         else
+                                                           (assert
+                                                              ((nconsts <
+                                                                  sw.sw_numconsts)
+                                                                 ||
+                                                                 (nblocks <
+                                                                    sw.sw_numblocks));
+                                                            count bv al) in
+                                                   count Tbl.empty lam;
+                                                   (let subst =
+                                                      Hashtbl.create 83 in
+                                                    let mklet (kind,v,e1,e2)
+                                                      =
+                                                      match e2 with
+                                                      | Lvar w when
+                                                          optimize &&
+                                                            ((Ident.same v w)
+                                                               &&
+                                                               (not
+                                                                  (List.mem v
+                                                                    export_defs)))
+                                                          -> e1
+                                                      | _ ->
+                                                          Llet
+                                                            (kind, v, e1, e2) in
+                                                    let rec simplif =
+                                                      function
+                                                      | Lvar v as l ->
+                                                          (try
+                                                             Hashtbl.find
+                                                               subst v
+                                                           with
+                                                           | Not_found  -> l)
+                                                      | Lconst cst as l -> l
+                                                      | Lapply
+                                                          (Lfunction
+                                                           (Curried
+                                                            ,params,body),args,_)
+                                                          when
+                                                          optimize &&
+                                                            ((List.length
+                                                                params)
+                                                               =
+                                                               (List.length
+                                                                  args))
+                                                          ->
+                                                          simplif
+                                                            (beta_reduce
+                                                               params body
+                                                               args)
+                                                      | Lapply
+                                                          (Lfunction
+                                                           (Tupled
+                                                            ,params,body),(Lprim
+                                                           (Pmakeblock
+                                                            _,args))::[],_)
+                                                          when
+                                                          optimize &&
+                                                            ((List.length
+                                                                params)
+                                                               =
+                                                               (List.length
+                                                                  args))
+                                                          ->
+                                                          simplif
+                                                            (beta_reduce
+                                                               params body
+                                                               args)
+                                                      | Lapply (l1,ll,loc) ->
+                                                          Lapply
+                                                            ((simplif l1),
+                                                              (List.map
+                                                                 simplif ll),
+                                                              loc)
+                                                      | Lfunction
+                                                          (kind,params,l) ->
+                                                          Lfunction
+                                                            (kind, params,
+                                                              (simplif l))
+                                                      | Llet
+                                                          (str,v,Lvar w,l2)
+                                                          when
                                                           optimize &&
                                                             (not
                                                                (List.mem v
                                                                   export_defs))
                                                           ->
                                                           (Hashtbl.add subst
-                                                             v (simplif l1);
+                                                             v
+                                                             (simplif
+                                                                (Lvar w));
                                                            simplif l2)
-                                                      | n ->
-                                                          Llet
-                                                            (Alias, v,
-                                                              (simplif l1),
-                                                              (simplif l2)))
-                                                 | Llet (StrictOpt ,v,l1,l2)
-                                                     ->
-                                                     (match count_var v with
-                                                      | 0 -> simplif l2
-                                                      | n ->
+                                                      | Llet
+                                                          (Strict ,v,Lprim
+                                                           (Pmakeblock
+                                                            (0,Mutable ),linit::[]),lbody)
+                                                          when optimize ->
+                                                          let slinit =
+                                                            simplif linit in
+                                                          let slbody =
+                                                            simplif lbody in
+                                                          (try
+                                                             mklet
+                                                               (Variable, v,
+                                                                 slinit,
+                                                                 (eliminate_ref
+                                                                    v slbody))
+                                                           with
+                                                           | Real_reference 
+                                                               ->
+                                                               mklet
+                                                                 (Strict, v,
+                                                                   (Lprim
+                                                                    ((Pmakeblock
+                                                                    (0,
+                                                                    Mutable)),
+                                                                    [slinit])),
+                                                                   slbody))
+                                                      | Llet (Alias ,v,l1,l2)
+                                                          ->
+                                                          (match count_var v
+                                                           with
+                                                           | 0 -> simplif l2
+                                                           | 1 when
+                                                               optimize &&
+                                                                 (not
+                                                                    (
+                                                                    List.mem
+                                                                    v
+                                                                    export_defs))
+                                                               ->
+                                                               (Hashtbl.add
+                                                                  subst v
+                                                                  (simplif l1);
+                                                                simplif l2)
+                                                           | n ->
+                                                               Llet
+                                                                 (Alias, v,
+                                                                   (simplif
+                                                                    l1),
+                                                                   (simplif
+                                                                    l2)))
+                                                      | Llet
+                                                          (StrictOpt
+                                                           ,v,l1,l2)
+                                                          ->
+                                                          (match count_var v
+                                                           with
+                                                           | 0 -> simplif l2
+                                                           | n ->
+                                                               mklet
+                                                                 (Alias, v,
+                                                                   (simplif
+                                                                    l1),
+                                                                   (simplif
+                                                                    l2)))
+                                                      | Llet (kind,v,l1,l2)
+                                                          ->
                                                           mklet
-                                                            (Alias, v,
+                                                            (kind, v,
                                                               (simplif l1),
-                                                              (simplif l2)))
-                                                 | Llet (kind,v,l1,l2) ->
-                                                     mklet
-                                                       (kind, v,
-                                                         (simplif l1),
-                                                         (simplif l2))
-                                                 | Lletrec (bindings,body) ->
-                                                     Lletrec
-                                                       ((List.map
-                                                           (fun (v,l)  ->
-                                                              (v,
-                                                                (simplif l)))
-                                                           bindings),
-                                                         (simplif body))
-                                                 | Lprim (p,ll) ->
-                                                     Lprim
-                                                       (p,
-                                                         (List.map simplif ll))
-                                                 | Lswitch (l,sw) ->
-                                                     let new_l = simplif l
-                                                     and new_consts =
-                                                       List.map
-                                                         (fun (n,e)  ->
-                                                            (n, (simplif e)))
-                                                         sw.sw_consts
-                                                     and new_blocks =
-                                                       List.map
-                                                         (fun (n,e)  ->
-                                                            (n, (simplif e)))
-                                                         sw.sw_blocks
-                                                     and new_fail =
-                                                       Misc.may_map simplif
-                                                         sw.sw_failaction in
-                                                     Lswitch
-                                                       (new_l,
-                                                         {
-                                                           sw with
-                                                           sw_consts =
-                                                             new_consts;
-                                                           sw_blocks =
-                                                             new_blocks;
-                                                           sw_failaction =
-                                                             new_fail
-                                                         })
-                                                 | Lstringswitch (l,sw,d) ->
-                                                     Lstringswitch
-                                                       ((simplif l),
-                                                         (List.map
-                                                            (fun (s,l)  ->
-                                                               (s,
-                                                                 (simplif l)))
-                                                            sw),
-                                                         (Misc.may_map
-                                                            simplif d))
-                                                 | Lstaticraise (i,ls) ->
-                                                     Lstaticraise
-                                                       (i,
-                                                         (List.map simplif ls))
-                                                 | Lstaticcatch
-                                                     (l1,(i,args),l2) ->
-                                                     Lstaticcatch
-                                                       ((simplif l1),
-                                                         (i, args),
-                                                         (simplif l2))
-                                                 | Ltrywith (l1,v,l2) ->
-                                                     Ltrywith
-                                                       ((simplif l1), v,
-                                                         (simplif l2))
-                                                 | Lifthenelse (l1,l2,l3) ->
-                                                     Lifthenelse
-                                                       ((simplif l1),
-                                                         (simplif l2),
-                                                         (simplif l3))
-                                                 | Lsequence
-                                                     (Lifused (v,l1),l2) ->
-                                                     if (count_var v) > 0
-                                                     then
-                                                       Lsequence
-                                                         ((simplif l1),
-                                                           (simplif l2))
-                                                     else simplif l2
-                                                 | Lsequence (l1,l2) ->
-                                                     Lsequence
-                                                       ((simplif l1),
-                                                         (simplif l2))
-                                                 | Lwhile (l1,l2) ->
-                                                     Lwhile
-                                                       ((simplif l1),
-                                                         (simplif l2))
-                                                 | Lfor (v,l1,l2,dir,l3) ->
-                                                     Lfor
-                                                       (v, (simplif l1),
-                                                         (simplif l2), dir,
-                                                         (simplif l3))
-                                                 | Lassign (v,l) ->
-                                                     Lassign (v, (simplif l))
-                                                 | Lsend (k,m,o,ll,loc) ->
-                                                     Lsend
-                                                       (k, (simplif m),
-                                                         (simplif o),
-                                                         (List.map simplif ll),
-                                                         loc)
-                                                 | Levent (l,ev) ->
-                                                     Levent ((simplif l), ev)
-                                                 | Lifused (v,l) ->
-                                                     if (count_var v) > 0
-                                                     then simplif l
-                                                     else lambda_unit in
-                                               simplif lam)
-                                          end and
-                                               Pp:sig
-                                                    type t
-                                                    type pos =
-                                                      {
-                                                      mutable p_line: int;
-                                                      mutable p_col: int;}
-                                                    val string :
-                                                      t -> string -> unit
-                                                    val genbreak :
-                                                      t ->
-                                                        string -> int -> unit
-                                                    val break : t -> unit
-                                                    val break1 : t -> unit
-                                                    val non_breaking_space :
-                                                      t -> unit
-                                                    val space :
-                                                      ?indent:int ->
-                                                        t -> unit
-                                                    val start_group :
-                                                      t -> int -> unit
-                                                    val end_group : t -> unit
-                                                    val newline : t -> unit
-                                                    val to_out_channel :
-                                                      out_channel -> t
-                                                    val to_buffer :
-                                                      Buffer.t -> t
-                                                    val pos : t -> pos
-                                                    val total : t -> int
-                                                    val set_compact :
-                                                      t -> bool -> unit
-                                                    val
-                                                      set_needed_space_function
-                                                      :
-                                                      t ->
-                                                        (char -> char -> bool)
-                                                          -> unit
-                                                  end =
-                                               struct
-                                                 type pos =
-                                                   {
-                                                   mutable p_line: int;
-                                                   mutable p_col: int;}
-                                                 type elt =
-                                                   | Text of string
-                                                   | Break of string* int
-                                                   | Start_group of int
-                                                   | End_group
-                                                   | Set_pos of pos
-                                                 type t =
-                                                   {
-                                                   mutable indent: int;
-                                                   mutable box_indent: int;
-                                                   mutable prev_indents:
-                                                     (int* int) list;
-                                                   mutable limit: int;
-                                                   mutable cur: int;
-                                                   mutable l: elt list;
-                                                   mutable n: int;
-                                                   mutable w: int;
-                                                   mutable compact: bool;
-                                                   mutable needed_space:
-                                                     (char -> char -> bool)
-                                                       option;
-                                                   mutable pending_space:
-                                                     string option;
-                                                   mutable last_char:
-                                                     char option;
-                                                   mutable line: int;
-                                                   mutable col: int;
-                                                   mutable total: int;
-                                                   output:
-                                                     string ->
-                                                       int -> int -> unit;}
-                                                 let spaces =
-                                                   String.make 80 ' '
-                                                 let output st (s : string) l
-                                                   =
-                                                   (try
-                                                      let last =
-                                                        (String.rindex_from s
-                                                           (l - 1) '\n')
-                                                          + 1 in
-                                                      let line = ref 0 in
-                                                      for i = 0 to l - 1 do
-                                                        if (s.[i]) = '\n'
-                                                        then incr line
-                                                      done;
-                                                      st.line <-
-                                                        st.line + (!line);
-                                                      st.col <- l - last
-                                                    with
-                                                    | Not_found  ->
-                                                        st.col <- l + st.col);
-                                                   st.total <-
-                                                     st.total +
-                                                       (String.length s);
-                                                   st.output s 0 l
-                                                 let rec output_spaces st n =
-                                                   output st spaces
-                                                     (min n 80);
-                                                   if n > 80
-                                                   then
-                                                     output_spaces st
-                                                       (n - 80)
-                                                 let output_newline st =
-                                                   output st "\n" 1
-                                                 let rec flat_render st l =
-                                                   match l with
-                                                   | (Text s)::r|(Break
-                                                     (s,_))::r ->
-                                                       (output st s
-                                                          (String.length s);
-                                                        flat_render st r)
-                                                   | (Set_pos p)::r ->
-                                                       (p.p_line <- st.line;
-                                                        p.p_col <- st.col;
-                                                        flat_render st r)
-                                                   | (Start_group _|End_group )::r
-                                                       -> flat_render st r
-                                                   | [] -> ()
-                                                 let rec push st e =
-                                                   if st.n = 0
-                                                   then
-                                                     match e with
-                                                     | Text s ->
-                                                         (output st s
+                                                              (simplif l2))
+                                                      | Lletrec
+                                                          (bindings,body) ->
+                                                          Lletrec
+                                                            ((List.map
+                                                                (fun 
+                                                                   (v,l)  ->
+                                                                   (v,
+                                                                    (simplif
+                                                                    l)))
+                                                                bindings),
+                                                              (simplif body))
+                                                      | Lprim (p,ll) ->
+                                                          Lprim
+                                                            (p,
+                                                              (List.map
+                                                                 simplif ll))
+                                                      | Lswitch (l,sw) ->
+                                                          let new_l =
+                                                            simplif l
+                                                          and new_consts =
+                                                            List.map
+                                                              (fun (n,e)  ->
+                                                                 (n,
+                                                                   (simplif e)))
+                                                              sw.sw_consts
+                                                          and new_blocks =
+                                                            List.map
+                                                              (fun (n,e)  ->
+                                                                 (n,
+                                                                   (simplif e)))
+                                                              sw.sw_blocks
+                                                          and new_fail =
+                                                            Misc.may_map
+                                                              simplif
+                                                              sw.sw_failaction in
+                                                          Lswitch
+                                                            (new_l,
+                                                              {
+                                                                sw with
+                                                                sw_consts =
+                                                                  new_consts;
+                                                                sw_blocks =
+                                                                  new_blocks;
+                                                                sw_failaction
+                                                                  = new_fail
+                                                              })
+                                                      | Lstringswitch
+                                                          (l,sw,d) ->
+                                                          Lstringswitch
+                                                            ((simplif l),
+                                                              (List.map
+                                                                 (fun 
+                                                                    (s,l)  ->
+                                                                    (s,
+                                                                    (simplif
+                                                                    l))) sw),
+                                                              (Misc.may_map
+                                                                 simplif d))
+                                                      | Lstaticraise 
+                                                          (i,ls) ->
+                                                          Lstaticraise
+                                                            (i,
+                                                              (List.map
+                                                                 simplif ls))
+                                                      | Lstaticcatch
+                                                          (l1,(i,args),l2) ->
+                                                          Lstaticcatch
+                                                            ((simplif l1),
+                                                              (i, args),
+                                                              (simplif l2))
+                                                      | Ltrywith (l1,v,l2) ->
+                                                          Ltrywith
+                                                            ((simplif l1), v,
+                                                              (simplif l2))
+                                                      | Lifthenelse
+                                                          (l1,l2,l3) ->
+                                                          Lifthenelse
+                                                            ((simplif l1),
+                                                              (simplif l2),
+                                                              (simplif l3))
+                                                      | Lsequence
+                                                          (Lifused (v,l1),l2)
+                                                          ->
+                                                          if
+                                                            (count_var v) > 0
+                                                          then
+                                                            Lsequence
+                                                              ((simplif l1),
+                                                                (simplif l2))
+                                                          else simplif l2
+                                                      | Lsequence (l1,l2) ->
+                                                          Lsequence
+                                                            ((simplif l1),
+                                                              (simplif l2))
+                                                      | Lwhile (l1,l2) ->
+                                                          Lwhile
+                                                            ((simplif l1),
+                                                              (simplif l2))
+                                                      | Lfor (v,l1,l2,dir,l3)
+                                                          ->
+                                                          Lfor
+                                                            (v, (simplif l1),
+                                                              (simplif l2),
+                                                              dir,
+                                                              (simplif l3))
+                                                      | Lassign (v,l) ->
+                                                          Lassign
+                                                            (v, (simplif l))
+                                                      | Lsend (k,m,o,ll,loc)
+                                                          ->
+                                                          Lsend
+                                                            (k, (simplif m),
+                                                              (simplif o),
+                                                              (List.map
+                                                                 simplif ll),
+                                                              loc)
+                                                      | Levent (l,ev) ->
+                                                          Levent
+                                                            ((simplif l), ev)
+                                                      | Lifused (v,l) ->
+                                                          if
+                                                            (count_var v) > 0
+                                                          then simplif l
+                                                          else lambda_unit in
+                                                    simplif lam)
+                                               end and
+                                                    Pp:sig
+                                                         type t
+                                                         type pos =
+                                                           {
+                                                           mutable p_line:
+                                                             int;
+                                                           mutable p_col:
+                                                             int;}
+                                                         val string :
+                                                           t ->
+                                                             string -> unit
+                                                         val genbreak :
+                                                           t ->
+                                                             string ->
+                                                               int -> unit
+                                                         val break :
+                                                           t -> unit
+                                                         val break1 :
+                                                           t -> unit
+                                                         val
+                                                           non_breaking_space
+                                                           : t -> unit
+                                                         val space :
+                                                           ?indent:int ->
+                                                             t -> unit
+                                                         val start_group :
+                                                           t -> int -> unit
+                                                         val end_group :
+                                                           t -> unit
+                                                         val newline :
+                                                           t -> unit
+                                                         val to_out_channel :
+                                                           out_channel -> t
+                                                         val to_buffer :
+                                                           Buffer.t -> t
+                                                         val pos : t -> pos
+                                                         val total : t -> int
+                                                         val set_compact :
+                                                           t -> bool -> unit
+                                                         val
+                                                           set_needed_space_function
+                                                           :
+                                                           t ->
+                                                             (char ->
+                                                                char -> bool)
+                                                               -> unit
+                                                       end =
+                                                    struct
+                                                      type pos =
+                                                        {
+                                                        mutable p_line: int;
+                                                        mutable p_col: int;}
+                                                      type elt =
+                                                        | Text of string
+                                                        | Break of string*
+                                                        int
+                                                        | Start_group of int
+                                                        | End_group
+                                                        | Set_pos of pos
+                                                      type t =
+                                                        {
+                                                        mutable indent: int;
+                                                        mutable box_indent:
+                                                          int;
+                                                        mutable prev_indents:
+                                                          (int* int) list;
+                                                        mutable limit: int;
+                                                        mutable cur: int;
+                                                        mutable l: elt list;
+                                                        mutable n: int;
+                                                        mutable w: int;
+                                                        mutable compact:
+                                                          bool;
+                                                        mutable needed_space:
+                                                          (char ->
+                                                             char -> bool)
+                                                            option;
+                                                        mutable
+                                                          pending_space:
+                                                          string option;
+                                                        mutable last_char:
+                                                          char option;
+                                                        mutable line: int;
+                                                        mutable col: int;
+                                                        mutable total: int;
+                                                        output:
+                                                          string ->
+                                                            int ->
+                                                              int -> unit;}
+                                                      let spaces =
+                                                        String.make 80 ' '
+                                                      let output st
+                                                        (s : string) l =
+                                                        (try
+                                                           let last =
+                                                             (String.rindex_from
+                                                                s (l - 1)
+                                                                '\n')
+                                                               + 1 in
+                                                           let line = ref 0 in
+                                                           for i = 0 to 
+                                                             l - 1 do
+                                                             if
+                                                               (s.[i]) = '\n'
+                                                             then incr line
+                                                           done;
+                                                           st.line <-
+                                                             st.line +
+                                                               (!line);
+                                                           st.col <- l - last
+                                                         with
+                                                         | Not_found  ->
+                                                             st.col <-
+                                                               l + st.col);
+                                                        st.total <-
+                                                          st.total +
                                                             (String.length s);
-                                                          st.cur <-
-                                                            st.cur +
-                                                              (String.length
-                                                                 s))
-                                                     | Set_pos p ->
-                                                         (p.p_line <- st.line;
-                                                          p.p_col <- st.col)
-                                                     | Break (_,offs) ->
-                                                         (output_newline st;
-                                                          (let indent =
-                                                             st.box_indent +
-                                                               offs in
-                                                           st.indent <-
-                                                             indent;
-                                                           output_spaces st
-                                                             indent;
-                                                           st.limit <-
-                                                             max
-                                                               (indent + 60)
-                                                               78;
-                                                           st.cur <-
-                                                             st.indent))
-                                                     | Start_group n ->
-                                                         (st.n <- 1;
-                                                          st.w <-
-                                                            st.limit - st.cur;
-                                                          st.prev_indents <-
-                                                            ((st.box_indent),
-                                                              (st.indent))
-                                                            ::
-                                                            (st.prev_indents);
-                                                          st.indent <-
-                                                            st.indent + n;
-                                                          st.box_indent <-
-                                                            st.indent)
-                                                     | End_group  ->
-                                                         (st.box_indent <-
-                                                            fst
-                                                              (List.hd
-                                                                 st.prev_indents);
-                                                          st.indent <-
-                                                            snd
-                                                              (List.hd
-                                                                 st.prev_indents);
-                                                          st.prev_indents <-
-                                                            List.tl
-                                                              st.prev_indents)
-                                                   else
-                                                     (st.l <- e :: (st.l);
-                                                      (match e with
-                                                       | Text s|Break (s,_)
-                                                           ->
-                                                           let w =
-                                                             st.w -
+                                                        st.output s 0 l
+                                                      let rec output_spaces
+                                                        st n =
+                                                        output st spaces
+                                                          (min n 80);
+                                                        if n > 80
+                                                        then
+                                                          output_spaces st
+                                                            (n - 80)
+                                                      let output_newline st =
+                                                        output st "\n" 1
+                                                      let rec flat_render st
+                                                        l =
+                                                        match l with
+                                                        | (Text s)::r|(Break
+                                                          (s,_))::r ->
+                                                            (output st s
                                                                (String.length
-                                                                  s) in
-                                                           (st.w <- w;
-                                                            if w < 0
-                                                            then
-                                                              (let l =
-                                                                 List.rev
-                                                                   st.l in
-                                                               st.l <- [];
-                                                               st.n <- 0;
-                                                               List.iter
-                                                                 (fun e  ->
-                                                                    push st e)
-                                                                 l))
-                                                       | Set_pos _ -> ()
-                                                       | Start_group _ ->
-                                                           st.n <- st.n + 1
-                                                       | End_group  ->
-                                                           (st.n <- st.n - 1;
-                                                            if st.n = 0
-                                                            then
-                                                              (flat_render st
-                                                                 (List.rev
-                                                                    st.l);
+                                                                  s);
+                                                             flat_render st r)
+                                                        | (Set_pos p)::r ->
+                                                            (p.p_line <-
+                                                               st.line;
+                                                             p.p_col <-
+                                                               st.col;
+                                                             flat_render st r)
+                                                        | (Start_group _
+                                                           |End_group )::r ->
+                                                            flat_render st r
+                                                        | [] -> ()
+                                                      let rec push st e =
+                                                        if st.n = 0
+                                                        then
+                                                          match e with
+                                                          | Text s ->
+                                                              (output st s
+                                                                 (String.length
+                                                                    s);
+                                                               st.cur <-
+                                                                 st.cur +
+                                                                   (String.length
+                                                                    s))
+                                                          | Set_pos p ->
+                                                              (p.p_line <-
+                                                                 st.line;
+                                                               p.p_col <-
+                                                                 st.col)
+                                                          | Break (_,offs) ->
+                                                              (output_newline
+                                                                 st;
+                                                               (let indent =
+                                                                  st.box_indent
+                                                                    + offs in
+                                                                st.indent <-
+                                                                  indent;
+                                                                output_spaces
+                                                                  st indent;
+                                                                st.limit <-
+                                                                  max
+                                                                    (
+                                                                    indent +
+                                                                    60) 78;
+                                                                st.cur <-
+                                                                  st.indent))
+                                                          | Start_group n ->
+                                                              (st.n <- 1;
+                                                               st.w <-
+                                                                 st.limit -
+                                                                   st.cur;
+                                                               st.prev_indents
+                                                                 <-
+                                                                 ((st.box_indent),
+                                                                   (st.indent))
+                                                                 ::
+                                                                 (st.prev_indents);
+                                                               st.indent <-
+                                                                 st.indent +
+                                                                   n;
                                                                st.box_indent
+                                                                 <- st.indent)
+                                                          | End_group  ->
+                                                              (st.box_indent
                                                                  <-
                                                                  fst
                                                                    (List.hd
@@ -2268,367 +2514,488 @@ module rec
                                                                st.prev_indents
                                                                  <-
                                                                  List.tl
-                                                                   st.prev_indents;
-                                                               st.cur <-
-                                                                 st.cur +
-                                                                   st.w;
-                                                               st.l <- []))))
-                                                 let string st (s : string) =
-                                                   if st.compact
-                                                   then
-                                                     let len =
-                                                       String.length s in
-                                                     (if len <> 0
-                                                      then
-                                                        ((match st.pending_space
-                                                          with
-                                                          | None  -> ()
-                                                          | Some sp ->
-                                                              (st.pending_space
-                                                                 <- None;
-                                                               (match 
-                                                                  ((st.last_char),
+                                                                   st.prev_indents)
+                                                        else
+                                                          (st.l <- e ::
+                                                             (st.l);
+                                                           (match e with
+                                                            | Text s|Break
+                                                              (s,_) ->
+                                                                let w =
+                                                                  st.w -
                                                                     (
-                                                                    st.needed_space))
-                                                                with
-                                                                | (Some
-                                                                   last,Some
-                                                                   f) ->
+                                                                    String.length
+                                                                    s) in
+                                                                (st.w <- w;
+                                                                 if w < 0
+                                                                 then
+                                                                   (let l =
+                                                                    List.rev
+                                                                    st.l in
+                                                                    st.l <-
+                                                                    [];
+                                                                    st.n <- 0;
+                                                                    List.iter
+                                                                    (fun e 
+                                                                    ->
+                                                                    push st e)
+                                                                    l))
+                                                            | Set_pos _ -> ()
+                                                            | Start_group _
+                                                                ->
+                                                                st.n <-
+                                                                  st.n + 1
+                                                            | End_group  ->
+                                                                (st.n <-
+                                                                   st.n - 1;
+                                                                 if st.n = 0
+                                                                 then
+                                                                   (flat_render
+                                                                    st
+                                                                    (List.rev
+                                                                    st.l);
+                                                                    st.box_indent
+                                                                    <-
+                                                                    fst
+                                                                    (List.hd
+                                                                    st.prev_indents);
+                                                                    st.indent
+                                                                    <-
+                                                                    snd
+                                                                    (List.hd
+                                                                    st.prev_indents);
+                                                                    st.prev_indents
+                                                                    <-
+                                                                    List.tl
+                                                                    st.prev_indents;
+                                                                    st.cur <-
+                                                                    st.cur +
+                                                                    st.w;
+                                                                    st.l <-
+                                                                    []))))
+                                                      let string st
+                                                        (s : string) =
+                                                        if st.compact
+                                                        then
+                                                          let len =
+                                                            String.length s in
+                                                          (if len <> 0
+                                                           then
+                                                             ((match 
+                                                                 st.pending_space
+                                                               with
+                                                               | None  -> ()
+                                                               | Some sp ->
+                                                                   (st.pending_space
+                                                                    <- None;
+                                                                    (
+                                                                    match 
+                                                                    ((st.last_char),
+                                                                    (st.needed_space))
+                                                                    with
+                                                                    | 
+                                                                    (Some
+                                                                    last,Some
+                                                                    f) ->
                                                                     if
                                                                     f last
                                                                     (s.[0])
                                                                     then
                                                                     output st
                                                                     sp 1
-                                                                | (_,None )
+                                                                    | 
+                                                                    (_,None )
                                                                     ->
                                                                     output st
                                                                     sp 1
-                                                                | _ -> ())));
-                                                         output st s len;
-                                                         st.last_char <-
-                                                           Some (s.[len - 1])))
-                                                   else push st (Text s)
-                                                 let genbreak st s n =
-                                                   if not st.compact
-                                                   then
-                                                     push st (Break (s, n))
-                                                 let break_token =
-                                                   Break ("", 0)
-                                                 let break st =
-                                                   if not st.compact
-                                                   then push st break_token
-                                                 let break1 st =
-                                                   if not st.compact
-                                                   then
-                                                     push st (Break ("", 1))
-                                                 let non_breaking_space_token
-                                                   = Text " "
-                                                 let non_breaking_space st =
-                                                   if st.compact
-                                                   then
-                                                     st.pending_space <-
-                                                       Some " "
-                                                   else
-                                                     push st
-                                                       non_breaking_space_token
-                                                 let space ?(indent= 0)  st =
-                                                   if st.compact
-                                                   then
-                                                     st.pending_space <-
-                                                       Some "\n"
-                                                   else
-                                                     push st
-                                                       (Break (" ", indent))
-                                                 let start_group st n =
-                                                   if not st.compact
-                                                   then
-                                                     push st (Start_group n)
-                                                 let end_group st =
-                                                   if not st.compact
-                                                   then push st End_group
-                                                 let total t = t.total
-                                                 let pos t =
-                                                   if t.compact
-                                                   then
-                                                     {
-                                                       p_line = (t.line);
-                                                       p_col = (t.col)
-                                                     }
-                                                   else
-                                                     (let p =
+                                                                    | 
+                                                                    _ -> ())));
+                                                              output st s len;
+                                                              st.last_char <-
+                                                                Some
+                                                                  (s.[
+                                                                   len - 1])))
+                                                        else push st (Text s)
+                                                      let genbreak st s n =
+                                                        if not st.compact
+                                                        then
+                                                          push st
+                                                            (Break (s, n))
+                                                      let break_token =
+                                                        Break ("", 0)
+                                                      let break st =
+                                                        if not st.compact
+                                                        then
+                                                          push st break_token
+                                                      let break1 st =
+                                                        if not st.compact
+                                                        then
+                                                          push st
+                                                            (Break ("", 1))
+                                                      let non_breaking_space_token
+                                                        = Text " "
+                                                      let non_breaking_space
+                                                        st =
+                                                        if st.compact
+                                                        then
+                                                          st.pending_space <-
+                                                            Some " "
+                                                        else
+                                                          push st
+                                                            non_breaking_space_token
+                                                      let space ?(indent= 0) 
+                                                        st =
+                                                        if st.compact
+                                                        then
+                                                          st.pending_space <-
+                                                            Some "\n"
+                                                        else
+                                                          push st
+                                                            (Break
+                                                               (" ", indent))
+                                                      let start_group st n =
+                                                        if not st.compact
+                                                        then
+                                                          push st
+                                                            (Start_group n)
+                                                      let end_group st =
+                                                        if not st.compact
+                                                        then
+                                                          push st End_group
+                                                      let total t = t.total
+                                                      let pos t =
+                                                        if t.compact
+                                                        then
+                                                          {
+                                                            p_line = (t.line);
+                                                            p_col = (t.col)
+                                                          }
+                                                        else
+                                                          (let p =
+                                                             {
+                                                               p_line = (-1);
+                                                               p_col = (-1)
+                                                             } in
+                                                           push t (Set_pos p);
+                                                           p)
+                                                      let newline st =
+                                                        output_newline st;
+                                                        st.indent <- 0;
+                                                        st.box_indent <- 0;
+                                                        st.prev_indents <- [];
+                                                        st.cur <- 0;
+                                                        st.l <- [];
+                                                        st.n <- 0;
+                                                        st.w <- 0
+                                                      let output_substring =
+                                                        Pervasives.output
+                                                      let _ =
+                                                        output_substring
+                                                      let output_substring =
+                                                        let open Pervasives in
+                                                          output_substring
+                                                      let to_out_channel ch =
                                                         {
-                                                          p_line = (-1);
-                                                          p_col = (-1)
-                                                        } in
-                                                      push t (Set_pos p); p)
-                                                 let newline st =
-                                                   output_newline st;
-                                                   st.indent <- 0;
-                                                   st.box_indent <- 0;
-                                                   st.prev_indents <- [];
-                                                   st.cur <- 0;
-                                                   st.l <- [];
-                                                   st.n <- 0;
-                                                   st.w <- 0
-                                                 let output_substring =
-                                                   Pervasives.output
-                                                 let _ = output_substring
-                                                 let output_substring =
-                                                   let open Pervasives in
-                                                     output_substring
-                                                 let to_out_channel ch =
-                                                   {
-                                                     indent = 0;
-                                                     box_indent = 0;
-                                                     prev_indents = [];
-                                                     limit = 78;
-                                                     cur = 0;
-                                                     l = [];
-                                                     n = 0;
-                                                     w = 0;
-                                                     col = 0;
-                                                     line = 0;
-                                                     total = 0;
-                                                     compact = false;
-                                                     pending_space = None;
-                                                     last_char = None;
-                                                     needed_space = None;
-                                                     output =
-                                                       (output_substring ch)
-                                                   }
-                                                 let to_buffer b =
-                                                   {
-                                                     indent = 0;
-                                                     box_indent = 0;
-                                                     prev_indents = [];
-                                                     limit = 78;
-                                                     cur = 0;
-                                                     l = [];
-                                                     n = 0;
-                                                     w = 0;
-                                                     col = 0;
-                                                     line = 0;
-                                                     total = 0;
-                                                     compact = false;
-                                                     pending_space = None;
-                                                     last_char = None;
-                                                     needed_space = None;
-                                                     output =
-                                                       (fun s  ->
-                                                          fun i  ->
-                                                            fun l  ->
-                                                              Buffer.add_substring
-                                                                b s i l)
-                                                   }
-                                                 let set_compact st v =
-                                                   st.compact <- v
-                                                 let set_needed_space_function
-                                                   st f =
-                                                   st.needed_space <- Some f
-                                               end and
-                                                    Pp_js:sig
-                                                            type cxt
-                                                            val empty : cxt
-                                                            val program :
-                                                              cxt ->
-                                                                Pp.t ->
-                                                                  ?source_map:(string
+                                                          indent = 0;
+                                                          box_indent = 0;
+                                                          prev_indents = [];
+                                                          limit = 78;
+                                                          cur = 0;
+                                                          l = [];
+                                                          n = 0;
+                                                          w = 0;
+                                                          col = 0;
+                                                          line = 0;
+                                                          total = 0;
+                                                          compact = false;
+                                                          pending_space =
+                                                            None;
+                                                          last_char = None;
+                                                          needed_space = None;
+                                                          output =
+                                                            (output_substring
+                                                               ch)
+                                                        }
+                                                      let to_buffer b =
+                                                        {
+                                                          indent = 0;
+                                                          box_indent = 0;
+                                                          prev_indents = [];
+                                                          limit = 78;
+                                                          cur = 0;
+                                                          l = [];
+                                                          n = 0;
+                                                          w = 0;
+                                                          col = 0;
+                                                          line = 0;
+                                                          total = 0;
+                                                          compact = false;
+                                                          pending_space =
+                                                            None;
+                                                          last_char = None;
+                                                          needed_space = None;
+                                                          output =
+                                                            (fun s  ->
+                                                               fun i  ->
+                                                                 fun l  ->
+                                                                   Buffer.add_substring
+                                                                    b s i l)
+                                                        }
+                                                      let set_compact st v =
+                                                        st.compact <- v
+                                                      let set_needed_space_function
+                                                        st f =
+                                                        st.needed_space <-
+                                                          Some f
+                                                    end and
+                                                         Pp_js:sig
+                                                                 type cxt
+                                                                 val empty :
+                                                                   cxt
+                                                                 val program
+                                                                   :
+                                                                   cxt ->
+                                                                    Pp.t ->
+                                                                    ?source_map:(string
                                                                     option*
                                                                     Source_map.t)
                                                                     ->
                                                                     J.block
                                                                     -> 
                                                                     unit
-                                                          end =
-                                                    struct
-                                                      let quiet = ref false
-                                                      let warn fmt =
-                                                        Format.ksprintf
-                                                          (fun s  ->
-                                                             if not (!quiet)
-                                                             then
-                                                               Format.eprintf
-                                                                 "%s%!" s)
-                                                          fmt
-                                                      let read_file f =
-                                                        let ic =
-                                                          open_in_bin f in
-                                                        let n =
-                                                          in_channel_length
-                                                            ic in
-                                                        let s =
-                                                          Bytes.create n in
-                                                        really_input ic s 0 n;
-                                                        close_in ic;
-                                                        Bytes.unsafe_to_string
-                                                          s
-                                                      let op_prec
-                                                        (op : J.binop) =
-                                                        match op with
-                                                        | Eq |StarEq |SlashEq 
-                                                          |ModEq |PlusEq 
-                                                          |MinusEq |LslEq 
-                                                          |AsrEq |LsrEq 
-                                                          |BandEq |BxorEq 
-                                                          |BorEq  ->
-                                                            (1, 13, 1)
-                                                        | Or  -> (3, 3, 3)
-                                                        | And  -> (4, 4, 4)
-                                                        | Bor  -> (5, 5, 5)
-                                                        | Bxor  -> (6, 6, 6)
-                                                        | Band  -> (7, 7, 7)
-                                                        | EqEq |NotEq |EqEqEq 
-                                                          |NotEqEq  ->
-                                                            (8, 8, 9)
-                                                        | Gt |Ge |Lt |Le 
-                                                          |InstanceOf |In  ->
-                                                            (9, 9, 10)
-                                                        | Lsl |Lsr |Asr  ->
-                                                            (10, 10, 11)
-                                                        | Plus |Minus  ->
-                                                            (11, 11, 12)
-                                                        | Mul |Div |Mod  ->
-                                                            (12, 12, 13)
-                                                      let op_str
-                                                        (op : J.binop) =
-                                                        match op with
-                                                        | Eq  -> "="
-                                                        | StarEq  -> "*="
-                                                        | SlashEq  -> "/="
-                                                        | ModEq  -> "%="
-                                                        | PlusEq  -> "+="
-                                                        | MinusEq  -> "-="
-                                                        | Or  -> "||"
-                                                        | And  -> "&&"
-                                                        | Bor  -> "|"
-                                                        | Bxor  -> "^"
-                                                        | Band  -> "&"
-                                                        | EqEq  -> "=="
-                                                        | NotEq  -> "!="
-                                                        | EqEqEq  -> "==="
-                                                        | NotEqEq  -> "!=="
-                                                        | LslEq  -> "<<="
-                                                        | AsrEq  -> ">>="
-                                                        | LsrEq  -> ">>>="
-                                                        | BandEq  -> "&="
-                                                        | BxorEq  -> "^="
-                                                        | BorEq  -> "|="
-                                                        | Lt  -> "<"
-                                                        | Le  -> "<="
-                                                        | Gt  -> ">"
-                                                        | Ge  -> ">="
-                                                        | Lsl  -> "<<"
-                                                        | Lsr  -> ">>>"
-                                                        | Asr  -> ">>"
-                                                        | Plus  -> "+"
-                                                        | Minus  -> "-"
-                                                        | Mul  -> "*"
-                                                        | Div  -> "/"
-                                                        | Mod  -> "%"
-                                                        | InstanceOf |In  ->
-                                                            assert false
-                                                      let unop_str
-                                                        (op : J.unop) =
-                                                        match op with
-                                                        | Not  -> "!"
-                                                        | Neg  -> "-"
-                                                        | Pl  -> "+"
-                                                        | Bnot  -> "~"
-                                                        | IncrA |IncrB |DecrA 
-                                                          |DecrB |Typeof 
-                                                          |Void |Delete  ->
-                                                            assert false
-                                                      let best_string_quote s
-                                                        =
-                                                        let simple = ref 0
-                                                        and double = ref 0 in
-                                                        for i = 0 to
-                                                          (String.length s) -
-                                                            1
-                                                          do
-                                                          (match s.[i] with
-                                                           | '\'' ->
-                                                               incr simple
-                                                           | '"' ->
-                                                               incr double
-                                                           | _ -> ())
-                                                        done;
-                                                        if
-                                                          (!simple) <
-                                                            (!double)
-                                                        then '\''
-                                                        else '"'
-                                                      let array_str1 =
-                                                        Array.init 256
-                                                          (fun i  ->
-                                                             String.make 1
-                                                               (Char.chr i))
-                                                      let array_conv =
-                                                        Array.init 16
-                                                          (fun i  ->
-                                                             String.make 1
-                                                               ("0123456789abcdef".[i]))
-                                                      [@@@ocaml.text
-                                                        " purely functional environment "]
-                                                      module SMap =
-                                                        Map.Make(String)
-                                                      module IMap =
-                                                        Map.Make(struct
-                                                                   type t =
-                                                                    int
-                                                                   let compare
-                                                                    (x : int)
-                                                                    y =
-                                                                    Pervasives.compare
-                                                                    x y
-                                                                 end)
-                                                      type cxt =
-                                                        {
-                                                        mapping:
-                                                          int IMap.t SMap.t;}
-                                                      let empty =
-                                                        {
-                                                          mapping =
-                                                            SMap.empty
-                                                        }
-                                                      let string_of_id
-                                                        (id : Ident.t)
-                                                        (({ mapping } as cxt)
-                                                          : cxt)
-                                                        =
-                                                        (match SMap.find
-                                                                 id.name
-                                                                 mapping
-                                                         with
-                                                         | exception
-                                                             Not_found  ->
-                                                             let v = 0 in
-                                                             (v,
-                                                               {
-                                                                 mapping =
-                                                                   (SMap.add
+                                                               end =
+                                                         struct
+                                                           let quiet =
+                                                             ref false
+                                                           let warn fmt =
+                                                             Format.ksprintf
+                                                               (fun s  ->
+                                                                  if
+                                                                    not
+                                                                    (!quiet)
+                                                                  then
+                                                                    Format.eprintf
+                                                                    "%s%!" s)
+                                                               fmt
+                                                           let read_file f =
+                                                             let ic =
+                                                               open_in_bin f in
+                                                             let n =
+                                                               in_channel_length
+                                                                 ic in
+                                                             let s =
+                                                               Bytes.create n in
+                                                             really_input ic
+                                                               s 0 n;
+                                                             close_in ic;
+                                                             Bytes.unsafe_to_string
+                                                               s
+                                                           let op_prec
+                                                             (op : J.binop) =
+                                                             match op with
+                                                             | Eq |StarEq 
+                                                               |SlashEq 
+                                                               |ModEq |PlusEq 
+                                                               |MinusEq 
+                                                               |LslEq |AsrEq 
+                                                               |LsrEq |BandEq 
+                                                               |BxorEq |BorEq 
+                                                                 ->
+                                                                 (1, 13, 1)
+                                                             | Or  ->
+                                                                 (3, 3, 3)
+                                                             | And  ->
+                                                                 (4, 4, 4)
+                                                             | Bor  ->
+                                                                 (5, 5, 5)
+                                                             | Bxor  ->
+                                                                 (6, 6, 6)
+                                                             | Band  ->
+                                                                 (7, 7, 7)
+                                                             | EqEq |NotEq 
+                                                               |EqEqEq 
+                                                               |NotEqEq  ->
+                                                                 (8, 8, 9)
+                                                             | Gt |Ge |Lt |Le 
+                                                               |InstanceOf 
+                                                               |In  ->
+                                                                 (9, 9, 10)
+                                                             | Lsl |Lsr |Asr 
+                                                                 ->
+                                                                 (10, 10, 11)
+                                                             | Plus |Minus 
+                                                                 ->
+                                                                 (11, 11, 12)
+                                                             | Mul |Div |Mod 
+                                                                 ->
+                                                                 (12, 12, 13)
+                                                           let op_str
+                                                             (op : J.binop) =
+                                                             match op with
+                                                             | Eq  -> "="
+                                                             | StarEq  ->
+                                                                 "*="
+                                                             | SlashEq  ->
+                                                                 "/="
+                                                             | ModEq  -> "%="
+                                                             | PlusEq  ->
+                                                                 "+="
+                                                             | MinusEq  ->
+                                                                 "-="
+                                                             | Or  -> "||"
+                                                             | And  -> "&&"
+                                                             | Bor  -> "|"
+                                                             | Bxor  -> "^"
+                                                             | Band  -> "&"
+                                                             | EqEq  -> "=="
+                                                             | NotEq  -> "!="
+                                                             | EqEqEq  ->
+                                                                 "==="
+                                                             | NotEqEq  ->
+                                                                 "!=="
+                                                             | LslEq  ->
+                                                                 "<<="
+                                                             | AsrEq  ->
+                                                                 ">>="
+                                                             | LsrEq  ->
+                                                                 ">>>="
+                                                             | BandEq  ->
+                                                                 "&="
+                                                             | BxorEq  ->
+                                                                 "^="
+                                                             | BorEq  -> "|="
+                                                             | Lt  -> "<"
+                                                             | Le  -> "<="
+                                                             | Gt  -> ">"
+                                                             | Ge  -> ">="
+                                                             | Lsl  -> "<<"
+                                                             | Lsr  -> ">>>"
+                                                             | Asr  -> ">>"
+                                                             | Plus  -> "+"
+                                                             | Minus  -> "-"
+                                                             | Mul  -> "*"
+                                                             | Div  -> "/"
+                                                             | Mod  -> "%"
+                                                             | InstanceOf |In 
+                                                                 ->
+                                                                 assert false
+                                                           let unop_str
+                                                             (op : J.unop) =
+                                                             match op with
+                                                             | Not  -> "!"
+                                                             | Neg  -> "-"
+                                                             | Pl  -> "+"
+                                                             | Bnot  -> "~"
+                                                             | IncrA |IncrB 
+                                                               |DecrA |DecrB 
+                                                               |Typeof |Void 
+                                                               |Delete  ->
+                                                                 assert false
+                                                           let best_string_quote
+                                                             s =
+                                                             let simple =
+                                                               ref 0
+                                                             and double =
+                                                               ref 0 in
+                                                             for i = 0 to
+                                                               (String.length
+                                                                  s)
+                                                                 - 1
+                                                               do
+                                                               (match s.[i]
+                                                                with
+                                                                | '\'' ->
+                                                                    incr
+                                                                    simple
+                                                                | '"' ->
+                                                                    incr
+                                                                    double
+                                                                | _ -> ())
+                                                             done;
+                                                             if
+                                                               (!simple) <
+                                                                 (!double)
+                                                             then '\''
+                                                             else '"'
+                                                           let array_str1 =
+                                                             Array.init 256
+                                                               (fun i  ->
+                                                                  String.make
+                                                                    1
+                                                                    (
+                                                                    Char.chr
+                                                                    i))
+                                                           let array_conv =
+                                                             Array.init 16
+                                                               (fun i  ->
+                                                                  String.make
+                                                                    1
+                                                                    (
+                                                                    "0123456789abcdef".[i]))
+                                                           [@@@ocaml.text
+                                                             " purely functional environment "]
+                                                           module SMap =
+                                                             Map.Make(String)
+                                                           module IMap =
+                                                             Map.Make(
+                                                             struct
+                                                               type t = int
+                                                               let compare
+                                                                 (x : int) y
+                                                                 =
+                                                                 Pervasives.compare
+                                                                   x y
+                                                             end)
+                                                           type cxt =
+                                                             {
+                                                             mapping:
+                                                               int IMap.t
+                                                                 SMap.t;}
+                                                           let empty =
+                                                             {
+                                                               mapping =
+                                                                 SMap.empty
+                                                             }
+                                                           let string_of_id
+                                                             (id : Ident.t)
+                                                             (({ mapping } as
+                                                                 cxt)
+                                                               : cxt)
+                                                             =
+                                                             (match SMap.find
+                                                                    id.name
+                                                                    mapping
+                                                              with
+                                                              | exception
+                                                                  Not_found 
+                                                                  ->
+                                                                  let v = 0 in
+                                                                  (v,
+                                                                    {
+                                                                    mapping =
+                                                                    (SMap.add
                                                                     id.name
                                                                     (let open IMap in
                                                                     add
                                                                     id.stamp
                                                                     0 empty)
                                                                     mapping)
-                                                               })
-                                                         | imap ->
-                                                             (match IMap.find
+                                                                    })
+                                                              | imap ->
+                                                                  (match 
+                                                                    IMap.find
                                                                     id.stamp
                                                                     imap
-                                                              with
-                                                              | exception
-                                                                  Not_found 
-                                                                  ->
-                                                                  let v =
+                                                                   with
+                                                                   | 
+                                                                   exception
+                                                                    Not_found 
+                                                                    ->
+                                                                    let v =
                                                                     IMap.cardinal
                                                                     imap in
-                                                                  (v,
-                                                                    (
-                                                                    let imap2:
+                                                                    (v,
+                                                                    (let imap2:
                                                                     int
                                                                     IMap.t =
                                                                     let open IMap in
@@ -2642,228 +3009,507 @@ module rec
                                                                     imap2
                                                                     mapping)
                                                                     }))
-                                                              | i -> (i, cxt)) : 
-                                                        (int* cxt))
-                                                      [@@@ocaml.text
-                                                        " TODO:\n    check name conflicts with javascript conventions\n "]
-                                                      let ident (cxt : cxt) f
-                                                        (id : Ident.t) =
-                                                        if Ident.global id
-                                                        then
-                                                          (Pp.string f
-                                                             id.name;
-                                                           cxt)
-                                                        else
-                                                          (let (i,new_cxt) =
-                                                             string_of_id id
-                                                               cxt in
-                                                           let () =
-                                                             Pp.string f
-                                                               (if i == 0
-                                                                then id.name
-                                                                else
-                                                                  Printf.sprintf
+                                                                   | 
+                                                                   i ->
+                                                                    (i, cxt)) : 
+                                                             (int* cxt))
+                                                           let reserved_words
+                                                             =
+                                                             ["break";
+                                                             "case";
+                                                             "catch";
+                                                             "continue";
+                                                             "debugger";
+                                                             "default";
+                                                             "delete";
+                                                             "do";
+                                                             "else";
+                                                             "finally";
+                                                             "for";
+                                                             "function";
+                                                             "if";
+                                                             "in";
+                                                             "instanceof";
+                                                             "new";
+                                                             "return";
+                                                             "switch";
+                                                             "this";
+                                                             "throw";
+                                                             "try";
+                                                             "typeof";
+                                                             "var";
+                                                             "void";
+                                                             "while";
+                                                             "with";
+                                                             "class";
+                                                             "enum";
+                                                             "export";
+                                                             "extends";
+                                                             "import";
+                                                             "super";
+                                                             "implements";
+                                                             "interface";
+                                                             "let";
+                                                             "package";
+                                                             "private";
+                                                             "protected";
+                                                             "public";
+                                                             "static";
+                                                             "yield";
+                                                             "null";
+                                                             "true";
+                                                             "false";
+                                                             "NaN";
+                                                             "undefined";
+                                                             "this";
+                                                             "abstract";
+                                                             "boolean";
+                                                             "byte";
+                                                             "char";
+                                                             "const";
+                                                             "double";
+                                                             "final";
+                                                             "float";
+                                                             "goto";
+                                                             "int";
+                                                             "long";
+                                                             "native";
+                                                             "short";
+                                                             "synchronized";
+                                                             "throws";
+                                                             "transient";
+                                                             "volatile";
+                                                             "await";
+                                                             "event";
+                                                             "location";
+                                                             "window";
+                                                             "document";
+                                                             "eval";
+                                                             "navigator";
+                                                             "self";
+                                                             "Array";
+                                                             "Date";
+                                                             "Math";
+                                                             "JSON";
+                                                             "Object";
+                                                             "RegExp";
+                                                             "String";
+                                                             "Boolean";
+                                                             "Number";
+                                                             "Infinity";
+                                                             "isFinite";
+                                                             "ActiveXObject";
+                                                             "XMLHttpRequest";
+                                                             "XDomainRequest";
+                                                             "DOMException";
+                                                             "Error";
+                                                             "SyntaxError";
+                                                             "arguments";
+                                                             "decodeURI";
+                                                             "decodeURIComponent";
+                                                             "encodeURI";
+                                                             "encodeURIComponent";
+                                                             "escape";
+                                                             "unescape";
+                                                             "isNaN";
+                                                             "parseFloat";
+                                                             "parseInt";
+                                                             "require";
+                                                             "exports";
+                                                             "module"]
+                                                           module StringSet =
+                                                             Set.Make(String)
+                                                           let reserved_map =
+                                                             List.fold_left
+                                                               (fun acc  ->
+                                                                  fun x  ->
+                                                                    StringSet.add
+                                                                    x acc)
+                                                               StringSet.empty
+                                                               reserved_words
+                                                           let convert
+                                                             (name : string)
+                                                             =
+                                                             let module E =
+                                                               struct
+                                                                 exception
+                                                                   Not_normal_letter
+                                                                   of int
+                                                               end in
+                                                               let len =
+                                                                 String.length
+                                                                   name in
+                                                               if
+                                                                 StringSet.mem
+                                                                   name
+                                                                   reserved_map
+                                                               then
+                                                                 "$$" ^ name
+                                                               else
+                                                                 (try
+                                                                    for i = 0
+                                                                    to
+                                                                    len - 1
+                                                                    do
+                                                                    (let c =
+                                                                    String.unsafe_get
+                                                                    name i in
+                                                                    if
+                                                                    not
+                                                                    (((c >=
+                                                                    'a') &&
+                                                                    (c <= 'z'))
+                                                                    ||
+                                                                    (((c >=
+                                                                    'A') &&
+                                                                    (c <= 'Z'))
+                                                                    ||
+                                                                    ((c = '_')
+                                                                    ||
+                                                                    (c = '$'))))
+                                                                    then
+                                                                    raise
+                                                                    (E.Not_normal_letter
+                                                                    i)
+                                                                    else ())
+                                                                    done;
+                                                                    name
+                                                                  with
+                                                                  | E.Not_normal_letter
+                                                                    i ->
+                                                                    (String.sub
+                                                                    name 0 i)
+                                                                    ^
+                                                                    (let buffer
+                                                                    =
+                                                                    Buffer.create
+                                                                    len in
+                                                                    (for j =
+                                                                    i to
+                                                                    len - 1
+                                                                    do
+                                                                    (let c =
+                                                                    String.unsafe_get
+                                                                    name j in
+                                                                    match c
+                                                                    with
+                                                                    | 
+                                                                    '*' ->
+                                                                    Buffer.add_string
+                                                                    buffer
+                                                                    "$star"
+                                                                    | 
+                                                                    '\'' ->
+                                                                    Buffer.add_string
+                                                                    buffer
+                                                                    "$prime"
+                                                                    | 
+                                                                    '@' ->
+                                                                    Buffer.add_string
+                                                                    buffer
+                                                                    "$at"
+                                                                    | 
+                                                                    '^' ->
+                                                                    Buffer.add_string
+                                                                    buffer
+                                                                    "$caret"
+                                                                    | 
+                                                                    'a'..'z'
+                                                                    |'A'..'Z'
+                                                                    |'_'|'$'
+                                                                    |'0'..'9'
+                                                                    ->
+                                                                    Buffer.add_char
+                                                                    buffer c
+                                                                    | 
+                                                                    _ ->
+                                                                    Buffer.add_string
+                                                                    buffer
+                                                                    "$unknown")
+                                                                    done;
+                                                                    Buffer.contents
+                                                                    buffer)))
+                                                             [@@ocaml.doc
+                                                               " TODO:\n    check name conflicts with javascript conventions\n "]
+                                                           let ident
+                                                             (cxt : cxt) f
+                                                             (id : Ident.t) =
+                                                             if
+                                                               Jident.is_js
+                                                                 id
+                                                             then
+                                                               (Pp.string f
+                                                                  id.name;
+                                                                cxt)
+                                                             else
+                                                               if
+                                                                 Ident.global
+                                                                   id
+                                                               then
+                                                                 (Pp.string f
+                                                                    (
+                                                                    convert
+                                                                    id.name);
+                                                                  cxt)
+                                                               else
+                                                                 (let 
+                                                                    (i,new_cxt)
+                                                                    =
+                                                                    string_of_id
+                                                                    id cxt in
+                                                                  let () =
+                                                                    Pp.string
+                                                                    f
+                                                                    (if
+                                                                    i == 0
+                                                                    then
+                                                                    convert
+                                                                    id.name
+                                                                    else
+                                                                    Printf.sprintf
                                                                     "%s$%d"
-                                                                    id.name i) in
-                                                           new_cxt)[@@ocaml.text
-                                                                    " TODO:\n    check name conflicts with javascript conventions\n "]
-                                                      let opt_identifier cxt
-                                                        f i =
-                                                        match i with
-                                                        | None  -> cxt
-                                                        | Some i ->
-                                                            (Pp.space f;
-                                                             ident cxt f i)
-                                                      let rec formal_parameter_list
-                                                        cxt f l =
-                                                        match l with
-                                                        | [] -> cxt
-                                                        | i::[] ->
-                                                            ident cxt f i
-                                                        | i::r ->
-                                                            let cxt =
-                                                              ident cxt f i in
-                                                            (Pp.string f ",";
-                                                             Pp.break f;
-                                                             formal_parameter_list
-                                                               cxt f r)
-                                                      let rec ends_with_if_without_else
-                                                        (st :
-                                                          J.loc_statement)
-                                                        =
-                                                        match fst st with
-                                                        | If (_,_,Some st)
-                                                          |While (_,st)|For
-                                                          (_,_,_,st)|ForIn
-                                                          (_,_,st) ->
-                                                            ends_with_if_without_else
-                                                              st
-                                                        | If (_,_,None ) ->
-                                                            true
-                                                        | _ -> false
-                                                      let rec need_paren l
-                                                        (e : J.expression) =
-                                                        match e with
-                                                        | ESeq (e,_) ->
-                                                            (l <= 0) &&
-                                                              (need_paren 0 e)
-                                                        | ECond (e,_,_) ->
-                                                            (l <= 2) &&
-                                                              (need_paren 3 e)
-                                                        | EBin (op,e,_) ->
-                                                            let (out,lft,_rght)
-                                                              = op_prec op in
-                                                            (l <= out) &&
-                                                              (need_paren lft
-                                                                 e)
-                                                        | ECall (e,_,_)
-                                                          |EAccess (e,_)|EDot
-                                                          (e,_) ->
-                                                            (l <= 15) &&
-                                                              (need_paren 15
-                                                                 e)
-                                                        | EVar _|EStr _|EArr
-                                                          _|EBool _|ENum _
-                                                          |EQuote _|ERegexp _
-                                                          |EUn _|ENew _ ->
-                                                            false
-                                                        | EFun _|EObj _ ->
-                                                            true
-                                                      let pp_string f
-                                                        ?(quote= '"')  ?(utf=
-                                                        false)  s =
-                                                        let quote_s =
-                                                          String.make 1 quote in
-                                                        Pp.string f quote_s;
-                                                        (let l =
-                                                           String.length s in
-                                                         for i = 0 to 
-                                                           l - 1 do
-                                                           (let c = s.[i] in
-                                                            match c with
-                                                            | '\000' when
-                                                                (i = (l - 1))
-                                                                  ||
-                                                                  (((s.[
+                                                                    (convert
+                                                                    id.name)
+                                                                    i) in
+                                                                  new_cxt)
+                                                           let opt_identifier
+                                                             cxt f i =
+                                                             match i with
+                                                             | None  -> cxt
+                                                             | Some i ->
+                                                                 (Pp.space f;
+                                                                  ident cxt f
+                                                                    i)
+                                                           let rec formal_parameter_list
+                                                             cxt f l =
+                                                             match l with
+                                                             | [] -> cxt
+                                                             | i::[] ->
+                                                                 ident cxt f
+                                                                   i
+                                                             | i::r ->
+                                                                 let cxt =
+                                                                   ident cxt
+                                                                    f i in
+                                                                 (Pp.string f
+                                                                    ",";
+                                                                  Pp.break f;
+                                                                  formal_parameter_list
+                                                                    cxt f r)
+                                                           let rec ends_with_if_without_else
+                                                             (st :
+                                                               J.loc_statement)
+                                                             =
+                                                             match fst st
+                                                             with
+                                                             | If
+                                                               (_,_,Some st)
+                                                               |While 
+                                                               (_,st)|For
+                                                               (_,_,_,st)
+                                                               |ForIn
+                                                               (_,_,st) ->
+                                                                 ends_with_if_without_else
+                                                                   st
+                                                             | If (_,_,None )
+                                                                 -> true
+                                                             | _ -> false
+                                                           let rec need_paren
+                                                             l
+                                                             (e :
+                                                               J.expression)
+                                                             =
+                                                             match e with
+                                                             | ESeq (e,_) ->
+                                                                 (l <= 0) &&
+                                                                   (need_paren
+                                                                    0 e)
+                                                             | ECond 
+                                                                 (e,_,_) ->
+                                                                 (l <= 2) &&
+                                                                   (need_paren
+                                                                    3 e)
+                                                             | EBin (op,e,_)
+                                                                 ->
+                                                                 let 
+                                                                   (out,lft,_rght)
+                                                                   =
+                                                                   op_prec op in
+                                                                 (l <= out)
+                                                                   &&
+                                                                   (need_paren
+                                                                    lft e)
+                                                             | ECall 
+                                                               (e,_,_)
+                                                               |EAccess 
+                                                               (e,_)|EDot
+                                                               (e,_) ->
+                                                                 (l <= 15) &&
+                                                                   (need_paren
+                                                                    15 e)
+                                                             | EVar _|EStr _
+                                                               |EArr _|EBool
+                                                               _|ENum _
+                                                               |EQuote _
+                                                               |ERegexp _|EUn
+                                                               _|ENew _ ->
+                                                                 false
+                                                             | EFun _|EObj _
+                                                                 -> true
+                                                           let pp_string f
+                                                             ?(quote= '"') 
+                                                             ?(utf= false)  s
+                                                             =
+                                                             let quote_s =
+                                                               String.make 1
+                                                                 quote in
+                                                             Pp.string f
+                                                               quote_s;
+                                                             (let l =
+                                                                String.length
+                                                                  s in
+                                                              for i = 0 to
+                                                                l - 1 do
+                                                                (let c =
+                                                                   s.[i] in
+                                                                 match c with
+                                                                 | '\000'
+                                                                    when
+                                                                    (i =
+                                                                    (l - 1))
+                                                                    ||
+                                                                    (((s.[
                                                                     i + 1]) <
                                                                     '0') ||
                                                                     ((s.[
                                                                     i + 1]) >
-                                                                    '9'))
-                                                                ->
-                                                                Pp.string f
-                                                                  "\\0"
-                                                            | '\b' ->
-                                                                Pp.string f
-                                                                  "\\b"
-                                                            | '\t' ->
-                                                                Pp.string f
-                                                                  "\\t"
-                                                            | '\n' ->
-                                                                Pp.string f
-                                                                  "\\n"
-                                                            | '\012' ->
-                                                                Pp.string f
-                                                                  "\\f"
-                                                            | '\\' when
-                                                                not utf ->
-                                                                Pp.string f
-                                                                  "\\\\"
-                                                            | '\r' ->
-                                                                Pp.string f
-                                                                  "\\r"
-                                                            | '\000'..'\031'
-                                                              |'\127' ->
-                                                                let c =
-                                                                  Char.code c in
-                                                                (Pp.string f
-                                                                   "\\x";
-                                                                 Pp.string f
-                                                                   (Array.unsafe_get
+                                                                    '9')) ->
+                                                                    Pp.string
+                                                                    f "\\0"
+                                                                 | '\b' ->
+                                                                    Pp.string
+                                                                    f "\\b"
+                                                                 | '\t' ->
+                                                                    Pp.string
+                                                                    f "\\t"
+                                                                 | '\n' ->
+                                                                    Pp.string
+                                                                    f "\\n"
+                                                                 | '\012' ->
+                                                                    Pp.string
+                                                                    f "\\f"
+                                                                 | '\\' when
+                                                                    not utf
+                                                                    ->
+                                                                    Pp.string
+                                                                    f "\\\\"
+                                                                 | '\r' ->
+                                                                    Pp.string
+                                                                    f "\\r"
+                                                                 | '\000'..'\031'
+                                                                   |'\127' ->
+                                                                    let c =
+                                                                    Char.code
+                                                                    c in
+                                                                    (Pp.string
+                                                                    f "\\x";
+                                                                    Pp.string
+                                                                    f
+                                                                    (Array.unsafe_get
                                                                     array_conv
                                                                     (c lsr 4));
-                                                                 Pp.string f
-                                                                   (Array.unsafe_get
+                                                                    Pp.string
+                                                                    f
+                                                                    (Array.unsafe_get
                                                                     array_conv
                                                                     (c land
                                                                     15)))
-                                                            | '\128'..'ÿ'
-                                                                when 
-                                                                not utf ->
-                                                                let c =
-                                                                  Char.code c in
-                                                                (Pp.string f
-                                                                   "\\x";
-                                                                 Pp.string f
-                                                                   (Array.unsafe_get
+                                                                 | '\128'..'ÿ'
+                                                                    when
+                                                                    not utf
+                                                                    ->
+                                                                    let c =
+                                                                    Char.code
+                                                                    c in
+                                                                    (Pp.string
+                                                                    f "\\x";
+                                                                    Pp.string
+                                                                    f
+                                                                    (Array.unsafe_get
                                                                     array_conv
                                                                     (c lsr 4));
-                                                                 Pp.string f
-                                                                   (Array.unsafe_get
+                                                                    Pp.string
+                                                                    f
+                                                                    (Array.unsafe_get
                                                                     array_conv
                                                                     (c land
                                                                     15)))
-                                                            | _ ->
-                                                                if c = quote
-                                                                then
-                                                                  (Pp.string
+                                                                 | _ ->
+                                                                    if
+                                                                    c = quote
+                                                                    then
+                                                                    (Pp.string
                                                                     f "\\";
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f
                                                                     (Array.unsafe_get
                                                                     array_str1
                                                                     (Char.code
                                                                     c)))
-                                                                else
-                                                                  Pp.string f
-                                                                    (
-                                                                    Array.unsafe_get
+                                                                    else
+                                                                    Pp.string
+                                                                    f
+                                                                    (Array.unsafe_get
                                                                     array_str1
                                                                     (Char.code
                                                                     c)))
-                                                         done;
-                                                         Pp.string f quote_s)
-                                                      type config =
-                                                        {
-                                                        push_mapping:
-                                                          Pp.pos ->
-                                                            Source_map.map ->
-                                                              unit;
-                                                        get_file_index:
-                                                          string -> int;}
-                                                      type source_map_config =
-                                                        | No_source_map
-                                                        | Source_map of
-                                                        config
-                                                      module Make(D:sig
-                                                                    val
-                                                                    source_map
-                                                                    :
-                                                                    Source_map.t
-                                                                    option
-                                                                    end) =
-                                                        struct
-                                                          let temp_mappings =
-                                                            ref []
-                                                          let config =
-                                                            let idx = ref 0 in
-                                                            let files =
-                                                              Hashtbl.create
-                                                                17 in
-                                                            match D.source_map
-                                                            with
-                                                            | None  ->
-                                                                No_source_map
-                                                            | Some sm ->
-                                                                (List.iter
-                                                                   (fun f  ->
+                                                              done;
+                                                              Pp.string f
+                                                                quote_s)
+                                                           type config =
+                                                             {
+                                                             push_mapping:
+                                                               Pp.pos ->
+                                                                 Source_map.map
+                                                                   -> 
+                                                                   unit;
+                                                             get_file_index:
+                                                               string -> int;}
+                                                           type source_map_config =
+                                                             | No_source_map
+                                                             | Source_map of
+                                                             config
+                                                           module Make(D:
+                                                             sig
+                                                               val source_map
+                                                                 :
+                                                                 Source_map.t
+                                                                   option
+                                                             end) =
+                                                             struct
+                                                               let temp_mappings
+                                                                 = ref []
+                                                               let config =
+                                                                 let idx =
+                                                                   ref 0 in
+                                                                 let files =
+                                                                   Hashtbl.create
+                                                                    17 in
+                                                                 match D.source_map
+                                                                 with
+                                                                 | None  ->
+                                                                    No_source_map
+                                                                 | Some sm ->
+                                                                    (List.iter
+                                                                    (fun f 
+                                                                    ->
                                                                     Hashtbl.add
                                                                     files f
                                                                     (!idx);
                                                                     incr idx)
-                                                                   sm.Source_map.sources;
-                                                                 Source_map
-                                                                   {
+                                                                    sm.Source_map.sources;
+                                                                    Source_map
+                                                                    {
                                                                     push_mapping
                                                                     =
                                                                     ((fun pos
@@ -2897,18 +3543,19 @@ module rec
                                                                     sm.Source_map.sources
                                                                     @ [file];
                                                                     pos)))
-                                                                   })
-                                                          let output_debug_info
-                                                            config =
-                                                            match config with
-                                                            | Source_map
-                                                                {
-                                                                  push_mapping;
-                                                                  get_file_index
-                                                                  }
-                                                                ->
-                                                                (fun f  ->
-                                                                   fun
+                                                                    })
+                                                               let output_debug_info
+                                                                 config =
+                                                                 match config
+                                                                 with
+                                                                 | Source_map
+                                                                    {
+                                                                    push_mapping;
+                                                                    get_file_index
+                                                                    } ->
+                                                                    (fun f 
+                                                                    ->
+                                                                    fun
                                                                     (loc :
                                                                     J.location)
                                                                      ->
@@ -2964,143 +3611,151 @@ module rec
                                                                     ori_name
                                                                     = None
                                                                     })
-                                                            | No_source_map 
-                                                                ->
-                                                                (fun f  ->
-                                                                   fun loc 
+                                                                 | No_source_map
+                                                                     ->
+                                                                    (fun f 
+                                                                    ->
+                                                                    fun loc 
                                                                     -> ())
-                                                          let rec expression
-                                                            cxt l f
-                                                            (e :
-                                                              J.expression)
-                                                            =
-                                                            (match e with
-                                                             | EVar v ->
-                                                                 ident cxt f
-                                                                   v
-                                                             | ESeq (e1,e2)
-                                                                 ->
-                                                                 (if l > 0
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                               let rec expression
+                                                                 cxt l f
+                                                                 (e :
+                                                                   J.expression)
+                                                                 =
+                                                                 (match e
+                                                                  with
+                                                                  | EVar v ->
+                                                                    ident cxt
+                                                                    f v
+                                                                  | ESeq
+                                                                    (e1,e2)
+                                                                    ->
+                                                                    (if l > 0
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f
                                                                     e1 in
-                                                                   let () =
+                                                                    let () =
                                                                     Pp.string
                                                                     f "," in
-                                                                   let () =
+                                                                    let () =
                                                                     Pp.break
                                                                     f in
-                                                                   let cxt =
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 0 f
                                                                     e2 in
-                                                                   if l > 0
-                                                                   then
+                                                                    if l > 0
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | EFun
-                                                                 (i,l,b,pc)
-                                                                 ->
-                                                                 let () =
-                                                                   Pp.start_group
+                                                                    cxt))
+                                                                  | EFun
+                                                                    (i,l,b,pc)
+                                                                    ->
+                                                                    let () =
+                                                                    Pp.start_group
                                                                     f 1 in
-                                                                 let () =
-                                                                   Pp.start_group
+                                                                    let () =
+                                                                    Pp.start_group
                                                                     f 0 in
-                                                                 let () =
-                                                                   Pp.start_group
+                                                                    let () =
+                                                                    Pp.start_group
                                                                     f 0 in
-                                                                 let () =
-                                                                   Pp.string
+                                                                    let () =
+                                                                    Pp.string
                                                                     f
                                                                     "function" in
-                                                                 let cxt =
-                                                                   opt_identifier
+                                                                    let cxt =
+                                                                    opt_identifier
                                                                     cxt f i in
-                                                                 let () =
-                                                                   Pp.end_group
+                                                                    let () =
+                                                                    Pp.end_group
                                                                     f in
-                                                                 let () =
-                                                                   Pp.break f in
-                                                                 let () =
-                                                                   Pp.start_group
+                                                                    let () =
+                                                                    Pp.break
+                                                                    f in
+                                                                    let () =
+                                                                    Pp.start_group
                                                                     f 1 in
-                                                                 let () =
-                                                                   Pp.string
+                                                                    let () =
+                                                                    Pp.string
                                                                     f "(" in
-                                                                 let cxt' =
-                                                                   formal_parameter_list
+                                                                    let cxt'
+                                                                    =
+                                                                    formal_parameter_list
                                                                     cxt f l in
-                                                                 let () =
-                                                                   Pp.string
+                                                                    let () =
+                                                                    Pp.string
                                                                     f ")" in
-                                                                 let () =
-                                                                   Pp.end_group
+                                                                    let () =
+                                                                    Pp.end_group
                                                                     f in
-                                                                 let () =
-                                                                   Pp.end_group
+                                                                    let () =
+                                                                    Pp.end_group
                                                                     f in
-                                                                 let () =
-                                                                   Pp.break f in
-                                                                 let () =
-                                                                   Pp.start_group
+                                                                    let () =
+                                                                    Pp.break
+                                                                    f in
+                                                                    let () =
+                                                                    Pp.start_group
                                                                     f 1 in
-                                                                 let () =
-                                                                   Pp.string
+                                                                    let () =
+                                                                    Pp.string
                                                                     f "{" in
-                                                                 let () =
-                                                                   ignore @@
+                                                                    let () =
+                                                                    ignore @@
                                                                     (function_body
                                                                     cxt' f b) in
-                                                                 let () =
-                                                                   output_debug_info
+                                                                    let () =
+                                                                    output_debug_info
                                                                     config f
                                                                     pc in
-                                                                 let () =
-                                                                   Pp.string
+                                                                    let () =
+                                                                    Pp.string
                                                                     f "}" in
-                                                                 let () =
-                                                                   Pp.end_group
+                                                                    let () =
+                                                                    Pp.end_group
                                                                     f in
-                                                                 let () =
-                                                                   Pp.end_group
-                                                                    f in
-                                                                 cxt
-                                                             | ECall
-                                                                 (e,el,loc)
-                                                                 ->
-                                                                 (if l > 15
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    let () =
+                                                                    Pp.end_group
+                                                                    f in cxt
+                                                                  | ECall
+                                                                    (e,el,loc)
+                                                                    ->
+                                                                    (if
+                                                                    l > 15
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  output_debug_info
+                                                                    output_debug_info
                                                                     config f
                                                                     loc;
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 15 f
                                                                     e in
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (
+                                                                    let cxt =
                                                                     arguments
                                                                     cxt f el in
                                                                     Pp.string
@@ -3116,38 +3771,42 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | EStr (s,kind)
-                                                                 ->
-                                                                 let quote =
-                                                                   best_string_quote
+                                                                  | EStr
+                                                                    (s,kind)
+                                                                    ->
+                                                                    let quote
+                                                                    =
+                                                                    best_string_quote
                                                                     s in
-                                                                 (pp_string f
+                                                                    (pp_string
+                                                                    f
                                                                     ~utf:(
                                                                     kind =
                                                                     `Utf8)
                                                                     ~quote s;
-                                                                  cxt)
-                                                             | EBool b ->
-                                                                 (Pp.string f
-                                                                    (
-                                                                    if b
+                                                                    cxt)
+                                                                  | EBool b
+                                                                    ->
+                                                                    (Pp.string
+                                                                    f
+                                                                    (if b
                                                                     then
                                                                     "true"
                                                                     else
                                                                     "false");
-                                                                  cxt)
-                                                             | ENum v ->
-                                                                 let s =
-                                                                   Js_pp_util.string_of_number
+                                                                    cxt)
+                                                                  | ENum v ->
+                                                                    let s =
+                                                                    Js_pp_util.string_of_number
                                                                     v in
-                                                                 let need_parent
-                                                                   =
-                                                                   if
+                                                                    let need_parent
+                                                                    =
+                                                                    if
                                                                     (s.[0]) =
                                                                     '-'
-                                                                   then
+                                                                    then
                                                                     l > 13
-                                                                   else
+                                                                    else
                                                                     (l = 15)
                                                                     &&
                                                                     (((s.[0])
@@ -3155,117 +3814,128 @@ module rec
                                                                     &&
                                                                     ((s.[0])
                                                                     <> 'N')) in
-                                                                 (if
+                                                                    (if
                                                                     need_parent
-                                                                  then
+                                                                    then
                                                                     Pp.string
                                                                     f "(";
-                                                                  Pp.string f
-                                                                    s;
-                                                                  if
+                                                                    Pp.string
+                                                                    f s;
+                                                                    if
                                                                     need_parent
-                                                                  then
+                                                                    then
                                                                     Pp.string
                                                                     f ")";
-                                                                  cxt)
-                                                             | EUn
-                                                                 (Typeof ,e)
-                                                                 ->
-                                                                 (if l > 13
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt)
+                                                                  | EUn
+                                                                    (Typeof
+                                                                    ,e) ->
+                                                                    (if
+                                                                    l > 13
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                  Pp.string f
+                                                                    Pp.string
+                                                                    f
                                                                     "typeof";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 13 f
                                                                     e in
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   if l > 13
-                                                                   then
+                                                                    if l > 13
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | EUn (Void ,e)
-                                                                 ->
-                                                                 (if l > 13
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt))
+                                                                  | EUn
+                                                                    (Void ,e)
+                                                                    ->
+                                                                    (if
+                                                                    l > 13
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                  Pp.string f
-                                                                    "void";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "void";
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 13 f
                                                                     e in
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   if l > 13
-                                                                   then
+                                                                    if l > 13
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | EUn
-                                                                 (Delete ,e)
-                                                                 ->
-                                                                 (if l > 13
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt))
+                                                                  | EUn
+                                                                    (Delete
+                                                                    ,e) ->
+                                                                    (if
+                                                                    l > 13
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                  Pp.string f
+                                                                    Pp.string
+                                                                    f
                                                                     "delete";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 13 f
                                                                     e in
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   if l > 13
-                                                                   then
+                                                                    if l > 13
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | EUn
-                                                                 ((IncrA 
-                                                                   |DecrA 
-                                                                   |IncrB 
-                                                                   |DecrB  as
-                                                                    op),e)
-                                                                 ->
-                                                                 (if l > 13
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt))
+                                                                  | EUn
+                                                                    ((
+                                                                    IncrA 
+                                                                    |DecrA 
+                                                                    |IncrB 
+                                                                    |DecrB 
+                                                                    as op),e)
+                                                                    ->
+                                                                    (if
+                                                                    l > 13
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     if
                                                                     (op =
                                                                     IncrA) ||
@@ -3276,18 +3946,19 @@ module rec
                                                                     cxt 13 f
                                                                     e
                                                                     else cxt in
-                                                                   if
+                                                                    if
                                                                     (op =
                                                                     IncrA) ||
                                                                     (op =
                                                                     IncrB)
-                                                                   then
+                                                                    then
                                                                     Pp.string
                                                                     f "++"
-                                                                   else
+                                                                    else
                                                                     Pp.string
                                                                     f "--";
-                                                                   (let cxt =
+                                                                    (
+                                                                    let cxt =
                                                                     if
                                                                     (op =
                                                                     IncrB) ||
@@ -3305,57 +3976,63 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | EUn (op,e) ->
-                                                                 (if l > 13
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                  | EUn
+                                                                    (op,e) ->
+                                                                    (if
+                                                                    l > 13
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.string f
-                                                                    (
-                                                                    unop_str
+                                                                    Pp.string
+                                                                    f
+                                                                    (unop_str
                                                                     op);
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 13 f
                                                                     e in
-                                                                   if l > 13
-                                                                   then
+                                                                    if l > 13
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | EBin
-                                                                 (InstanceOf
-                                                                  ,e1,e2)
-                                                                 ->
-                                                                 let 
-                                                                   (out,lft,rght)
-                                                                   =
-                                                                   op_prec
+                                                                    cxt))
+                                                                  | EBin
+                                                                    (InstanceOf
+                                                                    ,e1,e2)
+                                                                    ->
+                                                                    let 
+                                                                    (out,lft,rght)
+                                                                    =
+                                                                    op_prec
                                                                     InstanceOf in
-                                                                 (if l > out
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    (if
+                                                                    l > out
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt lft f
                                                                     e1 in
-                                                                   Pp.space f;
-                                                                   Pp.string
+                                                                    Pp.space
+                                                                    f;
+                                                                    Pp.string
                                                                     f
                                                                     "instanceof";
-                                                                   Pp.space f;
-                                                                   (let cxt =
+                                                                    Pp.space
+                                                                    f;
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt rght
                                                                     f e2 in
@@ -3369,32 +4046,37 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | EBin
-                                                                 (In ,e1,e2)
-                                                                 ->
-                                                                 let 
-                                                                   (out,lft,rght)
-                                                                   =
-                                                                   op_prec
+                                                                  | EBin
+                                                                    (In
+                                                                    ,e1,e2)
+                                                                    ->
+                                                                    let 
+                                                                    (out,lft,rght)
+                                                                    =
+                                                                    op_prec
                                                                     InstanceOf in
-                                                                 (if l > out
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    (if
+                                                                    l > out
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt lft f
                                                                     e1 in
-                                                                   Pp.space f;
-                                                                   Pp.string
+                                                                    Pp.space
+                                                                    f;
+                                                                    Pp.string
                                                                     f "in";
-                                                                   Pp.space f;
-                                                                   (let cxt =
+                                                                    Pp.space
+                                                                    f;
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt rght
                                                                     f e2 in
@@ -3408,30 +4090,34 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | EBin
-                                                                 (op,e1,e2)
-                                                                 ->
-                                                                 let 
-                                                                   (out,lft,rght)
-                                                                   =
-                                                                   op_prec op in
-                                                                 (if l > out
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                  | EBin
+                                                                    (op,e1,e2)
+                                                                    ->
+                                                                    let 
+                                                                    (out,lft,rght)
+                                                                    =
+                                                                    op_prec
+                                                                    op in
+                                                                    (if
+                                                                    l > out
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt lft f
                                                                     e1 in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f
                                                                     (op_str
                                                                     op);
-                                                                   Pp.break f;
-                                                                   (let cxt =
+                                                                    Pp.break
+                                                                    f;
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt rght
                                                                     f e2 in
@@ -3443,40 +4129,45 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | EArr el ->
-                                                                 (Pp.start_group
+                                                                  | EArr el
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                  Pp.string f
-                                                                    "[";
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "[";
+                                                                    (let cxt
+                                                                    =
                                                                     element_list
                                                                     cxt f el in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "]";
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   cxt))
-                                                             | EAccess 
-                                                                 (e,e') ->
-                                                                 (if l > 15
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt))
+                                                                  | EAccess
+                                                                    (e,e') ->
+                                                                    (if
+                                                                    l > 15
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 15 f
                                                                     e in
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "[";
-                                                                   (let cxt =
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 0 f
                                                                     e' in
@@ -3493,84 +4184,94 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | EDot (e,nm) ->
-                                                                 (if l > 15
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                  | EDot
+                                                                    (e,nm) ->
+                                                                    (if
+                                                                    l > 15
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 15 f
                                                                     e in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f ".";
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f nm;
-                                                                   if l > 15
-                                                                   then
+                                                                    if l > 15
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | ENew (e,None )
-                                                                 ->
-                                                                 (if l > 15
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt))
+                                                                  | ENew
+                                                                    (e,None )
+                                                                    ->
+                                                                    (if
+                                                                    l > 15
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                  Pp.string f
-                                                                    "new";
-                                                                  Pp.space f;
-                                                                  (let cxt =
-                                                                    expression
-                                                                    cxt 16 f
-                                                                    e in
-                                                                   Pp.break f;
-                                                                   Pp.string
-                                                                    f "()";
-                                                                   Pp.end_group
+                                                                    Pp.string
+                                                                    f "new";
+                                                                    Pp.space
                                                                     f;
-                                                                   if l > 15
-                                                                   then
+                                                                    (let cxt
+                                                                    =
+                                                                    expression
+                                                                    cxt 16 f
+                                                                    e in
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.string
+                                                                    f "()";
+                                                                    Pp.end_group
+                                                                    f;
+                                                                    if l > 15
+                                                                    then
                                                                     (Pp.string
                                                                     f ")";
                                                                     Pp.end_group
                                                                     f);
-                                                                   cxt))
-                                                             | ENew
-                                                                 (e,Some el)
-                                                                 ->
-                                                                 (if l > 15
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    cxt))
+                                                                  | ENew
+                                                                    (e,Some
+                                                                    el) ->
+                                                                    (if
+                                                                    l > 15
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                  Pp.string f
-                                                                    "new";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "new";
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 16 f
                                                                     e in
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (
+                                                                    let cxt =
                                                                     arguments
                                                                     cxt f el in
                                                                     Pp.string
@@ -3586,30 +4287,33 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt)))
-                                                             | ECond
-                                                                 (e,e1,e2) ->
-                                                                 (if l > 2
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                  | ECond
+                                                                    (e,e1,e2)
+                                                                    ->
+                                                                    (if l > 2
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(");
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                  Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 3 f e in
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "?";
-                                                                   (let cxt =
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 1 f
                                                                     e1 in
@@ -3637,28 +4341,33 @@ module rec
                                                                     Pp.end_group
                                                                     f);
                                                                     cxt))))
-                                                             | EObj lst ->
-                                                                 (Pp.start_group
+                                                                  | EObj lst
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                  Pp.string f
-                                                                    "{";
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "{";
+                                                                    (let cxt
+                                                                    =
                                                                     property_name_and_value_list
                                                                     cxt f lst in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "}";
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   cxt))
-                                                             | ERegexp
-                                                                 (s,opt) ->
-                                                                 ((Pp.string
+                                                                    cxt))
+                                                                  | ERegexp
+                                                                    (s,opt)
+                                                                    ->
+                                                                    ((
+                                                                    Pp.string
                                                                     f "/";
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f s;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "/";
-                                                                   (match opt
+                                                                    (
+                                                                    match opt
                                                                     with
                                                                     | 
                                                                     None  ->
@@ -3667,68 +4376,81 @@ module rec
                                                                     Some o ->
                                                                     Pp.string
                                                                     f o));
-                                                                  cxt)
-                                                             | EQuote s ->
-                                                                 (Pp.string f
-                                                                    "(";
-                                                                  Pp.string f
-                                                                    s;
-                                                                  Pp.string f
-                                                                    ")";
-                                                                  cxt) : 
-                                                            cxt)
-                                                          and property_name
-                                                            cxt f
-                                                            (n :
-                                                              J.property_name)
-                                                            =
-                                                            (match n with
-                                                             | PNI s ->
-                                                                 (Pp.string f
-                                                                    s;
-                                                                  cxt)
-                                                             | PNS s ->
-                                                                 let quote =
-                                                                   best_string_quote
+                                                                    cxt)
+                                                                  | EQuote s
+                                                                    ->
+                                                                    (Pp.string
+                                                                    f "(";
+                                                                    Pp.string
+                                                                    f s;
+                                                                    Pp.string
+                                                                    f ")";
+                                                                    cxt) : 
+                                                                 cxt)
+                                                               and property_name
+                                                                 cxt f
+                                                                 (n :
+                                                                   J.property_name)
+                                                                 =
+                                                                 (match n
+                                                                  with
+                                                                  | PNI s ->
+                                                                    (Pp.string
+                                                                    f s;
+                                                                    cxt)
+                                                                  | PNS s ->
+                                                                    let quote
+                                                                    =
+                                                                    best_string_quote
                                                                     s in
-                                                                 (pp_string f
+                                                                    (pp_string
+                                                                    f
                                                                     ~utf:true
                                                                     ~quote s;
-                                                                  cxt)
-                                                             | PNN v ->
-                                                                 expression
-                                                                   cxt 0 f
-                                                                   (ENum v) : 
-                                                            cxt)
-                                                          and property_name_and_value_list
-                                                            cxt f l =
-                                                            (match l with
-                                                             | [] -> cxt
-                                                             | (pn,e)::[] ->
-                                                                 (Pp.start_group
+                                                                    cxt)
+                                                                  | PNN v ->
+                                                                    expression
+                                                                    cxt 0 f
+                                                                    (ENum v) : 
+                                                                 cxt)
+                                                               and property_name_and_value_list
+                                                                 cxt f l =
+                                                                 (match l
+                                                                  with
+                                                                  | [] -> cxt
+                                                                  | (pn,e)::[]
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     property_name
                                                                     cxt f pn in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f ":";
-                                                                   Pp.break f;
-                                                                   (let cxt =
+                                                                    Pp.break
+                                                                    f;
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 1 f e in
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                             | (pn,e)::r ->
-                                                                 (Pp.start_group
+                                                                  | (pn,e)::r
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     property_name
                                                                     cxt f pn in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f ":";
-                                                                   Pp.break f;
-                                                                   (let cxt =
+                                                                    Pp.break
+                                                                    f;
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 1 f e in
                                                                     Pp.end_group
@@ -3739,19 +4461,22 @@ module rec
                                                                     f;
                                                                     property_name_and_value_list
                                                                     cxt f r))) : 
-                                                            cxt)
-                                                          and element_list
-                                                            cxt f el =
-                                                            (match el with
-                                                             | [] -> cxt
-                                                             | e::[] ->
-                                                                 (match e
+                                                                 cxt)
+                                                               and element_list
+                                                                 cxt f el =
+                                                                 (match el
                                                                   with
-                                                                  | None  ->
+                                                                  | [] -> cxt
+                                                                  | e::[] ->
+                                                                    (match e
+                                                                    with
+                                                                    | 
+                                                                    None  ->
                                                                     (Pp.string
                                                                     f ",";
                                                                     cxt)
-                                                                  | Some e ->
+                                                                    | 
+                                                                    Some e ->
                                                                     (Pp.start_group
                                                                     f 0;
                                                                     (let cxt
@@ -3761,15 +4486,15 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                             | e::r ->
-                                                                 let cxt =
-                                                                   match e
-                                                                   with
-                                                                   | 
-                                                                   None  ->
+                                                                  | e::r ->
+                                                                    let cxt =
+                                                                    match e
+                                                                    with
+                                                                    | 
+                                                                    None  ->
                                                                     cxt
-                                                                   | 
-                                                                   Some e ->
+                                                                    | 
+                                                                    Some e ->
                                                                     (Pp.start_group
                                                                     f 0;
                                                                     (let cxt
@@ -3779,132 +4504,150 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)) in
-                                                                 (Pp.string f
-                                                                    ",";
-                                                                  Pp.break f;
-                                                                  element_list
-                                                                    cxt f r) : 
-                                                            cxt)
-                                                          and function_body
-                                                            cxt f b =
-                                                            (source_elements
-                                                               cxt f
-                                                               ~skip_last_semi:true
-                                                               b : cxt)
-                                                          and arguments cxt f
-                                                            l =
-                                                            (match l with
-                                                             | [] -> cxt
-                                                             | e::[] ->
-                                                                 (Pp.start_group
-                                                                    f 0;
-                                                                  (let cxt =
-                                                                    expression
-                                                                    cxt 1 f e in
-                                                                   Pp.end_group
-                                                                    f;
-                                                                   cxt))
-                                                             | e::r ->
-                                                                 (Pp.start_group
-                                                                    f 0;
-                                                                  (let cxt =
-                                                                    expression
-                                                                    cxt 1 f e in
-                                                                   Pp.end_group
-                                                                    f;
-                                                                   Pp.string
+                                                                    (Pp.string
                                                                     f ",";
-                                                                   Pp.break f;
-                                                                   arguments
+                                                                    Pp.break
+                                                                    f;
+                                                                    element_list
+                                                                    cxt f r) : 
+                                                                 cxt)
+                                                               and function_body
+                                                                 cxt f b =
+                                                                 (source_elements
+                                                                    cxt f
+                                                                    ~skip_last_semi:true
+                                                                    b : 
+                                                                 cxt)
+                                                               and arguments
+                                                                 cxt f l =
+                                                                 (match l
+                                                                  with
+                                                                  | [] -> cxt
+                                                                  | e::[] ->
+                                                                    (Pp.start_group
+                                                                    f 0;
+                                                                    (let cxt
+                                                                    =
+                                                                    expression
+                                                                    cxt 1 f e in
+                                                                    Pp.end_group
+                                                                    f;
+                                                                    cxt))
+                                                                  | e::r ->
+                                                                    (Pp.start_group
+                                                                    f 0;
+                                                                    (let cxt
+                                                                    =
+                                                                    expression
+                                                                    cxt 1 f e in
+                                                                    Pp.end_group
+                                                                    f;
+                                                                    Pp.string
+                                                                    f ",";
+                                                                    Pp.break
+                                                                    f;
+                                                                    arguments
                                                                     cxt f r)) : 
-                                                            cxt)
-                                                          and variable_declaration
-                                                            (cxt : cxt) f
-                                                            (i,init) =
-                                                            (match init with
-                                                             | None  ->
-                                                                 ident cxt f
-                                                                   i
-                                                             | Some (e,pc) ->
-                                                                 (Pp.start_group
+                                                                 cxt)
+                                                               and variable_declaration
+                                                                 (cxt : cxt)
+                                                                 f (i,init) =
+                                                                 (match init
+                                                                  with
+                                                                  | None  ->
+                                                                    ident cxt
+                                                                    f i
+                                                                  | Some
+                                                                    (e,pc) ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                  output_debug_info
+                                                                    output_debug_info
                                                                     config f
                                                                     pc;
-                                                                  (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     ident cxt
                                                                     f i in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "=";
-                                                                   Pp.break f;
-                                                                   (let cxt =
+                                                                    Pp.break
+                                                                    f;
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 1 f e in
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))) : 
-                                                            cxt)
-                                                          and variable_declaration_list_aux
-                                                            cxt f l =
-                                                            match l with
-                                                            | [] ->
-                                                                assert false
-                                                            | d::[] ->
-                                                                variable_declaration
-                                                                  cxt f d
-                                                            | d::r ->
-                                                                let cxt =
-                                                                  variable_declaration
+                                                                 cxt)
+                                                               and variable_declaration_list_aux
+                                                                 cxt f l =
+                                                                 match l with
+                                                                 | [] ->
+                                                                    assert
+                                                                    false
+                                                                 | d::[] ->
+                                                                    variable_declaration
+                                                                    cxt f d
+                                                                 | d::r ->
+                                                                    let cxt =
+                                                                    variable_declaration
                                                                     cxt f d in
-                                                                (Pp.string f
-                                                                   ",";
-                                                                 Pp.break f;
-                                                                 variable_declaration_list_aux
-                                                                   cxt f r)
-                                                          and variable_declaration_list
-                                                            cxt close f
-                                                            variables =
-                                                            (match variables
-                                                             with
-                                                             | [] -> cxt
-                                                             | (i,None )::[]
-                                                                 ->
-                                                                 (Pp.start_group
+                                                                    (Pp.string
+                                                                    f ",";
+                                                                    Pp.break
+                                                                    f;
+                                                                    variable_declaration_list_aux
+                                                                    cxt f r)
+                                                               and variable_declaration_list
+                                                                 cxt close f
+                                                                 variables =
+                                                                 (match variables
+                                                                  with
+                                                                  | [] -> cxt
+                                                                  | (i,None )::[]
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                  Pp.string f
-                                                                    "var";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "var";
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     ident cxt
                                                                     f i in
-                                                                   if close
-                                                                   then
+                                                                    if close
+                                                                    then
                                                                     Pp.string
                                                                     f ";";
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   cxt))
-                                                             | (i,Some
-                                                                (e,pc))::[]
-                                                                 ->
-                                                                 (Pp.start_group
+                                                                    cxt))
+                                                                  | (i,Some
+                                                                    (e,pc))::[]
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                  output_debug_info
+                                                                    output_debug_info
                                                                     config f
                                                                     pc;
-                                                                  Pp.string f
-                                                                    "var";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "var";
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     ident cxt
                                                                     f i in
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "=";
-                                                                   Pp.break1
+                                                                    Pp.break1
                                                                     f;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   (let cxt =
+                                                                    (
+                                                                    let cxt =
                                                                     expression
                                                                     cxt 1 f e in
                                                                     if close
@@ -3916,83 +4659,95 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                             | l ->
-                                                                 (Pp.start_group
+                                                                  | l ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                  Pp.string f
-                                                                    "var";
-                                                                  Pp.space f;
-                                                                  (let cxt =
+                                                                    Pp.string
+                                                                    f "var";
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     variable_declaration_list_aux
                                                                     cxt f l in
-                                                                   if close
-                                                                   then
+                                                                    if close
+                                                                    then
                                                                     Pp.string
                                                                     f ";";
-                                                                   Pp.end_group
+                                                                    Pp.end_group
                                                                     f;
-                                                                   cxt)) : 
-                                                            cxt)
-                                                          and opt_expression
-                                                            cxt l f e =
-                                                            match e with
-                                                            | None  -> cxt
-                                                            | Some e ->
-                                                                expression
-                                                                  cxt l f e
-                                                          and statement
-                                                            ?(last= false) 
-                                                            cxt f
-                                                            ((s,loc) :
-                                                              J.loc_statement)
-                                                            =
-                                                            (let last_semi ()
-                                                               =
-                                                               if last
-                                                               then ()
-                                                               else
-                                                                 Pp.string f
-                                                                   ";" in
-                                                             output_debug_info
-                                                               config f loc;
-                                                             (match s with
-                                                              | Block b ->
-                                                                  block cxt f
-                                                                    b
-                                                              | Variable l ->
-                                                                  variable_declaration_list
+                                                                    cxt)) : 
+                                                                 cxt)
+                                                               and opt_expression
+                                                                 cxt l f e =
+                                                                 match e with
+                                                                 | None  ->
                                                                     cxt
-                                                                    (
-                                                                    not last)
+                                                                 | Some e ->
+                                                                    expression
+                                                                    cxt l f e
+                                                               and statement
+                                                                 ?(last=
+                                                                 false)  cxt
+                                                                 f
+                                                                 ((s,loc) :
+                                                                   J.loc_statement)
+                                                                 =
+                                                                 (let last_semi
+                                                                    () =
+                                                                    if last
+                                                                    then ()
+                                                                    else
+                                                                    Pp.string
+                                                                    f ";" in
+                                                                  output_debug_info
+                                                                    config f
+                                                                    loc;
+                                                                  (match s
+                                                                   with
+                                                                   | 
+                                                                   Block b ->
+                                                                    block cxt
+                                                                    f b
+                                                                   | 
+                                                                   Variable l
+                                                                    ->
+                                                                    variable_declaration_list
+                                                                    cxt
+                                                                    (not last)
                                                                     f l
-                                                              | Empty  ->
-                                                                  (Pp.string
+                                                                   | 
+                                                                   Empty  ->
+                                                                    (Pp.string
                                                                     f ";";
-                                                                   cxt)
-                                                              | Debugger  ->
-                                                                  (Pp.string
+                                                                    cxt)
+                                                                   | 
+                                                                   Debugger 
+                                                                    ->
+                                                                    (Pp.string
                                                                     f
                                                                     "debugger";
-                                                                   last_semi
+                                                                    last_semi
                                                                     ();
-                                                                   cxt)
-                                                              | Exp (EVar _)
-                                                                  ->
-                                                                  (last_semi
+                                                                    cxt)
+                                                                   | 
+                                                                   Exp (EVar
+                                                                    _) ->
+                                                                    (last_semi
                                                                     ();
-                                                                   cxt)
-                                                              | Exp e ->
-                                                                  if
+                                                                    cxt)
+                                                                   | 
+                                                                   Exp e ->
+                                                                    if
                                                                     need_paren
                                                                     0 e
-                                                                  then
-                                                                    (
-                                                                    Pp.start_group
+                                                                    then
+                                                                    (Pp.start_group
                                                                     f 1;
                                                                     Pp.string
                                                                     f "(";
-                                                                    (
-                                                                    let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     Pp.string
@@ -4002,12 +4757,11 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))
-                                                                  else
-                                                                    (
-                                                                    Pp.start_group
+                                                                    else
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                    (
-                                                                    let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     last_semi
@@ -4015,15 +4769,14 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))
-                                                              | If
-                                                                  (e,s1,(
-                                                                   Some _ as
-                                                                    s2))
-                                                                  when
-                                                                  ends_with_if_without_else
-                                                                    s1
-                                                                  ->
-                                                                  statement
+                                                                   | 
+                                                                   If
+                                                                    (e,s1,(
+                                                                    Some _ as
+                                                                    s2)) when
+                                                                    ends_with_if_without_else
+                                                                    s1 ->
+                                                                    statement
                                                                     ~last cxt
                                                                     f
                                                                     ((If
@@ -4031,24 +4784,26 @@ module rec
                                                                     ((Block
                                                                     [s1]), N),
                                                                     s2)), N)
-                                                              | If
-                                                                  (e,s1,Some
-                                                                   ((Block
+                                                                   | 
+                                                                   If
+                                                                    (e,s1,Some
+                                                                    ((Block
                                                                     _,_) as
-                                                                    s2))
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                    s2)) ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "if";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     Pp.string
@@ -4085,22 +4840,24 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))))
-                                                              | If
-                                                                  (e,s1,Some
-                                                                   s2)
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   If
+                                                                    (e,s1,Some
+                                                                    s2) ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "if";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     Pp.string
@@ -4138,22 +4895,24 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))))
-                                                              | If
-                                                                  (e,s1,None
-                                                                   )
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   If
+                                                                    (e,s1,None
+                                                                    ) ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "if";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     Pp.string
@@ -4176,20 +4935,23 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                              | While 
-                                                                  (e,s) ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   While
+                                                                    (e,s) ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "while";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     Pp.string
@@ -4212,19 +4974,22 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                              | Do_while
-                                                                  (((Block
+                                                                   | 
+                                                                   Do_while
+                                                                    ((
+                                                                    (Block
                                                                     _,_) as s),e)
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "do";
-                                                                   Pp.break1
+                                                                    Pp.break1
                                                                     f;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     statement
                                                                     cxt f s in
                                                                     Pp.end_group
@@ -4252,18 +5017,20 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                              | Do_while
-                                                                  (s,e) ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   Do_while
+                                                                    (s,e) ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "do";
-                                                                   Pp.space
+                                                                    Pp.space
                                                                     ~indent:1
                                                                     f;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     statement
                                                                     cxt f s in
                                                                     Pp.end_group
@@ -4291,21 +5058,24 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                              | For
-                                                                  (e1,e2,e3,s)
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   For
+                                                                    (e1,e2,e3,s)
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "for";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     match e1
                                                                     with
                                                                     | 
@@ -4356,21 +5126,24 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))))
-                                                              | ForIn
-                                                                  (e1,e2,s)
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   ForIn
+                                                                    (e1,e2,s)
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "for";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     match e1
                                                                     with
                                                                     | 
@@ -4416,54 +5189,65 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))))
-                                                              | Continue
-                                                                  (None ) ->
-                                                                  (Pp.string
+                                                                   | 
+                                                                   Continue
+                                                                    (None )
+                                                                    ->
+                                                                    (Pp.string
                                                                     f
                                                                     "continue";
-                                                                   last_semi
+                                                                    last_semi
                                                                     ();
-                                                                   cxt)
-                                                              | Continue
-                                                                  (Some s) ->
-                                                                  (Pp.string
+                                                                    cxt)
+                                                                   | 
+                                                                   Continue
+                                                                    (Some s)
+                                                                    ->
+                                                                    (Pp.string
                                                                     f
                                                                     "continue ";
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f s;
-                                                                   last_semi
+                                                                    last_semi
                                                                     ();
-                                                                   cxt)
-                                                              | Break (None )
-                                                                  ->
-                                                                  (Pp.string
+                                                                    cxt)
+                                                                   | 
+                                                                   Break
+                                                                    (None )
+                                                                    ->
+                                                                    (Pp.string
                                                                     f "break";
-                                                                   last_semi
+                                                                    last_semi
                                                                     ();
-                                                                   cxt)
-                                                              | Break (Some
-                                                                  s) ->
-                                                                  (Pp.string
+                                                                    cxt)
+                                                                   | 
+                                                                   Break
+                                                                    (Some s)
+                                                                    ->
+                                                                    (Pp.string
                                                                     f
                                                                     "break ";
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f s;
-                                                                   last_semi
+                                                                    last_semi
                                                                     ();
-                                                                   cxt)
-                                                              | Return e ->
-                                                                  (match e
-                                                                   with
+                                                                    cxt)
                                                                    | 
-                                                                   None  ->
+                                                                   Return e
+                                                                    ->
+                                                                    (match e
+                                                                    with
+                                                                    | 
+                                                                    None  ->
                                                                     (Pp.string
                                                                     f
                                                                     "return";
                                                                     last_semi
                                                                     ();
                                                                     cxt)
-                                                                   | 
-                                                                   Some (EFun
+                                                                    | 
+                                                                    Some
+                                                                    (EFun
                                                                     (i,l,b,pc))
                                                                     ->
                                                                     (Pp.start_group
@@ -4521,8 +5305,8 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))))
-                                                                   | 
-                                                                   Some e ->
+                                                                    | 
+                                                                    Some e ->
                                                                     (Pp.start_group
                                                                     f 7;
                                                                     Pp.string
@@ -4543,32 +5327,37 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                              | Labelled
-                                                                  (i,s) ->
-                                                                  (Pp.string
+                                                                   | 
+                                                                   Labelled
+                                                                    (i,s) ->
+                                                                    (Pp.string
                                                                     f i;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f ":";
-                                                                   Pp.break f;
-                                                                   statement
+                                                                    Pp.break
+                                                                    f;
+                                                                    statement
                                                                     cxt ~last
                                                                     f s)
-                                                              | Switch
-                                                                  (e,cc,def,cc')
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   Switch
+                                                                    (e,cc,def,cc')
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f
                                                                     "switch";
-                                                                   Pp.break f;
-                                                                   Pp.start_group
+                                                                    Pp.break
+                                                                    f;
+                                                                    Pp.start_group
                                                                     f 1;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "(";
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     Pp.string
@@ -4685,16 +5474,18 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt)))
-                                                              | Throw e ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   Throw e ->
+                                                                    (Pp.start_group
                                                                     f 6;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "throw";
-                                                                   Pp.non_breaking_space
+                                                                    Pp.non_breaking_space
                                                                     f;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     expression
                                                                     cxt 0 f e in
                                                                     last_semi
@@ -4704,17 +5495,19 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))
-                                                              | Try
-                                                                  (b,ctch,fin)
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   Try
+                                                                    (b,ctch,fin)
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f "try";
-                                                                   Pp.space
+                                                                    Pp.space
                                                                     ~indent:1
                                                                     f;
-                                                                   (let cxt =
+                                                                    (let cxt
+                                                                    =
                                                                     block cxt
                                                                     f b in
                                                                     let cxt =
@@ -4775,20 +5568,23 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))
-                                                              | Fn
-                                                                  (i,l,b,loc)
-                                                                  ->
-                                                                  (Pp.start_group
+                                                                   | 
+                                                                   Fn
+                                                                    (i,l,b,loc)
+                                                                    ->
+                                                                    (Pp.start_group
                                                                     f 1;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.start_group
+                                                                    Pp.start_group
                                                                     f 0;
-                                                                   Pp.string
+                                                                    Pp.string
                                                                     f
                                                                     "function";
-                                                                   Pp.space f;
-                                                                   (let cxt =
+                                                                    Pp.space
+                                                                    f;
+                                                                    (let cxt
+                                                                    =
                                                                     ident cxt
                                                                     f i in
                                                                     Pp.end_group
@@ -4831,131 +5627,153 @@ module rec
                                                                     Pp.end_group
                                                                     f;
                                                                     cxt))))) : 
-                                                            cxt)
-                                                          and statement_list
-                                                            cxt f
-                                                            ?skip_last_semi 
-                                                            b =
-                                                            match b with
-                                                            | [] -> cxt
-                                                            | s::[] ->
-                                                                statement cxt
-                                                                  f
-                                                                  ?last:skip_last_semi
-                                                                  s
-                                                            | s::r ->
-                                                                let cxt =
-                                                                  statement
+                                                                 cxt)
+                                                               and statement_list
+                                                                 cxt f
+                                                                 ?skip_last_semi
+                                                                  b =
+                                                                 match b with
+                                                                 | [] -> cxt
+                                                                 | s::[] ->
+                                                                    statement
+                                                                    cxt f
+                                                                    ?last:skip_last_semi
+                                                                    s
+                                                                 | s::r ->
+                                                                    let cxt =
+                                                                    statement
                                                                     cxt f s in
-                                                                (Pp.break f;
-                                                                 statement_list
-                                                                   cxt f
-                                                                   ?skip_last_semi
-                                                                   r)
-                                                          and block cxt f b =
-                                                            Pp.start_group f
-                                                              1;
-                                                            Pp.string f "{";
-                                                            (let cxt =
-                                                               statement_list
-                                                                 cxt
-                                                                 ~skip_last_semi:true
-                                                                 f b in
-                                                             Pp.string f "}";
-                                                             Pp.end_group f;
-                                                             cxt)
-                                                          and source_elements
-                                                            cxt f
-                                                            ?skip_last_semi 
-                                                            se =
-                                                            (match se with
-                                                             | [] -> cxt
-                                                             | s::[] ->
-                                                                 statement
-                                                                   cxt f
-                                                                   ?last:skip_last_semi
-                                                                   s
-                                                             | s::r ->
-                                                                 let cxt =
-                                                                   statement
+                                                                    (Pp.break
+                                                                    f;
+                                                                    statement_list
+                                                                    cxt f
+                                                                    ?skip_last_semi
+                                                                    r)
+                                                               and block cxt
+                                                                 f b =
+                                                                 Pp.start_group
+                                                                   f 1;
+                                                                 Pp.string f
+                                                                   "{";
+                                                                 (let cxt =
+                                                                    statement_list
+                                                                    cxt
+                                                                    ~skip_last_semi:true
+                                                                    f b in
+                                                                  Pp.string f
+                                                                    "}";
+                                                                  Pp.end_group
+                                                                    f;
+                                                                  cxt)
+                                                               and source_elements
+                                                                 cxt f
+                                                                 ?skip_last_semi
+                                                                  se =
+                                                                 (match se
+                                                                  with
+                                                                  | [] -> cxt
+                                                                  | s::[] ->
+                                                                    statement
+                                                                    cxt f
+                                                                    ?last:skip_last_semi
+                                                                    s
+                                                                  | s::r ->
+                                                                    let cxt =
+                                                                    statement
                                                                     cxt f s in
-                                                                 (Pp.break f;
-                                                                  source_elements
+                                                                    (Pp.break
+                                                                    f;
+                                                                    source_elements
                                                                     cxt f
                                                                     ?skip_last_semi
                                                                     r) : 
-                                                            cxt)
-                                                          and program f s =
-                                                            source_elements f
-                                                              s
-                                                        end
-                                                      let part_of_ident =
-                                                        let a =
-                                                          Array.init 256
-                                                            (fun i  ->
-                                                               let c =
-                                                                 Char.chr i in
-                                                               ((c >= 'a') &&
-                                                                  (c <= 'z'))
-                                                                 ||
-                                                                 (((c >= 'A')
-                                                                    &&
+                                                                 cxt)
+                                                               and program f
+                                                                 s =
+                                                                 source_elements
+                                                                   f s
+                                                             end
+                                                           let part_of_ident
+                                                             =
+                                                             let a =
+                                                               Array.init 256
+                                                                 (fun i  ->
+                                                                    let c =
+                                                                    Char.chr
+                                                                    i in
+                                                                    ((c >=
+                                                                    'a') &&
+                                                                    (c <= 'z'))
+                                                                    ||
+                                                                    (((c >=
+                                                                    'A') &&
                                                                     (c <= 'Z'))
                                                                     ||
-                                                                    (
-                                                                    ((c >=
+                                                                    (((c >=
                                                                     '0') &&
                                                                     (c <= '9'))
                                                                     ||
                                                                     ((c = '_')
                                                                     ||
                                                                     (c = '$'))))) in
-                                                        fun c  ->
-                                                          Array.unsafe_get a
-                                                            (Char.code c)
-                                                      let need_space a b =
-                                                        ((part_of_ident a) &&
-                                                           (part_of_ident b))
-                                                          ||
-                                                          ((a = '/') &&
-                                                             (b = '/'))
-                                                      let program cxt f
-                                                        ?source_map  p =
-                                                        let smo =
-                                                          match source_map
-                                                          with
-                                                          | None  -> None
-                                                          | Some (_,sm) ->
-                                                              Some sm in
-                                                        let module O =
-                                                          Make(struct
-                                                                 let source_map
-                                                                   = smo
-                                                               end) in
-                                                          Pp.set_needed_space_function
-                                                            f need_space;
-                                                          Pp.start_group f 0;
-                                                          ignore
-                                                            (O.program cxt f
-                                                               p);
-                                                          Pp.end_group f;
-                                                          Pp.newline f;
-                                                          (match source_map
-                                                           with
-                                                           | None  -> ()
-                                                           | Some
-                                                               (out_file,sm)
-                                                               ->
-                                                               let sources =
-                                                                 sm.Source_map.sources in
-                                                               let sources_content
-                                                                 =
-                                                                 match 
-                                                                   sm.Source_map.sources_content
-                                                                 with
-                                                                 | None  ->
+                                                             fun c  ->
+                                                               Array.unsafe_get
+                                                                 a
+                                                                 (Char.code c)
+                                                           let need_space a b
+                                                             =
+                                                             ((part_of_ident
+                                                                 a)
+                                                                &&
+                                                                (part_of_ident
+                                                                   b))
+                                                               ||
+                                                               ((a = '/') &&
+                                                                  (b = '/'))
+                                                           let program cxt f
+                                                             ?source_map  p =
+                                                             let smo =
+                                                               match source_map
+                                                               with
+                                                               | None  ->
+                                                                   None
+                                                               | Some 
+                                                                   (_,sm) ->
+                                                                   Some sm in
+                                                             let module O =
+                                                               Make(struct
+                                                                    let source_map
+                                                                    = smo
+                                                                    end) in
+                                                               Pp.set_needed_space_function
+                                                                 f need_space;
+                                                               Pp.start_group
+                                                                 f 0;
+                                                               ignore
+                                                                 (O.program
+                                                                    cxt f p);
+                                                               Pp.end_group f;
+                                                               Pp.newline f;
+                                                               (match source_map
+                                                                with
+                                                                | None  -> ()
+                                                                | Some
+                                                                    (out_file,sm)
+                                                                    ->
+                                                                    let sources
+                                                                    =
+                                                                    sm.Source_map.sources in
+                                                                    let sources_content
+                                                                    =
+                                                                    match 
+                                                                    sm.Source_map.sources_content
+                                                                    with
+                                                                    | 
+                                                                    None  ->
                                                                     None
-                                                                 | Some [] ->
+                                                                    | 
+                                                                    Some []
+                                                                    ->
                                                                     Some
                                                                     (List.map
                                                                     (fun file
@@ -4972,12 +5790,14 @@ module rec
                                                                     content
                                                                     else None)
                                                                     sources)
-                                                                 | Some _ ->
+                                                                    | 
+                                                                    Some _ ->
                                                                     assert
                                                                     false in
-                                                               let mappings =
-                                                                 List.map
-                                                                   (fun
+                                                                    let mappings
+                                                                    =
+                                                                    List.map
+                                                                    (fun
                                                                     (pos,m) 
                                                                     ->
                                                                     {
@@ -4989,14 +5809,17 @@ module rec
                                                                     =
                                                                     (pos.Pp.p_col)
                                                                     })
-                                                                   (!O.temp_mappings) in
-                                                               let sources =
-                                                                 match 
-                                                                   sm.Source_map.sourceroot
-                                                                 with
-                                                                 | None  ->
+                                                                    (!O.temp_mappings) in
+                                                                    let sources
+                                                                    =
+                                                                    match 
+                                                                    sm.Source_map.sourceroot
+                                                                    with
+                                                                    | 
+                                                                    None  ->
                                                                     sources
-                                                                 | Some root
+                                                                    | 
+                                                                    Some root
                                                                     ->
                                                                     let script_file
                                                                     =
@@ -5043,18 +5866,20 @@ module rec
                                                                     script_file
                                                                     root;
                                                                     targets) in
-                                                               let sm =
-                                                                 {
-                                                                   sm with
-                                                                   Source_map.sources
+                                                                    let sm =
+                                                                    {
+                                                                    sm with
+                                                                    Source_map.sources
                                                                     = sources;
-                                                                   sources_content;
-                                                                   mappings
-                                                                 } in
-                                                               let urlData =
-                                                                 match out_file
-                                                                 with
-                                                                 | None  ->
+                                                                    sources_content;
+                                                                    mappings
+                                                                    } in
+                                                                    let urlData
+                                                                    =
+                                                                    match out_file
+                                                                    with
+                                                                    | 
+                                                                    None  ->
                                                                     let buf =
                                                                     Buffer.create
                                                                     1024 in
@@ -5075,7 +5900,8 @@ module rec
                                                                     ^
                                                                     (B64.encode
                                                                     data)))
-                                                                 | Some
+                                                                    | 
+                                                                    Some
                                                                     out_file
                                                                     ->
                                                                     let oc =
@@ -5096,100 +5922,120 @@ module rec
                                                                     oc;
                                                                     Filename.basename
                                                                     out_file)) in
-                                                               (Pp.newline f;
-                                                                Pp.string f
-                                                                  (Printf.sprintf
+                                                                    (Pp.newline
+                                                                    f;
+                                                                    Pp.string
+                                                                    f
+                                                                    (Printf.sprintf
                                                                     "//# sourceMappingURL=%s"
                                                                     urlData)))
-                                                    end and
-                                                         Source_map:sig
-                                                                    type map =
-                                                                    {
-                                                                    gen_line:
+                                                         end and
+                                                              Source_map:
+                                                              sig
+                                                                type map =
+                                                                  {
+                                                                  gen_line:
                                                                     int;
-                                                                    gen_col:
+                                                                  gen_col:
                                                                     int;
-                                                                    ori_source:
+                                                                  ori_source:
                                                                     int;
-                                                                    ori_line:
+                                                                  ori_line:
                                                                     int;
-                                                                    ori_col:
+                                                                  ori_col:
                                                                     int;
-                                                                    ori_name:
+                                                                  ori_name:
                                                                     int
                                                                     option;}
-                                                                    type mapping =
-                                                                    map list
-                                                                    type t =
-                                                                    {
-                                                                    version:
+                                                                type mapping =
+                                                                  map list
+                                                                type t =
+                                                                  {
+                                                                  version:
                                                                     int;
-                                                                    file:
+                                                                  file:
                                                                     string;
-                                                                    sourceroot:
+                                                                  sourceroot:
                                                                     string
                                                                     option;
-                                                                    mutable
+                                                                  mutable
                                                                     sources:
                                                                     string
                                                                     list;
-                                                                    mutable
+                                                                  mutable
                                                                     sources_content:
                                                                     string
                                                                     option
                                                                     list
                                                                     option;
-                                                                    mutable
+                                                                  mutable
                                                                     names:
                                                                     string
                                                                     list;
-                                                                    mutable
+                                                                  mutable
                                                                     mappings:
                                                                     mapping;}
-                                                                    val json
-                                                                    :
-                                                                    t ->
-                                                                    Json.t
-                                                                    end =
-                                                         struct
-                                                           type map =
-                                                             {
-                                                             gen_line: int;
-                                                             gen_col: int;
-                                                             ori_source: int;
-                                                             ori_line: int;
-                                                             ori_col: int;
-                                                             ori_name:
-                                                               int option;}
-                                                           type mapping =
-                                                             map list
-                                                           type t =
-                                                             {
-                                                             version: int;
-                                                             file: string;
-                                                             sourceroot:
-                                                               string option;
-                                                             mutable sources:
-                                                               string list;
-                                                             mutable
-                                                               sources_content:
-                                                               string option
-                                                                 list option;
-                                                             mutable names:
-                                                               string list;
-                                                             mutable
-                                                               mappings:
-                                                               mapping;}
-                                                           let string_of_mapping
-                                                             mapping =
-                                                             let a =
-                                                               Array.of_list
-                                                                 mapping in
-                                                             let len =
-                                                               Array.length a in
-                                                             Array.stable_sort
-                                                               (fun t1  ->
-                                                                  fun t2  ->
+                                                                val json :
+                                                                  t -> Json.t
+                                                              end =
+                                                              struct
+                                                                type map =
+                                                                  {
+                                                                  gen_line:
+                                                                    int;
+                                                                  gen_col:
+                                                                    int;
+                                                                  ori_source:
+                                                                    int;
+                                                                  ori_line:
+                                                                    int;
+                                                                  ori_col:
+                                                                    int;
+                                                                  ori_name:
+                                                                    int
+                                                                    option;}
+                                                                type mapping =
+                                                                  map list
+                                                                type t =
+                                                                  {
+                                                                  version:
+                                                                    int;
+                                                                  file:
+                                                                    string;
+                                                                  sourceroot:
+                                                                    string
+                                                                    option;
+                                                                  mutable
+                                                                    sources:
+                                                                    string
+                                                                    list;
+                                                                  mutable
+                                                                    sources_content:
+                                                                    string
+                                                                    option
+                                                                    list
+                                                                    option;
+                                                                  mutable
+                                                                    names:
+                                                                    string
+                                                                    list;
+                                                                  mutable
+                                                                    mappings:
+                                                                    mapping;}
+                                                                let string_of_mapping
+                                                                  mapping =
+                                                                  let a =
+                                                                    Array.of_list
+                                                                    mapping in
+                                                                  let len =
+                                                                    Array.length
+                                                                    a in
+                                                                  Array.stable_sort
+                                                                    (
+                                                                    fun t1 
+                                                                    ->
+                                                                    fun t2 
+                                                                    ->
                                                                     match 
                                                                     compare
                                                                     t1.gen_line
@@ -5202,28 +6048,35 @@ module rec
                                                                     t2.gen_col
                                                                     | 
                                                                     n -> n) a;
-                                                             (let buf =
-                                                                Buffer.create
-                                                                  1024 in
-                                                              let gen_line =
-                                                                ref 0 in
-                                                              let gen_col =
-                                                                ref 0 in
-                                                              let ori_source
-                                                                = ref 0 in
-                                                              let ori_line =
-                                                                ref 0 in
-                                                              let ori_col =
-                                                                ref 0 in
-                                                              let ori_name =
-                                                                ref 0 in
-                                                              let rec loop
-                                                                prev i =
-                                                                if i < len
-                                                                then
-                                                                  let c =
+                                                                  (let buf =
+                                                                    Buffer.create
+                                                                    1024 in
+                                                                   let gen_line
+                                                                    = 
+                                                                    ref 0 in
+                                                                   let gen_col
+                                                                    = 
+                                                                    ref 0 in
+                                                                   let ori_source
+                                                                    = 
+                                                                    ref 0 in
+                                                                   let ori_line
+                                                                    = 
+                                                                    ref 0 in
+                                                                   let ori_col
+                                                                    = 
+                                                                    ref 0 in
+                                                                   let ori_name
+                                                                    = 
+                                                                    ref 0 in
+                                                                   let rec loop
+                                                                    prev i =
+                                                                    if
+                                                                    i < len
+                                                                    then
+                                                                    let c =
                                                                     a.(i) in
-                                                                  (if
+                                                                    (if
                                                                     (prev >=
                                                                     0) &&
                                                                     ((c.ori_source
@@ -5237,10 +6090,10 @@ module rec
                                                                     (c.ori_col
                                                                     =
                                                                     (a.(prev)).ori_col)))
-                                                                   then
+                                                                    then
                                                                     loop prev
                                                                     (i + 1)
-                                                                   else
+                                                                    else
                                                                     if
                                                                     ((i + 1)
                                                                     < len) &&
@@ -5338,63 +6191,56 @@ module rec
                                                                     buf l;
                                                                     loop i
                                                                     (i + 1)))) in
-                                                              loop (-1) 0;
-                                                              Buffer.contents
-                                                                buf)
-                                                           let json t =
-                                                             `O
-                                                               [("version",
-                                                                  (`Float
+                                                                   loop (-1)
+                                                                    0;
+                                                                   Buffer.contents
+                                                                    buf)
+                                                                let json t =
+                                                                  `O
+                                                                    [
+                                                                    ("version",
+                                                                    (`Float
                                                                     (float_of_int
                                                                     t.version)));
-                                                               ("file",
-                                                                 (`String
-                                                                    (
-                                                                    t.file)));
-                                                               ("sourceRoot",
-                                                                 (`String
-                                                                    ((
-                                                                    match 
+                                                                    ("file",
+                                                                    (`String
+                                                                    (t.file)));
+                                                                    ("sourceRoot",
+                                                                    (`String
+                                                                    ((match 
                                                                     t.sourceroot
                                                                     with
-                                                                    | 
-                                                                    None  ->
-                                                                    ""
-                                                                    | 
-                                                                    Some s ->
-                                                                    s))));
-                                                               ("names",
-                                                                 (`A
-                                                                    (
-                                                                    List.map
+                                                                    | None 
+                                                                    -> ""
+                                                                    | Some s
+                                                                    -> s))));
+                                                                    ("names",
+                                                                    (`A
+                                                                    (List.map
                                                                     (fun s 
                                                                     ->
                                                                     `String s)
                                                                     t.names)));
-                                                               ("mappings",
-                                                                 (`String
-                                                                    (
-                                                                    string_of_mapping
+                                                                    ("mappings",
+                                                                    (`String
+                                                                    (string_of_mapping
                                                                     t.mappings)));
-                                                               ("sources",
-                                                                 (`A
-                                                                    (
-                                                                    List.map
+                                                                    ("sources",
+                                                                    (`A
+                                                                    (List.map
                                                                     (fun s 
                                                                     ->
                                                                     `String s)
                                                                     t.sources)));
-                                                               ("sourcesContent",
-                                                                 (`A
-                                                                    ((
-                                                                    match 
+                                                                    ("sourcesContent",
+                                                                    (`A
+                                                                    ((match 
                                                                     t.sources_content
                                                                     with
-                                                                    | 
-                                                                    None  ->
-                                                                    []
-                                                                    | 
-                                                                    Some l ->
+                                                                    | None 
+                                                                    -> []
+                                                                    | Some l
+                                                                    ->
                                                                     List.map
                                                                     (function
                                                                     | 
@@ -5404,8 +6250,9 @@ module rec
                                                                     Some s ->
                                                                     `String s)
                                                                     l))))]
-                                                         end and
-                                                              Vlq64:sig
+                                                              end and
+                                                                   Vlq64:
+                                                                   sig
                                                                     val
                                                                     encode_l
                                                                     :
@@ -5414,16 +6261,17 @@ module rec
                                                                     int list
                                                                     -> 
                                                                     unit
-                                                                    end =
-                                                              struct
-                                                                let code =
-                                                                  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-                                                                let code_rev
-                                                                  =
-                                                                  let a =
+                                                                   end =
+                                                                   struct
+                                                                    let code
+                                                                    =
+                                                                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+                                                                    let code_rev
+                                                                    =
+                                                                    let a =
                                                                     Array.make
                                                                     127 (-1) in
-                                                                  for i = 0
+                                                                    for i = 0
                                                                     to
                                                                     (String.length
                                                                     code) - 1
@@ -5432,128 +6280,134 @@ module rec
                                                                     Char.code
                                                                     (code.[i]))
                                                                     <- i
-                                                                  done;
-                                                                  a
-                                                                let vlq_base_shift
-                                                                  = 5
-                                                                let vlq_base
-                                                                  =
-                                                                  1 lsl
+                                                                    done;
+                                                                    a
+                                                                    let vlq_base_shift
+                                                                    = 5
+                                                                    let vlq_base
+                                                                    =
+                                                                    1 lsl
                                                                     vlq_base_shift
-                                                                let vlq_base_mask
-                                                                  =
-                                                                  vlq_base -
-                                                                    1
-                                                                let vlq_continuation_bit
-                                                                  = vlq_base
-                                                                let toVLQSigned
-                                                                  v =
-                                                                  if v < 0
-                                                                  then
+                                                                    let vlq_base_mask
+                                                                    =
+                                                                    vlq_base
+                                                                    - 1
+                                                                    let vlq_continuation_bit
+                                                                    =
+                                                                    vlq_base
+                                                                    let toVLQSigned
+                                                                    v =
+                                                                    if v < 0
+                                                                    then
                                                                     ((- v)
                                                                     lsl 1) +
                                                                     1
-                                                                  else
+                                                                    else
                                                                     v lsl 1
-                                                                let fromVLQSigned
-                                                                  v =
-                                                                  let is_neg
+                                                                    let fromVLQSigned
+                                                                    v =
+                                                                    let is_neg
                                                                     =
                                                                     (v land 1)
                                                                     = 1 in
-                                                                  let shift =
-                                                                    v lsr 1 in
-                                                                  if is_neg
-                                                                  then
+                                                                    let shift
+                                                                    = v lsr 1 in
+                                                                    if is_neg
+                                                                    then
                                                                     - shift
-                                                                  else shift
-                                                                let add_char
-                                                                  buf x =
-                                                                  Buffer.add_char
+                                                                    else
+                                                                    shift
+                                                                    let add_char
+                                                                    buf x =
+                                                                    Buffer.add_char
                                                                     buf
-                                                                    (
-                                                                    code.[x])
-                                                                let rec encode'
-                                                                  buf x =
-                                                                  let digit =
+                                                                    (code.[x])
+                                                                    let rec encode'
+                                                                    buf x =
+                                                                    let digit
+                                                                    =
                                                                     x land
                                                                     vlq_base_mask in
-                                                                  let rest =
+                                                                    let rest
+                                                                    =
                                                                     x lsr
                                                                     vlq_base_shift in
-                                                                  if rest = 0
-                                                                  then
+                                                                    if
+                                                                    rest = 0
+                                                                    then
                                                                     add_char
                                                                     buf digit
-                                                                  else
-                                                                    (
-                                                                    add_char
+                                                                    else
+                                                                    (add_char
                                                                     buf
                                                                     (digit
                                                                     lor
                                                                     vlq_continuation_bit);
                                                                     encode'
                                                                     buf rest)
-                                                                let encode b
-                                                                  x =
-                                                                  let vql =
+                                                                    let encode
+                                                                    b x =
+                                                                    let vql =
                                                                     toVLQSigned
                                                                     x in
-                                                                  encode' b
+                                                                    encode' b
                                                                     vql
-                                                                let encode_l
-                                                                  b l =
-                                                                  List.iter
-                                                                    (
-                                                                    encode b)
+                                                                    let encode_l
+                                                                    b l =
+                                                                    List.iter
+                                                                    (encode b)
                                                                     l
-                                                                let rec decode'
-                                                                  acc s start
-                                                                  pos =
-                                                                  let digit =
+                                                                    let rec decode'
+                                                                    acc s
+                                                                    start pos
+                                                                    =
+                                                                    let digit
+                                                                    =
                                                                     code_rev.(
                                                                     Char.code
                                                                     (s.[pos])) in
-                                                                  let cont =
+                                                                    let cont
+                                                                    =
                                                                     (digit
                                                                     land
                                                                     vlq_continuation_bit)
                                                                     =
                                                                     vlq_continuation_bit in
-                                                                  let digit =
+                                                                    let digit
+                                                                    =
                                                                     digit
                                                                     land
                                                                     vlq_base_mask in
-                                                                  let acc =
+                                                                    let acc =
                                                                     acc +
                                                                     (digit
                                                                     lsl
                                                                     ((pos -
                                                                     start) *
                                                                     vlq_base_shift)) in
-                                                                  if cont
-                                                                  then
+                                                                    if cont
+                                                                    then
                                                                     decode'
                                                                     acc s
                                                                     start
                                                                     (succ pos)
-                                                                  else
+                                                                    else
                                                                     (acc,
                                                                     (succ pos))
-                                                                let decode s
-                                                                  p =
-                                                                  let 
+                                                                    let decode
+                                                                    s p =
+                                                                    let 
                                                                     (d,i) =
                                                                     decode' 0
                                                                     s p p in
-                                                                  ((fromVLQSigned
+                                                                    ((fromVLQSigned
                                                                     d), i)
-                                                                let decode_pos
-                                                                  s =
-                                                                  let sl =
+                                                                    let decode_pos
+                                                                    s =
+                                                                    let sl =
                                                                     String.length
                                                                     s in
-                                                                  let rec aux
+                                                                    let rec aux
                                                                     pos acc =
                                                                     if
                                                                     (List.length
@@ -5574,7 +6428,7 @@ module rec
                                                                     else
                                                                     aux i (d
                                                                     :: acc)) in
-                                                                  aux 0 []
-                                                                let _ =
-                                                                  decode_pos
-                                                              end
+                                                                    aux 0 []
+                                                                    let _ =
+                                                                    decode_pos
+                                                                   end
