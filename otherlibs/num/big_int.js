@@ -1,0 +1,1314 @@
+var $$String=require("String");
+var Char=require("Char");
+var Nativeint=require("Nativeint");
+var Pervasives=require("Pervasives");
+var Int_misc=require("Int_misc");
+var Nat=require("Nat");
+var Bytes=require("Bytes");
+var Int64=require("Int64");
+var Sys=require("Sys");
+
+var
+ create_big_int=
+  function(sign,nat)
+   {if
+     ((sign=1)||
+      (sign=-1)||
+      (sign=0)&&
+      Nat["is_zero_nat"](nat,0,"unknown primitive:num_digits_nat"))
+     {return [0,sign,nat];}
+    else
+     {return Pervasives["invalid_arg"]("create_big_int");}
+    };
+
+var sign_big_int=function(bi){return bi[1];};
+
+var zero_big_int=[0,0,Nat["make_nat"](1)];
+
+var unit_big_int=[0,1,Nat["nat_of_int"](1)];
+
+var
+ num_digits_big_int=
+  function(bi){return "unknown primitive:num_digits_nat";};
+
+var
+ minus_big_int=
+  function(bi)
+   {return [0,-bi[1],Nat["copy_nat"](bi[2],0,num_digits_big_int(bi))];};
+
+var
+ abs_big_int=
+  function(bi)
+   {return [0,(bi[1]=0)?0:1,Nat["copy_nat"](bi[2],0,num_digits_big_int(bi))];};
+
+var
+ compare_big_int=
+  function(bi1,bi2)
+   {if((bi1[1]=0)&&(bi2[1]=0))
+     {return 0;}
+    else
+     {if(bi1[1]<bi2[1])
+       {return -1;}
+      else
+       {if(bi1[1]>bi2[1])
+         {return 1;}
+        else
+         {if(bi1[1]=1)
+           {return "unknown primitive:compare_nat";}
+          else
+           {return "unknown primitive:compare_nat";}
+          }
+        }
+      }
+    };
+
+var eq_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)=0;};
+
+var le_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)<=0;};
+
+var ge_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)>=0;};
+
+var lt_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)<0;};
+
+var gt_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)>0;};
+
+var
+ max_big_int=
+  function(bi1,bi2){if(lt_big_int(bi1,bi2)){return bi2;}else{return bi1;}};
+
+var
+ min_big_int=
+  function(bi1,bi2){if(gt_big_int(bi1,bi2)){return bi2;}else{return bi1;}};
+
+var
+ pred_big_int=
+  function(bi)
+   {var match=bi[1];
+    
+    if(match!=0)
+     {if(match!=1)
+       {var size_bi=num_digits_big_int(bi);
+        
+        var size_res=1+size_bi;
+        
+        var copy_bi="unknown primitive:create_nat";
+        
+        "unknown primitive:blit_nat";
+        "unknown primitive:set_digit_nat";
+        
+        return [0,-1,copy_bi];
+        }
+      else
+       {var size_bi$1=num_digits_big_int(bi);
+        
+        var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
+        
+        
+        return [0,Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:1,copy_bi$1];
+        }
+      }
+    else
+     {return [0,-1,Nat["nat_of_int"](1)];}
+    };
+
+var
+ succ_big_int=
+  function(bi)
+   {var match=bi[1];
+    
+    if(match!=-1)
+     {if(match!=0)
+       {var size_bi=num_digits_big_int(bi);
+        
+        var size_res=1+size_bi;
+        
+        var copy_bi="unknown primitive:create_nat";
+        
+        "unknown primitive:blit_nat";
+        "unknown primitive:set_digit_nat";
+        
+        return [0,1,copy_bi];
+        }
+      else
+       {return [0,1,Nat["nat_of_int"](1)];}
+      }
+    else
+     {var size_bi$1=num_digits_big_int(bi);
+      
+      var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
+      
+      
+      return [0,Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:-1,copy_bi$1];
+      }
+    };
+
+var
+ add_big_int=
+  function(bi1,bi2)
+   {var size_bi1=num_digits_big_int(bi1);
+    
+    var size_bi2=num_digits_big_int(bi2);
+    
+    if(bi1[1]=bi2[1])
+     {var match="unknown primitive:compare_nat";
+      
+      if(match!=-1)
+       {var res="unknown primitive:create_nat";
+        
+        "unknown primitive:blit_nat";
+        "unknown primitive:set_digit_nat";
+        
+        var $js=res;
+        }
+      else
+       {var res$1="unknown primitive:create_nat";
+        
+        "unknown primitive:blit_nat";
+        "unknown primitive:set_digit_nat";
+        
+        var $js=res$1;
+        }
+      return [0,bi1[1],$js];
+      }
+    else
+     {var match$1="unknown primitive:compare_nat";
+      
+      if(match$1!=0)
+       {if(match$1!=1)
+         {var res$2=Nat["copy_nat"](bi2[2],0,size_bi2);
+          
+          return [0,bi2[1],(0,res$2)];
+          }
+        else
+         {var res$3=Nat["copy_nat"](bi1[2],0,size_bi1);
+          
+          return [0,bi1[1],(0,res$3)];
+          }
+        }
+      else
+       {return zero_big_int;}
+      }
+    };
+
+var
+ big_int_of_int=
+  function(i)
+   {var res="unknown primitive:create_nat";
+    
+    if(i=Int_misc["monster_int"])
+     {"unknown primitive:set_digit_nat",0}
+    else
+     {"unknown primitive:set_digit_nat"}
+    
+    return [0,Int_misc["sign_int"](i),res];
+    };
+
+var add_int_big_int=function(i,bi){return add_big_int(big_int_of_int(i),bi);};
+
+var
+ sub_big_int=
+  function(bi1,bi2){return add_big_int(bi1,minus_big_int(bi2));};
+
+var
+ mult_int_big_int=
+  function(i,bi)
+   {var size_bi=num_digits_big_int(bi);
+    
+    var size_res=1+size_bi;
+    
+    if(i=Int_misc["monster_int"])
+     {var res="unknown primitive:create_nat";
+      
+      "unknown primitive:blit_nat";
+      "unknown primitive:set_digit_nat";
+      
+      return [0,-sign_big_int(bi),res];
+      }
+    else
+     {var res$1=Nat["make_nat"](size_res);
+      
+      
+      return [0,Int_misc["sign_int"](i)*sign_big_int(bi),res$1];
+      }
+    };
+
+var
+ mult_big_int=
+  function(bi1,bi2)
+   {var size_bi1=num_digits_big_int(bi1);
+    
+    var size_bi2=num_digits_big_int(bi2);
+    
+    var size_res=size_bi1+size_bi2;
+    
+    var res=Nat["make_nat"](size_res);
+    
+    return [0,bi1[1]*bi2[1],size_bi2>size_bi1?(0,res):(0,res)];
+    };
+
+var
+ quomod_big_int=
+  function(bi1,bi2)
+   {if(bi2[1]=0)
+     {throw Division_by_zero;}
+    else
+     {var size_bi1=num_digits_big_int(bi1);
+      
+      var size_bi2=num_digits_big_int(bi2);
+      
+      var match="unknown primitive:compare_nat";
+      
+      if(match!=-1)
+       {if(match!=0)
+         {var bi1_negatif=bi1[1]=-1;
+          
+          if(bi1_negatif)
+           {var size_q=1+Pervasives["max"](1+(size_bi1-size_bi2),1);}
+          else
+           {var size_q=Pervasives["max"](1+(size_bi1-size_bi2),1);}
+          
+          var size_r=1+Pervasives["max"](size_bi1,size_bi2);
+          
+          var q="unknown primitive:create_nat";
+          
+          var r="unknown primitive:create_nat";
+          
+          "unknown primitive:blit_nat";
+          "unknown primitive:set_to_zero_nat";
+          "unknown primitive:div_nat";
+          "unknown primitive:blit_nat";
+          var not_null_mod=!Nat["is_zero_nat"](r,0,size_bi2);
+          
+          if(bi1_negatif&&not_null_mod)
+           {var new_r=Nat["copy_nat"](bi2[2],0,size_bi2);
+            
+            return [0,
+                    [0,-bi2[1],("unknown primitive:set_digit_nat",0,q)],
+                    [0,1,(0,new_r)]];
+            }
+          else
+           {if(bi1_negatif){"unknown primitive:set_digit_nat"}else{}
+            
+            return [0,
+                    [0,Nat["is_zero_nat"](q,0,size_q)?0:bi1[1]*bi2[1],q],
+                    [0,not_null_mod?1:0,Nat["copy_nat"](r,0,size_bi2)]];
+            }
+          }
+        else
+         {return [0,big_int_of_int(bi1[1]*bi2[1]),zero_big_int];}
+        }
+      else
+       {if(bi1[1]>=0)
+         {return [0,big_int_of_int(0),bi1];}
+        else
+         {if(bi2[1]>=0)
+           {return [0,big_int_of_int(-1),add_big_int(bi2,bi1)];}
+          else
+           {return [0,big_int_of_int(1),sub_big_int(bi1,bi2)];}
+          }
+        }
+      }
+    };
+
+var div_big_int=function(bi1,bi2){return quomod_big_int(bi1,bi2)[1];};
+
+var mod_big_int=function(bi1,bi2){return quomod_big_int(bi1,bi2)[2];};
+
+var
+ gcd_big_int=
+  function(bi1,bi2)
+   {var size_bi1=num_digits_big_int(bi1);
+    
+    var size_bi2=num_digits_big_int(bi2);
+    
+    if(Nat["is_zero_nat"](bi1[2],0,size_bi1))
+     {return abs_big_int(bi2);}
+    else
+     {if(Nat["is_zero_nat"](bi2[2],0,size_bi2))
+       {return [0,1,bi1[2]];}
+      else
+       {var match="unknown primitive:compare_nat";
+        
+        if(match!=0)
+         {if(match!=1)
+           {var res=Nat["copy_nat"](bi2[2],0,size_bi2);
+            
+            var len=Nat["gcd_nat"](res,0,size_bi2,bi1[2],0,size_bi1);
+            
+            var $js=Nat["copy_nat"](res,0,len);
+            }
+          else
+           {var res$1=Nat["copy_nat"](bi1[2],0,size_bi1);
+            
+            var len$1=Nat["gcd_nat"](res$1,0,size_bi1,bi2[2],0,size_bi2);
+            
+            var $js=Nat["copy_nat"](res$1,0,len$1);
+            }
+          }
+        else
+         {var $js=bi1[2];}
+        return [0,1,$js];
+        }
+      }
+    };
+
+var monster_big_int=big_int_of_int(Int_misc["monster_int"]);
+
+var monster_nat=monster_big_int[2];
+
+var
+ is_int_big_int=
+  function(bi)
+   {var match="unknown primitive:compare_nat";
+    
+    return (num_digits_big_int(bi)=1)&&(match!=-1?match!=0?0:bi[1]=-1:1);
+    };
+
+var
+ int_of_big_int=
+  function(bi)
+   {try
+     {var n=Nat["int_of_nat"](bi[2]);if(bi[1]=-1){return -n;}else{return n;}}
+    catch(exn)
+     {var tag=exn[1];
+      
+      if(tag=Failure)
+       {if(eq_big_int(bi,monster_big_int))
+         {return Int_misc["monster_int"];}
+        else
+         {return Pervasives["failwith"]("int_of_big_int");}
+        }
+      else
+       {throw exn;}
+      }
+    };
+
+var
+ big_int_of_nativeint=
+  function(i)
+   {if(i=0)
+     {return zero_big_int;}
+    else
+     {if(i>0)
+       {var res="unknown primitive:create_nat";
+        
+        "unknown primitive:set_digit_nat_native";
+        return [0,1,res];
+        }
+      else
+       {var res$1="unknown primitive:create_nat";
+        
+        "unknown primitive:set_digit_nat_native";
+        return [0,-1,res$1];
+        }
+      }
+    };
+
+var
+ nativeint_of_big_int=
+  function(bi)
+   {if(num_digits_big_int(bi)>1)
+     {Pervasives["failwith"]("nativeint_of_big_int")}
+    else
+     {}
+    
+    var i="unknown primitive:nth_digit_nat_native";
+    
+    if(bi[1]>=0)
+     {if(i>=0)
+       {return i;}
+      else
+       {return Pervasives["failwith"]("nativeint_of_big_int");}
+      }
+    else
+     {if(i>=0||(i=Nativeint["min_int"]))
+       {return -i;}
+      else
+       {return Pervasives["failwith"]("nativeint_of_big_int");}
+      }
+    };
+
+var
+ big_int_of_int32=
+  function(i)
+   {return big_int_of_nativeint("unknown primitive:nativeint_of_int32");};
+
+var
+ int32_of_big_int=
+  function(bi)
+   {var i=nativeint_of_big_int(bi);
+    
+    if(i<=2147483647&&i>=-2147483648)
+     {return "unknown primitive:int32_of_nativeint";}
+    else
+     {return Pervasives["failwith"]("int32_of_big_int");}
+    };
+
+var
+ big_int_of_int64=
+  function(i)
+   {if(Sys["word_size"]=64)
+     {return big_int_of_nativeint("unknown primitive:nativeint_of_int64");}
+    else
+     {if(i=0)
+       {var match=[0,0,0];}
+      else
+       {if(i>0){var match=[0,1,i];}else{var match=[0,-1,-i];}}
+      
+      var absi=match[2];
+      
+      var sg=match[1];
+      
+      var res="unknown primitive:create_nat";
+      
+      "unknown primitive:set_digit_nat_native";
+      "unknown primitive:set_digit_nat_native";
+      return [0,sg,res];
+      }
+    };
+
+var
+ int64_of_big_int=
+  function(bi)
+   {if(Sys["word_size"]=64)
+     {return "unknown primitive:int64_of_nativeint";}
+    else
+     {var match=num_digits_big_int(bi);
+      
+      if(match!=1)
+       {if(match!=2)
+         {var i=Pervasives["failwith"]("int64_of_big_int");}
+        else
+         {var
+           i=
+            "unknown primitive:int64_of_nativeint"&
+            4294967295|
+            "unknown primitive:int64_of_nativeint"<<
+            32;
+          }
+        }
+      else
+       {var i="unknown primitive:int64_of_nativeint"&4294967295;}
+      
+      if(bi[1]>=0)
+       {if(i>=0)
+         {return i;}
+        else
+         {return Pervasives["failwith"]("int64_of_big_int");}
+        }
+      else
+       {if(i>=0||(i=Int64["min_int"]))
+         {return -i;}
+        else
+         {return Pervasives["failwith"]("int64_of_big_int");}
+        }
+      }
+    };
+
+var
+ nat_of_big_int=
+  function(bi)
+   {if(bi[1]=-1)
+     {return Pervasives["failwith"]("nat_of_big_int");}
+    else
+     {return Nat["copy_nat"](bi[2],0,num_digits_big_int(bi));}
+    };
+
+var
+ sys_big_int_of_nat=
+  function(nat,off,len)
+   {var length="unknown primitive:num_digits_nat";
+    
+    return [0,
+            Nat["is_zero_nat"](nat,off,length)?0:1,
+            Nat["copy_nat"](nat,off,length)];
+    };
+
+var
+ big_int_of_nat=
+  function(nat){return sys_big_int_of_nat(nat,0,Nat["length_nat"](nat));};
+
+var
+ string_of_big_int=
+  function(bi)
+   {if(bi[1]=-1)
+     {return Pervasives["^"]("-",Nat["string_of_nat"](bi[2]));}
+    else
+     {return Nat["string_of_nat"](bi[2]);}
+    };
+
+var
+ sys_big_int_of_string_aux=
+  function(s,ofs,len,sgn,base)
+   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}else{}
+    
+    var n=Nat["sys_nat_of_string"](base,s,ofs,len);
+    
+    if(Nat["is_zero_nat"](n,0,Nat["length_nat"](n)))
+     {return zero_big_int;}
+    else
+     {return [0,sgn,n];}
+    };
+
+var
+ sys_big_int_of_string_base=
+  function(s,ofs,len,sgn)
+   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}else{}
+    
+    if(len<2)
+     {return sys_big_int_of_string_aux(s,ofs,len,sgn,10);}
+    else
+     {var match=s[ofs];
+      
+      var match$1=s[ofs+1];
+      
+      var match$2=match;
+      
+      var match$3=match$1;
+      
+      if(match$2!=48)
+       {var exit=107;}
+      else
+       {if(match$3>=89)
+         {if(match$3!=98)
+           {if(match$3!=111)
+             {if(match$3!=120){var exit=107;}else{var exit=104;}}
+            else
+             {var exit=105;}
+            }
+          else
+           {var exit=106;}
+          }
+        else
+         {if(match$3!=66)
+           {if(match$3!=79)
+             {if(match$3>=88){var exit=104;}else{var exit=107;}}
+            else
+             {var exit=105;}
+            }
+          else
+           {var exit=106;}
+          }
+        }
+      
+      switch(exit)
+       {case 107:return sys_big_int_of_string_aux(s,ofs,len,sgn,10);
+        case 104:return sys_big_int_of_string_aux(s,ofs+2,len-2,sgn,16);
+        case 105:return sys_big_int_of_string_aux(s,ofs+2,len-2,sgn,8);
+        case 106:return sys_big_int_of_string_aux(s,ofs+2,len-2,sgn,2);
+        }
+      }
+    };
+
+var
+ sys_big_int_of_string=
+  function(s,ofs,len)
+   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}else{}
+    
+    var match=s[ofs];
+    
+    var switcher=-43+match;
+    
+    if(2<switcher>>>0)
+     {var exit=102;}
+    else
+     {switch(switcher[0])
+       {case 0:return sys_big_int_of_string_base(s,ofs+1,len-1,1);
+        case 1:var exit=102;
+        case 2:return sys_big_int_of_string_base(s,ofs+1,len-1,-1);
+        }
+      }
+    
+    switch(exit){case 102:return sys_big_int_of_string_base(s,ofs,len,1);}
+    };
+
+var
+ big_int_of_string=
+  function(s){return sys_big_int_of_string(s,0,s["length"]);};
+
+var
+ power_base_nat=
+  function(base,nat,off,len)
+   {if(base=0)
+     {return Nat["nat_of_int"](0);}
+    else
+     {if(Nat["is_zero_nat"](nat,off,len)||(base=1))
+       {return Nat["nat_of_int"](1);}
+      else
+       {var power_base=Nat["make_nat"](1+Nat["length_of_digit"]);
+        
+        var match=Nat["make_power_base"](base,power_base);
+        
+        var pmax=match[1];
+        
+        var
+         match$1=
+          quomod_big_int
+           (sys_big_int_of_nat(nat,off,len),big_int_of_int(1+pmax));
+        
+        var y=match$1[2];
+        
+        var x=match$1[1];
+        
+        var match$2=[0,int_of_big_int(x),int_of_big_int(y)];
+        
+        var rem=match$2[2];
+        
+        var n=match$2[1];
+        
+        if(n=0)
+         {return Nat["copy_nat"](power_base,-1+rem,1);}
+        else
+         {var res=Nat["make_nat"](n);
+          
+          var res2=Nat["make_nat"](1+n);
+          
+          var l=Int_misc["num_bits_int"](n)-2;
+          
+          "unknown primitive:blit_nat";
+          for(var i=l;i>=0;i--)
+           {var len$1="unknown primitive:num_digits_nat";
+            
+            var len2=Pervasives["min"](n,2*len$1);
+            
+            var succ_len2=1+len2;
+            
+            
+            if((n&1<<i)>0)
+             {"unknown primitive:set_to_zero_nat",0}
+            else
+             {"unknown primitive:blit_nat"}
+            
+            "unknown primitive:set_to_zero_nat"}
+          
+          if(rem>0){return res2;}else{return res;}
+          }
+        }
+      }
+    };
+
+var
+ power_int_positive_int=
+  function(i,n)
+   {var match=Int_misc["sign_int"](n);
+    
+    if(match!=-1)
+     {if(match!=0)
+       {var nat=Nat["power_base_int"](Pervasives["abs"](i),n);
+        
+        return [0,i>=0?Int_misc["sign_int"](i):((n&1)=0)?1:-1,nat];
+        }
+      else
+       {return unit_big_int;}
+      }
+    else
+     {return Pervasives["invalid_arg"]("power_int_positive_int");}
+    };
+
+var
+ power_big_int_positive_int=
+  function(bi,n)
+   {var match=Int_misc["sign_int"](n);
+    
+    if(match!=-1)
+     {if(match!=0)
+       {var bi_len=num_digits_big_int(bi);
+        
+        var res_len=bi_len*n;
+        
+        var res=Nat["make_nat"](res_len);
+        
+        var res2=Nat["make_nat"](res_len);
+        
+        var l=Int_misc["num_bits_int"](n)-2;
+        
+        "unknown primitive:blit_nat";
+        for(var i=l;i>=0;i--)
+         {var len="unknown primitive:num_digits_nat";
+          
+          var len2=Pervasives["min"](res_len,2*len);
+          
+          "unknown primitive:set_to_zero_nat";
+          
+          if((n&1<<i)>0)
+           {var lenp=Pervasives["min"](res_len,len2+bi_len);
+            
+            "unknown primitive:set_to_zero_nat",0}
+          else
+           {"unknown primitive:blit_nat"}
+          }
+        
+        return [0,bi[1]>=0?bi[1]:((n&1)=0)?1:-1,res];
+        }
+      else
+       {return unit_big_int;}
+      }
+    else
+     {return Pervasives["invalid_arg"]("power_big_int_positive_int");}
+    };
+
+var
+ power_int_positive_big_int=
+  function(i,bi)
+   {var match=sign_big_int(bi);
+    
+    if(match!=-1)
+     {if(match!=0)
+       {var
+         nat=
+          power_base_nat(Pervasives["abs"](i),bi[2],0,num_digits_big_int(bi));
+        
+        return [0,
+                i>=0
+                 ?Int_misc["sign_int"](i)
+                 :"unknown primitive:is_digit_odd"?-1:1,
+                nat];
+        }
+      else
+       {return unit_big_int;}
+      }
+    else
+     {return Pervasives["invalid_arg"]("power_int_positive_big_int");}
+    };
+
+var
+ power_big_int_positive_big_int=
+  function(bi1,bi2)
+   {var match=sign_big_int(bi2);
+    
+    if(match!=-1)
+     {if(match!=0)
+       {try
+         {return power_big_int_positive_int(bi1,int_of_big_int(bi2));}
+        catch(exn)
+         {var tag=exn[1];
+          
+          if(tag=Failure)
+           {try
+             {return power_int_positive_big_int(int_of_big_int(bi1),bi2);}
+            catch(exn$1)
+             {var tag$1=exn$1[1];
+              
+              if(tag$1=Failure){throw Out_of_memory;}else{throw exn$1;}
+              }
+            }
+          else
+           {throw exn;}
+          }
+        }
+      else
+       {return unit_big_int;}
+      }
+    else
+     {return Pervasives["invalid_arg"]("power_big_int_positive_big_int");}
+    };
+
+var
+ base_power_big_int=
+  function(base,n,bi)
+   {var match=Int_misc["sign_int"](n);
+    
+    if(match!=-1)
+     {if(match!=0)
+       {var nat=Nat["power_base_int"](base,n);
+        
+        var len_nat="unknown primitive:num_digits_nat";
+        
+        var len_bi=num_digits_big_int(bi);
+        
+        var new_len=len_bi+len_nat;
+        
+        var res=Nat["make_nat"](new_len);
+        
+        
+        if(Nat["is_zero_nat"](res,0,new_len))
+         {return zero_big_int;}
+        else
+         {return create_big_int(bi[1],res);}
+        }
+      else
+       {return bi;}
+      }
+    else
+     {var nat$1=Nat["power_base_int"](base,-n);
+      
+      var len_nat$1="unknown primitive:num_digits_nat";
+      
+      var len_bi$1=num_digits_big_int(bi);
+      
+      if(len_bi$1<len_nat$1)
+       {return Pervasives["invalid_arg"]("base_power_big_int");}
+      else
+       {if((len_bi$1=len_nat$1)&&("unknown primitive:compare_digits_nat"=-1))
+         {return Pervasives["invalid_arg"]("base_power_big_int");}
+        else
+         {var copy="unknown primitive:create_nat";
+          
+          "unknown primitive:blit_nat";
+          "unknown primitive:set_digit_nat";
+          "unknown primitive:div_nat";
+          if(!Nat["is_zero_nat"](copy,0,len_nat$1))
+           {return Pervasives["invalid_arg"]("base_power_big_int");}
+          else
+           {return [0,bi[1],Nat["copy_nat"](copy,len_nat$1,1)];}
+          }
+        }
+      }
+    };
+
+var
+ float_of_big_int=
+  function(bi){return "unknown primitive:caml_float_of_string";};
+
+var
+ sqrt_big_int=
+  function(bi)
+   {var match=bi[1];
+    
+    if(match!=-1)
+     {if(match!=0)
+       {return [0,1,Nat["sqrt_nat"](bi[2],0,num_digits_big_int(bi))];}
+      else
+       {return zero_big_int;}
+      }
+    else
+     {return Pervasives["invalid_arg"]("sqrt_big_int");}
+    };
+
+var
+ square_big_int=
+  function(bi)
+   {if(bi[1]=0)
+     {return zero_big_int;}
+    else
+     {var len_bi=num_digits_big_int(bi);
+      
+      var len_res=2*len_bi;
+      
+      var res=Nat["make_nat"](len_res);
+      
+      
+      return [0,1,res];
+      }
+    };
+
+var
+ round_futur_last_digit=
+  function(s,off_set,length)
+   {var l=-1+(length+off_set);
+    
+    if(s[l]>=53)
+     {var
+       round_rec=
+        function(l$1)
+         {if(l$1<off_set)
+           {return 1;}
+          else
+           {var current_char=s[l$1];
+            
+            if(current_char=57)
+             {s[l$1]=48,0;return round_rec(-1+l$1);}
+            else
+             {s[l$1]=Char["chr"](1+current_char),0;return 0;}
+            }
+          };
+      
+      return round_rec(-1+l);
+      }
+    else
+     {return 0;}
+    };
+
+var
+ approx_big_int=
+  function(prec,bi)
+   {var len_bi=num_digits_big_int(bi);
+    
+    var
+     n=
+      Pervasives["max"]
+       (0,
+        int_of_big_int
+         (add_int_big_int
+           (-prec,
+            div_big_int
+             (mult_big_int
+               (big_int_of_int(-1+len_bi),big_int_of_string("963295986")),
+              big_int_of_string("100000000")))));
+    
+    var
+     s=
+      Bytes["unsafe_of_string"]
+       (string_of_big_int(div_big_int(bi,power_int_positive_int(10,n))));
+    
+    if(s[0]=45){var match=[0,"-",1,1+prec];}else{var match=[0,"",0,prec];}
+    
+    var off=match[2];
+    
+    var sign=match[1];
+    
+    if(round_futur_last_digit(s,off,1+prec))
+     {return Pervasives["^"]
+              (sign,
+               Pervasives["^"]
+                ("1.",
+                 Pervasives["^"]
+                  ($$String["make"](prec,48),
+                   Pervasives["^"]
+                    ("e",Pervasives["string_of_int"](n+1-off+s["length"])))));
+      }
+    else
+     {return Pervasives["^"]
+              (sign,
+               Pervasives["^"]
+                (Bytes["sub_string"](s,off,1),
+                 Pervasives["^"]
+                  (".",
+                   Pervasives["^"]
+                    (Bytes["sub_string"](s,1+off,-1+prec),
+                     Pervasives["^"]
+                      ("e",Pervasives["string_of_int"](n-(1+off)+s["length"]))))));
+      }
+    };
+
+var
+ shift_left_big_int=
+  function(bi,n)
+   {if(n<0)
+     {return Pervasives["invalid_arg"]("shift_left_big_int");}
+    else
+     {if(n=0)
+       {return bi;}
+      else
+       {if(bi[1]=0)
+         {return bi;}
+        else
+         {var size_bi=num_digits_big_int(bi);
+          
+          var
+           size_res=
+            size_bi+(n+Nat["length_of_digit"]-1)/Nat["length_of_digit"];
+          
+          var res="unknown primitive:create_nat";
+          
+          var ndigits=n/Nat["length_of_digit"];
+          
+          "unknown primitive:set_to_zero_nat";
+          "unknown primitive:blit_nat";
+          var nbits=n%Nat["length_of_digit"];
+          
+          if(nbits>0){"unknown primitive:shift_left_nat"}else{}
+          
+          return [0,bi[1],res];
+          }
+        }
+      }
+    };
+
+var
+ shift_right_towards_zero_big_int=
+  function(bi,n)
+   {if(n<0)
+     {return Pervasives["invalid_arg"]("shift_right_towards_zero_big_int");}
+    else
+     {if(n=0)
+       {return bi;}
+      else
+       {if(bi[1]=0)
+         {return bi;}
+        else
+         {var size_bi=num_digits_big_int(bi);
+          
+          var ndigits=n/Nat["length_of_digit"];
+          
+          var nbits=n%Nat["length_of_digit"];
+          
+          if(ndigits>=size_bi)
+           {return zero_big_int;}
+          else
+           {var size_res=size_bi-ndigits;
+            
+            var res="unknown primitive:create_nat";
+            
+            "unknown primitive:blit_nat";
+            if(nbits>0)
+             {var tmp="unknown primitive:create_nat";
+              
+              "unknown primitive:shift_right_nat"}
+            else
+             {}
+            
+            if(Nat["is_zero_nat"](res,0,size_res))
+             {return zero_big_int;}
+            else
+             {return [0,bi[1],res];}
+            }
+          }
+        }
+      }
+    };
+
+var
+ two_power_m1_big_int=
+  function(n)
+   {if(n<0)
+     {return Pervasives["invalid_arg"]("two_power_m1_big_int");}
+    else
+     {if(n=0)
+       {return zero_big_int;}
+      else
+       {var size_res=(n+Nat["length_of_digit"]-1)/Nat["length_of_digit"];
+        
+        var res=Nat["make_nat"](size_res);
+        
+        "unknown primitive:set_digit_nat_native";
+        
+        return [0,1,res];
+        }
+      }
+    };
+
+var
+ shift_right_big_int=
+  function(bi,n)
+   {if(n<0)
+     {return Pervasives["invalid_arg"]("shift_right_big_int");}
+    else
+     {if(bi[1]>=0)
+       {return shift_right_towards_zero_big_int(bi,n);}
+      else
+       {return shift_right_towards_zero_big_int
+                (sub_big_int(bi,two_power_m1_big_int(n)),n);
+        }
+      }
+    };
+
+var
+ extract_big_int=
+  function(bi,ofs,n)
+   {if(ofs<0||n<0)
+     {return Pervasives["invalid_arg"]("extract_big_int");}
+    else
+     {if(bi[1]=0)
+       {return bi;}
+      else
+       {var size_bi=num_digits_big_int(bi);
+        
+        var size_res=(n+Nat["length_of_digit"]-1)/Nat["length_of_digit"];
+        
+        var ndigits=ofs/Nat["length_of_digit"];
+        
+        var nbits=ofs%Nat["length_of_digit"];
+        
+        var res=Nat["make_nat"](size_res);
+        
+        if(ndigits<size_bi){"unknown primitive:blit_nat"}else{}
+        
+        if(bi[1]<0)
+         {"unknown primitive:complement_nat";
+          var
+           carry_incr=
+            function(i)
+             {return i>=
+                     ndigits||
+                     i>=
+                     size_bi||
+                     "unknown primitive:is_digit_zero"&&
+                     carry_incr(i+1);
+              };
+          
+          if(carry_incr(0)){}else{}
+          }
+        else
+         {}
+        
+        if(nbits>0)
+         {var tmp="unknown primitive:create_nat";
+          
+          "unknown primitive:shift_right_nat"}
+        else
+         {}
+        
+        var n$prime=n%Nat["length_of_digit"];
+        
+        if(n$prime>0)
+         {var tmp$1="unknown primitive:create_nat";
+          
+          "unknown primitive:set_digit_nat_native",
+          "unknown primitive:land_digit_nat"}
+        else
+         {}
+        
+        if(Nat["is_zero_nat"](res,0,size_res))
+         {return zero_big_int;}
+        else
+         {return [0,1,res];}
+        }
+      }
+    };
+
+var
+ and_big_int=
+  function(a,b)
+   {if(a[1]<0||b[1]<0)
+     {return Pervasives["invalid_arg"]("and_big_int");}
+    else
+     {if((a[1]=0)||(b[1]=0))
+       {return zero_big_int;}
+      else
+       {var size_a=num_digits_big_int(a);
+        
+        var size_b=num_digits_big_int(b);
+        
+        var size_res=Pervasives["min"](size_a,size_b);
+        
+        var res="unknown primitive:create_nat";
+        
+        "unknown primitive:blit_nat";
+        for(var i=0;i<=size_res-1;i++){"unknown primitive:land_digit_nat"}
+        
+        if(Nat["is_zero_nat"](res,0,size_res))
+         {return zero_big_int;}
+        else
+         {return [0,1,res];}
+        }
+      }
+    };
+
+var
+ or_big_int=
+  function(a,b)
+   {if(a[1]<0||b[1]<0)
+     {return Pervasives["invalid_arg"]("or_big_int");}
+    else
+     {if(a[1]=0)
+       {return b;}
+      else
+       {if(b[1]=0)
+         {return a;}
+        else
+         {var size_a=num_digits_big_int(a);
+          
+          var size_b=num_digits_big_int(b);
+          
+          var size_res=Pervasives["max"](size_a,size_b);
+          
+          var res="unknown primitive:create_nat";
+          
+          var
+           or_aux=
+            function(a$prime,b$prime,size_b$prime)
+             {"unknown primitive:blit_nat";
+              for(var i=0;i<=size_b$prime-1;i++)
+               {"unknown primitive:lor_digit_nat"}
+              };
+          
+          if(size_a>=size_b){or_aux(a,b,size_b)}else{or_aux(b,a,size_a)}
+          
+          if(Nat["is_zero_nat"](res,0,size_res))
+           {return zero_big_int;}
+          else
+           {return [0,1,res];}
+          }
+        }
+      }
+    };
+
+var
+ xor_big_int=
+  function(a,b)
+   {if(a[1]<0||b[1]<0)
+     {return Pervasives["invalid_arg"]("xor_big_int");}
+    else
+     {if(a[1]=0)
+       {return b;}
+      else
+       {if(b[1]=0)
+         {return a;}
+        else
+         {var size_a=num_digits_big_int(a);
+          
+          var size_b=num_digits_big_int(b);
+          
+          var size_res=Pervasives["max"](size_a,size_b);
+          
+          var res="unknown primitive:create_nat";
+          
+          var
+           xor_aux=
+            function(a$prime,b$prime,size_b$prime)
+             {"unknown primitive:blit_nat";
+              for(var i=0;i<=size_b$prime-1;i++)
+               {"unknown primitive:lxor_digit_nat"}
+              };
+          
+          if(size_a>=size_b){xor_aux(a,b,size_b)}else{xor_aux(b,a,size_a)}
+          
+          if(Nat["is_zero_nat"](res,0,size_res))
+           {return zero_big_int;}
+          else
+           {return [0,1,res];}
+          }
+        }
+      }
+    };
+
+
+module["exports"]=
+{"zero_big_int":zero_big_int,
+ "unit_big_int":unit_big_int,
+ "minus_big_int":minus_big_int,
+ "abs_big_int":abs_big_int,
+ "add_big_int":add_big_int,
+ "succ_big_int":succ_big_int,
+ "add_int_big_int":add_int_big_int,
+ "sub_big_int":sub_big_int,
+ "pred_big_int":pred_big_int,
+ "mult_big_int":mult_big_int,
+ "mult_int_big_int":mult_int_big_int,
+ "square_big_int":square_big_int,
+ "sqrt_big_int":sqrt_big_int,
+ "quomod_big_int":quomod_big_int,
+ "div_big_int":div_big_int,
+ "mod_big_int":mod_big_int,
+ "gcd_big_int":gcd_big_int,
+ "power_int_positive_int":power_int_positive_int,
+ "power_big_int_positive_int":power_big_int_positive_int,
+ "power_int_positive_big_int":power_int_positive_big_int,
+ "power_big_int_positive_big_int":power_big_int_positive_big_int,
+ "sign_big_int":sign_big_int,
+ "compare_big_int":compare_big_int,
+ "eq_big_int":eq_big_int,
+ "le_big_int":le_big_int,
+ "ge_big_int":ge_big_int,
+ "lt_big_int":lt_big_int,
+ "gt_big_int":gt_big_int,
+ "max_big_int":max_big_int,
+ "min_big_int":min_big_int,
+ "num_digits_big_int":num_digits_big_int,
+ "string_of_big_int":string_of_big_int,
+ "big_int_of_string":big_int_of_string,
+ "big_int_of_int":big_int_of_int,
+ "is_int_big_int":is_int_big_int,
+ "int_of_big_int":int_of_big_int,
+ "big_int_of_int32":big_int_of_int32,
+ "big_int_of_nativeint":big_int_of_nativeint,
+ "big_int_of_int64":big_int_of_int64,
+ "int32_of_big_int":int32_of_big_int,
+ "nativeint_of_big_int":nativeint_of_big_int,
+ "int64_of_big_int":int64_of_big_int,
+ "float_of_big_int":float_of_big_int,
+ "and_big_int":and_big_int,
+ "or_big_int":or_big_int,
+ "xor_big_int":xor_big_int,
+ "shift_left_big_int":shift_left_big_int,
+ "shift_right_big_int":shift_right_big_int,
+ "shift_right_towards_zero_big_int":shift_right_towards_zero_big_int,
+ "extract_big_int":extract_big_int,
+ "nat_of_big_int":nat_of_big_int,
+ "big_int_of_nat":big_int_of_nat,
+ "base_power_big_int":base_power_big_int,
+ "sys_big_int_of_string":sys_big_int_of_string,
+ "round_futur_last_digit":round_futur_last_digit,
+ "approx_big_int":approx_big_int};
+

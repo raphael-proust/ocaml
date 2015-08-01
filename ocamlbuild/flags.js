@@ -1,0 +1,132 @@
+var List=require("List");
+var Command=require("Command");
+var Param_tags=require("Param_tags");
+var Tags=require("Tags");
+var Log=require("Log");
+
+var flags_of_decl=function(param){return param[2];};
+
+var tags_of_decl=function(param){return param[1];};
+
+var all_decls=[0,0];
+
+var
+ of_tags=
+  function(matched_tags)
+   {return [0,
+            List["fold_left"]
+             (function(acc,param)
+               {if(Tags["does_match"](matched_tags,param[1]))
+                 {return [0,param[2],acc];}
+                else
+                 {return acc;}
+                },
+              0,
+              all_decls[1])];
+    };
+
+var match=(Command["tag_handler"][1]=of_tags,0);
+
+var of_tag_list=function(x){return of_tags(Tags["of_list"](x));};
+
+var add_decl=function(decl){return all_decls[1]=[0,decl,all_decls[1]],0;};
+
+var
+ flag=
+  function($staropt$star,tags,flags)
+   {if($staropt$star){var deprecated=$staropt$star[1];}else{var deprecated=0;}
+    
+    var tags$1=Tags["of_list"](tags);
+    
+    return add_decl([0,tags$1,flags,deprecated]);
+    };
+
+var
+ pflag=
+  function(tags,ptag,flags)
+   {return Param_tags["declare"]
+            (ptag,
+             function(param)
+              {return flag
+                       (0,[0,Param_tags["make"](ptag,param),tags],flags(param));
+               });
+    };
+
+var add=function(x,xs){return [0,x,xs];};
+
+var
+ remove=
+  function(me)
+   {return List["filter"]
+            (function(x){return "unknown primitive:caml_notequal";});
+    };
+
+var
+ pretty_print=
+  function(param)
+   {var sflag=Command["string_of_command_spec"](param[2]);
+    
+    if(param[3]){var header="deprecated flag";}else{var header="flag";}
+    
+    var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
+    
+    return pp
+            ([0,
+              [18,
+               [1,[0,[11,"<2>",0],"<2>"]],
+               [2,
+                0,
+                [17,
+                 [0,"@ ",1,0],
+                 [11,
+                  "{. ",
+                  [15,
+                   [11," .}",[17,[0,"@ ",1,0],[3,0,[17,0,[17,3,[17,3,0]]]]]]]]]]],
+              "@[<2>%s@ {. %a .}@ %S@]@\n@\n"],
+             header,
+             Tags["print"],
+             param[1],
+             sflag);
+    };
+
+var
+ show_documentation=
+  function(param)
+   {List["iter"]
+     (function(decl){if(!decl[3]){return pretty_print(decl);}else{return 0;}},
+      all_decls[1]);
+    List["iter"]
+     (function(decl){if(decl[3]){return pretty_print(decl);}else{return 0;}},
+      all_decls[1]);
+    var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
+    
+    return pp([0,[17,4,0],"@."]);
+    };
+
+var used_tags=[0,Tags["empty"]];
+
+var
+ mark_tag_used=
+  function(tag){return used_tags[1]=Tags["add"](tag,used_tags[1]),0;};
+
+var
+ get_used_tags=
+  function(param)
+   {return List["fold_left"]
+            (function(acc,decl){return Tags["union"](acc,decl[1]);},
+             used_tags[1],
+             all_decls[1]);
+    };
+
+
+module["exports"]=
+{"of_tags":of_tags,
+ "of_tag_list":of_tag_list,
+ "flag":flag,
+ "pflag":pflag,
+ "add":add,
+ "remove":remove,
+ "show_documentation":show_documentation,
+ "get_used_tags":get_used_tags,
+ "mark_tag_used":mark_tag_used};
+
