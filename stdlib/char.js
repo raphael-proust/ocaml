@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+
 
 var
  chr=
@@ -12,25 +15,27 @@ var
 var
  escaped=
   function(c)
-   {if(c!=39)
+   {var exit;
+    
+    if(c!=39)
      {if(c!=92)
        {if(c>=14)
-         {var exit=7;}
+         {exit=7;}
         else
          {switch(c[0])
-           {case 0:var exit=7;
-            case 1:var exit=7;
-            case 2:var exit=7;
-            case 3:var exit=7;
-            case 4:var exit=7;
-            case 5:var exit=7;
-            case 6:var exit=7;
-            case 7:var exit=7;
+           {case 0:exit=7;
+            case 1:exit=7;
+            case 2:exit=7;
+            case 3:exit=7;
+            case 4:exit=7;
+            case 5:exit=7;
+            case 6:exit=7;
+            case 7:exit=7;
             case 8:return "\b";
             case 9:return "\t";
             case 10:return "\n";
-            case 11:var exit=7;
-            case 12:var exit=7;
+            case 11:exit=7;
+            case 12:exit=7;
             case 13:return "\r";
             }
           }
@@ -79,7 +84,6 @@ var
     };
 
 var compare=function(c1,c2){return c1-c2;};
-
 
 module["exports"]=
 {"chr":chr,

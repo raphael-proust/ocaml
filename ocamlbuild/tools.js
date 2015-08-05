@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Pathname=require("Pathname");
 var Format=require("Format");
 var My_std=require("My_std");
 var Tags=require("Tags");
 var Configuration=require("Configuration");
+
 
 var pp_l=My_std["List"][1](My_std["String"][1]);
 
@@ -57,7 +60,6 @@ var
     else
      {return [0,s,0];}
     };
-
 
 module["exports"]=
 {"tags_of_pathname":tags_of_pathname,

@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var include=Bytes;
 
 var make=include[1];
@@ -61,7 +65,6 @@ var compare=include[32];
 var unsafe_to_string=include[33];
 
 var unsafe_of_string=include[34];
-
 
 module["exports"]=
 {"make":make,

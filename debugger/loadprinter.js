@@ -1,5 +1,7 @@
-var Ctype=require("Ctype");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
+var Ctype=require("Ctype");
 var Dynlink=require("Dynlink");
 var Printtyp=require("Printtyp");
 var List=require("List");
@@ -12,6 +14,7 @@ var Filename=require("Filename");
 var Ident=require("Ident");
 var Symtable=require("Symtable");
 var Config=require("Config");
+
 
 var $$Error="unknown primitive:caml_set_oo_id";
 
@@ -68,7 +71,9 @@ var
       return 1;
       }
     catch(exn)
-     {if(exn[1]=Dynlink["Error"])
+     {var exit;
+      
+      if(exn[1]=Dynlink["Error"])
        {var match=exn[2];
         
         if(typeof match=="number")
@@ -81,10 +86,10 @@ var
                       Pervasives["^"]($$String["uncapitalize"](match[1]),".cmo"))&&
                     loadfiles(ppf,name);
              
-            default:var exit=26;}}
+            default:exit=26;}}
         }
       else
-       {var exit=26;}
+       {exit=26;}
       
       switch(exit)
        {case 26:
@@ -195,14 +200,16 @@ var
     try
      {var v=use_debugger_symtable(eval_path,path);}
     catch(exn)
-     {if(exn[1]=Symtable["Error"])
+     {var exit;
+      
+      if(exn[1]=Symtable["Error"])
        {var match$2=exn[2];
         
         switch(match$2)
-         {case 0:throw [0,$$Error,[2,match$2[1],lid]];default:var exit=6;}
+         {case 0:throw [0,$$Error,[2,match$2[1],lid]];default:exit=6;}
         }
       else
-       {var exit=6;}
+       {exit=6;}
       
       switch(exit){case 6:throw exn;}
       }
@@ -303,7 +310,6 @@ var
        
       }
     };
-
 
 module["exports"]=
 {"loadfile":loadfile,

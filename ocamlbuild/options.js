@@ -1,8 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Const=require("Const");
 var Ocamlbuild_where=require("Ocamlbuild_where");
 var Pervasives=require("Pervasives");
-var Arg=require("Arg");
 var Lexers=require("Lexers");
+var Arg=require("Arg");
 var Printf=require("Printf");
 var Format=require("Format");
 var Command=require("Command");
@@ -11,9 +13,10 @@ var Filename=require("Filename");
 var Lexing=require("Lexing");
 var My_std=require("My_std");
 var Log=require("Log");
-var $$Array=require("Array");
 var Ocamlbuild_config=require("Ocamlbuild_config");
+var $$Array=require("Array");
 var Sys=require("Sys");
+
 
 var version=Pervasives["^"]("ocamlbuild ",Sys["ocaml_version"]);
 
@@ -58,10 +61,10 @@ var use_ocamlfind=[0,0];
 var
  is_core_tool=
   function(param)
-   {switch(param)
-     {case "menhir":var exit=102;
-      case "ocamlfind":var exit=102;
-      default:var exit=103;}
+   {var exit;
+    
+    switch(param)
+     {case "menhir":exit=102;case "ocamlfind":exit=102;default:exit=103;}
     
     switch(exit){case 103:return 1;case 102:return 0;}
     };
@@ -777,15 +780,18 @@ var
           
           var match$2=command_ref[1];
           
+          var exit;
+          
+          var $js;
           if(typeof match$2=="number")
            {switch(match$2){}}
           else
            {switch(match$2[0])
-             {case 4:var $js=My_std["&"](ocamlfind,[4,match$2[1]]);
-              default:var exit=8;}}
+             {case 4:$js=My_std["&"](ocamlfind,[4,match$2[1]]);
+              default:exit=8;}}
           
-          switch(exit)
-           {case 8:var $js$1=My_std["&"](ocamlfind,[1,param$1[1]]);}
+          var $js$1;
+          switch(exit){case 8:$js$1=My_std["&"](ocamlfind,[1,param$1[1]]);}
           return command_ref[1]=$js$1,0;
           };
       
@@ -878,7 +884,6 @@ var
     return "unknown primitive:caml_sys_file_exists"||
            "unknown primitive:caml_sys_file_exists";
     };
-
 
 module["exports"]=
 {"build_dir":build_dir,

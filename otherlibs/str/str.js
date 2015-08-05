@@ -1,11 +1,14 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Char=require("Char");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Buffer=require("Buffer");
 var Bytes=require("Bytes");
-var $$Array=require("Array");
 var Map=require("Map");
+var $$Array=require("Array");
+
 
 var string_before=function(s,n){return $$String["sub"](s,0,n);};
 
@@ -229,9 +232,10 @@ var
    {if(param)
      {var r=param[1];
       
+      var exit;
+      
       if(typeof r=="number")
-       {switch(r)
-         {case 0:var exit=136;case 1:var exit=136;case 2:var exit=136;}}
+       {switch(r){case 0:exit=136;case 1:exit=136;case 2:exit=136;}}
       else
        {switch(r[0])
          {case 5:
@@ -259,13 +263,15 @@ var
 var
  charclass_of_regexp=
   function(fold_case$1,re)
-   {if(typeof re=="number")
+   {var exit;
+    
+    if(typeof re=="number")
      {switch(re){}}
     else
      {switch(re[0])
        {case 0:var c=re[1];var match=[0,Charset[5](c),0];
         case 2:var compl=re[2];var cl=re[1];var match=[0,cl,compl];
-        default:var exit=133;}}
+        default:exit=133;}}
     
     switch(exit){case 133:throw [0,Assert_failure,[0,"str.ml",207,11]];}
     
@@ -522,6 +528,8 @@ var
        {if(param)
          {var r=param[1];
           
+          var exit;
+          
           if(typeof r=="number")
            {switch(r){}}
           else
@@ -529,15 +537,15 @@ var
              {case 5:
                var r$1=r[1];
                
+               var exit$1;
+               
                if(typeof r$1=="number")
                 {switch(r$1){}}
                else
                 {switch(r$1[0])
-                  {case 0:var exit=108;
-                   case 2:var exit=108;
-                   default:var exit$1=107;}}
+                  {case 0:exit$1=108;case 2:exit$1=108;default:exit=107;}}
                
-               switch(exit)
+               switch(exit$1)
                 {case 108:
                   var rl=param[2];
                   
@@ -548,20 +556,20 @@ var
                     return emit_seq_code(rl);
                     }
                   else
-                   {var exit$1=107;}
+                   {exit=107;}
                   
                  }
                
               case 6:
                var r$2=r[1];
                
+               var exit$2;
+               
                if(typeof r$2=="number")
                 {switch(r$2){}}
                else
                 {switch(r$2[0])
-                  {case 0:var exit$2=109;
-                   case 2:var exit$2=109;
-                   default:var exit$1=107;}}
+                  {case 0:exit$2=109;case 2:exit$2=109;default:exit=107;}}
                
                switch(exit$2)
                 {case 109:
@@ -574,20 +582,20 @@ var
                     return emit_seq_code(rl$1);
                     }
                   else
-                   {var exit$1=107;}
+                   {exit=107;}
                   
                  }
                
               case 7:
                var r$3=r[1];
                
+               var exit$3;
+               
                if(typeof r$3=="number")
                 {switch(r$3){}}
                else
                 {switch(r$3[0])
-                  {case 0:var exit$3=110;
-                   case 2:var exit$3=110;
-                   default:var exit$1=107;}}
+                  {case 0:exit$3=110;case 2:exit$3=110;default:exit=107;}}
                
                switch(exit$3)
                 {case 110:
@@ -600,13 +608,13 @@ var
                     return emit_seq_code(rl$2);
                     }
                   else
-                   {var exit$1=107;}
+                   {exit=107;}
                   
                  }
                
-              default:var exit$1=107;}}
+              default:exit=107;}}
           
-          switch(exit$1)
+          switch(exit)
            {case 107:
              var rl$3=param[2];emit_code(r);return emit_seq_code(rl$3);
             }
@@ -674,12 +682,14 @@ var
 var
  add$1=
   function(buf,re)
-   {if(typeof re=="number")
+   {var exit;
+    
+    if(typeof re=="number")
      {switch(re){}}
     else
      {switch(re[0])
        {case 0:var c=re[1];return Buffer["add_char"](buf[1],c);
-        default:var exit=79;}}
+        default:exit=79;}}
     
     switch(exit){case 79:flush(buf);return buf[2]=[0,re,buf[2]],0;}
     };
@@ -788,10 +798,12 @@ var
       function(i$1)
        {var c=s[i$1];
         
+        var exit;
+        
         if(c!=36)
          {if(c>=91)
            {if(c>=95)
-             {var exit=62;}
+             {exit=62;}
             else
              {var switcher=-91+c;
               
@@ -808,13 +820,13 @@ var
                  return [0,[2,c$1,compl],j];
                  
                 case 1:return regexpbackslash(i$1+1);
-                case 2:var exit=62;
+                case 2:exit=62;
                 case 3:return [0,0,i$1+1];
                 }
               }
             }
           else
-           {if(c!=46){var exit=62;}else{return [0,[2,dotclass,0],i$1+1];}}
+           {if(c!=46){exit=62;}else{return [0,[2,dotclass,0],i$1+1];}}
           }
         else
          {return [0,1,i$1+1];}
@@ -830,14 +842,16 @@ var
         else
          {var c=s[i$1];
           
+          var exit;
+          
           if(c<58)
            {var switcher=-40+c;
             
             if(1<switcher>>>0)
-             {if(switcher>=9){return [0,[9,c-48],i$1+1];}else{var exit=67;}}
+             {if(switcher>=9){return [0,[9,c-48],i$1+1];}else{exit=67;}}
             else
              {if(switcher!=0)
-               {var exit=65;}
+               {exit=65;}
               else
                {var group_no=group_counter[1];
                 
@@ -862,7 +876,7 @@ var
             }
           else
            {if(c!=98)
-             {if(c!=124){var exit=67;}else{var exit=65;}}
+             {if(c!=124){exit=67;}else{exit=65;}}
             else
              {return [0,2,i$1+1];}
             }
@@ -951,33 +965,35 @@ var
     for(var i$1=0;i$1<=len-1;i$1++)
      {var c=s[i$1];
       
+      var exit;
+      
       var switcher=-63+c;
       
       if(31<switcher>>>0)
        {var switcher$1=27+switcher;
         
         if(10<switcher$1>>>0)
-         {var exit=47;}
+         {exit=47;}
         else
          {switch(switcher$1[0])
-           {case 0:var exit=46;
-            case 1:var exit=47;
-            case 2:var exit=47;
-            case 3:var exit=47;
-            case 4:var exit=47;
-            case 5:var exit=47;
-            case 6:var exit=46;
-            case 7:var exit=46;
-            case 8:var exit=47;
-            case 9:var exit=47;
-            case 10:var exit=46;
+           {case 0:exit=46;
+            case 1:exit=47;
+            case 2:exit=47;
+            case 3:exit=47;
+            case 4:exit=47;
+            case 5:exit=47;
+            case 6:exit=46;
+            case 7:exit=46;
+            case 8:exit=47;
+            case 9:exit=47;
+            case 10:exit=46;
             }
           }
         }
       else
        {var switcher$2=-1+switcher;
         
-        if(26<switcher$2>>>0){var exit=46;}else{var exit=47;}
+        if(26<switcher$2>>>0){exit=46;}else{exit=47;}
         }
       
       switch(exit)
@@ -1285,7 +1301,6 @@ var
     };
 
 var full_split=function(expr,text){return bounded_full_split(expr,text,0);};
-
 
 module["exports"]=
 {"regexp":regexp,

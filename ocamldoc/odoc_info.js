@@ -1,31 +1,46 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
 var Odoc_global=require("Odoc_global");
 var Odoc_dep=require("Odoc_dep");
 var Printtyp=require("Printtyp");
-var List=require("List");
 var Pervasives=require("Pervasives");
-var Odoc_search=require("Odoc_search");
+var List=require("List");
 var Odoc_comments=require("Odoc_comments");
+var Odoc_search=require("Odoc_search");
 var Printf=require("Printf");
 var Odoc_str=require("Odoc_str");
 var Odoc_analyse=require("Odoc_analyse");
 var Odoc_extension=require("Odoc_extension");
-var Buffer=require("Buffer");
 var Odoc_print=require("Odoc_print");
+var Buffer=require("Buffer");
 var Odoc_config=require("Odoc_config");
 var Odoc_misc=require("Odoc_misc");
 var Odoc_text=require("Odoc_text");
 var Odoc_scan=require("Odoc_scan");
 
+var $$let=Odoc_name;
+
+var $$let$1=Odoc_parameter;
+
+var $$let$2=Odoc_value;
+
+var $$let$3=Odoc_class;
+
+var $$let$4=Odoc_module;
+
+var $$let$5=Odoc_global;
 
 
-
-
-
-
-
-
-
+Odoc_global,
+Odoc_module,
+Odoc_class,
+Odoc_value,
+Odoc_type,
+Odoc_exception,
+Odoc_extension,
+Odoc_parameter,
+Odoc_name;
 var Text_syntax=Odoc_text["Text_syntax"];
 
 var dummy_loc=[0,0,0];
@@ -376,27 +391,16 @@ var deps_of_types=Odoc_dep["deps_of_types"];
 
 var Dep=[0,kernel_deps_of_modules,deps_of_types];
 
-var $$let=Odoc_name;
-
-var $$let$1=Odoc_parameter;
-
-var $$let$2=Odoc_value;
-
-var $$let$3=Odoc_class;
-
-var $$let$4=Odoc_module;
-
-var $$let$5=Odoc_global;
-
-[0,
- Text_syntax,
- dummy_loc,
- [0,$$let[2],$$let[4],$$let[7],$$let[9],$$let[3]],
- [0,$$let$1[1],$$let$1[2],$$let$1[5],$$let$1[4],$$let$1[6]],
- [0,Odoc_extension["extension_constructors"]],
- [0],
- [0],
- [0,$$let$2[6],$$let$2[2]],
+module["exports"]=
+{"Text_syntax":Text_syntax,
+ "dummy_loc":dummy_loc,
+ "Name":[0,$$let[2],$$let[4],$$let[7],$$let[9],$$let[3]],
+ "Parameter":[0,$$let$1[1],$$let$1[2],$$let$1[5],$$let$1[4],$$let$1[6]],
+ "Extension":[0,Odoc_extension["extension_constructors"]],
+ "Exception":[0],
+ "Type":[0],
+ "Value":[0,$$let$2[6],$$let$2[2]],
+ "Class":
  [0,
   $$let$3[3],
   $$let$3[5],
@@ -408,6 +412,7 @@ var $$let$5=Odoc_global;
   $$let$3[12],
   $$let$3[10],
   $$let$3[11]],
+ "Module":
  [0,
   $$let$4[12],
   $$let$4[22],
@@ -440,103 +445,6 @@ var $$let$5=Odoc_global;
   $$let$4[29],
   $$let$4[26],
   $$let$4[40]],
- reset_type_names,
- string_of_variance,
- string_of_type_expr,
- string_of_class_params,
- string_of_type_list,
- string_of_type_param_list,
- string_of_type_extension_param_list,
- string_of_class_type_param_list,
- string_of_module_type,
- string_of_class_type,
- string_of_text,
- string_of_info,
- string_of_type,
- string_of_type_extension,
- string_of_exception,
- string_of_value,
- string_of_attribute,
- string_of_method,
- first_sentence_of_text,
- first_sentence_and_rest_of_text,
- text_no_title_no_list,
- text_concat,
- get_titles_in_text,
- create_index_lists,
- remove_option,
- is_optional,
- label_name,
- use_hidden_modules,
- verbose,
- warning,
- print_warnings,
- errors,
- apply_opt,
- apply_if_equal,
- text_of_string,
- text_string_of_text,
- info_of_string,
- info_string_of_info,
- info_of_comment_file,
- remove_ending_newline,
- Search,
- Scan,
- Dep,
- [0,
-  $$let$5[15],
-  $$let$5[16],
-  $$let$5[18],
-  $$let$5[19],
-  $$let$5[22],
-  $$let$5[21],
-  $$let$5[20],
-  $$let$5[23],
-  $$let$5[24],
-  $$let$5[25],
-  $$let$5[26]],
- analyse_files,
- dump_modules,
- load_modules];
-module["exports"]=
-{"Text_syntax":Text_syntax,
- "dummy_loc":dummy_loc,
- "unknown block:(let (let/1244 =a (global Odoc_name!))\n  (makeblock 0 (field 1 let/1244) (field 3 let/1244) (field 6 let/1244)\n    (field 8 let/1244) (field 2 let/1244)))":
- unknown block:(let (let/1244 =a (global Odoc_name!))
-  (makeblock 0 (field 1 let/1244) (field 3 let/1244) (field 6 let/1244)
-    (field 8 let/1244) (field 2 let/1244))),
- "unknown block:(let (let/1245 =a (global Odoc_parameter!))\n  (makeblock 0 (field 0 let/1245) (field 1 let/1245) (field 4 let/1245)\n    (field 3 let/1245) (field 5 let/1245)))":
- unknown block:(let (let/1245 =a (global Odoc_parameter!))
-  (makeblock 0 (field 0 let/1245) (field 1 let/1245) (field 4 let/1245)
-    (field 3 let/1245) (field 5 let/1245))),
- "unknown block:(let (let/1246 =a (global Odoc_extension!)) (makeblock 0 (field 1 let/1246)))":
- unknown block:(let (let/1246 =a (global Odoc_extension!)) (makeblock 0 (field 1 let/1246))),
- "unknown block:(let (let/1247 =a (global Odoc_exception!)) (makeblock 0))":
- unknown block:(let (let/1247 =a (global Odoc_exception!)) (makeblock 0)),
- "unknown block:(let (let/1248 =a (global Odoc_type!)) (makeblock 0))":
- unknown block:(let (let/1248 =a (global Odoc_type!)) (makeblock 0)),
- "unknown block:(let (let/1249 =a (global Odoc_value!))\n  (makeblock 0 (field 5 let/1249) (field 1 let/1249)))":
- unknown block:(let (let/1249 =a (global Odoc_value!))
-  (makeblock 0 (field 5 let/1249) (field 1 let/1249))),
- "unknown block:(let (let/1250 =a (global Odoc_class!))\n  (makeblock 0 (field 2 let/1250) (field 4 let/1250) (field 1 let/1250)\n    (field 5 let/1250) (field 6 let/1250) (field 3 let/1250)\n    (field 8 let/1250) (field 11 let/1250) (field 9 let/1250)\n    (field 10 let/1250)))":
- unknown block:(let (let/1250 =a (global Odoc_class!))
-  (makeblock 0 (field 2 let/1250) (field 4 let/1250) (field 1 let/1250)
-    (field 5 let/1250) (field 6 let/1250) (field 3 let/1250)
-    (field 8 let/1250) (field 11 let/1250) (field 9 let/1250)
-    (field 10 let/1250))),
- "unknown block:(let (let/1251 =a (global Odoc_module!))\n  (makeblock 0 (field 11 let/1251) (field 21 let/1251) (field 22 let/1251)\n    (field 23 let/1251) (field 17 let/1251) (field 18 let/1251)\n    (field 16 let/1251) (field 13 let/1251) (field 14 let/1251)\n    (field 15 let/1251) (field 19 let/1251) (field 20 let/1251)\n    (field 42 let/1251) (field 29 let/1251) (field 26 let/1251)\n    (field 24 let/1251) (field 12 let/1251) (field 36 let/1251)\n    (field 37 let/1251) (field 38 let/1251) (field 33 let/1251)\n    (field 31 let/1251) (field 30 let/1251) (field 40 let/1251)\n    (field 41 let/1251) (field 34 let/1251) (field 35 let/1251)\n    (field 43 let/1251) (field 28 let/1251) (field 25 let/1251)\n    (field 39 let/1251)))":
- unknown block:(let (let/1251 =a (global Odoc_module!))
-  (makeblock 0 (field 11 let/1251) (field 21 let/1251) (field 22 let/1251)
-    (field 23 let/1251) (field 17 let/1251) (field 18 let/1251)
-    (field 16 let/1251) (field 13 let/1251) (field 14 let/1251)
-    (field 15 let/1251) (field 19 let/1251) (field 20 let/1251)
-    (field 42 let/1251) (field 29 let/1251) (field 26 let/1251)
-    (field 24 let/1251) (field 12 let/1251) (field 36 let/1251)
-    (field 37 let/1251) (field 38 let/1251) (field 33 let/1251)
-    (field 31 let/1251) (field 30 let/1251) (field 40 let/1251)
-    (field 41 let/1251) (field 34 let/1251) (field 35 let/1251)
-    (field 43 let/1251) (field 28 let/1251) (field 25 let/1251)
-    (field 39 let/1251))),
  "reset_type_names":reset_type_names,
  "string_of_variance":string_of_variance,
  "string_of_type_expr":string_of_type_expr,
@@ -580,12 +488,19 @@ module["exports"]=
  "Search":Search,
  "Scan":Scan,
  "Dep":Dep,
- "unknown block:(let (let/1252 =a (global Odoc_global!))\n  (makeblock 0 (field 14 let/1252) (field 15 let/1252) (field 17 let/1252)\n    (field 18 let/1252) (field 21 let/1252) (field 20 let/1252)\n    (field 19 let/1252) (field 22 let/1252) (field 23 let/1252)\n    (field 24 let/1252) (field 25 let/1252)))":
- unknown block:(let (let/1252 =a (global Odoc_global!))
-  (makeblock 0 (field 14 let/1252) (field 15 let/1252) (field 17 let/1252)
-    (field 18 let/1252) (field 21 let/1252) (field 20 let/1252)
-    (field 19 let/1252) (field 22 let/1252) (field 23 let/1252)
-    (field 24 let/1252) (field 25 let/1252))),
+ "Global":
+ [0,
+  $$let$5[15],
+  $$let$5[16],
+  $$let$5[18],
+  $$let$5[19],
+  $$let$5[22],
+  $$let$5[21],
+  $$let$5[20],
+  $$let$5[23],
+  $$let$5[24],
+  $$let$5[25],
+  $$let$5[26]],
  "analyse_files":analyse_files,
  "dump_modules":dump_modules,
  "load_modules":load_modules};

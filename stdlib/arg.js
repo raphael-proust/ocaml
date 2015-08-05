@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Printf=require("Printf");
 var Buffer=require("Buffer");
 var Sys=require("Sys");
+
 
 var Bad="unknown primitive:caml_set_oo_id";
 
@@ -165,7 +168,9 @@ var
          {case 0:
            var s=error[1];
            
-           switch(s){case "--help":case "-help":default:var exit=48;}
+           var exit;
+           
+           switch(s){case "--help":case "-help":default:exit=48;}
            
            switch(exit)
             {case 48:
@@ -240,7 +245,9 @@ var
          {var
            treat_action=
             function(param)
-             {switch(param)
+             {var exit;
+              
+              switch(param)
                {case 0:var f=param[1];return f(0);
                 case 1:
                  var f$1=param[1];
@@ -251,25 +258,27 @@ var
                    try
                     {f$1(Pervasives["bool_of_string"](arg))}
                    catch(exn$1)
-                    {var tag=exn$1[1];
+                    {var exit$1;
+                     
+                     var tag=exn$1[1];
                      
                      if(tag=Invalid_argument)
                       {var match=exn$1[2];
                        
                        switch(match)
                         {case "bool_of_string":throw [0,Stop,[1,s,arg,"a boolean"]];
-                         default:var exit=33;}
+                         default:exit$1=33;}
                        }
                      else
-                      {var exit=33;}
+                      {exit$1=33;}
                      
-                     switch(exit){case 33:throw exn$1;}
+                     switch(exit$1){case 33:throw exn$1;}
                      }
                    
                    return current$1[0]++;
                    }
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 2:var r=param[1];return r[1]=1,0;
                 case 3:var r$1=param[1];return r$1[1]=0,0;
@@ -279,7 +288,7 @@ var
                  if(current$1[1]+1<l)
                   {f$2(argv[current$1[1]+1]);return current$1[0]++;}
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 5:
                  var r$2=param[1];
@@ -287,7 +296,7 @@ var
                  if(current$1[1]+1<l)
                   {r$2[1]=argv[current$1[1]+1],0;return current$1[0]++;}
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 6:
                  var f$3=param[1];
@@ -298,7 +307,9 @@ var
                    try
                     {f$3("unknown primitive:caml_int_of_string")}
                    catch(exn$2)
-                    {var tag$1=exn$2[1];
+                    {var exit$2;
+                     
+                     var tag$1=exn$2[1];
                      
                      if(tag$1=Failure)
                       {var match$1=exn$2[2];
@@ -306,10 +317,10 @@ var
                        switch(match$1)
                         {case "int_of_string":
                           throw [0,Stop,[1,s,arg$1,"an integer"]];
-                         default:var exit$2=36;}
+                         default:exit$2=36;}
                        }
                      else
-                      {var exit$2=36;}
+                      {exit$2=36;}
                      
                      switch(exit$2){case 36:throw exn$2;}
                      }
@@ -317,7 +328,7 @@ var
                    return current$1[0]++;
                    }
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 7:
                  var r$3=param[1];
@@ -328,7 +339,9 @@ var
                    try
                     {r$3[1]="unknown primitive:caml_int_of_string",0}
                    catch(exn$3)
-                    {var tag$2=exn$3[1];
+                    {var exit$3;
+                     
+                     var tag$2=exn$3[1];
                      
                      if(tag$2=Failure)
                       {var match$2=exn$3[2];
@@ -336,10 +349,10 @@ var
                        switch(match$2)
                         {case "int_of_string":
                           throw [0,Stop,[1,s,arg$2,"an integer"]];
-                         default:var exit$3=38;}
+                         default:exit$3=38;}
                        }
                      else
-                      {var exit$3=38;}
+                      {exit$3=38;}
                      
                      switch(exit$3){case 38:throw exn$3;}
                      }
@@ -347,7 +360,7 @@ var
                    return current$1[0]++;
                    }
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 8:
                  var f$4=param[1];
@@ -358,7 +371,9 @@ var
                    try
                     {f$4("unknown primitive:caml_float_of_string")}
                    catch(exn$4)
-                    {var tag$3=exn$4[1];
+                    {var exit$4;
+                     
+                     var tag$3=exn$4[1];
                      
                      if(tag$3=Failure)
                       {var match$3=exn$4[2];
@@ -366,10 +381,10 @@ var
                        switch(match$3)
                         {case "float_of_string":
                           throw [0,Stop,[1,s,arg$3,"a float"]];
-                         default:var exit$4=40;}
+                         default:exit$4=40;}
                        }
                      else
-                      {var exit$4=40;}
+                      {exit$4=40;}
                      
                      switch(exit$4){case 40:throw exn$4;}
                      }
@@ -377,7 +392,7 @@ var
                    return current$1[0]++;
                    }
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 9:
                  var r$4=param[1];
@@ -388,7 +403,9 @@ var
                    try
                     {r$4[1]="unknown primitive:caml_float_of_string",0}
                    catch(exn$5)
-                    {var tag$4=exn$5[1];
+                    {var exit$5;
+                     
+                     var tag$4=exn$5[1];
                      
                      if(tag$4=Failure)
                       {var match$4=exn$5[2];
@@ -396,10 +413,10 @@ var
                        switch(match$4)
                         {case "float_of_string":
                           throw [0,Stop,[1,s,arg$4,"a float"]];
-                         default:var exit$5=42;}
+                         default:exit$5=42;}
                        }
                      else
-                      {var exit$5=42;}
+                      {exit$5=42;}
                      
                      switch(exit$5){case 42:throw exn$5;}
                      }
@@ -407,7 +424,7 @@ var
                    return current$1[0]++;
                    }
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 10:
                  var specs=param[1];return List["iter"](treat_action,specs);
@@ -431,7 +448,7 @@ var
                      }
                    }
                  else
-                  {var exit$1=44;}
+                  {exit=44;}
                  
                 case 12:
                  var f$6=param[1];
@@ -442,7 +459,7 @@ var
                  
                 }
               
-              switch(exit$1){case 44:throw [0,Stop,[2,s]];}
+              switch(exit){case 44:throw [0,Stop,[2,s]];}
               };
           
           treat_action(action)}
@@ -649,7 +666,6 @@ var
     
     return List["map"](add_padding(len$1),completed);
     };
-
 
 module["exports"]=
 {"parse":parse,

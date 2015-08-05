@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var CamlinternalFormat=require("CamlinternalFormat");
 var Pervasives=require("Pervasives");
 var Buffer=require("Buffer");
+
 
 var make_queue=function(param){return [0,0,0];};
 
@@ -433,19 +436,21 @@ var
       if(left_tot<state[12])
        {return clear_scan_stack(state);}
       else
-       {if(typeof tok=="number")
+       {var exit;
+        
+        if(typeof tok=="number")
          {switch(tok){}}
         else
          {switch(tok[0])
-           {case 1:var exit=193;
-            case 2:var exit=193;
+           {case 1:exit=193;
+            case 2:exit=193;
             case 3:
              if(!ty)
               {queue_elem[1]=state[13]+size$1,0;return state[1]=t,0;}
              else
               {return 0;}
              
-            default:var exit=194;}}
+            default:exit=194;}}
         
         switch(exit)
          {case 193:
@@ -1199,7 +1204,9 @@ var
 var
  output_acc=
   function(ppf,acc)
-   {if(typeof acc=="number")
+   {var exit;
+    
+    if(typeof acc=="number")
      {switch(acc){case 0:return 0;}}
     else
      {switch(acc[0])
@@ -1246,6 +1253,8 @@ var
         case 2:
          var p$3=acc[1];
          
+         var exit$1;
+         
          if(typeof p$3=="number")
           {switch(p$3){}}
          else
@@ -1264,22 +1273,25 @@ var
                    
                    var p$4=p$3[1];
                    
-                   p$5=p$4;
+                   var p$5=p$4;
                    
-                   size$1=size;
+                   var size$1=size;
                    
-                   s$1=s;
+                   var s$1=s;
                    
-                   var exit=32;
+                   exit=32;
                    
-                  default:var exit$1=36;}}
+                  default:exit$1=36;}}
               
-             default:var exit$1=36;}}
+             default:exit$1=36;}}
          
-         switch(exit$1){case 36:var s$2=acc[2];p$6=p$3;s$3=s$2;var exit=34;}
+         switch(exit$1)
+          {case 36:var s$2=acc[2];var p$6=p$3;var s$3=s$2;exit=34;}
          
         case 3:
          var p$7=acc[1];
+         
+         var exit$2;
          
          if(typeof p$7=="number")
           {switch(p$7){}}
@@ -1299,22 +1311,25 @@ var
                    
                    var p$8=p$7[1];
                    
-                   p$9=p$8;
+                   var p$9=p$8;
                    
-                   size$3=size$2;
+                   var size$3=size$2;
                    
-                   c$1=c;
+                   var c$1=c;
                    
-                   var exit=33;
+                   exit=33;
                    
-                  default:var exit$2=38;}}
+                  default:exit$2=38;}}
               
-             default:var exit$2=38;}}
+             default:exit$2=38;}}
          
-         switch(exit$2){case 38:var c$2=acc[2];p$10=p$7;c$3=c$2;var exit=35;}
+         switch(exit$2)
+          {case 38:var c$2=acc[2];var p$10=p$7;var c$3=c$2;exit=35;}
          
         case 4:
          var p$11=acc[1];
+         
+         var exit$3;
          
          if(typeof p$11=="number")
           {switch(p$11){}}
@@ -1334,22 +1349,25 @@ var
                    
                    var p$12=p$11[1];
                    
-                   p$5=p$12;
+                   var p$5=p$12;
                    
-                   size$1=size$4;
+                   var size$1=size$4;
                    
-                   s$1=s$4;
+                   var s$1=s$4;
                    
-                   var exit=32;
+                   exit=32;
                    
-                  default:var exit$3=37;}}
+                  default:exit$3=37;}}
               
-             default:var exit$3=37;}}
+             default:exit$3=37;}}
          
-         switch(exit$3){case 37:var s$5=acc[2];p$6=p$11;s$3=s$5;var exit=34;}
+         switch(exit$3)
+          {case 37:var s$5=acc[2];var p$6=p$11;var s$3=s$5;exit=34;}
          
         case 5:
          var p$13=acc[1];
+         
+         var exit$4;
          
          if(typeof p$13=="number")
           {switch(p$13){}}
@@ -1369,19 +1387,20 @@ var
                    
                    var p$14=p$13[1];
                    
-                   p$9=p$14;
+                   var p$9=p$14;
                    
-                   size$3=size$5;
+                   var size$3=size$5;
                    
-                   c$1=c$4;
+                   var c$1=c$4;
                    
-                   var exit=33;
+                   exit=33;
                    
-                  default:var exit$4=39;}}
+                  default:exit$4=39;}}
               
-             default:var exit$4=39;}}
+             default:exit$4=39;}}
          
-         switch(exit$4){case 39:var c$5=acc[2];p$10=p$13;c$3=c$5;var exit=35;}
+         switch(exit$4)
+          {case 39:var c$5=acc[2];var p$10=p$13;var c$3=c$5;exit=35;}
          
         case 6:
          var f$1=acc[2];var p$15=acc[1];output_acc(ppf,p$15);return f$1(ppf);
@@ -1411,7 +1430,9 @@ var
 var
  strput_acc=
   function(ppf,acc)
-   {if(typeof acc=="number")
+   {var exit;
+    
+    if(typeof acc=="number")
      {switch(acc){case 0:return 0;}}
     else
      {switch(acc[0])
@@ -1458,6 +1479,8 @@ var
         case 2:
          var p$3=acc[1];
          
+         var exit$1;
+         
          if(typeof p$3=="number")
           {switch(p$3){}}
          else
@@ -1476,22 +1499,25 @@ var
                    
                    var p$4=p$3[1];
                    
-                   p$5=p$4;
+                   var p$5=p$4;
                    
-                   size$1=size;
+                   var size$1=size;
                    
-                   s$1=s;
+                   var s$1=s;
                    
-                   var exit=21;
+                   exit=21;
                    
-                  default:var exit$1=26;}}
+                  default:exit$1=26;}}
               
-             default:var exit$1=26;}}
+             default:exit$1=26;}}
          
-         switch(exit$1){case 26:var s$2=acc[2];p$6=p$3;s$3=s$2;var exit=23;}
+         switch(exit$1)
+          {case 26:var s$2=acc[2];var p$6=p$3;var s$3=s$2;exit=23;}
          
         case 3:
          var p$7=acc[1];
+         
+         var exit$2;
          
          if(typeof p$7=="number")
           {switch(p$7){}}
@@ -1511,22 +1537,25 @@ var
                    
                    var p$8=p$7[1];
                    
-                   p$9=p$8;
+                   var p$9=p$8;
                    
-                   size$3=size$2;
+                   var size$3=size$2;
                    
-                   c$1=c;
+                   var c$1=c;
                    
-                   var exit=22;
+                   exit=22;
                    
-                  default:var exit$2=28;}}
+                  default:exit$2=28;}}
               
-             default:var exit$2=28;}}
+             default:exit$2=28;}}
          
-         switch(exit$2){case 28:var c$2=acc[2];p$10=p$7;c$3=c$2;var exit=24;}
+         switch(exit$2)
+          {case 28:var c$2=acc[2];var p$10=p$7;var c$3=c$2;exit=24;}
          
         case 4:
          var p$11=acc[1];
+         
+         var exit$3;
          
          if(typeof p$11=="number")
           {switch(p$11){}}
@@ -1546,22 +1575,25 @@ var
                    
                    var p$12=p$11[1];
                    
-                   p$5=p$12;
+                   var p$5=p$12;
                    
-                   size$1=size$4;
+                   var size$1=size$4;
                    
-                   s$1=s$4;
+                   var s$1=s$4;
                    
-                   var exit=21;
+                   exit=21;
                    
-                  default:var exit$3=27;}}
+                  default:exit$3=27;}}
               
-             default:var exit$3=27;}}
+             default:exit$3=27;}}
          
-         switch(exit$3){case 27:var s$5=acc[2];p$6=p$11;s$3=s$5;var exit=23;}
+         switch(exit$3)
+          {case 27:var s$5=acc[2];var p$6=p$11;var s$3=s$5;exit=23;}
          
         case 5:
          var p$13=acc[1];
+         
+         var exit$4;
          
          if(typeof p$13=="number")
           {switch(p$13){}}
@@ -1581,22 +1613,25 @@ var
                    
                    var p$14=p$13[1];
                    
-                   p$9=p$14;
+                   var p$9=p$14;
                    
-                   size$3=size$5;
+                   var size$3=size$5;
                    
-                   c$1=c$4;
+                   var c$1=c$4;
                    
-                   var exit=22;
+                   exit=22;
                    
-                  default:var exit$4=29;}}
+                  default:exit$4=29;}}
               
-             default:var exit$4=29;}}
+             default:exit$4=29;}}
          
-         switch(exit$4){case 29:var c$5=acc[2];p$10=p$13;c$3=c$5;var exit=24;}
+         switch(exit$4)
+          {case 29:var c$5=acc[2];var p$10=p$13;var c$3=c$5;exit=24;}
          
         case 6:
          var p$15=acc[1];
+         
+         var exit$5;
          
          if(typeof p$15=="number")
           {switch(p$15){}}
@@ -1619,9 +1654,9 @@ var
                    strput_acc(ppf,p$16);
                    return pp_print_as_size(ppf,size$6,f$1(0));
                    
-                  default:var exit$5=25;}}
+                  default:exit$5=25;}}
               
-             default:var exit$5=25;}}
+             default:exit$5=25;}}
          
          switch(exit$5)
           {case 25:
@@ -1738,127 +1773,7 @@ var
 
 var kprintf=ksprintf;
 
-Pervasives["at_exit"](print_flush),
-[0,
- open_box,
- close_box,
- print_string,
- print_as,
- print_int,
- print_float,
- print_char,
- print_bool,
- print_space,
- print_cut,
- print_break,
- print_flush,
- print_newline,
- force_newline,
- print_if_newline,
- set_margin,
- get_margin,
- set_max_indent,
- get_max_indent,
- set_max_boxes,
- get_max_boxes,
- over_max_boxes,
- open_hbox,
- open_vbox,
- open_hvbox,
- open_hovbox,
- open_tbox,
- close_tbox,
- print_tbreak,
- set_tab,
- print_tab,
- set_ellipsis_text,
- get_ellipsis_text,
- open_tag,
- close_tag,
- set_tags,
- set_print_tags,
- set_mark_tags,
- get_print_tags,
- get_mark_tags,
- set_formatter_out_channel,
- set_formatter_output_functions,
- get_formatter_output_functions,
- set_formatter_out_functions,
- get_formatter_out_functions,
- set_formatter_tag_functions,
- get_formatter_tag_functions,
- formatter_of_out_channel,
- std_formatter,
- err_formatter,
- formatter_of_buffer,
- stdbuf,
- str_formatter,
- flush_str_formatter,
- make_formatter,
- pp_open_hbox,
- pp_open_vbox,
- pp_open_hvbox,
- pp_open_hovbox,
- pp_open_box,
- pp_close_box,
- pp_open_tag,
- pp_close_tag,
- pp_print_string,
- pp_print_as,
- pp_print_int,
- pp_print_float,
- pp_print_char,
- pp_print_bool,
- pp_print_break,
- pp_print_cut,
- pp_print_space,
- pp_force_newline,
- pp_print_flush,
- pp_print_newline,
- pp_print_if_newline,
- pp_open_tbox,
- pp_close_tbox,
- pp_print_tbreak,
- pp_set_tab,
- pp_print_tab,
- pp_set_tags,
- pp_set_print_tags,
- pp_set_mark_tags,
- pp_get_print_tags,
- pp_get_mark_tags,
- pp_set_margin,
- pp_get_margin,
- pp_set_max_indent,
- pp_get_max_indent,
- pp_set_max_boxes,
- pp_get_max_boxes,
- pp_over_max_boxes,
- pp_set_ellipsis_text,
- pp_get_ellipsis_text,
- pp_set_formatter_out_channel,
- pp_set_formatter_output_functions,
- pp_get_formatter_output_functions,
- pp_set_formatter_tag_functions,
- pp_get_formatter_tag_functions,
- pp_set_formatter_out_functions,
- pp_get_formatter_out_functions,
- pp_print_list,
- pp_print_text,
- fprintf,
- printf,
- eprintf,
- sprintf,
- asprintf,
- ifprintf,
- kfprintf,
- ikfprintf,
- ksprintf,
- bprintf,
- kprintf,
- set_all_formatter_output_functions,
- get_all_formatter_output_functions,
- pp_set_all_formatter_output_functions,
- pp_get_all_formatter_output_functions];
+Pervasives["at_exit"](print_flush);
 module["exports"]=
 {"open_box":open_box,
  "close_box":close_box,

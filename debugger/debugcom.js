@@ -1,10 +1,13 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Obj=require("Obj");
-var Misc=require("Misc");
 var Primitives=require("Primitives");
+var Misc=require("Misc");
 var Int64ops=require("Int64ops");
 var Input_handling=require("Input_handling");
 var Sys=require("Sys");
+
 
 var conn=[0,Primitives["std_io"]];
 
@@ -59,34 +62,36 @@ var
               {Input_handling["main_loop"](0);
                var match=Pervasives["input_char"](conn[1][1]);
                
+               var exit;
+               
                var switcher=-98+match;
                
                if(22<switcher>>>0)
-                {var exit=50;}
+                {exit=50;}
                else
                 {switch(switcher[0])
                   {case 0:var summary=1;
-                   case 1:var exit=50;
-                   case 2:var exit=50;
+                   case 1:exit=50;
+                   case 2:exit=50;
                    case 3:var summary=0;
-                   case 4:var exit=50;
-                   case 5:var exit=50;
-                   case 6:var exit=50;
-                   case 7:var exit=50;
-                   case 8:var exit=50;
-                   case 9:var exit=50;
-                   case 10:var exit=50;
-                   case 11:var exit=50;
-                   case 12:var exit=50;
-                   case 13:var exit=50;
-                   case 14:var exit=50;
-                   case 15:var exit=50;
-                   case 16:var exit=50;
+                   case 4:exit=50;
+                   case 5:exit=50;
+                   case 6:exit=50;
+                   case 7:exit=50;
+                   case 8:exit=50;
+                   case 9:exit=50;
+                   case 10:exit=50;
+                   case 11:exit=50;
+                   case 12:exit=50;
+                   case 13:exit=50;
+                   case 14:exit=50;
+                   case 15:exit=50;
+                   case 16:exit=50;
                    case 17:var summary=3;
-                   case 18:var exit=50;
+                   case 18:exit=50;
                    case 19:var summary=4;
-                   case 20:var exit=50;
-                   case 21:var exit=50;
+                   case 20:exit=50;
+                   case 21:exit=50;
                    case 22:var summary=2;
                    }
                  }
@@ -142,10 +147,12 @@ var
       return Pervasives["flush"](chan[2]);
       }
     catch(exn)
-     {if(exn[1]=Sys_error)
-       {var exit=41;}
+     {var exit;
+      
+      if(exn[1]=Sys_error)
+       {exit=41;}
       else
-       {if(exn=End_of_file){var exit=41;}else{throw exn;}}
+       {if(exn=End_of_file){exit=41;}else{throw exn;}}
       
       switch(exit){case 41:return 0;}
       }
@@ -157,10 +164,12 @@ var
    {try
      {return Pervasives["output_char"](chan[2],119);}
     catch(exn)
-     {if(exn[1]=Sys_error)
-       {var exit=37;}
+     {var exit;
+      
+      if(exn[1]=Sys_error)
+       {exit=37;}
       else
-       {if(exn=End_of_file){var exit=37;}else{throw exn;}}
+       {if(exn=End_of_file){exit=37;}else{throw exn;}}
       
       switch(exit){case 37:return 0;}
       }
@@ -245,10 +254,12 @@ var
        try
         {return Pervasives["input_value"](conn[1][1]);}
        catch(exn)
-        {if(exn=End_of_file)
-          {var exit=18;}
+        {var exit;
+         
+         if(exn=End_of_file)
+          {exit=18;}
          else
-          {if(exn[1]=Failure){var exit=18;}else{throw exn;}}
+          {if(exn[1]=Failure){exit=18;}else{throw exn;}}
          
          switch(exit){case 18:throw Marshalling_error;}
          }
@@ -383,14 +394,14 @@ var
 var
  same=
   function(rv1,rv2)
-   {switch(rv1)
+   {var exit;
+    
+    switch(rv1)
      {case 0:
        switch(rv2)
-        {case 0:return "unknown primitive:caml_string_equal";
-         case 1:var exit=1;
-         }
+        {case 0:return "unknown primitive:caml_string_equal";case 1:exit=1;}
        
-      case 1:switch(rv2){case 0:var exit=1;case 1:return rv1[1]=rv2[1];}
+      case 1:switch(rv2){case 0:exit=1;case 1:return rv1[1]=rv2[1];}
       }
     
     switch(exit){case 1:return 0;}
@@ -412,37 +423,6 @@ var
    closure_code,
    same];
 
-[0,
- set_current_connection,
- set_event,
- set_breakpoint,
- reset_instr,
- do_checkpoint,
- do_go,
- stop,
- wait_child,
- initial_frame,
- set_initial_frame,
- get_frame,
- set_frame,
- up_frame,
- set_trap_barrier,
- fork_mode,
- update_follow_fork_mode,
- Marshalling_error,
- [0,
-  Remote_value[1],
-  Remote_value[2],
-  Remote_value[3],
-  Remote_value[4],
-  Remote_value[5],
-  Remote_value[12],
-  Remote_value[6],
-  Remote_value[7],
-  Remote_value[8],
-  Remote_value[9],
-  Remote_value[10],
-  Remote_value[11]]];
 module["exports"]=
 {"set_current_connection":set_current_connection,
  "set_event":set_event,
@@ -461,11 +441,18 @@ module["exports"]=
  "fork_mode":fork_mode,
  "update_follow_fork_mode":update_follow_fork_mode,
  "Marshalling_error":Marshalling_error,
- "unknown block:(makeblock 0 (field 0 Remote_value/1117) (field 1 Remote_value/1117)\n  (field 2 Remote_value/1117) (field 3 Remote_value/1117)\n  (field 4 Remote_value/1117) (field 11 Remote_value/1117)\n  (field 5 Remote_value/1117) (field 6 Remote_value/1117)\n  (field 7 Remote_value/1117) (field 8 Remote_value/1117)\n  (field 9 Remote_value/1117) (field 10 Remote_value/1117))":
- unknown block:(makeblock 0 (field 0 Remote_value/1117) (field 1 Remote_value/1117)
-  (field 2 Remote_value/1117) (field 3 Remote_value/1117)
-  (field 4 Remote_value/1117) (field 11 Remote_value/1117)
-  (field 5 Remote_value/1117) (field 6 Remote_value/1117)
-  (field 7 Remote_value/1117) (field 8 Remote_value/1117)
-  (field 9 Remote_value/1117) (field 10 Remote_value/1117))};
+ "Remote_value":
+ [0,
+  Remote_value[1],
+  Remote_value[2],
+  Remote_value[3],
+  Remote_value[4],
+  Remote_value[5],
+  Remote_value[12],
+  Remote_value[6],
+  Remote_value[7],
+  Remote_value[8],
+  Remote_value[9],
+  Remote_value[10],
+  Remote_value[11]]};
 

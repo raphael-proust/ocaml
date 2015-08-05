@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Printf=require("Printf");
 var Sys=require("Sys");
+
 
 var
  print_stat=
@@ -100,20 +103,13 @@ var
 
 var delete_alarm=function(a){return a[1]=0,0;};
 
-[0,
- print_stat,
- allocated_bytes,
- function(prim,prim$1){return "unknown primitive:caml_final_register";},
- function(prim){return "unknown primitive:caml_final_release";},
- create_alarm,
- delete_alarm];
 module["exports"]=
 {"print_stat":print_stat,
  "allocated_bytes":allocated_bytes,
- "unknown block:(function prim/1064 prim/1063 (caml_final_register prim/1064 prim/1063))":
- unknown block:(function prim/1064 prim/1063 (caml_final_register prim/1064 prim/1063)),
- "unknown block:(function prim/1065 (caml_final_release prim/1065))":
- unknown block:(function prim/1065 (caml_final_release prim/1065)),
+ "caml_final_register":
+ function(prim,prim$1){return "unknown primitive:caml_final_register";},
+ "caml_final_release":
+ function(prim){return "unknown primitive:caml_final_release";},
  "create_alarm":create_alarm,
  "delete_alarm":delete_alarm};
 

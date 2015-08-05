@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var List=require("List");
 var Printf=require("Printf");
@@ -7,6 +9,7 @@ var Printexc=require("Printexc");
 var Hashtbl=require("Hashtbl");
 var $$Array=require("Array");
 var Sys=require("Sys");
+
 
 var Unix_error="unknown primitive:caml_set_oo_id";
 
@@ -348,13 +351,15 @@ var
     
     List["iter"]
      (function(param)
-       {if(typeof param=="number")
+       {var exit;
+        
+        if(typeof param=="number")
          {switch(param){case 2:return opt_passive[1]=1,0;}}
         else
          {switch(param[0])
            {case 1:var s=param[1];return opt_socktype[1]=[0,s],0;
             case 2:var p=param[1];return opt_protocol[1]=p,0;
-            default:var exit=95;}}
+            default:exit=95;}}
         
         switch(exit){case 95:return 0;}
         },
@@ -535,18 +540,20 @@ var
    {try
      {return "unknown primitive:unix_waitpid";}
     catch(exn$2)
-     {var tag$2=exn$2[1];
+     {var exit;
+      
+      var tag$2=exn$2[1];
       
       if(tag$2=Unix_error)
        {var match$1=exn$2[2];
         
         if("unknown primitive:isint")
-         {if(match$1!=11){var exit=75;}else{return waitpid_non_intr(pid);}}
+         {if(match$1!=11){exit=75;}else{return waitpid_non_intr(pid);}}
         else
-         {var exit=75;}
+         {exit=75;}
         }
       else
-       {var exit=75;}
+       {exit=75;}
       
       switch(exit){case 75:throw exn$2;}
       }
@@ -930,18 +937,20 @@ var
    {try
      {return "unknown primitive:unix_accept";}
     catch(exn$2)
-     {var tag$2=exn$2[1];
+     {var exit;
+      
+      var tag$2=exn$2[1];
       
       if(tag$2=Unix_error)
        {var match$1=exn$2[2];
         
         if("unknown primitive:isint")
-         {if(match$1!=11){var exit=7;}else{return accept_non_intr(s);}}
+         {if(match$1!=11){exit=7;}else{return accept_non_intr(s);}}
         else
-         {var exit=7;}
+         {exit=7;}
         }
       else
-       {var exit=7;}
+       {exit=7;}
       
       switch(exit){case 7:throw exn$2;}
       }
@@ -978,45 +987,59 @@ var
     return 0;
     };
 
-[0,
- Unix_error,
+module["exports"]=
+{"Unix_error":Unix_error,
+ "unix_error_message":
  function(prim){return "unknown primitive:unix_error_message";},
- handle_unix_error,
+ "handle_unix_error":handle_unix_error,
+ "unix_environment":
  function(prim){return "unknown primitive:unix_environment";},
- function(prim){return "unknown primitive:caml_sys_getenv";},
- function(prim,prim$1){return "unknown primitive:unix_putenv";},
- function(prim,prim$1){return "unknown primitive:unix_execv";},
+ "caml_sys_getenv":function(prim){return "unknown primitive:caml_sys_getenv";},
+ "unix_putenv":function(prim,prim$1){return "unknown primitive:unix_putenv";},
+ "unix_execv":function(prim,prim$1){return "unknown primitive:unix_execv";},
+ "unix_execve":
  function(prim,prim$1,prim$2){return "unknown primitive:unix_execve";},
- function(prim,prim$1){return "unknown primitive:unix_execvp";},
+ "unix_execvp":function(prim,prim$1){return "unknown primitive:unix_execvp";},
+ "unix_execvpe":
  function(prim,prim$1,prim$2){return "unknown primitive:unix_execvpe";},
- function(prim){return "unknown primitive:unix_fork";},
- function(prim){return "unknown primitive:unix_wait";},
+ "unix_fork":function(prim){return "unknown primitive:unix_fork";},
+ "unix_wait":function(prim){return "unknown primitive:unix_wait";},
+ "unix_waitpid":
  function(prim,prim$1){return "unknown primitive:unix_waitpid";},
- system,
- function(prim){return "unknown primitive:unix_getpid";},
- function(prim){return "unknown primitive:unix_getppid";},
- function(prim){return "unknown primitive:unix_nice";},
- stdin,
- stdout,
- stderr,
+ "system":system,
+ "unix_getpid":function(prim){return "unknown primitive:unix_getpid";},
+ "unix_getppid":function(prim){return "unknown primitive:unix_getppid";},
+ "unix_nice":function(prim){return "unknown primitive:unix_nice";},
+ "stdin":stdin,
+ "stdout":stdout,
+ "stderr":stderr,
+ "unix_open":
  function(prim,prim$1,prim$2){return "unknown primitive:unix_open";},
- function(prim){return "unknown primitive:unix_close";},
- read,
- write,
- single_write,
- write_substring,
- single_write_substring,
+ "unix_close":function(prim){return "unknown primitive:unix_close";},
+ "read":read,
+ "write":write,
+ "single_write":single_write,
+ "write_substring":write_substring,
+ "single_write_substring":single_write_substring,
+ "caml_ml_open_descriptor_in":
  function(prim){return "unknown primitive:caml_ml_open_descriptor_in";},
+ "caml_ml_open_descriptor_out":
  function(prim){return "unknown primitive:caml_ml_open_descriptor_out";},
+ "caml_channel_descriptor":
  function(prim){return "unknown primitive:caml_channel_descriptor";},
+ "caml_channel_descriptor":
  function(prim){return "unknown primitive:caml_channel_descriptor";},
+ "unix_lseek":
  function(prim,prim$1,prim$2){return "unknown primitive:unix_lseek";},
+ "unix_truncate":
  function(prim,prim$1){return "unknown primitive:unix_truncate";},
+ "unix_ftruncate":
  function(prim,prim$1){return "unknown primitive:unix_ftruncate";},
- function(prim){return "unknown primitive:unix_stat";},
- function(prim){return "unknown primitive:unix_lstat";},
- function(prim){return "unknown primitive:unix_fstat";},
- function(prim){return "unknown primitive:unix_isatty";},
+ "unix_stat":function(prim){return "unknown primitive:unix_stat";},
+ "unix_lstat":function(prim){return "unknown primitive:unix_lstat";},
+ "unix_fstat":function(prim){return "unknown primitive:unix_fstat";},
+ "unix_isatty":function(prim){return "unknown primitive:unix_isatty";},
+ "LargeFile":
  [0,
   function(prim,prim$1,prim$2){return "unknown primitive:unix_lseek_64";},
   function(prim,prim$1){return "unknown primitive:unix_truncate_64";},
@@ -1024,259 +1047,38 @@ var
   function(prim){return "unknown primitive:unix_stat_64";},
   function(prim){return "unknown primitive:unix_lstat_64";},
   function(prim){return "unknown primitive:unix_fstat_64";}],
- function(prim){return "unknown primitive:unix_unlink";},
- function(prim,prim$1){return "unknown primitive:unix_rename";},
- function(prim,prim$1){return "unknown primitive:unix_link";},
- function(prim,prim$1){return "unknown primitive:unix_chmod";},
- function(prim,prim$1){return "unknown primitive:unix_fchmod";},
+ "unix_unlink":function(prim){return "unknown primitive:unix_unlink";},
+ "unix_rename":function(prim,prim$1){return "unknown primitive:unix_rename";},
+ "unix_link":function(prim,prim$1){return "unknown primitive:unix_link";},
+ "unix_chmod":function(prim,prim$1){return "unknown primitive:unix_chmod";},
+ "unix_fchmod":function(prim,prim$1){return "unknown primitive:unix_fchmod";},
+ "unix_chown":
  function(prim,prim$1,prim$2){return "unknown primitive:unix_chown";},
+ "unix_fchown":
  function(prim,prim$1,prim$2){return "unknown primitive:unix_fchown";},
- function(prim){return "unknown primitive:unix_umask";},
- function(prim,prim$1){return "unknown primitive:unix_access";},
- function(prim){return "unknown primitive:unix_dup";},
- function(prim,prim$1){return "unknown primitive:unix_dup2";},
+ "unix_umask":function(prim){return "unknown primitive:unix_umask";},
+ "unix_access":function(prim,prim$1){return "unknown primitive:unix_access";},
+ "unix_dup":function(prim){return "unknown primitive:unix_dup";},
+ "unix_dup2":function(prim,prim$1){return "unknown primitive:unix_dup2";},
+ "unix_set_nonblock":
  function(prim){return "unknown primitive:unix_set_nonblock";},
+ "unix_clear_nonblock":
  function(prim){return "unknown primitive:unix_clear_nonblock";},
+ "unix_set_close_on_exec":
  function(prim){return "unknown primitive:unix_set_close_on_exec";},
+ "unix_clear_close_on_exec":
  function(prim){return "unknown primitive:unix_clear_close_on_exec";},
- function(prim,prim$1){return "unknown primitive:unix_mkdir";},
- function(prim){return "unknown primitive:unix_rmdir";},
- function(prim){return "unknown primitive:unix_chdir";},
- function(prim){return "unknown primitive:unix_getcwd";},
- function(prim){return "unknown primitive:unix_chroot";},
- function(prim){return "unknown primitive:unix_opendir";},
- function(prim){return "unknown primitive:unix_readdir";},
- function(prim){return "unknown primitive:unix_rewinddir";},
- function(prim){return "unknown primitive:unix_closedir";},
- function(prim){return "unknown primitive:unix_pipe";},
- function(prim,prim$1){return "unknown primitive:unix_mkfifo";},
- create_process,
- create_process_env,
- open_process_in,
- open_process_out,
- open_process,
- open_process_full,
- close_process_in,
- close_process_out,
- close_process,
- close_process_full,
- function(prim,prim$1){return "unknown primitive:unix_symlink";},
- function(prim){return "unknown primitive:unix_readlink";},
- function(prim,prim$1,prim$2,prim$3){return "unknown primitive:unix_select";},
- function(prim,prim$1,prim$2){return "unknown primitive:unix_lockf";},
- function(prim,prim$1){return "unknown primitive:unix_kill";},
- function(prim,prim$1){return "unknown primitive:unix_sigprocmask";},
- function(prim){return "unknown primitive:unix_sigpending";},
- function(prim){return "unknown primitive:unix_sigsuspend";},
- pause,
- function(prim){return "unknown primitive:unix_time";},
- function(prim){return "unknown primitive:unix_gettimeofday";},
- function(prim){return "unknown primitive:unix_gmtime";},
- function(prim){return "unknown primitive:unix_localtime";},
- function(prim){return "unknown primitive:unix_mktime";},
- function(prim){return "unknown primitive:unix_alarm";},
- function(prim){return "unknown primitive:unix_sleep";},
- function(prim){return "unknown primitive:unix_times";},
- function(prim,prim$1,prim$2){return "unknown primitive:unix_utimes";},
- function(prim){return "unknown primitive:unix_getitimer";},
- function(prim,prim$1){return "unknown primitive:unix_setitimer";},
- function(prim){return "unknown primitive:unix_getuid";},
- function(prim){return "unknown primitive:unix_geteuid";},
- function(prim){return "unknown primitive:unix_setuid";},
- function(prim){return "unknown primitive:unix_getgid";},
- function(prim){return "unknown primitive:unix_getegid";},
- function(prim){return "unknown primitive:unix_setgid";},
- function(prim){return "unknown primitive:unix_getgroups";},
- function(prim){return "unknown primitive:unix_setgroups";},
- function(prim,prim$1){return "unknown primitive:unix_initgroups";},
- function(prim){return "unknown primitive:unix_getlogin";},
- function(prim){return "unknown primitive:unix_getpwnam";},
- function(prim){return "unknown primitive:unix_getgrnam";},
- function(prim){return "unknown primitive:unix_getpwuid";},
- function(prim){return "unknown primitive:unix_getgrgid";},
- function(prim){return "unknown primitive:unix_inet_addr_of_string";},
- function(prim){return "unknown primitive:unix_string_of_inet_addr";},
- inet_addr_any,
- inet_addr_loopback,
- inet6_addr_any,
- inet6_addr_loopback,
- function(prim,prim$1,prim$2){return "unknown primitive:unix_socket";},
- domain_of_sockaddr,
- function(prim,prim$1,prim$2){return "unknown primitive:unix_socketpair";},
- function(prim){return "unknown primitive:unix_accept";},
- function(prim,prim$1){return "unknown primitive:unix_bind";},
- function(prim,prim$1){return "unknown primitive:unix_connect";},
- function(prim,prim$1){return "unknown primitive:unix_listen";},
- function(prim,prim$1){return "unknown primitive:unix_shutdown";},
- function(prim){return "unknown primitive:unix_getsockname";},
- function(prim){return "unknown primitive:unix_getpeername";},
- recv,
- recvfrom,
- send,
- send_substring,
- sendto,
- sendto_substring,
- getsockopt,
- setsockopt,
- getsockopt_int,
- setsockopt_int,
- getsockopt_optint,
- setsockopt_optint,
- getsockopt_float,
- setsockopt_float,
- getsockopt_error,
- open_connection,
- shutdown_connection,
- establish_server,
- function(prim){return "unknown primitive:unix_gethostname";},
- function(prim){return "unknown primitive:unix_gethostbyname";},
- function(prim){return "unknown primitive:unix_gethostbyaddr";},
- function(prim){return "unknown primitive:unix_getprotobyname";},
- function(prim){return "unknown primitive:unix_getprotobynumber";},
- function(prim,prim$1){return "unknown primitive:unix_getservbyname";},
- function(prim,prim$1){return "unknown primitive:unix_getservbyport";},
- getaddrinfo,
- getnameinfo,
- function(prim){return "unknown primitive:unix_tcgetattr";},
- function(prim,prim$1,prim$2){return "unknown primitive:unix_tcsetattr";},
- function(prim,prim$1){return "unknown primitive:unix_tcsendbreak";},
- function(prim){return "unknown primitive:unix_tcdrain";},
- function(prim,prim$1){return "unknown primitive:unix_tcflush";},
- function(prim,prim$1){return "unknown primitive:unix_tcflow";},
- function(prim){return "unknown primitive:unix_setsid";}];
-module["exports"]=
-{"Unix_error":Unix_error,
- "unknown block:(function prim/1793 (unix_error_message prim/1793))":
- unknown block:(function prim/1793 (unix_error_message prim/1793)),
- "handle_unix_error":handle_unix_error,
- "unknown block:(function prim/1794 (unix_environment prim/1794))":
- unknown block:(function prim/1794 (unix_environment prim/1794)),
- "unknown block:(function prim/1795 (caml_sys_getenv prim/1795))":
- unknown block:(function prim/1795 (caml_sys_getenv prim/1795)),
- "unknown block:(function prim/1797 prim/1796 (unix_putenv prim/1797 prim/1796))":
- unknown block:(function prim/1797 prim/1796 (unix_putenv prim/1797 prim/1796)),
- "unknown block:(function prim/1799 prim/1798 (unix_execv prim/1799 prim/1798))":
- unknown block:(function prim/1799 prim/1798 (unix_execv prim/1799 prim/1798)),
- "unknown block:(function prim/1802 prim/1801 prim/1800\n  (unix_execve prim/1802 prim/1801 prim/1800))":
- unknown block:(function prim/1802 prim/1801 prim/1800
-  (unix_execve prim/1802 prim/1801 prim/1800)),
- "unknown block:(function prim/1804 prim/1803 (unix_execvp prim/1804 prim/1803))":
- unknown block:(function prim/1804 prim/1803 (unix_execvp prim/1804 prim/1803)),
- "unknown block:(function prim/1807 prim/1806 prim/1805\n  (unix_execvpe prim/1807 prim/1806 prim/1805))":
- unknown block:(function prim/1807 prim/1806 prim/1805
-  (unix_execvpe prim/1807 prim/1806 prim/1805)),
- "unknown block:(function prim/1808 (unix_fork prim/1808))":
- unknown block:(function prim/1808 (unix_fork prim/1808)),
- "unknown block:(function prim/1809 (unix_wait prim/1809))":
- unknown block:(function prim/1809 (unix_wait prim/1809)),
- "unknown block:(function prim/1811 prim/1810 (unix_waitpid prim/1811 prim/1810))":
- unknown block:(function prim/1811 prim/1810 (unix_waitpid prim/1811 prim/1810)),
- "system":system,
- "unknown block:(function prim/1812 (unix_getpid prim/1812))":
- unknown block:(function prim/1812 (unix_getpid prim/1812)),
- "unknown block:(function prim/1813 (unix_getppid prim/1813))":
- unknown block:(function prim/1813 (unix_getppid prim/1813)),
- "unknown block:(function prim/1814 (unix_nice prim/1814))":
- unknown block:(function prim/1814 (unix_nice prim/1814)),
- "stdin":stdin,
- "stdout":stdout,
- "stderr":stderr,
- "unknown block:(function prim/1817 prim/1816 prim/1815\n  (unix_open prim/1817 prim/1816 prim/1815))":
- unknown block:(function prim/1817 prim/1816 prim/1815
-  (unix_open prim/1817 prim/1816 prim/1815)),
- "unknown block:(function prim/1818 (unix_close prim/1818))":
- unknown block:(function prim/1818 (unix_close prim/1818)),
- "read":read,
- "write":write,
- "single_write":single_write,
- "write_substring":write_substring,
- "single_write_substring":single_write_substring,
- "unknown block:(function prim/1819 (caml_ml_open_descriptor_in prim/1819))":
- unknown block:(function prim/1819 (caml_ml_open_descriptor_in prim/1819)),
- "unknown block:(function prim/1820 (caml_ml_open_descriptor_out prim/1820))":
- unknown block:(function prim/1820 (caml_ml_open_descriptor_out prim/1820)),
- "unknown block:(function prim/1821 (caml_channel_descriptor prim/1821))":
- unknown block:(function prim/1821 (caml_channel_descriptor prim/1821)),
- "unknown block:(function prim/1822 (caml_channel_descriptor prim/1822))":
- unknown block:(function prim/1822 (caml_channel_descriptor prim/1822)),
- "unknown block:(function prim/1825 prim/1824 prim/1823\n  (unix_lseek prim/1825 prim/1824 prim/1823))":
- unknown block:(function prim/1825 prim/1824 prim/1823
-  (unix_lseek prim/1825 prim/1824 prim/1823)),
- "unknown block:(function prim/1827 prim/1826 (unix_truncate prim/1827 prim/1826))":
- unknown block:(function prim/1827 prim/1826 (unix_truncate prim/1827 prim/1826)),
- "unknown block:(function prim/1829 prim/1828 (unix_ftruncate prim/1829 prim/1828))":
- unknown block:(function prim/1829 prim/1828 (unix_ftruncate prim/1829 prim/1828)),
- "unknown block:(function prim/1830 (unix_stat prim/1830))":
- unknown block:(function prim/1830 (unix_stat prim/1830)),
- "unknown block:(function prim/1831 (unix_lstat prim/1831))":
- unknown block:(function prim/1831 (unix_lstat prim/1831)),
- "unknown block:(function prim/1832 (unix_fstat prim/1832))":
- unknown block:(function prim/1832 (unix_fstat prim/1832)),
- "unknown block:(function prim/1833 (unix_isatty prim/1833))":
- unknown block:(function prim/1833 (unix_isatty prim/1833)),
- "unknown block:(makeblock 0\n  (function prim/1836 prim/1835 prim/1834\n    (unix_lseek_64 prim/1836 prim/1835 prim/1834))\n  (function prim/1838 prim/1837 (unix_truncate_64 prim/1838 prim/1837))\n  (function prim/1840 prim/1839 (unix_ftruncate_64 prim/1840 prim/1839))\n  (function prim/1841 (unix_stat_64 prim/1841))\n  (function prim/1842 (unix_lstat_64 prim/1842))\n  (function prim/1843 (unix_fstat_64 prim/1843)))":
- unknown block:(makeblock 0
-  (function prim/1836 prim/1835 prim/1834
-    (unix_lseek_64 prim/1836 prim/1835 prim/1834))
-  (function prim/1838 prim/1837 (unix_truncate_64 prim/1838 prim/1837))
-  (function prim/1840 prim/1839 (unix_ftruncate_64 prim/1840 prim/1839))
-  (function prim/1841 (unix_stat_64 prim/1841))
-  (function prim/1842 (unix_lstat_64 prim/1842))
-  (function prim/1843 (unix_fstat_64 prim/1843))),
- "unknown block:(function prim/1844 (unix_unlink prim/1844))":
- unknown block:(function prim/1844 (unix_unlink prim/1844)),
- "unknown block:(function prim/1846 prim/1845 (unix_rename prim/1846 prim/1845))":
- unknown block:(function prim/1846 prim/1845 (unix_rename prim/1846 prim/1845)),
- "unknown block:(function prim/1848 prim/1847 (unix_link prim/1848 prim/1847))":
- unknown block:(function prim/1848 prim/1847 (unix_link prim/1848 prim/1847)),
- "unknown block:(function prim/1850 prim/1849 (unix_chmod prim/1850 prim/1849))":
- unknown block:(function prim/1850 prim/1849 (unix_chmod prim/1850 prim/1849)),
- "unknown block:(function prim/1852 prim/1851 (unix_fchmod prim/1852 prim/1851))":
- unknown block:(function prim/1852 prim/1851 (unix_fchmod prim/1852 prim/1851)),
- "unknown block:(function prim/1855 prim/1854 prim/1853\n  (unix_chown prim/1855 prim/1854 prim/1853))":
- unknown block:(function prim/1855 prim/1854 prim/1853
-  (unix_chown prim/1855 prim/1854 prim/1853)),
- "unknown block:(function prim/1858 prim/1857 prim/1856\n  (unix_fchown prim/1858 prim/1857 prim/1856))":
- unknown block:(function prim/1858 prim/1857 prim/1856
-  (unix_fchown prim/1858 prim/1857 prim/1856)),
- "unknown block:(function prim/1859 (unix_umask prim/1859))":
- unknown block:(function prim/1859 (unix_umask prim/1859)),
- "unknown block:(function prim/1861 prim/1860 (unix_access prim/1861 prim/1860))":
- unknown block:(function prim/1861 prim/1860 (unix_access prim/1861 prim/1860)),
- "unknown block:(function prim/1862 (unix_dup prim/1862))":
- unknown block:(function prim/1862 (unix_dup prim/1862)),
- "unknown block:(function prim/1864 prim/1863 (unix_dup2 prim/1864 prim/1863))":
- unknown block:(function prim/1864 prim/1863 (unix_dup2 prim/1864 prim/1863)),
- "unknown block:(function prim/1865 (unix_set_nonblock prim/1865))":
- unknown block:(function prim/1865 (unix_set_nonblock prim/1865)),
- "unknown block:(function prim/1866 (unix_clear_nonblock prim/1866))":
- unknown block:(function prim/1866 (unix_clear_nonblock prim/1866)),
- "unknown block:(function prim/1867 (unix_set_close_on_exec prim/1867))":
- unknown block:(function prim/1867 (unix_set_close_on_exec prim/1867)),
- "unknown block:(function prim/1868 (unix_clear_close_on_exec prim/1868))":
- unknown block:(function prim/1868 (unix_clear_close_on_exec prim/1868)),
- "unknown block:(function prim/1870 prim/1869 (unix_mkdir prim/1870 prim/1869))":
- unknown block:(function prim/1870 prim/1869 (unix_mkdir prim/1870 prim/1869)),
- "unknown block:(function prim/1871 (unix_rmdir prim/1871))":
- unknown block:(function prim/1871 (unix_rmdir prim/1871)),
- "unknown block:(function prim/1872 (unix_chdir prim/1872))":
- unknown block:(function prim/1872 (unix_chdir prim/1872)),
- "unknown block:(function prim/1873 (unix_getcwd prim/1873))":
- unknown block:(function prim/1873 (unix_getcwd prim/1873)),
- "unknown block:(function prim/1874 (unix_chroot prim/1874))":
- unknown block:(function prim/1874 (unix_chroot prim/1874)),
- "unknown block:(function prim/1875 (unix_opendir prim/1875))":
- unknown block:(function prim/1875 (unix_opendir prim/1875)),
- "unknown block:(function prim/1876 (unix_readdir prim/1876))":
- unknown block:(function prim/1876 (unix_readdir prim/1876)),
- "unknown block:(function prim/1877 (unix_rewinddir prim/1877))":
- unknown block:(function prim/1877 (unix_rewinddir prim/1877)),
- "unknown block:(function prim/1878 (unix_closedir prim/1878))":
- unknown block:(function prim/1878 (unix_closedir prim/1878)),
- "unknown block:(function prim/1879 (unix_pipe prim/1879))":
- unknown block:(function prim/1879 (unix_pipe prim/1879)),
- "unknown block:(function prim/1881 prim/1880 (unix_mkfifo prim/1881 prim/1880))":
- unknown block:(function prim/1881 prim/1880 (unix_mkfifo prim/1881 prim/1880)),
+ "unix_mkdir":function(prim,prim$1){return "unknown primitive:unix_mkdir";},
+ "unix_rmdir":function(prim){return "unknown primitive:unix_rmdir";},
+ "unix_chdir":function(prim){return "unknown primitive:unix_chdir";},
+ "unix_getcwd":function(prim){return "unknown primitive:unix_getcwd";},
+ "unix_chroot":function(prim){return "unknown primitive:unix_chroot";},
+ "unix_opendir":function(prim){return "unknown primitive:unix_opendir";},
+ "unix_readdir":function(prim){return "unknown primitive:unix_readdir";},
+ "unix_rewinddir":function(prim){return "unknown primitive:unix_rewinddir";},
+ "unix_closedir":function(prim){return "unknown primitive:unix_closedir";},
+ "unix_pipe":function(prim){return "unknown primitive:unix_pipe";},
+ "unix_mkfifo":function(prim,prim$1){return "unknown primitive:unix_mkfifo";},
  "create_process":create_process,
  "create_process_env":create_process_env,
  "open_process_in":open_process_in,
@@ -1287,105 +1089,72 @@ module["exports"]=
  "close_process_out":close_process_out,
  "close_process":close_process,
  "close_process_full":close_process_full,
- "unknown block:(function prim/1883 prim/1882 (unix_symlink prim/1883 prim/1882))":
- unknown block:(function prim/1883 prim/1882 (unix_symlink prim/1883 prim/1882)),
- "unknown block:(function prim/1884 (unix_readlink prim/1884))":
- unknown block:(function prim/1884 (unix_readlink prim/1884)),
- "unknown block:(function prim/1888 prim/1887 prim/1886 prim/1885\n  (unix_select prim/1888 prim/1887 prim/1886 prim/1885))":
- unknown block:(function prim/1888 prim/1887 prim/1886 prim/1885
-  (unix_select prim/1888 prim/1887 prim/1886 prim/1885)),
- "unknown block:(function prim/1891 prim/1890 prim/1889\n  (unix_lockf prim/1891 prim/1890 prim/1889))":
- unknown block:(function prim/1891 prim/1890 prim/1889
-  (unix_lockf prim/1891 prim/1890 prim/1889)),
- "unknown block:(function prim/1893 prim/1892 (unix_kill prim/1893 prim/1892))":
- unknown block:(function prim/1893 prim/1892 (unix_kill prim/1893 prim/1892)),
- "unknown block:(function prim/1895 prim/1894 (unix_sigprocmask prim/1895 prim/1894))":
- unknown block:(function prim/1895 prim/1894 (unix_sigprocmask prim/1895 prim/1894)),
- "unknown block:(function prim/1896 (unix_sigpending prim/1896))":
- unknown block:(function prim/1896 (unix_sigpending prim/1896)),
- "unknown block:(function prim/1897 (unix_sigsuspend prim/1897))":
- unknown block:(function prim/1897 (unix_sigsuspend prim/1897)),
+ "unix_symlink":
+ function(prim,prim$1){return "unknown primitive:unix_symlink";},
+ "unix_readlink":function(prim){return "unknown primitive:unix_readlink";},
+ "unix_select":
+ function(prim,prim$1,prim$2,prim$3){return "unknown primitive:unix_select";},
+ "unix_lockf":
+ function(prim,prim$1,prim$2){return "unknown primitive:unix_lockf";},
+ "unix_kill":function(prim,prim$1){return "unknown primitive:unix_kill";},
+ "unix_sigprocmask":
+ function(prim,prim$1){return "unknown primitive:unix_sigprocmask";},
+ "unix_sigpending":function(prim){return "unknown primitive:unix_sigpending";},
+ "unix_sigsuspend":function(prim){return "unknown primitive:unix_sigsuspend";},
  "pause":pause,
- "unknown block:(function prim/1898 (unix_time prim/1898))":
- unknown block:(function prim/1898 (unix_time prim/1898)),
- "unknown block:(function prim/1899 (unix_gettimeofday prim/1899))":
- unknown block:(function prim/1899 (unix_gettimeofday prim/1899)),
- "unknown block:(function prim/1900 (unix_gmtime prim/1900))":
- unknown block:(function prim/1900 (unix_gmtime prim/1900)),
- "unknown block:(function prim/1901 (unix_localtime prim/1901))":
- unknown block:(function prim/1901 (unix_localtime prim/1901)),
- "unknown block:(function prim/1902 (unix_mktime prim/1902))":
- unknown block:(function prim/1902 (unix_mktime prim/1902)),
- "unknown block:(function prim/1903 (unix_alarm prim/1903))":
- unknown block:(function prim/1903 (unix_alarm prim/1903)),
- "unknown block:(function prim/1904 (unix_sleep prim/1904))":
- unknown block:(function prim/1904 (unix_sleep prim/1904)),
- "unknown block:(function prim/1905 (unix_times prim/1905))":
- unknown block:(function prim/1905 (unix_times prim/1905)),
- "unknown block:(function prim/1908 prim/1907 prim/1906\n  (unix_utimes prim/1908 prim/1907 prim/1906))":
- unknown block:(function prim/1908 prim/1907 prim/1906
-  (unix_utimes prim/1908 prim/1907 prim/1906)),
- "unknown block:(function prim/1909 (unix_getitimer prim/1909))":
- unknown block:(function prim/1909 (unix_getitimer prim/1909)),
- "unknown block:(function prim/1911 prim/1910 (unix_setitimer prim/1911 prim/1910))":
- unknown block:(function prim/1911 prim/1910 (unix_setitimer prim/1911 prim/1910)),
- "unknown block:(function prim/1912 (unix_getuid prim/1912))":
- unknown block:(function prim/1912 (unix_getuid prim/1912)),
- "unknown block:(function prim/1913 (unix_geteuid prim/1913))":
- unknown block:(function prim/1913 (unix_geteuid prim/1913)),
- "unknown block:(function prim/1914 (unix_setuid prim/1914))":
- unknown block:(function prim/1914 (unix_setuid prim/1914)),
- "unknown block:(function prim/1915 (unix_getgid prim/1915))":
- unknown block:(function prim/1915 (unix_getgid prim/1915)),
- "unknown block:(function prim/1916 (unix_getegid prim/1916))":
- unknown block:(function prim/1916 (unix_getegid prim/1916)),
- "unknown block:(function prim/1917 (unix_setgid prim/1917))":
- unknown block:(function prim/1917 (unix_setgid prim/1917)),
- "unknown block:(function prim/1918 (unix_getgroups prim/1918))":
- unknown block:(function prim/1918 (unix_getgroups prim/1918)),
- "unknown block:(function prim/1919 (unix_setgroups prim/1919))":
- unknown block:(function prim/1919 (unix_setgroups prim/1919)),
- "unknown block:(function prim/1921 prim/1920 (unix_initgroups prim/1921 prim/1920))":
- unknown block:(function prim/1921 prim/1920 (unix_initgroups prim/1921 prim/1920)),
- "unknown block:(function prim/1922 (unix_getlogin prim/1922))":
- unknown block:(function prim/1922 (unix_getlogin prim/1922)),
- "unknown block:(function prim/1923 (unix_getpwnam prim/1923))":
- unknown block:(function prim/1923 (unix_getpwnam prim/1923)),
- "unknown block:(function prim/1924 (unix_getgrnam prim/1924))":
- unknown block:(function prim/1924 (unix_getgrnam prim/1924)),
- "unknown block:(function prim/1925 (unix_getpwuid prim/1925))":
- unknown block:(function prim/1925 (unix_getpwuid prim/1925)),
- "unknown block:(function prim/1926 (unix_getgrgid prim/1926))":
- unknown block:(function prim/1926 (unix_getgrgid prim/1926)),
- "unknown block:(function prim/1927 (unix_inet_addr_of_string prim/1927))":
- unknown block:(function prim/1927 (unix_inet_addr_of_string prim/1927)),
- "unknown block:(function prim/1928 (unix_string_of_inet_addr prim/1928))":
- unknown block:(function prim/1928 (unix_string_of_inet_addr prim/1928)),
+ "unix_time":function(prim){return "unknown primitive:unix_time";},
+ "unix_gettimeofday":
+ function(prim){return "unknown primitive:unix_gettimeofday";},
+ "unix_gmtime":function(prim){return "unknown primitive:unix_gmtime";},
+ "unix_localtime":function(prim){return "unknown primitive:unix_localtime";},
+ "unix_mktime":function(prim){return "unknown primitive:unix_mktime";},
+ "unix_alarm":function(prim){return "unknown primitive:unix_alarm";},
+ "unix_sleep":function(prim){return "unknown primitive:unix_sleep";},
+ "unix_times":function(prim){return "unknown primitive:unix_times";},
+ "unix_utimes":
+ function(prim,prim$1,prim$2){return "unknown primitive:unix_utimes";},
+ "unix_getitimer":function(prim){return "unknown primitive:unix_getitimer";},
+ "unix_setitimer":
+ function(prim,prim$1){return "unknown primitive:unix_setitimer";},
+ "unix_getuid":function(prim){return "unknown primitive:unix_getuid";},
+ "unix_geteuid":function(prim){return "unknown primitive:unix_geteuid";},
+ "unix_setuid":function(prim){return "unknown primitive:unix_setuid";},
+ "unix_getgid":function(prim){return "unknown primitive:unix_getgid";},
+ "unix_getegid":function(prim){return "unknown primitive:unix_getegid";},
+ "unix_setgid":function(prim){return "unknown primitive:unix_setgid";},
+ "unix_getgroups":function(prim){return "unknown primitive:unix_getgroups";},
+ "unix_setgroups":function(prim){return "unknown primitive:unix_setgroups";},
+ "unix_initgroups":
+ function(prim,prim$1){return "unknown primitive:unix_initgroups";},
+ "unix_getlogin":function(prim){return "unknown primitive:unix_getlogin";},
+ "unix_getpwnam":function(prim){return "unknown primitive:unix_getpwnam";},
+ "unix_getgrnam":function(prim){return "unknown primitive:unix_getgrnam";},
+ "unix_getpwuid":function(prim){return "unknown primitive:unix_getpwuid";},
+ "unix_getgrgid":function(prim){return "unknown primitive:unix_getgrgid";},
+ "unix_inet_addr_of_string":
+ function(prim){return "unknown primitive:unix_inet_addr_of_string";},
+ "unix_string_of_inet_addr":
+ function(prim){return "unknown primitive:unix_string_of_inet_addr";},
  "inet_addr_any":inet_addr_any,
  "inet_addr_loopback":inet_addr_loopback,
  "inet6_addr_any":inet6_addr_any,
  "inet6_addr_loopback":inet6_addr_loopback,
- "unknown block:(function prim/1931 prim/1930 prim/1929\n  (unix_socket prim/1931 prim/1930 prim/1929))":
- unknown block:(function prim/1931 prim/1930 prim/1929
-  (unix_socket prim/1931 prim/1930 prim/1929)),
+ "unix_socket":
+ function(prim,prim$1,prim$2){return "unknown primitive:unix_socket";},
  "domain_of_sockaddr":domain_of_sockaddr,
- "unknown block:(function prim/1934 prim/1933 prim/1932\n  (unix_socketpair prim/1934 prim/1933 prim/1932))":
- unknown block:(function prim/1934 prim/1933 prim/1932
-  (unix_socketpair prim/1934 prim/1933 prim/1932)),
- "unknown block:(function prim/1935 (unix_accept prim/1935))":
- unknown block:(function prim/1935 (unix_accept prim/1935)),
- "unknown block:(function prim/1937 prim/1936 (unix_bind prim/1937 prim/1936))":
- unknown block:(function prim/1937 prim/1936 (unix_bind prim/1937 prim/1936)),
- "unknown block:(function prim/1939 prim/1938 (unix_connect prim/1939 prim/1938))":
- unknown block:(function prim/1939 prim/1938 (unix_connect prim/1939 prim/1938)),
- "unknown block:(function prim/1941 prim/1940 (unix_listen prim/1941 prim/1940))":
- unknown block:(function prim/1941 prim/1940 (unix_listen prim/1941 prim/1940)),
- "unknown block:(function prim/1943 prim/1942 (unix_shutdown prim/1943 prim/1942))":
- unknown block:(function prim/1943 prim/1942 (unix_shutdown prim/1943 prim/1942)),
- "unknown block:(function prim/1944 (unix_getsockname prim/1944))":
- unknown block:(function prim/1944 (unix_getsockname prim/1944)),
- "unknown block:(function prim/1945 (unix_getpeername prim/1945))":
- unknown block:(function prim/1945 (unix_getpeername prim/1945)),
+ "unix_socketpair":
+ function(prim,prim$1,prim$2){return "unknown primitive:unix_socketpair";},
+ "unix_accept":function(prim){return "unknown primitive:unix_accept";},
+ "unix_bind":function(prim,prim$1){return "unknown primitive:unix_bind";},
+ "unix_connect":
+ function(prim,prim$1){return "unknown primitive:unix_connect";},
+ "unix_listen":function(prim,prim$1){return "unknown primitive:unix_listen";},
+ "unix_shutdown":
+ function(prim,prim$1){return "unknown primitive:unix_shutdown";},
+ "unix_getsockname":
+ function(prim){return "unknown primitive:unix_getsockname";},
+ "unix_getpeername":
+ function(prim){return "unknown primitive:unix_getpeername";},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,
@@ -1404,35 +1173,30 @@ module["exports"]=
  "open_connection":open_connection,
  "shutdown_connection":shutdown_connection,
  "establish_server":establish_server,
- "unknown block:(function prim/1946 (unix_gethostname prim/1946))":
- unknown block:(function prim/1946 (unix_gethostname prim/1946)),
- "unknown block:(function prim/1947 (unix_gethostbyname prim/1947))":
- unknown block:(function prim/1947 (unix_gethostbyname prim/1947)),
- "unknown block:(function prim/1948 (unix_gethostbyaddr prim/1948))":
- unknown block:(function prim/1948 (unix_gethostbyaddr prim/1948)),
- "unknown block:(function prim/1949 (unix_getprotobyname prim/1949))":
- unknown block:(function prim/1949 (unix_getprotobyname prim/1949)),
- "unknown block:(function prim/1950 (unix_getprotobynumber prim/1950))":
- unknown block:(function prim/1950 (unix_getprotobynumber prim/1950)),
- "unknown block:(function prim/1952 prim/1951 (unix_getservbyname prim/1952 prim/1951))":
- unknown block:(function prim/1952 prim/1951 (unix_getservbyname prim/1952 prim/1951)),
- "unknown block:(function prim/1954 prim/1953 (unix_getservbyport prim/1954 prim/1953))":
- unknown block:(function prim/1954 prim/1953 (unix_getservbyport prim/1954 prim/1953)),
+ "unix_gethostname":
+ function(prim){return "unknown primitive:unix_gethostname";},
+ "unix_gethostbyname":
+ function(prim){return "unknown primitive:unix_gethostbyname";},
+ "unix_gethostbyaddr":
+ function(prim){return "unknown primitive:unix_gethostbyaddr";},
+ "unix_getprotobyname":
+ function(prim){return "unknown primitive:unix_getprotobyname";},
+ "unix_getprotobynumber":
+ function(prim){return "unknown primitive:unix_getprotobynumber";},
+ "unix_getservbyname":
+ function(prim,prim$1){return "unknown primitive:unix_getservbyname";},
+ "unix_getservbyport":
+ function(prim,prim$1){return "unknown primitive:unix_getservbyport";},
  "getaddrinfo":getaddrinfo,
  "getnameinfo":getnameinfo,
- "unknown block:(function prim/1955 (unix_tcgetattr prim/1955))":
- unknown block:(function prim/1955 (unix_tcgetattr prim/1955)),
- "unknown block:(function prim/1958 prim/1957 prim/1956\n  (unix_tcsetattr prim/1958 prim/1957 prim/1956))":
- unknown block:(function prim/1958 prim/1957 prim/1956
-  (unix_tcsetattr prim/1958 prim/1957 prim/1956)),
- "unknown block:(function prim/1960 prim/1959 (unix_tcsendbreak prim/1960 prim/1959))":
- unknown block:(function prim/1960 prim/1959 (unix_tcsendbreak prim/1960 prim/1959)),
- "unknown block:(function prim/1961 (unix_tcdrain prim/1961))":
- unknown block:(function prim/1961 (unix_tcdrain prim/1961)),
- "unknown block:(function prim/1963 prim/1962 (unix_tcflush prim/1963 prim/1962))":
- unknown block:(function prim/1963 prim/1962 (unix_tcflush prim/1963 prim/1962)),
- "unknown block:(function prim/1965 prim/1964 (unix_tcflow prim/1965 prim/1964))":
- unknown block:(function prim/1965 prim/1964 (unix_tcflow prim/1965 prim/1964)),
- "unknown block:(function prim/1966 (unix_setsid prim/1966))":
- unknown block:(function prim/1966 (unix_setsid prim/1966))};
+ "unix_tcgetattr":function(prim){return "unknown primitive:unix_tcgetattr";},
+ "unix_tcsetattr":
+ function(prim,prim$1,prim$2){return "unknown primitive:unix_tcsetattr";},
+ "unix_tcsendbreak":
+ function(prim,prim$1){return "unknown primitive:unix_tcsendbreak";},
+ "unix_tcdrain":function(prim){return "unknown primitive:unix_tcdrain";},
+ "unix_tcflush":
+ function(prim,prim$1){return "unknown primitive:unix_tcflush";},
+ "unix_tcflow":function(prim,prim$1){return "unknown primitive:unix_tcflow";},
+ "unix_setsid":function(prim){return "unknown primitive:unix_setsid";}};
 

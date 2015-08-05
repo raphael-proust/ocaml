@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
+
 
 var
  $$eval=
@@ -17,12 +20,14 @@ var
 var
  iter=
   function(f,param)
-   {if(typeof param=="number")
-     {switch(param){case 0:var exit=3;case 1:var exit=3;}}
+   {var exit;
+    
+    if(typeof param=="number")
+     {switch(param){case 0:exit=3;case 1:exit=3;}}
     else
      {switch(param[0])
-       {case 0:var exit=4;
-        case 1:var exit=4;
+       {case 0:exit=4;
+        case 1:exit=4;
         case 2:return iter(f,param[1]);
         case 3:return f(param[1]);
         }}
@@ -34,8 +39,10 @@ var
 var
  map=
   function(f,b)
-   {if(typeof b=="number")
-     {switch(b){case 0:var exit=1;case 1:var exit=1;}}
+   {var exit;
+    
+    if(typeof b=="number")
+     {switch(b){case 0:exit=1;case 1:exit=1;}}
     else
      {switch(b[0])
        {case 0:return [0,List["map"](map(f),b[1])];
@@ -46,7 +53,6 @@ var
     
     switch(exit){case 1:return b;}
     };
-
 
 module["exports"]={"eval":$$eval,"iter":iter,"map":map};
 

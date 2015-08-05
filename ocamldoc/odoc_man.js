@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
@@ -13,6 +15,7 @@ var Odoc_print=require("Odoc_print");
 var Str=require("Str");
 var Odoc_misc=require("Odoc_misc");
 var Odoc_messages=require("Odoc_messages");
+
 
 var shared=[0,"tag_functions"];
 
@@ -551,23 +554,25 @@ var
          for(var i=0;i<=len-1;i++)
           {var c=s[i];
            
+           var exit;
+           
            if(c>=47)
-            {if(c!=92){var exit=98;}else{Buffer["add_string"](b,"\(rs")}}
+            {if(c!=92){exit=98;}else{Buffer["add_string"](b,"\(rs")}}
            else
             {if(c>=39)
               {switch((-39+c)[0])
                 {case 0:Buffer["add_string"](b,"\&'");
-                 case 1:var exit=98;
-                 case 2:var exit=98;
-                 case 3:var exit=98;
-                 case 4:var exit=98;
-                 case 5:var exit=98;
+                 case 1:exit=98;
+                 case 2:exit=98;
+                 case 3:exit=98;
+                 case 4:exit=98;
+                 case 5:exit=98;
                  case 6:Buffer["add_string"](b,"\-");
                  case 7:Buffer["add_string"](b,"\&.")
                  }
                }
              else
-              {var exit=98;}
+              {exit=98;}
              }
            
            switch(exit){case 98:Buffer["add_char"](b,c)}
@@ -603,11 +608,13 @@ var
         {return Str["global_replace"](Str["regexp"]("[ ]*\n[ ]*")," ",s);},
        man_of_text_element,
        function(self$neg2,b,txt)
-        {if(typeof txt=="number")
-          {switch(txt){case 0:return bs(b,"\n.sp\n");case 1:var exit=91;}}
+        {var exit;
+         
+         if(typeof txt=="number")
+          {switch(txt){case 0:return bs(b,"\n.sp\n");case 1:exit=91;}}
          else
           {switch(txt[0])
-            {case 0:var exit=92;
+            {case 0:exit=92;
              case 1:
               bs(b,"\n.B ");
               "unknown block:(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
@@ -624,7 +631,7 @@ var
                        Pervasives["^"]
                         (Str["global_replace"](Str["regexp"]("\n"),"\n.B ",0),"\n"));
               
-             case 3:var exit=92;
+             case 3:exit=92;
              case 10:
               List["iter"]
                (function(t)
@@ -656,7 +663,7 @@ var
              case 13:
               "unknown block:(sendself self-2/1431 man_of_text2/1361 b/1432\n  (makeblock 0\n    (makeblock 1 (apply (field 20 (global Odoc_info!)) (field 2 txt/1433)))\n    0a))";
               
-             case 14:var exit=91;
+             case 14:exit=91;
              case 15:
               "unknown block:(sendself self-2/1431 man_of_text2/1361 b/1432 (field 1 txt/1433))";
               
@@ -671,7 +678,7 @@ var
               bs(b,"_{");
               "unknown block:(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
-             case 19:var exit=91;
+             case 19:exit=91;
              case 20:
               "unknown block:(sendself self-2/1431 man_of_custom_text/1365 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
               
@@ -1417,6 +1424,8 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=cl[2];
            
+           var exit;
+           
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1429,10 +1438,10 @@ var
                "unknown block:(sendself self-2/1664 remove_newlines/1363 s/1673)";
                }
              else
-              {var exit=51;}
+              {exit=51;}
              }
            else
-            {var exit=51;}
+            {exit=51;}
            
            switch(exit){case 51:var $$abstract="no description";}
            
@@ -1512,6 +1521,8 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=ct[2];
            
+           var exit;
+           
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1524,10 +1535,10 @@ var
                "unknown block:(sendself self-2/1680 remove_newlines/1363 s/1689)";
                }
              else
-              {var exit=43;}
+              {exit=43;}
              }
            else
-            {var exit=43;}
+            {exit=43;}
            
            switch(exit){case 43:var $$abstract="no description";}
            
@@ -1649,6 +1660,8 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=mt[2];
            
+           var exit;
+           
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1661,10 +1674,10 @@ var
                "unknown block:(sendself self-2/1711 remove_newlines/1363 s/1720)";
                }
              else
-              {var exit=35;}
+              {exit=35;}
              }
            else
-            {var exit=35;}
+            {exit=35;}
            
            switch(exit){case 35:var $$abstract="no description";}
            
@@ -1785,6 +1798,8 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=m[3];
            
+           var exit;
+           
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1797,10 +1812,10 @@ var
                "unknown block:(sendself self-2/1739 remove_newlines/1363 s/1748)";
                }
              else
-              {var exit=27;}
+              {exit=27;}
              }
            else
-            {var exit=27;}
+            {exit=27;}
            
            switch(exit){case 27:var $$abstract="no description";}
            
@@ -1845,16 +1860,18 @@ var
         {var
           name=
            function(res_ele)
-            {switch(res_ele)
-              {case 4:var exit=21;
-               case 5:var exit=21;
-               case 6:var exit=21;
-               case 7:var exit=21;
-               case 8:var exit=22;
-               case 9:var exit=22;
+            {var exit;
+             
+             switch(res_ele)
+              {case 4:exit=21;
+               case 5:exit=21;
+               case 6:exit=21;
+               case 7:exit=21;
+               case 8:exit=22;
+               case 9:exit=22;
                case 10:throw [0,Assert_failure,[0,"odoc_man.ml",1147,27]];
-               case 11:var exit=23;
-               case 12:var exit=23;
+               case 11:exit=23;
+               case 12:exit=23;
                default:return res_ele[1][1];}
              
              switch(exit)
@@ -1872,11 +1889,13 @@ var
           all_items=
            List["filter"]
             (function(r)
-              {switch(r)
-                {case 0:var exit=16;
-                 case 1:var exit=16;
-                 case 2:var exit=16;
-                 case 3:var exit=16;
+              {var exit;
+               
+               switch(r)
+                {case 0:exit=16;
+                 case 1:exit=16;
+                 case 2:exit=16;
+                 case 3:exit=16;
                  case 10:return 0;
                  default:return !mini;}
                
@@ -1921,16 +1940,19 @@ var
        function(self$neg2,l)
         {var match=List["hd"](l);
          
-         switch(match)
-          {case 8:var exit=12;
-           case 9:var exit=12;
-           case 10:var $js=match[1];
-           case 11:var exit=13;
-           case 12:var exit=13;
-           default:var $js=match[1][1];}
+         var exit;
          
-         switch(exit)
-          {case 12:var $js$1=match[1][1][1];case 13:var $js$1=match[2][1];}
+         var $js;
+         switch(match)
+          {case 8:exit=12;
+           case 9:exit=12;
+           case 10:$js=match[1];
+           case 11:exit=13;
+           case 12:exit=13;
+           default:$js=match[1][1];}
+         
+         var $js$1;
+         switch(exit){case 12:$js$1=match[1][1][1];case 13:$js$1=match[2][1];}
          var name=Odoc_info["Name"][1]($js$1);
          
          var date=Unix["time"](0);
@@ -2179,39 +2201,41 @@ var
          var
           f=
            function(group)
-            {if(group)
+            {var exit;
+             
+             if(group)
               {var match=group[1];
                
                switch(match)
                 {case 0:
                   if(group[2])
-                   {var exit=1;}
+                   {exit=1;}
                   else
                    {"unknown block:(sendself self-2/1837 generate_for_module/1397 (field 0 match/1889))";
                     }
                   
                  case 1:
                   if(group[2])
-                   {var exit=1;}
+                   {exit=1;}
                   else
                    {"unknown block:(sendself self-2/1837 generate_for_module_type/1395 (field 0 match/1889))";
                     }
                   
                  case 2:
                   if(group[2])
-                   {var exit=1;}
+                   {exit=1;}
                   else
                    {"unknown block:(sendself self-2/1837 generate_for_class/1392 (field 0 match/1889))";
                     }
                   
                  case 3:
                   if(group[2])
-                   {var exit=1;}
+                   {exit=1;}
                   else
                    {"unknown block:(sendself self-2/1837 generate_for_class_type/1393 (field 0 match/1889))";
                     }
                   
-                 default:var exit=1;}
+                 default:exit=1;}
                }
              else
               {return 0;}
@@ -2293,7 +2317,6 @@ var
     man_init);
 
 var Generator=[0,man];
-
 
 module["exports"]=
 {"man_suffix":man_suffix,

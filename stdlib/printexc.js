@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Obj=require("Obj");
 var Buffer=require("Buffer");
 var $$Array=require("Array");
+
 
 var printers=[0,0];
 
@@ -205,6 +208,7 @@ var
       return Pervasives["exit"](2);
       }
     };
+
 
 var
  convert_raw_backtrace=
@@ -529,52 +533,30 @@ var
 
 var match="unknown primitive:caml_register_named_value";
 
-[0,
- to_string,
- print,
- $$catch,
- print_backtrace,
- get_backtrace,
- function(prim){return "unknown primitive:caml_record_backtrace";},
- function(prim){return "unknown primitive:caml_backtrace_status";},
- register_printer,
- function(prim){return "unknown primitive:caml_get_exception_raw_backtrace";},
- print_raw_backtrace,
- raw_backtrace_to_string,
- function(prim){return "unknown primitive:caml_get_current_callstack";},
- set_uncaught_exception_handler,
- backtrace_slots,
- [0,Slot[2],Slot[3],Slot[1]],
- raw_backtrace_length,
- get_raw_backtrace_slot,
- function(prim){return "unknown primitive:caml_convert_raw_backtrace_slot";},
- exn_slot_id,
- exn_slot_name];
 module["exports"]=
 {"to_string":to_string,
  "print":print,
  "catch":$$catch,
  "print_backtrace":print_backtrace,
  "get_backtrace":get_backtrace,
- "unknown block:(function prim/1144 (caml_record_backtrace prim/1144))":
- unknown block:(function prim/1144 (caml_record_backtrace prim/1144)),
- "unknown block:(function prim/1145 (caml_backtrace_status prim/1145))":
- unknown block:(function prim/1145 (caml_backtrace_status prim/1145)),
+ "caml_record_backtrace":
+ function(prim){return "unknown primitive:caml_record_backtrace";},
+ "caml_backtrace_status":
+ function(prim){return "unknown primitive:caml_backtrace_status";},
  "register_printer":register_printer,
- "unknown block:(function prim/1146 (caml_get_exception_raw_backtrace prim/1146))":
- unknown block:(function prim/1146 (caml_get_exception_raw_backtrace prim/1146)),
+ "caml_get_exception_raw_backtrace":
+ function(prim){return "unknown primitive:caml_get_exception_raw_backtrace";},
  "print_raw_backtrace":print_raw_backtrace,
  "raw_backtrace_to_string":raw_backtrace_to_string,
- "unknown block:(function prim/1147 (caml_get_current_callstack prim/1147))":
- unknown block:(function prim/1147 (caml_get_current_callstack prim/1147)),
+ "caml_get_current_callstack":
+ function(prim){return "unknown primitive:caml_get_current_callstack";},
  "set_uncaught_exception_handler":set_uncaught_exception_handler,
  "backtrace_slots":backtrace_slots,
- "unknown block:(makeblock 0 (field 1 Slot/1107) (field 2 Slot/1107) (field 0 Slot/1107))":
- unknown block:(makeblock 0 (field 1 Slot/1107) (field 2 Slot/1107) (field 0 Slot/1107)),
+ "Slot":[0,Slot[2],Slot[3],Slot[1]],
  "raw_backtrace_length":raw_backtrace_length,
  "get_raw_backtrace_slot":get_raw_backtrace_slot,
- "unknown block:(function prim/1148 (caml_convert_raw_backtrace_slot prim/1148))":
- unknown block:(function prim/1148 (caml_convert_raw_backtrace_slot prim/1148)),
+ "caml_convert_raw_backtrace_slot":
+ function(prim){return "unknown primitive:caml_convert_raw_backtrace_slot";},
  "exn_slot_id":exn_slot_id,
  "exn_slot_name":exn_slot_name};
 

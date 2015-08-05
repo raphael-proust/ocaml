@@ -1,15 +1,18 @@
-var $$String=require("String");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Ctype=require("Ctype");
+var $$String=require("String");
 var Char=require("Char");
-var Btype=require("Btype");
 var Pervasives=require("Pervasives");
 var List=require("List");
+var Btype=require("Btype");
 var Predef=require("Predef");
 var Printf=require("Printf");
 var Unix=require("Unix");
 var Path=require("Path");
 var Buffer=require("Buffer");
 var Odoc_messages=require("Odoc_messages");
+
 
 var
  no_blanks=
@@ -21,12 +24,14 @@ var
     for(var i=0;i<=len-1;i++)
      {var c=s[i];
       
+      var exit;
+      
       var switcher=-9+c;
       
       if(!(4<switcher>>>0))
-       {if(1<-2+switcher>>>0){var exit=101;}else{var exit=102;}}
+       {if(1<-2+switcher>>>0){exit=101;}else{exit=102;}}
       else
-       {if(switcher!=23){var exit=102;}else{var exit=101;}}
+       {if(switcher!=23){exit=102;}else{exit=101;}}
       
       switch(exit){case 102:Buffer["add_char"](buf,c);case 101:}
       }
@@ -143,10 +148,12 @@ var
                
                var label=param[1];
                
+               var exit;
+               
                if("unknown primitive:isint")
-                {if(field_kind!=0){return acc;}else{var exit=84;}}
+                {if(field_kind!=0){return acc;}else{exit=84;}}
                else
-                {var exit=84;}
+                {exit=84;}
                
                switch(exit)
                 {case 84:
@@ -167,14 +174,16 @@ var
    {var
      iter=
       function(t_ele)
-       {if(typeof t_ele=="number")
+       {var exit;
+        
+        if(typeof t_ele=="number")
          {switch(t_ele){case 0:return "\n";case 1:return "";}}
         else
          {switch(t_ele[0])
-           {case 0:var exit=82;
-            case 1:var exit=82;
-            case 2:var exit=82;
-            case 3:var exit=82;
+           {case 0:exit=82;
+            case 1:exit=82;
+            case 2:exit=82;
+            case 3:exit=82;
             case 10:
              return Pervasives["^"]
                      ($$String["concat"]
@@ -492,7 +501,9 @@ var
    {var
      iter=
       function(t_ele)
-       {if(typeof t_ele=="number")
+       {var exit;
+        
+        if(typeof t_ele=="number")
          {switch(t_ele){case 0:return [0,0,0];case 1:return 0;}}
         else
          {switch(t_ele[0])
@@ -502,8 +513,8 @@ var
             case 7:return [0,[7,text_no_title_no_list(t_ele[1])],0];
             case 8:return [0,[8,text_no_title_no_list(t_ele[1])],0];
             case 9:return [0,[9,text_no_title_no_list(t_ele[1])],0];
-            case 10:var exit=61;
-            case 11:var exit=61;
+            case 10:exit=61;
+            case 11:exit=61;
             case 12:return [0,[12,text_no_title_no_list(t_ele[1])],0];
             case 13:return text_no_title_no_list(t_ele[3]);
             case 14:return [0,[14,t_ele[1]],0];
@@ -541,25 +552,27 @@ var
     var
      iter_ele=
       function(ele)
-       {if(typeof ele=="number")
-         {switch(ele){case 0:var exit=53;case 1:var exit=53;}}
+       {var exit;
+        
+        if(typeof ele=="number")
+         {switch(ele){case 0:exit=53;case 1:exit=53;}}
         else
          {switch(ele[0])
-           {case 0:var exit=50;
-            case 1:var exit=50;
-            case 2:var exit=50;
-            case 3:var exit=50;
-            case 10:var exit=55;
-            case 11:var exit=55;
+           {case 0:exit=50;
+            case 1:exit=50;
+            case 2:exit=50;
+            case 3:exit=50;
+            case 10:exit=55;
+            case 11:exit=55;
             case 13:return l[1]=[0,[0,ele[1],ele[2],ele[3]],l[1]],0;
-            case 14:var exit=53;
-            case 15:var t$1=ele[2];var exit=52;
-            case 16:var exit=50;
-            case 17:var exit=56;
-            case 18:var exit=56;
-            case 19:var exit=53;
+            case 14:exit=53;
+            case 15:var t$1=ele[2];exit=52;
+            case 16:exit=50;
+            case 17:exit=56;
+            case 18:exit=56;
+            case 19:exit=53;
             case 20:return iter_text(ele[2]);
-            case 21:var exit=53;
+            case 21:exit=53;
             default:return iter_text(ele[1]);}}
         
         switch(exit)
@@ -613,12 +626,14 @@ var
       else
        {var match=s[n+1];
         
+        var exit;
+        
         var switcher=-9+match;
         
         if(!(4<switcher>>>0))
-         {if(1<-2+switcher>>>0){var exit=43;}else{var exit=44;}}
+         {if(1<-2+switcher>>>0){exit=43;}else{exit=44;}}
         else
-         {if(switcher!=23){var exit=44;}else{var exit=43;}}
+         {if(switcher!=23){exit=44;}else{exit=43;}}
         
         switch(exit)
          {case 44:
@@ -670,7 +685,9 @@ var
 var
  first_sentence_text_ele=
   function(text_ele)
-   {if(typeof text_ele=="number")
+   {var exit;
+    
+    if(typeof text_ele=="number")
      {switch(text_ele){case 0:return [0,1,[0,""],[0,0]];}}
     else
      {switch(text_ele[0])
@@ -679,9 +696,9 @@ var
          
          return [0,match[1],[0,match[2]],[0,[0,match[3]]]];
          
-        case 1:var exit=38;
-        case 2:var exit=38;
-        case 3:var exit=38;
+        case 1:exit=38;
+        case 2:exit=38;
+        case 3:exit=38;
         case 4:
          var match$1=first_sentence_text(text_ele[1]);
          
@@ -729,9 +746,9 @@ var
                  [13,n,l_opt,match$8[2]],
                  [0,[13,n,l_opt,match$8[3]]]];
          
-        case 20:var exit=40;
-        case 21:var exit=40;
-        default:var exit=39;}}
+        case 20:exit=40;
+        case 21:exit=40;
+        default:exit=39;}}
     
     switch(exit)
      {case 38:return [0,0,text_ele,0];
@@ -848,38 +865,41 @@ var
    {var
      iter=
       function(t)
-       {if(typeof t=="number")
+       {var exit;
+        
+        if(typeof t=="number")
          {switch(t){}}
         else
          {switch(t[0])
            {case 3:
              var match=t[2];
              
+             var exit$1;
+             
              if(match)
               {if(match[2])
-                {var exit=3;}
+                {exit$1=3;}
                else
                 {if(Path["same"](t[1],Predef["path_option"]))
                   {return match[1][1];}
                  else
-                  {var exit=3;}
+                  {exit$1=3;}
                  }
                }
              else
-              {var exit=3;}
+              {exit$1=3;}
              
-             switch(exit){case 3:var exit$1=1;}
+             switch(exit$1){case 3:exit=1;}
              
-            case 6:var exit$1=4;
-            case 7:var exit$1=4;
-            default:var exit$1=1;}}
+            case 6:exit=4;
+            case 7:exit=4;
+            default:exit=1;}}
         
-        switch(exit$1){case 4:return iter(t[1][1]);case 1:return t;}
+        switch(exit){case 4:return iter(t[1][1]);case 1:return t;}
         };
     
     return [0,iter(typ[1]),typ[2],typ[3]];
     };
-
 
 module["exports"]=
 {"no_blanks":no_blanks,

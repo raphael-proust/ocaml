@@ -1,31 +1,34 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Parse=require("Parse");
 var Odoc_global=require("Odoc_global");
 var Odoc_dep=require("Odoc_dep");
 var Warnings=require("Warnings");
-var Odoc_types=require("Odoc_types");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Odoc_cross=require("Odoc_cross");
-var Odoc_comments=require("Odoc_comments");
+var Odoc_types=require("Odoc_types");
 var Env=require("Env");
-var Odoc_sig=require("Odoc_sig");
+var Odoc_comments=require("Odoc_comments");
 var Clflags=require("Clflags");
+var Odoc_sig=require("Odoc_sig");
 var Format=require("Format");
 var Syntaxerr=require("Syntaxerr");
-var Typemod=require("Typemod");
 var Misc=require("Misc");
+var Typemod=require("Typemod");
 var Odoc_merge=require("Odoc_merge");
 var Filename=require("Filename");
-var Odoc_module=require("Odoc_module");
 var Odoc_misc=require("Odoc_misc");
-var Odoc_text=require("Odoc_text");
+var Odoc_module=require("Odoc_module");
 var Printexc=require("Printexc");
+var Odoc_text=require("Odoc_text");
 var Location=require("Location");
 var Pparse=require("Pparse");
-var Odoc_ast=require("Odoc_ast");
 var Config=require("Config");
+var Odoc_ast=require("Odoc_ast");
 var Odoc_messages=require("Odoc_messages");
+
 
 var
  init_path=
@@ -206,8 +209,10 @@ var
  process_file=
   function(ppf,sourcefile)
    {if(Odoc_global["verbose"][1])
-     {switch(sourcefile)
-       {case 0:var exit=50;case 1:var exit=50;case 2:var f=sourcefile[1];}
+     {var exit;
+      
+      switch(sourcefile)
+       {case 0:exit=50;case 1:exit=50;case 2:var f=sourcefile[1];}
       
       switch(exit){case 50:var f=sourcefile[1];}
       
@@ -250,11 +255,13 @@ var
           {return 0;}
          }
        catch(e)
-        {if(e[1]=Sys_error)
-          {var s=e[2];var exit$1=28;}
+        {var exit$1;
+         
+         if(e[1]=Sys_error)
+          {var s=e[2];exit$1=28;}
          else
           {if(e[1]=Failure)
-            {var s=e[2];var exit$1=28;}
+            {var s=e[2];exit$1=28;}
            else
             {process_error(e);Odoc_global["errors"][0]++;return 0;}
            }
@@ -293,11 +300,13 @@ var
          return [0,file_module$1];
          }
        catch(e$1)
-        {if(e$1[1]=Sys_error)
-          {var s$1=e$1[2];var exit$2=34;}
+        {var exit$2;
+         
+         if(e$1[1]=Sys_error)
+          {var s$1=e$1[2];exit$2=34;}
          else
           {if(e$1[1]=Failure)
-            {var s$1=e$1[2];var exit$2=34;}
+            {var s$1=e$1[2];exit$2=34;}
            else
             {process_error(e$1);Odoc_global["errors"][0]++;return 0;}
            }
@@ -356,11 +365,13 @@ var
          return [0,m];
          }
        catch(e$2)
-        {if(e$2[1]=Sys_error)
-          {var s$3=e$2[2];var exit$3=40;}
+        {var exit$3;
+         
+         if(e$2[1]=Sys_error)
+          {var s$3=e$2[2];exit$3=40;}
          else
           {if(e$2[1]=Failure)
-            {var s$3=e$2[2];var exit$3=40;}
+            {var s$3=e$2[2];exit$3=40;}
            else
             {process_error(e$2);Odoc_global["errors"][0]++;return 0;}
            }
@@ -385,9 +396,11 @@ var
       
       var ele=eles[1];
       
+      var exit;
+      
       switch(ele)
-       {case 0:var exit=25;
-        case 1:var exit=25;
+       {case 0:exit=25;
+        case 1:exit=25;
         case 2:
          var match=ele[1];
          
@@ -402,16 +415,16 @@ var
                 switch(match$1[1])
                  {case "/*":
                    if(match[2])
-                    {var exit=25;}
+                    {exit=25;}
                    else
                     {return remove_class_elements_between_stop(!keep,q);}
                    
-                  default:var exit=25;}
+                  default:exit=25;}
                 
-               default:var exit=25;}}
+               default:exit=25;}}
            }
          else
-          {var exit=25;}
+          {exit=25;}
          
         }
       
@@ -431,10 +444,12 @@ var
 var
  remove_class_elements_between_stop_in_class_kind=
   function(k)
-   {switch(k)
+   {var exit;
+    
+    switch(k)
      {case 0:return [0,k[1],remove_class_elements_between_stop(1,k[2])];
-      case 1:var exit=24;
-      case 2:var exit=24;
+      case 1:exit=24;
+      case 2:exit=24;
       case 3:
        return [3,
                remove_class_elements_between_stop_in_class_kind(k[1]),
@@ -517,6 +532,8 @@ var
         case 9:
          var match=ele[1];
          
+         var exit;
+         
          if(match)
           {var match$1=match[1];
            
@@ -528,16 +545,16 @@ var
                 switch(match$1[1])
                  {case "/*":
                    if(match[2])
-                    {var exit=20;}
+                    {exit=20;}
                    else
                     {return remove_module_elements_between_stop(!keep,q);}
                    
-                  default:var exit=20;}
+                  default:exit=20;}
                 
-               default:var exit=20;}}
+               default:exit=20;}}
            }
          else
-          {var exit=20;}
+          {exit=20;}
          
          switch(exit)
           {case 20:
@@ -590,20 +607,22 @@ var
 var
  remove_module_elements_between_stop_in_module_type_kind=
   function(tk)
-   {switch(tk)
+   {var exit;
+    
+    switch(tk)
      {case 0:return [0,remove_module_elements_between_stop(1,tk[1])];
       case 1:
        return [1,
                tk[1],
                remove_module_elements_between_stop_in_module_type_kind(tk[2])];
        
-      case 2:var exit=23;
+      case 2:exit=23;
       case 3:
        return [3,
                remove_module_elements_between_stop_in_module_type_kind(tk[1]),
                tk[2]];
        
-      case 4:var exit=23;
+      case 4:exit=23;
       }
     
     switch(exit){case 23:return tk;}
@@ -736,7 +755,6 @@ var
     catch(exn)
      {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
     };
-
 
 module["exports"]=
 {"analyse_files":analyse_files,

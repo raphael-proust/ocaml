@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var $$Array=require("Array");
 var Sys=require("Sys");
+
 
 var length=function(x){return x["length"]-1;};
 
@@ -315,6 +318,8 @@ var
              {if(h=hashes[i])
                {var match="unknown primitive:caml_weak_get_copy";
                 
+                var exit;
+                
                 if(match)
                  {var v=match[1];
                   
@@ -327,10 +332,10 @@ var
                      {return loop(i+1);}
                     }
                   else
-                   {var exit=23;}
+                   {exit=23;}
                   }
                 else
-                 {var exit=23;}
+                 {exit=23;}
                 
                 switch(exit){case 23:return loop(i+1);}
                 }
@@ -386,13 +391,15 @@ var
              {if(h=hashes[i])
                {var match="unknown primitive:caml_weak_get_copy";
                 
+                var exit;
+                
                 if(match)
                  {var v=match[1];
                   
-                  if(H[1](v,d)){return iffound(bucket,i);}else{var exit=14;}
+                  if(H[1](v,d)){return iffound(bucket,i);}else{exit=14;}
                   }
                 else
-                 {var exit=14;}
+                 {exit=14;}
                 
                 switch(exit){case 14:return loop(i+1);}
                 }
@@ -440,6 +447,8 @@ var
              {if(h=hashes[i])
                {var match="unknown primitive:caml_weak_get_copy";
                 
+                var exit;
+                
                 if(match)
                  {var v=match[1];
                   
@@ -452,10 +461,10 @@ var
                      {return loop(i+1,accu);}
                     }
                   else
-                   {var exit=5;}
+                   {exit=5;}
                   }
                 else
-                 {var exit=5;}
+                 {exit=5;}
                 
                 switch(exit){case 5:return loop(i+1,accu);}
                 }
@@ -500,33 +509,21 @@ var
             stats];
     };
 
-[0,
+module["exports"]=
+{"caml_weak_create":
  function(prim){return "unknown primitive:caml_weak_create";},
- length,
+ "length":length,
+ "caml_weak_set":
  function(prim,prim$1,prim$2){return "unknown primitive:caml_weak_set";},
+ "caml_weak_get":
  function(prim,prim$1){return "unknown primitive:caml_weak_get";},
+ "caml_weak_get_copy":
  function(prim,prim$1){return "unknown primitive:caml_weak_get_copy";},
+ "caml_weak_check":
  function(prim,prim$1){return "unknown primitive:caml_weak_check";},
- fill,
+ "fill":fill,
+ "caml_weak_blit":
  function(prim,prim$1,prim$2,prim$3,prim$4)
   {return "unknown primitive:caml_weak_blit";},
- Make];
-module["exports"]=
-{"unknown block:(function prim/1267 (caml_weak_create prim/1267))":
- unknown block:(function prim/1267 (caml_weak_create prim/1267)),
- "length":length,
- "unknown block:(function prim/1270 prim/1269 prim/1268\n  (caml_weak_set prim/1270 prim/1269 prim/1268))":
- unknown block:(function prim/1270 prim/1269 prim/1268
-  (caml_weak_set prim/1270 prim/1269 prim/1268)),
- "unknown block:(function prim/1272 prim/1271 (caml_weak_get prim/1272 prim/1271))":
- unknown block:(function prim/1272 prim/1271 (caml_weak_get prim/1272 prim/1271)),
- "unknown block:(function prim/1274 prim/1273 (caml_weak_get_copy prim/1274 prim/1273))":
- unknown block:(function prim/1274 prim/1273 (caml_weak_get_copy prim/1274 prim/1273)),
- "unknown block:(function prim/1276 prim/1275 (caml_weak_check prim/1276 prim/1275))":
- unknown block:(function prim/1276 prim/1275 (caml_weak_check prim/1276 prim/1275)),
- "fill":fill,
- "unknown block:(function prim/1281 prim/1280 prim/1279 prim/1278 prim/1277\n  (caml_weak_blit prim/1281 prim/1280 prim/1279 prim/1278 prim/1277))":
- unknown block:(function prim/1281 prim/1280 prim/1279 prim/1278 prim/1277
-  (caml_weak_blit prim/1281 prim/1280 prim/1279 prim/1278 prim/1277)),
  "Make":Make};
 

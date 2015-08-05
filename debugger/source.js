@@ -1,12 +1,15 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
-var List=require("List");
 var Pervasives=require("Pervasives");
-var Primitives=require("Primitives");
+var List=require("List");
 var Misc=require("Misc");
+var Primitives=require("Primitives");
 var Filename=require("Filename");
 var Debugger_config=require("Debugger_config");
 var Hashtbl=require("Hashtbl");
 var Config=require("Config");
+
 
 var source_extensions=[0,".ml",0];
 
@@ -251,7 +254,6 @@ var
     
     return [0,start,start+(pos[4]-pos[3])];
     };
-
 
 module["exports"]=
 {"source_of_module":source_of_module,

@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Thread=require("Thread");
 var Unix=require("Unix");
 var Bytes=require("Bytes");
+
 
 var execv=Unix["execv"];
 
@@ -69,24 +72,25 @@ var
      {try
        {return Unix["read"](fd,buff,ofs,len);}
       catch(exn)
-       {var tag=exn[1];
+       {var exit;
+        
+        var tag=exn[1];
         
         if(tag=Unix["Unix_error"])
          {var match=exn[2];
           
+          var exit$1;
+          
           if("unknown primitive:isint")
-           {if(match!=2)
-             {if(match!=37){var exit=4;}else{var exit$1=5;}}
-            else
-             {var exit$1=5;}
+           {if(match!=2){if(match!=37){exit=4;}else{exit$1=5;}}else{exit$1=5;}
             }
           else
-           {var exit=4;}
+           {exit=4;}
           
           switch(exit$1){case 5:return timed_read(fd,buff,ofs,len,timeout);}
           }
         else
-         {var exit=4;}
+         {exit=4;}
         
         switch(exit){case 4:throw exn;}
         }
@@ -102,24 +106,25 @@ var
      {try
        {return Unix["write"](fd,buff,ofs,len);}
       catch(exn)
-       {var tag=exn[1];
+       {var exit;
+        
+        var tag=exn[1];
         
         if(tag=Unix["Unix_error"])
          {var match=exn[2];
           
+          var exit$1;
+          
           if("unknown primitive:isint")
-           {if(match!=2)
-             {if(match!=37){var exit=2;}else{var exit$1=3;}}
-            else
-             {var exit$1=3;}
+           {if(match!=2){if(match!=37){exit=2;}else{exit$1=3;}}else{exit$1=3;}
             }
           else
-           {var exit=2;}
+           {exit=2;}
           
           switch(exit$1){case 3:return timed_write(fd,buff,ofs,len,timeout);}
           }
         else
-         {var exit=2;}
+         {exit=2;}
         
         switch(exit){case 2:throw exn;}
         }
@@ -132,7 +137,6 @@ var
  timed_write_substring=
   function(fd,buff,ofs,len,timeout)
    {return timed_write(fd,Bytes["unsafe_of_string"](buff),ofs,len,timeout);};
-
 
 module["exports"]=
 {"execv":execv,

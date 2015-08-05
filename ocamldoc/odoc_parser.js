@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Parsing=require("Parsing");
 var Odoc_comments_global=require("Odoc_comments_global");
 var Str=require("Str");
+
 
 var uppercase="[A-ZР-жи-о]";
 
@@ -113,6 +116,8 @@ var
      
      var match=Str["split"](Str["regexp"](Pervasives["^"](blank,"+")),_2);
      
+     var exit;
+     
      if(match)
       {var id=match[1];
        
@@ -149,11 +154,12 @@ var
            }
          }
        else
-        {var exit=28;}
+        {exit=28;}
        }
      else
-      {var exit=28;}
+      {exit=28;}
      
+     var $js$1;
      switch(exit){case 28:throw [0,Failure,"usage: @param id description"];}
      return $js$1;
      },
@@ -186,6 +192,8 @@ var
      
      var match=Str["split"](Str["regexp"](Pervasives["^"](blank,"+")),_2);
      
+     var exit;
+     
      if(match)
       {var id=match[1];
        
@@ -209,11 +217,12 @@ var
             0);
          }
        else
-        {var exit=38;}
+        {exit=38;}
        }
      else
-      {var exit=38;}
+      {exit=38;}
      
+     var $js$1;
      switch(exit)
       {case 38:throw [0,Failure,"usage: @before version description"];}
      return $js$1;
@@ -227,6 +236,8 @@ var
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      var match=Str["split"](Str["regexp"](Pervasives["^"](blank,"+")),_2);
+     
+     var exit;
      
      if(match)
       {var id=match[1];
@@ -275,11 +286,12 @@ var
            }
          }
        else
-        {var exit=46;}
+        {exit=46;}
        }
      else
-      {var exit=46;}
+      {exit=46;}
      
+     var $js$1;
      switch(exit)
       {case 46:throw [0,Failure,"usage: @raise Exception description"];}
      return $js$1;
@@ -340,7 +352,6 @@ var
  see_info=
   function(lexfun,lexbuf)
    {return Parsing["yyparse"](yytables,3,lexfun,lexbuf);};
-
 
 module["exports"]={"main":main,"info_part2":info_part2,"see_info":see_info};
 

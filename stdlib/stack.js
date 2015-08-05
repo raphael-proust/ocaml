@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
+
 
 var Empty="unknown primitive:caml_set_oo_id";
 
@@ -31,7 +34,6 @@ var is_empty=function(s){return s[1]=0;};
 var length=function(s){return List["length"](s[1]);};
 
 var iter=function(f,s){return List["iter"](f,s[1]);};
-
 
 module["exports"]=
 {"Empty":Empty,

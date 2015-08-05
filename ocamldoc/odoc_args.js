@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Odoc_global=require("Odoc_global");
 var Odoc_html=require("Odoc_html");
@@ -5,23 +7,24 @@ var Odoc_latex=require("Odoc_latex");
 var Odoc_man=require("Odoc_man");
 var Main_args=require("Main_args");
 var Warnings=require("Warnings");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Odoc_types=require("Odoc_types");
-var Arg=require("Arg");
 var Odoc_dot=require("Odoc_dot");
-var Printf=require("Printf");
+var Arg=require("Arg");
 var Clflags=require("Clflags");
+var Printf=require("Printf");
 var Odoc_texi=require("Odoc_texi");
 var Misc=require("Misc");
 var Filename=require("Filename");
-var Odoc_config=require("Odoc_config");
 var Compenv=require("Compenv");
+var Odoc_config=require("Odoc_config");
 var Str=require("Str");
 var Location=require("Location");
-var Config=require("Config");
 var Odoc_gen=require("Odoc_gen");
+var Config=require("Config");
 var Odoc_messages=require("Odoc_messages");
+
 
 
 var current_generator=[0,0];
@@ -270,10 +273,12 @@ var
              0;
       }
     catch(exn)
-     {if(exn=Not_found)
-       {var exit=66;}
+     {var exit;
+      
+      if(exn=Not_found)
+       {exit=66;}
       else
-       {if(exn[1]=Invalid_argument){var exit=66;}else{throw exn;}}
+       {if(exn[1]=Invalid_argument){exit=66;}else{throw exn;}}
       
       switch(exit)
        {case 66:
@@ -952,7 +957,6 @@ var
              Odoc_global["hidden_modules"][1]),
            0;
     };
-
 
 module["exports"]=
 {"current_generator":current_generator,

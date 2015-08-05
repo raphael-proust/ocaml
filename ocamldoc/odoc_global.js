@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Clflags=require("Clflags");
 var Filename=require("Filename");
 var Odoc_config=require("Odoc_config");
 var Odoc_messages=require("Odoc_messages");
+
 
 Clflags["dont_write_files"][1]=1,0;
 var include_dirs=Clflags["include_dirs"];
@@ -66,7 +69,6 @@ var with_trailer=[0,1];
 var with_toc=[0,1];
 
 var with_index=[0,1];
-
 
 module["exports"]=
 {"include_dirs":include_dirs,

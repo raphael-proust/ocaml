@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var CamlinternalOO=require("CamlinternalOO");
+
 
 var
  generator_init=
@@ -16,7 +19,6 @@ var generator=CamlinternalOO["make_class"]([0,"generate"],generator_init);
 var Base_generator=[0,generator];
 
 var get_minimal_generator=function(param){return param[1][1][1](0);};
-
 
 module["exports"]=
 {"Base_generator":Base_generator,

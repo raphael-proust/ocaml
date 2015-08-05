@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Envaux=require("Envaux");
 var Primitives=require("Primitives");
 var Filename=require("Filename");
 var Debugger_config=require("Debugger_config");
 var Hashtbl=require("Hashtbl");
 var Config=require("Config");
+
 
 var program_loaded=0;
 
@@ -40,7 +43,6 @@ var
 var emacs=[0,0];
 
 var machine_readable=[0,0];
-
 
 module["exports"]=
 {"program_name":program_name,

@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Options=require("Options");
 var Const=require("Const");
 var Slurp=require("Slurp");
@@ -5,8 +7,8 @@ var Pervasives=require("Pervasives");
 var Lexers=require("Lexers");
 var Printf=require("Printf");
 var Pathname=require("Pathname");
-var Format=require("Format");
 var Digest_cache=require("Digest_cache");
+var Format=require("Format");
 var Command=require("Command");
 var Shell=require("Shell");
 var Buffer=require("Buffer");
@@ -15,6 +17,7 @@ var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
 var Log=require("Log");
 var Glob=require("Glob");
+
 
 var $$let=Pathname;
 
@@ -736,8 +739,9 @@ var subst_pattern=function(env,param){return MetaPath[3](env,param[2]);};
 
 var print_env$1=MetaPath[4];
 
-[0,
- Resources,
+module["exports"]=
+{"Resources":Resources,
+ "Cache":
  [0,
   Cache[1],
   Cache[16],
@@ -757,32 +761,6 @@ var print_env$1=MetaPath[4];
   Cache[25],
   Cache[9],
   Cache[28]],
- digest,
- exists_in_source_dir,
- exists_in_build_dir,
- in_build_dir,
- in_source_dir,
- clean_up_links,
- compare,
- print,
- print_pattern,
- clean,
- $$import,
- import_pattern,
- matchit$1,
- subst$1,
- subst_any,
- subst_pattern,
- print_env$1];
-module["exports"]=
-{"Resources":Resources,
- "unknown block:(makeblock 0 (field 0 Cache/1908) (field 15 Cache/1908) (field 10 Cache/1908)\n  (field 14 Cache/1908) (field 16 Cache/1908) (field 17 Cache/1908)\n  (field 18 Cache/1908) (field 19 Cache/1908) (field 21 Cache/1908)\n  (field 20 Cache/1908) (field 22 Cache/1908) (field 23 Cache/1908)\n  (field 26 Cache/1908) (field 25 Cache/1908) (field 11 Cache/1908)\n  (field 24 Cache/1908) (field 8 Cache/1908) (field 27 Cache/1908))":
- unknown block:(makeblock 0 (field 0 Cache/1908) (field 15 Cache/1908) (field 10 Cache/1908)
-  (field 14 Cache/1908) (field 16 Cache/1908) (field 17 Cache/1908)
-  (field 18 Cache/1908) (field 19 Cache/1908) (field 21 Cache/1908)
-  (field 20 Cache/1908) (field 22 Cache/1908) (field 23 Cache/1908)
-  (field 26 Cache/1908) (field 25 Cache/1908) (field 11 Cache/1908)
-  (field 24 Cache/1908) (field 8 Cache/1908) (field 27 Cache/1908)),
  "digest":digest,
  "exists_in_source_dir":exists_in_source_dir,
  "exists_in_build_dir":exists_in_build_dir,

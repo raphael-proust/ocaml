@@ -1,21 +1,24 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Question=require("Question");
 var Breakpoints=require("Breakpoints");
 var Pervasives=require("Pervasives");
-var Trap_barrier=require("Trap_barrier");
 var List=require("List");
+var Trap_barrier=require("Trap_barrier");
 var Symbols=require("Symbols");
 var Printf=require("Printf");
 var Events=require("Events");
 var Checkpoints=require("Checkpoints");
 var Program_loading=require("Program_loading");
-var Misc=require("Misc");
 var Primitives=require("Primitives");
+var Misc=require("Misc");
 var Debugger_config=require("Debugger_config");
-var Int64ops=require("Int64ops");
 var Exec=require("Exec");
+var Int64ops=require("Int64ops");
 var Input_handling=require("Input_handling");
-var Debugcom=require("Debugcom");
 var Sys=require("Sys");
+var Debugcom=require("Debugcom");
+
 
 var Current_checkpoint_lost="unknown primitive:caml_set_oo_id";
 
@@ -377,10 +380,12 @@ var last_breakpoint=[0,0];
 var
  stop_on_event=
   function(report)
-   {var switcher=-1+report[1];
+   {var exit;
+    
+    var switcher=-1+report[1];
     
     if(2<switcher>>>0)
-     {var exit=50;}
+     {exit=50;}
     else
      {switch(switcher[0])
        {case 0:
@@ -390,7 +395,7 @@ var
          
          if(match){return 0;}else{return find_event(0);}
          
-        case 1:var exit=50;
+        case 1:exit=50;
         case 2:return find_event(0);
         }
       }
@@ -418,20 +423,21 @@ var
   function(duration)
    {var match=Checkpoints["current_report"](0);
     
+    var exit;
+    
     if(match)
      {var match$1=match[1][1];
       
-      if(match$1!=2)
-       {if(match$1>=4){var exit=48;}else{var exit$1=47;}}
-      else
-       {var exit=48;}
+      var exit$1;
       
-      switch(exit){case 48:return 0;}
+      if(match$1!=2){if(match$1>=4){exit$1=48;}else{exit=47;}}else{exit$1=48;}
+      
+      switch(exit$1){case 48:return 0;}
       }
     else
-     {var exit$1=47;}
+     {exit=47;}
     
-    switch(exit$1)
+    switch(exit)
      {case 47:
        Exec["protect"]
         (function(param)
@@ -693,6 +699,8 @@ var
         
         var match$1=Breakpoints["temporary_breakpoint_position"][1];
         
+        var exit;
+        
         if(match)
          {if(Checkpoints["current_time"](0)<max_time)
            {return find(last_breakpoint[1]);}
@@ -701,30 +709,33 @@ var
              {if(match[1][1]=match$1[1])
                {return [0,max_time,last_breakpoint[1]];}
               else
-               {var exit=29;}
+               {exit=29;}
               }
             else
-             {var exit=29;}
+             {exit=29;}
             }
           }
         else
-         {var exit=29;}
+         {exit=29;}
         
         switch(exit){case 29:return [0,time,$$break];}
         };
     
     var state=Checkpoints["current_pc_sp"](0);
     
+    var exit;
+    
     if(state)
      {if(Breakpoints["breakpoint_at_pc"](state[1][1]))
        {var $js=state;}
       else
-       {var exit=28;}
+       {exit=28;}
       }
     else
-     {var exit=28;}
+     {exit=28;}
     
-    switch(exit){case 28:var $js$1=0;}
+    var $js$1;
+    switch(exit){case 28:$js$1=0;}
     return find($js$1);
     };
 
@@ -833,18 +844,21 @@ var
                            {run(0);
                             var match$2=last_breakpoint[1];
                             
+                            var exit;
+                            
                             if(match$2)
                              {var match$3=match$2[1];
                               
                               if(pc=match$3[1])
                                {interrupted[1]=0,0;var $js=frame!=match$3[2];}
                               else
-                               {var exit=18;}
+                               {exit=18;}
                               }
                             else
-                             {var exit=18;}
+                             {exit=18;}
                             
-                            switch(exit){case 18:var $js$1=0;}
+                            var $js$1;
+                            switch(exit){case 18:$js$1=0;}
                             while($js$1){}
                             return 0;
                             });
@@ -953,6 +967,8 @@ var
       Breakpoints["exec_with_temporary_breakpoint"](pc$1,back_run);
       var match$5=last_breakpoint[1];
       
+      var exit;
+      
       if(match$5)
        {var match$6=match$5[1];
         
@@ -961,12 +977,13 @@ var
           var $js=!interrupted[1]&&match$6[2]-nargs>frame-curr_event[9];
           }
         else
-         {var exit=5;}
+         {exit=5;}
         }
       else
-       {var exit=5;}
+       {exit=5;}
       
-      switch(exit){case 5:var $js$1=0;}
+      var $js$1;
+      switch(exit){case 5:$js$1=0;}
       while($js$1){}
       return 0;
       }
@@ -1020,7 +1037,6 @@ var
     else
      {return 0;}
     };
-
 
 module["exports"]=
 {"Current_checkpoint_lost":Current_checkpoint_lost,

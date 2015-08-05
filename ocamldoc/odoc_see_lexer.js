@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Buffer=require("Buffer");
 var Lexing=require("Lexing");
+
 
 var buf=Buffer["create"](32);
 
@@ -28,14 +31,16 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
+    var exit;
+    
     if(6<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
      {switch(__ocaml_lex_state$1[0])
-       {case 0:var exit=2;
-        case 1:var exit=2;
+       {case 0:exit=2;
+        case 1:exit=2;
         case 2:return url(lexbuf);
         case 3:return doc(lexbuf);
         case 4:return file(lexbuf);
@@ -133,7 +138,6 @@ var
     else
      {return [5,Buffer["contents"](buf)];}
     };
-
 
 module["exports"]=
 {"buf":buf,

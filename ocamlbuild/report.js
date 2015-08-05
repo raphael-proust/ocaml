@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Resource=require("Resource");
 var Format=require("Format");
 var My_std=require("My_std");
 var Glob=require("Glob");
+
 
 var sources_glob=Glob["parse"](0,"<*.ml> or <*.mli> or <*.c> or <*.h>");
 
@@ -72,14 +75,16 @@ var
       case 1:
        var backtraces=param[1];
        
+       var exit;
+       
        if(backtraces)
         {if(backtraces[2])
-          {var exit=2;}
+          {exit=2;}
          else
           {return print_backtrace(f,backtraces[1]);}
          }
        else
-        {var exit=2;}
+        {exit=2;}
        
        switch(exit)
         {case 2:
@@ -136,7 +141,6 @@ var
     };
 
 var print_backtrace_analyze=function(f,bt){return 0;};
-
 
 module["exports"]=
 {"print_backtrace_analyze":print_backtrace_analyze,

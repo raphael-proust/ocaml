@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Bytes=require("Bytes");
 var Sys=require("Sys");
+
 
 var dummy_pos=[0,"",0,0,-1];
 
@@ -184,7 +187,6 @@ var
     lb[12]=[0,init[1],init[2],init[3],0],0;
     return lb[3]=0,0;
     };
-
 
 module["exports"]=
 {"dummy_pos":dummy_pos,

@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Options=require("Options");
 var Scanf=require("Scanf");
 var Pervasives=require("Pervasives");
@@ -7,6 +9,7 @@ var Shell=require("Shell");
 var My_std=require("My_std");
 var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
+
 
 var digests=Hashtbl["create"](0,103);
 
@@ -64,7 +67,6 @@ var
     
     return My_unix["at_exit_once"](finalize);
     };
-
 
 module["exports"]={"init":init,"get":get,"put":put};
 

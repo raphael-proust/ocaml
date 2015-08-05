@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Pervasives=require("Pervasives");
 var Primitives=require("Primitives");
 var Unix=require("Unix");
+
 
 var active_files=[0,0];
 
@@ -71,16 +74,18 @@ var
               },
             match[1])}
         catch(exn)
-         {if(exn[1]=Unix["Unix_error"])
+         {var exit;
+          
+          if(exn[1]=Unix["Unix_error"])
            {var match$1=exn[2];
             
             if("unknown primitive:isint")
-             {if(match$1!=11){var exit=8;}else{}}
+             {if(match$1!=11){exit=8;}else{}}
             else
-             {var exit=8;}
+             {exit=8;}
             }
           else
-           {var exit=8;}
+           {exit=8;}
           
           switch(exit){case 8:throw exn;}
           }
@@ -121,7 +126,6 @@ var
     else
      {return 0;}
     };
-
 
 module["exports"]=
 {"add_file":add_file,

@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Sys=require("Sys");
+
 
 var zero=0;
 
@@ -23,7 +26,6 @@ var lognot=function(n){return n^-1;};
 var to_string=function(n){return "unknown primitive:caml_nativeint_format";};
 
 var compare=function(x,y){return "unknown primitive:caml_nativeint_compare";};
-
 
 module["exports"]=
 {"zero":zero,

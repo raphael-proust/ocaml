@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+
 
 var
  Make=
@@ -562,6 +565,8 @@ var
         
         var match$1=s2;
         
+        var exit;
+        
         if(match)
          {var h1=match[5];
           
@@ -586,10 +591,10 @@ var
                     (merge$1(f,l1,l2),v1,f(v1,[0,d1],d2),merge$1(f,r1,r2));
             }
           else
-           {var exit=20;}
+           {exit=20;}
           }
         else
-         {if(match$1){var exit=20;}else{return 0;}}
+         {if(match$1){exit=20;}else{return 0;}}
         
         switch(exit)
          {case 20:
@@ -864,7 +869,8 @@ var
             choose];
     };
 
-[0,
+module["exports"]=
+{"Make":
  function(funarg)
   {var $$let=Make(funarg);
    
@@ -893,17 +899,5 @@ var
            $$let[8],
            $$let[15],
            $$let[16]];
-   }];
-module["exports"]=
-{"unknown block:(function funarg/1408\n  (let (let/1409 = (apply Make/1341 funarg/1408))\n    (makeblock 0 (field 4 let/1409) (field 5 let/1409) (field 8 let/1409)\n      (field 6 let/1409) (field 2 let/1409) (field 12 let/1409)\n      (field 25 let/1409) (field 29 let/1409) (field 30 let/1409)\n      (field 13 let/1409) (field 16 let/1409) (field 17 let/1409)\n      (field 18 let/1409) (field 26 let/1409) (field 27 let/1409)\n      (field 31 let/1409) (field 33 let/1409) (field 9 let/1409)\n      (field 10 let/1409) (field 34 let/1409) (field 24 let/1409)\n      (field 7 let/1409) (field 14 let/1409) (field 15 let/1409))))":
- unknown block:(function funarg/1408
-  (let (let/1409 = (apply Make/1341 funarg/1408))
-    (makeblock 0 (field 4 let/1409) (field 5 let/1409) (field 8 let/1409)
-      (field 6 let/1409) (field 2 let/1409) (field 12 let/1409)
-      (field 25 let/1409) (field 29 let/1409) (field 30 let/1409)
-      (field 13 let/1409) (field 16 let/1409) (field 17 let/1409)
-      (field 18 let/1409) (field 26 let/1409) (field 27 let/1409)
-      (field 31 let/1409) (field 33 let/1409) (field 9 let/1409)
-      (field 10 let/1409) (field 34 let/1409) (field 24 let/1409)
-      (field 7 let/1409) (field 14 let/1409) (field 15 let/1409))))};
+   }};
 

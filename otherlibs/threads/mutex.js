@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Thread=require("Thread");
+
 
 var create=function(param){return [0,0,0];};
 
@@ -22,7 +25,6 @@ var
  unlock=
   function(m)
    {var w=m[2];m[2]=0,0;m[1]=0,0;return List["iter"](Thread["wakeup"],w);};
-
 
 module["exports"]=
 {"create":create,"lock":lock,"try_lock":try_lock,"unlock":unlock};

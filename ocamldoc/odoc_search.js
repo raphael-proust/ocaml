@@ -1,14 +1,16 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
 var Odoc_class=require("Odoc_class");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Printf=require("Printf");
 var Odoc_extension=require("Odoc_extension");
 var Str=require("Str");
 var Odoc_module=require("Odoc_module");
 
 
-
+Odoc_module,Odoc_name;
 var
  Search=
   function(P)
@@ -28,16 +30,18 @@ var
       function(root,e,v)
        {var T=Odoc_types;
         
+        var exit;
+        
         if(typeof e=="number")
-         {switch(e){case 0:var exit=274;case 1:var exit=274;}}
+         {switch(e){case 0:exit=274;case 1:exit=274;}}
         else
          {switch(e[0])
-           {case 0:var exit=271;
-            case 1:var exit=271;
-            case 2:var exit=271;
-            case 3:var exit=271;
-            case 10:var exit=276;
-            case 11:var exit=276;
+           {case 0:exit=271;
+            case 1:exit=271;
+            case 2:exit=271;
+            case 3:exit=271;
+            case 10:exit=276;
+            case 11:exit=276;
             case 13:
              var t=e[3];
              
@@ -49,13 +53,13 @@ var
                        :0,
                       search_text(root,t,v));
              
-            case 14:var exit=271;
-            case 15:var exit=277;
-            case 16:var exit=271;
-            case 19:var exit=274;
-            case 20:var exit=277;
+            case 14:exit=271;
+            case 15:exit=277;
+            case 16:exit=271;
+            case 19:exit=274;
+            case 20:exit=277;
             case 21:return 0;
-            default:var t$1=e[1];var exit=272;}}
+            default:var t$1=e[1];exit=272;}}
         
         switch(exit)
          {case 276:
@@ -90,8 +94,10 @@ var
         if(match[1]!=0)
          {var match$1=t[4];
           
+          var exit;
+          
           if(typeof match$1=="number")
-           {switch(match$1){case 0:var exit=264;case 1:var exit=264;}}
+           {switch(match$1){case 0:exit=264;case 1:exit=264;}}
           else
            {switch(match$1[0])
              {case 0:
@@ -1418,7 +1424,8 @@ var
       default:throw [0,Assert_failure,[0,"odoc_search.ml",752,9]];}
     };
 
-[0,
+module["exports"]=
+{"Search":
  function(funarg)
   {var $$let=Search(funarg);
    
@@ -1439,6 +1446,7 @@ var
            $$let[16],
            $$let[17]];
    },
+ "P_name":
  [0,
   P_name[1],
   P_name[2],
@@ -1453,6 +1461,7 @@ var
   P_name[11],
   P_name[12],
   P_name[13]],
+ "Search_by_name":
  [0,
   Search_by_name[1],
   Search_by_name[4],
@@ -1469,51 +1478,6 @@ var
   Search_by_name[15],
   Search_by_name[16],
   Search_by_name[17]],
- values,
- extensions,
- exceptions,
- types,
- attributes,
- methods,
- classes,
- class_types,
- modules,
- module_types,
- type_exists,
- value_exists,
- module_exists,
- module_type_exists,
- class_exists,
- class_type_exists,
- extension_exists,
- exception_exists,
- attribute_exists,
- method_exists,
- find_section];
-module["exports"]=
-{"unknown block:(function funarg/1779\n  (let (let/1780 = (apply Search/1213 funarg/1779))\n    (makeblock 0 (field 0 let/1780) (field 3 let/1780) (field 4 let/1780)\n      (field 5 let/1780) (field 6 let/1780) (field 7 let/1780)\n      (field 8 let/1780) (field 9 let/1780) (field 10 let/1780)\n      (field 11 let/1780) (field 12 let/1780) (field 13 let/1780)\n      (field 14 let/1780) (field 15 let/1780) (field 16 let/1780))))":
- unknown block:(function funarg/1779
-  (let (let/1780 = (apply Search/1213 funarg/1779))
-    (makeblock 0 (field 0 let/1780) (field 3 let/1780) (field 4 let/1780)
-      (field 5 let/1780) (field 6 let/1780) (field 7 let/1780)
-      (field 8 let/1780) (field 9 let/1780) (field 10 let/1780)
-      (field 11 let/1780) (field 12 let/1780) (field 13 let/1780)
-      (field 14 let/1780) (field 15 let/1780) (field 16 let/1780)))),
- "unknown block:(makeblock 0 (field 0 P_name/1261) (field 1 P_name/1261)\n  (field 2 P_name/1261) (field 3 P_name/1261) (field 4 P_name/1261)\n  (field 5 P_name/1261) (field 6 P_name/1261) (field 7 P_name/1261)\n  (field 8 P_name/1261) (field 9 P_name/1261) (field 10 P_name/1261)\n  (field 11 P_name/1261) (field 12 P_name/1261))":
- unknown block:(makeblock 0 (field 0 P_name/1261) (field 1 P_name/1261)
-  (field 2 P_name/1261) (field 3 P_name/1261) (field 4 P_name/1261)
-  (field 5 P_name/1261) (field 6 P_name/1261) (field 7 P_name/1261)
-  (field 8 P_name/1261) (field 9 P_name/1261) (field 10 P_name/1261)
-  (field 11 P_name/1261) (field 12 P_name/1261)),
- "unknown block:(makeblock 0 (field 0 Search_by_name/1279) (field 3 Search_by_name/1279)\n  (field 4 Search_by_name/1279) (field 5 Search_by_name/1279)\n  (field 6 Search_by_name/1279) (field 7 Search_by_name/1279)\n  (field 8 Search_by_name/1279) (field 9 Search_by_name/1279)\n  (field 10 Search_by_name/1279) (field 11 Search_by_name/1279)\n  (field 12 Search_by_name/1279) (field 13 Search_by_name/1279)\n  (field 14 Search_by_name/1279) (field 15 Search_by_name/1279)\n  (field 16 Search_by_name/1279))":
- unknown block:(makeblock 0 (field 0 Search_by_name/1279) (field 3 Search_by_name/1279)
-  (field 4 Search_by_name/1279) (field 5 Search_by_name/1279)
-  (field 6 Search_by_name/1279) (field 7 Search_by_name/1279)
-  (field 8 Search_by_name/1279) (field 9 Search_by_name/1279)
-  (field 10 Search_by_name/1279) (field 11 Search_by_name/1279)
-  (field 12 Search_by_name/1279) (field 13 Search_by_name/1279)
-  (field 14 Search_by_name/1279) (field 15 Search_by_name/1279)
-  (field 16 Search_by_name/1279)),
  "values":values,
  "extensions":extensions,
  "exceptions":exceptions,

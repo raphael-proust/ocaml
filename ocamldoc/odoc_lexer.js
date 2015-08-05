@@ -1,12 +1,15 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Odoc_global=require("Odoc_global");
-var Pervasives=require("Pervasives");
 var List=require("List");
-var Lexing=require("Lexing");
+var Pervasives=require("Pervasives");
 var Buffer=require("Buffer");
+var Lexing=require("Lexing");
 var Odoc_comments_global=require("Odoc_comments_global");
 var Str=require("Str");
 var Odoc_messages=require("Odoc_messages");
+
 
 var line_number=[0,0];
 
@@ -115,13 +118,15 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
+    var exit;
+    
     if(9<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
      {switch(__ocaml_lex_state$1[0])
-       {case 0:var exit=2;
+       {case 0:exit=2;
         case 1:
          line_number[0]++;
          Odoc_comments_global["nb_chars"][0]++;
@@ -134,8 +139,8 @@ var
          0;
          return [0,[0,"",0]];
          
-        case 3:var exit=2;
-        case 4:var exit=3;
+        case 3:exit=2;
+        case 4:exit=3;
         case 5:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
@@ -159,7 +164,7 @@ var
          comments_level[0]--;
          return main(lexbuf);
          
-        case 8:var exit=3;
+        case 8:exit=3;
         case 9:Odoc_comments_global["nb_chars"][0]++;return main(lexbuf);
         }
       }
@@ -380,6 +385,8 @@ var
          0;
          var s2=$$String["sub"](s,1,s["length"]-1);
          
+         var exit;
+         
          switch(s2)
           {case "author":return 1;
            case "before":return 5;
@@ -390,7 +397,7 @@ var
            case "see":return 3;
            case "since":return 4;
            case "version":return 2;
-           default:var exit=22;}
+           default:exit=22;}
          
          switch(exit)
           {case 22:
@@ -511,7 +518,6 @@ var
         }
       }
     };
-
 
 module["exports"]=
 {"line_number":line_number,

@@ -1,5 +1,7 @@
-var Tools=require("Tools");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Ocaml_utils=require("Ocaml_utils");
+var Tools=require("Tools");
 var Options=require("Options");
 var Ocaml_compiler=require("Ocaml_compiler");
 var Rule=require("Rule");
@@ -8,6 +10,7 @@ var Flags=require("Flags");
 var Command=require("Command");
 var My_std=require("My_std");
 var Tags=require("Tags");
+
 
 var
  add_suffix=
@@ -503,7 +506,6 @@ var
                [2,ml],
                [0,[1,"-printer"],[0,[1,"o"],[0,[1,"-o"],[0,[3,pp_ml],0]]]]]]]];
     };
-
 
 module["exports"]=
 {"ocamldoc_c":ocamldoc_c,

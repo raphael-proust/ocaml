@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_html=require("Odoc_html");
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
@@ -5,6 +7,7 @@ var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Odoc_args=require("Odoc_args");
 var Buffer=require("Buffer");
+
 
 
 var
@@ -254,7 +257,9 @@ var
       [0,
        html_of_module_comment,
        function(self$neg1,b,text)
-        {if(text)
+        {var exit;
+         
+         if(text)
           {var $js=text[1];
            if(typeof $js=="number")
             {switch($js){}}
@@ -262,10 +267,10 @@ var
             {switch($js[0])
               {case 13:
                 if(text[2]){var match$2=[0,0,1];}else{var match$2=[0,0,0];}
-               default:var exit=2;}}
+               default:exit=2;}}
            }
          else
-          {var exit=2;}
+          {exit=2;}
          
          switch(exit){case 2:var match$2=[0,1,1];}
          
@@ -651,7 +656,7 @@ var
 
 var Generator=[0,html];
 
-Odoc_args["set_generator"]([0,Generator]),[0,Naming,p,bp,bs,Html,Generator];
+Odoc_args["set_generator"]([0,Generator]);
 module["exports"]=
 {"Naming":Naming,"p":p,"bp":bp,"bs":bs,"Html":Html,"Generator":Generator};
 

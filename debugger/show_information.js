@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Frames=require("Frames");
 var Breakpoints=require("Breakpoints");
 var List=require("List");
@@ -11,6 +13,7 @@ var Parameters=require("Parameters");
 var Show_source=require("Show_source");
 var Source=require("Source");
 var Debugcom=require("Debugcom");
+
 
 var
  show_current_event=
@@ -34,9 +37,11 @@ var
     if(match$1)
      {var match$2=match$1[1];
       
+      var exit;
+      
       switch(match$2[1][0])
-       {case 0:var exit=10;
-        case 1:var exit=10;
+       {case 0:exit=10;
+        case 1:exit=10;
         case 2:
          Format["fprintf"]
           (ppf,[0,[17,4,[11,"Program exit.",[17,4,0]]],"@.Program exit.@."]);
@@ -215,7 +220,6 @@ var
                 "@.No frame selected.@."]);
       }
     };
-
 
 module["exports"]=
 {"show_current_event":show_current_event,

@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var
  get_pos=
   function(ev)
@@ -24,20 +28,21 @@ var
   function(param)
    {var match=current_event[1];
     
+    var exit;
+    
     if(match)
      {var match$1=match[1][4];
       
       if("unknown primitive:isint")
-       {if(match$1!=0){var exit=1;}else{return 1;}}
+       {if(match$1!=0){exit=1;}else{return 1;}}
       else
-       {var exit=1;}
+       {exit=1;}
       }
     else
      {throw Not_found;}
     
     switch(exit){case 1:return 0;}
     };
-
 
 module["exports"]=
 {"get_pos":get_pos,

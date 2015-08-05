@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Format=require("Format");
@@ -6,6 +8,7 @@ var My_std=require("My_std");
 var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
 var $$Array=require("Array");
+
 
 var $unknown=My_std["filename_concat"];
 
@@ -77,13 +80,15 @@ var
               if(match$1)
                {var entry=match$1[1];
                 
+                var exit;
+                
                 if(typeof entry=="number")
                  {switch(entry){case 0:return acc;}}
                 else
                  {switch(entry[0])
-                   {case 0:var exit=19;
+                   {case 0:exit=19;
                     case 1:return [0,[0,entry,file_acc],dir_acc];
-                    case 2:var exit=19;
+                    case 2:exit=19;
                     }}
                 
                 switch(exit){case 19:return [0,file_acc,[0,entry,dir_acc]];}
@@ -207,16 +212,20 @@ var
 var
  add=
   function(root,path,entries)
-   {if(path)
+   {var exit;
+    
+    if(path)
      {var xspath=path[2];
       
       var xpath=path[1];
+      
+      var exit$1;
       
       if(entries)
        {var d=entries[1];
         
         if(typeof d=="number")
-         {switch(d){case 0:var exit=14;}}
+         {switch(d){case 0:exit=14;}}
         else
          {switch(d[0])
            {case 0:
@@ -243,12 +252,12 @@ var
              else
               {return [0,d,add(root,path,entries$1)];}
              
-            case 1:var exit$1=16;
-            case 2:var exit=14;
+            case 1:exit$1=16;
+            case 2:exit=14;
             }}
         }
       else
-       {var exit$1=16;}
+       {exit$1=16;}
       
       switch(exit$1)
        {case 16:
@@ -341,7 +350,7 @@ var
          {var acc=0;
           
           try
-           {while(1){var acc=[0,Pervasives["input_line"](ic),acc];}return 0;}
+           {while(1){acc=[0,Pervasives["input_line"](ic),acc];}return 0;}
           catch(exn$1){if(exn$1=End_of_file){return acc;}else{throw exn$1;}}
           });
     
@@ -450,8 +459,10 @@ var
 var
  fold=
   function(f,entry,acc)
-   {if(typeof entry=="number")
-     {switch(entry){case 0:var exit=4;}}
+   {var exit;
+    
+    if(typeof entry=="number")
+     {switch(entry){case 0:exit=4;}}
     else
      {switch(entry[0])
        {case 0:
@@ -462,7 +473,7 @@ var
                   My_std["List"][20](fold(f),My_std["!*"](entry[5]),acc));
          
         case 1:return f(entry[1],entry[2],entry[4],acc);
-        case 2:var exit=4;
+        case 2:exit=4;
         }}
     
     switch(exit){case 4:return acc;}
@@ -511,8 +522,10 @@ var
 var
  force=
   function(param)
-   {if(typeof param=="number")
-     {switch(param){case 0:var exit=2;}}
+   {var exit;
+    
+    if(typeof param=="number")
+     {switch(param){case 0:exit=2;}}
     else
      {switch(param[0])
        {case 0:
@@ -521,12 +534,11 @@ var
          return My_std["List"][14](force,My_std["!*"](param[5]));
          
         case 1:return 0;
-        case 2:var exit=2;
+        case 2:exit=2;
         }}
     
     switch(exit){case 2:return 0;}
     };
-
 
 module["exports"]=
 {"slurp":slurp,"filter":filter,"map":map,"fold":fold,"force":force};

@@ -1,10 +1,13 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Char=require("Char");
 var Dynlinkaux=require("Dynlinkaux");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Digest=require("Digest");
 var Printexc=require("Printexc");
+
 
 var $$Error="unknown primitive:caml_set_oo_id";
 
@@ -330,25 +333,29 @@ var
       Pervasives["close_in"](ic);
       var match$1=cmi[3];
       
+      var exit;
+      
       if(match$1)
        {var match$2=match$1[1];
         
         var match$3=match$2[2];
         
-        if(match$3){var crc=match$3[1];var crc$1=crc;}else{var exit=35;}
+        if(match$3){var crc=match$3[1];var crc$1=crc;}else{exit=35;}
         }
       else
-       {var exit=35;}
+       {exit=35;}
       
       switch(exit){case 35:throw [0,$$Error,[4,filename]];}
       
       return crc$1;
       }
     catch(exn$1)
-     {if(exn$1=End_of_file)
-       {var exit$1=33;}
+     {var exit$1;
+      
+      if(exn$1=End_of_file)
+       {exit$1=33;}
       else
-       {var tag=exn$1[1];if(tag=Failure){var exit$1=33;}else{throw exn$1;}}
+       {var tag=exn$1[1];if(tag=Failure){exit$1=33;}else{throw exn$1;}}
       
       switch(exit$1)
        {case 33:Pervasives["close_in"](ic);throw [0,$$Error,[4,filename]];}
@@ -605,7 +612,6 @@ var
 var is_native=0;
 
 var adapt_filename=function(f){return f;};
-
 
 module["exports"]=
 {"is_native":is_native,

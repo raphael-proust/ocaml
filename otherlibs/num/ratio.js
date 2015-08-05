@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Int_misc=require("Int_misc");
@@ -5,6 +7,7 @@ var Big_int=require("Big_int");
 var Nat=require("Nat");
 var Arith_flags=require("Arith_flags");
 var Bytes=require("Bytes");
+
 
 var
  failwith_zero=
@@ -418,13 +421,15 @@ var
           Int_misc["compare_int"]
            (Big_int["sign_big_int"](r1[1]),Big_int["sign_big_int"](r2[1]));
         
+        var exit;
+        
         var switcher=1+match;
         
         if(2<switcher>>>0)
-         {var exit=67;}
+         {exit=67;}
         else
          {switch(switcher[0])
-           {case 0:return -1;case 1:var exit=67;case 2:return 1;}
+           {case 0:return -1;case 1:exit=67;case 2:return 1;}
           }
         
         switch(exit)
@@ -582,13 +587,15 @@ var
         
         var cmp=compare_num_string(str_num,str_den,0,size_min);
         
+        var exit;
+        
         var switcher=1+cmp;
         
         if(2<switcher>>>0)
-         {var exit=33;}
+         {exit=33;}
         else
          {switch(switcher[0])
-           {case 0:return -1+m;case 1:var exit=33;case 2:return m;}
+           {case 0:return -1+m;case 1:exit=33;case 2:return m;}
           }
         
         switch(exit)
@@ -814,7 +821,6 @@ var
             (Big_int["power_big_int_positive_big_int"](r[1],bi),
              Big_int["power_big_int_positive_big_int"](r[2],bi));
     };
-
 
 module["exports"]=
 {"null_denominator":null_denominator,

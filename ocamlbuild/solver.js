@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Rule=require("Rule");
 var Pathname=require("Pathname");
 var Resource=require("Resource");
@@ -5,6 +7,7 @@ var Format=require("Format");
 var Command=require("Command");
 var My_std=require("My_std");
 var Log=require("Log");
+
 
 var Failed="unknown primitive:caml_set_oo_id";
 
@@ -255,7 +258,6 @@ var
        
       }
     };
-
 
 module["exports"]=
 {"Failed":Failed,

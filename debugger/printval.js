@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Printtyp=require("Printtyp");
 var Pervasives=require("Pervasives");
 var Format=require("Format");
@@ -6,6 +8,7 @@ var Genprintval=require("Genprintval");
 var Hashtbl=require("Hashtbl");
 var Symtable=require("Symtable");
 var Debugcom=require("Debugcom");
+
 
 var named_values=Hashtbl["create"](0,29);
 
@@ -128,7 +131,9 @@ var
    {var
      print_value_name=
       function(ppf$1,param)
-       {if(typeof param=="number")
+       {var exit;
+        
+        if(typeof param=="number")
          {switch(param){}}
         else
          {switch(param[0])
@@ -137,7 +142,7 @@ var
              return Format["fprintf"]
                      (ppf$1,[0,[12,36,[4,3,0,0,0]],"$%i"],param[1]);
              
-            default:var exit=2;}}
+            default:exit=2;}}
         
         switch(exit)
          {case 2:
@@ -171,7 +176,6 @@ var
              print_value(max_depth,env,obj),
              ty);
     };
-
 
 module["exports"]=
 {"max_printer_depth":max_printer_depth,

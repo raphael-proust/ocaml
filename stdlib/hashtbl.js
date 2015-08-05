@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Random=require("Random");
 var CamlinternalLazy=require("CamlinternalLazy");
 var $$Array=require("Array");
 var Sys=require("Sys");
+
 
 var hash=function(x){return "unknown primitive:caml_hash";};
 
@@ -699,28 +702,6 @@ var
             stats$1];
     };
 
-[0,
- create,
- clear,
- reset,
- copy,
- add,
- find,
- find_all,
- mem,
- remove,
- replace,
- iter,
- fold,
- length,
- randomize,
- stats,
- Make,
- MakeSeeded,
- hash,
- seeded_hash,
- hash_param,
- function(prim,prim$1,prim$2,prim$3){return "unknown primitive:caml_hash";}];
 module["exports"]=
 {"create":create,
  "clear":clear,
@@ -742,7 +723,6 @@ module["exports"]=
  "hash":hash,
  "seeded_hash":seeded_hash,
  "hash_param":hash_param,
- "unknown block:(function prim/1416 prim/1415 prim/1414 prim/1413\n  (caml_hash prim/1416 prim/1415 prim/1414 prim/1413))":
- unknown block:(function prim/1416 prim/1415 prim/1414 prim/1413
-  (caml_hash prim/1416 prim/1415 prim/1414 prim/1413))};
+ "caml_hash":
+ function(prim,prim$1,prim$2,prim$3){return "unknown primitive:caml_hash";}};
 

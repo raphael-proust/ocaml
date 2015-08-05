@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var nb_chars=[0,0];
 
 var authors=[0,0];
@@ -35,7 +39,6 @@ var
     return_value[1]=0,0;
     return customs[1]=0,0;
     };
-
 
 module["exports"]=
 {"nb_chars":nb_chars,

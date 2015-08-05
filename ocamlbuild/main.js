@@ -1,5 +1,7 @@
-var Ocaml_utils=require("Ocaml_utils");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Tools=require("Tools");
+var Ocaml_utils=require("Ocaml_utils");
 var Options=require("Options");
 var Ocaml_dependencies=require("Ocaml_dependencies");
 var Const=require("Const");
@@ -7,31 +9,32 @@ var Slurp=require("Slurp");
 var Plugin=require("Plugin");
 var Exit_codes=require("Exit_codes");
 var Ocaml_specific=require("Ocaml_specific");
-var Pervasives=require("Pervasives");
 var Rule=require("Rule");
+var Pervasives=require("Pervasives");
 var Lexers=require("Lexers");
 var Arg=require("Arg");
 var Fda=require("Fda");
 var Pathname=require("Pathname");
 var Resource=require("Resource");
+var Flags=require("Flags");
 var Format=require("Format");
 var Digest_cache=require("Digest_cache");
-var Flags=require("Flags");
 var Solver=require("Solver");
-var Loc=require("Loc");
 var Command=require("Command");
 var Param_tags=require("Param_tags");
+var Loc=require("Loc");
 var Shell=require("Shell");
 var Hooks=require("Hooks");
 var Filename=require("Filename");
 var Report=require("Report");
 var My_std=require("My_std");
 var Printexc=require("Printexc");
-var My_unix=require("My_unix");
-var Configuration=require("Configuration");
 var Tags=require("Tags");
+var Configuration=require("Configuration");
+var My_unix=require("My_unix");
 var Log=require("Log");
 var Sys=require("Sys");
+
 
 var Exit_build_error="unknown primitive:caml_set_oo_id";
 
@@ -340,12 +343,14 @@ var
               function(x)
                {if(Options["make_links"][1]){return 0;}else{return 0;}};
             
+            var exit;
+            
             switch(param$1[2])
-             {case "byte":var exit=24;
+             {case "byte":exit=24;
               case "html":link(Pathname["dirname"](cmd));return acc;
-              case "native":var exit=24;
-              case "top":var exit=24;
-              default:var exit=25;}
+              case "native":exit=24;
+              case "top":exit=24;
+              default:exit=25;}
             
             switch(exit)
              {case 25:
@@ -622,7 +627,6 @@ var
        {throw e;}
       }
     };
-
 
 module["exports"]={"main":main};
 

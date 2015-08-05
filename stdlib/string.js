@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Bytes=require("Bytes");
+
 
 
 var bts=Bytes["unsafe_to_string"];
@@ -62,12 +65,14 @@ var mapi=function(f,s){return bts(Bytes["mapi"](f,bos(s)));};
 var
  is_space=
   function(param)
-   {var switcher=-9+param;
+   {var exit;
+    
+    var switcher=-9+param;
     
     if(4<switcher>>>0)
-     {if(switcher!=23){var exit=19;}else{var exit=18;}}
+     {if(switcher!=23){exit=19;}else{exit=18;}}
     else
-     {if(switcher!=2){var exit=18;}else{var exit=19;}}
+     {if(switcher!=2){exit=18;}else{exit=19;}}
     
     switch(exit){case 19:return 0;case 18:return 1;}
     };
@@ -96,17 +101,15 @@ var
         else
          {var c=s[i];
           
+          var exit;
+          
           if(c>=14)
-           {if(c!=34)
-             {if(c!=92){var exit=15;}else{var exit=13;}}
-            else
-             {var exit=13;}
-            }
+           {if(c!=34){if(c!=92){exit=15;}else{exit=13;}}else{exit=13;}}
           else
            {if(c>=11)
-             {if(c>=13){var exit=13;}else{var exit=15;}}
+             {if(c>=13){exit=13;}else{exit=15;}}
             else
-             {if(c>=8){var exit=13;}else{var exit=15;}}
+             {if(c>=8){exit=13;}else{exit=15;}}
             }
           
           switch(exit)
@@ -149,7 +152,6 @@ var capitalize=function(s){return bts(Bytes["capitalize"](bos(s)));};
 var uncapitalize=function(s){return bts(Bytes["uncapitalize"](bos(s)));};
 
 var compare=function(x,y){return "unknown primitive:caml_string_compare";};
-
 
 module["exports"]=
 {"make":make,

@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Filename=require("Filename");
@@ -7,6 +9,7 @@ var My_unix=require("My_unix");
 var Tags=require("Tags");
 var Log=require("Log");
 var Sys=require("Sys");
+
 
 var
  is_simple_filename=
@@ -21,17 +24,19 @@ var
         else
          {var match=s[pos];
           
+          var exit;
+          
           if(match>=91)
            {if(match>=97)
-             {if(match>=123){var exit=17;}else{var exit=16;}}
+             {if(match>=123){exit=17;}else{exit=16;}}
             else
-             {if(match!=95){var exit=17;}else{var exit=16;}}
+             {if(match!=95){exit=17;}else{exit=16;}}
             }
           else
            {if(match>=59)
-             {if(match>=64){var exit=16;}else{var exit=17;}}
+             {if(match>=64){exit=16;}else{exit=17;}}
             else
-             {if(match>=43){var exit=16;}else{var exit=17;}}
+             {if(match>=43){exit=16;}else{exit=17;}}
             }
           
           switch(exit){case 17:return 0;case 16:return loop(pos+1);}
@@ -175,7 +180,6 @@ var
     My_std["reset_filesys_cache_for_file"](dest);
     return run([0,"mv",[0,src,[0,dest,0]]],dest);
     };
-
 
 module["exports"]=
 {"is_simple_filename":is_simple_filename,

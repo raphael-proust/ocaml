@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+
 
 var
  length_aux=
@@ -153,6 +156,8 @@ var
     
     var match$1=l2;
     
+    var exit;
+    
     if(match)
      {if(match$1)
        {var l2$1=match$1[2];
@@ -168,10 +173,10 @@ var
         return [0,r,map2(f,l1$1,l2$1)];
         }
       else
-       {var exit=66;}
+       {exit=66;}
       }
     else
-     {if(match$1){var exit=66;}else{return 0;}}
+     {if(match$1){exit=66;}else{return 0;}}
     
     switch(exit){case 66:return Pervasives["invalid_arg"]("List.map2");}
     };
@@ -186,6 +191,8 @@ var
         
         var match$1=l2$1;
         
+        var exit;
+        
         if(match)
          {if(match$1)
            {var l2$2=match$1[2];
@@ -199,10 +206,10 @@ var
             return rmap2_f([0,f(a1,a2),accu],l1$2,l2$2);
             }
           else
-           {var exit=63;}
+           {exit=63;}
           }
         else
-         {if(match$1){var exit=63;}else{return accu;}}
+         {if(match$1){exit=63;}else{return accu;}}
         
         switch(exit)
          {case 63:return Pervasives["invalid_arg"]("List.rev_map2");}
@@ -218,6 +225,8 @@ var
     
     var match$1=l2;
     
+    var exit;
+    
     if(match)
      {if(match$1)
        {var l2$1=match$1[2];
@@ -232,10 +241,10 @@ var
         return iter2(f,l1$1,l2$1);
         }
       else
-       {var exit=62;}
+       {exit=62;}
       }
     else
-     {if(match$1){var exit=62;}else{return 0;}}
+     {if(match$1){exit=62;}else{return 0;}}
     
     switch(exit){case 62:return Pervasives["invalid_arg"]("List.iter2");}
     };
@@ -246,6 +255,8 @@ var
    {var match=l1;
     
     var match$1=l2;
+    
+    var exit;
     
     if(match)
      {if(match$1)
@@ -260,10 +271,10 @@ var
         return fold_left2(f,f(accu,a1,a2),l1$1,l2$1);
         }
       else
-       {var exit=61;}
+       {exit=61;}
       }
     else
-     {if(match$1){var exit=61;}else{return accu;}}
+     {if(match$1){exit=61;}else{return accu;}}
     
     switch(exit){case 61:return Pervasives["invalid_arg"]("List.fold_left2");}
     };
@@ -274,6 +285,8 @@ var
    {var match=l1;
     
     var match$1=l2;
+    
+    var exit;
     
     if(match)
      {if(match$1)
@@ -288,10 +301,10 @@ var
         return f(a1,a2,fold_right2(f,l1$1,l2$1,accu));
         }
       else
-       {var exit=60;}
+       {exit=60;}
       }
     else
-     {if(match$1){var exit=60;}else{return accu;}}
+     {if(match$1){exit=60;}else{return accu;}}
     
     switch(exit)
      {case 60:return Pervasives["invalid_arg"]("List.fold_right2");}
@@ -322,6 +335,8 @@ var
     
     var match$1=l2;
     
+    var exit;
+    
     if(match)
      {if(match$1)
        {var l2$1=match$1[2];
@@ -335,10 +350,10 @@ var
         return p(a1,a2)&&for_all2(p,l1$1,l2$1);
         }
       else
-       {var exit=59;}
+       {exit=59;}
       }
     else
-     {if(match$1){var exit=59;}else{return 1;}}
+     {if(match$1){exit=59;}else{return 1;}}
     
     switch(exit){case 59:return Pervasives["invalid_arg"]("List.for_all2");}
     };
@@ -349,6 +364,8 @@ var
    {var match=l1;
     
     var match$1=l2;
+    
+    var exit;
     
     if(match)
      {if(match$1)
@@ -363,10 +380,10 @@ var
         return p(a1,a2)||exists2(p,l1$1,l2$1);
         }
       else
-       {var exit=58;}
+       {exit=58;}
       }
     else
-     {if(match$1){var exit=58;}else{return 0;}}
+     {if(match$1){exit=58;}else{return 0;}}
     
     switch(exit){case 58:return Pervasives["invalid_arg"]("List.exists2");}
     };
@@ -590,6 +607,8 @@ var
     
     var match$1=l2;
     
+    var exit;
+    
     if(match)
      {if(match$1)
        {var l2$1=match$1[2];
@@ -603,10 +622,10 @@ var
         return [0,[0,a1,a2],combine(l1$1,l2$1)];
         }
       else
-       {var exit=53;}
+       {exit=53;}
       }
     else
-     {if(match$1){var exit=53;}else{return 0;}}
+     {if(match$1){exit=53;}else{return 0;}}
     
     switch(exit){case 53:return Pervasives["invalid_arg"]("List.combine");}
     };
@@ -721,9 +740,11 @@ var
         
         var match$1=l$1;
         
+        var exit;
+        
         if(match!=2)
          {if(match!=3)
-           {var exit=41;}
+           {exit=41;}
           else
            {if(match$1)
              {var match$2=match$1[2];
@@ -760,13 +781,13 @@ var
                     }
                   }
                 else
-                 {var exit=41;}
+                 {exit=41;}
                 }
               else
-               {var exit=41;}
+               {exit=41;}
               }
             else
-             {var exit=41;}
+             {exit=41;}
             }
           }
         else
@@ -784,10 +805,10 @@ var
                {return [0,x2$1,[0,x1$1,0]];}
               }
             else
-             {var exit=41;}
+             {exit=41;}
             }
           else
-           {var exit=41;}
+           {exit=41;}
           }
         
         switch(exit)
@@ -818,9 +839,11 @@ var
         
         var match$1=l$1;
         
+        var exit;
+        
         if(match!=2)
          {if(match!=3)
-           {var exit=47;}
+           {exit=47;}
           else
            {if(match$1)
              {var match$2=match$1[2];
@@ -857,13 +880,13 @@ var
                     }
                   }
                 else
-                 {var exit=47;}
+                 {exit=47;}
                 }
               else
-               {var exit=47;}
+               {exit=47;}
               }
             else
-             {var exit=47;}
+             {exit=47;}
             }
           }
         else
@@ -881,10 +904,10 @@ var
                {return [0,x2$1,[0,x1$1,0]];}
               }
             else
-             {var exit=47;}
+             {exit=47;}
             }
           else
-           {var exit=47;}
+           {exit=47;}
           }
         
         switch(exit)
@@ -997,9 +1020,11 @@ var
         
         var match$1=l$1;
         
+        var exit;
+        
         if(match!=2)
          {if(match!=3)
-           {var exit=14;}
+           {exit=14;}
           else
            {if(match$1)
              {var match$2=match$1[2];
@@ -1076,13 +1101,13 @@ var
                     }
                   }
                 else
-                 {var exit=14;}
+                 {exit=14;}
                 }
               else
-               {var exit=14;}
+               {exit=14;}
               }
             else
-             {var exit=14;}
+             {exit=14;}
             }
           }
         else
@@ -1106,10 +1131,10 @@ var
                 }
               }
             else
-             {var exit=14;}
+             {exit=14;}
             }
           else
-           {var exit=14;}
+           {exit=14;}
           }
         
         switch(exit)
@@ -1140,9 +1165,11 @@ var
         
         var match$1=l$1;
         
+        var exit;
+        
         if(match!=2)
          {if(match!=3)
-           {var exit=27;}
+           {exit=27;}
           else
            {if(match$1)
              {var match$2=match$1[2];
@@ -1219,13 +1246,13 @@ var
                     }
                   }
                 else
-                 {var exit=27;}
+                 {exit=27;}
                 }
               else
-               {var exit=27;}
+               {exit=27;}
               }
             else
-             {var exit=27;}
+             {exit=27;}
             }
           }
         else
@@ -1249,10 +1276,10 @@ var
                 }
               }
             else
-             {var exit=27;}
+             {exit=27;}
             }
           else
-           {var exit=27;}
+           {exit=27;}
           }
         
         switch(exit)
@@ -1280,7 +1307,6 @@ var
     
     if(len<2){return l;}else{return sort$1(len,l);}
     };
-
 
 module["exports"]=
 {"length":length,

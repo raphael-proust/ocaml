@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+
 
 "unknown primitive:caml_ba_init";
 var float32=0;
@@ -246,33 +249,6 @@ var
    {return "unknown primitive:Bigarray.get[generic,unknown]";};
 
 
-[0,
- float32,
- float64,
- complex32,
- complex64,
- int8_signed,
- int8_unsigned,
- int16_signed,
- int16_unsigned,
- $$int,
- int32,
- int64,
- nativeint,
- $$char,
- c_layout,
- fortran_layout,
- Genarray,
- Array1,
- Array2,
- Array3,
- array1_of_genarray,
- array2_of_genarray,
- array3_of_genarray,
- function(prim,prim$1){return "unknown primitive:caml_ba_reshape";},
- reshape_1,
- reshape_2,
- reshape_3];
 module["exports"]=
 {"float32":float32,
  "float64":float64,
@@ -296,8 +272,8 @@ module["exports"]=
  "array1_of_genarray":array1_of_genarray,
  "array2_of_genarray":array2_of_genarray,
  "array3_of_genarray":array3_of_genarray,
- "unknown block:(function prim/1263 prim/1262 (caml_ba_reshape prim/1263 prim/1262))":
- unknown block:(function prim/1263 prim/1262 (caml_ba_reshape prim/1263 prim/1262)),
+ "caml_ba_reshape":
+ function(prim,prim$1){return "unknown primitive:caml_ba_reshape";},
  "reshape_1":reshape_1,
  "reshape_2":reshape_2,
  "reshape_3":reshape_3};

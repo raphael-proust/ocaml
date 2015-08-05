@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var
  merge=
   function(order,l1,l2)
@@ -55,7 +59,9 @@ var
     var
      merge2=
       function(x)
-       {if(x)
+       {var exit;
+        
+        if(x)
          {var match=x[2];
           
           if(match)
@@ -68,10 +74,10 @@ var
             return [0,merge(order,l1,l2),merge2(rest)];
             }
           else
-           {var exit=11;}
+           {exit=11;}
           }
         else
-         {var exit=11;}
+         {exit=11;}
         
         switch(exit){case 11:return x;}
         };
@@ -161,7 +167,6 @@ var
        {}
       }
     };
-
 
 module["exports"]={"list":list,"array":array,"merge":merge};
 

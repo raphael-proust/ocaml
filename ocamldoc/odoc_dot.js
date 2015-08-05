@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Format=require("Format");
 var Odoc_messages=require("Odoc_messages");
+
 
 
 var shared=[0,"loc_colors","modules","colors"];
@@ -270,7 +273,6 @@ var
     dot_init);
 
 var Generator=[0,dot];
-
 
 module["exports"]=
 {"F":F,

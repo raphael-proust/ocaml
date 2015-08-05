@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Question=require("Question");
 var History=require("History");
 var Breakpoints=require("Breakpoints");
@@ -12,9 +14,10 @@ var Unix_tools=require("Unix_tools");
 var Parameters=require("Parameters");
 var Debugger_config=require("Debugger_config");
 var Int64ops=require("Int64ops");
-var Input_handling=require("Input_handling");
 var Time_travel=require("Time_travel");
+var Input_handling=require("Input_handling");
 var Config=require("Config");
+
 
 var file_name=[0,0];
 
@@ -64,8 +67,8 @@ var
       
       var sock_address=match[2];
       
-      switch(sock_address)
-       {case 0:var $js=[0,sock_address[1]];case 1:var $js=0;}
+      var $js;
+      switch(sock_address){case 0:$js=[0,sock_address[1]];case 1:$js=0;}
       file_name[1]=$js,0;
       var sock=Unix["socket"](match[1],0,0);
       
@@ -209,7 +212,6 @@ var
     else
      {return 0;}
     };
-
 
 module["exports"]=
 {"loaded":loaded,

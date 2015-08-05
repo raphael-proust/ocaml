@@ -1,14 +1,17 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Const=require("Const");
 var Lexers=require("Lexers");
 var Printf=require("Printf");
-var Loc=require("Loc");
 var Param_tags=require("Param_tags");
+var Loc=require("Loc");
 var Lexing=require("Lexing");
 var My_std=require("My_std");
 var Tags=require("Tags");
 var Hashtbl=require("Hashtbl");
 var Log=require("Log");
 var Glob=require("Glob");
+
 
 var
  acknowledge_config=
@@ -190,7 +193,6 @@ var
     
     return My_std["List"][14](My_std["List"][14](check_conf),configs$1(0));
     };
-
 
 module["exports"]=
 {"parse_string":parse_string,

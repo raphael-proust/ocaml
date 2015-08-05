@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Options=require("Options");
 var List=require("List");
 var Printf=require("Printf");
 var Pathname=require("Pathname");
 var Hygiene=require("Hygiene");
 var Log=require("Log");
+
 
 var Exit_hygiene_failed="unknown primitive:caml_set_oo_id";
 
@@ -98,7 +101,6 @@ var
     else
      {return 0;}
     };
-
 
 module["exports"]=
 {"Exit_hygiene_failed":Exit_hygiene_failed,"inspect":inspect};

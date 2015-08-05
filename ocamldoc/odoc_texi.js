@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
@@ -10,6 +12,7 @@ var Bytes=require("Bytes");
 var Str=require("Str");
 var Hashtbl=require("Hashtbl");
 var Odoc_messages=require("Odoc_messages");
+
 
 var
  shared=
@@ -218,14 +221,14 @@ var
     
     var len=-1+s["length"];
     
-    for(var i=0;i<=len;i++){if(s[i]=10){var c=1+c;}else{}}
+    for(var i=0;i<=len;i++){if(s[i]=10){c=1+c;}else{}}
     
     var s$prime=Bytes["make"](1+len+(1+c)*nb_sp,32);
     
-    var c=nb_sp;
+    c=nb_sp;
     
     for(var i$1=0;i$1<=len;i$1++)
-     {s$prime[c]=s[i$1],0;if(s[i$1]=10){var c=c+nb_sp;}else{}var c=1+c;}
+     {s$prime[c]=s[i$1],0;if(s[i$1]=10){c=c+nb_sp;}else{}c=1+c;}
     
     return Bytes["to_string"](s$prime);
     };
@@ -253,12 +256,14 @@ var
          
          var match$2=mt[6];
          
+         var exit;
+         
          if(match$2)
           {switch(match$2[1])
-            {case 2:return iter(acc,param[2]);default:var exit=113;}
+            {case 2:return iter(acc,param[2]);default:exit=113;}
            }
          else
-          {var exit=113;}
+          {exit=113;}
          
          switch(exit)
           {case 113:return iter([0,[0,448725581,mt],acc],param[2]);}
@@ -577,7 +582,9 @@ var
          },
        texi_of_text_element,
        function(self$neg1,param)
-        {if(typeof param=="number")
+        {var exit;
+         
+         if(typeof param=="number")
           {switch(param)
             {case 0:
               "unknown block:(sendself self-1/1344 texi_of_Newline/1326)";
@@ -594,7 +601,7 @@ var
              case 2:
               "unknown block:(sendself self-1/1344 texi_of_CodePre/1317 (field 0 param/2331))";
               
-             case 3:var exit=98;
+             case 3:exit=98;
              case 4:
               "unknown block:(sendself self-1/1344 texi_of_Bold/1318 (field 0 param/2331))";
               
@@ -625,7 +632,7 @@ var
              case 13:
               "unknown block:(sendself self-1/1344 texi_of_Title/1328 (field 0 param/2331)\n  (field 2 param/2331))";
               
-             case 14:var exit=98;
+             case 14:exit=98;
              case 15:
               "unknown block:(sendself self-1/1344 texi_of_Link/1329 (field 0 param/2331)\n  (field 1 param/2331))";
               
@@ -783,7 +790,9 @@ var
          },
        texi_of_Ref,
        function(self$neg1,name,kind)
-        {if(kind)
+        {var exit;
+         
+         if(kind)
           {var match=kind[1];
            
            if("unknown primitive:isint")
@@ -816,21 +825,21 @@ var
                    (Odoc_messages["class_type"],
                     Pervasives["^"](" ",Odoc_info["Name"][1](name)));
                 
-               case 4:var exit=92;
-               case 5:var exit=92;
-               case 6:var exit=92;
-               case 7:var exit=92;
-               case 8:var exit=92;
-               case 9:var exit=92;
-               case 10:var exit=92;
-               case 11:var exit=92;
+               case 4:exit=92;
+               case 5:exit=92;
+               case 6:exit=92;
+               case 7:exit=92;
+               case 8:exit=92;
+               case 9:exit=92;
+               case 10:exit=92;
+               case 11:exit=92;
                }
              }
            else
-            {var exit=92;}
+            {exit=92;}
            }
          else
-          {var exit=92;}
+          {exit=92;}
          
          switch(exit){case 92:var xname="";}
          
@@ -1118,7 +1127,9 @@ var
          return function(t)
           {return List["map"]
                    (function(txt)
-                     {if(typeof txt=="number")
+                     {var exit;
+                      
+                      if(typeof txt=="number")
                        {switch(txt){case 0:return [0,"\n"];}}
                       else
                        {switch(txt[0])
@@ -1131,7 +1142,7 @@ var
                            "unknown block:(sendself self-2/1626 fix_linebreaks/1575)";
                            return [11,List["map"](0,txt[1])];
                            
-                          default:var exit=88;}}
+                          default:exit=88;}}
                       
                       switch(exit){case 88:return txt;}
                       },
@@ -1147,12 +1158,14 @@ var
            
            return List["map"]
                    (function(txt)
-                     {if(typeof txt=="number")
+                     {var exit;
+                      
+                      if(typeof txt=="number")
                        {switch(txt){}}
                       else
                        {switch(txt[0])
                          {case 0:return [0,Str["global_replace"](re,rep,txt[1])];
-                          default:var exit=85;}}
+                          default:exit=85;}}
                       
                       switch(exit){case 85:return txt;}
                       },
@@ -1164,6 +1177,8 @@ var
         {if(param)
           {var t=param[1];
            
+           var exit;
+           
            if(t)
             {var match=t[1];
              
@@ -1173,13 +1188,12 @@ var
               {switch(match[0])
                 {case 0:
                   switch(match[1])
-                   {case "":if(t[2]){var exit=84;}else{return 0;}
-                    default:var exit=84;}
+                   {case "":if(t[2]){exit=84;}else{return 0;}default:exit=84;}
                   
-                 default:var exit=84;}}
+                 default:exit=84;}}
              }
            else
-            {var exit=84;}
+            {exit=84;}
            
            switch(exit)
             {case 84:
@@ -1198,6 +1212,8 @@ var
                    (function(param)
                      {var match=param[1];
                       
+                      var exit;
+                      
                       switch(match)
                        {case 0:
                          return [0,
@@ -1206,8 +1222,8 @@ var
                                   [4,[0,[0,Odoc_messages["see_also"]],0]],
                                   [0,[0," "],[0,[15,match[1],param[2]],[0,0,0]]]]];
                          
-                        case 1:var exit=83;
-                        case 2:var exit=83;
+                        case 1:exit=83;
+                        case 2:exit=83;
                         }
                       
                       switch(exit)
@@ -1546,13 +1562,12 @@ var
            function(param)
             {var match=param[6];
              
+             var exit;
+             
              switch(match)
               {case 1:
-                var match$1=match[1][2];
-                
-                if(match$1){var exit=61;}else{return 0;}
-                
-               default:var exit=61;}
+                var match$1=match[1][2];if(match$1){exit=61;}else{return 0;}
+               default:exit=61;}
              
              switch(exit){case 61:return 1;}
              };
@@ -1592,10 +1607,12 @@ var
            function(param)
             {var match=param[6];
              
+             var exit;
+             
              if(match)
-              {switch(match[1]){case 2:return 1;default:var exit=56;}}
+              {switch(match[1]){case 2:return 1;default:exit=56;}}
              else
-              {var exit=56;}
+              {exit=56;}
              
              switch(exit){case 56:return 0;}
              };
@@ -1605,6 +1622,8 @@ var
            function(param)
             {var match=param[6];
              
+             var exit;
+             
              if(match)
               {var match$1=match[1];
                
@@ -1612,12 +1631,12 @@ var
                 {case 2:
                   var match$2=match$1[1][2];
                   
-                  if(match$2){var exit=54;}else{return 0;}
+                  if(match$2){exit=54;}else{return 0;}
                   
-                 default:var exit=54;}
+                 default:exit=54;}
                }
              else
-              {var exit=54;}
+              {exit=54;}
              
              switch(exit){case 54:return 1;}
              };
@@ -1627,14 +1646,15 @@ var
            function(param)
             {var match=param[6];
              
+             var exit;
+             
              if(match)
               {var match$1=match[1];
                
-               switch(match$1)
-                {case 2:return match$1[1][1];default:var exit=52;}
+               switch(match$1){case 2:return match$1[1][1];default:exit=52;}
                }
              else
-              {var exit=52;}
+              {exit=52;}
              
              switch(exit){case 52:return param[1];}
              };
@@ -1770,7 +1790,9 @@ var
         {var
           iter_kind=
            function(param)
-            {switch(param)
+            {var exit;
+             
+             switch(param)
               {case 0:
                 var l=param[1];
                 
@@ -1780,8 +1802,8 @@ var
                 else
                  {return 0;}
                 
-               case 1:var exit=43;
-               case 2:var exit=43;
+               case 1:exit=43;
+               case 2:exit=43;
                case 3:return iter_kind(param[1]);
                }
              
@@ -2273,7 +2295,9 @@ var
          },
        scan_for_index_in_mod,
        function(self$neg2,param)
-        {switch(param)
+        {var exit;
+         
+         switch(param)
           {case 0:
             "unknown block:(sendself self-2/1931 do_index/1612 -177755956a)";
             
@@ -2284,7 +2308,7 @@ var
             
             "unknown block:(sendself self-2/1931 scan_for_index/1613\n  (makeblock 0 448725581 (field 0 param/2026)))";
             
-           case 2:var exit=6;
+           case 2:exit=6;
            case 3:
             "unknown block:(sendself self-2/1931 do_index/1612 -611981288a)";
             
@@ -2303,7 +2327,7 @@ var
             "unknown block:(sendself self-2/1931 do_index/1612 -345182161a)";
            case 8:
             "unknown block:(sendself self-2/1931 do_index/1612 937565914a)";
-           case 9:var exit=6;
+           case 9:exit=6;
            }
          
          switch(exit){case 6:return 0;}
@@ -2356,10 +2380,12 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Failure)
-            {var s=exn[2];var exit=2;}
+          {var exit;
+           
+           if(exn[1]=Failure)
+            {var s=exn[2];exit=2;}
            else
-            {if(exn[1]=Sys_error){var s=exn[2];var exit=2;}else{throw exn;}}
+            {if(exn[1]=Sys_error){var s=exn[2];exit=2;}else{throw exn;}}
            
            switch(exit)
             {case 2:
@@ -2499,7 +2525,6 @@ var
     texi_init);
 
 var Generator=[0,texi];
-
 
 module["exports"]=
 {"esc_8bits":esc_8bits,

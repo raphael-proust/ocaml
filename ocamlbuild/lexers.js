@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Printf=require("Printf");
 var Loc=require("Loc");
 var Lexing=require("Lexing");
 var Printexc=require("Printexc");
 var My_std=require("My_std");
 var Glob=require("Glob");
+
 
 var $$Error="unknown primitive:caml_set_oo_id";
 
@@ -177,6 +180,8 @@ var
      __ocaml_lex_state$1=
       Lexing["new_engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
+    var exit;
+    
     if(4<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_blank_sep_strings_rec
@@ -185,13 +190,13 @@ var
     else
      {switch(__ocaml_lex_state$1[0])
        {case 0:return blank_sep_strings(source,lexbuf);
-        case 1:var exit=10;
+        case 1:exit=10;
         case 2:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
          return [0,word,blank_sep_strings(source,lexbuf)];
          
-        case 3:var exit=10;
+        case 3:exit=10;
         case 4:
          return error
                  (source,
@@ -535,16 +540,18 @@ var
      __ocaml_lex_state$1=
       Lexing["new_engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
+    var exit;
+    
     if(5<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_conf_lines_rec(dir,source,lexbuf,__ocaml_lex_state$1);
       }
     else
      {switch(__ocaml_lex_state$1[0])
-       {case 0:var exit=42;
-        case 1:var exit=43;
-        case 2:var exit=42;
-        case 3:var exit=43;
+       {case 0:exit=42;
+        case 1:exit=43;
+        case 2:exit=42;
+        case 3:exit=43;
         case 4:
          var k=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
@@ -929,7 +936,6 @@ var
         }
       }
     };
-
 
 module["exports"]=
 {"Error":$$Error,

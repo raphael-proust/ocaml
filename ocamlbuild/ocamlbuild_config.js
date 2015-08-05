@@ -1,6 +1,10 @@
-var bindir="/Users/hongbozhang/.opam/4.02.3+local-git-4.02+js/bin";
+// Generated CODE, PLEASE EDIT WITH CARE 
 
-var libdir="/Users/hongbozhang/.opam/4.02.3+local-git-4.02+js/lib/ocaml";
+
+
+var bindir="/Users/hongbozhang/.opam/4.02.3+local-git-master/bin";
+
+var libdir="/Users/hongbozhang/.opam/4.02.3+local-git-master/lib/ocaml";
 
 var supports_shared_libraries=1;
 
@@ -13,7 +17,6 @@ var so="so";
 var ext_dll=".so";
 
 var exe="";
-
 
 module["exports"]=
 {"bindir":bindir,

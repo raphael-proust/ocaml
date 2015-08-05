@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_messages=require("Odoc_messages");
+
 
 var dummy_info=[0,0,0,0,0,0,0,0,0,0,0,0];
 
@@ -20,7 +23,6 @@ var
     else
      {throw [0,Failure,Odoc_messages["bad_magic_number"]];}
     };
-
 
 module["exports"]=
 {"dummy_info":dummy_info,

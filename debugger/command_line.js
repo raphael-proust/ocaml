@@ -1,17 +1,19 @@
-var Ctype=require("Ctype");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
+var Ctype=require("Ctype");
 var Question=require("Question");
 var Parser=require("Parser");
-var Frames=require("Frames");
 var Show_information=require("Show_information");
+var Frames=require("Frames");
 var History=require("History");
 var Program_management=require("Program_management");
 var Breakpoints=require("Breakpoints");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Env=require("Env");
-var Printf=require("Printf");
 var Symbols=require("Symbols");
+var Printf=require("Printf");
 var Events=require("Events");
 var Checkpoints=require("Checkpoints");
 var Envaux=require("Envaux");
@@ -23,24 +25,25 @@ var Misc=require("Misc");
 var Lexer=require("Lexer");
 var Unix_tools=require("Unix_tools");
 var Unix=require("Unix");
-var Lexing=require("Lexing");
 var Filename=require("Filename");
+var Lexing=require("Lexing");
+var Parsing=require("Parsing");
 var Parameters=require("Parameters");
 var Eval=require("Eval");
-var Parsing=require("Parsing");
 var Debugger_config=require("Debugger_config");
 var Pos=require("Pos");
-var Int64ops=require("Int64ops");
-var Show_source=require("Show_source");
 var Longident=require("Longident");
-var Loadprinter=require("Loadprinter");
+var Show_source=require("Show_source");
+var Int64ops=require("Int64ops");
 var Source=require("Source");
+var Loadprinter=require("Loadprinter");
 var Hashtbl=require("Hashtbl");
-var Time_travel=require("Time_travel");
 var Input_handling=require("Input_handling");
+var Time_travel=require("Time_travel");
 var Config=require("Config");
-var Debugcom=require("Debugcom");
 var Sys=require("Sys");
+var Debugcom=require("Debugcom");
+
 
 var instruction_list=[0,0];
 
@@ -241,16 +244,18 @@ var
        {Input_handling["resume_user_input"](0);return 0;}
       }
     catch(exn)
-     {if(exn=Parsing["Parse_error"])
+     {var exit;
+      
+      if(exn=Parsing["Parse_error"])
        {return error("Syntax error.");}
       else
        {if(exn[1]=Failure)
          {switch(exn[2])
            {case "int_of_string":return error("Integer overflow");
-            default:var exit=172;}
+            default:exit=172;}
           }
         else
-         {var exit=172;}
+         {exit=172;}
         }
       
       switch(exit){case 172:throw exn;}
@@ -277,9 +282,9 @@ var
         else
          {var line=previous_line;}
         
-        var previous_line="";
+        previous_line="";
         
-        if(interprete_line(ppf,line)){var previous_line=line;}else{}
+        if(interprete_line(ppf,line)){previous_line=line;}else{}
         }
       return 0;
       }
@@ -411,6 +416,8 @@ var
     else
      {var new_directory$prime=List["rev"](new_directory);
       
+      var exit;
+      
       if(new_directory$prime)
        {var match=new_directory$prime[2];
         
@@ -427,13 +434,13 @@ var
                 },
               tl)}
           else
-           {var exit=148;}
+           {exit=148;}
           }
         else
-         {var exit=148;}
+         {exit=148;}
         }
       else
-       {var exit=148;}
+       {exit=148;}
       
       switch(exit)
        {case 148:
@@ -684,15 +691,19 @@ var
           
           var l=matching_instructions(x);
           
+          var exit;
+          
           if(l)
            {var i=l[1];
             
             var i_full=i[1];
             
+            var exit$1;
+            
             switch(i_full)
              {case "help":
                if(l[2])
-                {var exit=122;}
+                {exit=122;}
                else
                 {if("unknown primitive:caml_string_equal")
                   {return match_list(lexbuf$1);}
@@ -702,7 +713,7 @@ var
                
               case "info":
                if(l[2])
-                {var exit=122;}
+                {exit=122;}
                else
                 {if("unknown primitive:caml_string_equal")
                   {var
@@ -714,9 +725,11 @@ var
                      
                      var l$1=matching_infos(ident);
                      
+                     var exit$2;
+                     
                      if(l$1)
                       {if(l$1[2])
-                        {var exit$1=121;}
+                        {exit$2=121;}
                        else
                         {var i$1=l$1[1];
                          
@@ -727,9 +740,9 @@ var
                          }
                        }
                      else
-                      {var exit$1=121;}
+                      {exit$2=121;}
                      
-                     switch(exit$1)
+                     switch(exit$2)
                       {case 121:
                         return List["map"](function(i$2){return i$2[1];},l$1);
                        }
@@ -743,14 +756,14 @@ var
                   {return [0,"info",0];}
                  }
                
-              case "set":var exit$2=123;
-              case "show":var exit$2=123;
-              default:var exit$2=124;}
+              case "set":exit$1=123;
+              case "show":exit$1=123;
+              default:exit$1=124;}
             
-            switch(exit$2)
+            switch(exit$1)
              {case 124:
                if(l[2])
-                {var exit=122;}
+                {exit=122;}
                else
                 {if("unknown primitive:caml_string_equal")
                   {return 0;}
@@ -760,7 +773,7 @@ var
                
               case 123:
                if(l[2])
-                {var exit=122;}
+                {exit=122;}
                else
                 {if("unknown primitive:caml_string_equal")
                   {var
@@ -772,9 +785,11 @@ var
                      
                      var l$2=matching_variables(ident$1);
                      
+                     var exit$3;
+                     
                      if(l$2)
                       {if(l$2[2])
-                        {var exit$3=120;}
+                        {exit$3=120;}
                        else
                         {var v=l$2[1];
                          
@@ -785,7 +800,7 @@ var
                          }
                        }
                      else
-                      {var exit$3=120;}
+                      {exit$3=120;}
                      
                      switch(exit$3)
                       {case 120:
@@ -804,7 +819,7 @@ var
               }
             }
           else
-           {var exit=122;}
+           {exit=122;}
           
           switch(exit)
            {case 122:return List["map"](function(i$2){return i$2[1];},l);}
@@ -846,13 +861,17 @@ var
       
       var l=matching_instructions(x);
       
+      var exit;
+      
       if(l)
        {var i=l[1];
+        
+        var exit$1;
         
         switch(i[1])
          {case "info":
            if(l[2])
-            {var exit=114;}
+            {exit=114;}
            else
             {return find_info
                      (function(i$1,param,param$1)
@@ -868,7 +887,7 @@ var
            
           case "set":
            if(l[2])
-            {var exit=114;}
+            {exit=114;}
            else
             {return find_variable
                      (function(v,param,param$1)
@@ -885,7 +904,7 @@ var
            
           case "show":
            if(l[2])
-            {var exit=114;}
+            {exit=114;}
            else
             {return find_variable
                      (function(v,param,param$1)
@@ -901,10 +920,10 @@ var
                       lexbuf);
              }
            
-          default:var exit$1=115;}
+          default:exit$1=115;}
         
         switch(exit$1)
-         {case 115:if(l[2]){var exit=114;}else{return print_help(i[1],i[5]);}}
+         {case 115:if(l[2]){exit=114;}else{return print_help(i[1],i[5]);}}
         }
       else
        {eol(lexbuf);
@@ -1120,6 +1139,8 @@ var
            
            var match$2=Ctype["repr"](match$1[2])[1];
            
+           var exit;
+           
            if(typeof match$2=="number")
             {switch(match$2){}}
            else
@@ -1128,7 +1149,7 @@ var
                 return add_breakpoint_after_pc
                         (Debugcom["Remote_value"][12](match$1[1]));
                 
-               default:var exit=75;}}
+               default:exit=75;}}
            
            switch(exit)
             {case 75:
@@ -1295,12 +1316,16 @@ var
     Program_management["ensure_loaded"](0);
     var match$1=Checkpoints["current_report"](0);
     
+    var exit;
+    
     if(match$1)
      {var match$2=match$1[1][1];
       
+      var exit$1;
+      
       if(match$2!=2)
        {if(match$2>=4)
-         {var exit=64;}
+         {exit$1=64;}
         else
          {var frame_counter=[0,0];
           
@@ -1367,14 +1392,14 @@ var
           }
         }
       else
-       {var exit=64;}
+       {exit$1=64;}
       
-      switch(exit){case 64:var exit$1=63;}
+      switch(exit$1){case 64:exit=63;}
       }
     else
-     {var exit$1=63;}
+     {exit=63;}
     
-    switch(exit$1){case 63:return 0;}
+    switch(exit){case 63:return 0;}
     };
 
 var
@@ -1582,11 +1607,13 @@ var
             function(lexbuf)
              {var match=Parser["identifier_eol"](Lexer["lexeme"],lexbuf);
               
+              var exit;
+              
               switch(match)
-               {case "of":var exit=28;
-                case "off":var exit=28;
+               {case "of":exit=28;
+                case "off":exit=28;
                 case "on":var argument=1;
-                default:var exit=29;}
+                default:exit=29;}
               
               switch(exit)
                {case 29:var argument=error("Syntax error.");
@@ -1667,8 +1694,10 @@ var
    function(lexbuf)
     {var match=Parser["identifier_eol"](Lexer["lexeme"],lexbuf);
      
+     var exit;
+     
      switch(match)
-      {case "child":var mode=0;case "parent":var mode=1;default:var exit=22;}
+      {case "child":var mode=0;case "parent":var mode=1;default:exit=22;}
      
      switch(exit){case 22:var mode=error("Syntax error.");}
      
@@ -1837,12 +1866,13 @@ var
                
                var match$3=ev[10];
                
+               var $js;
                if(typeof match$3=="number")
-                {switch(match$3){case 0:var $js="";}}
+                {switch(match$3){case 0:$js="";}}
                else
                 {switch(match$3[0])
-                  {case 0:var $js="(repr)";
-                   case 1:var $js=Pervasives["string_of_int"](match$3[1][1]);
+                  {case 0:$js="(repr)";
+                   case 1:$js=Pervasives["string_of_int"](match$3[1][1]);
                    }}
                return Printf["printf"]
                        ([0,
@@ -2218,6 +2248,6 @@ var
            0;
     };
 
-init(Format["std_formatter"]),[0,interprete_line,line_loop];
+init(Format["std_formatter"]);
 module["exports"]={"interprete_line":interprete_line,"line_loop":line_loop};
 

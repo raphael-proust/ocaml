@@ -1,6 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Primitives=require("Primitives");
 var Unix=require("Unix");
@@ -11,6 +13,7 @@ var Parameters=require("Parameters");
 var Debugger_config=require("Debugger_config");
 var Input_handling=require("Input_handling");
 var Sys=require("Sys");
+
 
 var debug_loading=[0,0];
 
@@ -44,21 +47,23 @@ var
     for(var i=0;i<=s["length"]-1;i++)
      {var match=s[i];
       
+      var exit;
+      
       if(match>=61)
        {var switcher=-62+match;
         
         if(!(32<switcher>>>0))
-         {if(30<-1+switcher>>>0){var exit=24;}else{var exit=25;}}
+         {if(30<-1+switcher>>>0){exit=24;}else{exit=25;}}
         else
-         {if(switcher!=62){var exit=25;}else{var exit=24;}}
+         {if(switcher!=62){exit=25;}else{exit=24;}}
         }
       else
        {var switcher$1=-35+match;
         
         if(24<switcher$1>>>0)
-         {if(switcher$1>=-1){var exit=24;}else{var exit=25;}}
+         {if(switcher$1>=-1){exit=24;}else{exit=25;}}
         else
-         {if(switcher$1!=3){var exit=25;}else{var exit=24;}}
+         {if(switcher$1!=3){exit=25;}else{exit=24;}}
         }
       
       switch(exit){case 25:case 24:Buffer["add_char"](b,94)}
@@ -101,10 +106,12 @@ var
       
       var match$1=match[2];
       
+      var exit;
+      
       switch(match$1)
-       {case 0:if(match$1[1]!=0){var exit=17;}else{return 0;}
-        case 1:var exit=17;
-        case 2:var exit=17;
+       {case 0:if(match$1[1]!=0){exit=17;}else{return 0;}
+        case 1:exit=17;
+        case 2:exit=17;
         }
       
       switch(exit){case 17:throw Debugger_config["Toplevel"];}
@@ -246,7 +253,6 @@ set_launching_function(exec_direct);
 var connection=[0,Primitives["std_io"]];
 
 var connection_opened=[0,0];
-
 
 module["exports"]=
 {"debug_loading":debug_loading,

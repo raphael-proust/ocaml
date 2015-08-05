@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_class=require("Odoc_class");
 var CamlinternalOO=require("CamlinternalOO");
 var List=require("List");
 var Odoc_extension=require("Odoc_extension");
 var Odoc_module=require("Odoc_module");
+
 
 var
  shared=
@@ -120,8 +123,10 @@ var
          if(0)
           {var match=t[4];
            
+           var exit;
+           
            if(typeof match=="number")
-            {switch(match){case 0:var exit=1;case 1:var exit=1;}}
+            {switch(match){case 0:exit=1;case 1:exit=1;}}
            else
             {switch(match[0])
               {case 0:
@@ -375,7 +380,6 @@ var
      "scan_method",
      "scan_type_pre"],
     scanner_init);
-
 
 module["exports"]={"scanner":scanner};
 

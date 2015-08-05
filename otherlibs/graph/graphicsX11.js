@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Graphics=require("Graphics");
 var Hashtbl=require("Hashtbl");
+
 
 var subwindows=Hashtbl["create"](0,13);
 
@@ -27,13 +30,9 @@ var
       }
     };
 
-[0,
- function(prim){return "unknown primitive:caml_gr_window_id";},
- open_subwindow,
- close_subwindow];
 module["exports"]=
-{"unknown block:(function prim/1059 (caml_gr_window_id prim/1059))":
- unknown block:(function prim/1059 (caml_gr_window_id prim/1059)),
+{"caml_gr_window_id":
+ function(prim){return "unknown primitive:caml_gr_window_id";},
  "open_subwindow":open_subwindow,
  "close_subwindow":close_subwindow};
 

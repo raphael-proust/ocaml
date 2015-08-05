@@ -1,16 +1,19 @@
-var Odoc_global=require("Odoc_global");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Dynlink=require("Dynlink");
+var Odoc_global=require("Odoc_global");
 var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Odoc_analyse=require("Odoc_analyse");
 var Odoc_args=require("Odoc_args");
 var Filename=require("Filename");
 var Odoc_config=require("Odoc_config");
-var Odoc_gen=require("Odoc_gen");
 var $$Array=require("Array");
-var Odoc_messages=require("Odoc_messages");
+var Odoc_gen=require("Odoc_gen");
 var Sys=require("Sys");
+var Odoc_messages=require("Odoc_messages");
+
 
 
 var M=0;
@@ -24,8 +27,12 @@ var
     
     var files=param[1];
     
+    var exit;
+    
     if(param$1)
-     {switch(param$1[1])
+     {var exit$1;
+      
+      switch(param$1[1])
        {case "-g":
          var match=param$1[2];
          
@@ -38,10 +45,10 @@ var
              Filename["check_suffix"](file,"cmxs"))
             {return iter([0,[0,file,files],incs],match[2]);}
            else
-            {var exit=21;}
+            {exit$1=21;}
            }
          else
-          {var exit=21;}
+          {exit$1=21;}
          
         case "-i":
          var match$1=param$1[2];
@@ -49,22 +56,19 @@ var
          if(match$1)
           {return iter([0,files,[0,match$1[1],incs]],match$1[2]);}
          else
-          {var exit=21;}
+          {exit$1=21;}
          
-        default:var exit=21;}
+        default:exit$1=21;}
       
-      switch(exit)
+      switch(exit$1)
        {case 21:
-         var q=param$1[2];
-         
-         if(q){return iter([0,files,incs],q);}else{var exit$1=20;}
-         
+         var q=param$1[2];if(q){return iter([0,files,incs],q);}else{exit=20;}
         }
       }
     else
-     {var exit$1=20;}
+     {exit=20;}
     
-    switch(exit$1){case 20:return [0,List["rev"](files),List["rev"](incs)];}
+    switch(exit){case 20:return [0,List["rev"](files),List["rev"](incs)];}
     };
 
 var match=iter([0,0,0],arg_list);
@@ -114,7 +118,9 @@ var
     try
      {var real_file=get_real_filename(file$1);return 0;}
     catch(exn)
-     {if(exn[1]=Dynlink["Error"])
+     {var exit;
+      
+      if(exn[1]=Dynlink["Error"])
        {Pervasives["prerr_endline"]
          (Odoc_messages["load_file_error"]
            (file$1,Dynlink["error_message"](exn[2])));
@@ -128,9 +134,9 @@ var
           }
         else
          {if(exn[1]=Sys_error)
-           {var s=exn[2];var exit=9;}
+           {var s=exn[2];exit=9;}
           else
-           {if(exn[1]=Failure){var s=exn[2];var exit=9;}else{throw exn;}}
+           {if(exn[1]=Failure){var s=exn[2];exit=9;}else{throw exn;}}
           }
         }
       
@@ -208,7 +214,6 @@ if(Odoc_global["errors"][1]>0)
   Pervasives["exit"](1)}
 else
  {Pervasives["exit"](0)}
-
 
 module["exports"]=
 {"M":M,

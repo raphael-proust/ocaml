@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Char=require("Char");
 var Pervasives=require("Pervasives");
@@ -8,6 +10,7 @@ var Lexing=require("Lexing");
 var Str=require("Str");
 var Printexc=require("Printexc");
 var Hashtbl=require("Hashtbl");
+
 
 var Fatal_error="unknown primitive:caml_set_oo_id";
 
@@ -337,23 +340,25 @@ var
 var
  char_for_backslash=
   function(c)
-   {if(c>=110)
+   {var exit;
+    
+    if(c>=110)
      {if(c>=117)
-       {var exit=44;}
+       {exit=44;}
       else
        {switch((-110+c)[0])
          {case 0:return 10;
-          case 1:var exit=44;
-          case 2:var exit=44;
-          case 3:var exit=44;
+          case 1:exit=44;
+          case 2:exit=44;
+          case 3:exit=44;
           case 4:return 13;
-          case 5:var exit=44;
+          case 5:exit=44;
           case 6:return 9;
           }
         }
       }
     else
-     {if(c!=98){var exit=44;}else{return 8;}}
+     {if(c!=98){exit=44;}else{return 8;}}
     
     switch(exit){case 44:return c;}
     };
@@ -466,6 +471,8 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
+    var exit;
+    
     if(65<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_token_rec(lexbuf,__ocaml_lex_state$1);
@@ -475,13 +482,15 @@ var
        {case 0:
          var s=Lexing["lexeme"](lexbuf);
          
+         var exit$1;
+         
          switch(s)
           {case "\t":margin[1]=margin[1]+8,0;
            case "\n":margin[1]=0,0;
            case " ":margin[0]++;
-           default:var exit=15;}
+           default:exit$1=15;}
          
-         switch(exit){case 15:}
+         switch(exit$1){case 15:}
          
          print(0,s);
          return token(lexbuf);
@@ -545,8 +554,8 @@ var
          print_class(0,constructor_class,Lexing["lexeme"](lexbuf));
          return token(lexbuf);
          
-        case 8:var exit$1=26;
-        case 9:var exit$1=26;
+        case 8:exit=26;
+        case 9:exit=26;
         case 10:
          reset_string_buffer(0);
          var string_start=Lexing["lexeme_start"](lexbuf);
@@ -560,11 +569,11 @@ var
            Pervasives["^"]('"',Pervasives["^"](get_stored_string(0),'"')));
          return token(lexbuf);
          
-        case 11:var exit$1=27;
-        case 12:var exit$1=27;
-        case 13:var exit$1=27;
-        case 14:var exit$1=28;
-        case 15:var exit$1=28;
+        case 11:exit=27;
+        case 12:exit=27;
+        case 13:exit=27;
+        case 14:exit=28;
+        case 15:exit=28;
         case 16:
          lexbuf[6]=lexbuf[6]-1,0;
          var init=lexbuf[12];
@@ -573,53 +582,53 @@ var
          print(0,Lexing["lexeme"](lexbuf));
          return token(lexbuf);
          
-        case 17:var exit$1=26;
-        case 18:var exit$1=29;
-        case 19:var exit$1=29;
-        case 20:var exit$1=29;
-        case 21:var exit$1=29;
-        case 22:var exit$1=29;
-        case 23:var exit$1=26;
-        case 24:var exit$1=26;
-        case 25:var exit$1=26;
-        case 26:var exit$1=26;
-        case 27:var exit$1=29;
-        case 28:var exit$1=29;
-        case 29:var exit$1=26;
-        case 30:var exit$1=26;
-        case 31:var exit$1=26;
-        case 32:var exit$1=26;
-        case 33:var exit$1=26;
-        case 34:var exit$1=26;
-        case 35:var exit$1=26;
-        case 36:var exit$1=26;
-        case 37:var exit$1=26;
-        case 38:var exit$1=26;
-        case 39:var exit$1=26;
-        case 40:var exit$1=26;
-        case 41:var exit$1=26;
-        case 42:var exit$1=26;
-        case 43:var exit$1=26;
-        case 44:var exit$1=26;
-        case 45:var exit$1=26;
-        case 46:var exit$1=29;
-        case 47:var exit$1=29;
-        case 48:var exit$1=26;
-        case 49:var exit$1=26;
-        case 50:var exit$1=26;
-        case 51:var exit$1=26;
-        case 52:var exit$1=26;
-        case 53:var exit$1=26;
-        case 54:var exit$1=26;
-        case 55:var exit$1=26;
-        case 56:var exit$1=26;
-        case 57:var exit$1=26;
-        case 58:var exit$1=29;
-        case 59:var exit$1=26;
-        case 60:var exit$1=26;
-        case 61:var exit$1=26;
-        case 62:var exit$1=26;
-        case 63:var exit$1=26;
+        case 17:exit=26;
+        case 18:exit=29;
+        case 19:exit=29;
+        case 20:exit=29;
+        case 21:exit=29;
+        case 22:exit=29;
+        case 23:exit=26;
+        case 24:exit=26;
+        case 25:exit=26;
+        case 26:exit=26;
+        case 27:exit=29;
+        case 28:exit=29;
+        case 29:exit=26;
+        case 30:exit=26;
+        case 31:exit=26;
+        case 32:exit=26;
+        case 33:exit=26;
+        case 34:exit=26;
+        case 35:exit=26;
+        case 36:exit=26;
+        case 37:exit=26;
+        case 38:exit=26;
+        case 39:exit=26;
+        case 40:exit=26;
+        case 41:exit=26;
+        case 42:exit=26;
+        case 43:exit=26;
+        case 44:exit=26;
+        case 45:exit=26;
+        case 46:exit=29;
+        case 47:exit=29;
+        case 48:exit=26;
+        case 49:exit=26;
+        case 50:exit=26;
+        case 51:exit=26;
+        case 52:exit=26;
+        case 53:exit=26;
+        case 54:exit=26;
+        case 55:exit=26;
+        case 56:exit=26;
+        case 57:exit=26;
+        case 58:exit=29;
+        case 59:exit=26;
+        case 60:exit=26;
+        case 61:exit=26;
+        case 62:exit=26;
+        case 63:exit=26;
         case 64:return 0;
         case 65:
          throw [0,
@@ -631,7 +640,7 @@ var
         }
       }
     
-    switch(exit$1)
+    switch(exit)
      {case 26:print(0,Lexing["lexeme"](lexbuf));return token(lexbuf);
       case 27:
        print_class(0,string_class,Lexing["lexeme"](lexbuf));
@@ -711,6 +720,8 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
+    var exit;
+    
     if(6<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_string_rec(lexbuf,__ocaml_lex_state$1);
@@ -719,9 +730,9 @@ var
      {switch(__ocaml_lex_state$1[0])
        {case 0:return 0;
         case 1:return string(lexbuf);
-        case 2:var exit=34;
-        case 3:var exit=34;
-        case 4:var exit=34;
+        case 2:exit=34;
+        case 3:exit=34;
+        case 4:exit=34;
         case 5:throw [0,$$Error,1,string_start_pos[1],string_start_pos[1]+1];
         case 6:
          store_string_char(Lexing["lexeme_char"](lexbuf,0));
@@ -788,7 +799,6 @@ var
     fmt[1]=old_fmt,0;
     return Buffer["add_string"](b,html);
     };
-
 
 module["exports"]=
 {"Fatal_error":Fatal_error,

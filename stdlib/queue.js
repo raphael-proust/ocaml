@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var Empty="unknown primitive:caml_set_oo_id";
 
 var create=function(param){return [0,0,0];};
@@ -140,7 +144,6 @@ var
     else
      {return 0;}
     };
-
 
 module["exports"]=
 {"Empty":Empty,

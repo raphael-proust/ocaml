@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+
 
 var
  init=
@@ -361,34 +364,13 @@ var
 
 var fast_sort=stable_sort;
 
-[0,
- init,
- make_matrix,
- create_matrix,
- append,
- function(prim){return "unknown primitive:caml_array_concat";},
- sub,
- copy,
- fill,
- blit,
- to_list,
- of_list,
- iter,
- map,
- iteri,
- mapi,
- fold_left,
- fold_right,
- sort,
- stable_sort,
- fast_sort];
 module["exports"]=
 {"init":init,
  "make_matrix":make_matrix,
  "create_matrix":create_matrix,
  "append":append,
- "unknown block:(function prim/1183 (caml_array_concat prim/1183))":
- unknown block:(function prim/1183 (caml_array_concat prim/1183)),
+ "caml_array_concat":
+ function(prim){return "unknown primitive:caml_array_concat";},
  "sub":sub,
  "copy":copy,
  "fill":fill,

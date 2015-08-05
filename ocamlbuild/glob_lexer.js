@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Printf=require("Printf");
 var Glob_ast=require("Glob_ast");
 var Buffer=require("Buffer");
 var Lexing=require("Lexing");
+
 
 var sf=Printf["sprintf"];
 
@@ -240,7 +243,6 @@ var
         }
       }
     };
-
 
 module["exports"]={"token":token};
 

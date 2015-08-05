@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Sys=require("Sys");
+
 
 var
  gcd_int=
@@ -32,7 +35,6 @@ var
     else
      {if("unknown primitive:caml_greaterthan"){return 1;}else{return -1;}}
     };
-
 
 module["exports"]=
 {"gcd_int":gcd_int,

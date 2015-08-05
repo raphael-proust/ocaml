@@ -1,12 +1,13 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Set=require("Set");
-var Odoc_print=require("Odoc_print");
 var Depend=require("Depend");
+var Odoc_print=require("Odoc_print");
 var Str=require("Str");
 
 
-
-
+Odoc_type,Odoc_module,Depend;
 var StrS=0;
 
 var Module=0;
@@ -174,8 +175,10 @@ var
     
     var match=t[4];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=16;case 1:var exit=16;}}
+     {switch(match){case 0:exit=16;case 1:exit=16;}}
     else
      {switch(match[0])
        {case 0:
@@ -258,7 +261,6 @@ var
     else
      {return deps_pre;}
     };
-
 
 module["exports"]=
 {"StrS":StrS,

@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Unix=require("Unix");
+
 
 var Out_of_range="unknown primitive:caml_set_oo_id";
 
@@ -96,7 +99,9 @@ var
 var
  is_space=
   function(param)
-   {if(param!=9){if(param!=32){return 0;}else{var exit=12;}}else{var exit=12;}
+   {var exit;
+    
+    if(param!=9){if(param!=32){return 0;}else{exit=12;}}else{exit=12;}
     
     switch(exit){case 12:return 1;}
     };
@@ -108,11 +113,11 @@ var
     
     var i=0;
     
-    while(i<l&&is_space(s[i])){var i=1+i;}
+    while(i<l&&is_space(s[i])){i=1+i;}
     
     var j=l-1;
     
-    while(j>=i&&is_space(s[j])){var j=-1+j;}
+    while(j>=i&&is_space(s[j])){j=-1+j;}
     
     return $$String["sub"](s,i,j-i+1);
     };
@@ -180,7 +185,6 @@ var
     };
 
 var std_io=[0,Pervasives["stdin"],Pervasives["stdout"],Unix["stdin"]];
-
 
 module["exports"]=
 {"nothing":nothing,

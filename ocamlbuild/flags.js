@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Command=require("Command");
 var Param_tags=require("Param_tags");
 var Tags=require("Tags");
 var Log=require("Log");
+
 
 var flags_of_decl=function(param){return param[2];};
 
@@ -117,7 +120,6 @@ var
              used_tags[1],
              all_decls[1]);
     };
-
 
 module["exports"]=
 {"of_tags":of_tags,

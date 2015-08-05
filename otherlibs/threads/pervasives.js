@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
+
 
 var match="unknown primitive:caml_register_named_value";
 
@@ -62,8 +65,9 @@ var string_of_bool=function(b){if(b){return "true";}else{return "false";}};
 var
  bool_of_string=
   function(param)
-   {switch(param)
-     {case "false":return 0;case "true":return 1;default:var exit=92;}
+   {var exit;
+    
+    switch(param){case "false":return 0;case "true":return 1;default:exit=92;}
     
     switch(exit){case 92:return invalid_arg("bool_of_string");}
     };
@@ -83,10 +87,12 @@ var
         else
          {var match$1=s[i];
           
+          var exit;
+          
           if(match$1>=48)
-           {if(match$1>=58){var exit=88;}else{var exit=87;}}
+           {if(match$1>=58){exit=88;}else{exit=87;}}
           else
-           {if(match$1!=45){var exit=88;}else{var exit=87;}}
+           {if(match$1!=45){exit=88;}else{exit=87;}}
           
           switch(exit){case 88:return s;case 87:return loop(i+1);}
           }
@@ -531,100 +537,7 @@ var
  exit=
   function(retcode){do_at_exit(0);return "unknown primitive:caml_sys_exit";};
 
-"unknown primitive:caml_register_named_value",
-[0,
- invalid_arg,
- failwith,
- Exit,
- min,
- max,
- abs,
- max_int,
- min_int,
- lnot,
- infinity,
- neg_infinity,
- nan,
- max_float,
- min_float,
- epsilon_float,
- $caret,
- char_of_int,
- string_of_bool,
- bool_of_string,
- string_of_int,
- string_of_float,
- $at,
- stdin,
- stdout,
- stderr,
- print_char,
- print_string,
- print_bytes,
- print_int,
- print_float,
- print_endline,
- print_newline,
- prerr_char,
- prerr_string,
- prerr_bytes,
- prerr_int,
- prerr_float,
- prerr_endline,
- prerr_newline,
- read_line,
- read_int,
- read_float,
- open_out,
- open_out_bin,
- open_out_gen,
- flush,
- flush_all,
- output_char,
- output_string,
- output_bytes,
- output,
- output_substring,
- output_byte,
- output_binary_int,
- output_value,
- seek_out,
- function(prim){return "unknown primitive:caml_ml_pos_out";},
- function(prim){return "unknown primitive:caml_ml_channel_size";},
- close_out,
- close_out_noerr,
- function(prim,prim$1){return "unknown primitive:caml_ml_set_binary_mode";},
- open_in,
- open_in_bin,
- open_in_gen,
- input_char,
- input_line,
- input,
- really_input,
- really_input_string,
- input_byte,
- input_binary_int,
- input_value,
- function(prim,prim$1){return "unknown primitive:caml_ml_seek_in";},
- function(prim){return "unknown primitive:caml_ml_pos_in";},
- function(prim){return "unknown primitive:caml_ml_channel_size";},
- function(prim){return "unknown primitive:caml_ml_close_channel";},
- close_in_noerr,
- function(prim,prim$1){return "unknown primitive:caml_ml_set_binary_mode";},
- [0,
-  function(prim,prim$1){return "unknown primitive:caml_ml_seek_out_64";},
-  function(prim){return "unknown primitive:caml_ml_pos_out_64";},
-  function(prim){return "unknown primitive:caml_ml_channel_size_64";},
-  function(prim,prim$1){return "unknown primitive:caml_ml_seek_in_64";},
-  function(prim){return "unknown primitive:caml_ml_pos_in_64";},
-  function(prim){return "unknown primitive:caml_ml_channel_size_64";}],
- string_of_format,
- $caret$caret,
- exit,
- at_exit,
- valid_float_lexem,
- unsafe_really_input,
- do_at_exit];
+"unknown primitive:caml_register_named_value";
 module["exports"]=
 {"invalid_arg":invalid_arg,
  "failwith":failwith,
@@ -682,14 +595,13 @@ module["exports"]=
  "output_binary_int":output_binary_int,
  "output_value":output_value,
  "seek_out":seek_out,
- "unknown block:(function prim/1384 (caml_ml_pos_out prim/1384))":
- unknown block:(function prim/1384 (caml_ml_pos_out prim/1384)),
- "unknown block:(function prim/1385 (caml_ml_channel_size prim/1385))":
- unknown block:(function prim/1385 (caml_ml_channel_size prim/1385)),
+ "caml_ml_pos_out":function(prim){return "unknown primitive:caml_ml_pos_out";},
+ "caml_ml_channel_size":
+ function(prim){return "unknown primitive:caml_ml_channel_size";},
  "close_out":close_out,
  "close_out_noerr":close_out_noerr,
- "unknown block:(function prim/1387 prim/1386 (caml_ml_set_binary_mode prim/1387 prim/1386))":
- unknown block:(function prim/1387 prim/1386 (caml_ml_set_binary_mode prim/1387 prim/1386)),
+ "caml_ml_set_binary_mode":
+ function(prim,prim$1){return "unknown primitive:caml_ml_set_binary_mode";},
  "open_in":open_in,
  "open_in_bin":open_in_bin,
  "open_in_gen":open_in_gen,
@@ -701,25 +613,24 @@ module["exports"]=
  "input_byte":input_byte,
  "input_binary_int":input_binary_int,
  "input_value":input_value,
- "unknown block:(function prim/1389 prim/1388 (caml_ml_seek_in prim/1389 prim/1388))":
- unknown block:(function prim/1389 prim/1388 (caml_ml_seek_in prim/1389 prim/1388)),
- "unknown block:(function prim/1390 (caml_ml_pos_in prim/1390))":
- unknown block:(function prim/1390 (caml_ml_pos_in prim/1390)),
- "unknown block:(function prim/1391 (caml_ml_channel_size prim/1391))":
- unknown block:(function prim/1391 (caml_ml_channel_size prim/1391)),
- "unknown block:(function prim/1392 (caml_ml_close_channel prim/1392))":
- unknown block:(function prim/1392 (caml_ml_close_channel prim/1392)),
+ "caml_ml_seek_in":
+ function(prim,prim$1){return "unknown primitive:caml_ml_seek_in";},
+ "caml_ml_pos_in":function(prim){return "unknown primitive:caml_ml_pos_in";},
+ "caml_ml_channel_size":
+ function(prim){return "unknown primitive:caml_ml_channel_size";},
+ "caml_ml_close_channel":
+ function(prim){return "unknown primitive:caml_ml_close_channel";},
  "close_in_noerr":close_in_noerr,
- "unknown block:(function prim/1394 prim/1393 (caml_ml_set_binary_mode prim/1394 prim/1393))":
- unknown block:(function prim/1394 prim/1393 (caml_ml_set_binary_mode prim/1394 prim/1393)),
- "unknown block:(makeblock 0\n  (function prim/1396 prim/1395 (caml_ml_seek_out_64 prim/1396 prim/1395))\n  (function prim/1397 (caml_ml_pos_out_64 prim/1397))\n  (function prim/1398 (caml_ml_channel_size_64 prim/1398))\n  (function prim/1400 prim/1399 (caml_ml_seek_in_64 prim/1400 prim/1399))\n  (function prim/1401 (caml_ml_pos_in_64 prim/1401))\n  (function prim/1402 (caml_ml_channel_size_64 prim/1402)))":
- unknown block:(makeblock 0
-  (function prim/1396 prim/1395 (caml_ml_seek_out_64 prim/1396 prim/1395))
-  (function prim/1397 (caml_ml_pos_out_64 prim/1397))
-  (function prim/1398 (caml_ml_channel_size_64 prim/1398))
-  (function prim/1400 prim/1399 (caml_ml_seek_in_64 prim/1400 prim/1399))
-  (function prim/1401 (caml_ml_pos_in_64 prim/1401))
-  (function prim/1402 (caml_ml_channel_size_64 prim/1402))),
+ "caml_ml_set_binary_mode":
+ function(prim,prim$1){return "unknown primitive:caml_ml_set_binary_mode";},
+ "LargeFile":
+ [0,
+  function(prim,prim$1){return "unknown primitive:caml_ml_seek_out_64";},
+  function(prim){return "unknown primitive:caml_ml_pos_out_64";},
+  function(prim){return "unknown primitive:caml_ml_channel_size_64";},
+  function(prim,prim$1){return "unknown primitive:caml_ml_seek_in_64";},
+  function(prim){return "unknown primitive:caml_ml_pos_in_64";},
+  function(prim){return "unknown primitive:caml_ml_channel_size_64";}],
  "string_of_format":string_of_format,
  "^^":$caret$caret,
  "exit":exit,

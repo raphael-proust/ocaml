@@ -1,8 +1,11 @@
-var List=require("List");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Callback=require("Callback");
 var $$Array=require("Array");
 var Sys=require("Sys");
+
 
 var Graphic_failure="unknown primitive:caml_set_oo_id";
 
@@ -26,8 +29,10 @@ var
 
 var match=Sys["os_type"];
 
+var exit;
+
 switch(match)
- {case "Cygwin":var exit=70;
+ {case "Cygwin":exit=70;
   case "MacOS":
    var
     match$1=
@@ -35,7 +40,7 @@ switch(match)
       function(prim){return "unknown primitive:caml_gr_open_graph";},
       function(prim){return "unknown primitive:caml_gr_close_graph";}];
    
-  case "Unix":var exit=70;
+  case "Unix":exit=70;
   case "Win32":
    var
     match$1=
@@ -43,7 +48,7 @@ switch(match)
       function(prim){return "unknown primitive:caml_gr_open_graph";},
       function(prim){return "unknown primitive:caml_gr_close_graph";}];
    
-  default:var exit=71;}
+  default:exit=71;}
 
 switch(exit)
  {case 71:
@@ -415,57 +420,14 @@ var
     return "unknown primitive:caml_gr_moveto";
     };
 
-[0,
- Graphic_failure,
- open_graph,
- close_graph,
- function(prim){return "unknown primitive:caml_gr_set_window_title";},
- function(prim,prim$1){return "unknown primitive:caml_gr_resize_window";},
- rgb,
- background,
- foreground,
- black,
- white,
- red,
- green,
- blue,
- yellow,
- cyan,
- magenta,
- plots,
- rmoveto,
- current_point,
- rlineto,
- curveto,
- draw_rect,
- draw_poly_line,
- draw_poly,
- draw_segments,
- draw_arc,
- draw_ellipse,
- draw_circle,
- set_line_width,
- function(prim){return "unknown primitive:caml_gr_set_text_size";},
- fill_rect,
- fill_arc,
- fill_ellipse,
- fill_circle,
- transp,
- get_image,
- loop_at_exit,
- mouse_pos,
- button_down,
- read_key,
- key_pressed,
- auto_synchronize];
 module["exports"]=
 {"Graphic_failure":Graphic_failure,
  "open_graph":open_graph,
  "close_graph":close_graph,
- "unknown block:(function prim/1239 (caml_gr_set_window_title prim/1239))":
- unknown block:(function prim/1239 (caml_gr_set_window_title prim/1239)),
- "unknown block:(function prim/1241 prim/1240 (caml_gr_resize_window prim/1241 prim/1240))":
- unknown block:(function prim/1241 prim/1240 (caml_gr_resize_window prim/1241 prim/1240)),
+ "caml_gr_set_window_title":
+ function(prim){return "unknown primitive:caml_gr_set_window_title";},
+ "caml_gr_resize_window":
+ function(prim,prim$1){return "unknown primitive:caml_gr_resize_window";},
  "rgb":rgb,
  "background":background,
  "foreground":foreground,
@@ -490,8 +452,8 @@ module["exports"]=
  "draw_ellipse":draw_ellipse,
  "draw_circle":draw_circle,
  "set_line_width":set_line_width,
- "unknown block:(function prim/1242 (caml_gr_set_text_size prim/1242))":
- unknown block:(function prim/1242 (caml_gr_set_text_size prim/1242)),
+ "caml_gr_set_text_size":
+ function(prim){return "unknown primitive:caml_gr_set_text_size";},
  "fill_rect":fill_rect,
  "fill_arc":fill_arc,
  "fill_ellipse":fill_ellipse,

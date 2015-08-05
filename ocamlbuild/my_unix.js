@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
-var Buffer=require("Buffer");
 var Filename=require("Filename");
+var Buffer=require("Buffer");
 var My_std=require("My_std");
 var Hashtbl=require("Hashtbl");
+
 
 var is_degraded=1;
 
@@ -112,10 +115,12 @@ var
    {try
      {return 1;}
     catch(exn)
-     {if(exn=No_such_file)
-       {var exit=22;}
+     {var exit;
+      
+      if(exn=No_such_file)
+       {exit=22;}
       else
-       {if(exn=Not_a_link){var exit=22;}else{throw exn;}}
+       {if(exn=Not_a_link){exit=22;}else{throw exn;}}
       
       switch(exit){case 22:return 0;}
       }
@@ -190,7 +195,6 @@ var
                return Buffer["contents"](totalbuf);
                });
     };
-
 
 module["exports"]=
 {"is_degraded":is_degraded$1,

@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Question=require("Question");
 var Show_information=require("Show_information");
 var Frames=require("Frames");
@@ -11,13 +13,13 @@ var Clflags=require("Clflags");
 var Checkpoints=require("Checkpoints");
 var Callback=require("Callback");
 var Format=require("Format");
-var Misc=require("Misc");
 var Primitives=require("Primitives");
-var Unix=require("Unix");
+var Misc=require("Misc");
 var Unix_tools=require("Unix_tools");
-var Filename=require("Filename");
+var Unix=require("Unix");
 var Lexing=require("Lexing");
 var Buffer=require("Buffer");
+var Filename=require("Filename");
 var Parameters=require("Parameters");
 var Debugger_config=require("Debugger_config");
 var Exec=require("Exec");
@@ -26,6 +28,7 @@ var Input_handling=require("Input_handling");
 var Time_travel=require("Time_travel");
 var Config=require("Config");
 var Sys=require("Sys");
+
 
 var line_buffer=Lexing["from_function"](Input_handling["read_user_input"]);
 
@@ -395,25 +398,7 @@ var
       }
     };
 
-Printexc["catch"](Unix["handle_unix_error"](main),0),
-[0,
- line_buffer,
- loop,
- current_duration,
- protect,
- execute_file_if_any,
- toplevel_loop,
- Found_program_name,
- anonymous,
- add_include,
- set_socket,
- set_checkpoints,
- set_directory,
- print_version,
- print_version_num,
- speclist,
- function_placeholder,
- main];
+Printexc["catch"](Unix["handle_unix_error"](main),0);
 module["exports"]=
 {"line_buffer":line_buffer,
  "loop":loop,

@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Tools=require("Tools");
 var Pervasives=require("Pervasives");
 var Pathname=require("Pathname");
@@ -8,6 +10,7 @@ var My_std=require("My_std");
 var Hashtbl=require("Hashtbl");
 var Log=require("Log");
 var Map=require("Map");
+
 
 
 var mydprintf=function(fmt){return Log["dprintf"](10,fmt);};
@@ -574,13 +577,7 @@ var
     return [0,SMap,0,Utils,caml_transitive_closure];
     };
 
-[0,
- Circular_dependencies,
- function(funarg){var $$let=Make(funarg);return [0,$$let[4]];}];
 module["exports"]=
 {"Circular_dependencies":Circular_dependencies,
- "unknown block:(function funarg/1901\n  (let (let/1902 = (apply Make/1897 funarg/1901))\n    (makeblock 0 (field 3 let/1902))))":
- unknown block:(function funarg/1901
-  (let (let/1902 = (apply Make/1897 funarg/1901))
-    (makeblock 0 (field 3 let/1902))))};
+ "Make":function(funarg){var $$let=Make(funarg);return [0,$$let[4]];}};
 

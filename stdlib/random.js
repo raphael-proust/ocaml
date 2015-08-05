@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Nativeint=require("Nativeint");
 var Pervasives=require("Pervasives");
 var Digest=require("Digest");
 var Int32=require("Int32");
 var Int64=require("Int64");
 var $$Array=require("Array");
+
 
 var
  new_state=
@@ -219,30 +222,6 @@ var get_state=function(param){return State[6]($$default);};
 
 var set_state=function(s){return State[2]($$default,s);};
 
-[0,
- init,
- full_init$1,
- self_init,
- bits$1,
- $$int$1,
- int32$1,
- nativeint$1,
- int64$1,
- $$float$1,
- bool$1,
- [0,
-  State[4],
-  State[5],
-  State[6],
-  State[7],
-  State[9],
-  State[11],
-  State[14],
-  State[13],
-  State[16],
-  State[17]],
- get_state,
- set_state];
 module["exports"]=
 {"init":init,
  "full_init":full_init$1,
@@ -254,11 +233,18 @@ module["exports"]=
  "int64":int64$1,
  "float":$$float$1,
  "bool":bool$1,
- "unknown block:(makeblock 0 (field 3 State/1087) (field 4 State/1087) (field 5 State/1087)\n  (field 6 State/1087) (field 8 State/1087) (field 10 State/1087)\n  (field 13 State/1087) (field 12 State/1087) (field 15 State/1087)\n  (field 16 State/1087))":
- unknown block:(makeblock 0 (field 3 State/1087) (field 4 State/1087) (field 5 State/1087)
-  (field 6 State/1087) (field 8 State/1087) (field 10 State/1087)
-  (field 13 State/1087) (field 12 State/1087) (field 15 State/1087)
-  (field 16 State/1087)),
+ "State":
+ [0,
+  State[4],
+  State[5],
+  State[6],
+  State[7],
+  State[9],
+  State[11],
+  State[14],
+  State[13],
+  State[16],
+  State[17]],
  "get_state":get_state,
  "set_state":set_state};
 

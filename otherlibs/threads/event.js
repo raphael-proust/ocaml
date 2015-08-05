@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Pervasives=require("Pervasives");
 var Random=require("Random");
@@ -5,6 +7,7 @@ var Queue=require("Queue");
 var Condition=require("Condition");
 var $$Array=require("Array");
 var Mutex=require("Mutex");
+
 
 var
  new_channel=
@@ -350,7 +353,6 @@ var
     };
 
 var select=function(evl){return sync([1,evl]);};
-
 
 module["exports"]=
 {"new_channel":new_channel,

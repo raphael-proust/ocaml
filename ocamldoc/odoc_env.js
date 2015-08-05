@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
 var Printtyp=require("Printtyp");
 var List=require("List");
@@ -6,6 +8,7 @@ var Predef=require("Predef");
 var Printf=require("Printf");
 var Misc=require("Misc");
 var Path=require("Path");
+
 
 
 var empty=[0,0,0,0,0,0,0,0];
@@ -320,6 +323,8 @@ var
           Btype["iter_type_expr"](iter,t$1);
           var match=t$1[1];
           
+          var exit;
+          
           if(typeof match=="number")
            {switch(match){}}
           else
@@ -329,20 +334,22 @@ var
                
                var p=match[1];
                
+               var exit$1;
+               
                if(l)
                 {if(l[2])
-                  {var exit=15;}
+                  {exit$1=15;}
                  else
                   {if(Path["same"](p,Predef["path_option"]))
                     {return 0;}
                    else
-                    {var exit=15;}
+                    {exit$1=15;}
                    }
                  }
                else
-                {var exit=15;}
+                {exit$1=15;}
                
-               switch(exit)
+               switch(exit$1)
                 {case 15:
                   var
                    new_p=
@@ -369,7 +376,7 @@ var
                  return r[1]=[0,[0,new_p$1,match$2[2]]],0;
                  }
                else
-                {var exit$1=14;}
+                {exit=14;}
                
               case 8:
                var row=match[1];
@@ -391,7 +398,7 @@ var
                         0;
                  }
                else
-                {var exit$1=14;}
+                {exit=14;}
                
               case 11:
                var
@@ -401,9 +408,9 @@ var
                
                return t$1[1]=[11,new_p$3,match[2],match[3]],0;
                
-              default:var exit$1=14;}}
+              default:exit=14;}}
           
-          switch(exit$1){case 14:return 0;}
+          switch(exit){case 14:return 0;}
           }
         };
     
@@ -417,7 +424,9 @@ var
    {var
      iter=
       function(t$1)
-       {switch(t$1)
+       {var exit;
+        
+        switch(t$1)
          {case 0:
            var
             new_p=
@@ -426,9 +435,9 @@ var
            
            return [0,new_p];
            
-          case 1:var exit=8;
+          case 1:exit=8;
           case 2:return [2,t$1[1],Misc["may_map"](iter,t$1[2]),iter(t$1[3])];
-          case 3:var exit=8;
+          case 3:exit=8;
           }
         
         switch(exit){case 8:return t$1;}
@@ -469,7 +478,6 @@ var
     
     return iter(t);
     };
-
 
 module["exports"]=
 {"empty":empty,

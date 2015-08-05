@@ -1,20 +1,23 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Odoc_global=require("Odoc_global");
-var Odoc_cross=require("Odoc_cross");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Odoc_types=require("Odoc_types");
+var Odoc_cross=require("Odoc_cross");
 var Printf=require("Printf");
 var Odoc_merge=require("Odoc_merge");
 var Odoc_see_lexer=require("Odoc_see_lexer");
 var Lexing=require("Lexing");
 var Odoc_comments_global=require("Odoc_comments_global");
 var Str=require("Str");
-var Odoc_misc=require("Odoc_misc");
 var Odoc_lexer=require("Odoc_lexer");
+var Odoc_misc=require("Odoc_misc");
 var Odoc_text=require("Odoc_text");
 var Odoc_parser=require("Odoc_parser");
 var Odoc_messages=require("Odoc_messages");
+
 
 var simple_blank="[ \r\t\f]";
 
@@ -478,22 +481,15 @@ var
       }
     };
 
-[0,
- simple_blank,
+module["exports"]=
+{"simple_blank":simple_blank,
+ "Basic_info_retriever":
  [0,
   Basic_info_retriever[7],
   Basic_info_retriever[11],
   Basic_info_retriever[12],
   Basic_info_retriever[13],
   Basic_info_retriever[14]],
- info_of_string,
- info_of_comment_file];
-module["exports"]=
-{"simple_blank":simple_blank,
- "unknown block:(makeblock 0 (field 6 Basic_info_retriever/1151)\n  (field 10 Basic_info_retriever/1151) (field 11 Basic_info_retriever/1151)\n  (field 12 Basic_info_retriever/1151) (field 13 Basic_info_retriever/1151))":
- unknown block:(makeblock 0 (field 6 Basic_info_retriever/1151)
-  (field 10 Basic_info_retriever/1151) (field 11 Basic_info_retriever/1151)
-  (field 12 Basic_info_retriever/1151) (field 13 Basic_info_retriever/1151)),
  "info_of_string":info_of_string,
  "info_of_comment_file":info_of_comment_file};
 

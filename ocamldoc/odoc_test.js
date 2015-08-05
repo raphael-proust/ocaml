@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
 var List=require("List");
@@ -5,6 +7,7 @@ var Pervasives=require("Pervasives");
 var Format=require("Format");
 var Odoc_args=require("Odoc_args");
 var Printexc=require("Printexc");
+
 
 var
  shared=
@@ -368,7 +371,6 @@ var
     };
 
 Odoc_args["extend_base_generator"]
- (function(funarg){var $$let=Generator(funarg);return [0,$$let[2]];}),
-[0,p,Generator];
+ (function(funarg){var $$let=Generator(funarg);return [0,$$let[2]];});
 module["exports"]={"p":p,"Generator":Generator};
 

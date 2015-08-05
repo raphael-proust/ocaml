@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Arith_flags=require("Arith_flags");
+
 
 var
  get_error_when_null_denominator=
@@ -114,7 +117,6 @@ var
      ("     (modifiable with set_error_when_null_denominator <your choice>)");
     return Pervasives["print_newline"](0);
     };
-
 
 module["exports"]=
 {"arith_status":arith_status,

@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Thread=require("Thread");
 var Mutex=require("Mutex");
+
 
 var create=function(param){return [0,0];};
 
@@ -35,7 +38,6 @@ var
  broadcast=
   function(cond)
    {var w=cond[1];cond[1]=0,0;return List["iter"](Thread["wakeup"],w);};
-
 
 module["exports"]=
 {"create":create,"wait":wait,"signal":signal,"broadcast":broadcast};

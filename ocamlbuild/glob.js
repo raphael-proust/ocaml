@@ -1,12 +1,15 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Bool=require("Bool");
 var Printf=require("Printf");
-var Format=require("Format");
 var Glob_ast=require("Glob_ast");
+var Format=require("Format");
 var Glob_lexer=require("Glob_lexer");
 var Lexing=require("Lexing");
 var My_std=require("My_std");
 var Hashtbl=require("Hashtbl");
 var Map=require("Map");
+
 
 
 var Parse_error=Glob_ast["Parse_error"];
@@ -319,6 +322,8 @@ var
            {case 0:
              var match=p$1[1];
              
+             var exit;
+             
              if(typeof match=="number")
               {switch(match){}}
              else
@@ -326,12 +331,14 @@ var
                 {case 1:
                   var cl=match[1];
                   
-                  if("unknown primitive:isint")
-                   {if(cl!=0){var exit=27;}else{return 1;}}
-                  else
-                   {var exit=27;}
+                  var exit$1;
                   
-                  switch(exit)
+                  if("unknown primitive:isint")
+                   {if(cl!=0){exit$1=27;}else{return 1;}}
+                  else
+                   {exit$1=27;}
+                  
+                  switch(exit$1)
                    {case 27:
                      var
                       check=
@@ -346,9 +353,9 @@ var
                      
                     }
                   
-                 default:var exit$1=26;}}
+                 default:exit=26;}}
              
-             switch(exit$1){case 26:throw Too_hard;}
+             switch(exit){case 26:throw Too_hard;}
              
             case 1:return (n=1)&&match_character_class(p$1[1],u[i]);
             case 2:
@@ -485,16 +492,18 @@ var
       function(continuation)
        {var t=f(0);
         
+        var exit;
+        
         if("unknown primitive:isint")
          {switch(t[0])
-           {case 0:var exit=8;
-            case 1:var exit=8;
+           {case 0:exit=8;
+            case 1:exit=8;
             case 2:return atomizer(function(x){return continuation([2,x]);});
             case 3:var y=parse_s(0);read(4);return continuation(y);
-            case 4:var exit=8;
+            case 4:exit=8;
             case 5:return continuation(0);
             case 6:return continuation(1);
-            case 7:var exit=8;
+            case 7:exit=8;
             }
           }
         else
@@ -526,14 +535,16 @@ var
       function(x)
        {var t=f(0);
         
+        var exit;
+        
         if("unknown primitive:isint")
          {if(t!=1)
-           {if(t!=0){var exit=10;}else{return parse_t(x);}}
+           {if(t!=0){exit=10;}else{return parse_t(x);}}
           else
            {var y=parse_s(0);return [1,[0,x,[0,y,0]]];}
           }
         else
-         {var exit=10;}
+         {exit=10;}
         
         switch(exit){case 10:g(t);return x;}
         };
@@ -543,14 +554,16 @@ var
       function(x,y)
        {var t=f(0);
         
+        var exit;
+        
         if("unknown primitive:isint")
          {if(t!=1)
-           {if(t!=0){var exit=12;}else{return parse_t([0,[0,x,[0,y,0]]]);}}
+           {if(t!=0){exit=12;}else{return parse_t([0,[0,x,[0,y,0]]]);}}
           else
            {var z=parse_s(0);return [1,[0,[0,[0,x,[0,y,0]]],[0,z,0]]];}
           }
         else
-         {var exit=12;}
+         {exit=12;}
         
         switch(exit){case 12:g(t);return [0,[0,x,[0,y,0]]];}
         };
@@ -604,7 +617,6 @@ var
                },
              g);
     };
-
 
 module["exports"]=
 {"parse":parse,

@@ -1,13 +1,16 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Printf=require("Printf");
-var Queue=require("Queue");
 var Set=require("Set");
+var Queue=require("Queue");
 var Unix=require("Unix");
 var Buffer=require("Buffer");
 var Printexc=require("Printexc");
 var Map=require("Map");
+
 
 var compare=function(prim,prim$1){return "unknown primitive:caml_compare";};
 
@@ -356,6 +359,8 @@ var
           
           if(Buffer["length"](job[8])>0){show_command(0)}else{}
           
+          var exit$1;
+          
           switch(status)
            {case 0:
              var rc=status[1];
@@ -393,8 +398,8 @@ var
                 {all_ok[1]=0,0}
                }
              
-            case 1:var exit$1=11;
-            case 2:var exit$1=11;
+            case 1:exit$1=11;
+            case 2:exit$1=11;
             }
           
           switch(exit$1)
@@ -481,7 +486,6 @@ var
       return [0,[0,List["map"](function(prim){return prim[1];},results),x]];
       }
     };
-
 
 module["exports"]={"execute":execute};
 

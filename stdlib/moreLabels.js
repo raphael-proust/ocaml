@@ -1,6 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
 
-module["exports"]=
-{"unknown block:(global Hashtbl!)":unknown block:(global Hashtbl!),
- "unknown block:(global Map!)":unknown block:(global Map!),
- "unknown block:(global Set!)":unknown block:(global Set!)};
+
+
+
+module["exports"]={"Hashtbl":Hashtbl,"Map":Map,"Set":Set};
 

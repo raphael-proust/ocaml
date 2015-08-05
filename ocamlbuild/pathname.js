@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Options=require("Options");
 var Pervasives=require("Pervasives");
 var Format=require("Format");
@@ -6,6 +8,7 @@ var My_std=require("My_std");
 var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
 var Glob=require("Glob");
+
 
 
 var include=Filename;
@@ -124,24 +127,28 @@ var
    {if(param)
      {var x=param[1];
       
+      var exit;
+      
       switch(x)
        {case ".":return normalize_list(param[2]);
         case "..":
          return Pervasives["failwith"]
                  ("Pathname.normalize_list: .. is forbidden here");
          
-        default:var exit=38;}
+        default:exit=38;}
       
       switch(exit)
        {case 38:
          var xs=param[2];
          
+         var exit$1;
+         
          if(xs)
           {switch(xs[1])
-            {case "..":return normalize_list(xs[2]);default:var exit$1=39;}
+            {case "..":return normalize_list(xs[2]);default:exit$1=39;}
            }
          else
-          {var exit$1=39;}
+          {exit$1=39;}
          
          switch(exit$1){case 39:return [0,x,normalize_list(xs)];}
          
@@ -303,7 +310,6 @@ var
 var
  same_contents=
   function(x,y){return "unknown primitive:caml_string_equal";};
-
 
 module["exports"]=
 {"concat":concat,

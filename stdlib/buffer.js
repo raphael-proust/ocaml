@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Bytes=require("Bytes");
 var Sys=require("Sys");
+
 
 var
  create=
@@ -196,17 +199,19 @@ var
         else
          {var match=s[i];
           
+          var exit;
+          
           if(match>=91)
            {if(match>=97)
-             {if(match>=123){var exit=15;}else{var exit=14;}}
+             {if(match>=123){exit=15;}else{exit=14;}}
             else
-             {if(match!=95){var exit=15;}else{var exit=14;}}
+             {if(match!=95){exit=15;}else{exit=14;}}
             }
           else
            {if(match>=58)
-             {if(match>=65){var exit=14;}else{var exit=15;}}
+             {if(match>=65){exit=14;}else{exit=15;}}
             else
-             {if(match>=48){var exit=14;}else{var exit=15;}}
+             {if(match>=48){exit=14;}else{exit=15;}}
             }
           
           switch(exit){case 15:return i;case 14:return advance(i+1,lim);}
@@ -224,6 +229,8 @@ var
     else
      {var c=s[start];
       
+      var exit;
+      
       if(c!=40)
        {if(c!=123)
          {var stop=advance_to_non_alpha(s,start+1);
@@ -231,10 +238,10 @@ var
           return [0,$$String["sub"](s,start,stop-start),stop];
           }
         else
-         {var exit=11;}
+         {exit=11;}
         }
       else
-       {var exit=11;}
+       {exit=11;}
       
       switch(exit)
        {case 11:
@@ -298,7 +305,6 @@ var
     
     return subst(32,0);
     };
-
 
 module["exports"]=
 {"create":create,

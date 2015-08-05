@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Lexers=require("Lexers");
 var Printf=require("Printf");
 var Loc=require("Loc");
@@ -5,6 +7,7 @@ var My_std=require("My_std");
 var Tags=require("Tags");
 var Hashtbl=require("Hashtbl");
 var Log=require("Log");
+
 
 var $$let=My_std["String"];
 
@@ -119,7 +122,6 @@ var
     };
 
 var make=Printf["sprintf"]([0,[2,0,[12,40,[2,0,[12,41,0]]]],"%s(%s)"]);
-
 
 module["exports"]=
 {"declare":declare,

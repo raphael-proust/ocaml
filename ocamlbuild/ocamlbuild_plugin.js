@@ -1,4 +1,13 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Ocamlbuild_pack=require("Ocamlbuild_pack");
+
+var $$let=Ocamlbuild_pack["My_std"][13];
+
+var $$let$1=Ocamlbuild_pack["Options"];
+
+var $$let$2=Ocamlbuild_pack["Ocaml_arch"];
+
 
 
 var include=Ocamlbuild_pack["My_std"];
@@ -113,19 +122,14 @@ var run_and_read=Ocamlbuild_pack["My_unix"][5];
 
 var dispatch=Ocamlbuild_pack["Hooks"][1];
 
-var $$let=Ocamlbuild_pack["My_std"][13];
-
-var $$let$1=Ocamlbuild_pack["Options"];
-
-var $$let$2=Ocamlbuild_pack["Ocaml_arch"];
-
-[0,
- Ocamlbuild_pack["Pathname"],
- Ocamlbuild_pack["Tags"],
- Ocamlbuild_pack["Command"],
- Ocamlbuild_pack["My_std"][6],
- Ocamlbuild_pack["My_std"][11],
- Ocamlbuild_pack["My_std"][10],
+module["exports"]=
+{"Pathname":Ocamlbuild_pack["Pathname"],
+ "Tags":Ocamlbuild_pack["Tags"],
+ "Command":Ocamlbuild_pack["Command"],
+ "Outcome":Ocamlbuild_pack["My_std"][6],
+ "String":Ocamlbuild_pack["My_std"][11],
+ "List":Ocamlbuild_pack["My_std"][10],
+ "StringSet":
  [0,
   $$let[1],
   $$let[2],
@@ -153,6 +157,7 @@ var $$let$2=Ocamlbuild_pack["Ocaml_arch"];
   $$let[24],
   $$let[25],
   $$let[28]],
+ "Options":
  [0,
   $$let$1[1],
   $$let$1[2],
@@ -204,6 +209,7 @@ var $$let$2=Ocamlbuild_pack["Ocaml_arch"];
   $$let$1[48],
   $$let$1[49],
   $$let$1[50]],
+ "Arch":
  [0,
   $$let$2[1],
   $$let$2[2],
@@ -217,110 +223,7 @@ var $$let$2=Ocamlbuild_pack["Ocaml_arch"];
   $$let$2[10],
   $$let$2[11],
   $$let$2[12]],
- Ocamlbuild_pack["Findlib"],
- opt_print,
- the,
- getenv,
- with_input_file,
- with_output_file,
- with_temp_file,
- read_file,
- copy_chan,
- copy_file,
- print_string_list,
- $unknown$star,
- $unknown,
- $unknown$great,
- $at$unknown$eq,
- memo,
- memo2,
- memo3,
- $unknown,
- $neg$unknown$neg,
- $plus$plus,
- $neg$neg,
- $plus$plus$plus,
- $neg$neg$neg,
- rule,
- copy_rule,
- clear_rules,
- dep,
- pdep,
- flag,
- pflag,
- flag_and_dep,
- pflag_and_dep,
- mark_tag_used,
- non_dependency,
- use_lib,
- ocaml_lib,
- expand_module,
- string_list_of_file,
- module_name_of_pathname,
- mv,
- cp,
- ln_f,
- ln_s,
- rm_f,
- chmod,
- cmp,
- hide_package_contents,
- tag_file,
- tag_any,
- tags_of_pathname,
- run_and_read,
- dispatch];
-module["exports"]=
-{"unknown block:(field 21 (global Ocamlbuild_pack!))":
- unknown block:(field 21 (global Ocamlbuild_pack!)),
- "unknown block:(field 6 (global Ocamlbuild_pack!))":
- unknown block:(field 6 (global Ocamlbuild_pack!)),
- "unknown block:(field 16 (global Ocamlbuild_pack!))":
- unknown block:(field 16 (global Ocamlbuild_pack!)),
- "unknown block:(field 5 (field 4 (global Ocamlbuild_pack!)))":
- unknown block:(field 5 (field 4 (global Ocamlbuild_pack!))),
- "unknown block:(field 10 (field 4 (global Ocamlbuild_pack!)))":
- unknown block:(field 10 (field 4 (global Ocamlbuild_pack!))),
- "unknown block:(field 9 (field 4 (global Ocamlbuild_pack!)))":
- unknown block:(field 9 (field 4 (global Ocamlbuild_pack!))),
- "unknown block:(let (let/3914 =a (field 12 (field 4 (global Ocamlbuild_pack!))))\n  (makeblock 0 (field 0 let/3914) (field 1 let/3914) (field 2 let/3914)\n    (field 3 let/3914) (field 4 let/3914) (field 5 let/3914)\n    (field 6 let/3914) (field 7 let/3914) (field 8 let/3914)\n    (field 9 let/3914) (field 10 let/3914) (field 11 let/3914)\n    (field 12 let/3914) (field 13 let/3914) (field 14 let/3914)\n    (field 15 let/3914) (field 16 let/3914) (field 17 let/3914)\n    (field 18 let/3914) (field 19 let/3914) (field 20 let/3914)\n    (field 21 let/3914) (field 22 let/3914) (field 23 let/3914)\n    (field 24 let/3914) (field 27 let/3914)))":
- unknown block:(let (let/3914 =a (field 12 (field 4 (global Ocamlbuild_pack!))))
-  (makeblock 0 (field 0 let/3914) (field 1 let/3914) (field 2 let/3914)
-    (field 3 let/3914) (field 4 let/3914) (field 5 let/3914)
-    (field 6 let/3914) (field 7 let/3914) (field 8 let/3914)
-    (field 9 let/3914) (field 10 let/3914) (field 11 let/3914)
-    (field 12 let/3914) (field 13 let/3914) (field 14 let/3914)
-    (field 15 let/3914) (field 16 let/3914) (field 17 let/3914)
-    (field 18 let/3914) (field 19 let/3914) (field 20 let/3914)
-    (field 21 let/3914) (field 22 let/3914) (field 23 let/3914)
-    (field 24 let/3914) (field 27 let/3914))),
- "unknown block:(let (let/3915 =a (field 20 (global Ocamlbuild_pack!)))\n  (makeblock 0 (field 0 let/3915) (field 1 let/3915) (field 2 let/3915)\n    (field 3 let/3915) (field 4 let/3915) (field 5 let/3915)\n    (field 6 let/3915) (field 7 let/3915) (field 8 let/3915)\n    (field 9 let/3915) (field 10 let/3915) (field 11 let/3915)\n    (field 12 let/3915) (field 13 let/3915) (field 14 let/3915)\n    (field 15 let/3915) (field 16 let/3915) (field 17 let/3915)\n    (field 18 let/3915) (field 19 let/3915) (field 20 let/3915)\n    (field 21 let/3915) (field 22 let/3915) (field 23 let/3915)\n    (field 24 let/3915) (field 25 let/3915) (field 26 let/3915)\n    (field 27 let/3915) (field 28 let/3915) (field 29 let/3915)\n    (field 30 let/3915) (field 31 let/3915) (field 32 let/3915)\n    (field 33 let/3915) (field 34 let/3915) (field 35 let/3915)\n    (field 36 let/3915) (field 37 let/3915) (field 38 let/3915)\n    (field 39 let/3915) (field 40 let/3915) (field 41 let/3915)\n    (field 42 let/3915) (field 43 let/3915) (field 44 let/3915)\n    (field 45 let/3915) (field 46 let/3915) (field 47 let/3915)\n    (field 48 let/3915) (field 49 let/3915)))":
- unknown block:(let (let/3915 =a (field 20 (global Ocamlbuild_pack!)))
-  (makeblock 0 (field 0 let/3915) (field 1 let/3915) (field 2 let/3915)
-    (field 3 let/3915) (field 4 let/3915) (field 5 let/3915)
-    (field 6 let/3915) (field 7 let/3915) (field 8 let/3915)
-    (field 9 let/3915) (field 10 let/3915) (field 11 let/3915)
-    (field 12 let/3915) (field 13 let/3915) (field 14 let/3915)
-    (field 15 let/3915) (field 16 let/3915) (field 17 let/3915)
-    (field 18 let/3915) (field 19 let/3915) (field 20 let/3915)
-    (field 21 let/3915) (field 22 let/3915) (field 23 let/3915)
-    (field 24 let/3915) (field 25 let/3915) (field 26 let/3915)
-    (field 27 let/3915) (field 28 let/3915) (field 29 let/3915)
-    (field 30 let/3915) (field 31 let/3915) (field 32 let/3915)
-    (field 33 let/3915) (field 34 let/3915) (field 35 let/3915)
-    (field 36 let/3915) (field 37 let/3915) (field 38 let/3915)
-    (field 39 let/3915) (field 40 let/3915) (field 41 let/3915)
-    (field 42 let/3915) (field 43 let/3915) (field 44 let/3915)
-    (field 45 let/3915) (field 46 let/3915) (field 47 let/3915)
-    (field 48 let/3915) (field 49 let/3915))),
- "unknown block:(let (let/3916 =a (field 33 (global Ocamlbuild_pack!)))\n  (makeblock 0 (field 0 let/3916) (field 1 let/3916) (field 2 let/3916)\n    (field 3 let/3916) (field 4 let/3916) (field 5 let/3916)\n    (field 6 let/3916) (field 7 let/3916) (field 8 let/3916)\n    (field 9 let/3916) (field 10 let/3916) (field 11 let/3916)))":
- unknown block:(let (let/3916 =a (field 33 (global Ocamlbuild_pack!)))
-  (makeblock 0 (field 0 let/3916) (field 1 let/3916) (field 2 let/3916)
-    (field 3 let/3916) (field 4 let/3916) (field 5 let/3916)
-    (field 6 let/3916) (field 7 let/3916) (field 8 let/3916)
-    (field 9 let/3916) (field 10 let/3916) (field 11 let/3916))),
- "unknown block:(field 32 (global Ocamlbuild_pack!))":
- unknown block:(field 32 (global Ocamlbuild_pack!)),
+ "Findlib":Ocamlbuild_pack["Findlib"],
  "opt_print":opt_print,
  "the":the,
  "getenv":getenv,

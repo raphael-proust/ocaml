@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Thread=require("Thread");
 var Unix=require("Unix");
 var Bytes=require("Bytes");
+
 
 var wait=Unix["wait"];
 
@@ -65,43 +68,11 @@ var sendto_substring=Unix["sendto_substring"];
 
 var open_connection=Unix["open_connection"];
 
-[0,
- function(prim,prim$1){return "unknown primitive:unix_execv";},
- function(prim,prim$1,prim$2){return "unknown primitive:unix_execve";},
- function(prim,prim$1){return "unknown primitive:unix_execvp";},
- wait,
- waitpid,
- system,
- read,
- write,
- write_substring,
- timed_read,
- timed_write,
- timed_write_substring,
- select,
- pipe,
- open_process_in,
- open_process_out,
- open_process,
- function(prim){return "unknown primitive:unix_sleep";},
- socket,
- accept,
- function(prim,prim$1){return "unknown primitive:unix_connect";},
- recv,
- recvfrom,
- send,
- send_substring,
- sendto,
- sendto_substring,
- open_connection];
 module["exports"]=
-{"unknown block:(function prim/1059 prim/1058 (unix_execv prim/1059 prim/1058))":
- unknown block:(function prim/1059 prim/1058 (unix_execv prim/1059 prim/1058)),
- "unknown block:(function prim/1062 prim/1061 prim/1060\n  (unix_execve prim/1062 prim/1061 prim/1060))":
- unknown block:(function prim/1062 prim/1061 prim/1060
-  (unix_execve prim/1062 prim/1061 prim/1060)),
- "unknown block:(function prim/1064 prim/1063 (unix_execvp prim/1064 prim/1063))":
- unknown block:(function prim/1064 prim/1063 (unix_execvp prim/1064 prim/1063)),
+{"unix_execv":function(prim,prim$1){return "unknown primitive:unix_execv";},
+ "unix_execve":
+ function(prim,prim$1,prim$2){return "unknown primitive:unix_execve";},
+ "unix_execvp":function(prim,prim$1){return "unknown primitive:unix_execvp";},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
@@ -116,12 +87,11 @@ module["exports"]=
  "open_process_in":open_process_in,
  "open_process_out":open_process_out,
  "open_process":open_process,
- "unknown block:(function prim/1065 (unix_sleep prim/1065))":
- unknown block:(function prim/1065 (unix_sleep prim/1065)),
+ "unix_sleep":function(prim){return "unknown primitive:unix_sleep";},
  "socket":socket,
  "accept":accept,
- "unknown block:(function prim/1067 prim/1066 (unix_connect prim/1067 prim/1066))":
- unknown block:(function prim/1067 prim/1066 (unix_connect prim/1067 prim/1066)),
+ "unix_connect":
+ function(prim,prim$1){return "unknown primitive:unix_connect";},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,

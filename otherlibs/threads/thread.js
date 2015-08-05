@@ -1,8 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var List=require("List");
 var Sys=require("Sys");
 
+
 var critical_section=[0,0];
+
 
 var $$yield=function(param){return "unknown primitive:thread_yield";};
 
@@ -30,12 +34,14 @@ var
   function(readfds,writefds,exceptfds,delay$1)
    {var match=select_aux([0,readfds,writefds,exceptfds,delay$1]);
     
+    var exit$1;
+    
     if(typeof match=="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 0:var e=match[3];var w=match[2];var r=match[1];return [0,r,w,e];
-        default:var exit$1=20;}}
+        default:exit$1=20;}}
     
     switch(exit$1){case 20:return [0,0,0,0];}
     };
@@ -57,10 +63,12 @@ var
   function(fd,delay$1)
    {var match=wait_timed_read_aux([0,fd,delay$1]);
     
+    var exit$1;
+    
     if("unknown primitive:isint")
-     {if(match>=3){return 1;}else{var exit$1=14;}}
+     {if(match>=3){return 1;}else{exit$1=14;}}
     else
-     {var exit$1=14;}
+     {exit$1=14;}
     
     switch(exit$1){case 14:return 0;}
     };
@@ -70,10 +78,12 @@ var
   function(fd,delay$1)
    {var match=wait_timed_write_aux([0,fd,delay$1]);
     
+    var exit$1;
+    
     if("unknown primitive:isint")
-     {if(match>=3){return 1;}else{var exit$1=12;}}
+     {if(match>=3){return 1;}else{exit$1=12;}}
     else
-     {var exit$1=12;}
+     {exit$1=12;}
     
     switch(exit$1){case 12:return 0;}
     };
@@ -85,12 +95,14 @@ var
   function(pid)
    {var match=wait_pid_aux(pid);
     
+    var exit$1;
+    
     if(typeof match=="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 1:var status=match[2];var pid$1=match[1];return [0,pid$1,status];
-        default:var exit$1=9;}}
+        default:exit$1=9;}}
     
     switch(exit$1)
      {case 9:return Pervasives["invalid_arg"]("Thread.wait_pid");}
@@ -128,27 +140,9 @@ var
      {return "unknown primitive:thread_request_reschedule";}
     };
 
-"unknown primitive:thread_initialize",
+"unknown primitive:thread_initialize";
 Sys["set_signal"](Sys["sigvtalrm"],[0,preempt]),
-"unknown primitive:thread_initialize_preemption",
-[0,
- create,
- $$self,
- exit,
- kill,
- delay,
- join,
- wait_read,
- wait_write,
- wait_timed_read,
- wait_timed_write,
- select,
- wait_pid,
- wait_signal,
- $$yield,
- critical_section,
- sleep,
- wakeup];
+"unknown primitive:thread_initialize_preemption";
 module["exports"]=
 {"create":create,
  "self":$$self,

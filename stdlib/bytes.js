@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Char=require("Char");
 var Pervasives=require("Pervasives");
 var List=require("List");
+
 
 var
  make=
@@ -154,12 +157,14 @@ var
 var
  is_space=
   function(param)
-   {var switcher=-9+param;
+   {var exit;
+    
+    var switcher=-9+param;
     
     if(4<switcher>>>0)
-     {if(switcher!=23){var exit=38;}else{var exit=37;}}
+     {if(switcher!=23){exit=38;}else{exit=37;}}
     else
-     {if(switcher!=2){var exit=37;}else{var exit=38;}}
+     {if(switcher!=2){exit=37;}else{exit=38;}}
     
     switch(exit){case 38:return 0;case 37:return 1;}
     };
@@ -188,20 +193,21 @@ var
     for(var i=0;i<=s["length"]-1;i++)
      {var c=s[i];
       
+      var exit;
+      
       if(c>=14)
-       {if(c!=34){if(c!=92){var exit=30;}else{var exit=29;}}else{var exit=29;}
-        }
+       {if(c!=34){if(c!=92){exit=30;}else{exit=29;}}else{exit=29;}}
       else
        {if(c>=11)
-         {if(c>=13){var exit=29;}else{var exit=30;}}
+         {if(c>=13){exit=29;}else{exit=30;}}
         else
-         {if(c>=8){var exit=29;}else{var exit=30;}}
+         {if(c>=8){exit=29;}else{exit=30;}}
         }
       
+      var $js;
       switch(exit)
-       {case 30:
-         if("unknown primitive:caml_is_printable"){var $js=1;}else{var $js=4;}
-        case 29:var $js=2;
+       {case 30:if("unknown primitive:caml_is_printable"){$js=1;}else{$js=4;}
+        case 29:$js=2;
         }
       n[1]=n[1]+$js,0}
     
@@ -214,6 +220,8 @@ var
       for(var i$1=0;i$1<=s["length"]-1;i$1++)
        {var c$1=s[i$1];
         
+        var exit$1;
+        
         var switcher=-34+c$1;
         
         if(!(58<switcher>>>0))
@@ -222,28 +230,28 @@ var
           if(56<switcher$1>>>0)
            {s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=c$1,0}
           else
-           {var exit$1=27;}
+           {exit$1=27;}
           }
         else
          {if(switcher>=-20)
-           {var exit$1=27;}
+           {exit$1=27;}
           else
            {var switcher$2=34+switcher;
             
             switch(switcher$2[0])
-             {case 0:var exit$1=27;
-              case 1:var exit$1=27;
-              case 2:var exit$1=27;
-              case 3:var exit$1=27;
-              case 4:var exit$1=27;
-              case 5:var exit$1=27;
-              case 6:var exit$1=27;
-              case 7:var exit$1=27;
+             {case 0:exit$1=27;
+              case 1:exit$1=27;
+              case 2:exit$1=27;
+              case 3:exit$1=27;
+              case 4:exit$1=27;
+              case 5:exit$1=27;
+              case 6:exit$1=27;
+              case 7:exit$1=27;
               case 8:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=98,0;
               case 9:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=116,0;
               case 10:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=110,0;
-              case 11:var exit$1=27;
-              case 12:var exit$1=27;
+              case 11:exit$1=27;
+              case 12:exit$1=27;
               case 13:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=114,0
               }
             }
@@ -407,41 +415,6 @@ var
 
 var compare=function(x,y){return "unknown primitive:caml_compare";};
 
-[0,
- make,
- init,
- empty,
- copy,
- of_string,
- to_string,
- sub,
- sub_string,
- extend,
- fill,
- blit,
- blit_string,
- concat,
- cat,
- iter,
- iteri,
- map,
- mapi,
- trim,
- escaped,
- index,
- rindex,
- index_from,
- rindex_from,
- contains,
- contains_from,
- rcontains_from,
- uppercase,
- lowercase,
- capitalize,
- uncapitalize,
- compare,
- function(prim){return prim;},
- function(prim){return prim;}];
 module["exports"]=
 {"make":make,
  "init":init,
@@ -475,8 +448,6 @@ module["exports"]=
  "capitalize":capitalize,
  "uncapitalize":uncapitalize,
  "compare":compare,
- "unknown block:(function prim/1181 (id prim/1181))":
- unknown block:(function prim/1181 (id prim/1181)),
- "unknown block:(function prim/1182 (id prim/1182))":
- unknown block:(function prim/1182 (id prim/1182))};
+ "%identity":function(prim){return prim;},
+ "%identity":function(prim){return prim;}};
 

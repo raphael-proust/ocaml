@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Tools=require("Tools");
 var Options=require("Options");
 var Const=require("Const");
@@ -13,6 +15,7 @@ var My_std=require("My_std");
 var Tags=require("Tags");
 var Hashtbl=require("Hashtbl");
 var Log=require("Log");
+
 
 var $$let=My_std["String"];
 
@@ -388,7 +391,6 @@ var
     };
 
 var path_dependencies_of=My_std["memo"](read_path_dependencies);
-
 
 module["exports"]=
 {"stdlib_dir":stdlib_dir,

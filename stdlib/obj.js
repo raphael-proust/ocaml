@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Marshal=require("Marshal");
+
 
 var double_field=function(x,i){return x[i];};
 
@@ -117,7 +120,6 @@ var
        {throw exn;}
       }
     };
-
 
 module["exports"]=
 {"double_field":double_field,

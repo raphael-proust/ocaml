@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Pervasives=require("Pervasives");
 var Symbols=require("Symbols");
@@ -6,6 +8,7 @@ var Checkpoints=require("Checkpoints");
 var Pos=require("Pos");
 var Exec=require("Exec");
 var Debugcom=require("Debugcom");
+
 
 var debug_breakpoints=[0,0];
 
@@ -41,11 +44,13 @@ var
       
       var match=ev[10];
       
+      var exit;
+      
       if(typeof match=="number")
-       {switch(match){case 0:var exit=27;}}
+       {switch(match){case 0:exit=27;}}
       else
        {switch(match[0])
-         {case 0:var exit=27;
+         {case 0:exit=27;
           case 1:var pc$prime=match[1][1];var $js=breakpoints_at_pc(pc$prime);
           }}
       
@@ -187,11 +192,13 @@ var
   function($$event)
    {var match=$$event[10];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=12;}}
+     {switch(match){case 0:exit=12;}}
     else
      {switch(match[0])
-       {case 0:var exit=12;
+       {case 0:exit=12;
         case 1:return new_breakpoint(Symbols["any_event_at_pc"](match[1][1]));
         }}
     
@@ -292,7 +299,6 @@ var
      {funct(0);return Exec["protect"](remove);}
     catch(x){Exec["protect"](remove);throw x;}
     };
-
 
 module["exports"]=
 {"debug_breakpoints":debug_breakpoints,

@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Obj=require("Obj");
 var CamlinternalLazy=require("CamlinternalLazy");
+
 
 var Undefined=CamlinternalLazy["Undefined"];
 
@@ -29,7 +32,6 @@ var lazy_from_fun=from_fun;
 var lazy_from_val=from_val;
 
 var lazy_is_val=is_val;
-
 
 module["exports"]=
 {"Undefined":Undefined,

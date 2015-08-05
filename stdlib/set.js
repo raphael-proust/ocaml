@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Pervasives=require("Pervasives");
+
 
 var
  Make=
@@ -757,8 +760,10 @@ var
             
             var match$1=l$1;
             
+            var exit;
+            
             if(3<match>>>0)
-             {var exit=6;}
+             {exit=6;}
             else
              {switch(match[0])
                {case 0:var l$2=match$1;return [0,0,l$2];
@@ -771,7 +776,7 @@ var
                    return [0,[0,0,x0,0,1],l$3];
                    }
                  else
-                  {var exit=6;}
+                  {exit=6;}
                  
                 case 2:
                  if(match$1)
@@ -787,10 +792,10 @@ var
                      return [0,[0,[0,0,x0$1,0,1],x1,0,2],l$4];
                      }
                    else
-                    {var exit=6;}
+                    {exit=6;}
                    }
                  else
-                  {var exit=6;}
+                  {exit=6;}
                  
                 case 3:
                  if(match$1)
@@ -811,13 +816,13 @@ var
                        return [0,[0,[0,0,x0$2,0,1],x1$1,[0,0,x2,0,1],2],l$5];
                        }
                      else
-                      {var exit=6;}
+                      {exit=6;}
                      }
                    else
-                    {var exit=6;}
+                    {exit=6;}
                    }
                  else
-                  {var exit=6;}
+                  {exit=6;}
                  
                 }
               }
@@ -970,7 +975,8 @@ var
             of_list];
     };
 
-[0,
+module["exports"]=
+{"Make":
  function(funarg)
   {var $$let=Make(funarg);
    
@@ -1001,18 +1007,5 @@ var
            $$let[14],
            $$let[37],
            $$let[39]];
-   }];
-module["exports"]=
-{"unknown block:(function funarg/1371\n  (let (let/1372 = (apply Make/1340 funarg/1371))\n    (makeblock 0 (field 14 let/1372) (field 15 let/1372) (field 16 let/1372)\n      (field 3 let/1372) (field 4 let/1372) (field 17 let/1372)\n      (field 18 let/1372) (field 19 let/1372) (field 20 let/1372)\n      (field 23 let/1372) (field 24 let/1372) (field 25 let/1372)\n      (field 26 let/1372) (field 27 let/1372) (field 28 let/1372)\n      (field 29 let/1372) (field 30 let/1372) (field 31 let/1372)\n      (field 32 let/1372) (field 34 let/1372) (field 8 let/1372)\n      (field 9 let/1372) (field 35 let/1372) (field 13 let/1372)\n      (field 36 let/1372) (field 38 let/1372))))":
- unknown block:(function funarg/1371
-  (let (let/1372 = (apply Make/1340 funarg/1371))
-    (makeblock 0 (field 14 let/1372) (field 15 let/1372) (field 16 let/1372)
-      (field 3 let/1372) (field 4 let/1372) (field 17 let/1372)
-      (field 18 let/1372) (field 19 let/1372) (field 20 let/1372)
-      (field 23 let/1372) (field 24 let/1372) (field 25 let/1372)
-      (field 26 let/1372) (field 27 let/1372) (field 28 let/1372)
-      (field 29 let/1372) (field 30 let/1372) (field 31 let/1372)
-      (field 32 let/1372) (field 34 let/1372) (field 8 let/1372)
-      (field 9 let/1372) (field 35 let/1372) (field 13 let/1372)
-      (field 36 let/1372) (field 38 let/1372))))};
+   }};
 

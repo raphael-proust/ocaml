@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_value=require("Odoc_value");
 var List=require("List");
 var Pervasives=require("Pervasives");
 var Odoc_types=require("Odoc_types");
+
 
 
 var Name=0;
@@ -144,7 +147,9 @@ var
     var
      iter_kind=
       function(param)
-       {switch(param)
+       {var exit;
+        
+        switch(param)
          {case 0:return param[1];
           case 1:
            if(trans)
@@ -164,8 +169,8 @@ var
            else
             {return 0;}
            
-          case 2:var k=param[2];var exit=66;
-          case 3:var k=param[1];var exit=66;
+          case 2:var k=param[2];exit=66;
+          case 3:var k=param[1];exit=66;
           case 4:
            return module_type_elements
                    ([0,trans],
@@ -176,8 +181,8 @@ var
                    ([0,trans],
                     [0,"",[1,0],0,0,"",param[1],Odoc_types["dummy_loc"],0,0,0,0]);
            
-          case 6:var exit=67;
-          case 7:var exit=67;
+          case 6:exit=67;
+          case 7:exit=67;
           }
         
         switch(exit){case 67:return 0;case 66:return iter_kind(k);}
@@ -334,8 +339,10 @@ var
        {if(k)
          {var match=k[1];
           
+          var exit;
+          
           switch(match)
-           {case 0:var exit=35;
+           {case 0:exit=35;
             case 1:
              var p=match[1];
              
@@ -368,7 +375,7 @@ var
               {return 0;}
              
             case 3:if(trans){return iter([0,match[1]]);}else{return 0;}
-            case 4:var exit=35;
+            case 4:exit=35;
             }
           
           switch(exit){case 35:return 0;}
@@ -459,11 +466,13 @@ var
    {var
      iter=
       function(k)
-       {if(k)
+       {var exit;
+        
+        if(k)
          {var match=k[1];
           
           switch(match)
-           {case 0:var exit=29;
+           {case 0:exit=29;
             case 1:return 1;
             case 2:
              var match$1=match[1][2];
@@ -474,11 +483,11 @@ var
               {return 0;}
              
             case 3:return iter([0,match[1]]);
-            case 4:var exit=29;
+            case 4:exit=29;
             }
           }
         else
-         {var exit=29;}
+         {exit=29;}
         
         switch(exit){case 29:return 0;}
         };
@@ -650,7 +659,6 @@ var
                module_type_module_types([0,trans],mt)),
              module_type_modules([0,trans],mt));
     };
-
 
 module["exports"]=
 {"Name":Name,

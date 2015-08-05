@@ -1,11 +1,13 @@
-var $$String=require("String");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
+var $$String=require("String");
 var Ctype=require("Ctype");
 var Odoc_global=require("Odoc_global");
 var Odoc_class=require("Odoc_class");
 var Odoc_value=require("Odoc_value");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Btype=require("Btype");
 var Odoc_types=require("Odoc_types");
 var Types=require("Types");
@@ -20,7 +22,7 @@ var Ident=require("Ident");
 var Odoc_messages=require("Odoc_messages");
 
 
-
+Odoc_module,Odoc_name;
 var
  add_to_hash=
   function(table,signat)
@@ -229,6 +231,8 @@ var
              if(match$1)
               {var match$2=match$1[1][1];
                
+               var exit;
+               
                if(typeof match$2=="number")
                 {switch(match$2){}}
                else
@@ -284,7 +288,7 @@ var
                     
                     return [0,0,f(List["filter"](is_named_field,match$2[1]))];
                     
-                   default:var exit=291;}}
+                   default:exit=291;}}
                
                switch(exit){case 291:return [0,0,0];}
                }
@@ -382,6 +386,8 @@ var
       function(env,name_comment_list,type_expr)
        {var match=type_expr[1];
         
+        var exit;
+        
         if(typeof match=="number")
          {switch(match){}}
         else
@@ -410,7 +416,7 @@ var
              
              return [1,List["map"](f,prim[1])];
              
-            default:var exit=279;}}
+            default:exit=279;}}
         
         switch(exit)
          {case 279:return [0,Odoc_env["subst_type"](env,type_expr)];}
@@ -477,11 +483,13 @@ var
       function(constraints,acc)
        {return List["fold_right"]
                 (function(constraint_,acc$1)
-                  {switch(constraint_)
-                    {case 0:var exit=264;
-                     case 1:var exit=264;
-                     case 2:var s=constraint_[1][1];var exit=265;
-                     case 3:var s=constraint_[1];var exit=265;
+                  {var exit;
+                   
+                   switch(constraint_)
+                    {case 0:exit=264;
+                     case 1:exit=264;
+                     case 2:var s=constraint_[1][1];exit=265;
+                     case 3:var s=constraint_[1];exit=265;
                      }
                    
                    switch(exit)
@@ -508,6 +516,8 @@ var
                      
                      var tp=sig_item[1];
                      
+                     var exit;
+                     
                      switch(tp)
                       {case 1:
                         var
@@ -518,7 +528,7 @@ var
                         
                         if(types){return take_item([1,types]);}else{return acc;}
                         
-                       case 4:var exit=261;
+                       case 4:exit=261;
                        case 5:
                         var
                          mods=
@@ -529,7 +539,7 @@ var
                         
                         if(mods){return take_item([5,mods]);}else{return acc;}
                         
-                       case 6:var exit=261;
+                       case 6:exit=261;
                        default:return take_item(tp);}
                      
                      switch(exit)
@@ -659,6 +669,8 @@ var
                  
                  var match$3=class_type[1];
                  
+                 var exit;
+                 
                  switch(match$3)
                   {case 0:
                     var name=Odoc_name["from_longident"](match$3[1][1]);
@@ -670,8 +682,8 @@ var
                        0,
                        text_opt];
                     
-                   case 1:var exit=232;
-                   case 2:var exit=232;
+                   case 1:exit=232;
+                   case 2:exit=232;
                    case 3:throw [0,Assert_failure,[0,"odoc_sig.ml",513,46]];
                    }
                  
@@ -880,7 +892,9 @@ var
         pos_limit,
         comment_opt,
         sig_item_desc)
-       {switch(sig_item_desc)
+       {var exit;
+        
+        switch(sig_item_desc)
          {case 0:
            var name_pre=sig_item_desc[1][1];
            
@@ -1495,6 +1509,8 @@ var
            mt[2]=merge_infos(mt[2],match$12[2]),0;
            var new_env$5=Odoc_env["add_module_type"](env,mt[1]);
            
+           var exit$1;
+           
            if(sig_mtype)
             {var match$13=sig_mtype[1];
              
@@ -1505,12 +1521,12 @@ var
                   Odoc_env["add_signature"]
                    (new_env$5,mt[1],[0,Odoc_name["simple"](mt[1])],match$13[1]);
                 
-               default:var exit=102;}
+               default:exit$1=102;}
              }
            else
-            {var exit=102;}
+            {exit$1=102;}
            
-           switch(exit){case 102:var new_env2$1=new_env$5;}
+           switch(exit$1){case 102:var new_env2$1=new_env$5;}
            
            return [0,match$12[1],new_env2$1,[0,[1,mt],0]];
            
@@ -1532,8 +1548,10 @@ var
            var
             f$2=
              function(param)
-              {switch(param)
-                {case 0:var exit$1=115;
+              {var exit$2;
+               
+               switch(param)
+                {case 0:exit$2=115;
                  case 1:return "??";
                  case 2:return "??";
                  case 3:return f$2(param[1][1]);
@@ -1545,10 +1563,10 @@ var
                     default:return "??";}
                   
                  case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1037,46]];
-                 case 6:var exit$1=115;
+                 case 6:exit$2=115;
                  }
                
-               switch(exit$1)
+               switch(exit$2)
                 {case 115:return Odoc_name["from_longident"](param[1][1]);}
                };
            
@@ -1787,11 +1805,11 @@ var
            
            return [0,match$16[1],new_env$7,match$16[2]];
            
-          case 11:var exit$1=148;
-          case 12:var exit$1=148;
+          case 11:exit=148;
+          case 12:exit=148;
           }
         
-        switch(exit$1){case 148:return [0,0,env,0];}
+        switch(exit){case 148:return [0,0,env,0];}
         };
     
     var
@@ -1858,6 +1876,8 @@ var
             {case 2:
               var param_module_type=sig_module_type[2];
               
+              var exit;
+              
               if(pmodule_type2)
                {if(param_module_type)
                  {var
@@ -1870,10 +1890,10 @@ var
                       param_module_type[1]);
                   }
                 else
-                 {var exit=160;}
+                 {exit=160;}
                 }
               else
-               {var exit=160;}
+               {exit=160;}
               
               switch(exit){case 160:var mp_kind=[0,0];}
               
@@ -2007,6 +2027,8 @@ var
               
               var mp_type_code=get_string_of_file(loc_start,loc_end);
               
+              var exit;
+              
               if(pmodule_type2)
                {if(param_module_type)
                  {var
@@ -2019,10 +2041,10 @@ var
                       param_module_type[1]);
                   }
                 else
-                 {var exit=184;}
+                 {exit=184;}
                 }
               else
-               {var exit=184;}
+               {exit=184;}
               
               switch(exit){case 184:var mp_kind=[0,0];}
               
@@ -2113,6 +2135,8 @@ var
        (env,current_class_name,last_pos,parse_class_type,sig_class_type)
        {var match=parse_class_type[1];
         
+        var exit;
+        
         switch(match)
          {case 0:
            switch(sig_class_type)
@@ -2133,13 +2157,13 @@ var
               
               return [0,0,k];
               
-             case 1:var exit=206;
-             case 2:var exit=206;
+             case 1:exit=206;
+             case 2:exit=206;
              }
            
           case 1:
            switch(sig_class_type)
-            {case 0:var exit=206;
+            {case 0:exit=206;
              case 1:
               var
                match$1=
@@ -2153,13 +2177,13 @@ var
               
               return [0,0,[0,match$1[1],match$1[2]]];
               
-             case 2:var exit=206;
+             case 2:exit=206;
              }
            
           case 2:
            switch(sig_class_type)
-            {case 0:var exit=206;
-             case 1:var exit=206;
+            {case 0:exit=206;
+             case 1:exit=206;
              case 2:
               var label=sig_class_type[1];
               
@@ -2187,7 +2211,7 @@ var
               
              }
            
-          case 3:var exit=206;
+          case 3:exit=206;
           }
         
         switch(exit)
@@ -2205,6 +2229,8 @@ var
        (env,current_class_name,last_pos,parse_class_type,sig_class_type)
        {var match=parse_class_type[1];
         
+        var exit;
+        
         switch(match)
          {case 0:
            switch(sig_class_type)
@@ -2216,13 +2242,13 @@ var
                        0,
                        List["map"](Odoc_env["subst_type"](env),sig_class_type[2])]];
               
-             case 1:var exit=209;
-             case 2:var exit=209;
+             case 1:exit=209;
+             case 2:exit=209;
              }
            
           case 1:
            switch(sig_class_type)
-            {case 0:var exit=209;
+            {case 0:exit=209;
              case 1:
               var
                match$1=
@@ -2236,13 +2262,13 @@ var
               
               return [0,match$1[1],match$1[2]];
               
-             case 2:var exit=209;
+             case 2:exit=209;
              }
            
           case 2:
            switch(sig_class_type)
-            {case 0:var exit=209;
-             case 1:var exit=209;
+            {case 0:exit=209;
+             case 1:exit=209;
              case 2:
               throw [0,
                      Failure,
@@ -2250,7 +2276,7 @@ var
               
              }
            
-          case 3:var exit=209;
+          case 3:exit=209;
           }
         
         switch(exit)
@@ -2352,7 +2378,8 @@ var
             analyse_signature];
     };
 
-[0,
+module["exports"]=
+{"Signature_search":
  [0,
   Signature_search[2],
   Signature_search[3],
@@ -2364,6 +2391,7 @@ var
   Signature_search[9],
   Signature_search[10],
   Signature_search[11]],
+ "Analyser":
  function(funarg)
   {var $$let=Analyser(funarg);
    
@@ -2381,20 +2409,5 @@ var
            $$let[16],
            $$let[19],
            $$let[20]];
-   }];
-module["exports"]=
-{"unknown block:(makeblock 0 (field 1 Signature_search/1240) (field 2 Signature_search/1240)\n  (field 3 Signature_search/1240) (field 4 Signature_search/1240)\n  (field 5 Signature_search/1240) (field 6 Signature_search/1240)\n  (field 7 Signature_search/1240) (field 8 Signature_search/1240)\n  (field 9 Signature_search/1240) (field 10 Signature_search/1240))":
- unknown block:(makeblock 0 (field 1 Signature_search/1240) (field 2 Signature_search/1240)
-  (field 3 Signature_search/1240) (field 4 Signature_search/1240)
-  (field 5 Signature_search/1240) (field 6 Signature_search/1240)
-  (field 7 Signature_search/1240) (field 8 Signature_search/1240)
-  (field 9 Signature_search/1240) (field 10 Signature_search/1240)),
- "unknown block:(function funarg/1928\n  (let (let/1929 = (apply Analyser/1922 funarg/1928))\n    (makeblock 0 (field 0 let/1929) (field 1 let/1929) (field 2 let/1929)\n      (field 3 let/1929) (field 4 let/1929) (field 5 let/1929)\n      (field 7 let/1929) (field 8 let/1929) (field 9 let/1929)\n      (field 6 let/1929) (field 15 let/1929) (field 18 let/1929)\n      (field 19 let/1929))))":
- unknown block:(function funarg/1928
-  (let (let/1929 = (apply Analyser/1922 funarg/1928))
-    (makeblock 0 (field 0 let/1929) (field 1 let/1929) (field 2 let/1929)
-      (field 3 let/1929) (field 4 let/1929) (field 5 let/1929)
-      (field 7 let/1929) (field 8 let/1929) (field 9 let/1929)
-      (field 6 let/1929) (field 15 let/1929) (field 18 let/1929)
-      (field 19 let/1929))))};
+   }};
 

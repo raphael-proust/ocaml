@@ -1,5 +1,7 @@
-var Ocaml_utils=require("Ocaml_utils");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Tools=require("Tools");
+var Ocaml_utils=require("Ocaml_utils");
 var Options=require("Options");
 var Ocaml_compiler=require("Ocaml_compiler");
 var Char=require("Char");
@@ -11,11 +13,12 @@ var Format=require("Format");
 var Command=require("Command");
 var Filename=require("Filename");
 var My_std=require("My_std");
-var Ocaml_tools=require("Ocaml_tools");
 var Tags=require("Tags");
+var Ocaml_tools=require("Ocaml_tools");
 var Configuration=require("Configuration");
 var Findlib=require("Findlib");
 var Ocamlbuild_config=require("Ocamlbuild_config");
+
 
 var
  link_C_library=
@@ -1428,7 +1431,6 @@ var
     
     return 0;
     };
-
 
 module["exports"]={"init":init};
 

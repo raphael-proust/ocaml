@@ -1,9 +1,11 @@
-var $$String=require("String");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
+var $$String=require("String");
 var Odoc_global=require("Odoc_global");
 var Odoc_value=require("Odoc_value");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Predef=require("Predef");
 var Printf=require("Printf");
 var Odoc_sig=require("Odoc_sig");
@@ -19,7 +21,7 @@ var Odoc_parameter=require("Odoc_parameter");
 var Odoc_messages=require("Odoc_messages");
 
 
-
+Odoc_module,Odoc_name;
 var blank="[ \n\r\t\f']";
 
 var simple_blank="[ \r\t\f]";
@@ -27,12 +29,14 @@ var simple_blank="[ \r\t\f]";
 var
  iter_val_pattern=
   function(param)
-   {if(typeof param=="number")
-     {switch(param){case 0:var exit=379;}}
+   {var exit;
+    
+    if(typeof param=="number")
+     {switch(param){case 0:exit=379;}}
     else
      {switch(param[0])
        {case 0:return [0,Odoc_name["from_ident"](param[1])];
-        case 3:var exit=379;
+        case 3:exit=379;
         default:return 0;}}
     
     switch(exit){case 379:return 0;}
@@ -172,16 +176,18 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,[2,name]);
     
+    var exit;
+    
     switch(match)
      {case 3:
        var match$1=match[1];
        
        if(match$1)
-        {if(match$1[2]){var exit=363;}else{return match$1[1];}}
+        {if(match$1[2]){exit=363;}else{return match$1[1];}}
        else
-        {var exit=363;}
+        {exit=363;}
        
-      default:var exit=363;}
+      default:exit=363;}
     
     switch(exit){case 363:throw [0,Assert_failure,[0,"odoc_ast.ml",149,13]];}
     };
@@ -191,13 +197,15 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,[3,name]);
     
+    var exit;
+    
     switch(match)
      {case 10:
        var match$1=match[1];
        
        if(match$1)
         {if(match$1[2])
-          {var exit=361;}
+          {exit=361;}
          else
           {var ce=match$1[1][1][8];
            
@@ -210,9 +218,9 @@ var
            }
          }
        else
-        {var exit=361;}
+        {exit=361;}
        
-      default:var exit=361;}
+      default:exit=361;}
     
     switch(exit){case 361:throw [0,Assert_failure,[0,"odoc_ast.ml",163,13]];}
     };
@@ -222,16 +230,18 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,[4,name]);
     
+    var exit;
+    
     switch(match)
      {case 11:
        var match$1=match[1];
        
        if(match$1)
-        {if(match$1[2]){var exit=356;}else{return match$1[1][3];}}
+        {if(match$1[2]){exit=356;}else{return match$1[1][3];}}
        else
-        {var exit=356;}
+        {exit=356;}
        
-      default:var exit=356;}
+      default:exit=356;}
     
     switch(exit){case 356:throw [0,Assert_failure,[0,"odoc_ast.ml",168,13]];}
     };
@@ -278,6 +288,8 @@ var
        {if(param)
          {var match=param[1][1];
           
+          var exit;
+          
           switch(match)
            {case 1:
              var match$1=match[4];
@@ -289,17 +301,17 @@ var
                 if("unknown primitive:caml_string_equal")
                  {return match$1[1][2];}
                 else
-                 {var exit=349;}
+                 {exit=349;}
                 
                case 1:
                 if("unknown primitive:caml_string_equal")
                  {return match$1[2][4];}
                 else
-                 {var exit=349;}
+                 {exit=349;}
                 
                }
              
-            default:var exit=349;}
+            default:exit=349;}
           
           switch(exit){case 349:return iter(param[2]);}
           }
@@ -313,8 +325,9 @@ var
 var
  iter=
   function(param)
-   {switch(param)
-     {case 0:var exit=347;case 1:return param[1];case 2:var exit=347;}
+   {var exit;
+    
+    switch(param){case 0:exit=347;case 1:return param[1];case 2:exit=347;}
     
     switch(exit){case 347:return iter(param[3]);}
     };
@@ -330,21 +343,23 @@ var
        {if(param)
          {var match=param[1][1];
           
+          var exit;
+          
           switch(match)
            {case 2:
              var match$1=match[3];
              
              switch(match$1)
-              {case 0:var exit=345;
+              {case 0:exit=345;
                case 1:
                 if("unknown primitive:caml_string_equal")
                  {return match$1[2];}
                 else
-                 {var exit=345;}
+                 {exit=345;}
                 
                }
              
-            default:var exit=345;}
+            default:exit=345;}
           
           switch(exit){case 345:return iter$1(param[2]);}
           }
@@ -400,6 +415,8 @@ var
           function(pat$1)
            {var match=pat$1[1];
             
+            var exit;
+            
             if(typeof match=="number")
              {switch(match){}}
             else
@@ -419,24 +436,27 @@ var
                 case 4:
                  var match$1=match[2][2][1];
                  
+                 var exit$1;
+                 
+                 var $js;
                  if(typeof match$1=="number")
                   {switch(match$1){}}
                  else
                   {switch(match$1[0])
-                    {case 3:
-                      var $js=Path["same"](match$1[1],Predef["path_unit"]);
-                     default:var exit=336;}}
+                    {case 3:$js=Path["same"](match$1[1],Predef["path_unit"]);
+                     default:exit$1=336;}}
                  
-                 switch(exit){case 336:var $js$1=0;}
+                 var $js$1;
+                 switch(exit$1){case 336:$js$1=0;}
                  if($js$1)
                   {return [0,[0,"()",Odoc_env["subst_type"](env,pat$1[4]),0]];
                    }
                  else
-                  {var exit$1=337;}
+                  {exit=337;}
                  
-                default:var exit$1=337;}}
+                default:exit=337;}}
             
-            switch(exit$1)
+            switch(exit)
              {case 337:
                return [0,[0,"()",Odoc_env["subst_type"](env,pat$1[4]),0]];
               }
@@ -468,11 +488,15 @@ var
                 Odoc_parameter["desc_from_info_opt"](current_comment_opt),
                 pattern_param);
             
+            var exit;
+            
             switch(parameter$1)
              {case 0:
                switch(parameter$1[1][1])
                 {case "*opt*":
                   var match$1=func_body[1];
+                  
+                  var exit$1;
                   
                   switch(match$1)
                    {case 2:
@@ -501,22 +525,22 @@ var
                             
                             var match$5=[0,new_param,match$1[3]];
                             
-                           default:var exit=331;}}
+                           default:exit$1=331;}}
                        }
                      else
-                      {var exit=331;}
+                      {exit$1=331;}
                      
-                    default:var exit=331;}
+                    default:exit$1=331;}
                   
-                  switch(exit)
+                  switch(exit$1)
                    {case 331:var match$5=[0,parameter$1,func_body];}
                   
-                 default:var exit$1=332;}
+                 default:exit=332;}
                
-              case 1:var exit$1=332;
+              case 1:exit=332;
               }
             
-            switch(exit$1){case 332:var match$5=[0,parameter$1,func_body];}
+            switch(exit){case 332:var match$5=[0,parameter$1,func_body];}
             
             var p=match$5[1];
             
@@ -547,6 +571,8 @@ var
         var match=pat[1];
         
         var match$1=pat_exp[2][1];
+        
+        var exit;
         
         if(typeof match=="number")
          {switch(match){}}
@@ -612,7 +638,7 @@ var
                 }
              
             case 3:return 0;
-            default:var exit=323;}}
+            default:exit=323;}}
         
         switch(exit){case 323:return 0;}
         };
@@ -622,10 +648,12 @@ var
       function(clexp)
        {var match=clexp[1];
         
+        var exit;
+        
         switch(match)
          {case 0:return Odoc_name["from_path"](match[1]);
-          case 3:var exit=312;
-          case 5:var exit=312;
+          case 3:exit=312;
+          case 5:exit=312;
           default:return Odoc_messages["object_end"];}
         
         switch(exit){case 312:return tt_name_of_class_expr(match[1]);}
@@ -666,11 +694,15 @@ var
                        Odoc_parameter["desc_from_info_opt"](comment_opt),
                        pattern_param);
                    
+                   var exit;
+                   
                    switch(parameter)
                     {case 0:
                       switch(parameter[1][1])
                        {case "*opt*":
                          var match$2=body[1];
+                         
+                         var exit$1;
                          
                          switch(match$2)
                           {case 2:
@@ -698,21 +730,21 @@ var
                                    
                                    var match$6=[0,new_param$1,match$2[3]];
                                    
-                                  default:var exit=303;}}
+                                  default:exit$1=303;}}
                               }
                             else
-                             {var exit=303;}
+                             {exit$1=303;}
                             
-                           default:var exit=303;}
+                           default:exit$1=303;}
                          
-                         switch(exit){case 303:var match$6=[0,parameter,body];}
+                         switch(exit$1){case 303:var match$6=[0,parameter,body];}
                          
-                        default:var exit$1=304;}
+                        default:exit=304;}
                       
-                     case 1:var exit$1=304;
+                     case 1:exit=304;
                      }
                    
-                   switch(exit$1){case 304:var match$6=[0,parameter,body];}
+                   switch(exit){case 304:var match$6=[0,parameter,body];}
                    
                    return [0,
                            match$6[1],
@@ -763,6 +795,8 @@ var
               var loc=item[2];
               
               var match=item[1];
+              
+              var exit;
               
               switch(match)
                {case 0:
@@ -893,13 +927,15 @@ var
                     
                     var match$6=met_type[1];
                     
+                    var exit$1;
+                    
                     if(typeof match$6=="number")
                      {switch(match$6){}}
                     else
                      {switch(match$6[0])
-                       {case 1:var real_type=match$6[3];default:var exit=283;}}
+                       {case 1:var real_type=match$6[3];default:exit$1=283;}}
                     
-                    switch(exit){case 283:var real_type=met_type;}
+                    switch(exit$1){case 283:var real_type=met_type;}
                     
                     if(Odoc_global["keep_code"][1])
                      {var code$1=[0,get_string_of_file(loc[1][4],loc[2][4])];}
@@ -952,13 +988,15 @@ var
                     
                     var match$8=exp[4][1];
                     
+                    var exit$2;
+                    
                     if(typeof match$8=="number")
                      {switch(match$8){}}
                     else
                      {switch(match$8[0])
-                       {case 1:var real_type$1=match$8[3];default:var exit$1=291;}}
+                       {case 1:var real_type$1=match$8[3];default:exit$2=291;}}
                     
-                    switch(exit$1){case 291:var real_type$1=exp[4];}
+                    switch(exit$2){case 291:var real_type$1=exp[4];}
                     
                     if(Odoc_global["keep_code"][1])
                      {var code$2=[0,get_string_of_file(loc[1][4],loc[2][4])];}
@@ -990,14 +1028,14 @@ var
                     
                    }
                  
-                case 3:var exit$2=297;
+                case 3:exit=297;
                 case 4:
                  return iter$1(acc_inher,acc_fields,match[1][2][2][4],q);
-                case 5:var exit$2=297;
+                case 5:exit=297;
                 case 6:throw [0,Assert_failure,[0,"odoc_ast.ml",689,39]];
                 }
               
-              switch(exit$2)
+              switch(exit)
                {case 297:return iter$1(acc_inher,acc_fields,loc[2][4],q);}
               }
             else
@@ -1040,6 +1078,8 @@ var
         
         var match$1=tt_class_exp[1];
         
+        var exit;
+        
         switch(match)
          {case 0:
            switch(match$1)
@@ -1048,13 +1088,15 @@ var
            
            var match$2=tt_class_exp[3];
            
+           var exit$1;
+           
            switch(match$2)
             {case 0:var params=match$2[2];
-             case 1:var exit=241;
-             case 2:var exit=241;
+             case 1:exit$1=241;
+             case 2:exit$1=241;
              }
            
-           switch(exit){case 241:var params=0;}
+           switch(exit$1){case 241:var params=0;}
            
            return [0,
                    0,
@@ -1069,13 +1111,15 @@ var
             {case 1:
               var match$3=tt_class_exp[3];
               
+              var exit$2;
+              
               switch(match$3)
-               {case 0:var exit$1=246;
+               {case 0:exit$2=246;
                 case 1:var tt_class_sig=match$3[1];
-                case 2:var exit$1=246;
+                case 2:exit$2=246;
                 }
               
-              switch(exit$1)
+              switch(exit$2)
                {case 246:
                  throw [0,
                         Failure,
@@ -1097,7 +1141,7 @@ var
               
               return [0,0,[0,match$4[1],match$4[2]]];
               
-             default:var exit$2=263;}
+             default:exit=263;}
            
           case 2:
            switch(match$1)
@@ -1108,6 +1152,8 @@ var
               
               var match$5=pat[1];
               
+              var exit$3;
+              
               if(typeof match$5=="number")
                {switch(match$5){}}
               else
@@ -1115,6 +1161,8 @@ var
                  {case 0:
                    if("unknown primitive:caml_string_equal")
                     {var match$6=tt_class_expr2[1];
+                     
+                     var exit$4;
                      
                      switch(match$6)
                       {case 4:
@@ -1142,24 +1190,24 @@ var
                                
                                var match$10=[0,new_param,match$6[4]];
                                
-                              default:var exit$3=251;}}
+                              default:exit$4=251;}}
                           }
                         else
-                         {var exit$3=251;}
+                         {exit$4=251;}
                         
-                       default:var exit$3=251;}
+                       default:exit$4=251;}
                      
-                     switch(exit$3)
+                     switch(exit$4)
                       {case 251:
                         throw [0,Failure,"analyse_class_kind: strange case"];
                        }
                      }
                    else
-                    {var exit$4=253;}
+                    {exit$3=253;}
                    
-                  default:var exit$4=253;}}
+                  default:exit$3=253;}}
               
-              switch(exit$4)
+              switch(exit$3)
                {case 253:
                  var
                   new_param$1=
@@ -1183,7 +1231,7 @@ var
               
               return [0,[0,match$10[1],match$11[1]],match$11[2]];
               
-             default:var exit$2=263;}
+             default:exit=263;}
            
           case 3:
            switch(match$1)
@@ -1238,7 +1286,7 @@ var
                         param_types,
                         params_code]]];
               
-             default:var exit$2=263;}
+             default:exit=263;}
            
           case 4:
            switch(match$1)
@@ -1252,7 +1300,7 @@ var
                        match$1[4],
                        table);
               
-             default:var exit$2=263;}
+             default:exit=263;}
            
           case 5:
            switch(match$1)
@@ -1272,12 +1320,12 @@ var
               
               return [0,match$14[1],[3,match$14[2],class_type_kind]];
               
-             default:var exit$2=263;}
+             default:exit=263;}
            
-          case 6:var exit$2=263;
+          case 6:exit=263;
           }
         
-        switch(exit$2)
+        switch(exit)
          {case 263:
            throw [0,
                   Failure,
@@ -1403,6 +1451,8 @@ var
       function(m,mt)
        {var match=m[6];
         
+        var exit;
+        
         switch(match)
          {case 0:
            switch(mt)
@@ -1414,9 +1464,9 @@ var
               0;
               return m[2]=mt,0;
               
-             default:var exit=195;}
+             default:exit=195;}
            
-          default:var exit=195;}
+          default:exit=195;}
         
         switch(exit){case 195:return 0;}
         };
@@ -1425,6 +1475,8 @@ var
      filter_module_type_with_module_type_constraint=
       function(mtyp,mt)
        {var match=mtyp[6];
+        
+        var exit;
         
         if(match)
          {var match$1=match[1];
@@ -1441,12 +1493,12 @@ var
                 0;
                 return mtyp[3]=[0,mt],0;
                 
-               default:var exit=196;}
+               default:exit=196;}
              
-            default:var exit=196;}
+            default:exit=196;}
           }
         else
-         {var exit=196;}
+         {exit=196;}
         
         switch(exit){case 196:return 0;}
         };
@@ -1488,7 +1540,9 @@ var
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {var exit;
+                   
+                   switch(param)
                     {case 4:
                       var match=param[2][1];
                       
@@ -1507,9 +1561,9 @@ var
                          {return 0;}
                         }
                       else
-                       {var exit=202;}
+                       {exit=202;}
                       
-                     default:var exit=202;}
+                     default:exit=202;}
                    
                    switch(exit){case 202:return 0;}
                    };
@@ -1723,7 +1777,9 @@ var
         typedtree,
         table,
         table_values)
-       {switch(parsetree_item_desc)
+       {var exit;
+        
+        switch(parsetree_item_desc)
          {case 0:return [0,0,env,0];
           case 1:
            var rec_flag=parsetree_item_desc[1];
@@ -1731,16 +1787,18 @@ var
            var
             iter_pat=
              function(param)
-              {if(typeof param=="number")
-                {switch(param){case 0:var exit=32;}}
+              {var exit$1;
+               
+               if(typeof param=="number")
+                {switch(param){case 0:exit$1=32;}}
                else
                 {switch(param[0])
                   {case 0:return [0,param[1]];
-                   case 4:var exit=32;
+                   case 4:exit$1=32;
                    case 10:return iter_pat(param[1][1]);
                    default:return 0;}}
                
-               switch(exit){case 32:return 0;}
+               switch(exit$1){case 32:return 0;}
                };
            
            var
@@ -2390,6 +2448,8 @@ var
            
            var match$8=tt_module_type[3];
            
+           var exit$1;
+           
            if(modtype)
             {if(match$8)
               {var mty_type=match$8[1];
@@ -2401,12 +2461,12 @@ var
                   [0,mty_type[2]]];
                }
              else
-              {var exit=118;}
+              {exit$1=118;}
              }
            else
-            {var exit=118;}
+            {exit$1=118;}
            
-           switch(exit){case 118:var match$9=[0,0,0];}
+           switch(exit$1){case 118:var match$9=[0,0,0];}
            
            var sig_mtype=match$9[2];
            
@@ -2423,6 +2483,8 @@ var
            
            var new_env$5=Odoc_env["add_module_type"](env,mt[1]);
            
+           var exit$2;
+           
            if(sig_mtype)
             {var match$10=sig_mtype[1];
              
@@ -2433,12 +2495,12 @@ var
                   Odoc_env["add_signature"]
                    (new_env$5,mt[1],[0,Odoc_name["simple"](mt[1])],match$10[1]);
                 
-               default:var exit$1=114;}
+               default:exit$2=114;}
              }
            else
-            {var exit$1=114;}
+            {exit$2=114;}
            
-           switch(exit$1){case 114:var new_env2$1=new_env$5;}
+           switch(exit$2){case 114:var new_env2$1=new_env$5;}
            
            return [0,0,new_env2$1,[0,[1,mt],0]];
            
@@ -2630,11 +2692,11 @@ var
            
           case 12:
            var im=[0,"dummy",0,comment_opt];return [0,0,env,[0,[2,im],0]];
-          case 13:var exit$2=148;
-          case 14:var exit$2=148;
+          case 13:exit=148;
+          case 14:exit=148;
           }
         
-        switch(exit$2){case 148:return [0,0,env,0];}
+        switch(exit){case 148:return [0,0,env,0];}
         };
     
     var
@@ -2691,17 +2753,19 @@ var
         
         var match$2=tt_module_expr[1];
         
+        var exit;
+        
         switch(match$1)
          {case 0:
            switch(match$2)
-            {case 0:var path=match$2[1];var exit=182;
+            {case 0:var path=match$2[1];exit=182;
              case 4:
               var match$3=match$2[1][1];
               
               switch(match$3)
-               {case 0:var path=match$3[1];var exit=182;default:var exit=184;}
+               {case 0:var path=match$3[1];exit=182;default:exit=184;}
               
-             default:var exit=184;}
+             default:exit=184;}
            
           case 1:
            var p_structure=match$1[1];
@@ -2768,9 +2832,9 @@ var
                  newrecord$1[6]=[0,elements2$1],0;
                  return newrecord$1;
                  
-                default:var exit=184;}
+                default:exit=184;}
               
-             default:var exit=184;}
+             default:exit=184;}
            
           case 2:
            switch(match$2)
@@ -2792,6 +2856,8 @@ var
               
               var mp_name=Odoc_name["from_ident"](match$2[1]);
               
+              var exit$1;
+              
               if(pmodule_type$1)
                {if(mtyp)
                  {var
@@ -2800,10 +2866,10 @@ var
                      (0,env,current_module_name,pmodule_type$1[1],mtyp[1][2]);
                   }
                 else
-                 {var exit$1=158;}
+                 {exit$1=158;}
                 }
               else
-               {var exit$1=158;}
+               {exit$1=158;}
               
               switch(exit$1){case 158:var mp_kind=[0,0];}
               
@@ -2839,7 +2905,7 @@ var
               newrecord$2[6]=[2,param,kind],0;
               return newrecord$2;
               
-             default:var exit=184;}
+             default:exit=184;}
            
           case 3:
            var p_module_expr2=match$1[2];
@@ -2848,34 +2914,34 @@ var
            
            switch(match$2)
             {case 3:
-              p_module_expr1$1=p_module_expr1;
+              var p_module_expr1$1=p_module_expr1;
               
-              p_module_expr2$1=p_module_expr2;
+              var p_module_expr2$1=p_module_expr2;
               
               var tt_module_expr1=match$2[1];
               
               var tt_module_expr2=match$2[2];
               
-              var exit=183;
+              exit=183;
               
              case 4:
               var match$5=match$2[1][1];
               
               switch(match$5)
                {case 3:
-                 p_module_expr1$1=p_module_expr1;
+                 var p_module_expr1$1=p_module_expr1;
                  
-                 p_module_expr2$1=p_module_expr2;
+                 var p_module_expr2$1=p_module_expr2;
                  
                  var tt_module_expr1=match$5[1];
                  
                  var tt_module_expr2=match$5[2];
                  
-                 var exit=183;
+                 exit=183;
                  
-                default:var exit=184;}
+                default:exit=184;}
               
-             default:var exit=184;}
+             default:exit=184;}
            
           case 4:
            switch(match$2)
@@ -2910,7 +2976,7 @@ var
               newrecord$3[6]=[5,m_base2$1[6],mtkind],0;
               return newrecord$3;
               
-             default:var exit=184;}
+             default:exit=184;}
            
           case 5:
            switch(match$2)
@@ -2950,9 +3016,9 @@ var
               newrecord$4[6]=[7,code,alias],0;
               return newrecord$4;
               
-             default:var exit=184;}
+             default:exit=184;}
            
-          case 6:var exit=184;
+          case 6:exit=184;
           }
         
         switch(exit)
@@ -3103,7 +3169,8 @@ var
             analyse_typed_tree];
     };
 
-[0,
+module["exports"]=
+{"Typedtree_search":
  [0,
   Typedtree_search[3],
   Typedtree_search[4],
@@ -3117,17 +3184,5 @@ var
   Typedtree_search[13],
   Typedtree_search[14],
   Typedtree_search[16]],
- function(funarg){var $$let=Analyser(funarg);return [0,$$let[26]];}];
-module["exports"]=
-{"unknown block:(makeblock 0 (field 2 Typedtree_search/1272) (field 3 Typedtree_search/1272)\n  (field 4 Typedtree_search/1272) (field 5 Typedtree_search/1272)\n  (field 7 Typedtree_search/1272) (field 8 Typedtree_search/1272)\n  (field 9 Typedtree_search/1272) (field 10 Typedtree_search/1272)\n  (field 11 Typedtree_search/1272) (field 12 Typedtree_search/1272)\n  (field 13 Typedtree_search/1272) (field 15 Typedtree_search/1272))":
- unknown block:(makeblock 0 (field 2 Typedtree_search/1272) (field 3 Typedtree_search/1272)
-  (field 4 Typedtree_search/1272) (field 5 Typedtree_search/1272)
-  (field 7 Typedtree_search/1272) (field 8 Typedtree_search/1272)
-  (field 9 Typedtree_search/1272) (field 10 Typedtree_search/1272)
-  (field 11 Typedtree_search/1272) (field 12 Typedtree_search/1272)
-  (field 13 Typedtree_search/1272) (field 15 Typedtree_search/1272)),
- "unknown block:(function funarg/2004\n  (let (let/2005 = (apply Analyser/2003 funarg/2004))\n    (makeblock 0 (field 25 let/2005))))":
- unknown block:(function funarg/2004
-  (let (let/2005 = (apply Analyser/2003 funarg/2004))
-    (makeblock 0 (field 25 let/2005))))};
+ "Analyser":function(funarg){var $$let=Analyser(funarg);return [0,$$let[26]];}};
 

@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Bytes=require("Bytes");
+
 
 var
  to_buffer=
@@ -44,22 +47,12 @@ var
  from_string=
   function(buff,ofs){return from_bytes(Bytes["unsafe_of_string"](buff),ofs);};
 
-[0,
- function(prim,prim$1,prim$2){return "unknown primitive:caml_output_value";},
- to_buffer,
- function(prim){return "unknown primitive:caml_input_value";},
- from_bytes,
- from_string,
- header_size,
- data_size,
- total_size];
 module["exports"]=
-{"unknown block:(function prim/1041 prim/1040 prim/1039\n  (caml_output_value prim/1041 prim/1040 prim/1039))":
- unknown block:(function prim/1041 prim/1040 prim/1039
-  (caml_output_value prim/1041 prim/1040 prim/1039)),
+{"caml_output_value":
+ function(prim,prim$1,prim$2){return "unknown primitive:caml_output_value";},
  "to_buffer":to_buffer,
- "unknown block:(function prim/1042 (caml_input_value prim/1042))":
- unknown block:(function prim/1042 (caml_input_value prim/1042)),
+ "caml_input_value":
+ function(prim){return "unknown primitive:caml_input_value";},
  "from_bytes":from_bytes,
  "from_string":from_string,
  "header_size":header_size,

@@ -1,9 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Dll=require("Dll");
 var Char=require("Char");
 var Opcodes=require("Opcodes");
 var Cmi_format=require("Cmi_format");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Digest=require("Digest");
 var Misc=require("Misc");
@@ -11,6 +13,7 @@ var Consistbl=require("Consistbl");
 var Printexc=require("Printexc");
 var Symtable=require("Symtable");
 var Config=require("Config");
+
 
 var $$Error="unknown primitive:caml_set_oo_id";
 
@@ -296,21 +299,25 @@ var
       Pervasives["close_in"](ic);
       var match$1=cmi[3];
       
+      var exit;
+      
       if(match$1)
        {var match$2=match$1[1][2];
         
-        if(match$2){return match$2[1];}else{var exit=35;}
+        if(match$2){return match$2[1];}else{exit=35;}
         }
       else
-       {var exit=35;}
+       {exit=35;}
       
       switch(exit){case 35:throw [0,$$Error,[4,filename]];}
       }
     catch(exn$1)
-     {if(exn$1=End_of_file)
-       {var exit$1=33;}
+     {var exit$1;
+      
+      if(exn$1=End_of_file)
+       {exit$1=33;}
       else
-       {if(exn$1[1]=Failure){var exit$1=33;}else{throw exn$1;}}
+       {if(exn$1[1]=Failure){exit$1=33;}else{throw exn$1;}}
       
       switch(exit$1)
        {case 33:Pervasives["close_in"](ic);throw [0,$$Error,[4,filename]];}
@@ -531,7 +538,6 @@ var
 var is_native=0;
 
 var adapt_filename=function(f){return f;};
-
 
 module["exports"]=
 {"is_native":is_native,

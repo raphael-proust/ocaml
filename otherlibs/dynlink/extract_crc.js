@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Dynlink=require("Dynlink");
 var Pervasives=require("Pervasives");
 var Arg=require("Arg");
 var Printf=require("Printf");
+
 
 var load_path=[0,0];
 
@@ -40,6 +43,8 @@ var
         if(tag$1=Dynlink["Error"])
          {var match=exn[2];
           
+          var exit;
+          
           if(typeof match=="number")
            {switch(match){}}
           else
@@ -49,7 +54,7 @@ var
                
                Pervasives["prerr_string"]("Cannot find file "),
                Pervasives["prerr_endline"](name);
-              default:var exit=5;}}
+              default:exit=5;}}
           
           switch(exit)
            {case 5:Pervasives["prerr_endline"]("Ill-formed .cmi file")}
@@ -82,7 +87,8 @@ var
     return Pervasives["print_string"]("\n]\n");
     };
 
-main(0),Pervasives["exit"](0),[0,load_path,first,print_crc,usage,main];
+main(0);
+Pervasives["exit"](0);
 module["exports"]=
 {"load_path":load_path,
  "first":first,

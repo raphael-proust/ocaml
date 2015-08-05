@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Sys=require("Sys");
+
 
 var interrupted=[0,0];
 
@@ -47,7 +50,6 @@ var
       return is_protected[1]=1,0;
       }
     };
-
 
 module["exports"]={"protect":protect,"unprotect":unprotect};
 

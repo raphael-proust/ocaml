@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var List=require("List");
 var CamlinternalLazy=require("CamlinternalLazy");
+
 
 var Failure="unknown primitive:caml_set_oo_id";
 
@@ -16,11 +19,13 @@ var
 var
  get_data=
   function(count,d)
-   {if(typeof d=="number")
-     {switch(d){case 0:var exit=30;}}
+   {var exit;
+    
+    if(typeof d=="number")
+     {switch(d){case 0:exit=30;}}
     else
      {switch(d[0])
-       {case 0:var exit=30;
+       {case 0:exit=30;
         case 1:
          var d2=d[2];
          
@@ -146,6 +151,8 @@ var
   function(s)
    {var match=s[2];
     
+    var exit;
+    
     if(typeof match=="number")
      {switch(match){}}
     else
@@ -156,10 +163,10 @@ var
          
          var match$1=g[1];
          
-         if(match$1){s[1]=1+s[1],0;return g[1]=0,0;}else{var exit=24;}
+         if(match$1){s[1]=1+s[1],0;return g[1]=0,0;}else{exit=24;}
          
         case 4:var b=match[1];s[1]=1+s[1],0;return b[4]=1+b[4],0;
-        default:var exit=24;}}
+        default:exit=24;}}
     
     switch(exit)
      {case 24:var match$2=peek(s);if(match$2){return junk(s);}else{return 0;}}
@@ -344,30 +351,6 @@ var
         }}
     };
 
-[0,
- Failure,
- $$Error,
- from,
- of_list,
- of_string,
- of_bytes,
- of_channel,
- iter,
- next,
- empty,
- peek,
- junk,
- function(prim){return prim[1];},
- npeek,
- iapp,
- icons,
- ising,
- lapp,
- lcons,
- lsing,
- sempty,
- slazy,
- dump];
 module["exports"]=
 {"Failure":Failure,
  "Error":$$Error,
@@ -381,8 +364,7 @@ module["exports"]=
  "empty":empty,
  "peek":peek,
  "junk":junk,
- "unknown block:(function prim/1133 (field 0 prim/1133))":
- unknown block:(function prim/1133 (field 0 prim/1133)),
+ "%field0":function(prim){return prim[1];},
  "npeek":npeek,
  "iapp":iapp,
  "icons":icons,

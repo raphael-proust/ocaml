@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Options=require("Options");
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
@@ -6,6 +8,7 @@ var Shell=require("Shell");
 var Filename=require("Filename");
 var My_std=require("My_std");
 var Log=require("Log");
+
 
 var Exit_hygiene_violations="unknown primitive:caml_set_oo_id";
 
@@ -94,7 +97,9 @@ var
            
            return list_collect
                    (function(param$1)
-                     {if(typeof param$1=="number")
+                     {var exit;
+                      
+                      if(typeof param$1=="number")
                        {switch(param$1){}}
                       else
                        {switch(param$1[0])
@@ -112,7 +117,9 @@ var
                                if
                                 (My_std["List"][27]
                                   (function(param$2)
-                                    {if(typeof param$2=="number")
+                                    {var exit$1;
+                                     
+                                     if(typeof param$2=="number")
                                       {switch(param$2){}}
                                      else
                                       {switch(param$2[0])
@@ -120,11 +127,11 @@ var
                                           if(param$2[4]!=0)
                                            {return "unknown primitive:caml_string_equal";}
                                           else
-                                           {var exit=10;}
+                                           {exit$1=10;}
                                           
-                                         default:var exit=10;}}
+                                         default:exit$1=10;}}
                                      
-                                     switch(exit){case 10:return 0;}
+                                     switch(exit$1){case 10:return 0;}
                                      },
                                    entries))
                                 {remove(path,name$prime);
@@ -150,9 +157,9 @@ var
                               {return 0;}
                              }
                            else
-                            {var exit=14;}
+                            {exit=14;}
                            
-                          default:var exit=14;}}
+                          default:exit=14;}}
                       
                       switch(exit){case 14:return 0;}
                       },
@@ -163,7 +170,9 @@ var
            
            return list_collect
                    (function(param$1)
-                     {if(typeof param$1=="number")
+                     {var exit;
+                      
+                      if(typeof param$1=="number")
                        {switch(param$1){}}
                       else
                        {switch(param$1[0])
@@ -194,9 +203,9 @@ var
                               {return 0;}
                              }
                            else
-                            {var exit=8;}
+                            {exit=8;}
                            
-                          default:var exit=8;}}
+                          default:exit=8;}}
                       
                       switch(exit){case 8:return 0;}
                       },
@@ -208,7 +217,9 @@ var
     var
      check_entry=
       function(param)
-       {if(typeof param=="number")
+       {var exit;
+        
+        if(typeof param=="number")
          {switch(param){}}
         else
          {switch(param[0])
@@ -236,9 +247,9 @@ var
                return My_std["List"][14](check_entry,My_std["!*"](entries));
                }
              else
-              {var exit=6;}
+              {exit=6;}
              
-            default:var exit=6;}}
+            default:exit=6;}}
         
         switch(exit){case 6:return 0;}
         };
@@ -514,7 +525,6 @@ var
     
     return penalties[1];
     };
-
 
 module["exports"]={"check":check};
 

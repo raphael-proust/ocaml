@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
 var CamlinternalFormat=require("CamlinternalFormat");
@@ -5,6 +7,7 @@ var Pervasives=require("Pervasives");
 var List=require("List");
 var Printf=require("Printf");
 var Buffer=require("Buffer");
+
 
 var null_char=0;
 
@@ -234,8 +237,10 @@ var
   function(ib)
    {var match=ib[9];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=247;case 1:var exit=247;}}
+     {switch(match){case 0:exit=247;case 1:exit=247;}}
     else
      {switch(match[0])
        {case 0:var ic=match[2];return Pervasives["close_in"](ic);
@@ -350,15 +355,17 @@ var
    {var c=Scanning[5](ib);
     
     if(!Scanning[15](ib))
-     {var switcher=-9+c;
+     {var exit;
+      
+      var switcher=-9+c;
       
       if(!(4<switcher>>>0))
        {var switcher$1=-2+switcher;
         
-        if(1<switcher$1>>>0){var exit=237;}else{var exit=238;}
+        if(1<switcher$1>>>0){exit=237;}else{exit=238;}
         }
       else
-       {if(switcher!=23){var exit=238;}else{var exit=237;}}
+       {if(switcher!=23){exit=238;}else{exit=237;}}
       
       switch(exit)
        {case 238:return 0;case 237:Scanning[4](ib);return skip_whites(ib);}
@@ -378,14 +385,12 @@ var
       if(ci=c)
        {return Scanning[4](ib);}
       else
-       {if(ci!=13)
-         {var exit=235;}
+       {var exit;
+        
+        if(ci!=13)
+         {exit=235;}
         else
-         {if(c=10)
-           {Scanning[4](ib);return check_char(ib,10);}
-          else
-           {var exit=235;}
-          }
+         {if(c=10){Scanning[4](ib);return check_char(ib,10);}else{exit=235;}}
         
         switch(exit){case 235:return character_mismatch(c,ci);}
         }
@@ -401,8 +406,9 @@ var
   function(ib)
    {var s=Scanning[10](ib);
     
-    switch(s)
-     {case "false":return 0;case "true":return 1;default:var exit=231;}
+    var exit;
+    
+    switch(s){case "false":return 0;case "true":return 1;default:exit=231;}
     
     switch(exit)
      {case 231:
@@ -416,45 +422,47 @@ var
 var
  token_int_literal=
   function(conv,ib)
-   {var switcher=-88+conv;
+   {var exit;
+    
+    var switcher=-88+conv;
     
     if(32<switcher>>>0)
-     {var exit=228;}
+     {exit=228;}
     else
      {switch(switcher[0])
-       {case 0:var exit=227;
-        case 1:var exit=228;
-        case 2:var exit=228;
-        case 3:var exit=228;
-        case 4:var exit=228;
-        case 5:var exit=228;
-        case 6:var exit=228;
-        case 7:var exit=228;
-        case 8:var exit=228;
-        case 9:var exit=228;
+       {case 0:exit=227;
+        case 1:exit=228;
+        case 2:exit=228;
+        case 3:exit=228;
+        case 4:exit=228;
+        case 5:exit=228;
+        case 6:exit=228;
+        case 7:exit=228;
+        case 8:exit=228;
+        case 9:exit=228;
         case 10:var tok=Pervasives["^"]("0b",Scanning[10](ib));
-        case 11:var exit=228;
-        case 12:var exit=226;
-        case 13:var exit=228;
-        case 14:var exit=228;
-        case 15:var exit=228;
-        case 16:var exit=228;
-        case 17:var exit=226;
-        case 18:var exit=228;
-        case 19:var exit=228;
-        case 20:var exit=228;
-        case 21:var exit=228;
-        case 22:var exit=228;
+        case 11:exit=228;
+        case 12:exit=226;
+        case 13:exit=228;
+        case 14:exit=228;
+        case 15:exit=228;
+        case 16:exit=228;
+        case 17:exit=226;
+        case 18:exit=228;
+        case 19:exit=228;
+        case 20:exit=228;
+        case 21:exit=228;
+        case 22:exit=228;
         case 23:var tok=Pervasives["^"]("0o",Scanning[10](ib));
-        case 24:var exit=228;
-        case 25:var exit=228;
-        case 26:var exit=228;
-        case 27:var exit=228;
-        case 28:var exit=228;
-        case 29:var exit=226;
-        case 30:var exit=228;
-        case 31:var exit=228;
-        case 32:var exit=227;
+        case 24:exit=228;
+        case 25:exit=228;
+        case 26:exit=228;
+        case 27:exit=228;
+        case 28:exit=228;
+        case 29:exit=226;
+        case 30:exit=228;
+        case 31:exit=228;
+        case 32:exit=227;
         }
       }
     
@@ -500,9 +508,11 @@ var
       if(Scanning[15](ib))
        {return width;}
       else
-       {if(c>=58)
+       {var exit;
+        
+        if(c>=58)
          {if(c!=95)
-           {var exit=218;}
+           {exit=218;}
           else
            {var width$1=Scanning[9](width,ib);
             
@@ -518,7 +528,7 @@ var
             return scan_decimal_digits(width$2,ib);
             }
           else
-           {var exit=218;}
+           {exit=218;}
           }
         
         switch(exit){case 218:return width;}
@@ -626,17 +636,19 @@ var scan_octal_int=scan_digits_plus("octal",is_octal_digit);
 var
  is_hexa_digit=
   function(param)
-   {var switcher=-48+param;
+   {var exit;
+    
+    var switcher=-48+param;
     
     if(22<switcher>>>0)
      {var switcher$1=-49+switcher;
       
-      if(5<switcher$1>>>0){var exit=192;}else{var exit=191;}
+      if(5<switcher$1>>>0){exit=192;}else{exit=191;}
       }
     else
      {var switcher$2=-10+switcher;
       
-      if(6<switcher$2>>>0){var exit=191;}else{var exit=192;}
+      if(6<switcher$2>>>0){exit=191;}else{exit=192;}
       }
     
     switch(exit){case 192:return 0;case 191:return 1;}
@@ -651,14 +663,16 @@ var
   function(width,ib)
    {var c=Scanning[6](ib);
     
+    var exit;
+    
     var switcher=-43+c;
     
     if(2<switcher>>>0)
-     {var exit=186;}
+     {exit=186;}
     else
      {switch(switcher[0])
        {case 0:return Scanning[7](width,ib,c);
-        case 1:var exit=186;
+        case 1:exit=186;
         case 2:return Scanning[7](width,ib,c);
         }
       }
@@ -692,9 +706,11 @@ var
         if(Scanning[15](ib))
          {return width$1;}
         else
-         {if(c$1>=99)
+         {var exit;
+          
+          if(c$1>=99)
            {if(c$1!=111)
-             {if(c$1!=120){var exit=179;}else{var exit=178;}}
+             {if(c$1!=120){exit=179;}else{exit=178;}}
             else
              {return scan_octal_int(Scanning[7](width$1,ib,c$1),ib);}
             }
@@ -703,10 +719,10 @@ var
              {if(c$1>=98)
                {return scan_binary_int(Scanning[7](width$1,ib,c$1),ib);}
               else
-               {var exit=179;}
+               {exit=179;}
               }
             else
-             {var exit=178;}
+             {exit=178;}
             }
           
           switch(exit)
@@ -727,45 +743,47 @@ var
 var
  scan_int_conv=
   function(conv,width,ib)
-   {var switcher=-88+conv;
+   {var exit;
+    
+    var switcher=-88+conv;
     
     if(32<switcher>>>0)
-     {var exit=174;}
+     {exit=174;}
     else
      {switch(switcher[0])
-       {case 0:var exit=173;
-        case 1:var exit=174;
-        case 2:var exit=174;
-        case 3:var exit=174;
-        case 4:var exit=174;
-        case 5:var exit=174;
-        case 6:var exit=174;
-        case 7:var exit=174;
-        case 8:var exit=174;
-        case 9:var exit=174;
+       {case 0:exit=173;
+        case 1:exit=174;
+        case 2:exit=174;
+        case 3:exit=174;
+        case 4:exit=174;
+        case 5:exit=174;
+        case 6:exit=174;
+        case 7:exit=174;
+        case 8:exit=174;
+        case 9:exit=174;
         case 10:return scan_binary_int(width,ib);
-        case 11:var exit=174;
+        case 11:exit=174;
         case 12:return scan_optionally_signed_decimal_int(width,ib);
-        case 13:var exit=174;
-        case 14:var exit=174;
-        case 15:var exit=174;
-        case 16:var exit=174;
+        case 13:exit=174;
+        case 14:exit=174;
+        case 15:exit=174;
+        case 16:exit=174;
         case 17:return scan_optionally_signed_int(width,ib);
-        case 18:var exit=174;
-        case 19:var exit=174;
-        case 20:var exit=174;
-        case 21:var exit=174;
-        case 22:var exit=174;
+        case 18:exit=174;
+        case 19:exit=174;
+        case 20:exit=174;
+        case 21:exit=174;
+        case 22:exit=174;
         case 23:return scan_octal_int(width,ib);
-        case 24:var exit=174;
-        case 25:var exit=174;
-        case 26:var exit=174;
-        case 27:var exit=174;
-        case 28:var exit=174;
+        case 24:exit=174;
+        case 25:exit=174;
+        case 26:exit=174;
+        case 27:exit=174;
+        case 28:exit=174;
         case 29:return scan_unsigned_decimal_int(width,ib);
-        case 30:var exit=174;
-        case 31:var exit=174;
-        case 32:var exit=173;
+        case 30:exit=174;
+        case 31:exit=174;
+        case 32:exit=173;
         }
       }
     
@@ -807,10 +825,9 @@ var
       if(Scanning[15](ib))
        {return width;}
       else
-       {if(c!=69)
-         {if(c!=101){return width;}else{var exit=165;}}
-        else
-         {var exit=165;}
+       {var exit;
+        
+        if(c!=69){if(c!=101){return width;}else{exit=165;}}else{exit=165;}
         
         switch(exit)
          {case 165:
@@ -870,7 +887,9 @@ var
       if(Scanning[15](ib))
        {return bad_float(0);}
       else
-       {var switcher=-69+c;
+       {var exit;
+        
+        var switcher=-69+c;
         
         if(!(32<switcher>>>0))
          {var switcher$1=-1+switcher;
@@ -878,11 +897,11 @@ var
           if(30<switcher$1>>>0)
            {return scan_exp_part(width$1,ib);}
           else
-           {var exit=152;}
+           {exit=152;}
           }
         else
          {if(switcher!=-23)
-           {var exit=152;}
+           {exit=152;}
           else
            {var width$2=Scanning[7](width$1,ib,c);
             
@@ -922,15 +941,17 @@ var
                {return loop(Scanning[7](width$1,ib,c));}
               }
             else
-             {var switcher=-9+c;
+             {var exit;
+              
+              var switcher=-9+c;
               
               if(!(4<switcher>>>0))
                {var switcher$1=-2+switcher;
                 
-                if(1<switcher$1>>>0){var exit=144;}else{var exit=145;}
+                if(1<switcher$1>>>0){exit=144;}else{exit=145;}
                 }
               else
-               {if(switcher!=23){var exit=145;}else{var exit=144;}}
+               {if(switcher!=23){exit=145;}else{exit=144;}}
               
               switch(exit)
                {case 145:return loop(Scanning[7](width$1,ib,c));
@@ -951,25 +972,27 @@ var
 var
  char_for_backslash=
   function(c)
-   {if(c>=110)
+   {var exit;
+    
+    if(c>=110)
      {if(c>=117)
-       {var exit=141;}
+       {exit=141;}
       else
        {var switcher=-110+c;
         
         switch(switcher[0])
          {case 0:return 10;
-          case 1:var exit=141;
-          case 2:var exit=141;
-          case 3:var exit=141;
+          case 1:exit=141;
+          case 2:exit=141;
+          case 3:exit=141;
           case 4:return 13;
-          case 5:var exit=141;
+          case 5:exit=141;
           case 6:return 9;
           }
         }
       }
     else
-     {if(c!=98){var exit=141;}else{return 8;}}
+     {if(c!=98){exit=141;}else{return 8;}}
     
     switch(exit){case 141:return c;}
     };
@@ -1048,59 +1071,63 @@ var
   function(width,ib)
    {var c=check_next_char_for_char(width,ib);
     
+    var exit;
+    
     if(c>=40)
      {if(c>=58)
        {var switcher=-92+c;
         
         if(28<switcher>>>0)
-         {var exit=128;}
+         {exit=128;}
         else
          {switch(switcher[0])
-           {case 0:var exit=126;
-            case 1:var exit=128;
-            case 2:var exit=128;
-            case 3:var exit=128;
-            case 4:var exit=128;
-            case 5:var exit=128;
-            case 6:var exit=126;
-            case 7:var exit=128;
-            case 8:var exit=128;
-            case 9:var exit=128;
-            case 10:var exit=128;
-            case 11:var exit=128;
-            case 12:var exit=128;
-            case 13:var exit=128;
-            case 14:var exit=128;
-            case 15:var exit=128;
-            case 16:var exit=128;
-            case 17:var exit=128;
-            case 18:var exit=126;
-            case 19:var exit=128;
-            case 20:var exit=128;
-            case 21:var exit=128;
-            case 22:var exit=126;
-            case 23:var exit=128;
-            case 24:var exit=126;
-            case 25:var exit=128;
-            case 26:var exit=128;
-            case 27:var exit=128;
+           {case 0:exit=126;
+            case 1:exit=128;
+            case 2:exit=128;
+            case 3:exit=128;
+            case 4:exit=128;
+            case 5:exit=128;
+            case 6:exit=126;
+            case 7:exit=128;
+            case 8:exit=128;
+            case 9:exit=128;
+            case 10:exit=128;
+            case 11:exit=128;
+            case 12:exit=128;
+            case 13:exit=128;
+            case 14:exit=128;
+            case 15:exit=128;
+            case 16:exit=128;
+            case 17:exit=128;
+            case 18:exit=126;
+            case 19:exit=128;
+            case 20:exit=128;
+            case 21:exit=128;
+            case 22:exit=126;
+            case 23:exit=128;
+            case 24:exit=126;
+            case 25:exit=128;
+            case 26:exit=128;
+            case 27:exit=128;
             case 28:
              var
               get_digit=
                function(param)
                 {var c$1=Scanning[3](ib);
                  
+                 var exit$1;
+                 
                  var switcher$1=-48+c$1;
                  
                  if(22<switcher$1>>>0)
                   {var switcher$2=-49+switcher$1;
                    
-                   if(5<switcher$2>>>0){var exit$1=123;}else{var exit$1=122;}
+                   if(5<switcher$2>>>0){exit$1=123;}else{exit$1=122;}
                    }
                  else
                   {var switcher$3=-10+switcher$1;
                    
-                   if(6<switcher$3>>>0){var exit$1=122;}else{var exit$1=123;}
+                   if(6<switcher$3>>>0){exit$1=122;}else{exit$1=123;}
                    }
                  
                  switch(exit$1)
@@ -1144,15 +1171,11 @@ var
           return Scanning[7](width-2,ib,char_for_decimal_code(c0,c1$1,c2$1));
           }
         else
-         {var exit=128;}
+         {exit=128;}
         }
       }
     else
-     {if(c!=34)
-       {if(c>=39){var exit=126;}else{var exit=128;}}
-      else
-       {var exit=126;}
-      }
+     {if(c!=34){if(c>=39){exit=126;}else{exit=128;}}else{exit=126;}}
     
     switch(exit)
      {case 128:var c$2=c;return bad_input_escape(c$2);
@@ -1340,14 +1363,16 @@ var
 var
  scanf_bad_input=
   function(ib,x)
-   {var tag=x[1];
+   {var exit;
+    
+    var tag=x[1];
     
     if(tag=Scan_failure)
-     {var s=x[2];s$1=s;var exit=91;}
+     {var s=x[2];var s$1=s;exit=91;}
     else
      {var tag$1=x[1];
       
-      if(tag$1=Failure){var s$2=x[2];s$1=s$2;var exit=91;}else{throw x;}
+      if(tag$1=Failure){var s$2=x[2];var s$1=s$2;exit=91;}else{throw x;}
       }
     
     switch(exit)
@@ -1622,6 +1647,8 @@ var
          
          var pad=fmt[1];
          
+         var exit;
+         
          if(typeof rest$2=="number")
           {switch(rest$2){}}
          else
@@ -1699,7 +1726,7 @@ var
                  
                 }
               
-             default:var exit=67;}}
+             default:exit=67;}}
          
          switch(exit)
           {case 67:
@@ -2000,6 +2027,8 @@ var
          
          var width_opt=fmt[1];
          
+         var exit$1;
+         
          if(typeof rest$22=="number")
           {switch(rest$22){}}
          else
@@ -2027,7 +2056,7 @@ var
               
               return [0,s$2,make_scanf(ib,str_rest$1,readers)];
               
-             default:var exit$1=69;}}
+             default:exit$1=69;}}
          
          switch(exit$1)
           {case 69:
@@ -2180,18 +2209,20 @@ var
         try
          {var match=[0,make_scanf(ib,fmt,readers)];}
         catch(exc)
-         {var tag=exc[1];
+         {var exit;
+          
+          var tag=exc[1];
           
           if(tag=Scan_failure)
-           {var exit=21;}
+           {exit=21;}
           else
            {var tag$1=exc[1];
             
             if(tag$1=Failure)
-             {var exit=21;}
+             {exit=21;}
             else
              {if(exc=End_of_file)
-               {var exit=21;}
+               {exit=21;}
               else
                {var tag$2=exc[1];
                 
@@ -2302,7 +2333,8 @@ var
              function(x){return x;});
     };
 
-[0,
+module["exports"]=
+{"Scanning":
  [0,
   Scanning[1],
   Scanning[19],
@@ -2317,25 +2349,6 @@ var
   Scanning[17],
   Scanning[18],
   Scanning[2]],
- Scan_failure,
- bscanf,
- fscanf,
- sscanf,
- scanf,
- kscanf,
- ksscanf,
- kfscanf,
- bscanf_format,
- sscanf_format,
- format_from_string,
- unescaped];
-module["exports"]=
-{"unknown block:(makeblock 0 (field 0 Scanning/1152) (field 18 Scanning/1152)\n  (field 19 Scanning/1152) (field 25 Scanning/1152) (field 20 Scanning/1152)\n  (field 21 Scanning/1152) (field 22 Scanning/1152) (field 23 Scanning/1152)\n  (field 24 Scanning/1152) (field 15 Scanning/1152) (field 16 Scanning/1152)\n  (field 17 Scanning/1152) (field 1 Scanning/1152))":
- unknown block:(makeblock 0 (field 0 Scanning/1152) (field 18 Scanning/1152)
-  (field 19 Scanning/1152) (field 25 Scanning/1152) (field 20 Scanning/1152)
-  (field 21 Scanning/1152) (field 22 Scanning/1152) (field 23 Scanning/1152)
-  (field 24 Scanning/1152) (field 15 Scanning/1152) (field 16 Scanning/1152)
-  (field 17 Scanning/1152) (field 1 Scanning/1152)),
  "Scan_failure":Scan_failure,
  "bscanf":bscanf,
  "fscanf":fscanf,

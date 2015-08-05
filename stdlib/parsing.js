@@ -1,9 +1,13 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Lexing=require("Lexing");
 var $$Array=require("Array");
+
 
 var YYexit="unknown primitive:caml_set_oo_id";
 
 var Parse_error="unknown primitive:caml_set_oo_id";
+
 
 var
  env=
@@ -182,23 +186,6 @@ var is_current_lookahead=function(tok){return current_lookahead_fun[1](tok);};
 
 var parse_error=function(msg){return 0;};
 
-[0,
- symbol_start,
- symbol_end,
- rhs_start,
- rhs_end,
- symbol_start_pos,
- symbol_end_pos,
- rhs_start_pos,
- rhs_end_pos,
- clear_parser,
- Parse_error,
- function(prim){return "unknown primitive:caml_set_parser_trace";},
- YYexit,
- yyparse,
- peek_val,
- is_current_lookahead,
- parse_error];
 module["exports"]=
 {"symbol_start":symbol_start,
  "symbol_end":symbol_end,
@@ -210,8 +197,8 @@ module["exports"]=
  "rhs_end_pos":rhs_end_pos,
  "clear_parser":clear_parser,
  "Parse_error":Parse_error,
- "unknown block:(function prim/1116 (caml_set_parser_trace prim/1116))":
- unknown block:(function prim/1116 (caml_set_parser_trace prim/1116)),
+ "caml_set_parser_trace":
+ function(prim){return "unknown primitive:caml_set_parser_trace";},
  "YYexit":YYexit,
  "yyparse":yyparse,
  "peek_val":peek_val,

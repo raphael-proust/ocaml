@@ -1,9 +1,12 @@
-var Pervasives=require("Pervasives");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Checkpoints=require("Checkpoints");
 var Primitives=require("Primitives");
 var Debugger_config=require("Debugger_config");
 var Int64ops=require("Int64ops");
+
 
 var history=[0,0];
 
@@ -33,13 +36,15 @@ var
   function(param)
    {var match=history[1];
     
+    var exit;
+    
     if(match)
      {var hist=match[2];
       
-      if(hist){history[1]=hist,0;return hist[1];}else{var exit=1;}
+      if(hist){history[1]=hist,0;return hist[1];}else{exit=1;}
       }
     else
-     {var exit=1;}
+     {exit=1;}
     
     switch(exit)
      {case 1:
@@ -57,7 +62,6 @@ var
     else
      {return previous_time(Int64ops["pre64"](n));}
     };
-
 
 module["exports"]=
 {"empty_history":empty_history,

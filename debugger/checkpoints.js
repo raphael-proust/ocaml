@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Primitives=require("Primitives");
 var Int64ops=require("Int64ops");
+
 
 var root=[0,Int64ops["_0"],-2,Primitives["std_io"],0,0,0,root,0,0,0];
 
@@ -16,22 +19,26 @@ var
   function(param)
    {var match=current_report(0);
     
+    var exit;
+    
     if(match)
      {var match$1=match[1];
       
       var match$2=match$1[1];
       
-      if(match$2!=2)
-       {if(match$2>=4){var exit=6;}else{return [0,match$1[4]];}}
-      else
-       {var exit=6;}
+      var exit$1;
       
-      switch(exit){case 6:var exit$1=5;}
+      if(match$2!=2)
+       {if(match$2>=4){exit$1=6;}else{return [0,match$1[4]];}}
+      else
+       {exit$1=6;}
+      
+      switch(exit$1){case 6:exit=5;}
       }
     else
-     {var exit$1=5;}
+     {exit=5;}
     
-    switch(exit$1){case 5:return 0;}
+    switch(exit){case 5:return 0;}
     };
 
 var
@@ -39,25 +46,27 @@ var
   function(param)
    {var match=current_report(0);
     
+    var exit;
+    
     if(match)
      {var match$1=match[1];
       
       var match$2=match$1[1];
       
-      if(match$2!=2)
-       {if(match$2>=4){var exit=2;}else{return [0,[0,match$1[4],match$1[3]]];}
-        }
-      else
-       {var exit=2;}
+      var exit$1;
       
-      switch(exit){case 2:var exit$1=1;}
+      if(match$2!=2)
+       {if(match$2>=4){exit$1=2;}else{return [0,[0,match$1[4],match$1[3]]];}}
+      else
+       {exit$1=2;}
+      
+      switch(exit$1){case 2:exit=1;}
       }
     else
-     {var exit$1=1;}
+     {exit=1;}
     
-    switch(exit$1){case 1:return 0;}
+    switch(exit){case 1:return 0;}
     };
-
 
 module["exports"]=
 {"root":root,

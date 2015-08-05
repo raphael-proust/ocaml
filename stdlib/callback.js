@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Obj=require("Obj");
+
 
 var
  register=
@@ -16,7 +19,6 @@ var
     
     return "unknown primitive:caml_register_named_value";
     };
-
 
 module["exports"]=
 {"register":register,"register_exception":register_exception};

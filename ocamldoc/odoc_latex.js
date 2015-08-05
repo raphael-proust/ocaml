@@ -1,16 +1,19 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Odoc_to_text=require("Odoc_to_text");
 var Printf=require("Printf");
 var Format=require("Format");
 var Odoc_latex_style=require("Odoc_latex_style");
-var Filename=require("Filename");
 var Buffer=require("Buffer");
+var Filename=require("Filename");
 var Str=require("Str");
 var Odoc_messages=require("Odoc_messages");
+
 
 var shared=[0,"text_of_info","latex_of_text","latex_of_info"];
 
@@ -469,15 +472,17 @@ var
          for(var i=0;i<=len-1;i++)
           {var c=name[i];
            
+           var exit;
+           
            if(c>=96)
             {var switcher=-124+c;
              
              if(2<switcher>>>0)
-              {var exit=106;}
+              {exit=106;}
              else
               {switch(switcher[0])
                 {case 0:var match=[0,"-pipe",'"|'];
-                 case 1:var exit=106;
+                 case 1:exit=106;
                  case 2:var match=[0,"-tilde","~"];
                  }
                }
@@ -486,72 +491,72 @@ var
             {if(c>=33)
               {switch((-33+c)[0])
                 {case 0:var match=[0,"-bang",'"!'];
-                 case 1:var exit=106;
-                 case 2:var exit=106;
+                 case 1:exit=106;
+                 case 2:exit=106;
                  case 3:var match=[0,"-dollar","$"];
                  case 4:var match=[0,"-percent","%"];
                  case 5:var match=[0,"-ampersand","&"];
-                 case 6:var exit=106;
-                 case 7:var exit=106;
-                 case 8:var exit=106;
+                 case 6:exit=106;
+                 case 7:exit=106;
+                 case 8:exit=106;
                  case 9:var match=[0,"-star","*"];
                  case 10:var match=[0,"-plus","+"];
-                 case 11:var exit=106;
+                 case 11:exit=106;
                  case 12:var match=[0,"-minus","-"];
-                 case 13:var exit=106;
+                 case 13:exit=106;
                  case 14:var match=[0,"-slash","/"];
-                 case 15:var exit=106;
-                 case 16:var exit=106;
-                 case 17:var exit=106;
-                 case 18:var exit=106;
-                 case 19:var exit=106;
-                 case 20:var exit=106;
-                 case 21:var exit=106;
-                 case 22:var exit=106;
-                 case 23:var exit=106;
-                 case 24:var exit=106;
+                 case 15:exit=106;
+                 case 16:exit=106;
+                 case 17:exit=106;
+                 case 18:exit=106;
+                 case 19:exit=106;
+                 case 20:exit=106;
+                 case 21:exit=106;
+                 case 22:exit=106;
+                 case 23:exit=106;
+                 case 24:exit=106;
                  case 25:var match=[0,"-colon",":"];
-                 case 26:var exit=106;
+                 case 26:exit=106;
                  case 27:var match=[0,"-lt","<"];
                  case 28:var match=[0,"-equal","="];
                  case 29:var match=[0,"-gt",">"];
-                 case 30:var exit=106;
+                 case 30:exit=106;
                  case 31:var match=[0,"-at",'"@'];
-                 case 32:var exit=106;
-                 case 33:var exit=106;
-                 case 34:var exit=106;
-                 case 35:var exit=106;
-                 case 36:var exit=106;
-                 case 37:var exit=106;
-                 case 38:var exit=106;
-                 case 39:var exit=106;
-                 case 40:var exit=106;
-                 case 41:var exit=106;
-                 case 42:var exit=106;
-                 case 43:var exit=106;
-                 case 44:var exit=106;
-                 case 45:var exit=106;
-                 case 46:var exit=106;
-                 case 47:var exit=106;
-                 case 48:var exit=106;
-                 case 49:var exit=106;
-                 case 50:var exit=106;
-                 case 51:var exit=106;
-                 case 52:var exit=106;
-                 case 53:var exit=106;
-                 case 54:var exit=106;
-                 case 55:var exit=106;
-                 case 56:var exit=106;
-                 case 57:var exit=106;
-                 case 58:var exit=106;
-                 case 59:var exit=106;
-                 case 60:var exit=106;
+                 case 32:exit=106;
+                 case 33:exit=106;
+                 case 34:exit=106;
+                 case 35:exit=106;
+                 case 36:exit=106;
+                 case 37:exit=106;
+                 case 38:exit=106;
+                 case 39:exit=106;
+                 case 40:exit=106;
+                 case 41:exit=106;
+                 case 42:exit=106;
+                 case 43:exit=106;
+                 case 44:exit=106;
+                 case 45:exit=106;
+                 case 46:exit=106;
+                 case 47:exit=106;
+                 case 48:exit=106;
+                 case 49:exit=106;
+                 case 50:exit=106;
+                 case 51:exit=106;
+                 case 52:exit=106;
+                 case 53:exit=106;
+                 case 54:exit=106;
+                 case 55:exit=106;
+                 case 56:exit=106;
+                 case 57:exit=106;
+                 case 58:exit=106;
+                 case 59:exit=106;
+                 case 60:exit=106;
                  case 61:var match=[0,"-exp","^"];
                  case 62:var match=[0,"-underscore","_"];
                  }
                }
              else
-              {var exit=106;}
+              {exit=106;}
              }
            
            switch(exit)
@@ -636,12 +641,14 @@ var
          },
        latex_of_text_element,
        function(self$neg1,fmt,txt)
-        {if(typeof txt=="number")
+        {var exit;
+         
+         if(typeof txt=="number")
           {switch(txt)
             {case 0:
               "unknown block:(sendself self-1/1404 latex_of_Newline/1304 fmt/1405)";
               
-             case 1:var exit=105;
+             case 1:exit=105;
              }}
          else
           {switch(txt[0])
@@ -702,7 +709,7 @@ var
              case 18:
               "unknown block:(sendself self-1/1404 latex_of_Subscript/1311 fmt/1405 (field 0 txt/1406))";
               
-             case 19:var exit=105;
+             case 19:exit=105;
              case 20:
               "unknown block:(sendself self-1/1404 latex_of_custom_text/1290 fmt/1405 (field 0 txt/1406)\n  (field 1 txt/1406))";
               
@@ -1377,6 +1384,8 @@ var
          
          var match$2=t[6];
          
+         var exit;
+         
          if(match$2)
           {var match$3=match$2[1];
            
@@ -1388,46 +1397,47 @@ var
                 [0,[11," = ",[2,0,[2,0,0]]]," = %s%s"],
                 priv?"private ":"",
                 0);
-             case 1:var exit=84;
+             case 1:exit=84;
              }
            }
          else
-          {var exit=84;}
+          {exit=84;}
          
          switch(exit){case 84:}
          
          var match$4=t[4];
          
+         var $js;
          if(typeof match$4=="number")
           {switch(match$4)
             {case 0:
               var match$5=t[6];
               
+              var exit$1;
+              
               if(match$5)
                {switch(match$5[1])
-                 {case 0:var exit$1=82;
+                 {case 0:exit$1=82;
                   case 1:
-                   var
-                    $js=
-                     Pervasives["^"]
-                      ("= ",Pervasives["^"](priv?"private":""," <"));
+                   $js=
+                   Pervasives["^"]
+                    ("= ",Pervasives["^"](priv?"private":""," <"));
                    
                   }
                 }
               else
-               {var exit$1=82;}
+               {exit$1=82;}
               
-              switch(exit$1){case 82:var $js="";}
+              switch(exit$1){case 82:$js="";}
               
-             case 1:var $js="= ..";
+             case 1:$js="= ..";
              }}
          else
           {switch(match$4[0])
-            {case 0:var $js=Pervasives["^"]("=",priv?" private":"");
+            {case 0:$js=Pervasives["^"]("=",priv?" private":"");
              case 1:
-              var
-               $js=
-                Pervasives["^"]("= ",Pervasives["^"](priv?"private ":"","{"));
+              $js=
+              Pervasives["^"]("= ",Pervasives["^"](priv?"private ":"","{"));
               
              }}
          p(fmt2,[0,[12,32,[2,0,0]]," %s"],$js);
@@ -1456,11 +1466,13 @@ var
             {case 0:
               var match$7=t[6];
               
+              var exit$2;
+              
               if(match$7)
                {var match$8=match$7[1];
                 
                 switch(match$8)
-                 {case 0:var exit$2=73;
+                 {case 0:exit$2=73;
                   case 1:
                    var
                     fields=
@@ -1492,7 +1504,7 @@ var
                   }
                 }
               else
-               {var exit$2=73;}
+               {exit$2=73;}
               
               switch(exit$2){case 73:var defs=0;}
               
@@ -1591,6 +1603,8 @@ var
             {if(param)
               {var e=param[1];
                
+               var exit$3;
+               
                if(param[2])
                 {if(typeof e=="number")
                   {switch(e){}}
@@ -1611,9 +1625,9 @@ var
                                      [2,Pervasives["^"](e[1],Pervasives["^"]("\n",match$10[1]))],
                                      match$9[2]]);
                            
-                          default:var exit$3=68;}}
+                          default:exit$3=68;}}
                       
-                     default:var exit$3=68;}}
+                     default:exit$3=68;}}
                  }
                else
                 {return [0,e,0];}
@@ -1782,6 +1796,8 @@ var
             {if(param)
               {var e=param[1];
                
+               var exit;
+               
                if(param[2])
                 {if(typeof e=="number")
                   {switch(e){}}
@@ -1802,9 +1818,9 @@ var
                                      [2,Pervasives["^"](e[1],Pervasives["^"]("\n",match$2[1]))],
                                      match$1[2]]);
                            
-                          default:var exit=56;}}
+                          default:exit=56;}}
                       
-                     default:var exit=56;}}
+                     default:exit=56;}}
                  }
                else
                 {return [0,e,0];}
@@ -2098,6 +2114,8 @@ var
          
          var match$1=mt[6];
          
+         var exit;
+         
          if(match)
           {if(match$1)
             {'unknown block:(sendself self-3/1932 latex_of_text/1703 fmt/1933 [0: [1: " = "] 0a])';
@@ -2112,10 +2130,10 @@ var
              "unknown block:(sendself self-3/1932 latex_of_module_type_kind/1661 fmt/1933 father/1935\n  (field 0 match/2214))";
              }
            else
-            {var exit=42;}
+            {exit=42;}
            }
          else
-          {var exit=42;}
+          {exit=42;}
          
          switch(exit)
           {case 42:
@@ -2295,6 +2313,8 @@ var
            case 2:
             var t=class_ele[1];
             
+            var exit;
+            
             if(t)
              {var $js=t[1];
               if(typeof $js=="number")
@@ -2304,7 +2324,7 @@ var
                  {case 13:
                    "unknown block:(sendself self-3/1970 latex_of_text/1703 fmt/1971 t/1976)";
                    
-                  default:var exit=28;}}
+                  default:exit=28;}}
               }
             else
              {return 0;}
@@ -2401,7 +2421,9 @@ var
         {var
           iter_kind=
            function(k)
-            {switch(k)
+            {var exit;
+             
+             switch(k)
               {case 0:
                 var l=k[1];
                 
@@ -2411,8 +2433,8 @@ var
                 else
                  {return 0;}
                 
-               case 1:var exit=24;
-               case 2:var exit=24;
+               case 1:exit=24;
+               case 2:exit=24;
                case 3:return iter_kind(k[1]);
                }
              
@@ -2584,14 +2606,12 @@ var
                  return Pervasives["close_out"](chanout);
                  }
                catch(exn)
-                {if(exn[1]=Failure)
-                  {var s=exn[2];var exit=7;}
+                {var exit;
+                 
+                 if(exn[1]=Failure)
+                  {var s=exn[2];exit=7;}
                  else
-                  {if(exn[1]=Sys_error)
-                    {var s=exn[2];var exit=7;}
-                   else
-                    {throw exn;}
-                   }
+                  {if(exn[1]=Sys_error){var s=exn[2];exit=7;}else{throw exn;}}
                  
                  switch(exit)
                   {case 7:
@@ -2637,10 +2657,12 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Failure)
-            {var s=exn[2];var exit=2;}
+          {var exit;
+           
+           if(exn[1]=Failure)
+            {var s=exn[2];exit=2;}
            else
-            {if(exn[1]=Sys_error){var s=exn[2];var exit=2;}else{throw exn;}}
+            {if(exn[1]=Sys_error){var s=exn[2];exit=2;}else{throw exn;}}
            
            switch(exit)
             {case 2:
@@ -2779,7 +2801,6 @@ var
     latex_init);
 
 var Generator=[0,latex];
-
 
 module["exports"]=
 {"separate_files":separate_files,

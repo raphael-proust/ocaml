@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Char=require("Char");
 var Odoc_info=require("Odoc_info");
@@ -7,6 +9,7 @@ var Printf=require("Printf");
 var Set=require("Set");
 var Buffer=require("Buffer");
 var $$Array=require("Array");
+
 
 var i=[0,0];
 
@@ -373,11 +376,13 @@ var
                     
                     var match$2=t[1][i$2+1][l][1];
                     
+                    var exit;
+                    
                     if("unknown primitive:isint")
-                     {var exit=334;}
+                     {exit=334;}
                     else
                      {if("unknown primitive:isint")
-                       {var exit=334;}
+                       {exit=334;}
                       else
                        {var
                          ph=
@@ -515,8 +520,10 @@ var
                 (function(param,children$1)
                   {var x=param[1];
                    
+                   var exit;
+                   
                    if(typeof x=="number")
-                    {switch(x){case 0:var exit=308;}}
+                    {switch(x){case 0:exit=308;}}
                    else
                     {switch(x[0])
                       {case 0:
@@ -532,7 +539,7 @@ var
                                  e[3],
                                  children$1);
                         
-                       case 1:var exit=308;
+                       case 1:exit=308;
                        }}
                    
                    switch(exit){case 308:return 0;}
@@ -559,6 +566,8 @@ var
         
         if("unknown primitive:caml_equal")
          {var match=get_block(t,i$2,j+1);
+          
+          var exit;
           
           if(match)
            {var match$1=match[1];
@@ -592,10 +601,10 @@ var
               return [0,[0,match$4[1],match$4[2],match$1[3]]];
               }
             else
-             {var exit=303;}
+             {exit=303;}
             }
           else
-           {var exit=303;}
+           {exit=303;}
           
           switch(exit)
            {case 303:throw [0,Assert_failure,[0,"odoc_dag2html.ml",346,13]];}
@@ -913,8 +922,10 @@ var
         else
          {var match=last[j][1];
           
+          var exit;
+          
           if(typeof match=="number")
-           {switch(match){case 0:var exit=258;}}
+           {switch(match){case 0:exit=258;}}
           else
            {switch(match[0])
              {case 0:
@@ -934,8 +945,10 @@ var
                          else
                           {var match$1=t[1][i$2][k][1];
                            
+                           var exit$1;
+                           
                            if(typeof match$1=="number")
-                            {switch(match$1){case 0:var exit$1=257;}}
+                            {switch(match$1){case 0:exit$1=257;}}
                            else
                             {switch(match$1[0])
                               {case 0:
@@ -944,9 +957,9 @@ var
                                 if("unknown primitive:caml_equal")
                                  {down_it(t,i$2,k,y);return loop(0);}
                                 else
-                                 {var exit$1=257;}
+                                 {exit$1=257;}
                                 
-                               case 1:var exit$1=257;
+                               case 1:exit$1=257;
                                }}
                            
                            switch(exit$1){case 257:return loop2(k+1);}
@@ -959,7 +972,7 @@ var
                
                return loop1(0);
                
-              case 1:var exit=258;
+              case 1:exit=258;
               }}
           
           switch(exit){case 258:return loop(j+1);}
@@ -978,25 +991,27 @@ var
         
         var match$1=t[1][i$2+1][j][1];
         
+        var exit;
+        
         if(typeof match=="number")
-         {switch(match){case 0:var exit=255;}}
+         {switch(match){case 0:exit=255;}}
         else
          {switch(match[0])
            {case 0:
              if(typeof match$1=="number")
-              {switch(match$1){case 0:var exit=255;}}
+              {switch(match$1){case 0:exit=255;}}
              else
               {switch(match$1[0])
                 {case 0:
                   if("unknown primitive:caml_equal")
                    {t[1][i$2][j][2]=t[1][i$2][j-1][2],0}
                   else
-                   {var exit=255;}
+                   {exit=255;}
                   
-                 case 1:var exit=255;
+                 case 1:exit=255;
                  }}
              
-            case 1:var exit=255;
+            case 1:exit=255;
             }}
         
         switch(exit){case 255:}
@@ -1013,17 +1028,19 @@ var
         
         var match$1=t[1][i$2+1][j][1];
         
+        var exit;
+        
         if(typeof match=="number")
-         {switch(match){case 0:var exit=253;}}
+         {switch(match){case 0:exit=253;}}
         else
          {switch(match[0])
-           {case 0:var exit=253;
+           {case 0:exit=253;
             case 1:
              if(typeof match$1=="number")
-              {switch(match$1){case 0:var exit=253;}}
+              {switch(match$1){case 0:exit=253;}}
              else
               {switch(match$1[0])
-                {case 0:var exit=253;
+                {case 0:exit=253;
                  case 1:
                   if("unknown primitive:caml_equal")
                    {t[1][i$2+1][j]=[0,[1,match[1]],t[1][i$2+1][j-1][2]],0}
@@ -1040,17 +1057,19 @@ var
         
         var match$3=t[1][i$2][j][1];
         
+        var exit$1;
+        
         if(typeof match$2=="number")
-         {switch(match$2){case 0:var exit$1=252;}}
+         {switch(match$2){case 0:exit$1=252;}}
         else
          {switch(match$2[0])
-           {case 0:var exit$1=252;
+           {case 0:exit$1=252;
             case 1:
              if(typeof match$3=="number")
-              {switch(match$3){case 0:var exit$1=252;}}
+              {switch(match$3){case 0:exit$1=252;}}
              else
               {switch(match$3[0])
-                {case 0:var exit$1=252;
+                {case 0:exit$1=252;
                  case 1:
                   if("unknown primitive:caml_equal")
                    {t[1][i$2][j]=[0,[1,match$2[1]],t[1][i$2][j-1][2]],0;
@@ -1106,8 +1125,10 @@ var
         else
          {var match=line[j][1];
           
+          var exit;
+          
           if(typeof match=="number")
-           {switch(match){case 0:var exit=244;}}
+           {switch(match){case 0:exit=244;}}
           else
            {switch(match[0])
              {case 0:
@@ -1120,7 +1141,7 @@ var
                else
                 {line[j][2]=line[j-1][2],0;return loop(j+1,S[7](cs,curr_cs));}
                
-              case 1:var exit=244;
+              case 1:exit=244;
               }}
           
           switch(exit){case 244:return loop(j+1,S[1]);}
@@ -1609,8 +1630,10 @@ var
         else
          {var y=line[j][1];
           
+          var exit;
+          
           if(typeof y=="number")
-           {switch(y){case 0:var exit=181;}}
+           {switch(y){case 0:exit=181;}}
           else
            {switch(y[0])
              {case 0:
@@ -1647,7 +1670,7 @@ var
                  return loop1(t$1,j-2);
                  }
                
-              case 1:var exit=181;
+              case 1:exit=181;
               }}
           
           switch(exit){case 181:return loop(t$1,j+1);}
@@ -1699,13 +1722,15 @@ var
         else
          {var match=line[j][1];
           
+          var exit;
+          
           if(typeof match=="number")
-           {switch(match){case 0:var exit=174;}}
+           {switch(match){case 0:exit=174;}}
           else
            {switch(match[0])
              {case 0:
                if(phony(d[1][match[1]])){return 1;}else{return loop(j+1);}
-              case 1:var exit=174;
+              case 1:exit=174;
               }}
           
           switch(exit){case 174:return loop(j+1);}
@@ -1779,11 +1804,13 @@ var
           else
            {var match=line[j][1];
             
+            var exit;
+            
             if(typeof match=="number")
-             {switch(match){case 0:var exit=157;}}
+             {switch(match){case 0:exit=157;}}
             else
              {switch(match[0])
-               {case 0:var exit=157;
+               {case 0:exit=157;
                 case 1:
                  var x=match[1];
                  
@@ -1795,16 +1822,18 @@ var
                      else
                       {var match$1=line[j$1][1];
                        
+                       var exit$1;
+                       
                        if(typeof match$1=="number")
-                        {switch(match$1){case 0:var exit$1=155;}}
+                        {switch(match$1){case 0:exit$1=155;}}
                        else
                         {switch(match$1[0])
-                          {case 0:var exit$1=155;
+                          {case 0:exit$1=155;
                            case 1:
                             if("unknown primitive:caml_equal")
                              {return loop$1(j$1+1);}
                             else
-                             {var exit$1=155;}
+                             {exit$1=155;}
                             
                            }}
                        
@@ -2083,11 +2112,13 @@ var
   function(t,i$2,j)
    {var match=t[1][i$2][j][1];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=128;}}
+     {switch(match){case 0:exit=128;}}
     else
      {switch(match[0])
-       {case 0:var exit=128;
+       {case 0:exit=128;
         case 1:
          var
           loop=
@@ -2097,11 +2128,13 @@ var
              else
               {var match$1=t[1][i$3][j][1];
                
+               var exit$1;
+               
                if(typeof match$1=="number")
-                {switch(match$1){case 0:var exit$1=126;}}
+                {switch(match$1){case 0:exit$1=126;}}
                else
                 {switch(match$1[0])
-                  {case 0:var exit$1=126;case 1:return loop(i$3-1);}}
+                  {case 0:exit$1=126;case 1:return loop(i$3-1);}}
                
                switch(exit$1){case 126:return i$3+1;}
                }
@@ -2136,18 +2169,20 @@ var
                
                var match$2=match$1[1];
                
+               var exit$1;
+               
                if(typeof match$2=="number")
-                {switch(match$2){case 0:var exit$1=122;}}
+                {switch(match$2){case 0:exit$1=122;}}
                else
                 {switch(match$2[0])
-                  {case 0:var exit$1=122;
+                  {case 0:exit$1=122;
                    case 1:
                     var y=match$1[2];
                     
                     if("unknown primitive:caml_equal")
                      {return loop$2(j2+1);}
                     else
-                     {var exit$1=122;}
+                     {exit$1=122;}
                     
                    }}
                
@@ -2191,11 +2226,13 @@ var
   function(t,i$2,j)
    {var match=t[1][i$2][j][1];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=118;}}
+     {switch(match){case 0:exit=118;}}
     else
      {switch(match[0])
-       {case 0:var exit=118;
+       {case 0:exit=118;
         case 1:
          var
           loop=
@@ -2205,11 +2242,13 @@ var
              else
               {var match$1=t[1][i$3][j][1];
                
+               var exit$1;
+               
                if(typeof match$1=="number")
-                {switch(match$1){case 0:var exit$1=116;}}
+                {switch(match$1){case 0:exit$1=116;}}
                else
                 {switch(match$1[0])
-                  {case 0:var exit$1=116;case 1:return loop(i$3-1);}}
+                  {case 0:exit$1=116;case 1:return loop(i$3-1);}}
                
                switch(exit$1){case 116:return i$3+1;}
                }
@@ -2244,18 +2283,20 @@ var
                
                var match$2=match$1[1];
                
+               var exit$1;
+               
                if(typeof match$2=="number")
-                {switch(match$2){case 0:var exit$1=112;}}
+                {switch(match$2){case 0:exit$1=112;}}
                else
                 {switch(match$2[0])
-                  {case 0:var exit$1=112;
+                  {case 0:exit$1=112;
                    case 1:
                     var y=match$1[2];
                     
                     if("unknown primitive:caml_equal")
                      {return loop$2(j1-1);}
                     else
-                     {var exit$1=112;}
+                     {exit$1=112;}
                     
                    }}
                
@@ -2299,11 +2340,13 @@ var
   function(t,i$2,j)
    {var match=t[1][i$2][j][1];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=108;}}
+     {switch(match){case 0:exit=108;}}
     else
      {switch(match[0])
-       {case 0:var exit=108;
+       {case 0:exit=108;
         case 1:
          var x=t[1][i$2][j][2];
          
@@ -2317,18 +2360,20 @@ var
                
                var match$2=match$1[1];
                
+               var exit$1;
+               
                if(typeof match$2=="number")
-                {switch(match$2){case 0:var exit$1=105;}}
+                {switch(match$2){case 0:exit$1=105;}}
                else
                 {switch(match$2[0])
-                  {case 0:var exit$1=105;
+                  {case 0:exit$1=105;
                    case 1:
                     var y=match$1[2];
                     
                     if("unknown primitive:caml_equal")
                      {return loop(j2+1);}
                     else
-                     {var exit$1=105;}
+                     {exit$1=105;}
                     
                    }}
                
@@ -2346,11 +2391,13 @@ var
              else
               {var match$1=t[1][i$3][j][1];
                
+               var exit$1;
+               
                if(typeof match$1=="number")
-                {switch(match$1){case 0:var exit$1=102;}}
+                {switch(match$1){case 0:exit$1=102;}}
                else
                 {switch(match$1[0])
-                  {case 0:return loop$1(i$3+1);case 1:var exit$1=102;}}
+                  {case 0:return loop$1(i$3+1);case 1:exit$1=102;}}
                
                switch(exit$1){case 102:return i$3;}
                }
@@ -2652,12 +2699,14 @@ var
         else
          {var match=str[i$2];
           
+          var exit;
+          
           var switcher=-9+match;
           
           if(!(4<switcher>>>0))
-           {if(1<-2+switcher>>>0){var exit=69;}else{var exit=70;}}
+           {if(1<-2+switcher>>>0){exit=69;}else{exit=70;}}
           else
-           {if(switcher!=23){var exit=70;}else{var exit=69;}}
+           {if(switcher!=23){exit=70;}else{exit=69;}}
           
           switch(exit){case 70:return i$2;case 69:return loop(i$2+1);}
           }
@@ -2673,12 +2722,14 @@ var
         else
          {var match=str[i$2];
           
+          var exit;
+          
           var switcher=-9+match;
           
           if(!(4<switcher>>>0))
-           {if(1<-2+switcher>>>0){var exit=66;}else{var exit=67;}}
+           {if(1<-2+switcher>>>0){exit=66;}else{exit=67;}}
           else
-           {if(switcher!=23){var exit=67;}else{var exit=66;}}
+           {if(switcher!=23){exit=67;}else{exit=66;}}
           
           switch(exit){case 67:return i$2+1;case 66:return loop$1(i$2-1);}
           }
@@ -2958,11 +3009,13 @@ var
         
         switch(match[2][0])
          {case 0:
+           var exit;
+           
            switch(td)
-            {case 0:var exit=29;
+            {case 0:exit=29;
              case 1:
               if(td[1]!=0)
-               {var exit=29;}
+               {exit=29;}
               else
                {Printf["bprintf"](buf,[0,[11," align=left",0]," align=left"])}
               
@@ -3058,8 +3111,8 @@ var
                       {case 0:
                         var match$1=match[1][6];
                         
-                        switch(match$1)
-                         {case 0:var $js=match$1[1];default:var $js=0;}
+                        var $js;
+                        switch(match$1){case 0:$js=match$1[1];default:$js=0;}
                         var
                          l=
                           iter
@@ -3068,8 +3121,8 @@ var
                        case 1:
                         var match$2=match[1][6];
                         
-                        switch(match$2)
-                         {case 0:var $js$1=match$2[1];case 1:var $js$1=0;}
+                        var $js$1;
+                        switch(match$2){case 0:$js$1=match$2[1];case 1:$js$1=0;}
                         var
                          l=
                           iter
@@ -3178,7 +3231,6 @@ var
     $$Array["iteri"](fiter,dag[1]);
     return dag;
     };
-
 
 module["exports"]=
 {"html_of_dag":html_of_dag,"create_class_dag":create_class_dag};

@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var zero=[0,0];
 
 var one=[1,0];
@@ -118,7 +122,6 @@ var
     };
 
 var pow=function(x,y){return exp(mul(y,log(x)));};
-
 
 module["exports"]=
 {"zero":zero,

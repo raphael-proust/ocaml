@@ -1,12 +1,15 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Set=require("Set");
 var Path=require("Path");
 var Buffer=require("Buffer");
 var Str=require("Str");
 var Odoc_misc=require("Odoc_misc");
 var Ident=require("Ident");
+
 
 var
  infix_chars=
@@ -41,12 +44,14 @@ var
         else
          {var match=s[n];
           
+          var exit;
+          
           var switcher=-9+match;
           
           if(!(4<switcher>>>0))
-           {if(1<-2+switcher>>>0){var exit=50;}else{var exit=51;}}
+           {if(1<-2+switcher>>>0){exit=50;}else{exit=51;}}
           else
-           {if(switcher!=23){var exit=51;}else{var exit=50;}}
+           {if(switcher!=23){exit=51;}else{exit=50;}}
           
           switch(exit){case 51:return [0,n];case 50:return iter_first(n+1);}
           }
@@ -65,12 +70,14 @@ var
           else
            {var match$1=s[n];
             
+            var exit;
+            
             var switcher=-9+match$1;
             
             if(!(4<switcher>>>0))
-             {if(1<-2+switcher>>>0){var exit=48;}else{var exit=49;}}
+             {if(1<-2+switcher>>>0){exit=48;}else{exit=49;}}
             else
-             {if(switcher!=23){var exit=49;}else{var exit=48;}}
+             {if(switcher!=23){exit=49;}else{exit=48;}}
             
             switch(exit){case 49:return [0,n];case 48:return iter_last(n-1);}
             }
@@ -92,6 +99,8 @@ var
   function(name)
    {var s=strip_string(name);
     
+    var exit;
+    
     switch(s)
      {case "":return "";
       default:
@@ -102,15 +111,15 @@ var
           {return Pervasives["^"]("(",Pervasives["^"](s,")"));}
          else
           {switch(s)
-            {case "asr":var exit=43;
-             case "land":var exit=43;
-             case "lor":var exit=43;
-             case "lsl":var exit=43;
-             case "lsr":var exit=43;
-             case "lxor":var exit=43;
-             case "mod":var exit=43;
-             case "or":var exit=43;
-             default:var exit=44;}
+            {case "asr":exit=43;
+             case "land":exit=43;
+             case "lor":exit=43;
+             case "lsl":exit=43;
+             case "lsr":exit=43;
+             case "lxor":exit=43;
+             case "mod":exit=43;
+             case "or":exit=43;
+             default:exit=44;}
            }
          }
        }
@@ -152,20 +161,22 @@ var
          for(var i=0;i<=len-1;i++)
           {var c=name[i];
            
+           var exit;
+           
            if(c!=46)
-            {var exit=36;}
+            {exit=36;}
            else
             {if(j=0)
               {if(i<len-1)
                 {var match$2=name[i+1];
                  
-                 if(match$2!=40){Buffer["add_char"](buf[j],46)}else{var j=1;}
+                 if(match$2!=40){Buffer["add_char"](buf[j],46)}else{j=1;}
                  }
                else
                 {Buffer["add_char"](buf[j],name[i])}
                }
              else
-              {var exit=36;}
+              {exit=36;}
              }
            
            switch(exit){case 36:Buffer["add_char"](buf[j],c)}
@@ -354,7 +365,6 @@ var from_longident=Odoc_misc["string_of_longident"];
 var compare=$$String["compare"];
 
 var Set=Set["Make"]([0,compare]);
-
 
 module["exports"]=
 {"parens_if_infix":parens_if_infix,

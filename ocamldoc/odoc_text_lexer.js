@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var List=require("List");
-var Lexing=require("Lexing");
 var Buffer=require("Buffer");
+var Lexing=require("Lexing");
 var Str=require("Str");
 var Odoc_misc=require("Odoc_misc");
+
 
 var line_number=[0,0];
 
@@ -96,6 +99,8 @@ var
    {var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
+    
+    var exit;
     
     if(49<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
@@ -380,7 +385,7 @@ var
          else
           {target_mode[1]=0,0;return 18;}
          
-        case 18:var exit=21;
+        case 18:exit=21;
         case 19:
          incr_cpts(lexbuf);
          if(verb_mode[1]||target_mode[1]||code_pre_mode[1]||ele_ref_mode[1])
@@ -403,7 +408,7 @@ var
             {open_brackets[1]=0,0;return 12;}
            }
          
-        case 21:var exit=21;
+        case 21:exit=21;
         case 22:
          incr_cpts(lexbuf);
          if(verb_mode[1]||target_mode[1]||code_pre_mode[1]||ele_ref_mode[1])
@@ -435,7 +440,7 @@ var
              }
            }
          
-        case 24:var exit=21;
+        case 24:exit=21;
         case 25:
          incr_cpts(lexbuf);
          if
@@ -805,14 +810,13 @@ var
          else
           {return 19;}
          
-        case 49:var exit=21;
+        case 49:exit=21;
         }
       }
     
     switch(exit)
      {case 21:incr_cpts(lexbuf);return [3,Lexing["lexeme"](lexbuf)];}
     };
-
 
 module["exports"]=
 {"line_number":line_number,

@@ -1,4 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Obj=require("Obj");
+
 
 var Undefined="unknown primitive:caml_set_oo_id";
 
@@ -59,7 +62,6 @@ var
      {if(t!=Obj["lazy_tag"]){return x;}else{return force_val_lazy_block(lzv);}
       }
     };
-
 
 module["exports"]=
 {"Undefined":Undefined,

@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
@@ -5,6 +7,7 @@ var Misc=require("Misc");
 var Unix=require("Unix");
 var Filename=require("Filename");
 var Sys=require("Sys");
+
 
 var
  convert_address=
@@ -180,7 +183,7 @@ var
          (i<
           ch$1["length"]&&
           (c>=97&&c<=122||c>=65&&c<=90||c>=48&&c<=57||(c=95)))
-         {var i=1+i;}
+         {i=1+i;}
         
         var suiv=i;
         
@@ -244,7 +247,6 @@ var
     else
      {return name;}
     };
-
 
 module["exports"]=
 {"convert_address":convert_address,

@@ -1,5 +1,8 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Format=require("Format");
+
 
 var file=function(loc){return loc[1];};
 
@@ -59,7 +62,6 @@ var
  print_loc_option=
   function(ppf,param)
    {if(param){return print_loc(ppf,param[1]);}else{return 0;}};
-
 
 module["exports"]=
 {"print_loc":print_loc,

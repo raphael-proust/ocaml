@@ -34,6 +34,11 @@ exception Error of Location.t * error
    currently compiled module expression).  Useful for naming extensions. *)
 
 let global_path glob = Some(Pident glob)
+let is_top rootpath = 
+  match rootpath with 
+  | Some (Pident _ ) -> true
+  | _ -> false 
+
 let functor_path path param =
   match path with
     None -> None
@@ -324,6 +329,13 @@ let rec bound_value_identifiers = function
   | _ :: rem -> bound_value_identifiers rem
 
 (* Compile a module expression *)
+type exports = 
+  | Id of Ident.t 
+  | Prim of string 
+ 
+let export_identifiers  : exports list ref = ref []
+let get_export_identifiers () = 
+   List.rev !export_identifiers
 
 let rec transl_module cc rootpath mexp =
   match mexp.mod_type with
@@ -369,7 +381,11 @@ and transl_structure fields cc rootpath = function
       begin match cc with
         Tcoerce_none ->
           Lprim(Pmakeblock(0, Immutable),
-                List.map (fun id -> Lvar id) (List.rev fields))
+                let fields =  (List.rev fields) in
+                List.map (fun id -> begin
+                  (if is_top rootpath then 
+                    export_identifiers := Id id :: !export_identifiers);
+                  Lvar id end) fields )
       | Tcoerce_structure(pos_cc_list, id_pos_list) ->
               (* Do not ignore id_pos_list ! *)
           (*Format.eprintf "%a@.@[" Includemod.print_coercion cc;
@@ -381,12 +397,21 @@ and transl_structure fields cc rootpath = function
           and ids = List.fold_right IdentSet.add fields IdentSet.empty in
           let lam =
             (Lprim(Pmakeblock(0, Immutable),
-                List.map
+                let result = List.map
                   (fun (pos, cc) ->
-                    match cc with
-                      Tcoerce_primitive p -> transl_primitive Location.none p
-                    | _ -> apply_coercion Strict cc (get_field pos))
-                  pos_cc_list))
+                    begin match cc with
+                    | Tcoerce_primitive p -> 
+                        (if is_top rootpath then 
+                          export_identifiers := Prim p.prim_name :: !export_identifiers);
+                        transl_primitive Location.none p
+                    | _ -> 
+                        (if is_top rootpath then 
+                          export_identifiers := Id v.(pos) :: !export_identifiers);
+                        apply_coercion Strict cc (get_field pos)
+                    end)
+                  pos_cc_list in 
+                result 
+                  ))
           and id_pos_list =
             List.filter (fun (id,_,_) -> not (IdentSet.mem id ids)) id_pos_list
           in
@@ -966,6 +991,7 @@ let () =
     )
 
 let reset () =
+  export_identifiers := [];
   primitive_declarations := [];
   transl_store_subst := Ident.empty;
   toploop_ident.Ident.flags <- 0;

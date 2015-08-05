@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var include=$$String;
 
 var make=include[1];
@@ -49,7 +53,6 @@ var capitalize=include[23];
 var uncapitalize=include[24];
 
 var compare=include[25];
-
 
 module["exports"]=
 {"make":make,

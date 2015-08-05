@@ -1,9 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
 var $$String=require("String");
 var Odoc_global=require("Odoc_global");
 var CamlinternalOO=require("CamlinternalOO");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Odoc_types=require("Odoc_types");
 var Odoc_search=require("Odoc_search");
 var Printf=require("Printf");
@@ -16,7 +18,7 @@ var Map=require("Map");
 var Odoc_messages=require("Odoc_messages");
 
 
-
+Odoc_type,Odoc_name;
 var
  shared=
   [0,
@@ -84,7 +86,8 @@ var
   function(m,param)
    {var match=m[6];
     
-    switch(match){case 1:var $js=1;default:var $js=0;}
+    var $js;
+    switch(match){case 1:$js=1;default:$js=0;}
     return [0,1,$js];
     };
 
@@ -93,12 +96,15 @@ var
   function(mt,param)
    {var match=mt[6];
     
-    if(match)
-     {switch(match[1]){case 2:var $js=1;default:var exit=159;}}
-    else
-     {var exit=159;}
+    var exit;
     
-    switch(exit){case 159:var $js$1=0;}
+    if(match)
+     {switch(match[1]){case 2:var $js=1;default:exit=159;}}
+    else
+     {exit=159;}
+    
+    var $js$1;
+    switch(exit){case 159:$js$1=0;}
     return [0,1,$js$1];
     };
 
@@ -178,6 +184,8 @@ var
          
          var match$2=mt[6];
          
+         var exit;
+         
          if(match$2)
           {var match$3=match$2[1];
            
@@ -185,10 +193,10 @@ var
             {case 2:
               Hashtbl["add"]
                (module_and_modtype_aliases,mt[1],[0,match$3[1][1],1]);
-             default:var exit=142;}
+             default:exit=142;}
            }
          else
-          {var exit=142;}
+          {exit=142;}
          
          switch(exit){case 142:}
          
@@ -1527,14 +1535,16 @@ var
 var
  assoc_comments_module_kind=
   function(parent_name,module_list,mk)
-   {switch(mk)
+   {var exit;
+    
+    switch(mk)
      {case 0:
        return [0,
                List["map"]
                 (assoc_comments_module_element(parent_name,module_list),mk[1])];
        
-      case 1:var exit=8;
-      case 2:var exit=8;
+      case 1:exit=8;
+      case 2:exit=8;
       case 3:
        return [3,
                assoc_comments_module_kind(parent_name,module_list,mk[1]),
@@ -1550,8 +1560,8 @@ var
                assoc_comments_module_kind(parent_name,module_list,mk[1]),
                assoc_comments_module_type_kind(parent_name,module_list,mk[2])];
        
-      case 6:var exit=9;
-      case 7:var exit=9;
+      case 6:exit=9;
+      case 7:exit=9;
       }
     
     switch(exit){case 9:return mk;case 8:return mk;}
@@ -1560,7 +1570,9 @@ var
 var
  assoc_comments_module_type_kind=
   function(parent_name,module_list,mtk)
-   {switch(mtk)
+   {var exit;
+    
+    switch(mtk)
      {case 0:
        return [0,
                List["map"]
@@ -1572,13 +1584,13 @@ var
                mtk[1],
                assoc_comments_module_type_kind(parent_name,module_list,mtk[2])];
        
-      case 2:var exit=10;
+      case 2:exit=10;
       case 3:
        return [3,
                assoc_comments_module_type_kind(parent_name,module_list,mtk[1]),
                mtk[2]];
        
-      case 4:var exit=10;
+      case 4:exit=10;
       }
     
     switch(exit){case 10:return mtk;}
@@ -1587,7 +1599,9 @@ var
 var
  assoc_comments_class_kind=
   function(parent_name,module_list,ck)
-   {switch(ck)
+   {var exit;
+    
+    switch(ck)
      {case 0:
        var
         inher2=
@@ -1605,8 +1619,8 @@ var
                List["map"]
                 (assoc_comments_class_element(parent_name,module_list),ck[2])];
        
-      case 1:var exit=12;
-      case 2:var exit=12;
+      case 1:exit=12;
+      case 2:exit=12;
       case 3:
        return [3,
                assoc_comments_class_kind(parent_name,module_list,ck[1]),
@@ -1740,8 +1754,10 @@ var
     t[2]=ao(assoc_comments_info(parent,module_list),t[2]),0;
     var match=t[4];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=17;case 1:var exit=17;}}
+     {switch(match){case 0:exit=17;case 1:exit=17;}}
     else
      {switch(match[0])
        {case 0:
@@ -1830,24 +1846,20 @@ var
     if(names_not_found)
      {List["iter"]
        (function(nf)
-         {switch(nf)
-           {case 0:var $js=Odoc_messages["cross_module_not_found"](nf[1]);
-            case 1:
-             var $js=Odoc_messages["cross_module_type_not_found"](nf[1]);
+         {var $js;
+          switch(nf)
+           {case 0:$js=Odoc_messages["cross_module_not_found"](nf[1]);
+            case 1:$js=Odoc_messages["cross_module_type_not_found"](nf[1]);
             case 2:
-             var
-              $js=
-               Odoc_messages["cross_module_or_module_type_not_found"](nf[1]);
+             $js=
+             Odoc_messages["cross_module_or_module_type_not_found"](nf[1]);
              
-            case 3:var $js=Odoc_messages["cross_class_not_found"](nf[1]);
-            case 4:var $js=Odoc_messages["cross_class_type_not_found"](nf[1]);
+            case 3:$js=Odoc_messages["cross_class_not_found"](nf[1]);
+            case 4:$js=Odoc_messages["cross_class_type_not_found"](nf[1]);
             case 5:
-             var
-              $js=
-               Odoc_messages["cross_class_or_class_type_not_found"](nf[1]);
-             
-            case 6:var $js=Odoc_messages["cross_extension_not_found"](nf[1]);
-            case 7:var $js=Odoc_messages["cross_exception_not_found"](nf[1]);
+             $js=Odoc_messages["cross_class_or_class_type_not_found"](nf[1]);
+            case 6:$js=Odoc_messages["cross_extension_not_found"](nf[1]);
+            case 7:$js=Odoc_messages["cross_exception_not_found"](nf[1]);
             }
           return Odoc_global["pwarning"]($js);
           },
@@ -1857,7 +1869,6 @@ var
     
     return 0;
     };
-
 
 module["exports"]=
 {"associate":associate,"assoc_comments_info":assoc_comments_info};

@@ -1,5 +1,7 @@
-var List=require("List");
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Events=require("Events");
 var Checkpoints=require("Checkpoints");
 var Program_loading=require("Program_loading");
@@ -7,9 +9,10 @@ var Set=require("Set");
 var Bytesections=require("Bytesections");
 var Debugger_config=require("Debugger_config");
 var Hashtbl=require("Hashtbl");
-var $$Array=require("Array");
 var Symtable=require("Symtable");
+var $$Array=require("Array");
 var Debugcom=require("Debugcom");
+
 
 var $$let=$$String;
 
@@ -33,10 +36,12 @@ var
    {ev[1]=orig+ev[1],0;
     var match=ev[10];
     
+    var exit;
+    
     if(typeof match=="number")
-     {switch(match){case 0:var exit=44;}}
+     {switch(match){case 0:exit=44;}}
     else
-     {switch(match[0]){case 0:return match[1][1]=ev[1],0;case 1:var exit=44;}}
+     {switch(match[0]){case 0:return match[1][1]=ev[1],0;case 1:exit=44;}}
     
     switch(exit){case 44:return 0;}
     };
@@ -49,10 +54,12 @@ var
     try
      {Bytesections["read_toc"](ic),0}
     catch(exn)
-     {if(exn=Bytesections["Bad_magic_number"])
-       {var exit=40;}
+     {var exit;
+      
+      if(exn=Bytesections["Bad_magic_number"])
+       {exit=40;}
       else
-       {if(exn=Not_found){var exit=40;}else{throw exn;}}
+       {if(exn=Not_found){exit=40;}else{throw exn;}}
       
       switch(exit)
        {case 40:
@@ -88,14 +95,13 @@ var
       var evl=Pervasives["input_value"](ic);
       
       List["iter"](relocate_event(orig),evl);
-      var eventlists=[0,evl,eventlists];
+      eventlists=[0,evl,eventlists];
       
-      var
-       dirs=
-        List["fold_left"]
-         (function(s,e){return StringSet[4](e,s);},
-          dirs,
-          Pervasives["input_value"](ic));
+      dirs=
+      List["fold_left"]
+       (function(s,e){return StringSet[4](e,s);},
+        dirs,
+        Pervasives["input_value"](ic));
       }
     
     try
@@ -155,10 +161,12 @@ var
                     (function(param)
                       {var match$1=param[4];
                        
+                       var exit;
+                       
                        if("unknown primitive:isint")
-                        {if(match$1!=0){return 0;}else{var exit=25;}}
+                        {if(match$1!=0){return 0;}else{exit=25;}}
                        else
-                        {var exit=25;}
+                        {exit=25;}
                        
                        switch(exit){case 25:return 1;}
                        },
@@ -182,10 +190,12 @@ var
     
     var match=ev[4];
     
+    var exit;
+    
     if("unknown primitive:isint")
-     {if(match!=0){throw Not_found;}else{var exit=21;}}
+     {if(match!=0){throw Not_found;}else{exit=21;}}
     else
-     {var exit=21;}
+     {exit=21;}
     
     switch(exit){case 21:return ev;}
     };
@@ -280,10 +290,12 @@ var
             (function(pc,ev)
               {var match=ev[4];
                
+               var exit;
+               
                if("unknown primitive:isint")
-                {if(match!=0){return 0;}else{var exit=5;}}
+                {if(match!=0){return 0;}else{exit=5;}}
                else
-                {var exit=5;}
+                {exit=5;}
                
                switch(exit){case 5:return Debugcom["set_event"](ev[1]);}
                },
@@ -311,7 +323,6 @@ var
     else
      {Events["current_event"][1]=0,0;return old_pc[1]=0,0;}
     };
-
 
 module["exports"]=
 {"modules":modules,

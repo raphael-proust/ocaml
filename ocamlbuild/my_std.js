@@ -1,11 +1,13 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Format=require("Format");
 var Set=require("Set");
-var Lexing=require("Lexing");
-var Filename=require("Filename");
 var Buffer=require("Buffer");
+var Filename=require("Filename");
+var Lexing=require("Lexing");
 var Bytes=require("Bytes");
 var Hashtbl=require("Hashtbl");
 var CamlinternalLazy=require("CamlinternalLazy");
@@ -13,8 +15,7 @@ var $$Array=require("Array");
 var Sys=require("Sys");
 
 
-
-
+Digest,$$String,List;
 var Exit_OK="unknown primitive:caml_set_oo_id";
 
 var Exit_usage="unknown primitive:caml_set_oo_id";
@@ -338,10 +339,9 @@ var
    {var
      is_nl_char=
       function(param)
-       {if(param!=10)
-         {if(param!=13){return 0;}else{var exit=102;}}
-        else
-         {var exit=102;}
+       {var exit;
+        
+        if(param!=10){if(param!=13){return 0;}else{exit=102;}}else{exit=102;}
         
         switch(exit){case 102:return 1;}
         };
@@ -957,16 +957,17 @@ var
     return lexbuf;
     };
 
-[0,
- Exit_OK,
- Exit_usage,
- Exit_system_error,
- Exit_with_code,
- Exit_silently_with_code,
- [0,Outcome[3],Outcome[1],Outcome[2]],
- ksbprintf,
- sbprintf,
- Set,
+module["exports"]=
+{"Exit_OK":Exit_OK,
+ "Exit_usage":Exit_usage,
+ "Exit_system_error":Exit_system_error,
+ "Exit_with_code":Exit_with_code,
+ "Exit_silently_with_code":Exit_silently_with_code,
+ "Outcome":[0,Outcome[3],Outcome[1],Outcome[2]],
+ "ksbprintf":ksbprintf,
+ "sbprintf":sbprintf,
+ "Set":Set,
+ "List":
  [0,
   List[45],
   List[46],
@@ -1016,6 +1017,7 @@ var
   List[42],
   List[43],
   List[44]],
+ "String":
  [0,
   $$String[26],
   $$String[27],
@@ -1057,84 +1059,7 @@ var
   $$String[23],
   $$String[24],
   $$String[25]],
- [0,Digest[2],Digest[4],Digest[13],Digest[6],Digest[7],Digest[8]],
- StringSet,
- sys_readdir$1,
- sys_remove,
- reset_readdir_cache$1,
- reset_filesys_cache,
- reset_filesys_cache_for_file,
- sys_file_exists,
- sys_command,
- filename_concat,
- invalid_arg$prime,
- opt_print,
- the,
- getenv,
- with_input_file,
- with_output_file,
- with_temp_file,
- read_file,
- copy_chan,
- copy_file,
- print_string_list,
- $unknown$star,
- $unknown,
- $unknown$great,
- $at$unknown$eq,
- memo,
- memo2,
- memo3,
- set_lexbuf_fname,
- lexbuf_of_string];
-module["exports"]=
-{"Exit_OK":Exit_OK,
- "Exit_usage":Exit_usage,
- "Exit_system_error":Exit_system_error,
- "Exit_with_code":Exit_with_code,
- "Exit_silently_with_code":Exit_silently_with_code,
- "unknown block:(makeblock 0 (field 2 Outcome/1025) (field 0 Outcome/1025)\n  (field 1 Outcome/1025))":
- unknown block:(makeblock 0 (field 2 Outcome/1025) (field 0 Outcome/1025)
-  (field 1 Outcome/1025)),
- "ksbprintf":ksbprintf,
- "sbprintf":sbprintf,
- "Set":Set,
- "unknown block:(makeblock 0 (field 44 List/1410) (field 45 List/1410) (field 47 List/1410)\n  (field 48 List/1410) (field 0 List/1410) (field 1 List/1410)\n  (field 2 List/1410) (field 3 List/1410) (field 4 List/1410)\n  (field 5 List/1410) (field 6 List/1410) (field 7 List/1410)\n  (field 8 List/1410) (field 9 List/1410) (field 10 List/1410)\n  (field 11 List/1410) (field 12 List/1410) (field 13 List/1410)\n  (field 14 List/1410) (field 15 List/1410) (field 16 List/1410)\n  (field 17 List/1410) (field 18 List/1410) (field 19 List/1410)\n  (field 20 List/1410) (field 21 List/1410) (field 22 List/1410)\n  (field 23 List/1410) (field 24 List/1410) (field 25 List/1410)\n  (field 26 List/1410) (field 27 List/1410) (field 28 List/1410)\n  (field 29 List/1410) (field 30 List/1410) (field 31 List/1410)\n  (field 32 List/1410) (field 33 List/1410) (field 34 List/1410)\n  (field 35 List/1410) (field 36 List/1410) (field 37 List/1410)\n  (field 38 List/1410) (field 39 List/1410) (field 40 List/1410)\n  (field 41 List/1410) (field 42 List/1410) (field 43 List/1410))":
- unknown block:(makeblock 0 (field 44 List/1410) (field 45 List/1410) (field 47 List/1410)
-  (field 48 List/1410) (field 0 List/1410) (field 1 List/1410)
-  (field 2 List/1410) (field 3 List/1410) (field 4 List/1410)
-  (field 5 List/1410) (field 6 List/1410) (field 7 List/1410)
-  (field 8 List/1410) (field 9 List/1410) (field 10 List/1410)
-  (field 11 List/1410) (field 12 List/1410) (field 13 List/1410)
-  (field 14 List/1410) (field 15 List/1410) (field 16 List/1410)
-  (field 17 List/1410) (field 18 List/1410) (field 19 List/1410)
-  (field 20 List/1410) (field 21 List/1410) (field 22 List/1410)
-  (field 23 List/1410) (field 24 List/1410) (field 25 List/1410)
-  (field 26 List/1410) (field 27 List/1410) (field 28 List/1410)
-  (field 29 List/1410) (field 30 List/1410) (field 31 List/1410)
-  (field 32 List/1410) (field 33 List/1410) (field 34 List/1410)
-  (field 35 List/1410) (field 36 List/1410) (field 37 List/1410)
-  (field 38 List/1410) (field 39 List/1410) (field 40 List/1410)
-  (field 41 List/1410) (field 42 List/1410) (field 43 List/1410)),
- "unknown block:(makeblock 0 (field 25 String/1525) (field 26 String/1525)\n  (field 27 String/1525) (field 28 String/1525) (field 29 String/1525)\n  (field 30 String/1525) (field 31 String/1525) (field 35 String/1525)\n  (field 36 String/1525) (field 32 String/1525) (field 33 String/1525)\n  (field 34 String/1525) (field 37 String/1525) (field 38 String/1525)\n  (field 39 String/1525) (field 0 String/1525) (field 1 String/1525)\n  (field 2 String/1525) (field 3 String/1525) (field 4 String/1525)\n  (field 5 String/1525) (field 6 String/1525) (field 7 String/1525)\n  (field 8 String/1525) (field 9 String/1525) (field 10 String/1525)\n  (field 11 String/1525) (field 12 String/1525) (field 13 String/1525)\n  (field 14 String/1525) (field 15 String/1525) (field 16 String/1525)\n  (field 17 String/1525) (field 18 String/1525) (field 19 String/1525)\n  (field 20 String/1525) (field 21 String/1525) (field 22 String/1525)\n  (field 23 String/1525) (field 24 String/1525))":
- unknown block:(makeblock 0 (field 25 String/1525) (field 26 String/1525)
-  (field 27 String/1525) (field 28 String/1525) (field 29 String/1525)
-  (field 30 String/1525) (field 31 String/1525) (field 35 String/1525)
-  (field 36 String/1525) (field 32 String/1525) (field 33 String/1525)
-  (field 34 String/1525) (field 37 String/1525) (field 38 String/1525)
-  (field 39 String/1525) (field 0 String/1525) (field 1 String/1525)
-  (field 2 String/1525) (field 3 String/1525) (field 4 String/1525)
-  (field 5 String/1525) (field 6 String/1525) (field 7 String/1525)
-  (field 8 String/1525) (field 9 String/1525) (field 10 String/1525)
-  (field 11 String/1525) (field 12 String/1525) (field 13 String/1525)
-  (field 14 String/1525) (field 15 String/1525) (field 16 String/1525)
-  (field 17 String/1525) (field 18 String/1525) (field 19 String/1525)
-  (field 20 String/1525) (field 21 String/1525) (field 22 String/1525)
-  (field 23 String/1525) (field 24 String/1525)),
- "unknown block:(makeblock 0 (field 1 Digest/1693) (field 3 Digest/1693)\n  (field 12 Digest/1693) (field 5 Digest/1693) (field 6 Digest/1693)\n  (field 7 Digest/1693))":
- unknown block:(makeblock 0 (field 1 Digest/1693) (field 3 Digest/1693)
-  (field 12 Digest/1693) (field 5 Digest/1693) (field 6 Digest/1693)
-  (field 7 Digest/1693)),
+ "Digest":[0,Digest[2],Digest[4],Digest[13],Digest[6],Digest[7],Digest[8]],
  "StringSet":StringSet,
  "sys_readdir":sys_readdir$1,
  "sys_remove":sys_remove,

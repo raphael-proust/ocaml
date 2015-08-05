@@ -519,13 +519,14 @@ let lambda_as_module env  ppf lam =
   with _ -> 
     env_lambda env ppf lam;
     fprintf ppf "; lambda-failure"
-let seriaize env (filename : string) (lambda : Lambda.lambda) : unit =
+let seriaize env (filename : string) (lam : Lambda.lambda) : unit =
   let ou = open_out filename  in
   let old = Format.get_margin () in
   let () = Format.set_margin 10000 in
   let fmt = Format.formatter_of_out_channel ou in
   begin
-    lambda_as_module env fmt lambda;
+    (* lambda_as_module env fmt lambda; *)
+    lambda fmt lam;
     Format.pp_print_flush fmt ();
     close_out ou;
     Format.set_margin old

@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var CamlinternalFormat=require("CamlinternalFormat");
 var Pervasives=require("Pervasives");
 var Buffer=require("Buffer");
+
 
 var
  kfprintf=
@@ -73,7 +76,6 @@ var
 var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};
 
 var kprintf=ksprintf;
-
 
 module["exports"]=
 {"fprintf":fprintf,

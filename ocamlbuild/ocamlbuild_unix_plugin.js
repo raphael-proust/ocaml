@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Ocamlbuild_pack=require("Ocamlbuild_pack");
 var Pervasives=require("Pervasives");
 var Ocamlbuild_executor=require("Ocamlbuild_executor");
@@ -6,6 +8,7 @@ var Format=require("Format");
 var Unix=require("Unix");
 var Filename=require("Filename");
 var Sys=require("Sys");
+
 
 var
  report_error=
@@ -47,17 +50,21 @@ var
     
     var match=st[3];
     
+    var exit;
+    
+    var $js;
     switch(match[0])
-     {case 0:var $js=1;
-      case 1:var $js=0;
-      case 2:var exit=19;
-      case 3:var exit=19;
-      case 4:var $js=2;
-      case 5:var exit=19;
-      case 6:var exit=19;
+     {case 0:$js=1;
+      case 1:$js=0;
+      case 2:exit=19;
+      case 3:exit=19;
+      case 4:$js=2;
+      case 5:exit=19;
+      case 6:exit=19;
       }
     
-    switch(exit){case 19:var $js$1=3;}
+    var $js$1;
+    switch(exit){case 19:$js$1=3;}
     return [0,
             $js$1,
             Format["sprintf"]
@@ -88,10 +95,12 @@ var
       function(param)
        {var match=Unix["close_process_in"](ic);
         
+        var exit;
+        
         switch(match)
-         {case 0:if(match[1]!=0){var exit=11;}else{return 0;}
-          case 1:var exit=11;
-          case 2:var exit=11;
+         {case 0:if(match[1]!=0){exit=11;}else{return 0;}
+          case 1:exit=11;
+          case 2:exit=11;
           }
         
         switch(exit)
@@ -167,7 +176,6 @@ var
     Ocamlbuild_pack["My_unix"][13][10]=mkstat(Unix["stat"]),0;
     return Ocamlbuild_pack["My_unix"][13][11]=mkstat(Unix["lstat"]),0;
     };
-
 
 module["exports"]={"setup":setup};
 

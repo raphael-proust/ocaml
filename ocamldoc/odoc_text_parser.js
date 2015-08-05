@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Parsing=require("Parsing");
 var Str=require("Str");
 var Odoc_misc=require("Odoc_misc");
+
 
 var identchar="[A-Z a-z_À-ÖØ-öø-ÿ'0-9]";
 
@@ -307,7 +310,6 @@ var
  located_element_list=
   function(lexfun,lexbuf)
    {return Parsing["yyparse"](yytables,2,lexfun,lexbuf);};
-
 
 module["exports"]={"main":main,"located_element_list":located_element_list};
 

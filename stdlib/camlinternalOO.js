@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var List=require("List");
 var Obj=require("Obj");
-var $$Array=require("Array");
 var Map=require("Map");
+var $$Array=require("Array");
 var Sys=require("Sys");
+
 
 var
  copy=
@@ -18,7 +21,9 @@ var step=Sys["word_size"]/16;
 
 var initial_object_size=2;
 
+
 var dummy_item=0;
+
 
 var
  public_method_label=
@@ -795,7 +800,6 @@ var
  stats=
   function(param)
    {return [0,table_count[1],method_count[1],inst_var_count[1]];};
-
 
 module["exports"]=
 {"public_method_label":public_method_label,

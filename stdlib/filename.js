@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
@@ -5,6 +7,7 @@ var Random=require("Random");
 var Buffer=require("Buffer");
 var CamlinternalLazy=require("CamlinternalLazy");
 var Sys=require("Sys");
+
 
 var
  generic_quote=
@@ -256,13 +259,12 @@ var
    {var
      is_letter=
       function(param)
-       {if(param>=91)
-         {var switcher=-97+param;
-          
-          if(25<switcher>>>0){var exit=41;}else{var exit=40;}
-          }
+       {var exit;
+        
+        if(param>=91)
+         {var switcher=-97+param;if(25<switcher>>>0){exit=41;}else{exit=40;}}
         else
-         {if(param>=65){var exit=40;}else{var exit=41;}}
+         {if(param>=65){exit=40;}else{exit=41;}}
         
         switch(exit){case 41:return 0;case 40:return 1;}
         };
@@ -359,6 +361,8 @@ var
 
 var match=Sys["os_type"];
 
+var exit;
+
 switch(match)
  {case "Cygwin":
    var
@@ -408,7 +412,7 @@ switch(match)
       Win32[13],
       Win32[12]];
    
-  default:var exit=21;}
+  default:exit=21;}
 
 switch(exit){case 21:throw [0,Assert_failure,[0,"filename.ml",189,9]];}
 
@@ -567,7 +571,6 @@ var
     
     return try_name(0);
     };
-
 
 module["exports"]=
 {"current_dir_name":current_dir_name$3,

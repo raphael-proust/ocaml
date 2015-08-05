@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Lexing=require("Lexing");
 var Parsing=require("Parsing");
+
 
 var
  __ocaml_lex_tables=
@@ -133,7 +136,6 @@ var
         }
       }
     };
-
 
 module["exports"]=
 {"line":line,

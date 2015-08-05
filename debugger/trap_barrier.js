@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Checkpoints=require("Checkpoints");
 var Exec=require("Exec");
 var Debugcom=require("Debugcom");
+
 
 var current_trap_barrier=[0,0];
 
@@ -34,7 +37,6 @@ var
       }
     catch(x){remove_trap_barrier(0);throw x;}
     };
-
 
 module["exports"]=
 {"install_trap_barrier":install_trap_barrier,

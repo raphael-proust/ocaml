@@ -1,14 +1,17 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_name=require("Odoc_name");
 var $$String=require("String");
 var Printtyp=require("Printtyp");
-var Pervasives=require("Pervasives");
 var List=require("List");
+var Pervasives=require("Pervasives");
 var Printf=require("Printf");
 var Format=require("Format");
-var Odoc_print=require("Odoc_print");
 var Buffer=require("Buffer");
+var Odoc_print=require("Odoc_print");
 var Odoc_misc=require("Odoc_misc");
 var Odoc_messages=require("Odoc_messages");
+
 
 
 var
@@ -17,10 +20,12 @@ var
    {if(((t[4]=0)||(t[4]=1))&&(t[6]=0))
      {var cn=param[2];
       
+      var exit;
+      
       if(param[1]!=0)
-       {if(cn!=0){var exit=52;}else{return "+";}}
+       {if(cn!=0){exit=52;}else{return "+";}}
       else
-       {if(cn!=0){return "-";}else{var exit=52;}}
+       {if(cn!=0){return "-";}else{exit=52;}}
       
       switch(exit){case 52:return "";}
       }
@@ -33,14 +38,13 @@ var
   function(t)
    {var match=t[1];
     
+    var exit;
+    
     if(typeof match=="number")
      {switch(match){}}
     else
      {switch(match[0])
-       {case 1:return 1;
-        case 6:var exit=51;
-        case 7:var exit=51;
-        default:var exit=50;}}
+       {case 1:return 1;case 6:exit=51;case 7:exit=51;default:exit=50;}}
     
     switch(exit){case 51:return is_arrow_type(match[1]);case 50:return 0;}
     };
@@ -57,16 +61,18 @@ var
       function(t)
        {var match=t[1];
         
+        var exit;
+        
         if(typeof match=="number")
          {switch(match){}}
         else
          {switch(match[0])
-           {case 1:var exit=42;
-            case 2:var exit=42;
+           {case 1:exit=42;
+            case 2:exit=42;
             case 3:return 0;
-            case 6:var exit=45;
-            case 7:var exit=45;
-            default:var exit=44;}}
+            case 6:exit=45;
+            case 7:exit=45;
+            default:exit=44;}}
         
         switch(exit)
          {case 45:return need_parent(match[1]);
@@ -126,10 +132,12 @@ var
    {if(par)
      {var par$1=par[1];}
     else
-     {if(type_list)
-       {if(type_list[2]){var par$1=1;}else{var exit=36;}}
+     {var exit;
+      
+      if(type_list)
+       {if(type_list[2]){var par$1=1;}else{exit=36;}}
       else
-       {var exit=36;}
+       {exit=36;}
       
       switch(exit){case 36:var par$1=0;}
       }
@@ -147,7 +155,9 @@ var
   function(t)
    {var match=t[3];
     
-    if(match){if(match[2]){var par=1;}else{var exit=32;}}else{var exit=32;}
+    var exit;
+    
+    if(match){if(match[2]){var par=1;}else{exit=32;}}else{exit=32;}
     
     switch(exit){case 32:var par=0;}
     
@@ -171,7 +181,9 @@ var
   function(te)
    {var match=te[3];
     
-    if(match){if(match[2]){var par=1;}else{var exit=28;}}else{var exit=28;}
+    var exit;
+    
+    if(match){if(match[2]){var par=1;}else{exit=28;}}else{exit=28;}
     
     switch(exit){case 28:var par=0;}
     
@@ -186,7 +198,9 @@ var
 var
  string_of_class_type_param_list=
   function(l)
-   {if(l){if(l[2]){var par=1;}else{var exit=24;}}else{var exit=24;}
+   {var exit;
+    
+    if(l){if(l[2]){var par=1;}else{exit=24;}}else{exit=24;}
     
     switch(exit){case 24:var par=0;}
     
@@ -206,9 +220,11 @@ var
     var
      iter=
       function(param)
-       {switch(param)
-         {case 0:var exit=21;
-          case 1:var exit=21;
+       {var exit;
+        
+        switch(param)
+         {case 0:exit=21;
+          case 1:exit=21;
           case 2:
            var t=param[2];
            
@@ -643,7 +659,6 @@ var
                      Pervasives["^"]
                       ("\n",match?Odoc_misc["string_of_info"](match[1]):""))))));
     };
-
 
 module["exports"]=
 {"string_of_variance":string_of_variance,

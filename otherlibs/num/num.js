@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Ratio=require("Ratio");
 var Int_misc=require("Int_misc");
 var Big_int=require("Big_int");
 var Nat=require("Nat");
 var Arith_flags=require("Arith_flags");
+
 
 var biggest_INT=Big_int["big_int_of_int"](Int_misc["biggest_int"]);
 
@@ -23,9 +26,11 @@ var
 var
  numerator_num=
   function(n)
-   {switch(n)
-     {case 0:var exit=76;
-      case 1:var exit=76;
+   {var exit;
+    
+    switch(n)
+     {case 0:exit=76;
+      case 1:exit=76;
       case 2:var r=n[1];return num_of_big_int(Ratio["numerator_ratio"](r));
       }
     
@@ -35,9 +40,11 @@ var
 var
  denominator_num=
   function(n)
-   {switch(n)
-     {case 0:var exit=74;
-      case 1:var exit=74;
+   {var exit;
+    
+    switch(n)
+     {case 0:exit=74;
+      case 1:exit=74;
       case 2:var r=n[1];return num_of_big_int(Ratio["denominator_ratio"](r));
       }
     
@@ -496,6 +503,8 @@ var
     
     var match$1=n2;
     
+    var exit;
+    
     switch(match)
      {case 0:
        var i1=match[1];
@@ -511,7 +520,7 @@ var
           return num_of_big_int
                   (Big_int["mod_big_int"](Big_int["big_int_of_int"](i1$1),bi2));
           
-         case 2:var exit=52;
+         case 2:exit=52;
          }
        
       case 1:
@@ -531,10 +540,10 @@ var
           
           return num_of_big_int(Big_int["mod_big_int"](bi1$1,bi2$1));
           
-         case 2:var exit=52;
+         case 2:exit=52;
          }
        
-      case 2:var exit=52;
+      case 2:exit=52;
       }
     
     switch(exit){case 52:return sub_num(n1,mult_num(n2,quo_num(n1,n2)));}
@@ -1111,7 +1120,6 @@ var
 var incr_num=function(r){return r[1]=succ_num(r[1]),0;};
 
 var decr_num=function(r){return r[1]=pred_num(r[1]),0;};
-
 
 module["exports"]=
 {"+/":$plus$unknown,

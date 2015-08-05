@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Const=require("Const");
 var Pervasives=require("Pervasives");
 var Lexers=require("Lexers");
@@ -5,15 +7,16 @@ var Printf=require("Printf");
 var Format=require("Format");
 var Param_tags=require("Param_tags");
 var Shell=require("Shell");
-var Buffer=require("Buffer");
 var Filename=require("Filename");
 var Lexing=require("Lexing");
+var Buffer=require("Buffer");
 var My_std=require("My_std");
 var Tags=require("Tags");
 var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
 var Log=require("Log");
 var Sys=require("Sys");
+
 
 var jobs=[0,1];
 
@@ -170,13 +173,15 @@ var
     var
      do_spec=
       function(param)
-       {if(typeof param=="number")
+       {var exit;
+        
+        if(typeof param=="number")
          {switch(param){case 0:return 0;}}
         else
          {switch(param[0])
            {case 0:return My_std["List"][14](do_spec,param[1]);
-            case 1:var exit=61;
-            case 2:var exit=61;
+            case 1:exit=61;
+            case 2:exit=61;
             case 3:
              var u=param[1];
              
@@ -556,13 +561,15 @@ var
    {var
      spec=
       function(x$1)
-       {if(typeof x$1=="number")
+       {var exit;
+        
+        if(typeof x$1=="number")
          {switch(x$1){}}
         else
          {switch(x$1[0])
            {case 0:return My_std["List"][14](spec,x$1[1]);
             case 5:return f(x$1[1]);
-            default:var exit=19;}}
+            default:exit=19;}}
         
         switch(exit){case 19:return 0;}
         };
@@ -570,13 +577,15 @@ var
     var
      cmd=
       function(x$1)
-       {if(typeof x$1=="number")
-         {switch(x$1){case 0:var exit=18;}}
+       {var exit;
+        
+        if(typeof x$1=="number")
+         {switch(x$1){case 0:exit=18;}}
         else
          {switch(x$1[0])
            {case 0:return My_std["List"][14](cmd,x$1[1]);
             case 1:return spec(x$1[1]);
-            case 2:var exit=18;
+            case 2:exit=18;
             }}
         
         switch(exit){case 18:return 0;}
@@ -591,14 +600,16 @@ var
    {var
      spec=
       function(param)
-       {if(typeof param=="number")
+       {var exit;
+        
+        if(typeof param=="number")
          {switch(param){}}
         else
          {switch(param[0])
            {case 0:return My_std["List"][20](spec,param[1]);
-            case 2:var exit=16;
-            case 3:var exit=16;
-            default:var exit=14;}}
+            case 2:exit=16;
+            case 3:exit=16;
+            default:exit=14;}}
         
         switch(exit)
          {case 16:return f(param[1]);
@@ -669,7 +680,9 @@ var
   function(x)
    {var xs=cmd(x,0);
     
-    if(xs){if(xs[2]){var exit=8;}else{return xs[1];}}else{var exit=8;}
+    var exit;
+    
+    if(xs){if(xs[2]){exit=8;}else{return xs[1];}}else{exit=8;}
     
     switch(exit)
      {case 8:
@@ -732,7 +745,6 @@ var
     };
 
 var list_all_deps=function(param){return all_deps_of_tags[1];};
-
 
 module["exports"]=
 {"atomize":atomize,

@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var zero=0;
 
 var one=1;
@@ -19,7 +23,6 @@ var lognot=function(n){return n^-1;};
 var to_string=function(n){return "unknown primitive:caml_int64_format";};
 
 var compare=function(x,y){return "unknown primitive:caml_int64_compare";};
-
 
 module["exports"]=
 {"zero":zero,

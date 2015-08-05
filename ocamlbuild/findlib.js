@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Const=require("Const");
 var Pervasives=require("Pervasives");
 var Lexers=require("Lexers");
@@ -6,6 +8,7 @@ var Lexing=require("Lexing");
 var My_std=require("My_std");
 var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
+
 
 var Findlib_error="unknown primitive:caml_set_oo_id";
 
@@ -131,7 +134,9 @@ var
           try
            {var deps$2=My_std["List"][16](query,deps$1);}
           catch(exn$1)
-           {if(exn$1[1]=Findlib_error)
+           {var exit;
+            
+            if(exn$1[1]=Findlib_error)
              {var match$1=exn$1[2];
               
               if(typeof match$1=="number")
@@ -139,10 +144,10 @@ var
               else
                {switch(match$1[0])
                  {case 1:var deps$2=error([0,name,match$1[1]]);
-                  default:var exit=32;}}
+                  default:exit=32;}}
               }
             else
-             {var exit=32;}
+             {exit=32;}
             
             switch(exit){case 32:throw exn$1;}
             }
@@ -230,12 +235,14 @@ var SSet=My_std["Set"][1]([0,$$let[40],$$let[1]]);
 var
  add_atom=
   function(a,l)
-   {if(typeof a=="number")
+   {var exit;
+    
+    if(typeof a=="number")
      {switch(a){}}
     else
      {switch(a[0])
-       {case 1:switch(a[1]){case "":return l;default:var exit=17;}
-        default:var exit=17;}}
+       {case 1:switch(a[1]){case "":return l;default:exit=17;}
+        default:exit=17;}}
     
     switch(exit){case 17:return [0,a,l];}
     };
@@ -301,7 +308,6 @@ var
 var link_flags_byte=link_flags(function(x){return x[4];});
 
 var link_flags_native=link_flags(function(x){return x[5];});
-
 
 module["exports"]=
 {"Findlib_error":Findlib_error,

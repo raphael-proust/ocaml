@@ -1,9 +1,12 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Char=require("Char");
 var Pervasives=require("Pervasives");
 var Int_misc=require("Int_misc");
 var Bytes=require("Bytes");
 var Sys=require("Sys");
+
 
 "unknown primitive:initialize_nat";
 var length_nat=function(n){return n["length"]-1;};
@@ -484,20 +487,19 @@ var
     for(var i=off;i<=bound;i++)
      {var c=s[i];
       
+      var exit;
+      
       if(c>=32)
        {if(c<93)
-         {var switcher=-33+c;
-          
-          if(58<switcher>>>0){var exit=5;}else{var exit=6;}
-          }
+         {var switcher=-33+c;if(58<switcher>>>0){exit=5;}else{exit=6;}}
         else
-         {if(c!=95){var exit=6;}else{if(i>off){}else{var exit=6;}}}
+         {if(c!=95){exit=6;}else{if(i>off){}else{exit=6;}}}
         }
       else
        {if(c>=11)
-         {if(c!=13){var exit=6;}else{var exit=5;}}
+         {if(c!=13){exit=6;}else{exit=5;}}
         else
-         {if(c>=9){var exit=5;}else{var exit=6;}}
+         {if(c>=9){exit=5;}else{exit=6;}}
         }
       
       switch(exit)
@@ -544,7 +546,6 @@ var nat_of_string=function(s){return sys_nat_of_string(10,s,0,s["length"]);};
 var
  float_of_nat=
   function(nat){return "unknown primitive:caml_float_of_string";};
-
 
 module["exports"]=
 {"make_nat":make_nat,

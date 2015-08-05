@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Char=require("Char");
 var Nativeint=require("Nativeint");
@@ -7,6 +9,7 @@ var Nat=require("Nat");
 var Bytes=require("Bytes");
 var Int64=require("Int64");
 var Sys=require("Sys");
+
 
 var
  create_big_int=
@@ -566,28 +569,30 @@ var
       
       var match$3=match$1;
       
+      var exit;
+      
       if(match$2!=48)
-       {var exit=107;}
+       {exit=107;}
       else
        {if(match$3>=89)
          {if(match$3!=98)
            {if(match$3!=111)
-             {if(match$3!=120){var exit=107;}else{var exit=104;}}
+             {if(match$3!=120){exit=107;}else{exit=104;}}
             else
-             {var exit=105;}
+             {exit=105;}
             }
           else
-           {var exit=106;}
+           {exit=106;}
           }
         else
          {if(match$3!=66)
            {if(match$3!=79)
-             {if(match$3>=88){var exit=104;}else{var exit=107;}}
+             {if(match$3>=88){exit=104;}else{exit=107;}}
             else
-             {var exit=105;}
+             {exit=105;}
             }
           else
-           {var exit=106;}
+           {exit=106;}
           }
         }
       
@@ -607,14 +612,16 @@ var
     
     var match=s[ofs];
     
+    var exit;
+    
     var switcher=-43+match;
     
     if(2<switcher>>>0)
-     {var exit=102;}
+     {exit=102;}
     else
      {switch(switcher[0])
        {case 0:return sys_big_int_of_string_base(s,ofs+1,len-1,1);
-        case 1:var exit=102;
+        case 1:exit=102;
         case 2:return sys_big_int_of_string_base(s,ofs+1,len-1,-1);
         }
       }
@@ -1252,7 +1259,6 @@ var
         }
       }
     };
-
 
 module["exports"]=
 {"zero_big_int":zero_big_int,

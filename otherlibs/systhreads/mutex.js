@@ -1,15 +1,13 @@
-[0,
- function(prim){return "unknown primitive:caml_mutex_new";},
- function(prim){return "unknown primitive:caml_mutex_lock";},
- function(prim){return "unknown primitive:caml_mutex_try_lock";},
- function(prim){return "unknown primitive:caml_mutex_unlock";}];
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
+
 module["exports"]=
-{"unknown block:(function prim/1013 (caml_mutex_new prim/1013))":
- unknown block:(function prim/1013 (caml_mutex_new prim/1013)),
- "unknown block:(function prim/1014 (caml_mutex_lock prim/1014))":
- unknown block:(function prim/1014 (caml_mutex_lock prim/1014)),
- "unknown block:(function prim/1015 (caml_mutex_try_lock prim/1015))":
- unknown block:(function prim/1015 (caml_mutex_try_lock prim/1015)),
- "unknown block:(function prim/1016 (caml_mutex_unlock prim/1016))":
- unknown block:(function prim/1016 (caml_mutex_unlock prim/1016))};
+{"caml_mutex_new":function(prim){return "unknown primitive:caml_mutex_new";},
+ "caml_mutex_lock":function(prim){return "unknown primitive:caml_mutex_lock";},
+ "caml_mutex_try_lock":
+ function(prim){return "unknown primitive:caml_mutex_try_lock";},
+ "caml_mutex_unlock":
+ function(prim){return "unknown primitive:caml_mutex_unlock";}};
 

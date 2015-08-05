@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Primitives=require("Primitives");
 var Lexer=require("Lexer");
 var Lexing=require("Lexing");
 var Input_handling=require("Input_handling");
+
 
 var
  yes_or_no=
@@ -54,7 +57,6 @@ var
     else
      {return 0;}
     };
-
 
 module["exports"]={"yes_or_no":yes_or_no};
 

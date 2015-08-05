@@ -1,6 +1,9 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var CamlinternalOO=require("CamlinternalOO");
 var Obj=require("Obj");
 var $$Array=require("Array");
+
 
 var
  init_mod=
@@ -99,7 +102,6 @@ var
         case 1:return 0;
         }}
     };
-
 
 module["exports"]={"init_mod":init_mod,"update_mod":update_mod};
 

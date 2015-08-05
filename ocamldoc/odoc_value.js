@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Printtyp=require("Printtyp");
 var List=require("List");
 var Odoc_parameter=require("Odoc_parameter");
+
 
 
 var Name=0;
@@ -41,15 +44,17 @@ var
       function(t)
        {var match=t[1];
         
+        var exit;
+        
         if(typeof match=="number")
          {switch(match){}}
         else
          {switch(match[0])
            {case 1:return [0,[0,match[1],match[2]],iter(match[3])];
-            case 6:var exit=13;
-            case 7:var exit=13;
+            case 6:exit=13;
+            case 7:exit=13;
             case 10:return iter(match[1]);
-            default:var exit=12;}}
+            default:exit=12;}}
         
         switch(exit){case 13:return iter(match[1]);case 12:return 0;}
         };
@@ -87,6 +92,8 @@ var
         
         var match=t[1];
         
+        var exit;
+        
         if(typeof match=="number")
          {switch(match){}}
         else
@@ -100,9 +107,9 @@ var
              else
               {return [0,[0,normal_name(label),t,0]];}
              
-            case 6:var exit=5;
-            case 7:var exit=5;
-            default:var exit=4;}}
+            case 6:exit=5;
+            case 7:exit=5;
+            default:exit=4;}}
         
         switch(exit)
          {case 5:return iter([0,label,match[1]]);
@@ -121,18 +128,19 @@ var
       function(t)
        {var match=t[1];
         
+        var exit;
+        
         if(typeof match=="number")
          {switch(match){}}
         else
          {switch(match[0])
-           {case 1:return 1;case 6:return f(match[1]);default:var exit=1;}}
+           {case 1:return 1;case 6:return f(match[1]);default:exit=1;}}
         
         switch(exit){case 1:return 0;}
         };
     
     return f(v[3]);
     };
-
 
 module["exports"]=
 {"Name":Name,

@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var file="file";
 
 var command_line="command-line";
@@ -28,7 +32,6 @@ var
    builtin,
    configuration,
    plugin_tag];
-
 
 module["exports"]={"Source":Source};
 

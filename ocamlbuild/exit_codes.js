@@ -1,3 +1,7 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
+
+
 var rc_ok=0;
 
 var rc_usage=1;
@@ -27,7 +31,6 @@ var rc_executor_subcommand_got_signal=11;
 var rc_executor_io_error=12;
 
 var rc_executor_excetptional_condition=13;
-
 
 module["exports"]=
 {"rc_ok":rc_ok,

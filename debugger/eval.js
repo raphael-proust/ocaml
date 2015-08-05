@@ -1,9 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Ctype=require("Ctype");
 var Frames=require("Frames");
 var Printtyp=require("Printtyp");
+var Btype=require("Btype");
 var Pervasives=require("Pervasives");
 var List=require("List");
-var Btype=require("Btype");
 var Env=require("Env");
 var Predef=require("Predef");
 var Format=require("Format");
@@ -14,6 +16,7 @@ var Subst=require("Subst");
 var Ident=require("Ident");
 var Symtable=require("Symtable");
 var Debugcom=require("Debugcom");
+
 
 var $$Error="unknown primitive:caml_set_oo_id";
 
@@ -90,13 +93,15 @@ var
    {if(typeof param=="number")
      {switch(param)
        {case 0:
+         var exit;
+         
          if($$event)
           {var match=$$event[1];
            
            var match$1=match[4];
            
            if("unknown primitive:isint")
-            {var exit=8;}
+            {exit=8;}
            else
             {if(Frames["current_frame"][1]=0)
               {return [0,
@@ -104,11 +109,11 @@ var
                        Subst["type_expr"](match[7],match$1[1])];
                }
              else
-              {var exit=8;}
+              {exit=8;}
              }
            }
          else
-          {var exit=8;}
+          {exit=8;}
          
          switch(exit){case 8:throw [0,$$Error,0];}
          
@@ -127,6 +132,9 @@ var
            
            var match$3=valdesc[2];
            
+           var exit$1;
+           
+           var $js;
            if(typeof match$3=="number")
             {switch(match$3){}}
            else
@@ -141,14 +149,13 @@ var
                 
                 var i=path($$event,p);
                 
-                var
-                 $js=
-                  Debugcom["Remote_value"][5]
-                   (v,Debugcom["Remote_value"][1](i));
+                $js=
+                Debugcom["Remote_value"][5](v,Debugcom["Remote_value"][1](i));
                 
-               default:var exit$1=6;}}
+               default:exit$1=6;}}
            
-           switch(exit$1){case 6:var $js$1=path($$event,p);}
+           var $js$1;
+           switch(exit$1){case 6:$js$1=path($$event,p);}
            return [0,$js$1,Ctype["correct_levels"](valdesc[1])];
            }
          catch(exn)
@@ -173,6 +180,8 @@ var
          
          var match$6=Ctype["repr"](Ctype["expand_head_opt"](env,ty))[1];
          
+         var exit$2;
+         
          if(typeof match$6=="number")
           {switch(match$6){}}
          else
@@ -195,7 +204,7 @@ var
               
               if(match$7)
                {if(match$7[2])
-                 {var exit$2=12;}
+                 {exit$2=12;}
                 else
                  {var ty_arg=match$7[1];
                   
@@ -225,7 +234,7 @@ var
                       return nth(0,v$1);
                       }
                     else
-                     {var exit$2=12;}
+                     {exit$2=12;}
                     }
                   }
                 }
@@ -242,10 +251,10 @@ var
                     }
                   }
                 else
-                 {var exit$2=12;}
+                 {exit$2=12;}
                 }
               
-             default:var exit$2=12;}}
+             default:exit$2=12;}}
          
          switch(exit$2){case 12:throw [0,$$Error,[8,ty,n$1]];}
          
@@ -255,6 +264,8 @@ var
          var ty$1=match$8[2];
          
          var match$9=Ctype["repr"](Ctype["expand_head_opt"](env,ty$1))[1];
+         
+         var exit$3;
          
          if(typeof match$9=="number")
           {switch(match$9){}}
@@ -266,6 +277,8 @@ var
               var tydesc=Env["find_type"](path$2,env);
               
               var match$10=tydesc[3];
+              
+              var exit$4;
               
               if(typeof match$10=="number")
                {switch(match$10){}}
@@ -280,13 +293,13 @@ var
                            Debugcom["Remote_value"][5](match$8[1],match$11[1]),
                            match$11[2]];
                    
-                  default:var exit$3=15;}}
+                  default:exit$4=15;}}
               
-              switch(exit$3){case 15:throw [0,$$Error,[10,ty$1]];}
+              switch(exit$4){case 15:throw [0,$$Error,[10,ty$1]];}
               
-             default:var exit$4=17;}}
+             default:exit$3=17;}}
          
-         switch(exit$4){case 17:throw [0,$$Error,[10,ty$1]];}
+         switch(exit$3){case 17:throw [0,$$Error,[10,ty$1]];}
          
         }}
     };
@@ -534,7 +547,6 @@ var
          
         }}
     };
-
 
 module["exports"]=
 {"expression":expression,"Error":$$Error,"report_error":report_error};

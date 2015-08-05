@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Symbols=require("Symbols");
 var Events=require("Events");
 var Misc=require("Misc");
 var Debugcom=require("Debugcom");
+
 
 var current_frame=[0,0];
 
@@ -30,13 +33,15 @@ var
   function(param)
    {var match=selected_event[1];
     
+    var exit;
+    
     if(match)
      {var match$1=match[1][4];
       
       if("unknown primitive:isint")
-       {if(match$1!=0){var exit=17;}else{return 1;}}
+       {if(match$1!=0){exit=17;}else{return 1;}}
       else
-       {var exit=17;}
+       {exit=17;}
       }
     else
      {throw Not_found;}
@@ -71,6 +76,8 @@ var
       if(match$1)
        {var match$2=selected_event[1];
         
+        var exit;
+        
         if(match$2)
          {if(frame_number>=current_frame[1])
            {selected_event[1]=
@@ -79,10 +86,10 @@ var
             return current_frame[1]=frame_number,0;
             }
           else
-           {var exit=13;}
+           {exit=13;}
           }
         else
-         {var exit=13;}
+         {exit=13;}
         
         switch(exit)
          {case 13:
@@ -136,7 +143,7 @@ var
           
           if(match$2[1]<0){throw Pervasives["Exit"];}else{}
           
-          var $$event=Symbols["any_event_at_pc"](match$2[2]);
+          $$event=Symbols["any_event_at_pc"](match$2[2]);
           }
         }
       catch(exn)
@@ -162,7 +169,6 @@ var
         });
     return num_frames[1];
     };
-
 
 module["exports"]=
 {"current_frame":current_frame,

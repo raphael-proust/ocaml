@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Pathname=require("Pathname");
 var Format=require("Format");
 var My_std=require("My_std");
 var Hashtbl=require("Hashtbl");
+
 
 var dir=function(name,contents){return [0,name,0,contents];};
 
@@ -206,8 +209,9 @@ var
 var
  iter_info=
   function(f,param)
-   {switch(param)
-     {case 0:var exit=17;case 1:var exit=17;case 2:return f(param[2]);}
+   {var exit;
+    
+    switch(param){case 0:exit=17;case 1:exit=17;case 2:return f(param[2]);}
     
     switch(exit)
      {case 17:f(param[2]);return My_std["List"][14](iter_info(f),param[3]);}
@@ -216,8 +220,9 @@ var
 var
  fold_info=
   function(f,arch,acc)
-   {switch(arch)
-     {case 0:var exit=15;case 1:var exit=15;case 2:return f(arch[2],acc);}
+   {var exit;
+    
+    switch(arch){case 0:exit=15;case 1:exit=15;case 2:return f(arch[2],acc);}
     
     switch(exit)
      {case 15:return My_std["List"][20](fold_info(f),arch[3],f(arch[2],acc));}
@@ -346,7 +351,6 @@ var
 var
  forpack_flags_of_pathname$1=
   function(m){return forpack_flags_of_pathname[1](m);};
-
 
 module["exports"]=
 {"dir":dir,

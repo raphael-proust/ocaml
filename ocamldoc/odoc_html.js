@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var Odoc_global=require("Odoc_global");
 var CamlinternalOO=require("CamlinternalOO");
@@ -14,6 +16,7 @@ var Filename=require("Filename");
 var Str=require("Str");
 var $$Array=require("Array");
 var Odoc_messages=require("Odoc_messages");
+
 
 var
  shared=
@@ -453,85 +456,87 @@ var
     for(var i=0;i<=len-1;i++)
      {var c=name[i];
       
+      var exit;
+      
       if(c>=95)
        {var switcher=-124+c;
         
         if(2<switcher>>>0)
-         {var exit=264;}
+         {exit=264;}
         else
          {switch(switcher[0])
-           {case 0:st("_pipe_");case 1:var exit=264;case 2:st("_tilde_")}
+           {case 0:st("_pipe_");case 1:exit=264;case 2:st("_tilde_")}
           }
         }
       else
        {if(c>=33)
          {switch((-33+c)[0])
            {case 0:st("_bang_");
-            case 1:var exit=264;
-            case 2:var exit=264;
+            case 1:exit=264;
+            case 2:exit=264;
             case 3:st("_dollar_");
             case 4:st("_percent_");
             case 5:st("_amp_");
-            case 6:var exit=264;
-            case 7:var exit=264;
-            case 8:var exit=264;
+            case 6:exit=264;
+            case 7:exit=264;
+            case 8:exit=264;
             case 9:st("_star_");
             case 10:st("_plus_");
-            case 11:var exit=264;
+            case 11:exit=264;
             case 12:st("_minus_");
-            case 13:var exit=264;
+            case 13:exit=264;
             case 14:st("_slash_");
-            case 15:var exit=264;
-            case 16:var exit=264;
-            case 17:var exit=264;
-            case 18:var exit=264;
-            case 19:var exit=264;
-            case 20:var exit=264;
-            case 21:var exit=264;
-            case 22:var exit=264;
-            case 23:var exit=264;
-            case 24:var exit=264;
+            case 15:exit=264;
+            case 16:exit=264;
+            case 17:exit=264;
+            case 18:exit=264;
+            case 19:exit=264;
+            case 20:exit=264;
+            case 21:exit=264;
+            case 22:exit=264;
+            case 23:exit=264;
+            case 24:exit=264;
             case 25:st("_column_");
-            case 26:var exit=264;
+            case 26:exit=264;
             case 27:st("_lt_");
             case 28:st("_equal_");
             case 29:st("_gt_");
             case 30:st("_questionmark_");
             case 31:st("_at_");
-            case 32:var exit=264;
-            case 33:var exit=264;
-            case 34:var exit=264;
-            case 35:var exit=264;
-            case 36:var exit=264;
-            case 37:var exit=264;
-            case 38:var exit=264;
-            case 39:var exit=264;
-            case 40:var exit=264;
-            case 41:var exit=264;
-            case 42:var exit=264;
-            case 43:var exit=264;
-            case 44:var exit=264;
-            case 45:var exit=264;
-            case 46:var exit=264;
-            case 47:var exit=264;
-            case 48:var exit=264;
-            case 49:var exit=264;
-            case 50:var exit=264;
-            case 51:var exit=264;
-            case 52:var exit=264;
-            case 53:var exit=264;
-            case 54:var exit=264;
-            case 55:var exit=264;
-            case 56:var exit=264;
-            case 57:var exit=264;
-            case 58:var exit=264;
-            case 59:var exit=264;
-            case 60:var exit=264;
+            case 32:exit=264;
+            case 33:exit=264;
+            case 34:exit=264;
+            case 35:exit=264;
+            case 36:exit=264;
+            case 37:exit=264;
+            case 38:exit=264;
+            case 39:exit=264;
+            case 40:exit=264;
+            case 41:exit=264;
+            case 42:exit=264;
+            case 43:exit=264;
+            case 44:exit=264;
+            case 45:exit=264;
+            case 46:exit=264;
+            case 47:exit=264;
+            case 48:exit=264;
+            case 49:exit=264;
+            case 50:exit=264;
+            case 51:exit=264;
+            case 52:exit=264;
+            case 53:exit=264;
+            case 54:exit=264;
+            case 55:exit=264;
+            case 56:exit=264;
+            case 57:exit=264;
+            case 58:exit=264;
+            case 59:exit=264;
+            case 60:exit=264;
             case 61:st("_exp_")
             }
           }
         else
-         {var exit=264;}
+         {exit=264;}
         }
       
       switch(exit){case 264:ch(c)}
@@ -807,12 +812,14 @@ var
           for(var i=0;i<=len-1;i++)
            {var match=s[i];
             
+            var exit;
+            
             var switcher=-48+match;
             
             if(42<switcher>>>0)
-             {if(25<-49+switcher>>>0){var exit=237;}else{var exit=236;}}
+             {if(25<-49+switcher>>>0){exit=237;}else{exit=236;}}
             else
-             {if(6<-10+switcher>>>0){var exit=236;}else{var exit=237;}}
+             {if(6<-10+switcher>>>0){exit=236;}else{exit=237;}}
             
             switch(exit){case 237:case 236:Buffer["add_char"](buf,s[i])}
             }
@@ -1154,12 +1161,14 @@ var
               function(name$1)
                {return [1,Odoc_info["use_hidden_modules"](name$1)];};
             
+            var exit;
+            
             if("unknown primitive:isint")
              {switch(kind[0])
-               {case 0:var exit=223;
-                case 1:var exit=223;
-                case 2:var exit=223;
-                case 3:var exit=223;
+               {case 0:exit=223;
+                case 1:exit=223;
+                case 2:exit=223;
+                case 3:exit=223;
                 case 4:var match=[0,Naming[13](Naming[6],name),h(name)];
                 case 5:var match=[0,Naming[13](Naming[1],name),h(name)];
                 case 6:var match=[0,Naming[13](Naming[4],name),h(name)];
@@ -3610,9 +3619,10 @@ var
          
          var match$1=m[6];
          
+         var exit;
+         
          switch(match$1)
-          {case 2:if(html_short_functors[1]){}else{var exit=94;}
-           default:var exit=94;}
+          {case 2:if(html_short_functors[1]){}else{exit=94;}default:exit=94;}
          
          switch(exit){case 94:bs(b,": ")}
          
@@ -4012,7 +4022,9 @@ var
          },
        html_of_class_comment,
        function(self$neg4,b,text$1)
-        {if(text$1)
+        {var exit;
+         
+         if(text$1)
           {var match=text$1[1];
            
            if(typeof match=="number")
@@ -4020,10 +4032,10 @@ var
            else
             {switch(match[0])
               {case 0:var text2=[0,[13,2,0,[0,[0,match[1]],0]],text$1[2]];
-               default:var exit=63;}}
+               default:exit=63;}}
            }
          else
-          {var exit=63;}
+          {exit=63;}
          
          switch(exit){case 63:var text2=text$1;}
          
@@ -4067,7 +4079,9 @@ var
         {var
           iter_kind=
            function(k)
-            {switch(k)
+            {var exit;
+             
+             switch(k)
               {case 0:
                 var l=k[1];
                 
@@ -4077,8 +4091,8 @@ var
                 else
                  {return 0;}
                 
-               case 1:var exit=57;
-               case 2:var exit=57;
+               case 1:exit=57;
+               case 2:exit=57;
                case 3:return iter_kind(k[1]);
                }
              
@@ -5036,7 +5050,6 @@ var
     html_init);
 
 var Generator=[0,html];
-
 
 module["exports"]=
 {"with_parameter_list":with_parameter_list,

@@ -1,7 +1,10 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Pervasives=require("Pervasives");
 var Parsing=require("Parsing");
 var Int64ops=require("Int64ops");
 var Input_handling=require("Input_handling");
+
 
 var yytransl_const="unknown primitive:caml_obj_dup";
 
@@ -467,7 +470,6 @@ var
  opt_longident_eol=
   function(lexfun,lexbuf)
    {return Parsing["yyparse"](yytables,21,lexfun,lexbuf);};
-
 
 module["exports"]=
 {"argument_list_eol":argument_list_eol,

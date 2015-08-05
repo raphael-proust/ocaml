@@ -1,12 +1,15 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var $$String=require("String");
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
-var List=require("List");
 var Pervasives=require("Pervasives");
+var List=require("List");
 var Printf=require("Printf");
 var Format=require("Format");
 var Str=require("Str");
 var Odoc_messages=require("Odoc_messages");
+
 
 var
  shared=
@@ -1054,7 +1057,6 @@ var
      },
    0,
    0];
-
 
 module["exports"]={"info":info,"to_text":to_text};
 

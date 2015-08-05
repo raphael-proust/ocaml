@@ -1,8 +1,11 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Printtyp=require("Printtyp");
 var Types=require("Types");
 var Format=require("Format");
 var Misc=require("Misc");
 var Buffer=require("Buffer");
+
 
 var
  new_fmt=
@@ -61,11 +64,13 @@ var
    {var
      iter=
       function(t$1)
-       {switch(t$1)
-         {case 0:var exit=11;
+       {var exit;
+        
+        switch(t$1)
+         {case 0:exit=11;
           case 1:if(code){throw [0,Use_code,code[1]];}else{return [1,0];}
           case 2:return [2,t$1[1],Misc["may_map"](iter,t$1[2]),iter(t$1[3])];
-          case 3:var exit=11;
+          case 3:exit=11;
           }
         
         switch(exit){case 11:return t$1;}
@@ -125,7 +130,6 @@ var
     Printtyp["class_type"](modtype_fmt,t2);
     return flush_modtype_fmt(0);
     };
-
 
 module["exports"]=
 {"string_of_type_expr":string_of_type_expr,

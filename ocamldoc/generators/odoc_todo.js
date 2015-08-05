@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_html=require("Odoc_html");
 var CamlinternalOO=require("CamlinternalOO");
 var Odoc_info=require("Odoc_info");
@@ -8,6 +10,7 @@ var Odoc_args=require("Odoc_args");
 var Buffer=require("Buffer");
 var Filename=require("Filename");
 var Odoc_module=require("Odoc_module");
+
 
 
 var
@@ -328,6 +331,8 @@ var
                  
                  switch(param[1])
                   {case "todo":
+                    var exit;
+                    
                     if(text)
                      {var match$2=text[1];
                       
@@ -349,10 +354,10 @@ var
                              }
                            catch(exn){return [0,[0,0,text],acc];}
                            
-                          default:var exit=12;}}
+                          default:exit=12;}}
                       }
                     else
-                     {var exit=12;}
+                     {exit=12;}
                     
                     switch(exit){case 12:return [0,[0,0,text],acc];}
                     
@@ -782,6 +787,6 @@ var
 
 var Generator=[0,scanner,html];
 
-Odoc_args["set_generator"]([0,[0,Generator[2]]]),[0,Naming,p,Html,Generator];
+Odoc_args["set_generator"]([0,[0,Generator[2]]]);
 module["exports"]={"Naming":Naming,"p":p,"Html":Html,"Generator":Generator};
 

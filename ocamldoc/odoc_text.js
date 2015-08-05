@@ -1,3 +1,5 @@
+// Generated CODE, PLEASE EDIT WITH CARE 
+
 var Odoc_text_lexer=require("Odoc_text_lexer");
 var List=require("List");
 var Pervasives=require("Pervasives");
@@ -5,6 +7,7 @@ var Odoc_text_parser=require("Odoc_text_parser");
 var Printf=require("Printf");
 var Buffer=require("Buffer");
 var Lexing=require("Lexing");
+
 
 var Text_syntax="unknown primitive:caml_set_oo_id";
 
@@ -31,8 +34,7 @@ var
   function(s,c)
    {var count$1=0;
     
-    for(var i=0;i<=s["length"]-1;i++)
-     {if(s[i]=c){var count$1=1+count$1;}else{}}
+    for(var i=0;i<=s["length"]-1;i++){if(s[i]=c){count$1=1+count$1;}else{}}
     
     return count$1;
     };
@@ -48,7 +50,7 @@ var
     
     for(var i=0;i<=len-1;i++)
      {if((s[i]=c)&&remain>0)
-       {Printf["bprintf"](b,[0,[12,92,[0,0]],"\%c"],c);var remain=-1+remain;}
+       {Printf["bprintf"](b,[0,[12,92,[0,0]],"\%c"],c);remain=-1+remain;}
       else
        {Buffer["add_char"](b,s[i])}
       }
@@ -83,10 +85,12 @@ var
     for(var i=0;i<=len-1;i++)
      {var c=s[i];
       
+      var exit;
+      
       if(c>=94)
-       {if(c!=123){if(c!=125){var exit=6;}else{var exit=5;}}else{var exit=5;}}
+       {if(c!=123){if(c!=125){exit=6;}else{exit=5;}}else{exit=5;}}
       else
-       {if(c!=91){if(c>=93){var exit=5;}else{var exit=6;}}else{var exit=5;}}
+       {if(c!=91){if(c>=93){exit=5;}else{exit=6;}}else{exit=5;}}
       
       switch(exit)
        {case 6:Buffer["add_char"](b,c);
@@ -288,9 +292,6 @@ var
    p_text_element,
    string_of_text];
 
-[0,Text_syntax,[0,Texter[1],Texter[10]]];
 module["exports"]=
-{"Text_syntax":Text_syntax,
- "unknown block:(makeblock 0 (field 0 Texter/1082) (field 9 Texter/1082))":
- unknown block:(makeblock 0 (field 0 Texter/1082) (field 9 Texter/1082))};
+{"Text_syntax":Text_syntax,"Texter":[0,Texter[1],Texter[10]]};
 
