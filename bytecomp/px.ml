@@ -1,3 +1,4 @@
+[@@@warning "-a"]
 module B64 :
   sig
     val default_alphabet : string
