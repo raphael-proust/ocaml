@@ -152,7 +152,7 @@ module J :
       | PNS of string
       | PNN of float
     type property_map = (property_name* expression) list
-    and expression =
+    and expression_desc =
       | ESeq of expression* expression
       | ECond of expression* expression* expression
       | EBin of binop* expression* expression
@@ -170,6 +170,10 @@ module J :
       | EObj of property_map
       | EQuote of string
       | ERegexp of string* string option
+    and expression =
+      {
+      expression_desc: expression_desc;
+      comment: string option;}
     and statement_desc =
       | Block of block
       | Variable of variable_declaration list
@@ -273,7 +277,7 @@ module J :
       | PNS of string
       | PNN of float
     type property_map = (property_name* expression) list
-    and expression =
+    and expression_desc =
       | ESeq of expression* expression
       | ECond of expression* expression* expression
       | EBin of binop* expression* expression
@@ -314,6 +318,10 @@ module J :
       | Fn of ident* ident list* block* location
       | Debugger
       | Comment of string
+    and expression =
+      {
+      expression_desc: expression_desc;
+      comment: string option;}
     and statement =
       {
       statement_desc: statement_desc;
@@ -389,15 +397,16 @@ module rec
       | { val_type } ->
           Gen_util.string_of_fmt (!Oprint.out_type)
             (Printtyp.tree_of_type_scheme val_type)
+    module E = J_helper.Exp
+    module S = J_helper.Stmt
     let required_modules () =
       Hashtbl.fold
         (fun (id : Ident.t)  ->
            fun _  ->
              fun block  ->
-               (J_helper.Stmt.variable id
-                  ~loc_exp:((J.ECall
-                               ((EVar (Jident.create_js "require")),
-                                 [EStr ((id.name), `Utf8)], N)), N))
+               (S.variable id
+                  ~loc_exp:((E.call (E.var (Jident.create_js "require"))
+                               [E.str id.name]), N))
                :: block) cached_tbl ([] : J.block)
   end
  and
@@ -417,98 +426,94 @@ module rec
        | Cgt  -> Gt
        | Cle  -> Le
        | Cge  -> Ge : J.binop)
+    module E = J_helper.Exp
     let compile_primitive (prim : Lambda.primitive)
       (args : J.expression list) =
       (match prim with
-       | Pmakeblock (tag,_) ->
-           EArr ((Some (J.ENum (float tag))) ::
-             (List.map (fun x  -> Some x) args))
+       | Pmakeblock (tag,_) -> E.arr ((E.int tag) :: args)
        | Pfield i ->
            (match args with
-            | e::[] -> EAccess (e, (ENum (float (i + 1))))
+            | e::[] -> E.access e (E.int (i + 1))
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pnegint |Pnegbint _|Pnegfloat  ->
            (match args with
-            | e::[] -> EUn (Neg, e)
+            | e::[] -> E.un Neg e
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pnot  ->
            (match args with
-            | e::[] -> EUn (Not, e)
+            | e::[] -> E.un Not e
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Poffsetint n ->
            (match args with
-            | e::[] -> EBin (Plus, (ENum (float_of_int n)), e)
+            | e::[] -> E.bin Plus (E.int n) e
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Poffsetref 1 ->
            (match args with
-            | e::[] -> EUn (IncrA, (EAccess (e, (ENum 0.))))
+            | e::[] -> E.un IncrA (E.access e (E.float 0.))
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Poffsetref (-1) ->
            (match args with
-            | e::[] -> EUn (DecrA, (EAccess (e, (ENum 0.))))
+            | e::[] -> E.un DecrA (E.access e (E.float 0.))
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Poffsetref n ->
            (match args with
-            | e::[] ->
-                EBin
-                  (PlusEq, (EAccess (e, (ENum 0.))), (ENum (float_of_int n)))
+            | e::[] -> E.bin PlusEq (E.access e (E.float 0.)) (E.int n)
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Paddint |Paddbint _|Paddfloat  ->
            (match args with
-            | e1::e2::[] -> EBin (Plus, e1, e2)
+            | e1::e2::[] -> E.bin Plus e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Psubint |Psubbint _|Psubfloat  ->
            (match args with
-            | e1::e2::[] -> EBin (Minus, e1, e2)
+            | e1::e2::[] -> E.bin Minus e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pmulint |Pmulbint _|Pmulfloat  ->
            (match args with
-            | e1::e2::[] -> EBin (Mul, e1, e2)
+            | e1::e2::[] -> E.bin Mul e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pdivfloat |Pdivint |Pdivbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Div, e1, e2)
+            | e1::e2::[] -> E.bin Div e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pmodint |Pmodbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Mod, e1, e2)
+            | e1::e2::[] -> E.bin Mod e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Plslint |Plslbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Lsl, e1, e2)
+            | e1::e2::[] -> E.bin Lsl e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Plsrint |Plsrbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Lsr, e1, e2)
+            | e1::e2::[] -> E.bin Lsr e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pasrint |Pasrbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Asr, e1, e2)
+            | e1::e2::[] -> E.bin Asr e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pandint |Pandbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Band, e1, e2)
+            | e1::e2::[] -> E.bin Band e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Porint |Porbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Bor, e1, e2)
+            | e1::e2::[] -> E.bin Bor e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pxorint |Pxorbint _ ->
            (match args with
-            | e1::e2::[] -> EBin (Bxor, e1, e2)
+            | e1::e2::[] -> E.bin Bxor e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Psequand  ->
            (match args with
-            | e1::e2::[] -> EBin (And, e1, e2)
+            | e1::e2::[] -> E.bin And e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Psequor  ->
            (match args with
-            | e1::e2::[] -> EBin (Or, e1, e2)
+            | e1::e2::[] -> E.bin Or e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pisout  ->
            (match args with
-            | range::e::[] ->
-                J.EBin (Lt, range, (J.EBin (Lsr, e, (ENum 0.))))
+            | range::e::[] -> E.bin Lt range (E.bin Lsr e (E.float 0.))
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pidentity  ->
            (match args with
@@ -518,20 +523,20 @@ module rec
        | Pbintcomp (_,cmp)|Pfloatcomp cmp|Pintcomp cmp ->
            let op: J.binop = jsop_of_comp cmp in
            (match args with
-            | e1::e2::[] -> J.EBin (op, e1, e2)
+            | e1::e2::[] -> E.bin op e1 e2
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pgetglobal i ->
            if Ident.global i
-           then J.EVar i
+           then E.var i
            else Gen_util.expr_of_unknow_primitive prim
        | Praise _raise_kind -> Gen_util.expr_of_unknow_primitive prim
        | Prevapply _ ->
            (match args with
-            | arg::f::[] -> J.ECall (f, [arg], J.N)
+            | arg::f::[] -> E.call f [arg]
             | _ -> assert false)
        | Pdirapply _ ->
            (match args with
-            | f::arg::[] -> J.ECall (f, [arg], J.N)
+            | f::arg::[] -> E.call f [arg]
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Ploc kind -> Gen_util.expr_of_unknow_primitive prim
        | Pintoffloat  ->
@@ -541,38 +546,33 @@ module rec
        | Psetfield (i,_) ->
            (match args with
             | e0::e1::[] ->
-                J.ESeq
-                  ((EBin (Eq, (EAccess (e0, (ENum (float (i + 1))))), e1)),
-                    Gen_util.unit_val)
+                E.seq (E.bin Eq (E.access e0 (E.int (i + 1))) e1)
+                  Gen_util.unit_val
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pfloatfield i ->
            (match args with
-            | e::[] -> J.EAccess (e, (ENum (float i)))
+            | e::[] -> E.access e (E.int i)
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Psetfloatfield i ->
            (match args with
             | e::e0::[] ->
-                J.ESeq
-                  ((EBin (Eq, (EAccess (e, (ENum (float i)))), e0)),
-                    Gen_util.unit_val)
+                E.seq (E.bin Eq (E.access e (E.int i)) e0) Gen_util.unit_val
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Parraylength _|Pstringlength  ->
            (match args with
-            | e::[] -> J.EAccess (e, (EStr ("length", `Utf8)))
+            | e::[] -> E.access e (E.str "length")
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pmakearray i ->
            (match i with
-            | Pgenarray |Paddrarray |Pintarray |Pfloatarray  ->
-                J.EArr (List.map (fun a  -> Some a) args))
+            | Pgenarray |Paddrarray |Pintarray |Pfloatarray  -> E.arr args)
        | Parrayrefu _|Parrayrefs _|Pstringrefu |Pstringrefs  ->
            (match args with
-            | e::e1::[] -> J.EAccess (e, e1)
+            | e::e1::[] -> E.access e e1
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Parraysetu _|Parraysets _|Pstringsetu |Pstringsets  ->
            (match args with
             | e::e0::e1::[] ->
-                J.ESeq
-                  ((EBin (Eq, (J.EAccess (e, e0)), e1)), Gen_util.unit_val)
+                E.seq (E.bin Eq (E.access e e0) e1) Gen_util.unit_val
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pbintofint _|Pintofbint _|Pfloatofint  ->
            (match args with
@@ -581,10 +581,9 @@ module rec
        | Pabsfloat  ->
            (match args with
             | e::[] ->
-                J.ECall
-                  ((J.EAccess
-                      ((EVar (Jident.create_js "Math")),
-                        (EStr ("abs", `Utf8)))), [e], N)
+                E.call
+                  (E.access (E.var (Jident.create_js "Math")) (E.str "abs"))
+                  [e]
             | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pisint |Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
        | Pduprecord (_,_)|Plazyforce |Pccall _|Pbittest |Pcvtbint (_,_)
@@ -599,21 +598,19 @@ module rec
       (match x with
        | Const_base c ->
            (match c with
-            | Const_int i -> J.ENum (float i)
-            | Const_char i -> J.ENum (float (Char.code i))
-            | Const_int32 i -> J.ENum (Int32.to_float i)
-            | Const_int64 i -> J.ENum (Int64.to_float i)
-            | Const_nativeint i -> J.ENum (Nativeint.to_float i)
-            | Const_float f -> J.ENum (float_of_string f)
-            | Const_string (i,_) -> J.EStr (i, `Utf8))
-       | Const_pointer c -> ENum (float c)
+            | Const_int i -> E.int i
+            | Const_char i -> E.int (Char.code i)
+            | Const_int32 i -> E.float (Int32.to_float i)
+            | Const_int64 i -> E.float (Int64.to_float i)
+            | Const_nativeint i -> E.float (Nativeint.to_float i)
+            | Const_float f -> E.float (float_of_string f)
+            | Const_string (i,_) -> E.str i)
+       | Const_pointer c -> E.int c
        | Const_block (tag,xs) ->
-           J.EArr ((Some (ENum (float tag))) ::
-             (List.map (fun x  -> Some (compile_const x)) xs))
+           E.arr ((E.int tag) :: (List.map (fun x  -> compile_const x) xs))
        | Const_float_array ars ->
-           J.EArr
-             (List.map (fun x  -> Some (J.ENum (float_of_string x))) ars)
-       | Const_immstring s -> J.EStr (s, `Utf8) : J.expression)
+           E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
+       | Const_immstring s -> E.str s : J.expression)
   end and
        Gen_util:sig
                   type output = (J.block* J.expression option)
@@ -651,6 +648,8 @@ module rec
                   val concat : output list -> output
                 end =
        struct
+         module E = J_helper.Exp
+         module S = J_helper.Stmt
          type output = (J.block* J.expression option)
          type st =
            | EffectCall
@@ -665,18 +664,18 @@ module rec
          let string_of_lambda = string_of_fmt Printlambda.lambda
          let string_of_primitive = string_of_fmt Printlambda.primitive
          let unknown_expr (lam : Lambda.lambda) =
-           (J.EStr (("unknown block:" ^ (string_of_lambda lam)), `Utf8) : 
-           J.expression)
+           (E.str ("unknown block:" ^ (string_of_lambda lam)) : J.expression)
          let unknown_block (lam : Lambda.lambda) =
-           ([J_helper.Stmt.exp
-               (EStr (("unknown block:" ^ (string_of_lambda lam)), `Utf8))] : 
+           ([let open J_helper in
+               Stmt.exp @@
+                 (Exp.mk
+                    (EStr
+                       (("unknown block:" ^ (string_of_lambda lam)), `Utf8)))] : 
            J.block)
          let string_of_unknown_lam (lam : Lambda.lambda) =
            ("unknown block:" ^ (string_of_lambda lam) : string)
          let expr_of_unknow_primitive (lam : Lambda.primitive) =
-           (let open J in
-              EStr
-                (("unknown primitive:" ^ (string_of_primitive lam)), `Utf8) : 
+           (E.str ("unknown primitive:" ^ (string_of_primitive lam)) : 
            J.expression)
          let rec is_pure (lam : Lambda.lambda) =
            match lam with
@@ -713,37 +712,25 @@ module rec
                 ((block @ [J_helper.Stmt.return (Some exp)]), None)
             | (NeedValue ,_) -> (block, (Some exp)) : output)
          let gen ?(name= "$js")  () = Jident.create name
-         let exports (idents : Translmod.exports list) lams =
-           (let () =
-              if (List.length idents) != (List.length lams)
-              then
-                (prerr_endline (string_of_int @@ (List.length idents));
-                 prerr_endline (string_of_int @@ (List.length lams));
-                 List.iter
-                   (function
-                    | x ->
-                        (match (x : Translmod.exports) with
-                         | Prim p -> prerr_endline p
-                         | Id id -> prerr_endline id.name)) idents)
-              else () in
-            let properties: J.property_map =
+         let exports (idents : Translmod.exports list)
+           (lams : J.expression list) =
+           (let properties: J.property_map =
               List.map2
                 (fun (i : Translmod.exports)  ->
                    fun (e : J.expression)  ->
                      let n = match i with | Id i -> i.name | Prim i -> i in
                      ((J.PNS n), e)) idents lams in
-            J_helper.Stmt.exp
-              (EBin
-                 (Eq,
-                   (EAccess
-                      ((EVar (Jident.create_js "module")),
-                        (EStr ("exports", `Utf8)))), (EObj properties))) : 
-           J.statement)
-         let unit_val = J.ENum 0.
-         let undefined = J.EVar (Jident.create_js "undefined")
-         let return_unit: J.block = [J_helper.Stmt.return (Some (J.ENum 0.))]
+            let open J_helper in
+              Stmt.exp
+                (E.bin Eq
+                   (E.access (E.var (Jident.create_js "module"))
+                      (E.str "exports")) (E.obj properties)) : J.statement)
+         let unit_val = E.float 0.
+         let undefined = E.var (Jident.create_js "undefined")
+         let return_unit: J.block =
+           [J_helper.Stmt.return (Some (E.float 0.))]
          let rec is_js_pure (x : J.expression) =
-           match x with
+           match x.expression_desc with
            | J.EVar _ -> true
            | J.ENum _ -> true
            | J.EArr xs ->
@@ -762,7 +749,7 @@ module rec
            (match (x, y) with
             | (([],None ),y) -> y
             | (([],Some _),([],None )) -> x
-            | (([],Some e1),([],Some e2)) -> ([], (Some (J.ESeq (e1, e2))))
+            | (([],Some e1),([],Some e2)) -> ([], (Some (E.seq e1 e2)))
             | ((block1,opt_e1),(block2,opt_e2)) ->
                 ((block1 @ ((statement_of_opt_expr opt_e1) :: block2)),
                   opt_e2) : output)
@@ -787,6 +774,32 @@ module rec
             J_helper:sig
                        val return_unit : J.block
                        val unit_val : J.expression
+                       module Exp :
+                       sig
+                         type t = J.expression
+                         val mk : ?comment:string -> J.expression_desc -> t
+                         val access : ?comment:string -> t -> t -> t
+                         val var : ?comment:string -> J.ident -> t
+                         val str : ?comment:string -> string -> t
+                         val efun :
+                           ?comment:string ->
+                             ?name:J.ident ->
+                               ?loc:J.location ->
+                                 J.ident list -> J.block -> t
+                         val econd : ?comment:string -> t -> t -> t -> t
+                         val int : ?comment:string -> int -> t
+                         val float : ?comment:string -> float -> t
+                         val eqeq : ?comment:string -> t -> t -> t
+                         val typeof : ?comment:string -> t -> t
+                         val bin : ?comment:string -> J.binop -> t -> t -> t
+                         val un : ?comment:string -> J.unop -> t -> t
+                         val call :
+                           ?comment:string ->
+                             ?loc:J.location -> t -> t list -> t
+                         val arr : ?comment:string -> t list -> t
+                         val seq : ?comment:string -> t -> t -> t
+                         val obj : ?comment:string -> J.property_map -> t
+                       end
                        module Stmt :
                        sig
                          type t = J.statement
@@ -849,20 +862,66 @@ module rec
                        end
                      end =
             struct
-              let unit_val = J.ENum 0.
-              let return_unit: J.block =
-                [{
-                   loc = N;
-                   statement_desc = (J.Return (Some (J.ENum 0.)));
-                   comment = None
-                 }]
+              module Exp =
+                struct
+                  type t = J.expression
+                  let mk ?comment  exp =
+                    ({ expression_desc = exp; comment } : t)
+                  let access ?comment  e0 e1 =
+                    ({ expression_desc = (EAccess (e0, e1)); comment } : 
+                    t)
+                  let var ?comment  id =
+                    ({ expression_desc = (EVar id); comment } : t)
+                  let str ?comment  s =
+                    ({ expression_desc = (EStr (s, `Utf8)); comment } : 
+                    t)
+                  let efun ?comment  ?name  ?(loc= J.N)  params block =
+                    ({
+                       expression_desc = (EFun (name, params, block, loc));
+                       comment
+                     } : t)
+                  let econd ?comment  b t f =
+                    ({ expression_desc = (ECond (b, t, f)); comment } : 
+                    t)
+                  let int ?comment  i =
+                    ({ expression_desc = (ENum (float i)); comment } : 
+                    t)
+                  let float ?comment  i =
+                    ({ expression_desc = (ENum i); comment } : t)
+                  let eqeq ?comment  e0 e1 =
+                    ({ expression_desc = (EBin (EqEq, e0, e1)); comment } : 
+                    t)
+                  let typeof ?comment  e =
+                    ({ expression_desc = (EUn (Typeof, e)); comment } : 
+                    t)
+                  let bin ?comment  op e0 e1 =
+                    ({ expression_desc = (EBin (op, e0, e1)); comment } : 
+                    t)
+                  let un ?comment  op e =
+                    ({ expression_desc = (EUn (op, e)); comment } : t)
+                  let call ?comment  ?(loc= J.N)  e0 args =
+                    ({ expression_desc = (ECall (e0, args, loc)); comment } : 
+                    t)
+                  let arr ?comment  es =
+                    ({
+                       expression_desc =
+                         (EArr (List.map (fun x  -> Some x) es));
+                       comment
+                     } : t)
+                  let seq ?comment  e0 e1 =
+                    ({ expression_desc = (ESeq (e0, e1)); comment } : 
+                    t)
+                  let obj ?comment  properties =
+                    ({ expression_desc = (EObj properties); comment } : 
+                    t)
+                end
               module Stmt =
                 struct
                   type t = J.statement
                   let unit: t =
                     {
                       J.loc = N;
-                      statement_desc = (J.Return (Some (J.ENum 0.)));
+                      statement_desc = (J.Return (Some (Exp.float 0.)));
                       comment = None
                     }
                   let mk ?comment  ?(loc= J.N)  statement_desc =
@@ -904,21 +963,21 @@ module rec
                   let assign ?comment  ?(loc= J.N)  id e =
                     ({
                        loc;
-                       statement_desc = (J.Exp (EBin (Eq, (EVar id), e)));
+                       statement_desc = (J.Exp (Exp.bin Eq (Exp.var id) e));
                        comment
                      } : t)
                   let assign_unit ?comment  ?(loc= J.N)  id =
                     ({
                        loc;
                        statement_desc =
-                         (J.Exp (EBin (Eq, (EVar id), (J.ENum 0.))));
+                         (J.Exp (Exp.bin Eq (Exp.var id) (Exp.float 0.)));
                        comment
                      } : t)
                   let declare_unit ?comment  ?(loc= J.N)  id =
                     ({
                        loc;
                        statement_desc =
-                         (J.Variable [(id, (Some ((J.ENum 0.), N)))]);
+                         (J.Variable [(id, (Some ((Exp.float 0.), N)))]);
                        comment
                      } : t)
                   let while_ ?comment  ?(loc= J.N)  e st =
@@ -937,11 +996,13 @@ module rec
                        comment
                      } : t)
                 end
-              module Exp =
-                struct
-                  let to_stmt ?(loc= J.N)  (x : J.expression) =
-                    ((J.Exp x), loc)
-                end
+              let unit_val = Exp.float 0.
+              let return_unit: J.block =
+                [{
+                   loc = N;
+                   statement_desc = (J.Return (Some (Exp.float 0.)));
+                   comment = None
+                 }]
             end and
                  Js_main:sig
                            val compile :
@@ -951,6 +1012,8 @@ module rec
                          end =
                  struct
                    open Gen_util.Ops
+                   module E = J_helper.Exp
+                   module S = J_helper.Stmt
                    exception Not_a_module
                    type jbl_label = int
                    module HandlerMap =
@@ -983,29 +1046,26 @@ module rec
                      (match lam with
                       | Lvar id ->
                           (Gen_util.handle_name_tail st should_return lam) @@
-                            (J.EVar id)
+                            (J_helper.Exp.var id)
                       | Lconst c ->
                           (Gen_util.handle_name_tail st should_return lam) @@
                             (Gen_primitive.compile_const c)
                       | Lfunction (kind,params,body) ->
                           (Gen_util.handle_name_tail st should_return lam) @@
-                            (J.EFun
-                               (None, params,
-                                 (Gen_util.block_of_output @@
-                                    (compile_lambda
-                                       {
-                                         cxt with
-                                         st = EffectCall;
-                                         should_return = true;
-                                         jmp_table = HandlerMap.empty
-                                       } body)), N))
+                            (J_helper.Exp.efun params
+                               (Gen_util.block_of_output @@
+                                  (compile_lambda
+                                     {
+                                       cxt with
+                                       st = EffectCall;
+                                       should_return = true;
+                                       jmp_table = HandlerMap.empty
+                                     } body)))
                       | Lprim (Pfield n,(Lprim (Pgetglobal id,[]))::[]) ->
                           (Gen_util.handle_name_tail st should_return lam) @@
-                            (J.EAccess
-                               ((EVar id),
-                                 (EStr
-                                    ((Gen_of_env.get_string (id, n) cxt.env),
-                                      `Utf8))))
+                            (let open J_helper.Exp in
+                               access (var id)
+                                 (str (Gen_of_env.get_string (id, n) cxt.env)))
                       | Lprim (Praise _raise_kind,e::[]) ->
                           (match compile_lambda
                                    {
@@ -1033,7 +1093,7 @@ module rec
                                     | (a,Some b) -> (a, b)
                                     | _ -> assert false) args_lambda) in
                           let args_code = List.concat args_block in
-                          let exp: J.expression =
+                          let exp =
                             Gen_primitive.compile_primitive prim args_expr in
                           Gen_util.handle_block_return st should_return lam
                             args_code exp
@@ -1080,7 +1140,8 @@ module rec
                                      with
                                      | (([],Some out1),([],Some out2)) ->
                                          (b,
-                                           (Some (J.ECond (e, out1, out2))))
+                                           (Some
+                                              (J_helper.Exp.econd e out1 out2)))
                                      | _ ->
                                          let v = Gen_util.gen () in
                                          (match ((compile_lambda
@@ -1104,7 +1165,7 @@ module rec
                                                        ~else_:(block
                                                                  (Gen_util.block_of_output
                                                                     out2))]),
-                                                (Some (J.EVar v)))))
+                                                (Some (E.var v)))))
                                 | _ ->
                                     ((b @
                                         [let open J_helper.Stmt in
@@ -1133,7 +1194,7 @@ module rec
                                       switch e
                                         (List.map
                                            (fun (x,lam)  ->
-                                              ((J.EStr (x, `Utf8)),
+                                              ((E.str x),
                                                 (Gen_util.block_of_output @@
                                                    (compile_lambda
                                                       { cxt with st } lam))))
@@ -1150,7 +1211,7 @@ module rec
                                (match st with
                                 | NeedValue  ->
                                     let v = Gen_util.gen () in
-                                    ((aux (Declare v)), (Some (J.EVar v)))
+                                    ((aux (Declare v)), (Some (E.var v)))
                                 | _ -> ((aux st), None))
                            | _ -> assert false)
                       | Lswitch
@@ -1163,7 +1224,7 @@ module rec
                                switch v
                                  (List.map
                                     (fun (x,lam)  ->
-                                       ((J.ENum (float x)),
+                                       ((E.int x),
                                          (Gen_util.block_of_output @@
                                             (compile_lambda { cxt with st }
                                                lam)))) table)
@@ -1186,34 +1247,31 @@ module rec
                             | (0,_,(block,Some e)) ->
                                 aux st e sw_blocks default
                             | (_,0,(block,Some e)) ->
-                                aux st (EAccess (e, (ENum 0.))) sw_consts
+                                aux st (E.access e (E.float 0.)) sw_consts
                                   default
                             | (_,_,(block,Some e)) ->
                                 let aux e =
-                                  [let open J_helper.Stmt in
-                                     if_
-                                       (EBin
-                                          (EqEq, (J.EUn (Typeof, e)),
-                                            (EStr ("number", `Utf8))))
-                                       (block (aux st e sw_consts None))
-                                       ~else_:(block
-                                                 (aux st
-                                                    (EAccess (e, (ENum 0.)))
-                                                    sw_blocks default : 
-                                                 J.block))] in
-                                (match e with
+                                  [S.if_
+                                     (E.eqeq (E.typeof e)
+                                        (let open E in str "number"))
+                                     (S.block (aux st e sw_consts None))
+                                     ~else_:(S.block
+                                               (aux st
+                                                  (E.access e (E.float 0.))
+                                                  sw_blocks default : 
+                                               J.block))] in
+                                (match e.expression_desc with
                                  | J.EVar _ -> aux e
                                  | _ ->
                                      let v = Gen_util.gen () in
-                                     (J_helper.Stmt.variable v
-                                        ~loc_exp:(e, N))
-                                       :: (aux (EVar v)))
+                                     (S.variable v ~loc_exp:(e, N)) ::
+                                       (aux (E.var v)))
                             | (_,_,(_,None )) -> assert false in
                           (match st with
                            | NeedValue  ->
                                let v = Gen_util.gen () in
                                (((J_helper.Stmt.variable v) ::
-                                 (aux2 (Assign v))), (Some (J.EVar v)))
+                                 (aux2 (Assign v))), (Some (E.var v)))
                            | _ -> ((aux2 st), None))
                       | Lstaticraise (i,largs) ->
                           (match HandlerMap.find i cxt.jmp_table with
@@ -1226,7 +1284,7 @@ module rec
                                            match x with
                                            | Lvar id ->
                                                ([J_helper.Stmt.variable arg
-                                                   ~loc_exp:((EVar id), N)],
+                                                   ~loc_exp:((E.var id), N)],
                                                  None)
                                            | _ ->
                                                compile_lambda
@@ -1237,8 +1295,7 @@ module rec
                                                  } x) largs
                                       (args : Ident.t list)) in
                                args_code ++
-                                 ([J_helper.Stmt.assign exit_id
-                                     (ENum (float i))],
+                                 ([J_helper.Stmt.assign exit_id (E.int i)],
                                    (Some Gen_util.undefined))
                            | exception Not_found  ->
                                ((Gen_util.unknown_block lam), None))
@@ -1252,10 +1309,10 @@ module rec
                               code_table in
                           let aux st =
                             [let open J_helper.Stmt in
-                               switch (EVar exit_id)
+                               switch (E.var exit_id)
                                  (List.map
                                     (fun (i,handler,_)  ->
-                                       ((J.ENum (float i)),
+                                       ((E.int i),
                                          (Gen_util.block_of_output @@
                                             (compile_lambda { cxt with st }
                                                handler)))) code_table)] in
@@ -1270,7 +1327,7 @@ module rec
                               | NeedValue  ->
                                   let v = Gen_util.gen () in
                                   (((J_helper.Stmt.variable v) ::
-                                    (aux (Assign v))), (Some (J.EVar v)))
+                                    (aux (Assign v))), (Some (E.var v)))
                               | _ -> ((aux st), None)))
                       | Lwhile (p,body) ->
                           (match compile_lambda
@@ -1331,8 +1388,8 @@ module rec
                                        let open J_helper.Stmt in
                                          for_
                                            (Right [(id, (Some (e1, J.N)))])
-                                           ~pred:(J.EBin (cmp, (EVar id), e2))
-                                           ~step:(J.EUn (inc, (EVar id)))
+                                           ~pred:(E.bin cmp (E.var id) e2)
+                                           ~step:(E.un inc (E.var id))
                                            (block
                                               (Gen_util.block_of_output @@
                                                  (compile_lambda
@@ -1389,7 +1446,7 @@ module rec
                           (match st with
                            | NeedValue  ->
                                let v = Gen_util.gen () in
-                               ((aux (Declare v)), (Some (J.EVar v)))
+                               ((aux (Declare v)), (Some (E.var v)))
                            | _ -> ((aux st), None))
                       | Lapply (fn,args_lambda,_) ->
                           (match compile_lambda
@@ -1415,7 +1472,7 @@ module rec
                                          | (a,Some b) -> (a, b)
                                          | _ -> assert false) args_lambda) in
                                let args_code = List.concat args_code in
-                               let exp: J.expression = ECall (fn, args, N) in
+                               let exp = E.call fn args in
                                Gen_util.handle_block_return st should_return
                                  lam (fn_code @ args_code) exp)
                       | Lsend (meth_kind,lam1,lam2,lams,loc) ->
@@ -1470,6 +1527,7 @@ module rec
                       | x -> (Nop x) :: acc : group list)
                    let compile env lam =
                      (let exports = Translmod.get_export_identifiers () in
+                      let () = Translmod.reset () in
                       let export_idents =
                         exports |>
                           (Jlist.filter_map
@@ -2420,6 +2478,8 @@ module rec
                                                           J.block -> cxt
                                                 end =
                                           struct
+                                            module E = J_helper.Exp
+                                            module S = J_helper.Stmt
                                             let quiet = ref false
                                             let warn fmt =
                                               Format.ksprintf
@@ -2837,7 +2897,7 @@ module rec
                                               | _ -> false
                                             let rec need_paren l
                                               (e : J.expression) =
-                                              match e with
+                                              match e.expression_desc with
                                               | ESeq (e,_) ->
                                                   (l <= 0) &&
                                                     (need_paren 0 e)
@@ -3038,9 +3098,20 @@ module rec
                                                   | No_source_map  ->
                                                       (fun f  ->
                                                          fun loc  -> ())
-                                                let rec expression cxt l f
-                                                  (e : J.expression) =
-                                                  (match e with
+                                                let rec expression cxt
+                                                  (l : int) f
+                                                  ({ expression_desc; 
+                                                     comment }
+                                                    : J.expression)
+                                                  =
+                                                  (let () =
+                                                     match comment with
+                                                     | None  -> ()
+                                                     | Some c ->
+                                                         (Pp.string f "/* ";
+                                                          Pp.string f c;
+                                                          Pp.string f " */") in
+                                                   match expression_desc with
                                                    | EVar v -> ident cxt f v
                                                    | ESeq (e1,e2) ->
                                                        (if l > 0
@@ -3495,7 +3566,8 @@ module rec
                                                         cxt)
                                                    | PNN v ->
                                                        expression cxt 0 f
-                                                         (ENum v) : cxt)
+                                                         (E.float v) : 
+                                                  cxt)
                                                 and property_name_and_value_list
                                                   cxt f l =
                                                   (match l with
@@ -3668,7 +3740,7 @@ module rec
                                                 and statement ?(last= false) 
                                                   cxt f
                                                   ({ statement_desc = s; 
-                                                     loc }
+                                                     loc; comment;_}
                                                     : J.statement)
                                                   =
                                                   (let last_semi () =
@@ -3677,7 +3749,15 @@ module rec
                                                      else Pp.string f ";" in
                                                    output_debug_info config f
                                                      loc;
-                                                   (match s with
+                                                   (let () =
+                                                      match comment with
+                                                      | None  -> ()
+                                                      | Some x ->
+                                                          (Pp.string f "/* ";
+                                                           Pp.string f x;
+                                                           Pp.string f " */";
+                                                           Pp.break f) in
+                                                    match s with
                                                     | Comment s ->
                                                         (Pp.string f "// ";
                                                          Pp.string f s;
@@ -3693,7 +3773,12 @@ module rec
                                                            "debugger";
                                                          last_semi ();
                                                          cxt)
-                                                    | Exp (EVar _) ->
+                                                    | Exp
+                                                        {
+                                                          expression_desc =
+                                                            EVar _
+                                                          }
+                                                        ->
                                                         (last_semi (); cxt)
                                                     | Exp e ->
                                                         if need_paren 0 e
@@ -3978,8 +4063,12 @@ module rec
                                                                 "return";
                                                               last_semi ();
                                                               cxt)
-                                                         | Some (EFun
-                                                             (i,l,b,pc)) ->
+                                                         | Some
+                                                             {
+                                                               expression_desc
+                                                                 = EFun
+                                                                 (i,l,b,pc);_}
+                                                             ->
                                                              (Pp.start_group
                                                                 f 1;
                                                               Pp.start_group
