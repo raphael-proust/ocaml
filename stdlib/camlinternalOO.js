@@ -15,7 +15,7 @@ var
     return "unknown primitive:caml_set_oo_id";
     };
 
-var params=[0,1,1,1,3,16];
+var params=/* record */[0,1,1,1,3,16];
 
 var step=Sys["word_size"]/16;
 
@@ -50,7 +50,7 @@ var compare$2=function(x,y){return "unknown primitive:caml_int_compare";};
 
 var Labs=Map["Make"]([0,compare$2]);
 
-var dummy_table=[0,0,[dummy_item],Meths[1],Labs[1],0,0,Vars[1],0];
+var dummy_table=/* record */[0,0,[dummy_item],Meths[1],Labs[1],0,0,Vars[1],0];
 
 var table_count=[0,0];
 
@@ -72,7 +72,15 @@ var
     methods[1]=fit_size(len)*Sys["word_size"]/8-1,0;
     for(var i=0;i<=len-1;i++){methods[i*2+3]=pub_labels[i],0}
     
-    return [0,initial_object_size,methods,Meths[1],Labs[1],0,0,Vars[1],0];
+    return /* record */[0,
+            initial_object_size,
+            methods,
+            Meths[1],
+            Labs[1],
+            0,
+            0,
+            Vars[1],
+            0];
     };
 
 var
@@ -133,7 +141,7 @@ var
     if(Labs[22](label,table[4]))
      {return put(table,label,element);}
     else
-     {return table[6]=[0,[0,label,element],table[6]],0;}
+     {return table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]],0;}
     };
 
 var
@@ -162,7 +170,9 @@ var
     var concr_meth_labs=List["map"](get_method_label(table),concr_meths$1);
     
     table[5]=
-    [0,[0,table[3],table[4],table[6],table[7],virt_meth_labs,vars$1],table[5]],
+    /* :: */[0,
+     /* tuple */[0,table[3],table[4],table[6],table[7],virt_meth_labs,vars$1],
+     table[5]],
     0;
     table[7]=
     Vars[11]
@@ -206,7 +216,7 @@ var
                if(List["mem"](lab,virt_meth_labs))
                 {return hm;}
                else
-                {return [0,met,hm];}
+                {return /* :: */[0,met,hm];}
                },
              table[6],
              0),
@@ -247,7 +257,7 @@ var
                if(List["mem"](lab,virt_meths))
                 {return hm;}
                else
-                {return [0,met,hm];}
+                {return /* :: */[0,met,hm];}
                },
              table[6],
              saved_hidden_meths),
@@ -320,7 +330,9 @@ var
  get_variables=
   function(table,names){return $$Array["map"](get_variable(table),names);};
 
-var add_initializer=function(table,f){return table[8]=[0,f,table[8]],0;};
+var
+ add_initializer=
+  function(table,f){return table[8]=/* :: */[0,f,table[8]],0;};
 
 var
  create_table=
@@ -364,11 +376,11 @@ var
     
     widen(cla);
     return $$Array["concat"]
-            ([0,
+            (/* :: */[0,
               [init],
-              [0,
+              /* :: */[0,
                $$Array["map"](get_variable(cla),to_array(vals)),
-               [0,
+               /* :: */[0,
                 $$Array["map"]
                  (function(nm)
                    {return get_method(cla,get_method_label(cla,nm));},
@@ -384,7 +396,7 @@ var
     var env_init=class_init(table);
     
     init_class(table);
-    return [0,env_init(0),class_init,env_init,0];
+    return /* tuple */[0,env_init(0),class_init,env_init,0];
     };
 
 var
@@ -404,7 +416,7 @@ var
   function(loc)
    {var undef=function(param){throw [0,Undefined_recursive_module,loc];};
     
-    return [0,undef,undef,undef,0];
+    return /* tuple */[0,undef,undef,undef,0];
     };
 
 var
@@ -464,11 +476,11 @@ var
 var
  build_path=
   function(n,keys,tables)
-   {var res=[0,0,0,0];
+   {var res=/* record */[0,0,0,0];
     
     var r=[0,res];
     
-    for(var i=0;i<=n;i++){r[1]=[0,keys[i],r[1],0],0}
+    for(var i=0;i<=n;i++){r[1]=/* Cons */[0,keys[i],r[1],0],0}
     
     tables[2]=r[1],0;
     return res;
@@ -491,7 +503,7 @@ var
            {if(tables$1[3]!=0)
              {return lookup_key(tables$1[3]);}
             else
-             {var next=[0,key,0,0];
+             {var next=/* Cons */[0,key,0,0];
               
               tables$1[3]=next,0;
               return build_path(i-1,keys,next);
@@ -799,7 +811,7 @@ var
 var
  stats=
   function(param)
-   {return [0,table_count[1],method_count[1],inst_var_count[1]];};
+   {return /* record */[0,table_count[1],method_count[1],inst_var_count[1]];};
 
 module["exports"]=
 {"public_method_label":public_method_label,

@@ -20,7 +20,7 @@ switch(match)
  {case "Win32":var preempt_signal=Sys["sigterm"];
   default:var preempt_signal=Sys["sigvtalrm"];}
 
-Sys["set_signal"](preempt_signal,[0,preempt]);
+Sys["set_signal"](preempt_signal,[/* Signal_handle */0,preempt]);
 "unknown primitive:caml_thread_initialize",
 Pervasives["at_exit"]
  (function(param)
@@ -36,7 +36,7 @@ var wait_write=function(fd){return 0;};
 var
  wait_timed_read=
   function(fd,d)
-   {var match$1=Unix["select"]([0,fd,0],0,0,d);
+   {var match$1=Unix["select"]([/* :: */0,fd,0],0,0,d);
     
     var match$2=match$1[1];
     
@@ -46,7 +46,7 @@ var
 var
  wait_timed_write=
   function(fd,d)
-   {var match$1=Unix["select"](0,[0,fd,0],0,d);
+   {var match$1=Unix["select"](0,[/* :: */0,fd,0],0,d);
     
     var match$2=match$1[2];
     

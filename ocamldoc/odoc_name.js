@@ -53,7 +53,8 @@ var
           else
            {if(switcher!=23){exit=51;}else{exit=50;}}
           
-          switch(exit){case 51:return [0,n];case 50:return iter_first(n+1);}
+          switch(exit)
+           {case 51:return [/* Some */0,n];case 50:return iter_first(n+1);}
           }
         };
     
@@ -79,7 +80,8 @@ var
             else
              {if(switcher!=23){exit=49;}else{exit=48;}}
             
-            switch(exit){case 49:return [0,n];case 48:return iter_last(n-1);}
+            switch(exit)
+             {case 49:return [/* Some */0,n];case 48:return iter_last(n-1);}
             }
           };
       
@@ -146,7 +148,7 @@ var
            List["rev"](Str["split"](Str["regexp_string"]("."),name));
          
          if(match$1)
-          {return [0,
+          {return [/* tuple */0,
                    $$String["concat"](".",List["rev"](match$1[2])),
                    match$1[1]];
            }
@@ -182,7 +184,9 @@ var
            switch(exit){case 36:Buffer["add_char"](buf[j],c)}
            }
          
-         return [0,Buffer["contents"](buf[0]),Buffer["contents"](buf[1])];
+         return [/* tuple */0,
+                 Buffer["contents"](buf[0]),
+                 Buffer["contents"](buf[1])];
          }
        }
     };
@@ -224,24 +228,25 @@ var
        {var h=$$String["sub"](n,0,pos);
         
         try
-         {return [0,n,""];}
+         {return [/* tuple */0,n,""];}
         catch(exn)
          {if(exn=Not_found)
            {var len=n["length"];
             
             if(pos>=len-1)
-             {return [0,h,""];}
+             {return [/* tuple */0,h,""];}
             else
-             {return [0,h,$$String["sub"](n,pos+1,len-pos-1)];}
+             {return [/* tuple */0,h,$$String["sub"](n,pos+1,len-pos-1)];}
             }
           else
            {throw exn;}
           }
         }
       else
-       {return [0,n,""];}
+       {return [/* tuple */0,n,""];}
       }
-    catch(exn$1){if(exn$1=Not_found){return [0,n,""];}else{throw exn$1;}}
+    catch(exn$1)
+     {if(exn$1=Not_found){return [/* tuple */0,n,""];}else{throw exn$1;}}
     };
 
 var head=function(n){return head_and_tail(n)[1];};
@@ -350,9 +355,9 @@ var
       List["fold_left"]
        (function(acc_opt,s)
          {if(acc_opt)
-           {return [0,[1,acc_opt[1],s,0]];}
+           {return [/* Some */0,[/* Pdot */1,acc_opt[1],s,0]];}
           else
-           {return [0,[0,Ident["create"](s)]];}
+           {return [/* Some */0,[/* Pident */0,Ident["create"](s)]];}
           },
         0,
         Str["split"](Str["regexp"]("\."),n));

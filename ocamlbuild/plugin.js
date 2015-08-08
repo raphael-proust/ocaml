@@ -106,21 +106,24 @@ var
            {if(we_have_a_config_file_interface$1)
              {var
                plugin_config=
-                [0,
-                 [0,
-                  [2,plugin_config_file_interface],
-                  [0,[2,plugin_config_file],0]]];
+                [/* S */0,
+                 [/* :: */0,
+                  [/* P */2,plugin_config_file_interface],
+                  [/* :: */0,[/* P */2,plugin_config_file],0]]];
               }
             else
-             {var plugin_config=[2,plugin_config_file];}
+             {var plugin_config=[/* P */2,plugin_config_file];}
             }
           else
            {var plugin_config=0;}
           
           if(Options["native_plugin"][1])
-           {var match=[0,"cmxa","cmx",Options["ocamlopt"][1],"native"];}
+           {var
+             match=
+              [/* tuple */0,"cmxa","cmx",Options["ocamlopt"][1],"native"];
+            }
           else
-           {var match=[0,"cma","cmo",Options["ocamlc"][1],"byte"];}
+           {var match=[/* tuple */0,"cma","cmo",Options["ocamlc"][1],"byte"];}
           
           var cmo=match[2];
           
@@ -195,29 +198,40 @@ var
                 
                 if(variant>=945409809)
                  {if(variant>=945460878)
-                   {return [2,in_dir(Pathname["Operators"][2](param$1[2],cmo))];
+                   {return [/* P */2,
+                            in_dir(Pathname["Operators"][2](param$1[2],cmo))];
                     }
                   else
-                   {return [0,
-                            [0,
+                   {return [/* S */0,
+                            [/* :: */0,
                              [1,"-I"],
-                             [0,
-                              [1,dir$1],
-                              [0,[2,in_dir(Pathname["Operators"][2](param$1[2],cma))],0]]]];
+                             [/* :: */0,
+                              [/* A */1,dir$1],
+                              [/* :: */0,
+                               [/* P */2,in_dir(Pathname["Operators"][2](param$1[2],cma))],
+                               0]]]];
                     }
                   }
                 else
                  {if(variant>=251810662)
-                   {return [0,[0,[1,"-package"],[0,[1,param$1[2]],0]]];}
+                   {return [/* S */0,
+                            [/* :: */0,
+                             [1,"-package"],
+                             [/* :: */0,[/* A */1,param$1[2]],0]]];
+                    }
                   else
-                   {return [2,Pathname["Operators"][2](param$1[2],cma)];}
+                   {return [/* P */2,Pathname["Operators"][2](param$1[2],cma)];
+                    }
                   }
                 }
               };
           
           var
            match$1=
-            [0,spec(unix_lib),spec(ocamlbuild_lib),spec(ocamlbuild_module)];
+            [/* tuple */0,
+             spec(unix_lib),
+             spec(ocamlbuild_lib),
+             spec(ocamlbuild_module)];
           
           var
            plugin_tags=
@@ -233,25 +247,27 @@ var
           Param_tags["partial_init"](0,Const["Source"][9],plugin_tags);
           var
            cmd=
-            [1,
-             [0,
-              [0,
+            [/* Cmd */1,
+             [/* S */0,
+              [/* :: */0,
                match[3],
-               [0,
+               [/* :: */0,
                 match$1[1],
-                [0,
+                [/* :: */0,
                  match$1[2],
-                 [0,
-                  [5,plugin_tags],
-                  [0,
+                 [/* :: */0,
+                  [/* T */5,plugin_tags],
+                  [/* :: */0,
                    plugin_config,
-                   [0,
-                    [2,plugin_file],
-                    [0,
+                   [/* :: */0,
+                    [/* P */2,plugin_file],
+                    [/* :: */0,
                      match$1[3],
-                     [0,
+                     [/* :: */0,
                       [1,"-o"],
-                      [0,[3,Pervasives["^"](plugin,Options["exe"][1])],0]]]]]]]]]]];
+                      [/* :: */0,
+                       [/* Px */3,Pervasives["^"](plugin,Options["exe"][1])],
+                       0]]]]]]]]]]];
           
           Shell["chdir"](Options["build_dir"][1]);
           Shell["rm_f"](Pervasives["^"](plugin,Options["exe"][1]));
@@ -284,15 +300,17 @@ var
           
           var
            spec=
-            [0,
-             [0,
+            [/* S */0,
+             [/* :: */0,
               runner,
-              [0,
-               [2,
+              [/* :: */0,
+               [/* P */2,
                 Pervasives["^"]
                  (Pathname["Operators"][1](Options["build_dir"][1],plugin),
                   Options["exe"][1])],
-               [0,[1,"-no-plugin"],[0,Command["atomize"](passed_argv),0]]]]];
+               [/* :: */0,
+                [1,"-no-plugin"],
+                [/* :: */0,Command["atomize"](passed_argv),0]]]]];
           
           Log["finish"](0,0);
           var

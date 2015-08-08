@@ -18,13 +18,16 @@ var $$arguments=[0,""];
 
 var
  default_load_path=
-  [0,[0,Filename["current_dir_name"],[0,Config["standard_library"],0]]];
+  [0,
+   [/* :: */0,
+    Filename["current_dir_name"],
+    [/* :: */0,Config["standard_library"],0]]];
 
 var
  add_path=
   function(dir)
    {Config["load_path"][1]=
-    [0,dir,Primitives["except"](dir,Config["load_path"][1])],
+    [/* :: */0,dir,Primitives["except"](dir,Config["load_path"][1])],
     0;
     return Envaux["reset_cache"](0);
     };
@@ -37,7 +40,7 @@ var
     catch(exn){if(exn=Not_found){var old=0;}else{throw exn;}}
     
     return Hashtbl["replace"]
-            (Debugger_config["load_path_for"],mdl,[0,dir,old]);
+            (Debugger_config["load_path_for"],mdl,[/* :: */0,dir,old]);
     };
 
 var emacs=[0,0];

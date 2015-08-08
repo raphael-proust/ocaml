@@ -86,7 +86,7 @@ var
  clean_up_link_to_build=
   function(param)
    {return Options["entry"][1]=
-           [0,clean_up_links(My_std["the"](Options["entry"][1]))],
+           [/* Some */0,clean_up_links(My_std["the"](Options["entry"][1]))],
            0;
     };
 
@@ -129,7 +129,7 @@ var
     return Shell["rm_rf"](Options["build_dir"][1]);
     };
 
-var empty=function(param){return [0,2,2,Resources[1]];};
+var empty=function(param){return [/* record */0,2,2,Resources[1]];};
 
 var
  print_knowledge=
@@ -448,7 +448,9 @@ var
                      (function(prod){return get(prod)[1]=0,0;},prods);
              };
          
-         return cache_entry[1]=[0,[0,cmd,kont$1]],0;
+         return cache_entry[1]=
+                [/* Bsuspension */0,[/* tuple */0,cmd,kont$1]],
+                0;
          
         }
       }
@@ -478,7 +480,10 @@ var
   function(r)
    {var match=get(r)[1];
     
-    if("unknown primitive:isint"){return 0;}else{return [0,match[1]];}
+    if("unknown primitive:isint")
+     {return 0;}
+    else
+     {return [/* Some */0,match[1]];}
     };
 
 var clear_resource_failed=function(r){return get(r)[1]=2,0;};
@@ -560,9 +565,9 @@ var
    {return My_std["List"][16]
             (function(param$1)
               {if(param$1[1]>=970337770)
-                {return [0,param$1[2]];}
+                {return [/* A */0,param$1[2]];}
                else
-                {var match=param$1[2];return [1,match[1],match[2]];}
+                {var match=param$1[2];return [/* V */1,match[1],match[2]];}
                },
              Lexers["path_scheme"]
               (param[1],
@@ -628,7 +633,7 @@ var
                        {return loop
                                 (match$1[2],
                                  pos$prime+s2["length"],
-                                 [0,[0,$$var,matched],acc],
+                                 [/* :: */0,[/* tuple */0,$$var,matched],acc],
                                  0);
                         }
                       catch(exn)
@@ -651,7 +656,7 @@ var
               {var matched$1=My_std["String"][19](s,pos,sl-pos);
                
                if(Glob["eval"](patt,matched$1))
-                {return [0,[0,$$var,matched$1],acc];}
+                {return [/* :: */0,[/* tuple */0,$$var,matched$1],acc];}
                else
                 {throw No_solution;}
                }
@@ -663,7 +668,7 @@ var
         };
     
     try
-     {return [0,loop(p,0,0,0)];}
+     {return [/* Some */0,loop(p,0,0,0)];}
     catch(exn){if(exn=No_solution){return 0;}else{throw exn;}}
     };
 
@@ -727,13 +732,19 @@ var MetaPath=[0,mk$1,matchit,subst,print_env];
 
 var print_pattern=function(f,param){return Pathname["print"](f,param[1]);};
 
-var import_pattern=function(x){return [0,x,MetaPath[1]([0,1,x])];};
+var
+ import_pattern=
+  function(x){return [/* tuple */0,x,MetaPath[1]([/* tuple */0,1,x])];};
 
 var matchit$1=function(param,x){return MetaPath[2](param[2],x);};
 
-var subst$1=function(env,s){return MetaPath[3](env,MetaPath[1]([0,0,s]));};
+var
+ subst$1=
+  function(env,s){return MetaPath[3](env,MetaPath[1]([/* tuple */0,0,s]));};
 
-var subst_any=function(env,s){return MetaPath[3](env,MetaPath[1]([0,1,s]));};
+var
+ subst_any=
+  function(env,s){return MetaPath[3](env,MetaPath[1]([/* tuple */0,1,s]));};
 
 var subst_pattern=function(env,param){return MetaPath[3](env,param[2]);};
 

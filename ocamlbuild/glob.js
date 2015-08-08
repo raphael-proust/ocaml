@@ -75,9 +75,15 @@ var
      $neg$neg$great=
       function(q1,t,q2)
        {if(t)
-         {transitions[1]=[0,[0,q1,t[1],q2],transitions[1]],0;return q1;}
+         {transitions[1]=
+          [/* :: */0,[/* tuple */0,q1,t[1],q2],transitions[1]],
+          0;
+          return q1;
+          }
         else
-         {epsilons[1]=[0,[0,q1,q2],epsilons[1]],0;return q1;}
+         {epsilons[1]=[/* :: */0,[/* tuple */0,q1,q2],epsilons[1]],0;
+          return q1;
+          }
         };
     
     var
@@ -101,7 +107,10 @@ var
              return q1;
              
             case 1:
-             var q1$1=state(0);return $neg$neg$great(q1$1,[0,param[1]],qf);
+             var q1$1=state(0);
+             
+             return $neg$neg$great(q1$1,[/* QCLASS */0,param[1]],qf);
+             
             case 2:
              var q12=state(0);
              
@@ -142,7 +151,12 @@ var
                  else
                   {if(i=m-1){var q$prime=qf;}else{var q$prime=state(0);}
                    
-                   var match$4=$neg$neg$great(q,[0,[3,[0,u[i],u[i]]]],q$prime);
+                   var
+                    match$4=
+                     $neg$neg$great
+                      (q,
+                       [/* QCLASS */0,[/* Atom */3,[/* tuple */0,u[i],u[i]]]],
+                       q$prime);
                    
                    return loop$1(q$prime,i+1);
                    }
@@ -182,7 +196,7 @@ var
                {if(IS[3](q$prime,past$prime))
                  {return future$prime$1;}
                 else
-                 {return [0,q$prime,future$prime$1];}
+                 {return [/* :: */0,q$prime,future$prime$1];}
                 },
               graph[q],
               param[2]);
@@ -193,7 +207,7 @@ var
          {return past;}
         };
     
-    for(var i=0;i<=m-1;i++){closure[i]=transitive(IS[1],[0,i,0]),0}
+    for(var i=0;i<=m-1;i++){closure[i]=transitive(IS[1],[/* :: */0,i,0]),0}
     
     var table="unknown primitive:caml_make_vect";
     
@@ -201,10 +215,15 @@ var
      (function(param)
        {var q=param[1];
         
-        return table[q]=[0,[0,param[2],closure[param[3]]],table[q]],0;
+        return table[q]=
+               [/* :: */0,[/* tuple */0,param[2],closure[param[3]]],table[q]],
+               0;
         },
       transitions[1]);
-    return [0,graph,closure,[0,closure[qi],table,qf,Hashtbl["create"](0,37)]];
+    return [/* tuple */0,
+            graph,
+            closure,
+            [/* record */0,closure[qi],table,qf,Hashtbl["create"](0,37)]];
     };
 
 var build=function(x){var match=build$prime(x);return match[3];};
@@ -368,14 +387,17 @@ var
                function(j)
                 {return j<=
                         n&&
-                        (loop([0,i,j,p1])&&loop([0,i+j,n-j,p2])||scan(j+1));
+                        (loop([/* tuple */0,i,j,p1])&&
+                         loop([/* tuple */0,i+j,n-j,p2])||
+                         scan(j+1));
                  };
              
              return scan(0);
              
             case 3:
              return My_std["List"][27]
-                     (function(p$prime){return loop([0,i,n,p$prime]);},p$1[1]);
+                     (function(p$prime){return loop([/* tuple */0,i,n,p$prime]);},
+                      p$1[1]);
              
             case 4:
              var v=p$1[1];
@@ -389,12 +411,12 @@ var
             }}
         };
     
-    return loop([0,0,m,p]);
+    return loop([/* tuple */0,0,m,p]);
     };
 
 var Brute=[0,Succeed,Fail,Too_hard,match_pattern];
 
-var fast_pattern_of_pattern=function(p){return [0,[0,[0,0],p]];};
+var fast_pattern_of_pattern=function(p){return [0,[/* Brute */0,[0,0],p]];};
 
 var
  add_dir=
@@ -403,8 +425,13 @@ var
      {var dir$1=dir[1];
       
       switch(x)
-       {case 0:return [0,My_std["filename_concat"](dir$1,x[1])];
-        case 1:return [1,[2,[4,My_std["filename_concat"](dir$1,"")],x[1]]];
+       {case 0:return [/* Constant */0,My_std["filename_concat"](dir$1,x[1])];
+        case 1:
+         return [/* Pattern */1,
+                 [/* Concat */2,
+                  [/* Word */4,My_std["filename_concat"](dir$1,"")],
+                  x[1]]];
+         
         }
       }
     else
@@ -419,9 +446,18 @@ var
       
       var any=[1,0];
       
-      var q=[3,[0,0,[0,[2,slash,[0,any]],0]]];
+      var
+       q=
+        [/* Union */3,
+         [/* :: */0,0,[/* :: */0,[/* Concat */2,slash,[/* Star */0,any]],0]]];
       
-      return [0,[0,[3,[1,[0,[0,[0,0],[2,[4,dir[1]],q]]]]],[0,x,0]]];
+      return [/* And */0,
+              [/* :: */0,
+               [/* Atom */3,
+                [/* Pattern */1,
+                 [0,
+                  [/* Brute */0,[0,0],[/* Concat */2,[/* Word */4,dir[1]],q]]]]],
+               [/* :: */0,x,0]]];
       }
     else
      {return x;}
@@ -463,7 +499,7 @@ var
                    string_of_token(match[1]))];
           }
         else
-         {return tok[1]=[0,t],0;}
+         {return tok[1]=[/* Some */0,t],0;}
         };
     
     var
@@ -498,7 +534,10 @@ var
          {switch(t[0])
            {case 0:exit=8;
             case 1:exit=8;
-            case 2:return atomizer(function(x){return continuation([2,x]);});
+            case 2:
+             return atomizer
+                     (function(x){return continuation([/* Not */2,x]);});
+             
             case 3:var y=parse_s(0);read(4);return continuation(y);
             case 4:exit=8;
             case 5:return continuation(0);
@@ -510,11 +549,11 @@ var
          {var match=add_dir(dir,t[1]);
           
           switch(match)
-           {case 0:var a=[0,match[1]];
-            case 1:var a=[1,fast_pattern_of_pattern(match[1])];
+           {case 0:var a=[/* Constant */0,match[1]];
+            case 1:var a=[/* Pattern */1,fast_pattern_of_pattern(match[1])];
             }
           
-          return continuation([3,a]);
+          return continuation([/* Atom */3,a]);
           }
         
         switch(exit)
@@ -541,7 +580,10 @@ var
          {if(t!=1)
            {if(t!=0){exit=10;}else{return parse_t(x);}}
           else
-           {var y=parse_s(0);return [1,[0,x,[0,y,0]]];}
+           {var y=parse_s(0);
+            
+            return [/* Or */1,[/* :: */0,x,[/* :: */0,y,0]]];
+            }
           }
         else
          {exit=10;}
@@ -558,14 +600,25 @@ var
         
         if("unknown primitive:isint")
          {if(t!=1)
-           {if(t!=0){exit=12;}else{return parse_t([0,[0,x,[0,y,0]]]);}}
+           {if(t!=0)
+             {exit=12;}
+            else
+             {return parse_t([/* And */0,[/* :: */0,x,[/* :: */0,y,0]]]);}
+            }
           else
-           {var z=parse_s(0);return [1,[0,[0,[0,x,[0,y,0]]],[0,z,0]]];}
+           {var z=parse_s(0);
+            
+            return [/* Or */1,
+                    [/* :: */0,
+                     [/* And */0,[/* :: */0,x,[/* :: */0,y,0]]],
+                     [/* :: */0,z,0]]];
+            }
           }
         else
          {exit=12;}
         
-        switch(exit){case 12:g(t);return [0,[0,x,[0,y,0]]];}
+        switch(exit)
+         {case 12:g(t);return [/* And */0,[/* :: */0,x,[/* :: */0,y,0]]];}
         };
     
     var parse_s=function(param){return atomizer(parse_s1);};
@@ -599,7 +652,11 @@ var
                      var
                       do_nfa=
                        function(param$1)
-                        {var m=NFA[4](p);kind[1]=[1,m],0;return NFA[5](0,m,u);};
+                        {var m=NFA[4](p);
+                         
+                         kind[1]=[/* Machine */1,m],0;
+                         return NFA[5](0,m,u);
+                         };
                      
                      if(count[1]>=brute_limit)
                       {return do_nfa(0);}

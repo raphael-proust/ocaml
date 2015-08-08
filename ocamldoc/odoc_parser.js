@@ -69,16 +69,25 @@ var
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return [0,_1,_2];
+     return [/* tuple */0,_1,_2];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return [0,_1];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return [/* See_url */0,_1];
+     },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return [1,_1];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return [/* See_file */1,_1];
+     },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return [2,_1];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return [/* See_doc */2,_1];
+     },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return [0,_1];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return [/* Some */0,_1];},
    function(__caml_parser_env){return 0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return 0;},
@@ -140,7 +149,8 @@ var
             $js=
              (Odoc_comments_global["params"][1]=
               Pervasives["@"]
-               (Odoc_comments_global["params"][1],[0,[0,id,remain2],0]),
+               (Odoc_comments_global["params"][1],
+                [/* :: */0,[/* tuple */0,id,remain2],0]),
               0);
            }
          else
@@ -167,25 +177,26 @@ var
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      return Odoc_comments_global["authors"][1]=
-            Pervasives["@"](Odoc_comments_global["authors"][1],[0,_2,0]),
+            Pervasives["@"]
+             (Odoc_comments_global["authors"][1],[/* :: */0,_2,0]),
             0;
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["version"][1]=[0,_2],0;
+     return Odoc_comments_global["version"][1]=[/* Some */0,_2],0;
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      return Odoc_comments_global["sees"][1]=
-            Pervasives["@"](Odoc_comments_global["sees"][1],[0,_2,0]),
+            Pervasives["@"](Odoc_comments_global["sees"][1],[/* :: */0,_2,0]),
             0;
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["since"][1]=[0,_2],0;
+     return Odoc_comments_global["since"][1]=[/* Some */0,_2],0;
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
@@ -213,7 +224,8 @@ var
           $js=
            (Odoc_comments_global["before"][1]=
             Pervasives["@"]
-             (Odoc_comments_global["before"][1],[0,[0,id,remain2],0]),
+             (Odoc_comments_global["before"][1],
+              [/* :: */0,[/* tuple */0,id,remain2],0]),
             0);
          }
        else
@@ -230,7 +242,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["deprecated"][1]=[0,_2],0;
+     return Odoc_comments_global["deprecated"][1]=[/* Some */0,_2],0;
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
@@ -272,7 +284,7 @@ var
              (Odoc_comments_global["raised_exceptions"][1]=
               Pervasives["@"]
                (Odoc_comments_global["raised_exceptions"][1],
-                [0,[0,id,remain2],0]),
+                [/* :: */0,[/* tuple */0,id,remain2],0]),
               0);
            }
          else
@@ -299,7 +311,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["return_value"][1]=[0,_2],0;
+     return Odoc_comments_global["return_value"][1]=[/* Some */0,_2],0;
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
@@ -308,7 +320,8 @@ var
      
      return Odoc_comments_global["customs"][1]=
             Pervasives["@"]
-             (Odoc_comments_global["customs"][1],[0,[0,_1,_2],0]),
+             (Odoc_comments_global["customs"][1],
+              [/* :: */0,[/* tuple */0,_1,_2],0]),
             0;
      },
    function(__caml_parser_env)
@@ -320,7 +333,7 @@ var
 
 var
  yytables=
-  [0,
+  [/* record */0,
    yyact,
    yytransl_const,
    yytransl_block,

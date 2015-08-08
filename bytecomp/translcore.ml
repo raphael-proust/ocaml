@@ -610,7 +610,7 @@ let assert_failed exp =
   Lprim(Praise Raise_regular, [event_after exp
     (Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable),
           [transl_normal_path Predef.path_assert_failure;
-           Lconst(Const_block(0,
+           Lconst(Const_block(0, Lambda.default_tag_info,
               [Const_base(Const_string (fname, None));
                Const_base(Const_int line);
                Const_base(Const_int char)]))]))])
@@ -733,21 +733,23 @@ and transl_exp0 e =
                Matching.for_trywith (Lvar id) (transl_cases_try pat_expr_list))
   | Texp_tuple el ->
       let ll = transl_list el in
+      let tag_info = Lambda.Tuple in 
       begin try
-        Lconst(Const_block(0, List.map extract_constant ll))
+        Lconst(Const_block(0, tag_info, List.map extract_constant ll))
       with Not_constant ->
-        Lprim(Pmakeblock(0,  Lambda.Tuple, Immutable), ll)
+        Lprim(Pmakeblock(0,  tag_info, Immutable), ll)
       end
   | Texp_construct(_, cstr, args) ->
       let ll = transl_list args in
       begin match cstr.cstr_tag with
         Cstr_constant n ->
-          Lconst(Const_pointer n)
+          Lconst(Const_pointer (n, Lambda.NullConstructor cstr.cstr_name))
       | Cstr_block n ->
+          let tag_info = (Lambda.Constructor cstr.cstr_name) in
           begin try
-            Lconst(Const_block(n, List.map extract_constant ll))
+            Lconst(Const_block(n,tag_info, List.map extract_constant ll))
           with Not_constant ->
-            Lprim(Pmakeblock(n, (Lambda.Constructor cstr.cstr_name), Immutable), ll)
+            Lprim(Pmakeblock(n, tag_info, Immutable), ll)
           end
       | Cstr_extension(path, is_const) ->
           if is_const then
@@ -759,14 +761,15 @@ and transl_exp0 e =
   | Texp_variant(l, arg) ->
       let tag = Btype.hash_variant l in
       begin match arg with
-        None -> Lconst(Const_pointer tag)
+        None -> Lconst(Const_pointer (tag, Lambda.NullVariant l))
       | Some arg ->
           let lam = transl_exp arg in
+          let tag_info = Lambda.Variant l in
           try
-            Lconst(Const_block(0, [Const_base(Const_int tag);
+            Lconst(Const_block(0, tag_info, [Const_base(Const_int tag);
                                    extract_constant lam]))
           with Not_constant ->
-            Lprim(Pmakeblock(0, Lambda.Variant l, Immutable),
+            Lprim(Pmakeblock(0, tag_info, Immutable),
                   [Lconst(Const_base(Const_int tag)); lam])
       end
   | Texp_record ((_, lbl1, _) :: _ as lbl_expr_list, opt_init_expr) ->
@@ -795,7 +798,7 @@ and transl_exp0 e =
         let master =
           match kind with
           | Paddrarray | Pintarray ->
-              Lconst(Const_block(0, cl))
+              Lconst(Const_block(0, Lambda.default_tag_info, cl)) (* ATTENTION: ? [|1;2;3;4|]*)
           | Pfloatarray ->
               Lconst(Const_float_array(List.map extract_float cl))
           | Pgenarray ->
@@ -1098,7 +1101,7 @@ and transl_record all_labels repres lbl_expr_list opt_init_expr =
         if mut = Mutable then raise Not_constant;
         let cl = List.map extract_constant ll in
         match repres with
-          Record_regular -> Lconst(Const_block(0, cl))
+          Record_regular -> Lconst(Const_block(0, Lambda.Record, cl))
         | Record_float ->
             Lconst(Const_float_array(List.map extract_float cl))
       with Not_constant ->

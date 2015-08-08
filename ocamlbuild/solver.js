@@ -27,7 +27,7 @@ var
      {var s=param[2];
       
       Format["pp_print_string"](f,s);
-      return pp_repeat(f,[0,n-1,s]);
+      return pp_repeat(f,[/* tuple */0,n-1,s]);
       }
     else
      {return 0;}
@@ -38,13 +38,13 @@ var
   function(depth,on_the_go_orig,target)
    {var rules=Rule["get_rules"](0);
     
-    var on_the_go=[0,target,on_the_go_orig];
+    var on_the_go=[/* :: */0,target,on_the_go_orig];
     
     Log["dprintf"]
      (4,
       [0,[11,"==",[15,[11,"> ",[15,0]]]],"==%a> %a"],
       pp_repeat,
-      [0,depth,"=="],
+      [/* tuple */0,depth,"=="],
       Resource["print"],
       target);
     if(My_std["List"][30](target,on_the_go_orig))
@@ -69,14 +69,14 @@ var
            [0,[15,[11," already failed",0]],"%a already failed"],
            Resource["print"],
            target);
-         return failed(target,[0,target]);
+         return failed(target,[/* Leaf */0,target]);
          
         case 2:
          if(!Pathname["is_relative"](target)&&Pathname["exists"](target))
           {if(Resource["Cache"][15](target))
             {return 0;}
            else
-            {return failed(target,[0,target]);}
+            {return failed(target,[/* Leaf */0,target]);}
            }
          else
           {if(Resource["exists_in_source_dir"](target))
@@ -102,7 +102,7 @@ var
                         {return Rule["call"](self_firsts(depth+1,on_the_go),r);}
                        catch(exn)
                         {if(exn=Rule["Failed"])
-                          {throw [0,Failed,[0,target]];}
+                          {throw [0,Failed,[/* Leaf */0,target]];}
                          else
                           {throw exn;}
                          }
@@ -113,14 +113,17 @@ var
                          
                          if(rs$1=0)
                           {return failed
-                                   (target,[2,target,[1,[0,backtrace,backtraces]]]);
+                                   (target,
+                                    [/* Depth */2,
+                                     target,
+                                     [/* Choice */1,[/* :: */0,backtrace,backtraces]]]);
                            }
                          else
                           {switch(backtrace)
                             {case 2:var match$1=Resource["Cache"][12](backtrace[1]);
                              default:var match$1=0;}
                            
-                           return until_works(rs$1,[0,backtrace,backtraces]);
+                           return until_works(rs$1,[/* :: */0,backtrace,backtraces]);
                            }
                          }
                        else
@@ -134,7 +137,7 @@ var
                return until_works(matching_rules,0);
                }
              else
-              {return failed(target,[0,target]);}
+              {return failed(target,[/* Leaf */0,target]);}
              }
            }
          
@@ -159,16 +162,18 @@ var
      {var r=rs[1];
       
       try
-       {$$self(depth,on_the_go,r);return [0,r];}
+       {$$self(depth,on_the_go,r);return [/* Good */0,r];}
       catch(exn)
        {if(exn[1]=Failed)
-         {return self_first(depth,on_the_go,[0,exn[2],already_failed],rs[2]);}
+         {return self_first
+                  (depth,on_the_go,[/* :: */0,exn[2],already_failed],rs[2]);
+          }
         else
          {throw exn;}
         }
       }
     else
-     {return [1,[0,Failed,[1,already_failed]]];}
+     {return [/* Bad */1,[0,Failed,[/* Choice */1,already_failed]]];}
     };
 
 var
@@ -187,7 +192,9 @@ var
              if(match$1)
               {var match$2=match$1[1];
                
-               return [0,[0,match$2[1],acc[1]],[0,match$2[2],acc[2]]];
+               return [/* tuple */0,
+                       [/* :: */0,match$2[1],acc[1]],
+                       [/* :: */0,match$2[2],acc[2]]];
                }
              else
               {return acc;}
@@ -254,7 +261,10 @@ var
       case 1:
        var exn=match[1];
        
-       if(exn[1]=Failed){throw [0,Failed,[3,name,exn[2]]];}else{throw exn;}
+       if(exn[1]=Failed)
+        {throw [0,Failed,[/* Target */3,name,exn[2]]];}
+       else
+        {throw exn;}
        
       }
     };

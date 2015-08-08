@@ -16,7 +16,7 @@ var
      {buf[11]=buf[12],0;
       var init=buf[12];
       
-      buf[12]=[0,init[1],init[2],init[3],buf[4]+buf[6]],0}
+      buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]],0}
     else
      {}
     
@@ -32,7 +32,7 @@ var
      {buf[11]=buf[12],0;
       var init=buf[12];
       
-      buf[12]=[0,init[1],init[2],init[3],buf[4]+buf[6]],0}
+      buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]],0}
     else
      {}
     
@@ -89,7 +89,7 @@ var zero_pos=[0,"",1,0,0];
 var
  from_function=
   function(f)
-   {return [0,
+   {return /* record */[0,
             lex_refill(f,"unknown primitive:caml_create_string"),
             "unknown primitive:caml_create_string",
             0,
@@ -114,7 +114,7 @@ var
 var
  from_string=
   function(s)
-   {return [0,
+   {return /* record */[0,
             function(lexbuf){return lexbuf[9]=1,0;},
             Bytes["of_string"](s),
             s["length"],
@@ -146,7 +146,10 @@ var
  sub_lexeme_opt=
   function(lexbuf,i1,i2)
    {if(i1>=0)
-     {var len=i2-i1;return [0,Bytes["sub_string"](lexbuf[2],i1,len)];}
+     {var len=i2-i1;
+      
+      return /* Some */[0,Bytes["sub_string"](lexbuf[2],i1,len)];
+      }
     else
      {return 0;}
     };
@@ -155,7 +158,8 @@ var sub_lexeme_char=function(lexbuf,i){return lexbuf[2][i];};
 
 var
  sub_lexeme_char_opt=
-  function(lexbuf,i){if(i>=0){return [0,lexbuf[2][i]];}else{return 0;}};
+  function(lexbuf,i)
+   {if(i>=0){return /* Some */[0,lexbuf[2][i]];}else{return 0;}};
 
 var lexeme_char=function(lexbuf,i){return lexbuf[2][lexbuf[5]+i];};
 
@@ -174,7 +178,7 @@ var
     
     var init=lcp;
     
-    return lexbuf[12]=[0,init[1],lcp[2]+1,lcp[4],init[4]],0;
+    return lexbuf[12]=/* record */[0,init[1],lcp[2]+1,lcp[4],init[4]],0;
     };
 
 var
@@ -184,7 +188,7 @@ var
     lb[4]=0,0;
     var init=lb[12];
     
-    lb[12]=[0,init[1],init[2],init[3],0],0;
+    lb[12]=/* record */[0,init[1],init[2],init[3],0],0;
     return lb[3]=0,0;
     };
 

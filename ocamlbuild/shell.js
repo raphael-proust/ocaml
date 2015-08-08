@@ -100,10 +100,10 @@ var
        match=
         My_unix["execute_many"]
          (0,
-          [0,Log["update"]],
+          [/* Some */0,Log["update"]],
           0,
-          [0,Log["display"]],
-          [0,[0,function(param){return cmd;},0],0]);
+          [/* Some */0,Log["display"]],
+          [/* :: */0,[/* :: */0,function(param){return cmd;},0],0]);
       
       if(match)
        {return Pervasives["failwith"]
@@ -129,7 +129,7 @@ var
  mkdir=
   function(dir)
    {My_std["reset_filesys_cache_for_file"](dir);
-    return run([0,"mkdir",[0,dir,0]],dir);
+    return run([/* :: */0,"mkdir",[/* :: */0,dir,0]],dir);
     };
 
 var
@@ -150,7 +150,11 @@ var
  cp_pf=
   function(src,dest)
    {My_std["reset_filesys_cache_for_file"](dest);
-    return run([0,"cp",[0,"-pf",[0,src,[0,dest,0]]]],dest);
+    return run
+            ([/* :: */0,
+              "cp",
+              [/* :: */0,"-pf",[/* :: */0,src,[/* :: */0,dest,0]]]],
+             dest);
     };
 
 var
@@ -170,7 +174,7 @@ var
  rm_rf=
   function(x)
    {My_std["reset_filesys_cache"](0);
-    return run([0,"rm",[0,"-Rf",[0,x,0]]],x);
+    return run([/* :: */0,"rm",[/* :: */0,"-Rf",[/* :: */0,x,0]]],x);
     };
 
 var
@@ -178,7 +182,7 @@ var
   function(src,dest)
    {My_std["reset_filesys_cache_for_file"](src);
     My_std["reset_filesys_cache_for_file"](dest);
-    return run([0,"mv",[0,src,[0,dest,0]]],dest);
+    return run([/* :: */0,"mv",[/* :: */0,src,[/* :: */0,dest,0]]],dest);
     };
 
 module["exports"]=

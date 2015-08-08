@@ -120,7 +120,7 @@ var
        (function(tasks)
          {var result=[0,0];
           
-          Queue["add"]([0,tasks,result],commands_to_execute);
+          Queue["add"]([/* tuple */0,tasks,result],commands_to_execute);
           return result;
           },
         commands);
@@ -151,10 +151,10 @@ var
               
               var efd=doi(job[7]);
               
-              return [0,
-                      [0,ofd,[0,efd,param$1[1]]],
+              return [/* tuple */0,
+                      [/* :: */0,ofd,[/* :: */0,efd,param$1[1]]],
                       param$1[2],
-                      [0,ofd,[0,ifd,[0,efd,param$1[3]]]]];
+                      [/* :: */0,ofd,[/* :: */0,ifd,[/* :: */0,efd,param$1[3]]]]];
               },
             jobs[1],
             [0,0,0,0]),
@@ -179,7 +179,7 @@ var
         Unix["set_nonblock"](doi(stderr$prime));
         var
          job=
-          [0,
+          [/* record */0,
            id,
            cmd,
            rest,
@@ -207,7 +207,7 @@ var
           if("unknown primitive:caml_string_equal")
            {return skip_empty_tasks(tasks);}
           else
-           {return [0,[0,cmd,tasks]];}
+           {return [/* Some */0,[/* tuple */0,cmd,tasks]];}
           }
         else
          {return 0;}
@@ -228,7 +228,7 @@ var
           var b_id=batch_id[1];
           
           batch_id[0]++;
-          return add_job(match$2[1],match$2[2],result,[0,b_id,0]);
+          return add_job(match$2[1],match$2[2],result,[/* tuple */0,b_id,0]);
           }
         else
          {return result[1]=0,0;}
@@ -244,7 +244,7 @@ var
         
         if(!job[9])
          {job[9]=1,0;
-          return Queue["add"]([0,job,$$continue],jobs_to_terminate);
+          return Queue["add"]([/* tuple */0,job,$$continue],jobs_to_terminate);
           }
         else
          {return 0;}
@@ -338,7 +338,9 @@ var
           do_read([0,1],doi(job[7]),job);
           outputs[1]=FDM[6](doi(job[5]),FDM[6](doi(job[7]),outputs[1])),0;
           jobs[1]=JS[6](job,jobs[1]),0;
-          var status=Unix["close_process_full"]([0,job[5],job[6],job[7]]);
+          var
+           status=
+            Unix["close_process_full"]([/* tuple */0,job[5],job[6],job[7]]);
           
           var shown=[0,0];
           
@@ -390,7 +392,10 @@ var
                    var match$3=job[1];
                    
                    add_job
-                    (match$2[1],match$2[2],job[4],[0,match$3[1],match$3[2]+1])}
+                    (match$2[1],
+                     match$2[2],
+                     job[4],
+                     [/* tuple */0,match$3[1],match$3[2]+1])}
                  else
                   {job[4][1]=1,0}
                  }
@@ -458,11 +463,13 @@ var
                          },
                        param$1[1]);
               },
-            [0,
-             [0,match$1[1],do_read([0,0])],
-             [0,
-              [0,match$1[2],function(param$1,param$2){return 0;}],
-              [0,[0,match$1[3],function(param$1,_job){return 0;}],0]]]);
+            [/* :: */0,
+             [/* tuple */0,match$1[1],do_read([0,0])],
+             [/* :: */0,
+              [/* tuple */0,match$1[2],function(param$1,param$2){return 0;}],
+              [/* :: */0,
+               [/* tuple */0,match$1[3],function(param$1,_job){return 0;}],
+               0]]]);
           return loop(0);
           }
         };
@@ -483,7 +490,10 @@ var
                      Printexc["to_string"](x$prime));
             })}
       
-      return [0,[0,List["map"](function(prim){return prim[1];},results),x]];
+      return [/* Some */0,
+              [/* tuple */0,
+               List["map"](function(prim){return prim[1];},results),
+               x]];
       }
     };
 

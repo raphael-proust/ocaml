@@ -15,7 +15,7 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](label,match[1][8]);return [0,t];}
+       {var t=List["assoc"](label,match[1][8]);return [/* Some */0,t];}
       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
       }
     else
@@ -39,7 +39,7 @@ var
            
            if(match)
             {if(trans)
-              {return class_elements([0,trans],match[1]);}
+              {return class_elements([/* Some */0,trans],match[1]);}
              else
               {exit=24;}
              }
@@ -59,13 +59,13 @@ var
              switch(match$2)
               {case 0:
                 if(trans)
-                 {return class_elements([0,trans],match$2[1]);}
+                 {return class_elements([/* Some */0,trans],match$2[1]);}
                 else
                  {exit$1=25;}
                 
                case 1:
                 if(trans)
-                 {return class_type_elements([0,trans],match$2[1]);}
+                 {return class_type_elements([/* Some */0,trans],match$2[1]);}
                 else
                  {exit$1=25;}
                 
@@ -103,13 +103,13 @@ var
          switch(match$2)
           {case 0:
             if(trans)
-             {return class_elements([0,trans],match$2[1]);}
+             {return class_elements([/* Some */0,trans],match$2[1]);}
             else
              {exit=28;}
             
            case 1:
             if(trans)
-             {return class_type_elements([0,trans],match$2[1]);}
+             {return class_type_elements([/* Some */0,trans],match$2[1]);}
             else
              {exit=28;}
             
@@ -133,7 +133,7 @@ var
               {var exit;
                
                switch(ele)
-                {case 0:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 0:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  case 1:exit=21;
                  case 2:exit=21;
                  }
@@ -141,7 +141,7 @@ var
                switch(exit){case 21:return acc;}
                },
              0,
-             class_elements([0,trans],cl));
+             class_elements([/* Some */0,trans],cl));
     };
 
 var
@@ -155,14 +155,14 @@ var
                
                switch(ele)
                 {case 0:exit=18;
-                 case 1:return Pervasives["@"](acc,[0,ele[1],0]);
+                 case 1:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  case 2:exit=18;
                  }
                
                switch(exit){case 18:return acc;}
                },
              0,
-             class_elements([0,trans],cl));
+             class_elements([/* Some */0,trans],cl));
     };
 
 var
@@ -177,13 +177,13 @@ var
                switch(ele)
                 {case 0:exit=15;
                  case 1:exit=15;
-                 case 2:return Pervasives["@"](acc,[0,ele[1],0]);
+                 case 2:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  }
                
                switch(exit){case 15:return acc;}
                },
              0,
-             class_elements([0,trans],cl));
+             class_elements([/* Some */0,trans],cl));
     };
 
 var
@@ -209,7 +209,7 @@ var
               {var exit;
                
                switch(ele)
-                {case 0:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 0:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  case 1:exit=10;
                  case 2:exit=10;
                  }
@@ -217,7 +217,7 @@ var
                switch(exit){case 10:return acc;}
                },
              0,
-             class_type_elements([0,trans],clt));
+             class_type_elements([/* Some */0,trans],clt));
     };
 
 var
@@ -231,14 +231,14 @@ var
                
                switch(ele)
                 {case 0:exit=7;
-                 case 1:return Pervasives["@"](acc,[0,ele[1],0]);
+                 case 1:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  case 2:exit=7;
                  }
                
                switch(exit){case 7:return acc;}
                },
              0,
-             class_type_elements([0,trans],clt));
+             class_type_elements([/* Some */0,trans],clt));
     };
 
 var
@@ -253,13 +253,13 @@ var
                switch(ele)
                 {case 0:exit=4;
                  case 1:exit=4;
-                 case 2:return Pervasives["@"](acc,[0,ele[1],0]);
+                 case 2:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  }
                
                switch(exit){case 4:return acc;}
                },
              0,
-             class_type_elements([0,trans],clt));
+             class_type_elements([/* Some */0,trans],clt));
     };
 
 var
@@ -269,7 +269,7 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](label,match[1][8]);return [0,t];}
+       {var t=List["assoc"](label,match[1][8]);return [/* Some */0,t];}
       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
       }
     else

@@ -15,7 +15,11 @@ var
    {if("unknown primitive:isint")
      {return p2;}
     else
-     {if("unknown primitive:isint"){return p1;}else{return [2,p1,p2];}}
+     {if("unknown primitive:isint")
+       {return p1;}
+      else
+       {return [/* Concat */2,p1,p2];}
+      }
     };
 
 var slash=[1,[3,[0,47,47]]];
@@ -55,8 +59,14 @@ var
     else
      {switch(__ocaml_lex_state$1[0])
        {case 0:
-         var match=parse_pattern([0,62,0],0,lexbuf);return [0,[1,match[1]]];
-        case 1:return [0,[0,parse_string(Buffer["create"](32),lexbuf)]];
+         var match=parse_pattern([0,62,0],0,lexbuf);
+         
+         return [/* ATOM */0,[/* Pattern */1,match[1]]];
+         
+        case 1:
+         return [/* ATOM */0,
+                 [/* Constant */0,parse_string(Buffer["create"](32),lexbuf)]];
+         
         case 2:return 0;
         case 3:return 1;
         case 4:return 2;
@@ -92,7 +102,8 @@ var
        {case 0:
          var u=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return parse_pattern(eof_chars,concat_patterns(p,[4,u]),lexbuf);
+         return parse_pattern
+                 (eof_chars,concat_patterns(p,[/* Word */4,u]),lexbuf);
          
         case 1:
          var
@@ -100,40 +111,59 @@ var
            function(pl)
             {var match=parse_pattern([0,125,[0,44,0]],0,lexbuf);
              
-             var pl$1=[0,match[1],pl];
+             var pl$1=[/* :: */0,match[1],pl];
              
              if(match[2]=44)
               {return loop(pl$1);}
              else
               {return parse_pattern
-                       (eof_chars,concat_patterns(p,[3,pl$1]),lexbuf);
+                       (eof_chars,concat_patterns(p,[/* Union */3,pl$1]),lexbuf);
                }
              };
          
          return loop(0);
          
         case 2:
-         var cl=[2,[1,parse_class(0,lexbuf)]];
+         var cl=[/* Not */2,[/* Or */1,parse_class(0,lexbuf)]];
          
-         return parse_pattern(eof_chars,concat_patterns(p,[1,cl]),lexbuf);
+         return parse_pattern
+                 (eof_chars,concat_patterns(p,[/* Class */1,cl]),lexbuf);
          
         case 3:
-         var cl$1=[1,parse_class(0,lexbuf)];
+         var cl$1=[/* Or */1,parse_class(0,lexbuf)];
          
-         return parse_pattern(eof_chars,concat_patterns(p,[1,cl$1]),lexbuf);
+         return parse_pattern
+                 (eof_chars,concat_patterns(p,[/* Class */1,cl$1]),lexbuf);
          
         case 4:
-         var q=[3,[0,slash,[0,[2,slash,[2,[0,any],slash]],0]]];
+         var
+          q=
+           [/* Union */3,
+            [/* :: */0,
+             slash,
+             [/* :: */0,
+              [/* Concat */2,slash,[/* Concat */2,[/* Star */0,any],slash]],
+              0]]];
          
          return parse_pattern(eof_chars,concat_patterns(p,q),lexbuf);
          
         case 5:
-         var q$1=[3,[0,0,[0,[2,slash,[0,any]],0]]];
+         var
+          q$1=
+           [/* Union */3,
+            [/* :: */0,
+             0,
+             [/* :: */0,[/* Concat */2,slash,[/* Star */0,any]],0]]];
          
          return parse_pattern(eof_chars,concat_patterns(p,q$1),lexbuf);
          
         case 6:
-         var q$2=[3,[0,0,[0,[2,[0,any],slash],0]]];
+         var
+          q$2=
+           [/* Union */3,
+            [/* :: */0,
+             0,
+             [/* :: */0,[/* Concat */2,[/* Star */0,any],slash],0]]];
          
          return parse_pattern(eof_chars,concat_patterns(p,q$2),lexbuf);
          
@@ -144,7 +174,7 @@ var
          
         case 8:
          return parse_pattern
-                 (eof_chars,concat_patterns(p,[0,not_slash]),lexbuf);
+                 (eof_chars,concat_patterns(p,[/* Star */0,not_slash]),lexbuf);
          
         case 9:
          return parse_pattern(eof_chars,concat_patterns(p,slash),lexbuf);
@@ -154,7 +184,7 @@ var
          var c=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]);
          
          if(List["mem"](c,eof_chars))
-          {return [0,p,c];}
+          {return [/* tuple */0,p,c];}
          else
           {throw [0,
                   Glob_ast["Parse_error"],
@@ -227,18 +257,20 @@ var
     else
      {switch(__ocaml_lex_state$1[0])
        {case 0:return cl;
-        case 1:return [0,[3,[0,45,45]],cl];
+        case 1:return [/* :: */0,[3,[0,45,45]],cl];
         case 2:
          var c1=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]);
          
          var c2=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]+2);
          
-         return parse_class([0,[3,[0,c1,c2]],cl],lexbuf);
+         return parse_class
+                 ([/* :: */0,[/* Atom */3,[/* tuple */0,c1,c2]],cl],lexbuf);
          
         case 3:
          var c=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]);
          
-         return parse_class([0,[3,[0,c,c]],cl],lexbuf);
+         return parse_class
+                 ([/* :: */0,[/* Atom */3,[/* tuple */0,c,c]],cl],lexbuf);
          
         }
       }

@@ -7,11 +7,13 @@ var My_std=require("My_std");
 var Hashtbl=require("Hashtbl");
 
 
-var dir=function(name,contents){return [0,name,0,contents];};
+var dir=function(name,contents){return [/* Arch_dir */0,name,0,contents];};
 
-var dir_pack=function(name,contents){return [1,name,0,contents];};
+var
+ dir_pack=
+  function(name,contents){return [/* Arch_dir_pack */1,name,0,contents];};
 
-var file=function(name){return [2,name,0];};
+var file=function(name){return [/* Arch_file */2,name,0];};
 
 var
  join_pack=
@@ -34,20 +36,25 @@ var
            
            var match=self_contents(name,arch$1[3],acc);
            
-           return [0,
-                   [0,match[1],match[2]],
-                   [0,name,match[3],My_std["List"][9](match[4])]];
+           return [/* tuple */0,
+                   [/* :: */0,match[1],match[2]],
+                   [/* Arch_dir */0,name,match[3],My_std["List"][9](match[4])]];
            
           case 1:
            var name$1=arch$1[1];
            
-           var acc$1=[0,acc[1],acc[2],join_pack(acc[3],name$1)];
+           var acc$1=[/* record */0,acc[1],acc[2],join_pack(acc[3],name$1)];
            
            var match$1=self_contents(name$1,arch$1[3],acc$1);
            
-           return [0,0,[1,name$1,match$1[3],My_std["List"][9](match$1[4])]];
+           return [/* tuple */0,
+                   0,
+                   [/* Arch_dir_pack */1,
+                    name$1,
+                    match$1[3],
+                    My_std["List"][9](match$1[4])]];
            
-          case 2:return [0,0,[2,arch$1[1],acc]];
+          case 2:return [/* tuple */0,0,[/* Arch_file */2,arch$1[1],acc]];
           }
         };
     
@@ -59,9 +66,9 @@ var
         if("unknown primitive:caml_string_equal")
          {var include_dirs=acc[2];}
         else
-         {var include_dirs=[0,current_path,acc[2]];}
+         {var include_dirs=[/* :: */0,current_path,acc[2]];}
         
-        var i=[0,current_path,include_dirs,acc[3]];
+        var i=[/* record */0,current_path,include_dirs,acc[3]];
         
         var
          match=
@@ -69,18 +76,20 @@ var
            (function(param,x)
              {var include_dirs$1=param[1];
               
-              var j=[0,i[1],Pervasives["@"](include_dirs$1,i[2]),i[3]];
+              var
+               j=
+                [/* record */0,i[1],Pervasives["@"](include_dirs$1,i[2]),i[3]];
               
               var match$1=$$self(x,j);
               
-              return [0,
+              return [/* tuple */0,
                       Pervasives["@"](include_dirs$1,match$1[1]),
-                      [0,match$1[2],param[2]]];
+                      [/* :: */0,match$1[2],param[2]]];
               },
             [0,0,0],
             contents);
         
-        return [0,current_path,match[1],i,match[2]];
+        return [/* tuple */0,current_path,match[1],i,match[2]];
         };
     
     var init=[0,"",0,""];
@@ -335,7 +344,11 @@ var
         if("unknown primitive:caml_string_equal")
          {return 0;}
         else
-         {return [0,[0,[1,"-for-pack"],[0,[1,for_pack],0]]];}
+         {return [/* S */0,
+                  [/* :: */0,
+                   [1,"-for-pack"],
+                   [/* :: */0,[/* A */1,for_pack],0]]];
+          }
         }
       catch(exn)
        {if(exn=Not_found)
@@ -345,7 +358,7 @@ var
         }
       },
     0;
-    return [0,include_dirs_table,for_pack_table];
+    return [/* tuple */0,include_dirs_table,for_pack_table];
     };
 
 var

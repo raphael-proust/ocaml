@@ -88,7 +88,7 @@ var
     
     var $js;
     switch(match){case 1:$js=1;default:$js=0;}
-    return [0,1,$js];
+    return [/* tuple */0,1,$js];
     };
 
 var
@@ -105,7 +105,7 @@ var
     
     var $js$1;
     switch(exit){case 159:$js$1=0;}
-    return [0,1,$js$1];
+    return [/* tuple */0,1,$js$1];
     };
 
 var p_class=function(c,param){return [0,0,0];};
@@ -173,8 +173,9 @@ var
           {case 1:
             var ma=match$1[1];
             
-            Hashtbl["add"](module_aliases,m[1],[0,ma[1],1]),
-            Hashtbl["add"](module_and_modtype_aliases,m[1],[0,ma[1],1]);
+            Hashtbl["add"](module_aliases,m[1],[/* tuple */0,ma[1],1]),
+            Hashtbl["add"]
+             (module_and_modtype_aliases,m[1],[/* tuple */0,ma[1],1]);
            default:}
          
          return build_alias_list(param[2]);
@@ -192,7 +193,9 @@ var
            switch(match$3)
             {case 2:
               Hashtbl["add"]
-               (module_and_modtype_aliases,mt[1],[0,match$3[1][1],1]);
+               (module_and_modtype_aliases,
+                mt[1],
+                [/* tuple */0,match$3[1][1],1]);
              default:exit=142;}
            }
          else
@@ -208,7 +211,8 @@ var
          var match$4=x[5];
          
          if(match$4)
-          {Hashtbl["add"](extension_aliases,x[1],[0,match$4[1][1],1])}
+          {Hashtbl["add"]
+            (extension_aliases,x[1],[/* tuple */0,match$4[1][1],1])}
          else
           {}
          
@@ -220,7 +224,8 @@ var
          var match$5=e[5];
          
          if(match$5)
-          {Hashtbl["add"](exception_aliases,e[1],[0,match$5[1][1],1])}
+          {Hashtbl["add"]
+            (exception_aliases,e[1],[/* tuple */0,match$5[1][1],1])}
          else
           {}
          
@@ -273,12 +278,16 @@ var
                {return 0;}
               },
             t);
-          Hashtbl["replace"](t,name,[0,name,0]);
+          Hashtbl["replace"](t,name,[/* tuple */0,name,0]);
           return name;
           }
         catch(exn$1)
          {if(exn$1[1]=Found)
-           {var s2=f(t,exn$1[2]);Hashtbl["replace"](t,s2,[0,s2,0]);return s2;}
+           {var s2=f(t,exn$1[2]);
+            
+            Hashtbl["replace"](t,s2,[/* tuple */0,s2,0]);
+            return s2;
+            }
           else
            {throw exn$1;}
           }
@@ -306,11 +315,13 @@ var
       
       var s=Ele_map[6](name,known_elements[1]);
       
-      return known_elements[1]=Ele_map[4](name,[0,k,l],s),0;
+      return known_elements[1]=Ele_map[4](name,[/* :: */0,k,l],s),0;
       }
     catch(exn)
      {if(exn=Not_found)
-       {return known_elements[1]=Ele_map[4](name,[0,k,0],known_elements[1]),0;
+       {return known_elements[1]=
+               Ele_map[4](name,[/* :: */0,k,0],known_elements[1]),
+               0;
         }
       else
        {throw exn;}
@@ -513,39 +524,49 @@ var
      ($$class,
       [0,
        scan_value,
-       function(self$neg1,v){return add_known_element(v[1],[4,v]);},
+       function(self$neg1,v)
+        {return add_known_element(v[1],[/* Res_value */4,v]);},
        scan_type_recfield,
        function(self$neg1,t,f$1)
         {return add_known_element
                  (Printf["sprintf"]
                    ([0,[2,0,[12,46,[2,0,0]]],"%s.%s"],t[1],f$1[1]),
-                  [11,t,f$1]);
+                  [/* Res_recfield */11,t,f$1]);
          },
        scan_type_const,
        function(self$neg1,t,f$1)
         {return add_known_element
                  (Printf["sprintf"]
                    ([0,[2,0,[12,46,[2,0,0]]],"%s.%s"],t[1],f$1[1]),
-                  [12,t,f$1]);
+                  [/* Res_const */12,t,f$1]);
          },
        scan_type_pre,
-       function(self$neg1,t){add_known_element(t[1],[5,t]);return 1;},
+       function(self$neg1,t)
+        {add_known_element(t[1],[/* Res_type */5,t]);return 1;},
        scan_extension_constructor,
-       function(self$neg1,x){return add_known_element(x[1],[6,x]);},
+       function(self$neg1,x)
+        {return add_known_element(x[1],[/* Res_extension */6,x]);},
        scan_exception,
-       function(self$neg1,e){return add_known_element(e[1],[7,e]);},
+       function(self$neg1,e)
+        {return add_known_element(e[1],[/* Res_exception */7,e]);},
        scan_attribute,
-       function(self$neg1,a){return add_known_element(a[1][1],[8,a]);},
+       function(self$neg1,a)
+        {return add_known_element(a[1][1],[/* Res_attribute */8,a]);},
        scan_method,
-       function(self$neg1,m){return add_known_element(m[1][1],[9,m]);},
+       function(self$neg1,m)
+        {return add_known_element(m[1][1],[/* Res_method */9,m]);},
        scan_class_pre,
-       function(self$neg1,c){add_known_element(c[1],[2,c]);return 1;},
+       function(self$neg1,c)
+        {add_known_element(c[1],[/* Res_class */2,c]);return 1;},
        scan_class_type_pre,
-       function(self$neg1,c){add_known_element(c[1],[3,c]);return 1;},
+       function(self$neg1,c)
+        {add_known_element(c[1],[/* Res_class_type */3,c]);return 1;},
        scan_module_pre,
-       function(self$neg1,m){add_known_element(m[1],[0,m]);return 1;},
+       function(self$neg1,m)
+        {add_known_element(m[1],[/* Res_module */0,m]);return 1;},
        scan_module_type_pre,
-       function(self$neg1,m){add_known_element(m[1],[1,m]);return 1;}]);
+       function(self$neg1,m)
+        {add_known_element(m[1],[/* Res_module_type */1,m]);return 1;}]);
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
@@ -614,7 +635,7 @@ var
          {case 0:
            return List["fold_left"]
                    (associate_in_module_element(module_list,m[1]),
-                    [0,acc_b,acc_inc,acc_names],
+                    [/* tuple */0,acc_b,acc_inc,acc_names],
                     k[1]);
            
           case 1:
@@ -623,14 +644,17 @@ var
            var match=ma[2];
            
            if(match)
-            {return [0,acc_b,acc_inc,acc_names];}
+            {return [/* tuple */0,acc_b,acc_inc,acc_names];}
            else
             {try
-              {var mmt_opt=[0,[0,lookup_module(ma[1])]];}
+              {var mmt_opt=[/* Some */0,[/* Mod */0,lookup_module(ma[1])]];}
              catch(exn)
               {if(exn=Not_found)
                 {try
-                  {var mmt_opt=[0,[1,lookup_module_type(ma[1])]];}
+                  {var
+                    mmt_opt=
+                     [/* Some */0,[/* Modtype */1,lookup_module_type(ma[1])]];
+                   }
                  catch(exn$1)
                   {if(exn$1=Not_found){var mmt_opt=0;}else{throw exn$1;}}
                  }
@@ -639,69 +663,89 @@ var
                }
              
              if(mmt_opt)
-              {ma[2]=[0,mmt_opt[1]],0;return [0,1,acc_inc,acc_names];}
+              {ma[2]=[/* Some */0,mmt_opt[1]],0;
+               return [/* tuple */0,1,acc_inc,acc_names];
+               }
              else
-              {return [0,
+              {return [/* tuple */0,
                        acc_b,
-                       [0,Odoc_name["head"](m[1]),acc_inc],
+                       [/* :: */0,Odoc_name["head"](m[1]),acc_inc],
                        "unknown primitive:caml_string_equal"||
                         "unknown primitive:caml_string_equal"
                         ?acc_names
-                        :[0,[2,ma[1]],acc_names]];
+                        :[/* :: */0,[/* NF_mmt */2,ma[1]],acc_names]];
                }
              }
            
-          case 2:return iter_kind([0,acc_b,acc_inc,acc_names],k[2]);
+          case 2:
+           return iter_kind([/* tuple */0,acc_b,acc_inc,acc_names],k[2]);
           case 3:
-           var match$1=iter_kind([0,acc_b,acc_inc,acc_names],k[1]);
+           var match$1=iter_kind([/* tuple */0,acc_b,acc_inc,acc_names],k[1]);
            
-           return iter_kind([0,match$1[1],match$1[2],match$1[3]],k[2]);
+           return iter_kind
+                   ([/* tuple */0,match$1[1],match$1[2],match$1[3]],k[2]);
            
           case 4:
            return associate_in_module_type
                    (module_list,
-                    [0,acc_b,acc_inc,acc_names],
-                    [0,"",0,0,0,"",[0,k[1]],Odoc_types["dummy_loc"]]);
+                    [/* tuple */0,acc_b,acc_inc,acc_names],
+                    [/* record */0,
+                     "",
+                     0,
+                     0,
+                     0,
+                     "",
+                     [/* Some */0,k[1]],
+                     Odoc_types["dummy_loc"]]);
            
           case 5:
-           var match$2=iter_kind([0,acc_b,acc_inc,acc_names],k[1]);
+           var match$2=iter_kind([/* tuple */0,acc_b,acc_inc,acc_names],k[1]);
            
            return associate_in_module_type
                    (module_list,
-                    [0,match$2[1],match$2[2],match$2[3]],
-                    [0,"",0,0,0,"",[0,k[2]],Odoc_types["dummy_loc"]]);
+                    [/* tuple */0,match$2[1],match$2[2],match$2[3]],
+                    [/* record */0,
+                     "",
+                     0,
+                     0,
+                     0,
+                     "",
+                     [/* Some */0,k[2]],
+                     Odoc_types["dummy_loc"]]);
            
-          case 6:return [0,acc_b,acc_inc,acc_names];
+          case 6:return [/* tuple */0,acc_b,acc_inc,acc_names];
           case 7:
            var mta=k[2];
            
            var match$3=mta[2];
            
            if(match$3)
-            {return [0,acc_b,acc_inc,acc_names];}
+            {return [/* tuple */0,acc_b,acc_inc,acc_names];}
            else
             {try
-              {var mt_opt=[0,lookup_module_type(mta[1])];}
+              {var mt_opt=[/* Some */0,lookup_module_type(mta[1])];}
              catch(exn$2)
               {if(exn$2=Not_found){var mt_opt=0;}else{throw exn$2;}}
              
              if(mt_opt)
-              {mta[2]=[0,mt_opt[1]],0;return [0,1,acc_inc,acc_names];}
+              {mta[2]=[/* Some */0,mt_opt[1]],0;
+               return [/* tuple */0,1,acc_inc,acc_names];
+               }
              else
-              {return [0,
+              {return [/* tuple */0,
                        acc_b,
-                       [0,Odoc_name["head"](m[1]),acc_inc],
+                       [/* :: */0,Odoc_name["head"](m[1]),acc_inc],
                        "unknown primitive:caml_string_equal"||
                         "unknown primitive:caml_string_equal"
                         ?acc_names
-                        :[0,[1,mta[1]],acc_names]];
+                        :[/* :: */0,[/* NF_mt */1,mta[1]],acc_names]];
                }
              }
            
           }
         };
     
-    return iter_kind([0,param[1],param[2],param[3]],m[6]);
+    return iter_kind([/* tuple */0,param[1],param[2],param[3]],m[6]);
     };
 
 var
@@ -726,37 +770,41 @@ var
          {case 0:
            return List["fold_left"]
                    (associate_in_module_element(module_list,mt[1]),
-                    [0,acc_b,acc_inc,acc_names],
+                    [/* tuple */0,acc_b,acc_inc,acc_names],
                     k[1]);
            
-          case 1:return iter_kind([0,acc_b,acc_inc,acc_names],k[2]);
+          case 1:
+           return iter_kind([/* tuple */0,acc_b,acc_inc,acc_names],k[2]);
           case 2:
            var mta=k[1];
            
            var match=mta[2];
            
            if(match)
-            {return [0,acc_b,acc_inc,acc_names];}
+            {return [/* tuple */0,acc_b,acc_inc,acc_names];}
            else
             {try
-              {var mt_opt=[0,lookup_module_type(mta[1])];}
+              {var mt_opt=[/* Some */0,lookup_module_type(mta[1])];}
              catch(exn){if(exn=Not_found){var mt_opt=0;}else{throw exn;}}
              
              if(mt_opt)
-              {mta[2]=[0,mt_opt[1]],0;return [0,1,acc_inc,acc_names];}
+              {mta[2]=[/* Some */0,mt_opt[1]],0;
+               return [/* tuple */0,1,acc_inc,acc_names];
+               }
              else
-              {return [0,
+              {return [/* tuple */0,
                        acc_b,
-                       [0,Odoc_name["head"](mt[1]),acc_inc],
+                       [/* :: */0,Odoc_name["head"](mt[1]),acc_inc],
                        "unknown primitive:caml_string_equal"||
                         "unknown primitive:caml_string_equal"
                         ?acc_names
-                        :[0,[1,mta[1]],acc_names]];
+                        :[/* :: */0,[/* NF_mt */1,mta[1]],acc_names]];
                }
              }
            
-          case 3:return iter_kind([0,acc_b,acc_inc,acc_names],k[1]);
-          case 4:return [0,acc_b,acc_inc,acc_names];
+          case 3:
+           return iter_kind([/* tuple */0,acc_b,acc_inc,acc_names],k[1]);
+          case 4:return [/* tuple */0,acc_b,acc_inc,acc_names];
           }
         };
     
@@ -764,14 +812,14 @@ var
     
     if(match)
      {return iter_kind
-              ([0,
+              ([/* tuple */0,
                 acc_b_modif,
                 acc_incomplete_top_module_names,
                 acc_names_not_found],
                match[1]);
       }
     else
-     {return [0,
+     {return [/* tuple */0,
               acc_b_modif,
               acc_incomplete_top_module_names,
               acc_names_not_found];
@@ -791,7 +839,7 @@ var
      {case 0:
        return associate_in_module
                (module_list,
-                [0,
+                [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found],
@@ -800,7 +848,7 @@ var
       case 1:
        return associate_in_module_type
                (module_list,
-                [0,
+                [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found],
@@ -812,18 +860,21 @@ var
        var match=im[2];
        
        if(match)
-        {return [0,
+        {return [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found];
          }
        else
         {try
-          {var mmt_opt=[0,[0,lookup_module(im[1])]];}
+          {var mmt_opt=[/* Some */0,[/* Mod */0,lookup_module(im[1])]];}
          catch(exn)
           {if(exn=Not_found)
             {try
-              {var mmt_opt=[0,[1,lookup_module_type(im[1])]];}
+              {var
+                mmt_opt=
+                 [/* Some */0,[/* Modtype */1,lookup_module_type(im[1])]];
+               }
              catch(exn$1)
               {if(exn$1=Not_found){var mmt_opt=0;}else{throw exn$1;}}
              }
@@ -832,26 +883,29 @@ var
            }
          
          if(mmt_opt)
-          {im[2]=[0,mmt_opt[1]],0;
-           return [0,1,acc_incomplete_top_module_names,acc_names_not_found];
+          {im[2]=[/* Some */0,mmt_opt[1]],0;
+           return [/* tuple */0,
+                   1,
+                   acc_incomplete_top_module_names,
+                   acc_names_not_found];
            }
          else
-          {return [0,
+          {return [/* tuple */0,
                    acc_b_modif,
-                   [0,
+                   [/* :: */0,
                     Odoc_name["head"](m_name),
                     acc_incomplete_top_module_names],
                    "unknown primitive:caml_string_equal"||
                     "unknown primitive:caml_string_equal"
                     ?acc_names_not_found
-                    :[0,[2,im[1]],acc_names_not_found]];
+                    :[/* :: */0,[/* NF_mmt */2,im[1]],acc_names_not_found]];
            }
          }
        
       case 3:
        return associate_in_class
                (module_list,
-                [0,
+                [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found],
@@ -860,7 +914,7 @@ var
       case 4:
        return associate_in_class_type
                (module_list,
-                [0,
+                [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found],
@@ -869,7 +923,7 @@ var
       case 6:
        return associate_in_type_extension
                (module_list,
-                [0,
+                [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found],
@@ -884,39 +938,42 @@ var
          var match$2=ea[2];
          
          if(match$2)
-          {return [0,
+          {return [/* tuple */0,
                    acc_b_modif,
                    acc_incomplete_top_module_names,
                    acc_names_not_found];
            }
          else
           {try
-            {var ex_opt=[0,lookup_exception(ea[1])];}
+            {var ex_opt=[/* Some */0,lookup_exception(ea[1])];}
            catch(exn$2){if(exn$2=Not_found){var ex_opt=0;}else{throw exn$2;}}
            
            if(ex_opt)
-            {ea[2]=[0,ex_opt[1]],0;
-             return [0,1,acc_incomplete_top_module_names,acc_names_not_found];
+            {ea[2]=[/* Some */0,ex_opt[1]],0;
+             return [/* tuple */0,
+                     1,
+                     acc_incomplete_top_module_names,
+                     acc_names_not_found];
              }
            else
-            {return [0,
+            {return [/* tuple */0,
                      acc_b_modif,
-                     [0,
+                     [/* :: */0,
                       Odoc_name["head"](m_name),
                       acc_incomplete_top_module_names],
-                     [0,[7,ea[1]],acc_names_not_found]];
+                     [/* :: */0,[/* NF_ex */7,ea[1]],acc_names_not_found]];
              }
            }
          }
        else
-        {return [0,
+        {return [/* tuple */0,
                  acc_b_modif,
                  acc_incomplete_top_module_names,
                  acc_names_not_found];
          }
        
       default:
-       return [0,
+       return [/* tuple */0,
                acc_b_modif,
                acc_incomplete_top_module_names,
                acc_names_not_found];
@@ -949,14 +1006,17 @@ var
                var match=ic[2];
                
                if(match)
-                {return [0,acc_b2,acc_inc2,acc_names2];}
+                {return [/* tuple */0,acc_b2,acc_inc2,acc_names2];}
                else
                 {try
-                  {var cct_opt=[0,[0,lookup_class(ic[1])]];}
+                  {var cct_opt=[/* Some */0,[/* Cl */0,lookup_class(ic[1])]];}
                  catch(exn)
                   {if(exn=Not_found)
                     {try
-                      {var cct_opt=[0,[1,lookup_class_type(ic[1]),0]];}
+                      {var
+                        cct_opt=
+                         [/* Some */0,[/* Cltype */1,lookup_class_type(ic[1]),0]];
+                       }
                      catch(exn$1)
                       {if(exn$1=Not_found){var cct_opt=0;}else{throw exn$1;}}
                      }
@@ -965,19 +1025,22 @@ var
                    }
                  
                  if(cct_opt)
-                  {ic[2]=[0,cct_opt[1]],0;return [0,1,acc_inc2,acc_names2];}
+                  {ic[2]=[/* Some */0,cct_opt[1]],0;
+                   return [/* tuple */0,1,acc_inc2,acc_names2];
+                   }
                  else
-                  {return [0,
+                  {return [/* tuple */0,
                            acc_b2,
-                           [0,Odoc_name["head"](c[1]),acc_inc2],
+                           [/* :: */0,Odoc_name["head"](c[1]),acc_inc2],
                            "unknown primitive:caml_string_equal"
                             ?acc_names2
-                            :[0,[5,ic[1]],acc_names2]];
+                            :[/* :: */0,[/* NF_cct */5,ic[1]],acc_names2]];
                    }
                  }
                };
            
-           return List["fold_left"](f$1,[0,acc_b,acc_inc,acc_names],k[1]);
+           return List["fold_left"]
+                   (f$1,[/* tuple */0,acc_b,acc_inc,acc_names],k[1]);
            
           case 1:
            var capp=k[1];
@@ -985,21 +1048,23 @@ var
            var match=capp[2];
            
            if(match)
-            {return [0,acc_b,acc_inc,acc_names];}
+            {return [/* tuple */0,acc_b,acc_inc,acc_names];}
            else
             {try
-              {var cl_opt=[0,lookup_class(capp[1])];}
+              {var cl_opt=[/* Some */0,lookup_class(capp[1])];}
              catch(exn){if(exn=Not_found){var cl_opt=0;}else{throw exn;}}
              
              if(cl_opt)
-              {capp[2]=[0,cl_opt[1]],0;return [0,1,acc_inc,acc_names];}
+              {capp[2]=[/* Some */0,cl_opt[1]],0;
+               return [/* tuple */0,1,acc_inc,acc_names];
+               }
              else
-              {return [0,
+              {return [/* tuple */0,
                        acc_b,
-                       [0,Odoc_name["head"](c[1]),acc_inc],
+                       [/* :: */0,Odoc_name["head"](c[1]),acc_inc],
                        "unknown primitive:caml_string_equal"
                         ?acc_names
-                        :[0,[3,capp[1]],acc_names]];
+                        :[/* :: */0,[/* NF_c */3,capp[1]],acc_names]];
                }
              }
            
@@ -1009,48 +1074,50 @@ var
            var match$1=cco[2];
            
            if(match$1)
-            {return [0,acc_b,acc_inc,acc_names];}
+            {return [/* tuple */0,acc_b,acc_inc,acc_names];}
            else
             {try
-              {var cl_opt$1=[0,lookup_class(cco[1])];}
+              {var cl_opt$1=[/* Some */0,lookup_class(cco[1])];}
              catch(exn$1)
               {if(exn$1=Not_found){var cl_opt$1=0;}else{throw exn$1;}}
              
              if(cl_opt$1)
-              {cco[2]=[0,[0,cl_opt$1[1]]],0;return [0,1,acc_inc,acc_names];}
+              {cco[2]=[/* Some */0,[/* Cl */0,cl_opt$1[1]]],0;
+               return [/* tuple */0,1,acc_inc,acc_names];
+               }
              else
               {try
-                {var clt_opt=[0,lookup_class_type(cco[1])];}
+                {var clt_opt=[/* Some */0,lookup_class_type(cco[1])];}
                catch(exn$2)
                 {if(exn$2=Not_found){var clt_opt=0;}else{throw exn$2;}}
                
                if(clt_opt)
-                {cco[2]=[0,[1,clt_opt[1],0]],0;
-                 return [0,1,acc_inc,acc_names];
+                {cco[2]=[/* Some */0,[/* Cltype */1,clt_opt[1],0]],0;
+                 return [/* tuple */0,1,acc_inc,acc_names];
                  }
                else
-                {return [0,
+                {return [/* tuple */0,
                          acc_b,
-                         [0,Odoc_name["head"](c[1]),acc_inc],
+                         [/* :: */0,Odoc_name["head"](c[1]),acc_inc],
                          "unknown primitive:caml_string_equal"
                           ?acc_names
-                          :[0,[5,cco[1]],acc_names]];
+                          :[/* :: */0,[/* NF_cct */5,cco[1]],acc_names]];
                  }
                }
              }
            
           case 3:
-           var match$2=iter_kind([0,acc_b,acc_inc,acc_names],k[1]);
+           var match$2=iter_kind([/* tuple */0,acc_b,acc_inc,acc_names],k[1]);
            
            return associate_in_class_type
                    (module_list,
-                    [0,match$2[1],match$2[2],match$2[3]],
-                    [0,"",0,c[3],0,0,k[2],Odoc_types["dummy_loc"]]);
+                    [/* tuple */0,match$2[1],match$2[2],match$2[3]],
+                    [/* record */0,"",0,c[3],0,0,k[2],Odoc_types["dummy_loc"]]);
            
           }
         };
     
-    return iter_kind([0,param[1],param[2],param[3]],c[6]);
+    return iter_kind([/* tuple */0,param[1],param[2],param[3]],c[6]);
     };
 
 var
@@ -1079,14 +1146,17 @@ var
                var match=ic[2];
                
                if(match)
-                {return [0,acc_b2,acc_inc2,acc_names2];}
+                {return [/* tuple */0,acc_b2,acc_inc2,acc_names2];}
                else
                 {try
-                  {var cct_opt=[0,[1,lookup_class_type(ic[1]),0]];}
+                  {var
+                    cct_opt=
+                     [/* Some */0,[/* Cltype */1,lookup_class_type(ic[1]),0]];
+                   }
                  catch(exn)
                   {if(exn=Not_found)
                     {try
-                      {var cct_opt=[0,[0,lookup_class(ic[1])]];}
+                      {var cct_opt=[/* Some */0,[/* Cl */0,lookup_class(ic[1])]];}
                      catch(exn$1)
                       {if(exn$1=Not_found){var cct_opt=0;}else{throw exn$1;}}
                      }
@@ -1095,19 +1165,22 @@ var
                    }
                  
                  if(cct_opt)
-                  {ic[2]=[0,cct_opt[1]],0;return [0,1,acc_inc2,acc_names2];}
+                  {ic[2]=[/* Some */0,cct_opt[1]],0;
+                   return [/* tuple */0,1,acc_inc2,acc_names2];
+                   }
                  else
-                  {return [0,
+                  {return [/* tuple */0,
                            acc_b2,
-                           [0,Odoc_name["head"](ct[1]),acc_inc2],
+                           [/* :: */0,Odoc_name["head"](ct[1]),acc_inc2],
                            "unknown primitive:caml_string_equal"
                             ?acc_names2
-                            :[0,[5,ic[1]],acc_names2]];
+                            :[/* :: */0,[/* NF_cct */5,ic[1]],acc_names2]];
                    }
                  }
                };
            
-           return List["fold_left"](f$1,[0,acc_b,acc_inc,acc_names],k[1]);
+           return List["fold_left"]
+                   (f$1,[/* tuple */0,acc_b,acc_inc,acc_names],k[1]);
            
           case 1:
            var cta=k[1];
@@ -1115,14 +1188,18 @@ var
            var match=cta[2];
            
            if(match)
-            {return [0,acc_b,acc_inc,acc_names];}
+            {return [/* tuple */0,acc_b,acc_inc,acc_names];}
            else
             {try
-              {var cct_opt=[0,[1,lookup_class_type(cta[1]),0]];}
+              {var
+                cct_opt=
+                 [/* Some */0,[/* Cltype */1,lookup_class_type(cta[1]),0]];
+               }
              catch(exn)
               {if(exn=Not_found)
                 {try
-                  {var cct_opt=[0,[0,lookup_class(cta[1])]];}
+                  {var cct_opt=[/* Some */0,[/* Cl */0,lookup_class(cta[1])]];
+                   }
                  catch(exn$1)
                   {if(exn$1=Not_found){var cct_opt=0;}else{throw exn$1;}}
                  }
@@ -1131,21 +1208,23 @@ var
                }
              
              if(cct_opt)
-              {cta[2]=[0,cct_opt[1]],0;return [0,1,acc_inc,acc_names];}
+              {cta[2]=[/* Some */0,cct_opt[1]],0;
+               return [/* tuple */0,1,acc_inc,acc_names];
+               }
              else
-              {return [0,
+              {return [/* tuple */0,
                        acc_b,
-                       [0,Odoc_name["head"](ct[1]),acc_inc],
+                       [/* :: */0,Odoc_name["head"](ct[1]),acc_inc],
                        "unknown primitive:caml_string_equal"
                         ?acc_names
-                        :[0,[5,cta[1]],acc_names]];
+                        :[/* :: */0,[/* NF_cct */5,cta[1]],acc_names]];
                }
              }
            
           }
         };
     
-    return iter_kind([0,param[1],param[2],param[3]],ct[6]);
+    return iter_kind([/* tuple */0,param[1],param[2],param[3]],ct[6]);
     };
 
 var
@@ -1167,39 +1246,41 @@ var
                  var match$1=xa[2];
                  
                  if(match$1)
-                  {return [0,
+                  {return [/* tuple */0,
                            acc_b_modif,
                            acc_incomplete_top_module_names,
                            acc_names_not_found];
                    }
                  else
                   {try
-                    {var xt_opt=[0,lookup_extension(xa[1])];}
+                    {var xt_opt=[/* Some */0,lookup_extension(xa[1])];}
                    catch(exn){if(exn=Not_found){var xt_opt=0;}else{throw exn;}}
                    
                    if(xt_opt)
-                    {xa[2]=[0,xt_opt[1]],0;
-                     return [0,
+                    {xa[2]=[/* Some */0,xt_opt[1]],0;
+                     return [/* tuple */0,
                              1,
                              acc_incomplete_top_module_names,
                              acc_names_not_found];
                      }
                    else
-                    {return [0,
+                    {return [/* tuple */0,
                              acc_b_modif,
-                             [0,Odoc_name["head"](xt[1]),acc_incomplete_top_module_names],
-                             [0,[6,xa[1]],acc_names_not_found]];
+                             [/* :: */0,
+                              Odoc_name["head"](xt[1]),
+                              acc_incomplete_top_module_names],
+                             [/* :: */0,[/* NF_xt */6,xa[1]],acc_names_not_found]];
                      }
                    }
                  }
                else
-                {return [0,
+                {return [/* tuple */0,
                          acc_b_modif,
                          acc_incomplete_top_module_names,
                          acc_names_not_found];
                  }
                },
-             [0,param[1],param[2],param[3]],
+             [/* tuple */0,param[1],param[2],param[3]],
              te[5]);
     };
 
@@ -1237,37 +1318,51 @@ var
     else
      {switch(t_ele[0])
        {case 4:
-         return [4,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Bold */4,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 5:
-         return [5,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Italic */5,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 6:
-         return [6,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Emphasize */6,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 7:
-         return [7,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Center */7,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 8:
-         return [8,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Left */8,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 9:
-         return [9,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Right */9,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 10:
-         return [10,
+         return [/* List */10,
                  List["map"]
                   (assoc_comments_text(parent_name,module_list),t_ele[1])];
          
         case 11:
-         return [11,
+         return [/* Enum */11,
                  List["map"]
                   (assoc_comments_text(parent_name,module_list),t_ele[1])];
          
         case 12:
-         return [12,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Block */12,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 13:
-         return [13,
+         return [/* Title */13,
                  t_ele[1],
                  t_ele[2],
                  assoc_comments_text(parent_name,module_list,t_ele[3])];
          
         case 15:
-         return [15,
+         return [/* Link */15,
                  t_ele[1],
                  assoc_comments_text(parent_name,module_list,t_ele[2])];
          
@@ -1284,10 +1379,10 @@ var
            var
             iter_parent=
              function(parent_name$1,name)
-              {var v=[0,name,[0,kind]];
+              {var v=[/* tuple */0,name,[/* Some */0,kind]];
                
                if(was_verified(v))
-                {return [16,name,[0,kind],text_option];}
+                {return [/* Ref */16,name,[/* Some */0,kind],text_option];}
                else
                 {if("unknown primitive:isint")
                   {if("unknown primitive:isint")
@@ -1310,9 +1405,11 @@ var
                     {throw [0,Assert_failure,[0,"odoc_cross.ml",808,37]];}
                    
                    if(f$1(name))
-                    {add_verified(v);var res=[0,name,[0,kind]];}
+                    {add_verified(v);
+                     var res=[/* tuple */0,name,[/* Some */0,kind]];
+                     }
                    else
-                    {var res=[0,name,0];}
+                    {var res=[/* tuple */0,name,0];}
                    }
                  else
                   {try
@@ -1324,19 +1421,31 @@ var
                      
                      var t=Odoc_search["find_section"](module_list,re);
                      
-                     var v2=[0,name,[0,[0,t]]];
+                     var
+                      v2=
+                       [/* tuple */0,name,[/* Some */0,[/* RK_section */0,t]]];
                      
                      add_verified(v2);
-                     var res=[0,name,[0,[0,t]]];
+                     var
+                      res=
+                       [/* tuple */0,name,[/* Some */0,[/* RK_section */0,t]]];
                      }
                    catch(exn)
-                    {if(exn=Not_found){var res=[0,name,0];}else{throw exn;}}
+                    {if(exn=Not_found)
+                      {var res=[/* tuple */0,name,0];}
+                     else
+                      {throw exn;}
+                     }
                    }
                  
                  var match$1=res[2];
                  
                  if(match$1)
-                  {return [16,res[1],[0,match$1[1]],text_option];}
+                  {return [/* Ref */16,
+                           res[1],
+                           [/* Some */0,match$1[1]],
+                           text_option];
+                   }
                  else
                   {if(parent_name$1)
                     {var p=parent_name$1[1];
@@ -1345,7 +1454,7 @@ var
                      
                      switch(s)
                       {case "":var parent_name$2=0;
-                       default:var parent_name$2=[0,s];}
+                       default:var parent_name$2=[/* Some */0,s];}
                      
                      return iter_parent
                              (parent_name$2,Odoc_name["concat"](p,initial_name));
@@ -1353,13 +1462,13 @@ var
                    else
                     {Odoc_global["pwarning"]
                       (not_found_of_kind(kind,initial_name));
-                     return [16,initial_name,0,text_option];
+                     return [/* Ref */16,initial_name,0,text_option];
                      }
                    }
                  }
                };
            
-           return iter_parent([0,parent_name],initial_name);
+           return iter_parent([/* Some */0,parent_name],initial_name);
            }
          else
           {var text_option$1=t_ele[3];
@@ -1375,21 +1484,21 @@ var
                 {var ele=match$1[1];
                  
                  switch(ele)
-                  {case 0:var match$2=[0,ele[1][1],0];
-                   case 1:var match$2=[0,ele[1][1],1];
-                   case 2:var match$2=[0,ele[1][1],2];
-                   case 3:var match$2=[0,ele[1][1],3];
-                   case 4:var match$2=[0,ele[1][1],4];
-                   case 5:var match$2=[0,ele[1][1],5];
-                   case 6:var match$2=[0,ele[1][1],6];
-                   case 7:var match$2=[0,ele[1][1],7];
-                   case 8:var match$2=[0,ele[1][1][1],8];
-                   case 9:var match$2=[0,ele[1][1][1],9];
+                  {case 0:var match$2=[/* tuple */0,ele[1][1],0];
+                   case 1:var match$2=[/* tuple */0,ele[1][1],1];
+                   case 2:var match$2=[/* tuple */0,ele[1][1],2];
+                   case 3:var match$2=[/* tuple */0,ele[1][1],3];
+                   case 4:var match$2=[/* tuple */0,ele[1][1],4];
+                   case 5:var match$2=[/* tuple */0,ele[1][1],5];
+                   case 6:var match$2=[/* tuple */0,ele[1][1],6];
+                   case 7:var match$2=[/* tuple */0,ele[1][1],7];
+                   case 8:var match$2=[/* tuple */0,ele[1][1][1],8];
+                   case 9:var match$2=[/* tuple */0,ele[1][1][1],9];
                    case 10:throw [0,Assert_failure,[0,"odoc_cross.ml",747,52]];
                    case 11:
                     var
                      match$2=
-                      [0,
+                      [/* tuple */0,
                        Printf["sprintf"]
                         ([0,[2,0,[12,46,[2,0,0]]],"%s.%s"],ele[1][1],ele[2][1]),
                        10];
@@ -1397,7 +1506,7 @@ var
                    case 12:
                     var
                      match$2=
-                      [0,
+                      [/* tuple */0,
                        Printf["sprintf"]
                         ([0,[2,0,[12,46,[2,0,0]]],"%s.%s"],ele[1][1],ele[2][1]),
                        11];
@@ -1408,8 +1517,8 @@ var
                  
                  var name$2=match$2[1];
                  
-                 add_verified([0,name$2,[0,kind$1]]);
-                 var res=[0,name$2,[0,kind$1]];
+                 add_verified([/* tuple */0,name$2,[/* Some */0,kind$1]]);
+                 var res=[/* tuple */0,name$2,[/* Some */0,kind$1]];
                  }
                else
                 {try
@@ -1421,19 +1530,31 @@ var
                    
                    var t=Odoc_search["find_section"](module_list,re);
                    
-                   var v2=[0,name$1,[0,[0,t]]];
+                   var
+                    v2=
+                     [/* tuple */0,name$1,[/* Some */0,[/* RK_section */0,t]]];
                    
                    add_verified(v2);
-                   var res=[0,name$1,[0,[0,t]]];
+                   var
+                    res=
+                     [/* tuple */0,name$1,[/* Some */0,[/* RK_section */0,t]]];
                    }
                  catch(exn)
-                  {if(exn=Not_found){var res=[0,name$1,0];}else{throw exn;}}
+                  {if(exn=Not_found)
+                    {var res=[/* tuple */0,name$1,0];}
+                   else
+                    {throw exn;}
+                   }
                  }
                
                var match$3=res[2];
                
                if(match$3)
-                {return [16,res[1],[0,match$3[1]],text_option$1];}
+                {return [/* Ref */16,
+                         res[1],
+                         [/* Some */0,match$3[1]],
+                         text_option$1];
+                 }
                else
                 {if(parent_name$1)
                   {var p=parent_name$1[1];
@@ -1442,7 +1563,7 @@ var
                    
                    switch(s)
                     {case "":var parent_name$2=0;
-                     default:var parent_name$2=[0,s];}
+                     default:var parent_name$2=[/* Some */0,s];}
                    
                    return iter_parent$1
                            (parent_name$2,Odoc_name["concat"](p,initial_name));
@@ -1450,25 +1571,29 @@ var
                  else
                   {Odoc_global["pwarning"]
                     (Odoc_messages["cross_element_not_found"](initial_name));
-                   return [16,initial_name,0,text_option$1];
+                   return [/* Ref */16,initial_name,0,text_option$1];
                    }
                  }
                };
            
-           return iter_parent$1([0,parent_name],initial_name);
+           return iter_parent$1([/* Some */0,parent_name],initial_name);
            }
          
         case 17:
-         return [17,assoc_comments_text(parent_name,module_list,t_ele[1])];
+         return [/* Superscript */17,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
         case 18:
-         return [18,assoc_comments_text(parent_name,module_list,t_ele[1])];
-        case 19:return [19,t_ele[1]];
+         return [/* Subscript */18,
+                 assoc_comments_text(parent_name,module_list,t_ele[1])];
+         
+        case 19:return [/* Module_list */19,t_ele[1]];
         case 20:
-         return [20,
+         return [/* Custom */20,
                  t_ele[1],
                  assoc_comments_text(parent_name,module_list,t_ele[2])];
          
-        case 21:return [21,t_ele[1],t_ele[2]];
+        case 21:return [/* Target */21,t_ele[1],t_ele[2]];
         default:return t_ele;}}
     };
 
@@ -1484,41 +1609,67 @@ var
   function(parent_name,module_list,i)
    {var ft=assoc_comments_text(parent_name,module_list);
     
-    return [0,
+    return [/* record */0,
             ao(ft,i[1]),
             i[2],
             i[3],
             List["map"]
-             (function(param){return [0,param[1],ft(param[2])];},i[4]),
+             (function(param){return [/* tuple */0,param[1],ft(param[2])];},
+              i[4]),
             i[5],
             i[6],
             ao(ft,i[7]),
             List["map"]
-             (function(param){return [0,param[1],ft(param[2])];},i[8]),
+             (function(param){return [/* tuple */0,param[1],ft(param[2])];},
+              i[8]),
             List["map"]
-             (function(param){return [0,param[1],ft(param[2])];},i[9]),
+             (function(param){return [/* tuple */0,param[1],ft(param[2])];},
+              i[9]),
             ao(ft,i[10]),
             List["map"]
-             (function(param){return [0,param[1],ft(param[2])];},i[11])];
+             (function(param){return [/* tuple */0,param[1],ft(param[2])];},
+              i[11])];
     };
 
 var
  assoc_comments_module_element=
   function(parent_name,module_list,m_ele)
    {switch(m_ele)
-     {case 0:return [0,assoc_comments_module(module_list,m_ele[1])];
-      case 1:return [1,assoc_comments_module_type(module_list,m_ele[1])];
+     {case 0:
+       return [/* Element_module */0,
+               assoc_comments_module(module_list,m_ele[1])];
+       
+      case 1:
+       return [/* Element_module_type */1,
+               assoc_comments_module_type(module_list,m_ele[1])];
+       
       case 2:return m_ele;
-      case 3:return [3,assoc_comments_class(module_list,m_ele[1])];
-      case 4:return [4,assoc_comments_class_type(module_list,m_ele[1])];
-      case 5:return [5,assoc_comments_value(module_list,m_ele[1])];
+      case 3:
+       return [/* Element_class */3,
+               assoc_comments_class(module_list,m_ele[1])];
+       
+      case 4:
+       return [/* Element_class_type */4,
+               assoc_comments_class_type(module_list,m_ele[1])];
+       
+      case 5:
+       return [/* Element_value */5,
+               assoc_comments_value(module_list,m_ele[1])];
+       
       case 6:
-       return [6,
+       return [/* Element_type_extension */6,
                assoc_comments_type_extension(parent_name,module_list,m_ele[1])];
        
-      case 7:return [7,assoc_comments_exception(module_list,m_ele[1])];
-      case 8:return [8,assoc_comments_type(module_list,m_ele[1])];
-      case 9:return [9,assoc_comments_text(parent_name,module_list,m_ele[1])];
+      case 7:
+       return [/* Element_exception */7,
+               assoc_comments_exception(module_list,m_ele[1])];
+       
+      case 8:
+       return [/* Element_type */8,assoc_comments_type(module_list,m_ele[1])];
+      case 9:
+       return [/* Element_module_comment */9,
+               assoc_comments_text(parent_name,module_list,m_ele[1])];
+       
       }
     };
 
@@ -1526,9 +1677,18 @@ var
  assoc_comments_class_element=
   function(parent_name,module_list,c_ele)
    {switch(c_ele)
-     {case 0:return [0,assoc_comments_attribute(module_list,c_ele[1])];
-      case 1:return [1,assoc_comments_method(module_list,c_ele[1])];
-      case 2:return [2,assoc_comments_text(parent_name,module_list,c_ele[1])];
+     {case 0:
+       return [/* Class_attribute */0,
+               assoc_comments_attribute(module_list,c_ele[1])];
+       
+      case 1:
+       return [/* Class_method */1,
+               assoc_comments_method(module_list,c_ele[1])];
+       
+      case 2:
+       return [/* Class_comment */2,
+               assoc_comments_text(parent_name,module_list,c_ele[1])];
+       
       }
     };
 
@@ -1539,24 +1699,24 @@ var
     
     switch(mk)
      {case 0:
-       return [0,
+       return [/* Module_struct */0,
                List["map"]
                 (assoc_comments_module_element(parent_name,module_list),mk[1])];
        
       case 1:exit=8;
       case 2:exit=8;
       case 3:
-       return [3,
+       return [/* Module_apply */3,
                assoc_comments_module_kind(parent_name,module_list,mk[1]),
                assoc_comments_module_kind(parent_name,module_list,mk[2])];
        
       case 4:
-       return [4,
+       return [/* Module_with */4,
                assoc_comments_module_type_kind(parent_name,module_list,mk[1]),
                mk[2]];
        
       case 5:
-       return [5,
+       return [/* Module_constraint */5,
                assoc_comments_module_kind(parent_name,module_list,mk[1]),
                assoc_comments_module_type_kind(parent_name,module_list,mk[2])];
        
@@ -1574,19 +1734,19 @@ var
     
     switch(mtk)
      {case 0:
-       return [0,
+       return [/* Module_type_struct */0,
                List["map"]
                 (assoc_comments_module_element(parent_name,module_list),
                  mtk[1])];
        
       case 1:
-       return [1,
+       return [/* Module_type_functor */1,
                mtk[1],
                assoc_comments_module_type_kind(parent_name,module_list,mtk[2])];
        
       case 2:exit=10;
       case 3:
-       return [3,
+       return [/* Module_type_with */3,
                assoc_comments_module_type_kind(parent_name,module_list,mtk[1]),
                mtk[2]];
        
@@ -1607,14 +1767,14 @@ var
         inher2=
          List["map"]
           (function(ic)
-            {return [0,
+            {return [/* record */0,
                      ic[1],
                      ic[2],
                      ao(assoc_comments_text(parent_name,module_list),ic[3])];
              },
            ck[1]);
        
-       return [0,
+       return [/* Class_structure */0,
                inher2,
                List["map"]
                 (assoc_comments_class_element(parent_name,module_list),ck[2])];
@@ -1622,7 +1782,7 @@ var
       case 1:exit=12;
       case 2:exit=12;
       case 3:
-       return [3,
+       return [/* Class_constraint */3,
                assoc_comments_class_kind(parent_name,module_list,ck[1]),
                assoc_comments_class_type_kind(parent_name,module_list,ck[2])];
        
@@ -1640,14 +1800,14 @@ var
         inher2=
          List["map"]
           (function(ic)
-            {return [0,
+            {return [/* record */0,
                      ic[1],
                      ic[2],
                      ao(assoc_comments_text(parent_name,module_list),ic[3])];
              },
            ctk[1]);
        
-       return [0,
+       return [/* Class_signature */0,
                inher2,
                List["map"]
                 (assoc_comments_class_element(parent_name,module_list),ctk[2])];
@@ -1816,7 +1976,7 @@ var
           if(List["mem"](h,acc))
            {return remove_doubles(acc,q);}
           else
-           {return remove_doubles([0,h,acc],q);}
+           {return remove_doubles([/* :: */0,h,acc],q);}
           }
         else
          {return acc;}

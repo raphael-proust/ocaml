@@ -101,7 +101,12 @@ var
      {if(exn=Not_found)
        {var
          add1=
-          [0,[0,"-help",[0,help_action]," Display this list of options"],0];
+          /* :: */[0,
+           /* tuple */[0,
+            "-help",
+            /* Unit */[0,help_action],
+            " Display this list of options"],
+           0];
         }
       else
        {throw exn;}
@@ -113,7 +118,12 @@ var
      {if(exn$1=Not_found)
        {var
          add2=
-          [0,[0,"--help",[0,help_action]," Display this list of options"],0];
+          /* :: */[0,
+           /* tuple */[0,
+            "--help",
+            /* Unit */[0,help_action],
+            " Display this list of options"],
+           0];
         }
       else
        {throw exn$1;}
@@ -239,7 +249,12 @@ var
       if(s["length"]>=1&&(s[0]=45))
        {try
          {var action=assoc3(s,speclist[1]);}
-        catch(exn){if(exn=Not_found){var action=stop([0,s]);}else{throw exn;}}
+        catch(exn)
+         {if(exn=Not_found)
+           {var action=stop(/* Unknown */[0,s]);}
+          else
+           {throw exn;}
+          }
         
         try
          {var
@@ -266,7 +281,8 @@ var
                       {var match=exn$1[2];
                        
                        switch(match)
-                        {case "bool_of_string":throw [0,Stop,[1,s,arg,"a boolean"]];
+                        {case "bool_of_string":
+                          throw [0,Stop,/* Wrong */[1,s,arg,"a boolean"]];
                          default:exit$1=33;}
                        }
                      else
@@ -316,7 +332,7 @@ var
                        
                        switch(match$1)
                         {case "int_of_string":
-                          throw [0,Stop,[1,s,arg$1,"an integer"]];
+                          throw [0,Stop,/* Wrong */[1,s,arg$1,"an integer"]];
                          default:exit$2=36;}
                        }
                      else
@@ -348,7 +364,7 @@ var
                        
                        switch(match$2)
                         {case "int_of_string":
-                          throw [0,Stop,[1,s,arg$2,"an integer"]];
+                          throw [0,Stop,/* Wrong */[1,s,arg$2,"an integer"]];
                          default:exit$3=38;}
                        }
                      else
@@ -380,7 +396,7 @@ var
                        
                        switch(match$3)
                         {case "float_of_string":
-                          throw [0,Stop,[1,s,arg$3,"a float"]];
+                          throw [0,Stop,/* Wrong */[1,s,arg$3,"a float"]];
                          default:exit$4=40;}
                        }
                      else
@@ -412,7 +428,7 @@ var
                        
                        switch(match$4)
                         {case "float_of_string":
-                          throw [0,Stop,[1,s,arg$4,"a float"]];
+                          throw [0,Stop,/* Wrong */[1,s,arg$4,"a float"]];
                          default:exit$5=42;}
                        }
                      else
@@ -441,7 +457,7 @@ var
                    else
                     {throw [0,
                             Stop,
-                            [1,
+                            /* Wrong */[1,
                              s,
                              arg$5,
                              Pervasives["^"]("one of: ",make_symlist(""," ","",symb))]];
@@ -459,7 +475,7 @@ var
                  
                 }
               
-              switch(exit){case 44:throw [0,Stop,[2,s]];}
+              switch(exit){case 44:throw [0,Stop,/* Missing */[2,s]];}
               };
           
           treat_action(action)}
@@ -467,7 +483,7 @@ var
          {var tag=exn$1[1];
           
           if(tag=Bad)
-           {var m=exn$1[2];stop([3,m])}
+           {var m=exn$1[2];stop(/* Message */[3,m])}
           else
            {var tag$1=exn$1[1];
             
@@ -482,7 +498,10 @@ var
         catch(exn$2)
          {var tag$2=exn$2[1];
           
-          if(tag$2=Bad){var m$1=exn$2[2];stop([3,m$1])}else{throw exn$2;}
+          if(tag$2=Bad)
+           {var m$1=exn$2[2];stop(/* Message */[3,m$1])}
+          else
+           {throw exn$2;}
           }
         
         current$1[0]++}
@@ -498,7 +517,8 @@ var
     else
      {var current$1=current;}
     
-    return parse_argv_dynamic([0,current$1],argv,[0,speclist],anonfun,errmsg);
+    return parse_argv_dynamic
+            (/* Some */[0,current$1],argv,[0,speclist],anonfun,errmsg);
     };
 
 var
@@ -612,7 +632,7 @@ var
           
           var spaces=$$String["make"](Pervasives["max"](0,len-cutcol)+3,32);
           
-          return [0,
+          return /* tuple */[0,
                   kwd,
                   spec,
                   Pervasives["^"]("\n",Pervasives["^"](spaces,msg))];
@@ -631,7 +651,7 @@ var
           var diff=len-kwd_len-cutcol$1;
           
           if(diff<=0)
-           {return [0,kwd$1,spec$1,msg$1];}
+           {return /* tuple */[0,kwd$1,spec$1,msg$1];}
           else
            {var spaces$1=$$String["make"](diff,32);
             
@@ -641,7 +661,7 @@ var
              suffix=
               $$String["sub"](msg$1,cutcol$1,msg$1["length"]-cutcol$1);
             
-            return [0,
+            return /* tuple */[0,
                     kwd$1,
                     spec$1,
                     Pervasives["^"](prefix,Pervasives["^"](spaces$1,suffix))];

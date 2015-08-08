@@ -143,7 +143,11 @@ var
                {switch(match$1){}}
               else
                {switch(match$1[0])
-                 {case 1:var deps$2=error([0,name,match$1[1]]);
+                 {case 1:
+                   var
+                    deps$2=
+                     error([/* Dependency_not_found */0,name,match$1[1]]);
+                   
                   default:exit=32;}}
               }
             else
@@ -154,7 +158,15 @@ var
           
           var
            $$package=
-            [0,n,match[2],match[3],match[4],a_native,match[5],match[6],deps$2];
+            [/* record */0,
+             n,
+             match[2],
+             match[3],
+             match[4],
+             a_native,
+             match[5],
+             match[6],
+             deps$2];
           
           Hashtbl["add"](packages,n,$$package);
           return $$package;
@@ -164,7 +176,7 @@ var
            {return error(0);}
           else
            {if(exn$2[1]=Lexers["Error"])
-             {return error([2,name,exn$2[2][1]]);}
+             {return error([/* Cannot_parse_query */2,name,exn$2[2][1]]);}
             else
              {throw exn$2;}
             }
@@ -185,7 +197,7 @@ var
       function(s$1)
        {var pos=My_std["String"][29](s$1,10);
         
-        x[1]=[0,My_std["String"][3](s$1,pos),x[1]],0;
+        x[1]=[/* :: */0,My_std["String"][3](s$1,pos),x[1]],0;
         return go(My_std["String"][4](s$1,pos+1));
         };
     
@@ -218,7 +230,11 @@ var
    {var
      add=
       function(l$1,x)
-       {if(My_std["List"][30](x,l$1)){return l$1;}else{return [0,x,l$1];}};
+       {if(My_std["List"][30](x,l$1))
+         {return l$1;}
+        else
+         {return [/* :: */0,x,l$1];}
+        };
     
     var
      l$1=
@@ -244,7 +260,7 @@ var
        {case 1:switch(a[1]){case "":return l;default:exit=17;}
         default:exit=17;}}
     
-    switch(exit){case 17:return [0,a,l];}
+    switch(exit){case 17:return [/* :: */0,a,l];}
     };
 
 var
@@ -262,11 +278,12 @@ var
     var
      flags$1=
       My_std["List"][19]
-       (function(acc,l$1){return add_atom([2,l$1],add_atom([1,"-I"],acc));},
+       (function(acc,l$1)
+         {return add_atom([/* P */2,l$1],add_atom([1,"-I"],acc));},
         flags,
         SSet[20](locations));
     
-    return [0,My_std["List"][9](flags$1)];
+    return [/* S */0,My_std["List"][9](flags$1)];
     };
 
 var compile_flags_byte=compile_flags;
@@ -288,21 +305,22 @@ var
     var
      flags$1=
       My_std["List"][19]
-       (function(acc,l$1){return add_atom([2,l$1],add_atom([1,"-I"],acc));},
+       (function(acc,l$1)
+         {return add_atom([/* P */2,l$1],add_atom([1,"-I"],acc));},
         flags,
         SSet[20](locations));
     
     var
      flags$2=
       My_std["List"][19]
-       (function(acc,x){return add_atom([1,x[6]],acc);},flags$1,pkgs);
+       (function(acc,x){return add_atom([/* A */1,x[6]],acc);},flags$1,pkgs);
     
     var
      flags$3=
       My_std["List"][19]
-       (function(acc,x){return add_atom([1,f(x)],acc);},flags$2,pkgs);
+       (function(acc,x){return add_atom([/* A */1,f(x)],acc);},flags$2,pkgs);
     
-    return [0,My_std["List"][9](flags$3)];
+    return [/* S */0,My_std["List"][9](flags$3)];
     };
 
 var link_flags_byte=link_flags(function(x){return x[4];});

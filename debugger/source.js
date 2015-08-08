@@ -104,11 +104,12 @@ var
           Pervasives["really_input_string"]
            (inchan,Pervasives["in_channel_length"](inchan));
         
-        var buffer=[0,content,[0,0]];
+        var buffer=[/* tuple */0,content,[0,0]];
         
         buffer_list[1]=
         Primitives["list_truncate"]
-         (buffer_max_count[1],[0,[0,mdle,buffer],buffer_list[1]]),
+         (buffer_max_count[1],
+          [/* :: */0,[/* tuple */0,mdle,buffer],buffer_list[1]]),
         0;
         return buffer;
         }
@@ -137,16 +138,16 @@ var
           var lin=a[2];
           
           if("unknown primitive:caml_lessthan")
-           {return [0,pair,l$prime];}
+           {return [/* :: */0,pair,l$prime];}
           else
            {if("unknown primitive:caml_equal")
              {return l$prime;}
             else
-             {return [0,a,new_list(l$prime[2])];}
+             {return [/* :: */0,a,new_list(l$prime[2])];}
             }
           }
         else
-         {return [0,[0,position,line],0];}
+         {return [/* :: */0,[/* tuple */0,position,line],0];}
         };
     
     var buffer_cache=buffer[2];
@@ -176,7 +177,7 @@ var
 var
  next_line=
   function(buffer,param)
-   {return [0,next_linefeed(buffer,param[1])+1,param[2]+1];};
+   {return [/* tuple */0,next_linefeed(buffer,param[1])+1,param[2]+1];};
 
 var
  line_of_pos=
@@ -252,7 +253,7 @@ var
     
     var start=point_of_coord(buffer,line_number,1);
     
-    return [0,start,start+(pos[4]-pos[3])];
+    return [/* tuple */0,start,start+(pos[4]-pos[3])];
     };
 
 module["exports"]=

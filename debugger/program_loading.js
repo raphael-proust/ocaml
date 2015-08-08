@@ -243,9 +243,11 @@ var
 
 var
  loading_modes=
-  [0,
-   [0,"direct",exec_direct],
-   [0,[0,"runtime",exec_with_runtime],[0,[0,"manual",exec_manual],0]]];
+  [/* :: */0,
+   [/* tuple */0,"direct",exec_direct],
+   [/* :: */0,
+    [/* tuple */0,"runtime",exec_with_runtime],
+    [/* :: */0,[/* tuple */0,"manual",exec_manual],0]]];
 
 var set_launching_function=function(func){return launching_func[1]=func,0;};
 

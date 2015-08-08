@@ -90,17 +90,17 @@ var
     
     if(match!=-1)
      {if(match!=0)
-       {return cautious_normalize_ratio([0,bi1,bi2,0]);}
+       {return cautious_normalize_ratio(/* record */[0,bi1,bi2,0]);}
       else
        {if(Arith_flags["error_when_null_denominator_flag"][1])
          {return failwith_zero("create_ratio");}
         else
-         {return cautious_normalize_ratio([0,bi1,bi2,0]);}
+         {return cautious_normalize_ratio(/* record */[0,bi1,bi2,0]);}
         }
       }
     else
      {return cautious_normalize_ratio
-              ([0,
+              (/* record */[0,
                 Big_int["minus_big_int"](bi1),
                 Big_int["minus_big_int"](bi2),
                 0]);
@@ -114,16 +114,19 @@ var
     
     if(match!=-1)
      {if(match!=0)
-       {return [0,bi1,bi2,1];}
+       {return /* record */[0,bi1,bi2,1];}
       else
        {if(Arith_flags["error_when_null_denominator_flag"][1])
          {return failwith_zero("create_normalized_ratio");}
         else
-         {return [0,bi1,bi2,1];}
+         {return /* record */[0,bi1,bi2,1];}
         }
       }
     else
-     {return [0,Big_int["minus_big_int"](bi1),Big_int["minus_big_int"](bi2),1];
+     {return /* record */[0,
+              Big_int["minus_big_int"](bi1),
+              Big_int["minus_big_int"](bi2),
+              1];
       }
     };
 
@@ -135,7 +138,9 @@ var
    {if(sign_ratio(r)=-1){return Big_int["minus_big_int"](bi);}else{return bi;}
     };
 
-var abs_ratio=function(r){return [0,Big_int["abs_big_int"](r[1]),r[2],r[3]];};
+var
+ abs_ratio=
+  function(r){return /* record */[0,Big_int["abs_big_int"](r[1]),r[2],r[3]];};
 
 var
  is_integer_ratio=
@@ -153,7 +158,7 @@ var
         Big_int["gcd_big_int"](normalize_ratio(r1)[2],normalize_ratio(r2)[2]);
       
       if(Big_int["eq_big_int"](p,Big_int["unit_big_int"]))
-       {return [0,
+       {return /* record */[0,
                 Big_int["add_big_int"]
                  (Big_int["mult_big_int"](r1[1],r2[2]),
                   Big_int["mult_big_int"](r2[1],r1[2])),
@@ -173,7 +178,7 @@ var
         
         var p$prime=Big_int["gcd_big_int"](n,p);
         
-        return [0,
+        return /* record */[0,
                 Big_int["div_big_int"](n,p$prime),
                 Big_int["mult_big_int"]
                  (d1,Big_int["div_big_int"](r2[2],p$prime)),
@@ -181,7 +186,7 @@ var
         }
       }
     else
-     {return [0,
+     {return /* record */[0,
               Big_int["add_big_int"]
                (Big_int["mult_big_int"](r1[1],r2[2]),
                 Big_int["mult_big_int"](r1[2],r2[1])),
@@ -192,13 +197,14 @@ var
 
 var
  minus_ratio=
-  function(r){return [0,Big_int["minus_big_int"](r[1]),r[2],r[3]];};
+  function(r)
+   {return /* record */[0,Big_int["minus_big_int"](r[1]),r[2],r[3]];};
 
 var
  add_int_ratio=
   function(i,r)
    {
-    return [0,
+    return /* record */[0,
             Big_int["add_big_int"](Big_int["mult_int_big_int"](i,r[2]),r[1]),
             r[2],
             r[3]];
@@ -208,7 +214,7 @@ var
  add_big_int_ratio=
   function(bi,r)
    {
-    return [0,
+    return /* record */[0,
             Big_int["add_big_int"](Big_int["mult_big_int"](bi,r[2]),r[1]),
             r[2],
             r[3]];
@@ -227,11 +233,11 @@ var
       var p2=Big_int["gcd_big_int"](r2[1],r1[2]);
       
       if(Big_int["eq_big_int"](p1,Big_int["unit_big_int"]))
-       {var match=[0,r1[1],r2[2]];}
+       {var match=/* tuple */[0,r1[1],r2[2]];}
       else
        {var
          match=
-          [0,
+          /* tuple */[0,
            Big_int["div_big_int"](r1[1],p1),
            Big_int["div_big_int"](r2[2],p1)];
         }
@@ -241,11 +247,11 @@ var
       var n1=match[1];
       
       if(Big_int["eq_big_int"](p2,Big_int["unit_big_int"]))
-       {var match$1=[0,r2[1],r1[2]];}
+       {var match$1=/* tuple */[0,r2[1],r1[2]];}
       else
        {var
          match$1=
-          [0,
+          /* tuple */[0,
            Big_int["div_big_int"](r2[1],p2),
            Big_int["div_big_int"](r1[2],p2)];
         }
@@ -254,13 +260,13 @@ var
       
       var n2=match$1[1];
       
-      return [0,
+      return /* record */[0,
               Big_int["mult_big_int"](n1,n2),
               Big_int["mult_big_int"](d1,d2),
               1];
       }
     else
-     {return [0,
+     {return /* record */[0,
               Big_int["mult_big_int"](r1[1],r2[1]),
               Big_int["mult_big_int"](r1[2],r2[2]),
               0];
@@ -277,13 +283,13 @@ var
          (normalize_ratio(r)[2],Big_int["big_int_of_int"](i));
       
       if(Big_int["eq_big_int"](p,Big_int["unit_big_int"]))
-       {return [0,
+       {return /* record */[0,
                 Big_int["mult_big_int"](Big_int["big_int_of_int"](i),r[1]),
                 r[2],
                 1];
         }
       else
-       {return [0,
+       {return /* record */[0,
                 Big_int["mult_big_int"]
                  (Big_int["div_big_int"](Big_int["big_int_of_int"](i),p),r[1]),
                 Big_int["div_big_int"](r[2],p),
@@ -291,7 +297,7 @@ var
         }
       }
     else
-     {return [0,Big_int["mult_int_big_int"](i,r[1]),r[2],0];}
+     {return /* record */[0,Big_int["mult_int_big_int"](i,r[1]),r[2],0];}
     };
 
 var
@@ -301,23 +307,23 @@ var
      {var p=Big_int["gcd_big_int"](normalize_ratio(r)[2],bi);
       
       if(Big_int["eq_big_int"](p,Big_int["unit_big_int"]))
-       {return [0,Big_int["mult_big_int"](bi,r[1]),r[2],1];}
+       {return /* record */[0,Big_int["mult_big_int"](bi,r[1]),r[2],1];}
       else
-       {return [0,
+       {return /* record */[0,
                 Big_int["mult_big_int"](Big_int["div_big_int"](bi,p),r[1]),
                 Big_int["div_big_int"](r[2],p),
                 1];
         }
       }
     else
-     {return [0,Big_int["mult_big_int"](bi,r[1]),r[2],0];}
+     {return /* record */[0,Big_int["mult_big_int"](bi,r[1]),r[2],0];}
     };
 
 var
  square_ratio=
   function(r)
    {
-    return [0,
+    return /* record */[0,
             Big_int["square_big_int"](r[1]),
             Big_int["square_big_int"](r[2]),
             r[3]];
@@ -331,7 +337,11 @@ var
       (Big_int["sign_big_int"](r[1])=0))
      {return failwith_zero("inverse_ratio");}
     else
-     {return [0,report_sign_ratio(r,r[2]),Big_int["abs_big_int"](r[1]),r[3]];}
+     {return /* record */[0,
+              report_sign_ratio(r,r[2]),
+              Big_int["abs_big_int"](r[1]),
+              r[3]];
+      }
     };
 
 var div_ratio=function(r1,r2){return mult_ratio(r1,inverse_ratio(r2));};
@@ -498,12 +508,20 @@ var
 var
  ratio_of_int=
   function(i)
-   {return [0,Big_int["big_int_of_int"](i),Big_int["unit_big_int"],1];};
+   {return /* record */[0,
+            Big_int["big_int_of_int"](i),
+            Big_int["unit_big_int"],
+            1];
+    };
 
 var
  ratio_of_nat=
   function(nat)
-   {return [0,Big_int["big_int_of_nat"](nat),Big_int["unit_big_int"],1];};
+   {return /* record */[0,
+            Big_int["big_int_of_nat"](nat),
+            Big_int["unit_big_int"],
+            1];
+    };
 
 var
  nat_of_ratio=
@@ -519,7 +537,9 @@ var
       }
     };
 
-var ratio_of_big_int=function(bi){return [0,bi,Big_int["unit_big_int"],1];};
+var
+ ratio_of_big_int=
+  function(bi){return /* record */[0,bi,Big_int["unit_big_int"],1];};
 
 var
  big_int_of_ratio=
@@ -701,7 +721,10 @@ var
         
         if(sign_r=0)
          {return $$String["concat"]
-                  ("",[0,"+0.",[0,$$String["make"](n,48),[0,"e0",0]]]);
+                  ("",
+                   /* :: */[0,
+                    "+0.",
+                    /* :: */[0,$$String["make"](n,48),[0,"e0",0]]]);
           }
         else
          {var msd=msd_ratio(abs_ratio(r));
@@ -796,7 +819,11 @@ var
       }
     catch(exn)
      {if(exn=Not_found)
-       {return [0,Big_int["big_int_of_string"](s),Big_int["unit_big_int"],1];}
+       {return /* record */[0,
+                Big_int["big_int_of_string"](s),
+                Big_int["unit_big_int"],
+                1];
+        }
       else
        {throw exn;}
       }

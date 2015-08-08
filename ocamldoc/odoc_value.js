@@ -16,7 +16,7 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](name,match[1][8]);return [0,t];}
+       {var t=List["assoc"](name,match[1][8]);return [/* Some */0,t];}
       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
       }
     else
@@ -50,7 +50,11 @@ var
          {switch(match){}}
         else
          {switch(match[0])
-           {case 1:return [0,[0,match[1],match[2]],iter(match[3])];
+           {case 1:
+             return [/* :: */0,
+                     [/* tuple */0,match[1],match[2]],
+                     iter(match[3])];
+             
             case 6:exit=13;
             case 7:exit=13;
             case 10:return iter(match[1]);
@@ -100,20 +104,24 @@ var
          {switch(match[0])
            {case 2:
              if("unknown primitive:caml_string_equal")
-              {return [1,
-                       List["map"](function(t2){return iter([0,"",t2]);},match[1]),
+              {return [/* Tuple */1,
+                       List["map"]
+                        (function(t2){return iter([/* tuple */0,"",t2]);},match[1]),
                        t];
                }
              else
-              {return [0,[0,normal_name(label),t,0]];}
+              {return [/* Simple_name */0,
+                       [/* record */0,normal_name(label),t,0]];
+               }
              
             case 6:exit=5;
             case 7:exit=5;
             default:exit=4;}}
         
         switch(exit)
-         {case 5:return iter([0,label,match[1]]);
-          case 4:return [0,[0,normal_name(label),t,0]];
+         {case 5:return iter([/* tuple */0,label,match[1]]);
+          case 4:
+           return [/* Simple_name */0,[/* record */0,normal_name(label),t,0]];
           }
         };
     

@@ -54,7 +54,7 @@ var
      stuff=
       Hygiene["check"]
        (Options["sanitize"][1]
-         ?[0,
+         ?[/* Some */0,
            Pathname["concat"]
             (Options["build_dir"][1],Options["sanitization_script"][1])]
          :0,

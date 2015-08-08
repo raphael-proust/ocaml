@@ -145,10 +145,10 @@ var
        (0,My_std["List"][16](Pathname["dirname"],Options["targets"][1]));
     
     Configuration["parse_string"]
-     ([0,Const["Source"][7]],
+     ([/* Some */0,Const["Source"][7]],
       '<**/*.ml> or <**/*.mli> or <**/*.mlpack> or <**/*.ml.depends>: ocaml\n<**/*.byte>: ocaml, byte, program\n<**/*.odoc>: ocaml, doc\n<**/*.native>: ocaml, native, program\n<**/*.cma>: ocaml, byte, library\n<**/*.cmxa>: ocaml, native, library\n<**/*.cmo>: ocaml, byte\n<**/*.cmi>: ocaml, byte, native\n<**/*.cmx>: ocaml, native\n<**/*.mly>: infer\n<**/.svn>|".bzr"|".hg"|".git"|"_darcs": -traverse\n');
     My_std["List"][14]
-     (Configuration["parse_string"]([0,Const["Source"][2]]),
+     (Configuration["parse_string"]([/* Some */0,Const["Source"][2]]),
       Options["tag_lines"][1]);
     Configuration["tag_any"](Options["tags"][1]);
     if(Options["recursive"][1]||Options["ocamlbuild_project_heuristic"](0))
@@ -161,7 +161,7 @@ var
        (function(pkg)
          {var tag=Param_tags["make"]("package",pkg);
           
-          return Configuration["tag_any"]([0,tag,0]);
+          return Configuration["tag_any"]([/* :: */0,tag,0]);
           },
         Options["ocaml_pkgs"][1])}
     else
@@ -170,7 +170,8 @@ var
     var match=Options["ocaml_syntax"][1];
     
     if(match)
-     {Configuration["tag_any"]([0,Param_tags["make"]("syntax",match[1]),0])}
+     {Configuration["tag_any"]
+       ([/* :: */0,Param_tags["make"]("syntax",match[1]),0])}
     else
      {}
     
@@ -186,7 +187,7 @@ var
          {if("unknown primitive:caml_string_equal")
            {var dir=0;}
           else
-           {var dir=[0,path];}
+           {var dir=[/* Some */0,path];}
           
           var path_name=Pathname["Operators"][1](path,name);
           
@@ -217,7 +218,7 @@ var
                   (Tags["mem"]("include",tags)||
                     My_std["List"][30](path_name,Options["include_dirs"][1])
                     ?(entry_include_dirs[1]=
-                      [0,path_name,entry_include_dirs[1]],
+                      [/* :: */0,path_name,entry_include_dirs[1]],
                       0,
                       1)
                     :Tags["mem"]("traverse",tags)||
@@ -252,7 +253,9 @@ var
     
     Hooks["call_hook"](1);
     Options["include_dirs"][1]=
-    [0,Pathname["current_dir_name"],My_std["List"][9](entry_include_dirs[1])],
+    [/* :: */0,
+     Pathname["current_dir_name"],
+     My_std["List"][9](entry_include_dirs[1])],
     0;
     Log["dprintf"]
      (3,
@@ -261,7 +264,7 @@ var
        "include directories are:@ %a"],
       My_std["print_string_list"],
       Options["include_dirs"][1]);
-    Options["entry"][1]=[0,hygiene_entry],0;
+    Options["entry"][1]=[/* Some */0,hygiene_entry],0;
     Hooks["call_hook"](4);
     Ocaml_specific["init"](0);
     Hooks["call_hook"](5);
@@ -302,7 +305,7 @@ var
           
           var ext=Pathname["get_extension"](starget$1);
           
-          return [0,target,starget$1,ext];
+          return [/* tuple */0,target,starget$1,ext];
           },
         Options["targets"][1]);
     
@@ -316,7 +319,7 @@ var
             Shell["mkdir_p"](Pathname["dirname"](starget));
             var target=Solver["solve_target"](starget,param$1[1]);
             
-            return [0,target,param$1[3]];
+            return [/* tuple */0,target,param$1[3]];
             },
           targets);
       
@@ -367,7 +370,7 @@ var
                
                return acc;
                
-              case 24:link(cmd);return [0,cmd,acc];
+              case 24:link(cmd);return [/* :: */0,cmd,acc];
               }
             },
           targets$1,
@@ -390,8 +393,10 @@ var
           
           var
            cmd_spec=
-            [0,
-             [0,[2,cmd],[0,Command["atomize"](Options["program_args"][1]),0]]];
+            [/* S */0,
+             [/* :: */0,
+              [/* P */2,cmd],
+              [/* :: */0,Command["atomize"](Options["program_args"][1]),0]]];
           
           Log["dprintf"]
            (3,
@@ -439,7 +444,7 @@ var
    {var
      exit=
       function(rc)
-       {Log["finish"]([0,rc!=0?106380200:94326179],0);
+       {Log["finish"]([/* Some */0,rc!=0?106380200:94326179],0);
         return Pervasives["exit"](rc);
         };
     

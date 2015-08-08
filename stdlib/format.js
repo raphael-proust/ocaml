@@ -6,14 +6,14 @@ var Pervasives=require("Pervasives");
 var Buffer=require("Buffer");
 
 
-var make_queue=function(param){return [0,0,0];};
+var make_queue=function(param){return /* record */[0,0,0];};
 
 var clear_queue=function(q){q[1]=0,0;return q[2]=0,0;};
 
 var
  add_queue=
   function(x,q)
-   {var c=[0,[0,x,0]];
+   {var c=/* Cons */[0,/* record */[0,x,0]];
     
     var match=q[1];
     
@@ -159,12 +159,12 @@ var
                  var x=ls[1];
                  
                  if("unknown primitive:caml_lessthan")
-                  {return [0,n,ls];}
+                  {return /* :: */[0,n,ls];}
                  else
-                  {return [0,x,add_tab(n,l)];}
+                  {return /* :: */[0,x,add_tab(n,l)];}
                  }
                else
-                {return [0,n,0];}
+                {return /* :: */[0,n,0];}
                };
            
            return tabs[1]=add_tab(state[6]-state[9],tabs[1]),0;
@@ -343,16 +343,18 @@ var
          else
           {var bl_type=1;}
          
-         return state[2]=[0,[0,bl_type,offset$1],state[2]],0;
+         return state[2]=
+                /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]],
+                0;
          
-        case 4:var tbox=param[1];return state[3]=[0,tbox,state[3]],0;
+        case 4:var tbox=param[1];return state[3]=/* :: */[0,tbox,state[3]],0;
         case 5:
          var tag_name$1=param[1];
          
          var marker$1=state[23](tag_name$1);
          
          pp_output_string(state,marker$1);
-         return state[5]=[0,tag_name$1,state[5]],0;
+         return state[5]=/* :: */[0,tag_name$1,state[5]],0;
          
         }}
     };
@@ -392,14 +394,16 @@ var
  enqueue_advance=
   function(state,tok){pp_enqueue(state,tok);return advance_left(state);};
 
-var make_queue_elem=function(size,tok,len){return [0,size,tok,len];};
+var
+ make_queue_elem=
+  function(size,tok,len){return /* record */[0,size,tok,len];};
 
 var
  enqueue_string_as=
   function(state,size,s)
    {var len=size;
     
-    return enqueue_advance(state,make_queue_elem(size,[0,s],len));
+    return enqueue_advance(state,make_queue_elem(size,/* Pp_text */[0,s],len));
     };
 
 var
@@ -409,7 +413,7 @@ var
 
 var q_elem=make_queue_elem(-1,[0,""],0);
 
-var scan_stack_bottom=[0,[0,-1,q_elem],0];
+var scan_stack_bottom=/* :: */[0,/* Scan_elem */[0,-1,q_elem],0];
 
 var clear_scan_stack=function(state){return state[1]=scan_stack_bottom,0;};
 
@@ -473,7 +477,7 @@ var
    {pp_enqueue(state,tok);
     if(b){set_size(state,1)}else{}
     
-    return state[1]=[0,[0,state[13],tok],state[1]],0;
+    return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0;
     };
 
 var
@@ -481,7 +485,7 @@ var
   function(state,indent,br_ty)
    {state[14]=state[14]+1,0;
     if(state[14]<state[15])
-     {var elem=make_queue_elem(-state[13],[3,indent,br_ty],0);
+     {var elem=make_queue_elem(-state[13],/* Pp_begin */[3,indent,br_ty],0);
       
       return scan_push(state,0,elem);
       }
@@ -500,7 +504,9 @@ var
   function(state,param)
    {if(state[14]>1)
      {if(state[14]<state[15])
-       {pp_enqueue(state,[0,0,1,0]),set_size(state,1),set_size(state,0)}
+       {pp_enqueue(state,/* record */[0,0,1,0]),
+        set_size(state,1),
+        set_size(state,0)}
       else
        {}
       
@@ -513,10 +519,15 @@ var
 var
  pp_open_tag=
   function(state,tag_name)
-   {if(state[21]){state[4]=[0,tag_name,state[4]],0,state[25](tag_name)}else{}
+   {if(state[21])
+     {state[4]=/* :: */[0,tag_name,state[4]],0,state[25](tag_name)}
+    else
+     {}
     
     if(state[22])
-     {return pp_enqueue(state,[0,0,[5,tag_name],0]);}
+     {return pp_enqueue
+              (state,/* record */[0,0,/* Pp_open_tag */[5,tag_name],0]);
+      }
     else
      {return 0;}
     };
@@ -524,7 +535,7 @@ var
 var
  pp_close_tag=
   function(state,param)
-   {if(state[22]){pp_enqueue(state,[0,0,5,0])}else{}
+   {if(state[22]){pp_enqueue(state,/* record */[0,0,5,0])}else{}
     
     if(state[21])
      {var match=state[4];
@@ -559,7 +570,8 @@ var
 
 var
  pp_get_formatter_tag_functions=
-  function(state,param){return [0,state[23],state[24],state[25],state[26]];};
+  function(state,param)
+   {return /* record */[0,state[23],state[24],state[25],state[26]];};
 
 var
  pp_set_formatter_tag_functions=
@@ -689,7 +701,9 @@ var
  pp_print_break=
   function(state,width,offset)
    {if(state[14]<state[15])
-     {var elem=make_queue_elem(-state[13],[1,width,offset],width);
+     {var
+       elem=
+        make_queue_elem(-state[13],/* Pp_break */[1,width,offset],width);
       
       return scan_push(state,1,elem);
       }
@@ -706,7 +720,7 @@ var
   function(state,param)
    {state[14]=state[14]+1,0;
     if(state[14]<state[15])
-     {var elem=make_queue_elem(0,[4,[0,[0,0]]],0);
+     {var elem=make_queue_elem(0,/* Pp_tbegin */[4,/* Pp_tbox */[0,[0,0]]],0);
       
       return enqueue_advance(state,elem);
       }
@@ -735,7 +749,9 @@ var
  pp_print_tbreak=
   function(state,width,offset)
    {if(state[14]<state[15])
-     {var elem=make_queue_elem(-state[13],[2,width,offset],width);
+     {var
+       elem=
+        make_queue_elem(-state[13],/* Pp_tbreak */[2,width,offset],width);
       
       return scan_push(state,1,elem);
       }
@@ -772,7 +788,7 @@ var
         
         pp_v(ppf,v$1);
         pp_sep(ppf,0);
-        return pp_print_list([0,pp_sep],pp_v,ppf,vs);
+        return pp_print_list(/* Some */[0,pp_sep],pp_v,ppf,vs);
         }
       else
        {return pp_v(ppf,v);}
@@ -888,7 +904,8 @@ var
 
 var
  pp_get_formatter_out_functions=
-  function(state,param){return [0,state[17],state[18],state[19],state[20]];};
+  function(state,param)
+   {return /* record */[0,state[17],state[18],state[19],state[20]];};
 
 var
  pp_set_formatter_output_functions=
@@ -896,7 +913,7 @@ var
 
 var
  pp_get_formatter_output_functions=
-  function(state,param){return [0,state[17],state[18]];};
+  function(state,param){return /* tuple */[0,state[17],state[18]];};
 
 var
  pp_set_all_formatter_output_functions=
@@ -908,7 +925,8 @@ var
 
 var
  pp_get_all_formatter_output_functions=
-  function(state,param){return [0,state[17],state[18],state[19],state[20]];};
+  function(state,param)
+   {return /* tuple */[0,state[17],state[18],state[19],state[20]];};
 
 var display_newline=function(state,param){return state[17]("\n",0,1);};
 
@@ -956,9 +974,11 @@ var
     var sys_tok=make_queue_elem(-1,[3,0,3],0);
     
     add_queue(sys_tok,pp_q);
-    var sys_scan_stack=[0,[0,1,sys_tok],scan_stack_bottom];
+    var
+     sys_scan_stack=
+      /* :: */[0,/* Scan_elem */[0,1,sys_tok],scan_stack_bottom];
     
-    return [0,
+    return /* record */[0,
             sys_scan_stack,
             0,
             0,

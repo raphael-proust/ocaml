@@ -33,13 +33,13 @@ var
      {Dynlink["init"](0),
       Dynlink["allow_unsafe_modules"](1),
       debugger_symtable[1]=
-      [0,Symtable["current_state"](0)],
+      [/* Some */0,Symtable["current_state"](0)],
       0}
     
     try
      {var result=fn(arg);
       
-      debugger_symtable[1]=[0,Symtable["current_state"](0)],0;
+      debugger_symtable[1]=[/* Some */0,Symtable["current_state"](0)],0;
       Symtable["restore_state"](old_symtable);
       return result;
       }
@@ -57,7 +57,7 @@ var
       
       if("unknown primitive:caml_string_notequal")
        {if(!List["mem"](d,Config["load_path"][1]))
-         {Config["load_path"][1]=[0,d,Config["load_path"][1]],0}
+         {Config["load_path"][1]=[/* :: */0,d,Config["load_path"][1]],0}
         else
          {}
         }
@@ -104,7 +104,7 @@ var
            }
          else
           {if(exn[1]=Dynlink["Error"])
-            {throw [0,$$Error,[0,exn[2]]];}
+            {throw [0,$$Error,[/* Load_failure */0,exn[2]]];}
            else
             {throw exn;}
            }
@@ -137,11 +137,17 @@ var
  match_printer_type=
   function(desc,typename)
    {try
-     {var match$1=Env["lookup_type"]([1,[0,"Topdirs"],typename],Env["empty"]);
+     {var
+       match$1=
+        Env["lookup_type"]([/* Ldot */1,[0,"Topdirs"],typename],Env["empty"]);
       }
     catch(exn)
      {if(exn=Not_found)
-       {throw [0,$$Error,[1,[1,[0,"Topdirs"],typename]]];}
+       {throw [0,
+               $$Error,
+               [/* Unbound_identifier */1,
+                [/* Ldot */1,[0,"Topdirs"],typename]]];
+        }
       else
        {throw exn;}
       }
@@ -152,7 +158,7 @@ var
     
     Ctype["unify"]
      (Env["empty"],
-      Ctype["newconstr"](match$1[1],[0,ty_arg,0]),
+      Ctype["newconstr"](match$1[1],[/* :: */0,ty_arg,0]),
       Ctype["instance"](0,Env["empty"],desc[1]));
     Ctype["end_def"](0);
     Ctype["generalize"](ty_arg);
@@ -168,22 +174,28 @@ var
       var desc=match$1[2];
       
       try
-       {var match$2=[0,match_printer_type(desc,"printer_type_new"),0];}
+       {var
+         match$2=
+          [/* tuple */0,match_printer_type(desc,"printer_type_new"),0];
+        }
       catch(exn)
        {if(exn[1]=Ctype["Unify"])
-         {var match$2=[0,match_printer_type(desc,"printer_type_old"),1];}
+         {var
+           match$2=
+            [/* tuple */0,match_printer_type(desc,"printer_type_old"),1];
+          }
         else
          {throw exn;}
         }
       
-      return [0,match$2[1],match$1[1],match$2[2]];
+      return [/* tuple */0,match$2[1],match$1[1],match$2[2]];
       }
     catch(exn$1)
      {if(exn$1=Not_found)
-       {throw [0,$$Error,[1,lid]];}
+       {throw [0,$$Error,[/* Unbound_identifier */1,lid]];}
       else
        {if(exn$1[1]=Ctype["Unify"])
-         {throw [0,$$Error,[3,lid]];}
+         {throw [0,$$Error,[/* Wrong_type */3,lid]];}
         else
          {throw exn$1;}
         }
@@ -206,7 +218,8 @@ var
        {var match$2=exn[2];
         
         switch(match$2)
-         {case 0:throw [0,$$Error,[2,match$2[1],lid]];default:exit=6;}
+         {case 0:throw [0,$$Error,[/* Unavailable_module */2,match$2[1],lid]];
+          default:exit=6;}
         }
       else
        {exit=6;}
@@ -229,7 +242,12 @@ var
     
     try
      {return Printval["remove_printer"](match$1[2]);}
-    catch(exn){if(exn=Not_found){throw [0,$$Error,[4,lid]];}else{throw exn;}}
+    catch(exn)
+     {if(exn=Not_found)
+       {throw [0,$$Error,[/* No_active_printer */4,lid]];}
+      else
+       {throw exn;}
+      }
     };
 
 var

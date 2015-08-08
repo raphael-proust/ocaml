@@ -44,7 +44,9 @@ var
  acknowledge=
   function(source,maybe_loc,tag)
    {return acknowledged_tags[1]=
-           [0,[0,parse(source,tag),maybe_loc],acknowledged_tags[1]],
+           [/* :: */0,
+            [/* tuple */0,parse(source,tag),maybe_loc],
+            acknowledged_tags[1]],
            0;
     };
 
@@ -106,7 +108,7 @@ var
 var
  partial_init=
   function(quiet,source,tags)
-   {var parse_noloc=function(tag){return [0,parse(source,tag),0];};
+   {var parse_noloc=function(tag){return [/* tuple */0,parse(source,tag),0];};
     
     return Tags["iter"]
             (function(tag){return really_acknowledge(quiet,parse_noloc(tag));},

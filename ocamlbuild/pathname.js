@@ -92,9 +92,9 @@ var
        {var dir=dirname(p$1);
         
         if("unknown primitive:caml_string_equal")
-         {return [0,dir,acc];}
+         {return [/* tuple */0,dir,acc];}
         else
-         {return go(dir,[0,basename(p$1),acc]);}
+         {return go(dir,[/* :: */0,basename(p$1),acc]);}
         };
     
     return go(p,0);
@@ -150,7 +150,7 @@ var
          else
           {exit$1=39;}
          
-         switch(exit$1){case 39:return [0,x,normalize_list(xs)];}
+         switch(exit$1){case 39:return [/* :: */0,x,normalize_list(xs)];}
          
         }
       }
@@ -282,7 +282,7 @@ var
      {return Hashtbl["find"](context_table,dir);}
     catch(exn)
      {if(exn=Not_found)
-       {return [0,
+       {return [/* :: */0,
                 dir,
                 My_std["List"][33]
                  (function(dir$prime)

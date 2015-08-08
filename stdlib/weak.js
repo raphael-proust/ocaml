@@ -43,7 +43,7 @@ var
         else
          {var sz$2=sz$1;}
         
-        return [0,
+        return /* record */[0,
                 "unknown primitive:caml_make_vect",
                 "unknown primitive:caml_make_vect",
                 limit,
@@ -291,7 +291,7 @@ var
                 (t,
                  function(prim,prim$1,prim$2)
                   {return "unknown primitive:caml_weak_set";},
-                 [0,d],
+                 /* Some */[0,d],
                  h,
                  get_index(t,h));
         };
@@ -358,7 +358,7 @@ var
                     (t,
                      function(prim,prim$1,prim$2)
                       {return "unknown primitive:caml_weak_set";},
-                     [0,d],
+                     /* Some */[0,d],
                      h,
                      index);
                    return d;
@@ -456,7 +456,7 @@ var
                    {var match$1="unknown primitive:caml_weak_get";
                     
                     if(match$1)
-                     {var v$1=match$1[1];return loop(i+1,[0,v$1,accu]);}
+                     {var v$1=match$1[1];return loop(i+1,/* :: */[0,v$1,accu]);}
                     else
                      {return loop(i+1,accu);}
                     }
@@ -491,7 +491,13 @@ var
           $$Array["fold_left"]
            (function(prim,prim$1){return prim+prim$1;},0,lens);
         
-        return [0,len,count(t),totlen,lens[0],lens[len/2],lens[len-1]];
+        return /* tuple */[0,
+                len,
+                count(t),
+                totlen,
+                lens[0],
+                lens[len/2],
+                lens[len-1]];
         };
     
     return [0,

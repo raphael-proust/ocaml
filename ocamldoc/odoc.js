@@ -43,7 +43,8 @@ var
             (Filename["check_suffix"](file,"cmo")||
              Filename["check_suffix"](file,"cma")||
              Filename["check_suffix"](file,"cmxs"))
-            {return iter([0,[0,file,files],incs],match[2]);}
+            {return iter([/* tuple */0,[/* :: */0,file,files],incs],match[2]);
+             }
            else
             {exit$1=21;}
            }
@@ -54,7 +55,10 @@ var
          var match$1=param$1[2];
          
          if(match$1)
-          {return iter([0,files,[0,match$1[1],incs]],match$1[2]);}
+          {return iter
+                   ([/* tuple */0,files,[/* :: */0,match$1[1],incs]],
+                    match$1[2]);
+           }
          else
           {exit$1=21;}
          
@@ -62,13 +66,17 @@ var
       
       switch(exit$1)
        {case 21:
-         var q=param$1[2];if(q){return iter([0,files,incs],q);}else{exit=20;}
+         var q=param$1[2];
+         
+         if(q){return iter([/* tuple */0,files,incs],q);}else{exit=20;}
+         
         }
       }
     else
      {exit=20;}
     
-    switch(exit){case 20:return [0,List["rev"](files),List["rev"](incs)];}
+    switch(exit)
+     {case 20:return [/* tuple */0,List["rev"](files),List["rev"](incs)];}
     };
 
 var match=iter([0,0,0],arg_list);
@@ -86,8 +94,8 @@ var
      {var
        paths$1=
         Pervasives["@"]
-         ([0,Filename["current_dir_name"],paths],
-          [0,Odoc_config["custom_generators_path"],0]);
+         ([/* :: */0,Filename["current_dir_name"],paths],
+          [/* :: */0,Odoc_config["custom_generators_path"],0]);
       
       try
        {var
@@ -179,7 +187,8 @@ var
 
 var
  modules=
-  Odoc_analyse["analyse_files"]([0,loaded_modules],Odoc_global["files"][1]);
+  Odoc_analyse["analyse_files"]
+   ([/* Some */0,loaded_modules],Odoc_global["files"][1]);
 
 var match$2=Odoc_global["dump"][1];
 

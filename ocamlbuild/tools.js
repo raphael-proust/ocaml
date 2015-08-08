@@ -47,7 +47,10 @@ var
       var d=Pathname["dirname"](s);
       
       if("unknown primitive:caml_string_notequal")
-       {var match=Pathname["define_context"](d,[0,d,0]);return [0,s,0];}
+       {var match=Pathname["define_context"](d,[/* :: */0,d,0]);
+        
+        return [/* :: */0,s,0];
+        }
       else
        {var include_dirs=Pathname["include_dirs_of"](d);
         
@@ -58,7 +61,7 @@ var
         }
       }
     else
-     {return [0,s,0];}
+     {return [/* :: */0,s,0];}
     };
 
 module["exports"]=

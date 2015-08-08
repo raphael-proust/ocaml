@@ -49,14 +49,14 @@ var
              $$String["capitalize"](param[1]),
              file(start),
              print(line(start)=line(end_)),
-             [0,line(start),line(end_)],
+             [/* tuple */0,line(start),line(end_)],
              print((line(start)=line(end_))&&($$char(start)=$$char(end_))),
-             [0,$$char(start),$$char(end_)]);
+             [/* tuple */0,$$char(start),$$char(end_)]);
     };
 
 var
  of_lexbuf=
-  function(source,lexbuf){return [0,source,lexbuf[11],lexbuf[12]];};
+  function(source,lexbuf){return [/* tuple */0,source,lexbuf[11],lexbuf[12]];};
 
 var
  print_loc_option=

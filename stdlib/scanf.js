@@ -100,7 +100,7 @@ var default_token_buffer_size=1024;
 var
  create=
   function(iname,next)
-   {return [0,
+   {return /* record */[0,
             0,
             null_char,
             0,
@@ -175,7 +175,10 @@ var from_ic_close_at_end=from_ic(scan_close_at_end);
 
 var
  stdin=
-  from_ic(scan_raise_at_end,[0,"-",Pervasives["stdin"]],Pervasives["stdin"]);
+  from_ic
+   (scan_raise_at_end,
+    /* From_file */[0,"-",Pervasives["stdin"]],
+    Pervasives["stdin"]);
 
 var stdib=stdin;
 
@@ -189,7 +192,7 @@ var
        
        var ic=Pervasives["open_in"](fname$1);
        
-       return from_ic_close_at_end([0,fname$1,ic],ic);
+       return from_ic_close_at_end(/* From_file */[0,fname$1,ic],ic);
        }
     };
 
@@ -203,7 +206,7 @@ var
        
        var ic=Pervasives["open_in_bin"](fname$1);
        
-       return from_ic_close_at_end([0,fname$1,ic],ic);
+       return from_ic_close_at_end(/* From_file */[0,fname$1,ic],ic);
        }
     };
 
@@ -220,9 +223,9 @@ var
      {return List["assq"](ic,memo[1]);}
     catch(exn)
      {if(exn=Not_found)
-       {var ib=from_ic(scan_close_ic,[1,ic],ic);
+       {var ib=from_ic(scan_close_ic,/* From_channel */[1,ic],ic);
         
-        memo[1]=[0,[0,ic,ib],memo[1]],0;
+        memo[1]=/* :: */[0,/* tuple */[0,ic,ib],memo[1]],0;
         return ib;
         }
       else
@@ -852,15 +855,15 @@ var
    {var width$1=scan_int_part(width,ib);
     
     if(width$1=0)
-     {return [0,width$1,precision];}
+     {return /* tuple */[0,width$1,precision];}
     else
      {var c=Scanning[5](ib);
       
       if(Scanning[15](ib))
-       {return [0,width$1,precision];}
+       {return /* tuple */[0,width$1,precision];}
       else
        {if(c!=46)
-         {return [0,scan_exp_part(width$1,ib),precision];}
+         {return /* tuple */[0,scan_exp_part(width$1,ib),precision];}
         else
          {var width$2=Scanning[7](width$1,ib,c);
           
@@ -868,7 +871,7 @@ var
           
           var width$3=width$2-(precision$1-scan_frac_part(precision$1,ib));
           
-          return [0,scan_exp_part(width$3,ib),precision$1];
+          return /* tuple */[0,scan_exp_part(width$3,ib),precision$1];
           }
         }
       }
@@ -1423,7 +1426,7 @@ var
       
       var sub_str=$$String["sub"](str,2,str["length"]-2);
       
-      return [0,stp,sub_str];
+      return /* tuple */[0,stp,sub_str];
       }
     };
 
@@ -1494,7 +1497,8 @@ var
          return function(reader)
           {var
             new_k=
-             function(readers_rest){return k([0,reader,readers_rest]);};
+             function(readers_rest)
+              {return k(/* Cons */[0,reader,readers_rest]);};
            
            return take_format_readers(new_k,fmt_rest);
            };
@@ -1563,7 +1567,8 @@ var
          return function(reader)
           {var
             new_k=
-             function(readers_rest){return k([0,reader,readers_rest]);};
+             function(readers_rest)
+              {return k(/* Cons */[0,reader,readers_rest]);};
            
            return take_fmtty_format_readers(new_k,fmt_rest,fmt);
            };
@@ -1574,7 +1579,8 @@ var
          return function(reader)
           {var
             new_k=
-             function(readers_rest){return k([0,reader,readers_rest]);};
+             function(readers_rest)
+              {return k(/* Cons */[0,reader,readers_rest]);};
            
            return take_fmtty_format_readers(new_k,fmt_rest$1,fmt);
            };
@@ -1594,7 +1600,8 @@ var
          return function(reader)
           {var
             new_k=
-             function(readers_rest){return k([0,reader,readers_rest]);};
+             function(readers_rest)
+              {return k(/* Cons */[0,reader,readers_rest]);};
            
            return take_format_readers(new_k,fmt);
            };
@@ -1631,7 +1638,7 @@ var
          
          var c=token_char(ib);
          
-         return [0,c,make_scanf(ib,rest,readers)];
+         return /* Cons */[0,c,make_scanf(ib,rest,readers)];
          
         case 1:
          var rest$1=fmt[1];
@@ -1640,7 +1647,7 @@ var
          
          var c$1=token_char(ib);
          
-         return [0,c$1,make_scanf(ib,rest$1,readers)];
+         return /* Cons */[0,c$1,make_scanf(ib,rest$1,readers)];
          
         case 2:
          var rest$2=fmt[2];
@@ -1667,9 +1674,9 @@ var
               var
                scan=
                 function(width,param,ib$1)
-                 {return scan_string([0,stp],width,ib$1);};
+                 {return scan_string(/* Some */[0,stp],width,ib$1);};
               
-              var str_rest=[11,str,rest$3];
+              var str_rest=/* String_literal */[11,str,rest$3];
               
               return pad_prec_scanf
                       (ib,str_rest,readers,pad,0,scan,token_string);
@@ -1861,7 +1868,7 @@ var
          
          var b=token_bool(ib);
          
-         return [0,b,make_scanf(ib,rest$13,readers)];
+         return /* Cons */[0,b,make_scanf(ib,rest$13,readers)];
          
         case 10:
          var rest$14=fmt[1];
@@ -1909,7 +1916,7 @@ var
             {throw exn;}
            }
          
-         return [0,fmt$1,make_scanf(ib,rest$17,readers)];
+         return /* Cons */[0,fmt$1,make_scanf(ib,rest$17,readers)];
          
         case 14:
          var rest$18=fmt[3];
@@ -1933,7 +1940,7 @@ var
            
            var
             match$12=
-             [0,
+             /* tuple */[0,
               CamlinternalFormat["type_format"]
                (fmt$2,CamlinternalFormatBasics["erase_rel"](fmtty$1)),
               CamlinternalFormat["type_format"]
@@ -1954,8 +1961,8 @@ var
          
          var fmt$3=match$12[1];
          
-         return [0,
-                 [0,fmt$3,s$1],
+         return /* Cons */[0,
+                 /* Format */[0,fmt$3,s$1],
                  make_scanf
                   (ib,
                    CamlinternalFormatBasics["concat_fmt"](fmt$prime$3,rest$18),
@@ -2018,7 +2025,7 @@ var
          
          var x=reader(ib);
          
-         return [0,x,make_scanf(ib,fmt_rest,readers_rest)];
+         return /* Cons */[0,x,make_scanf(ib,fmt_rest,readers_rest)];
          
         case 20:
          var rest$22=fmt[3];
@@ -2048,13 +2055,13 @@ var
               
               var
                match$17=
-                scan_chars_in_char_set(char_set,[0,stp$1],width,ib);
+                scan_chars_in_char_set(char_set,/* Some */[0,stp$1],width,ib);
               
               var s$2=token_string(ib);
               
-              var str_rest$1=[11,str$2,rest$23];
+              var str_rest$1=/* String_literal */[11,str$2,rest$23];
               
-              return [0,s$2,make_scanf(ib,str_rest$1,readers)];
+              return /* Cons */[0,s$2,make_scanf(ib,str_rest$1,readers)];
               
              default:exit$1=69;}}
          
@@ -2070,7 +2077,7 @@ var
             
             var s$3=token_string(ib);
             
-            return [0,s$3,make_scanf(ib,rest$22,readers)];
+            return /* Cons */[0,s$3,make_scanf(ib,rest$22,readers)];
             
            }
          
@@ -2081,14 +2088,14 @@ var
          
          var count=get_counter(ib,counter);
          
-         return [0,count,make_scanf(ib,rest$24,readers)];
+         return /* Cons */[0,count,make_scanf(ib,rest$24,readers)];
          
         case 22:
          var rest$25=fmt[1];
          
          var c$6=Scanning[6](ib);
          
-         return [0,c$6,make_scanf(ib,rest$25,readers)];
+         return /* Cons */[0,c$6,make_scanf(ib,rest$25,readers)];
          
         case 23:
          var rest$26=fmt[2];
@@ -2133,7 +2140,7 @@ var
              
              var x=token$1(ib);
              
-             return [0,x,make_scanf(ib,fmt,readers)];
+             return /* Cons */[0,x,make_scanf(ib,fmt,readers)];
              }
            }
          else
@@ -2143,7 +2150,7 @@ var
            
            var x$1=token$1(ib);
            
-           return [0,x$1,make_scanf(ib,fmt,readers)];
+           return /* Cons */[0,x$1,make_scanf(ib,fmt,readers)];
            }
          
         }}
@@ -2164,7 +2171,7 @@ var
                
                var x$2=token$1(ib);
                
-               return [0,x$2,make_scanf(ib,fmt,readers)];
+               return /* Cons */[0,x$2,make_scanf(ib,fmt,readers)];
                }
              }
            else
@@ -2176,7 +2183,7 @@ var
              
              var x$3=token$1(ib);
              
-             return [0,x$3,make_scanf(ib,fmt,readers)];
+             return /* Cons */[0,x$3,make_scanf(ib,fmt,readers)];
              }
            }
          else
@@ -2207,7 +2214,7 @@ var
       function(readers,f)
        {Scanning[11](ib);
         try
-         {var match=[0,make_scanf(ib,fmt,readers)];}
+         {var match=/* Args */[0,make_scanf(ib,fmt,readers)];}
         catch(exc)
          {var exit;
           
@@ -2244,7 +2251,7 @@ var
               }
             }
           
-          switch(exit){case 21:var match=[1,exc];}
+          switch(exit){case 21:var match=/* Exc */[1,exc];}
           }
         
         switch(match)

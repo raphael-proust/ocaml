@@ -19,7 +19,7 @@ var
   function(s)
    {var l=[0,0];
     
-    Depend["StringSet"][13](function(e){return l[1]=[0,e,l[1]],0;},s);
+    Depend["StringSet"][13](function(e){return l[1]=[/* :: */0,e,l[1]],0;},s);
     return l[1];
     };
 
@@ -27,7 +27,8 @@ var
  impl_dependencies=
   function(ast)
    {Depend["free_structure_names"][1]=Depend["StringSet"][1],0;
-    Depend["add_use_file"](Depend["StringSet"][1],[0,[0,ast],0]);
+    Depend["add_use_file"]
+     (Depend["StringSet"][1],[/* :: */0,[/* Ptop_def */0,ast],0]);
     return set_to_list(Depend["free_structure_names"][1]);
     };
 
@@ -46,14 +47,18 @@ var S=Set["Make"]([0,compare]);
 var
  set_to_list$1=
   function(s)
-   {var l=[0,0];S[13](function(e){return l[1]=[0,e,l[1]],0;},s);return l[1];};
+   {var l=[0,0];
+    
+    S[13](function(e){return l[1]=[/* :: */0,e,l[1]],0;},s);
+    return l[1];
+    };
 
 var
  make_node=
   function(s,children)
    {var set=List["fold_right"](S[4],children,S[1]);
     
-    return [0,s,S[6](s,set),0,List["mem"](s,children)];
+    return [/* record */0,s,S[6](s,set),0,List["mem"](s,children)];
     };
 
 var
@@ -90,7 +95,7 @@ var
        (function(child)
          {var set=trans_closure(graph,S[1],get_node(graph,child));
           
-          return [0,child,set];
+          return [/* tuple */0,child,set];
           },
         set_to_list$1(n[2]));
     
@@ -171,7 +176,7 @@ var
     var
      f=
       function(s)
-       {var s2=Str["matched_string"](s);l[1]=[0,s2,l[1]],0;return s2;};
+       {var s2=Str["matched_string"](s);l[1]=[/* :: */0,s2,l[1]],0;return s2;};
     
     var match=t[4];
     
@@ -243,7 +248,9 @@ var
   function($staropt$star,types)
    {if($staropt$star){var kernel$1=$staropt$star[1];}else{var kernel$1=0;}
     
-    var deps_pre=List["map"](function(t){return [0,t,type_deps(t)];},types);
+    var
+     deps_pre=
+      List["map"](function(t){return [/* tuple */0,t,type_deps(t)];},types);
     
     if(kernel$1)
      {var
@@ -255,7 +262,10 @@ var
       
       return List["map"]
               (function(t)
-                {var node=Dep[4](k,t[1]);return [0,t,Dep[2](node[2])];},
+                {var node=Dep[4](k,t[1]);
+                 
+                 return [/* tuple */0,t,Dep[2](node[2])];
+                 },
                types);
       }
     else

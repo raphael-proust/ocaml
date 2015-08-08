@@ -161,10 +161,17 @@ and raise_kind =
   | Raise_reraise
   | Raise_notrace
 
+type pointer_info = 
+  | NullConstructor of string
+  | NullVariant of string 
+  | NAPointer 
+
+let default_pointer_info = NAPointer
+
 type structured_constant =
     Const_base of constant
-  | Const_pointer of int
-  | Const_block of int * structured_constant list
+  | Const_pointer of int * pointer_info
+  | Const_block of int * tag_info * structured_constant list
   | Const_float_array of string list
   | Const_immstring of string
 
@@ -216,7 +223,7 @@ and lambda_event_kind =
   | Lev_after of Types.type_expr
   | Lev_function
 
-let const_unit = Const_pointer 0
+let const_unit = Const_pointer (0, default_pointer_info)
 
 let lambda_unit = Lconst const_unit
 
@@ -539,7 +546,7 @@ let lam_of_loc kind loc =
       loc_start.Lexing.pos_cnum + cnum in
   match kind with
   | Loc_POS ->
-    Lconst (Const_block (0, [
+    Lconst (Const_block (0, default_tag_info, [
           Const_immstring file;
           Const_base (Const_int lnum);
           Const_base (Const_int cnum);

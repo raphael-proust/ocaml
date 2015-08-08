@@ -4,14 +4,14 @@ var List=require("List");
 var Thread=require("Thread");
 
 
-var create=function(param){return [0,0,0];};
+var create=function(param){return [/* record */0,0,0];};
 
 var
  lock=
   function(m)
    {if(m[1])
      {Thread["critical_section"][1]=1,0;
-      m[2]=[0,Thread["self"](0),m[2]],0;
+      m[2]=[/* :: */0,Thread["self"](0),m[2]],0;
       Thread["sleep"](0);
       return lock(m);
       }

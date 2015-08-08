@@ -18,7 +18,7 @@ var
     
     var s="unknown primitive:caml_create_string";
     
-    return [0,s,0,n$2,s];
+    return /* record */[0,s,0,n$2,s];
     };
 
 var contents=function(b){return Bytes["sub_string"](b[1],0,b[2]);};
@@ -235,7 +235,7 @@ var
        {if(c!=123)
          {var stop=advance_to_non_alpha(s,start+1);
           
-          return [0,$$String["sub"](s,start,stop-start),stop];
+          return /* tuple */[0,$$String["sub"](s,start,stop-start),stop];
           }
         else
          {exit=11;}
@@ -249,7 +249,9 @@ var
          
          var stop$1=advance_to_closing(c,closing(c),0,s,new_start);
          
-         return [0,$$String["sub"](s,new_start,stop$1-start-1),stop$1+1];
+         return /* tuple */[0,
+                 $$String["sub"](s,new_start,stop$1-start-1),
+                 stop$1+1];
          
         }
       }

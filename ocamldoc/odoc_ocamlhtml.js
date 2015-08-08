@@ -505,7 +505,7 @@ var
          if(Hashtbl["mem"](keyword_table,name))
           {throw [0,
                   $$Error,
-                  [1,name],
+                  [/* Keyword_as_label */1,name],
                   Lexing["lexeme_start"](lexbuf),
                   Lexing["lexeme_end"](lexbuf)];
            }
@@ -524,7 +524,7 @@ var
          if(Hashtbl["mem"](keyword_table,name$1))
           {throw [0,
                   $$Error,
-                  [1,name$1],
+                  [/* Keyword_as_label */1,name$1],
                   Lexing["lexeme_start"](lexbuf),
                   Lexing["lexeme_end"](lexbuf)];
            }
@@ -578,7 +578,7 @@ var
          lexbuf[6]=lexbuf[6]-1,0;
          var init=lexbuf[12];
          
-         lexbuf[12]=[0,init[1],init[2],init[3],lexbuf[12][4]-1],0;
+         lexbuf[12]=[/* record */0,init[1],init[2],init[3],lexbuf[12][4]-1],0;
          print(0,Lexing["lexeme"](lexbuf));
          return token(lexbuf);
          
@@ -633,7 +633,7 @@ var
         case 65:
          throw [0,
                 $$Error,
-                [0,Lexing["lexeme"](lexbuf)[0]],
+                [/* Illegal_character */0,Lexing["lexeme"](lexbuf)[0]],
                 Lexing["lexeme_start"](lexbuf),
                 Lexing["lexeme_end"](lexbuf)];
          
@@ -648,7 +648,7 @@ var
        
       case 28:
        reset_comment_buffer(0);
-       comment_start_pos[1]=[0,Lexing["lexeme_start"](lexbuf),0],0;
+       comment_start_pos[1]=[/* :: */0,Lexing["lexeme_start"](lexbuf),0],0;
        comment(lexbuf);
        print_comment(0);
        return token(lexbuf);
@@ -677,7 +677,7 @@ var
      {switch(__ocaml_lex_state$1[0])
        {case 0:
          comment_start_pos[1]=
-         [0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]],
+         [/* :: */0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]],
          0;
          store_comment_char(40);
          store_comment_char(42);

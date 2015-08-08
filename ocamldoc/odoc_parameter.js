@@ -55,7 +55,8 @@ var
      iter=
       function(acc,pi$1)
        {switch(pi$1)
-         {case 0:var sn=pi$1[1];return [0,[0,sn[1],sn[3]],acc];
+         {case 0:
+           var sn=pi$1[1];return [/* :: */0,[/* tuple */0,sn[1],sn[3]],acc];
           case 1:return List["fold_left"](iter,acc,pi$1[1]);
           }
         };
@@ -72,7 +73,7 @@ var
      iter=
       function(acc,pi$1)
        {switch(pi$1)
-         {case 0:return [0,pi$1[1][1],acc];
+         {case 0:return [/* :: */0,pi$1[1][1],acc];
           case 1:return List["fold_left"](iter,acc,pi$1[1]);
           }
         };
@@ -87,7 +88,8 @@ var
      iter=
       function(acc,pi$1)
        {switch(pi$1)
-         {case 0:var sn=pi$1[1];return [0,[0,sn[1],sn[2]],acc];
+         {case 0:
+           var sn=pi$1[1];return [/* :: */0,[/* tuple */0,sn[1],sn[2]],acc];
           case 1:return List["fold_left"](iter,acc,pi$1[1]);
           }
         };
@@ -105,7 +107,7 @@ var
        {case "":return 0;
         default:
          try
-          {return [0,List["assoc"](s,info_opt[1][8])];}
+          {return [/* Some */0,List["assoc"](s,info_opt[1][8])];}
          catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
          }
       }

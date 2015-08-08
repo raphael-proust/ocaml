@@ -105,7 +105,7 @@ var
                
                var pc=Pervasives["input_binary_int"](conn[1][1]);
                
-               return [0,summary,event_counter,stack_pos,pc];
+               return [/* record */0,summary,event_counter,stack_pos,pc];
                });
     };
 
@@ -135,7 +135,7 @@ var
        Pervasives["flush"](conn[1][2]);
        var pid=Pervasives["input_binary_int"](conn[1][1]);
        
-       if(pid=-1){return 0;}else{return [0,pid];}
+       if(pid=-1){return 0;}else{return [/* Checkpoint_done */0,pid];}
        }
     };
 
@@ -184,7 +184,7 @@ var
     
     var pc=Pervasives["input_binary_int"](conn[1][1]);
     
-    return [0,stack_pos,pc];
+    return [/* tuple */0,stack_pos,pc];
     };
 
 var set_initial_frame=function(param){return 0;};
@@ -202,7 +202,7 @@ var
     else
      {var pc=Pervasives["input_binary_int"](conn[1][1]);}
     
-    return [0,stack_pos,pc];
+    return [/* tuple */0,stack_pos,pc];
     };
 
 var
@@ -214,7 +214,7 @@ var
     
     var pc=Pervasives["input_binary_int"](conn[1][1]);
     
-    return [0,stack_pos,pc];
+    return [/* tuple */0,stack_pos,pc];
     };
 
 var
@@ -326,21 +326,21 @@ var
        Pervasives["output_binary_int"](conn[1][2],n);
        Pervasives["flush"](conn[1][2]);
        if(Pervasives["input_byte"](conn[1][1])=0)
-        {return [0,input_remote_value(conn[1][1])];}
+        {return [/* Remote */0,input_remote_value(conn[1][1])];}
        else
         {var buf=Pervasives["really_input_string"](conn[1][1],8);
          
          var floatbuf=n;
          
          "unknown primitive:caml_blit_string";
-         return [1,floatbuf];
+         return [/* Local */1,floatbuf];
          }
        
-      case 1:return [1,v[1][n]];
+      case 1:return [/* Local */1,v[1][n]];
       }
     };
 
-var of_int=function(n){return [1,n];};
+var of_int=function(n){return [/* Local */1,n];};
 
 var
  local=
@@ -348,7 +348,7 @@ var
    {Pervasives["output_char"](conn[1][2],76);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return [0,input_remote_value(conn[1][1])];
+    return [/* Remote */0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -357,7 +357,7 @@ var
    {Pervasives["output_char"](conn[1][2],69);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return [0,input_remote_value(conn[1][1])];
+    return [/* Remote */0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -366,7 +366,7 @@ var
    {Pervasives["output_char"](conn[1][2],71);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return [0,input_remote_value(conn[1][1])];
+    return [/* Remote */0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -374,7 +374,7 @@ var
   function(param)
    {Pervasives["output_char"](conn[1][2],65);
     Pervasives["flush"](conn[1][2]);
-    return [0,input_remote_value(conn[1][1])];
+    return [/* Remote */0,input_remote_value(conn[1][1])];
     };
 
 var

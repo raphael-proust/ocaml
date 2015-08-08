@@ -15,7 +15,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 5:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 5:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -28,7 +28,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 8:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 8:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -41,7 +41,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 6:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 6:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -54,7 +54,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 7:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 7:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -67,7 +67,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 3:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 3:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -80,7 +80,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 4:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 4:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -93,7 +93,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 0:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 0:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -106,7 +106,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 1:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 1:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -119,7 +119,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 9:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 9:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -132,7 +132,7 @@ var
    {return List["fold_left"]
             (function(acc,ele)
               {switch(ele)
-                {case 2:return Pervasives["@"](acc,[0,ele[1],0]);
+                {case 2:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
                  default:return acc;}
                },
              0,
@@ -173,13 +173,31 @@ var
           case 3:var k=param[1];exit=66;
           case 4:
            return module_type_elements
-                   ([0,trans],
-                    [0,"",0,0,0,"",[0,param[1]],Odoc_types["dummy_loc"]]);
+                   ([/* Some */0,trans],
+                    [/* record */0,
+                     "",
+                     0,
+                     0,
+                     0,
+                     "",
+                     [/* Some */0,param[1]],
+                     Odoc_types["dummy_loc"]]);
            
           case 5:
            return module_elements
-                   ([0,trans],
-                    [0,"",[1,0],0,0,"",param[1],Odoc_types["dummy_loc"],0,0,0,0]);
+                   ([/* Some */0,trans],
+                    [/* record */0,
+                     "",
+                     [1,0],
+                     0,
+                     0,
+                     "",
+                     param[1],
+                     Odoc_types["dummy_loc"],
+                     0,
+                     0,
+                     0,
+                     0]);
            
           case 6:exit=67;
           case 7:exit=67;
@@ -204,7 +222,7 @@ var
           
           switch(match)
            {case 0:return match[1];
-            case 1:return iter_kind([0,match[2]]);
+            case 1:return iter_kind([/* Some */0,match[2]]);
             case 2:
              if(trans)
               {var match$1=match[1][2];
@@ -217,7 +235,12 @@ var
              else
               {return 0;}
              
-            case 3:if(trans){return iter_kind([0,match[1]]);}else{return 0;}
+            case 3:
+             if(trans)
+              {return iter_kind([/* Some */0,match[1]]);}
+             else
+              {return 0;}
+             
             case 4:return 0;
             }
           }
@@ -233,7 +256,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return values(module_elements([0,trans],m));
+    return values(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -243,7 +266,7 @@ var
     
     return List["filter"]
             (function(v){return Odoc_value["is_function"](v);},
-             values(module_elements([0,trans],m)));
+             values(module_elements([/* Some */0,trans],m)));
     };
 
 var
@@ -253,7 +276,7 @@ var
     
     return List["filter"]
             (function(v){return !Odoc_value["is_function"](v);},
-             values(module_elements([0,trans],m)));
+             values(module_elements([/* Some */0,trans],m)));
     };
 
 var
@@ -261,7 +284,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return types(module_elements([0,trans],m));
+    return types(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -269,7 +292,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return type_extensions(module_elements([0,trans],m));
+    return type_extensions(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -277,7 +300,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return exceptions(module_elements([0,trans],m));
+    return exceptions(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -285,7 +308,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return classes(module_elements([0,trans],m));
+    return classes(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -293,7 +316,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return class_types(module_elements([0,trans],m));
+    return class_types(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -301,7 +324,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return modules(module_elements([0,trans],m));
+    return modules(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -309,7 +332,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return mod_types(module_elements([0,trans],m));
+    return mod_types(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -317,7 +340,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return included_modules(module_elements([0,trans],m));
+    return included_modules(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -325,7 +348,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return comments(module_elements([0,trans],m));
+    return comments(module_elements([/* Some */0,trans],m));
     };
 
 var
@@ -352,29 +375,35 @@ var
               {try
                 {var d=List["assoc"](p[1],match$1[1][8]);
                  
-                 var param=[0,p,[0,d]];
+                 var param=[/* tuple */0,p,[/* Some */0,d]];
                  }
                catch(exn)
-                {if(exn=Not_found){var param=[0,p,0];}else{throw exn;}}
+                {if(exn=Not_found)
+                  {var param=[/* tuple */0,p,0];}
+                 else
+                  {throw exn;}
+                 }
                }
              else
-              {var param=[0,p,0];}
+              {var param=[/* tuple */0,p,0];}
              
-             return [0,param,iter([0,match[2]])];
+             return [/* :: */0,param,iter([/* Some */0,match[2]])];
              
             case 2:
              if(trans)
               {var match$2=match[1][2];
                
                if(match$2)
-                {return module_type_parameters([0,trans],match$2[1]);}
+                {return module_type_parameters([/* Some */0,trans],match$2[1]);
+                 }
                else
                 {return 0;}
                }
              else
               {return 0;}
              
-            case 3:if(trans){return iter([0,match[1]]);}else{return 0;}
+            case 3:
+             if(trans){return iter([/* Some */0,match[1]]);}else{return 0;}
             case 4:exit=35;
             }
           
@@ -404,8 +433,12 @@ var
               {var match$1=match[1];
                
                switch(match$1)
-                {case 0:return module_parameters([0,trans],match$1[1]);
-                 case 1:return module_type_parameters([0,trans],match$1[1]);
+                {case 0:
+                  return module_parameters([/* Some */0,trans],match$1[1]);
+                 case 1:
+                  return module_type_parameters
+                          ([/* Some */0,trans],match$1[1]);
+                  
                  }
                }
              else
@@ -423,20 +456,31 @@ var
             {try
               {var d=List["assoc"](p[1],match$2[1][8]);
                
-               var param$1=[0,p,[0,d]];
+               var param$1=[/* tuple */0,p,[/* Some */0,d]];
                }
              catch(exn)
-              {if(exn=Not_found){var param$1=[0,p,0];}else{throw exn;}}
+              {if(exn=Not_found)
+                {var param$1=[/* tuple */0,p,0];}
+               else
+                {throw exn;}
+               }
              }
            else
-            {var param$1=[0,p,0];}
+            {var param$1=[/* tuple */0,p,0];}
            
-           return [0,param$1,iter(param[2])];
+           return [/* :: */0,param$1,iter(param[2])];
            
           case 5:
            return module_type_parameters
-                   ([0,trans],
-                    [0,"",0,0,0,"",[0,param[2]],Odoc_types["dummy_loc"]]);
+                   ([/* Some */0,trans],
+                    [/* record */0,
+                     "",
+                     0,
+                     0,
+                     0,
+                     "",
+                     [/* Some */0,param[2]],
+                     Odoc_types["dummy_loc"]]);
            
           default:return 0;}
         };
@@ -449,12 +493,12 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    var l=module_modules([0,trans],m);
+    var l=module_modules([/* Some */0,trans],m);
     
     return List["fold_left"]
             (function(acc,m$1)
               {return Pervasives["@"]
-                       (acc,module_all_submodules([0,trans],m$1));
+                       (acc,module_all_submodules([/* Some */0,trans],m$1));
                },
              l,
              l);
@@ -482,7 +526,7 @@ var
              else
               {return 0;}
              
-            case 3:return iter([0,match[1]]);
+            case 3:return iter([/* Some */0,match[1]]);
             case 4:exit=29;
             }
           }
@@ -529,7 +573,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return values(module_type_elements([0,trans],m));
+    return values(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -537,7 +581,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return types(module_type_elements([0,trans],m));
+    return types(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -545,7 +589,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return type_extensions(module_type_elements([0,trans],m));
+    return type_extensions(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -553,7 +597,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return exceptions(module_type_elements([0,trans],m));
+    return exceptions(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -561,7 +605,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return classes(module_type_elements([0,trans],m));
+    return classes(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -569,7 +613,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return class_types(module_type_elements([0,trans],m));
+    return class_types(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -577,7 +621,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return modules(module_type_elements([0,trans],m));
+    return modules(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -585,7 +629,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return mod_types(module_type_elements([0,trans],m));
+    return mod_types(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -593,7 +637,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return included_modules(module_type_elements([0,trans],m));
+    return included_modules(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -601,7 +645,7 @@ var
   function($staropt$star,m)
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
     
-    return comments(module_type_elements([0,trans],m));
+    return comments(module_type_elements([/* Some */0,trans],m));
     };
 
 var
@@ -611,7 +655,7 @@ var
     
     return List["filter"]
             (function(v){return Odoc_value["is_function"](v);},
-             values(module_type_elements([0,trans],mt)));
+             values(module_type_elements([/* Some */0,trans],mt)));
     };
 
 var
@@ -621,7 +665,7 @@ var
     
     return List["filter"]
             (function(v){return !Odoc_value["is_function"](v);},
-             values(module_type_elements([0,trans],mt)));
+             values(module_type_elements([/* Some */0,trans],mt)));
     };
 
 var
@@ -631,15 +675,17 @@ var
     
     return List["fold_left"]
             (function(acc,m$1)
-              {return Pervasives["@"](acc,module_all_classes([0,trans],m$1));},
+              {return Pervasives["@"]
+                       (acc,module_all_classes([/* Some */0,trans],m$1));
+               },
              List["fold_left"]
               (function(acc,mtyp)
                 {return Pervasives["@"]
-                         (acc,module_type_all_classes([0,trans],mtyp));
+                         (acc,module_type_all_classes([/* Some */0,trans],mtyp));
                  },
-               module_classes([0,trans],m),
-               module_module_types([0,trans],m)),
-             module_modules([0,trans],m));
+               module_classes([/* Some */0,trans],m),
+               module_module_types([/* Some */0,trans],m)),
+             module_modules([/* Some */0,trans],m));
     };
 
 var
@@ -649,15 +695,17 @@ var
     
     return List["fold_left"]
             (function(acc,m)
-              {return Pervasives["@"](acc,module_all_classes([0,trans],m));},
+              {return Pervasives["@"]
+                       (acc,module_all_classes([/* Some */0,trans],m));
+               },
              List["fold_left"]
               (function(acc,mtyp)
                 {return Pervasives["@"]
-                         (acc,module_type_all_classes([0,trans],mtyp));
+                         (acc,module_type_all_classes([/* Some */0,trans],mtyp));
                  },
-               module_type_classes([0,trans],mt),
-               module_type_module_types([0,trans],mt)),
-             module_type_modules([0,trans],mt));
+               module_type_classes([/* Some */0,trans],mt),
+               module_type_module_types([/* Some */0,trans],mt)),
+             module_type_modules([/* Some */0,trans],mt));
     };
 
 module["exports"]=

@@ -32,7 +32,7 @@ var select_aux=function(arg){return "unknown primitive:thread_select";};
 var
  select=
   function(readfds,writefds,exceptfds,delay$1)
-   {var match=select_aux([0,readfds,writefds,exceptfds,delay$1]);
+   {var match=select_aux([/* tuple */0,readfds,writefds,exceptfds,delay$1]);
     
     var exit$1;
     
@@ -40,7 +40,15 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 0:var e=match[3];var w=match[2];var r=match[1];return [0,r,w,e];
+       {case 0:
+         var e=match[3];
+         
+         var w=match[2];
+         
+         var r=match[1];
+         
+         return [/* tuple */0,r,w,e];
+         
         default:exit$1=20;}}
     
     switch(exit$1){case 20:return [0,0,0,0];}
@@ -61,7 +69,7 @@ var
 var
  wait_timed_read=
   function(fd,delay$1)
-   {var match=wait_timed_read_aux([0,fd,delay$1]);
+   {var match=wait_timed_read_aux([/* tuple */0,fd,delay$1]);
     
     var exit$1;
     
@@ -76,7 +84,7 @@ var
 var
  wait_timed_write=
   function(fd,delay$1)
-   {var match=wait_timed_write_aux([0,fd,delay$1]);
+   {var match=wait_timed_write_aux([/* tuple */0,fd,delay$1]);
     
     var exit$1;
     
@@ -101,7 +109,13 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 1:var status=match[2];var pid$1=match[1];return [0,pid$1,status];
+       {case 1:
+         var status=match[2];
+         
+         var pid$1=match[1];
+         
+         return [/* tuple */0,pid$1,status];
+         
         default:exit$1=9;}}
     
     switch(exit$1)
@@ -141,7 +155,7 @@ var
     };
 
 "unknown primitive:thread_initialize";
-Sys["set_signal"](Sys["sigvtalrm"],[0,preempt]),
+Sys["set_signal"](Sys["sigvtalrm"],[/* Signal_handle */0,preempt]),
 "unknown primitive:thread_initialize_preemption";
 module["exports"]=
 {"create":create,

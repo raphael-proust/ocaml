@@ -24,7 +24,8 @@ var
  failsafe_display=
   [246,
    function(param)
-    {return Display["create"](0,[0,920812018],0,0,0,[0,level[1]],0);}];
+    {return Display["create"](0,[0,920812018],0,0,0,[/* Some */0,level[1]],0);
+     }];
 
 var
  $unknown$neg=
@@ -48,14 +49,18 @@ var
      {var mode$2=-369468030;}
     
     return internal_display[1]=
-           [0,Display["create"](0,[0,mode$2],0,0,log_file,[0,level[1]],0)],
+           [/* Some */0,
+            Display["create"]
+             (0,[/* Some */0,mode$2],0,0,log_file,[/* Some */0,level[1]],0)],
            0;
     };
 
 var
  raw_dprintf=
   function(log_level)
-   {return Display["dprintf"]([0,log_level],$unknown$neg(internal_display));};
+   {return Display["dprintf"]
+            ([/* Some */0,log_level],$unknown$neg(internal_display));
+    };
 
 var
  dprintf=

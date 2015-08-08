@@ -109,9 +109,12 @@ var
         text_of_author_list,
         function(self$neg1,l)
          {if(l)
-           {return [0,
-                    [4,[0,[0,Pervasives["^"](Odoc_messages["authors"],": ")],0]],
-                    [0,[0,$$String["concat"](", ",l)],[0,0,0]]];
+           {return [/* :: */0,
+                    [/* Bold */4,
+                     [/* :: */0,
+                      [/* Raw */0,Pervasives["^"](Odoc_messages["authors"],": ")],
+                      0]],
+                    [/* :: */0,[/* Raw */0,$$String["concat"](", ",l)],[0,0,0]]];
             }
           else
            {return 0;}
@@ -119,9 +122,12 @@ var
         text_of_version_opt,
         function(self$neg1,v_opt)
          {if(v_opt)
-           {return [0,
-                    [4,[0,[0,Pervasives["^"](Odoc_messages["version"],": ")],0]],
-                    [0,[0,v_opt[1]],[0,0,0]]];
+           {return [/* :: */0,
+                    [/* Bold */4,
+                     [/* :: */0,
+                      [/* Raw */0,Pervasives["^"](Odoc_messages["version"],": ")],
+                      0]],
+                    [/* :: */0,[/* Raw */0,v_opt[1]],[0,0,0]]];
             }
           else
            {return 0;}
@@ -129,9 +135,12 @@ var
         text_of_since_opt,
         function(self$neg1,s_opt)
          {if(s_opt)
-           {return [0,
-                    [4,[0,[0,Pervasives["^"](Odoc_messages["since"],": ")],0]],
-                    [0,[0,s_opt[1]],[0,0,0]]];
+           {return [/* :: */0,
+                    [/* Bold */4,
+                     [/* :: */0,
+                      [/* Raw */0,Pervasives["^"](Odoc_messages["since"],": ")],
+                      0]],
+                    [/* :: */0,[/* Raw */0,s_opt[1]],[0,0,0]]];
             }
           else
            {return 0;}
@@ -143,10 +152,10 @@ var
              f=
               function(param)
                {return Pervasives["@"]
-                        ([0,
-                          [4,
-                           [0,
-                            [0,
+                        ([/* :: */0,
+                          [/* Bold */4,
+                           [/* :: */0,
+                            [/* Raw */0,
                              Printf["sprintf"]
                               ([0,[2,0,[12,32,[2,0,[12,32,0]]]],"%s %s "],
                                Odoc_messages["before"],
@@ -165,15 +174,19 @@ var
         function(self$neg1,l)
          {if(l)
            {if(l[2])
-             {return [0,
-                      [4,[0,[0,Odoc_messages["raises"]],0]],
-                      [0,
+             {return [/* :: */0,
+                      [/* Bold */4,
+                       [/* :: */0,[/* Raw */0,Odoc_messages["raises"]],0]],
+                      [/* :: */0,
                        [0," "],
-                       [0,
-                        [10,
+                       [/* :: */0,
+                        [/* List */10,
                          List["map"]
                           (function(param)
-                            {return [0,[1,param[1]],[0,[0," "],param[2]]];},
+                            {return [/* :: */0,
+                                     [/* Code */1,param[1]],
+                                     [/* :: */0,[0," "],param[2]]];
+                             },
                            l)],
                         [0,0,0]]]];
               }
@@ -181,9 +194,12 @@ var
              {var match=l[1];
               
               return Pervasives["@"]
-                      ([0,
-                        [4,[0,[0,Odoc_messages["raises"]],0]],
-                        [0,[0," "],[0,[1,match[1]],[0,[0," "],0]]]],
+                      ([/* :: */0,
+                        [/* Bold */4,
+                         [/* :: */0,[/* Raw */0,Odoc_messages["raises"]],0]],
+                        [/* :: */0,
+                         [0," "],
+                         [/* :: */0,[/* Code */1,match[1]],[0,[0," "],0]]]],
                        Pervasives["@"](match[2],[0,0,0]));
               }
             }
@@ -197,19 +213,26 @@ var
           var see_ref=param[1];
           
           switch(see_ref)
-           {case 0:return [0,[15,see_ref[1],t],0];
-            case 1:return [0,[1,see_ref[1]],[0,[0," "],t]];
-            case 2:return [0,[5,[0,[0,see_ref[1]],0]],[0,[0," "],t]];
+           {case 0:return [/* :: */0,[/* Link */15,see_ref[1],t],0];
+            case 1:
+             return [/* :: */0,[/* Code */1,see_ref[1]],[/* :: */0,[0," "],t]];
+             
+            case 2:
+             return [/* :: */0,
+                     [/* Italic */5,[/* :: */0,[/* Raw */0,see_ref[1]],0]],
+                     [/* :: */0,[0," "],t]];
+             
             }
           },
         text_of_sees,
         function(self$neg1,l)
          {if(l)
            {if(l[2])
-             {return [0,
-                      [4,[0,[0,Odoc_messages["see_also"]],0]],
-                      [0,
-                       [10,
+             {return [/* :: */0,
+                      [/* Bold */4,
+                       [/* :: */0,[/* Raw */0,Odoc_messages["see_also"]],0]],
+                      [/* :: */0,
+                       [/* List */10,
                         List["map"]
                          (function(see)
                            {"unknown block:(sendself self-1/1266 text_of_see/1228 see/1269)";
@@ -220,7 +243,10 @@ var
             else
              {"unknown block:(sendself self-1/1266 text_of_see/1228 (field 0 l/1267))";
               return Pervasives["@"]
-                      ([0,[4,[0,[0,Odoc_messages["see_also"]],0]],[0,[0," "],0]],
+                      ([/* :: */0,
+                        [/* Bold */4,
+                         [/* :: */0,[/* Raw */0,Odoc_messages["see_also"]],0]],
+                        [/* :: */0,[0," "],0]],
                        [0,0,0]);
               }
             }
@@ -231,8 +257,11 @@ var
         function(self$neg1,return_opt)
          {if(return_opt)
            {return Pervasives["@"]
-                    ([0,
-                      [4,[0,[0,Pervasives["^"](Odoc_messages["returns"]," ")],0]],
+                    ([/* :: */0,
+                      [/* Bold */4,
+                       [/* :: */0,
+                        [/* Raw */0,Pervasives["^"](Odoc_messages["returns"]," ")],
+                        0]],
                       return_opt[1]],
                      [0,0,0]);
             }
@@ -251,7 +280,7 @@ var
                       {var f=List["assoc"](tag,self$neg1[tag_functions]);
                        
                        if(acc)
-                        {return Pervasives["@"](acc,[0,0,f(text)]);}
+                        {return Pervasives["@"](acc,[/* :: */0,0,f(text)]);}
                        else
                         {return f(text);}
                        }
@@ -300,9 +329,12 @@ var
              t$1=
               Pervasives["@"]
                (match
-                 ?[0,
-                   [5,
-                    [0,[0,Pervasives["^"](Odoc_messages["deprecated"]," ")],0]],
+                 ?[/* :: */0,
+                   [/* Italic */5,
+                    [/* :: */0,
+                     [/* Raw */0,
+                      Pervasives["^"](Odoc_messages["deprecated"]," ")],
+                     0]],
                    match[1]]
                  :0,
                 Pervasives["@"]
@@ -317,7 +349,10 @@ var
                          (0,
                           Pervasives["@"](0,Pervasives["@"](0,Pervasives["@"](0,0)))))))));
             
-            if(block){return [0,[12,t$1],0];}else{return t$1;}
+            if(block)
+             {return [/* :: */0,[/* Block */12,t$1],0];}
+            else
+             {return t$1;}
             }
           else
            {return 0;}
@@ -469,23 +504,23 @@ var
          {"unknown block:(sendself self-2/1383 normal_type/1315 module_name/1384 t/1385)";
           return List["flatten"]
                   (List["map"]
-                    (function(s){return [0,[1,s],[0,0,0]];},
+                    (function(s){return [/* :: */0,[/* Code */1,s],[0,0,0]];},
                      Str["split"](Str["regexp"]("\n"),0)));
           },
         text_of_short_type_expr,
         function(self$neg2,module_name,t)
          {"unknown block:(sendself self-2/1389 normal_type/1315 module_name/1390 t/1391)";
-          return [0,[1,0],0];
+          return [/* :: */0,[/* Code */1,0],0];
           },
         text_of_type_expr_list,
         function(self$neg2,module_name,sep,l)
          {"unknown block:(sendself self-2/1393 normal_type_list/1316 0a module_name/1394 sep/1395\n  l/1396)";
-          return [0,[1,0],0];
+          return [/* :: */0,[/* Code */1,0],0];
           },
         text_of_class_type_param_expr_list,
         function(self$neg2,module_name,l)
          {"unknown block:(sendself self-2/1398 normal_class_type_param_list/1317 module_name/1399\n  l/1400)";
-          return [0,[1,0],0];
+          return [/* :: */0,[/* Code */1,0],0];
           },
         text_of_class_params,
         function(self$neg2,module_name,c)
@@ -493,7 +528,7 @@ var
           return Odoc_info["text_concat"]
                   ([0,0,0],
                    List["map"]
-                    (function(s){return [0,[1,s],0];},
+                    (function(s){return [/* :: */0,[/* Code */1,s],0];},
                      Str["split"](Str["regexp"]("\n"),0)));
           },
         text_of_module_type,
@@ -505,7 +540,7 @@ var
               Str["split"]
                (Str["regexp"]("\n"),Odoc_info["string_of_module_type"](0,0,t)));
           
-          return [0,[1,s],0];
+          return [/* :: */0,[/* Code */1,s],0];
           },
         text_of_value,
         function(self$neg2,v)
@@ -529,10 +564,10 @@ var
           "unknown block:(sendself self-2/1412 label/1310 [0: 0a] s_name/1415)";
           "unknown block:(sendself self-2/1412 text_of_info/1417 0a (field 1 v/1413))";
           return Pervasives["@"]
-                  ([0,[2,s],0],
+                  ([/* :: */0,[/* CodePre */2,s],0],
                    Pervasives["@"]
-                    ([0,
-                      [14,
+                    ([/* :: */0,
+                      [/* Latex */14,
                        Pervasives["^"]
                         ("\index{",
                          Pervasives["^"]
@@ -566,10 +601,10 @@ var
           "unknown block:(sendself self-2/1419 label/1310 [0: 0a] s_name/1421)";
           "unknown block:(sendself self-2/1419 text_of_info/1417 0a (field 1 (field 0 a/1420)))";
           return Pervasives["@"]
-                  ([0,
-                    [2,s],
-                    [0,
-                     [14,
+                  ([/* :: */0,
+                    [/* CodePre */2,s],
+                    [/* :: */0,
+                     [/* Latex */14,
                       Pervasives["^"]
                        ("\index{",
                         Pervasives["^"]
@@ -603,10 +638,10 @@ var
           "unknown block:(sendself self-2/1425 label/1310 [0: 0a] s_name/1427)";
           "unknown block:(sendself self-2/1425 text_of_info/1417 0a (field 1 (field 0 m/1426)))";
           return Pervasives["@"]
-                  ([0,
-                    [2,s],
-                    [0,
-                     [14,
+                  ([/* :: */0,
+                    [/* CodePre */2,s],
+                    [/* :: */0,
+                     [/* Latex */14,
                       Pervasives["^"]
                        ("\index{",
                         Pervasives["^"]
@@ -689,10 +724,10 @@ var
           "unknown block:(sendself self-2/1431 label/1310 [0: 0a] s_name/1433)";
           "unknown block:(sendself self-2/1431 text_of_info/1417 0a (field 1 e/1432))";
           return Pervasives["@"]
-                  ([0,[2,s2],0],
+                  ([/* :: */0,[/* CodePre */2,s2],0],
                    Pervasives["@"]
-                    ([0,
-                      [14,
+                    ([/* :: */0,
+                      [/* Latex */14,
                        Pervasives["^"]
                         ("\index{",
                          Pervasives["^"]
@@ -712,15 +747,18 @@ var
                  (function(n){return Odoc_info["Parameter"][4](p,n)!=0;},l);
               
               if(l2)
-               {return [0,
-                        [10,
+               {return [/* :: */0,
+                        [/* List */10,
                          List["map"]
                           (function(n)
                             {var match=Odoc_info["Parameter"][4](p,n);
                              
                              if(match)
                               {return Pervasives["@"]
-                                       ([0,[1,Pervasives["^"](n," ")],[0,[0,": "],0]],match[1]);
+                                       ([/* :: */0,
+                                         [/* Code */1,Pervasives["^"](n," ")],
+                                         [0,[0,": "],0]],
+                                        match[1]);
                                }
                              else
                               {return 0;}
@@ -743,21 +781,23 @@ var
         text_of_parameter_list,
         function(self$neg2,m_name,l)
          {if(l)
-           {return [0,
-                    [4,[0,[0,Odoc_messages["parameters"]],0]],
-                    [0,
+           {return [/* :: */0,
+                    [/* Bold */4,
+                     [/* :: */0,[/* Raw */0,Odoc_messages["parameters"]],0]],
+                    [/* :: */0,
                      [0,":"],
-                     [0,
-                      [10,
+                     [/* :: */0,
+                      [/* List */10,
                        List["map"]
                         (function(p)
                           {var s=Odoc_info["Parameter"][1](p);
                            
-                           switch(s){case "":var $js=[1,"?"];default:var $js=[1,s];}
+                           switch(s)
+                            {case "":var $js=[1,"?"];default:var $js=[/* Code */1,s];}
                            "unknown block:(sendself self-2/1453 text_of_short_type_expr/1320 m_name/1454\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1456))";
                            "unknown block:(sendself self-2/1453 text_of_parameter_description/1329 p/1456)";
                            return Pervasives["@"]
-                                   ([0,$js,[0,[1," : "],0]],
+                                   ([/* :: */0,$js,[0,[1," : "],0]],
                                     Pervasives["@"](0,Pervasives["@"]([0,0,0],0)));
                            },
                          l)],
@@ -769,14 +809,15 @@ var
         text_of_module_parameter_list,
         function(self$neg2,l)
          {if(l)
-           {return [0,
+           {return [/* :: */0,
                     0,
-                    [0,
-                     [4,[0,[0,Odoc_messages["parameters"]],0]],
-                     [0,
+                    [/* :: */0,
+                     [/* Bold */4,
+                      [/* :: */0,[/* Raw */0,Odoc_messages["parameters"]],0]],
+                     [/* :: */0,
                       [0,":"],
-                      [0,
-                       [10,
+                      [/* :: */0,
+                       [/* List */10,
                         List["map"]
                          (function(param)
                            {var desc_opt=param[2];
@@ -789,12 +830,13 @@ var
                              {"unknown block:(sendself self-2/1459 text_of_module_type/1324 (field 0 match/1588))";
                               var
                                $js=
-                                Pervasives["@"]([0,[1,Pervasives["^"](p[1]," : ")],0],0);
+                                Pervasives["@"]
+                                 ([/* :: */0,[/* Code */1,Pervasives["^"](p[1]," : ")],0],0);
                               }
                             else
                              {var $js=[0,[0,""],0];}
                             return Pervasives["@"]
-                                    ($js,desc_opt?[0,[0," "],desc_opt[1]]:0);
+                                    ($js,desc_opt?[/* :: */0,[0," "],desc_opt[1]]:0);
                             },
                           l)],
                        0]]]];
@@ -805,14 +847,15 @@ var
         text_of_class_kind,
         function(self$neg2,father,ckind)
          {switch(ckind)
-           {case 0:return [0,[1,Odoc_messages["object_end"]],0];
+           {case 0:
+             return [/* :: */0,[/* Code */1,Odoc_messages["object_end"]],0];
             case 1:
              var capp=ckind[1];
              
              var match=capp[2];
              
-             return [0,
-                     [1,
+             return [/* :: */0,
+                     [/* Code */1,
                       Pervasives["^"]
                        (match?match[1][1]:capp[1],
                         Pervasives["^"]
@@ -832,7 +875,7 @@ var
              
              if(l)
               {'unknown block:(sendself self-2/1466 text_of_type_expr_list/1321 father/1467 ", " l/1475)';
-               var $js=Pervasives["@"]([0,[1,"["],0],[0,[1,"] "],0]);
+               var $js=Pervasives["@"]([/* :: */0,[1,"["],0],[0,[1,"] "],0]);
                }
              else
               {var $js=0;}
@@ -840,8 +883,8 @@ var
              
              return Pervasives["@"]
                      ($js,
-                      [0,
-                       [1,
+                      [/* :: */0,
+                       [/* Code */1,
                         match$1?Odoc_info["Name"][4](father,match$1[1][1][1]):cco[1]],
                        0]);
              
@@ -860,7 +903,8 @@ var
         text_of_class_type_kind,
         function(self$neg2,father,ctkind)
          {switch(ctkind)
-           {case 0:return [0,[1,Odoc_messages["object_end"]],0];
+           {case 0:
+             return [/* :: */0,[/* Code */1,Odoc_messages["object_end"]],0];
             case 1:
              var cta=ctkind[1];
              
@@ -868,7 +912,7 @@ var
              
              if(l)
               {"unknown block:(sendself self-2/1479 text_of_class_type_param_expr_list/1322 father/1480\n  l/1483)";
-               var $js=Pervasives["@"]([0,[1,"["],0],[0,[1,"] "],0]);
+               var $js=Pervasives["@"]([/* :: */0,[1,"["],0],[0,[1,"] "],0]);
                }
              else
               {var $js=0;}
@@ -877,10 +921,10 @@ var
              if(match)
               {var rel=Odoc_info["Name"][4](father,match[1][1][1]);
                
-               var $js$1=[0,[1,rel],0];
+               var $js$1=[/* :: */0,[/* Code */1,rel],0];
                }
              else
-              {var $js$1=[0,[1,cta[1]],0];}
+              {var $js$1=[/* :: */0,[/* Code */1,cta[1]],0];}
              return Pervasives["@"]($js,$js$1);
              
             }
@@ -894,8 +938,8 @@ var
           
           switch(k)
            {case 0:
-             return [0,
-                     [1,
+             return [/* :: */0,
+                     [/* Code */1,
                       Pervasives["^"]
                        (with_def_syntax?" : ":"",
                         Pervasives["^"](Odoc_messages["struct_end"]," "))],
@@ -911,20 +955,23 @@ var
                
                switch(match$1)
                 {case 0:
-                  return [0,
-                          [1,Pervasives["^"](with_def_syntax?" = ":"",match$1[1][1])],
+                  return [/* :: */0,
+                          [/* Code */1,
+                           Pervasives["^"](with_def_syntax?" = ":"",match$1[1][1])],
                           0];
                   
                  case 1:
-                  return [0,
-                          [1,Pervasives["^"](with_def_syntax?" = ":"",match$1[1][1])],
+                  return [/* :: */0,
+                          [/* Code */1,
+                           Pervasives["^"](with_def_syntax?" = ":"",match$1[1][1])],
                           0];
                   
                  }
                }
              else
-              {return [0,
-                       [1,Pervasives["^"](with_def_syntax?" = ":"",m_alias[1])],
+              {return [/* :: */0,
+                       [/* Code */1,
+                        Pervasives["^"](with_def_syntax?" = ":"",m_alias[1])],
                        0];
                }
              
@@ -950,7 +997,7 @@ var
              "unknown block:(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 0 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax?[0,[1," : "],0]:0,
-                      Pervasives["@"](0,[0,[1,k[2]],0]));
+                      Pervasives["@"](0,[/* :: */0,[/* Code */1,k[2]],0]));
              
             case 5:
              "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 0 k/1493))";
@@ -974,7 +1021,7 @@ var
                  with_def_syntax?" : ":"",
                  k[1]);
              
-             return [0,[1,code],0];
+             return [/* :: */0,[/* Code */1,code],0];
              
             case 7:
              var
@@ -982,7 +1029,7 @@ var
                Printf["sprintf"]
                 ([0,[2,0,[2,0,0]],"%s%s"],with_def_syntax?" : ":"",k[1]);
              
-             return [0,[1,code$1],0];
+             return [/* :: */0,[/* Code */1,code$1],0];
              
             }
           },
@@ -995,8 +1042,8 @@ var
           
           switch(tk)
            {case 0:
-             return [0,
-                     [1,
+             return [/* :: */0,
+                     [/* Code */1,
                       Pervasives["^"]
                        (with_def_syntax?" = ":"",Odoc_messages["sig_end"])],
                      0];
@@ -1008,7 +1055,10 @@ var
              var
               t1=
                Pervasives["@"]
-                ([0,[1,Pervasives["^"]("(",Pervasives["^"](p[1]," : "))],0],
+                ([/* :: */0,
+                  [/* Code */1,
+                   Pervasives["^"]("(",Pervasives["^"](p[1]," : "))],
+                  0],
                  Pervasives["@"](0,[0,[1,") -> "],0]));
              
              "unknown block:(sendself self-2/1510 text_of_module_type_kind/1335 [0: 0a]\n  (field 1 tk/1514))";
@@ -1021,8 +1071,8 @@ var
              
              var match=mt_alias[2];
              
-             return [0,
-                     [1,
+             return [/* :: */0,
+                     [/* Code */1,
                       Pervasives["^"]
                        (with_def_syntax?" = ":"",match?match[1][1]:mt_alias[1])],
                      0];
@@ -1032,7 +1082,7 @@ var
              
              return Pervasives["@"]
                      (with_def_syntax?[0,[1," = "],0]:0,
-                      Pervasives["@"](t,[0,[1,tk[2]],0]));
+                      Pervasives["@"](t,[/* :: */0,[/* Code */1,tk[2]],0]));
              
             case 4:
              var
@@ -1044,7 +1094,7 @@ var
                  with_def_syntax?" = ":"",
                  tk[1]);
              
-             return [0,[1,code],0];
+             return [/* :: */0,[/* Code */1,code],0];
              
             }
           }]);

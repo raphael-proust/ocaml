@@ -16,7 +16,12 @@ var
   function(P)
    {var
      search_section=
-      function(t,s,v){if(P[13](s,v)){return [0,[10,s,t],0];}else{return 0;}};
+      function(t,s,v)
+       {if(P[13](s,v))
+         {return [/* :: */0,[/* Res_section */10,s,t],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_text=
@@ -76,15 +81,30 @@ var
     
     var
      search_value=
-      function(va,v){if(P[5](va,v)){return [0,[4,va],0];}else{return 0;}};
+      function(va,v)
+       {if(P[5](va,v))
+         {return [/* :: */0,[/* Res_value */4,va],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_recfield=
-      function(t,f,v){if(P[6](t,f,v)){return [0,[11,t,f],0];}else{return 0;}};
+      function(t,f,v)
+       {if(P[6](t,f,v))
+         {return [/* :: */0,[/* Res_recfield */11,t,f],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_const=
-      function(t,f,v){if(P[7](t,f,v)){return [0,[12,t,f],0];}else{return 0;}};
+      function(t,f,v)
+       {if(P[7](t,f,v))
+         {return [/* :: */0,[/* Res_const */12,t,f],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_type=
@@ -121,12 +141,17 @@ var
         else
          {var l=0;}
         
-        if(match[2]){return [0,[5,t],l];}else{return l;}
+        if(match[2]){return [/* :: */0,[/* Res_type */5,t],l];}else{return l;}
         };
     
     var
      search_extension_constructor=
-      function(xt,v){if(P[9](xt,v)){return [0,[6,xt],0];}else{return 0;}};
+      function(xt,v)
+       {if(P[9](xt,v))
+         {return [/* :: */0,[/* Res_extension */6,xt],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_type_extension=
@@ -142,15 +167,30 @@ var
     
     var
      search_exception=
-      function(e,v){if(P[10](e,v)){return [0,[7,e],0];}else{return 0;}};
+      function(e,v)
+       {if(P[10](e,v))
+         {return [/* :: */0,[/* Res_exception */7,e],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_attribute=
-      function(a,v){if(P[11](a,v)){return [0,[8,a],0];}else{return 0;}};
+      function(a,v)
+       {if(P[11](a,v))
+         {return [/* :: */0,[/* Res_attribute */8,a],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_method=
-      function(m,v){if(P[12](m,v)){return [0,[9,m],0];}else{return 0;}};
+      function(m,v)
+       {if(P[12](m,v))
+         {return [/* :: */0,[/* Res_method */9,m],0];}
+        else
+         {return 0;}
+        };
     
     var
      search_class=
@@ -186,7 +226,10 @@ var
         else
          {var l=0;}
         
-        if(match[2]){return [0,[2,c],l];}else{return l;}
+        if(match[2])
+         {return [/* :: */0,[/* Res_class */2,c],l];}
+        else
+         {return l;}
         };
     
     var
@@ -223,7 +266,10 @@ var
         else
          {var l=0;}
         
-        if(match[2]){return [0,[3,ct],l];}else{return l;}
+        if(match[2])
+         {return [/* :: */0,[/* Res_class_type */3,ct],l];}
+        else
+         {return l;}
         };
     
     var
@@ -316,7 +362,10 @@ var
         else
          {var l=0;}
         
-        if(match[2]){return [0,[1,mt],l];}else{return l;}
+        if(match[2])
+         {return [/* :: */0,[/* Res_module_type */1,mt],l];}
+        else
+         {return l;}
         };
     
     var
@@ -409,7 +458,10 @@ var
         else
          {var l=0;}
         
-        if(match[2]){return [0,[0,m],l];}else{return l;}
+        if(match[2])
+         {return [/* :: */0,[/* Res_module */0,m],l];}
+        else
+         {return l;}
         };
     
     var
@@ -422,7 +474,7 @@ var
                              {if(List["mem"](ele,acc2))
                                {return acc2;}
                               else
-                               {return Pervasives["@"](acc2,[0,ele,0]);}
+                               {return Pervasives["@"](acc2,[/* :: */0,ele,0]);}
                               },
                             acc,
                             search_module(m,v));
@@ -455,13 +507,17 @@ var
  $eq$unknown=
   function(name,regexp){return Str["string_match"](regexp,name,0);};
 
-var p_module=function(m,r){return [0,1,$eq$unknown(m[1],r)];};
+var p_module=function(m,r){return [/* tuple */0,1,$eq$unknown(m[1],r)];};
 
-var p_module_type=function(mt,r){return [0,1,$eq$unknown(mt[1],r)];};
+var
+ p_module_type=
+  function(mt,r){return [/* tuple */0,1,$eq$unknown(mt[1],r)];};
 
-var p_class=function(c,r){return [0,1,$eq$unknown(c[1],r)];};
+var p_class=function(c,r){return [/* tuple */0,1,$eq$unknown(c[1],r)];};
 
-var p_class_type=function(ct,r){return [0,1,$eq$unknown(ct[1],r)];};
+var
+ p_class_type=
+  function(ct,r){return [/* tuple */0,1,$eq$unknown(ct[1],r)];};
 
 var p_value=function(v,r){return $eq$unknown(v[1],r);};
 
@@ -481,7 +537,7 @@ var
     return $eq$unknown(name,r);
     };
 
-var p_type=function(t,r){return [0,1,$eq$unknown(t[1],r)];};
+var p_type=function(t,r){return [/* tuple */0,1,$eq$unknown(t[1],r)];};
 
 var p_extension=function(x,r){return $eq$unknown(x[1],r);};
 
@@ -596,7 +652,7 @@ var
              if(List["exists"](p(v),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,v,acc],q);}
+              {return iter([/* :: */0,v,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -674,7 +730,7 @@ var
              if(List["exists"](p(x),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,x,acc],q);}
+              {return iter([/* :: */0,x,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -752,7 +808,7 @@ var
              if(List["exists"](p(t),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,t,acc],q);}
+              {return iter([/* :: */0,t,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -830,7 +886,7 @@ var
              if(List["exists"](p(t),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,t,acc],q);}
+              {return iter([/* :: */0,t,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -908,7 +964,7 @@ var
              if(List["exists"](p(t),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,t,acc],q);}
+              {return iter([/* :: */0,t,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -986,7 +1042,7 @@ var
              if(List["exists"](p(t),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,t,acc],q);}
+              {return iter([/* :: */0,t,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -1064,7 +1120,7 @@ var
              if(List["exists"](p(c),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,c,acc],q);}
+              {return iter([/* :: */0,c,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -1142,7 +1198,7 @@ var
              if(List["exists"](p(c),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,c,acc],q);}
+              {return iter([/* :: */0,c,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -1220,7 +1276,7 @@ var
              if(List["exists"](p(m),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,m,acc],q);}
+              {return iter([/* :: */0,m,acc],q);}
              
             default:return iter(acc,param[2]);}
           }
@@ -1298,7 +1354,7 @@ var
              if(List["exists"](p(m),acc))
               {return iter(acc,q);}
              else
-              {return iter([0,m,acc],q);}
+              {return iter([/* :: */0,m,acc],q);}
              
             default:return iter(acc,param[2]);}
           }

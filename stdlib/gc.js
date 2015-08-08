@@ -95,7 +95,7 @@ var
 var
  create_alarm=
   function(f)
-   {var arec=[0,[0,1],f];
+   {var arec=/* record */[0,[0,1],f];
     
     "unknown primitive:caml_final_register";
     return arec[1];

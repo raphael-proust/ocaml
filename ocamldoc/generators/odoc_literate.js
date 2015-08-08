@@ -375,41 +375,41 @@ var
      ($$class,
       function(self$neg1)
        {return self$neg1[default_style_options]=
-               [0,
+               [/* :: */0,
                 "a:visited {color : #416DFF; text-decoration : none; }",
-                [0,
+                [/* :: */0,
                  "a:link {color : #416DFF; text-decoration : none;}",
-                 [0,
+                 [/* :: */0,
                   "a:hover {color : Red; text-decoration : none; background-color: #5FFF88}",
-                  [0,
+                  [/* :: */0,
                    "a:active {color : Red; text-decoration : underline; }",
-                   [0,
+                   [/* :: */0,
                     ".keyword { font-weight : bold ; color : Red }",
-                    [0,
+                    [/* :: */0,
                      ".keywordsign { color : #C04600 }",
-                     [0,
+                     [/* :: */0,
                       ".superscript { font-size : 0.6em }",
-                      [0,
+                      [/* :: */0,
                        ".subscript { font-size : 0.6em }",
-                       [0,
+                       [/* :: */0,
                         ".comment { color : Green }",
-                        [0,
+                        [/* :: */0,
                          ".constructor { color : Blue }",
-                         [0,
+                         [/* :: */0,
                           ".type { color : #5C6585 }",
-                          [0,
+                          [/* :: */0,
                            ".string { color : Maroon }",
-                           [0,
+                           [/* :: */0,
                             ".warning { color : Red ; font-weight : bold }",
-                            [0,
+                            [/* :: */0,
                              ".info { margin-top: 8px; }",
-                             [0,
+                             [/* :: */0,
                               ".param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }",
-                              [0,
+                              [/* :: */0,
                                ".code { color : #465F91 ; }",
-                               [0,
+                               [/* :: */0,
                                 "h1 { font-size : 20pt ; text-align: center; }",
-                                [0,
+                                [/* :: */0,
                                  Pervasives["^"]
                                   ("h2 { font-size : 20pt ; border: 1px solid #000000; ",
                                    Pervasives["^"]
@@ -417,7 +417,7 @@ var
                                      Pervasives["^"]
                                       ("text-align: center; background-color: #90BDFF ;",
                                        "padding: 2px; }"))),
-                                 [0,
+                                 [/* :: */0,
                                   Pervasives["^"]
                                    ("h3 { font-size : 20pt ; border: 1px solid #000000; ",
                                     Pervasives["^"]
@@ -425,7 +425,7 @@ var
                                       Pervasives["^"]
                                        ("text-align: center; background-color: #90DDFF ;",
                                         "padding: 2px; }"))),
-                                  [0,
+                                  [/* :: */0,
                                    Pervasives["^"]
                                     ("h4 { font-size : 20pt ; border: 1px solid #000000; ",
                                      Pervasives["^"]
@@ -433,7 +433,7 @@ var
                                        Pervasives["^"]
                                         ("text-align: center; background-color: #90EDFF ;",
                                          "padding: 2px; }"))),
-                                   [0,
+                                   [/* :: */0,
                                     Pervasives["^"]
                                      ("h5 { font-size : 20pt ; border: 1px solid #000000; ",
                                       Pervasives["^"]
@@ -441,7 +441,7 @@ var
                                         Pervasives["^"]
                                          ("text-align: center; background-color: #90FDFF ;",
                                           "padding: 2px; }"))),
-                                    [0,
+                                    [/* :: */0,
                                      Pervasives["^"]
                                       ("h6 { font-size : 20pt ; border: 1px solid #000000; ",
                                        Pervasives["^"]
@@ -449,7 +449,7 @@ var
                                          Pervasives["^"]
                                           ("text-align: center; background-color: #C0FFFF ; ",
                                            "padding: 2px; }"))),
-                                     [0,
+                                     [/* :: */0,
                                       Pervasives["^"]
                                        ("div.h7 { font-size : 20pt ; border: 1px solid #000000; ",
                                         Pervasives["^"]
@@ -457,7 +457,7 @@ var
                                           Pervasives["^"]
                                            ("text-align: center; background-color: #E0FFFF ; ",
                                             "padding: 2px; }"))),
-                                      [0,
+                                      [/* :: */0,
                                        Pervasives["^"]
                                         ("div.h8 { font-size : 20pt ; border: 1px solid #000000; ",
                                          Pervasives["^"]
@@ -465,7 +465,7 @@ var
                                            Pervasives["^"]
                                             ("text-align: center; background-color: #F0FFFF ; ",
                                              "padding: 2px; }"))),
-                                       [0,
+                                       [/* :: */0,
                                         Pervasives["^"]
                                          ("div.h9 { font-size : 20pt ; border: 1px solid #000000; ",
                                           Pervasives["^"]
@@ -473,28 +473,28 @@ var
                                             Pervasives["^"]
                                              ("text-align: center; background-color: #FFFFFF ; ",
                                               "padding: 2px; }"))),
-                                        [0,
+                                        [/* :: */0,
                                          ".typetable { border-style : hidden }",
-                                         [0,
+                                         [/* :: */0,
                                           ".indextable { border-style : hidden }",
-                                          [0,
+                                          [/* :: */0,
                                            ".paramstable { border-style : hidden ; padding: 5pt 5pt}",
-                                           [0,
+                                           [/* :: */0,
                                             "body { background-color : White }",
-                                            [0,
+                                            [/* :: */0,
                                              "tr { background-color : White }",
-                                             [0,
+                                             [/* :: */0,
                                               "td.typefieldcomment { background-color : #FFFFFF ; font-size: smaller ;}",
-                                              [0,
+                                              [/* :: */0,
                                                Pervasives["^"]
                                                 ("pre { margin-bottom: 4px ; margin-left: 1em; ",
                                                  Pervasives["^"]
                                                   ("border-color: #27408b; border-style: solid; ",
                                                    Pervasives["^"]
                                                     ("border-width: 1px 1px 1px 3px; ","padding: 4px; }"))),
-                                               [0,
+                                               [/* :: */0,
                                                 "div.sig_block {margin-left: 2em}",
-                                                [0,
+                                                [/* :: */0,
                                                  Pervasives["^"]
                                                   ("div.codeblock { ",
                                                    Pervasives["^"]
@@ -502,7 +502,7 @@ var
                                                      Pervasives["^"]
                                                       ("margin-bottom: 8px; display: none; ",
                                                        "border-width: 1px 1px 1px 3px; border-style: solid; border-color: grey; }"))),
-                                                 [0,
+                                                 [/* :: */0,
                                                   Pervasives["^"]
                                                    ("span.code_expand { color: blue; text-decoration: underline; cursor: pointer; ",
                                                     "margin-left: 1em ; } "),
@@ -656,7 +656,7 @@ var
 
 var Generator=[0,html];
 
-Odoc_args["set_generator"]([0,Generator]);
+Odoc_args["set_generator"]([/* Html */0,Generator]);
 module["exports"]=
 {"Naming":Naming,"p":p,"bp":bp,"bs":bs,"Html":Html,"Generator":Generator};
 

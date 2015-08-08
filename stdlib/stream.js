@@ -37,7 +37,13 @@ var
           {switch(match){case 0:return get_data(count,d2);}}
          else
           {switch(match[0])
-            {case 0:var d11=match[2];var a=match[1];return [0,a,[1,d11,d2]];
+            {case 0:
+              var d11=match[2];
+              
+              var a=match[1];
+              
+              return /* Scons */[0,a,/* Sapp */[1,d11,d2]];
+              
              default:throw [0,Assert_failure,[0,"stream.ml",53,12]];}}
          
         case 2:
@@ -62,7 +68,7 @@ var
           {var match$2=match$1[1];
            
            if(match$2)
-            {var a$1=match$2[1];g[1]=0,0;return [0,a$1,d];}
+            {var a$1=match$2[1];g[1]=0,0;return /* Scons */[0,a$1,d];}
            else
             {return 0;}
            }
@@ -72,7 +78,7 @@ var
            var match$3=g$1[2](count);
            
            if(match$3)
-            {var a$2=match$3[1];return [0,a$2,d];}
+            {var a$2=match$3[1];return /* Scons */[0,a$2,d];}
            else
             {g$1[1]=[0,0],0;return 0;}
            }
@@ -85,7 +91,7 @@ var
          if(b[3]=0)
           {return 0;}
          else
-          {var r=b[2][b[4]];b[4]=1+b[4],0;return [0,r,d];}
+          {var r=b[2][b[4]];b[4]=1+b[4],0;return /* Scons */[0,r,d];}
          
         }}
     
@@ -101,7 +107,7 @@ var
      {switch(match){case 0:return 0;}}
     else
      {switch(match[0])
-       {case 0:var a=match[1];return [0,a];
+       {case 0:var a=match[1];return /* Some */[0,a];
         case 1:
          var d=get_data(s[1],s[2]);
          
@@ -109,7 +115,7 @@ var
           {switch(d){case 0:return 0;}}
          else
           {switch(d[0])
-            {case 0:var a$1=d[1];set_data(s,d);return [0,a$1];
+            {case 0:var a$1=d[1];set_data(s,d);return /* Some */[0,a$1];
              default:throw [0,Assert_failure,[0,"stream.ml",82,12]];}}
          
         case 2:
@@ -134,14 +140,17 @@ var
          if(match$1)
           {var a$2=match$1[1];return a$2;}
          else
-          {var x=g[2](s[1]);g[1]=[0,x],0;return x;}
+          {var x=g[2](s[1]);g[1]=/* Some */[0,x],0;return x;}
          
         case 4:
          var b=match[1];
          
          if(b[4]>=b[3]){fill_buff(b)}else{}
          
-         if(b[3]=0){set_data(s,0);return 0;}else{return [0,b[2][b[4]]];}
+         if(b[3]=0)
+          {set_data(s,0);return 0;}
+         else
+          {return /* Some */[0,b[2][b[4]]];}
          
         }}
     };
@@ -176,7 +185,7 @@ var
  nget=
   function(n,s)
    {if(n<=0)
-     {return [0,0,s[2],0];}
+     {return /* tuple */[0,0,s[2],0];}
     else
      {var match=peek(s);
       
@@ -192,10 +201,10 @@ var
         
         var al=match$1[1];
         
-        return [0,[0,a,al],[0,a,d],1+k];
+        return /* tuple */[0,/* :: */[0,a,al],/* Scons */[0,a,d],1+k];
         }
       else
-       {return [0,0,s[2],0];}
+       {return /* tuple */[0,0,s[2],0];}
       }
     };
 
@@ -241,12 +250,18 @@ var
     return do_rec(0);
     };
 
-var from=function(f){return [0,0,[3,[0,0,f]]];};
+var
+ from=
+  function(f){return /* record */[0,0,/* Sgen */[3,/* record */[0,0,f]]];};
 
 var
  of_list=
   function(l)
-   {return [0,0,List["fold_right"](function(x,l$1){return [0,x,l$1];},l,0)];};
+   {return /* record */[0,
+            0,
+            List["fold_right"]
+             (function(x,l$1){return /* Scons */[0,x,l$1];},l,0)];
+    };
 
 var
  of_string=
@@ -257,7 +272,10 @@ var
             (function(param)
               {var c=count[1];
                
-               if(c<s["length"]){count[0]++;return [0,s[c]];}else{return 0;}
+               if(c<s["length"])
+                {count[0]++;return /* Some */[0,s[c]];}
+               else
+                {return 0;}
                });
     };
 
@@ -270,40 +288,64 @@ var
             (function(param)
               {var c=count[1];
                
-               if(c<s["length"]){count[0]++;return [0,s[c]];}else{return 0;}
+               if(c<s["length"])
+                {count[0]++;return /* Some */[0,s[c]];}
+               else
+                {return 0;}
                });
     };
 
 var
  of_channel=
   function(ic)
-   {return [0,0,[4,[0,ic,"unknown primitive:caml_create_string",0,0]]];};
+   {return /* record */[0,
+            0,
+            /* Sbuffio */[4,
+             /* record */[0,ic,"unknown primitive:caml_create_string",0,0]]];
+    };
 
-var iapp=function(i,s){return [0,0,[1,i[2],s[2]]];};
+var iapp=function(i,s){return /* record */[0,0,/* Sapp */[1,i[2],s[2]]];};
 
-var icons=function(i,s){return [0,0,[0,i,s[2]]];};
+var icons=function(i,s){return /* record */[0,0,/* Scons */[0,i,s[2]]];};
 
-var ising=function(i){return [0,0,[0,i,0]];};
+var ising=function(i){return /* record */[0,0,/* Scons */[0,i,0]];};
 
 var
  lapp=
   function(f,s)
-   {return [0,0,[2,[246,function(param){return [1,f(0)[2],s[2]];}]]];};
+   {return /* record */[0,
+            0,
+            /* Slazy */[2,
+             [246,function(param){return /* Sapp */[1,f(0)[2],s[2]];}]]];
+    };
 
 var
  lcons=
   function(f,s)
-   {return [0,0,[2,[246,function(param){return [0,f(0),s[2]];}]]];};
+   {return /* record */[0,
+            0,
+            /* Slazy */[2,
+             [246,function(param){return /* Scons */[0,f(0),s[2]];}]]];
+    };
 
 var
  lsing=
-  function(f){return [0,0,[2,[246,function(param){return [0,f(0),0];}]]];};
+  function(f)
+   {return /* record */[0,
+            0,
+            /* Slazy */[2,
+             [246,function(param){return /* Scons */[0,f(0),0];}]]];
+    };
 
 var sempty=[0,0,0];
 
 var
  slazy=
-  function(f){return [0,0,[2,[246,function(param){return f(0)[2];}]]];};
+  function(f)
+   {return /* record */[0,
+            0,
+            /* Slazy */[2,[246,function(param){return f(0)[2];}]]];
+    };
 
 var
  dump=

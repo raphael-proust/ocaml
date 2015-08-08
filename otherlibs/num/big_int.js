@@ -19,16 +19,16 @@ var
       (sign=-1)||
       (sign=0)&&
       Nat["is_zero_nat"](nat,0,"unknown primitive:num_digits_nat"))
-     {return [0,sign,nat];}
+     {return /* record */[0,sign,nat];}
     else
      {return Pervasives["invalid_arg"]("create_big_int");}
     };
 
 var sign_big_int=function(bi){return bi[1];};
 
-var zero_big_int=[0,0,Nat["make_nat"](1)];
+var zero_big_int=/* record */[0,0,Nat["make_nat"](1)];
 
-var unit_big_int=[0,1,Nat["nat_of_int"](1)];
+var unit_big_int=/* record */[0,1,Nat["nat_of_int"](1)];
 
 var
  num_digits_big_int=
@@ -37,12 +37,18 @@ var
 var
  minus_big_int=
   function(bi)
-   {return [0,-bi[1],Nat["copy_nat"](bi[2],0,num_digits_big_int(bi))];};
+   {return /* record */[0,
+            -bi[1],
+            Nat["copy_nat"](bi[2],0,num_digits_big_int(bi))];
+    };
 
 var
  abs_big_int=
   function(bi)
-   {return [0,(bi[1]=0)?0:1,Nat["copy_nat"](bi[2],0,num_digits_big_int(bi))];};
+   {return /* record */[0,
+            (bi[1]=0)?0:1,
+            Nat["copy_nat"](bi[2],0,num_digits_big_int(bi))];
+    };
 
 var
  compare_big_int=
@@ -99,7 +105,7 @@ var
         "unknown primitive:blit_nat";
         "unknown primitive:set_digit_nat";
         
-        return [0,-1,copy_bi];
+        return /* record */[0,-1,copy_bi];
         }
       else
        {var size_bi$1=num_digits_big_int(bi);
@@ -107,11 +113,13 @@ var
         var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
         
         
-        return [0,Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:1,copy_bi$1];
+        return /* record */[0,
+                Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:1,
+                copy_bi$1];
         }
       }
     else
-     {return [0,-1,Nat["nat_of_int"](1)];}
+     {return /* record */[0,-1,Nat["nat_of_int"](1)];}
     };
 
 var
@@ -130,10 +138,10 @@ var
         "unknown primitive:blit_nat";
         "unknown primitive:set_digit_nat";
         
-        return [0,1,copy_bi];
+        return /* record */[0,1,copy_bi];
         }
       else
-       {return [0,1,Nat["nat_of_int"](1)];}
+       {return /* record */[0,1,Nat["nat_of_int"](1)];}
       }
     else
      {var size_bi$1=num_digits_big_int(bi);
@@ -141,7 +149,9 @@ var
       var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
       
       
-      return [0,Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:-1,copy_bi$1];
+      return /* record */[0,
+              Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:-1,
+              copy_bi$1];
       }
     };
 
@@ -171,7 +181,7 @@ var
         
         var $js=res$1;
         }
-      return [0,bi1[1],$js];
+      return /* record */[0,bi1[1],$js];
       }
     else
      {var match$1="unknown primitive:compare_nat";
@@ -180,12 +190,12 @@ var
        {if(match$1!=1)
          {var res$2=Nat["copy_nat"](bi2[2],0,size_bi2);
           
-          return [0,bi2[1],(0,res$2)];
+          return /* record */[0,bi2[1],(0,res$2)];
           }
         else
          {var res$3=Nat["copy_nat"](bi1[2],0,size_bi1);
           
-          return [0,bi1[1],(0,res$3)];
+          return /* record */[0,bi1[1],(0,res$3)];
           }
         }
       else
@@ -203,7 +213,7 @@ var
     else
      {"unknown primitive:set_digit_nat"}
     
-    return [0,Int_misc["sign_int"](i),res];
+    return /* record */[0,Int_misc["sign_int"](i),res];
     };
 
 var add_int_big_int=function(i,bi){return add_big_int(big_int_of_int(i),bi);};
@@ -225,13 +235,13 @@ var
       "unknown primitive:blit_nat";
       "unknown primitive:set_digit_nat";
       
-      return [0,-sign_big_int(bi),res];
+      return /* record */[0,-sign_big_int(bi),res];
       }
     else
      {var res$1=Nat["make_nat"](size_res);
       
       
-      return [0,Int_misc["sign_int"](i)*sign_big_int(bi),res$1];
+      return /* record */[0,Int_misc["sign_int"](i)*sign_big_int(bi),res$1];
       }
     };
 
@@ -246,7 +256,7 @@ var
     
     var res=Nat["make_nat"](size_res);
     
-    return [0,bi1[1]*bi2[1],size_bi2>size_bi1?(0,res):(0,res)];
+    return /* record */[0,bi1[1]*bi2[1],size_bi2>size_bi1?(0,res):(0,res)];
     };
 
 var
@@ -285,29 +295,35 @@ var
           if(bi1_negatif&&not_null_mod)
            {var new_r=Nat["copy_nat"](bi2[2],0,size_bi2);
             
-            return [0,
-                    [0,-bi2[1],("unknown primitive:set_digit_nat",0,q)],
-                    [0,1,(0,new_r)]];
+            return /* tuple */[0,
+                    /* record */[0,
+                     -bi2[1],
+                     ("unknown primitive:set_digit_nat",0,q)],
+                    /* record */[0,1,(0,new_r)]];
             }
           else
            {if(bi1_negatif){"unknown primitive:set_digit_nat"}else{}
             
-            return [0,
-                    [0,Nat["is_zero_nat"](q,0,size_q)?0:bi1[1]*bi2[1],q],
-                    [0,not_null_mod?1:0,Nat["copy_nat"](r,0,size_bi2)]];
+            return /* tuple */[0,
+                    /* record */[0,
+                     Nat["is_zero_nat"](q,0,size_q)?0:bi1[1]*bi2[1],
+                     q],
+                    /* record */[0,
+                     not_null_mod?1:0,
+                     Nat["copy_nat"](r,0,size_bi2)]];
             }
           }
         else
-         {return [0,big_int_of_int(bi1[1]*bi2[1]),zero_big_int];}
+         {return /* tuple */[0,big_int_of_int(bi1[1]*bi2[1]),zero_big_int];}
         }
       else
        {if(bi1[1]>=0)
-         {return [0,big_int_of_int(0),bi1];}
+         {return /* tuple */[0,big_int_of_int(0),bi1];}
         else
          {if(bi2[1]>=0)
-           {return [0,big_int_of_int(-1),add_big_int(bi2,bi1)];}
+           {return /* tuple */[0,big_int_of_int(-1),add_big_int(bi2,bi1)];}
           else
-           {return [0,big_int_of_int(1),sub_big_int(bi1,bi2)];}
+           {return /* tuple */[0,big_int_of_int(1),sub_big_int(bi1,bi2)];}
           }
         }
       }
@@ -328,7 +344,7 @@ var
      {return abs_big_int(bi2);}
     else
      {if(Nat["is_zero_nat"](bi2[2],0,size_bi2))
-       {return [0,1,bi1[2]];}
+       {return /* record */[0,1,bi1[2]];}
       else
        {var match="unknown primitive:compare_nat";
         
@@ -350,7 +366,7 @@ var
           }
         else
          {var $js=bi1[2];}
-        return [0,1,$js];
+        return /* record */[0,1,$js];
         }
       }
     };
@@ -396,13 +412,13 @@ var
        {var res="unknown primitive:create_nat";
         
         "unknown primitive:set_digit_nat_native";
-        return [0,1,res];
+        return /* record */[0,1,res];
         }
       else
        {var res$1="unknown primitive:create_nat";
         
         "unknown primitive:set_digit_nat_native";
-        return [0,-1,res$1];
+        return /* record */[0,-1,res$1];
         }
       }
     };
@@ -456,7 +472,11 @@ var
      {if(i=0)
        {var match=[0,0,0];}
       else
-       {if(i>0){var match=[0,1,i];}else{var match=[0,-1,-i];}}
+       {if(i>0)
+         {var match=/* tuple */[0,1,i];}
+        else
+         {var match=/* tuple */[0,-1,-i];}
+        }
       
       var absi=match[2];
       
@@ -466,7 +486,7 @@ var
       
       "unknown primitive:set_digit_nat_native";
       "unknown primitive:set_digit_nat_native";
-      return [0,sg,res];
+      return /* record */[0,sg,res];
       }
     };
 
@@ -522,7 +542,7 @@ var
   function(nat,off,len)
    {var length="unknown primitive:num_digits_nat";
     
-    return [0,
+    return /* record */[0,
             Nat["is_zero_nat"](nat,off,length)?0:1,
             Nat["copy_nat"](nat,off,length)];
     };
@@ -550,7 +570,7 @@ var
     if(Nat["is_zero_nat"](n,0,Nat["length_nat"](n)))
      {return zero_big_int;}
     else
-     {return [0,sgn,n];}
+     {return /* record */[0,sgn,n];}
     };
 
 var
@@ -657,7 +677,7 @@ var
         
         var x=match$1[1];
         
-        var match$2=[0,int_of_big_int(x),int_of_big_int(y)];
+        var match$2=/* tuple */[0,int_of_big_int(x),int_of_big_int(y)];
         
         var rem=match$2[2];
         
@@ -703,7 +723,7 @@ var
      {if(match!=0)
        {var nat=Nat["power_base_int"](Pervasives["abs"](i),n);
         
-        return [0,i>=0?Int_misc["sign_int"](i):((n&1)=0)?1:-1,nat];
+        return /* record */[0,i>=0?Int_misc["sign_int"](i):((n&1)=0)?1:-1,nat];
         }
       else
        {return unit_big_int;}
@@ -745,7 +765,7 @@ var
            {"unknown primitive:blit_nat"}
           }
         
-        return [0,bi[1]>=0?bi[1]:((n&1)=0)?1:-1,res];
+        return /* record */[0,bi[1]>=0?bi[1]:((n&1)=0)?1:-1,res];
         }
       else
        {return unit_big_int;}
@@ -765,7 +785,7 @@ var
          nat=
           power_base_nat(Pervasives["abs"](i),bi[2],0,num_digits_big_int(bi));
         
-        return [0,
+        return /* record */[0,
                 i>=0
                  ?Int_misc["sign_int"](i)
                  :"unknown primitive:is_digit_odd"?-1:1,
@@ -857,7 +877,7 @@ var
           if(!Nat["is_zero_nat"](copy,0,len_nat$1))
            {return Pervasives["invalid_arg"]("base_power_big_int");}
           else
-           {return [0,bi[1],Nat["copy_nat"](copy,len_nat$1,1)];}
+           {return /* record */[0,bi[1],Nat["copy_nat"](copy,len_nat$1,1)];}
           }
         }
       }
@@ -874,7 +894,10 @@ var
     
     if(match!=-1)
      {if(match!=0)
-       {return [0,1,Nat["sqrt_nat"](bi[2],0,num_digits_big_int(bi))];}
+       {return /* record */[0,
+                1,
+                Nat["sqrt_nat"](bi[2],0,num_digits_big_int(bi))];
+        }
       else
        {return zero_big_int;}
       }
@@ -895,7 +918,7 @@ var
       var res=Nat["make_nat"](len_res);
       
       
-      return [0,1,res];
+      return /* record */[0,1,res];
       }
     };
 
@@ -948,7 +971,10 @@ var
       Bytes["unsafe_of_string"]
        (string_of_big_int(div_big_int(bi,power_int_positive_int(10,n))));
     
-    if(s[0]=45){var match=[0,"-",1,1+prec];}else{var match=[0,"",0,prec];}
+    if(s[0]=45)
+     {var match=/* tuple */[0,"-",1,1+prec];}
+    else
+     {var match=/* tuple */[0,"",0,prec];}
     
     var off=match[2];
     
@@ -1006,7 +1032,7 @@ var
           
           if(nbits>0){"unknown primitive:shift_left_nat"}else{}
           
-          return [0,bi[1],res];
+          return /* record */[0,bi[1],res];
           }
         }
       }
@@ -1048,7 +1074,7 @@ var
             if(Nat["is_zero_nat"](res,0,size_res))
              {return zero_big_int;}
             else
-             {return [0,bi[1],res];}
+             {return /* record */[0,bi[1],res];}
             }
           }
         }
@@ -1070,7 +1096,7 @@ var
         
         "unknown primitive:set_digit_nat_native";
         
-        return [0,1,res];
+        return /* record */[0,1,res];
         }
       }
     };
@@ -1149,7 +1175,7 @@ var
         if(Nat["is_zero_nat"](res,0,size_res))
          {return zero_big_int;}
         else
-         {return [0,1,res];}
+         {return /* record */[0,1,res];}
         }
       }
     };
@@ -1177,7 +1203,7 @@ var
         if(Nat["is_zero_nat"](res,0,size_res))
          {return zero_big_int;}
         else
-         {return [0,1,res];}
+         {return /* record */[0,1,res];}
         }
       }
     };
@@ -1215,7 +1241,7 @@ var
           if(Nat["is_zero_nat"](res,0,size_res))
            {return zero_big_int;}
           else
-           {return [0,1,res];}
+           {return /* record */[0,1,res];}
           }
         }
       }
@@ -1254,7 +1280,7 @@ var
           if(Nat["is_zero_nat"](res,0,size_res))
            {return zero_big_int;}
           else
-           {return [0,1,res];}
+           {return /* record */[0,1,res];}
           }
         }
       }

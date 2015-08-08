@@ -276,9 +276,12 @@ var
  drive_and_path=
   function(s)
    {if(has_drive(s))
-     {return [0,$$String["sub"](s,0,2),$$String["sub"](s,2,s["length"]-2)];}
+     {return /* tuple */[0,
+              $$String["sub"](s,0,2),
+              $$String["sub"](s,2,s["length"]-2)];
+      }
     else
-     {return [0,"",s];}
+     {return /* tuple */[0,"",s];}
     };
 
 var
@@ -367,7 +370,7 @@ switch(match)
  {case "Cygwin":
    var
     match$1=
-     [0,
+     /* tuple */[0,
       Cygwin[1],
       Cygwin[2],
       Cygwin[3],
@@ -383,7 +386,7 @@ switch(match)
   case "Unix":
    var
     match$1=
-     [0,
+     /* tuple */[0,
       Unix[1],
       Unix[2],
       Unix[3],
@@ -399,7 +402,7 @@ switch(match)
   case "Win32":
    var
     match$1=
-     [0,
+     /* tuple */[0,
       Win32[1],
       Win32[2],
       Win32[3],
@@ -555,9 +558,10 @@ var
        {var name=temp_file_name(temp_dir,prefix,suffix);
         
         try
-         {return [0,
+         {return /* tuple */[0,
                   name,
-                  Pervasives["open_out_gen"]([0,1,[0,3,[0,5,mode]]],384,name)];
+                  Pervasives["open_out_gen"]
+                   (/* :: */[0,1,/* :: */[0,3,/* :: */[0,5,mode]]],384,name)];
           }
         catch(e)
          {var tag=e[1];

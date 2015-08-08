@@ -15,7 +15,7 @@ var
 var
  unmarshal=
   function(str,pos)
-   {return [0,
+   {return /* tuple */[0,
             Marshal["from_bytes"](str,pos),
             pos+Marshal["total_size"](str,pos)];
     };

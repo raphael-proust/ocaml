@@ -22,7 +22,8 @@ var $$Error="unknown primitive:caml_set_oo_id";
 
 var
  abstract_type=
-  Btype["newgenty"]([3,[0,Ident["create"]("<abstr>")],0,[0,0]]);
+  Btype["newgenty"]
+   ([/* Tconstr */3,[/* Pident */0,Ident["create"]("<abstr>")],0,[0,0]]);
 
 var
  path=
@@ -38,7 +39,7 @@ var
            }
          catch(exn)
           {if(exn[1]=Symtable["Error"])
-            {throw [0,$$Error,[0,id]];}
+            {throw [0,$$Error,[/* Unbound_identifier */0,id]];}
            else
             {throw exn;}
            }
@@ -61,7 +62,7 @@ var
                  }
                catch(exn$2)
                 {if(exn$2=Not_found)
-                  {throw [0,$$Error,[0,id]];}
+                  {throw [0,$$Error,[/* Unbound_identifier */0,id]];}
                  else
                   {throw exn$2;}
                  }
@@ -71,7 +72,7 @@ var
              }
            }
          else
-          {throw [0,$$Error,[0,id]];}
+          {throw [0,$$Error,[/* Unbound_identifier */0,id]];}
          }
        
       case 1:
@@ -79,7 +80,10 @@ var
        
        var v=path($$event,root);
        
-       if(!Debugcom["Remote_value"][2](v)){throw [0,$$Error,[1,root]];}else{}
+       if(!Debugcom["Remote_value"][2](v))
+        {throw [0,$$Error,[/* Not_initialized_yet */1,root]];}
+       else
+        {}
        
        return Debugcom["Remote_value"][5](v,param[3]);
        
@@ -104,7 +108,7 @@ var
             {exit=8;}
            else
             {if(Frames["current_frame"][1]=0)
-              {return [0,
+              {return [/* tuple */0,
                        Debugcom["Remote_value"][11](0),
                        Subst["type_expr"](match[7],match$1[1])];
                }
@@ -143,7 +147,7 @@ var
                 var
                  match$4=
                   Env["lookup_value"]
-                   ([0,Pervasives["^"]("self-",match$3[2])],env);
+                   ([/* Lident */0,Pervasives["^"]("self-",match$3[2])],env);
                 
                 var v=path($$event,match$4[1]);
                 
@@ -156,10 +160,14 @@ var
            
            var $js$1;
            switch(exit$1){case 6:$js$1=path($$event,p);}
-           return [0,$js$1,Ctype["correct_levels"](valdesc[1])];
+           return [/* tuple */0,$js$1,Ctype["correct_levels"](valdesc[1])];
            }
          catch(exn)
-          {if(exn=Not_found){throw [0,$$Error,[2,lid]];}else{throw exn;}}
+          {if(exn=Not_found)
+            {throw [0,$$Error,[/* Unbound_long_identifier */2,lid]];}
+           else
+            {throw exn;}
+           }
          
         case 1:
          var n=param[1];
@@ -167,7 +175,11 @@ var
          try
           {return Printval["find_named_value"](n);}
          catch(exn$1)
-          {if(exn$1=Not_found){throw [0,$$Error,[3,n]];}else{throw exn$1;}}
+          {if(exn$1=Not_found)
+            {throw [0,$$Error,[/* Unknown_name */3,n]];}
+           else
+            {throw exn$1;}
+           }
          
         case 2:
          var n$1=param[2];
@@ -190,9 +202,12 @@ var
               var ty_list=match$6[1];
               
               if(n$1<1||n$1>List["length"](ty_list))
-               {throw [0,$$Error,[4,ty,List["length"](ty_list),n$1]];}
+               {throw [0,
+                       $$Error,
+                       [/* Tuple_index */4,ty,List["length"](ty_list),n$1]];
+                }
               else
-               {return [0,
+               {return [/* tuple */0,
                         Debugcom["Remote_value"][5](v$1,n$1-1),
                         List["nth"](ty_list,n$1-1)];
                 }
@@ -212,9 +227,12 @@ var
                    {var size=Debugcom["Remote_value"][4](v$1);
                     
                     if(n$1>=size)
-                     {throw [0,$$Error,[5,size,n$1]];}
+                     {throw [0,$$Error,[/* Array_index */5,size,n$1]];}
                     else
-                     {return [0,Debugcom["Remote_value"][5](v$1,n$1),ty_arg];}
+                     {return [/* tuple */0,
+                              Debugcom["Remote_value"][5](v$1,n$1),
+                              ty_arg];
+                      }
                     }
                   else
                    {if(Path["same"](path$1,Predef["path_list"]))
@@ -222,10 +240,13 @@ var
                        nth=
                         function(pos,v$2)
                          {if(!Debugcom["Remote_value"][2](v$2))
-                           {throw [0,$$Error,[6,pos,n$1]];}
+                           {throw [0,$$Error,[/* List_index */6,pos,n$1]];}
                           else
                            {if(pos=n$1)
-                             {return [0,Debugcom["Remote_value"][5](v$2,0),ty_arg];}
+                             {return [/* tuple */0,
+                                      Debugcom["Remote_value"][5](v$2,0),
+                                      ty_arg];
+                              }
                             else
                              {return nth(pos+1,Debugcom["Remote_value"][5](v$2,1));}
                             }
@@ -243,9 +264,9 @@ var
                  {var s=Debugcom["Remote_value"][1](v$1);
                   
                   if(n$1>=s["length"])
-                   {throw [0,$$Error,[7,s,s["length"],n$1]];}
+                   {throw [0,$$Error,[/* String_index */7,s,s["length"],n$1]];}
                   else
-                   {return [0,
+                   {return [/* tuple */0,
                             Debugcom["Remote_value"][7](s[n$1]),
                             Predef["type_char"]];
                     }
@@ -256,7 +277,8 @@ var
               
              default:exit$2=12;}}
          
-         switch(exit$2){case 12:throw [0,$$Error,[8,ty,n$1]];}
+         switch(exit$2)
+          {case 12:throw [0,$$Error,[/* Wrong_item_type */8,ty,n$1]];}
          
         case 3:
          var match$8=expression($$event,env,param[1]);
@@ -289,17 +311,19 @@ var
                     match$11=
                      find_label(param[2],env,ty$1,path$2,tydesc,0,match$10[1]);
                    
-                   return [0,
+                   return [/* tuple */0,
                            Debugcom["Remote_value"][5](match$8[1],match$11[1]),
                            match$11[2]];
                    
                   default:exit$4=15;}}
               
-              switch(exit$4){case 15:throw [0,$$Error,[10,ty$1]];}
+              switch(exit$4)
+               {case 15:throw [0,$$Error,[/* Not_a_record */10,ty$1]];}
               
              default:exit$3=17;}}
          
-         switch(exit$3){case 17:throw [0,$$Error,[10,ty$1]];}
+         switch(exit$3)
+          {case 17:throw [0,$$Error,[/* Not_a_record */10,ty$1]];}
          
         }}
     };
@@ -311,23 +335,26 @@ var
      {var match=param[1];
       
       if("unknown primitive:caml_string_equal")
-       {var ty_res=Btype["newgenty"]([3,path$1,tydesc[1],[0,0]]);
+       {var ty_res=Btype["newgenty"]([/* Tconstr */3,path$1,tydesc[1],[0,0]]);
         
         try
-         {var $js=Ctype["apply"](env,[0,ty_res,0],match[3],[0,ty,0]);}
+         {var
+           $js=
+            Ctype["apply"](env,[/* :: */0,ty_res,0],match[3],[/* :: */0,ty,0]);
+          }
         catch(exn)
          {if(exn=Ctype["Cannot_apply"])
            {var $js=abstract_type;}
           else
            {throw exn;}
           }
-        return [0,pos,$js];
+        return [/* tuple */0,pos,$js];
         }
       else
        {return find_label(lbl,env,ty,path$1,tydesc,pos+1,param[2]);}
       }
     else
-     {throw [0,$$Error,[9,ty,lbl]];}
+     {throw [0,$$Error,[/* Wrong_label */9,ty,lbl]];}
     };
 
 var

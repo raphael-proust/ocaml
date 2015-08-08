@@ -19,7 +19,7 @@ var
     if(match)
      {var ev=match[1];
       
-      return [0,
+      return [/* tuple */0,
               ev[2],
               Events["get_pos"](ev)[2],
               Events["get_pos"](ev)[4]-Events["get_pos"](ev)[3]];
@@ -81,7 +81,7 @@ var
         if(match$2)
          {if(frame_number>=current_frame[1])
            {selected_event[1]=
-            [0,move_up(frame_number-current_frame[1],match$2[1])],
+            [/* Some */0,move_up(frame_number-current_frame[1],match$2[1])],
             0;
             return current_frame[1]=frame_number,0;
             }
@@ -94,7 +94,7 @@ var
         switch(exit)
          {case 13:
            Debugcom["set_initial_frame"](0);
-           selected_event[1]=[0,move_up(frame_number,match$1[1])],0;
+           selected_event[1]=[/* Some */0,move_up(frame_number,match$1[1])],0;
            return current_frame[1]=frame_number,0;
            
           }
@@ -138,7 +138,7 @@ var
       var $$event=match[1];
       
       try
-       {while(action([0,$$event]))
+       {while(action([/* Some */0,$$event]))
          {var match$2=Debugcom["up_frame"]($$event[9]);
           
           if(match$2[1]<0){throw Pervasives["Exit"];}else{}

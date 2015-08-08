@@ -167,7 +167,9 @@ var
      {return List["assoc"](pos,positions[1])[0]++;}
     catch(exn)
      {if(exn=Not_found)
-       {positions[1]=[0,[0,pos,[0,1]],positions[1]],0;return new_version(0);}
+       {positions[1]=[/* :: */0,[/* tuple */0,pos,[0,1]],positions[1]],0;
+        return new_version(0);
+        }
       else
        {throw exn;}
       }
@@ -209,7 +211,9 @@ var
           {breakpoint_number[0]++;
            insert_position($$event[1]);
            return breakpoints[1]=
-                  [0,[0,breakpoint_number[1],$$event],breakpoints[1]],
+                  [/* :: */0,
+                   [/* tuple */0,breakpoint_number[1],$$event],
+                   breakpoints[1]],
                   0;
            });
        Printf["printf"]
@@ -294,7 +298,7 @@ var
         };
     
     Exec["protect"](function(param){return insert_position(pc);});
-    temporary_breakpoint_position[1]=[0,pc],0;
+    temporary_breakpoint_position[1]=[/* Some */0,pc],0;
     try
      {funct(0);return Exec["protect"](remove);}
     catch(x){Exec["protect"](remove);throw x;}

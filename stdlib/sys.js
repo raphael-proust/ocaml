@@ -78,7 +78,9 @@ var
  catch_break=
   function(on)
    {if(on)
-     {return set_signal(sigint,[0,function(param){throw Break;}]);}
+     {return set_signal
+              (sigint,/* Signal_handle */[0,function(param){throw Break;}]);
+      }
     else
      {return set_signal(sigint,0);}
     };

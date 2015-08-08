@@ -52,7 +52,7 @@ var
           if("unknown primitive:caml_string_equal")
            {return iter(q);}
           else
-           {return [0,h2,q];}
+           {return [/* :: */0,h2,q];}
           }
         else
          {return 0;}
@@ -74,7 +74,7 @@ var
           if("unknown primitive:caml_string_equal")
            {return iter$1(q);}
           else
-           {return [0,h2,q];}
+           {return [/* :: */0,h2,q];}
           }
         else
          {return 0;}
@@ -222,7 +222,7 @@ var
            else
             {var s4=s3;}
            
-           return [0,[0,s4,0]];
+           return [/* Description */0,[/* tuple */0,s4,0]];
            }
          else
           {ajout_string(s);
@@ -263,7 +263,9 @@ var
          lexbuf[6]=lexbuf[6]-len,0;
          var init=lexbuf[12];
          
-         lexbuf[12]=[0,init[1],init[2],init[3],lexbuf[12][4]-len],0;
+         lexbuf[12]=
+         [/* record */0,init[1],init[2],init[3],lexbuf[12][4]-len],
+         0;
          return special_comment_part2(lexbuf);
          
         case 4:
@@ -316,7 +318,8 @@ var
            else
             {var remain2=remain;}
            
-           return [0,[0,desc,[0,remain2]]];
+           return [/* Description */0,
+                   [/* tuple */0,desc,[/* Some */0,remain2]]];
            }
          else
           {ajout_string(s);
@@ -404,7 +407,7 @@ var
             if(Odoc_global["no_custom_tags"][1])
              {throw [0,Failure,Odoc_messages["not_a_valid_tag"](s2)];}
             else
-             {return [4,s2];}
+             {return [/* T_CUSTOM */4,s2];}
             
            }
          
@@ -419,7 +422,7 @@ var
          
          var s$3=remove_blanks(s$2);
          
-         return [5,s$3];
+         return [/* Desc */5,s$3];
          
         case 5:return 9;
         case 6:

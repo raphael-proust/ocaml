@@ -68,7 +68,8 @@ var
       var sock_address=match[2];
       
       var $js;
-      switch(sock_address){case 0:$js=[0,sock_address[1]];case 1:$js=0;}
+      switch(sock_address)
+       {case 0:$js=[/* Some */0,sock_address[1]];case 1:$js=0;}
       file_name[1]=$js,0;
       var sock=Unix["socket"](match[1],0,0);
       

@@ -478,25 +478,27 @@ var
     Pervasives["^"]
      (options_can_be,
       string_of_options_list
-       ([0,
+       ([/* :: */0,
          merge_description,
-         [0,
+         [/* :: */0,
           merge_author,
-          [0,
+          [/* :: */0,
            merge_version,
-           [0,
+           [/* :: */0,
             merge_see,
-            [0,
+            [/* :: */0,
              merge_since,
-             [0,
+             [/* :: */0,
               merge_before,
-              [0,
+              [/* :: */0,
                merge_deprecated,
-               [0,
+               [/* :: */0,
                 merge_param,
-                [0,
+                [/* :: */0,
                  merge_raised_exception,
-                 [0,merge_return_value,[0,merge_custom,[0,merge_all,0]]]]]]]]]]]])));
+                 [/* :: */0,
+                  merge_return_value,
+                  [/* :: */0,merge_custom,[/* :: */0,merge_all,0]]]]]]]]]]]])));
 
 var help=" Display this list of options";
 

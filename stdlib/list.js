@@ -58,7 +58,7 @@ var
  rev_append=
   function(l1,l2)
    {if(l1)
-     {var l=l1[2];var a=l1[1];return rev_append(l,[0,a,l2]);}
+     {var l=l1[2];var a=l1[1];return rev_append(l,/* :: */[0,a,l2]);}
     else
      {return l2;}
     };
@@ -80,7 +80,7 @@ var
  map=
   function(f,param)
    {if(param)
-     {var l=param[2];var a=param[1];var r=f(a);return [0,r,map(f,l)];}
+     {var l=param[2];var a=param[1];var r=f(a);return /* :: */[0,r,map(f,l)];}
     else
      {return 0;}
     };
@@ -89,7 +89,14 @@ var
  mapi=
   function(i,f,param)
    {if(param)
-     {var l=param[2];var a=param[1];var r=f(i,a);return [0,r,mapi(i+1,f,l)];}
+     {var l=param[2];
+      
+      var a=param[1];
+      
+      var r=f(i,a);
+      
+      return /* :: */[0,r,mapi(i+1,f,l)];
+      }
     else
      {return 0;}
     };
@@ -103,7 +110,12 @@ var
      rmap_f=
       function(accu,param)
        {if(param)
-         {var l$1=param[2];var a=param[1];return rmap_f([0,f(a),accu],l$1);}
+         {var l$1=param[2];
+          
+          var a=param[1];
+          
+          return rmap_f(/* :: */[0,f(a),accu],l$1);
+          }
         else
          {return accu;}
         };
@@ -170,7 +182,7 @@ var
         
         var r=f(a1,a2);
         
-        return [0,r,map2(f,l1$1,l2$1)];
+        return /* :: */[0,r,map2(f,l1$1,l2$1)];
         }
       else
        {exit=66;}
@@ -203,7 +215,7 @@ var
             
             var a1=match[1];
             
-            return rmap2_f([0,f(a1,a2),accu],l1$2,l2$2);
+            return rmap2_f(/* :: */[0,f(a1,a2),accu],l1$2,l2$2);
             }
           else
            {exit=63;}
@@ -495,7 +507,7 @@ var
       if("unknown primitive:caml_compare"=0)
        {return l;}
       else
-       {return [0,pair,remove_assoc(x,l)];}
+       {return /* :: */[0,pair,remove_assoc(x,l)];}
       }
     else
      {return 0;}
@@ -511,7 +523,7 @@ var
       
       var a=pair[1];
       
-      if(a=x){return l;}else{return [0,pair,remove_assq(x,l)];}
+      if(a=x){return l;}else{return /* :: */[0,pair,remove_assq(x,l)];}
       }
     else
      {return 0;}
@@ -542,7 +554,10 @@ var
           
           var x=param[1];
           
-          if(p(x)){return find$1([0,x,accu],l);}else{return find$1(accu,l);}
+          if(p(x))
+           {return find$1(/* :: */[0,x,accu],l);}
+          else
+           {return find$1(accu,l);}
           }
         else
          {return rev(accu);}
@@ -565,12 +580,12 @@ var
           var x=param[1];
           
           if(p(x))
-           {return part([0,x,yes],no,l$1);}
+           {return part(/* :: */[0,x,yes],no,l$1);}
           else
-           {return part(yes,[0,x,no],l$1);}
+           {return part(yes,/* :: */[0,x,no],l$1);}
           }
         else
-         {return [0,rev(yes),rev(no)];}
+         {return /* tuple */[0,rev(yes),rev(no)];}
         };
     
     return part(0,0,l);
@@ -594,7 +609,7 @@ var
       
       var rx=match$1[1];
       
-      return [0,[0,x,rx],[0,y,ry]];
+      return /* tuple */[0,/* :: */[0,x,rx],/* :: */[0,y,ry]];
       }
     else
      {return [0,0,0];}
@@ -619,7 +634,7 @@ var
         
         var a1=match[1];
         
-        return [0,[0,a1,a2],combine(l1$1,l2$1)];
+        return /* :: */[0,/* tuple */[0,a1,a2],combine(l1$1,l2$1)];
         }
       else
        {exit=53;}
@@ -648,9 +663,9 @@ var
         var h1=match[1];
         
         if(cmp(h1,h2)<=0)
-         {return [0,h1,merge(cmp,t1,l2)];}
+         {return /* :: */[0,h1,merge(cmp,t1,l2)];}
         else
-         {return [0,h2,merge(cmp,l1,t2)];}
+         {return /* :: */[0,h2,merge(cmp,l1,t2)];}
         }
       else
        {var l1$1=match;return l1$1;}
@@ -693,9 +708,9 @@ var
             var h1=match[1];
             
             if(cmp(h1,h2)<=0)
-             {return rev_merge(t1,l2,[0,h1,accu]);}
+             {return rev_merge(t1,l2,/* :: */[0,h1,accu]);}
             else
-             {return rev_merge(l1,t2,[0,h2,accu]);}
+             {return rev_merge(l1,t2,/* :: */[0,h2,accu]);}
             }
           else
            {var l1$1=match;return rev_append(l1$1,accu);}
@@ -722,9 +737,9 @@ var
             var h1=match[1];
             
             if(cmp(h1,h2)>0)
-             {return rev_merge_rev(t1,l2,[0,h1,accu]);}
+             {return rev_merge_rev(t1,l2,/* :: */[0,h1,accu]);}
             else
-             {return rev_merge_rev(l1,t2,[0,h2,accu]);}
+             {return rev_merge_rev(l1,t2,/* :: */[0,h2,accu]);}
             }
           else
            {var l1$1=match;return rev_append(l1$1,accu);}
@@ -761,22 +776,22 @@ var
                   
                   if(cmp(x1,x2)<=0)
                    {if(cmp(x2,x3)<=0)
-                     {return [0,x1,[0,x2,[0,x3,0]]];}
+                     {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
                     else
                      {if(cmp(x1,x3)<=0)
-                       {return [0,x1,[0,x3,[0,x2,0]]];}
+                       {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
                       else
-                       {return [0,x3,[0,x1,[0,x2,0]]];}
+                       {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
                       }
                     }
                   else
                    {if(cmp(x1,x3)<=0)
-                     {return [0,x2,[0,x1,[0,x3,0]]];}
+                     {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
                     else
                      {if(cmp(x2,x3)<=0)
-                       {return [0,x2,[0,x3,[0,x1,0]]];}
+                       {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
                       else
-                       {return [0,x3,[0,x2,[0,x1,0]]];}
+                       {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
                       }
                     }
                   }
@@ -800,9 +815,9 @@ var
               var x1$1=match$1[1];
               
               if(cmp(x1$1,x2$1)<=0)
-               {return [0,x1$1,[0,x2$1,0]];}
+               {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
               else
-               {return [0,x2$1,[0,x1$1,0]];}
+               {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
               }
             else
              {exit=41;}
@@ -860,22 +875,22 @@ var
                   
                   if(cmp(x1,x2)>0)
                    {if(cmp(x2,x3)>0)
-                     {return [0,x1,[0,x2,[0,x3,0]]];}
+                     {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
                     else
                      {if(cmp(x1,x3)>0)
-                       {return [0,x1,[0,x3,[0,x2,0]]];}
+                       {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
                       else
-                       {return [0,x3,[0,x1,[0,x2,0]]];}
+                       {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
                       }
                     }
                   else
                    {if(cmp(x1,x3)>0)
-                     {return [0,x2,[0,x1,[0,x3,0]]];}
+                     {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
                     else
                      {if(cmp(x2,x3)>0)
-                       {return [0,x2,[0,x3,[0,x1,0]]];}
+                       {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
                       else
-                       {return [0,x3,[0,x2,[0,x1,0]]];}
+                       {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
                       }
                     }
                   }
@@ -899,9 +914,9 @@ var
               var x1$1=match$1[1];
               
               if(cmp(x1$1,x2$1)>0)
-               {return [0,x1$1,[0,x2$1,0]];}
+               {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
               else
-               {return [0,x2$1,[0,x1$1,0]];}
+               {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
               }
             else
              {exit=47;}
@@ -963,12 +978,12 @@ var
             var c=cmp(h1,h2);
             
             if(c=0)
-             {return rev_merge(t1,t2,[0,h1,accu]);}
+             {return rev_merge(t1,t2,/* :: */[0,h1,accu]);}
             else
              {if(c<0)
-               {return rev_merge(t1,l2,[0,h1,accu]);}
+               {return rev_merge(t1,l2,/* :: */[0,h1,accu]);}
               else
-               {return rev_merge(l1,t2,[0,h2,accu]);}
+               {return rev_merge(l1,t2,/* :: */[0,h2,accu]);}
               }
             }
           else
@@ -998,12 +1013,12 @@ var
             var c=cmp(h1,h2);
             
             if(c=0)
-             {return rev_merge_rev(t1,t2,[0,h1,accu]);}
+             {return rev_merge_rev(t1,t2,/* :: */[0,h1,accu]);}
             else
              {if(c>0)
-               {return rev_merge_rev(t1,l2,[0,h1,accu]);}
+               {return rev_merge_rev(t1,l2,/* :: */[0,h1,accu]);}
               else
-               {return rev_merge_rev(l1,t2,[0,h2,accu]);}
+               {return rev_merge_rev(l1,t2,/* :: */[0,h2,accu]);}
               }
             }
           else
@@ -1045,12 +1060,12 @@ var
                    {var c$1=cmp(x2,x3);
                     
                     if(c$1=0)
-                     {return [0,x2,0];}
+                     {return /* :: */[0,x2,0];}
                     else
                      {if(c$1<0)
-                       {return [0,x2,[0,x3,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x3,0]];}
                       else
-                       {return [0,x3,[0,x2,0]];}
+                       {return /* :: */[0,x3,/* :: */[0,x2,0]];}
                       }
                     }
                   else
@@ -1058,20 +1073,20 @@ var
                      {var c$2=cmp(x2,x3);
                       
                       if(c$2=0)
-                       {return [0,x1,[0,x2,0]];}
+                       {return /* :: */[0,x1,/* :: */[0,x2,0]];}
                       else
                        {if(c$2<0)
-                         {return [0,x1,[0,x2,[0,x3,0]]];}
+                         {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
                         else
                          {var c$3=cmp(x1,x3);
                           
                           if(c$3=0)
-                           {return [0,x1,[0,x2,0]];}
+                           {return /* :: */[0,x1,/* :: */[0,x2,0]];}
                           else
                            {if(c$3<0)
-                             {return [0,x1,[0,x3,[0,x2,0]]];}
+                             {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
                             else
-                             {return [0,x3,[0,x1,[0,x2,0]]];}
+                             {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
                             }
                           }
                         }
@@ -1080,20 +1095,20 @@ var
                      {var c$4=cmp(x1,x3);
                       
                       if(c$4=0)
-                       {return [0,x2,[0,x1,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x1,0]];}
                       else
                        {if(c$4<0)
-                         {return [0,x2,[0,x1,[0,x3,0]]];}
+                         {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
                         else
                          {var c$5=cmp(x2,x3);
                           
                           if(c$5=0)
-                           {return [0,x2,[0,x1,0]];}
+                           {return /* :: */[0,x2,/* :: */[0,x1,0]];}
                           else
                            {if(c$5<0)
-                             {return [0,x2,[0,x3,[0,x1,0]]];}
+                             {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
                             else
-                             {return [0,x3,[0,x2,[0,x1,0]]];}
+                             {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
                             }
                           }
                         }
@@ -1122,12 +1137,12 @@ var
               var c$6=cmp(x1$1,x2$1);
               
               if(c$6=0)
-               {return [0,x1$1,0];}
+               {return /* :: */[0,x1$1,0];}
               else
                {if(c$6<0)
-                 {return [0,x1$1,[0,x2$1,0]];}
+                 {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
                 else
-                 {return [0,x2$1,[0,x1$1,0]];}
+                 {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
                 }
               }
             else
@@ -1190,12 +1205,12 @@ var
                    {var c$1=cmp(x2,x3);
                     
                     if(c$1=0)
-                     {return [0,x2,0];}
+                     {return /* :: */[0,x2,0];}
                     else
                      {if(c$1>0)
-                       {return [0,x2,[0,x3,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x3,0]];}
                       else
-                       {return [0,x3,[0,x2,0]];}
+                       {return /* :: */[0,x3,/* :: */[0,x2,0]];}
                       }
                     }
                   else
@@ -1203,20 +1218,20 @@ var
                      {var c$2=cmp(x2,x3);
                       
                       if(c$2=0)
-                       {return [0,x1,[0,x2,0]];}
+                       {return /* :: */[0,x1,/* :: */[0,x2,0]];}
                       else
                        {if(c$2>0)
-                         {return [0,x1,[0,x2,[0,x3,0]]];}
+                         {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
                         else
                          {var c$3=cmp(x1,x3);
                           
                           if(c$3=0)
-                           {return [0,x1,[0,x2,0]];}
+                           {return /* :: */[0,x1,/* :: */[0,x2,0]];}
                           else
                            {if(c$3>0)
-                             {return [0,x1,[0,x3,[0,x2,0]]];}
+                             {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
                             else
-                             {return [0,x3,[0,x1,[0,x2,0]]];}
+                             {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
                             }
                           }
                         }
@@ -1225,20 +1240,20 @@ var
                      {var c$4=cmp(x1,x3);
                       
                       if(c$4=0)
-                       {return [0,x2,[0,x1,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x1,0]];}
                       else
                        {if(c$4>0)
-                         {return [0,x2,[0,x1,[0,x3,0]]];}
+                         {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
                         else
                          {var c$5=cmp(x2,x3);
                           
                           if(c$5=0)
-                           {return [0,x2,[0,x1,0]];}
+                           {return /* :: */[0,x2,/* :: */[0,x1,0]];}
                           else
                            {if(c$5>0)
-                             {return [0,x2,[0,x3,[0,x1,0]]];}
+                             {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
                             else
-                             {return [0,x3,[0,x2,[0,x1,0]]];}
+                             {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
                             }
                           }
                         }
@@ -1267,12 +1282,12 @@ var
               var c$6=cmp(x1$1,x2$1);
               
               if(c$6=0)
-               {return [0,x1$1,0];}
+               {return /* :: */[0,x1$1,0];}
               else
                {if(c$6>0)
-                 {return [0,x1$1,[0,x2$1,0]];}
+                 {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
                 else
-                 {return [0,x2$1,[0,x1$1,0]];}
+                 {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
                 }
               }
             else

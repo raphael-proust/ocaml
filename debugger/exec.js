@@ -17,8 +17,10 @@ var match=Sys["os_type"];
 switch(match)
  {case "Win32":
   default:
-   Sys["set_signal"](Sys["sigint"],[0,$$break]),
-   Sys["set_signal"](Sys["sigpipe"],[0,function(param){throw End_of_file;}])}
+   Sys["set_signal"](Sys["sigint"],[/* Signal_handle */0,$$break]),
+   Sys["set_signal"]
+    (Sys["sigpipe"],
+     [/* Signal_handle */0,function(param){throw End_of_file;}])}
 
 var
  protect=

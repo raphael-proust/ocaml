@@ -129,7 +129,7 @@ var
       
       Format["fprintf"]
        (f,[0,[11,"### Starting build.\n",0],"### Starting build.\n"]);
-      var log_channel=[0,[0,f,oc]];
+      var log_channel=[/* Some */0,[/* tuple */0,f,oc]];
       }
     else
      {var log_channel=0;}
@@ -143,8 +143,8 @@ var
       
       var
        display_line=
-        [0,
-         [0,
+        [/* Sophisticated */0,
+         [/* record */0,
           Pervasives["stdout"],
           My_unix["gettimeofday"](0),
           0,
@@ -174,7 +174,7 @@ var
           description]];
       }
     
-    return [0,
+    return [/* record */0,
             log_level,
             log_channel,
             channel,
@@ -364,7 +364,10 @@ var
           });
       var match=di[5];
       
-      if(match){return finish_sophisticated([0,how],match[1]);}else{return 0;}
+      if(match)
+       {return finish_sophisticated([/* Some */0,how],match[1]);}
+      else
+       {return 0;}
       }
     else
      {return 0;}

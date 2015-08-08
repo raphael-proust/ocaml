@@ -10,7 +10,8 @@ var $$Array=require("Array");
 
 var
  new_state=
-  function(param){return [0,"unknown primitive:caml_make_vect",0];};
+  function(param)
+   {return /* record */[0,"unknown primitive:caml_make_vect",0];};
 
 var
  assign=
@@ -193,7 +194,7 @@ var
    $$float,
    bool];
 
-var $$default=[0,"unknown primitive:caml_obj_dup",0];
+var $$default=/* record */[0,"unknown primitive:caml_obj_dup",0];
 
 var bits$1=function(param){return State[7]($$default);};
 

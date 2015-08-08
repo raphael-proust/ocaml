@@ -176,13 +176,13 @@ var
     var match=rule[4];
     
     if(match)
-     {var stamp=[0,Resource["subst_pattern"](env,match[1])];}
+     {var stamp=[/* Some */0,Resource["subst_pattern"](env,match[1])];}
     else
      {var stamp=0;}
     
     var prods=subst_resource_patterns(rule[3]);
     
-    return [0,
+    return [/* record */0,
             My_std["sbprintf"]
              ([0,[2,0,[11," (",[15,[12,41,0]]]],"%s (%a)"],
               rule[1],
@@ -213,7 +213,8 @@ var
         rule[3]);
       return 0;
       }
-    catch(exn){if(exn[1]=Can_produce){return [0,exn[2]];}else{throw exn;}}
+    catch(exn)
+     {if(exn[1]=Can_produce){return [/* Some */0,exn[2]];}else{throw exn;}}
     };
 
 var
@@ -224,7 +225,10 @@ var
               {var f=Pathname["to_string"](Resource["in_build_dir"](p));
                
                if(My_std["sys_file_exists"](f))
-                {return [0,[0,f,My_std["Digest"][3](f)],acc];}
+                {return [/* :: */0,
+                         [/* tuple */0,f,My_std["Digest"][3](f)],
+                         acc];
+                 }
                else
                 {return acc;}
                },
@@ -274,7 +278,8 @@ var
  cached_digest=
   function(r)
    {try
-     {return [0,Digest_cache["get"](Pervasives["^"]("Rule: ",r[1]))];}
+     {return [/* Some */0,Digest_cache["get"](Pervasives["^"]("Rule: ",r[1]))];
+      }
     catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
     };
 
@@ -291,7 +296,7 @@ var
  exists2=
   function(find,p,rs)
    {try
-     {return [0,find(p,rs)];}
+     {return [/* Some */0,find(p,rs)];}
     catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
     };
 
@@ -303,7 +308,8 @@ var
     if(deps)
      {return My_std["List"][16]
               (My_std["Outcome"][3],
-               builder(My_std["List"][16](function(x){return [0,x,0];},deps)));
+               builder
+                (My_std["List"][16](function(x){return [/* :: */0,x,0];},deps)));
       }
     else
      {return 0;}
@@ -320,7 +326,8 @@ var
                 {return My_std["List"][14]
                          (My_std["Outcome"][2],
                           builder
-                           (My_std["List"][16](function(x){return [0,x,0];},deps)));
+                           (My_std["List"][16]
+                             (function(x){return [/* :: */0,x,0];},deps)));
                  }
                else
                 {return 0;}
@@ -392,19 +399,34 @@ var
         r[3]);
     
     if(match$2)
-     {var match$3=[0,[0,-900031434,match$2[1]],0];}
+     {var
+       match$3=
+        [/* tuple */0,
+         [/* `cache_miss_missing_prod */0,-900031434,match$2[1]],
+         0];
+      }
     else
      {var match$4=exists2(My_std["List"][32],Resource["Cache"][4],r[2]);
       
       if(match$4)
-       {var match$3=[0,[0,1009970846,match$4[1]],0];}
+       {var
+         match$3=
+          [/* tuple */0,
+           [/* `cache_miss_changed_dep */0,1009970846,match$4[1]],
+           0];
+        }
       else
        {var
          match$5=
           exists2(Resource["Resources"][26],Resource["Cache"][4],dyndeps$1);
         
         if(match$5)
-         {var match$3=[0,[0,738140888,match$5[1]],0];}
+         {var
+           match$3=
+            [/* tuple */0,
+             [/* `cache_miss_changed_dyn_dep */0,738140888,match$5[1]],
+             0];
+          }
         else
          {var match$6=cached_digest(r);
           
@@ -416,7 +438,14 @@ var
             if("unknown primitive:caml_string_equal")
              {var match$3=[0,-805933418,1];}
             else
-             {var match$3=[0,[0,-433471969,[0,d,rule_digest]],0];}
+             {var
+               match$3=
+                [/* tuple */0,
+                 [/* `cache_miss_digest_changed */0,
+                  -433471969,
+                  [/* tuple */0,d,rule_digest]],
+                 0];
+              }
             }
           else
            {var match$3=[0,242554396,0];}
@@ -609,7 +638,7 @@ var rules=[0,0];
 
 var
  match=
-  [0,
+  [/* tuple */0,
    function(param){return rules[1];},
    function(pos,r)
     {try
@@ -632,9 +661,9 @@ var
       {if(exn=Not_found)
         {if("unknown primitive:isint")
           {if(pos>=5793429)
-            {return rules[1]=[0,r,rules[1]],0;}
+            {return rules[1]=[/* :: */0,r,rules[1]],0;}
            else
-            {return rules[1]=Pervasives["@"](rules[1],[0,r,0]),0;}
+            {return rules[1]=Pervasives["@"](rules[1],[/* :: */0,r,0]),0;}
            }
          else
           {if(pos[1]>=497182236)
@@ -644,9 +673,9 @@ var
                     My_std["List"][20]
                      (function(x,acc)
                        {if("unknown primitive:caml_string_equal")
-                         {return [0,x,[0,r,acc]];}
+                         {return [/* :: */0,x,[/* :: */0,r,acc]];}
                         else
-                         {return [0,x,acc];}
+                         {return [/* :: */0,x,acc];}
                         },
                       rules[1],
                       0),
@@ -659,9 +688,9 @@ var
                     My_std["List"][20]
                      (function(x,acc)
                        {if("unknown primitive:caml_string_equal")
-                         {return [0,r,[0,x,acc]];}
+                         {return [/* :: */0,r,[/* :: */0,x,acc]];}
                         else
-                         {return [0,x,acc];}
+                         {return [/* :: */0,x,acc];}
                         },
                       rules[1],
                       0),
@@ -724,7 +753,7 @@ var
     var
      res_add=
       function($$import,xs,xopt)
-       {if(xopt){var init=[0,$$import(xopt[1]),0];}else{var init=0;}
+       {if(xopt){var init=[/* :: */0,$$import(xopt[1]),0];}else{var init=0;}
         
         return My_std["List"][20]
                 (function(x,acc)
@@ -742,7 +771,7 @@ var
                                 x));
                      }
                    else
-                    {return [0,r,acc];}
+                    {return [/* :: */0,r,acc];}
                    },
                  xs,
                  init);
@@ -758,21 +787,26 @@ var
       
       var
        match$2=
-        [0,[0,Resource["import_pattern"](stamp$1)],[0,stamp$1,prods]];
+        [/* tuple */0,
+         [/* Some */0,Resource["import_pattern"](stamp$1)],
+         [/* :: */0,stamp$1,prods]];
       }
     else
-     {var match$2=[0,0,prods];}
+     {var match$2=[/* tuple */0,0,prods];}
     
     var prods$1=res_add(Resource["import_pattern"],match$2[2],prod);
     
     var
      code$1=
       function(env,build)
-       {var cmd=code(env,build);return [0,Command["digest"](cmd),cmd];};
+       {var cmd=code(env,build);
+        
+        return [/* record */0,Command["digest"](cmd),cmd];
+        };
     
     return add_rule
             (insert,
-             [0,
+             [/* record */0,
               name,
               res_add(Resource["import"],deps,dep),
               prods$1,
@@ -783,36 +817,93 @@ var
 
 var
  mv=
-  function(src,dest){return [1,[0,[0,[1,"mv"],[0,[2,src],[0,[3,dest],0]]]]];};
+  function(src,dest)
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"mv"],
+              [/* :: */0,[/* P */2,src],[/* :: */0,[/* Px */3,dest],0]]]]];
+    };
 
 var
  cp=
-  function(src,dest){return [1,[0,[0,[1,"cp"],[0,[2,src],[0,[3,dest],0]]]]];};
+  function(src,dest)
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"cp"],
+              [/* :: */0,[/* P */2,src],[/* :: */0,[/* Px */3,dest],0]]]]];
+    };
 
 var
  cp_p=
   function(src,dest)
-   {return [1,[0,[0,[1,"cp"],[0,[1,"-p"],[0,[2,src],[0,[3,dest],0]]]]]];};
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"cp"],
+              [/* :: */0,
+               [1,"-p"],
+               [/* :: */0,[/* P */2,src],[/* :: */0,[/* Px */3,dest],0]]]]]];
+    };
 
 var
  ln_f=
   function(pointed,pointer)
-   {return [1,[0,[0,[1,"ln"],[0,[1,"-f"],[0,[2,pointed],[0,[3,pointer],0]]]]]];
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"ln"],
+              [/* :: */0,
+               [1,"-f"],
+               [/* :: */0,
+                [/* P */2,pointed],
+                [/* :: */0,[/* Px */3,pointer],0]]]]]];
     };
 
 var
  ln_s=
   function(pointed,pointer)
-   {return [1,[0,[0,[1,"ln"],[0,[1,"-s"],[0,[2,pointed],[0,[3,pointer],0]]]]]];
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"ln"],
+              [/* :: */0,
+               [1,"-s"],
+               [/* :: */0,
+                [/* P */2,pointed],
+                [/* :: */0,[/* Px */3,pointer],0]]]]]];
     };
 
-var rm_f=function(x){return [1,[0,[0,[1,"rm"],[0,[1,"-f"],[0,[3,x],0]]]]];};
+var
+ rm_f=
+  function(x)
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"rm"],
+              [/* :: */0,[1,"-f"],[/* :: */0,[/* Px */3,x],0]]]]];
+    };
 
 var
  chmod=
-  function(opts,file){return [1,[0,[0,[1,"chmod"],[0,opts,[0,[3,file],0]]]]];};
+  function(opts,file)
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"chmod"],
+              [/* :: */0,opts,[/* :: */0,[/* Px */3,file],0]]]]];
+    };
 
-var cmp=function(a,b){return [1,[0,[0,[1,"cmp"],[0,[2,a],[0,[3,b],0]]]]];};
+var
+ cmp=
+  function(a,b)
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
+              [1,"cmp"],
+              [/* :: */0,[/* P */2,a],[/* :: */0,[/* Px */3,b],0]]]]];
+    };
 
 var Common_commands=[0,mv,cp,cp_p,ln_f,ln_s,rm_f,chmod,cmp];
 
@@ -824,8 +915,8 @@ var
              0,
              0,
              0,
-             [0,dest],
-             [0,src],
+             [/* Some */0,dest],
+             [/* Some */0,src],
              0,
              insert,
              0,

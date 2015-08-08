@@ -214,7 +214,7 @@ var
  convert_raw_backtrace=
   function(rbckt)
    {try
-     {return [0,
+     {return /* Some */[0,
               $$Array["map"]
                (function(prim)
                  {return "unknown primitive:caml_convert_raw_backtrace_slot";},
@@ -251,7 +251,7 @@ var
        
        var is_raise=slot[1];
        
-       return [0,
+       return /* Some */[0,
                Printf["sprintf"]
                 ([0,
                   [2,
@@ -276,7 +276,7 @@ var
        if(match!=0)
         {return 0;}
        else
-        {return [0,
+        {return /* Some */[0,
                  Printf["sprintf"]
                   ([0,[2,0,[11," unknown location",0]],"%s unknown location"],
                    info(0))];
@@ -379,7 +379,8 @@ var
        
        var filename=param[2];
        
-       return [0,[0,filename,line_number,start_char,end_char]];
+       return /* Some */[0,
+               /* record */[0,filename,line_number,start_char,end_char]];
        
       case 1:return 0;
       }
@@ -407,7 +408,7 @@ var
           };
       
       if(exists_usable(backtrace["length"]-1))
-       {return [0,backtrace];}
+       {return /* Some */[0,backtrace];}
       else
        {return 0;}
       }
@@ -435,7 +436,9 @@ var
               ("unknown primitive:caml_get_exception_raw_backtrace"));
     };
 
-var register_printer=function(fn){return printers[1]=[0,fn,printers[1]],0;};
+var
+ register_printer=
+  function(fn){return printers[1]=/* :: */[0,fn,printers[1]],0;};
 
 var
  exn_slot=
@@ -453,7 +456,7 @@ var uncaught_exception_handler=[0,0];
 
 var
  set_uncaught_exception_handler=
-  function(fn){return uncaught_exception_handler[1]=[0,fn],0;};
+  function(fn){return uncaught_exception_handler[1]=/* Some */[0,fn],0;};
 
 var empty_backtrace="unknown primitive:caml_obj_block";
 

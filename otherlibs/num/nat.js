@@ -303,7 +303,7 @@ var
     
     while(j[1]<i[1]-1&&"unknown primitive:is_digit_int"){j[0]++}
     
-    return [0,i[1]-2,j[1]];
+    return /* tuple */[0,i[1]-2,j[1]];
     };
 
 var

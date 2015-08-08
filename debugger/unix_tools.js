@@ -48,7 +48,7 @@ var
         else
          {throw exn$2;}
         }
-      return [0,1,[1,$js,$js$1]];
+      return [/* tuple */0,1,[/* ADDR_INET */1,$js,$js$1]];
       }
     catch(exn$3)
      {if(exn$3=Not_found)
@@ -57,7 +57,7 @@ var
         switch(match)
          {case "Win32":
            return Pervasives["failwith"]("Unix sockets not supported");
-          default:return [0,0,[0,address]];}
+          default:return [/* tuple */0,0,[/* ADDR_UNIX */0,address]];}
         }
       else
        {throw exn$3;}

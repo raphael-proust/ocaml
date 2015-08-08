@@ -155,7 +155,7 @@ var
                       List["fold_left"]
                        (function(acc,param)
                          {switch(param[1])
-                           {case "test_types_display":return [0,0,acc];
+                           {case "test_types_display":return [/* :: */0,0,acc];
                             default:return acc;}
                           },
                         0,

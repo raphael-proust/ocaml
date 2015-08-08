@@ -117,7 +117,7 @@ var
           
           if(line_number<=stop)
            {return aff
-                    ([0,
+                    ([/* tuple */0,
                       print_line(buffer,line_number,param[1],point,before)+1,
                       line_number+1]);
             }

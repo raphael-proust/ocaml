@@ -18,12 +18,13 @@ var
    {var time=Checkpoints["current_time"](0);
     
     if(history[1]=0)
-     {return history[1]=[0,time,0],0;}
+     {return history[1]=[/* :: */0,time,0],0;}
     else
      {if(time!=List["hd"](history[1]))
        {return history[1]=
                Primitives["list_truncate"]
-                (Debugger_config["history_size"][1],[0,time,history[1]]),
+                (Debugger_config["history_size"][1],
+                 [/* :: */0,time,history[1]]),
                0;
         }
       else

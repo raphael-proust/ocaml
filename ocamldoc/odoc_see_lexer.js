@@ -72,7 +72,7 @@ var
     else
      {var s=Lexing["lexeme"](lexbuf);
       
-      return [1,$$String["sub"](s,0,s["length"]-1)];
+      return [/* See_url */1,$$String["sub"](s,0,s["length"]-1)];
       }
     };
 
@@ -92,7 +92,7 @@ var
     else
      {var s=Lexing["lexeme"](lexbuf);
       
-      return [3,$$String["sub"](s,0,s["length"]-1)];
+      return [/* See_doc */3,$$String["sub"](s,0,s["length"]-1)];
       }
     };
 
@@ -112,7 +112,7 @@ var
     else
      {var s=Lexing["lexeme"](lexbuf);
       
-      return [2,$$String["sub"](s,0,s["length"]-1)];
+      return [/* See_file */2,$$String["sub"](s,0,s["length"]-1)];
       }
     };
 
@@ -136,7 +136,7 @@ var
         }
       }
     else
-     {return [5,Buffer["contents"](buf)];}
+     {return [/* Desc */5,Buffer["contents"](buf)];}
     };
 
 module["exports"]=

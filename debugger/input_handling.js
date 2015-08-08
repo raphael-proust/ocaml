@@ -12,7 +12,9 @@ var
  add_file=
   function(file,controller)
    {return active_files[1]=
-           [0,[0,file[3],[0,controller,file]],active_files[1]],
+           [/* :: */0,
+            [/* tuple */0,file[3],[/* tuple */0,controller,file]],
+            active_files[1]],
            0;
     };
 

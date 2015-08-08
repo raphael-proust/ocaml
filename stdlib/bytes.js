@@ -63,7 +63,10 @@ var
     
     var r="unknown primitive:caml_create_string";
     
-    if(left<0){var match=[0,-left,0];}else{var match=[0,0,left];}
+    if(left<0)
+     {var match=/* tuple */[0,-left,0];}
+    else
+     {var match=/* tuple */[0,0,left];}
     
     var dstoff=match[2];
     

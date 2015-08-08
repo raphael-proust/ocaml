@@ -439,7 +439,7 @@ module rec
       (args : J.expression list) =
       (match prim with
        | Pmakeblock (tag,tag_info,_) ->
-           E.arr ((E.int ?comment:(comment_of_tag_info tag_info) tag) ::
+           E.arr ?comment:(comment_of_tag_info tag_info) ((E.int tag) ::
              args)
        | Pfield i ->
            (match args with
@@ -615,8 +615,8 @@ module rec
             | Const_nativeint i -> E.float (Nativeint.to_float i)
             | Const_float f -> E.float (float_of_string f)
             | Const_string (i,_) -> E.str i)
-       | Const_pointer c -> E.int c
-       | Const_block (tag,xs) ->
+       | Const_pointer (c,_) -> E.int c
+       | Const_block (tag,_,xs) ->
            E.arr ((E.int tag) :: (List.map (fun x  -> compile_const x) xs))
        | Const_float_array ars ->
            E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
@@ -2962,7 +2962,7 @@ module rec
                                                          (Array.unsafe_get
                                                             array_conv
                                                             (c land 15)))
-                                                  | '\128'..'ÿ' when 
+                                                  | '\128'..'\255' when
                                                       not utf ->
                                                       let c = Char.code c in
                                                       (Pp.string f "\\x";

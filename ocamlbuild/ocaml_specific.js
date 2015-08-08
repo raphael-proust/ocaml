@@ -63,20 +63,20 @@ var
          {switch(param){case 0:return param[1];case 1:throw param[1];}},
         resluts);
     
-    return [1,
-            [0,
-             [0,
+    return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlmklib"][1],
-              [0,
+              [/* :: */0,
                [1,"-o"],
-               [0,
-                [3,libname$1],
-                [0,
-                 [5,
+               [/* :: */0,
+                [/* Px */3,libname$1],
+                [/* :: */0,
+                 [/* T */5,
                   Tags["Operators"][1]
                    (Tags["Operators"][1](Tools["tags_of_pathname"](a$1),"c"),
                     "ocamlmklib")],
-                 [0,Command["atomize"](objs$1),0]]]]]]];
+                 [/* :: */0,Command["atomize"](objs$1),0]]]]]]];
     };
 
 var C_tools=[0,link_C_library];
@@ -134,24 +134,26 @@ var
          (My_std["Outcome"][2],
           build
            (My_std["List"][16]
-             (function(x){return [0,Pathname["Operators"][1](dir,x),0];},
+             (function(x)
+               {return [/* :: */0,Pathname["Operators"][1](dir,x),0];},
               targets)));
         if(Options["make_links"][1])
          {var
            link=
             function(x)
-             {return [1,
-                      [0,
-                       [0,
+             {return [/* Cmd */1,
+                      [/* S */0,
+                       [/* :: */0,
                         [1,"ln"],
-                        [0,
+                        [/* :: */0,
                          [1,"-sf"],
-                         [0,
-                          [2,Pathname["Operators"][1](Options["build_dir"][1],x)],
-                          [0,[1,Pathname["parent_dir_name"]],0]]]]]];
+                         [/* :: */0,
+                          [/* P */2,
+                           Pathname["Operators"][1](Options["build_dir"][1],x)],
+                          [/* :: */0,[/* A */1,Pathname["parent_dir_name"]],0]]]]]];
               };
           
-          return [0,
+          return [/* Seq */0,
                   My_std["List"][16]
                    (function(x){return link(Pathname["Operators"][1](dir,x));},
                     targets)];
@@ -231,7 +233,7 @@ var
     Rule["rule"]
      ("ocaml: mlpack & cmi & p.cmx* & p.o* -> p.cmx & p.o",
       0,
-      [0,[0,"%.p.cmx",[0,x_p_o,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmx",[/* :: */0,x_p_o,0]]],
       [0,[0,"%.mlpack",[0,"%.cmi",0]]],
       0,
       0,
@@ -242,7 +244,7 @@ var
     Rule["rule"]
      ("ocaml: mlpack & cmi & cmx* & o* -> cmx & o",
       0,
-      [0,[0,"%.cmx",[0,x_o,0]]],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
       [0,[0,"%.mlpack",[0,"%.cmi",0]]],
       0,
       0,
@@ -254,7 +256,7 @@ var
     Rule["rule"]
      ("ocaml: ml & cmi -> p.cmx & p.o",
       0,
-      [0,[0,"%.p.cmx",[0,x_p_o,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmx",[/* :: */0,x_p_o,0]]],
       [0,[0,"%.ml",[0,"%.ml.depends",[0,"%.cmi",0]]]],
       0,
       0,
@@ -267,7 +269,7 @@ var
     Rule["rule"]
      ("ocaml: ml & cmi -> cmx & o",
       0,
-      [0,[0,"%.cmx",[0,x_o,0]]],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
       [0,[0,"%.ml",[0,"%.ml.depends",[0,"%.cmi",0]]]],
       0,
       0,
@@ -327,7 +329,7 @@ var
       0,
       0,
       0,
-      [0,x_byte_o],
+      [/* Some */0,x_byte_o],
       [0,"%.cmo"],
       0,
       0,
@@ -339,7 +341,7 @@ var
       0,
       0,
       0,
-      [0,x_byte_c],
+      [/* Some */0,x_byte_c],
       [0,"%.cmo"],
       0,
       0,
@@ -350,7 +352,7 @@ var
       0,
       0,
       0,
-      [0,x_byte_so],
+      [/* Some */0,x_byte_so],
       [0,"%.cmo"],
       0,
       0,
@@ -361,7 +363,7 @@ var
      ("ocaml: p.cmx* & p.o* -> p.native",
       0,
       0,
-      [0,[0,"%.p.cmx",[0,x_p_o,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmx",[/* :: */0,x_p_o,0]]],
       [0,"%.p.native"],
       0,
       0,
@@ -373,7 +375,7 @@ var
      ("ocaml: cmx* & o* -> native",
       0,
       0,
-      [0,[0,"%.cmx",[0,x_o,0]]],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
       [0,"%.native"],
       0,
       0,
@@ -384,8 +386,8 @@ var
      ("ocaml: cmx* & o* -> native.(o|obj)",
       0,
       0,
-      [0,[0,"%.cmx",[0,x_o,0]]],
-      [0,x_native_o],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
+      [/* Some */0,x_native_o],
       0,
       0,
       0,
@@ -395,8 +397,8 @@ var
      ("ocaml: cmx* & o* -> native.(so|dll|dylib)",
       0,
       0,
-      [0,[0,"%.cmx",[0,x_o,0]]],
-      [0,x_native_so],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
+      [/* Some */0,x_native_so],
       0,
       0,
       0,
@@ -451,14 +453,14 @@ var
     Rule["rule"]
      ("ocaml C stubs: clib & (o|obj)* -> (a|lib) & (so|dll)",
       0,
-      [0,
+      [/* Some */0,
        Pervasives["@"]
-        ([0,
+        ([/* :: */0,
           Pathname["Operators"][2]
            ("%(path:<**/>)lib%(libname:<*> and not <*.*>)",ext_lib),
           0],
          Ocamlbuild_config["supports_shared_libraries"]
-          ?[0,
+          ?[/* :: */0,
             Pathname["Operators"][2]
              ("%(path:<**/>)dll%(libname:<*> and not <*.*>)",ext_dll),
             0]
@@ -476,7 +478,7 @@ var
     Rule["rule"]
      ("ocaml: mllib & p.cmx* & p.o* -> p.cmxa & p.a",
       0,
-      [0,[0,"%.p.cmxa",[0,x_p_a,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmxa",[/* :: */0,x_p_a,0]]],
       0,
       0,
       [0,"%.mllib"],
@@ -488,7 +490,7 @@ var
     Rule["rule"]
      ("ocaml: mllib & cmx* & o* -> cmxa & a",
       0,
-      [0,[0,"%.cmxa",[0,x_a,0]]],
+      [/* Some */0,[/* :: */0,"%.cmxa",[/* :: */0,x_a,0]]],
       0,
       0,
       [0,"%.mllib"],
@@ -500,8 +502,8 @@ var
     Rule["rule"]
      ("ocaml: p.cmx & p.o -> p.cmxa & p.a",
       0,
-      [0,[0,"%.p.cmxa",[0,x_p_a,0]]],
-      [0,[0,"%.p.cmx",[0,x_p_o,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmxa",[/* :: */0,x_p_a,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmx",[/* :: */0,x_p_o,0]]],
       0,
       0,
       0,
@@ -511,8 +513,8 @@ var
     Rule["rule"]
      ("ocaml: cmx & o -> cmxa & a",
       0,
-      [0,[0,"%.cmxa",[0,x_a,0]]],
-      [0,[0,"%.cmx",[0,x_o,0]]],
+      [/* Some */0,[/* :: */0,"%.cmxa",[/* :: */0,x_a,0]]],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
       0,
       0,
       0,
@@ -523,7 +525,7 @@ var
     Rule["rule"]
      ("ocaml: mldylib & p.cmx* & p.o* -> p.cmxs & p.so",
       0,
-      [0,[0,"%.p.cmxs",[0,x_p_dll,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmxs",[/* :: */0,x_p_dll,0]]],
       0,
       0,
       [0,"%.mldylib"],
@@ -535,7 +537,7 @@ var
     Rule["rule"]
      ("ocaml: mldylib & cmx* & o* -> cmxs & so",
       0,
-      [0,[0,"%.cmxs",[0,x_dll,0]]],
+      [/* Some */0,[/* :: */0,"%.cmxs",[/* :: */0,x_dll,0]]],
       0,
       0,
       [0,"%.mldylib"],
@@ -548,8 +550,8 @@ var
     Rule["rule"]
      ("ocaml: p.cmx & p.o -> p.cmxs & p.so",
       0,
-      [0,[0,"%.p.cmxs",[0,x_p_dll,0]]],
-      [0,[0,"%.p.cmx",[0,x_p_o,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmxs",[/* :: */0,x_p_dll,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmx",[/* :: */0,x_p_o,0]]],
       0,
       0,
       0,
@@ -560,8 +562,8 @@ var
     Rule["rule"]
      ("ocaml: p.cmxa & p.a -> p.cmxs & p.so",
       0,
-      [0,[0,"%.p.cmxs",[0,x_p_dll,0]]],
-      [0,[0,"%.p.cmxa",[0,x_p_a,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmxs",[/* :: */0,x_p_dll,0]]],
+      [/* Some */0,[/* :: */0,"%.p.cmxa",[/* :: */0,x_p_a,0]]],
       0,
       0,
       0,
@@ -573,7 +575,7 @@ var
      ("ocaml: cmx & o -> cmxs",
       0,
       [0,[0,"%.cmxs",0]],
-      [0,[0,"%.cmx",[0,x_o,0]]],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
       0,
       0,
       0,
@@ -584,8 +586,8 @@ var
     Rule["rule"]
      ("ocaml: cmx & o -> cmxs & so",
       0,
-      [0,[0,"%.cmxs",[0,x_dll,0]]],
-      [0,[0,"%.cmx",[0,x_o,0]]],
+      [/* Some */0,[/* :: */0,"%.cmxs",[/* :: */0,x_dll,0]]],
+      [/* Some */0,[/* :: */0,"%.cmx",[/* :: */0,x_o,0]]],
       0,
       0,
       0,
@@ -595,8 +597,8 @@ var
     Rule["rule"]
      ("ocaml: cmxa & a -> cmxs & so",
       0,
-      [0,[0,"%.cmxs",[0,x_dll,0]]],
-      [0,[0,"%.cmxa",[0,x_a,0]]],
+      [/* Some */0,[/* :: */0,"%.cmxs",[/* :: */0,x_dll,0]]],
+      [/* Some */0,[/* :: */0,"%.cmxa",[/* :: */0,x_a,0]]],
       0,
       0,
       0,
@@ -674,7 +676,7 @@ var
       [0,
        "If you put a list of capitalized module names in a foo.odocl file, the target foo.docdir/index.html will call ocamldoc to produce the html documentation for these modules. See also the max|latex|doc target below."],
       Ocaml_tools["document_ocaml_project"]
-       ([0,Ocaml_tools["ocamldoc_l_dir"]],
+       ([/* Some */0,Ocaml_tools["ocamldoc_l_dir"]],
         "%.odocl",
         "%.docdir/index.html",
         "%.docdir"));
@@ -689,7 +691,10 @@ var
       0,
       0,
       Ocaml_tools["document_ocaml_project"]
-       ([0,Ocaml_tools["ocamldoc_l_dir"]],"%.odocl","%.docdir/man","%.docdir"));
+       ([/* Some */0,Ocaml_tools["ocamldoc_l_dir"]],
+        "%.odocl",
+        "%.docdir/man",
+        "%.docdir"));
     Rule["rule"]
      ("ocamldoc: document ocaml project odocl & *odoc -> man|latex|dot...",
       0,
@@ -701,7 +706,7 @@ var
       0,
       0,
       Ocaml_tools["document_ocaml_project"]
-       ([0,Ocaml_tools["ocamldoc_l_file"]],
+       ([/* Some */0,Ocaml_tools["ocamldoc_l_file"]],
         "%(dir).odocl",
         "%(dir).docdir/%(file)",
         "%(dir).docdir"));
@@ -772,7 +777,7 @@ var
       0,
       0,
       0,
-      [0,x_o],
+      [/* Some */0,x_o],
       [0,"%.c"],
       0,
       0,
@@ -789,24 +794,26 @@ var
         
         var
          cc=
-          [1,
-           [0,
-            [0,
+          [/* Cmd */1,
+           [/* S */0,
+            [/* :: */0,
              comp,
-             [0,
-              [5,
+             [/* :: */0,
+              [/* T */5,
                Tags["Operators"][1]
                 (Tags["Operators"][1](Tools["tags_of_pathname"](c),"c"),
                  "compile")],
-              [0,[1,"-c"],[0,[3,c],0]]]]]];
+              [/* :: */0,[1,"-c"],[/* :: */0,[/* Px */3,c],0]]]]]];
         
         if("unknown primitive:caml_string_equal")
          {return cc;}
         else
-         {return [0,
-                  [0,
+         {return [/* Seq */0,
+                  [/* :: */0,
                    cc,
-                   [0,Rule["Common_commands"][1](Pathname["basename"](o),o),0]]];
+                   [/* :: */0,
+                    Rule["Common_commands"][1](Pathname["basename"](o),o),
+                    0]]];
           }
         });
     Rule["rule"]
@@ -847,9 +854,11 @@ var
     Flags["flag"]
      (0,
       [0,"ocaml",[0,"pp",0]],
-      [0,
+      [/* S */0,
        My_std["List"][20]
-        (function(x,acc){return [0,[4,x],acc];},Options["ocaml_ppflags"][1],0)]);
+        (function(x,acc){return [/* :: */0,[/* Sh */4,x],acc];},
+         Options["ocaml_ppflags"][1],
+         0)]);
     Flags["flag"]
      (0,
       [0,"ocaml",[0,"compile",0]],
@@ -889,12 +898,18 @@ var
       My_std["List"][14]
        (function(mode)
          {Flags["flag"]
-           (0,[0,mode,[0,"only_tokens",0]],[0,[0,[1,"--only-tokens"],0]]);
+           (0,
+            [/* :: */0,mode,[0,"only_tokens",0]],
+            [0,[0,[1,"--only-tokens"],0]]);
           return Flags["pflag"]
-                  ([0,mode,0],
+                  ([/* :: */0,mode,0],
                    "external_tokens",
                    function(name)
-                    {return [0,[0,[1,"--external-tokens"],[0,[1,name],0]]];});
+                    {return [/* S */0,
+                             [/* :: */0,
+                              [1,"--external-tokens"],
+                              [/* :: */0,[/* A */1,name],0]]];
+                     });
           },
         [0,"menhir",[0,"menhir_ocamldep",0]]);
     
@@ -903,30 +918,30 @@ var
     Flags["flag"]
      (0,
       [0,"ocaml",[0,"byte",[0,"link",0]]],
-      [0,
+      [/* S */0,
        My_std["List"][16]
-        (function(x){return [1,Pervasives["^"](x,".cma")];},
+        (function(x){return [/* A */1,Pervasives["^"](x,".cma")];},
          Options["ocaml_libs"][1])]);
     Flags["flag"]
      (0,
       [0,"ocaml",[0,"native",[0,"link",0]]],
-      [0,
+      [/* S */0,
        My_std["List"][16]
-        (function(x){return [1,Pervasives["^"](x,".cmxa")];},
+        (function(x){return [/* A */1,Pervasives["^"](x,".cmxa")];},
          Options["ocaml_libs"][1])]);
     Flags["flag"]
      (0,
       [0,"ocaml",[0,"byte",[0,"link",0]]],
-      [0,
+      [/* S */0,
        My_std["List"][16]
-        (function(x){return [1,Pervasives["^"](x,".cmo")];},
+        (function(x){return [/* A */1,Pervasives["^"](x,".cmo")];},
          Options["ocaml_mods"][1])]);
     Flags["flag"]
      (0,
       [0,"ocaml",[0,"native",[0,"link",0]]],
-      [0,
+      [/* S */0,
        My_std["List"][16]
-        (function(x){return [1,Pervasives["^"](x,".cmx")];},
+        (function(x){return [/* A */1,Pervasives["^"](x,".cmx")];},
          Options["ocaml_mods"][1])]);
     if(Options["use_ocamlfind"][1])
      {My_std["&"]
@@ -944,7 +959,10 @@ var
       Flags["pflag"]
        ([0,"ocaml",[0,"link",0]],
         "dontlink",
-        function(pkg){return [0,[0,[1,"-dontlink"],[0,[1,pkg],0]]];});
+        function(pkg)
+         {return [/* S */0,
+                  [/* :: */0,[1,"-dontlink"],[/* :: */0,[/* A */1,pkg],0]]];
+          });
       var
        all_tags=
         [0,
@@ -970,19 +988,28 @@ var
            {Flags["pflag"]
              (tags,
               "package",
-              function(pkg){return [0,[0,[1,"-package"],[0,[1,pkg],0]]];});
+              function(pkg)
+               {return [/* S */0,
+                        [/* :: */0,[1,"-package"],[/* :: */0,[/* A */1,pkg],0]]];
+                });
             if(!My_std["List"][30]("ocamldep",tags))
              {Flags["pflag"]
                (tags,
                 "predicate",
-                function(pkg){return [0,[0,[1,"-predicates"],[0,[1,pkg],0]]];})}
+                function(pkg)
+                 {return [/* S */0,
+                          [/* :: */0,[1,"-predicates"],[/* :: */0,[/* A */1,pkg],0]]];
+                  })}
             else
              {}
             
             return Flags["pflag"]
                     (tags,
                      "syntax",
-                     function(pkg){return [0,[0,[1,"-syntax"],[0,[1,pkg],0]]];});
+                     function(pkg)
+                      {return [/* S */0,
+                               [/* :: */0,[1,"-syntax"],[/* :: */0,[/* A */1,pkg],0]]];
+                       });
             },
           all_tags);
       }
@@ -1022,62 +1049,101 @@ var
     Flags["pflag"]
      ([0,"ocaml",[0,"native",[0,"compile",0]]],
       "for-pack",
-      function(param$1){return [0,[0,[1,"-for-pack"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-for-pack"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     Flags["pflag"]
      ([0,"ocaml",[0,"native",[0,"pack",0]]],
       "for-pack",
-      function(param$1){return [0,[0,[1,"-for-pack"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-for-pack"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     Flags["pflag"]
      ([0,"ocaml",[0,"native",[0,"compile",0]]],
       "inline",
-      function(param$1){return [0,[0,[1,"-inline"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-inline"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     My_std["List"][14]
      (function(pp)
        {Flags["pflag"]
          ([0,"ocaml",[0,"compile",0]],
           pp,
           function(param$1)
-           {return [0,[0,[1,Pervasives["^"]("-",pp)],[0,[1,param$1],0]]];});
+           {return [/* S */0,
+                    [/* :: */0,
+                     [/* A */1,Pervasives["^"]("-",pp)],
+                     [/* :: */0,[/* A */1,param$1],0]]];
+            });
         Flags["pflag"]
          ([0,"ocaml",[0,"ocamldep",0]],
           pp,
           function(param$1)
-           {return [0,[0,[1,Pervasives["^"]("-",pp)],[0,[1,param$1],0]]];});
+           {return [/* S */0,
+                    [/* :: */0,
+                     [/* A */1,Pervasives["^"]("-",pp)],
+                     [/* :: */0,[/* A */1,param$1],0]]];
+            });
         Flags["pflag"]
          ([0,"ocaml",[0,"doc",0]],
           pp,
           function(param$1)
-           {return [0,[0,[1,Pervasives["^"]("-",pp)],[0,[1,param$1],0]]];});
+           {return [/* S */0,
+                    [/* :: */0,
+                     [/* A */1,Pervasives["^"]("-",pp)],
+                     [/* :: */0,[/* A */1,param$1],0]]];
+            });
         return Flags["pflag"]
                 ([0,"ocaml",[0,"infer_interface",0]],
                  pp,
                  function(param$1)
-                  {return [0,
-                           [0,[1,Pervasives["^"]("-",pp)],[0,[1,param$1],0]]];
+                  {return [/* S */0,
+                           [/* :: */0,
+                            [/* A */1,Pervasives["^"]("-",pp)],
+                            [/* :: */0,[/* A */1,param$1],0]]];
                    });
         },
       [0,"pp",[0,"ppx",0]]);
     Flags["pflag"]
      ([0,"ocaml",[0,"compile",0]],
       "warn",
-      function(param$1){return [0,[0,[1,"-w"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-w"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     Flags["pflag"]
      ([0,"ocaml",[0,"compile",0]],
       "warn_error",
-      function(param$1){return [0,[0,[1,"-warn-error"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-warn-error"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     Flags["pflag"]
      ([0,"ocaml",[0,"ocamldep",0]],
       "open",
-      function(param$1){return [0,[0,[1,"-open"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-open"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     Flags["pflag"]
      ([0,"ocaml",[0,"compile",0]],
       "open",
-      function(param$1){return [0,[0,[1,"-open"],[0,[1,param$1],0]]];});
+      function(param$1)
+       {return [/* S */0,
+                [/* :: */0,[1,"-open"],[/* :: */0,[/* A */1,param$1],0]]];
+        });
     Flags["pflag"]
      ([0,"ocaml",[0,"link",0]],
       "runtime_variant",
       function(param$1)
-       {return [0,[0,[1,"-runtime-variant"],[0,[1,param$1],0]]];});
+       {return [/* S */0,
+                [/* :: */0,
+                 [1,"-runtime-variant"],
+                 [/* :: */0,[/* A */1,param$1],0]]];
+        });
     var match$2=0;
     
     var
@@ -1086,7 +1152,9 @@ var
        {return My_std["List"][14]
                 (function(camlp4)
                   {return Flags["flag"]
-                           (0,[0,"ocaml",[0,"pp",[0,camlp4,0]]],[1,camlp4]);
+                           (0,
+                            [/* :: */0,"ocaml",[/* :: */0,"pp",[/* :: */0,camlp4,0]]],
+                            [/* A */1,camlp4]);
                    },
                  camlp4s);
         };
@@ -1112,7 +1180,11 @@ var
        {return My_std["List"][14]
                 (function(param$1)
                   {return Flags["flag"]
-                           (0,[0,"ocaml",[0,"pp",[0,param$1[1],0]]],param$1[2]);
+                           (0,
+                            [/* :: */0,
+                             "ocaml",
+                             [/* :: */0,"pp",[/* :: */0,param$1[1],0]]],
+                            param$1[2]);
                    },
                  camlp4s);
         };
@@ -1301,63 +1373,70 @@ var
       function(c)
        {Flags["flag"]
          ([0,1],
-          [0,
+          [/* :: */0,
            "ocaml",
-           [0,
+           [/* :: */0,
             "compile",
-            [0,
+            [/* :: */0,
              Format["sprintf"]
               ([0,[11,"warn_",[0,0]],"warn_%c"],Char["uppercase"](c)),
              0]]],
-          [0,
-           [0,
+          [/* S */0,
+           [/* :: */0,
             [1,"-w"],
-            [0,[1,Format["sprintf"]([0,[0,0],"%c"],Char["uppercase"](c))],0]]]);
+            [/* :: */0,
+             [/* A */1,Format["sprintf"]([0,[0,0],"%c"],Char["uppercase"](c))],
+             0]]]);
         Flags["flag"]
          ([0,1],
-          [0,
+          [/* :: */0,
            "ocaml",
-           [0,
+           [/* :: */0,
             "compile",
-            [0,
+            [/* :: */0,
              Format["sprintf"]
               ([0,[11,"warn_error_",[0,0]],"warn_error_%c"],
                Char["uppercase"](c)),
              0]]],
-          [0,
-           [0,
+          [/* S */0,
+           [/* :: */0,
             [1,"-warn-error"],
-            [0,[1,Format["sprintf"]([0,[0,0],"%c"],Char["uppercase"](c))],0]]]);
+            [/* :: */0,
+             [/* A */1,Format["sprintf"]([0,[0,0],"%c"],Char["uppercase"](c))],
+             0]]]);
         Flags["flag"]
          ([0,1],
-          [0,
+          [/* :: */0,
            "ocaml",
-           [0,
+           [/* :: */0,
             "compile",
-            [0,
+            [/* :: */0,
              Format["sprintf"]
               ([0,[11,"warn_",[0,0]],"warn_%c"],Char["lowercase"](c)),
              0]]],
-          [0,
-           [0,
+          [/* S */0,
+           [/* :: */0,
             [1,"-w"],
-            [0,[1,Format["sprintf"]([0,[0,0],"%c"],Char["lowercase"](c))],0]]]);
+            [/* :: */0,
+             [/* A */1,Format["sprintf"]([0,[0,0],"%c"],Char["lowercase"](c))],
+             0]]]);
         return Flags["flag"]
                 ([0,1],
-                 [0,
+                 [/* :: */0,
                   "ocaml",
-                  [0,
+                  [/* :: */0,
                    "compile",
-                   [0,
+                   [/* :: */0,
                     Format["sprintf"]
                      ([0,[11,"warn_error_",[0,0]],"warn_error_%c"],
                       Char["lowercase"](c)),
                     0]]],
-                 [0,
-                  [0,
+                 [/* S */0,
+                  [/* :: */0,
                    [1,"-warn-error"],
-                   [0,
-                    [1,Format["sprintf"]([0,[0,0],"%c"],Char["lowercase"](c))],
+                   [/* :: */0,
+                    [/* A */1,
+                     Format["sprintf"]([0,[0,0],"%c"],Char["lowercase"](c))],
                     0]]]);
         };
     

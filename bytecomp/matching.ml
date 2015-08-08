@@ -2973,7 +2973,7 @@ let partial_function loc () =
   let (fname, line, char) = Location.get_pos_info loc.Location.loc_start in
   Lprim(Praise Raise_regular, [Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable),
           [transl_normal_path Predef.path_match_failure;
-           Lconst(Const_block(0,
+           Lconst(Const_block(0, Lambda.default_tag_info,
               [Const_base(Const_string (fname, None));
                Const_base(Const_int line);
                Const_base(Const_int char)]))])])

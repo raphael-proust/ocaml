@@ -87,17 +87,17 @@ var
       
       var
        choices=
-        [0,
+        [/* :: */0,
          function(param)
           {if(Command["file_or_exe_exists"](long_opt))
-            {return [0,long_opt];}
+            {return [/* Some */0,long_opt];}
            else
             {return 0;}
            },
-         [0,
+         [/* :: */0,
           function(param)
            {if(Command["file_or_exe_exists"]($$long))
-             {return [0,$$long];}
+             {return [/* Some */0,$$long];}
             else
              {return 0;}
             },
@@ -105,11 +105,12 @@ var
       
       var
        choices$prime=
-        [0,
+        [/* :: */0,
          function(param)
           {try
-            {var match=search_in_path(opt);return [0,opt];}
-           catch(exn){if(exn=Not_found){return [0,cmd];}else{throw exn;}}
+            {var match=search_in_path(opt);return [/* Some */0,opt];}
+           catch(exn)
+            {if(exn=Not_found){return [/* Some */0,cmd];}else{throw exn;}}
            },
          0];
       
@@ -148,7 +149,7 @@ var
  mk_virtual_solvers=
   My_std["List"][14]
    (function(cmd)
-     {var solver=function(param){return [1,find_tool(cmd)];};
+     {var solver=function(param){return [/* A */1,find_tool(cmd)];};
       
       return Command["setup_virtual_command_solver"]
               (My_std["String"][36](cmd),solver);
@@ -191,7 +192,10 @@ var ocamlrun=[0,0];
 
 var ocamlfind_cmd=[0,[6,"OCAMLFIND"]];
 
-var ocamlfind=function(arg){return [0,[0,ocamlfind_cmd[1],[0,arg,0]]];};
+var
+ ocamlfind=
+  function(arg)
+   {return [/* S */0,[/* :: */0,ocamlfind_cmd[1],[/* :: */0,arg,0]]];};
 
 var program_to_execute=[0,0];
 
@@ -247,7 +251,9 @@ var plugin_tags_internal=[0,0];
 
 var log_file_internal=[0,"_log"];
 
-var my_include_dirs=[0,[0,[0,Filename["current_dir_name"],0],0]];
+var
+ my_include_dirs=
+  [0,[/* :: */0,[/* :: */0,Filename["current_dir_name"],0],0]];
 
 var my_exclude_dirs=[0,[0,[0,".svn",[0,"CVS",0]],0]];
 
@@ -274,21 +280,22 @@ var
       Lexers["comma_or_blank_sep_strings"]
        (Const["Source"][2],Lexing["from_string"](x));
     
-    return rxs[1]=[0,xs,rxs[1]],0;
+    return rxs[1]=[/* :: */0,xs,rxs[1]],0;
     };
 
 var
  add_to$prime=
   function(rxs,x)
    {if("unknown primitive:caml_string_notequal")
-     {return rxs[1]=[0,[0,x,0],rxs[1]],0;}
+     {return rxs[1]=[/* :: */0,[/* :: */0,x,0],rxs[1]],0;}
     else
      {return 0;}
     };
 
 var
  set_cmd=
-  function(rcmd){return [4,function(s$1){return rcmd[1]=[4,s$1],0;}];};
+  function(rcmd)
+   {return [/* String */4,function(s$1){return rcmd[1]=[/* Sh */4,s$1],0;}];};
 
 var
  set_build_dir=
@@ -308,373 +315,393 @@ var
   [0,
    Arg["align"]
     (0,
-     [0,
-      [0,
+     [/* :: */0,
+      [/* tuple */0,
        "-version",
-       [0,
+       [/* Unit */0,
         function(param)
          {Pervasives["print_endline"](version);throw My_std["Exit_OK"];}],
        " Display the version"],
-      [0,
-       [0,
+      [/* :: */0,
+       [/* tuple */0,
         "-vnum",
-        [0,
+        [/* Unit */0,
          function(param)
           {Pervasives["print_endline"](Sys["ocaml_version"]);
            throw My_std["Exit_OK"];
            }],
         " Display the version number"],
-       [0,
-        [0,
+       [/* :: */0,
+        [/* tuple */0,
          "-quiet",
-         [0,function(param){return Log["level"][1]=0,0;}],
+         [/* Unit */0,function(param){return Log["level"][1]=0,0;}],
          " Make as quiet as possible"],
-        [0,
-         [0,
+        [/* :: */0,
+         [/* tuple */0,
           "-verbose",
-          [6,
+          [/* Int */6,
            function(i)
             {Log["classic_display"][1]=1,0;return Log["level"][1]=i+2,0;}],
           "<level> Set the verbosity level"],
-         [0,
-          [0,"-documentation",[2,show_documentation]," Show rules and flags"],
-          [0,
-           [0,"-log",[5,log_file_internal],"<file> Set log file"],
-           [0,
-            [0,
+         [/* :: */0,
+          [/* tuple */0,
+           "-documentation",
+           [/* Set */2,show_documentation],
+           " Show rules and flags"],
+          [/* :: */0,
+           [/* tuple */0,
+            "-log",
+            [/* Set_string */5,log_file_internal],
+            "<file> Set log file"],
+           [/* :: */0,
+            [/* tuple */0,
              "-no-log",
-             [0,function(param){return log_file_internal[1]="",0;}],
+             [/* Unit */0,function(param){return log_file_internal[1]="",0;}],
              " No log file"],
-            [0,
-             [0,
+            [/* :: */0,
+             [/* tuple */0,
               "-clean",
-              [2,must_clean],
+              [/* Set */2,must_clean],
               " Remove build directory and other files, then exit"],
-             [0,
-              [0,
+             [/* :: */0,
+              [/* tuple */0,
                "-r",
-               [2,recursive],
+               [/* Set */2,recursive],
                " Traverse directories by default (true: traverse)"],
-              [0,
-               [0,
+              [/* :: */0,
+               [/* tuple */0,
                 "-I",
-                [4,add_to$prime(my_include_dirs)],
+                [/* String */4,add_to$prime(my_include_dirs)],
                 "<path> Add to include directories"],
-               [0,
-                [0,
+               [/* :: */0,
+                [/* tuple */0,
                  "-Is",
-                 [4,add_to(my_include_dirs)],
+                 [/* String */4,add_to(my_include_dirs)],
                  "<path,...> (same as above, but accepts a (comma or blank)-separated list)"],
-                [0,
-                 [0,
+                [/* :: */0,
+                 [/* tuple */0,
                   "-X",
-                  [4,add_to$prime(my_exclude_dirs)],
+                  [/* String */4,add_to$prime(my_exclude_dirs)],
                   "<path> Directory to ignore"],
-                 [0,
-                  [0,"-Xs",[4,add_to(my_exclude_dirs)],"<path,...> (idem)"],
-                  [0,
-                   [0,
+                 [/* :: */0,
+                  [/* tuple */0,
+                   "-Xs",
+                   [/* String */4,add_to(my_exclude_dirs)],
+                   "<path,...> (idem)"],
+                  [/* :: */0,
+                   [/* tuple */0,
                     "-lib",
-                    [4,add_to$prime(ocaml_libs_internal)],
+                    [/* String */4,add_to$prime(ocaml_libs_internal)],
                     "<flag> Link to this ocaml library"],
-                   [0,
-                    [0,
+                   [/* :: */0,
+                    [/* tuple */0,
                      "-libs",
-                     [4,add_to(ocaml_libs_internal)],
+                     [/* String */4,add_to(ocaml_libs_internal)],
                      "<flag,...> (idem)"],
-                    [0,
-                     [0,
+                    [/* :: */0,
+                     [/* tuple */0,
                       "-mod",
-                      [4,add_to$prime(ocaml_mods_internal)],
+                      [/* String */4,add_to$prime(ocaml_mods_internal)],
                       "<module> Link to this ocaml module"],
-                     [0,
-                      [0,
+                     [/* :: */0,
+                      [/* tuple */0,
                        "-mods",
-                       [4,add_to(ocaml_mods_internal)],
+                       [/* String */4,add_to(ocaml_mods_internal)],
                        "<module,...> (idem)"],
-                      [0,
-                       [0,
+                      [/* :: */0,
+                       [/* tuple */0,
                         "-pkg",
-                        [4,add_to$prime(ocaml_pkgs_internal)],
+                        [/* String */4,add_to$prime(ocaml_pkgs_internal)],
                         "<package> Link to this ocaml findlib package"],
-                       [0,
-                        [0,
+                       [/* :: */0,
+                        [/* tuple */0,
                          "-pkgs",
-                         [4,add_to(ocaml_pkgs_internal)],
+                         [/* String */4,add_to(ocaml_pkgs_internal)],
                          "<package,...> (idem)"],
-                        [0,
-                         [0,
+                        [/* :: */0,
+                         [/* tuple */0,
                           "-package",
-                          [4,add_to$prime(ocaml_pkgs_internal)],
+                          [/* String */4,add_to$prime(ocaml_pkgs_internal)],
                           "<package> (idem)"],
-                         [0,
-                          [0,
+                         [/* :: */0,
+                          [/* tuple */0,
                            "-syntax",
-                           [4,function(syntax){return ocaml_syntax[1]=[0,syntax],0;}],
+                           [/* String */4,
+                            function(syntax)
+                             {return ocaml_syntax[1]=[/* Some */0,syntax],0;}],
                            "<syntax> Specify syntax using ocamlfind"],
-                          [0,
-                           [0,
+                          [/* :: */0,
+                           [/* tuple */0,
                             "-lflag",
-                            [4,add_to$prime(ocaml_lflags_internal)],
+                            [/* String */4,add_to$prime(ocaml_lflags_internal)],
                             "<flag> Add to ocamlc link flags"],
-                           [0,
-                            [0,
+                           [/* :: */0,
+                            [/* tuple */0,
                              "-lflags",
-                             [4,add_to(ocaml_lflags_internal)],
+                             [/* String */4,add_to(ocaml_lflags_internal)],
                              "<flag,...> (idem)"],
-                            [0,
-                             [0,
+                            [/* :: */0,
+                             [/* tuple */0,
                               "-cflag",
-                              [4,add_to$prime(ocaml_cflags_internal)],
+                              [/* String */4,add_to$prime(ocaml_cflags_internal)],
                               "<flag> Add to ocamlc compile flags"],
-                             [0,
-                              [0,
+                             [/* :: */0,
+                              [/* tuple */0,
                                "-cflags",
-                               [4,add_to(ocaml_cflags_internal)],
+                               [/* String */4,add_to(ocaml_cflags_internal)],
                                "<flag,...> (idem)"],
-                              [0,
-                               [0,
+                              [/* :: */0,
+                               [/* tuple */0,
                                 "-docflag",
-                                [4,add_to$prime(ocaml_docflags_internal)],
+                                [/* String */4,add_to$prime(ocaml_docflags_internal)],
                                 "<flag> Add to ocamldoc flags"],
-                               [0,
-                                [0,
+                               [/* :: */0,
+                                [/* tuple */0,
                                  "-docflags",
-                                 [4,add_to(ocaml_docflags_internal)],
+                                 [/* String */4,add_to(ocaml_docflags_internal)],
                                  "<flag,...> (idem)"],
-                                [0,
-                                 [0,
+                                [/* :: */0,
+                                 [/* tuple */0,
                                   "-yaccflag",
-                                  [4,add_to$prime(ocaml_yaccflags_internal)],
+                                  [/* String */4,add_to$prime(ocaml_yaccflags_internal)],
                                   "<flag> Add to ocamlyacc flags"],
-                                 [0,
-                                  [0,
+                                 [/* :: */0,
+                                  [/* tuple */0,
                                    "-yaccflags",
-                                   [4,add_to(ocaml_yaccflags_internal)],
+                                   [/* String */4,add_to(ocaml_yaccflags_internal)],
                                    "<flag,...> (idem)"],
-                                  [0,
-                                   [0,
+                                  [/* :: */0,
+                                   [/* tuple */0,
                                     "-lexflag",
-                                    [4,add_to$prime(ocaml_lexflags_internal)],
+                                    [/* String */4,add_to$prime(ocaml_lexflags_internal)],
                                     "<flag> Add to ocamllex flags"],
-                                   [0,
-                                    [0,
+                                   [/* :: */0,
+                                    [/* tuple */0,
                                      "-lexflags",
-                                     [4,add_to(ocaml_lexflags_internal)],
+                                     [/* String */4,add_to(ocaml_lexflags_internal)],
                                      "<flag,...> (idem)"],
-                                    [0,
-                                     [0,
+                                    [/* :: */0,
+                                     [/* tuple */0,
                                       "-ppflag",
-                                      [4,add_to$prime(ocaml_ppflags_internal)],
+                                      [/* String */4,add_to$prime(ocaml_ppflags_internal)],
                                       "<flag> Add to ocaml preprocessing flags"],
-                                     [0,
-                                      [0,
+                                     [/* :: */0,
+                                      [/* tuple */0,
                                        "-pp",
-                                       [4,add_to(ocaml_ppflags_internal)],
+                                       [/* String */4,add_to(ocaml_ppflags_internal)],
                                        "<flag,...> (idem)"],
-                                      [0,
-                                       [0,
+                                      [/* :: */0,
+                                       [/* tuple */0,
                                         "-tag",
-                                        [4,add_to$prime(tags_internal)],
+                                        [/* String */4,add_to$prime(tags_internal)],
                                         "<tag> Add to default tags"],
-                                       [0,
-                                        [0,"-tags",[4,add_to(tags_internal)],"<tag,...> (idem)"],
-                                        [0,
-                                         [0,
+                                       [/* :: */0,
+                                        [/* tuple */0,
+                                         "-tags",
+                                         [/* String */4,add_to(tags_internal)],
+                                         "<tag,...> (idem)"],
+                                        [/* :: */0,
+                                         [/* tuple */0,
                                           "-plugin-tag",
-                                          [4,add_to$prime(plugin_tags_internal)],
+                                          [/* String */4,add_to$prime(plugin_tags_internal)],
                                           "<tag> Use this tag when compiling the myocamlbuild.ml plugin"],
-                                         [0,
-                                          [0,
+                                         [/* :: */0,
+                                          [/* tuple */0,
                                            "-plugin-tags",
-                                           [4,add_to(plugin_tags_internal)],
+                                           [/* String */4,add_to(plugin_tags_internal)],
                                            "<tag,...> (idem)"],
-                                          [0,
-                                           [0,
+                                          [/* :: */0,
+                                           [/* tuple */0,
                                             "-tag-line",
-                                            [4,add_to$prime(tag_lines_internal)],
+                                            [/* String */4,add_to$prime(tag_lines_internal)],
                                             "<tag> Use this line of tags (as in _tags)"],
-                                           [0,
-                                            [0,
+                                           [/* :: */0,
+                                            [/* tuple */0,
                                              "-show-tags",
-                                             [4,add_to$prime(show_tags_internal)],
+                                             [/* String */4,add_to$prime(show_tags_internal)],
                                              "<path> Show tags that applies on that pathname"],
-                                            [0,
-                                             [0,
+                                            [/* :: */0,
+                                             [/* tuple */0,
                                               "-ignore",
-                                              [4,add_to(ignore_list_internal)],
+                                              [/* String */4,add_to(ignore_list_internal)],
                                               "<module,...> Don't try to build these modules"],
-                                             [0,
-                                              [0,
+                                             [/* :: */0,
+                                              [/* tuple */0,
                                                "-no-links",
-                                               [3,make_links],
+                                               [/* Clear */3,make_links],
                                                " Don't make links of produced final targets"],
-                                              [0,
-                                               [0,
+                                              [/* :: */0,
+                                               [/* tuple */0,
                                                 "-no-skip",
-                                                [3,ignore_auto],
+                                                [/* Clear */3,ignore_auto],
                                                 " Don't skip modules that are requested by ocamldep but cannot be built"],
-                                               [0,
-                                                [0,
+                                               [/* :: */0,
+                                                [/* tuple */0,
                                                  "-no-hygiene",
-                                                 [3,hygiene],
+                                                 [/* Clear */3,hygiene],
                                                  " Don't apply sanity-check rules"],
-                                                [0,
-                                                 [0,"-no-plugin",[3,plugin]," Don't build myocamlbuild.ml"],
-                                                 [0,
-                                                  [0,"-no-stdlib",[2,nostdlib]," Don't ignore stdlib modules"],
-                                                  [0,
-                                                   [0,
+                                                [/* :: */0,
+                                                 [/* tuple */0,
+                                                  "-no-plugin",
+                                                  [/* Clear */3,plugin],
+                                                  " Don't build myocamlbuild.ml"],
+                                                 [/* :: */0,
+                                                  [/* tuple */0,
+                                                   "-no-stdlib",
+                                                   [/* Set */2,nostdlib],
+                                                   " Don't ignore stdlib modules"],
+                                                  [/* :: */0,
+                                                   [/* tuple */0,
                                                     "-dont-catch-errors",
-                                                    [3,catch_errors],
+                                                    [/* Clear */3,catch_errors],
                                                     " Don't catch and display exceptions (useful to display the call stack)"],
-                                                   [0,
-                                                    [0,
+                                                   [/* :: */0,
+                                                    [/* tuple */0,
                                                      "-just-plugin",
-                                                     [2,just_plugin],
+                                                     [/* Set */2,just_plugin],
                                                      " Just build myocamlbuild.ml"],
-                                                    [0,
-                                                     [0,
+                                                    [/* :: */0,
+                                                     [/* tuple */0,
                                                       "-byte-plugin",
-                                                      [3,native_plugin],
+                                                      [/* Clear */3,native_plugin],
                                                       " Don't use a native plugin but bytecode"],
-                                                     [0,
-                                                      [0,
+                                                     [/* :: */0,
+                                                      [/* tuple */0,
                                                        "-plugin-option",
-                                                       [4,function(prim){return 0;}],
+                                                       [/* String */4,function(prim){return 0;}],
                                                        " Use the option only when plugin is run"],
-                                                      [0,
-                                                       [0,
+                                                      [/* :: */0,
+                                                       [/* tuple */0,
                                                         "-sanitization-script",
-                                                        [5,sanitization_script],
+                                                        [/* Set_string */5,sanitization_script],
                                                         " Change the file name for the generated sanitization script"],
-                                                       [0,
-                                                        [0,
+                                                       [/* :: */0,
+                                                        [/* tuple */0,
                                                          "-no-sanitize",
-                                                         [3,sanitize],
+                                                         [/* Clear */3,sanitize],
                                                          " Do not generate sanitization script"],
-                                                        [0,
-                                                         [0,
+                                                        [/* :: */0,
+                                                         [/* tuple */0,
                                                           "-nothing-should-be-rebuilt",
-                                                          [2,nothing_should_be_rebuilt],
+                                                          [/* Set */2,nothing_should_be_rebuilt],
                                                           " Fail if something needs to be rebuilt"],
-                                                         [0,
-                                                          [0,
+                                                         [/* :: */0,
+                                                          [/* tuple */0,
                                                            "-classic-display",
-                                                           [2,Log["classic_display"]],
+                                                           [/* Set */2,Log["classic_display"]],
                                                            " Display executed commands the old-fashioned way"],
-                                                          [0,
-                                                           [0,
+                                                          [/* :: */0,
+                                                           [/* tuple */0,
                                                             "-use-menhir",
-                                                            [2,use_menhir],
+                                                            [/* Set */2,use_menhir],
                                                             " Use menhir instead of ocamlyacc"],
-                                                           [0,
-                                                            [0,
+                                                           [/* :: */0,
+                                                            [/* tuple */0,
                                                              "-use-jocaml",
-                                                             [0,use_jocaml],
+                                                             [/* Unit */0,use_jocaml],
                                                              " Use jocaml compilers instead of ocaml ones"],
-                                                            [0,
-                                                             [0,
+                                                            [/* :: */0,
+                                                             [/* tuple */0,
                                                               "-use-ocamlfind",
-                                                              [2,use_ocamlfind],
+                                                              [/* Set */2,use_ocamlfind],
                                                               " Use the 'ocamlfind' wrapper instead of using Findlib directly to determine command-line arguments. Use -no-ocamlfind to disable."],
-                                                             [0,
-                                                              [0,
+                                                             [/* :: */0,
+                                                              [/* tuple */0,
                                                                "-no-ocamlfind",
-                                                               [3,use_ocamlfind],
+                                                               [/* Clear */3,use_ocamlfind],
                                                                " Don't use ocamlfind."],
-                                                              [0,
-                                                               [0,
+                                                              [/* :: */0,
+                                                               [/* tuple */0,
                                                                 "-j",
-                                                                [7,Command["jobs"]],
+                                                                [/* Set_int */7,Command["jobs"]],
                                                                 "<N> Allow N jobs at once (0 for unlimited)"],
-                                                               [0,
-                                                                [0,
+                                                               [/* :: */0,
+                                                                [/* tuple */0,
                                                                  "-build-dir",
-                                                                 [4,set_build_dir],
+                                                                 [/* String */4,set_build_dir],
                                                                  "<path> Set build directory (implies no-links)"],
-                                                                [0,
-                                                                 [0,
+                                                                [/* :: */0,
+                                                                 [/* tuple */0,
                                                                   "-install-lib-dir",
-                                                                  [5,Ocamlbuild_where["libdir"]],
+                                                                  [/* Set_string */5,Ocamlbuild_where["libdir"]],
                                                                   "<path> Set the install library directory"],
-                                                                 [0,
-                                                                  [0,
+                                                                 [/* :: */0,
+                                                                  [/* tuple */0,
                                                                    "-install-bin-dir",
-                                                                   [5,Ocamlbuild_where["bindir"]],
+                                                                   [/* Set_string */5,Ocamlbuild_where["bindir"]],
                                                                    "<path> Set the install binary directory"],
-                                                                  [0,
-                                                                   [0,
+                                                                  [/* :: */0,
+                                                                   [/* tuple */0,
                                                                     "-where",
-                                                                    [0,
+                                                                    [/* Unit */0,
                                                                      function(param)
                                                                       {Pervasives["print_endline"](Ocamlbuild_where["libdir"][1]);
                                                                        throw My_std["Exit_OK"];
                                                                        }],
                                                                     " Display the install library directory"],
-                                                                   [0,
-                                                                    [0,
+                                                                   [/* :: */0,
+                                                                    [/* tuple */0,
                                                                      "-which",
-                                                                     [4,
+                                                                     [/* String */4,
                                                                       function(cmd)
                                                                        {Pervasives["print_endline"](find_tool(cmd));
                                                                         throw My_std["Exit_OK"];
                                                                         }],
                                                                      "<command> Display path to the tool command"],
-                                                                    [0,
-                                                                     [0,
+                                                                    [/* :: */0,
+                                                                     [/* tuple */0,
                                                                       "-ocamlc",
                                                                       set_cmd(ocamlc),
                                                                       "<command> Set the OCaml bytecode compiler"],
-                                                                     [0,
-                                                                      [0,
+                                                                     [/* :: */0,
+                                                                      [/* tuple */0,
                                                                        "-ocamlopt",
                                                                        set_cmd(ocamlopt),
                                                                        "<command> Set the OCaml native compiler"],
-                                                                      [0,
-                                                                       [0,
+                                                                      [/* :: */0,
+                                                                       [/* tuple */0,
                                                                         "-ocamldep",
                                                                         set_cmd(ocamldep),
                                                                         "<command> Set the OCaml dependency tool"],
-                                                                       [0,
-                                                                        [0,
+                                                                       [/* :: */0,
+                                                                        [/* tuple */0,
                                                                          "-ocamldoc",
                                                                          set_cmd(ocamldoc),
                                                                          "<command> Set the OCaml documentation generator"],
-                                                                        [0,
-                                                                         [0,
+                                                                        [/* :: */0,
+                                                                         [/* tuple */0,
                                                                           "-ocamlyacc",
                                                                           set_cmd(ocamlyacc),
                                                                           "<command> Set the ocamlyacc tool"],
-                                                                         [0,
-                                                                          [0,
+                                                                         [/* :: */0,
+                                                                          [/* tuple */0,
                                                                            "-menhir",
                                                                            set_cmd(ocamlyacc),
                                                                            "<command> Set the menhir tool (use it after -use-menhir)"],
-                                                                          [0,
-                                                                           [0,
+                                                                          [/* :: */0,
+                                                                           [/* tuple */0,
                                                                             "-ocamllex",
                                                                             set_cmd(ocamllex),
                                                                             "<command> Set the ocamllex tool"],
-                                                                           [0,
-                                                                            [0,
+                                                                           [/* :: */0,
+                                                                            [/* tuple */0,
                                                                              "-ocamlmklib",
                                                                              set_cmd(ocamlmklib),
                                                                              "<command> Set the ocamlmklib tool"],
-                                                                            [0,
-                                                                             [0,
+                                                                            [/* :: */0,
+                                                                             [/* tuple */0,
                                                                               "-ocamlmktop",
                                                                               set_cmd(ocamlmktop),
                                                                               "<command> Set the ocamlmktop tool"],
-                                                                             [0,
-                                                                              [0,
+                                                                             [/* :: */0,
+                                                                              [/* tuple */0,
                                                                                "-ocamlrun",
                                                                                set_cmd(ocamlrun),
                                                                                "<command> Set the ocamlrun tool"],
-                                                                              [0,
-                                                                               [0,
+                                                                              [/* :: */0,
+                                                                               [/* tuple */0,
                                                                                 "--",
-                                                                                [12,
+                                                                                [/* Rest */12,
                                                                                  function(x)
                                                                                   {program_to_execute[1]=1,0;
                                                                                    return add_to$prime(program_args_internal,x);
@@ -682,7 +709,9 @@ var
                                                                                 " Stop argument processing, remaining arguments are given to the user program"],
                                                                                0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]])];
 
-var add=function(x){return spec[1]=Pervasives["@"](spec[1],[0,x,0]),0;};
+var
+ add=
+  function(x){return spec[1]=Pervasives["@"](spec[1],[/* :: */0,x,0]),0;};
 
 var targets=[0,0];
 
@@ -729,11 +758,13 @@ var
          "Usage %s [options] <target>"],
         Sys["argv"][0]);
     
-    var argv$prime=$$Array["concat"]([0,Sys["argv"],[0,[dummy],0]]);
+    var
+     argv$prime=
+      $$Array["concat"]([/* :: */0,Sys["argv"],[/* :: */0,[dummy],0]]);
     
     Arg["parse_argv"](0,argv$prime,spec[1],anon_fun,usage_msg);
     Shell["mkdir_p"](build_dir[1]);
-    project_root_dir[1]=[0,"unknown primitive:caml_sys_getcwd"],0;
+    project_root_dir[1]=[/* Some */0,"unknown primitive:caml_sys_getcwd"],0;
     var log=log_file_internal[1];
     
     if("unknown primitive:caml_string_equal")
@@ -756,7 +787,10 @@ var
         
         Shell["mkdir_p"](Filename["dirname"](log$1));
         Shell["rm_f"](log$1);
-        if(Log["level"][1]>0){var log$2=[0,log$1];}else{var log$2=0;}
+        if(Log["level"][1]>0)
+         {var log$2=[/* Some */0,log$1];}
+        else
+         {var log$2=0;}
         
         var match$1=Log["init"](log$2);
         }
@@ -787,25 +821,28 @@ var
            {switch(match$2){}}
           else
            {switch(match$2[0])
-             {case 4:$js=My_std["&"](ocamlfind,[4,match$2[1]]);
+             {case 4:$js=My_std["&"](ocamlfind,[/* Sh */4,match$2[1]]);
               default:exit=8;}}
           
           var $js$1;
-          switch(exit){case 8:$js$1=My_std["&"](ocamlfind,[1,param$1[1]]);}
+          switch(exit)
+           {case 8:$js$1=My_std["&"](ocamlfind,[/* A */1,param$1[1]]);}
           return command_ref[1]=$js$1,0;
           };
       
       My_std["List"][14]
        (with_ocamlfind,
-        [0,
-         [0,"ocamlc",ocamlc],
-         [0,
-          [0,"ocamlopt",ocamlopt],
-          [0,
-           [0,"ocamldep",ocamldep],
-           [0,
-            [0,"ocamldoc",ocamldoc],
-            [0,[0,"ocamlmklib",ocamlmklib],[0,[0,"ocamlmktop",ocamlmktop],0]]]]]])}
+        [/* :: */0,
+         [/* tuple */0,"ocamlc",ocamlc],
+         [/* :: */0,
+          [/* tuple */0,"ocamlopt",ocamlopt],
+          [/* :: */0,
+           [/* tuple */0,"ocamldep",ocamldep],
+           [/* :: */0,
+            [/* tuple */0,"ocamldoc",ocamldoc],
+            [/* :: */0,
+             [/* tuple */0,"ocamlmklib",ocamlmklib],
+             [/* :: */0,[/* tuple */0,"ocamlmktop",ocamlmktop],0]]]]]])}
     else
      {}
     

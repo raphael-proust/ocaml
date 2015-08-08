@@ -4,7 +4,7 @@
 
 var Empty="unknown primitive:caml_set_oo_id";
 
-var create=function(param){return [0,0,0];};
+var create=function(param){return /* record */[0,0,0];};
 
 var clear=function(q){q[1]=0,0;return q[2]=0,0;};
 
@@ -12,13 +12,13 @@ var
  add=
   function(x,q)
    {if(q[1]=0)
-     {var cell=[0,x,cell];q[1]=1,0;return q[2]=cell,0;}
+     {var cell=/* record */[0,x,cell];q[1]=1,0;return q[2]=cell,0;}
     else
      {var tail=q[2];
       
       var head=tail[2];
       
-      var cell$1=[0,x,head];
+      var cell$1=/* record */[0,x,head];
       
       q[1]=q[1]+1,0;
       tail[2]=cell$1,0;
@@ -57,13 +57,13 @@ var
     else
      {var tail=q[2];
       
-      var tail$prime=[0,tail[1],tail$prime];
+      var tail$prime=/* record */[0,tail[1],tail$prime];
       
       var
        copy$1=
         function(prev,cell)
          {if(cell!=tail)
-           {var res=[0,cell[1],tail$prime];
+           {var res=/* record */[0,cell[1],tail$prime];
             
             prev[2]=res,0;
             return copy$1(res,cell[2]);
@@ -73,7 +73,7 @@ var
           };
       
       copy$1(tail$prime,tail[2]);
-      return [0,q[1],tail$prime];
+      return /* record */[0,q[1],tail$prime];
       }
     };
 

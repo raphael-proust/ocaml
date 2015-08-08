@@ -74,12 +74,15 @@ var
   function(param)
    {Pervasives["print_string"]("let crc_unit_list = [\n");
     Arg["parse"]
-     ([0,
-       [0,
+     (/* :: */[0,
+       /* tuple */[0,
         "-I",
-        [4,
+        /* String */[4,
          function(dir)
-          {return load_path[1]=Pervasives["@"](load_path[1],[0,dir,0]),0;}],
+          {return load_path[1]=
+                  Pervasives["@"](load_path[1],/* :: */[0,dir,0]),
+                  0;
+           }],
         "<dir>  Add <dir> to the list of include directories"],
        0],
       print_crc,

@@ -24,7 +24,7 @@ var
           var match=f(param[1]);
           
           if(match)
-           {return loop([0,match[1],result],rest);}
+           {return loop([/* :: */0,match[1],result],rest);}
           else
            {return loop(result,rest);}
           }
@@ -135,7 +135,7 @@ var
                                      },
                                    entries))
                                 {remove(path,name$prime);
-                                 return [0,
+                                 return [/* Some */0,
                                          sf
                                           ([0,
                                             [11,
@@ -188,7 +188,7 @@ var
                                 (My_std["filename_concat"](path,name),
                                  Options["build_dir"][1]))
                               {remove(path,name);
-                               return [0,
+                               return [/* Some */0,
                                        sf
                                         ([0,
                                           [11,
@@ -237,7 +237,7 @@ var
                    
                    if(explanations)
                     {return penalties[1]=
-                            [0,[0,law,explanations],penalties[1]],
+                            [/* :: */0,[/* tuple */0,law,explanations],penalties[1]],
                             0;
                      }
                    else

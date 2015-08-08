@@ -95,7 +95,7 @@ var
       var evl=Pervasives["input_value"](ic);
       
       List["iter"](relocate_event(orig),evl);
-      eventlists=[0,evl,eventlists];
+      eventlists=[/* :: */0,evl,eventlists];
       
       dirs=
       List["fold_left"]
@@ -115,7 +115,7 @@ var
       }
     
     Pervasives["close_in_noerr"](ic);
-    return [0,eventlists,dirs];
+    return [/* tuple */0,eventlists,dirs];
     };
 
 var
@@ -135,7 +135,7 @@ var
      (function(evl)
        {return List["iter"]
                 (function(ev)
-                  {events[1]=[0,ev,events[1]],0;
+                  {events[1]=[/* :: */0,ev,events[1]],0;
                    return Hashtbl["add"](events_by_pc,ev[1],ev);
                    },
                  evl);
@@ -153,7 +153,7 @@ var
                  
                  var sorted_evl=List["sort"](cmp,evl);
                  
-                 modules[1]=[0,md,modules[1]],0;
+                 modules[1]=[/* :: */0,md,modules[1]],0;
                  Hashtbl["add"](all_events_by_module,md,sorted_evl);
                  var
                   real_evl=
@@ -312,7 +312,7 @@ var
     if(opt_pc)
      {if("unknown primitive:caml_notequal")
        {try
-         {var $js=[0,event_at_pc(opt_pc[1])];}
+         {var $js=[/* Some */0,event_at_pc(opt_pc[1])];}
         catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
         Events["current_event"][1]=$js,0;
         return old_pc[1]=opt_pc,0;

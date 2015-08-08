@@ -11,7 +11,7 @@ var Parse_error="unknown primitive:caml_set_oo_id";
 
 var
  env=
-  [0,
+  /* record */[0,
    "unknown primitive:caml_make_vect",
    "unknown primitive:caml_make_vect",
    "unknown primitive:caml_make_vect",
@@ -82,9 +82,13 @@ var
           case 3:grow_stacks(0);return loop(3,0);
           case 4:
            try
-            {var match$1=[0,4,tables[1][env[13]](env)];}
+            {var match$1=/* tuple */[0,4,tables[1][env[13]](env)];}
            catch(exn)
-            {if(exn=Parse_error){var match$1=[0,5,0];}else{throw exn;}}
+            {if(exn=Parse_error)
+              {var match$1=/* tuple */[0,5,0];}
+             else
+              {throw exn;}
+             }
            
            var value=match$1[2];
            

@@ -24,7 +24,7 @@ var
         return s;
         };
     
-    return [0,fmt,flush];
+    return [/* tuple */0,fmt,flush];
     };
 
 var match=new_fmt(0);
@@ -37,7 +37,7 @@ var outfuns=Format["pp_get_formatter_out_functions"](type_fmt,0);
 
 Format["pp_set_formatter_out_functions"]
  (type_fmt,
-  [0,
+  [/* record */0,
    outfuns[1],
    outfuns[2],
    function(param){return outfuns[1]("\n  ",0,3);},
@@ -69,7 +69,12 @@ var
         switch(t$1)
          {case 0:exit=11;
           case 1:if(code){throw [0,Use_code,code[1]];}else{return [1,0];}
-          case 2:return [2,t$1[1],Misc["may_map"](iter,t$1[2]),iter(t$1[3])];
+          case 2:
+           return [/* Mty_functor */2,
+                   t$1[1],
+                   Misc["may_map"](iter,t$1[2]),
+                   iter(t$1[3])];
+           
           case 3:exit=11;
           }
         
@@ -102,18 +107,22 @@ var
        {switch(t$1)
          {case 0:return t$1;
           case 1:
-           var tnil=[0,0,0,0];
+           var tnil=[/* record */0,0,0,0];
            
            var init=t$1[1][1];
            
-           return [1,
-                   [0,
-                    [0,[4,tnil,[0,0]],init[2],init[3]],
+           return [/* Cty_signature */1,
+                   [/* record */0,
+                    [/* record */0,[/* Tobject */4,tnil,[0,0]],init[2],init[3]],
                     Types["Vars"][1],
                     Types["Concr"][1],
                     0]];
            
-          case 2:var new_ct=iter(t$1[3]);return [2,t$1[1],t$1[2],new_ct];
+          case 2:
+           var new_ct=iter(t$1[3]);
+           
+           return [/* Cty_arrow */2,t$1[1],t$1[2],new_ct];
+           
           }
         };
     

@@ -19,7 +19,9 @@ var
    {var
      ack=
       function(param)
-       {return Param_tags["acknowledge"](source,[0,param[2]],param[1]);};
+       {return Param_tags["acknowledge"]
+                (source,[/* Some */0,param[2]],param[1]);
+        };
     
     return My_std["List"][14]
             (function(param){return My_std["List"][14](ack,param[2][1]);},
@@ -32,11 +34,11 @@ var configs=[0,0];
 
 var
  match=
-  [0,
+  [/* tuple */0,
    function(param){return configs[1];},
    function(source,config)
     {acknowledge_config(source,config);
-     configs[1]=[0,config,configs[1]],0;
+     configs[1]=[/* :: */0,config,configs[1]],0;
      return Hashtbl["clear"](cache);
      }];
 

@@ -126,7 +126,9 @@ var
                   {if(filter(name))
                     {return My_std["List"][20]
                              (function(elt,acc$1)
-                               {return add(elt,[0,name,find_all_list(elt,acc$1)],acc$1);},
+                               {return add
+                                        (elt,[/* :: */0,name,find_all_list(elt,acc$1)],acc$1);
+                                },
                               contents,
                               acc);
                      }
@@ -186,9 +188,12 @@ var
          {var hidden_packages=0;}
         
         if(pack_mode)
-         {var valid_link_exts=[0,caml_obj_ext,[0,"cmi",0]];}
+         {var valid_link_exts=[/* :: */0,caml_obj_ext,[0,"cmi",0]];}
         else
-         {var valid_link_exts=[0,caml_obj_ext,[0,caml_lib_ext,0]];}
+         {var
+           valid_link_exts=
+            [/* :: */0,caml_obj_ext,[/* :: */0,caml_lib_ext,0]];
+          }
         
         mydprintf
          ([0,
@@ -301,7 +306,7 @@ var
              {if
                (Resource["Resources"][3](file,packages)&&
                 !My_std["List"][30](file,hidden_packages))
-               {return [0,file,acc];}
+               {return [/* :: */0,file,acc];}
               else
                {return acc;}
               },
@@ -392,7 +397,7 @@ var
                            libs));
                 }
               else
-               {return [0,libs[1]];}
+               {return [/* Some */0,libs[1]];}
               }
             else
              {return 0;}
@@ -479,12 +484,12 @@ var
                      {return cycle;}
                     else
                      {if(My_std["List"][30](f,path))
-                       {return [0,My_std["List"][9](path)];}
+                       {return [/* Some */0,My_std["List"][9](path)];}
                       else
                        {if(!Resource["Resources"][3](f,files))
                          {return 0;}
                         else
-                         {return dfs([0,f,path],f);}
+                         {return dfs([/* :: */0,f,path],f);}
                         }
                       }
                     };
@@ -554,7 +559,7 @@ var
                   },
                 dependencies_of(fn));
               needed[1]=Resource["Resources"][4](fn,needed[1]),0;
-              return needed_in_order[1]=[0,fn,needed_in_order[1]],0;
+              return needed_in_order[1]=[/* :: */0,fn,needed_in_order[1]],0;
               }
             else
              {return 0;}

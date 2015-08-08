@@ -133,7 +133,7 @@ var
              
             }}
         
-        return [0,
+        return [/* Some */0,
                 Printf["sprintf"]
                  ([0,
                    [11,"Dynlink.Error(Dynlink.",[2,0,[12,41,0]]],
@@ -183,10 +183,10 @@ var
       }
     catch(exn)
      {if(exn[1]=Consistbl["Inconsistency"])
-       {throw [0,$$Error,[1,exn[2]]];}
+       {throw [0,$$Error,[/* Inconsistent_import */1,exn[2]]];}
       else
        {if(exn[1]=Consistbl["Not_available"])
-         {throw [0,$$Error,[2,exn[2]]];}
+         {throw [0,$$Error,[/* Unavailable_unit */2,exn[2]]];}
         else
          {throw exn;}
         }
@@ -279,7 +279,11 @@ var
     try
      {var filename=Misc["find_in_path_uncap"](loadpath,shortname);}
     catch(exn)
-     {if(exn=Not_found){throw [0,$$Error,[5,shortname]];}else{throw exn;}}
+     {if(exn=Not_found)
+       {throw [0,$$Error,[/* File_not_found */5,shortname]];}
+      else
+       {throw exn;}
+      }
     
     var ic=Pervasives["open_in_bin"](filename);
     
@@ -290,7 +294,9 @@ var
          (ic,Config["cmi_magic_number"]["length"]);
       
       if("unknown primitive:caml_string_notequal")
-       {Pervasives["close_in"](ic);throw [0,$$Error,[4,filename]];}
+       {Pervasives["close_in"](ic);
+        throw [0,$$Error,[/* Corrupted_interface */4,filename]];
+        }
       else
        {}
       
@@ -309,7 +315,8 @@ var
       else
        {exit=35;}
       
-      switch(exit){case 35:throw [0,$$Error,[4,filename]];}
+      switch(exit)
+       {case 35:throw [0,$$Error,[/* Corrupted_interface */4,filename]];}
       }
     catch(exn$1)
      {var exit$1;
@@ -320,7 +327,11 @@ var
        {if(exn$1[1]=Failure){exit$1=33;}else{throw exn$1;}}
       
       switch(exit$1)
-       {case 33:Pervasives["close_in"](ic);throw [0,$$Error,[4,filename]];}
+       {case 33:
+         Pervasives["close_in"](ic);
+         throw [0,$$Error,[/* Corrupted_interface */4,filename]];
+         
+        }
       }
     };
 
@@ -330,7 +341,7 @@ var
    {return add_available_units$1
             (List["map"]
               (function(unit)
-                {return [0,unit,digest_interface(unit,loadpath)];},
+                {return [/* tuple */0,unit,digest_interface(unit,loadpath)];},
                units));
     };
 
@@ -373,13 +384,13 @@ var
        {var error=exn[2];
         
         switch(error)
-         {case 0:var new_error=[0,error[1]];
-          case 1:var new_error=[1,error[1]];
+         {case 0:var new_error=[/* Undefined_global */0,error[1]];
+          case 1:var new_error=[/* Unavailable_primitive */1,error[1]];
           case 2:throw [0,Assert_failure,[0,"dynlink.ml",231,13]];
-          case 3:var new_error=[2,error[1]];
+          case 3:var new_error=[/* Uninitialized_global */2,error[1]];
           }
         
-        throw [0,$$Error,[3,file_name,new_error]];
+        throw [0,$$Error,[/* Linking_error */3,file_name,new_error]];
         }
       else
        {throw exn;}
@@ -398,7 +409,7 @@ var
   function(file_name)
    {init(0);
     if(!"unknown primitive:caml_sys_file_exists")
-     {throw [0,$$Error,[5,file_name]];}
+     {throw [0,$$Error,[/* File_not_found */5,file_name]];}
     else
      {}
     
@@ -415,7 +426,11 @@ var
            (ic,Config["cmo_magic_number"]["length"]);
         }
       catch(exn)
-       {if(exn=End_of_file){throw [0,$$Error,[0,file_name]];}else{throw exn;}}
+       {if(exn=End_of_file)
+         {throw [0,$$Error,[/* Not_a_bytecode_file */0,file_name]];}
+        else
+         {throw exn;}
+        }
       
       if("unknown primitive:caml_string_equal")
        {var compunit_pos=Pervasives["input_binary_int"](ic);
@@ -435,14 +450,14 @@ var
            {Dll["open_dlls"](1,List["map"](Dll["extract_dll_name"],lib[5]))}
           catch(exn$1)
            {if(exn$1[1]=Failure)
-             {throw [0,$$Error,[6,exn$1[2]]];}
+             {throw [0,$$Error,[/* Cannot_open_dll */6,exn$1[2]]];}
             else
              {throw exn$1;}
             }
           
           List["iter"](load_compunit(ic,file_name,file_digest),lib[1])}
         else
-         {throw [0,$$Error,[0,file_name]];}
+         {throw [0,$$Error,[/* Not_a_bytecode_file */0,file_name]];}
         }
       
       return Pervasives["close_in"](ic);

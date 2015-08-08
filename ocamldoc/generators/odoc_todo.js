@@ -346,20 +346,23 @@ var
                              
                              var
                               head=
-                               [1,
+                               [/* Code */1,
                                 Printf["sprintf"]
                                  ([0,[12,91,[4,0,0,0,[11,"] ",0]]],"[%d] "],n)];
                              
-                             return [0,[0,[0,n],[0,head,text[2]]],acc];
+                             return [/* :: */0,
+                                     [/* tuple */0,[/* Some */0,n],[/* :: */0,head,text[2]]],
+                                     acc];
                              }
-                           catch(exn){return [0,[0,0,text],acc];}
+                           catch(exn){return [/* :: */0,[/* tuple */0,0,text],acc];}
                            
                           default:exit=12;}}
                       }
                     else
                      {exit=12;}
                     
-                    switch(exit){case 12:return [0,[0,0,text],acc];}
+                    switch(exit)
+                     {case 12:return [/* :: */0,[/* tuple */0,0,text],acc];}
                     
                    default:return acc;}
                  },
@@ -608,7 +611,9 @@ var
       generate,
       function(self$neg2,modules)
        {self$neg2[tag_functions]=
-        [0,[0,"todo",function(param){return "";}],self$neg2[tag_functions]],
+        [/* :: */0,
+         [/* tuple */0,"todo",function(param){return "";}],
+         self$neg2[tag_functions]],
         0;
         generate$1(self$neg2,modules);
         var match$2=Odoc_info["Global"][6][1];
@@ -787,6 +792,6 @@ var
 
 var Generator=[0,scanner,html];
 
-Odoc_args["set_generator"]([0,[0,Generator[2]]]);
+Odoc_args["set_generator"]([/* Html */0,[0,Generator[2]]]);
 module["exports"]={"Naming":Naming,"p":p,"Html":Html,"Generator":Generator};
 

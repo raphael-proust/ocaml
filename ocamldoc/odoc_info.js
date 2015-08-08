@@ -81,7 +81,7 @@ var
     Odoc_global["classic"][1]=!labels,0;
     Odoc_global["sort_modules"][1]=sort_modules,0;
     Odoc_global["no_stop"][1]=no_stop,0;
-    return Odoc_analyse["analyse_files"]([0,init],files);
+    return Odoc_analyse["analyse_files"]([/* Some */0,init],files);
     };
 
 var dump_modules=Odoc_analyse["dump_modules"];
@@ -93,7 +93,8 @@ var reset_type_names=Printtyp["reset"];
 var
  string_of_variance=
   function(t,param)
-   {return Odoc_str["string_of_variance"](t,[0,param[1],param[2]]);};
+   {return Odoc_str["string_of_variance"](t,[/* tuple */0,param[1],param[2]]);
+    };
 
 var
  string_of_type_expr=

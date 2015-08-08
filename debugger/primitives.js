@@ -23,7 +23,7 @@ var
           if("unknown primitive:caml_equal")
            {return l$1;}
           else
-           {return [0,elem,except_e(l$1)];}
+           {return [/* :: */0,elem,except_e(l$1)];}
           }
         else
          {return 0;}
@@ -55,7 +55,11 @@ var
  list_truncate=
   function(p0,p1)
    {if(p0!=0)
-     {if(p1){return [0,p1[1],list_truncate(p0-1,p1[2])];}else{return 0;}}
+     {if(p1)
+       {return [/* :: */0,p1[1],list_truncate(p0-1,p1[2])];}
+      else
+       {return 0;}
+      }
     else
      {return 0;}
     };
@@ -67,13 +71,13 @@ var
      {if(p1)
        {var match=list_truncate2(p0-1,p1[2]);
         
-        return [0,[0,p1[1],match[1]],match[2]];
+        return [/* tuple */0,[/* :: */0,p1[1],match[1]],match[2]];
         }
       else
        {return [0,0,0];}
       }
     else
-     {return [0,0,p1];}
+     {return [/* tuple */0,0,p1];}
     };
 
 var
@@ -87,7 +91,7 @@ var
           
           var a=param[1];
           
-          if(a=x){return [0,y,l];}else{return [0,a,repl(l)];}
+          if(a=x){return [/* :: */0,y,l];}else{return [/* :: */0,a,repl(l)];}
           }
         else
          {return 0;}
@@ -143,13 +147,17 @@ var
      split=
       function(i,j)
        {if(j>=str["length"])
-         {if(i>=j){return 0;}else{return [0,$$String["sub"](str,i,j-i),0];}}
+         {if(i>=j)
+           {return 0;}
+          else
+           {return [/* :: */0,$$String["sub"](str,i,j-i),0];}
+          }
         else
          {if(str[j]=sep)
            {if(i>=j)
              {return skip_sep(j+1);}
             else
-             {return [0,$$String["sub"](str,i,j-i),skip_sep(j+1)];}
+             {return [/* :: */0,$$String["sub"](str,i,j-i),skip_sep(j+1)];}
             }
           else
            {return split(i,j+1);}
@@ -171,7 +179,7 @@ var
 var
  io_channel_of_descr=
   function(fd)
-   {return [0,
+   {return [/* record */0,
             Unix["in_channel_of_descr"](fd),
             Unix["out_channel_of_descr"](fd),
             fd];
@@ -184,7 +192,9 @@ var
     return Pervasives["close_in_noerr"](io_channel[1]);
     };
 
-var std_io=[0,Pervasives["stdin"],Pervasives["stdout"],Unix["stdin"]];
+var
+ std_io=
+  [/* record */0,Pervasives["stdin"],Pervasives["stdout"],Unix["stdin"]];
 
 module["exports"]=
 {"nothing":nothing,

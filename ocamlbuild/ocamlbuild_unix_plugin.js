@@ -65,7 +65,7 @@ var
     
     var $js$1;
     switch(exit){case 19:$js$1=3;}
-    return [0,
+    return [/* record */0,
             $js$1,
             Format["sprintf"]
              ([0,[12,40,[4,0,0,0,[12,44,[4,0,0,0,[12,41,0]]]]],"(%d,%d)"],

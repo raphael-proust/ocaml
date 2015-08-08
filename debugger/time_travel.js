@@ -35,7 +35,7 @@ var
           
           var a=param[1];
           
-          if(a=key){return l;}else{return [0,a,remove(l)];}
+          if(a=key){return l;}else{return [/* :: */0,a,remove(l)];}
           }
         else
          {return 0;}
@@ -60,16 +60,16 @@ var
           var t=a[1];
           
           if(t>time)
-           {return [0,a,traverse(l$prime[2])];}
+           {return [/* :: */0,a,traverse(l$prime[2])];}
           else
            {if(t=time)
              {throw Pervasives["Exit"];}
             else
-             {return [0,checkpoint,l$prime];}
+             {return [/* :: */0,checkpoint,l$prime];}
             }
           }
         else
-         {return [0,checkpoint,0];}
+         {return [/* :: */0,checkpoint,0];}
         };
     
     return Checkpoints["checkpoints"][1]=
@@ -174,9 +174,12 @@ var
           var t$prime=a[1];
           
           if(t$prime<=t)
-           {return [0,0,l$prime];}
+           {return [/* tuple */0,0,l$prime];}
           else
-           {var match=cut_t(l$prime[2]);return [0,[0,a,match[1]],match[2]];}
+           {var match=cut_t(l$prime[2]);
+            
+            return [/* tuple */0,[/* :: */0,a,match[1]],match[2]];
+            }
           }
         else
          {return [0,0,0];}
@@ -198,7 +201,7 @@ var
           
           var l$2=cut2_t0(Int64ops["++"](t$1,t$1),match[2]);
           
-          return [0,match[1],l$2];
+          return [/* :: */0,match[1],l$2];
           }
         else
          {return 0;}
@@ -206,7 +209,7 @@ var
     
     var match=cut(Int64ops["--"](t0,Int64ops["_1"]),l);
     
-    return [0,match[1],cut2_t0(t,match[2])];
+    return [/* :: */0,match[1],cut2_t0(t,match[2])];
     };
 
 var
@@ -221,9 +224,12 @@ var
           var a=param[1];
           
           if(l)
-           {var match=chk_merge2_cont(l);return [0,match[1],[0,a,match[2]]];}
+           {var match=chk_merge2_cont(l);
+            
+            return [/* tuple */0,match[1],[/* :: */0,a,match[2]]];
+            }
           else
-           {return [0,[0,a,cont[1]],cont[2]];}
+           {return [/* tuple */0,[/* :: */0,a,cont[1]],cont[2]];}
           }
         else
          {return cont;}
@@ -247,7 +253,7 @@ var
    {if(List["length"](accepted)>=checkpoint_count)
      {var match=Primitives["list_truncate2"](checkpoint_count,accepted);
       
-      return [0,match[1],Pervasives["@"](match[2],rejected)];
+      return [/* tuple */0,match[1],Pervasives["@"](match[2],rejected)];
       }
     else
      {var
@@ -255,7 +261,7 @@ var
         Primitives["list_truncate2"]
          (checkpoint_count-List["length"](accepted),rejected);
       
-      return [0,
+      return [/* tuple */0,
               List["merge"]
                (function(param,param$1)
                  {var t1=param[1];
@@ -323,7 +329,7 @@ var
     
     var
      new_checkpoint=
-      [0,
+      [/* record */0,
        checkpoint[1],
        0,
        checkpoint[3],
@@ -389,7 +395,9 @@ var
     else
      {switch(switcher[0])
        {case 0:
-         last_breakpoint[1]=[0,[0,report[4],report[3]]],0;
+         last_breakpoint[1]=
+         [/* Some */0,[/* tuple */0,report[4],report[3]]],
+         0;
          Symbols["update_current_event"](0);
          var match=Events["current_event"][1];
          
@@ -414,7 +422,7 @@ var
     
     var report=Debugcom["do_go"](Int64ops["_1"]);
     
-    Checkpoints["current_checkpoint"][1][5]=[0,report],0;
+    Checkpoints["current_checkpoint"][1][5]=[/* Some */0,report],0;
     return stop_on_event(report);
     };
 
@@ -448,10 +456,12 @@ var
            
            Breakpoints["update_breakpoints"](0);
            Trap_barrier["update_trap_barrier"](0);
-           Checkpoints["current_checkpoint"][1][6]=[0,duration],0;
+           Checkpoints["current_checkpoint"][1][6]=
+           [/* C_running */0,duration],
+           0;
            var report=Debugcom["do_go"](duration);
            
-           Checkpoints["current_checkpoint"][1][5]=[0,report],0;
+           Checkpoints["current_checkpoint"][1][5]=[/* Some */0,report],0;
            Checkpoints["current_checkpoint"][1][6]=0,0;
            if(report[1]=0)
             {Checkpoints["current_checkpoint"][1][1]=
@@ -525,7 +535,7 @@ var
   function(pid,fd)
    {var
      new_checkpoint$1=
-      [0,Int64ops["_0"],pid,fd,1,0,0,Checkpoints["root"],0,0,0];
+      [/* record */0,Int64ops["_0"],pid,fd,1,0,0,Checkpoints["root"],0,0,0];
     
     return insert_checkpoint(new_checkpoint$1);
     };
@@ -560,7 +570,7 @@ var
      {}
     
     return find
-            ([0,
+            ([/* :: */0,
               Checkpoints["current_checkpoint"][1],
               Checkpoints["checkpoints"][1]]);
     };
@@ -570,7 +580,7 @@ var
   function(param)
    {return List["iter"]
             (kill_checkpoint,
-             [0,
+             [/* :: */0,
               Checkpoints["current_checkpoint"][1],
               Checkpoints["checkpoints"][1]]);
     };
@@ -582,7 +592,9 @@ var
      checkpoint=
       List["find"]
        (function(c){return c[2]=pid;},
-        [0,Checkpoints["current_checkpoint"][1],Checkpoints["checkpoints"][1]]);
+        [/* :: */0,
+         Checkpoints["current_checkpoint"][1],
+         Checkpoints["checkpoints"][1]]);
     
     Printf["eprintf"]
      ([0,
@@ -707,7 +719,7 @@ var
           else
            {if(match$1)
              {if(match[1][1]=match$1[1])
-               {return [0,max_time,last_breakpoint[1]];}
+               {return [/* tuple */0,max_time,last_breakpoint[1]];}
               else
                {exit=29;}
               }
@@ -718,7 +730,7 @@ var
         else
          {exit=29;}
         
-        switch(exit){case 29:return [0,time,$$break];}
+        switch(exit){case 29:return [/* tuple */0,time,$$break];}
         };
     
     var state=Checkpoints["current_pc_sp"](0);

@@ -29,7 +29,7 @@ var
          var path=f[1];
          
          if(predicate(path,name,attr))
-          {return [0,
+          {return [/* Dir */0,
                    path,
                    name,
                    f[3],
@@ -87,11 +87,15 @@ var
                 else
                  {switch(entry[0])
                    {case 0:exit=19;
-                    case 1:return [0,[0,entry,file_acc],dir_acc];
+                    case 1:
+                     return [/* tuple */0,[/* :: */0,entry,file_acc],dir_acc];
                     case 2:exit=19;
                     }}
                 
-                switch(exit){case 19:return [0,file_acc,[0,entry,dir_acc]];}
+                switch(exit)
+                 {case 19:
+                   return [/* tuple */0,file_acc,[/* :: */0,entry,dir_acc]];
+                  }
                 }
               else
                {return acc;}
@@ -112,9 +116,10 @@ var
         try
          {var
            match=
-            [0,link_mode?My_unix["lstat"](absfn):My_unix["stat"](absfn)];
+            [/* Good */0,
+             link_mode?My_unix["lstat"](absfn):My_unix["stat"](absfn)];
           }
-        catch(x){var match=[1,x];}
+        catch(x){var match=[/* Bad */1,x];}
         
         switch(match)
          {case 0:
@@ -141,25 +146,26 @@ var
                    
                    var
                     res=
-                     [0,
-                      [0,
+                     [/* Some */0,
+                      [/* Dir */0,
                        path$1,
                        name,
                        [250,st],
                        0,
                        [246,function(param){return scandir(fn,names);}]]];
                    
-                  case 1:var res=[0,[2,match$2[1]]];
+                  case 1:var res=[/* Some */0,[/* Error */2,match$2[1]]];
                   }
                 
-               case 1:var res=[0,[1,path$1,name,[250,st],0]];
+               case 1:
+                var res=[/* Some */0,[/* File */1,path$1,name,[250,st],0]];
                case 2:
                 var fn$prime=My_unix["readlink"](absfn);
                 
                 if(My_std["sys_file_exists"](abs(fn$prime)))
                  {var res=do_entry(0,path$1,name);}
                 else
-                 {var res=[0,[1,path$1,name,[250,st],0]];}
+                 {var res=[/* Some */0,[/* File */1,path$1,name,[250,st],0]];}
                 
                case 3:var res=0;
                }
@@ -168,7 +174,7 @@ var
              return res;
              }
            
-          case 1:return [0,[2,match[1]]];
+          case 1:return [/* Some */0,[/* Error */2,match[1]]];
           }
         };
     
@@ -186,7 +192,7 @@ var
        {if("unknown primitive:caml_string_equal")
          {return 0;}
         else
-         {return [0,
+         {return [/* :: */0,
                   Filename["basename"](path$1),
                   aux(Filename["dirname"](path$1))];
           }
@@ -236,8 +242,8 @@ var
              var dname=d[2];
              
              if("unknown primitive:caml_string_equal")
-              {return [0,
-                       [0,
+              {return [/* :: */0,
+                       [/* Dir */0,
                         d[1],
                         dname,
                         d[3],
@@ -250,7 +256,7 @@ var
                        entries$1];
                }
              else
-              {return [0,d,add(root,path,entries$1)];}
+              {return [/* :: */0,d,add(root,path,entries$1)];}
              
             case 1:exit$1=16;
             case 2:exit=14;
@@ -270,8 +276,8 @@ var
              var fname=f[2];
              
              if("unknown primitive:caml_string_equal")
-              {return [0,
-                       [0,
+              {return [/* :: */0,
+                       [/* Dir */0,
                         f[1],
                         fname,
                         f[3],
@@ -281,11 +287,11 @@ var
                        entries$prime];
                }
              else
-              {return [0,f,add(root,path,entries$prime)];}
+              {return [/* :: */0,f,add(root,path,entries$prime)];}
              }
            else
-            {return [0,
-                     [0,
+            {return [/* :: */0,
+                     [/* Dir */0,
                       $unknown(root,join(xspath)),
                       xpath,
                       [246,
@@ -304,11 +310,11 @@ var
              if("unknown primitive:caml_string_equal")
               {return entries;}
              else
-              {return [0,f$1,add(root,path,entries[2])];}
+              {return [/* :: */0,f$1,add(root,path,entries[2])];}
              }
            else
-            {return [0,
-                     [1,
+            {return [/* :: */0,
+                     [/* File */1,
                       root,
                       xpath,
                       [246,
@@ -350,7 +356,10 @@ var
          {var acc=0;
           
           try
-           {while(1){acc=[0,Pervasives["input_line"](ic),acc];}return 0;}
+           {while(1){acc=[/* :: */0,Pervasives["input_line"](ic),acc];}
+            
+            return 0;
+            }
           catch(exn$1){if(exn$1=End_of_file){return acc;}else{throw exn$1;}}
           });
     
@@ -361,7 +370,7 @@ var
     
     if(res)
      {if(res[2])
-       {return [0,
+       {return [/* Dir */0,
                 path,
                 Filename["basename"](path),
                 [246,function(param){return My_unix["stat"](path);}],
@@ -496,7 +505,7 @@ var
              
              var path=entry$1[1];
              
-             return [0,
+             return [/* Dir */0,
                      path,
                      name,
                      entry$1[3],
@@ -510,9 +519,13 @@ var
              
              var path$1=entry$1[1];
              
-             return [1,path$1,name$1,entry$1[3],f(path$1,name$1,entry$1[4])];
+             return [/* File */1,
+                     path$1,
+                     name$1,
+                     entry$1[3],
+                     f(path$1,name$1,entry$1[4])];
              
-            case 2:return [2,entry$1[1]];
+            case 2:return [/* Error */2,entry$1[1]];
             }}
         };
     

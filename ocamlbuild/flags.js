@@ -16,11 +16,11 @@ var all_decls=[0,0];
 var
  of_tags=
   function(matched_tags)
-   {return [0,
+   {return [/* S */0,
             List["fold_left"]
              (function(acc,param)
                {if(Tags["does_match"](matched_tags,param[1]))
-                 {return [0,param[2],acc];}
+                 {return [/* :: */0,param[2],acc];}
                 else
                  {return acc;}
                 },
@@ -32,7 +32,9 @@ var match=(Command["tag_handler"][1]=of_tags,0);
 
 var of_tag_list=function(x){return of_tags(Tags["of_list"](x));};
 
-var add_decl=function(decl){return all_decls[1]=[0,decl,all_decls[1]],0;};
+var
+ add_decl=
+  function(decl){return all_decls[1]=[/* :: */0,decl,all_decls[1]],0;};
 
 var
  flag=
@@ -41,7 +43,7 @@ var
     
     var tags$1=Tags["of_list"](tags);
     
-    return add_decl([0,tags$1,flags,deprecated]);
+    return add_decl([/* record */0,tags$1,flags,deprecated]);
     };
 
 var
@@ -51,11 +53,13 @@ var
             (ptag,
              function(param)
               {return flag
-                       (0,[0,Param_tags["make"](ptag,param),tags],flags(param));
+                       (0,
+                        [/* :: */0,Param_tags["make"](ptag,param),tags],
+                        flags(param));
                });
     };
 
-var add=function(x,xs){return [0,x,xs];};
+var add=function(x,xs){return [/* :: */0,x,xs];};
 
 var
  remove=

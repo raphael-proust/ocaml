@@ -13,7 +13,7 @@ var
 
 var magic=Odoc_messages["magic"];
 
-var make_dump=function(a){return [0,magic,a];};
+var make_dump=function(a){return [/* Dump */0,magic,a];};
 
 var
  open_dump=

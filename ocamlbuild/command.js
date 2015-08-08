@@ -28,11 +28,15 @@ var tag_handler=[0,no_tag_handler];
 
 var
  atomize=
-  function(l){return [0,My_std["List"][16](function(x){return [1,x];},l)];};
+  function(l)
+   {return [/* S */0,My_std["List"][16](function(x){return [/* A */1,x];},l)];
+    };
 
 var
  atomize_paths=
-  function(l){return [0,My_std["List"][16](function(x){return [2,x];},l)];};
+  function(l)
+   {return [/* S */0,My_std["List"][16](function(x){return [/* P */2,x];},l)];
+    };
 
 var
  env_path=
@@ -250,7 +254,7 @@ var
     else
      {var target=rtarget[1];}
     
-    return [0,s,target,rtags[1]];
+    return [/* tuple */0,s,target,rtags[1]];
     };
 
 var
@@ -265,7 +269,10 @@ var
     var s=match[1];
     
     return function(param)
-     {if(!quiet){Log["event"]([0,pretend],s,target,tags)}else{}return s;};
+     {if(!quiet){Log["event"]([/* Some */0,pretend],s,target,tags)}else{}
+      
+      return s;
+      };
     };
 
 var
@@ -387,7 +394,7 @@ var
      {return 0;}
     };
 
-var match=[0,add_parallel_stat,dump_parallel_stats];
+var match=[/* tuple */0,add_parallel_stat,dump_parallel_stats];
 
 var dump_parallel_stats$1=match[2];
 
@@ -430,14 +437,15 @@ var
              {case 0:return loop(loop(acc,match$1[1]),param[2]);
               case 1:
                return loop
-                       ([0,
+                       ([/* :: */0,
                          string_print_of_command_spec(match$1[1],quiet,pretend),
                          acc],
                         param[2]);
                
               case 2:
                return loop
-                       ([0,Primitives[2](match$1[1],match$1[2]),acc],param[2]);
+                       ([/* :: */0,Primitives[2](match$1[1],match$1[2]),acc],
+                        param[2]);
                
               }}
           }
@@ -445,7 +453,7 @@ var
          {return acc;}
         };
     
-    return My_std["List"][9](loop(0,[0,cmd,0]));
+    return My_std["List"][9](loop(0,[/* :: */0,cmd,0]));
     };
 
 var
@@ -465,7 +473,7 @@ var
     
     if(jobs$1<0){Pervasives["invalid_arg"]("jobs < 0")}else{}
     
-    if(jobs$1=0){var max_jobs=0;}else{var max_jobs=[0,jobs$1];}
+    if(jobs$1=0){var max_jobs=0;}else{var max_jobs=[/* Some */0,jobs$1];}
     
     var ticker=Log["update"];
     
@@ -492,7 +500,7 @@ var
                 var acc_res=param[1];
                 
                 if(acc_exn)
-                 {return [0,[0,0,acc_res],acc_exn];}
+                 {return [/* tuple */0,[/* :: */0,0,acc_res],acc_exn];}
                 else
                  {try
                    {My_std["List"][14]
@@ -524,9 +532,11 @@ var
                          {return 0;}
                         },
                       cmds$1);
-                    return [0,[0,1,acc_res],0];
+                    return [/* tuple */0,[/* :: */0,1,acc_res],0];
                     }
-                  catch(e){return [0,[0,0,acc_res],[0,e]];}
+                  catch(e)
+                   {return [/* tuple */0,[/* :: */0,0,acc_res],[/* Some */0,e]];
+                    }
                   }
                 },
               [0,0,0],
@@ -535,13 +545,19 @@ var
           var opt_exn=match$1[2];
           
           if(opt_exn)
-           {return [0,[0,My_std["List"][9](match$1[1]),opt_exn[1]]];}
+           {return [/* Some */0,
+                    [/* tuple */0,My_std["List"][9](match$1[1]),opt_exn[1]]];
+            }
           else
            {return 0;}
           }
         else
          {return My_unix["execute_many"]
-                  (max_jobs,[0,ticker],0,[0,display],konts);
+                  (max_jobs,
+                   [/* Some */0,ticker],
+                   0,
+                   [/* Some */0,display],
+                   konts);
           }
         }
       }
@@ -550,7 +566,7 @@ var
 var
  execute=
   function(quiet,pretend,cmd)
-   {var match$1=execute_many(quiet,pretend,[0,cmd,0]);
+   {var match$1=execute_many(quiet,pretend,[/* :: */0,cmd,0]);
     
     if(match$1){throw match$1[1][2];}else{return 0;}
     };
@@ -645,18 +661,18 @@ var
          {switch(x$1[0])
            {case 0:return My_std["List"][20]($$self,x$1[1],acc);
             case 5:return $$self(tag_handler[1](x$1[1]),acc);
-            case 7:return [0,[7,reduce(x$1[1])],acc];
-            default:return [0,x$1,acc];}}
+            case 7:return [/* :: */0,[/* Quote */7,reduce(x$1[1])],acc];
+            default:return [/* :: */0,x$1,acc];}}
         };
     
     var xs=$$self(x,0);
     
-    if(xs){if(xs[2]){return [0,xs];}else{return xs[1];}}else{return 0;}
+    if(xs){if(xs[2]){return [/* S */0,xs];}else{return xs[1];}}else{return 0;}
     };
 
 var list=My_std["List"][20];
 
-var text=function(x,acc){return [0,My_std["Digest"][1](x),acc];};
+var text=function(x,acc){return [/* :: */0,My_std["Digest"][1](x),acc];};
 
 var
  cmd=
@@ -669,9 +685,10 @@ var
         case 1:
          var spec=param[1];
          
-         return function(acc){return [0,string_of_command_spec(spec),acc];};
+         return function(acc)
+          {return [/* :: */0,string_of_command_spec(spec),acc];};
          
-        case 2:return list(text,[0,param[2],param[1]]);
+        case 2:return list(text,[/* :: */0,param[2],param[1]]);
         }}
     };
 
@@ -705,7 +722,7 @@ var
                 {if(My_std["List"][30](dep,acc$1))
                   {return acc$1;}
                  else
-                  {return [0,dep,acc$1];}
+                  {return [/* :: */0,dep,acc$1];}
                  },
                acc,
                deps));
@@ -728,7 +745,10 @@ var
 var
  set_deps_of_tags=
   function(tags,deps)
-   {return all_deps_of_tags[1]=[0,[0,tags,deps],all_deps_of_tags[1]],0;};
+   {return all_deps_of_tags[1]=
+           [/* :: */0,[/* tuple */0,tags,deps],all_deps_of_tags[1]],
+           0;
+    };
 
 var
  dep=
@@ -740,7 +760,9 @@ var
    {return Param_tags["declare"]
             (ptag,
              function(param)
-              {return dep([0,Param_tags["make"](ptag,param),tags],deps(param));
+              {return dep
+                       ([/* :: */0,Param_tags["make"](ptag,param),tags],
+                        deps(param));
                });
     };
 

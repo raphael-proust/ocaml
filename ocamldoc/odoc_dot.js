@@ -89,14 +89,14 @@ var
         {var match=self$neg1[colors];
          
          if(match)
-          {self$neg1[colors]=match[2],0;return [0,match[1]];}
+          {self$neg1[colors]=match[2],0;return [/* Some */0,match[1]];}
          else
           {return 0;}
          },
        node_color,
        function(self$neg1,s)
         {try
-          {return [0,List["assoc"](s,self$neg1[loc_colors])];}
+          {return [/* Some */0,List["assoc"](s,self$neg1[loc_colors])];}
          catch(exn)
           {if(exn=Not_found)
             {"unknown block:(sendself self-1/1165 get_one_color/1148)";
@@ -104,8 +104,10 @@ var
              if(match)
               {var c=match[1];
                
-               self$neg1[loc_colors]=[0,[0,s,c],self$neg1[loc_colors]],0;
-               return [0,c];
+               self$neg1[loc_colors]=
+               [/* :: */0,[/* tuple */0,s,c],self$neg1[loc_colors]],
+               0;
+               return [/* Some */0,c];
                }
              else
               {return 0;}
@@ -197,7 +199,7 @@ var
            
            "unknown block:(sendself self-1/1196 header/1147)";
            Format["fprintf"](fmt,[0,[2,0,0],"%s"],0);
-           var graph=Odoc_info["Dep"][2]([0,dot_reduce[1]],types);
+           var graph=Odoc_info["Dep"][2]([/* Some */0,dot_reduce[1]],types);
            
            "unknown block:(sendself self-1/1196 generate_for_type/1154 fmt/1199)";
            List["iter"](0,graph);

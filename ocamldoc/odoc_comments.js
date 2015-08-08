@@ -32,7 +32,7 @@ var
           
           var match=Odoc_parser["see_info"](Odoc_see_lexer["main"],lexbuf);
           
-          return [0,match[1],MyTexter[1](match[2])];
+          return [/* tuple */0,match[1],MyTexter[1](match[2])];
           }
         catch(exn)
          {if(exn[1]=Odoc_text["Text_syntax"])
@@ -79,15 +79,16 @@ var
              {var match$3=0;}
             
             switch(desc)
-             {case "":var $js=0;default:var $js=[0,MyTexter[1](desc)];}
+             {case "":var $js=0;
+              default:var $js=[/* Some */0,MyTexter[1](desc)];}
             var match$4=Odoc_comments_global["deprecated"][1];
             
             var match$5=Odoc_comments_global["return_value"][1];
             
-            return [0,
+            return [/* tuple */0,
                     mem_nb_chars,
-                    [0,
-                     [0,
+                    [/* Some */0,
+                     [/* record */0,
                       $js,
                       Odoc_comments_global["authors"][1],
                       Odoc_comments_global["version"][1],
@@ -95,18 +96,22 @@ var
                       Odoc_comments_global["since"][1],
                       Odoc_merge["merge_before_tags"]
                        (List["map"]
-                         (function(param){return [0,param[1],MyTexter[1](param[2])];},
+                         (function(param)
+                           {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
                           Odoc_comments_global["before"][1])),
-                      match$4?[0,MyTexter[1](match$4[1])]:0,
+                      match$4?[/* Some */0,MyTexter[1](match$4[1])]:0,
                       List["map"]
-                       (function(param){return [0,param[1],MyTexter[1](param[2])];},
+                       (function(param)
+                         {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
                         Odoc_comments_global["params"][1]),
                       List["map"]
-                       (function(param){return [0,param[1],MyTexter[1](param[2])];},
+                       (function(param)
+                         {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
                         Odoc_comments_global["raised_exceptions"][1]),
-                      match$5?[0,MyTexter[1](match$5[1])]:0,
+                      match$5?[/* Some */0,MyTexter[1](match$5[1])]:0,
                       List["map"]
-                       (function(param){return [0,param[1],MyTexter[1](param[2])];},
+                       (function(param)
+                         {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
                         Odoc_comments_global["customs"][1])]]];
             }
           else
@@ -214,9 +219,9 @@ var
         var match$1=Odoc_parser["main"](Odoc_lexer["simple"],lexbuf);
         
         if(match$1)
-         {return [0,
+         {return [/* tuple */0,
                   Odoc_comments_global["nb_chars"][1],
-                  [0,Odoc_types["dummy_info"]]];
+                  [/* Some */0,Odoc_types["dummy_info"]]];
           }
         else
          {return [0,0,0];}
@@ -264,7 +269,7 @@ var
         
         if(match$1)
          {if(!strict||nothing_before_simple_comment(s))
-           {return [0,match[1],[0,match$1[1]]];}
+           {return [/* tuple */0,match[1],[/* Some */0,match$1[1]]];}
           else
            {return [0,0,0];}
           }
@@ -288,11 +293,11 @@ var
               var len=match[1];
               
               if(match$1)
-               {return f(len+cur_len,[0,match$1[1]]);}
+               {return f(len+cur_len,[/* Some */0,match$1[1]]);}
               else
-               {return [0,cur_len+len,cur_d];}
+               {return [/* tuple */0,cur_len+len,cur_d];}
               }
-            catch(exn){return [0,cur_len,cur_d];}
+            catch(exn){return [/* tuple */0,cur_len,cur_d];}
             };
         
         return f(0,0);
@@ -314,11 +319,11 @@ var
               var len=match[1];
               
               if(match$1)
-               {return f(len+cur_len,[0,match$1[1]]);}
+               {return f(len+cur_len,[/* Some */0,match$1[1]]);}
               else
-               {return [0,cur_len+len,cur_d];}
+               {return [/* tuple */0,cur_len+len,cur_d];}
               }
-            catch(exn){return [0,cur_len,cur_d];}
+            catch(exn){return [/* tuple */0,cur_len,cur_d];}
             };
         
         return f(0,0);
@@ -339,10 +344,11 @@ var
               
               var new_s=$$String["sub"](s2,n2,s2["length"]-n2);
               
-              return iter(Pervasives["@"](acc,[0,match$1[1],0]),n+n2,new_s);
+              return iter
+                      (Pervasives["@"](acc,[/* :: */0,match$1[1],0]),n+n2,new_s);
               }
             else
-             {return [0,n,acc];}
+             {return [/* tuple */0,n,acc];}
             };
         
         return iter(0,0,s);
@@ -373,7 +379,7 @@ var
                 "unknown primitive:caml_equal")
                {return [0,0,0];}
               else
-               {return [0,len,[0,d]];}
+               {return [/* tuple */0,len,[/* Some */0,d]];}
               }
             catch(exn){if(exn=Not_found){return [0,0,0];}else{throw exn;}}
             }
@@ -402,9 +408,12 @@ var
            (blank_line_outside_simple
              (file,$$String["sub"](s,len,s["length"]-len))||
             "unknown primitive:caml_equal")
-           {var match$2=[0,0,special_coms];}
+           {var match$2=[/* tuple */0,0,special_coms];}
           else
-           {var match$2=[0,[0,h],List["rev"](match$1[2])];}
+           {var
+             match$2=
+              [/* tuple */0,[/* Some */0,h],List["rev"](match$1[2])];
+            }
           }
         else
          {var match$2=[0,0,0];}
@@ -416,14 +425,16 @@ var
              {var match$3=sc[1];
               
               if(match$3)
-               {return Pervasives["@"](acc,[0,f_create_ele(match$3[1]),0]);}
+               {return Pervasives["@"]
+                        (acc,[/* :: */0,f_create_ele(match$3[1]),0]);
+                }
               else
                {return acc;}
               },
             0,
             match$2[2]);
         
-        return [0,match$2[1],ele_comments];
+        return [/* tuple */0,match$2[1],ele_comments];
         };
     
     return [0,

@@ -72,7 +72,7 @@ var
     else
      {var seed=0;}
     
-    return [0,0,"unknown primitive:caml_make_vect",seed,s];
+    return /* record */[0,0,"unknown primitive:caml_make_vect",seed,s];
     };
 
 var
@@ -94,7 +94,10 @@ var
 var
  copy=
   function(h)
-   {var init=h;return [0,init[1],$$Array["copy"](h[2]),init[3],init[4]];};
+   {var init=h;
+    
+    return /* record */[0,init[1],$$Array["copy"](h[2]),init[3],init[4]];
+    };
 
 var length=function(h){return h[1];};
 
@@ -124,7 +127,7 @@ var
             insert_bucket(rest);
             var nidx=indexfun(h,key);
             
-            return ndata[nidx]=[0,key,data,ndata[nidx]],0;
+            return ndata[nidx]=/* Cons */[0,key,data,ndata[nidx]],0;
             }
           else
            {return 0;}
@@ -150,7 +153,7 @@ var
   function(h,key,info)
    {var i=key_index(h,key);
     
-    var bucket=[0,key,info,h[2][i]];
+    var bucket=/* Cons */[0,key,info,h[2][i]];
     
     h[2][i]=bucket,0;
     h[1]=h[1]+1,0;
@@ -173,7 +176,7 @@ var
           if("unknown primitive:caml_compare"=0)
            {h[1]=h[1]-1,0;return next;}
           else
-           {return [0,k,i,remove_bucket(next)];}
+           {return /* Cons */[0,k,i,remove_bucket(next)];}
           }
         else
          {return 0;}
@@ -266,7 +269,7 @@ var
           var k=param[1];
           
           if("unknown primitive:caml_compare"=0)
-           {return [0,d,find_in_bucket(rest)];}
+           {return /* :: */[0,d,find_in_bucket(rest)];}
           else
            {return find_in_bucket(rest);}
           }
@@ -291,9 +294,9 @@ var
           var k=param[1];
           
           if("unknown primitive:caml_compare"=0)
-           {return [0,key,info,next];}
+           {return /* Cons */[0,key,info,next];}
           else
-           {return [0,k,i,replace_bucket(next)];}
+           {return /* Cons */[0,k,i,replace_bucket(next)];}
           }
         else
          {throw Not_found;}
@@ -307,7 +310,7 @@ var
      {return h[2][i]=replace_bucket(l),0;}
     catch(exn$2)
      {if(exn$2=Not_found)
-       {h[2][i]=[0,key,info,l],0;
+       {h[2][i]=/* Cons */[0,key,info,l],0;
         h[1]=h[1]+1,0;
         if(h[1]>h[2]["length"]<<1){return resize(key_index,h);}else{return 0;}
         }
@@ -411,7 +414,7 @@ var
     $$Array["iter"]
      (function(b){var l=bucket_length(0,b);return histo[l]=histo[l]+1,0;},
       h[2]);
-    return [0,h[1],h[2]["length"],mbl,histo];
+    return /* record */[0,h[1],h[2]["length"],mbl,histo];
     };
 
 var
@@ -432,7 +435,7 @@ var
       function(h,key,info)
        {var i=key_index$1(h,key);
         
-        var bucket=[0,key,info,h[2][i]];
+        var bucket=/* Cons */[0,key,info,h[2][i]];
         
         h[2][i]=bucket,0;
         h[1]=h[1]+1,0;
@@ -458,7 +461,7 @@ var
               if(H[1](k,key))
                {h[1]=h[1]-1,0;return next;}
               else
-               {return [0,k,i,remove_bucket(next)];}
+               {return /* Cons */[0,k,i,remove_bucket(next)];}
               }
             else
              {return 0;}
@@ -548,7 +551,7 @@ var
               var k=param[1];
               
               if(H[1](k,key))
-               {return [0,d,find_in_bucket(rest)];}
+               {return /* :: */[0,d,find_in_bucket(rest)];}
               else
                {return find_in_bucket(rest);}
               }
@@ -573,9 +576,9 @@ var
               var k=param[1];
               
               if(H[1](k,key))
-               {return [0,key,info,next];}
+               {return /* Cons */[0,key,info,next];}
               else
-               {return [0,k,i,replace_bucket(next)];}
+               {return /* Cons */[0,k,i,replace_bucket(next)];}
               }
             else
              {throw Not_found;}
@@ -589,7 +592,7 @@ var
          {return h[2][i]=replace_bucket(l),0;}
         catch(exn$2)
          {if(exn$2=Not_found)
-           {h[2][i]=[0,key,info,l],0;
+           {h[2][i]=/* Cons */[0,key,info,l],0;
             h[1]=h[1]+1,0;
             if(h[1]>h[2]["length"]<<1)
              {return resize(key_index$1,h);}

@@ -4,7 +4,9 @@ var Primitives=require("Primitives");
 var Int64ops=require("Int64ops");
 
 
-var root=[0,Int64ops["_0"],-2,Primitives["std_io"],0,0,0,root,0,0,0];
+var
+ root=
+  [/* record */0,Int64ops["_0"],-2,Primitives["std_io"],0,0,0,root,0,0,0];
 
 var checkpoints=[0,0];
 
@@ -29,7 +31,7 @@ var
       var exit$1;
       
       if(match$2!=2)
-       {if(match$2>=4){exit$1=6;}else{return [0,match$1[4]];}}
+       {if(match$2>=4){exit$1=6;}else{return [/* Some */0,match$1[4]];}}
       else
        {exit$1=6;}
       
@@ -56,7 +58,11 @@ var
       var exit$1;
       
       if(match$2!=2)
-       {if(match$2>=4){exit$1=2;}else{return [0,[0,match$1[4],match$1[3]]];}}
+       {if(match$2>=4)
+         {exit$1=2;}
+        else
+         {return [/* Some */0,[/* tuple */0,match$1[4],match$1[3]]];}
+        }
       else
        {exit$1=2;}
       

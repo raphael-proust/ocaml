@@ -345,7 +345,7 @@ var
     
     var html_frame_file=Pervasives["^"](prefix,"-frame.html");
     
-    return [0,html_file,html_frame_file];
+    return [/* tuple */0,html_file,html_frame_file];
     };
 
 var
@@ -669,7 +669,7 @@ var
       function(self$neg1,b,$staropt$star,code)
        {if($staropt$star){var with_pre=$staropt$star[1];}else{var with_pre=1;}
         
-        return Odoc_ocamlhtml["html_of_code"](b,[0,with_pre],code);
+        return Odoc_ocamlhtml["html_of_code"](b,[/* Some */0,with_pre],code);
         });
     return function(env,$$self)
      {return CamlinternalOO["create_object_opt"]($$self,$$class);};
@@ -975,7 +975,10 @@ var
                   else
                    {var match=s[n];
                     
-                    if(match!=10){return [0,n];}else{return iter_first(n+1);}
+                    if(match!=10)
+                     {return [/* Some */0,n];}
+                    else
+                     {return iter_first(n+1);}
                     }
                   };
               
@@ -992,7 +995,10 @@ var
                     else
                      {var match$1=s[n];
                       
-                      if(match$1!=9){return [0,n];}else{return iter_last(n-1);}
+                      if(match$1!=9)
+                       {return [/* Some */0,n];}
+                      else
+                       {return iter_last(n-1);}
                       }
                     };
                 
@@ -1115,7 +1121,7 @@ var
           if(n>6)
            {var
              match=
-              [0,
+              [/* tuple */0,
                Printf["sprintf"]
                 ([0,[11,'div class="h',[4,0,0,0,[12,34,0]]],'div class="h%d"'],
                  n),
@@ -1124,7 +1130,7 @@ var
           else
            {var t$1=Printf["sprintf"]([0,[12,104,[4,0,0,0,0]],"h%d"],n);
             
-            var match=[0,t$1,t$1];
+            var match=[/* tuple */0,t$1,t$1];
             }
           
           bs(b,"<");
@@ -1159,7 +1165,7 @@ var
             var
              h=
               function(name$1)
-               {return [1,Odoc_info["use_hidden_modules"](name$1)];};
+               {return [/* Code */1,Odoc_info["use_hidden_modules"](name$1)];};
             
             var exit;
             
@@ -1169,33 +1175,45 @@ var
                 case 1:exit=223;
                 case 2:exit=223;
                 case 3:exit=223;
-                case 4:var match=[0,Naming[13](Naming[6],name),h(name)];
-                case 5:var match=[0,Naming[13](Naming[1],name),h(name)];
-                case 6:var match=[0,Naming[13](Naming[4],name),h(name)];
-                case 7:var match=[0,Naming[13](Naming[5],name),h(name)];
-                case 8:var match=[0,Naming[13](Naming[7],name),h(name)];
-                case 9:var match=[0,Naming[13](Naming[8],name),h(name)];
-                case 10:var match=[0,Naming[19](name),h(name)];
-                case 11:var match=[0,Naming[20](name),h(name)];
+                case 4:
+                 var match=[/* tuple */0,Naming[13](Naming[6],name),h(name)];
+                case 5:
+                 var match=[/* tuple */0,Naming[13](Naming[1],name),h(name)];
+                case 6:
+                 var match=[/* tuple */0,Naming[13](Naming[4],name),h(name)];
+                case 7:
+                 var match=[/* tuple */0,Naming[13](Naming[5],name),h(name)];
+                case 8:
+                 var match=[/* tuple */0,Naming[13](Naming[7],name),h(name)];
+                case 9:
+                 var match=[/* tuple */0,Naming[13](Naming[8],name),h(name)];
+                case 10:var match=[/* tuple */0,Naming[19](name),h(name)];
+                case 11:var match=[/* tuple */0,Naming[20](name),h(name)];
                 }
               }
             else
              {var
                match=
-                [0,
+                [/* tuple */0,
                  Naming[36](name),
-                 [5,[0,[0,Odoc_info["string_of_text"](kind[1])],0]]];
+                 [/* Italic */5,
+                  [/* :: */0,
+                   [/* Raw */0,Odoc_info["string_of_text"](kind[1])],
+                   0]]];
               }
             
             switch(exit)
              {case 223:
-               var match$1=Naming[11](name);var match=[0,match$1[1],h(name)];
+               var match$1=Naming[11](name);
+               
+               var match=[/* tuple */0,match$1[1],h(name)];
+               
               }
             
             if(text_opt)
              {var text$1=text_opt[1];}
             else
-             {var text$1=[0,match[2],0];}
+             {var text$1=[/* :: */0,match[2],0];}
             
             bs(b,Pervasives["^"]('<a href="',Pervasives["^"](match[1],'">')));
             "unknown block:(sendself self-2/1620 html_of_text/1419 b/1621 text/1634)";
@@ -1206,7 +1224,7 @@ var
            {if(text_opt)
              {var text$2=text_opt[1];}
             else
-             {var text$2=[0,[1,name],0];}
+             {var text$2=[/* :: */0,[/* Code */1,name],0];}
             
             "unknown block:(sendself self-2/1620 html_of_text/1419 b/1621 text/1626)";
             }
@@ -1478,9 +1496,19 @@ var
           var see_ref=param[1];
           
           switch(see_ref)
-           {case 0:var t_ref=[0,[15,see_ref[1],t],0];
-            case 1:var t_ref=[0,[1,see_ref[1]],[0,[0," "],t]];
-            case 2:var t_ref=[0,[5,[0,[0,see_ref[1]],0]],[0,[0," "],t]];
+           {case 0:var t_ref=[/* :: */0,[/* Link */15,see_ref[1],t],0];
+            case 1:
+             var
+              t_ref=
+               [/* :: */0,[/* Code */1,see_ref[1]],[/* :: */0,[0," "],t]];
+             
+            case 2:
+             var
+              t_ref=
+               [/* :: */0,
+                [/* Italic */5,[/* :: */0,[/* Raw */0,see_ref[1]],0]],
+                [/* :: */0,[0," "],t]];
+             
             }
           
           "unknown block:(sendself self-3/1709 html_of_text/1667 b/1710 t_ref/1713)";
@@ -2280,7 +2308,7 @@ var
                if(List["mem"](n,acc))
                 {return iter(acc,q);}
                else
-                {return iter([0,n,acc],q);}
+                {return iter([/* :: */0,n,acc],q);}
                }
              else
               {return acc;}
@@ -2300,9 +2328,12 @@ var
            var n=sorted_levels[1];
            
            if(match)
-            {var match$1=[0,[0,n],[0,match[1]]];}
+            {var
+              match$1=
+               [/* tuple */0,[/* Some */0,n],[/* Some */0,match[1]]];
+             }
            else
-            {var match$1=[0,[0,n],0];}
+            {var match$1=[/* tuple */0,[/* Some */0,n],0];}
            }
          else
           {var match$1=[0,0,0];}
@@ -3707,7 +3738,7 @@ var
            
            var match$1=Naming[11](m[1]);
            
-           var match$2=[0,match$1[1],m[1]];
+           var match$2=[/* tuple */0,match$1[1],m[1]];
            
            bp
             (b,
@@ -3869,7 +3900,7 @@ var
          bp
           (b,
            [0,[11,'<span name="',[2,0,[11,'">',0]]],'<span name="%s">'],
-           Naming[14]([0,c[1],0,0,0,1,0,Odoc_info["dummy_loc"],0]));
+           Naming[14]([/* record */0,c[1],0,0,0,1,0,Odoc_info["dummy_loc"],0]));
          'unknown block:(sendself self-4/2429 keyword/1879 "class")';
          bs(b,Pervasives["^"](0," "));
          if(c[5])
@@ -3934,7 +3965,8 @@ var
          bp
           (b,
            [0,[11,'<span id="',[2,0,[11,'">',0]]],'<span id="%s">'],
-           Naming[14]([0,ct[1],0,0,0,1,0,Odoc_info["dummy_loc"],0]));
+           Naming[14]
+            ([/* record */0,ct[1],0,0,0,1,0,Odoc_info["dummy_loc"],0]));
          'unknown block:(sendself self-4/2442 keyword/1879 "class type")';
          bs(b,Pervasives["^"](0," "));
          if(ct[5])
@@ -3988,9 +4020,12 @@ var
              var name=match[1];
              
              if(cct_opt)
-              {var c=cct_opt[1][1];var match$1=[0,c[1],Naming[11](c[1])[1]];}
+              {var c=cct_opt[1][1];
+               
+               var match$1=[/* tuple */0,c[1],Naming[11](c[1])[1]];
+               }
              else
-              {var match$1=[0,name,Naming[11](name)[1]];}
+              {var match$1=[/* tuple */0,name,Naming[11](name)[1]];}
              
              var
               new_v=
@@ -4006,12 +4041,12 @@ var
                         (match$1[1],
                          Pervasives["^"]("</a>","</td></tr>\n</table>\n"))))));
              
-             return [0,n[1],new_v,n[3]];
+             return [/* record */0,n[1],new_v,n[3]];
              };
          
          var a=$$Array["map"](f,dag[1]);
          
-         return Odoc_dag2html["html_of_dag"]([0,a]);
+         return Odoc_dag2html["html_of_dag"]([/* record */0,a]);
          },
        html_of_module_comment,
        function(self$neg4,b,text$1)
@@ -4031,7 +4066,13 @@ var
             {switch(match){}}
            else
             {switch(match[0])
-              {case 0:var text2=[0,[13,2,0,[0,[0,match[1]],0]],text$1[2]];
+              {case 0:
+                var
+                 text2=
+                  [/* :: */0,
+                   [/* Title */13,2,0,[/* :: */0,[/* Raw */0,match[1]],0]],
+                   text$1[2]];
+                
                default:exit=63;}}
            }
          else
@@ -4055,22 +4096,26 @@ var
                
                var match$2=inh$2[3];
                
-               return [0,
-                       [15,match$1[1],[0,[1,real_name],0]],
-                       match$2?[0,[0,"    "],match$2[1]]:0];
+               return [/* :: */0,
+                       [/* Link */15,
+                        match$1[1],
+                        [/* :: */0,[/* Code */1,real_name],0]],
+                       match$2?[/* :: */0,[0,"    "],match$2[1]]:0];
                }
              else
               {var match$3=inh$2[3];
                
-               return [0,[1,inh$2[1]],match$3?[0,[0,"    "],match$3[1]]:0];
+               return [/* :: */0,
+                       [/* Code */1,inh$2[1]],
+                       match$3?[/* :: */0,[0,"    "],match$3[1]]:0];
                }
              };
          
          var
           text$1=
-           [0,
-            [4,[0,[0,Odoc_messages["inherits"]],0]],
-            [0,[10,List["map"](f,inher_l)],0]];
+           [/* :: */0,
+            [/* Bold */4,[/* :: */0,[/* Raw */0,Odoc_messages["inherits"]],0]],
+            [/* :: */0,[/* List */10,List["map"](f,inher_l)],0]];
          
          "unknown block:(sendself self-4/2479 html_of_text/2177 b/2480 text/2491)";
          },
@@ -4226,8 +4271,8 @@ var
                if(match)
                 {var ele2=match[1];
                  
-                 f_generate(pre_opt,[0,ele2],ele);
-                 return iter([0,ele],[0,ele2,match[2]]);
+                 f_generate(pre_opt,[/* Some */0,ele2],ele);
+                 return iter([/* Some */0,ele],[/* :: */0,ele2,match[2]]);
                  }
                else
                 {return f_generate(pre_opt,0,ele);}
@@ -4719,47 +4764,47 @@ var
       '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n',
       0,
       $$self$1[default_style_options]=
-      [0,
+      [/* :: */0,
        ".keyword { font-weight : bold ; color : Red }",
-       [0,
+       [/* :: */0,
         ".keywordsign { color : #C04600 }",
-        [0,
+        [/* :: */0,
          ".superscript { font-size : 4 }",
-         [0,
+         [/* :: */0,
           ".subscript { font-size : 4 }",
-          [0,
+          [/* :: */0,
            ".comment { color : Green }",
-           [0,
+           [/* :: */0,
             ".constructor { color : Blue }",
-            [0,
+            [/* :: */0,
              ".type { color : #5C6585 }",
-             [0,
+             [/* :: */0,
               ".string { color : Maroon }",
-              [0,
+              [/* :: */0,
                ".warning { color : Red ; font-weight : bold }",
-               [0,
+               [/* :: */0,
                 ".info { margin-left : 3em; margin-right: 3em }",
-                [0,
+                [/* :: */0,
                  ".param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }",
-                 [0,
+                 [/* :: */0,
                   ".code { color : #465F91 ; }",
-                  [0,
+                  [/* :: */0,
                    ".typetable { border-style : hidden }",
-                   [0,
+                   [/* :: */0,
                     ".paramstable { border-style : hidden ; padding: 5pt 5pt}",
-                    [0,
+                    [/* :: */0,
                      "tr { background-color : White }",
-                     [0,
+                     [/* :: */0,
                       "td.typefieldcomment { background-color : #FFFFFF ; font-size: smaller ;}",
-                      [0,
+                      [/* :: */0,
                        "div.sig_block {margin-left: 2em}",
-                       [0,
+                       [/* :: */0,
                         "*:target { background: yellow; }",
-                        [0,
+                        [/* :: */0,
                          "body {font: 13px sans-serif; color: black; text-align: left; padding: 5px; margin: 0}",
-                         [0,
+                         [/* :: */0,
                           "h1 { font-size : 20pt ; text-align: center; }",
-                          [0,
+                          [/* :: */0,
                            Pervasives["^"]
                             ("h2 { font-size : 20pt ; border: 1px solid #000000; ",
                              Pervasives["^"]
@@ -4767,7 +4812,7 @@ var
                                Pervasives["^"]
                                 ("text-align: center; background-color: #90BDFF ;",
                                  "padding: 2px; }"))),
-                           [0,
+                           [/* :: */0,
                             Pervasives["^"]
                              ("h3 { font-size : 20pt ; border: 1px solid #000000; ",
                               Pervasives["^"]
@@ -4775,7 +4820,7 @@ var
                                 Pervasives["^"]
                                  ("text-align: center; background-color: #90DDFF ;",
                                   "padding: 2px; }"))),
-                            [0,
+                            [/* :: */0,
                              Pervasives["^"]
                               ("h4 { font-size : 20pt ; border: 1px solid #000000; ",
                                Pervasives["^"]
@@ -4783,7 +4828,7 @@ var
                                  Pervasives["^"]
                                   ("text-align: center; background-color: #90EDFF ;",
                                    "padding: 2px; }"))),
-                             [0,
+                             [/* :: */0,
                               Pervasives["^"]
                                ("h5 { font-size : 20pt ; border: 1px solid #000000; ",
                                 Pervasives["^"]
@@ -4791,7 +4836,7 @@ var
                                   Pervasives["^"]
                                    ("text-align: center; background-color: #90FDFF ;",
                                     "padding: 2px; }"))),
-                              [0,
+                              [/* :: */0,
                                Pervasives["^"]
                                 ("h6 { font-size : 20pt ; border: 1px solid #000000; ",
                                  Pervasives["^"]
@@ -4799,7 +4844,7 @@ var
                                    Pervasives["^"]
                                     ("text-align: center; background-color: #90BDFF ; ",
                                      "padding: 2px; }"))),
-                               [0,
+                               [/* :: */0,
                                 Pervasives["^"]
                                  ("div.h7 { font-size : 20pt ; border: 1px solid #000000; ",
                                   Pervasives["^"]
@@ -4807,7 +4852,7 @@ var
                                     Pervasives["^"]
                                      ("text-align: center; background-color: #E0FFFF ; ",
                                       "padding: 2px; }"))),
-                                [0,
+                                [/* :: */0,
                                  Pervasives["^"]
                                   ("div.h8 { font-size : 20pt ; border: 1px solid #000000; ",
                                    Pervasives["^"]
@@ -4815,7 +4860,7 @@ var
                                      Pervasives["^"]
                                       ("text-align: center; background-color: #F0FFFF ; ",
                                        "padding: 2px; }"))),
-                                 [0,
+                                 [/* :: */0,
                                   Pervasives["^"]
                                    ("div.h9 { font-size : 20pt ; border: 1px solid #000000; ",
                                     Pervasives["^"]

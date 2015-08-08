@@ -24,7 +24,7 @@ var
    {var name=next_name[1];
     
     next_name[0]++;
-    Hashtbl["add"](named_values,name,[0,v,ty]);
+    Hashtbl["add"](named_values,name,[/* tuple */0,v,ty]);
     return name;
     };
 
@@ -38,7 +38,9 @@ var
    {if(depth<=0)
      {var n=name_value(obj,ty);
       
-      return [0,[12,Pervasives["^"]("$",Pervasives["string_of_int"](n))]];
+      return [/* Some */0,
+              [/* Oval_stuff */12,
+               Pervasives["^"]("$",Pervasives["string_of_int"](n))]];
       }
     else
      {return 0;}

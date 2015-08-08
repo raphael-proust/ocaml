@@ -15,7 +15,10 @@ var
   function(source,lexbuf,fmt)
    {return Printf["ksprintf"]
             (function(s)
-              {throw [0,$$Error,[0,s,Loc["of_lexbuf"](source,lexbuf)]];},
+              {throw [0,
+                      $$Error,
+                      [/* tuple */0,s,Loc["of_lexbuf"](source,lexbuf)]];
+               },
              fmt);
     };
 
@@ -23,7 +26,8 @@ var empty=[0,0,0];
 
 var
  locate=
-  function(source,lexbuf,txt){return [0,txt,Loc["of_lexbuf"](source,lexbuf)];};
+  function(source,lexbuf,txt)
+   {return [/* tuple */0,txt,Loc["of_lexbuf"](source,lexbuf)];};
 
 var sublex=function(lexer,s){return lexer(Lexing["from_string"](s));};
 
@@ -64,9 +68,9 @@ var
        {case 0:
          var k=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]+-1);
          
-         var x=[0,k,space_sep_strings_nl(source,lexbuf)];
+         var x=[/* tuple */0,k,space_sep_strings_nl(source,lexbuf)];
          
-         return [0,x,ocamldep_output(source,lexbuf)];
+         return [/* :: */0,x,ocamldep_output(source,lexbuf)];
          
         case 1:return 0;
         case 2:
@@ -108,7 +112,7 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,word,space_sep_strings_nl(source,lexbuf)];
+         return [/* :: */0,word,space_sep_strings_nl(source,lexbuf)];
          
         case 1:Lexing["new_line"](lexbuf);return 0;
         case 2:
@@ -150,7 +154,7 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,word,space_sep_strings(source,lexbuf)];
+         return [/* :: */0,word,space_sep_strings(source,lexbuf)];
          
         case 1:return 0;
         case 2:
@@ -194,7 +198,7 @@ var
         case 2:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,word,blank_sep_strings(source,lexbuf)];
+         return [/* :: */0,word,blank_sep_strings(source,lexbuf)];
          
         case 3:exit=10;
         case 4:
@@ -237,12 +241,12 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
-         return [0,word,0];
+         return [/* :: */0,word,0];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,word$1,comma_sep_strings_aux(source,lexbuf)];
+         return [/* :: */0,word$1,comma_sep_strings_aux(source,lexbuf)];
          
         case 2:return 0;
         case 3:
@@ -281,7 +285,7 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,word,comma_sep_strings_aux(source,lexbuf)];
+         return [/* :: */0,word,comma_sep_strings_aux(source,lexbuf)];
          
         case 1:return 0;
         case 2:
@@ -322,12 +326,14 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
-         return [0,word,0];
+         return [/* :: */0,word,0];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,word$1,comma_or_blank_sep_strings_aux(source,lexbuf)];
+         return [/* :: */0,
+                 word$1,
+                 comma_or_blank_sep_strings_aux(source,lexbuf)];
          
         case 2:return 0;
         case 3:
@@ -378,7 +384,7 @@ var
       else
        {var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
         
-        return [0,word,comma_or_blank_sep_strings_aux(source,lexbuf)];
+        return [/* :: */0,word,comma_or_blank_sep_strings_aux(source,lexbuf)];
         }
       }
     };
@@ -405,12 +411,16 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return [0,word,parse_environment_path_aux_w(source,lexbuf)];
+         return [/* :: */0,word,parse_environment_path_aux_w(source,lexbuf)];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [0,"",[0,word$1,parse_environment_path_aux_w(source,lexbuf)]];
+         return [/* :: */0,
+                 "",
+                 [/* :: */0,
+                  word$1,
+                  parse_environment_path_aux_w(source,lexbuf)]];
          
         case 2:return 0;
         }
@@ -439,7 +449,7 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [0,word,parse_environment_path_aux_w(source,lexbuf)];
+         return [/* :: */0,word,parse_environment_path_aux_w(source,lexbuf)];
          
         case 1:return 0;
         case 2:
@@ -476,12 +486,14 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return [0,word,parse_environment_path_aux(source,lexbuf)];
+         return [/* :: */0,word,parse_environment_path_aux(source,lexbuf)];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [0,"",[0,word$1,parse_environment_path_aux(source,lexbuf)]];
+         return [/* :: */0,
+                 "",
+                 [/* :: */0,word$1,parse_environment_path_aux(source,lexbuf)]];
          
         case 2:return 0;
         }
@@ -510,7 +522,7 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [0,word,parse_environment_path_aux(source,lexbuf)];
+         return [/* :: */0,word,parse_environment_path_aux(source,lexbuf)];
          
         case 1:return 0;
         case 2:
@@ -582,7 +594,7 @@ var
          
          var rest=conf_lines(dir,source,lexbuf);
          
-         return [0,[0,bexpr,v2],rest];
+         return [/* :: */0,[/* tuple */0,bexpr,v2],rest];
          
         case 5:
          return error
@@ -623,12 +635,16 @@ var
        {case 0:
          var tag=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [0,x[1],[0,locate(source,lexbuf,tag),x[2]]];
+         return [/* record */0,
+                 x[1],
+                 [/* :: */0,locate(source,lexbuf,tag),x[2]]];
          
         case 1:
          var tag$1=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [0,[0,locate(source,lexbuf,tag$1),x[1]],x[2]];
+         return [/* record */0,
+                 [/* :: */0,locate(source,lexbuf,tag$1),x[1]],
+                 x[2]];
          
         case 2:
          return error
@@ -712,15 +728,15 @@ var
        {case 0:
          var prefix=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return [0,
-                 [0,970337770,prefix],
+         return [/* :: */0,
+                 [/* `Word */0,970337770,prefix],
                  path_scheme(patt_allowed,source,lexbuf)];
          
         case 1:
          var $$var=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+2,lexbuf[6]+-1);
          
-         return [0,
-                 [0,4298439,[0,$$var,0]],
+         return [/* :: */0,
+                 [/* `Var */0,4298439,[/* tuple */0,$$var,0]],
                  path_scheme(patt_allowed,source,lexbuf)];
          
         case 2:
@@ -733,8 +749,10 @@ var
             patt$1=
              My_std["String"][14]($$unescape(Lexing["from_string"](patt)));
            
-           return [0,
-                   [0,4298439,[0,$$var$1,Glob["parse"](0,patt$1)]],
+           return [/* :: */0,
+                   [/* `Var */0,
+                    4298439,
+                    [/* tuple */0,$$var$1,Glob["parse"](0,patt$1)]],
                    path_scheme(patt_allowed,source,lexbuf)];
            }
          else
@@ -753,7 +771,7 @@ var
            }
          
         case 3:
-         return [0,
+         return [/* :: */0,
                  [0,4298439,[0,"",0]],
                  path_scheme(patt_allowed,source,lexbuf)];
          
@@ -786,12 +804,12 @@ var
        {case 0:
          var c=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]+1);
          
-         return [0,c,$$unescape(lexbuf)];
+         return [/* :: */0,c,$$unescape(lexbuf)];
          
         case 1:
          var c$1=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]);
          
-         return [0,c$1,$$unescape(lexbuf)];
+         return [/* :: */0,c$1,$$unescape(lexbuf)];
          
         case 2:return 0;
         }
@@ -838,7 +856,7 @@ var
       
       var l=Lexing["sub_lexeme"](lexbuf,lexbuf[10][10],lexbuf[10][11]);
       
-      return [0,n,d,v,a,lo,l];
+      return [/* tuple */0,n,d,v,a,lo,l];
       }
     };
 
@@ -909,7 +927,7 @@ var
       
       var param=Lexing["sub_lexeme_opt"](lexbuf,lexbuf[10][2],lexbuf[10][1]);
       
-      return [0,name,param];
+      return [/* tuple */0,name,param];
       }
     };
 

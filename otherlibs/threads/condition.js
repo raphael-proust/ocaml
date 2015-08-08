@@ -5,14 +5,14 @@ var Thread=require("Thread");
 var Mutex=require("Mutex");
 
 
-var create=function(param){return [0,0];};
+var create=function(param){return [/* record */0,0];};
 
 var
  wait=
   function(cond,mut)
    {Thread["critical_section"][1]=1,0;
     Mutex["unlock"](mut);
-    cond[1]=[0,Thread["self"](0),cond[1]],0;
+    cond[1]=[/* :: */0,Thread["self"](0),cond[1]],0;
     Thread["sleep"](0);
     return Mutex["lock"](mut);
     };

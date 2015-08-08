@@ -16,9 +16,9 @@ var
         var h2=l2[1];
         
         if(order(h1,h2))
-         {return [0,h1,merge(order,t1,l2)];}
+         {return /* :: */[0,h1,merge(order,t1,l2)];}
         else
-         {return [0,h2,merge(order,l1,t2)];}
+         {return /* :: */[0,h2,merge(order,l1,t2)];}
         }
       else
        {return l1;}
@@ -45,12 +45,14 @@ var
             
             var e2=match[1];
             
-            return [0,
-                    order(e1,e2)?[0,e1,[0,e2,0]]:[0,e2,[0,e1,0]],
+            return /* :: */[0,
+                    order(e1,e2)
+                     ?/* :: */[0,e1,/* :: */[0,e2,0]]
+                     :/* :: */[0,e2,/* :: */[0,e1,0]],
                     initlist(rest)];
             }
           else
-           {return [0,[0,e,0],0];}
+           {return /* :: */[0,/* :: */[0,e,0],0];}
           }
         else
          {return 0;}
@@ -71,7 +73,7 @@ var
             
             var l1=x[1];
             
-            return [0,merge(order,l1,l2),merge2(rest)];
+            return /* :: */[0,merge(order,l1,l2),merge2(rest)];
             }
           else
            {exit=11;}

@@ -17,10 +17,10 @@ var
         
         var hr=height(r);
         
-        return [0,l,x,d,r,hl>=hr?hl+1:hr+1];
+        return /* Node */[0,l,x,d,r,hl>=hr?hl+1:hr+1];
         };
     
-    var singleton=function(x,d){return [0,0,x,d,0,1];};
+    var singleton=function(x,d){return /* Node */[0,0,x,d,0,1];};
     
     var
      bal=
@@ -94,7 +94,7 @@ var
              {return Pervasives["invalid_arg"]("Map.bal");}
             }
           else
-           {return [0,l,x,d,r,hl>=hr?hl+1:hr+1];}
+           {return /* Node */[0,l,x,d,r,hl>=hr?hl+1:hr+1];}
           }
         };
     
@@ -119,7 +119,7 @@ var
           var c=Ord[1](x,v);
           
           if(c=0)
-           {return [0,l,x,data,r,h];}
+           {return /* Node */[0,l,x,data,r,h];}
           else
            {if(c<0)
              {return bal(add(x,data,l),v,d,r);}
@@ -128,7 +128,7 @@ var
             }
           }
         else
-         {return [0,0,x,data,0,1];}
+         {return /* Node */[0,0,x,data,0,1];}
         };
     
     var
@@ -178,7 +178,7 @@ var
           if(l)
            {return min_binding(l);}
           else
-           {var d=param[3];var x=param[2];return [0,x,d];}
+           {var d=param[3];var x=param[2];return /* tuple */[0,x,d];}
           }
         else
          {throw Not_found;}
@@ -194,7 +194,7 @@ var
           
           var x=param[2];
           
-          if(r){return max_binding(r);}else{return [0,x,d];}
+          if(r){return max_binding(r);}else{return /* tuple */[0,x,d];}
           }
         else
          {throw Not_found;}
@@ -313,7 +313,7 @@ var
           
           var r$prime=map(f,r);
           
-          return [0,l$prime,v,d$prime,r$prime,h];
+          return /* Node */[0,l$prime,v,d$prime,r$prime,h];
           }
         else
          {return 0;}
@@ -339,7 +339,7 @@ var
           
           var r$prime=mapi(f,r);
           
-          return [0,l$prime,v,d$prime,r$prime,h];
+          return /* Node */[0,l$prime,v,d$prime,r$prime,h];
           }
         else
          {return 0;}
@@ -528,7 +528,7 @@ var
           var c=Ord[1](x,v);
           
           if(c=0)
-           {return [0,l,[0,d],r];}
+           {return /* tuple */[0,l,/* Some */[0,d],r];}
           else
            {if(c<0)
              {var match=split(x,l);
@@ -539,7 +539,7 @@ var
               
               var ll=match[1];
               
-              return [0,ll,pres,join(rl,v,d,r)];
+              return /* tuple */[0,ll,pres,join(rl,v,d,r)];
               }
             else
              {var match$1=split(x,r);
@@ -550,7 +550,7 @@ var
               
               var lr=match$1[1];
               
-              return [0,join(l,v,d,lr),pres$1,rr];
+              return /* tuple */[0,join(l,v,d,lr),pres$1,rr];
               }
             }
           }
@@ -588,7 +588,10 @@ var
             var l2=match$2[1];
             
             return concat_or_join
-                    (merge$1(f,l1,l2),v1,f(v1,[0,d1],d2),merge$1(f,r1,r2));
+                    (merge$1(f,l1,l2),
+                     v1,
+                     f(v1,/* Some */[0,d1],d2),
+                     merge$1(f,r1,r2));
             }
           else
            {exit=20;}
@@ -618,7 +621,7 @@ var
              return concat_or_join
                      (merge$1(f,l1$1,l2$1),
                       v2,
-                      f(v2,d1$1,[0,d2$1]),
+                      f(v2,d1$1,/* Some */[0,d2$1]),
                       merge$1(f,r1$1,r2$1));
              }
            else
@@ -681,9 +684,9 @@ var
           var rt=match$1[1];
           
           if(pvd)
-           {return [0,join(lt,v,d,rt),concat(lf,rf)];}
+           {return /* tuple */[0,join(lt,v,d,rt),concat(lf,rf)];}
           else
-           {return [0,concat(lt,rt),join(lf,v,d,rf)];}
+           {return /* tuple */[0,concat(lt,rt),join(lf,v,d,rf)];}
           }
         else
          {return [0,0,0];}
@@ -701,7 +704,7 @@ var
           
           var l=m[1];
           
-          return cons_enum(l,[0,v,d,r,e]);
+          return cons_enum(l,/* More */[0,v,d,r,e]);
           }
         else
          {return e;}
@@ -821,7 +824,8 @@ var
           
           var l=param[1];
           
-          return bindings_aux([0,[0,v,d],bindings_aux(accu,r)],l);
+          return bindings_aux
+                  (/* :: */[0,/* tuple */[0,v,d],bindings_aux(accu,r)],l);
           }
         else
          {return accu;}

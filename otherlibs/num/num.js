@@ -18,9 +18,9 @@ var
    {if
      (Big_int["le_big_int"](bi,biggest_INT)&&
       Big_int["ge_big_int"](bi,least_INT))
-     {return [0,Big_int["int_of_big_int"](bi)];}
+     {return /* Int */[0,Big_int["int_of_big_int"](bi)];}
     else
-     {return [1,bi];}
+     {return /* Big_int */[1,bi];}
     };
 
 var
@@ -55,7 +55,7 @@ var
  normalize_num=
   function(param)
    {switch(param)
-     {case 0:var i=param[1];return [0,i];
+     {case 0:var i=param[1];return /* Int */[0,i];
       case 1:var bi=param[1];return num_of_big_int(bi);
       case 2:
        var r=param[1];
@@ -63,7 +63,7 @@ var
        if(Ratio["is_integer_ratio"](r))
         {return num_of_big_int(Ratio["numerator_ratio"](r));}
        else
-        {return [2,r];}
+        {return /* Ratio */[2,r];}
        
       }
     };
@@ -82,12 +82,14 @@ var
   function(r)
    {
     if(!Ratio["is_integer_ratio"](r))
-     {return [2,r];}
+     {return /* Ratio */[2,r];}
     else
      {if(Big_int["is_int_big_int"](Ratio["numerator_ratio"](r)))
-       {return [0,Big_int["int_of_big_int"](Ratio["numerator_ratio"](r))];}
+       {return /* Int */[0,
+                Big_int["int_of_big_int"](Ratio["numerator_ratio"](r))];
+        }
       else
-       {return [1,Ratio["numerator_ratio"](r)];}
+       {return /* Big_int */[1,Ratio["numerator_ratio"](r)];}
       }
     };
 
@@ -109,9 +111,9 @@ var
           var r=int1+int2;
           
           if((int1^int2|int1^r^-1)<0)
-           {return [0,r];}
+           {return /* Int */[0,r];}
           else
-           {return [1,
+           {return /* Big_int */[1,
                     Big_int["add_big_int"]
                      (Big_int["big_int_of_int"](int1),
                       Big_int["big_int_of_int"](int2))];
@@ -129,7 +131,7 @@ var
           
           var r$1=match$1[1];
           
-          return [2,Ratio["add_int_ratio"](i$1,r$1)];
+          return /* Ratio */[2,Ratio["add_int_ratio"](i$1,r$1)];
           
          }
        
@@ -154,7 +156,7 @@ var
           
           var r$2=match$1[1];
           
-          return [2,Ratio["add_big_int_ratio"](bi$2,r$2)];
+          return /* Ratio */[2,Ratio["add_big_int_ratio"](bi$2,r$2)];
           
          }
        
@@ -162,13 +164,17 @@ var
        var r$3=match[1];
        
        switch(match$1)
-        {case 0:var i$3=match$1[1];return [2,Ratio["add_int_ratio"](i$3,r$3)];
+        {case 0:
+          var i$3=match$1[1];
+          
+          return /* Ratio */[2,Ratio["add_int_ratio"](i$3,r$3)];
+          
          case 1:
           var r$4=r$3;
           
           var bi$3=match$1[1];
           
-          return [2,Ratio["add_big_int_ratio"](bi$3,r$4)];
+          return /* Ratio */[2,Ratio["add_big_int_ratio"](bi$3,r$4)];
           
          case 2:
           var r1=r$3;
@@ -192,12 +198,15 @@ var
        var i=param[1];
        
        if(i=Int_misc["monster_int"])
-        {return [1,Big_int["minus_big_int"](Big_int["big_int_of_int"](i))];}
+        {return /* Big_int */[1,
+                 Big_int["minus_big_int"](Big_int["big_int_of_int"](i))];
+         }
        else
-        {return [0,-i];}
+        {return /* Int */[0,-i];}
        
-      case 1:var bi=param[1];return [1,Big_int["minus_big_int"](bi)];
-      case 2:var r=param[1];return [2,Ratio["minus_ratio"](r)];
+      case 1:
+       var bi=param[1];return /* Big_int */[1,Big_int["minus_big_int"](bi)];
+      case 2:var r=param[1];return /* Ratio */[2,Ratio["minus_ratio"](r)];
       }
     };
 
@@ -224,7 +233,7 @@ var
            (Int_misc["num_bits_int"](int1)+
             Int_misc["num_bits_int"](int2)<
             Int_misc["length_of_int"])
-           {return [0,int1*int2];}
+           {return /* Int */[0,int1*int2];}
           else
            {return num_of_big_int
                     (Big_int["mult_big_int"]
@@ -311,14 +320,15 @@ var
        var i=param[1];
        
        if(2*Int_misc["num_bits_int"](i)<Int_misc["length_of_int"])
-        {return [0,i*i];}
+        {return /* Int */[0,i*i];}
        else
         {return num_of_big_int
                  (Big_int["square_big_int"](Big_int["big_int_of_int"](i)));
          }
        
-      case 1:var bi=param[1];return [1,Big_int["square_big_int"](bi)];
-      case 2:var r=param[1];return [2,Ratio["square_ratio"](r)];
+      case 1:
+       var bi=param[1];return /* Big_int */[1,Big_int["square_big_int"](bi)];
+      case 2:var r=param[1];return /* Ratio */[2,Ratio["square_ratio"](r)];
       }
     };
 
@@ -429,7 +439,7 @@ var
           
           var r=i1%i2;
           
-          return [0,r>=0?q:i2>0?q-1:q+1];
+          return /* Int */[0,r>=0?q:i2>0?q-1:q+1];
           
          case 1:
           var i1$1=i1;
@@ -511,7 +521,12 @@ var
        
        switch(match$1)
         {case 0:
-          var i2=match$1[1];var r=i1%i2;return [0,r>=0?r:i2>0?r+i2:r-i2];
+          var i2=match$1[1];
+          
+          var r=i1%i2;
+          
+          return /* Int */[0,r>=0?r:i2>0?r+i2:r-i2];
+          
          case 1:
           var i1$1=i1;
           
@@ -566,7 +581,7 @@ var
        
        if(match$2!=0)
         {if(match$2!=1)
-          {return [2,
+          {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
                      Big_int["power_int_positive_int"](i,-n))];
@@ -586,7 +601,7 @@ var
        
        if(match$3!=0)
         {if(match$3!=1)
-          {return [2,
+          {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
                      Big_int["power_big_int_positive_int"](bi,-n$1))];
@@ -608,12 +623,12 @@ var
        
        if(match$4!=0)
         {if(match$4!=1)
-          {return [2,
+          {return /* Ratio */[2,
                    Ratio["power_ratio_positive_int"]
                     (Ratio["inverse_ratio"](r),-n$2)];
            }
          else
-          {return [2,Ratio["power_ratio_positive_int"](r,n$2)];}
+          {return /* Ratio */[2,Ratio["power_ratio_positive_int"](r,n$2)];}
          }
        else
         {return [0,1];}
@@ -638,7 +653,7 @@ var
        
        if(match$2!=0)
         {if(match$2!=1)
-          {return [2,
+          {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
                      Big_int["power_int_positive_big_int"]
@@ -659,7 +674,7 @@ var
        
        if(match$3!=0)
         {if(match$3!=1)
-          {return [2,
+          {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
                      Big_int["power_big_int_positive_big_int"]
@@ -682,12 +697,13 @@ var
        
        if(match$4!=0)
         {if(match$4!=1)
-          {return [2,
+          {return /* Ratio */[2,
                    Ratio["power_ratio_positive_big_int"]
                     (Ratio["inverse_ratio"](r),Big_int["minus_big_int"](n$2))];
            }
          else
-          {return [2,Ratio["power_ratio_positive_big_int"](r,n$2)];}
+          {return /* Ratio */[2,Ratio["power_ratio_positive_big_int"](r,n$2)];
+           }
          }
        else
         {return [0,1];}
@@ -959,9 +975,9 @@ var
  num_of_int=
   function(i)
    {if(i=Int_misc["monster_int"])
-     {return [1,Big_int["big_int_of_int"](i)];}
+     {return /* Big_int */[1,Big_int["big_int_of_int"](i)];}
     else
-     {return [0,i];}
+     {return /* Int */[0,i];}
     };
 
 var
@@ -978,9 +994,9 @@ var
  num_of_nat=
   function(nat)
    {if(Nat["is_nat_int"](nat,0,Nat["length_nat"](nat)))
-     {return [0,"unknown primitive:nth_digit_nat"];}
+     {return /* Int */[0,"unknown primitive:nth_digit_nat"];}
     else
-     {return [1,Big_int["big_int_of_nat"](nat)];}
+     {return /* Big_int */[1,Big_int["big_int_of_nat"](nat)];}
     };
 
 var
@@ -1034,7 +1050,7 @@ var
          (Ratio["denominator_ratio"](r),Big_int["unit_big_int"]))
        {return num_of_big_int(Ratio["numerator_ratio"](r));}
       else
-       {return [2,r];}
+       {return /* Ratio */[2,r];}
       }
     catch(exn)
      {var tag=exn[1];
@@ -1064,13 +1080,15 @@ var
        var i=param[1];
        
        if(i=Int_misc["biggest_int"])
-        {return [1,Big_int["succ_big_int"](Big_int["big_int_of_int"](i))];}
+        {return /* Big_int */[1,
+                 Big_int["succ_big_int"](Big_int["big_int_of_int"](i))];
+         }
        else
-        {return [0,1+i];}
+        {return /* Int */[0,1+i];}
        
       case 1:
        var bi=param[1];return num_of_big_int(Big_int["succ_big_int"](bi));
-      case 2:var r=param[1];return [2,Ratio["add_int_ratio"](1,r)];
+      case 2:var r=param[1];return /* Ratio */[2,Ratio["add_int_ratio"](1,r)];
       }
     };
 
@@ -1082,13 +1100,16 @@ var
        var i=param[1];
        
        if(i=Int_misc["monster_int"])
-        {return [1,Big_int["pred_big_int"](Big_int["big_int_of_int"](i))];}
+        {return /* Big_int */[1,
+                 Big_int["pred_big_int"](Big_int["big_int_of_int"](i))];
+         }
        else
-        {return [0,-1+i];}
+        {return /* Int */[0,-1+i];}
        
       case 1:
        var bi=param[1];return num_of_big_int(Big_int["pred_big_int"](bi));
-      case 2:var r=param[1];return [2,Ratio["add_int_ratio"](-1,r)];
+      case 2:
+       var r=param[1];return /* Ratio */[2,Ratio["add_int_ratio"](-1,r)];
       }
     };
 
@@ -1100,12 +1121,15 @@ var
        var i=param[1];
        
        if(i=Int_misc["monster_int"])
-        {return [1,Big_int["minus_big_int"](Big_int["big_int_of_int"](i))];}
+        {return /* Big_int */[1,
+                 Big_int["minus_big_int"](Big_int["big_int_of_int"](i))];
+         }
        else
-        {return [0,Pervasives["abs"](i)];}
+        {return /* Int */[0,Pervasives["abs"](i)];}
        
-      case 1:var bi=param[1];return [1,Big_int["abs_big_int"](bi)];
-      case 2:var r=param[1];return [2,Ratio["abs_ratio"](r)];
+      case 1:
+       var bi=param[1];return /* Big_int */[1,Big_int["abs_big_int"](bi)];
+      case 2:var r=param[1];return /* Ratio */[2,Ratio["abs_ratio"](r)];
       }
     };
 

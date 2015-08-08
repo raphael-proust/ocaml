@@ -24,7 +24,7 @@ var
       
       throw [0,Assert_failure,[0,"my_unix.ml",59,51]];
       }
-    return [0,$js,f];
+    return [/* record */0,$js,f];
     };
 
 var
@@ -126,11 +126,14 @@ var
       }
     };
 
-var lstat=function(x){if(is_link(x)){return [0,2,x];}else{return stat(x);}};
+var
+ lstat=
+  function(x)
+   {if(is_link(x)){return [/* record */0,2,x];}else{return stat(x);}};
 
 var
  implem=
-  [0,
+  [/* record */0,
    1,
    is_link,
    run_and_open,

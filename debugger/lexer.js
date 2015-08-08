@@ -64,7 +64,7 @@ var
       }
     else
      {switch(__ocaml_lex_state$1[0])
-       {case 0:return [0,Lexing["lexeme"](lexbuf)];
+       {case 0:return [/* ARGUMENT */0,Lexing["lexeme"](lexbuf)];
         case 1:return argument(lexbuf);
         case 2:return 11;
         case 3:throw Parsing["Parse_error"];
@@ -92,7 +92,7 @@ var
        {return 11;}
       }
     else
-     {return [0,Lexing["lexeme"](lexbuf)];}
+     {return [/* ARGUMENT */0,Lexing["lexeme"](lexbuf)];}
     };
 
 var lexeme=function(lexbuf){return __ocaml_lex_lexeme_rec(lexbuf,12);};
@@ -111,14 +111,15 @@ var
     else
      {switch(__ocaml_lex_state$1[0])
        {case 0:return lexeme(lexbuf);
-        case 1:return [1,Lexing["lexeme"](lexbuf)];
-        case 2:return [2,Lexing["lexeme"](lexbuf)];
+        case 1:return [/* LIDENT */1,Lexing["lexeme"](lexbuf)];
+        case 2:return [/* UIDENT */2,Lexing["lexeme"](lexbuf)];
         case 3:
          var s=Lexing["lexeme"](lexbuf);
          
-         return [1,$$String["sub"](s,1,s["length"]-2)];
+         return [/* LIDENT */1,$$String["sub"](s,1,s["length"]-2)];
          
-        case 4:return [4,"unknown primitive:caml_int64_of_string"];
+        case 4:
+         return [/* INTEGER */4,"unknown primitive:caml_int64_of_string"];
         case 5:return 0;
         case 6:return 1;
         case 7:return 2;
@@ -130,7 +131,7 @@ var
         case 13:return 8;
         case 14:return 9;
         case 15:return 10;
-        case 16:return [3,Lexing["lexeme"](lexbuf)];
+        case 16:return [/* OPERATOR */3,Lexing["lexeme"](lexbuf)];
         case 17:return 11;
         case 18:throw Parsing["Parse_error"];
         }

@@ -34,9 +34,10 @@ var
  init_path=
   function(param)
    {Config["load_path"][1]=
-    [0,
+    [/* :: */0,
      "",
-     List["rev"]([0,Config["standard_library"],Clflags["include_dirs"][1]])],
+     List["rev"]
+      ([/* :: */0,Config["standard_library"],Clflags["include_dirs"][1]])],
     0;
     return Env["reset_cache"](0);
     };
@@ -115,7 +116,9 @@ var
         Typemod["type_implementation"]
          (sourcefile,prefixname,modulename,env,parsetree);
       
-      return [0,[0,[0,parsetree,typedtree]],inputfile];
+      return [/* tuple */0,
+              [/* Some */0,[/* tuple */0,parsetree,typedtree]],
+              inputfile];
       }
     catch(e)
      {if(e[1]=Syntaxerr["Error"])
@@ -124,13 +127,13 @@ var
           [0,[18,[1,[0,0,""]],[15,[17,0,[17,4,0]]]],"@[%a@]@."],
           Syntaxerr["report_error"],
           e[2]);
-        return [0,0,inputfile];
+        return [/* tuple */0,0,inputfile];
         }
       else
        {if(e[1]=Failure)
          {Pervasives["prerr_endline"](e[2]);
           Odoc_global["errors"][0]++;
-          return [0,0,inputfile];
+          return [/* tuple */0,0,inputfile];
           }
         else
          {throw e;}
@@ -161,7 +164,7 @@ var
     var sg=Typemod["type_interface"](initial_env(0),ast);
     
     Warnings["check_fatal"](0);
-    return [0,ast,sg,inputfile];
+    return [/* tuple */0,ast,sg,inputfile];
     };
 
 var $$let=Odoc_comments["Basic_info_retriever"];
@@ -249,7 +252,7 @@ var
             {}
            
            Pparse["remove_preprocessed"](match[2]);
-           return [0,file_module];
+           return [/* Some */0,file_module];
            }
          else
           {return 0;}
@@ -297,7 +300,7 @@ var
           {}
          
          Pparse["remove_preprocessed"](match$2[3]);
-         return [0,file_module$1];
+         return [/* Some */0,file_module$1];
          }
        catch(e$1)
         {var exit$2;
@@ -349,20 +352,21 @@ var
          
          var
           m=
-           [0,
+           [/* record */0,
             mod_name,
             [1,0],
             0,
             1,
             file$2,
-            [0,[0,[9,txt],0]],
-            [0,0,[0,Location["in_file"](file$2)]],
+            [/* Module_struct */0,
+             [/* :: */0,[/* Element_module_comment */9,txt],0]],
+            [/* record */0,0,[/* Some */0,Location["in_file"](file$2)]],
             0,
             0,
             0,
             1];
          
-         return [0,m];
+         return [/* Some */0,m];
          }
        catch(e$2)
         {var exit$3;
@@ -431,7 +435,7 @@ var
       switch(exit)
        {case 25:
          if(keep)
-          {return [0,ele,remove_class_elements_between_stop(keep,q)];}
+          {return [/* :: */0,ele,remove_class_elements_between_stop(keep,q)];}
          else
           {return remove_class_elements_between_stop(keep,q);}
          
@@ -447,11 +451,15 @@ var
    {var exit;
     
     switch(k)
-     {case 0:return [0,k[1],remove_class_elements_between_stop(1,k[2])];
+     {case 0:
+       return [/* Class_structure */0,
+               k[1],
+               remove_class_elements_between_stop(1,k[2])];
+       
       case 1:exit=24;
       case 2:exit=24;
       case 3:
-       return [3,
+       return [/* Class_constraint */3,
                remove_class_elements_between_stop_in_class_kind(k[1]),
                remove_class_elements_between_stop_in_class_type_kind(k[2])];
        
@@ -464,7 +472,11 @@ var
  remove_class_elements_between_stop_in_class_type_kind=
   function(tk)
    {switch(tk)
-     {case 0:return [0,tk[1],remove_class_elements_between_stop(1,tk[2])];
+     {case 0:
+       return [/* Class_signature */0,
+               tk[1],
+               remove_class_elements_between_stop(1,tk[2])];
+       
       case 1:return tk;
       }
     };
@@ -483,7 +495,9 @@ var
          
          if(keep)
           {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]),0;
-           return [0,[0,m],remove_module_elements_between_stop(keep,q)];
+           return [/* :: */0,
+                   [/* Element_module */0,m],
+                   remove_module_elements_between_stop(keep,q)];
            }
          else
           {return remove_module_elements_between_stop(keep,q);}
@@ -496,14 +510,17 @@ var
            Odoc_misc["apply_opt"]
             (remove_module_elements_between_stop_in_module_type_kind,mt[6]),
            0;
-           return [0,[1,mt],remove_module_elements_between_stop(keep,q)];
+           return [/* :: */0,
+                   [/* Element_module_type */1,mt],
+                   remove_module_elements_between_stop(keep,q)];
            }
          else
           {return remove_module_elements_between_stop(keep,q);}
          
         case 2:
          if(keep)
-          {return [0,ele,remove_module_elements_between_stop(keep,q)];}
+          {return [/* :: */0,ele,remove_module_elements_between_stop(keep,q)];
+           }
          else
           {return remove_module_elements_between_stop(keep,q);}
          
@@ -512,7 +529,9 @@ var
          
          if(keep)
           {c[6]=remove_class_elements_between_stop_in_class_kind(c[6]),0;
-           return [0,[3,c],remove_module_elements_between_stop(keep,q)];
+           return [/* :: */0,
+                   [/* Element_class */3,c],
+                   remove_module_elements_between_stop(keep,q)];
            }
          else
           {return remove_module_elements_between_stop(keep,q);}
@@ -524,7 +543,9 @@ var
           {ct[6]=
            remove_class_elements_between_stop_in_class_type_kind(ct[6]),
            0;
-           return [0,[4,ct],remove_module_elements_between_stop(keep,q)];
+           return [/* :: */0,
+                   [/* Element_class_type */4,ct],
+                   remove_module_elements_between_stop(keep,q)];
            }
          else
           {return remove_module_elements_between_stop(keep,q);}
@@ -559,7 +580,10 @@ var
          switch(exit)
           {case 20:
             if(keep)
-             {return [0,ele,remove_module_elements_between_stop(keep,q)];}
+             {return [/* :: */0,
+                      ele,
+                      remove_module_elements_between_stop(keep,q)];
+              }
             else
              {return remove_module_elements_between_stop(keep,q);}
             
@@ -567,7 +591,8 @@ var
          
         default:
          if(keep)
-          {return [0,ele,remove_module_elements_between_stop(keep,q)];}
+          {return [/* :: */0,ele,remove_module_elements_between_stop(keep,q)];
+           }
          else
           {return remove_module_elements_between_stop(keep,q);}
          }
@@ -580,24 +605,27 @@ var
  remove_module_elements_between_stop_in_module_kind=
   function(k)
    {switch(k)
-     {case 0:return [0,remove_module_elements_between_stop(1,k[1])];
+     {case 0:
+       return [/* Module_struct */0,
+               remove_module_elements_between_stop(1,k[1])];
+       
       case 2:
-       return [2,
+       return [/* Module_functor */2,
                k[1],
                remove_module_elements_between_stop_in_module_kind(k[2])];
        
       case 3:
-       return [3,
+       return [/* Module_apply */3,
                remove_module_elements_between_stop_in_module_kind(k[1]),
                remove_module_elements_between_stop_in_module_kind(k[2])];
        
       case 4:
-       return [4,
+       return [/* Module_with */4,
                remove_module_elements_between_stop_in_module_type_kind(k[1]),
                k[2]];
        
       case 5:
-       return [5,
+       return [/* Module_constraint */5,
                remove_module_elements_between_stop_in_module_kind(k[1]),
                remove_module_elements_between_stop_in_module_type_kind(k[2])];
        
@@ -610,15 +638,18 @@ var
    {var exit;
     
     switch(tk)
-     {case 0:return [0,remove_module_elements_between_stop(1,tk[1])];
+     {case 0:
+       return [/* Module_type_struct */0,
+               remove_module_elements_between_stop(1,tk[1])];
+       
       case 1:
-       return [1,
+       return [/* Module_type_functor */1,
                tk[1],
                remove_module_elements_between_stop_in_module_type_kind(tk[2])];
        
       case 2:exit=23;
       case 3:
-       return [3,
+       return [/* Module_type_with */3,
                remove_module_elements_between_stop_in_module_type_kind(tk[1]),
                tk[2]];
        
@@ -656,7 +687,7 @@ var
              {var match=process_file(Format["err_formatter"],file);
               
               if(match)
-               {return Pervasives["@"](acc,[0,match[1],0]);}
+               {return Pervasives["@"](acc,[/* :: */0,match[1],0]);}
               else
                {return acc;}
               }

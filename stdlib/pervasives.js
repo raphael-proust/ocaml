@@ -110,7 +110,7 @@ var
  $at=
   function(l1,l2)
    {if(l1)
-     {var tl=l1[2];var hd=l1[1];return [0,hd,$at(tl,l2)];}
+     {var tl=l1[2];var hd=l1[1];return /* :: */[0,hd,$at(tl,l2)];}
     else
      {return l2;}
     };
@@ -293,7 +293,9 @@ var
              {var len$1=len+n-1;
               
               return build_result
-                      ("unknown primitive:caml_create_string",len$1,[0,res,accu]);
+                      ("unknown primitive:caml_create_string",
+                       len$1,
+                       /* :: */[0,res,accu]);
               }
             else
              {return res;}
@@ -302,7 +304,7 @@ var
            {var beg="unknown primitive:caml_create_string";
             
             
-            return scan([0,beg,accu],len-n);
+            return scan(/* :: */[0,beg,accu],len-n);
             }
           }
         };
@@ -393,7 +395,7 @@ var
     
     var fmt1=param[1];
     
-    return [0,
+    return /* Format */[0,
             CamlinternalFormatBasics["concat_fmt"](fmt1,fmt2),
             $caret(str1,$caret("%,",str2))];
     };

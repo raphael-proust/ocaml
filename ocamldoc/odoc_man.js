@@ -274,9 +274,19 @@ var
           var see_ref=param[1];
           
           switch(see_ref)
-           {case 0:var t_ref=[0,[15,see_ref[1],t],0];
-            case 1:var t_ref=[0,[1,see_ref[1]],[0,[0," "],t]];
-            case 2:var t_ref=[0,[5,[0,[0,see_ref[1]],0]],[0,[0," "],t]];
+           {case 0:var t_ref=[/* :: */0,[/* Link */15,see_ref[1],t],0];
+            case 1:
+             var
+              t_ref=
+               [/* :: */0,[/* Code */1,see_ref[1]],[/* :: */0,[0," "],t]];
+             
+            case 2:
+             var
+              t_ref=
+               [/* :: */0,
+                [/* Italic */5,[/* :: */0,[/* Raw */0,see_ref[1]],0]],
+                [/* :: */0,[0," "],t]];
+             
             }
           
           "unknown block:(sendself self-1/1295 str_man_of_text/1249 t_ref/1298)";
@@ -338,7 +348,7 @@ var
                        var buf=Buffer["create"](50);
                        
                        Buffer["add_string"](buf,f(param[2]));
-                       return [0,Buffer["contents"](buf),acc];
+                       return [/* :: */0,Buffer["contents"](buf),acc];
                        }
                      catch(exn)
                       {if(exn=Not_found)
@@ -372,7 +382,7 @@ var
               "unknown block:(sendself self-1/1323 man_of_text/1248 b/1333 (field 0 match/2194))";
               
               bs(b$1,"\n");
-              var $js=[0,Buffer["contents"](b$1),0];
+              var $js=[/* :: */0,Buffer["contents"](b$1),0];
               }
             else
              {var $js=0;}
@@ -385,7 +395,7 @@ var
                {var $js$1=0;}
               else
                {"unknown block:(sendself self-1/1323 str_man_of_text/1249 d/1334)";
-                var $js$1=[0,Pervasives["^"](0,"\n"),0];
+                var $js$1=[/* :: */0,Pervasives["^"](0,"\n"),0];
                 }
               }
             else
@@ -405,7 +415,14 @@ var
                 Pervasives["@"]
                  ($js$1,
                   Pervasives["@"]
-                   ([0,0,[0,0,[0,0,[0,0,[0,0,[0,0,[0,0,0]]]]]]],0)));
+                   ([/* :: */0,
+                     0,
+                     [/* :: */0,
+                      0,
+                      [/* :: */0,
+                       0,
+                       [/* :: */0,0,[/* :: */0,0,[/* :: */0,0,[/* :: */0,0,0]]]]]]],
+                    0)));
             
             var
              l$1=
@@ -1922,16 +1939,16 @@ var
                   {if(List["mem"](h,acc2))
                     {return f(acc1,acc2,q);}
                    else
-                    {return f(acc1,Pervasives["@"](acc2,[0,h,0]),q);}
+                    {return f(acc1,Pervasives["@"](acc2,[/* :: */0,h,0]),q);}
                    }
                  else
-                  {return f([0,acc2,acc1],[0,h,0],q);}
+                  {return f([/* :: */0,acc2,acc1],[/* :: */0,h,0],q);}
                  }
                else
-                {return f(acc1,[0,h,0],q);}
+                {return f(acc1,[/* :: */0,h,0],q);}
                }
              else
-              {return [0,acc2,acc1];}
+              {return [/* :: */0,acc2,acc1];}
              };
          
          return f(0,0,sorted_items);

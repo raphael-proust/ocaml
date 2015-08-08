@@ -11,7 +11,8 @@ var Mutex=require("Mutex");
 
 var
  new_channel=
-  function(param){return [0,Queue["create"](0),Queue["create"](0)];};
+  function(param)
+   {return [/* record */0,Queue["create"](0),Queue["create"](0)];};
 
 var masterlock=Mutex["create"](0);
 
@@ -104,7 +105,13 @@ var
  flatten_event=
   function(abort_list,accu,accu_abort,ev)
    {switch(ev)
-     {case 0:var bev=ev[1];return [0,[0,[0,bev,abort_list],accu],accu_abort];
+     {case 0:
+       var bev=ev[1];
+       
+       return [/* tuple */0,
+               [/* :: */0,[/* tuple */0,bev,abort_list],accu],
+               accu_abort];
+       
       case 1:
        var evl=ev[1];
        
@@ -127,7 +134,7 @@ var
              return flatten_list(accu$prime$prime,accu_abort$prime$prime,l);
              }
            else
-            {return [0,accu$prime,accu_abort$prime];}
+            {return [/* tuple */0,accu$prime,accu_abort$prime];}
            };
        
        return flatten_list(accu,accu_abort,evl);
@@ -140,7 +147,10 @@ var
        var id=gensym(0);
        
        return flatten_event
-               ([0,id,abort_list],accu,[0,[0,id,fn],accu_abort],ev$1);
+               ([/* :: */0,id,abort_list],
+                accu,
+                [/* :: */0,[/* tuple */0,id,fn],accu_abort],
+                ev$1);
        
       case 3:
        var fn$1=ev[1];
@@ -188,7 +198,7 @@ var
     
     if(ready)
      {Mutex["unlock"](masterlock);
-      var result=[0,bev[performed[1]][3](0)];
+      var result=[/* Some */0,bev[performed[1]][3](0)];
       
       do_aborts(abort_env,genev,performed[1]);
       return result;
@@ -228,9 +238,9 @@ var
 var
  always=
   function(data)
-   {return [0,
+   {return [/* Communication */0,
             function(performed,condition,evnum)
-             {return [0,
+             {return [/* record */0,
                       function(param){performed[1]=evnum,0;return 1;},
                       function(param){return 0;},
                       function(param){return data;}];
@@ -240,11 +250,13 @@ var
 var
  send=
   function(channel,data)
-   {return [0,
+   {return [/* Communication */0,
             function(performed,condition,evnum)
-             {var wcomm=[0,performed,condition,[0,data],evnum];
+             {var
+               wcomm=
+                [/* record */0,performed,condition,[/* Some */0,data],evnum];
               
-              return [0,
+              return [/* record */0,
                       function(param)
                        {var
                          poll$1=
@@ -277,11 +289,11 @@ var
 var
  receive=
   function(channel)
-   {return [0,
+   {return [/* Communication */0,
             function(performed,condition,evnum)
-             {var rcomm=[0,performed,condition,0,evnum];
+             {var rcomm=[/* record */0,performed,condition,0,evnum];
               
-              return [0,
+              return [/* record */0,
                       function(param)
                        {var
                          poll$1=
@@ -318,11 +330,11 @@ var
               }];
     };
 
-var choose=function(evl){return [1,evl];};
+var choose=function(evl){return [/* Choose */1,evl];};
 
-var wrap_abort=function(ev,fn){return [2,ev,fn];};
+var wrap_abort=function(ev,fn){return [/* WrapAbort */2,ev,fn];};
 
-var guard=function(fn){return [3,fn];};
+var guard=function(fn){return [/* Guard */3,fn];};
 
 var
  wrap=
@@ -331,11 +343,11 @@ var
      {case 0:
        var genev=ev[1];
        
-       return [0,
+       return [/* Communication */0,
                function(performed,condition,evnum)
                 {var bev=genev(performed,condition,evnum);
                  
-                 return [0,
+                 return [/* record */0,
                          bev[1],
                          bev[2],
                          function(param){return fn(bev[3](0));}];
@@ -344,15 +356,25 @@ var
       case 1:
        var evl=ev[1];
        
-       return [1,List["map"](function(ev$1){return wrap(ev$1,fn);},evl)];
+       return [/* Choose */1,
+               List["map"](function(ev$1){return wrap(ev$1,fn);},evl)];
        
       case 2:
-       var f$prime=ev[2];var ev$1=ev[1];return [2,wrap(ev$1,fn),f$prime];
-      case 3:var gu=ev[1];return [3,function(param){return wrap(gu(0),fn);}];
+       var f$prime=ev[2];
+       
+       var ev$1=ev[1];
+       
+       return [/* WrapAbort */2,wrap(ev$1,fn),f$prime];
+       
+      case 3:
+       var gu=ev[1];
+       
+       return [/* Guard */3,function(param){return wrap(gu(0),fn);}];
+       
       }
     };
 
-var select=function(evl){return sync([1,evl]);};
+var select=function(evl){return sync([/* Choose */1,evl]);};
 
 module["exports"]=
 {"new_channel":new_channel,

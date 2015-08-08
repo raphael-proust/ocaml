@@ -29,31 +29,31 @@ var
    {switch(signat)
      {case 0:
        return Hashtbl["add"]
-               (table,[2,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* V */2,Odoc_name["from_ident"](signat[1])],signat);
        
       case 1:
        return Hashtbl["add"]
-               (table,[3,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* T */3,Odoc_name["from_ident"](signat[1])],signat);
        
       case 2:
        return Hashtbl["add"]
-               (table,[6,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* X */6,Odoc_name["from_ident"](signat[1])],signat);
        
       case 3:
        return Hashtbl["add"]
-               (table,[0,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* M */0,Odoc_name["from_ident"](signat[1])],signat);
        
       case 4:
        return Hashtbl["add"]
-               (table,[1,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* MT */1,Odoc_name["from_ident"](signat[1])],signat);
        
       case 5:
        return Hashtbl["add"]
-               (table,[4,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* C */4,Odoc_name["from_ident"](signat[1])],signat);
        
       case 6:
        return Hashtbl["add"]
-               (table,[5,Odoc_name["from_ident"](signat[1])],signat);
+               (table,[/* CT */5,Odoc_name["from_ident"](signat[1])],signat);
        
       }
     };
@@ -70,7 +70,7 @@ var
 var
  search_value=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[2,name]);
+   {var match=Hashtbl["find"](table$1,[/* V */2,name]);
     
     switch(match)
      {case 0:return match[2][1];
@@ -80,7 +80,7 @@ var
 var
  search_extension=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[6,name]);
+   {var match=Hashtbl["find"](table$1,[/* X */6,name]);
     
     switch(match)
      {case 2:return match[2];
@@ -90,7 +90,7 @@ var
 var
  search_type=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[3,name]);
+   {var match=Hashtbl["find"](table$1,[/* T */3,name]);
     
     switch(match)
      {case 1:return match[2];
@@ -100,7 +100,7 @@ var
 var
  search_class=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[4,name]);
+   {var match=Hashtbl["find"](table$1,[/* C */4,name]);
     
     switch(match)
      {case 5:return match[2];
@@ -110,7 +110,7 @@ var
 var
  search_class_type=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[5,name]);
+   {var match=Hashtbl["find"](table$1,[/* CT */5,name]);
     
     switch(match)
      {case 6:return match[2];
@@ -120,7 +120,7 @@ var
 var
  search_module=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[0,name]);
+   {var match=Hashtbl["find"](table$1,[/* M */0,name]);
     
     switch(match)
      {case 3:return match[2][1];
@@ -130,13 +130,13 @@ var
 var
  search_module_type=
   function(table$1,name)
-   {var match=Hashtbl["find"](table$1,[1,name]);
+   {var match=Hashtbl["find"](table$1,[/* MT */1,name]);
     
     switch(match)
      {case 4:
        var match$1=match[2][1];
        
-       if(match$1){return [0,match$1[1]];}else{return 0;}
+       if(match$1){return [/* Some */0,match$1[1]];}else{return 0;}
        
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",105,13]];}
     };
@@ -200,7 +200,7 @@ var
      get_comments_in_class=
       function(pos_start,pos_end)
        {return My_ir[5]
-                (function(t){return [2,t];},
+                (function(t){return [/* Class_comment */2,t];},
                  file_name[1],
                  get_string_of_file(pos_start,pos_end));
         };
@@ -209,7 +209,7 @@ var
      get_comments_in_module=
       function(pos_start,pos_end)
        {return My_ir[5]
-                (function(t){return [9,t];},
+                (function(t){return [/* Element_module_comment */9,t];},
                  file_name[1],
                  get_string_of_file(pos_start,pos_end));
         };
@@ -264,7 +264,9 @@ var
                                
                                var match$5=My_ir[3](file_name[1],s);
                                
-                               return [0,[0,name,match$5[2]],f([0,ele2,match$4[2]])];
+                               return [/* :: */0,
+                                       [/* tuple */0,name,match$5[2]],
+                                       f([/* :: */0,ele2,match$4[2]])];
                                }
                              else
                               {var pos$1=ct[2][2][4];
@@ -273,7 +275,7 @@ var
                                
                                var match$6=My_ir[3](file_name[1],s$1);
                                
-                               return [0,[0,name,match$6[2]],0];
+                               return [/* :: */0,[/* tuple */0,name,match$6[2]],0];
                                }
                              }
                           }
@@ -286,7 +288,9 @@ var
                       function(field)
                        {switch(field[1]){case "":return 0;default:return 1;}};
                     
-                    return [0,0,f(List["filter"](is_named_field,match$2[1]))];
+                    return [/* tuple */0,
+                            0,
+                            f(List["filter"](is_named_field,match$2[1]))];
                     
                    default:exit=291;}}
                
@@ -318,20 +322,23 @@ var
                      var match$3=My_ir[3](file_name[1],s);
                      
                      return f$1
-                             (Pervasives["@"](acc,[0,[0,pcd[1][1],match$3[2]],0]),q);
+                             (Pervasives["@"]
+                               (acc,[/* :: */0,[/* tuple */0,pcd[1][1],match$3[2]],0]),
+                              q);
                      }
                    else
                     {var s$1=get_string_of_file(pcd[4][2][4],pos_limit);
                      
                      var match$4=My_ir[3](file_name[1],s$1);
                      
-                     return [0,
+                     return [/* tuple */0,
                              match$4[1],
-                             Pervasives["@"](acc,[0,[0,pcd[1][1],match$4[2]],0])];
+                             Pervasives["@"]
+                              (acc,[/* :: */0,[/* tuple */0,pcd[1][1],match$4[2]],0])];
                      }
                    }
                  else
-                  {return [0,0,acc];}
+                  {return [/* tuple */0,0,acc];}
                  };
              
              return f$1(0,match[1]);
@@ -360,7 +367,9 @@ var
                      
                      var match$5=My_ir[3](file_name[1],s);
                      
-                     return [0,[0,name[1],match$5[2]],f$2([0,ele2,match$3[2]])];
+                     return [/* :: */0,
+                             [/* tuple */0,name[1],match$5[2]],
+                             f$2([/* :: */0,ele2,match$3[2]])];
                      }
                    else
                     {var pos$1=ct[2][2][4];
@@ -369,14 +378,14 @@ var
                      
                      var match$6=My_ir[3](file_name[1],s$1);
                      
-                     return [0,[0,name[1],match$6[2]],0];
+                     return [/* :: */0,[/* tuple */0,name[1],match$6[2]],0];
                      }
                    }
                  else
                   {return 0;}
                  };
              
-             return [0,0,f$2(match[1])];
+             return [/* tuple */0,0,f$2(match[1])];
              
             }}
         };
@@ -406,7 +415,7 @@ var
                  catch(exn)
                   {if(exn=Not_found){var comment_opt=0;}else{throw exn;}}
                  
-                 return [0,
+                 return [/* record */0,
                          field_name,
                          Odoc_env["subst_type"](env,param[3]),
                          comment_opt];
@@ -414,12 +423,14 @@ var
              
              var prim=Ctype["flatten_fields"](match[1]);
              
-             return [1,List["map"](f,prim[1])];
+             return [/* Object_type */1,List["map"](f,prim[1])];
              
             default:exit=279;}}
         
         switch(exit)
-         {case 279:return [0,Odoc_env["subst_type"](env,type_expr)];}
+         {case 279:
+           return [/* Other */0,Odoc_env["subst_type"](env,type_expr)];
+          }
         };
     
     var
@@ -443,14 +454,14 @@ var
                  catch(exn)
                   {if(exn=Not_found){var comment_opt=0;}else{throw exn;}}
                  
-                 return [0,
+                 return [/* record */0,
                          field_name,
                          param[2]=1,
                          Odoc_env["subst_type"](env,param[3]),
                          comment_opt];
                  };
              
-             return [1,List["map"](f,type_kind[1])];
+             return [/* Type_record */1,List["map"](f,type_kind[1])];
              
             case 1:
              var
@@ -466,14 +477,14 @@ var
                  catch(exn)
                   {if(exn=Not_found){var comment_opt=0;}else{throw exn;}}
                  
-                 return [0,
+                 return [/* record */0,
                          constructor_name,
                          List["map"](Odoc_env["subst_type"](env),param[2]),
                          Misc["may_map"](Odoc_env["subst_type"](env),param[3]),
                          comment_opt];
                  };
              
-             return [0,List["map"](f$1,type_kind[1])];
+             return [/* Type_variant */0,List["map"](f$1,type_kind[1])];
              
             }}
         };
@@ -512,7 +523,10 @@ var
                     {var
                       take_item=
                        function(psig_desc)
-                        {return [0,[0,psig_desc,sig_item[2]],acc];};
+                        {return [/* :: */0,
+                                 [/* record */0,psig_desc,sig_item[2]],
+                                 acc];
+                         };
                      
                      var tp=sig_item[1];
                      
@@ -526,7 +540,10 @@ var
                            (function(td){return !Odoc_name["Set"][3](td[1][1],erased);},
                             tp[1]);
                         
-                        if(types){return take_item([1,types]);}else{return acc;}
+                        if(types)
+                         {return take_item([/* Psig_type */1,types]);}
+                        else
+                         {return acc;}
                         
                        case 4:exit=261;
                        case 5:
@@ -537,7 +554,10 @@ var
                              {return !Odoc_name["Set"][3](pmd[1][1],erased);},
                             tp[1]);
                         
-                        if(mods){return take_item([5,mods]);}else{return acc;}
+                        if(mods)
+                         {return take_item([/* Psig_recmodule */5,mods]);}
+                        else
+                         {return acc;}
                         
                        case 6:exit=261;
                        default:return take_item(tp);}
@@ -606,15 +626,15 @@ var
             
             var
              met=
-              [0,
-               [0,
+              [/* record */0,
+               [/* record */0,
                 complete_name,
                 comment_opt,
                 subst_typ,
                 0,
                 Odoc_value["dummy_parameter_list"](subst_typ),
                 0,
-                [0,0,[0,loc]]],
+                [/* record */0,0,[/* Some */0,loc]]],
                private_flag=0,
                0];
             
@@ -628,7 +648,7 @@ var
             
             met[1][2]=merge_infos(met[1][2],match[2]),0;
             Odoc_value["update_value_parameters_text"](met[1]);
-            return [0,met,match[1]];
+            return [/* tuple */0,met,match[1]];
             };
         
         var
@@ -677,7 +697,7 @@ var
                     
                     var
                      inh=
-                      [0,
+                      [/* record */0,
                        Odoc_env["full_class_or_class_type_name"](env,name),
                        0,
                        text_opt];
@@ -689,13 +709,16 @@ var
                  
                  switch(exit)
                   {case 232:
-                    var inh=[0,Odoc_messages["object_end"],0,text_opt];
+                    var
+                     inh=
+                      [/* record */0,Odoc_messages["object_end"],0,text_opt];
+                    
                    }
                  
                  var match$4=f(pos_end+match$2[1],q);
                  
-                 return [0,
-                         [0,inh,match$4[1]],
+                 return [/* tuple */0,
+                         [/* :: */0,inh,match$4[1]],
                          Pervasives["@"](match$1[2],match$4[2])];
                  
                 case 1:
@@ -726,8 +749,15 @@ var
                  
                  var
                   att=
-                   [0,
-                    [0,complete_name,match$6[1],subst_typ,0,0,0,[0,0,[0,loc]]],
+                   [/* record */0,
+                    [/* record */0,
+                     complete_name,
+                     match$6[1],
+                     subst_typ,
+                     0,
+                     0,
+                     0,
+                     [/* record */0,0,[/* Some */0,loc]]],
                     match$5[2]=1,
                     match$5[3]=0];
                  
@@ -743,9 +773,11 @@ var
                  att[1][2]=merge_infos(att[1][2],match$7[2]),0;
                  var match$8=f(pos_end$1+match$7[1],q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$8[1],
-                         Pervasives["@"](match$6[2],[0,[0,att],match$8[2]])];
+                         Pervasives["@"]
+                          (match$6[2],
+                           [/* :: */0,[/* Class_attribute */0,att],match$8[2]])];
                  
                 case 2:
                  var match$9=match[1];
@@ -761,20 +793,22 @@ var
                  if(match$9[3]!=0)
                   {var met2=met;}
                  else
-                  {var met2=[0,met[1],met[2],1];}
+                  {var met2=[/* record */0,met[1],met[2],1];}
                  
                  var match$12=f(loc[2][4]+match$11[2],q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$12[1],
-                         Pervasives["@"](match$10[2],[0,[1,met2],match$12[2]])];
+                         Pervasives["@"]
+                          (match$10[2],
+                           [/* :: */0,[/* Class_method */1,met2],match$12[2]])];
                  
                 case 3:
                  var match$13=get_comments_in_class(last_pos$1,loc[1][4]);
                  
                  var match$14=f(loc[2][4],q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$14[1],
                          Pervasives["@"](match$13[2],match$14[2])];
                  
@@ -783,7 +817,7 @@ var
                  
                  var match$16=f(loc[2][4],q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$16[1],
                          Pervasives["@"](match$15[2],match$16[2])];
                  
@@ -802,14 +836,16 @@ var
                    {var match$18=sc[1];
                     
                     if(match$18)
-                     {return Pervasives["@"](acc,[0,[2,match$18[1]],0]);}
+                     {return Pervasives["@"]
+                              (acc,[/* :: */0,[/* Class_comment */2,match$18[1]],0]);
+                      }
                     else
                      {return acc;}
                     },
                   0,
                   match$17[2]);
               
-              return [0,0,ele_comments];
+              return [/* tuple */0,0,ele_comments];
               }
             };
         
@@ -865,7 +901,10 @@ var
                    {var match$3=sc[1];
                     
                     if(match$3)
-                     {return Pervasives["@"](acc,[0,[9,match$3[1]],0]);}
+                     {return Pervasives["@"]
+                              (acc,
+                               [/* :: */0,[/* Element_module_comment */9,match$3[1]],0]);
+                      }
                     else
                      {return acc;}
                     },
@@ -917,14 +956,14 @@ var
            
            var
             v=
-             [0,
+             [/* record */0,
               Odoc_name["concat"](current_module_name,name),
               comment_opt,
               subst_typ,
               0,
               Odoc_value["dummy_parameter_list"](subst_typ),
               0,
-              [0,0,[0,sig_item_loc]]];
+              [/* record */0,0,[/* Some */0,sig_item_loc]]];
            
            var
             match=
@@ -934,7 +973,10 @@ var
            Odoc_value["update_value_parameters_text"](v);
            var new_env=Odoc_env["add_value"](env,v[1]);
            
-           return [0,match[1],new_env,[0,[5,v],0]];
+           return [/* tuple */0,
+                   match[1],
+                   new_env,
+                   [/* :: */0,[/* Element_value */5,v],0]];
            
           case 1:
            var name_type_decl_list=sig_item_desc[1];
@@ -982,7 +1024,7 @@ var
                  var name$1=type_decl[1];
                  
                  if(first)
-                  {var match$1=[0,comment_opt,0];}
+                  {var match$1=[/* tuple */0,comment_opt,0];}
                  else
                   {var
                     match$1=
@@ -1028,14 +1070,14 @@ var
                  
                  var
                   new_type=
-                   [0,
+                   [/* record */0,
                     Odoc_name["concat"](current_module_name,name$1[1]),
                     match$1[1],
                     List["map2"]
                      (function(p,v$1)
                        {var match$4=Types["Variance"][11](v$1);
                         
-                        return [0,
+                        return [/* tuple */0,
                                 Odoc_env["subst_type"](env$1,p),
                                 match$4[1],
                                 match$4[2]];
@@ -1045,11 +1087,12 @@ var
                     type_kind,
                     sig_type_decl[4],
                     match$3
-                     ?[0,manifest_structure(env$1,name_comment_list,match$3[1])]
+                     ?[/* Some */0,
+                       manifest_structure(env$1,name_comment_list,match$3[1])]
                      :0,
-                    [0,0,[0,sig_item_loc]],
+                    [/* record */0,0,[/* Some */0,sig_item_loc]],
                     Odoc_global["keep_code"][1]
-                     ?[0,get_string_of_file(loc_start,new_end)]
+                     ?[/* Some */0,get_string_of_file(loc_start,new_end)]
                      :0];
                  
                  var
@@ -1064,18 +1107,20 @@ var
                   match$5=
                    f(0,maybe_more+maybe_more2,new_end+maybe_more2,q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$5[1],
                          Pervasives["@"]
-                          (Pervasives["@"](match$1[2],[0,[8,new_type],0]),match$5[2])];
+                          (Pervasives["@"]
+                            (match$1[2],[/* :: */0,[/* Element_type */8,new_type],0]),
+                           match$5[2])];
                  }
                else
-                {return [0,acc_maybe_more,0];}
+                {return [/* tuple */0,acc_maybe_more,0];}
                };
            
            var match$1=f([0,1],0,pos_start_ele,name_type_decl_list);
            
-           return [0,match$1[1],extended_env,match$1[2]];
+           return [/* tuple */0,match$1[1],extended_env,match$1[2]];
            
           case 2:
            var
@@ -1105,12 +1150,12 @@ var
                     {throw exn$1;}
                    }
                  
-                 return [0,
+                 return [/* tuple */0,
                          env_acc,
-                         [0,[0,name$1,types_ext],param[2]],
-                         [0,types_ext]];
+                         [/* :: */0,[/* tuple */0,name$1,types_ext],param[2]],
+                         [/* Some */0,types_ext]];
                  },
-               [0,env,0,0],
+               [/* tuple */0,env,0,0],
                sig_item_desc[1][3]);
            
            var last_ext=match$2[3];
@@ -1118,22 +1163,25 @@ var
            var new_env$1=match$2[1];
            
            if(last_ext)
-            {var ext=last_ext[1];var match$3=[0,ext[1],ext[2],ext[5]];}
+            {var ext=last_ext[1];
+             
+             var match$3=[/* tuple */0,ext[1],ext[2],ext[5]];
+             }
            else
             {throw [0,Assert_failure,[0,"odoc_sig.ml",634,22]];}
            
            var
             new_te=
-             [0,
+             [/* record */0,
               comment_opt,
               Odoc_env["full_type_name"]
                (new_env$1,Odoc_name["from_path"](match$3[1])),
               List["map"](Odoc_env["subst_type"](new_env$1),match$3[2]),
               match$3[3],
               0,
-              [0,0,[0,sig_item_loc]],
+              [/* record */0,0,[/* Some */0,sig_item_loc]],
               Odoc_global["keep_code"][1]
-               ?[0,get_string_of_file(pos_start_ele,pos_end_ele)]
+               ?[/* Some */0,get_string_of_file(pos_start_ele,pos_end_ele)]
                :0];
            
            var
@@ -1150,14 +1198,14 @@ var
                  
                  var
                   new_x=
-                   [0,
+                   [/* record */0,
                     Odoc_name["concat"](current_module_name,match$4[1]),
                     List["map"](Odoc_env["subst_type"](new_env$1),types_ext[3]),
                     Misc["may_map"]
                      (Odoc_env["subst_type"](new_env$1),types_ext[4]),
                     new_te,
                     0,
-                    [0,0,[0,types_ext[6]]],
+                    [/* record */0,0,[/* Some */0,types_ext[6]]],
                     0];
                  
                  if(q)
@@ -1171,10 +1219,10 @@ var
                  
                  new_x[7]=match$5[2],0;
                  return analyse_extension_constructors
-                         (match$5[1],[0,new_x,exts_acc],q);
+                         (match$5[1],[/* :: */0,new_x,exts_acc],q);
                  }
                else
-                {return [0,maybe_more,List["rev"](exts_acc)];}
+                {return [/* tuple */0,maybe_more,List["rev"](exts_acc)];}
                };
            
            var match$4=analyse_extension_constructors(0,0,match$2[2]);
@@ -1189,7 +1237,10 @@ var
                get_string_of_file(pos_end_ele+maybe_more,pos_limit));
            
            new_te[1]=merge_infos(new_te[1],match$5[2]),0;
-           return [0,maybe_more+match$5[1],new_env$1,[0,[6,new_te],0]];
+           return [/* tuple */0,
+                   maybe_more+match$5[1],
+                   new_env$1,
+                   [/* :: */0,[/* Element_type_extension */6,new_te],0]];
            
           case 3:
            var name$1=sig_item_desc[1][1];
@@ -1209,15 +1260,15 @@ var
            
            var
             e=
-             [0,
+             [/* record */0,
               Odoc_name["concat"](current_module_name,name$1[1]),
               comment_opt,
               List["map"](Odoc_env["subst_type"](env),types_ext[3]),
               Misc["may_map"](Odoc_env["subst_type"](env),types_ext[4]),
               0,
-              [0,0,[0,sig_item_loc]],
+              [/* record */0,0,[/* Some */0,sig_item_loc]],
               Odoc_global["keep_code"][1]
-               ?[0,get_string_of_file(pos_start_ele,pos_end_ele)]
+               ?[/* Some */0,get_string_of_file(pos_start_ele,pos_end_ele)]
                :0];
            
            var
@@ -1227,7 +1278,10 @@ var
            e[2]=merge_infos(e[2],match$6[2]),0;
            var new_env$2=Odoc_env["add_extension"](env,e[1]);
            
-           return [0,match$6[1],new_env$2,[0,[7,e],0]];
+           return [/* tuple */0,
+                   match$6[1],
+                   new_env$2,
+                   [/* :: */0,[/* Element_exception */7,e],0]];
            
           case 4:
            var match$7=sig_item_desc[1];
@@ -1265,21 +1319,21 @@ var
              
              var en=loc[2][4];
              
-             var code_intf=[0,get_string_of_file(st,en)];
+             var code_intf=[/* Some */0,get_string_of_file(st,en)];
              }
            else
             {var code_intf=0;}
            
            var
             new_module=
-             [0,
+             [/* record */0,
               complete_name,
               sig_module_type,
               comment_opt,
               1,
               file_name[1],
               module_kind,
-              [0,0,[0,sig_item_loc]],
+              [/* record */0,0,[/* Some */0,sig_item_loc]],
               0,
               0,
               code_intf,
@@ -1301,12 +1355,15 @@ var
                 Odoc_env["add_signature"]
                  (new_env$3,
                   new_module[1],
-                  [0,Odoc_name["simple"](new_module[1])],
+                  [/* Some */0,Odoc_name["simple"](new_module[1])],
                   match$9[1]);
               
              default:var new_env2=new_env$3;}
            
-           return [0,match$8[1],new_env2,[0,[0,new_module],0]];
+           return [/* tuple */0,
+                   match$8[1],
+                   new_env2,
+                   [/* :: */0,[/* Element_module */0,new_module],0]];
            
           case 5:
            var decls=sig_item_desc[1];
@@ -1339,7 +1396,10 @@ var
                  switch(sig_module_type$1)
                   {case 1:
                     return Odoc_env["add_signature"]
-                            (e$1,complete_name$1,[0,name$3],sig_module_type$1[1]);
+                            (e$1,
+                             complete_name$1,
+                             [/* Some */0,name$3],
+                             sig_module_type$1[1]);
                     
                    default:return e$1;}
                  },
@@ -1374,7 +1434,7 @@ var
                  var loc_end=loc$1[2][4];
                  
                  if(first)
-                  {var match$11=[0,comment_opt,0];}
+                  {var match$11=[/* tuple */0,comment_opt,0];}
                  else
                   {var match$11=get_comments_in_module(last_pos,loc_start);}
                  
@@ -1409,21 +1469,21 @@ var
                    
                    var en$1=loc$1[2][4];
                    
-                   var code_intf$1=[0,get_string_of_file(st$1,en$1)];
+                   var code_intf$1=[/* Some */0,get_string_of_file(st$1,en$1)];
                    }
                  else
                   {var code_intf$1=0;}
                  
                  var
                   new_module$1=
-                   [0,
+                   [/* record */0,
                     complete_name$1,
                     sig_module_type$1,
                     match$11[1],
                     1,
                     file_name[1],
                     module_kind$1,
-                    [0,0,[0,loc$1]],
+                    [/* record */0,0,[/* Some */0,loc$1]],
                     0,
                     0,
                     code_intf$1,
@@ -1439,19 +1499,21 @@ var
                  new_module$1[3]=merge_infos(new_module$1[3],match$12[2]),0;
                  var match$13=f$1(0,maybe_more$1,loc_end+maybe_more$1,q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$13[1],
                          Pervasives["@"]
-                          (Pervasives["@"](match$11[2],[0,[0,new_module$1],0]),
+                          (Pervasives["@"]
+                            (match$11[2],
+                             [/* :: */0,[/* Element_module */0,new_module$1],0]),
                            match$13[2])];
                  }
                else
-                {return [0,acc_maybe_more,0];}
+                {return [/* tuple */0,acc_maybe_more,0];}
                };
            
            var match$10=f$1([0,1],0,pos_start_ele,decls);
            
-           return [0,match$10[1],new_env$4,match$10[2]];
+           return [/* tuple */0,match$10[1],new_env$4,match$10[2]];
            
           case 6:
            var match$11=sig_item_desc[1];
@@ -1481,7 +1543,7 @@ var
             {if(sig_mtype)
               {var
                 module_type_kind=
-                 [0,
+                 [/* Some */0,
                   analyse_module_type_kind
                    (0,env,complete_name$1,pmodtype_decl[1],sig_mtype[1])];
                }
@@ -1493,14 +1555,14 @@ var
            
            var
             mt=
-             [0,
+             [/* record */0,
               complete_name$1,
               comment_opt,
               sig_mtype,
               1,
               file_name[1],
               module_type_kind,
-              [0,0,[0,sig_item_loc]]];
+              [/* record */0,0,[/* Some */0,sig_item_loc]]];
            
            var
             match$12=
@@ -1519,7 +1581,10 @@ var
                 var
                  new_env2$1=
                   Odoc_env["add_signature"]
-                   (new_env$5,mt[1],[0,Odoc_name["simple"](mt[1])],match$13[1]);
+                   (new_env$5,
+                    mt[1],
+                    [/* Some */0,Odoc_name["simple"](mt[1])],
+                    match$13[1]);
                 
                default:exit$1=102;}
              }
@@ -1528,21 +1593,27 @@ var
            
            switch(exit$1){case 102:var new_env2$1=new_env$5;}
            
-           return [0,match$12[1],new_env2$1,[0,[1,mt],0]];
+           return [/* tuple */0,
+                   match$12[1],
+                   new_env2$1,
+                   [/* :: */0,[/* Element_module_type */1,mt],0]];
            
           case 7:
            if(comment_opt)
             {var match$14=comment_opt[1][1];
              
              if(match$14)
-              {var ele_comments=[0,[9,match$14[1]],0];}
+              {var
+                ele_comments=
+                 [/* :: */0,[/* Element_module_comment */9,match$14[1]],0];
+               }
              else
               {var ele_comments=0;}
              }
            else
             {var ele_comments=0;}
            
-           return [0,0,env,ele_comments];
+           return [/* tuple */0,0,env,ele_comments];
            
           case 8:
            var
@@ -1576,9 +1647,12 @@ var
             full_name=
              Odoc_env["full_module_or_module_type_name"](env,name$4);
            
-           var im=[0,full_name,0,comment_opt];
+           var im=[/* record */0,full_name,0,comment_opt];
            
-           return [0,0,env,[0,[2,im],0]];
+           return [/* tuple */0,
+                   0,
+                   env,
+                   [/* :: */0,[/* Element_included_module */2,im],0]];
            
           case 9:
            var class_description_list=sig_item_desc[1];
@@ -1611,7 +1685,7 @@ var
                  var class_desc=class_description_list$1[1];
                  
                  if(first)
-                  {var match$15=[0,comment_opt,0];}
+                  {var match$15=[/* tuple */0,comment_opt,0];}
                  else
                   {var
                     match$15=
@@ -1657,7 +1731,7 @@ var
                  
                  var
                   new_class=
-                   [0,
+                   [/* record */0,
                     complete_name$2,
                     match$15[1],
                     Odoc_env["subst_class_type"](env,sig_class_type),
@@ -1665,7 +1739,7 @@ var
                     class_desc[1]=0,
                     match$16[2],
                     match$16[1],
-                    [0,0,[0,class_desc[5]]]];
+                    [/* record */0,0,[/* Some */0,class_desc[5]]]];
                  
                  var
                   match$17=
@@ -1678,17 +1752,19 @@ var
                  Odoc_class["class_update_parameters_text"](new_class);
                  var match$18=f$3(0,maybe_more$1,pos_end+maybe_more$1,q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$18[1],
-                         Pervasives["@"](match$15[2],[0,[3,new_class],match$18[2]])];
+                         Pervasives["@"]
+                          (match$15[2],
+                           [/* :: */0,[/* Element_class */3,new_class],match$18[2]])];
                  }
                else
-                {return [0,acc_maybe_more,0];}
+                {return [/* tuple */0,acc_maybe_more,0];}
                };
            
            var match$15=f$3([0,1],0,pos_start_ele,class_description_list);
            
-           return [0,match$15[1],new_env$6,match$15[2]];
+           return [/* tuple */0,match$15[1],new_env$6,match$15[2]];
            
           case 10:
            var class_type_declaration_list=sig_item_desc[1];
@@ -1725,7 +1801,7 @@ var
                  var ct_decl=class_type_description_list[1];
                  
                  if(first)
-                  {var match$16=[0,comment_opt,0];}
+                  {var match$16=[/* tuple */0,comment_opt,0];}
                  else
                   {var
                     match$16=
@@ -1772,14 +1848,14 @@ var
                  
                  var
                   ct=
-                   [0,
+                   [/* record */0,
                     complete_name$2,
                     match$16[1],
                     Odoc_env["subst_class_type"](env,sig_class_type),
                     sig_cltype_decl[1],
                     ct_decl[1]=0,
                     kind,
-                    [0,0,[0,ct_decl[5]]]];
+                    [/* record */0,0,[/* Some */0,ct_decl[5]]]];
                  
                  var
                   match$17=
@@ -1791,25 +1867,27 @@ var
                  ct[2]=merge_infos(ct[2],match$17[2]),0;
                  var match$18=f$4(0,maybe_more$1,pos_end+maybe_more$1,q);
                  
-                 return [0,
+                 return [/* tuple */0,
                          match$18[1],
-                         Pervasives["@"](match$16[2],[0,[4,ct],match$18[2]])];
+                         Pervasives["@"]
+                          (match$16[2],
+                           [/* :: */0,[/* Element_class_type */4,ct],match$18[2]])];
                  }
                else
-                {return [0,acc_maybe_more,0];}
+                {return [/* tuple */0,acc_maybe_more,0];}
                };
            
            var
             match$16=
              f$4([0,1],0,pos_start_ele,class_type_declaration_list);
            
-           return [0,match$16[1],new_env$7,match$16[2]];
+           return [/* tuple */0,match$16[1],new_env$7,match$16[2]];
            
           case 11:exit=148;
           case 12:exit=148;
           }
         
-        switch(exit){case 148:return [0,0,env,0];}
+        switch(exit){case 148:return [/* tuple */0,0,env,0];}
         };
     
     var
@@ -1829,7 +1907,10 @@ var
             {case 0:var name=Odoc_name["from_path"](sig_module_type[1]);
              default:var name=Odoc_name["from_longident"](match[1][1]);}
            
-           return [2,[0,Odoc_env["full_module_type_name"](env,name),0]];
+           return [/* Module_type_alias */2,
+                   [/* record */0,
+                    Odoc_env["full_module_type_name"](env,name),
+                    0]];
            
           case 1:
            var ast=filter_out_erased_items_from_signature(erased,match[1]);
@@ -1850,7 +1931,7 @@ var
                   pos_end,
                   ast);
               
-              return [0,elements];
+              return [/* Module_type_struct */0,elements];
               
              default:
               throw [0,
@@ -1899,7 +1980,7 @@ var
               
               var
                param=
-                [0,
+                [/* record */0,
                  Odoc_name["from_ident"](sig_module_type[1]),
                  Misc["may_map"]
                   (Odoc_env["subst_module_type"](env),param_module_type),
@@ -1909,13 +1990,13 @@ var
               var
                k=
                 analyse_module_type_kind
-                 ([0,erased],
+                 ([/* Some */0,erased],
                   env,
                   current_module_name,
                   match[3],
                   sig_module_type[3]);
               
-              return [1,param,k];
+              return [/* Module_type_functor */1,param,k];
               
              default:
               throw [0,
@@ -1937,13 +2018,13 @@ var
            var
             k$1=
              analyse_module_type_kind
-              ([0,erased$1],
+              ([/* Some */0,erased$1],
                env,
                current_module_name,
                module_type2,
                sig_module_type);
            
-           return [3,k$1,s];
+           return [/* Module_type_with */3,k$1,s];
            
           case 4:
            var module_expr=match[1];
@@ -1954,7 +2035,7 @@ var
            
            var s$1=get_string_of_file(loc_start$2,loc_end$2);
            
-           return [4,s$1];
+           return [/* Module_type_typeof */4,s$1];
            
           case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1296,38]];
           case 6:
@@ -1962,7 +2043,8 @@ var
             {case 3:var name$1=Odoc_name["from_path"](sig_module_type[1]);
              default:var name$1=Odoc_name["from_longident"](match[1][1]);}
            
-           return [2,[0,Odoc_env["full_module_name"](env,name$1),0]];
+           return [/* Module_type_alias */2,
+                   [/* record */0,Odoc_env["full_module_name"](env,name$1),0]];
            
           }
         };
@@ -1985,7 +2067,7 @@ var
              analyse_module_type_kind
               (0,env,current_module_name,module_type,sig_module_type);
            
-           return [4,k,""];
+           return [/* Module_with */4,k,""];
            
           case 1:
            var
@@ -1994,7 +2076,7 @@ var
            
            switch(sig_module_type)
             {case 1:
-              return [0,
+              return [/* Module_struct */0,
                       analyse_parsetree
                        (env,
                         sig_module_type[1],
@@ -2050,7 +2132,7 @@ var
               
               var
                param=
-                [0,
+                [/* record */0,
                  Odoc_name["from_ident"](sig_module_type[1]),
                  Misc["may_map"]
                   (Odoc_env["subst_module_type"](env),param_module_type),
@@ -2060,13 +2142,13 @@ var
               var
                k$1=
                 analyse_module_kind
-                 ([0,erased],
+                 ([/* Some */0,erased],
                   env,
                   current_module_name,
                   match[3],
                   sig_module_type[3]);
               
-              return [2,param,k$1];
+              return [/* Module_functor */2,param,k$1];
               
              default:
               throw [0,
@@ -2088,13 +2170,13 @@ var
            var
             k$2=
              analyse_module_type_kind
-              ([0,erased$1],
+              ([/* Some */0,erased$1],
                env,
                current_module_name,
                module_type2,
                sig_module_type);
            
-           return [4,k$2,s];
+           return [/* Module_with */4,k$2,s];
            
           case 4:
            var module_expr=match[1];
@@ -2105,7 +2187,7 @@ var
            
            var s$1=get_string_of_file(loc_start$2,loc_end$2);
            
-           return [6,s$1];
+           return [/* Module_typeof */6,s$1];
            
           case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1385,38]];
           case 6:
@@ -2116,9 +2198,9 @@ var
                 Odoc_env["full_module_name"]
                  (env,Odoc_name["from_path"](sig_module_type[1]));
               
-              var ma=[0,alias_name,0];
+              var ma=[/* record */0,alias_name,0];
               
-              return [1,ma];
+              return [/* Module_alias */1,ma];
               
              default:
               throw [0,
@@ -2149,13 +2231,13 @@ var
               
               var
                k=
-                [2,
-                 [0,
+                [/* Class_constr */2,
+                 [/* record */0,
                   name,
                   0,
                   List["map"](Odoc_env["subst_type"](env),sig_class_type[2])]];
               
-              return [0,0,k];
+              return [/* tuple */0,0,k];
               
              case 1:exit=206;
              case 2:exit=206;
@@ -2175,7 +2257,9 @@ var
                   match[1][2],
                   sig_class_type[1]);
               
-              return [0,0,[0,match$1[1],match$1[2]]];
+              return [/* tuple */0,
+                      0,
+                      [/* Class_structure */0,match$1[1],match$1[2]]];
               
              case 2:exit=206;
              }
@@ -2190,8 +2274,8 @@ var
               if("unknown primitive:caml_string_equal")
                {var
                  new_param=
-                  [0,
-                   [0,
+                  [/* Simple_name */0,
+                   [/* record */0,
                     Btype["label_name"](label),
                     Odoc_env["subst_type"](env,sig_class_type[2]),
                     0]];
@@ -2201,7 +2285,9 @@ var
                   analyse_class_kind
                    (env,current_class_name,last_pos,match[3],sig_class_type[3]);
                 
-                return [0,[0,new_param,match$2[1]],match$2[2]];
+                return [/* tuple */0,
+                        [/* :: */0,new_param,match$2[1]],
+                        match$2[2]];
                 }
               else
                {throw [0,
@@ -2235,8 +2321,8 @@ var
          {case 0:
            switch(sig_class_type)
             {case 0:
-              return [1,
-                      [0,
+              return [/* Class_type */1,
+                      [/* record */0,
                        Odoc_env["full_class_or_class_type_name"]
                         (env,Odoc_name["from_path"](sig_class_type[1])),
                        0,
@@ -2260,7 +2346,7 @@ var
                   match[1][2],
                   sig_class_type[1]);
               
-              return [0,match$1[1],match$1[2]];
+              return [/* Class_signature */0,match$1[1],match$1[2]];
               
              case 2:exit=209;
              }
@@ -2296,7 +2382,7 @@ var
           
           var
            match=
-            [0,
+            [/* tuple */0,
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
@@ -2337,18 +2423,20 @@ var
             ast);
         
         if(Odoc_global["keep_code"][1])
-         {var code_intf=[0,file[1]];}
+         {var code_intf=[/* Some */0,file[1]];}
         else
          {var code_intf=0;}
         
-        return [0,
+        return [/* record */0,
                 mod_name,
-                [1,signat],
+                [/* Mty_signature */1,signat],
                 match$1[2],
                 1,
                 file_name[1],
-                [0,elements],
-                [0,0,[0,Location["in_file"](file_name[1])]],
+                [/* Module_struct */0,elements],
+                [/* record */0,
+                 0,
+                 [/* Some */0,Location["in_file"](file_name[1])]],
                 0,
                 0,
                 code_intf,

@@ -35,7 +35,10 @@ var
   function(param)
    {switch(param){case 0:return param[1];case 1:throw param[1];}};
 
-var wrap=function(f,x){try {return [0,f(x)];}catch(e){return [1,e];}};
+var
+ wrap=
+  function(f,x)
+   {try {return [/* Good */0,f(x)];}catch(e){return [/* Bad */1,e];}};
 
 var Outcome=[0,ignore_good,good,wrap];
 
@@ -217,7 +220,7 @@ var
             (function(x,acc)
               {var match=f(x);
                
-               if(match){return [0,match[1],acc];}else{return acc;}
+               if(match){return [/* :: */0,match[1],acc];}else{return acc;}
                },
              xs,
              0);
@@ -234,7 +237,7 @@ var
       if(mem(x,acc))
        {return rev_append_uniq(acc,xs);}
       else
-       {return rev_append_uniq([0,x,acc],xs);}
+       {return rev_append_uniq([/* :: */0,x,acc],xs);}
       }
     else
      {return acc;}
@@ -262,11 +265,11 @@ var
           var set=param[1];
           
           if(Set$1[3](el,set))
-           {return [0,set,acc];}
+           {return [/* tuple */0,set,acc];}
           else
-           {return [0,Set$1[4](el,set),[0,el,acc]];}
+           {return [/* tuple */0,Set$1[4](el,set),[/* :: */0,el,acc]];}
           },
-        [0,Set$1[1],0],
+        [/* tuple */0,Set$1[1],0],
         lst);
     
     return List["rev"](match[2]);
@@ -393,7 +396,7 @@ var
        {return 0;}
       else
        {if(eq_sub_strings(s1,pos,s2,0,ls2))
-         {return [0,pos];}
+         {return [/* Some */0,pos];}
         else
          {return contains_string(s1,pos+1,s2);}
         }
@@ -493,7 +496,8 @@ var
     
     var
      go=
-      function(pos){if(pos>=sl){return 0;}else{return [0,s[pos],go(pos+1)];}};
+      function(pos)
+       {if(pos>=sl){return 0;}else{return [/* :: */0,s[pos],go(pos+1)];}};
     
     return go(0);
     };
@@ -574,7 +578,9 @@ var
  reset_readdir_cache_for=
   function(dir){return Hashtbl["remove"](cache,dir);};
 
-var match=[0,sys_readdir,reset_readdir_cache,reset_readdir_cache_for];
+var
+ match=
+  [/* tuple */0,sys_readdir,reset_readdir_cache,reset_readdir_cache_for];
 
 var reset_readdir_cache_for$1=match[3];
 
@@ -900,10 +906,14 @@ var
     
     return function(x,y)
      {try
-       {return Hashtbl["find"](cache$1,[0,x,y]);}
+       {return Hashtbl["find"](cache$1,[/* tuple */0,x,y]);}
       catch(exn)
        {if(exn=Not_found)
-         {var res=f(x,y);Hashtbl["add"](cache$1,[0,x,y],res);return res;}
+         {var res=f(x,y);
+          
+          Hashtbl["add"](cache$1,[/* tuple */0,x,y],res);
+          return res;
+          }
         else
          {throw exn;}
         }
@@ -917,10 +927,14 @@ var
     
     return function(x,y,z)
      {try
-       {return Hashtbl["find"](cache$1,[0,x,y,z]);}
+       {return Hashtbl["find"](cache$1,[/* tuple */0,x,y,z]);}
       catch(exn)
        {if(exn=Not_found)
-         {var res=f(x,y,z);Hashtbl["add"](cache$1,[0,x,y,z],res);return res;}
+         {var res=f(x,y,z);
+          
+          Hashtbl["add"](cache$1,[/* tuple */0,x,y,z],res);
+          return res;
+          }
         else
          {throw exn;}
         }
@@ -932,10 +946,10 @@ var
   function(fname,lexbuf)
    {var init=lexbuf[11];
     
-    lexbuf[11]=[0,fname,init[2],init[3],init[4]],0;
+    lexbuf[11]=[/* record */0,fname,init[2],init[3],init[4]],0;
     var init$1=lexbuf[12];
     
-    lexbuf[12]=[0,fname,init$1[2],init$1[3],init$1[4]],0;
+    lexbuf[12]=[/* record */0,fname,init$1[2],init$1[3],init$1[4]],0;
     return 0;
     };
 

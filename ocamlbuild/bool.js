@@ -45,10 +45,10 @@ var
      {switch(b){case 0:exit=1;case 1:exit=1;}}
     else
      {switch(b[0])
-       {case 0:return [0,List["map"](map(f),b[1])];
-        case 1:return [1,List["map"](map(f),b[1])];
-        case 2:return [2,map(f,b[1])];
-        case 3:return [3,f(b[1])];
+       {case 0:return [/* And */0,List["map"](map(f),b[1])];
+        case 1:return [/* Or */1,List["map"](map(f),b[1])];
+        case 2:return [/* Not */2,map(f,b[1])];
+        case 3:return [/* Atom */3,f(b[1])];
         }}
     
     switch(exit){case 1:return b;}

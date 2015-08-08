@@ -188,7 +188,8 @@ var
  module_of_longident=
   function(id)
    {if(id)
-     {return [0,$$String["concat"](".",Longident["flatten"](id[1]))];}
+     {return [/* Some */0,$$String["concat"](".",Longident["flatten"](id[1]))];
+      }
     else
      {return 0;}
     };
@@ -354,8 +355,8 @@ var
             $$String["sub"](cmdarg$1,eqpos+1,cmdarg$1["length"]-eqpos-1);
           
           return Debugger_config["environment"][1]=
-                 [0,
-                  [0,name,value],
+                 [/* :: */0,
+                  [/* tuple */0,name,value],
                   List["remove_assoc"](name,Debugger_config["environment"][1])],
                  0;
           }
@@ -736,7 +737,7 @@ var
                          if("unknown primitive:caml_string_equal")
                           {return 0;}
                          else
-                          {return [0,i$1[1],0];}
+                          {return [/* :: */0,i$1[1],0];}
                          }
                        }
                      else
@@ -768,7 +769,7 @@ var
                 {if("unknown primitive:caml_string_equal")
                   {return 0;}
                  else
-                  {return [0,i[1],0];}
+                  {return [/* :: */0,i[1],0];}
                  }
                
               case 123:
@@ -796,7 +797,7 @@ var
                          if("unknown primitive:caml_string_equal")
                           {return 0;}
                          else
-                          {return [0,v[1],0];}
+                          {return [/* :: */0,v[1],0];}
                          }
                        }
                      else
@@ -813,7 +814,7 @@ var
                      }
                    }
                  else
-                  {return [0,i_full,0];}
+                  {return [/* :: */0,i_full,0];}
                  }
                
               }
@@ -1180,7 +1181,9 @@ var
            
            var init=Lexing["dummy_pos"];
            
-           var ev_pos=[0,Events["get_pos"](ev)[1],init[2],init[3],init[4]];
+           var
+            ev_pos=
+             [/* record */0,Events["get_pos"](ev)[1],init[2],init[3],init[4]];
            
            try
             {var buffer=Source["get_buffer"](ev_pos,module_name);}
@@ -1523,7 +1526,7 @@ var
 var
  raw_variable=
   function(kill,name)
-   {return [0,
+   {return [/* tuple */0,
             function(lexbuf)
              {var argument=Parser["argument_eol"](Lexer["argument"],lexbuf);
               
@@ -1540,7 +1543,7 @@ var
 var
  raw_line_variable=
   function(kill,name)
-   {return [0,
+   {return [/* tuple */0,
             function(lexbuf)
              {var
                argument=
@@ -1559,7 +1562,7 @@ var
 var
  integer_variable=
   function(kill,min,msg,name)
-   {return [0,
+   {return [/* tuple */0,
             function(lexbuf)
              {var argument=Parser["integer_eol"](Lexer["lexeme"],lexbuf);
               
@@ -1581,7 +1584,7 @@ var
 var
  int64_variable=
   function(kill,min,msg,name)
-   {return [0,
+   {return [/* tuple */0,
             function(lexbuf)
              {var argument=Parser["int64_eol"](Lexer["lexeme"],lexbuf);
               
@@ -1603,7 +1606,7 @@ var
 var
  boolean_variable=
   function(kill,name)
-   {return [0,
+   {return [/* tuple */0,
             function(lexbuf)
              {var match=Parser["identifier_eol"](Lexer["lexeme"],lexbuf);
               
@@ -1634,7 +1637,7 @@ var
 var
  path_variable=
   function(kill,name)
-   {return [0,
+   {return [/* tuple */0,
             function(lexbuf)
              {var argument=Parser["argument_eol"](Lexer["argument"],lexbuf);
               
@@ -1655,7 +1658,7 @@ var
 var
  loading_mode_variable=
   function(ppf)
-   {return [0,
+   {return [/* tuple */0,
             find_ident
              ("loading mode",
               matching_elements
@@ -1690,7 +1693,7 @@ var
 
 var
  follow_fork_variable=
-  [0,
+  [/* tuple */0,
    function(lexbuf)
     {var match=Parser["identifier_eol"](Lexer["lexeme"],lexbuf);
      
@@ -1854,11 +1857,11 @@ var
                  
                  var
                   match=
-                   [0,
+                   [/* tuple */0,
                     Source["start_and_cnum"](buffer,ev[3][1])[2],
                     Source["start_and_cnum"](buffer,ev[3][2])[2]];
                  }
-               catch(exn){var match=[0,ev[3][1][4],ev[3][2][4]];}
+               catch(exn){var match=[/* tuple */0,ev[3][1][4],ev[3][2][4]];}
                
                var match$1=ev[4];
                
@@ -1964,193 +1967,223 @@ var
  init=
   function(ppf)
    {instruction_list[1]=
-    [0,
-     [0,
+    [/* :: */0,
+     [/* record */0,
       "cd",
       0,
       instr_cd,
       1,
       "set working directory to DIR for debugger and program being debugged."],
-     [0,
-      [0,
+     [/* :: */0,
+      [/* record */0,
        "complete",
        0,
        instr_complete,
        0,
        "complete word at cursor according to context. Useful for Emacs."],
-      [0,
-       [0,"pwd",0,instr_pwd,1,"print working directory."],
-       [0,
-        [0,
+      [/* :: */0,
+       [/* record */0,"pwd",0,instr_pwd,1,"print working directory."],
+       [/* :: */0,
+        [/* record */0,
          "directory",
          0,
          instr_dir,
          0,
          "add directory DIR to beginning of search path for source and\ninterface files.\nForget cached info on source file locations and line positions.\nWith no argument, reset the search path."],
-        [0,
-         [0,"kill",0,instr_kill,1,"kill the program being debugged."],
-         [0,
-          [0,"help",0,instr_help,1,"print list of commands."],
-          [0,
-           [0,"quit",0,instr_quit,0,"exit the debugger."],
-           [0,
-            [0,
+        [/* :: */0,
+         [/* record */0,
+          "kill",
+          0,
+          instr_kill,
+          1,
+          "kill the program being debugged."],
+         [/* :: */0,
+          [/* record */0,"help",0,instr_help,1,"print list of commands."],
+          [/* :: */0,
+           [/* record */0,"quit",0,instr_quit,0,"exit the debugger."],
+           [/* :: */0,
+            [/* record */0,
              "shell",
              0,
              instr_shell,
              1,
              "Execute a given COMMAND thru the system shell."],
-            [0,
-             [0,
+            [/* :: */0,
+             [/* record */0,
               "environment",
               0,
               instr_env,
               0,
               "environment variable to give to program being debugged when it is started."],
-             [0,
-              [0,"run",1,instr_run,1,"run the program from current position."],
-              [0,
-               [0,
+             [/* :: */0,
+              [/* record */0,
+               "run",
+               1,
+               instr_run,
+               1,
+               "run the program from current position."],
+              [/* :: */0,
+               [/* record */0,
                 "reverse",
                 0,
                 instr_reverse,
                 1,
                 "run the program backward from current position."],
-               [0,
-                [0,
+               [/* :: */0,
+                [/* record */0,
                  "step",
                  1,
                  instr_step,
                  1,
                  "step program until it reaches the next event.\nArgument N means do this N times (or till program stops for another reason)."],
-                [0,
-                 [0,
+                [/* :: */0,
+                 [/* record */0,
                   "backstep",
                   1,
                   instr_back,
                   1,
                   "step program backward until it reaches the previous event.\nArgument N means do this N times (or till program stops for another reason)."],
-                 [0,
-                  [0,"goto",0,instr_goto,1,"go to the given time."],
-                  [0,
-                   [0,
+                 [/* :: */0,
+                  [/* record */0,
+                   "goto",
+                   0,
+                   instr_goto,
+                   1,
+                   "go to the given time."],
+                  [/* :: */0,
+                   [/* record */0,
                     "finish",
                     1,
                     instr_finish,
                     1,
                     "execute until topmost stack frame returns."],
-                   [0,
-                    [0,
+                   [/* :: */0,
+                    [/* record */0,
                      "next",
                      1,
                      instr_next,
                      1,
                      "step program until it reaches the next event.\nSkip over function calls.\nArgument N means do this N times (or till program stops for another reason)."],
-                    [0,
-                     [0,
+                    [/* :: */0,
+                     [/* record */0,
                       "start",
                       0,
                       instr_start,
                       1,
                       "execute backward until the current function is exited."],
-                     [0,
-                      [0,
+                     [/* :: */0,
+                      [/* record */0,
                        "previous",
                        0,
                        instr_previous,
                        1,
                        "step program until it reaches the previous event.\nSkip over function calls.\nArgument N means do this N times (or till program stops for another reason)."],
-                      [0,
-                       [0,
+                      [/* :: */0,
+                       [/* record */0,
                         "print",
                         1,
                         instr_print,
                         1,
                         "print value of expressions (deep printing)."],
-                       [0,
-                        [0,
+                       [/* :: */0,
+                        [/* record */0,
                          "display",
                          1,
                          instr_display,
                          1,
                          "print value of expressions (shallow printing)."],
-                        [0,
-                         [0,"source",0,instr_source,1,"read command from file FILE."],
-                         [0,
-                          [0,
+                        [/* :: */0,
+                         [/* record */0,
+                          "source",
+                          0,
+                          instr_source,
+                          1,
+                          "read command from file FILE."],
+                         [/* :: */0,
+                          [/* record */0,
                            "break",
                            0,
                            instr_break,
                            0,
                            "Set breakpoint at specified line or function.\nSyntax: break function-name\n        break @ [module] linenum\n        break @ [module] # characternum"],
-                          [0,
-                           [0,
+                          [/* :: */0,
+                           [/* record */0,
                             "delete",
                             0,
                             instr_delete,
                             0,
                             "delete some breakpoints.\nArguments are breakpoint numbers with spaces in between.\nTo delete all breakpoints, give no argument."],
-                           [0,
-                            [0,"set",0,instr_set,0,"--unused--"],
-                            [0,
-                             [0,"show",0,instr_show,1,"--unused--"],
-                             [0,
-                              [0,"info",0,instr_info,1,"--unused--"],
-                              [0,
-                               [0,
+                           [/* :: */0,
+                            [/* record */0,"set",0,instr_set,0,"--unused--"],
+                            [/* :: */0,
+                             [/* record */0,"show",0,instr_show,1,"--unused--"],
+                             [/* :: */0,
+                              [/* record */0,"info",0,instr_info,1,"--unused--"],
+                              [/* :: */0,
+                               [/* record */0,
                                 "frame",
                                 0,
                                 instr_frame,
                                 1,
                                 "select and print a stack frame.\nWith no argument, print the selected stack frame.\nAn argument specifies the frame to select."],
-                               [0,
-                                [0,
+                               [/* :: */0,
+                                [/* record */0,
                                  "backtrace",
                                  0,
                                  instr_backtrace,
                                  1,
                                  "print backtrace of all stack frames, or innermost COUNT frames.\nWith a negative argument, print outermost -COUNT frames."],
-                                [0,
-                                 [0,
+                                [/* :: */0,
+                                 [/* record */0,
                                   "bt",
                                   0,
                                   instr_backtrace,
                                   1,
                                   "print backtrace of all stack frames, or innermost COUNT frames.\nWith a negative argument, print outermost -COUNT frames."],
-                                 [0,
-                                  [0,
+                                 [/* :: */0,
+                                  [/* record */0,
                                    "up",
                                    0,
                                    instr_up,
                                    1,
                                    "select and print stack frame that called this one.\nAn argument says how many frames up to go."],
-                                  [0,
-                                   [0,
+                                  [/* :: */0,
+                                   [/* record */0,
                                     "down",
                                     0,
                                     instr_down,
                                     1,
                                     "select and print stack frame called by this one.\nAn argument says how many frames down to go."],
-                                   [0,
-                                    [0,"last",1,instr_last,1,"go back to previous time."],
-                                    [0,
-                                     [0,"list",0,instr_list,1,"list the source code."],
-                                     [0,
-                                      [0,
+                                   [/* :: */0,
+                                    [/* record */0,
+                                     "last",
+                                     1,
+                                     instr_last,
+                                     1,
+                                     "go back to previous time."],
+                                    [/* :: */0,
+                                     [/* record */0,
+                                      "list",
+                                      0,
+                                      instr_list,
+                                      1,
+                                      "list the source code."],
+                                     [/* :: */0,
+                                      [/* record */0,
                                        "load_printer",
                                        0,
                                        instr_load_printer,
                                        0,
                                        "load in the debugger a .cmo or .cma file containing printing functions."],
-                                      [0,
-                                       [0,
+                                      [/* :: */0,
+                                       [/* record */0,
                                         "install_printer",
                                         0,
                                         instr_install_printer,
                                         0,
                                         'use the given function for printing values of its input type.\nThe code for the function must have previously been loaded in the debugger\nusing "load_printer".'],
-                                       [0,
-                                        [0,
+                                       [/* :: */0,
+                                        [/* record */0,
                                          "remove_printer",
                                          0,
                                          instr_remove_printer,
@@ -2159,34 +2192,34 @@ var
                                         0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
     0;
     variable_list[1]=
-    [0,
-     [0,
+    [/* :: */0,
+     [/* record */0,
       "arguments",
       raw_line_variable(1,Parameters["arguments"]),
       "arguments to give program being debugged when it is started."],
-     [0,
-      [0,
+     [/* :: */0,
+      [/* record */0,
        "program",
        path_variable(1,Parameters["program_name"]),
        "name of program to be debugged."],
-      [0,
-       [0,
+      [/* :: */0,
+       [/* record */0,
         "loadingmode",
         loading_mode_variable(ppf),
         "mode of loading.\nIt can be either:\ndirect: the program is directly called by the debugger.\nruntime: the debugger execute `ocamlrun programname arguments'.\nmanual: the program is not launched by the debugger,\nbut manually by the user."],
-       [0,
-        [0,
+       [/* :: */0,
+        [/* record */0,
          "processcount",
          integer_variable
           (0,1,"Must be >= 1.",Debugger_config["checkpoint_max_count"]),
          "maximum number of process to keep."],
-        [0,
-         [0,
+        [/* :: */0,
+         [/* record */0,
           "checkpoints",
           boolean_variable(0,Debugger_config["make_checkpoints"]),
           "whether to make checkpoints or not."],
-         [0,
-          [0,
+         [/* :: */0,
+          [/* record */0,
            "bigstep",
            int64_variable
             (0,
@@ -2194,8 +2227,8 @@ var
              "Must be >= 1.",
              Debugger_config["checkpoint_big_step"]),
            "step between checkpoints during long displacements."],
-          [0,
-           [0,
+          [/* :: */0,
+           [/* record */0,
             "smallstep",
             int64_variable
              (0,
@@ -2203,44 +2236,50 @@ var
               "Must be >= 1.",
               Debugger_config["checkpoint_small_step"]),
             "step between checkpoints during small displacements."],
-           [0,
-            [0,
+           [/* :: */0,
+            [/* record */0,
              "socket",
              raw_variable(1,Parameters["socket_name"]),
              "name of the socket used by communications debugger-runtime."],
-            [0,
-             [0,
+            [/* :: */0,
+             [/* record */0,
               "history",
               integer_variable(0,0,"",Debugger_config["history_size"]),
               "history size."],
-             [0,
-              [0,
+             [/* :: */0,
+              [/* record */0,
                "print_depth",
                integer_variable
                 (0,1,"Must be at least 1",Printval["max_printer_depth"]),
                "maximal depth for printing of values."],
-              [0,
-               [0,
+              [/* :: */0,
+               [/* record */0,
                 "print_length",
                 integer_variable
                  (0,1,"Must be at least 1",Printval["max_printer_steps"]),
                 "maximal number of value nodes printed."],
-               [0,
-                [0,
+               [/* :: */0,
+                [/* record */0,
                  "follow_fork_mode",
                  follow_fork_variable,
                  "process to follow after forking.\nIt can be either :\n  child: the newly created process.\nparent: the process that called fork.\n"],
                 0]]]]]]]]]]]],
     0;
     return info_list[1]=
-           [0,
-            [0,"modules",info_modules(ppf),"list opened modules."],
-            [0,
-             [0,"checkpoints",info_checkpoints(ppf),"list checkpoints."],
-             [0,
-              [0,"breakpoints",info_breakpoints(ppf),"list breakpoints."],
-              [0,
-               [0,
+           [/* :: */0,
+            [/* record */0,"modules",info_modules(ppf),"list opened modules."],
+            [/* :: */0,
+             [/* record */0,
+              "checkpoints",
+              info_checkpoints(ppf),
+              "list checkpoints."],
+             [/* :: */0,
+              [/* record */0,
+               "breakpoints",
+               info_breakpoints(ppf),
+               "list breakpoints."],
+              [/* :: */0,
+               [/* record */0,
                 "events",
                 info_events(ppf),
                 "list events in MODULE (default is current module)."],

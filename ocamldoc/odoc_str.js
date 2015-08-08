@@ -146,7 +146,8 @@ var
             ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
              par$1?"(":"",
              raw_string_of_type_list
-              (sep,List["map"](function(t){return [0,"",t];},type_list)),
+              (sep,
+               List["map"](function(t){return [/* tuple */0,"",t];},type_list)),
              par$1?")":"");
     };
 
@@ -168,8 +169,8 @@ var
               (", ",
                List["map"]
                 (function(param)
-                  {return [0,
-                           string_of_variance(t,[0,param[2],param[3]]),
+                  {return [/* tuple */0,
+                           string_of_variance(t,[/* tuple */0,param[2],param[3]]),
                            param[1]];
                    },
                  t[3])),
@@ -191,7 +192,8 @@ var
             ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
              par?"(":"",
              raw_string_of_type_list
-              (", ",List["map"](function(typ){return [0,"",typ];},te[3])),
+              (", ",
+               List["map"](function(typ){return [/* tuple */0,"",typ];},te[3])),
              par?")":"");
     };
 
@@ -208,7 +210,8 @@ var
             ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
              par?"[":"",
              raw_string_of_type_list
-              (", ",List["map"](function(typ){return [0,"",typ];},l)),
+              (", ",
+               List["map"](function(typ){return [/* tuple */0,"",typ];},l)),
              par?"]":"");
     };
 
@@ -283,7 +286,7 @@ var
         List["map"]
          (function(param)
            {return Pervasives["^"]
-                    (string_of_variance(t,[0,param[2],param[3]]),
+                    (string_of_variance(t,[/* tuple */0,param[2],param[3]]),
                      Odoc_print["string_of_type_expr"](param[1]));
             },
           t[3]));

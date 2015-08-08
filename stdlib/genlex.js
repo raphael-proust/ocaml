@@ -48,13 +48,15 @@ var
    {var kwd_table=Hashtbl["create"](0,17);
     
     List["iter"]
-     (function(s){return Hashtbl["add"](kwd_table,s,[0,s]);},keywords);
+     (function(s){return Hashtbl["add"](kwd_table,s,/* Kwd */[0,s]);},
+      keywords);
     var
      ident_or_keyword=
       function(id)
        {try
          {return Hashtbl["find"](kwd_table,id);}
-        catch(exn){if(exn=Not_found){return [1,id];}else{throw exn;}}
+        catch(exn)
+         {if(exn=Not_found){return /* Ident */[1,id];}else{throw exn;}}
         };
     
     var
@@ -148,7 +150,7 @@ var
                    var s=strm__;
                    
                    reset_buffer(0);
-                   return [0,[4,string(s)]];
+                   return /* Some */[0,/* String */[4,string(s)]];
                    
                   case 35:exit=11;
                   case 36:exit=11;
@@ -175,7 +177,9 @@ var
                      if(match$2!=39)
                       {exit$1=4;}
                      else
-                      {Stream["junk"](strm__);return [0,[5,c$1]];}
+                      {Stream["junk"](strm__);
+                       return /* Some */[0,/* Char */[5,c$1]];
+                       }
                      }
                    else
                     {exit$1=4;}
@@ -223,7 +227,7 @@ var
              var c$2=c;
              
              Stream["junk"](strm__);
-             return [0,keyword_or_error(c$2)];
+             return /* Some */[0,keyword_or_error(c$2)];
              
             case 9:Stream["junk"](strm__);return next_token(strm__);
             case 10:
@@ -298,7 +302,8 @@ var
         else
          {exit=15;}
         
-        switch(exit){case 15:return [0,ident_or_keyword(get_string(0))];}
+        switch(exit)
+         {case 15:return /* Some */[0,ident_or_keyword(get_string(0))];}
         };
     
     var
@@ -376,7 +381,8 @@ var
         else
          {exit=18;}
         
-        switch(exit){case 18:return [0,ident_or_keyword(get_string(0))];}
+        switch(exit)
+         {case 18:return /* Some */[0,ident_or_keyword(get_string(0))];}
         };
     
     var
@@ -460,7 +466,11 @@ var
          {exit=27;}
         
         switch(exit)
-         {case 27:return [0,[2,"unknown primitive:caml_int_of_string"]];}
+         {case 27:
+           return /* Some */[0,
+                   /* Int */[2,"unknown primitive:caml_int_of_string"]];
+           
+          }
         };
     
     var
@@ -506,7 +516,11 @@ var
          {exit=32;}
         
         switch(exit)
-         {case 32:return [0,[3,"unknown primitive:caml_float_of_string"]];}
+         {case 32:
+           return /* Some */[0,
+                   /* Float */[3,"unknown primitive:caml_float_of_string"]];
+           
+          }
         };
     
     var
@@ -565,7 +579,11 @@ var
          {exit=39;}
         
         switch(exit)
-         {case 39:return [0,[3,"unknown primitive:caml_float_of_string"]];}
+         {case 39:
+           return /* Some */[0,
+                   /* Float */[3,"unknown primitive:caml_float_of_string"]];
+           
+          }
         };
     
     var
@@ -732,7 +750,7 @@ var
         else
          {exit=58;}
         
-        switch(exit){case 58:return [0,keyword_or_error(40)];}
+        switch(exit){case 58:return /* Some */[0,keyword_or_error(40)];}
         };
     
     var

@@ -53,64 +53,85 @@ var
 var
  pad_of_pad_opt=
   function(pad_opt)
-   {if(pad_opt){var width=pad_opt[1];return [0,1,width];}else{return 0;}};
+   {if(pad_opt)
+     {var width=pad_opt[1];return /* Lit_padding */[0,1,width];}
+    else
+     {return 0;}
+    };
 
 var
  prec_of_prec_opt=
   function(prec_opt)
-   {if(prec_opt){var ndec=prec_opt[1];return [0,ndec];}else{return 0;}};
+   {if(prec_opt)
+     {var ndec=prec_opt[1];return /* Lit_precision */[0,ndec];}
+    else
+     {return 0;}
+    };
 
 var
  param_format_of_ignored_format=
   function(ign,fmt)
    {if(typeof ign=="number")
      {switch(ign)
-       {case 0:return [0,[0,fmt]];
-        case 1:return [0,[1,fmt]];
-        case 2:return [0,[9,fmt]];
-        case 3:return [0,[19,fmt]];
-        case 4:return [0,[22,fmt]];
+       {case 0:return /* Param_format_EBB */[0,/* Char */[0,fmt]];
+        case 1:return /* Param_format_EBB */[0,/* Caml_char */[1,fmt]];
+        case 2:return /* Param_format_EBB */[0,/* Bool */[9,fmt]];
+        case 3:return /* Param_format_EBB */[0,/* Reader */[19,fmt]];
+        case 4:return /* Param_format_EBB */[0,/* Scan_next_char */[22,fmt]];
         }}
     else
      {switch(ign[0])
-       {case 0:var pad_opt=ign[1];return [0,[2,pad_of_pad_opt(pad_opt),fmt]];
+       {case 0:
+         var pad_opt=ign[1];
+         
+         return /* Param_format_EBB */[0,
+                 /* String */[2,pad_of_pad_opt(pad_opt),fmt]];
+         
         case 1:
-         var pad_opt$1=ign[1];return [0,[3,pad_of_pad_opt(pad_opt$1),fmt]];
+         var pad_opt$1=ign[1];
+         
+         return /* Param_format_EBB */[0,
+                 /* Caml_string */[3,pad_of_pad_opt(pad_opt$1),fmt]];
+         
         case 2:
          var pad_opt$2=ign[2];
          
          var iconv=ign[1];
          
-         return [0,[4,iconv,pad_of_pad_opt(pad_opt$2),0,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Int */[4,iconv,pad_of_pad_opt(pad_opt$2),0,fmt]];
          
         case 3:
          var pad_opt$3=ign[2];
          
          var iconv$1=ign[1];
          
-         return [0,[5,iconv$1,pad_of_pad_opt(pad_opt$3),0,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Int32 */[5,iconv$1,pad_of_pad_opt(pad_opt$3),0,fmt]];
          
         case 4:
          var pad_opt$4=ign[2];
          
          var iconv$2=ign[1];
          
-         return [0,[6,iconv$2,pad_of_pad_opt(pad_opt$4),0,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Nativeint */[6,iconv$2,pad_of_pad_opt(pad_opt$4),0,fmt]];
          
         case 5:
          var pad_opt$5=ign[2];
          
          var iconv$3=ign[1];
          
-         return [0,[7,iconv$3,pad_of_pad_opt(pad_opt$5),0,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Int64 */[7,iconv$3,pad_of_pad_opt(pad_opt$5),0,fmt]];
          
         case 6:
          var prec_opt=ign[2];
          
          var pad_opt$6=ign[1];
          
-         return [0,
-                 [8,
+         return /* Param_format_EBB */[0,
+                 /* Float */[8,
                   0,
                   pad_of_pad_opt(pad_opt$6),
                   prec_of_prec_opt(prec_opt),
@@ -121,23 +142,31 @@ var
          
          var pad_opt$7=ign[1];
          
-         return [0,[13,pad_opt$7,fmtty,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Format_arg */[13,pad_opt$7,fmtty,fmt]];
          
         case 8:
          var fmtty$1=ign[2];
          
          var pad_opt$8=ign[1];
          
-         return [0,[14,pad_opt$8,fmtty$1,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Format_subst */[14,pad_opt$8,fmtty$1,fmt]];
          
         case 9:
          var char_set=ign[2];
          
          var width_opt=ign[1];
          
-         return [0,[20,width_opt,char_set,fmt]];
+         return /* Param_format_EBB */[0,
+                 /* Scan_char_set */[20,width_opt,char_set,fmt]];
          
-        case 10:var counter=ign[1];return [0,[21,counter,fmt]];
+        case 10:
+         var counter=ign[1];
+         
+         return /* Param_format_EBB */[0,
+                 /* Scan_get_counter */[21,counter,fmt]];
+         
         }}
     };
 
@@ -145,7 +174,8 @@ var default_float_precision=6;
 
 var
  buffer_create=
-  function(init_size){return [0,0,"unknown primitive:caml_create_string"];};
+  function(init_size)
+   {return /* record */[0,0,"unknown primitive:caml_create_string"];};
 
 var
  buffer_check_size=
@@ -262,7 +292,7 @@ var
        {var
          is_alone=
           function(c)
-           {var match=[0,Char["chr"](c-1),Char["chr"](c+1)];
+           {var match=/* tuple */[0,Char["chr"](c-1),Char["chr"](c+1)];
             
             var after=match[2];
             
@@ -998,15 +1028,21 @@ var
      {switch(param){case 0:return 0;}}
     else
      {switch(param[0])
-       {case 0:var rest=param[1];return [0,symm(rest)];
-        case 1:var rest$1=param[1];return [1,symm(rest$1)];
-        case 2:var rest$2=param[1];return [2,symm(rest$2)];
-        case 3:var rest$3=param[1];return [3,symm(rest$3)];
-        case 4:var rest$4=param[1];return [4,symm(rest$4)];
-        case 5:var rest$5=param[1];return [5,symm(rest$5)];
-        case 6:var rest$6=param[1];return [6,symm(rest$6)];
-        case 7:var rest$7=param[1];return [7,symm(rest$7)];
-        case 8:var rest$8=param[2];var ty=param[1];return [8,ty,symm(rest$8)];
+       {case 0:var rest=param[1];return /* Char_ty */[0,symm(rest)];
+        case 1:var rest$1=param[1];return /* String_ty */[1,symm(rest$1)];
+        case 2:var rest$2=param[1];return /* Int_ty */[2,symm(rest$2)];
+        case 3:var rest$3=param[1];return /* Int32_ty */[3,symm(rest$3)];
+        case 4:var rest$4=param[1];return /* Nativeint_ty */[4,symm(rest$4)];
+        case 5:var rest$5=param[1];return /* Int64_ty */[5,symm(rest$5)];
+        case 6:var rest$6=param[1];return /* Float_ty */[6,symm(rest$6)];
+        case 7:var rest$7=param[1];return /* Bool_ty */[7,symm(rest$7)];
+        case 8:
+         var rest$8=param[2];
+         
+         var ty=param[1];
+         
+         return /* Format_arg_ty */[8,ty,symm(rest$8)];
+         
         case 9:
          var rest$9=param[3];
          
@@ -1014,13 +1050,17 @@ var
          
          var ty1=param[1];
          
-         return [9,ty2,ty1,symm(rest$9)];
+         return /* Format_subst_ty */[9,ty2,ty1,symm(rest$9)];
          
-        case 10:var rest$10=param[1];return [10,symm(rest$10)];
-        case 11:var rest$11=param[1];return [11,symm(rest$11)];
-        case 12:var rest$12=param[1];return [12,symm(rest$12)];
-        case 13:var rest$13=param[1];return [13,symm(rest$13)];
-        case 14:var rest$14=param[1];return [14,symm(rest$14)];
+        case 10:var rest$10=param[1];return /* Alpha_ty */[10,symm(rest$10)];
+        case 11:var rest$11=param[1];return /* Theta_ty */[11,symm(rest$11)];
+        case 12:var rest$12=param[1];return /* Any_ty */[12,symm(rest$12)];
+        case 13:var rest$13=param[1];return /* Reader_ty */[13,symm(rest$13)];
+        case 14:
+         var rest$14=param[1];
+         
+         return /* Ignored_reader_ty */[14,symm(rest$14)];
+         
         }}
     };
 
@@ -1030,7 +1070,7 @@ var
    {if(typeof param=="number")
      {switch(param)
        {case 0:
-         return [0,
+         return /* tuple */[0,
                  function(param$1){return 0;},
                  function(param$1){return 0;},
                  function(param$1){return 0;},
@@ -1052,7 +1092,7 @@ var
          
          var fa=match[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$1=fa(0);return 0;},
                  function(param$1){var match$1=af(0);return 0;},
                  ed,
@@ -1071,7 +1111,7 @@ var
          
          var fa$1=match$1[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$2=fa$1(0);return 0;},
                  function(param$1){var match$2=af$1(0);return 0;},
                  ed$1,
@@ -1090,7 +1130,7 @@ var
          
          var fa$2=match$2[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$3=fa$2(0);return 0;},
                  function(param$1){var match$3=af$2(0);return 0;},
                  ed$2,
@@ -1109,7 +1149,7 @@ var
          
          var fa$3=match$3[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$4=fa$3(0);return 0;},
                  function(param$1){var match$4=af$3(0);return 0;},
                  ed$3,
@@ -1128,7 +1168,7 @@ var
          
          var fa$4=match$4[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$5=fa$4(0);return 0;},
                  function(param$1){var match$5=af$4(0);return 0;},
                  ed$4,
@@ -1147,7 +1187,7 @@ var
          
          var fa$5=match$5[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$6=fa$5(0);return 0;},
                  function(param$1){var match$6=af$5(0);return 0;},
                  ed$5,
@@ -1166,7 +1206,7 @@ var
          
          var fa$6=match$6[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$7=fa$6(0);return 0;},
                  function(param$1){var match$7=af$6(0);return 0;},
                  ed$6,
@@ -1185,7 +1225,7 @@ var
          
          var fa$7=match$7[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$8=fa$7(0);return 0;},
                  function(param$1){var match$8=af$7(0);return 0;},
                  ed$7,
@@ -1204,7 +1244,7 @@ var
          
          var fa$8=match$8[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$9=fa$8(0);return 0;},
                  function(param$1){var match$9=af$8(0);return 0;},
                  ed$8,
@@ -1239,7 +1279,7 @@ var
          
          var ag=match$10[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1)
                   {var match$11=fa$9(0);var match$12=ag(0);return 0;},
                  function(param$1)
@@ -1262,7 +1302,7 @@ var
          
          var fa$10=match$11[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$12=fa$10(0);return 0;},
                  function(param$1){var match$12=af$10(0);return 0;},
                  ed$10,
@@ -1281,7 +1321,7 @@ var
          
          var fa$11=match$12[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$13=fa$11(0);return 0;},
                  function(param$1){var match$13=af$11(0);return 0;},
                  ed$11,
@@ -1300,7 +1340,7 @@ var
          
          var fa$12=match$13[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$14=fa$12(0);return 0;},
                  function(param$1){var match$14=af$12(0);return 0;},
                  ed$12,
@@ -1319,7 +1359,7 @@ var
          
          var fa$13=match$14[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$15=fa$13(0);return 0;},
                  function(param$1){var match$15=af$13(0);return 0;},
                  function(param$1){var match$15=ed$13(0);return 0;},
@@ -1338,7 +1378,7 @@ var
          
          var fa$14=match$15[1];
          
-         return [0,
+         return /* tuple */[0,
                  function(param$1){var match$16=fa$14(0);return 0;},
                  function(param$1){var match$16=af$14(0);return 0;},
                  function(param$1){var match$16=ed$14(0);return 0;},
@@ -1383,7 +1423,8 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 0:var rest2=match$1[1];return [0,trans(rest1,rest2)];
+            {case 0:
+              var rest2=match$1[1];return /* Char_ty */[0,trans(rest1,rest2)];
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1400,7 +1441,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 1:var rest2$1=match$1[1];return [1,trans(rest1$1,rest2$1)];
+            {case 1:
+              var rest2$1=match$1[1];
+              
+              return /* String_ty */[1,trans(rest1$1,rest2$1)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1417,7 +1462,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 2:var rest2$2=match$1[1];return [2,trans(rest1$2,rest2$2)];
+            {case 2:
+              var rest2$2=match$1[1];
+              
+              return /* Int_ty */[2,trans(rest1$2,rest2$2)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1434,7 +1483,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 3:var rest2$3=match$1[1];return [3,trans(rest1$3,rest2$3)];
+            {case 3:
+              var rest2$3=match$1[1];
+              
+              return /* Int32_ty */[3,trans(rest1$3,rest2$3)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1451,7 +1504,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 4:var rest2$4=match$1[1];return [4,trans(rest1$4,rest2$4)];
+            {case 4:
+              var rest2$4=match$1[1];
+              
+              return /* Nativeint_ty */[4,trans(rest1$4,rest2$4)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1468,7 +1525,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 5:var rest2$5=match$1[1];return [5,trans(rest1$5,rest2$5)];
+            {case 5:
+              var rest2$5=match$1[1];
+              
+              return /* Int64_ty */[5,trans(rest1$5,rest2$5)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1485,7 +1546,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 6:var rest2$6=match$1[1];return [6,trans(rest1$6,rest2$6)];
+            {case 6:
+              var rest2$6=match$1[1];
+              
+              return /* Float_ty */[6,trans(rest1$6,rest2$6)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1502,7 +1567,11 @@ var
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
-            {case 7:var rest2$7=match$1[1];return [7,trans(rest1$7,rest2$7)];
+            {case 7:
+              var rest2$7=match$1[1];
+              
+              return /* Bool_ty */[7,trans(rest1$7,rest2$7)];
+              
              case 8:exit=335;
              case 9:exit=333;
              case 10:exit=345;
@@ -1526,7 +1595,9 @@ var
               
               var ty2$1=match$1[1];
               
-              return [8,trans(ty1$1,ty2$1),trans(rest1$8,rest2$8)];
+              return /* Format_arg_ty */[8,
+                      trans(ty1$1,ty2$1),
+                      trans(rest1$8,rest2$8)];
               
              case 10:exit=345;
              case 11:exit=343;
@@ -1566,7 +1637,7 @@ var
               
               var match$4=f4(0);
               
-              return [9,ty11,ty22,trans(rest1$9,rest2$9)];
+              return /* Format_subst_ty */[9,ty11,ty22,trans(rest1$9,rest2$9)];
               
              case 10:exit=345;
              case 11:exit=343;
@@ -1585,7 +1656,10 @@ var
          else
           {switch(match$1[0])
             {case 10:
-              var rest2$10=match$1[1];return [10,trans(rest1$10,rest2$10)];
+              var rest2$10=match$1[1];
+              
+              return /* Alpha_ty */[10,trans(rest1$10,rest2$10)];
+              
              default:exit$1=346;}}
          
          switch(exit$1)
@@ -1602,7 +1676,10 @@ var
           {switch(match$1[0])
             {case 10:exit=345;
              case 11:
-              var rest2$11=match$1[1];return [11,trans(rest1$11,rest2$11)];
+              var rest2$11=match$1[1];
+              
+              return /* Theta_ty */[11,trans(rest1$11,rest2$11)];
+              
              default:exit=344;}}
          
         case 12:
@@ -1615,7 +1692,10 @@ var
             {case 10:exit=345;
              case 11:exit=343;
              case 12:
-              var rest2$12=match$1[1];return [12,trans(rest1$12,rest2$12)];
+              var rest2$12=match$1[1];
+              
+              return /* Any_ty */[12,trans(rest1$12,rest2$12)];
+              
              default:exit=342;}}
          
         case 13:
@@ -1629,7 +1709,10 @@ var
              case 11:exit=343;
              case 12:exit=341;
              case 13:
-              var rest2$13=match$1[1];return [13,trans(rest1$13,rest2$13)];
+              var rest2$13=match$1[1];
+              
+              return /* Reader_ty */[13,trans(rest1$13,rest2$13)];
+              
              default:exit=340;}}
          
         case 14:
@@ -1644,7 +1727,10 @@ var
              case 12:exit=341;
              case 13:exit=339;
              case 14:
-              var rest2$14=match$1[1];return [14,trans(rest1$14,rest2$14)];
+              var rest2$14=match$1[1];
+              
+              return /* Ignored_reader_ty */[14,trans(rest1$14,rest2$14)];
+              
              default:exit=338;}}
          
         }}
@@ -1690,21 +1776,24 @@ var
      {switch(fmtty){case 0:return 0;}}
     else
      {switch(fmtty[0])
-       {case 0:var rest=fmtty[1];return [0,fmtty_of_fmt(rest)];
-        case 1:var rest$1=fmtty[1];return [0,fmtty_of_fmt(rest$1)];
+       {case 0:var rest=fmtty[1];return /* Char_ty */[0,fmtty_of_fmt(rest)];
+        case 1:
+         var rest$1=fmtty[1];return /* Char_ty */[0,fmtty_of_fmt(rest$1)];
         case 2:
          var rest$2=fmtty[2];
          
          var pad=fmtty[1];
          
-         return fmtty_of_padding_fmtty(pad,[1,fmtty_of_fmt(rest$2)]);
+         return fmtty_of_padding_fmtty
+                 (pad,/* String_ty */[1,fmtty_of_fmt(rest$2)]);
          
         case 3:
          var rest$3=fmtty[2];
          
          var pad$1=fmtty[1];
          
-         return fmtty_of_padding_fmtty(pad$1,[1,fmtty_of_fmt(rest$3)]);
+         return fmtty_of_padding_fmtty
+                 (pad$1,/* String_ty */[1,fmtty_of_fmt(rest$3)]);
          
         case 4:
          var rest$4=fmtty[4];
@@ -1715,7 +1804,7 @@ var
          
          var ty_rest=fmtty_of_fmt(rest$4);
          
-         var prec_ty=fmtty_of_precision_fmtty(prec,[2,ty_rest]);
+         var prec_ty=fmtty_of_precision_fmtty(prec,/* Int_ty */[2,ty_rest]);
          
          return fmtty_of_padding_fmtty(pad$2,prec_ty);
          
@@ -1728,7 +1817,9 @@ var
          
          var ty_rest$1=fmtty_of_fmt(rest$5);
          
-         var prec_ty$1=fmtty_of_precision_fmtty(prec$1,[3,ty_rest$1]);
+         var
+          prec_ty$1=
+           fmtty_of_precision_fmtty(prec$1,/* Int32_ty */[3,ty_rest$1]);
          
          return fmtty_of_padding_fmtty(pad$3,prec_ty$1);
          
@@ -1741,7 +1832,9 @@ var
          
          var ty_rest$2=fmtty_of_fmt(rest$6);
          
-         var prec_ty$2=fmtty_of_precision_fmtty(prec$2,[4,ty_rest$2]);
+         var
+          prec_ty$2=
+           fmtty_of_precision_fmtty(prec$2,/* Nativeint_ty */[4,ty_rest$2]);
          
          return fmtty_of_padding_fmtty(pad$4,prec_ty$2);
          
@@ -1754,7 +1847,9 @@ var
          
          var ty_rest$3=fmtty_of_fmt(rest$7);
          
-         var prec_ty$3=fmtty_of_precision_fmtty(prec$3,[5,ty_rest$3]);
+         var
+          prec_ty$3=
+           fmtty_of_precision_fmtty(prec$3,/* Int64_ty */[5,ty_rest$3]);
          
          return fmtty_of_padding_fmtty(pad$5,prec_ty$3);
          
@@ -1767,11 +1862,14 @@ var
          
          var ty_rest$4=fmtty_of_fmt(rest$8);
          
-         var prec_ty$4=fmtty_of_precision_fmtty(prec$4,[6,ty_rest$4]);
+         var
+          prec_ty$4=
+           fmtty_of_precision_fmtty(prec$4,/* Float_ty */[6,ty_rest$4]);
          
          return fmtty_of_padding_fmtty(pad$6,prec_ty$4);
          
-        case 9:var rest$9=fmtty[1];return [7,fmtty_of_fmt(rest$9)];
+        case 9:
+         var rest$9=fmtty[1];return /* Bool_ty */[7,fmtty_of_fmt(rest$9)];
         case 10:var rest$10=fmtty[1];return fmtty_of_fmt(rest$10);
         case 11:var rest$11=fmtty[2];return fmtty_of_fmt(rest$11);
         case 12:var rest$12=fmtty[2];return fmtty_of_fmt(rest$12);
@@ -1780,17 +1878,19 @@ var
          
          var ty=fmtty[2];
          
-         return [8,ty,fmtty_of_fmt(rest$13)];
+         return /* Format_arg_ty */[8,ty,fmtty_of_fmt(rest$13)];
          
         case 14:
          var rest$14=fmtty[3];
          
          var ty$1=fmtty[2];
          
-         return [9,ty$1,ty$1,fmtty_of_fmt(rest$14)];
+         return /* Format_subst_ty */[9,ty$1,ty$1,fmtty_of_fmt(rest$14)];
          
-        case 15:var rest$15=fmtty[1];return [10,fmtty_of_fmt(rest$15)];
-        case 16:var rest$16=fmtty[1];return [11,fmtty_of_fmt(rest$16)];
+        case 15:
+         var rest$15=fmtty[1];return /* Alpha_ty */[10,fmtty_of_fmt(rest$15)];
+        case 16:
+         var rest$16=fmtty[1];return /* Theta_ty */[11,fmtty_of_fmt(rest$16)];
         case 17:var rest$17=fmtty[2];return fmtty_of_fmt(rest$17);
         case 18:
          var rest$18=fmtty[2];
@@ -1800,10 +1900,17 @@ var
          return CamlinternalFormatBasics["concat_fmtty"]
                  (fmtty_of_formatting_gen(fmting_gen),fmtty_of_fmt(rest$18));
          
-        case 19:var rest$19=fmtty[1];return [13,fmtty_of_fmt(rest$19)];
-        case 20:var rest$20=fmtty[3];return [1,fmtty_of_fmt(rest$20)];
-        case 21:var rest$21=fmtty[2];return [2,fmtty_of_fmt(rest$21)];
-        case 22:var rest$22=fmtty[1];return [0,fmtty_of_fmt(rest$22)];
+        case 19:
+         var rest$19=fmtty[1];
+         
+         return /* Reader_ty */[13,fmtty_of_fmt(rest$19)];
+         
+        case 20:
+         var rest$20=fmtty[3];return /* String_ty */[1,fmtty_of_fmt(rest$20)];
+        case 21:
+         var rest$21=fmtty[2];return /* Int_ty */[2,fmtty_of_fmt(rest$21)];
+        case 22:
+         var rest$22=fmtty[1];return /* Char_ty */[0,fmtty_of_fmt(rest$22)];
         case 23:
          var rest$23=fmtty[2];
          
@@ -1825,7 +1932,10 @@ var
  fmtty_of_custom=
   function(arity,fmtty)
    {if(arity)
-     {var arity$1=arity[1];return [12,fmtty_of_custom(arity$1,fmtty)];}
+     {var arity$1=arity[1];
+      
+      return /* Any_ty */[12,fmtty_of_custom(arity$1,fmtty)];
+      }
     else
      {return fmtty;}
     };
@@ -1838,7 +1948,7 @@ var
        {case 0:return fmtty_of_fmt(fmt);
         case 1:return fmtty_of_fmt(fmt);
         case 2:return fmtty_of_fmt(fmt);
-        case 3:return [14,fmtty_of_fmt(fmt)];
+        case 3:return /* Ignored_reader_ty */[14,fmtty_of_fmt(fmt)];
         case 4:return fmtty_of_fmt(fmt);
         }}
     else
@@ -1868,14 +1978,14 @@ var
    {if(typeof pad=="number")
      {switch(pad){case 0:return fmtty;}}
     else
-     {switch(pad[0]){case 0:return fmtty;case 1:return [2,fmtty];}}
+     {switch(pad[0]){case 0:return fmtty;case 1:return /* Int_ty */[2,fmtty];}}
     };
 
 var
  fmtty_of_precision_fmtty=
   function(prec,fmtty)
    {if("unknown primitive:isint")
-     {if(prec!=0){return [2,fmtty];}else{return fmtty;}}
+     {if(prec!=0){return /* Int_ty */[2,fmtty];}else{return fmtty;}}
     else
      {return fmtty;}
     };
@@ -1892,10 +2002,16 @@ var
     var exit;
     
     if(typeof match=="number")
-     {switch(match){case 0:return [0,0,fmtty];}}
+     {switch(match){case 0:return /* Padding_fmtty_EBB */[0,0,fmtty];}}
     else
      {switch(match[0])
-       {case 0:var w=match[2];var padty=match[1];return [0,[0,padty,w],fmtty];
+       {case 0:
+         var w=match[2];
+         
+         var padty=match[1];
+         
+         return /* Padding_fmtty_EBB */[0,/* Lit_padding */[0,padty,w],fmtty];
+         
         case 1:
          if(typeof match$1=="number")
           {switch(match$1){}}
@@ -1906,7 +2022,9 @@ var
               
               var padty$1=match[1];
               
-              return [0,[1,padty$1],rest];
+              return /* Padding_fmtty_EBB */[0,
+                      /* Arg_padding */[1,padty$1],
+                      rest];
               
              default:exit=300;}}
          
@@ -1935,11 +2053,21 @@ var
         else
          {switch(match$3[0])
            {case 2:
-             var rest=match$3[1];var pad$1=match$2[1];return [0,pad$1,1,rest];
+             var rest=match$3[1];
+             
+             var pad$1=match$2[1];
+             
+             return /* Padprec_fmtty_EBB */[0,pad$1,1,rest];
+             
             default:exit=298;}}
         }
       else
-       {var rest$1=match$2[2];var pad$2=match$2[1];return [0,pad$2,0,rest$1];}
+       {var rest$1=match$2[2];
+        
+        var pad$2=match$2[1];
+        
+        return /* Padprec_fmtty_EBB */[0,pad$2,0,rest$1];
+        }
       }
     else
      {var rest$2=match$2[2];
@@ -1948,7 +2076,7 @@ var
       
       var p=match$1[1];
       
-      return [0,pad$3,[0,p],rest$2];
+      return /* Padprec_fmtty_EBB */[0,pad$3,/* Lit_precision */[0,p],rest$2];
       }
     
     switch(exit){case 298:throw Type_mismatch;}
@@ -1977,7 +2105,10 @@ var
     var exit;
     
     if(typeof match=="number")
-     {switch(match){case 0:var fmtty_rest=match$1;return [0,0,fmtty_rest];}}
+     {switch(match)
+       {case 0:
+         var fmtty_rest=match$1;return /* Fmt_fmtty_EBB */[0,0,fmtty_rest];
+        }}
     else
      {switch(match[0])
        {case 0:
@@ -1996,7 +2127,9 @@ var
               
               var fmt$prime=match$2[1];
               
-              return [0,[0,fmt$prime],fmtty$prime];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Char */[0,fmt$prime],
+                      fmtty$prime];
               
              default:exit=293;}}
          
@@ -2016,7 +2149,9 @@ var
               
               var fmt$prime$1=match$3[1];
               
-              return [0,[1,fmt$prime$1],fmtty$prime$1];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Caml_char */[1,fmt$prime$1],
+                      fmtty$prime$1];
               
              default:exit=293;}}
          
@@ -2046,7 +2181,9 @@ var
               
               var fmt$prime$2=match$6[1];
               
-              return [0,[2,pad$1,fmt$prime$2],fmtty$prime$2];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* String */[2,pad$1,fmt$prime$2],
+                      fmtty$prime$2];
               
              default:exit$1=286;}}
          
@@ -2078,7 +2215,9 @@ var
               
               var fmt$prime$3=match$9[1];
               
-              return [0,[3,pad$3,fmt$prime$3],fmtty$prime$3];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Caml_string */[3,pad$3,fmt$prime$3],
+                      fmtty$prime$3];
               
              default:exit$2=287;}}
          
@@ -2116,7 +2255,9 @@ var
               
               var fmt$prime$4=match$12[1];
               
-              return [0,[4,iconv,pad$5,prec$1,fmt$prime$4],fmtty$prime$4];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Int */[4,iconv,pad$5,prec$1,fmt$prime$4],
+                      fmtty$prime$4];
               
              default:exit$3=288;}}
          
@@ -2154,7 +2295,9 @@ var
               
               var fmt$prime$5=match$15[1];
               
-              return [0,[5,iconv$1,pad$7,prec$3,fmt$prime$5],fmtty$prime$5];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Int32 */[5,iconv$1,pad$7,prec$3,fmt$prime$5],
+                      fmtty$prime$5];
               
              default:exit$4=289;}}
          
@@ -2192,7 +2335,9 @@ var
               
               var fmt$prime$6=match$18[1];
               
-              return [0,[6,iconv$2,pad$9,prec$5,fmt$prime$6],fmtty$prime$6];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Nativeint */[6,iconv$2,pad$9,prec$5,fmt$prime$6],
+                      fmtty$prime$6];
               
              default:exit$5=290;}}
          
@@ -2230,7 +2375,9 @@ var
               
               var fmt$prime$7=match$21[1];
               
-              return [0,[7,iconv$3,pad$11,prec$7,fmt$prime$7],fmtty$prime$7];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Int64 */[7,iconv$3,pad$11,prec$7,fmt$prime$7],
+                      fmtty$prime$7];
               
              default:exit$6=291;}}
          
@@ -2268,7 +2415,9 @@ var
               
               var fmt$prime$8=match$24[1];
               
-              return [0,[8,fconv,pad$13,prec$9,fmt$prime$8],fmtty$prime$8];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Float */[8,fconv,pad$13,prec$9,fmt$prime$8],
+                      fmtty$prime$8];
               
              default:exit$7=292;}}
          
@@ -2290,7 +2439,9 @@ var
               
               var fmt$prime$9=match$25[1];
               
-              return [0,[9,fmt$prime$9],fmtty$prime$9];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Bool */[9,fmt$prime$9],
+                      fmtty$prime$9];
               
              default:exit=293;}}
          
@@ -2305,7 +2456,9 @@ var
          
          var fmt$prime$10=match$26[1];
          
-         return [0,[10,fmt$prime$10],fmtty$prime$10];
+         return /* Fmt_fmtty_EBB */[0,
+                 /* Flush */[10,fmt$prime$10],
+                 fmtty$prime$10];
          
         case 11:
          var fmtty_rest$12=match$1;
@@ -2320,7 +2473,9 @@ var
          
          var fmt$prime$11=match$27[1];
          
-         return [0,[11,str,fmt$prime$11],fmtty$prime$11];
+         return /* Fmt_fmtty_EBB */[0,
+                 /* String_literal */[11,str,fmt$prime$11],
+                 fmtty$prime$11];
          
         case 12:
          var fmtty_rest$13=match$1;
@@ -2335,7 +2490,9 @@ var
          
          var fmt$prime$12=match$28[1];
          
-         return [0,[12,chr,fmt$prime$12],fmtty$prime$12];
+         return /* Fmt_fmtty_EBB */[0,
+                 /* Char_literal */[12,chr,fmt$prime$12],
+                 fmtty$prime$12];
          
         case 13:
          if(typeof match$1=="number")
@@ -2364,8 +2521,8 @@ var
               
               var fmt$prime$13=match$29[1];
               
-              return [0,
-                      [13,pad_opt,sub_fmtty$prime,fmt$prime$13],
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Format_arg */[13,pad_opt,sub_fmtty$prime,fmt$prime$13],
                       fmtty$prime$13];
               
              default:exit=293;}}
@@ -2401,7 +2558,9 @@ var
               
               var fmt$prime$14=match$30[1];
               
-              return [0,[14,pad_opt$1,sub_fmtty1,fmt$prime$14],fmtty$prime$14];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Format_subst */[14,pad_opt$1,sub_fmtty1,fmt$prime$14],
+                      fmtty$prime$14];
               
              default:exit=293;}}
          
@@ -2421,7 +2580,9 @@ var
               
               var fmt$prime$15=match$31[1];
               
-              return [0,[15,fmt$prime$15],fmtty$prime$15];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Alpha */[15,fmt$prime$15],
+                      fmtty$prime$15];
               
              default:exit=293;}}
          
@@ -2441,7 +2602,9 @@ var
               
               var fmt$prime$16=match$32[1];
               
-              return [0,[16,fmt$prime$16],fmtty$prime$16];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Theta */[16,fmt$prime$16],
+                      fmtty$prime$16];
               
              default:exit=293;}}
          
@@ -2458,7 +2621,9 @@ var
          
          var fmt$prime$17=match$33[1];
          
-         return [0,[17,formatting_lit,fmt$prime$17],fmtty$prime$17];
+         return /* Fmt_fmtty_EBB */[0,
+                 /* Formatting_lit */[17,formatting_lit,fmt$prime$17],
+                 fmtty$prime$17];
          
         case 18:
          var fmtty_rest$19=match$1;
@@ -2485,7 +2650,9 @@ var
               
               var fmt$prime$18=match$34[1];
               
-              return [0,[19,fmt$prime$18],fmtty$prime$18];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Reader */[19,fmt$prime$18],
+                      fmtty$prime$18];
               
              default:exit=293;}}
          
@@ -2509,7 +2676,9 @@ var
               
               var fmt$prime$19=match$35[1];
               
-              return [0,[20,width_opt,char_set,fmt$prime$19],fmtty$prime$19];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Scan_char_set */[20,width_opt,char_set,fmt$prime$19],
+                      fmtty$prime$19];
               
              default:exit=293;}}
          
@@ -2531,7 +2700,9 @@ var
               
               var fmt$prime$20=match$36[1];
               
-              return [0,[21,counter,fmt$prime$20],fmtty$prime$20];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Scan_get_counter */[21,counter,fmt$prime$20],
+                      fmtty$prime$20];
               
              default:exit=293;}}
          
@@ -2574,7 +2745,11 @@ var
        
        var fmt3=match$2[1];
        
-       return [0,[18,[0,[0,fmt2,str]],fmt3],fmtty3];
+       return /* Fmt_fmtty_EBB */[0,
+               /* Formatting_gen */[18,
+                /* Open_tag */[0,/* Format */[0,fmt2,str]],
+                fmt3],
+               fmtty3];
        
       case 1:
        var match$3=formatting_gen[1];
@@ -2595,7 +2770,11 @@ var
        
        var fmt3$1=match$5[1];
        
-       return [0,[18,[1,[0,fmt2$1,str$1]],fmt3$1],fmtty3$1];
+       return /* Fmt_fmtty_EBB */[0,
+               /* Formatting_gen */[18,
+                /* Open_box */[1,/* Format */[0,fmt2$1,str$1]],
+                fmt3$1],
+               fmtty3$1];
        
       }
     };
@@ -2633,7 +2812,9 @@ var
               
               var fmt$prime=match[1];
               
-              return [0,[23,3,fmt$prime],fmtty$prime];
+              return /* Fmt_fmtty_EBB */[0,
+                      /* Ignored_param */[23,3,fmt$prime],
+                      fmtty$prime];
               
              default:exit=294;}}
          
@@ -2687,7 +2868,8 @@ var
          
          var pad_opt=ign[1];
          
-         return type_ignored_param_one([7,pad_opt,sub_fmtty],fmt,fmtty);
+         return type_ignored_param_one
+                 (/* Ignored_format_arg */[7,pad_opt,sub_fmtty],fmt,fmtty);
          
         case 8:
          var sub_fmtty$1=ign[2];
@@ -2704,8 +2886,10 @@ var
          
          var sub_fmtty$prime=match$1[1];
          
-         return [0,
-                 [23,[8,pad_opt$1,sub_fmtty$prime],fmt$prime$1],
+         return /* Fmt_fmtty_EBB */[0,
+                 /* Ignored_param */[23,
+                  /* Ignored_format_subst */[8,pad_opt$1,sub_fmtty$prime],
+                  fmt$prime$1],
                  fmtty$prime$1];
          
         case 9:
@@ -2730,7 +2914,9 @@ var
     
     var fmt$prime=match[1];
     
-    return [0,[23,ign,fmt$prime],fmtty$prime];
+    return /* Fmt_fmtty_EBB */[0,
+            /* Ignored_param */[23,ign,fmt$prime],
+            fmtty$prime];
     };
 
 var
@@ -2744,7 +2930,12 @@ var
     
     if(typeof match=="number")
      {switch(match)
-       {case 0:var fmtty$1=match$1;return [0,0,type_format_gen(fmt,fmtty$1)];}}
+       {case 0:
+         var fmtty$1=match$1;
+         
+         return /* Fmtty_fmt_EBB */[0,0,type_format_gen(fmt,fmtty$1)];
+         
+        }}
     else
      {switch(match[0])
        {case 0:
@@ -2766,7 +2957,9 @@ var
               
               var sub_fmtty_rest$prime=match$2[1];
               
-              return [0,[0,sub_fmtty_rest$prime],fmt$prime];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Char_ty */[0,sub_fmtty_rest$prime],
+                      fmt$prime];
               
              default:exit=297;}}
          
@@ -2789,7 +2982,9 @@ var
               
               var sub_fmtty_rest$prime$1=match$3[1];
               
-              return [0,[1,sub_fmtty_rest$prime$1],fmt$prime$1];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* String_ty */[1,sub_fmtty_rest$prime$1],
+                      fmt$prime$1];
               
              default:exit=297;}}
          
@@ -2812,7 +3007,9 @@ var
               
               var sub_fmtty_rest$prime$2=match$4[1];
               
-              return [0,[2,sub_fmtty_rest$prime$2],fmt$prime$2];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Int_ty */[2,sub_fmtty_rest$prime$2],
+                      fmt$prime$2];
               
              default:exit=297;}}
          
@@ -2835,7 +3032,9 @@ var
               
               var sub_fmtty_rest$prime$3=match$5[1];
               
-              return [0,[3,sub_fmtty_rest$prime$3],fmt$prime$3];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Int32_ty */[3,sub_fmtty_rest$prime$3],
+                      fmt$prime$3];
               
              default:exit=297;}}
          
@@ -2858,7 +3057,9 @@ var
               
               var sub_fmtty_rest$prime$4=match$6[1];
               
-              return [0,[4,sub_fmtty_rest$prime$4],fmt$prime$4];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Nativeint_ty */[4,sub_fmtty_rest$prime$4],
+                      fmt$prime$4];
               
              default:exit=297;}}
          
@@ -2881,7 +3082,9 @@ var
               
               var sub_fmtty_rest$prime$5=match$7[1];
               
-              return [0,[5,sub_fmtty_rest$prime$5],fmt$prime$5];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Int64_ty */[5,sub_fmtty_rest$prime$5],
+                      fmt$prime$5];
               
              default:exit=297;}}
          
@@ -2904,7 +3107,9 @@ var
               
               var sub_fmtty_rest$prime$6=match$8[1];
               
-              return [0,[6,sub_fmtty_rest$prime$6],fmt$prime$6];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Float_ty */[6,sub_fmtty_rest$prime$6],
+                      fmt$prime$6];
               
              default:exit=297;}}
          
@@ -2927,7 +3132,9 @@ var
               
               var sub_fmtty_rest$prime$7=match$9[1];
               
-              return [0,[7,sub_fmtty_rest$prime$7],fmt$prime$7];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Bool_ty */[7,sub_fmtty_rest$prime$7],
+                      fmt$prime$7];
               
              default:exit=297;}}
          
@@ -2959,8 +3166,10 @@ var
               
               var sub_fmtty_rest$prime$8=match$10[1];
               
-              return [0,
-                      [8,sub2_fmtty$prime,sub_fmtty_rest$prime$8],
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Format_arg_ty */[8,
+                       sub2_fmtty$prime,
+                       sub_fmtty_rest$prime$8],
                       fmt$prime$8];
               
              default:exit=297;}}
@@ -3018,8 +3227,8 @@ var
               
               var sub_fmtty_rest$prime$9=match$14[1];
               
-              return [0,
-                      [9,
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Format_subst_ty */[9,
                        sub1_fmtty$prime,
                        sub2_fmtty$prime$1,
                        symm(sub_fmtty_rest$prime$9)],
@@ -3046,7 +3255,9 @@ var
               
               var sub_fmtty_rest$prime$10=match$15[1];
               
-              return [0,[10,sub_fmtty_rest$prime$10],fmt$prime$10];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Alpha_ty */[10,sub_fmtty_rest$prime$10],
+                      fmt$prime$10];
               
              default:exit=297;}}
          
@@ -3069,7 +3280,9 @@ var
               
               var sub_fmtty_rest$prime$11=match$16[1];
               
-              return [0,[11,sub_fmtty_rest$prime$11],fmt$prime$11];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Theta_ty */[11,sub_fmtty_rest$prime$11],
+                      fmt$prime$11];
               
              default:exit=297;}}
          
@@ -3093,7 +3306,9 @@ var
               
               var sub_fmtty_rest$prime$12=match$17[1];
               
-              return [0,[13,sub_fmtty_rest$prime$12],fmt$prime$12];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Reader_ty */[13,sub_fmtty_rest$prime$12],
+                      fmt$prime$12];
               
              default:exit=297;}}
          
@@ -3116,7 +3331,9 @@ var
               
               var sub_fmtty_rest$prime$13=match$18[1];
               
-              return [0,[14,sub_fmtty_rest$prime$13],fmt$prime$13];
+              return /* Fmtty_fmt_EBB */[0,
+                      /* Ignored_reader_ty */[14,sub_fmtty_rest$prime$13],
+                      fmt$prime$13];
               
              default:exit=297;}}
          
@@ -3136,7 +3353,7 @@ var
   function(padty,width,str)
    {var len=str["length"];
     
-    var match=[0,Pervasives["abs"](width),width<0?0:padty];
+    var match=/* tuple */[0,Pervasives["abs"](width),width<0?0:padty];
     
     var padty$1=match[2];
     
@@ -3407,13 +3624,16 @@ var
          var rest=fmt[1];
          
          return function(c)
-          {var new_acc=[5,acc,c];return make_printf(k,o,new_acc,rest);};
+          {var new_acc=/* Acc_data_char */[5,acc,c];
+           
+           return make_printf(k,o,new_acc,rest);
+           };
          
         case 1:
          var rest$1=fmt[1];
          
          return function(c)
-          {var new_acc=[4,acc,format_caml_char(c)];
+          {var new_acc=/* Acc_data_string */[4,acc,format_caml_char(c)];
            
            return make_printf(k,o,new_acc,rest$1);
            };
@@ -3499,23 +3719,30 @@ var
          
          return function(b)
           {return make_printf
-                   (k,o,[4,acc,Pervasives["string_of_bool"](b)],rest$9);
+                   (k,
+                    o,
+                    /* Acc_data_string */[4,acc,Pervasives["string_of_bool"](b)],
+                    rest$9);
            };
          
-        case 10:var rest$10=fmt[1];return make_printf(k,o,[7,acc],rest$10);
+        case 10:
+         var rest$10=fmt[1];
+         
+         return make_printf(k,o,/* Acc_flush */[7,acc],rest$10);
+         
         case 11:
          var rest$11=fmt[2];
          
          var str=fmt[1];
          
-         return make_printf(k,o,[2,acc,str],rest$11);
+         return make_printf(k,o,/* Acc_string_literal */[2,acc,str],rest$11);
          
         case 12:
          var rest$12=fmt[2];
          
          var chr=fmt[1];
          
-         return make_printf(k,o,[3,acc,chr],rest$12);
+         return make_printf(k,o,/* Acc_char_literal */[3,acc,chr],rest$12);
          
         case 13:
          var rest$13=fmt[3];
@@ -3524,7 +3751,8 @@ var
          
          var ty=string_of_fmtty(sub_fmtty);
          
-         return function(str$1){return make_printf(k,o,[4,acc,ty],rest$13);};
+         return function(str$1)
+          {return make_printf(k,o,/* Acc_data_string */[4,acc,ty],rest$13);};
          
         case 14:
          var rest$14=fmt[3];
@@ -3547,20 +3775,25 @@ var
          
          return function(f,x)
           {return make_printf
-                   (k,o,[6,acc,function(o$1){return f(o$1,x);}],rest$15);
+                   (k,
+                    o,
+                    /* Acc_delay */[6,acc,function(o$1){return f(o$1,x);}],
+                    rest$15);
            };
          
         case 16:
          var rest$16=fmt[1];
          
-         return function(f){return make_printf(k,o,[6,acc,f],rest$16);};
+         return function(f)
+          {return make_printf(k,o,/* Acc_delay */[6,acc,f],rest$16);};
          
         case 17:
          var rest$17=fmt[2];
          
          var fmting_lit=fmt[1];
          
-         return make_printf(k,o,[0,acc,fmting_lit],rest$17);
+         return make_printf
+                 (k,o,/* Acc_formatting_lit */[0,acc,fmting_lit],rest$17);
          
         case 18:
          var match=fmt[1];
@@ -3576,7 +3809,12 @@ var
             var
              k$prime=
               function(koc,kacc)
-               {return make_printf(k,koc,[1,acc,[0,kacc]],rest$18);};
+               {return make_printf
+                        (k,
+                         koc,
+                         /* Acc_formatting_gen */[1,acc,/* Acc_open_tag */[0,kacc]],
+                         rest$18);
+                };
             
             return make_printf(k$prime,o,0,fmt$prime);
             
@@ -3590,7 +3828,12 @@ var
             var
              k$prime$1=
               function(koc,kacc)
-               {return make_printf(k,koc,[1,acc,[1,kacc]],rest$19);};
+               {return make_printf
+                        (k,
+                         koc,
+                         /* Acc_formatting_gen */[1,acc,/* Acc_open_box */[1,kacc]],
+                         rest$19);
+                };
             
             return make_printf(k$prime$1,o,0,fmt$prime$1);
             
@@ -3600,7 +3843,7 @@ var
         case 20:
          var rest$20=fmt[3];
          
-         var new_acc=[8,acc,"Printf: bad conversion %["];
+         var new_acc=/* Acc_invalid_arg */[8,acc,"Printf: bad conversion %["];
          
          return function(param){return make_printf(k,o,new_acc,rest$20);};
          
@@ -3608,7 +3851,9 @@ var
          var rest$21=fmt[2];
          
          return function(n)
-          {var new_acc$1=[4,acc,"unknown primitive:caml_format_int"];
+          {var
+            new_acc$1=
+             /* Acc_data_string */[4,acc,"unknown primitive:caml_format_int"];
            
            return make_printf(k,o,new_acc$1,rest$21);
            };
@@ -3617,7 +3862,7 @@ var
          var rest$22=fmt[1];
          
          return function(c)
-          {var new_acc$1=[5,acc,c];
+          {var new_acc$1=/* Acc_data_char */[5,acc,c];
            
            return make_printf(k,o,new_acc$1,rest$22);
            };
@@ -3762,7 +4007,9 @@ var
 var
  make_invalid_arg=
   function(k,o,acc,fmt)
-   {return make_printf(k,o,[8,acc,"Printf: bad conversion %_"],fmt);};
+   {return make_printf
+            (k,o,/* Acc_invalid_arg */[8,acc,"Printf: bad conversion %_"],fmt);
+    };
 
 var
  make_string_padding=
@@ -3771,7 +4018,7 @@ var
      {switch(pad)
        {case 0:
          return function(x)
-          {var new_acc=[4,acc,trans$1(x)];
+          {var new_acc=/* Acc_data_string */[4,acc,trans$1(x)];
            
            return make_printf(k,o,new_acc,fmt);
            };
@@ -3785,7 +4032,9 @@ var
          var padty=pad[1];
          
          return function(x)
-          {var new_acc=[4,acc,fix_padding(padty,width,trans$1(x))];
+          {var
+            new_acc=
+             /* Acc_data_string */[4,acc,fix_padding(padty,width,trans$1(x))];
            
            return make_printf(k,o,new_acc,fmt);
            };
@@ -3794,7 +4043,9 @@ var
          var padty$1=pad[1];
          
          return function(w,x)
-          {var new_acc=[4,acc,fix_padding(padty$1,w,trans$1(x))];
+          {var
+            new_acc=
+             /* Acc_data_string */[4,acc,fix_padding(padty$1,w,trans$1(x))];
            
            return make_printf(k,o,new_acc,fmt);
            };
@@ -3817,14 +4068,14 @@ var
             {return function(p,x)
               {var str=fix_int_precision(p,trans$1(iconv,x));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            else
             {return function(x)
               {var str=trans$1(iconv,x);
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            }
@@ -3834,7 +4085,7 @@ var
            return function(x)
             {var str=fix_int_precision(p,trans$1(iconv,x));
              
-             return make_printf(k,o,[4,acc,str],fmt);
+             return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
              };
            }
          
@@ -3858,14 +4109,14 @@ var
                  fix_padding
                   (padty$1,w$1,fix_int_precision(p$1,trans$1(iconv,x)));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            else
             {return function(x)
               {var str=fix_padding(padty,w,trans$1(iconv,x));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            }
@@ -3882,7 +4133,7 @@ var
                fix_padding
                 (padty$2,w$2,fix_int_precision(p$1,trans$1(iconv,x)));
              
-             return make_printf(k,o,[4,acc,str],fmt);
+             return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
              };
            }
          
@@ -3899,14 +4150,14 @@ var
                  fix_padding
                   (padty$4,w$3,fix_int_precision(p$2,trans$1(iconv,x)));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            else
             {return function(w$3,x)
               {var str=fix_padding(padty$3,w$3,trans$1(iconv,x));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            }
@@ -3921,7 +4172,7 @@ var
                fix_padding
                 (padty$5,w$3,fix_int_precision(p$2,trans$1(iconv,x)));
              
-             return make_printf(k,o,[4,acc,str],fmt);
+             return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
              };
            }
          
@@ -3943,14 +4194,14 @@ var
             {return function(p,x)
               {var str=convert_float(fconv,p,x);
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            else
             {return function(x)
               {var str=convert_float(fconv,default_float_precision,x);
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            }
@@ -3960,7 +4211,7 @@ var
            return function(x)
             {var str=convert_float(fconv,p,x);
              
-             return make_printf(k,o,[4,acc,str],fmt);
+             return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
              };
            }
          
@@ -3981,7 +4232,7 @@ var
              return function(p$1,x)
               {var str=fix_padding(padty$1,w$1,convert_float(fconv,p$1,x));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            else
@@ -3990,7 +4241,8 @@ var
                
                var str$prime=fix_padding(padty,w,str);
                
-               return make_printf(k,o,[4,acc,str$prime],fmt);
+               return make_printf
+                       (k,o,/* Acc_data_string */[4,acc,str$prime],fmt);
                };
              }
            }
@@ -4004,7 +4256,7 @@ var
            return function(x)
             {var str=fix_padding(padty$2,w$2,convert_float(fconv,p$1,x));
              
-             return make_printf(k,o,[4,acc,str],fmt);
+             return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
              };
            }
          
@@ -4018,7 +4270,7 @@ var
              return function(w$3,p$2,x)
               {var str=fix_padding(padty$4,w$3,convert_float(fconv,p$2,x));
                
-               return make_printf(k,o,[4,acc,str],fmt);
+               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
                };
              }
            else
@@ -4027,7 +4279,8 @@ var
                
                var str$prime=fix_padding(padty$3,w$3,str);
                
-               return make_printf(k,o,[4,acc,str$prime],fmt);
+               return make_printf
+                       (k,o,/* Acc_data_string */[4,acc,str$prime],fmt);
                };
              }
            }
@@ -4039,7 +4292,7 @@ var
            return function(w$3,x)
             {var str=fix_padding(padty$5,w$3,convert_float(fconv,p$2,x));
              
-             return make_printf(k,o,[4,acc,str],fmt);
+             return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
              };
            }
          
@@ -4055,7 +4308,7 @@ var
       return function(x){return make_custom(k,o,acc,rest,arity$1,f(x));};
       }
     else
-     {return make_printf(k,o,[4,acc,f],rest);}
+     {return make_printf(k,o,/* Acc_data_string */[4,acc,f],rest);}
     };
 
 var
@@ -4453,7 +4706,7 @@ var
       switch(exit)
        {case 179:var box_type=invalid_box(0);case 178:var box_type=4;}
       
-      return [0,indent,box_type];
+      return /* tuple */[0,indent,box_type];
       }
     };
 
@@ -4461,11 +4714,21 @@ var
  make_padding_fmt_ebb=
   function(pad,fmt)
    {if(typeof pad=="number")
-     {switch(pad){case 0:return [0,0,fmt];}}
+     {switch(pad){case 0:return /* Padding_fmt_EBB */[0,0,fmt];}}
     else
      {switch(pad[0])
-       {case 0:var w=pad[2];var s=pad[1];return [0,[0,s,w],fmt];
-        case 1:var s$1=pad[1];return [0,[1,s$1],fmt];
+       {case 0:
+         var w=pad[2];
+         
+         var s=pad[1];
+         
+         return /* Padding_fmt_EBB */[0,/* Lit_padding */[0,s,w],fmt];
+         
+        case 1:
+         var s$1=pad[1];
+         
+         return /* Padding_fmt_EBB */[0,/* Arg_padding */[1,s$1],fmt];
+         
         }}
     };
 
@@ -4473,9 +4736,16 @@ var
  make_precision_fmt_ebb=
   function(prec,fmt)
    {if("unknown primitive:isint")
-     {if(prec!=0){return [0,1,fmt];}else{return [0,0,fmt];}}
+     {if(prec!=0)
+       {return /* Precision_fmt_EBB */[0,1,fmt];}
+      else
+       {return /* Precision_fmt_EBB */[0,0,fmt];}
+      }
     else
-     {var p=prec[1];return [0,[0,p],fmt];}
+     {var p=prec[1];
+      
+      return /* Precision_fmt_EBB */[0,/* Lit_precision */[0,p],fmt];
+      }
     };
 
 var
@@ -4488,11 +4758,27 @@ var
     var prec$1=match[1];
     
     if(typeof pad=="number")
-     {switch(pad){case 0:return [0,0,prec$1,fmt$prime];}}
+     {switch(pad){case 0:return /* Padprec_fmt_EBB */[0,0,prec$1,fmt$prime];}}
     else
      {switch(pad[0])
-       {case 0:var w=pad[2];var s=pad[1];return [0,[0,s,w],prec$1,fmt$prime];
-        case 1:var s$1=pad[1];return [0,[1,s$1],prec$1,fmt$prime];
+       {case 0:
+         var w=pad[2];
+         
+         var s=pad[1];
+         
+         return /* Padprec_fmt_EBB */[0,
+                 /* Lit_padding */[0,s,w],
+                 prec$1,
+                 fmt$prime];
+         
+        case 1:
+         var s$1=pad[1];
+         
+         return /* Padprec_fmt_EBB */[0,
+                 /* Arg_padding */[1,s$1],
+                 prec$1,
+                 fmt$prime];
+         
         }}
     };
 
@@ -4761,7 +5047,7 @@ var
                      sharp,
                      space,
                      ign,
-                     [0,padty,width]);
+                     /* Lit_padding */[0,padty,width]);
             }
           }
         else
@@ -4777,7 +5063,7 @@ var
                      sharp,
                      space,
                      ign,
-                     [1,padty]);
+                     /* Arg_padding */[1,padty]);
             }
           }
         
@@ -4857,7 +5143,7 @@ var
                      space,
                      ign,
                      pad,
-                     [0,prec]);
+                     /* Lit_precision */[0,prec]);
             };
         
         var symb=str[str_ind];
@@ -4953,13 +5239,19 @@ var
               {if("unknown primitive:isint")
                 {return parse_conv([1,0]);}
                else
-                {var n=match$1[1];return parse_conv([0,0,n]);}
+                {var n=match$1[1];
+                 
+                 return parse_conv(/* Lit_padding */[0,0,n]);
+                 }
                }
              else
               {if("unknown primitive:isint")
                 {return parse_conv([1,1]);}
                else
-                {var n$1=match$1[1];return parse_conv([0,1,n$1]);}
+                {var n$1=match$1[1];
+                 
+                 return parse_conv(/* Lit_padding */[0,1,n$1]);
+                 }
                }
              
             }
@@ -5012,7 +5304,7 @@ var
                   {var width=pad$1[2];
                    
                    if(legacy_behavior$1)
-                    {return [0,1,width];}
+                    {return /* Lit_padding */[0,1,width];}
                    else
                     {return incompatible_flag(pct_ind,str_ind,symb$1,"0");}
                    }
@@ -5049,16 +5341,16 @@ var
                     var width=pad$1[2];
                     
                     if(legacy_behavior$1)
-                     {return [0,width];}
+                     {return /* Some */[0,width];}
                     else
                      {return incompatible_flag(pct_ind,str_ind,c,"'-'");}
                     
-                   case 1:var width$1=pad$1[2];return [0,width$1];
+                   case 1:var width$1=pad$1[2];return /* Some */[0,width$1];
                    case 2:
                     var width$2=pad$1[2];
                     
                     if(legacy_behavior$1)
-                     {return [0,width$2];}
+                     {return /* Some */[0,width$2];}
                     else
                      {return incompatible_flag(pct_ind,str_ind,c,"'0'");}
                     
@@ -5084,7 +5376,7 @@ var
                {return 0;}
               }
             else
-             {var ndec=match[1];return [0,ndec];}
+             {var ndec=match[1];return /* Some */[0,ndec];}
             };
         
         var exit;
@@ -5131,7 +5423,7 @@ var
              
              var fmt_rest=match[1];
              
-             var fmt_result=[0,[10,fmt_rest]];
+             var fmt_result=/* Fmt_EBB */[0,/* Flush */[10,fmt_rest]];
              
             case 34:exit=63;
             case 35:exit=69;
@@ -5153,12 +5445,20 @@ var
              var sub_fmtty=fmtty_of_fmt(sub_fmt);
              
              if(get_ign(0))
-              {var ignored=[8,get_pad_opt(95),sub_fmtty];
+              {var
+                ignored=
+                 /* Ignored_format_subst */[8,get_pad_opt(95),sub_fmtty];
                
-               var fmt_result=[0,[23,ignored,fmt_rest$1]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored,fmt_rest$1]];
                }
              else
-              {var fmt_result=[0,[14,get_pad_opt(40),sub_fmtty,fmt_rest$1]];}
+              {var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Format_subst */[14,get_pad_opt(40),sub_fmtty,fmt_rest$1]];
+               }
              
             case 41:exit=63;
             case 42:exit=63;
@@ -5192,9 +5492,12 @@ var
              var fmt_rest$2=match$3[1];
              
              if(get_ign(0))
-              {var fmt_result=[0,[23,1,fmt_rest$2]];}
+              {var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,1,fmt_rest$2]];
+               }
              else
-              {var fmt_result=[0,[1,fmt_rest$2]];}
+              {var fmt_result=/* Fmt_EBB */[0,/* Caml_char */[1,fmt_rest$2]];}
              
             case 68:exit=63;
             case 69:exit=66;
@@ -5214,12 +5517,18 @@ var
              var counter=2;
              
              if(get_ign(0))
-              {var ignored$1=[10,counter];
+              {var ignored$1=/* Ignored_scan_get_counter */[10,counter];
                
-               var fmt_result=[0,[23,ignored$1,fmt_rest$3]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$1,fmt_rest$3]];
                }
              else
-              {var fmt_result=[0,[21,counter,fmt_rest$3]];}
+              {var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Scan_get_counter */[21,counter,fmt_rest$3]];
+               }
              
             case 79:exit=63;
             case 80:exit=63;
@@ -5233,9 +5542,11 @@ var
              var fmt_rest$4=match$5[1];
              
              if(get_ign(0))
-              {var ignored$2=[1,get_padprec_opt(95)];
+              {var ignored$2=/* Ignored_caml_string */[1,get_padprec_opt(95)];
                
-               var fmt_result=[0,[23,ignored$2,fmt_rest$4]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$2,fmt_rest$4]];
                }
              else
               {var match$6=make_padding_fmt_ebb(pad$1,fmt_rest$4);
@@ -5244,7 +5555,10 @@ var
                
                var pad$prime=match$6[1];
                
-               var fmt_result=[0,[3,pad$prime,fmt_rest$prime]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Caml_string */[3,pad$prime,fmt_rest$prime]];
                }
              
             case 84:exit=63;
@@ -5266,12 +5580,20 @@ var
              var fmt_rest$5=match$8[1];
              
              if(get_ign(0))
-              {var ignored$3=[9,get_pad_opt(95),char_set];
+              {var
+                ignored$3=
+                 /* Ignored_scan_char_set */[9,get_pad_opt(95),char_set];
                
-               var fmt_result=[0,[23,ignored$3,fmt_rest$5]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$3,fmt_rest$5]];
                }
              else
-              {var fmt_result=[0,[20,get_pad_opt(91),char_set,fmt_rest$5]];}
+              {var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Scan_char_set */[20,get_pad_opt(91),char_set,fmt_rest$5]];
+               }
              
             case 92:exit=63;
             case 93:exit=63;
@@ -5283,7 +5605,7 @@ var
              
              var fmt_rest$6=match$9[1];
              
-             var fmt_result=[0,[15,fmt_rest$6]];
+             var fmt_result=/* Fmt_EBB */[0,/* Alpha */[15,fmt_rest$6]];
              
             case 98:exit=67;
             case 99:
@@ -5291,18 +5613,23 @@ var
               char_format=
                function(fmt_rest$7)
                 {if(get_ign(0))
-                  {return [0,[23,0,fmt_rest$7]];}
+                  {return /* Fmt_EBB */[0,
+                           /* Ignored_param */[23,0,fmt_rest$7]];
+                   }
                  else
-                  {return [0,[0,fmt_rest$7]];}
+                  {return /* Fmt_EBB */[0,/* Char */[0,fmt_rest$7]];}
                  };
              
              var
               scan_format=
                function(fmt_rest$7)
                 {if(get_ign(0))
-                  {return [0,[23,4,fmt_rest$7]];}
+                  {return /* Fmt_EBB */[0,
+                           /* Ignored_param */[23,4,fmt_rest$7]];
+                   }
                  else
-                  {return [0,[22,fmt_rest$7]];}
+                  {return /* Fmt_EBB */[0,/* Scan_next_char */[22,fmt_rest$7]];
+                   }
                  };
              
              var match$10=parse(str_ind,end_ind);
@@ -5346,9 +5673,12 @@ var
              var fmt_rest$8=match$12[1];
              
              if(get_ign(0))
-              {var fmt_result=[0,[23,3,fmt_rest$8]];}
+              {var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,3,fmt_rest$8]];
+               }
              else
-              {var fmt_result=[0,[19,fmt_rest$8]];}
+              {var fmt_result=/* Fmt_EBB */[0,/* Reader */[19,fmt_rest$8]];}
              
             case 115:
              var pad$2=check_no_0(symb,get_padprec(0));
@@ -5358,9 +5688,11 @@ var
              var fmt_rest$9=match$13[1];
              
              if(get_ign(0))
-              {var ignored$4=[0,get_padprec_opt(95)];
+              {var ignored$4=/* Ignored_string */[0,get_padprec_opt(95)];
                
-               var fmt_result=[0,[23,ignored$4,fmt_rest$9]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$4,fmt_rest$9]];
                }
              else
               {var match$14=make_padding_fmt_ebb(pad$2,fmt_rest$9);
@@ -5369,7 +5701,9 @@ var
                
                var pad$prime$1=match$14[1];
                
-               var fmt_result=[0,[2,pad$prime$1,fmt_rest$prime$1]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,/* String */[2,pad$prime$1,fmt_rest$prime$1]];
                }
              
             case 116:
@@ -5377,7 +5711,7 @@ var
              
              var fmt_rest$10=match$15[1];
              
-             var fmt_result=[0,[16,fmt_rest$10]];
+             var fmt_result=/* Fmt_EBB */[0,/* Theta */[16,fmt_rest$10]];
              
             case 117:exit=64;
             case 118:exit=63;
@@ -5399,14 +5733,23 @@ var
              var sub_fmtty$1=fmtty_of_fmt(sub_fmt$1);
              
              if(get_ign(0))
-              {var ignored$5=[7,get_pad_opt(95),sub_fmtty$1];
+              {var
+                ignored$5=
+                 /* Ignored_format_arg */[7,get_pad_opt(95),sub_fmtty$1];
                
-               var fmt_result=[0,[23,ignored$5,fmt_rest$11]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Ignored_param */[23,ignored$5,fmt_rest$11]];
                }
              else
               {var
                 fmt_result=
-                 [0,[13,get_pad_opt(123),sub_fmtty$1,fmt_rest$11]];
+                 /* Fmt_EBB */[0,
+                  /* Format_arg */[13,
+                   get_pad_opt(123),
+                   sub_fmtty$1,
+                   fmt_rest$11]];
                }
              
             }
@@ -5424,9 +5767,11 @@ var
            var fmt_rest$12=match$18[1];
            
            if(get_ign(0))
-            {var ignored$6=[2,iconv,get_pad_opt(95)];
+            {var ignored$6=/* Ignored_int */[2,iconv,get_pad_opt(95)];
              
-             var fmt_result=[0,[23,ignored$6,fmt_rest$12]];
+             var
+              fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$6,fmt_rest$12]];
              }
            else
             {var match$19=get_pad(0);
@@ -5461,7 +5806,7 @@ var
                       {var n=match$21[2];
                        
                        if(legacy_behavior$1)
-                        {var pad$4=[0,1,n];}
+                        {var pad$4=/* Lit_padding */[0,1,n];}
                        else
                         {var
                           pad$4=
@@ -5500,7 +5845,8 @@ var
              
              var
               fmt_result=
-               [0,[4,iconv,pad$prime$2,prec$prime,fmt_rest$prime$2]];
+               /* Fmt_EBB */[0,
+                /* Int */[4,iconv,pad$prime$2,prec$prime,fmt_rest$prime$2]];
              }
            
           case 65:
@@ -5512,12 +5858,19 @@ var
              var counter$1=counter_of_char(symb);
              
              if(get_ign(0))
-              {var ignored$7=[10,counter$1];
+              {var ignored$7=/* Ignored_scan_get_counter */[10,counter$1];
                
-               var fmt_result=[0,[23,ignored$7,fmt_rest$13]];
+               var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Ignored_param */[23,ignored$7,fmt_rest$13]];
                }
              else
-              {var fmt_result=[0,[21,counter$1,fmt_rest$13]];}
+              {var
+                fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Scan_get_counter */[21,counter$1,fmt_rest$13]];
+               }
              }
            else
             {"unknown block:(exit 63)";}
@@ -5532,9 +5885,13 @@ var
            var fmt_rest$14=match$27[1];
            
            if(get_ign(0))
-            {var ignored$8=[6,get_pad_opt(95),get_prec_opt(0)];
+            {var
+              ignored$8=
+               /* Ignored_float */[6,get_pad_opt(95),get_prec_opt(0)];
              
-             var fmt_result=[0,[23,ignored$8,fmt_rest$14]];
+             var
+              fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$8,fmt_rest$14]];
              }
            else
             {var
@@ -5549,7 +5906,8 @@ var
              
              var
               fmt_result=
-               [0,[8,fconv,pad$prime$3,prec$prime$1,fmt_rest$prime$3]];
+               /* Fmt_EBB */[0,
+                /* Float */[8,fconv,pad$prime$3,prec$prime$1,fmt_rest$prime$3]];
              }
            
           case 67:
@@ -5558,9 +5916,12 @@ var
            var fmt_rest$15=match$29[1];
            
            if(get_ign(0))
-            {var fmt_result=[0,[23,2,fmt_rest$15]];}
+            {var
+              fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,2,fmt_rest$15]];
+             }
            else
-            {var fmt_result=[0,[9,fmt_rest$15]];}
+            {var fmt_result=/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$15]];}
            
           case 68:
            var c=symb;
@@ -5569,7 +5930,9 @@ var
            
            var fmt_rest$16=match$30[1];
            
-           var fmt_result=[0,[12,c,fmt_rest$16]];
+           var
+            fmt_result=
+             /* Fmt_EBB */[0,/* Char_literal */[12,c,fmt_rest$16]];
            
           case 69:
            var
@@ -5621,9 +5984,14 @@ var
                   var fmt_rest$17=match$31[1];
                   
                   if(get_ign(0))
-                   {var ignored$9=[3,iconv$1,get_pad_opt(95)];
+                   {var
+                     ignored$9=
+                      /* Ignored_int32 */[3,iconv$1,get_pad_opt(95)];
                     
-                    var fmt_result=[0,[23,ignored$9,fmt_rest$17]];
+                    var
+                     fmt_result=
+                      /* Fmt_EBB */[0,
+                       /* Ignored_param */[23,ignored$9,fmt_rest$17]];
                     }
                   else
                    {var
@@ -5638,7 +6006,12 @@ var
                     
                     var
                      fmt_result=
-                      [0,[5,iconv$1,pad$prime$4,prec$prime$2,fmt_rest$prime$4]];
+                      /* Fmt_EBB */[0,
+                       /* Int32 */[5,
+                        iconv$1,
+                        pad$prime$4,
+                        prec$prime$2,
+                        fmt_rest$prime$4]];
                     }
                   
                  case 1:"unknown block:(exit 62)";
@@ -5658,9 +6031,14 @@ var
                   var fmt_rest$18=match$33[1];
                   
                   if(get_ign(0))
-                   {var ignored$10=[4,iconv$2,get_pad_opt(95)];
+                   {var
+                     ignored$10=
+                      /* Ignored_nativeint */[4,iconv$2,get_pad_opt(95)];
                     
-                    var fmt_result=[0,[23,ignored$10,fmt_rest$18]];
+                    var
+                     fmt_result=
+                      /* Fmt_EBB */[0,
+                       /* Ignored_param */[23,ignored$10,fmt_rest$18]];
                     }
                   else
                    {var
@@ -5675,7 +6053,12 @@ var
                     
                     var
                      fmt_result=
-                      [0,[6,iconv$2,pad$prime$5,prec$prime$3,fmt_rest$prime$5]];
+                      /* Fmt_EBB */[0,
+                       /* Nativeint */[6,
+                        iconv$2,
+                        pad$prime$5,
+                        prec$prime$3,
+                        fmt_rest$prime$5]];
                     }
                   
                  }
@@ -5700,9 +6083,14 @@ var
                var fmt_rest$19=match$35[1];
                
                if(get_ign(0))
-                {var ignored$11=[5,iconv$3,get_pad_opt(95)];
+                {var
+                  ignored$11=
+                   /* Ignored_int64 */[5,iconv$3,get_pad_opt(95)];
                  
-                 var fmt_result=[0,[23,ignored$11,fmt_rest$19]];
+                 var
+                  fmt_result=
+                   /* Fmt_EBB */[0,
+                    /* Ignored_param */[23,ignored$11,fmt_rest$19]];
                  }
                else
                 {var
@@ -5717,7 +6105,12 @@ var
                  
                  var
                   fmt_result=
-                   [0,[7,iconv$3,pad$prime$6,prec$prime$4,fmt_rest$prime$6]];
+                   /* Fmt_EBB */[0,
+                    /* Int64 */[7,
+                     iconv$3,
+                     pad$prime$6,
+                     prec$prime$4,
+                     fmt_rest$prime$6]];
                  }
                }
              }
@@ -5828,7 +6221,7 @@ var
                    
                    var fmt_rest=match[1];
                    
-                   return [0,[17,1,fmt_rest]];
+                   return /* Fmt_EBB */[0,/* Formatting_lit */[17,1,fmt_rest]];
                    
                   }
                 }
@@ -5845,7 +6238,8 @@ var
                    
                    var fmt_rest$1=match$1[1];
                    
-                   return [0,[17,0,fmt_rest$1]];
+                   return /* Fmt_EBB */[0,
+                           /* Formatting_lit */[17,0,fmt_rest$1]];
                    
                   }
                 }
@@ -5864,7 +6258,8 @@ var
                    
                    var fmt_rest$2=match$2[1];
                    
-                   return [0,[17,[0,"@ ",1,0],fmt_rest$2]];
+                   return /* Fmt_EBB */[0,
+                           /* Formatting_lit */[17,[0,"@ ",1,0],fmt_rest$2]];
                    
                   case 1:exit=91;
                   case 2:exit=91;
@@ -5876,14 +6271,15 @@ var
                      
                      var fmt_rest$3=match$3[1];
                      
-                     return [0,[17,6,fmt_rest$3]];
+                     return /* Fmt_EBB */[0,
+                             /* Formatting_lit */[17,6,fmt_rest$3]];
                      }
                    else
                     {var match$4=parse(str_ind,end_ind);
                      
                      var fmt_rest$4=match$4[1];
                      
-                     return [0,[12,64,fmt_rest$4]];
+                     return /* Fmt_EBB */[0,/* Char_literal */[12,64,fmt_rest$4]];
                      }
                    
                   case 6:exit=91;
@@ -5897,7 +6293,8 @@ var
                    
                    var fmt_rest$5=match$5[1];
                    
-                   return [0,[17,[0,"@,",0,0],fmt_rest$5]];
+                   return /* Fmt_EBB */[0,
+                           /* Formatting_lit */[17,[0,"@,",0,0],fmt_rest$5]];
                    
                   case 13:exit=91;
                   case 14:
@@ -5905,7 +6302,8 @@ var
                    
                    var fmt_rest$6=match$6[1];
                    
-                   return [0,[17,4,fmt_rest$6]];
+                   return /* Fmt_EBB */[0,
+                           /* Formatting_lit */[17,4,fmt_rest$6]];
                    
                   case 15:exit=91;
                   case 16:exit=91;
@@ -5928,14 +6326,16 @@ var
                    
                    var fmt_rest$7=match$7[1];
                    
-                   return [0,[17,2,fmt_rest$7]];
+                   return /* Fmt_EBB */[0,
+                           /* Formatting_lit */[17,2,fmt_rest$7]];
                    
                   case 32:
                    var match$8=parse(str_ind+1,end_ind);
                    
                    var fmt_rest$8=match$8[1];
                    
-                   return [0,[17,5,fmt_rest$8]];
+                   return /* Fmt_EBB */[0,
+                           /* Formatting_lit */[17,5,fmt_rest$8]];
                    
                   }
                 }
@@ -5947,7 +6347,7 @@ var
               
               var fmt_rest$9=match$9[1];
               
-              return [0,[17,3,fmt_rest$9]];
+              return /* Fmt_EBB */[0,/* Formatting_lit */[17,3,fmt_rest$9]];
               }
             }
           
@@ -5957,7 +6357,8 @@ var
              
              var fmt_rest$10=match$10[1];
              
-             return [0,[17,[2,c],fmt_rest$10]];
+             return /* Fmt_EBB */[0,
+                     /* Formatting_lit */[17,/* Scan_indic */[2,c],fmt_rest$10]];
              
             }
           }
@@ -6016,14 +6417,17 @@ var
             
             var sub_fmt=match$2[1];
             
-            var sub_format=[0,sub_fmt,sub_str];
+            var sub_format=/* Format */[0,sub_fmt,sub_str];
             
             if(is_open_tag)
-             {var formatting=[0,sub_format];}
+             {var formatting=/* Open_tag */[0,sub_format];}
             else
-             {check_open_box(sub_fmt);var formatting=[1,sub_format];}
+             {check_open_box(sub_fmt);
+              var formatting=/* Open_box */[1,sub_format];
+              }
             
-            return [0,[18,formatting,fmt_rest]];
+            return /* Fmt_EBB */[0,
+                    /* Formatting_gen */[18,formatting,fmt_rest]];
             }
           }
         catch(exn)
@@ -6035,11 +6439,12 @@ var
             var sub_format$1=[0,0,""];
             
             if(is_open_tag)
-             {var formatting$1=[0,sub_format$1];}
+             {var formatting$1=/* Open_tag */[0,sub_format$1];}
             else
-             {var formatting$1=[1,sub_format$1];}
+             {var formatting$1=/* Open_box */[1,sub_format$1];}
             
-            return [0,[18,formatting$1,fmt_rest$1]];
+            return /* Fmt_EBB */[0,
+                    /* Formatting_gen */[18,formatting$1,fmt_rest$1]];
             }
           else
            {throw exn;}
@@ -6096,7 +6501,9 @@ var
                  
                  var s=$$String["sub"](str,str_ind-2,str_ind_5-str_ind+3);
                  
-                 var match$4=[0,str_ind_5+1,[0,s,width,offset]];
+                 var
+                  match$4=
+                   /* tuple */[0,str_ind_5+1,/* Break */[0,s,width,offset]];
                  }
                else
                 {exit$1=110;}
@@ -6107,7 +6514,9 @@ var
                else
                 {var s$1=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
                  
-                 var match$4=[0,str_ind_3+1,[0,s$1,width,0]];
+                 var
+                  match$4=
+                   /* tuple */[0,str_ind_3+1,/* Break */[0,s$1,width,0]];
                  }
                }
              
@@ -6123,7 +6532,8 @@ var
           else
            {var tag=exn[1];if(tag=Failure){exit$2=103;}else{throw exn;}}
           
-          switch(exit$2){case 103:var match$4=[0,str_ind,[0,"@;",1,0]];}
+          switch(exit$2)
+           {case 103:var match$4=/* tuple */[0,str_ind,[0,"@;",1,0]];}
           }
         
         var formatting_lit=match$4[2];
@@ -6134,7 +6544,8 @@ var
         
         var fmt_rest=match$5[1];
         
-        return [0,[17,formatting_lit,fmt_rest]];
+        return /* Fmt_EBB */[0,
+                /* Formatting_lit */[17,formatting_lit,fmt_rest]];
         };
     
     var
@@ -6167,7 +6578,10 @@ var
              
              var s=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
              
-             var match$1=[0,[0,str_ind_3+1,[1,s,size]]];
+             var
+              match$1=
+               /* Some */[0,
+                /* tuple */[0,str_ind_3+1,/* Magic_size */[1,s,size]]];
              
             }
           }
@@ -6193,14 +6607,15 @@ var
           
           var fmt_rest=match$4[1];
           
-          return [0,[17,formatting_lit,fmt_rest]];
+          return /* Fmt_EBB */[0,
+                  /* Formatting_lit */[17,formatting_lit,fmt_rest]];
           }
         else
          {var match$5=parse(str_ind,end_ind);
           
           var fmt_rest$1=match$5[1];
           
-          return [0,[17,[2,60],fmt_rest$1]];
+          return /* Fmt_EBB */[0,/* Formatting_lit */[17,[2,60],fmt_rest$1]];
           }
         };
     
@@ -6371,9 +6786,9 @@ var
         var match=str[str_ind];
         
         if(match!=94)
-         {var match$1=[0,str_ind,0];}
+         {var match$1=/* tuple */[0,str_ind,0];}
         else
-         {var match$1=[0,str_ind+1,1];}
+         {var match$1=/* tuple */[0,str_ind+1,1];}
         
         var reverse=match$1[2];
         
@@ -6383,7 +6798,9 @@ var
         
         var char_set$1=freeze_char_set(char_set);
         
-        return [0,next_ind,reverse?rev_char_set(char_set$1):char_set$1];
+        return /* tuple */[0,
+                next_ind,
+                reverse?rev_char_set(char_set$1):char_set$1];
         };
     
     var
@@ -6407,7 +6824,7 @@ var
         var switcher=-48+c;
         
         if(9<switcher>>>0)
-         {return [0,str_ind,acc];}
+         {return /* tuple */[0,str_ind,acc];}
         else
          {var new_acc=acc*10+(c-48);
           
@@ -6465,7 +6882,7 @@ var
               
               var next_ind=match$1[1];
               
-              return [0,next_ind,-n];
+              return /* tuple */[0,next_ind,-n];
               }
             }
           }
@@ -6483,12 +6900,17 @@ var
         
         if(size!=0)
          {if(size!=1)
-           {return [0,[11,$$String["sub"](str,lit_start,size),fmt]];}
+           {return /* Fmt_EBB */[0,
+                    /* String_literal */[11,
+                     $$String["sub"](str,lit_start,size),
+                     fmt]];
+            }
           else
-           {return [0,[12,str[lit_start],fmt]];}
+           {return /* Fmt_EBB */[0,/* Char_literal */[12,str[lit_start],fmt]];
+            }
           }
         else
-         {return [0,fmt];}
+         {return /* Fmt_EBB */[0,fmt];}
         };
     
     var
@@ -7019,7 +7441,7 @@ var
     var fmt=match[1];
     
     try
-     {return [0,type_format(fmt,fmtty),str];}
+     {return /* Format */[0,type_format(fmt,fmtty),str];}
     catch(exn)
      {if(exn=Type_mismatch)
        {return failwith_message
@@ -7048,7 +7470,7 @@ var
     var fmt=match[1];
     
     try
-     {return [0,type_format(fmt,fmtty_of_fmt(fmt$prime)),str];}
+     {return /* Format */[0,type_format(fmt,fmtty_of_fmt(fmt$prime)),str];}
     catch(exn)
      {if(exn=Type_mismatch)
        {return failwith_message

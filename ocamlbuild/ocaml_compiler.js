@@ -32,33 +32,37 @@ var
      tags$1=
       Tags["Operators"][1](Tags["Operators"][1](tags,"ocaml"),"byte");
     
-    return [1,
-            [0,
-             [0,
+    return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlc"][1],
-              [0,
+              [/* :: */0,
                [1,"-c"],
-               [0,
-                [5,Tags["Operators"][1](tags$1,"compile")],
-                [0,
+               [/* :: */0,
+                [/* T */5,Tags["Operators"][1](tags$1,"compile")],
+                [/* :: */0,
                  Ocaml_utils["ocaml_ppflags"](tags$1),
-                 [0,
+                 [/* :: */0,
                   Ocaml_utils["ocaml_include_flags"](arg),
-                  [0,[1,"-o"],[0,[3,out],[0,[2,arg],0]]]]]]]]]];
+                  [/* :: */0,
+                   [1,"-o"],
+                   [/* :: */0,[/* Px */3,out],[/* :: */0,[/* P */2,arg],0]]]]]]]]]];
     };
 
 var
  ocamlc_link=
   function(flag,tags,deps,out)
-   {return [1,
-            [0,
-             [0,
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlc"][1],
-              [0,
+              [/* :: */0,
                flag,
-               [0,
-                [5,tags],
-                [0,Command["atomize_paths"](deps),[0,[1,"-o"],[0,[3,out],0]]]]]]]];
+               [/* :: */0,
+                [/* T */5,tags],
+                [/* :: */0,
+                 Command["atomize_paths"](deps),
+                 [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]];
     };
 
 var ocamlc_link_lib=ocamlc_link([1,"-a"]);
@@ -68,27 +72,31 @@ var ocamlc_link_prog=ocamlc_link(0);
 var
  ocamlmklib=
   function(tags,deps,out)
-   {return [1,
-            [0,
-             [0,
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlmklib"][1],
-              [0,
-               [5,tags],
-               [0,
+              [/* :: */0,
+               [/* T */5,tags],
+               [/* :: */0,
                 Command["atomize_paths"](deps),
-                [0,[1,"-o"],[0,[3,Pathname["remove_extensions"](out)],0]]]]]]];
+                [/* :: */0,
+                 [1,"-o"],
+                 [/* :: */0,[/* Px */3,Pathname["remove_extensions"](out)],0]]]]]]];
     };
 
 var
  ocamlmktop=
   function(tags,deps,out)
-   {return [1,
-            [0,
-             [0,
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlmktop"][1],
-              [0,
-               [5,Tags["Operators"][1](tags,"mktop")],
-               [0,Command["atomize_paths"](deps),[0,[1,"-o"],[0,[3,out],0]]]]]]];
+              [/* :: */0,
+               [/* T */5,Tags["Operators"][1](tags,"mktop")],
+               [/* :: */0,
+                Command["atomize_paths"](deps),
+                [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]];
     };
 
 var
@@ -113,15 +121,17 @@ var
 var
  ocamlc_p=
   function(tags,deps,out)
-   {return [1,
-            [0,
-             [0,
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlc"][1],
-              [0,
+              [/* :: */0,
                [1,"-pack"],
-               [0,
-                [5,tags],
-                [0,Command["atomize_paths"](deps),[0,[1,"-o"],[0,[3,out],0]]]]]]]];
+               [/* :: */0,
+                [/* T */5,tags],
+                [/* :: */0,
+                 Command["atomize_paths"](deps),
+                 [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]];
     };
 
 var
@@ -131,37 +141,41 @@ var
      tags$1=
       Tags["Operators"][1](Tags["Operators"][1](tags,"ocaml"),"native");
     
-    return [1,
-            [0,
-             [0,
+    return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlopt"][1],
-              [0,
+              [/* :: */0,
                [1,"-c"],
-               [0,
+               [/* :: */0,
                 Ocaml_arch["forpack_flags_of_pathname"](arg),
-                [0,
-                 [5,Tags["Operators"][1](tags$1,"compile")],
-                 [0,
+                [/* :: */0,
+                 [/* T */5,Tags["Operators"][1](tags$1,"compile")],
+                 [/* :: */0,
                   Ocaml_utils["ocaml_ppflags"](tags$1),
-                  [0,
+                  [/* :: */0,
                    Ocaml_utils["ocaml_include_flags"](arg),
-                   [0,[1,"-o"],[0,[3,out],[0,[2,arg],0]]]]]]]]]]];
+                   [/* :: */0,
+                    [1,"-o"],
+                    [/* :: */0,[/* Px */3,out],[/* :: */0,[/* P */2,arg],0]]]]]]]]]]];
     };
 
 var
  ocamlopt_link=
   function(flag,tags,deps,out)
-   {return [1,
-            [0,
-             [0,
+   {return [/* Cmd */1,
+            [/* S */0,
+             [/* :: */0,
               Options["ocamlopt"][1],
-              [0,
+              [/* :: */0,
                flag,
-               [0,
+               [/* :: */0,
                 forpack_flags(out,tags),
-                [0,
-                 [5,tags],
-                 [0,Command["atomize_paths"](deps),[0,[1,"-o"],[0,[3,out],0]]]]]]]]];
+                [/* :: */0,
+                 [/* T */5,tags],
+                 [/* :: */0,
+                  Command["atomize_paths"](deps),
+                  [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]]];
     };
 
 var ocamlopt_link_lib=ocamlopt_link([1,"-a"]);
@@ -185,37 +199,48 @@ var
     
     var
      cmd=
-      [0,
-       [0,
+      [/* S */0,
+       [/* :: */0,
         Options["ocamlopt"][1],
-        [0,
+        [/* :: */0,
          [1,"-pack"],
-         [0,
+         [/* :: */0,
           forpack_flags(out,tags),
-          [0,
-           [5,tags],
-           [0,
-            [0,include_flags],
-            [0,Command["atomize_paths"](deps),[0,[1,"-o"],[0,[3,out],0]]]]]]]]];
+          [/* :: */0,
+           [/* T */5,tags],
+           [/* :: */0,
+            [/* S */0,include_flags],
+            [/* :: */0,
+             Command["atomize_paths"](deps),
+             [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]]];
     
     if(Pathname["exists"](mli))
-     {return [1,cmd];}
+     {return [/* Cmd */1,cmd];}
     else
-     {var rm=[0,[0,[1,"rm"],[0,[1,"-f"],[0,[2,mli],0]]]];
+     {var
+       rm=
+        [/* S */0,
+         [/* :: */0,
+          [1,"rm"],
+          [/* :: */0,[1,"-f"],[/* :: */0,[/* P */2,mli],0]]]];
       
-      return [1,
-              [0,
-               [0,
+      return [/* Cmd */1,
+              [/* S */0,
+               [/* :: */0,
                 [1,"touch"],
-                [0,
-                 [2,mli],
-                 [0,
+                [/* :: */0,
+                 [/* P */2,mli],
+                 [/* :: */0,
                   [4," ; if "],
-                  [0,
+                  [/* :: */0,
                    cmd,
-                   [0,
+                   [/* :: */0,
                     [4," ; then "],
-                    [0,rm,[0,[4," ; else "],[0,rm,[0,[4," ; exit 1; fi"],0]]]]]]]]]]];
+                    [/* :: */0,
+                     rm,
+                     [/* :: */0,
+                      [4," ; else "],
+                      [/* :: */0,rm,[0,[4," ; exit 1; fi"],0]]]]]]]]]]];
       }
     };
 
@@ -604,7 +629,7 @@ var cache_prepare_link=Hashtbl["create"](0,107);
 var
  prepare_link=
   function(tag,cmx,extensions,build)
-   {var key=[0,tag,cmx,extensions];
+   {var key=[/* tuple */0,tag,cmx,extensions];
     
     var dir=Pathname["dirname"](cmx);
     
@@ -628,7 +653,7 @@ var
      {var
        modules$1=
         My_std["List"][16]
-         (function(s){return [0,-38817255,s];},
+         (function(s){return [/* tuple */0,-38817255,s];},
           Ocaml_utils["string_list_of_file"](Pervasives["^"](ml,"pack")));
       }
     else
@@ -680,7 +705,7 @@ var
     
     var cmx=Pathname["update_extensions"](cmx_ext,ml$1);
     
-    prepare_link(cmx,cmi,[0,cmx_ext,[0,"cmi",0]],build);
+    prepare_link(cmx,cmi,[/* :: */0,cmx_ext,[0,"cmi",0]],build);
     return ocamlopt_c
             (Tags["Operators"][3]
               (Tags["Operators"][1]
@@ -701,7 +726,10 @@ var
               {try
                 {var match=Hashtbl["find"](Ocaml_utils["info_libraries"],tag);
                  
-                 if(match[2]){return acc;}else{return [0,match[1],acc];}
+                 if(match[2])
+                  {return acc;}
+                 else
+                  {return [/* :: */0,match[1],acc];}
                  }
                catch(exn){if(exn=Not_found){return acc;}else{throw exn;}}
                },
@@ -739,7 +767,8 @@ var
     var
      libs2=
       My_std["List"][16]
-       (function(lib){return [0,Pathname["Operators"][2](lib,a_ext),0];},
+       (function(lib)
+         {return [/* :: */0,Pathname["Operators"][2](lib,a_ext),0];},
         libs1);
     
     My_std["List"][14](My_std["Outcome"][2],build(libs2));
@@ -755,7 +784,7 @@ var hidden_packages=[0,0];
 var
  hide_package_contents=
   function($$package)
-   {return hidden_packages[1]=[0,$$package,hidden_packages[1]],0;};
+   {return hidden_packages[1]=[/* :: */0,$$package,hidden_packages[1]],0;};
 
 var fold_dependencies=Resource["Cache"][14];
 
@@ -780,7 +809,7 @@ var
     
     var tags=tagger(Tools["tags_of_pathname"](out$1));
     
-    return linker(tags,[0,cmX$1,0],out$1);
+    return linker(tags,[/* :: */0,cmX$1,0],out$1);
     };
 
 var
@@ -810,12 +839,12 @@ var
     var
      deps=
       caml_transitive_closure
-       ([0,cmX_ext],
-        [0,cma_ext],
+       ([/* Some */0,cmX_ext],
+        [/* Some */0,cma_ext],
         0,
-        [0,libs],
-        [0,hidden_packages$1],
-        [0,cmX$1,dyndeps]);
+        [/* Some */0,libs],
+        [/* Some */0,hidden_packages$1],
+        [/* :: */0,cmX$1,dyndeps]);
     
     var
      deps$1=
@@ -925,7 +954,7 @@ var
             ("cmx",
              "cmxa",
              Options["ext_lib"][1],
-             [0,Options["ext_obj"][1],[0,"cmi",0]],
+             [/* :: */0,Options["ext_obj"][1],[0,"cmi",0]],
              linker);
     };
 
@@ -991,7 +1020,7 @@ var
             ("p.cmx",
              "p.cmxa",
              Pathname["Operators"][2]("p",Options["ext_lib"][1]),
-             [0,
+             [/* :: */0,
               Pathname["Operators"][2]("p",Options["ext_obj"][1]),
               [0,"cmi",0]],
              linker);
@@ -1088,7 +1117,10 @@ var
               (function(ext)
                 {return My_std["List"][14]
                          (My_std["Outcome"][2],
-                          build([0,[0,Pathname["update_extensions"](ext,p),0],0]));
+                          build
+                           ([/* :: */0,
+                             [/* :: */0,Pathname["update_extensions"](ext,p),0],
+                             0]));
                  },
                extension_values);
              return p;
@@ -1108,7 +1140,12 @@ var
     var
      deps=
       caml_transitive_closure
-       ([0,cmX_ext],[0,cma_ext],[0,1],0,[0,hidden_packages$1],module_paths);
+       ([/* Some */0,cmX_ext],
+        [/* Some */0,cma_ext],
+        [0,1],
+        0,
+        [/* Some */0,hidden_packages$1],
+        module_paths);
     
     var full_contents=Pervasives["@"](libs,module_paths);
     
@@ -1229,8 +1266,10 @@ var
  native_pack_modules=
   function(x)
    {return pack_modules
-            ([0,
-              [0,"cmx",[0,"cmi",[0,Options["ext_obj"][1],0]]],
+            ([/* :: */0,
+              [/* tuple */0,
+               "cmx",
+               [/* :: */0,"cmi",[/* :: */0,Options["ext_obj"][1],0]]],
               [0,[0,"cmi",0],0]],
              "cmx",
              "cmxa",
@@ -1251,12 +1290,14 @@ var
  native_profile_pack_modules=
   function(x)
    {return pack_modules
-            ([0,
-              [0,
+            ([/* :: */0,
+              [/* tuple */0,
                "p.cmx",
-               [0,
+               [/* :: */0,
                 "cmi",
-                [0,Pathname["Operators"][2]("p",Options["ext_obj"][1]),0]]],
+                [/* :: */0,
+                 Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                 0]]],
               [0,[0,"cmi",0],0]],
              "p.cmx",
              "p.cmxa",
@@ -1279,7 +1320,9 @@ var
  native_library_link_modules=
   function(x)
    {return link_modules
-            ([0,[0,"cmx",[0,Options["ext_obj"][1],0]],0],
+            ([/* :: */0,
+              [/* tuple */0,"cmx",[/* :: */0,Options["ext_obj"][1],0]],
+              0],
              "cmx",
              "cmxa",
              Options["ext_lib"][1],
@@ -1292,7 +1335,9 @@ var
  native_shared_library_link_modules=
   function(x)
    {return link_modules
-            ([0,[0,"cmx",[0,Options["ext_obj"][1],0]],0],
+            ([/* :: */0,
+              [/* tuple */0,"cmx",[/* :: */0,Options["ext_obj"][1],0]],
+              0],
              "cmx",
              "cmxa",
              Options["ext_lib"][1],
@@ -1339,10 +1384,12 @@ var
  native_profile_library_link_modules=
   function(x)
    {return link_modules
-            ([0,
-              [0,
+            ([/* :: */0,
+              [/* tuple */0,
                "p.cmx",
-               [0,Pathname["Operators"][2]("p",Options["ext_obj"][1]),0]],
+               [/* :: */0,
+                Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                0]],
               0],
              "p.cmx",
              "p.cmxa",
@@ -1359,10 +1406,12 @@ var
  native_profile_shared_library_link_modules=
   function(x)
    {return link_modules
-            ([0,
-              [0,
+            ([/* :: */0,
+              [/* tuple */0,
                "p.cmx",
-               [0,Pathname["Operators"][2]("p",Options["ext_obj"][1]),0]],
+               [/* :: */0,
+                Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                0]],
               0],
              "p.cmx",
              "p.cmxa",

@@ -31,7 +31,7 @@ let consts : (structured_constant, Ident.t) Hashtbl.t = Hashtbl.create 17
 
 let share c =
   match c with
-    Const_block (n, l) when l <> [] ->
+    Const_block (n, _,  l) when l <> [] ->
       begin try
         Lvar (Hashtbl.find consts c)
       with Not_found ->
