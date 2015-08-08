@@ -428,10 +428,19 @@ module rec
        | Cle  -> Le
        | Cge  -> Ge : J.binop)
     module E = J_helper.Exp
+    let comment_of_tag_info (x : Lambda.tag_info) =
+      match x with
+      | Constructor n -> Some n
+      | Tuple  -> Some "tuple"
+      | Variant x -> Some ("`" ^ x)
+      | Record  -> Some "record"
+      | NA  -> None
     let compile_primitive (prim : Lambda.primitive)
       (args : J.expression list) =
       (match prim with
-       | Pmakeblock (tag,_, _) -> E.arr ((E.int tag) :: args)
+       | Pmakeblock (tag,tag_info,_) ->
+           E.arr ((E.int ?comment:(comment_of_tag_info tag_info) tag) ::
+             args)
        | Pfield i ->
            (match args with
             | e::[] -> E.access e (E.int (i + 1))
@@ -1541,7 +1550,7 @@ module rec
                       | Lprim (Psetglobal id,biglambda::[]) ->
                           (match flat [] biglambda with
                            | (Nop (Lprim
-                               (Pmakeblock (_,_, _),lambda_exports)))::rest ->
+                               (Pmakeblock (_,_,_),lambda_exports)))::rest ->
                                let defs =
                                  ((rest |> List.rev) |>
                                     (List.map
@@ -2046,7 +2055,7 @@ module rec
                                        | Llet
                                            (Strict ,v,Lprim
                                             (Pmakeblock
-                                             (0, tag_info, Mutable ),linit::[]),lbody)
+                                             (0,tag_info,Mutable ),linit::[]),lbody)
                                            when optimize ->
                                            let slinit = simplif linit in
                                            let slbody = simplif lbody in
@@ -2060,7 +2069,8 @@ module rec
                                                   (Strict, v,
                                                     (Lprim
                                                        ((Pmakeblock
-                                                           (0, tag_info,  Mutable)),
+                                                           (0, tag_info,
+                                                             Mutable)),
                                                          [slinit])), slbody))
                                        | Llet (Alias ,v,l1,l2) ->
                                            (match count_var v with
@@ -2952,7 +2962,7 @@ module rec
                                                          (Array.unsafe_get
                                                             array_conv
                                                             (c land 15)))
-                                                  | '\128'..'\255' when
+                                                  | '\128'..'ÿ' when 
                                                       not utf ->
                                                       let c = Char.code c in
                                                       (Pp.string f "\\x";
