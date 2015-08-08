@@ -149,7 +149,7 @@ let rec size_of_lambda = function
       end
   | Llet(str, id, arg, body) -> size_of_lambda body
   | Lletrec(bindings, body) -> size_of_lambda body
-  | Lprim(Pmakeblock(tag, mut), args) -> RHS_block (List.length args)
+  | Lprim(Pmakeblock(tag, _, mut), args) -> RHS_block (List.length args)
   | Lprim (Pmakearray (Paddrarray|Pintarray), args) ->
       RHS_block (List.length args)
   | Lprim (Pmakearray Pfloatarray, args) -> RHS_floatblock (List.length args)
@@ -300,7 +300,7 @@ let comp_primitive p args =
     Pgetglobal id -> Kgetglobal id
   | Psetglobal id -> Ksetglobal id
   | Pintcomp cmp -> Kintcomp cmp
-  | Pmakeblock(tag, mut) -> Kmakeblock(List.length args, tag)
+  | Pmakeblock(tag, _, mut) -> Kmakeblock(List.length args, tag)
   | Pfield n -> Kgetfield n
   | Psetfield(n, ptr) -> Ksetfield n
   | Pfloatfield n -> Kgetfloatfield n

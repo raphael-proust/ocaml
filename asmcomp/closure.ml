@@ -147,7 +147,7 @@ let prim_size prim args =
     Pidentity -> 0
   | Pgetglobal id -> 1
   | Psetglobal id -> 1
-  | Pmakeblock(tag, mut) -> 5 + List.length args
+  | Pmakeblock(tag, _, mut) -> 5 + List.length args
   | Pfield f -> 1
   | Psetfield(f, isptr) -> if isptr then 4 else 1
   | Pfloatfield f -> 1
@@ -453,7 +453,7 @@ let field_approx n = function
 let simplif_prim_pure fpc p (args, approxs) dbg =
   match p, args, approxs with
   (* Block construction *)
-  | Pmakeblock(tag, Immutable), _, _ ->
+  | Pmakeblock(tag, _, Immutable), _, _ ->
       let field = function
         | Value_const c -> c
         | _ -> raise Exit
@@ -508,7 +508,7 @@ let simplif_prim fpc p (args, approxs as args_approxs) dbg =
     (* XXX : always return the same approxs as simplif_prim_pure? *)
     let approx =
       match p with
-      | Pmakeblock(_, Immutable) ->
+      | Pmakeblock(_, _, Immutable) ->
           Value_tuple (Array.of_list approxs)
       | _ ->
           Value_unknown
@@ -640,8 +640,8 @@ let rec bind_params_rec fpc subst params args body =
         let p1' = Ident.rename p1 in
         let u1, u2 =
           match Ident.name p1, a1 with
-          | "*opt*", Uprim(Pmakeblock(0, Immutable), [a], dbg) ->
-              a, Uprim(Pmakeblock(0, Immutable), [Uvar p1'], dbg)
+          | "*opt*", Uprim(Pmakeblock(0, tag_info, Immutable), [a], dbg) ->
+              a, Uprim(Pmakeblock(0, tag_info, Immutable), [Uvar p1'], dbg)
           | _ ->
               a1, Uvar p1'
         in
@@ -818,7 +818,7 @@ let rec close fenv cenv = function
       let nargs = List.length args in
       begin match (close fenv cenv funct, close_list fenv cenv args) with
         ((ufunct, Value_closure(fundesc, approx_res)),
-         [Uprim(Pmakeblock(_, _), uargs, _)])
+         [Uprim(Pmakeblock(_,_,  _), uargs, _)])
         when List.length uargs = - fundesc.fun_arity ->
           let app = direct_apply fundesc funct ufunct uargs in
           (app, strengthen_approx app approx_res)

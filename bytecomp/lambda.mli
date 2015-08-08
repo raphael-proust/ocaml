@@ -28,6 +28,17 @@ type loc_kind =
   | Loc_LOC
   | Loc_POS
 
+
+
+type tag_info = 
+  | Constructor of string
+  | Tuple
+  | Variant of string 
+  | Record 
+  | NA
+
+val default_tag_info : tag_info
+
 type primitive =
     Pidentity
   | Pignore
@@ -38,7 +49,7 @@ type primitive =
   | Pgetglobal of Ident.t
   | Psetglobal of Ident.t
   (* Operations on heap blocks *)
-  | Pmakeblock of int * mutable_flag
+  | Pmakeblock of int * tag_info * mutable_flag
   | Pfield of int
   | Psetfield of int * bool
   | Pfloatfield of int

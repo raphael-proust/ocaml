@@ -102,8 +102,8 @@ let primitive ppf = function
   | Ploc kind -> fprintf ppf "%s" (string_of_loc_kind kind)
   | Pgetglobal id -> fprintf ppf "global %a" Ident.print id
   | Psetglobal id -> fprintf ppf "setglobal %a" Ident.print id
-  | Pmakeblock(tag, Immutable) -> fprintf ppf "makeblock %i" tag
-  | Pmakeblock(tag, Mutable) -> fprintf ppf "makemutable %i" tag
+  | Pmakeblock(tag, _, Immutable) -> fprintf ppf "makeblock %i" tag
+  | Pmakeblock(tag, _, Mutable) -> fprintf ppf "makemutable %i" tag
   | Pfield n -> fprintf ppf "field %i" n
   | Psetfield(n, ptr) ->
       let instr = if ptr then "setfield_ptr " else "setfield_imm " in
@@ -498,7 +498,7 @@ let lambda_as_module env  ppf lam =
   | Lprim(Psetglobal(id), [biglambda])  (* might be wrong in toplevel *) ->
       
       begin match flat [] biglambda  with 
-      | (Nop, Lprim (Pmakeblock (_, _), toplevels)) :: rest ->
+      | (Nop, Lprim (Pmakeblock (_, _, _), toplevels)) :: rest ->
           (* let spc = ref false in *)
           List.iter
             (fun (left, l) ->

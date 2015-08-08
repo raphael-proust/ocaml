@@ -635,7 +635,7 @@ let rec expr_size env = function
       expr_size (Ident.add id (expr_size env exp) env) body
   | Uletrec(bindings, body) ->
       expr_size env body
-  | Uprim(Pmakeblock(tag, mut), args, _) ->
+  | Uprim(Pmakeblock(tag,_,  mut), args, _) ->
       RHS_block (List.length args)
   | Uprim(Pmakearray(Paddrarray | Pintarray), args, _) ->
       RHS_block (List.length args)
@@ -1385,9 +1385,9 @@ let rec transl = function
       begin match (simplif_primitive prim, args) with
         (Pgetglobal id, []) ->
           Cconst_symbol (Ident.name id)
-      | (Pmakeblock(tag, mut), []) ->
+      | (Pmakeblock(tag, _, mut), []) ->
           assert false
-      | (Pmakeblock(tag, mut), args) ->
+      | (Pmakeblock(tag,_, mut), args) ->
           make_alloc tag (List.map transl args)
       | (Pccall prim, args) ->
           if prim.prim_native_float then

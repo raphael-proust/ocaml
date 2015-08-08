@@ -64,7 +64,7 @@ let transl_extension_constructor env path ext =
   match ext.ext_kind with
     Text_decl(args, ret) ->
       Lprim(prim_set_oo_id,
-            [Lprim(Pmakeblock(Obj.object_tag, Mutable),
+            [Lprim(Pmakeblock(Obj.object_tag, Lambda.default_tag_info, Mutable),
                    [Lconst(Const_base(Const_string (name,None)));
                     Lconst(Const_base(Const_int 0))])])
   | Text_rebind(path, lid) ->
@@ -90,7 +90,7 @@ let rec apply_coercion strict restr arg =
       name_lambda strict arg (fun id ->
         let get_field pos = Lprim(Pfield pos,[Lvar id]) in
         let lam =
-          Lprim(Pmakeblock(0, Immutable),
+          Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable),
                 List.map (apply_coercion_field get_field) pos_cc_list)
         in
         wrap_id_pos_list id_pos_list get_field lam)
@@ -380,7 +380,7 @@ and transl_structure fields cc rootpath = function
     [] ->
       begin match cc with
         Tcoerce_none ->
-          Lprim(Pmakeblock(0, Immutable),
+          Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable),
                 let fields =  (List.rev fields) in
                 List.map (fun id -> begin
                   (if is_top rootpath then 
@@ -396,7 +396,7 @@ and transl_structure fields cc rootpath = function
           let get_field pos = Lvar v.(pos)
           and ids = List.fold_right IdentSet.add fields IdentSet.empty in
           let lam =
-            (Lprim(Pmakeblock(0, Immutable),
+            (Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable),
                 let result = List.map
                   (fun (pos, cc) ->
                     begin match cc with
@@ -643,7 +643,7 @@ let transl_store_structure glob map prims str =
     Lsequence(lam,
               Llet(Strict, id,
                    subst_lambda subst
-                   (Lprim(Pmakeblock(0, Immutable),
+                   (Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable),
                           List.map (fun id -> Lvar id)
                                    (defined_idents str.str_items))),
                    Lsequence(store_ident id,
@@ -912,7 +912,7 @@ let get_component = function
 
 let transl_package component_names target_name coercion =
   let components =
-    Lprim(Pmakeblock(0, Immutable), List.map get_component component_names) in
+    Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable), List.map get_component component_names) in
   Lprim(Psetglobal target_name, [apply_coercion Strict coercion components])
   (*
   let components =
@@ -946,7 +946,7 @@ let transl_store_package component_names target_name coercion =
          0 component_names)
   | Tcoerce_structure (pos_cc_list, id_pos_list) ->
       let components =
-        Lprim(Pmakeblock(0, Immutable), List.map get_component component_names)
+        Lprim(Pmakeblock(0, Lambda.default_tag_info, Immutable), List.map get_component component_names)
       in
       let blk = Ident.create "block" in
       (List.length pos_cc_list,

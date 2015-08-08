@@ -431,7 +431,7 @@ module rec
     let compile_primitive (prim : Lambda.primitive)
       (args : J.expression list) =
       (match prim with
-       | Pmakeblock (tag,_) -> E.arr ((E.int tag) :: args)
+       | Pmakeblock (tag,_, _) -> E.arr ((E.int tag) :: args)
        | Pfield i ->
            (match args with
             | e::[] -> E.access e (E.int (i + 1))
@@ -1541,7 +1541,7 @@ module rec
                       | Lprim (Psetglobal id,biglambda::[]) ->
                           (match flat [] biglambda with
                            | (Nop (Lprim
-                               (Pmakeblock (_,_),lambda_exports)))::rest ->
+                               (Pmakeblock (_,_, _),lambda_exports)))::rest ->
                                let defs =
                                  ((rest |> List.rev) |>
                                     (List.map
@@ -2046,7 +2046,7 @@ module rec
                                        | Llet
                                            (Strict ,v,Lprim
                                             (Pmakeblock
-                                             (0,Mutable ),linit::[]),lbody)
+                                             (0, tag_info, Mutable ),linit::[]),lbody)
                                            when optimize ->
                                            let slinit = simplif linit in
                                            let slbody = simplif lbody in
@@ -2060,7 +2060,7 @@ module rec
                                                   (Strict, v,
                                                     (Lprim
                                                        ((Pmakeblock
-                                                           (0, Mutable)),
+                                                           (0, tag_info,  Mutable)),
                                                          [slinit])), slbody))
                                        | Llet (Alias ,v,l1,l2) ->
                                            (match count_var v with
