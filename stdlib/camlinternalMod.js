@@ -99,7 +99,7 @@ var
          
          for(var i=0;i<=comps["length"]-1;i++){update_mod(comps[i],o[i],n[i])}
          
-        case 1:return 0;
+        case 1:return /* () */0;
         }}
     };
 

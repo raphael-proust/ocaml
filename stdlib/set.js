@@ -106,10 +106,12 @@ var
            {if(c<0){return bal(add(x,l),v,r);}else{return bal(l,v,add(x,r));}}
           }
         else
-         {return /* Node */[0,0,x,0,1];}
+         {return /* Node */[0,/* Empty */0,x,/* Empty */0,1];}
         };
     
-    var singleton=function(x){return /* Node */[0,0,x,0,1];};
+    var
+     singleton=
+      function(x){return /* Node */[0,/* Empty */0,x,/* Empty */0,1];};
     
     var
      add_min_element=
@@ -272,7 +274,7 @@ var
           var c=Ord[1](x,v);
           
           if(c=0)
-           {return /* tuple */[0,l,1,r];}
+           {return /* tuple */[0,l,/* true */1,r];}
           else
            {if(c<0)
              {var match=split(x,l);
@@ -299,12 +301,15 @@ var
             }
           }
         else
-         {return [0,0,0,0];}
+         {return /* tuple */[0,/* Empty */0,/* false */0,/* Empty */0];}
         };
     
-    var empty=0;
+    var empty=/* Empty */0;
     
-    var is_empty=function(param){if(param){return 0;}else{return 1;}};
+    var
+     is_empty=
+      function(param)
+       {if(param){return /* false */0;}else{return /* true */1;}};
     
     var
      mem=
@@ -321,7 +326,7 @@ var
           return (c=0)||mem(x,c<0?l:r);
           }
         else
-         {return 0;}
+         {return /* false */0;}
         };
     
     var
@@ -346,7 +351,7 @@ var
             }
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -442,10 +447,10 @@ var
              {var r2$1=match$2[3];return concat(inter(l1,l2),inter(r1,r2$1));}
             }
           else
-           {return 0;}
+           {return /* Empty */0;}
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -485,7 +490,7 @@ var
            {var t1=match;return t1;}
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -541,7 +546,9 @@ var
     
     var
      compare=
-      function(s1,s2){return compare_aux(cons_enum(s1,0),cons_enum(s2,0));};
+      function(s1,s2)
+       {return compare_aux(cons_enum(s1,/* End */0),cons_enum(s2,/* End */0));
+        };
     
     var equal=function(s1,s2){return compare(s1,s2)=0;};
     
@@ -574,16 +581,20 @@ var
              {return subset(l1,l2)&&subset(r1,r2);}
             else
              {if(c<0)
-               {return subset(/* Node */[0,l1,v1,0,0],l2)&&subset(r1,t2);}
+               {return subset(/* Node */[0,l1,v1,/* Empty */0,0],l2)&&
+                       subset(r1,t2);
+                }
               else
-               {return subset(/* Node */[0,0,v1,r1,0],r2)&&subset(l1,t2);}
+               {return subset(/* Node */[0,/* Empty */0,v1,r1,0],r2)&&
+                       subset(l1,t2);
+                }
               }
             }
           else
-           {return 0;}
+           {return /* false */0;}
           }
         else
-         {return 1;}
+         {return /* true */1;}
         };
     
     var
@@ -601,7 +612,7 @@ var
           return iter(f,r);
           }
         else
-         {return 0;}
+         {return /* () */0;}
         };
     
     var
@@ -633,7 +644,7 @@ var
           return p(v)&&for_all(p,l)&&for_all(p,r);
           }
         else
-         {return 1;}
+         {return /* true */1;}
         };
     
     var
@@ -649,7 +660,7 @@ var
           return p(v)||exists(p,l)||exists(p,r);
           }
         else
-         {return 0;}
+         {return /* false */0;}
         };
     
     var
@@ -674,7 +685,7 @@ var
            {return concat(l$prime,r$prime);}
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -707,7 +718,7 @@ var
            {return /* tuple */[0,concat(lt,rt),join(lf,v,rf)];}
           }
         else
-         {return [0,0,0];}
+         {return /* tuple */[0,/* Empty */0,/* Empty */0];}
         };
     
     var
@@ -735,7 +746,7 @@ var
          {return accu;}
         };
     
-    var elements=function(s){return elements_aux(0,s);};
+    var elements=function(s){return elements_aux(/* [] */0,s);};
     
     var choose=min_elt;
     
@@ -773,14 +784,16 @@ var
              {exit=6;}
             else
              {switch(match[0])
-               {case 0:var l$2=match$1;return /* tuple */[0,0,l$2];
+               {case 0:var l$2=match$1;return /* tuple */[0,/* Empty */0,l$2];
                 case 1:
                  if(match$1)
                   {var l$3=match$1[2];
                    
                    var x0=match$1[1];
                    
-                   return /* tuple */[0,/* Node */[0,0,x0,0,1],l$3];
+                   return /* tuple */[0,
+                           /* Node */[0,/* Empty */0,x0,/* Empty */0,1],
+                           l$3];
                    }
                  else
                   {exit=6;}
@@ -797,7 +810,11 @@ var
                      var x0$1=match$1[1];
                      
                      return /* tuple */[0,
-                             /* Node */[0,/* Node */[0,0,x0$1,0,1],x1,0,2],
+                             /* Node */[0,
+                              /* Node */[0,/* Empty */0,x0$1,/* Empty */0,1],
+                              x1,
+                              /* Empty */0,
+                              2],
                              l$4];
                      }
                    else
@@ -824,9 +841,9 @@ var
                        
                        return /* tuple */[0,
                                /* Node */[0,
-                                /* Node */[0,0,x0$2,0,1],
+                                /* Node */[0,/* Empty */0,x0$2,/* Empty */0,1],
                                 x1$1,
-                                /* Node */[0,0,x2,0,1],
+                                /* Node */[0,/* Empty */0,x2,/* Empty */0,1],
                                 2],
                                l$5];
                        }

@@ -89,7 +89,7 @@ var
          iter_bucket=
           function(i,b)
            {if(i>=length(b))
-             {return 0;}
+             {return /* () */0;}
             else
              {var match="unknown primitive:caml_weak_get";
               
@@ -110,7 +110,7 @@ var
          iter_bucket=
           function(i,j,b)
            {if(i>=length(b))
-             {return 0;}
+             {return /* () */0;}
             else
              {var match="unknown primitive:caml_weak_check";
               
@@ -214,7 +214,7 @@ var
               
               var h=oh[oi];
               
-              return add_aux(newt,setter,0,h,get_index(newt,h));
+              return add_aux(newt,setter,/* None */0,h,get_index(newt,h));
               };
           
           iter_weak(add_weak,t);
@@ -418,12 +418,15 @@ var
                 (t,
                  d,
                  function(w,i){return "unknown primitive:caml_weak_set";},
-                 0);
+                 /* () */0);
         };
     
     var
      mem=
-      function(t,d){return find_shadow(t,d,function(w,i){return 1;},0);};
+      function(t,d)
+       {return find_shadow
+                (t,d,function(w,i){return /* true */1;},/* false */0);
+        };
     
     var
      find_all=
@@ -473,7 +476,7 @@ var
               }
             };
         
-        return loop(0,0);
+        return loop(0,/* [] */0);
         };
     
     var

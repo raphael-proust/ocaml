@@ -6,14 +6,14 @@ var Pervasives=require("Pervasives");
 var Buffer=require("Buffer");
 
 
-var make_queue=function(param){return /* record */[0,0,0];};
+var make_queue=function(param){return /* record */[0,/* Nil */0,/* Nil */0];};
 
-var clear_queue=function(q){q[1]=0,0;return q[2]=0,0;};
+var clear_queue=function(q){q[1]=/* Nil */0,0;return q[2]=/* Nil */0,0;};
 
 var
  add_queue=
   function(x,q)
-   {var c=/* Cons */[0,/* record */[0,x,0]];
+   {var c=/* Cons */[0,/* record */[0,x,/* Nil */0]];
     
     var match=q[1];
     
@@ -49,7 +49,7 @@ var
       var tl=match$1[2];
       
       q[2]=tl,0;
-      if(tl=0){q[1]=0,0}else{}
+      if(tl=/* Nil */0){q[1]=/* Nil */0,0}else{}
       
       return x;
       }
@@ -74,7 +74,7 @@ var pp_infinity=1000000010;
 
 var pp_output_string=function(state,s){return state[17](s,0,s["length"]);};
 
-var pp_output_newline=function(state){return state[19](0);};
+var pp_output_newline=function(state){return state[19](/* () */0);};
 
 var pp_output_spaces=function(state,n){return state[20](n);};
 
@@ -82,7 +82,7 @@ var
  break_new_line=
   function(state,offset,width)
    {pp_output_newline(state);
-    state[11]=1,0;
+    state[11]=/* true */1,0;
     var indent=state[6]-width+offset;
     
     var real_indent=Pervasives["min"](state[8],indent);
@@ -113,9 +113,10 @@ var
       
       if(width>state[9])
        {if(bl_ty!=0)
-         {if(bl_ty>=5){return 0;}else{return break_line(state,width);}}
+         {if(bl_ty>=5){return /* () */0;}else{return break_line(state,width);}
+          }
         else
-         {return 0;}
+         {return /* () */0;}
         }
       else
        {return 0;}
@@ -164,18 +165,21 @@ var
                   {return /* :: */[0,x,add_tab(n,l)];}
                  }
                else
-                {return /* :: */[0,n,0];}
+                {return /* :: */[0,n,/* [] */0];}
                };
            
            return tabs[1]=add_tab(state[6]-state[9],tabs[1]),0;
            }
          else
-          {return 0;}
+          {return /* () */0;}
          
         case 1:
          var match$2=state[2];
          
-         if(match$2){var ls=match$2[2];return state[2]=ls,0;}else{return 0;}
+         if(match$2)
+          {var ls=match$2[2];return state[2]=ls,0;}
+         else
+          {return /* () */0;}
          
         case 2:
          var match$3=state[3];
@@ -183,7 +187,7 @@ var
          if(match$3)
           {var ls$1=match$3[2];return state[3]=ls$1,0;}
          else
-          {return 0;}
+          {return /* () */0;}
          
         case 3:
          var match$4=state[2];
@@ -218,7 +222,7 @@ var
            return state[5]=tags,0;
            }
          else
-          {return 0;}
+          {return /* () */0;}
          
         }}
     else
@@ -228,7 +232,7 @@ var
          
          state[9]=state[9]-size,0;
          pp_output_string(state,s);
-         return state[11]=0,0;
+         return state[11]=/* false */0,0;
          
         case 1:
          var off=param[2];
@@ -272,7 +276,7 @@ var
              }
            }
          else
-          {return 0;}
+          {return /* () */0;}
          
         case 2:
          var off$1=param[2];
@@ -325,7 +329,7 @@ var
             {return break_new_line(state,tab+off$1,state[6]);}
            }
          else
-          {return 0;}
+          {return /* () */0;}
          
         case 3:
          var ty$1=param[2];
@@ -339,9 +343,13 @@ var
          var offset$1=state[9]-off$2;
          
          if(ty$1!=1)
-          {if(size>state[9]){var bl_type=ty$1;}else{var bl_type=5;}}
+          {if(size>state[9])
+            {var bl_type=ty$1;}
+           else
+            {var bl_type=/* Pp_fits */5;}
+           }
          else
-          {var bl_type=1;}
+          {var bl_type=/* Pp_vbox */1;}
          
          return state[2]=
                 /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]],
@@ -387,7 +395,7 @@ var
   function(state)
    {try
      {return advance_loop(state);}
-    catch(exn){if(exn=Empty_queue){return 0;}else{throw exn;}}
+    catch(exn){if(exn=Empty_queue){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -411,9 +419,9 @@ var
   function(state,s)
    {var len=s["length"];return enqueue_string_as(state,len,s);};
 
-var q_elem=make_queue_elem(-1,[0,""],0);
+var q_elem=make_queue_elem(-1,/* Pp_text */[0,""],0);
 
-var scan_stack_bottom=/* :: */[0,/* Scan_elem */[0,-1,q_elem],0];
+var scan_stack_bottom=/* :: */[0,/* Scan_elem */[0,-1,q_elem],/* [] */0];
 
 var clear_scan_stack=function(state){return state[1]=scan_stack_bottom,0;};
 
@@ -463,19 +471,19 @@ var
            else
             {return 0;}
            
-          case 194:return 0;
+          case 194:return /* () */0;
           }
         }
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
  scan_push=
   function(state,b,tok)
    {pp_enqueue(state,tok);
-    if(b){set_size(state,1)}else{}
+    if(b){set_size(state,/* true */1)}else{}
     
     return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0;
     };
@@ -487,7 +495,7 @@ var
     if(state[14]<state[15])
      {var elem=make_queue_elem(-state[13],/* Pp_begin */[3,indent,br_ty],0);
       
-      return scan_push(state,0,elem);
+      return scan_push(state,/* false */0,elem);
       }
     else
      {if(state[14]=state[15])
@@ -497,16 +505,18 @@ var
       }
     };
 
-var pp_open_sys_box=function(state){return pp_open_box_gen(state,0,3);};
+var
+ pp_open_sys_box=
+  function(state){return pp_open_box_gen(state,0,/* Pp_hovbox */3);};
 
 var
  pp_close_box=
   function(state,param)
    {if(state[14]>1)
      {if(state[14]<state[15])
-       {pp_enqueue(state,/* record */[0,0,1,0]),
-        set_size(state,1),
-        set_size(state,0)}
+       {pp_enqueue(state,/* record */[0,0,/* Pp_end */1,0]),
+        set_size(state,/* true */1),
+        set_size(state,/* false */0)}
       else
        {}
       
@@ -535,7 +545,10 @@ var
 var
  pp_close_tag=
   function(state,param)
-   {if(state[22]){pp_enqueue(state,/* record */[0,0,5,0])}else{}
+   {if(state[22])
+     {pp_enqueue(state,/* record */[0,0,/* Pp_close_tag */5,0])}
+    else
+     {}
     
     if(state[21])
      {var match=state[4];
@@ -549,7 +562,7 @@ var
         return state[4]=tags,0;
         }
       else
-       {return 0;}
+       {return /* () */0;}
       }
     else
      {return 0;}
@@ -595,10 +608,10 @@ var
   function(state)
    {pp_clear_queue(state);
     clear_scan_stack(state);
-    state[2]=0,0;
-    state[3]=0,0;
-    state[4]=0,0;
-    state[5]=0,0;
+    state[2]=/* [] */0,0;
+    state[3]=/* [] */0,0;
+    state[4]=/* [] */0,0;
+    state[5]=/* [] */0,0;
     state[10]=0,0;
     state[14]=0,0;
     state[9]=state[6],0;
@@ -608,7 +621,7 @@ var
 var
  pp_flush_queue=
   function(state,b)
-   {while(state[14]>1){pp_close_box(state,0)}
+   {while(state[14]>1){pp_close_box(state,/* () */0)}
     
     state[13]=pp_infinity,0;
     advance_left(state);
@@ -653,37 +666,43 @@ var
  pp_print_char=
   function(state,c){return pp_print_as(state,1,$$String["make"](1,c));};
 
-var pp_open_hbox=function(state,param){return pp_open_box_gen(state,0,0);};
+var
+ pp_open_hbox=
+  function(state,param){return pp_open_box_gen(state,0,/* Pp_hbox */0);};
 
 var
  pp_open_vbox=
-  function(state,indent){return pp_open_box_gen(state,indent,1);};
+  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_vbox */1);};
 
 var
  pp_open_hvbox=
-  function(state,indent){return pp_open_box_gen(state,indent,2);};
+  function(state,indent)
+   {return pp_open_box_gen(state,indent,/* Pp_hvbox */2);};
 
 var
  pp_open_hovbox=
-  function(state,indent){return pp_open_box_gen(state,indent,3);};
+  function(state,indent)
+   {return pp_open_box_gen(state,indent,/* Pp_hovbox */3);};
 
 var
  pp_open_box=
-  function(state,indent){return pp_open_box_gen(state,indent,4);};
+  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_box */4);};
 
 var
  pp_print_newline=
-  function(state,param){pp_flush_queue(state,1);return state[18](0);};
+  function(state,param)
+   {pp_flush_queue(state,/* true */1);return state[18](/* () */0);};
 
 var
  pp_print_flush=
-  function(state,param){pp_flush_queue(state,0);return state[18](0);};
+  function(state,param)
+   {pp_flush_queue(state,/* false */0);return state[18](/* () */0);};
 
 var
  pp_force_newline=
   function(state,param)
    {if(state[14]<state[15])
-     {return enqueue_advance(state,make_queue_elem(0,3,0));}
+     {return enqueue_advance(state,make_queue_elem(0,/* Pp_newline */3,0));}
     else
      {return 0;}
     };
@@ -692,7 +711,8 @@ var
  pp_print_if_newline=
   function(state,param)
    {if(state[14]<state[15])
-     {return enqueue_advance(state,make_queue_elem(0,4,0));}
+     {return enqueue_advance(state,make_queue_elem(0,/* Pp_if_newline */4,0));
+      }
     else
      {return 0;}
     };
@@ -705,7 +725,7 @@ var
        elem=
         make_queue_elem(-state[13],/* Pp_break */[1,width,offset],width);
       
-      return scan_push(state,1,elem);
+      return scan_push(state,/* true */1,elem);
       }
     else
      {return 0;}
@@ -720,7 +740,9 @@ var
   function(state,param)
    {state[14]=state[14]+1,0;
     if(state[14]<state[15])
-     {var elem=make_queue_elem(0,/* Pp_tbegin */[4,/* Pp_tbox */[0,[0,0]]],0);
+     {var
+       elem=
+        make_queue_elem(0,/* Pp_tbegin */[4,/* Pp_tbox */[0,[0,/* [] */0]]],0);
       
       return enqueue_advance(state,elem);
       }
@@ -733,7 +755,7 @@ var
   function(state,param)
    {if(state[14]>1)
      {if(state[14]<state[15])
-       {var elem=make_queue_elem(0,2,0);
+       {var elem=make_queue_elem(0,/* Pp_tend */2,0);
         
         enqueue_advance(state,elem);
         return state[14]=state[14]-1,0;
@@ -753,7 +775,7 @@ var
        elem=
         make_queue_elem(-state[13],/* Pp_tbreak */[2,width,offset],width);
       
-      return scan_push(state,1,elem);
+      return scan_push(state,/* true */1,elem);
       }
     else
      {return 0;}
@@ -765,7 +787,10 @@ var
  pp_set_tab=
   function(state,param)
    {if(state[14]<state[15])
-     {var elem=make_queue_elem(0,0,0);return enqueue_advance(state,elem);}
+     {var elem=make_queue_elem(0,/* Pp_stab */0,0);
+      
+      return enqueue_advance(state,elem);
+      }
     else
      {return 0;}
     };
@@ -787,14 +812,14 @@ var
        {var v$1=v;
         
         pp_v(ppf,v$1);
-        pp_sep(ppf,0);
+        pp_sep(ppf,/* () */0);
         return pp_print_list(/* Some */[0,pp_sep],pp_v,ppf,vs);
         }
       else
        {return pp_v(ppf,v);}
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -818,12 +843,16 @@ var
      {var match=s[right[1]];
       
       if(match!=10)
-       {if(match!=32){right[0]++}else{flush(0),pp_print_space(ppf,0)}}
+       {if(match!=32)
+         {right[0]++}
+        else
+         {flush(/* () */0),pp_print_space(ppf,/* () */0)}
+        }
       else
-       {flush(0),pp_force_newline(ppf,0)}
+       {flush(/* () */0),pp_force_newline(ppf,/* () */0)}
       }
     
-    if(left[1]!=len){return flush(0);}else{return 0;}
+    if(left[1]!=len){return flush(/* () */0);}else{return 0;}
     };
 
 var
@@ -969,9 +998,9 @@ var default_pp_print_close_tag=function(prim){return 0;};
 var
  pp_make_formatter=
   function(f,g,h,i)
-   {var pp_q=make_queue(0);
+   {var pp_q=make_queue(/* () */0);
     
-    var sys_tok=make_queue_elem(-1,[3,0,3],0);
+    var sys_tok=make_queue_elem(-1,/* Pp_begin */[3,0,/* Pp_hovbox */3],0);
     
     add_queue(sys_tok,pp_q);
     var
@@ -980,16 +1009,16 @@ var
     
     return /* record */[0,
             sys_scan_stack,
-            0,
-            0,
-            0,
-            0,
+            /* [] */0,
+            /* [] */0,
+            /* [] */0,
+            /* [] */0,
             78,
             10,
             78-10,
             78,
             0,
-            1,
+            /* true */1,
             1,
             1,
             1,
@@ -999,8 +1028,8 @@ var
             g,
             h,
             i,
-            0,
-            0,
+            /* false */0,
+            /* false */0,
             default_pp_mark_open_tag,
             default_pp_mark_close_tag,
             default_pp_print_open_tag,
@@ -1047,7 +1076,7 @@ var str_formatter=formatter_of_buffer(stdbuf);
 var
  flush_str_formatter=
   function(param)
-   {pp_flush_queue(str_formatter,0);
+   {pp_flush_queue(str_formatter,/* false */0);
     var s=Buffer["contents"](stdbuf);
     
     Buffer["reset"](stdbuf);
@@ -1057,7 +1086,7 @@ var
 var
  flush_buf_formatter=
   function(buf,ppf)
-   {pp_flush_queue(ppf,0);
+   {pp_flush_queue(ppf,/* false */0);
     var s=Buffer["contents"](buf);
     
     Buffer["reset"](buf);
@@ -1179,7 +1208,7 @@ var
     
     var match=output(ppf,tag_acc);
     
-    var match$1=pp_print_flush(ppf,0);
+    var match$1=pp_print_flush(ppf,/* () */0);
     
     var len=Buffer["length"](buf);
     
@@ -1194,11 +1223,11 @@ var
   function(ppf,fmting_lit)
    {if(typeof fmting_lit=="number")
      {switch(fmting_lit)
-       {case 0:return pp_close_box(ppf,0);
-        case 1:return pp_close_tag(ppf,0);
-        case 2:return pp_print_flush(ppf,0);
-        case 3:return pp_force_newline(ppf,0);
-        case 4:return pp_print_newline(ppf,0);
+       {case 0:return pp_close_box(ppf,/* () */0);
+        case 1:return pp_close_tag(ppf,/* () */0);
+        case 2:return pp_print_flush(ppf,/* () */0);
+        case 3:return pp_force_newline(ppf,/* () */0);
+        case 4:return pp_print_newline(ppf,/* () */0);
         case 5:return pp_print_char(ppf,64);
         case 6:return pp_print_char(ppf,37);
         }}
@@ -1211,7 +1240,7 @@ var
          
          return pp_print_break(ppf,width,offset);
          
-        case 1:return 0;
+        case 1:return /* () */0;
         case 2:
          var c=fmting_lit[1];
          
@@ -1227,7 +1256,7 @@ var
    {var exit;
     
     if(typeof acc=="number")
-     {switch(acc){case 0:return 0;}}
+     {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
        {case 0:
@@ -1425,7 +1454,11 @@ var
         case 6:
          var f$1=acc[2];var p$15=acc[1];output_acc(ppf,p$15);return f$1(ppf);
         case 7:
-         var p$16=acc[1];output_acc(ppf,p$16);return pp_print_flush(ppf,0);
+         var p$16=acc[1];
+         
+         output_acc(ppf,p$16);
+         return pp_print_flush(ppf,/* () */0);
+         
         case 8:
          var msg=acc[2];
          
@@ -1453,7 +1486,7 @@ var
    {var exit;
     
     if(typeof acc=="number")
-     {switch(acc){case 0:return 0;}}
+     {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
        {case 0:
@@ -1672,7 +1705,7 @@ var
                    var p$16=p$15[1];
                    
                    strput_acc(ppf,p$16);
-                   return pp_print_as_size(ppf,size$6,f$1(0));
+                   return pp_print_as_size(ppf,size$6,f$1(/* () */0));
                    
                   default:exit$5=25;}}
               
@@ -1683,12 +1716,16 @@ var
             var f$2=acc[2];
             
             strput_acc(ppf,p$15);
-            return pp_print_string(ppf,f$2(0));
+            return pp_print_string(ppf,f$2(/* () */0));
             
            }
          
         case 7:
-         var p$17=acc[1];strput_acc(ppf,p$17);return pp_print_flush(ppf,0);
+         var p$17=acc[1];
+         
+         strput_acc(ppf,p$17);
+         return pp_print_flush(ppf,/* () */0);
+         
         case 8:
          var msg=acc[2];
          
@@ -1716,7 +1753,10 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(o$1,acc){output_acc(o$1,acc);return k(o$1);},o,0,fmt);
+            (function(o$1,acc){output_acc(o$1,acc);return k(o$1);},
+             o,
+             /* End_of_acc */0,
+             fmt);
     };
 
 var
@@ -1725,7 +1765,7 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(param$1,param$2){return k(x);},x,0,fmt);
+            (function(param$1,param$2){return k(x);},x,/* End_of_acc */0,fmt);
     };
 
 var
@@ -1754,7 +1794,8 @@ var
       function(param$1,acc)
        {strput_acc(ppf,acc);return k(flush_buf_formatter(b,ppf));};
     
-    return CamlinternalFormat["make_printf"](k$prime,0,0,fmt);
+    return CamlinternalFormat["make_printf"]
+            (k$prime,/* () */0,/* End_of_acc */0,fmt);
     };
 
 var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};
@@ -1772,11 +1813,12 @@ var
      k$prime=
       function(ppf$1,acc)
        {output_acc(ppf$1,acc);
-        pp_flush_queue(ppf$1,0);
+        pp_flush_queue(ppf$1,/* false */0);
         return flush_buf_formatter(b,ppf$1);
         };
     
-    return CamlinternalFormat["make_printf"](k$prime,ppf,0,fmt);
+    return CamlinternalFormat["make_printf"]
+            (k$prime,ppf,/* End_of_acc */0,fmt);
     };
 
 var
@@ -1786,9 +1828,11 @@ var
     
     var
      k=
-      function(ppf,acc){output_acc(ppf,acc);return pp_flush_queue(ppf,0);};
+      function(ppf,acc)
+       {output_acc(ppf,acc);return pp_flush_queue(ppf,/* false */0);};
     
-    return CamlinternalFormat["make_printf"](k,formatter_of_buffer(b),0,fmt);
+    return CamlinternalFormat["make_printf"]
+            (k,formatter_of_buffer(b),/* End_of_acc */0,fmt);
     };
 
 var kprintf=ksprintf;

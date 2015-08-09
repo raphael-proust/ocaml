@@ -266,7 +266,7 @@ var
         else
          {if(param>=65){exit=40;}else{exit=41;}}
         
-        switch(exit){case 41:return 0;case 40:return 1;}
+        switch(exit){case 41:return /* false */0;case 40:return /* true */1;}
         };
     
     return s["length"]>=2&&is_letter(s[0])&&(s[1]=58);
@@ -482,7 +482,7 @@ var
     return search_dot(name["length"]-1);
     };
 
-var prng=[246,function(param){return Random["State"][2](0);}];
+var prng=[246,function(param){return Random["State"][2](/* () */0);}];
 
 var
  temp_file_name=
@@ -502,7 +502,18 @@ var
     return concat
             (temp_dir,
              Printf["sprintf"]
-              ([0,[2,0,[4,6,[0,2,6],0,[2,0,0]]],"%s%06x%s"],prefix,rnd,suffix));
+              (/* Format */[0,
+                /* String */[2,
+                 /* No_padding */0,
+                 /* Int */[4,
+                  /* Int_x */6,
+                  /* Lit_padding */[0,/* Zeros */2,6],
+                  /* No_precision */0,
+                  /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                "%s%06x%s"],
+               prefix,
+               rnd,
+               suffix));
     };
 
 var current_temp_dir_name=[0,temp_dir_name$3];
@@ -545,7 +556,7 @@ var
    {if($staropt$star)
      {var $starsth$star=$staropt$star[1];var mode=$starsth$star;}
     else
-     {var mode=[0,7,0];}
+     {var mode=/* :: */[0,/* Open_text */7,/* [] */0];}
     
     if($staropt$star$1)
      {var $starsth$star$1=$staropt$star$1[1];var temp_dir=$starsth$star$1;}
@@ -561,7 +572,13 @@ var
          {return /* tuple */[0,
                   name,
                   Pervasives["open_out_gen"]
-                   (/* :: */[0,1,/* :: */[0,3,/* :: */[0,5,mode]]],384,name)];
+                   (/* :: */[0,
+                     /* Open_wronly */1,
+                     /* :: */[0,
+                      /* Open_creat */3,
+                      /* :: */[0,/* Open_excl */5,mode]]],
+                    384,
+                    name)];
           }
         catch(e)
          {var tag=e[1];

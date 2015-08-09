@@ -67,7 +67,10 @@ var
   function(param)
    {var exit;
     
-    switch(param){case "false":return 0;case "true":return 1;default:exit=92;}
+    switch(param)
+     {case "false":return /* false */0;
+      case "true":return /* true */1;
+      default:exit=92;}
     
     switch(exit){case 92:return invalid_arg("bool_of_string");}
     };
@@ -110,7 +113,7 @@ var
  $at=
   function(l1,l2)
    {if(l1)
-     {var tl=l1[2];var hd=l1[1];return [/* :: */0,hd,$at(tl,l2)];}
+     {var tl=l1[2];var hd=l1[1];return /* :: */[0,hd,$at(tl,l2)];}
     else
      {return l2;}
     };
@@ -146,11 +149,33 @@ var
 
 var
  open_out=
-  function(name){return open_out_gen([0,1,[0,3,[0,4,[0,7,0]]]],438,name);};
+  function(name)
+   {return open_out_gen
+            (/* :: */[0,
+              /* Open_wronly */1,
+              /* :: */[0,
+               /* Open_creat */3,
+               /* :: */[0,
+                /* Open_trunc */4,
+                /* :: */[0,/* Open_text */7,/* [] */0]]]],
+             438,
+             name);
+    };
 
 var
  open_out_bin=
-  function(name){return open_out_gen([0,1,[0,3,[0,4,[0,6,0]]]],438,name);};
+  function(name)
+   {return open_out_gen
+            (/* :: */[0,
+              /* Open_wronly */1,
+              /* :: */[0,
+               /* Open_creat */3,
+               /* :: */[0,
+                /* Open_trunc */4,
+                /* :: */[0,/* Open_binary */6,/* [] */0]]]],
+             438,
+             name);
+    };
 
 var
  flush=
@@ -159,12 +184,12 @@ var
      {var success="unknown primitive:caml_ml_flush_partial";}
     catch(exn)
      {if(exn=Sys_blocked_io)
-       {wait_outchan(oc,-1);var success=0;}
+       {wait_outchan(oc,-1);var success=/* false */0;}
       else
        {throw exn;}
       }
     
-    if(success){return 0;}else{return flush(oc);}
+    if(success){return /* () */0;}else{return flush(oc);}
     };
 
 var
@@ -185,7 +210,7 @@ var
           return iter(l);
           }
         else
-         {return 0;}
+         {return /* () */0;}
         };
     
     return iter("unknown primitive:caml_ml_out_channels_list");
@@ -284,7 +309,7 @@ var
     
     try
      {return "unknown primitive:caml_ml_close_channel";}
-    catch(exn$1){return 0;}
+    catch(exn$1){return /* () */0;}
     };
 
 var
@@ -292,9 +317,27 @@ var
   function(mode,perm,name)
    {return "unknown primitive:caml_ml_open_descriptor_in";};
 
-var open_in=function(name){return open_in_gen([0,0,[0,7,0]],0,name);};
+var
+ open_in=
+  function(name)
+   {return open_in_gen
+            (/* :: */[0,
+              /* Open_rdonly */0,
+              /* :: */[0,/* Open_text */7,/* [] */0]],
+             0,
+             name);
+    };
 
-var open_in_bin=function(name){return open_in_gen([0,0,[0,6,0]],0,name);};
+var
+ open_in_bin=
+  function(name)
+   {return open_in_gen
+            (/* :: */[0,
+              /* Open_rdonly */0,
+              /* :: */[0,/* Open_binary */6,/* [] */0]],
+             0,
+             name);
+    };
 
 var
  input_char=
@@ -335,7 +378,7 @@ var
  unsafe_really_input=
   function(ic,s,ofs,len)
    {if(len<=0)
-     {return 0;}
+     {return /* () */0;}
     else
      {var r=unsafe_input(ic,s,ofs,len);
       
@@ -372,7 +415,7 @@ var
     var pos=[0,0];
     
     try
-     {while(1)
+     {while(/* true */1)
        {if(pos[1]=buf[1]["length"])
          {var newbuf="unknown primitive:caml_create_string";
           
@@ -452,7 +495,7 @@ var
   function(ic)
    {try
      {return "unknown primitive:caml_ml_close_channel";}
-    catch(exn){return 0;}
+    catch(exn){return /* () */0;}
     };
 
 var print_char=function(c){return output_char(stdout,c);};
@@ -516,7 +559,7 @@ var
     
     var fmt1=param[1];
     
-    return [/* Format */0,
+    return /* Format */[0,
             CamlinternalFormatBasics["concat_fmt"](fmt1,fmt2),
             $caret(str1,$caret("%,",str2))];
     };
@@ -528,14 +571,17 @@ var
   function(f)
    {var g=exit_function[1];
     
-    return exit_function[1]=function(param){f(0);return g(0);},0;
+    return exit_function[1]=
+           function(param){f(/* () */0);return g(/* () */0);},
+           0;
     };
 
-var do_at_exit=function(param){return exit_function[1](0);};
+var do_at_exit=function(param){return exit_function[1](/* () */0);};
 
 var
  exit=
-  function(retcode){do_at_exit(0);return "unknown primitive:caml_sys_exit";};
+  function(retcode)
+   {do_at_exit(/* () */0);return "unknown primitive:caml_sys_exit";};
 
 "unknown primitive:caml_register_named_value";
 module["exports"]=

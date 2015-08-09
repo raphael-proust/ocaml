@@ -5,7 +5,7 @@ var Bytes=require("Bytes");
 var Sys=require("Sys");
 
 
-var dummy_pos=[0,"",0,0,-1];
+var dummy_pos=/* record */[0,"",0,0,-1];
 
 var
  engine=
@@ -44,7 +44,7 @@ var
   function(read_fun,aux_buffer,lexbuf)
    {var read=read_fun(aux_buffer,aux_buffer["length"]);
     
-    if(read>0){var n=read;}else{lexbuf[9]=1,0;var n=0;}
+    if(read>0){var n=read;}else{lexbuf[9]=/* true */1,0;var n=0;}
     
     if(lexbuf[3]+n>lexbuf[2]["length"])
      {if(lexbuf[3]-lexbuf[5]+n<=lexbuf[2]["length"])
@@ -84,7 +84,7 @@ var
     return lexbuf[3]=lexbuf[3]+n,0;
     };
 
-var zero_pos=[0,"",1,0,0];
+var zero_pos=/* record */[0,"",1,0,0];
 
 var
  from_function=
@@ -98,7 +98,7 @@ var
             0,
             0,
             0,
-            0,
+            /* false */0,
             [],
             zero_pos,
             zero_pos];
@@ -115,7 +115,7 @@ var
  from_string=
   function(s)
    {return /* record */[0,
-            function(lexbuf){return lexbuf[9]=1,0;},
+            function(lexbuf){return lexbuf[9]=/* true */1,0;},
             Bytes["of_string"](s),
             s["length"],
             0,
@@ -123,7 +123,7 @@ var
             0,
             0,
             0,
-            1,
+            /* true */1,
             [],
             zero_pos,
             zero_pos];
@@ -151,7 +151,7 @@ var
       return /* Some */[0,Bytes["sub_string"](lexbuf[2],i1,len)];
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var sub_lexeme_char=function(lexbuf,i){return lexbuf[2][i];};
@@ -159,7 +159,7 @@ var sub_lexeme_char=function(lexbuf,i){return lexbuf[2][i];};
 var
  sub_lexeme_char_opt=
   function(lexbuf,i)
-   {if(i>=0){return /* Some */[0,lexbuf[2][i]];}else{return 0;}};
+   {if(i>=0){return /* Some */[0,lexbuf[2][i]];}else{return /* None */0;}};
 
 var lexeme_char=function(lexbuf,i){return lexbuf[2][lexbuf[5]+i];};
 

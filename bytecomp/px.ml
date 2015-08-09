@@ -604,6 +604,11 @@ module rec
          |Pbigstring_set_16 _|Pbigstring_set_32 _|Pbigstring_set_64 _
          |Pctconst _|Pbswap16 |Pbbswap _|Pint_as_pointer  ->
            Gen_util.expr_of_unknow_primitive prim : J.expression)
+    let comment_of_pointer_info (x : Lambda.pointer_info) =
+      match x with
+      | NullConstructor x -> Some x
+      | NullVariant x -> Some x
+      | NAPointer  -> None
     let rec compile_const (x : Lambda.structured_constant) =
       (match x with
        | Const_base c ->
@@ -615,9 +620,11 @@ module rec
             | Const_nativeint i -> E.float (Nativeint.to_float i)
             | Const_float f -> E.float (float_of_string f)
             | Const_string (i,_) -> E.str i)
-       | Const_pointer (c,_) -> E.int c
-       | Const_block (tag,_,xs) ->
-           E.arr ((E.int tag) :: (List.map (fun x  -> compile_const x) xs))
+       | Const_pointer (c,pointer_info) ->
+           E.int ?comment:(comment_of_pointer_info pointer_info) c
+       | Const_block (tag,tag_info,xs) ->
+           E.arr ?comment:(comment_of_tag_info tag_info) ((E.int tag) ::
+             (List.map (fun x  -> compile_const x) xs))
        | Const_float_array ars ->
            E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
        | Const_immstring s -> E.str s : J.expression)

@@ -67,7 +67,10 @@ var
   function(param)
    {var exit;
     
-    switch(param){case "false":return 0;case "true":return 1;default:exit=66;}
+    switch(param)
+     {case "false":return /* false */0;
+      case "true":return /* true */1;
+      default:exit=66;}
     
     switch(exit){case 66:return invalid_arg("bool_of_string");}
     };
@@ -128,11 +131,33 @@ var
 
 var
  open_out=
-  function(name){return open_out_gen([0,1,[0,3,[0,4,[0,7,0]]]],438,name);};
+  function(name)
+   {return open_out_gen
+            (/* :: */[0,
+              /* Open_wronly */1,
+              /* :: */[0,
+               /* Open_creat */3,
+               /* :: */[0,
+                /* Open_trunc */4,
+                /* :: */[0,/* Open_text */7,/* [] */0]]]],
+             438,
+             name);
+    };
 
 var
  open_out_bin=
-  function(name){return open_out_gen([0,1,[0,3,[0,4,[0,6,0]]]],438,name);};
+  function(name)
+   {return open_out_gen
+            (/* :: */[0,
+              /* Open_wronly */1,
+              /* :: */[0,
+               /* Open_creat */3,
+               /* :: */[0,
+                /* Open_trunc */4,
+                /* :: */[0,/* Open_binary */6,/* [] */0]]]],
+             438,
+             name);
+    };
 
 var
  flush_all=
@@ -150,7 +175,7 @@ var
           return iter(l);
           }
         else
-         {return 0;}
+         {return /* () */0;}
         };
     
     return iter("unknown primitive:caml_ml_out_channels_list");
@@ -196,7 +221,7 @@ var
     
     try
      {return "unknown primitive:caml_ml_close_channel";}
-    catch(exn$1){return 0;}
+    catch(exn$1){return /* () */0;}
     };
 
 var
@@ -204,9 +229,27 @@ var
   function(mode,perm,name)
    {return "unknown primitive:caml_ml_open_descriptor_in";};
 
-var open_in=function(name){return open_in_gen([0,0,[0,7,0]],0,name);};
+var
+ open_in=
+  function(name)
+   {return open_in_gen
+            (/* :: */[0,
+              /* Open_rdonly */0,
+              /* :: */[0,/* Open_text */7,/* [] */0]],
+             0,
+             name);
+    };
 
-var open_in_bin=function(name){return open_in_gen([0,0,[0,6,0]],0,name);};
+var
+ open_in_bin=
+  function(name)
+   {return open_in_gen
+            (/* :: */[0,
+              /* Open_rdonly */0,
+              /* :: */[0,/* Open_binary */6,/* [] */0]],
+             0,
+             name);
+    };
 
 var
  input=
@@ -221,7 +264,7 @@ var
  unsafe_really_input=
   function(ic,s,ofs,len)
    {if(len<=0)
-     {return 0;}
+     {return /* () */0;}
     else
      {var r="unknown primitive:caml_ml_input";
       
@@ -309,7 +352,7 @@ var
           }
         };
     
-    return scan(0,0);
+    return scan(/* [] */0,0);
     };
 
 var
@@ -317,7 +360,7 @@ var
   function(ic)
    {try
      {return "unknown primitive:caml_ml_close_channel";}
-    catch(exn){return 0;}
+    catch(exn){return /* () */0;}
     };
 
 var print_char=function(c){return "unknown primitive:caml_ml_output_char";};
@@ -407,14 +450,17 @@ var
   function(f)
    {var g=exit_function[1];
     
-    return exit_function[1]=function(param){f(0);return g(0);},0;
+    return exit_function[1]=
+           function(param){f(/* () */0);return g(/* () */0);},
+           0;
     };
 
-var do_at_exit=function(param){return exit_function[1](0);};
+var do_at_exit=function(param){return exit_function[1](/* () */0);};
 
 var
  exit=
-  function(retcode){do_at_exit(0);return "unknown primitive:caml_sys_exit";};
+  function(retcode)
+   {do_at_exit(/* () */0);return "unknown primitive:caml_sys_exit";};
 
 "unknown primitive:caml_register_named_value";
 module["exports"]=

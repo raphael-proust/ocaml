@@ -20,7 +20,9 @@ var
         return /* Node */[0,l,x,d,r,hl>=hr?hl+1:hr+1];
         };
     
-    var singleton=function(x,d){return /* Node */[0,0,x,d,0,1];};
+    var
+     singleton=
+      function(x,d){return /* Node */[0,/* Empty */0,x,d,/* Empty */0,1];};
     
     var
      bal=
@@ -98,9 +100,12 @@ var
           }
         };
     
-    var empty=0;
+    var empty=/* Empty */0;
     
-    var is_empty=function(param){if(param){return 0;}else{return 1;}};
+    var
+     is_empty=
+      function(param)
+       {if(param){return /* false */0;}else{return /* true */1;}};
     
     var
      add=
@@ -128,7 +133,7 @@ var
             }
           }
         else
-         {return /* Node */[0,0,x,data,0,1];}
+         {return /* Node */[0,/* Empty */0,x,data,/* Empty */0,1];}
         };
     
     var
@@ -166,7 +171,7 @@ var
           return (c=0)||mem(x,c<0?l:r);
           }
         else
-         {return 0;}
+         {return /* false */0;}
         };
     
     var
@@ -270,7 +275,7 @@ var
             }
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -290,7 +295,7 @@ var
           return iter(f,r);
           }
         else
-         {return 0;}
+         {return /* () */0;}
         };
     
     var
@@ -316,7 +321,7 @@ var
           return /* Node */[0,l$prime,v,d$prime,r$prime,h];
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -342,7 +347,7 @@ var
           return /* Node */[0,l$prime,v,d$prime,r$prime,h];
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -378,7 +383,7 @@ var
           return p(v,d)&&for_all(p,l)&&for_all(p,r);
           }
         else
-         {return 1;}
+         {return /* true */1;}
         };
     
     var
@@ -396,7 +401,7 @@ var
           return p(v,d)||exists(p,l)||exists(p,r);
           }
         else
-         {return 0;}
+         {return /* false */0;}
         };
     
     var
@@ -555,7 +560,7 @@ var
             }
           }
         else
-         {return [0,0,0,0];}
+         {return /* tuple */[0,/* Empty */0,/* None */0,/* Empty */0];}
         };
     
     var
@@ -597,7 +602,7 @@ var
            {exit=20;}
           }
         else
-         {if(match$1){exit=20;}else{return 0;}}
+         {if(match$1){exit=20;}else{return /* Empty */0;}}
         
         switch(exit)
          {case 20:
@@ -654,7 +659,7 @@ var
            {return concat(l$prime,r$prime);}
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var
@@ -689,7 +694,7 @@ var
            {return /* tuple */[0,concat(lt,rt),join(lf,v,d,rf)];}
           }
         else
-         {return [0,0,0];}
+         {return /* tuple */[0,/* Empty */0,/* Empty */0];}
         };
     
     var
@@ -758,7 +763,7 @@ var
              {if(match$1){return -1;}else{return 0;}}
             };
         
-        return compare_aux(cons_enum(m1,0),cons_enum(m2,0));
+        return compare_aux(cons_enum(m1,/* End */0),cons_enum(m2,/* End */0));
         };
     
     var
@@ -794,13 +799,13 @@ var
                        equal_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));
                 }
               else
-               {return 0;}
+               {return /* false */0;}
               }
             else
-             {if(match$1){return 0;}else{return 1;}}
+             {if(match$1){return /* false */0;}else{return /* true */1;}}
             };
         
-        return equal_aux(cons_enum(m1,0),cons_enum(m2,0));
+        return equal_aux(cons_enum(m1,/* End */0),cons_enum(m2,/* End */0));
         };
     
     var
@@ -831,7 +836,7 @@ var
          {return accu;}
         };
     
-    var bindings=function(s){return bindings_aux(0,s);};
+    var bindings=function(s){return bindings_aux(/* [] */0,s);};
     
     var choose=min_binding;
     

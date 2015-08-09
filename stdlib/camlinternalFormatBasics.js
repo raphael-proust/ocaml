@@ -6,7 +6,7 @@ var
  erase_rel=
   function(param)
    {if(typeof param=="number")
-     {switch(param){case 0:return 0;}}
+     {switch(param){case 0:return /* End_of_fmtty */0;}}
     else
      {switch(param[0])
        {case 0:var rest=param[1];return /* Char_ty */[0,erase_rel(rest)];

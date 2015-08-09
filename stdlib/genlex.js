@@ -45,7 +45,7 @@ var
 var
  make_lexer=
   function(keywords)
-   {var kwd_table=Hashtbl["create"](0,17);
+   {var kwd_table=Hashtbl["create"](/* None */0,17);
     
     List["iter"]
      (function(s){return Hashtbl["add"](kwd_table,s,/* Kwd */[0,s]);},
@@ -149,7 +149,7 @@ var
                    Stream["junk"](strm__);
                    var s=strm__;
                    
-                   reset_buffer(0);
+                   reset_buffer(/* () */0);
                    return /* Some */[0,/* String */[4,string(s)]];
                    
                   case 35:exit=11;
@@ -234,7 +234,7 @@ var
              Stream["junk"](strm__);
              var s$1=strm__;
              
-             reset_buffer(0);
+             reset_buffer(/* () */0);
              store(c);
              return ident(s$1);
              
@@ -244,7 +244,7 @@ var
              Stream["junk"](strm__);
              var s$2=strm__;
              
-             reset_buffer(0);
+             reset_buffer(/* () */0);
              store(c$3);
              return ident2(s$2);
              
@@ -254,14 +254,14 @@ var
              Stream["junk"](strm__);
              var s$3=strm__;
              
-             reset_buffer(0);
+             reset_buffer(/* () */0);
              store(c$4);
              return number(s$3);
              
             }
           }
         else
-         {return 0;}
+         {return /* None */0;}
         };
     
     var
@@ -303,7 +303,9 @@ var
          {exit=15;}
         
         switch(exit)
-         {case 15:return /* Some */[0,ident_or_keyword(get_string(0))];}
+         {case 15:
+           return /* Some */[0,ident_or_keyword(get_string(/* () */0))];
+          }
         };
     
     var
@@ -382,7 +384,9 @@ var
          {exit=18;}
         
         switch(exit)
-         {case 18:return /* Some */[0,ident_or_keyword(get_string(0))];}
+         {case 18:
+           return /* Some */[0,ident_or_keyword(get_string(/* () */0))];
+          }
         };
     
     var
@@ -403,7 +407,7 @@ var
            {Stream["junk"](strm__);
             var s=strm__;
             
-            reset_buffer(0);
+            reset_buffer(/* () */0);
             store(45);
             store(c);
             return number(s);
@@ -413,7 +417,13 @@ var
          {exit=22;}
         
         switch(exit)
-         {case 22:var s$1=strm__;reset_buffer(0);store(45);return ident2(s$1);
+         {case 22:
+           var s$1=strm__;
+           
+           reset_buffer(/* () */0);
+           store(45);
+           return ident2(s$1);
+           
           }
         };
     
@@ -615,7 +625,7 @@ var
               }
             }
           else
-           {Stream["junk"](strm__);return get_string(0);}
+           {Stream["junk"](strm__);return get_string(/* () */0);}
           }
         else
          {throw Stream["Failure"];}
@@ -814,7 +824,7 @@ var
              {Stream["junk"](strm__);return maybe_end_comment(strm__);}
             }
           else
-           {Stream["junk"](strm__);return 0;}
+           {Stream["junk"](strm__);return /* () */0;}
           }
         else
          {throw Stream["Failure"];}

@@ -15,10 +15,10 @@ var
  next_char=
   function(ib)
    {try
-     {var c=ib[7](0);
+     {var c=ib[7](/* () */0);
       
       ib[2]=c,0;
-      ib[3]=1,0;
+      ib[3]=/* true */1,0;
       ib[4]=1+ib[4],0;
       if(c=10){ib[5]=1+ib[5],0}else{}
       
@@ -26,7 +26,13 @@ var
       }
     catch(exn)
      {if(exn=End_of_file)
-       {var c$1=null_char;ib[2]=c$1,0;ib[3]=0,0;ib[1]=1,0;return c$1;}
+       {var c$1=null_char;
+        
+        ib[2]=c$1,0;
+        ib[3]=/* false */0,0;
+        ib[1]=/* true */1,0;
+        return c$1;
+        }
       else
        {throw exn;}
       }
@@ -70,7 +76,7 @@ var line_count=function(ib){return ib[5];};
 
 var reset_token=function(ib){return Buffer["reset"](ib[8]);};
 
-var invalidate_current_char=function(ib){return ib[3]=0,0;};
+var invalidate_current_char=function(ib){return ib[3]=/* false */0,0;};
 
 var
  token=
@@ -101,9 +107,9 @@ var
  create=
   function(iname,next)
    {return /* record */[0,
-            0,
+            /* false */0,
             null_char,
-            0,
+            /* false */0,
             0,
             0,
             0,
@@ -124,10 +130,10 @@ var
       function(param)
        {if(i[1]>=len){throw End_of_file;}else{var c=s[i[1]];i[0]++;return c;}};
     
-    return create(0,next);
+    return create(/* From_string */0,next);
     };
 
-var from_function=create(1);
+var from_function=create(/* From_function */1);
 
 var file_buffer_size=[0,1024];
 
@@ -148,7 +154,7 @@ var
     
     var lim=[0,0];
     
-    var eof$1=[0,0];
+    var eof$1=[0,/* false */0];
     
     var
      next=
@@ -161,7 +167,7 @@ var
           else
            {lim[1]=Pervasives["input"](ic,buf,0,len),0;
             if(lim[1]=0)
-             {eof$1[1]=1,0;return scan_close_ic(ic);}
+             {eof$1[1]=/* true */1,0;return scan_close_ic(ic);}
             else
              {i[1]=1,0;return buf[0];}
             }
@@ -214,7 +220,7 @@ var from_file=open_in;
 
 var from_file_bin=open_in_bin;
 
-var memo=[0,0];
+var memo=[0,/* [] */0];
 
 var
  memo_from_ic=
@@ -250,7 +256,7 @@ var
         case 1:var ic$1=match[1];return Pervasives["close_in"](ic$1);
         }}
     
-    switch(exit){case 247:return 0;}
+    switch(exit){case 247:return /* () */0;}
     };
 
 var
@@ -292,8 +298,10 @@ var
   function(c)
    {return bad_input
             (Printf["sprintf"]
-              ([0,
-                [11,"illegal escape character ",[1,0]],
+              (/* Format */[0,
+                /* String_literal */[11,
+                 "illegal escape character ",
+                 /* Caml_char */[1,/* End_of_format */0]],
                 "illegal escape character %C"],
                c));
     };
@@ -303,14 +311,14 @@ var
   function(message)
    {return bad_input
             (Printf["sprintf"]
-              ([0,
-                [11,
+              (/* Format */[0,
+                /* String_literal */[11,
                  "scanning of ",
-                 [2,
-                  0,
-                  [11,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,
                    " failed: the specified length was too short for token",
-                   0]]],
+                   /* End_of_format */0]]],
                 "scanning of %s failed: the specified length was too short for token"],
                message));
     };
@@ -320,14 +328,14 @@ var
   function(message)
    {return bad_input
             (Printf["sprintf"]
-              ([0,
-                [11,
+              (/* Format */[0,
+                /* String_literal */[11,
                  "scanning of ",
-                 [2,
-                  0,
-                  [11,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,
                    " failed: premature end of file occurred before end of token",
-                   0]]],
+                   /* End_of_format */0]]],
                 "scanning of %s failed: premature end of file occurred before end of token"],
                message));
     };
@@ -341,8 +349,13 @@ var
  character_mismatch_err=
   function(c,ci)
    {return Printf["sprintf"]
-            ([0,
-              [11,"looking for ",[1,[11,", found ",[1,0]]]],
+            (/* Format */[0,
+              /* String_literal */[11,
+               "looking for ",
+               /* Caml_char */[1,
+                /* String_literal */[11,
+                 ", found ",
+                 /* Caml_char */[1,/* End_of_format */0]]]],
               "looking for %C, found %C"],
              c,
              ci);
@@ -371,7 +384,9 @@ var
        {if(switcher!=23){exit=238;}else{exit=237;}}
       
       switch(exit)
-       {case 238:return 0;case 237:Scanning[4](ib);return skip_whites(ib);}
+       {case 238:return /* () */0;
+        case 237:Scanning[4](ib);return skip_whites(ib);
+        }
       }
     else
      {return 0;}
@@ -411,13 +426,21 @@ var
     
     var exit;
     
-    switch(s){case "false":return 0;case "true":return 1;default:exit=231;}
+    switch(s)
+     {case "false":return /* false */0;
+      case "true":return /* true */1;
+      default:exit=231;}
     
     switch(exit)
      {case 231:
        return bad_input
                (Printf["sprintf"]
-                 ([0,[11,"invalid boolean ",[3,0,0]],"invalid boolean %S"],s));
+                 (/* Format */[0,
+                   /* String_literal */[11,
+                    "invalid boolean ",
+                    /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   "invalid boolean %S"],
+                  s));
        
       }
     };
@@ -554,8 +577,13 @@ var
         
         return bad_input
                 (Printf["sprintf"]
-                  ([0,
-                    [11,"character ",[1,[11," is not a decimal digit",0]]],
+                  (/* Format */[0,
+                    /* String_literal */[11,
+                     "character ",
+                     /* Caml_char */[1,
+                      /* String_literal */[11,
+                       " is not a decimal digit",
+                       /* End_of_format */0]]],
                     "character %C is not a decimal digit"],
                    c$1));
         }
@@ -611,10 +639,15 @@ var
       else
        {return bad_input
                 (Printf["sprintf"]
-                  ([0,
-                    [11,
+                  (/* Format */[0,
+                    /* String_literal */[11,
                      "character ",
-                     [1,[11," is not a valid ",[2,0,[11," digit",0]]]]],
+                     /* Caml_char */[1,
+                      /* String_literal */[11,
+                       " is not a valid ",
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* String_literal */[11," digit",/* End_of_format */0]]]]],
                     "character %C is not a valid %s digit"],
                    c,
                    basis));
@@ -625,14 +658,20 @@ var
 var
  is_binary_digit=
   function(param)
-   {var switcher=-48+param;if(1<switcher>>>0){return 0;}else{return 1;}};
+   {var switcher=-48+param;
+    
+    if(1<switcher>>>0){return /* false */0;}else{return /* true */1;}
+    };
 
 var scan_binary_int=scan_digits_plus("binary",is_binary_digit);
 
 var
  is_octal_digit=
   function(param)
-   {var switcher=-48+param;if(7<switcher>>>0){return 0;}else{return 1;}};
+   {var switcher=-48+param;
+    
+    if(7<switcher>>>0){return /* false */0;}else{return /* true */1;}
+    };
 
 var scan_octal_int=scan_digits_plus("octal",is_octal_digit);
 
@@ -654,7 +693,7 @@ var
       if(6<switcher$2>>>0){exit=191;}else{exit=192;}
       }
     
-    switch(exit){case 192:return 0;case 191:return 1;}
+    switch(exit){case 192:return /* false */0;case 191:return /* true */1;}
     };
 
 var scan_hexadecimal_int=scan_digits_plus("hexadecimal",is_hexa_digit);
@@ -883,12 +922,12 @@ var
    {var width$1=scan_optionally_signed_decimal_int(width,ib);
     
     if(width$1=0)
-     {return bad_float(0);}
+     {return bad_float(/* () */0);}
     else
      {var c=Scanning[5](ib);
       
       if(Scanning[15](ib))
-       {return bad_float(0);}
+       {return bad_float(/* () */0);}
       else
        {var exit;
         
@@ -916,7 +955,7 @@ var
             }
           }
         
-        switch(exit){case 152:return bad_float(0);}
+        switch(exit){case 152:return bad_float(/* () */0);}
         }
       }
     };
@@ -1016,8 +1055,11 @@ var
     if(c<0||c>255)
      {return bad_input
               (Printf["sprintf"]
-                ([0,
-                  [11,"bad character decimal encoding \",[0,[0,[0,0]]]],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "bad character decimal encoding \",
+                   /* Char */[0,
+                    /* Char */[0,/* Char */[0,/* End_of_format */0]]]],
                   "bad character decimal encoding \%c%c%c"],
                  c0,
                  c1,
@@ -1043,8 +1085,10 @@ var
     if(c<0||c>255)
      {return bad_input
               (Printf["sprintf"]
-                ([0,
-                  [11,"bad character hexadecimal encoding \",[0,[0,0]]],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "bad character hexadecimal encoding \",
+                   /* Char */[0,/* Char */[0,/* End_of_format */0]]],
                   "bad character hexadecimal encoding \%c%c"],
                  c1,
                  c2));
@@ -1139,9 +1183,9 @@ var
                    }
                  };
              
-             var c1=get_digit(0);
+             var c1=get_digit(/* () */0);
              
-             var c2=get_digit(0);
+             var c2=get_digit(/* () */0);
              
              return Scanning[7](width-2,ib,char_for_hexadecimal_code(c1,c2));
              
@@ -1167,9 +1211,9 @@ var
           
           var c0=c$1;
           
-          var c1$1=get_digit$1(0);
+          var c1$1=get_digit$1(/* () */0);
           
-          var c2$1=get_digit$1(0);
+          var c2$1=get_digit$1(/* () */0);
           
           return Scanning[7](width-2,ib,char_for_decimal_code(c0,c1$1,c2$1));
           }
@@ -1307,8 +1351,13 @@ var
          m=
           bad_input
            (Printf["sprintf"]
-             ([0,
-               [11,"the character ",[1,[11," cannot start a boolean",0]]],
+             (/* Format */[0,
+               /* String_literal */[11,
+                "the character ",
+                /* Caml_char */[1,
+                 /* String_literal */[11,
+                  " cannot start a boolean",
+                  /* End_of_format */0]]],
                "the character %C cannot start a boolean"],
               c$1));
         }
@@ -1318,7 +1367,7 @@ var
     else
      {var m=5;}
     
-    return scan_string(0,m,ib);
+    return scan_string(/* None */0,m,ib);
     };
 
 var
@@ -1384,10 +1433,16 @@ var
        
        return bad_input
                (Printf["sprintf"]
-                 ([0,
-                   [11,
+                 (/* Format */[0,
+                   /* String_literal */[11,
                     "scanf: bad input at char number ",
-                    [4,3,0,0,[11,": ",[3,0,0]]]],
+                    /* Int */[4,
+                     /* Int_i */3,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     /* String_literal */[11,
+                      ": ",
+                      /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]]]],
                    "scanf: bad input at char number %i: %S"],
                   i,
                   s$1));
@@ -1417,8 +1472,8 @@ var
 var
  stopper_of_formatting_lit=
   function(fmting)
-   {if(fmting=6)
-     {return [0,37,""];}
+   {if(fmting=/* Escaped_percent */6)
+     {return /* tuple */[0,37,""];}
     else
      {var str=CamlinternalFormat["string_of_formatting_lit"](fmting);
       
@@ -1434,7 +1489,7 @@ var
  take_format_readers=
   function(k,fmt)
    {if(typeof fmt=="number")
-     {switch(fmt){case 0:return k(0);}}
+     {switch(fmt){case 0:return k(/* Nil */0);}}
     else
      {switch(fmt[0])
        {case 0:var rest=fmt[1];return take_format_readers(k,rest);
@@ -1628,7 +1683,7 @@ var
  make_scanf=
   function(ib,fmt,readers)
    {if(typeof fmt=="number")
-     {switch(fmt){case 0:return 0;}}
+     {switch(fmt){case 0:return /* Nil */0;}}
     else
      {switch(fmt[0])
        {case 0:
@@ -1679,7 +1734,13 @@ var
               var str_rest=/* String_literal */[11,str,rest$3];
               
               return pad_prec_scanf
-                      (ib,str_rest,readers,pad,0,scan,token_string);
+                      (ib,
+                       str_rest,
+                       readers,
+                       pad,
+                       /* No_precision */0,
+                       scan,
+                       token_string);
               
              case 18:
               var match$3=rest$2[1];
@@ -1697,14 +1758,14 @@ var
                  var
                   scan$1=
                    function(width,param,ib$1)
-                    {return scan_string([0,123],width,ib$1);};
+                    {return scan_string(/* Some */[0,123],width,ib$1);};
                  
                  return pad_prec_scanf
                          (ib,
                           CamlinternalFormatBasics["concat_fmt"](fmt$prime,rest$4),
                           readers,
                           pad$1,
-                          0,
+                          /* No_precision */0,
                           scan$1,
                           token_string);
                  
@@ -1720,14 +1781,14 @@ var
                  var
                   scan$2=
                    function(width,param,ib$1)
-                    {return scan_string([0,91],width,ib$1);};
+                    {return scan_string(/* Some */[0,91],width,ib$1);};
                  
                  return pad_prec_scanf
                          (ib,
                           CamlinternalFormatBasics["concat_fmt"](fmt$prime$1,rest$5),
                           readers,
                           pad$2,
-                          0,
+                          /* No_precision */0,
                           scan$2,
                           token_string);
                  
@@ -1741,10 +1802,17 @@ var
             
             var
              scan$3=
-              function(width,param,ib$1){return scan_string(0,width,ib$1);};
+              function(width,param,ib$1)
+               {return scan_string(/* None */0,width,ib$1);};
             
             return pad_prec_scanf
-                    (ib,rest$2,readers,pad$3,0,scan$3,token_string);
+                    (ib,
+                     rest$2,
+                     readers,
+                     pad$3,
+                     /* No_precision */0,
+                     scan$3,
+                     token_string);
             
            }
          
@@ -1757,7 +1825,14 @@ var
           scan$4=
            function(width,param,ib$1){return scan_caml_string(width,ib$1);};
          
-         return pad_prec_scanf(ib,rest$6,readers,pad$4,0,scan$4,token_string);
+         return pad_prec_scanf
+                 (ib,
+                  rest$6,
+                  readers,
+                  pad$4,
+                  /* No_precision */0,
+                  scan$4,
+                  token_string);
          
         case 4:
          var rest$7=fmt[4];
@@ -1930,11 +2005,15 @@ var
          var s$1=token_string(ib);
          
          try
-          {var match$10=CamlinternalFormat["fmt_ebb_of_string"](0,s$1);
+          {var
+            match$10=
+             CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
            
            var fmt$2=match$10[1];
            
-           var match$11=CamlinternalFormat["fmt_ebb_of_string"](0,s$1);
+           var
+            match$11=
+             CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
            
            var fmt$prime$2=match$11[1];
            
@@ -2073,7 +2152,9 @@ var
             
             var width$1=width_of_pad_opt(width_opt$1);
             
-            var match$18=scan_chars_in_char_set(char_set$1,0,width$1,ib);
+            var
+             match$18=
+              scan_chars_in_char_set(char_set$1,/* None */0,width$1,ib);
             
             var s$3=token_string(ib);
             
@@ -2336,7 +2417,11 @@ var
   function(s)
    {return sscanf
             (Pervasives["^"]('"',Pervasives["^"](s,'"')),
-             [0,[3,0,[10,0]],"%S%!"],
+             /* Format */[0,
+              /* Caml_string */[3,
+               /* No_padding */0,
+               /* Flush */[10,/* End_of_format */0]],
+              "%S%!"],
              function(x){return x;});
     };
 

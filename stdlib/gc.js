@@ -11,61 +11,183 @@ var
     
     Printf["fprintf"]
      (c,
-      [0,[11,"minor_words: ",[8,0,0,[0,0],[12,10,0]]],"minor_words: %.0f\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "minor_words: ",
+        /* Float */[8,
+         /* Float_f */0,
+         /* No_padding */0,
+         /* Lit_precision */[0,0],
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "minor_words: %.0f\n"],
       st[1]);
     Printf["fprintf"]
      (c,
-      [0,
-       [11,"promoted_words: ",[8,0,0,[0,0],[12,10,0]]],
+      /* Format */[0,
+       /* String_literal */[11,
+        "promoted_words: ",
+        /* Float */[8,
+         /* Float_f */0,
+         /* No_padding */0,
+         /* Lit_precision */[0,0],
+         /* Char_literal */[12,10,/* End_of_format */0]]],
        "promoted_words: %.0f\n"],
       st[2]);
     Printf["fprintf"]
      (c,
-      [0,[11,"major_words: ",[8,0,0,[0,0],[12,10,0]]],"major_words: %.0f\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "major_words: ",
+        /* Float */[8,
+         /* Float_f */0,
+         /* No_padding */0,
+         /* Lit_precision */[0,0],
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "major_words: %.0f\n"],
       st[3]);
     Printf["fprintf"]
      (c,
-      [0,
-       [11,"minor_collections: ",[4,0,0,0,[12,10,0]]],
+      /* Format */[0,
+       /* String_literal */[11,
+        "minor_collections: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
        "minor_collections: %d\n"],
       st[4]);
     Printf["fprintf"]
      (c,
-      [0,
-       [11,"major_collections: ",[4,0,0,0,[12,10,0]]],
+      /* Format */[0,
+       /* String_literal */[11,
+        "major_collections: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
        "major_collections: %d\n"],
       st[5]);
     Printf["fprintf"]
-     (c,[0,[11,"heap_words: ",[4,0,0,0,[12,10,0]]],"heap_words: %d\n"],st[6]);
+     (c,
+      /* Format */[0,
+       /* String_literal */[11,
+        "heap_words: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "heap_words: %d\n"],
+      st[6]);
     Printf["fprintf"]
      (c,
-      [0,[11,"heap_chunks: ",[4,0,0,0,[12,10,0]]],"heap_chunks: %d\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "heap_chunks: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "heap_chunks: %d\n"],
       st[7]);
     Printf["fprintf"]
      (c,
-      [0,[11,"top_heap_words: ",[4,0,0,0,[12,10,0]]],"top_heap_words: %d\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "top_heap_words: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "top_heap_words: %d\n"],
       st[15]);
     Printf["fprintf"]
-     (c,[0,[11,"live_words: ",[4,0,0,0,[12,10,0]]],"live_words: %d\n"],st[8]);
+     (c,
+      /* Format */[0,
+       /* String_literal */[11,
+        "live_words: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "live_words: %d\n"],
+      st[8]);
     Printf["fprintf"]
      (c,
-      [0,[11,"live_blocks: ",[4,0,0,0,[12,10,0]]],"live_blocks: %d\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "live_blocks: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "live_blocks: %d\n"],
       st[9]);
     Printf["fprintf"]
-     (c,[0,[11,"free_words: ",[4,0,0,0,[12,10,0]]],"free_words: %d\n"],st[10]);
+     (c,
+      /* Format */[0,
+       /* String_literal */[11,
+        "free_words: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "free_words: %d\n"],
+      st[10]);
     Printf["fprintf"]
      (c,
-      [0,[11,"free_blocks: ",[4,0,0,0,[12,10,0]]],"free_blocks: %d\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "free_blocks: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "free_blocks: %d\n"],
       st[11]);
     Printf["fprintf"]
      (c,
-      [0,[11,"largest_free: ",[4,0,0,0,[12,10,0]]],"largest_free: %d\n"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "largest_free: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "largest_free: %d\n"],
       st[12]);
     Printf["fprintf"]
-     (c,[0,[11,"fragments: ",[4,0,0,0,[12,10,0]]],"fragments: %d\n"],st[13]);
+     (c,
+      /* Format */[0,
+       /* String_literal */[11,
+        "fragments: ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,10,/* End_of_format */0]]],
+       "fragments: %d\n"],
+      st[13]);
     return Printf["fprintf"]
             (c,
-             [0,[11,"compactions: ",[4,0,0,0,[12,10,0]]],"compactions: %d\n"],
+             /* Format */[0,
+              /* String_literal */[11,
+               "compactions: ",
+               /* Int */[4,
+                /* Int_d */0,
+                /* No_padding */0,
+                /* No_precision */0,
+                /* Char_literal */[12,10,/* End_of_format */0]]],
+              "compactions: %d\n"],
              st[14]);
     };
 
@@ -87,7 +209,7 @@ var
  call_alarm=
   function(arec)
    {if(arec[1][1])
-     {"unknown primitive:caml_final_register";return arec[2](0);}
+     {"unknown primitive:caml_final_register";return arec[2](/* () */0);}
     else
      {return 0;}
     };
@@ -95,13 +217,13 @@ var
 var
  create_alarm=
   function(f)
-   {var arec=/* record */[0,[0,1],f];
+   {var arec=/* record */[0,[0,/* true */1],f];
     
     "unknown primitive:caml_final_register";
     return arec[1];
     };
 
-var delete_alarm=function(a){return a[1]=0,0;};
+var delete_alarm=function(a){return a[1]=/* false */0,0;};
 
 module["exports"]=
 {"print_stat":print_stat,

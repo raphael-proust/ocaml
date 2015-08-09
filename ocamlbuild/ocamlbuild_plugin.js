@@ -90,7 +90,7 @@ var copy_rule=Ocamlbuild_pack["Rule"][7];
 
 var ocaml_lib=Ocamlbuild_pack["Ocaml_utils"][19];
 
-var flag=Ocamlbuild_pack["Flags"][3](0);
+var flag=Ocamlbuild_pack["Flags"][3](/* None */0);
 
 var pflag=Ocamlbuild_pack["Flags"][4];
 

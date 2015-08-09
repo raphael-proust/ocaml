@@ -63,7 +63,7 @@ var
      {return l2;}
     };
 
-var rev=function(l){return rev_append(l,0);};
+var rev=function(l){return rev_append(l,/* [] */0);};
 
 var
  flatten=
@@ -71,7 +71,7 @@ var
    {if(param)
      {var r=param[2];var l=param[1];return Pervasives["@"](l,flatten(r));}
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var concat=flatten;
@@ -82,7 +82,7 @@ var
    {if(param)
      {var l=param[2];var a=param[1];var r=f(a);return /* :: */[0,r,map(f,l)];}
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -98,7 +98,7 @@ var
       return /* :: */[0,r,mapi(i+1,f,l)];
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var mapi$1=function(f,l){return mapi(0,f,l);};
@@ -120,7 +120,7 @@ var
          {return accu;}
         };
     
-    return rmap_f(0,l);
+    return rmap_f(/* [] */0,l);
     };
 
 var
@@ -129,7 +129,7 @@ var
    {if(param)
      {var l=param[2];var a=param[1];f(a);return iter(f,l);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -138,7 +138,7 @@ var
    {if(param)
      {var l=param[2];var a=param[1];f(i,a);return iteri(i+1,f,l);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var iteri$1=function(f,l){return iteri(0,f,l);};
@@ -188,7 +188,7 @@ var
        {exit=66;}
       }
     else
-     {if(match$1){exit=66;}else{return 0;}}
+     {if(match$1){exit=66;}else{return /* [] */0;}}
     
     switch(exit){case 66:return Pervasives["invalid_arg"]("List.map2");}
     };
@@ -227,7 +227,7 @@ var
          {case 63:return Pervasives["invalid_arg"]("List.rev_map2");}
         };
     
-    return rmap2_f(0,l1,l2);
+    return rmap2_f(/* [] */0,l1,l2);
     };
 
 var
@@ -256,7 +256,7 @@ var
        {exit=62;}
       }
     else
-     {if(match$1){exit=62;}else{return 0;}}
+     {if(match$1){exit=62;}else{return /* () */0;}}
     
     switch(exit){case 62:return Pervasives["invalid_arg"]("List.iter2");}
     };
@@ -328,7 +328,7 @@ var
    {if(param)
      {var l=param[2];var a=param[1];return p(a)&&for_all(p,l);}
     else
-     {return 1;}
+     {return /* true */1;}
     };
 
 var
@@ -337,7 +337,7 @@ var
    {if(param)
      {var l=param[2];var a=param[1];return p(a)||exists(p,l);}
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -365,7 +365,7 @@ var
        {exit=59;}
       }
     else
-     {if(match$1){exit=59;}else{return 1;}}
+     {if(match$1){exit=59;}else{return /* true */1;}}
     
     switch(exit){case 59:return Pervasives["invalid_arg"]("List.for_all2");}
     };
@@ -395,7 +395,7 @@ var
        {exit=58;}
       }
     else
-     {if(match$1){exit=58;}else{return 0;}}
+     {if(match$1){exit=58;}else{return /* false */0;}}
     
     switch(exit){case 58:return Pervasives["invalid_arg"]("List.exists2");}
     };
@@ -411,7 +411,7 @@ var
       return ("unknown primitive:caml_compare"=0)||mem(x,l);
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -420,7 +420,7 @@ var
    {if(param)
      {var l=param[2];var a=param[1];return (a=x)||memq(x,l);}
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -475,7 +475,7 @@ var
       return ("unknown primitive:caml_compare"=0)||mem_assoc(x,l);
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -491,7 +491,7 @@ var
       return (a=x)||mem_assq(x,l);
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -510,7 +510,7 @@ var
        {return /* :: */[0,pair,remove_assoc(x,l)];}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -526,7 +526,7 @@ var
       if(a=x){return l;}else{return /* :: */[0,pair,remove_assq(x,l)];}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -563,7 +563,7 @@ var
          {return rev(accu);}
         };
     
-    return find$1(0);
+    return find$1(/* [] */0);
     };
 
 var filter=find_all;
@@ -588,7 +588,7 @@ var
          {return /* tuple */[0,rev(yes),rev(no)];}
         };
     
-    return part(0,0,l);
+    return part(/* [] */0,/* [] */0,l);
     };
 
 var
@@ -612,7 +612,7 @@ var
       return /* tuple */[0,/* :: */[0,x,rx],/* :: */[0,y,ry]];
       }
     else
-     {return [0,0,0];}
+     {return /* tuple */[0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -640,7 +640,7 @@ var
        {exit=53;}
       }
     else
-     {if(match$1){exit=53;}else{return 0;}}
+     {if(match$1){exit=53;}else{return /* [] */0;}}
     
     switch(exit){case 53:return Pervasives["invalid_arg"]("List.combine");}
     };
@@ -776,22 +776,40 @@ var
                   
                   if(cmp(x1,x2)<=0)
                    {if(cmp(x2,x3)<=0)
-                     {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
+                     {return /* :: */[0,
+                              x1,
+                              /* :: */[0,x2,/* :: */[0,x3,/* [] */0]]];
+                      }
                     else
                      {if(cmp(x1,x3)<=0)
-                       {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
+                       {return /* :: */[0,
+                                x1,
+                                /* :: */[0,x3,/* :: */[0,x2,/* [] */0]]];
+                        }
                       else
-                       {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
+                       {return /* :: */[0,
+                                x3,
+                                /* :: */[0,x1,/* :: */[0,x2,/* [] */0]]];
+                        }
                       }
                     }
                   else
                    {if(cmp(x1,x3)<=0)
-                     {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
+                     {return /* :: */[0,
+                              x2,
+                              /* :: */[0,x1,/* :: */[0,x3,/* [] */0]]];
+                      }
                     else
                      {if(cmp(x2,x3)<=0)
-                       {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
+                       {return /* :: */[0,
+                                x2,
+                                /* :: */[0,x3,/* :: */[0,x1,/* [] */0]]];
+                        }
                       else
-                       {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
+                       {return /* :: */[0,
+                                x3,
+                                /* :: */[0,x2,/* :: */[0,x1,/* [] */0]]];
+                        }
                       }
                     }
                   }
@@ -815,9 +833,9 @@ var
               var x1$1=match$1[1];
               
               if(cmp(x1$1,x2$1)<=0)
-               {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
+               {return /* :: */[0,x1$1,/* :: */[0,x2$1,/* [] */0]];}
               else
-               {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
+               {return /* :: */[0,x2$1,/* :: */[0,x1$1,/* [] */0]];}
               }
             else
              {exit=41;}
@@ -842,7 +860,7 @@ var
            
            var s2=rev_sort(n2,l2);
            
-           return rev_merge_rev(s1,s2,0);
+           return rev_merge_rev(s1,s2,/* [] */0);
            
           }
         };
@@ -875,22 +893,40 @@ var
                   
                   if(cmp(x1,x2)>0)
                    {if(cmp(x2,x3)>0)
-                     {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
+                     {return /* :: */[0,
+                              x1,
+                              /* :: */[0,x2,/* :: */[0,x3,/* [] */0]]];
+                      }
                     else
                      {if(cmp(x1,x3)>0)
-                       {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
+                       {return /* :: */[0,
+                                x1,
+                                /* :: */[0,x3,/* :: */[0,x2,/* [] */0]]];
+                        }
                       else
-                       {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
+                       {return /* :: */[0,
+                                x3,
+                                /* :: */[0,x1,/* :: */[0,x2,/* [] */0]]];
+                        }
                       }
                     }
                   else
                    {if(cmp(x1,x3)>0)
-                     {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
+                     {return /* :: */[0,
+                              x2,
+                              /* :: */[0,x1,/* :: */[0,x3,/* [] */0]]];
+                      }
                     else
                      {if(cmp(x2,x3)>0)
-                       {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
+                       {return /* :: */[0,
+                                x2,
+                                /* :: */[0,x3,/* :: */[0,x1,/* [] */0]]];
+                        }
                       else
-                       {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
+                       {return /* :: */[0,
+                                x3,
+                                /* :: */[0,x2,/* :: */[0,x1,/* [] */0]]];
+                        }
                       }
                     }
                   }
@@ -914,9 +950,9 @@ var
               var x1$1=match$1[1];
               
               if(cmp(x1$1,x2$1)>0)
-               {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
+               {return /* :: */[0,x1$1,/* :: */[0,x2$1,/* [] */0]];}
               else
-               {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
+               {return /* :: */[0,x2$1,/* :: */[0,x1$1,/* [] */0]];}
               }
             else
              {exit=47;}
@@ -941,7 +977,7 @@ var
            
            var s2=sort(n2,l2);
            
-           return rev_merge(s1,s2,0);
+           return rev_merge(s1,s2,/* [] */0);
            
           }
         };
@@ -1060,12 +1096,12 @@ var
                    {var c$1=cmp(x2,x3);
                     
                     if(c$1=0)
-                     {return /* :: */[0,x2,0];}
+                     {return /* :: */[0,x2,/* [] */0];}
                     else
                      {if(c$1<0)
-                       {return /* :: */[0,x2,/* :: */[0,x3,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x3,/* [] */0]];}
                       else
-                       {return /* :: */[0,x3,/* :: */[0,x2,0]];}
+                       {return /* :: */[0,x3,/* :: */[0,x2,/* [] */0]];}
                       }
                     }
                   else
@@ -1073,20 +1109,29 @@ var
                      {var c$2=cmp(x2,x3);
                       
                       if(c$2=0)
-                       {return /* :: */[0,x1,/* :: */[0,x2,0]];}
+                       {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                       else
                        {if(c$2<0)
-                         {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
+                         {return /* :: */[0,
+                                  x1,
+                                  /* :: */[0,x2,/* :: */[0,x3,/* [] */0]]];
+                          }
                         else
                          {var c$3=cmp(x1,x3);
                           
                           if(c$3=0)
-                           {return /* :: */[0,x1,/* :: */[0,x2,0]];}
+                           {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                           else
                            {if(c$3<0)
-                             {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
+                             {return /* :: */[0,
+                                      x1,
+                                      /* :: */[0,x3,/* :: */[0,x2,/* [] */0]]];
+                              }
                             else
-                             {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
+                             {return /* :: */[0,
+                                      x3,
+                                      /* :: */[0,x1,/* :: */[0,x2,/* [] */0]]];
+                              }
                             }
                           }
                         }
@@ -1095,20 +1140,29 @@ var
                      {var c$4=cmp(x1,x3);
                       
                       if(c$4=0)
-                       {return /* :: */[0,x2,/* :: */[0,x1,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                       else
                        {if(c$4<0)
-                         {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
+                         {return /* :: */[0,
+                                  x2,
+                                  /* :: */[0,x1,/* :: */[0,x3,/* [] */0]]];
+                          }
                         else
                          {var c$5=cmp(x2,x3);
                           
                           if(c$5=0)
-                           {return /* :: */[0,x2,/* :: */[0,x1,0]];}
+                           {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                           else
                            {if(c$5<0)
-                             {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
+                             {return /* :: */[0,
+                                      x2,
+                                      /* :: */[0,x3,/* :: */[0,x1,/* [] */0]]];
+                              }
                             else
-                             {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
+                             {return /* :: */[0,
+                                      x3,
+                                      /* :: */[0,x2,/* :: */[0,x1,/* [] */0]]];
+                              }
                             }
                           }
                         }
@@ -1137,12 +1191,12 @@ var
               var c$6=cmp(x1$1,x2$1);
               
               if(c$6=0)
-               {return /* :: */[0,x1$1,0];}
+               {return /* :: */[0,x1$1,/* [] */0];}
               else
                {if(c$6<0)
-                 {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
+                 {return /* :: */[0,x1$1,/* :: */[0,x2$1,/* [] */0]];}
                 else
-                 {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
+                 {return /* :: */[0,x2$1,/* :: */[0,x1$1,/* [] */0]];}
                 }
               }
             else
@@ -1168,7 +1222,7 @@ var
            
            var s2=rev_sort(n2,l2);
            
-           return rev_merge_rev(s1,s2,0);
+           return rev_merge_rev(s1,s2,/* [] */0);
            
           }
         };
@@ -1205,12 +1259,12 @@ var
                    {var c$1=cmp(x2,x3);
                     
                     if(c$1=0)
-                     {return /* :: */[0,x2,0];}
+                     {return /* :: */[0,x2,/* [] */0];}
                     else
                      {if(c$1>0)
-                       {return /* :: */[0,x2,/* :: */[0,x3,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x3,/* [] */0]];}
                       else
-                       {return /* :: */[0,x3,/* :: */[0,x2,0]];}
+                       {return /* :: */[0,x3,/* :: */[0,x2,/* [] */0]];}
                       }
                     }
                   else
@@ -1218,20 +1272,29 @@ var
                      {var c$2=cmp(x2,x3);
                       
                       if(c$2=0)
-                       {return /* :: */[0,x1,/* :: */[0,x2,0]];}
+                       {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                       else
                        {if(c$2>0)
-                         {return /* :: */[0,x1,/* :: */[0,x2,/* :: */[0,x3,0]]];}
+                         {return /* :: */[0,
+                                  x1,
+                                  /* :: */[0,x2,/* :: */[0,x3,/* [] */0]]];
+                          }
                         else
                          {var c$3=cmp(x1,x3);
                           
                           if(c$3=0)
-                           {return /* :: */[0,x1,/* :: */[0,x2,0]];}
+                           {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                           else
                            {if(c$3>0)
-                             {return /* :: */[0,x1,/* :: */[0,x3,/* :: */[0,x2,0]]];}
+                             {return /* :: */[0,
+                                      x1,
+                                      /* :: */[0,x3,/* :: */[0,x2,/* [] */0]]];
+                              }
                             else
-                             {return /* :: */[0,x3,/* :: */[0,x1,/* :: */[0,x2,0]]];}
+                             {return /* :: */[0,
+                                      x3,
+                                      /* :: */[0,x1,/* :: */[0,x2,/* [] */0]]];
+                              }
                             }
                           }
                         }
@@ -1240,20 +1303,29 @@ var
                      {var c$4=cmp(x1,x3);
                       
                       if(c$4=0)
-                       {return /* :: */[0,x2,/* :: */[0,x1,0]];}
+                       {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                       else
                        {if(c$4>0)
-                         {return /* :: */[0,x2,/* :: */[0,x1,/* :: */[0,x3,0]]];}
+                         {return /* :: */[0,
+                                  x2,
+                                  /* :: */[0,x1,/* :: */[0,x3,/* [] */0]]];
+                          }
                         else
                          {var c$5=cmp(x2,x3);
                           
                           if(c$5=0)
-                           {return /* :: */[0,x2,/* :: */[0,x1,0]];}
+                           {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                           else
                            {if(c$5>0)
-                             {return /* :: */[0,x2,/* :: */[0,x3,/* :: */[0,x1,0]]];}
+                             {return /* :: */[0,
+                                      x2,
+                                      /* :: */[0,x3,/* :: */[0,x1,/* [] */0]]];
+                              }
                             else
-                             {return /* :: */[0,x3,/* :: */[0,x2,/* :: */[0,x1,0]]];}
+                             {return /* :: */[0,
+                                      x3,
+                                      /* :: */[0,x2,/* :: */[0,x1,/* [] */0]]];
+                              }
                             }
                           }
                         }
@@ -1282,12 +1354,12 @@ var
               var c$6=cmp(x1$1,x2$1);
               
               if(c$6=0)
-               {return /* :: */[0,x1$1,0];}
+               {return /* :: */[0,x1$1,/* [] */0];}
               else
                {if(c$6>0)
-                 {return /* :: */[0,x1$1,/* :: */[0,x2$1,0]];}
+                 {return /* :: */[0,x1$1,/* :: */[0,x2$1,/* [] */0]];}
                 else
-                 {return /* :: */[0,x2$1,/* :: */[0,x1$1,0]];}
+                 {return /* :: */[0,x2$1,/* :: */[0,x1$1,/* [] */0]];}
                 }
               }
             else
@@ -1313,7 +1385,7 @@ var
            
            var s2=sort$1(n2,l2);
            
-           return rev_merge(s1,s2,0);
+           return rev_merge(s1,s2,/* [] */0);
            
           }
         };

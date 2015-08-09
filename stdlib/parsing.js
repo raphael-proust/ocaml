@@ -19,7 +19,7 @@ var
    100,
    0,
    0,
-   0,
+   /* () */0,
    Lexing["dummy_pos"],
    Lexing["dummy_pos"],
    0,
@@ -57,9 +57,10 @@ var
 
 var
  clear_parser=
-  function(param){$$Array["fill"](env[2],0,env[5],0);return env[8]=0,0;};
+  function(param)
+   {$$Array["fill"](env[2],0,env[5],/* () */0);return env[8]=/* () */0,0;};
 
-var current_lookahead_fun=[0,function(x){return 0;}];
+var current_lookahead_fun=[0,function(x){return /* false */0;}];
 
 var
  yyparse=
@@ -75,17 +76,28 @@ var
            
            env[9]=lexbuf[11],0;
            env[10]=lexbuf[12],0;
-           return loop(1,t);
+           return loop(/* Token_read */1,t);
            
           case 1:throw Parse_error;
-          case 2:grow_stacks(0);return loop(2,0);
-          case 3:grow_stacks(0);return loop(3,0);
+          case 2:
+           grow_stacks(/* () */0);
+           return loop(/* Stacks_grown_1 */2,/* () */0);
+           
+          case 3:
+           grow_stacks(/* () */0);
+           return loop(/* Stacks_grown_2 */3,/* () */0);
+           
           case 4:
            try
-            {var match$1=/* tuple */[0,4,tables[1][env[13]](env)];}
+            {var
+              match$1=
+               /* tuple */[0,
+                /* Semantic_action_computed */4,
+                tables[1][env[13]](env)];
+             }
            catch(exn)
             {if(exn=Parse_error)
-              {var match$1=/* tuple */[0,5,0];}
+              {var match$1=/* tuple */[0,/* Error_detected */5,/* () */0];}
              else
               {throw exn;}
              }
@@ -96,7 +108,10 @@ var
            
            return loop(action,value);
            
-          case 5:tables[14]("syntax error");return loop(5,0);
+          case 5:
+           tables[14]("syntax error");
+           return loop(/* Error_detected */5,/* () */0);
+           
           }
         };
     
@@ -118,7 +133,7 @@ var
     env[7]=start,0;
     env[10]=lexbuf[12],0;
     try
-     {return loop(0,0);}
+     {return loop(/* Start */0,/* () */0);}
     catch(exn)
      {var curr_char=env[7];
       
@@ -178,9 +193,9 @@ var rhs_start_pos=function(n){return env[3][env[11]-(env[12]-n)];};
 
 var rhs_end_pos=function(n){return env[4][env[11]-(env[12]-n)];};
 
-var symbol_start=function(param){return symbol_start_pos(0)[4];};
+var symbol_start=function(param){return symbol_start_pos(/* () */0)[4];};
 
-var symbol_end=function(param){return symbol_end_pos(0)[4];};
+var symbol_end=function(param){return symbol_end_pos(/* () */0)[4];};
 
 var rhs_start=function(n){return rhs_start_pos(n)[4];};
 
@@ -188,7 +203,7 @@ var rhs_end=function(n){return rhs_end_pos(n)[4];};
 
 var is_current_lookahead=function(tok){return current_lookahead_fun[1](tok);};
 
-var parse_error=function(msg){return 0;};
+var parse_error=function(msg){return /* () */0;};
 
 module["exports"]=
 {"symbol_start":symbol_start,

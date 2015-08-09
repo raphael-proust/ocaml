@@ -26,7 +26,7 @@ var max_array_length=(1<<word_size-10)-1;
 
 var max_string_length=word_size/8*max_array_length-1;
 
-var interactive=[0,0];
+var interactive=[0,/* false */0];
 
 var set_signal=function(sig_num,sig_beh){return 0;};
 
@@ -82,7 +82,7 @@ var
               (sigint,/* Signal_handle */[0,function(param){throw Break;}]);
       }
     else
-     {return set_signal(sigint,0);}
+     {return set_signal(sigint,/* Signal_default */0);}
     };
 
 var ocaml_version="4.02.3+dev1-2015-07-10";

@@ -3,6 +3,6 @@
 var Pervasives=require("Pervasives");
 
 
-Pervasives["do_at_exit"](0);
+Pervasives["do_at_exit"](/* () */0);
 module["exports"]={};
 

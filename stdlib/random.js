@@ -57,13 +57,15 @@ var
 var
  make=
   function(seed)
-   {var result=new_state(0);full_init(result,seed);return result;};
+   {var result=new_state(/* () */0);full_init(result,seed);return result;};
 
 var
  make_self_init=
   function(param){return make("unknown primitive:caml_sys_random_seed");};
 
-var copy=function(s){var result=new_state(0);assign(result,s);return result;};
+var
+ copy=
+  function(s){var result=new_state(/* () */0);assign(result,s);return result;};
 
 var
  bits=

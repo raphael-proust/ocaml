@@ -71,8 +71,18 @@ var
          
          return Printf["bprintf"]
                  (buf,
-                  [0,
-                   [11,"  ",[2,0,[12,32,[2,0,[2,0,[12,10,0]]]]]],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "  ",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,
+                      32,
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,10,/* End_of_format */0]]]]]],
                    "  %s %s%s\n"],
                   key,
                   make_symlist("{","|","}",l),
@@ -81,7 +91,17 @@ var
         default:
          return Printf["bprintf"]
                  (buf,
-                  [0,[11,"  ",[2,0,[12,32,[2,0,[12,10,0]]]]],"  %s %s\n"],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "  ",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,
+                      32,
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* Char_literal */[12,10,/* End_of_format */0]]]]],
+                   "  %s %s\n"],
                   key,
                   doc);
          }
@@ -90,13 +110,13 @@ var
      {return 0;}
     };
 
-var help_action=function(param){throw [0,Stop,[0,"-help"]];};
+var help_action=function(param){throw [0,Stop,/* Unknown */[0,"-help"]];};
 
 var
  add_help=
   function(speclist)
    {try
-     {var add1=0;}
+     {var add1=/* [] */0;}
     catch(exn)
      {if(exn=Not_found)
        {var
@@ -106,14 +126,14 @@ var
             "-help",
             /* Unit */[0,help_action],
             " Display this list of options"],
-           0];
+           /* [] */0];
         }
       else
        {throw exn;}
       }
     
     try
-     {var add2=0;}
+     {var add2=/* [] */0;}
     catch(exn$1)
      {if(exn$1=Not_found)
        {var
@@ -123,7 +143,7 @@ var
             "--help",
             /* Unit */[0,help_action],
             " Display this list of options"],
-           0];
+           /* [] */0];
         }
       else
        {throw exn$1;}
@@ -135,7 +155,14 @@ var
 var
  usage_b=
   function(buf,speclist,errmsg)
-   {Printf["bprintf"](buf,[0,[2,0,[12,10,0]],"%s\n"],errmsg);
+   {Printf["bprintf"]
+     (buf,
+      /* Format */[0,
+       /* String */[2,
+        /* No_padding */0,
+        /* Char_literal */[12,10,/* End_of_format */0]],
+       "%s\n"],
+      errmsg);
     return List["iter"](print_spec(buf),add_help(speclist));
     };
 
@@ -151,7 +178,12 @@ var
 var
  usage=
   function(speclist,errmsg)
-   {return Printf["eprintf"]([0,[2,0,0],"%s"],usage_string(speclist,errmsg));};
+   {return Printf["eprintf"]
+            (/* Format */[0,
+              /* String */[2,/* No_padding */0,/* End_of_format */0],
+              "%s"],
+             usage_string(speclist,errmsg));
+    };
 
 var current=[0,0];
 
@@ -186,8 +218,14 @@ var
             {case 48:
               Printf["bprintf"]
                (b,
-                [0,
-                 [2,0,[11,": unknown option '",[2,0,[11,"'.\n",0]]]],
+                /* Format */[0,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,
+                   ": unknown option '",
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,"'.\n",/* End_of_format */0]]]],
                  "%s: unknown option '%s'.\n"],
                 progname,
                 s)
@@ -202,14 +240,22 @@ var
            
            Printf["bprintf"]
             (b,
-             [0,
-              [2,
-               0,
-               [11,
+             /* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String_literal */[11,
                 ": wrong argument '",
-                [2,
-                 0,
-                 [11,"'; option '",[2,0,[11,"' expects ",[2,0,[11,".\n",0]]]]]]]],
+                /* String */[2,
+                 /* No_padding */0,
+                 /* String_literal */[11,
+                  "'; option '",
+                  /* String */[2,
+                   /* No_padding */0,
+                   /* String_literal */[11,
+                    "' expects ",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,".\n",/* End_of_format */0]]]]]]]],
               "%s: wrong argument '%s'; option '%s' expects %s.\n"],
              progname,
              arg,
@@ -220,8 +266,16 @@ var
            
            Printf["bprintf"]
             (b,
-             [0,
-              [2,0,[11,": option '",[2,0,[11,"' needs an argument.\n",0]]]],
+             /* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String_literal */[11,
+                ": option '",
+                /* String */[2,
+                 /* No_padding */0,
+                 /* String_literal */[11,
+                  "' needs an argument.\n",
+                  /* End_of_format */0]]]],
               "%s: option '%s' needs an argument.\n"],
              progname,
              s$1);
@@ -230,7 +284,15 @@ var
            
            Printf["bprintf"]
             (b,
-             [0,[2,0,[11,": ",[2,0,[11,".\n",0]]]],"%s: %s.\n"],
+             /* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String_literal */[11,
+                ": ",
+                /* String */[2,
+                 /* No_padding */0,
+                 /* String_literal */[11,".\n",/* End_of_format */0]]]],
+              "%s: %s.\n"],
              progname,
              s$2)
           }
@@ -263,7 +325,7 @@ var
              {var exit;
               
               switch(param)
-               {case 0:var f=param[1];return f(0);
+               {case 0:var f=param[1];return f(/* () */0);
                 case 1:
                  var f$1=param[1];
                  
@@ -296,8 +358,8 @@ var
                  else
                   {exit=44;}
                  
-                case 2:var r=param[1];return r[1]=1,0;
-                case 3:var r$1=param[1];return r$1[1]=0,0;
+                case 2:var r=param[1];return r[1]=/* true */1,0;
+                case 3:var r$1=param[1];return r$1[1]=/* false */0,0;
                 case 4:
                  var f$2=param[1];
                  
@@ -525,14 +587,18 @@ var
  parse=
   function(l,f,msg)
    {try
-     {return parse_argv(0,Sys["argv"],l,f,msg);}
+     {return parse_argv(/* None */0,Sys["argv"],l,f,msg);}
     catch(exn)
      {var tag=exn[1];
       
       if(tag=Bad)
        {var msg$1=exn[2];
         
-        Printf["eprintf"]([0,[2,0,0],"%s"],msg$1);
+        Printf["eprintf"]
+         (/* Format */[0,
+           /* String */[2,/* No_padding */0,/* End_of_format */0],
+           "%s"],
+          msg$1);
         return Pervasives["exit"](2);
         }
       else
@@ -541,7 +607,11 @@ var
         if(tag$1=Help)
          {var msg$2=exn[2];
           
-          Printf["printf"]([0,[2,0,0],"%s"],msg$2);
+          Printf["printf"]
+           (/* Format */[0,
+             /* String */[2,/* No_padding */0,/* End_of_format */0],
+             "%s"],
+            msg$2);
           return Pervasives["exit"](0);
           }
         else
@@ -554,14 +624,18 @@ var
  parse_dynamic=
   function(l,f,msg)
    {try
-     {return parse_argv_dynamic(0,Sys["argv"],l,f,msg);}
+     {return parse_argv_dynamic(/* None */0,Sys["argv"],l,f,msg);}
     catch(exn)
      {var tag=exn[1];
       
       if(tag=Bad)
        {var msg$1=exn[2];
         
-        Printf["eprintf"]([0,[2,0,0],"%s"],msg$1);
+        Printf["eprintf"]
+         (/* Format */[0,
+           /* String */[2,/* No_padding */0,/* End_of_format */0],
+           "%s"],
+          msg$1);
         return Pervasives["exit"](2);
         }
       else
@@ -570,7 +644,11 @@ var
         if(tag$1=Help)
          {var msg$2=exn[2];
           
-          Printf["printf"]([0,[2,0,0],"%s"],msg$2);
+          Printf["printf"]
+           (/* Format */[0,
+             /* String */[2,/* No_padding */0,/* End_of_format */0],
+             "%s"],
+            msg$2);
           return Pervasives["exit"](0);
           }
         else

@@ -127,7 +127,7 @@ var
       function(i,res)
        {if(i<0){return res;}else{return tolist(i-1,/* :: */[0,a[i],res]);}};
     
-    return tolist(a["length"]-1,0);
+    return tolist(a["length"]-1,/* [] */0);
     };
 
 var

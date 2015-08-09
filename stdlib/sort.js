@@ -47,15 +47,15 @@ var
             
             return /* :: */[0,
                     order(e1,e2)
-                     ?/* :: */[0,e1,/* :: */[0,e2,0]]
-                     :/* :: */[0,e2,/* :: */[0,e1,0]],
+                     ?/* :: */[0,e1,/* :: */[0,e2,/* [] */0]]
+                     :/* :: */[0,e2,/* :: */[0,e1,/* [] */0]],
                     initlist(rest)];
             }
           else
-           {return /* :: */[0,/* :: */[0,e,0],0];}
+           {return /* :: */[0,/* :: */[0,e,/* [] */0],/* [] */0];}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     var
@@ -96,7 +96,7 @@ var
            {var l$1=llist[1];return l$1;}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return mergeall(initlist(l));

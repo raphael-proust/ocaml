@@ -30,9 +30,9 @@ var randomized_default=$$String["contains"](params,82);
 
 var randomized=[0,randomized_default];
 
-var randomize=function(param){return randomized[1]=1,0;};
+var randomize=function(param){return randomized[1]=/* true */1,0;};
 
-var prng=[246,function(param){return Random["State"][2](0);}];
+var prng=[246,function(param){return Random["State"][2](/* () */0);}];
 
 var
  power_2_above=
@@ -78,7 +78,11 @@ var
 var
  clear=
   function(h)
-   {h[1]=0,0;var len=h[2]["length"];for(var i=0;i<=len-1;i++){h[2][i]=0,0}};
+   {h[1]=0,0;
+    var len=h[2]["length"];
+    
+    for(var i=0;i<=len-1;i++){h[2][i]=/* Empty */0,0}
+    };
 
 var
  reset=
@@ -130,7 +134,7 @@ var
             return ndata[nidx]=/* Cons */[0,key,data,ndata[nidx]],0;
             }
           else
-           {return 0;}
+           {return /* () */0;}
           };
       
       for(var i=0;i<=osize-1;i++){insert_bucket(odata[i])}
@@ -179,7 +183,7 @@ var
            {return /* Cons */[0,k,i,remove_bucket(next)];}
           }
         else
-         {return 0;}
+         {return /* Empty */0;}
         };
     
     var i=key_index(h,key);
@@ -274,7 +278,7 @@ var
            {return find_in_bucket(rest);}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return find_in_bucket(h[2][key_index(h,key)]);
@@ -333,7 +337,7 @@ var
           return ("unknown primitive:caml_compare"=0)||mem_in_bucket(rest);
           }
         else
-         {return 0;}
+         {return /* false */0;}
         };
     
     return mem_in_bucket(h[2][key_index(h,key)]);
@@ -356,7 +360,7 @@ var
           return do_bucket(rest);
           }
         else
-         {return 0;}
+         {return /* () */0;}
         };
     
     var d=h[2];
@@ -464,7 +468,7 @@ var
                {return /* Cons */[0,k,i,remove_bucket(next)];}
               }
             else
-             {return 0;}
+             {return /* Empty */0;}
             };
         
         var i=key_index$1(h,key);
@@ -556,7 +560,7 @@ var
                {return find_in_bucket(rest);}
               }
             else
-             {return 0;}
+             {return /* [] */0;}
             };
         
         return find_in_bucket(h[2][key_index$1(h,key)]);
@@ -618,7 +622,7 @@ var
               return H[1](k,key)||mem_in_bucket(rest);
               }
             else
-             {return 0;}
+             {return /* false */0;}
             };
         
         return mem_in_bucket(h[2][key_index$1(h,key)]);
@@ -686,7 +690,9 @@ var
     
     var stats$1=include[14];
     
-    var create$2=function(sz){return create$1([0,0],sz);};
+    var
+     create$2=
+      function(sz){return create$1(/* Some */[0,/* false */0],sz);};
     
     return [0,
             create$2,

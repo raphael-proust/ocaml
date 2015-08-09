@@ -14,7 +14,7 @@ var
     
     blk[0]=raise_undefined,0;
     try
-     {var result=closure(0);
+     {var result=closure(/* () */0);
       
       blk[0]=result,0;
       "unknown primitive:caml_obj_set_tag";
@@ -29,7 +29,7 @@ var
    {var closure=blk[0];
     
     blk[0]=raise_undefined,0;
-    var result=closure(0);
+    var result=closure(/* () */0);
     
     blk[0]=result,0;
     "unknown primitive:caml_obj_set_tag";

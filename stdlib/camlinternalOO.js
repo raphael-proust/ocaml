@@ -15,14 +15,14 @@ var
     return "unknown primitive:caml_set_oo_id";
     };
 
-var params=/* record */[0,1,1,1,3,16];
+var params=/* record */[0,/* true */1,/* true */1,/* true */1,3,16];
 
 var step=Sys["word_size"]/16;
 
 var initial_object_size=2;
 
 
-var dummy_item=0;
+var dummy_item=/* () */0;
 
 
 var
@@ -50,7 +50,17 @@ var compare$2=function(x,y){return "unknown primitive:caml_int_compare";};
 
 var Labs=Map["Make"]([0,compare$2]);
 
-var dummy_table=/* record */[0,0,[dummy_item],Meths[1],Labs[1],0,0,Vars[1],0];
+var
+ dummy_table=
+  /* record */[0,
+   0,
+   [dummy_item],
+   Meths[1],
+   Labs[1],
+   /* [] */0,
+   /* [] */0,
+   Vars[1],
+   /* [] */0];
 
 var table_count=[0,0];
 
@@ -77,10 +87,10 @@ var
             methods,
             Meths[1],
             Labs[1],
-            0,
-            0,
+            /* [] */0,
+            /* [] */0,
             Vars[1],
-            0];
+            /* [] */0];
     };
 
 var
@@ -122,7 +132,7 @@ var
        {var label=new_method(table);
         
         table[3]=Meths[4](name,label,table[3]),0;
-        table[4]=Labs[4](label,1,table[4]),0;
+        table[4]=Labs[4](label,/* true */1,table[4]),0;
         return label;
         }
       else
@@ -154,7 +164,8 @@ var
 
 var
  to_list=
-  function(arr){if(arr=0){return 0;}else{return $$Array["to_list"](arr);}};
+  function(arr)
+   {if(arr=0){return /* [] */0;}else{return $$Array["to_list"](arr);}};
 
 var
  narrow=
@@ -194,7 +205,7 @@ var
        {by_name[1]=Meths[4](met,label,by_name[1]),0;
         try
          {var $js=Labs[22](label,table[4]);}
-        catch(exn){if(exn=Not_found){var $js=1;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){var $js=/* true */1;}else{throw exn;}}
         return by_label[1]=Labs[4](label,$js,by_label[1]),0;
         },
       concr_meths$1,
@@ -202,7 +213,7 @@ var
     List["iter2"]
      (function(met,label)
        {by_name[1]=Meths[4](met,label,by_name[1]),0;
-        return by_label[1]=Labs[4](label,0,by_label[1]),0;
+        return by_label[1]=Labs[4](label,/* false */0,by_label[1]),0;
         },
       virt_meths$1,
       virt_meth_labs);
@@ -219,7 +230,7 @@ var
                 {return /* :: */[0,met,hm];}
                },
              table[6],
-             0),
+             /* [] */0),
            0;
     };
 
@@ -349,7 +360,7 @@ var
          {var lab=i*2+2;
           
           table[3]=Meths[4](met,lab,table[3]),0;
-          return table[4]=Labs[4](lab,1,table[4]),0;
+          return table[4]=Labs[4](lab,/* true */1,table[4]),0;
           },
         public_methods);
       return table;
@@ -385,7 +396,7 @@ var
                  (function(nm)
                    {return get_method(cla,get_method_label(cla,nm));},
                   to_array(concr_meths)),
-                0]]]);
+                /* [] */0]]]);
     };
 
 var
@@ -447,13 +458,16 @@ var
    {if(param)
      {var l=param[2];var f=param[1];f(obj);return iter_f(obj,l);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
  run_initializers=
   function(obj,table)
-   {var inits=table[8];if(inits!=0){return iter_f(obj,inits);}else{return 0;}};
+   {var inits=table[8];
+    
+    if(inits!=/* [] */0){return iter_f(obj,inits);}else{return 0;}
+    };
 
 var
  run_initializers_opt=
@@ -461,7 +475,12 @@ var
    {if(obj_0)
      {return obj;}
     else
-     {var inits=table[8];if(inits!=0){iter_f(obj,inits)}else{}return obj;}
+     {var inits=table[8];
+      
+      if(inits!=/* [] */0){iter_f(obj,inits)}else{}
+      
+      return obj;
+      }
     };
 
 var
@@ -476,11 +495,11 @@ var
 var
  build_path=
   function(n,keys,tables)
-   {var res=/* record */[0,0,0,0];
+   {var res=/* record */[0,0,/* Empty */0,/* Empty */0];
     
     var r=[0,res];
     
-    for(var i=0;i<=n;i++){r[1]=/* Cons */[0,keys[i],r[1],0],0}
+    for(var i=0;i<=n;i++){r[1]=/* Cons */[0,keys[i],r[1],/* Empty */0],0}
     
     tables[2]=r[1],0;
     return res;
@@ -500,10 +519,10 @@ var
          {if(tables$1[1]=key)
            {return lookup_keys(i-1,keys,tables$1[2]);}
           else
-           {if(tables$1[3]!=0)
+           {if(tables$1[3]!=/* Empty */0)
              {return lookup_key(tables$1[3]);}
             else
-             {var next=/* Cons */[0,key,0,0];
+             {var next=/* Cons */[0,key,/* Empty */0,/* Empty */0];
               
               tables$1[3]=next,0;
               return build_path(i-1,keys,next);
@@ -520,7 +539,7 @@ var
   function(root,keys)
    {var root$1=root;
     
-    if(root$1[2]!=0)
+    if(root$1[2]!=/* Empty */0)
      {return lookup_keys(keys["length"]-1,keys,root$1[2]);}
     else
      {return build_path(keys["length"]-1,keys,root$1);}
@@ -654,135 +673,170 @@ var
   function(table,i,arr)
    {var next=function(param){i[0]++;return arr[i[1]];};
     
-    var clo=next(0);
+    var clo=next(/* () */0);
     
     if("unknown primitive:isint")
      {switch(clo[0])
-       {case 0:var x=next(0);return get_const(x);
-        case 1:var n=next(0);return get_var(n);
-        case 2:var e=next(0);var n$1=next(0);return get_env(e,n$1);
-        case 3:var n$2=next(0);return get_meth(n$2);
-        case 4:var n$3=next(0);return set_var(n$3);
-        case 5:var f=next(0);var x$1=next(0);return app_const(f,x$1);
-        case 6:var f$1=next(0);var n$4=next(0);return app_var(f$1,n$4);
+       {case 0:var x=next(/* () */0);return get_const(x);
+        case 1:var n=next(/* () */0);return get_var(n);
+        case 2:
+         var e=next(/* () */0);var n$1=next(/* () */0);return get_env(e,n$1);
+        case 3:var n$2=next(/* () */0);return get_meth(n$2);
+        case 4:var n$3=next(/* () */0);return set_var(n$3);
+        case 5:
+         var f=next(/* () */0);
+         
+         var x$1=next(/* () */0);
+         
+         return app_const(f,x$1);
+         
+        case 6:
+         var f$1=next(/* () */0);
+         
+         var n$4=next(/* () */0);
+         
+         return app_var(f$1,n$4);
+         
         case 7:
-         var f$2=next(0);
+         var f$2=next(/* () */0);
          
-         var e$1=next(0);
+         var e$1=next(/* () */0);
          
-         var n$5=next(0);
+         var n$5=next(/* () */0);
          
          return app_env(f$2,e$1,n$5);
          
-        case 8:var f$3=next(0);var n$6=next(0);return app_meth(f$3,n$6);
+        case 8:
+         var f$3=next(/* () */0);
+         
+         var n$6=next(/* () */0);
+         
+         return app_meth(f$3,n$6);
+         
         case 9:
-         var f$4=next(0);
+         var f$4=next(/* () */0);
          
-         var x$2=next(0);
+         var x$2=next(/* () */0);
          
-         var y=next(0);
+         var y=next(/* () */0);
          
          return app_const_const(f$4,x$2,y);
          
         case 10:
-         var f$5=next(0);
+         var f$5=next(/* () */0);
          
-         var x$3=next(0);
+         var x$3=next(/* () */0);
          
-         var n$7=next(0);
+         var n$7=next(/* () */0);
          
          return app_const_var(f$5,x$3,n$7);
          
         case 11:
-         var f$6=next(0);
+         var f$6=next(/* () */0);
          
-         var x$4=next(0);
+         var x$4=next(/* () */0);
          
-         var e$2=next(0);
+         var e$2=next(/* () */0);
          
-         var n$8=next(0);
+         var n$8=next(/* () */0);
          
          return app_const_env(f$6,x$4,e$2,n$8);
          
         case 12:
-         var f$7=next(0);
+         var f$7=next(/* () */0);
          
-         var x$5=next(0);
+         var x$5=next(/* () */0);
          
-         var n$9=next(0);
+         var n$9=next(/* () */0);
          
          return app_const_meth(f$7,x$5,n$9);
          
         case 13:
-         var f$8=next(0);
+         var f$8=next(/* () */0);
          
-         var n$10=next(0);
+         var n$10=next(/* () */0);
          
-         var x$6=next(0);
+         var x$6=next(/* () */0);
          
          return app_var_const(f$8,n$10,x$6);
          
         case 14:
-         var f$9=next(0);
+         var f$9=next(/* () */0);
          
-         var e$3=next(0);
+         var e$3=next(/* () */0);
          
-         var n$11=next(0);
+         var n$11=next(/* () */0);
          
-         var x$7=next(0);
+         var x$7=next(/* () */0);
          
          return app_env_const(f$9,e$3,n$11,x$7);
          
         case 15:
-         var f$10=next(0);
+         var f$10=next(/* () */0);
          
-         var n$12=next(0);
+         var n$12=next(/* () */0);
          
-         var x$8=next(0);
+         var x$8=next(/* () */0);
          
          return app_meth_const(f$10,n$12,x$8);
          
         case 16:
-         var n$13=next(0);var x$9=next(0);return meth_app_const(n$13,x$9);
-        case 17:var n$14=next(0);var m=next(0);return meth_app_var(n$14,m);
+         var n$13=next(/* () */0);
+         
+         var x$9=next(/* () */0);
+         
+         return meth_app_const(n$13,x$9);
+         
+        case 17:
+         var n$14=next(/* () */0);
+         
+         var m=next(/* () */0);
+         
+         return meth_app_var(n$14,m);
+         
         case 18:
-         var n$15=next(0);
+         var n$15=next(/* () */0);
          
-         var e$4=next(0);
+         var e$4=next(/* () */0);
          
-         var m$1=next(0);
+         var m$1=next(/* () */0);
          
          return meth_app_env(n$15,e$4,m$1);
          
         case 19:
-         var n$16=next(0);var m$2=next(0);return meth_app_meth(n$16,m$2);
-        case 20:
-         var m$3=next(0);
+         var n$16=next(/* () */0);
          
-         var x$10=next(0);
+         var m$2=next(/* () */0);
+         
+         return meth_app_meth(n$16,m$2);
+         
+        case 20:
+         var m$3=next(/* () */0);
+         
+         var x$10=next(/* () */0);
          
          return send_const(m$3,x$10,new_cache(table));
          
         case 21:
-         var m$4=next(0);
+         var m$4=next(/* () */0);
          
-         var n$17=next(0);
+         var n$17=next(/* () */0);
          
          return send_var(m$4,n$17,new_cache(table));
          
         case 22:
-         var m$5=next(0);
+         var m$5=next(/* () */0);
          
-         var e$5=next(0);
+         var e$5=next(/* () */0);
          
-         var n$18=next(0);
+         var n$18=next(/* () */0);
          
          return send_env(m$5,e$5,n$18,new_cache(table));
          
         case 23:
-         var m$6=next(0);
+         var m$6=next(/* () */0);
          
-         var n$19=next(0);
+         var n$19=next(/* () */0);
          
          return send_meth(m$6,n$19,new_cache(table));
          

@@ -74,7 +74,7 @@ var
     else
      {if(switcher!=2){exit=18;}else{exit=19;}}
     
-    switch(exit){case 19:return 0;case 18:return 1;}
+    switch(exit){case 19:return /* false */0;case 18:return /* true */1;}
     };
 
 var
@@ -97,7 +97,7 @@ var
      needs_escape=
       function(i)
        {if(i>=s["length"])
-         {return 0;}
+         {return /* false */0;}
         else
          {var c=s[i];
           
@@ -117,9 +117,9 @@ var
              if("unknown primitive:caml_is_printable")
               {return needs_escape(i+1);}
              else
-              {return 1;}
+              {return /* true */1;}
              
-            case 13:return 1;
+            case 13:return /* true */1;
             }
           }
         };

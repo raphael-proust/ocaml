@@ -14,7 +14,7 @@ var
             (function(o$1,acc)
               {CamlinternalFormat["output_acc"](o$1,acc);return k(o$1);},
              o,
-             0,
+             /* End_of_acc */0,
              fmt);
     };
 
@@ -27,7 +27,7 @@ var
             (function(b$1,acc)
               {CamlinternalFormat["bufput_acc"](b$1,acc);return k(b$1);},
              b,
-             0,
+             /* End_of_acc */0,
              fmt);
     };
 
@@ -37,7 +37,7 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(oc$1,param$1){return k(oc$1);},oc,0,fmt);
+            (function(oc$1,param$1){return k(oc$1);},oc,/* End_of_acc */0,fmt);
     };
 
 var
@@ -70,7 +70,8 @@ var
         return k(Buffer["contents"](buf));
         };
     
-    return CamlinternalFormat["make_printf"](k$prime,0,0,fmt);
+    return CamlinternalFormat["make_printf"]
+            (k$prime,/* () */0,/* End_of_acc */0,fmt);
     };
 
 var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};

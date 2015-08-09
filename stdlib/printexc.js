@@ -7,22 +7,36 @@ var Buffer=require("Buffer");
 var $$Array=require("Array");
 
 
-var printers=[0,0];
+var printers=[0,/* [] */0];
 
 var
  locfmt=
-  [0,
-   [11,
+  /* Format */[0,
+   /* String_literal */[11,
     'File "',
-    [2,
-     0,
-     [11,
+    /* String */[2,
+     /* No_padding */0,
+     /* String_literal */[11,
       '", line ',
-      [4,
-       0,
-       0,
-       0,
-       [11,", characters ",[4,0,0,0,[12,45,[4,0,0,0,[11,": ",[2,0,0]]]]]]]]]],
+      /* Int */[4,
+       /* Int_d */0,
+       /* No_padding */0,
+       /* No_precision */0,
+       /* String_literal */[11,
+        ", characters ",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* Char_literal */[12,
+          45,
+          /* Int */[4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           /* String_literal */[11,
+            ": ",
+            /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]]]],
    'File "%s", line %d, characters %d-%d: %s'];
 
 var
@@ -31,10 +45,24 @@ var
    {var f=x[i];
     
     if(!"unknown primitive:caml_obj_is_block")
-     {return Printf["sprintf"]([0,[4,0,0,0,0],"%d"],f);}
+     {return Printf["sprintf"]
+              (/* Format */[0,
+                /* Int */[4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 /* End_of_format */0],
+                "%d"],
+               f);
+      }
     else
      {if("unknown primitive:caml_obj_tag"=Obj["string_tag"])
-       {return Printf["sprintf"]([0,[3,0,0],"%S"],f);}
+       {return Printf["sprintf"]
+                (/* Format */[0,
+                  /* Caml_string */[3,/* No_padding */0,/* End_of_format */0],
+                  "%S"],
+                 f);
+        }
       else
        {if("unknown primitive:caml_obj_tag"=Obj["double_tag"])
          {return Pervasives["string_of_float"](f);}
@@ -51,7 +79,13 @@ var
      {return "";}
     else
      {return Printf["sprintf"]
-              ([0,[11,", ",[2,0,[2,0,0]]],", %s%s"],
+              (/* Format */[0,
+                /* String_literal */[11,
+                 ", ",
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                ", %s%s"],
                field(x,i),
                other_fields(x,i+1));
       }
@@ -64,7 +98,15 @@ var
     
     if(2<n>>>0)
      {return Printf["sprintf"]
-              ([0,[12,40,[2,0,[2,0,[12,41,0]]]],"(%s%s)"],
+              (/* Format */[0,
+                /* Char_literal */[12,
+                 40,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String */[2,
+                   /* No_padding */0,
+                   /* Char_literal */[12,41,/* End_of_format */0]]]],
+                "(%s%s)"],
                field(x,1),
                other_fields(x,2));
       }
@@ -74,7 +116,14 @@ var
         case 1:return "";
         case 2:
          return Printf["sprintf"]
-                 ([0,[12,40,[2,0,[12,41,0]]],"(%s)"],field(x,1));
+                 (/* Format */[0,
+                   /* Char_literal */[12,
+                    40,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,41,/* End_of_format */0]]],
+                   "(%s)"],
+                  field(x,1));
          
         }
       }
@@ -91,7 +140,7 @@ var
           
           var hd=param[1];
           
-          try {var match=hd(x);}catch(exn){var match=0;}
+          try {var match=hd(x);}catch(exn){var match=/* None */0;}
           
           if(match){var s=match[1];return s;}else{return conv(tl);}
           }
@@ -184,8 +233,12 @@ var
      {return fct(arg);}
     catch(x)
      {Printf["eprintf"]
-       ([0,
-         [11,"Uncaught exception: ",[2,0,[12,10,0]]],
+       (/* Format */[0,
+         /* String_literal */[11,
+          "Uncaught exception: ",
+          /* String */[2,
+           /* No_padding */0,
+           /* Char_literal */[12,10,/* End_of_format */0]]],
          "Uncaught exception: %s\n"],
         to_string(x));
       Pervasives["flush"](Pervasives["stderr"]);
@@ -201,8 +254,12 @@ var
     catch(x)
      {Pervasives["flush"](Pervasives["stdout"]);
       Printf["eprintf"]
-       ([0,
-         [11,"Uncaught exception: ",[2,0,[12,10,0]]],
+       (/* Format */[0,
+         /* String_literal */[11,
+          "Uncaught exception: ",
+          /* String */[2,
+           /* No_padding */0,
+           /* Char_literal */[12,10,/* End_of_format */0]]],
          "Uncaught exception: %s\n"],
         to_string(x));
       return Pervasives["exit"](2);
@@ -220,7 +277,8 @@ var
                  {return "unknown primitive:caml_convert_raw_backtrace_slot";},
                 rbckt)];
       }
-    catch(exn){var tag=exn[1];if(tag=Failure){return 0;}else{throw exn;}}
+    catch(exn)
+     {var tag=exn[1];if(tag=Failure){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -253,16 +311,32 @@ var
        
        return /* Some */[0,
                Printf["sprintf"]
-                ([0,
-                  [2,
-                   0,
-                   [11,
+                (/* Format */[0,
+                  /* String */[2,
+                   /* No_padding */0,
+                   /* String_literal */[11,
                     ' file "',
-                    [2,
-                     0,
-                     [11,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,
                       '", line ',
-                      [4,0,0,0,[11,", characters ",[4,0,0,0,[12,45,[4,0,0,0,0]]]]]]]]],
+                      /* Int */[4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       /* String_literal */[11,
+                        ", characters ",
+                        /* Int */[4,
+                         /* Int_d */0,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         /* Char_literal */[12,
+                          45,
+                          /* Int */[4,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           /* End_of_format */0]]]]]]]]],
                   '%s file "%s", line %d, characters %d-%d'],
                  info(is_raise),
                  filename,
@@ -274,12 +348,18 @@ var
        var match=slot[1];
        
        if(match!=0)
-        {return 0;}
+        {return /* None */0;}
        else
         {return /* Some */[0,
                  Printf["sprintf"]
-                  ([0,[2,0,[11," unknown location",0]],"%s unknown location"],
-                   info(0))];
+                  (/* Format */[0,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,
+                      " unknown location",
+                      /* End_of_format */0]],
+                    "%s unknown location"],
+                   info(/* false */0))];
          }
        
       }
@@ -297,7 +377,14 @@ var
         if(match)
          {var str=match[1];
           
-          Printf["fprintf"](outchan,[0,[2,0,[12,10,0]],"%s\n"],str)}
+          Printf["fprintf"]
+           (outchan,
+            /* Format */[0,
+             /* String */[2,
+              /* No_padding */0,
+              /* Char_literal */[12,10,/* End_of_format */0]],
+             "%s\n"],
+            str)}
         else
          {}
         }
@@ -305,10 +392,10 @@ var
     else
      {return Printf["fprintf"]
               (outchan,
-               [0,
-                [11,
+               /* Format */[0,
+                /* String_literal */[11,
                  "(Program not linked with -g, cannot print stack backtrace)\n",
-                 0],
+                 /* End_of_format */0],
                 "(Program not linked with -g, cannot print stack backtrace)\n"]);
       }
     };
@@ -341,7 +428,14 @@ var
         if(match)
          {var str=match[1];
           
-          Printf["bprintf"](b,[0,[2,0,[12,10,0]],"%s\n"],str)}
+          Printf["bprintf"]
+           (b,
+            /* Format */[0,
+             /* String */[2,
+              /* No_padding */0,
+              /* Char_literal */[12,10,/* End_of_format */0]],
+             "%s\n"],
+            str)}
         else
          {}
         }
@@ -382,7 +476,7 @@ var
        return /* Some */[0,
                /* record */[0,filename,line_number,start_char,end_char]];
        
-      case 1:return 0;
+      case 1:return /* None */0;
       }
     };
 
@@ -396,7 +490,9 @@ var
       
       var
        usable_slot=
-        function(param){switch(param){case 0:return 1;case 1:return 0;}};
+        function(param)
+         {switch(param){case 0:return /* true */1;case 1:return /* false */0;}
+          };
       
       var
        exists_usable=
@@ -404,16 +500,16 @@ var
          {if(i!=-1)
            {return usable_slot(backtrace[i])||exists_usable(i-1);}
           else
-           {return 0;}
+           {return /* false */0;}
           };
       
       if(exists_usable(backtrace["length"]-1))
        {return /* Some */[0,backtrace];}
       else
-       {return 0;}
+       {return /* None */0;}
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var format=format_backtrace_slot;
@@ -452,7 +548,7 @@ var exn_slot_id=function(x){var slot=exn_slot(x);return slot[1];};
 
 var exn_slot_name=function(x){var slot=exn_slot(x);return slot[0];};
 
-var uncaught_exception_handler=[0,0];
+var uncaught_exception_handler=[0,/* None */0];
 
 var
  set_uncaught_exception_handler=
@@ -475,9 +571,9 @@ var
      {if(debugger_in_use)
        {var raw_backtrace=empty_backtrace;}
       else
-       {var raw_backtrace=try_get_raw_backtrace(0);}
+       {var raw_backtrace=try_get_raw_backtrace(/* () */0);}
       
-      try {Pervasives["do_at_exit"](0)}catch(exn$1){}
+      try {Pervasives["do_at_exit"](/* () */0)}catch(exn$1){}
       
       var match=uncaught_exception_handler[1];
       
@@ -487,19 +583,25 @@ var
         try
          {return handler(exn,raw_backtrace);}
         catch(exn$prime)
-         {var raw_backtrace$prime=try_get_raw_backtrace(0);
+         {var raw_backtrace$prime=try_get_raw_backtrace(/* () */0);
           
           Printf["eprintf"]
-           ([0,
-             [11,"Fatal error: exception ",[2,0,[12,10,0]]],
+           (/* Format */[0,
+             /* String_literal */[11,
+              "Fatal error: exception ",
+              /* String */[2,
+               /* No_padding */0,
+               /* Char_literal */[12,10,/* End_of_format */0]]],
              "Fatal error: exception %s\n"],
             to_string(exn));
           print_raw_backtrace(Pervasives["stderr"],raw_backtrace);
           Printf["eprintf"]
-           ([0,
-             [11,
+           (/* Format */[0,
+             /* String_literal */[11,
               "Fatal error in uncaught exception handler: exception ",
-              [2,0,[12,10,0]]],
+              /* String */[2,
+               /* No_padding */0,
+               /* Char_literal */[12,10,/* End_of_format */0]]],
              "Fatal error in uncaught exception handler: exception %s\n"],
             to_string(exn$prime));
           print_raw_backtrace(Pervasives["stderr"],raw_backtrace$prime);
@@ -508,8 +610,12 @@ var
         }
       else
        {Printf["eprintf"]
-         ([0,
-           [11,"Fatal error: exception ",[2,0,[12,10,0]]],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "Fatal error: exception ",
+            /* String */[2,
+             /* No_padding */0,
+             /* Char_literal */[12,10,/* End_of_format */0]]],
            "Fatal error: exception %s\n"],
           to_string(exn));
         print_raw_backtrace(Pervasives["stderr"],raw_backtrace);
@@ -531,7 +637,7 @@ var
   function(exn,debugger_in_use)
    {try
      {return handle_uncaught_exception$prime(exn,debugger_in_use);}
-    catch(exn$1){return 0;}
+    catch(exn$1){return /* () */0;}
     };
 
 var match="unknown primitive:caml_register_named_value";

@@ -169,7 +169,7 @@ var
     else
      {if(switcher!=2){exit=37;}else{exit=38;}}
     
-    switch(exit){case 38:return 0;case 37:return 1;}
+    switch(exit){case 38:return /* false */0;case 37:return /* true */1;}
     };
 
 var
@@ -400,7 +400,10 @@ var
               ("String.contains_from / Bytes.contains_from");
       }
     else
-     {try {return 1;}catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}}
+     {try
+       {return /* true */1;}
+      catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
+      }
     };
 
 var contains=function(s,c){return contains_from(s,0,c);};
@@ -413,7 +416,10 @@ var
               ("String.rcontains_from / Bytes.rcontains_from");
       }
     else
-     {try {return 1;}catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}}
+     {try
+       {return /* true */1;}
+      catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
+      }
     };
 
 var compare=function(x,y){return "unknown primitive:caml_compare";};
