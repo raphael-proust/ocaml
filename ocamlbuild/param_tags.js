@@ -13,9 +13,9 @@ var $$let=My_std["String"];
 
 var StringSet=My_std["Set"][1]([0,$$let[40],$$let[1]]);
 
-var declared_tags=Hashtbl["create"](0,17);
+var declared_tags=Hashtbl["create"](/* None */0,17);
 
-var acknowledged_tags=[0,0];
+var acknowledged_tags=[0,/* [] */0];
 
 var
  only_once=
@@ -24,7 +24,7 @@ var
     
     return function(param)
      {if(StringSet[3](param,instances[1]))
-       {return 0;}
+       {return /* () */0;}
       else
        {instances[1]=StringSet[4](param,instances[1]),0;return f(param);}
       };
@@ -38,14 +38,16 @@ var
 var
  parse=
   function(source,tag)
-   {return Lexers["tag_gen"](source,My_std["lexbuf_of_string"](0,tag));};
+   {return Lexers["tag_gen"]
+            (source,My_std["lexbuf_of_string"](/* None */0,tag));
+    };
 
 var
  acknowledge=
   function(source,maybe_loc,tag)
    {return acknowledged_tags[1]=
-           [/* :: */0,
-            [/* tuple */0,parse(source,tag),maybe_loc],
+           /* :: */[0,
+            /* tuple */[0,parse(source,tag),maybe_loc],
             acknowledged_tags[1]],
            0;
     };
@@ -61,24 +63,27 @@ var
     
     var name=match[1];
     
-    if($staropt$star){var quiet=$staropt$star[1];}else{var quiet=0;}
+    if($staropt$star)
+     {var quiet=$staropt$star[1];}
+    else
+     {var quiet=/* false */0;}
     
     if(param$1)
      {var param$2=param$1[1];
       
       var actions=My_std["List"][9](Hashtbl["find_all"](declared_tags,name));
       
-      if((actions=0)&&!quiet)
+      if((actions=/* [] */0)&&!quiet)
        {Log["eprintf"]
-         ([0,
-           [15,
-            [11,
+         (/* Format */[0,
+           /* Alpha */[15,
+            /* String_literal */[11,
              "Warning: tag ",
-             [3,
-              0,
-              [11,
+             /* Caml_string */[3,
+              /* No_padding */0,
+              /* String_literal */[11,
                " does not expect a parameter, but is used with parameter ",
-               [3,0,0]]]]],
+               /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]]]]],
            "%aWarning: tag %S does not expect a parameter, but is used with parameter %S"],
           Loc["print_loc_option"],
           maybe_loc,
@@ -92,9 +97,15 @@ var
     else
      {if(Hashtbl["mem"](declared_tags,name)&&!quiet)
        {return Log["eprintf"]
-                ([0,
-                  [15,
-                   [11,"Warning: tag ",[3,0,[11," expects a parameter",0]]]],
+                (/* Format */[0,
+                  /* Alpha */[15,
+                   /* String_literal */[11,
+                    "Warning: tag ",
+                    /* Caml_string */[3,
+                     /* No_padding */0,
+                     /* String_literal */[11,
+                      " expects a parameter",
+                      /* End_of_format */0]]]],
                   "%aWarning: tag %S expects a parameter"],
                  Loc["print_loc_option"],
                  maybe_loc,
@@ -108,7 +119,9 @@ var
 var
  partial_init=
   function(quiet,source,tags)
-   {var parse_noloc=function(tag){return [/* tuple */0,parse(source,tag),0];};
+   {var
+     parse_noloc=
+      function(tag){return /* tuple */[0,parse(source,tag),/* None */0];};
     
     return Tags["iter"]
             (function(tag){return really_acknowledge(quiet,parse_noloc(tag));},
@@ -119,11 +132,22 @@ var
  init=
   function(param)
    {return My_std["List"][14]
-            (function(eta){return really_acknowledge(0,eta);},
+            (function(eta){return really_acknowledge(/* None */0,eta);},
              My_std["List"][4](acknowledged_tags[1]));
     };
 
-var make=Printf["sprintf"]([0,[2,0,[12,40,[2,0,[12,41,0]]]],"%s(%s)"]);
+var
+ make=
+  Printf["sprintf"]
+   (/* Format */[0,
+     /* String */[2,
+      /* No_padding */0,
+      /* Char_literal */[12,
+       40,
+       /* String */[2,
+        /* No_padding */0,
+        /* Char_literal */[12,41,/* End_of_format */0]]]],
+     "%s(%s)"]);
 
 module["exports"]=
 {"declare":declare,

@@ -381,7 +381,7 @@ var
     var size$1=size;
     
     if(!(size$1<0&&state[13]-state[12]<state[9]))
-     {
+     {take_queue(state[27]);
       format_pp_token(state,size$1<0?pp_infinity:size$1,tok);
       state[12]=len+state[12],0;
       return advance_loop(state);
@@ -991,9 +991,9 @@ var
  default_pp_mark_close_tag=
   function(s){return Pervasives["^"]("</",Pervasives["^"](s,">"));};
 
-var default_pp_print_open_tag=function(prim){return 0;};
+var default_pp_print_open_tag=function(prim){return prim;};
 
-var default_pp_print_close_tag=function(prim){return 0;};
+var default_pp_print_close_tag=function(prim){return prim;};
 
 var
  pp_make_formatter=
@@ -1043,7 +1043,10 @@ var
    {var
      ppf=
       pp_make_formatter
-       (output,flush,function(prim){return 0;},function(prim){return 0;});
+       (output,
+        flush,
+        function(prim){return prim;},
+        function(prim){return prim;});
     
     ppf[19]=display_newline(ppf),0;
     ppf[20]=display_blanks(ppf),0;
@@ -1062,7 +1065,7 @@ var
  formatter_of_buffer=
   function(b)
    {return make_formatter
-            (Buffer["add_substring"](b),function(prim){return 0;});
+            (Buffer["add_substring"](b),function(prim){return prim;});
     };
 
 var stdbuf=Buffer["create"](512);
@@ -1770,11 +1773,11 @@ var
 
 var
  fprintf=
-  function(ppf,fmt){return kfprintf(function(prim){return 0;},ppf,fmt);};
+  function(ppf,fmt){return kfprintf(function(prim){return prim;},ppf,fmt);};
 
 var
  ifprintf=
-  function(ppf,fmt){return ikfprintf(function(prim){return 0;},ppf,fmt);};
+  function(ppf,fmt){return ikfprintf(function(prim){return prim;},ppf,fmt);};
 
 var printf=function(fmt){return fprintf(std_formatter,fmt);};
 

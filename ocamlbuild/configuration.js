@@ -20,7 +20,7 @@ var
      ack=
       function(param)
        {return Param_tags["acknowledge"]
-                (source,[/* Some */0,param[2]],param[1]);
+                (source,/* Some */[0,param[2]],param[1]);
         };
     
     return My_std["List"][14]
@@ -28,17 +28,17 @@ var
              config);
     };
 
-var cache=Hashtbl["create"](0,107);
+var cache=Hashtbl["create"](/* None */0,107);
 
-var configs=[0,0];
+var configs=[0,/* [] */0];
 
 var
  match=
-  [/* tuple */0,
+  /* tuple */[0,
    function(param){return configs[1];},
    function(source,config)
     {acknowledge_config(source,config);
-     configs[1]=[/* :: */0,config,configs[1]],0;
+     configs[1]=/* :: */[0,config,configs[1]],0;
      return Hashtbl["clear"](cache);
      }];
 
@@ -59,14 +59,15 @@ var
   function(source,s)
    {if(source){var source$1=source[1];}else{var source$1=Const["Source"][8];}
     
-    return parse_lexbuf(0,source$1,My_std["lexbuf_of_string"](0,s));
+    return parse_lexbuf
+            (/* None */0,source$1,My_std["lexbuf_of_string"](/* None */0,s));
     };
 
 var
  parse_file=
   function(dir,file)
    {return My_std["with_input_file"]
-            (0,
+            (/* None */0,
              file,
              function(ic)
               {var lexbuf=Lexing["from_channel"](ic);
@@ -103,7 +104,9 @@ var
 var
  apply_configs=
   function(s)
-   {return My_std["List"][20](apply_config(s),configs$1(0),Tags["empty"]);};
+   {return My_std["List"][20]
+            (apply_config(s),configs$1(/* () */0),Tags["empty"]);
+    };
 
 var
  tags_of_filename=
@@ -125,16 +128,22 @@ var
 
 var global_tags=function(param){return tags_of_filename("");};
 
-var has_tag=function(tag){return Tags["mem"](tag,global_tags(0));};
+var has_tag=function(tag){return Tags["mem"](tag,global_tags(/* () */0));};
 
 var
  tag_file=
   function(file,tags)
-   {if(tags!=0)
+   {if(tags!=/* [] */0)
      {return parse_string
-              (0,
+              (/* None */0,
                Printf["sprintf"]
-                ([0,[3,0,[11,": ",[2,0,0]]],"%S: %s"],
+                (/* Format */[0,
+                  /* Caml_string */[3,
+                   /* No_padding */0,
+                   /* String_literal */[11,
+                    ": ",
+                    /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                  "%S: %s"],
                  file,
                  My_std["String"][22](", ",tags)));
       }
@@ -145,11 +154,15 @@ var
 var
  tag_any=
   function(tags)
-   {if(tags!=0)
+   {if(tags!=/* [] */0)
      {return parse_string
-              (0,
+              (/* None */0,
                Printf["sprintf"]
-                ([0,[11,"true: ",[2,0,0]],"true: %s"],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "true: ",
+                   /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                  "true: %s"],
                  My_std["String"][22](", ",tags)));
       }
     else
@@ -166,15 +179,15 @@ var
         
         if(!Tags["mem"](tag,useful_tags))
          {return Log["eprintf"]
-                  ([0,
-                    [15,
-                     [11,
+                  (/* Format */[0,
+                    /* Alpha */[15,
+                     /* String_literal */[11,
                       "Warning: the tag ",
-                      [3,
-                       0,
-                       [11,
+                      /* Caml_string */[3,
+                       /* No_padding */0,
+                       /* String_literal */[11,
                         " is not used in any flag or dependency declaration, so it will have no effect; it may be a typo. Otherwise you can use `mark_tag_used` in your myocamlbuild.ml to disable this warning.",
-                        0]]]],
+                        /* End_of_format */0]]]],
                     "%aWarning: the tag %S is not used in any flag or dependency declaration, so it will have no effect; it may be a typo. Otherwise you can use `mark_tag_used` in your myocamlbuild.ml to disable this warning."],
                    Loc["print_loc"],
                    param[2],
@@ -193,7 +206,8 @@ var
         return My_std["List"][14](check_tag,values[2]);
         };
     
-    return My_std["List"][14](My_std["List"][14](check_conf),configs$1(0));
+    return My_std["List"][14]
+            (My_std["List"][14](check_conf),configs$1(/* () */0));
     };
 
 module["exports"]=

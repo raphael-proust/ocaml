@@ -8,23 +8,23 @@ var Debugger_config=require("Debugger_config");
 var Int64ops=require("Int64ops");
 
 
-var history=[0,0];
+var history=[0,/* [] */0];
 
-var empty_history=function(param){return history[1]=0,0;};
+var empty_history=function(param){return history[1]=/* [] */0,0;};
 
 var
  add_current_time=
   function(param)
-   {var time=Checkpoints["current_time"](0);
+   {var time=Checkpoints["current_time"](/* () */0);
     
-    if(history[1]=0)
-     {return history[1]=[/* :: */0,time,0],0;}
+    if(history[1]=/* [] */0)
+     {return history[1]=/* :: */[0,time,/* [] */0],0;}
     else
      {if(time!=List["hd"](history[1]))
        {return history[1]=
                Primitives["list_truncate"]
                 (Debugger_config["history_size"][1],
-                 [/* :: */0,time,history[1]]),
+                 /* :: */[0,time,history[1]]),
                0;
         }
       else
@@ -59,9 +59,9 @@ var
  previous_time=
   function(n)
    {if(n=Int64ops["_1"])
-     {return previous_time_1(0);}
+     {return previous_time_1(/* () */0);}
     else
-     {return previous_time(Int64ops["pre64"](n));}
+     {previous_time_1(/* () */0);return previous_time(Int64ops["pre64"](n));}
     };
 
 module["exports"]=

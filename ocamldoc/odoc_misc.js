@@ -57,14 +57,14 @@ var
          {var n=Pervasives["input"](chanin,s,0,len);
           
           if(n=0)
-           {return 0;}
+           {return /* () */0;}
           else
-           {Buffer["add_subbytes"](buf,s,0,n);return iter(0);}
+           {Buffer["add_subbytes"](buf,s,0,n);return iter(/* () */0);}
           }
-        catch(exn){if(exn=End_of_file){return 0;}else{throw exn;}}
+        catch(exn){if(exn=End_of_file){return /* () */0;}else{throw exn;}}
         };
     
-    iter(0);
+    iter(/* () */0);
     Pervasives["close_in"](chanin);
     return Buffer["contents"](buf);
     };
@@ -78,16 +78,27 @@ var
      iter=
       function(acc,pos)
        {if(pos>=len)
-         {switch(acc){case "":return 0;default:return [/* :: */0,acc,0];}}
+         {switch(acc)
+           {case "":return /* [] */0;
+            default:return /* :: */[0,acc,/* [] */0];}
+          }
         else
          {if(List["mem"](s[pos],chars))
            {switch(acc)
              {case "":return iter("",pos+1);
-              default:return [/* :: */0,acc,iter("",pos+1)];}
+              default:return /* :: */[0,acc,iter("",pos+1)];}
             }
           else
            {return iter
-                    (Printf["sprintf"]([0,[2,0,[0,0]],"%s%c"],acc,s[pos]),pos+1);
+                    (Printf["sprintf"]
+                      (/* Format */[0,
+                        /* String */[2,
+                         /* No_padding */0,
+                         /* Char */[0,/* End_of_format */0]],
+                        "%s%c"],
+                       acc,
+                       s[pos]),
+                     pos+1);
             }
           }
         };
@@ -97,7 +108,13 @@ var
 
 var
  split_with_blanks=
-  function(s){return split_string(s,[0,32,[0,10,[0,13,[0,9,0]]]]);};
+  function(s)
+   {return split_string
+            (s,
+             /* :: */[0,
+              32,
+              /* :: */[0,10,/* :: */[0,13,/* :: */[0,9,/* [] */0]]]]);
+    };
 
 var
  list_concat=
@@ -111,12 +128,12 @@ var
           var h=param[1];
           
           if(q)
-           {return [/* :: */0,h,[/* :: */0,sep,q]];}
+           {return /* :: */[0,h,/* :: */[0,sep,q]];}
           else
-           {return [/* :: */0,h,0];}
+           {return /* :: */[0,h,/* [] */0];}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return iter;
@@ -164,12 +181,12 @@ var
                    {return acc;}
                   else
                    {return Pervasives["@"]
-                            (acc,[/* :: */0,[/* tuple */0,label,param[3]],0]);
+                            (acc,/* :: */[0,/* tuple */[0,label,param[3]],/* [] */0]);
                     }
                   
                  }
                },
-             0,
+             /* [] */0,
              match[1]);
     };
 
@@ -239,11 +256,17 @@ var
              
              if(match)
               {return Printf["sprintf"]
-                       ([0,[12,91,[2,0,[12,93,0]]],"[%s]"],
+                       (/* Format */[0,
+                         /* Char_literal */[12,
+                          91,
+                          /* String */[2,
+                           /* No_padding */0,
+                           /* Char_literal */[12,93,/* End_of_format */0]]],
+                         "[%s]"],
                         string_of_text(match[1]));
                }
              else
-              {return iter([/* Code */1,t_ele[1]]);}
+              {return iter(/* Code */[1,t_ele[1]]);}
              
             case 17:
              return Pervasives["^"]
@@ -256,8 +279,8 @@ var
             case 19:
              return string_of_text
                      (list_concat
-                       ([0,", "],
-                        List["map"](function(s){return [/* Code */1,s];},t_ele[1])));
+                       (/* Raw */[0,", "],
+                        List["map"](function(s){return /* Code */[1,s];},t_ele[1])));
              
             case 20:return string_of_text(t_ele[2]);
             case 21:return "";
@@ -357,15 +380,18 @@ var
     var see_ref=param[1];
     
     switch(see_ref)
-     {case 0:var t_ref=[/* :: */0,[/* Link */15,see_ref[1],t],0];
+     {case 0:var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
       case 1:
-       var t_ref=[/* :: */0,[/* Code */1,see_ref[1]],[/* :: */0,[0," "],t]];
+       var
+        t_ref=
+         /* :: */[0,/* Code */[1,see_ref[1]],/* :: */[0,/* Raw */[0," "],t]];
+       
       case 2:
        var
         t_ref=
-         [/* :: */0,
-          [/* Italic */5,[/* :: */0,[/* Raw */0,see_ref[1]],0]],
-          [/* :: */0,[0," "],t]];
+         /* :: */[0,
+          /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
+          /* :: */[0,/* Raw */[0," "],t]];
        
       }
     
@@ -458,12 +484,12 @@ var
 var
  apply_opt=
   function(f,v_opt)
-   {if(v_opt){return [/* Some */0,f(v_opt[1])];}else{return 0;}};
+   {if(v_opt){return /* Some */[0,f(v_opt[1])];}else{return /* None */0;}};
 
 var
  string_of_date=
   function($staropt$star,d)
-   {if($staropt$star){var hour=$staropt$star[1];}else{var hour=1;}
+   {if($staropt$star){var hour=$staropt$star[1];}else{var hour=/* true */1;}
     
     var
      add_0=
@@ -501,12 +527,12 @@ var
       var t=l[1];
       
       if(q)
-       {return Pervasives["@"](t,[/* :: */0,sep,text_list_concat(sep,q)]);}
+       {return Pervasives["@"](t,/* :: */[0,sep,text_list_concat(sep,q)]);}
       else
        {return t;}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -518,82 +544,92 @@ var
        {var exit;
         
         if(typeof t_ele=="number")
-         {switch(t_ele){case 0:return [0,0,0];case 1:return 0;}}
+         {switch(t_ele)
+           {case 0:return /* :: */[0,/* Newline */0,/* [] */0];
+            case 1:return /* [] */0;
+            }}
         else
          {switch(t_ele[0])
            {case 4:
-             return [/* :: */0,
-                     [/* Bold */4,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Bold */[4,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 5:
-             return [/* :: */0,
-                     [/* Italic */5,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Italic */[5,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 6:
-             return [/* :: */0,
-                     [/* Emphasize */6,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Emphasize */[6,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 7:
-             return [/* :: */0,
-                     [/* Center */7,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Center */[7,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 8:
-             return [/* :: */0,
-                     [/* Left */8,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Left */[8,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 9:
-             return [/* :: */0,
-                     [/* Right */9,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Right */[9,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 10:exit=61;
             case 11:exit=61;
             case 12:
-             return [/* :: */0,
-                     [/* Block */12,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Block */[12,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 13:return text_no_title_no_list(t_ele[3]);
-            case 14:return [/* :: */0,[/* Latex */14,t_ele[1]],0];
+            case 14:return /* :: */[0,/* Latex */[14,t_ele[1]],/* [] */0];
             case 15:
-             return [/* :: */0,
-                     [/* Link */15,t_ele[1],text_no_title_no_list(t_ele[2])],
-                     0];
+             return /* :: */[0,
+                     /* Link */[15,t_ele[1],text_no_title_no_list(t_ele[2])],
+                     /* [] */0];
              
             case 17:
-             return [/* :: */0,
-                     [/* Superscript */17,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Superscript */[17,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 18:
-             return [/* :: */0,
-                     [/* Subscript */18,text_no_title_no_list(t_ele[1])],
-                     0];
+             return /* :: */[0,
+                     /* Subscript */[18,text_no_title_no_list(t_ele[1])],
+                     /* [] */0];
              
             case 19:
              return list_concat
-                     ([0,", "],
+                     (/* Raw */[0,", "],
                       List["map"]
-                       (function(s){return [/* Ref */16,s,[0,0],0];},t_ele[1]));
+                       (function(s)
+                         {return /* Ref */[16,
+                                  s,
+                                  /* Some */[0,/* RK_module */0],
+                                  /* None */0];
+                          },
+                        t_ele[1]));
              
             case 20:
-             return [/* :: */0,
-                     [/* Custom */20,t_ele[1],text_no_title_no_list(t_ele[2])],
-                     0];
+             return /* :: */[0,
+                     /* Custom */[20,t_ele[1],text_no_title_no_list(t_ele[2])],
+                     /* [] */0];
              
-            default:return [/* :: */0,t_ele,0];}}
+            default:return /* :: */[0,t_ele,/* [] */0];}}
         
         switch(exit)
          {case 61:
-           return [/* :: */0,
-                   [0," "],
+           return /* :: */[0,
+                   /* Raw */[0," "],
                    text_list_concat
-                    ([0,", "],List["map"](text_no_title_no_list,t_ele[1]))];
+                    (/* Raw */[0,", "],
+                     List["map"](text_no_title_no_list,t_ele[1]))];
            
           }
         };
@@ -604,7 +640,7 @@ var
 var
  get_titles_in_text=
   function(t)
-   {var l=[0,0];
+   {var l=[0,/* [] */0];
     
     var
      iter_ele=
@@ -623,7 +659,7 @@ var
             case 11:exit=55;
             case 13:
              return l[1]=
-                    [/* :: */0,[/* tuple */0,ele[1],ele[2],ele[3]],l[1]],
+                    /* :: */[0,/* tuple */[0,ele[1],ele[2],ele[3]],l[1]],
                     0;
              
             case 14:exit=53;
@@ -637,10 +673,10 @@ var
             default:return iter_text(ele[1]);}}
         
         switch(exit)
-         {case 53:return 0;
+         {case 53:return /* () */0;
           case 55:return List["iter"](iter_text,ele[1]);
           case 56:"unknown block:(exit 52 (field 0 ele/1165))";
-          case 50:return 0;
+          case 50:return /* () */0;
           case 52:return iter_text(t$1);
           }
         };
@@ -668,7 +704,7 @@ var
            {return last;}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return iter(l);
@@ -683,7 +719,7 @@ var
       var n=$$String["index"](s,46);
       
       if(n+1>=len)
-       {return [/* tuple */0,1,s,""];}
+       {return /* tuple */[0,/* true */1,s,""];}
       else
        {var match=s[n+1];
         
@@ -700,14 +736,14 @@ var
          {case 44:
            var match$1=get_before_dot($$String["sub"](s,n+1,len-n-1));
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    match$1[1],
                    Pervasives["^"]($$String["sub"](s,0,n+1),match$1[2]),
                    match$1[3]];
            
           case 43:
-           return [/* tuple */0,
-                   1,
+           return /* tuple */[0,
+                   /* true */1,
                    $$String["sub"](s,0,n+1),
                    $$String["sub"](s,n+1,len-n-1)];
            
@@ -715,7 +751,11 @@ var
         }
       }
     catch(exn)
-     {if(exn=Not_found){return [/* tuple */0,0,s,""];}else{throw exn;}}
+     {if(exn=Not_found)
+       {return /* tuple */[0,/* false */0,s,""];}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -733,22 +773,22 @@ var
       var stop=match[1];
       
       if(stop)
-       {return [/* tuple */0,
+       {return /* tuple */[0,
                 stop,
-                [/* :: */0,ele2,0],
-                ele3_opt?[/* :: */0,ele3_opt[1],q]:q];
+                /* :: */[0,ele2,/* [] */0],
+                ele3_opt?/* :: */[0,ele3_opt[1],q]:q];
         }
       else
        {var match$1=first_sentence_text(q);
         
-        return [/* tuple */0,
+        return /* tuple */[0,
                 match$1[1],
-                [/* :: */0,ele2,match$1[2]],
+                /* :: */[0,ele2,match$1[2]],
                 match$1[3]];
         }
       }
     else
-     {return [0,0,0,0];}
+     {return /* tuple */[0,/* false */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -757,16 +797,23 @@ var
    {var exit;
     
     if(typeof text_ele=="number")
-     {switch(text_ele){case 0:return [0,1,[0,""],[0,0]];}}
+     {switch(text_ele)
+       {case 0:
+         return /* tuple */[0,
+                 /* true */1,
+                 /* Raw */[0,""],
+                 /* Some */[0,/* Newline */0]];
+         
+        }}
     else
      {switch(text_ele[0])
        {case 0:
          var match=get_before_dot(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match[1],
-                 [/* Raw */0,match[2]],
-                 [/* Some */0,[/* Raw */0,match[3]]]];
+                 /* Raw */[0,match[2]],
+                 /* Some */[0,/* Raw */[0,match[3]]]];
          
         case 1:exit=38;
         case 2:exit=38;
@@ -774,58 +821,58 @@ var
         case 4:
          var match$1=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$1[1],
-                 [/* Bold */4,match$1[2]],
-                 [/* Some */0,[/* Bold */4,match$1[3]]]];
+                 /* Bold */[4,match$1[2]],
+                 /* Some */[0,/* Bold */[4,match$1[3]]]];
          
         case 5:
          var match$2=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$2[1],
-                 [/* Italic */5,match$2[2]],
-                 [/* Some */0,[/* Italic */5,match$2[3]]]];
+                 /* Italic */[5,match$2[2]],
+                 /* Some */[0,/* Italic */[5,match$2[3]]]];
          
         case 6:
          var match$3=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$3[1],
-                 [/* Emphasize */6,match$3[2]],
-                 [/* Some */0,[/* Emphasize */6,match$3[3]]]];
+                 /* Emphasize */[6,match$3[2]],
+                 /* Some */[0,/* Emphasize */[6,match$3[3]]]];
          
         case 7:
          var match$4=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$4[1],
-                 [/* Center */7,match$4[2]],
-                 [/* Some */0,[/* Center */7,match$4[3]]]];
+                 /* Center */[7,match$4[2]],
+                 /* Some */[0,/* Center */[7,match$4[3]]]];
          
         case 8:
          var match$5=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$5[1],
-                 [/* Left */8,match$5[2]],
-                 [/* Some */0,[/* Left */8,match$5[3]]]];
+                 /* Left */[8,match$5[2]],
+                 /* Some */[0,/* Left */[8,match$5[3]]]];
          
         case 9:
          var match$6=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$6[1],
-                 [/* Right */9,match$6[2]],
-                 [/* Some */0,[/* Right */9,match$6[3]]]];
+                 /* Right */[9,match$6[2]],
+                 /* Some */[0,/* Right */[9,match$6[3]]]];
          
         case 12:
          var match$7=first_sentence_text(text_ele[1]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$7[1],
-                 [/* Block */12,match$7[2]],
-                 [/* Some */0,[/* Block */12,match$7[3]]]];
+                 /* Block */[12,match$7[2]],
+                 /* Some */[0,/* Block */[12,match$7[3]]]];
          
         case 13:
          var l_opt=text_ele[2];
@@ -834,19 +881,19 @@ var
          
          var match$8=first_sentence_text(text_ele[3]);
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  match$8[1],
-                 [/* Title */13,n,l_opt,match$8[2]],
-                 [/* Some */0,[/* Title */13,n,l_opt,match$8[3]]]];
+                 /* Title */[13,n,l_opt,match$8[2]],
+                 /* Some */[0,/* Title */[13,n,l_opt,match$8[3]]]];
          
         case 20:exit=40;
         case 21:exit=40;
         default:exit=39;}}
     
     switch(exit)
-     {case 38:return [/* tuple */0,0,text_ele,0];
-      case 39:return [/* tuple */0,0,text_ele,0];
-      case 40:return [/* tuple */0,0,text_ele,0];
+     {case 38:return /* tuple */[0,/* false */0,text_ele,/* None */0];
+      case 39:return /* tuple */[0,/* false */0,text_ele,/* None */0];
+      case 40:return /* tuple */[0,/* false */0,text_ele,/* None */0];
       }
     };
 
@@ -857,7 +904,7 @@ var
 var
  first_sentence_and_rest_of_text=
   function(t)
-   {var match=first_sentence_text(t);return [/* tuple */0,match[2],match[3]];};
+   {var match=first_sentence_text(t);return /* tuple */[0,match[2],match[3]];};
 
 var
  remove_ending_newline=
@@ -929,7 +976,7 @@ var
                      (current,
                       acc0,
                       acc1,
-                      Pervasives["@"](acc2,[/* :: */0,ele,0]),
+                      Pervasives["@"](acc2,/* :: */[0,ele,/* [] */0]),
                       q);
              
             default:
@@ -938,7 +985,7 @@ var
              if(25<-65+first>>>0)
               {return f
                        (current,
-                        Pervasives["@"](acc0,[/* :: */0,ele,0]),
+                        Pervasives["@"](acc0,/* :: */[0,ele,/* [] */0]),
                         acc1,
                         acc2,
                         q);
@@ -949,25 +996,27 @@ var
                          (current,
                           acc0,
                           acc1,
-                          Pervasives["@"](acc2,[/* :: */0,ele,0]),
+                          Pervasives["@"](acc2,/* :: */[0,ele,/* [] */0]),
                           q);
                  }
                else
                 {return f
                          (first,
                           acc0,
-                          Pervasives["@"](acc1,[/* :: */0,acc2,0]),
-                          [/* :: */0,ele,0],
+                          Pervasives["@"](acc1,/* :: */[0,acc2,/* [] */0]),
+                          /* :: */[0,ele,/* [] */0],
                           q);
                  }
                }
              }
           }
         else
-         {return Pervasives["@"]([/* :: */0,acc0,acc1],[/* :: */0,acc2,0]);}
+         {return Pervasives["@"]
+                  (/* :: */[0,acc0,acc1],/* :: */[0,acc2,/* [] */0]);
+          }
         };
     
-    return f(95,0,0,0,elements);
+    return f(95,/* [] */0,/* [] */0,/* [] */0,elements);
     };
 
 var is_optional=Btype["is_optional"];
@@ -1013,7 +1062,7 @@ var
         switch(exit){case 4:return iter(t[1][1]);case 1:return t;}
         };
     
-    return [/* record */0,iter(typ[1]),typ[2],typ[3]];
+    return /* record */[0,iter(typ[1]),typ[2],typ[3]];
     };
 
 module["exports"]=

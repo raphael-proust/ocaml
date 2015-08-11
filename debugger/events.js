@@ -13,7 +13,7 @@ var
      {return ev[3][2];}
     };
 
-var current_event=[0,0];
+var current_event=[0,/* None */0];
 
 var
  get_current_event=
@@ -34,14 +34,14 @@ var
      {var match$1=match[1][4];
       
       if("unknown primitive:isint")
-       {if(match$1!=0){exit=1;}else{return 1;}}
+       {if(match$1!=0){exit=1;}else{return /* true */1;}}
       else
        {exit=1;}
       }
     else
      {throw Not_found;}
     
-    switch(exit){case 1:return 0;}
+    switch(exit){case 1:return /* false */0;}
     };
 
 module["exports"]=

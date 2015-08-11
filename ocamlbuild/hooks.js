@@ -2,7 +2,7 @@
 
 
 
-var hooks=[0,function(prim){return 0;}];
+var hooks=[0,function(prim){return prim;}];
 
 var setup_hooks=function(f){return hooks[1]=f,0;};
 

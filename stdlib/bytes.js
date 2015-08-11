@@ -401,7 +401,7 @@ var
       }
     else
      {try
-       {return /* true */1;}
+       {index_rec(s,l,i,c);return /* true */1;}
       catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
       }
     };
@@ -417,7 +417,7 @@ var
       }
     else
      {try
-       {return /* true */1;}
+       {rindex_rec(s,i,c);return /* true */1;}
       catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
       }
     };

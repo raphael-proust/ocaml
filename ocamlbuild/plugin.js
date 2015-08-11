@@ -51,13 +51,15 @@ var
 var
  Make=
   function(U)
-   {var we_need_a_plugin$1=we_need_a_plugin(0);
+   {var we_need_a_plugin$1=we_need_a_plugin(/* () */0);
     
-    var we_have_a_plugin$1=we_have_a_plugin(0);
+    var we_have_a_plugin$1=we_have_a_plugin(/* () */0);
     
-    var we_have_a_config_file$1=we_have_a_config_file(0);
+    var we_have_a_config_file$1=we_have_a_config_file(/* () */0);
     
-    var we_have_a_config_file_interface$1=we_have_a_config_file_interface(0);
+    var
+     we_have_a_config_file_interface$1=
+      we_have_a_config_file_interface(/* () */0);
     
     var
      up_to_date_or_copy=
@@ -67,7 +69,7 @@ var
         return Pathname["exists"](fn)&&
                (Pathname["exists"](fn$prime)&&
                 Pathname["same_contents"](fn,fn$prime)||
-                (Shell["cp"](fn,fn$prime),0));
+                (Shell["cp"](fn,fn$prime),/* false */0));
         };
     
     var
@@ -85,7 +87,7 @@ var
           up_to_date_or_copy(plugin_config_file_interface);
         
         if(a&&b&&c&&we_have_a_plugin$1)
-         {return 0;}
+         {return /* () */0;}
         else
          {if
            (Options["native_plugin"][1]&&
@@ -93,11 +95,13 @@ var
              (Pathname["Operators"][1]
                (Ocamlbuild_where["libdir"][1],"ocamlbuildlib.cmxa")))
            {Options["native_plugin"][1]=
-            0,
+            /* false */0,
             0,
             Log["eprintf"]
-             ([0,
-               [11,"Warning: Won't be able to compile a native plugin",0],
+             (/* Format */[0,
+               /* String_literal */[11,
+                "Warning: Won't be able to compile a native plugin",
+                /* End_of_format */0],
                "Warning: Won't be able to compile a native plugin"])}
           else
            {}
@@ -106,24 +110,24 @@ var
            {if(we_have_a_config_file_interface$1)
              {var
                plugin_config=
-                [/* S */0,
-                 [/* :: */0,
-                  [/* P */2,plugin_config_file_interface],
-                  [/* :: */0,[/* P */2,plugin_config_file],0]]];
+                /* S */[0,
+                 /* :: */[0,
+                  /* P */[2,plugin_config_file_interface],
+                  /* :: */[0,/* P */[2,plugin_config_file],/* [] */0]]];
               }
             else
-             {var plugin_config=[/* P */2,plugin_config_file];}
+             {var plugin_config=/* P */[2,plugin_config_file];}
             }
           else
-           {var plugin_config=0;}
+           {var plugin_config=/* N */0;}
           
           if(Options["native_plugin"][1])
            {var
              match=
-              [/* tuple */0,"cmxa","cmx",Options["ocamlopt"][1],"native"];
+              /* tuple */[0,"cmxa","cmx",Options["ocamlopt"][1],"native"];
             }
           else
-           {var match=[/* tuple */0,"cma","cmo",Options["ocamlc"][1],"byte"];}
+           {var match=/* tuple */[0,"cma","cmo",Options["ocamlc"][1],"byte"];}
           
           var cmo=match[2];
           
@@ -136,30 +140,39 @@ var
           
           var
            use_ocamlfind_pkgs=
-            Options["use_ocamlfind"][1]&&Options["plugin_tags"][1]!=0;
+            Options["use_ocamlfind"][1]&&Options["plugin_tags"][1]!=/* [] */0;
           
           if(use_ocamlfind_pkgs)
-           {var unix_lib=[0,251810662,"unix"];}
+           {var unix_lib=/* `Package */[0,251810662,"unix"];}
           else
            {if(use_light_mode)
-             {var unix_lib=481346541;}
+             {var unix_lib=/* Nothing */481346541;}
             else
-             {var unix_lib=[0,3802917,"unix"];}
+             {var unix_lib=/* `Lib */[0,3802917,"unix"];}
             }
           
           if(use_ocamlfind_pkgs)
-           {var ocamlbuild_lib=[0,251810662,"ocamlbuild"];}
+           {var ocamlbuild_lib=/* `Package */[0,251810662,"ocamlbuild"];}
           else
            {if(use_light_mode)
-             {var ocamlbuild_lib=[0,945409809,"ocamlbuildlightlib"];}
+             {var
+               ocamlbuild_lib=
+                /* `Local_lib */[0,945409809,"ocamlbuildlightlib"];
+              }
             else
-             {var ocamlbuild_lib=[0,945409809,"ocamlbuildlib"];}
+             {var
+               ocamlbuild_lib=
+                /* `Local_lib */[0,945409809,"ocamlbuildlib"];
+              }
             }
           
           if(use_light_mode)
-           {var ocamlbuild_module=[0,945460878,"ocamlbuildlight"];}
+           {var
+             ocamlbuild_module=
+              /* `Local_mod */[0,945460878,"ocamlbuildlight"];
+            }
           else
-           {var ocamlbuild_module=[0,945460878,"ocamlbuild"];}
+           {var ocamlbuild_module=/* `Local_mod */[0,945460878,"ocamlbuild"];}
           
           var dir=Ocamlbuild_where["libdir"][1];
           
@@ -176,10 +189,14 @@ var
               if(!My_std["sys_file_exists"](path))
                {Pervasives["failwith"]
                  (Format["sprintf"]
-                   ([0,
-                     [11,
+                   (/* Format */[0,
+                     /* String_literal */[11,
                       "Cannot find ",
-                      [3,0,[11," in ocamlbuild -where directory",0]]],
+                      /* Caml_string */[3,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        " in ocamlbuild -where directory",
+                        /* End_of_format */0]]],
                      "Cannot find %S in ocamlbuild -where directory"],
                     file))}
               else
@@ -192,35 +209,35 @@ var
            spec=
             function(param$1)
              {if("unknown primitive:isint")
-               {return 0;}
+               {return /* N */0;}
               else
                {var variant=param$1[1];
                 
                 if(variant>=945409809)
                  {if(variant>=945460878)
-                   {return [/* P */2,
+                   {return /* P */[2,
                             in_dir(Pathname["Operators"][2](param$1[2],cmo))];
                     }
                   else
-                   {return [/* S */0,
-                            [/* :: */0,
-                             [1,"-I"],
-                             [/* :: */0,
-                              [/* A */1,dir$1],
-                              [/* :: */0,
-                               [/* P */2,in_dir(Pathname["Operators"][2](param$1[2],cma))],
-                               0]]]];
+                   {return /* S */[0,
+                            /* :: */[0,
+                             /* A */[1,"-I"],
+                             /* :: */[0,
+                              /* A */[1,dir$1],
+                              /* :: */[0,
+                               /* P */[2,in_dir(Pathname["Operators"][2](param$1[2],cma))],
+                               /* [] */0]]]];
                     }
                   }
                 else
                  {if(variant>=251810662)
-                   {return [/* S */0,
-                            [/* :: */0,
-                             [1,"-package"],
-                             [/* :: */0,[/* A */1,param$1[2]],0]]];
+                   {return /* S */[0,
+                            /* :: */[0,
+                             /* A */[1,"-package"],
+                             /* :: */[0,/* A */[1,param$1[2]],/* [] */0]]];
                     }
                   else
-                   {return [/* P */2,Pathname["Operators"][2](param$1[2],cma)];
+                   {return /* P */[2,Pathname["Operators"][2](param$1[2],cma)];
                     }
                   }
                 }
@@ -228,7 +245,7 @@ var
           
           var
            match$1=
-            [/* tuple */0,
+            /* tuple */[0,
              spec(unix_lib),
              spec(ocamlbuild_lib),
              spec(ocamlbuild_module)];
@@ -244,36 +261,37 @@ var
                 "link"),
               match[4]);
           
-          Param_tags["partial_init"](0,Const["Source"][9],plugin_tags);
+          Param_tags["partial_init"]
+           (/* None */0,Const["Source"][9],plugin_tags);
           var
            cmd=
-            [/* Cmd */1,
-             [/* S */0,
-              [/* :: */0,
+            /* Cmd */[1,
+             /* S */[0,
+              /* :: */[0,
                match[3],
-               [/* :: */0,
+               /* :: */[0,
                 match$1[1],
-                [/* :: */0,
+                /* :: */[0,
                  match$1[2],
-                 [/* :: */0,
-                  [/* T */5,plugin_tags],
-                  [/* :: */0,
+                 /* :: */[0,
+                  /* T */[5,plugin_tags],
+                  /* :: */[0,
                    plugin_config,
-                   [/* :: */0,
-                    [/* P */2,plugin_file],
-                    [/* :: */0,
+                   /* :: */[0,
+                    /* P */[2,plugin_file],
+                    /* :: */[0,
                      match$1[3],
-                     [/* :: */0,
-                      [1,"-o"],
-                      [/* :: */0,
-                       [/* Px */3,Pervasives["^"](plugin,Options["exe"][1])],
-                       0]]]]]]]]]]];
+                     /* :: */[0,
+                      /* A */[1,"-o"],
+                      /* :: */[0,
+                       /* Px */[3,Pervasives["^"](plugin,Options["exe"][1])],
+                       /* [] */0]]]]]]]]]]];
           
           Shell["chdir"](Options["build_dir"][1]);
           Shell["rm_f"](Pervasives["^"](plugin,Options["exe"][1]));
-          Command["execute"](0,0,cmd);
+          Command["execute"](/* None */0,/* None */0,cmd);
           if(Options["just_plugin"][1])
-           {Log["finish"](0,0);throw My_std["Exit_OK"];}
+           {Log["finish"](/* None */0,/* () */0);throw My_std["Exit_OK"];}
           else
            {return 0;}
           }
@@ -283,10 +301,10 @@ var
      execute_plugin_if_needed=
       function(param)
        {if(we_need_a_plugin$1)
-         {rebuild_plugin_if_needed(0);
+         {rebuild_plugin_if_needed(/* () */0);
           Shell["chdir"](Pathname["pwd"]);
           if(Options["native_plugin"][1])
-           {var runner=0;}
+           {var runner=/* N */0;}
           else
            {var runner=Options["ocamlrun"][1];}
           
@@ -300,19 +318,19 @@ var
           
           var
            spec=
-            [/* S */0,
-             [/* :: */0,
+            /* S */[0,
+             /* :: */[0,
               runner,
-              [/* :: */0,
-               [/* P */2,
+              /* :: */[0,
+               /* P */[2,
                 Pervasives["^"]
                  (Pathname["Operators"][1](Options["build_dir"][1],plugin),
                   Options["exe"][1])],
-               [/* :: */0,
-                [1,"-no-plugin"],
-                [/* :: */0,Command["atomize"](passed_argv),0]]]]];
+               /* :: */[0,
+                /* A */[1,"-no-plugin"],
+                /* :: */[0,Command["atomize"](passed_argv),/* [] */0]]]]];
           
-          Log["finish"](0,0);
+          Log["finish"](/* None */0,/* () */0);
           var
            rc=
             My_std["sys_command"](Command["string_of_command_spec"](spec));
@@ -323,17 +341,17 @@ var
          {if
            (!My_std["sys_file_exists"](plugin_file)&&
             Options["plugin_tags"][1]!=
-            0)
+            /* [] */0)
            {return Log["eprintf"]
-                    ([0,
-                      [11,
+                    (/* Format */[0,
+                      /* String_literal */[11,
                        "Warning: option -plugin-tag(s) has no effect in absence of plugin file ",
-                       [3,0,0]],
+                       /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
                       "Warning: option -plugin-tag(s) has no effect in absence of plugin file %S"],
                      plugin_file);
             }
           else
-           {return 0;}
+           {return /* () */0;}
           }
         };
     
@@ -347,7 +365,9 @@ var
             execute_plugin_if_needed];
     };
 
-var execute_plugin_if_needed=function(param){var P=Make([0]);return P[7](0);};
+var
+ execute_plugin_if_needed=
+  function(param){var P=Make([0]);return P[7](/* () */0);};
 
 module["exports"]=
 {"execute_plugin_if_needed":execute_plugin_if_needed,

@@ -32,7 +32,7 @@ var
           
           var match=Odoc_parser["see_info"](Odoc_see_lexer["main"],lexbuf);
           
-          return [/* tuple */0,match[1],MyTexter[1](match[2])];
+          return /* tuple */[0,match[1],MyTexter[1](match[2])];
           }
         catch(exn)
          {if(exn[1]=Odoc_text["Text_syntax"])
@@ -52,7 +52,7 @@ var
      retrieve_info=
       function(fun_lex,file,s)
        {try
-         {var match=Odoc_comments_global["init"](0);
+         {var match=Odoc_comments_global["init"](/* () */0);
           
           Odoc_lexer["comments_level"][1]=0,0;
           var lexbuf=Lexing["from_string"](s);
@@ -76,19 +76,19 @@ var
                 Odoc_parser["info_part2"](Odoc_lexer["elements"],lexbuf2);
               }
             else
-             {var match$3=0;}
+             {var match$3=/* () */0;}
             
             switch(desc)
-             {case "":var $js=0;
-              default:var $js=[/* Some */0,MyTexter[1](desc)];}
+             {case "":var $js=/* None */0;
+              default:var $js=/* Some */[0,MyTexter[1](desc)];}
             var match$4=Odoc_comments_global["deprecated"][1];
             
             var match$5=Odoc_comments_global["return_value"][1];
             
-            return [/* tuple */0,
+            return /* tuple */[0,
                     mem_nb_chars,
-                    [/* Some */0,
-                     [/* record */0,
+                    /* Some */[0,
+                     /* record */[0,
                       $js,
                       Odoc_comments_global["authors"][1],
                       Odoc_comments_global["version"][1],
@@ -97,39 +97,53 @@ var
                       Odoc_merge["merge_before_tags"]
                        (List["map"]
                          (function(param)
-                           {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
+                           {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
                           Odoc_comments_global["before"][1])),
-                      match$4?[/* Some */0,MyTexter[1](match$4[1])]:0,
+                      match$4?/* Some */[0,MyTexter[1](match$4[1])]:/* None */0,
                       List["map"]
                        (function(param)
-                         {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
+                         {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
                         Odoc_comments_global["params"][1]),
                       List["map"]
                        (function(param)
-                         {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
+                         {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
                         Odoc_comments_global["raised_exceptions"][1]),
-                      match$5?[/* Some */0,MyTexter[1](match$5[1])]:0,
+                      match$5?/* Some */[0,MyTexter[1](match$5[1])]:/* None */0,
                       List["map"]
                        (function(param)
-                         {return [/* tuple */0,param[1],MyTexter[1](param[2])];},
+                         {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
                         Odoc_comments_global["customs"][1])]]];
             }
           else
-           {return [0,0,0];}
+           {return /* tuple */[0,0,/* None */0];}
           }
         catch(exn)
          {if(exn[1]=Failure)
            {Odoc_global["errors"][0]++;
             Printf["eprintf"]
-             ([0,
-               [11,
+             (/* Format */[0,
+               /* String_literal */[11,
                 "File ",
-                [3,0,[11,", line ",[4,0,0,0,[11,":\n",[2,0,[12,10,[10,0]]]]]]]],
+                /* Caml_string */[3,
+                 /* No_padding */0,
+                 /* String_literal */[11,
+                  ", line ",
+                  /* Int */[4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   /* String_literal */[11,
+                    ":\n",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,
+                      10,
+                      /* Flush */[10,/* End_of_format */0]]]]]]]],
                "File %S, line %d:\n%s\n%!"],
               file,
               Odoc_lexer["line_number"][1]+1,
               exn[2]);
-            return [0,0,0];
+            return /* tuple */[0,0,/* None */0];
             }
           else
            {if(exn[1]=Odoc_text["Text_syntax"])
@@ -140,7 +154,7 @@ var
                   Pervasives["^"]
                    (" : ",
                     Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4]))));
-              return [0,0,0];
+              return /* tuple */[0,0,/* None */0];
               }
             else
              {Odoc_global["errors"][0]++;
@@ -149,7 +163,7 @@ var
                  (file,
                   Pervasives["^"]
                    (" : ",Pervasives["^"](Odoc_messages["parse_error"],"\n"))));
-              return [0,0,0];
+              return /* tuple */[0,0,/* None */0];
               }
             }
           }
@@ -168,6 +182,7 @@ var
           
           var s2=$$String["sub"](s,0,pos);
           
+          var $js;
           try
            {var
              match=
@@ -178,12 +193,13 @@ var
                 s2,
                 0);
             
-            var $js=0;
+            $js=/* false */0;
             }
-          catch(exn){if(exn=Not_found){var $js=1;}else{throw exn;}}
+          catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
           return next_char!=42&&$js;
           }
-        catch(exn$1){if(exn$1=Not_found){return 0;}else{throw exn$1;}}
+        catch(exn$1)
+         {if(exn$1=Not_found){return /* false */0;}else{throw exn$1;}}
         };
     
     var
@@ -199,9 +215,9 @@ var
               s,
               0);
           
-          return 1;
+          return /* true */1;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
         };
     
     var
@@ -211,7 +227,7 @@ var
     var
      retrieve_info_simple=
       function(file,s)
-       {var match=Odoc_comments_global["init"](0);
+       {var match=Odoc_comments_global["init"](/* () */0);
         
         Odoc_lexer["comments_level"][1]=0,0;
         var lexbuf=Lexing["from_string"](s);
@@ -219,12 +235,12 @@ var
         var match$1=Odoc_parser["main"](Odoc_lexer["simple"],lexbuf);
         
         if(match$1)
-         {return [/* tuple */0,
+         {return /* tuple */[0,
                   Odoc_comments_global["nb_chars"][1],
-                  [/* Some */0,Odoc_types["dummy_info"]]];
+                  /* Some */[0,Odoc_types["dummy_info"]]];
           }
         else
-         {return [0,0,0];}
+         {return /* tuple */[0,0,/* None */0];}
         };
     
     var
@@ -249,7 +265,8 @@ var
                 
                 return blank_line(s_before)||iter(s_after);
                 }
-              catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+              catch(exn)
+               {if(exn=Not_found){return /* false */0;}else{throw exn;}}
               }
             else
              {return blank_line(s2);}
@@ -261,7 +278,10 @@ var
     var
      retrieve_first_info_simple=
       function($staropt$star,file,s)
-       {if($staropt$star){var strict=$staropt$star[1];}else{var strict=1;}
+       {if($staropt$star)
+         {var strict=$staropt$star[1];}
+        else
+         {var strict=/* true */1;}
         
         var match=retrieve_info_simple(file,s);
         
@@ -269,12 +289,12 @@ var
         
         if(match$1)
          {if(!strict||nothing_before_simple_comment(s))
-           {return [/* tuple */0,match[1],[/* Some */0,match$1[1]]];}
+           {return /* tuple */[0,match[1],/* Some */[0,match$1[1]]];}
           else
-           {return [0,0,0];}
+           {return /* tuple */[0,0,/* None */0];}
           }
         else
-         {return [0,0,0];}
+         {return /* tuple */[0,0,/* None */0];}
         };
     
     var
@@ -293,14 +313,14 @@ var
               var len=match[1];
               
               if(match$1)
-               {return f(len+cur_len,[/* Some */0,match$1[1]]);}
+               {return f(len+cur_len,/* Some */[0,match$1[1]]);}
               else
-               {return [/* tuple */0,cur_len+len,cur_d];}
+               {return /* tuple */[0,cur_len+len,cur_d];}
               }
-            catch(exn){return [/* tuple */0,cur_len,cur_d];}
+            catch(exn){return /* tuple */[0,cur_len,cur_d];}
             };
         
-        return f(0,0);
+        return f(0,/* None */0);
         };
     
     var
@@ -319,14 +339,14 @@ var
               var len=match[1];
               
               if(match$1)
-               {return f(len+cur_len,[/* Some */0,match$1[1]]);}
+               {return f(len+cur_len,/* Some */[0,match$1[1]]);}
               else
-               {return [/* tuple */0,cur_len+len,cur_d];}
+               {return /* tuple */[0,cur_len+len,cur_d];}
               }
-            catch(exn){return [/* tuple */0,cur_len,cur_d];}
+            catch(exn){return /* tuple */[0,cur_len,cur_d];}
             };
         
-        return f(0,0);
+        return f(0,/* None */0);
         };
     
     var
@@ -345,13 +365,15 @@ var
               var new_s=$$String["sub"](s2,n2,s2["length"]-n2);
               
               return iter
-                      (Pervasives["@"](acc,[/* :: */0,match$1[1],0]),n+n2,new_s);
+                      (Pervasives["@"](acc,/* :: */[0,match$1[1],/* [] */0]),
+                       n+n2,
+                       new_s);
               }
             else
-             {return [/* tuple */0,n,acc];}
+             {return /* tuple */[0,n,acc];}
             };
         
-        return iter(0,0,s);
+        return iter(/* [] */0,0,s);
         };
     
     var
@@ -369,7 +391,7 @@ var
           var match$2=retrieve_info_simple(file,$$String["sub"](s,0,len));
           
           if(match$2[2])
-           {return [0,0,0];}
+           {return /* tuple */[0,0,/* None */0];}
           else
            {try
              {var pos=Str["search_forward"](Str["regexp_string"]("(**"),s,0);
@@ -377,15 +399,20 @@ var
               if
                (blank_line($$String["sub"](s,0,pos))||
                 "unknown primitive:caml_equal")
-               {return [0,0,0];}
+               {return /* tuple */[0,0,/* None */0];}
               else
-               {return [/* tuple */0,len,[/* Some */0,d]];}
+               {return /* tuple */[0,len,/* Some */[0,d]];}
               }
-            catch(exn){if(exn=Not_found){return [0,0,0];}else{throw exn;}}
+            catch(exn)
+             {if(exn=Not_found)
+               {return /* tuple */[0,0,/* None */0];}
+              else
+               {throw exn;}
+              }
             }
           }
         else
-         {return [0,0,0];}
+         {return /* tuple */[0,0,/* None */0];}
         };
     
     var first_special=function(file,s){return retrieve_info_special(file,s);};
@@ -408,15 +435,15 @@ var
            (blank_line_outside_simple
              (file,$$String["sub"](s,len,s["length"]-len))||
             "unknown primitive:caml_equal")
-           {var match$2=[/* tuple */0,0,special_coms];}
+           {var match$2=/* tuple */[0,/* None */0,special_coms];}
           else
            {var
              match$2=
-              [/* tuple */0,[/* Some */0,h],List["rev"](match$1[2])];
+              /* tuple */[0,/* Some */[0,h],List["rev"](match$1[2])];
             }
           }
         else
-         {var match$2=[0,0,0];}
+         {var match$2=/* tuple */[0,/* None */0,/* [] */0];}
         
         var
          ele_comments=
@@ -426,15 +453,15 @@ var
               
               if(match$3)
                {return Pervasives["@"]
-                        (acc,[/* :: */0,f_create_ele(match$3[1]),0]);
+                        (acc,/* :: */[0,f_create_ele(match$3[1]),/* [] */0]);
                 }
               else
                {return acc;}
               },
-            0,
+            /* [] */0,
             match$2[2]);
         
-        return [/* tuple */0,match$2[1],ele_comments];
+        return /* tuple */[0,match$2[1],ele_comments];
         };
     
     return [0,
@@ -461,11 +488,32 @@ var Basic_info_retriever=Info_retriever([0,$$let[1]]);
 var
  info_of_string=
   function(s)
-   {var dummy=[0,0,0,0,0,0,0,0,0,0,0,0];
+   {var
+     dummy=
+      /* record */[0,
+       /* None */0,
+       /* [] */0,
+       /* None */0,
+       /* [] */0,
+       /* None */0,
+       /* [] */0,
+       /* None */0,
+       /* [] */0,
+       /* [] */0,
+       /* None */0,
+       /* [] */0];
     
     var
      s2=
-      Printf["sprintf"]([0,[11,"(** ",[2,0,[11," *)",0]]],"(** %s *)"],s);
+      Printf["sprintf"]
+       (/* Format */[0,
+         /* String_literal */[11,
+          "(** ",
+          /* String */[2,
+           /* No_padding */0,
+           /* String_literal */[11," *)",/* End_of_format */0]]],
+         "(** %s *)"],
+        s);
     
     var match=Basic_info_retriever[13]("-",s2);
     

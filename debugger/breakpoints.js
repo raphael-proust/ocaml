@@ -10,13 +10,13 @@ var Exec=require("Exec");
 var Debugcom=require("Debugcom");
 
 
-var debug_breakpoints=[0,0];
+var debug_breakpoints=[0,/* false */0];
 
 var breakpoint_number=[0,0];
 
-var breakpoints=[0,0];
+var breakpoints=[0,/* [] */0];
 
-var positions=[0,0];
+var positions=[0,/* [] */0];
 
 var current_version=[0,0];
 
@@ -39,7 +39,8 @@ var breakpoints_count=function(param){return List["length"](breakpoints[1]);};
 var
  breakpoints_at_pc=
   function(pc)
-   {try
+   {var $js;
+    try
      {var ev=Symbols["event_at_pc"](pc);
       
       var match=ev[10];
@@ -51,12 +52,12 @@ var
       else
        {switch(match[0])
          {case 0:exit=27;
-          case 1:var pc$prime=match[1][1];var $js=breakpoints_at_pc(pc$prime);
+          case 1:var pc$prime=match[1][1];$js=breakpoints_at_pc(pc$prime);
           }}
       
-      switch(exit){case 27:var $js=0;}
+      switch(exit){case 27:$js=/* [] */0;}
       }
-    catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){$js=/* [] */0;}else{throw exn;}}
     return Pervasives["@"]
             ($js,
              List["map"]
@@ -66,14 +67,14 @@ var
                  breakpoints[1])));
     };
 
-var breakpoint_at_pc=function(pc){return breakpoints_at_pc(pc)!=0;};
+var breakpoint_at_pc=function(pc){return breakpoints_at_pc(pc)!=/* [] */0;};
 
 var
  remove_breakpoints=
   function(pos)
    {if(debug_breakpoints[1])
      {Pervasives["print_string"]("Removing breakpoints..."),
-      Pervasives["print_newline"](0)}
+      Pervasives["print_newline"](/* () */0)}
     else
      {}
     
@@ -82,7 +83,8 @@ var
               {var pos$1=param[1];
                
                if(debug_breakpoints[1])
-                {Pervasives["print_int"](pos$1),Pervasives["print_newline"](0)}
+                {Pervasives["print_int"](pos$1),
+                 Pervasives["print_newline"](/* () */0)}
                else
                 {}
                
@@ -97,7 +99,7 @@ var
   function(pos)
    {if(debug_breakpoints[1])
      {Pervasives["print_string"]("Setting breakpoints..."),
-      Pervasives["print_newline"](0)}
+      Pervasives["print_newline"](/* () */0)}
     else
      {}
     
@@ -106,7 +108,8 @@ var
               {var pos$1=param[1];
                
                if(debug_breakpoints[1])
-                {Pervasives["print_int"](pos$1),Pervasives["print_newline"](0)}
+                {Pervasives["print_int"](pos$1),
+                 Pervasives["print_newline"](/* () */0)}
                else
                 {}
                
@@ -132,7 +135,7 @@ var
               (function(param$1)
                 {remove_breakpoints(Checkpoints["current_checkpoint"][1][9]);
                  set_breakpoints(positions[1]);
-                 return copy_breakpoints(0);
+                 return copy_breakpoints(/* () */0);
                  });
       }
     else
@@ -154,9 +157,9 @@ var
     
     var pos=positions[1];
     
-    change_version(0,0);
+    change_version(0,/* [] */0);
     try
-     {f(0);return change_version(version,pos);}
+     {f(/* () */0);return change_version(version,pos);}
     catch(x){return change_version(version,pos);}
     };
 
@@ -167,8 +170,8 @@ var
      {return List["assoc"](pos,positions[1])[0]++;}
     catch(exn)
      {if(exn=Not_found)
-       {positions[1]=[/* :: */0,[/* tuple */0,pos,[0,1]],positions[1]],0;
-        return new_version(0);
+       {positions[1]=/* :: */[0,/* tuple */[0,pos,[0,1]],positions[1]],0;
+        return new_version(/* () */0);
         }
       else
        {throw exn;}
@@ -183,7 +186,7 @@ var
     count[0]--;
     if(count[1]=0)
      {positions[1]=List["remove_assoc"](pos,positions[1]),0;
-      return new_version(0);
+      return new_version(/* () */0);
       }
     else
      {return 0;}
@@ -211,19 +214,33 @@ var
           {breakpoint_number[0]++;
            insert_position($$event[1]);
            return breakpoints[1]=
-                  [/* :: */0,
-                   [/* tuple */0,breakpoint_number[1],$$event],
+                  /* :: */[0,
+                   /* tuple */[0,breakpoint_number[1],$$event],
                    breakpoints[1]],
                   0;
            });
        Printf["printf"]
-        ([0,
-          [11,"Breakpoint ",[4,0,0,0,[11," at ",[4,0,0,0,[11,": ",[2,0,0]]]]]],
+        (/* Format */[0,
+          /* String_literal */[11,
+           "Breakpoint ",
+           /* Int */[4,
+            /* Int_d */0,
+            /* No_padding */0,
+            /* No_precision */0,
+            /* String_literal */[11,
+             " at ",
+             /* Int */[4,
+              /* Int_d */0,
+              /* No_padding */0,
+              /* No_precision */0,
+              /* String_literal */[11,
+               ": ",
+               /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
           "Breakpoint %d at %d: %s"],
          breakpoint_number[1],
          $$event[1],
          Pos["get_desc"]($$event));
-       return Pervasives["print_newline"](0);
+       return Pervasives["print_newline"](/* () */0);
        
       }
     };
@@ -241,15 +258,27 @@ var
                 {breakpoints[1]=List["remove_assoc"](number,breakpoints[1]),0;
                  remove_position(pos);
                  Printf["printf"]
-                  ([0,
-                    [11,
+                  (/* Format */[0,
+                    /* String_literal */[11,
                      "Removed breakpoint ",
-                     [4,0,0,0,[11," at ",[4,0,0,0,[11,": ",[2,0,0]]]]]],
+                     /* Int */[4,
+                      /* Int_d */0,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* String_literal */[11,
+                       " at ",
+                       /* Int */[4,
+                        /* Int_d */0,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        /* String_literal */[11,
+                         ": ",
+                         /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                     "Removed breakpoint %d at %d: %s"],
                    number,
                    ev[1],
                    Pos["get_desc"](ev));
-                 return Pervasives["print_newline"](0);
+                 return Pervasives["print_newline"](/* () */0);
                  });
       }
     catch(exn)
@@ -273,7 +302,7 @@ var
              breakpoints[1]);
     };
 
-var temporary_breakpoint_position=[0,0];
+var temporary_breakpoint_position=[0,/* None */0];
 
 var
  exec_with_temporary_breakpoint=
@@ -283,7 +312,7 @@ var
     var
      remove=
       function(param)
-       {temporary_breakpoint_position[1]=0,0;
+       {temporary_breakpoint_position[1]=/* None */0,0;
         current_version[1]=previous_version,0;
         var count=List["assoc"](pc,positions[1]);
         
@@ -298,9 +327,9 @@ var
         };
     
     Exec["protect"](function(param){return insert_position(pc);});
-    temporary_breakpoint_position[1]=[/* Some */0,pc],0;
+    temporary_breakpoint_position[1]=/* Some */[0,pc],0;
     try
-     {funct(0);return Exec["protect"](remove);}
+     {funct(/* () */0);return Exec["protect"](remove);}
     catch(x){Exec["protect"](remove);throw x;}
     };
 

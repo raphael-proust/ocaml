@@ -151,13 +151,13 @@ var
  open_out=
   function(name)
    {return open_out_gen
-            (/* :: */[0,
+            ([/* :: */0,
               /* Open_wronly */1,
-              /* :: */[0,
+              [/* :: */0,
                /* Open_creat */3,
-               /* :: */[0,
+               [/* :: */0,
                 /* Open_trunc */4,
-                /* :: */[0,/* Open_text */7,/* [] */0]]]],
+                [/* :: */0,/* Open_text */7,/* [] */0]]]],
              438,
              name);
     };
@@ -166,13 +166,13 @@ var
  open_out_bin=
   function(name)
    {return open_out_gen
-            (/* :: */[0,
+            ([/* :: */0,
               /* Open_wronly */1,
-              /* :: */[0,
+              [/* :: */0,
                /* Open_creat */3,
-               /* :: */[0,
+               [/* :: */0,
                 /* Open_trunc */4,
-                /* :: */[0,/* Open_binary */6,/* [] */0]]]],
+                [/* :: */0,/* Open_binary */6,/* [] */0]]]],
              438,
              name);
     };
@@ -321,9 +321,9 @@ var
  open_in=
   function(name)
    {return open_in_gen
-            (/* :: */[0,
+            ([/* :: */0,
               /* Open_rdonly */0,
-              /* :: */[0,/* Open_text */7,/* [] */0]],
+              [/* :: */0,/* Open_text */7,/* [] */0]],
              0,
              name);
     };
@@ -332,9 +332,9 @@ var
  open_in_bin=
   function(name)
    {return open_in_gen
-            (/* :: */[0,
+            ([/* :: */0,
               /* Open_rdonly */0,
-              /* :: */[0,/* Open_binary */6,/* [] */0]],
+              [/* :: */0,/* Open_binary */6,/* [] */0]],
              0,
              name);
     };

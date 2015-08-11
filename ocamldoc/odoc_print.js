@@ -17,32 +17,32 @@ var
     var
      flush=
       function(param$1)
-       {Format["pp_print_flush"](fmt,0);
+       {Format["pp_print_flush"](fmt,/* () */0);
         var s=Buffer["contents"](buf);
         
         Buffer["reset"](buf);
         return s;
         };
     
-    return [/* tuple */0,fmt,flush];
+    return /* tuple */[0,fmt,flush];
     };
 
-var match=new_fmt(0);
+var match=new_fmt(/* () */0);
 
 var flush_type_fmt=match[2];
 
 var type_fmt=match[1];
 
-var outfuns=Format["pp_get_formatter_out_functions"](type_fmt,0);
+var outfuns=Format["pp_get_formatter_out_functions"](type_fmt,/* () */0);
 
 Format["pp_set_formatter_out_functions"]
  (type_fmt,
-  [/* record */0,
+  /* record */[0,
    outfuns[1],
    outfuns[2],
    function(param){return outfuns[1]("\n  ",0,3);},
    outfuns[4]]);
-var match$1=new_fmt(0);
+var match$1=new_fmt(/* () */0);
 
 var flush_modtype_fmt=match$1[2];
 
@@ -52,8 +52,8 @@ var
  string_of_type_expr=
   function(t)
    {Printtyp["mark_loops"](t);
-    Printtyp["type_scheme_max"]([0,0],type_fmt,t);
-    return flush_type_fmt(0);
+    Printtyp["type_scheme_max"](/* Some */[0,/* false */0],type_fmt,t);
+    return flush_type_fmt(/* () */0);
     };
 
 var Use_code="unknown primitive:caml_set_oo_id";
@@ -68,9 +68,14 @@ var
         
         switch(t$1)
          {case 0:exit=11;
-          case 1:if(code){throw [0,Use_code,code[1]];}else{return [1,0];}
+          case 1:
+           if(code)
+            {throw [0,Use_code,code[1]];}
+           else
+            {return /* Mty_signature */[1,/* [] */0];}
+           
           case 2:
-           return [/* Mty_functor */2,
+           return /* Mty_functor */[2,
                    t$1[1],
                    Misc["may_map"](iter,t$1[2]),
                    iter(t$1[3])];
@@ -87,13 +92,16 @@ var
 var
  string_of_module_type=
   function(code,$staropt$star,t)
-   {if($staropt$star){var complete=$staropt$star[1];}else{var complete=0;}
+   {if($staropt$star)
+     {var complete=$staropt$star[1];}
+    else
+     {var complete=/* false */0;}
     
     try
      {if(complete){var t2=t;}else{var t2=simpl_module_type(code,t);}
       
       Printtyp["modtype"](modtype_fmt,t2);
-      return flush_modtype_fmt(0);
+      return flush_modtype_fmt(/* () */0);
       }
     catch(exn){if(exn[1]=Use_code){return exn[2];}else{throw exn;}}
     };
@@ -107,21 +115,24 @@ var
        {switch(t$1)
          {case 0:return t$1;
           case 1:
-           var tnil=[/* record */0,0,0,0];
+           var tnil=/* record */[0,/* Tnil */0,0,0];
            
            var init=t$1[1][1];
            
-           return [/* Cty_signature */1,
-                   [/* record */0,
-                    [/* record */0,[/* Tobject */4,tnil,[0,0]],init[2],init[3]],
+           return /* Cty_signature */[1,
+                   /* record */[0,
+                    /* record */[0,
+                     /* Tobject */[4,tnil,[0,/* None */0]],
+                     init[2],
+                     init[3]],
                     Types["Vars"][1],
                     Types["Concr"][1],
-                    0]];
+                    /* [] */0]];
            
           case 2:
            var new_ct=iter(t$1[3]);
            
-           return [/* Cty_arrow */2,t$1[1],t$1[2],new_ct];
+           return /* Cty_arrow */[2,t$1[1],t$1[2],new_ct];
            
           }
         };
@@ -132,12 +143,15 @@ var
 var
  string_of_class_type=
   function($staropt$star,t)
-   {if($staropt$star){var complete=$staropt$star[1];}else{var complete=0;}
+   {if($staropt$star)
+     {var complete=$staropt$star[1];}
+    else
+     {var complete=/* false */0;}
     
     if(complete){var t2=t;}else{var t2=simpl_class_type(t);}
     
     Printtyp["class_type"](modtype_fmt,t2);
-    return flush_modtype_fmt(0);
+    return flush_modtype_fmt(/* () */0);
     };
 
 module["exports"]=

@@ -68,24 +68,45 @@ var
   function(f,s)
    {var
      match=
-      Format["fprintf"](f,[0,[18,[1,[0,[11,"<0>",0],"<0>"]],0],"@[<0>"]);
+      Format["fprintf"]
+       (f,
+        /* Format */[0,
+         /* Formatting_gen */[18,
+          /* Open_box */[1,
+           /* Format */[0,
+            /* String_literal */[11,"<0>",/* End_of_format */0],
+            "<0>"]],
+          /* End_of_format */0],
+         "@[<0>"]);
     
     var
      match$1=
       fold
        (function(elt,first)
          {if(!first)
-           {Format["fprintf"](f,[0,[12,44,[17,[0,"@ ",1,0],0]],",@ "])}
+           {Format["fprintf"]
+             (f,
+              /* Format */[0,
+               /* Char_literal */[12,
+                44,
+                /* Formatting_lit */[17,
+                 /* Break */[0,"@ ",1,0],
+                 /* End_of_format */0]],
+               ",@ "])}
           else
            {}
           
           Format["pp_print_string"](f,elt);
-          return 0;
+          return /* false */0;
           },
         s,
-        1);
+        /* true */1);
     
-    return Format["fprintf"](f,[0,[17,0,0],"@]"]);
+    return Format["fprintf"]
+            (f,
+             /* Format */[0,
+              /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0],
+              "@]"]);
     };
 
 var $plus$plus=function(x,y){return add(y,x);};

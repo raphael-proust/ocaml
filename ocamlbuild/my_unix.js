@@ -8,23 +8,25 @@ var My_std=require("My_std");
 var Hashtbl=require("Hashtbl");
 
 
-var is_degraded=1;
+var is_degraded=/* true */1;
 
 var
  stat=
   function(f)
    {if(My_std["sys_file_exists"](f))
      {if("unknown primitive:caml_sys_is_directory")
-       {var $js=0;}
+       {var $js=/* FK_dir */0;}
       else
-       {var $js=1;}
+       {var $js=/* FK_file */1;}
       }
     else
-     {var match=My_std["with_input_file"](0,f,Pervasives["input_char"]);
+     {var
+       match=
+        My_std["with_input_file"](/* None */0,f,Pervasives["input_char"]);
       
       throw [0,Assert_failure,[0,"my_unix.ml",59,51]];
       }
-    return [/* record */0,$js,f];
+    return /* record */[0,$js,f];
     };
 
 var
@@ -37,21 +39,33 @@ var
               {var
                 s$1=
                  Printf["sprintf"]
-                  ([0,[2,0,[11," > '",[2,0,[12,39,0]]]],"%s > '%s'"],s,tmp);
+                  (/* Format */[0,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,
+                      " > '",
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* Char_literal */[12,39,/* End_of_format */0]]]],
+                    "%s > '%s'"],
+                   s,
+                   tmp);
                
                var st=My_std["sys_command"](s$1);
                
                if(st!=0)
                 {Pervasives["failwith"]
                   (Printf["sprintf"]
-                    ([0,
-                      [11,"Error while running: ",[2,0,0]],
+                    (/* Format */[0,
+                      /* String_literal */[11,
+                       "Error while running: ",
+                       /* String */[2,/* No_padding */0,/* End_of_format */0]],
                       "Error while running: %s"],
                      s$1))}
                else
                 {}
                
-               return My_std["with_input_file"](0,tmp,kont);
+               return My_std["with_input_file"](/* None */0,tmp,kont);
                });
     };
 
@@ -61,7 +75,7 @@ var No_such_file="unknown primitive:caml_set_oo_id";
 
 var Link_to_directories_not_supported="unknown primitive:caml_set_oo_id";
 
-var cache=Hashtbl["create"](0,32);
+var cache=Hashtbl["create"](/* None */0,32);
 
 var
  readlinkcmd=
@@ -72,7 +86,11 @@ var
      {if(exn=Not_found)
        {return run_and_open
                 (Printf["sprintf"]
-                  ([0,[11,"readlink ",[2,0,0]],"readlink %s"],
+                  (/* Format */[0,
+                    /* String_literal */[11,
+                     "readlink ",
+                     /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                    "readlink %s"],
                    Filename["quote"](x)),
                  function(ic)
                   {var y=My_std["String"][2](Pervasives["input_line"](ic));
@@ -98,7 +116,7 @@ var
         else
          {var y$1=y;}
         
-        if(lstat(y$1)[1]=0)
+        if(lstat(y$1)[1]=/* FK_dir */0)
          {throw Link_to_directories_not_supported;}
         else
          {return y$1;}
@@ -113,7 +131,7 @@ var
  is_link=
   function(x)
    {try
-     {return 1;}
+     {readlink(x);return /* true */1;}
     catch(exn)
      {var exit;
       
@@ -122,19 +140,23 @@ var
       else
        {if(exn=Not_a_link){exit=22;}else{throw exn;}}
       
-      switch(exit){case 22:return 0;}
+      switch(exit){case 22:return /* false */0;}
       }
     };
 
 var
  lstat=
   function(x)
-   {if(is_link(x)){return [/* record */0,2,x];}else{return stat(x);}};
+   {if(is_link(x))
+     {return /* record */[0,/* FK_link */2,x];}
+    else
+     {return stat(x);}
+    };
 
 var
  implem=
-  [/* record */0,
-   1,
+  /* record */[0,
+   /* true */1,
    is_link,
    run_and_open,
    readlink,
@@ -143,7 +165,7 @@ var
    function(param){return function(prim){throw prim;};},
    Pervasives["at_exit"],
    function(param){throw [0,Assert_failure,[0,"my_unix.ml",117,30]];},
-   function(param){return 0;},
+   function(param){return /* false */0;},
    stat,
    lstat];
 

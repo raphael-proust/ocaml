@@ -9,7 +9,7 @@ var
    {var generate=CamlinternalOO["get_method_label"]($$class,"generate");
     
     CamlinternalOO["set_method"]
-     ($$class,generate,function(self$neg1,l){return 0;});
+     ($$class,generate,function(self$neg1,l){return /* () */0;});
     return function(env,$$self)
      {return CamlinternalOO["create_object_opt"]($$self,$$class);};
     };

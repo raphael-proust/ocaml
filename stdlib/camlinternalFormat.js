@@ -6577,7 +6577,7 @@ var
               {var str$1=fmt[1];
                
                try
-                {return 0;}
+                {return open_box_of_string(str$1);}
                catch(exn)
                 {var tag=exn[1];
                  

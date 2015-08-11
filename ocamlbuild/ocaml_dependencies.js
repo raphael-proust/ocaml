@@ -49,21 +49,43 @@ var
       function(pp,f,smap)
        {Format["fprintf"]
          (f,
-          [0,
-           [18,
-            [1,[0,[11,"<hv0>",0],"<hv0>"]],
-            [11,"{:",[18,[1,[0,[11,"<hv2>",0],"<hv2>"]],0]]],
+          /* Format */[0,
+           /* Formatting_gen */[18,
+            /* Open_box */[1,
+             /* Format */[0,
+              /* String_literal */[11,"<hv0>",/* End_of_format */0],
+              "<hv0>"]],
+            /* String_literal */[11,
+             "{:",
+             /* Formatting_gen */[18,
+              /* Open_box */[1,
+               /* Format */[0,
+                /* String_literal */[11,"<hv2>",/* End_of_format */0],
+                "<hv2>"]],
+              /* End_of_format */0]]],
            "@[<hv0>{:@[<hv2>"]);
         SMap[10]
          (function(k,v)
            {return Format["fprintf"]
                     (f,
-                     [0,
-                      [17,
-                       [0,"@ ",1,0],
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [3,0,[11," =>",[17,[0,"@ ",1,0],[15,[17,0,[12,59,0]]]]]]]],
+                     /* Format */[0,
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* Formatting_gen */[18,
+                        /* Open_box */[1,
+                         /* Format */[0,
+                          /* String_literal */[11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        /* Caml_string */[3,
+                         /* No_padding */0,
+                         /* String_literal */[11,
+                          " =>",
+                          /* Formatting_lit */[17,
+                           /* Break */[0,"@ ",1,0],
+                           /* Alpha */[15,
+                            /* Formatting_lit */[17,
+                             /* Close_box */0,
+                             /* Char_literal */[12,59,/* End_of_format */0]]]]]]]],
                       "@ @[<2>%S =>@ %a@];"],
                      k,
                      pp,
@@ -71,7 +93,18 @@ var
             },
           smap);
         return Format["fprintf"]
-                (f,[0,[17,0,[17,[0,"@,",0,0],[11,":}",[17,0,0]]]],"@]@,:}@]"]);
+                (f,
+                 /* Format */[0,
+                  /* Formatting_lit */[17,
+                   /* Close_box */0,
+                   /* Formatting_lit */[17,
+                    /* Break */[0,"@,",0,0],
+                    /* String_literal */[11,
+                     ":}",
+                     /* Formatting_lit */[17,
+                      /* Close_box */0,
+                      /* End_of_format */0]]]],
+                  "@]@,:}@]"]);
         };
     
     var print_smap_list=print_smap(Tools["pp_l"]);
@@ -85,13 +118,13 @@ var
       function(x,acc)
        {try
          {return SMap[22](x,acc);}
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* [] */0;}else{throw exn;}}
         };
     
     var
      find_all_rec=
       function(xs,map)
-       {var visited=Hashtbl["create"](0,32);
+       {var visited=Hashtbl["create"](/* None */0,32);
         
         var
          $$self=
@@ -100,7 +133,7 @@ var
              {Hashtbl["find"](visited,x);return acc;}
             catch(exn)
              {if(exn=Not_found)
-               {Hashtbl["replace"](visited,x,0);
+               {Hashtbl["replace"](visited,x,/* () */0);
                 var acc$1=Resource["Resources"][4](x,acc);
                 
                 try
@@ -127,7 +160,7 @@ var
                     {return My_std["List"][20]
                              (function(elt,acc$1)
                                {return add
-                                        (elt,[/* :: */0,name,find_all_list(elt,acc$1)],acc$1);
+                                        (elt,/* :: */[0,name,find_all_list(elt,acc$1)],acc$1);
                                 },
                               contents,
                               acc);
@@ -175,44 +208,52 @@ var
         if($staropt$star$2)
          {var pack_mode=$staropt$star$2[1];}
         else
-         {var pack_mode=0;}
+         {var pack_mode=/* false */0;}
         
         if($staropt$star$3)
          {var used_libraries=$staropt$star$3[1];}
         else
-         {var used_libraries=0;}
+         {var used_libraries=/* [] */0;}
         
         if($staropt$star$4)
          {var hidden_packages=$staropt$star$4[1];}
         else
-         {var hidden_packages=0;}
+         {var hidden_packages=/* [] */0;}
         
         if(pack_mode)
-         {var valid_link_exts=[/* :: */0,caml_obj_ext,[0,"cmi",0]];}
+         {var
+           valid_link_exts=
+            /* :: */[0,caml_obj_ext,/* :: */[0,"cmi",/* [] */0]];
+          }
         else
          {var
            valid_link_exts=
-            [/* :: */0,caml_obj_ext,[/* :: */0,caml_lib_ext,0]];
+            /* :: */[0,caml_obj_ext,/* :: */[0,caml_lib_ext,/* [] */0]];
           }
         
         mydprintf
-         ([0,
-           [11,
+         (/* Format */[0,
+           /* String_literal */[11,
             "caml_transitive_closure",
-            [17,
-             [0,"@ ",1,0],
-             [11,
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* String_literal */[11,
               "~caml_obj_ext:",
-              [3,
-               0,
-               [17,
-                [0,"@ ",1,0],
-                [11,
+              /* Caml_string */[3,
+               /* No_padding */0,
+               /* Formatting_lit */[17,
+                /* Break */[0,"@ ",1,0],
+                /* String_literal */[11,
                  "~pack_mode:",
-                 [9,
-                  [17,
-                   [0,"@ ",1,0],
-                   [11,"~used_libraries:",[15,[17,[0,"@ ",1,0],[15,0]]]]]]]]]]]],
+                 /* Bool */[9,
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@ ",1,0],
+                   /* String_literal */[11,
+                    "~used_libraries:",
+                    /* Alpha */[15,
+                     /* Formatting_lit */[17,
+                      /* Break */[0,"@ ",1,0],
+                      /* Alpha */[15,/* End_of_format */0]]]]]]]]]]]],
            "caml_transitive_closure@ ~caml_obj_ext:%S@ ~pack_mode:%b@ ~used_libraries:%a@ %a"],
           caml_obj_ext,
           pack_mode,
@@ -227,7 +268,13 @@ var
             Resource["Resources"][1]);
         
         mydprintf
-         ([0,[11,"packages:",[17,[0,"@ ",1,0],[15,0]]],"packages:@ %a"],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "packages:",
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,/* End_of_format */0]]],
+           "packages:@ %a"],
           Resource["Resources"][29],
           packages);
         var
@@ -288,15 +335,25 @@ var
             SMap[1]);
         
         mydprintf
-         ([0,
-           [11,"dependency_map:",[17,[0,"@ ",1,0],[15,0]]],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "dependency_map:",
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,/* End_of_format */0]]],
            "dependency_map:@ %a"],
           Utils[7],
           dependency_map);
         var used_files=Utils[10](fns,dependency_map);
         
         mydprintf
-         ([0,[11,"used_files:",[17,[0,"@ ",1,0],[15,0]]],"used_files:@ %a"],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "used_files:",
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,/* End_of_format */0]]],
+           "used_files:@ %a"],
           Resource["Resources"][29],
           used_files);
         var
@@ -306,16 +363,20 @@ var
              {if
                (Resource["Resources"][3](file,packages)&&
                 !My_std["List"][30](file,hidden_packages))
-               {return [/* :: */0,file,acc];}
+               {return /* :: */[0,file,acc];}
               else
                {return acc;}
               },
             used_files,
-            0);
+            /* [] */0);
         
         mydprintf
-         ([0,
-           [11,"open_packages:",[17,[0,"@ ",1,0],[15,0]]],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "open_packages:",
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,/* End_of_format */0]]],
            "open_packages:@ %a"],
           Tools["pp_l"],
           open_packages);
@@ -334,7 +395,13 @@ var
              }];
         
         mydprintf
-         ([0,[11,"lib_index:",[17,[0,"@ ",1,0],[15,0]]],"lib_index:@ %a"],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "lib_index:",
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,/* End_of_format */0]]],
+           "lib_index:@ %a"],
           Utils[8](Utils[6]),
           lib_index);
         var
@@ -352,14 +419,15 @@ var
              {if(pkgs[2])
                {return Pervasives["failwith"]
                         (My_std["sbprintf"]
-                          ([0,
-                            [11,
+                          (/* Format */[0,
+                            /* String_literal */[11,
                              "the file ",
-                             [3,
-                              0,
-                              [11,
+                             /* Caml_string */[3,
+                              /* No_padding */0,
+                              /* String_literal */[11,
                                " is included in more than one active open package (",
-                               [15,[12,41,0]]]]],
+                               /* Alpha */[15,
+                                /* Char_literal */[12,41,/* End_of_format */0]]]]],
                             "the file %S is included in more than one active open package (%a)"],
                            x,
                            Tools["pp_l"],
@@ -383,24 +451,25 @@ var
              {if(libs[2])
                {return Pervasives["failwith"]
                         (My_std["sbprintf"]
-                          ([0,
-                            [11,
+                          (/* Format */[0,
+                            /* String_literal */[11,
                              "the file ",
-                             [3,
-                              0,
-                              [11,
+                             /* Caml_string */[3,
+                              /* No_padding */0,
+                              /* String_literal */[11,
                                " is included in more than one active library (",
-                               [15,[12,41,0]]]]],
+                               /* Alpha */[15,
+                                /* Char_literal */[12,41,/* End_of_format */0]]]]],
                             "the file %S is included in more than one active library (%a)"],
                            x,
                            Tools["pp_l"],
                            libs));
                 }
               else
-               {return [/* Some */0,libs[1]];}
+               {return /* Some */[0,libs[1]];}
               }
             else
-             {return 0;}
+             {return /* None */0;}
             };
         
         var
@@ -451,8 +520,12 @@ var
              }];
         
         mydprintf
-         ([0,
-           [11,"dependencies:",[17,[0,"@ ",1,0],[15,0]]],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "dependencies:",
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,/* End_of_format */0]]],
            "dependencies:@ %a"],
           Utils[8](Utils[7]),
           dependencies);
@@ -484,33 +557,34 @@ var
                      {return cycle;}
                     else
                      {if(My_std["List"][30](f,path))
-                       {return [/* Some */0,My_std["List"][9](path)];}
+                       {return /* Some */[0,My_std["List"][9](path)];}
                       else
                        {if(!Resource["Resources"][3](f,files))
-                         {return 0;}
+                         {return /* None */0;}
                         else
-                         {return dfs([/* :: */0,f,path],f);}
+                         {return dfs(/* :: */[0,f,path],f);}
                         }
                       }
                     };
                 
                 if(Resource["Resources"][3](fn,dead_ends[1]))
-                 {return 0;}
+                 {return /* None */0;}
                 else
                  {var
                    cycle=
-                    Resource["Resources"][14](through_dep,dependencies_of(fn),0);
+                    Resource["Resources"][14]
+                     (through_dep,dependencies_of(fn),/* None */0);
                   
                   if(cycle)
                    {return cycle;}
                   else
                    {dead_ends[1]=Resource["Resources"][4](fn,dead_ends[1]),0;
-                    return 0;
+                    return /* None */0;
                     }
                   }
                 };
             
-            var match=dfs(0,starting_file);
+            var match=dfs(/* [] */0,starting_file);
             
             if(match)
              {return match[1];}
@@ -518,7 +592,7 @@ var
              {return Resource["Resources"][20](files);}
             };
         
-        var needed_in_order=[0,0];
+        var needed_in_order=[0,/* [] */0];
         
         var needed=[0,Resource["Resources"][1]];
         
@@ -546,10 +620,10 @@ var
                        {if(My_std["sys_file_exists"](f$prime))
                          {return aux(f$prime);}
                         else
-                         {if(pack_mode){return aux(f);}else{return 0;}}
+                         {if(pack_mode){return aux(f);}else{return /* () */0;}}
                         }
                       else
-                       {return 0;}
+                       {return /* () */0;}
                       }
                     else
                      {return aux(f);}
@@ -559,7 +633,7 @@ var
                   },
                 dependencies_of(fn));
               needed[1]=Resource["Resources"][4](fn,needed[1]),0;
-              return needed_in_order[1]=[/* :: */0,fn,needed_in_order[1]],0;
+              return needed_in_order[1]=/* :: */[0,fn,needed_in_order[1]],0;
               }
             else
              {return 0;}
@@ -567,10 +641,17 @@ var
         
         My_std["List"][14](aux,fns);
         mydprintf
-         ([0,
-           [11,
+         (/* Format */[0,
+           /* String_literal */[11,
             "caml_transitive_closure:",
-            [17,[0,"@ ",1,0],[15,[11," ->",[17,[0,"@ ",1,0],[15,0]]]]]],
+            /* Formatting_lit */[17,
+             /* Break */[0,"@ ",1,0],
+             /* Alpha */[15,
+              /* String_literal */[11,
+               " ->",
+               /* Formatting_lit */[17,
+                /* Break */[0,"@ ",1,0],
+                /* Alpha */[15,/* End_of_format */0]]]]]],
            "caml_transitive_closure:@ %a ->@ %a"],
           Tools["pp_l"],
           fns,

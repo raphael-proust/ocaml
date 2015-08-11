@@ -26,10 +26,10 @@ var
      phony$1=
       function(param)
        {if(typeof param=="number")
-         {switch(param){case 0:return 1;}}
+         {switch(param){case 0:return /* true */1;}}
         else
          {switch(param[0])
-           {case 0:return phony(d[1][param[1]]);case 1:return 0;}}
+           {case 0:return phony(d[1][param[1]]);case 1:return /* false */0;}}
         };
     
     var
@@ -54,14 +54,14 @@ var
          loop=
           function(j)
            {if(j=t[1][i$2]["length"])
-             {return 1;}
+             {return /* true */1;}
             else
              {var e=t[1][i$2][j][1];
               
               if("unknown primitive:isint")
                {return loop(j+1);}
               else
-               {if(phony$1(e)){return loop(j+1);}else{return 0;}}
+               {if(phony$1(e)){return loop(j+1);}else{return /* false */0;}}
               }
             };
         
@@ -96,26 +96,34 @@ var
               
               var colspan=3*(next_j-j);
               
-              var les$1=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les];
+              var
+               les$1=
+                /* :: */[0,
+                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                 les];
               
-              if(t[1][i$2][j][1]=0)
+              if(t[1][i$2][j][1]=/* Nothing */0)
                {var s="&nbsp;";}
               else
                {var s=elem_txt(t[1][i$2][j][1]);}
               
               var
                les$2=
-                [/* :: */0,
-                 [/* tuple */0,colspan-2,1,[/* TDstring */0,s]],
+                /* :: */[0,
+                 /* tuple */[0,colspan-2,/* CenterA */1,/* TDstring */[0,s]],
                  les$1];
               
-              var les$3=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$2];
+              var
+               les$3=
+                /* :: */[0,
+                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                 les$2];
               
               return loop(les$3,next_j);
               }
             };
         
-        var les=loop(0,0);
+        var les=loop(/* [] */0,0);
         
         return $$Array["of_list"](List["rev"](les));
         };
@@ -148,9 +156,17 @@ var
               
               var colspan=3*(next_j-j);
               
-              var les$1=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les];
+              var
+               les$1=
+                /* :: */[0,
+                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                 les];
               
-              if(k>0&&(t[1][k-1][j][1]=0)||(t[1][k][j][1]=0))
+              if
+               (k>
+                0&&
+                (t[1][k-1][j][1]=/* Nothing */0)||
+                (t[1][k][j][1]=/* Nothing */0))
                {var s="&nbsp;";}
               else
                {if(phony$1(t[1][i$2][j][1]))
@@ -161,17 +177,21 @@ var
               
               var
                les$2=
-                [/* :: */0,
-                 [/* tuple */0,colspan-2,1,[/* TDstring */0,s]],
+                /* :: */[0,
+                 /* tuple */[0,colspan-2,/* CenterA */1,/* TDstring */[0,s]],
                  les$1];
               
-              var les$3=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$2];
+              var
+               les$3=
+                /* :: */[0,
+                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                 les$2];
               
               return loop(les$3,next_j);
               }
             };
         
-        var les=loop(0,0);
+        var les=loop(/* [] */0,0);
         
         return $$Array["of_list"](List["rev"](les));
         };
@@ -204,24 +224,35 @@ var
               
               var colspan=3*(next_j-j)-2;
               
-              var les$1=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les];
+              var
+               les$1=
+                /* :: */[0,
+                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                 les];
               
-              if((t[1][i$2][j][1]=0)||(t[1][i$2+1][j][1]=0))
+              if
+               ((t[1][i$2][j][1]=/* Nothing */0)||
+                (t[1][i$2+1][j][1]=/* Nothing */0))
                {var
                  les$2=
-                  [/* :: */0,[/* tuple */0,colspan,0,[0,"&nbsp;"]],les$1];
+                  /* :: */[0,
+                   /* tuple */[0,
+                    colspan,
+                    /* LeftA */0,
+                    /* TDstring */[0,"&nbsp;"]],
+                   les$1];
                 }
               else
                {var
                  loop$2=
                   function(j$1)
                    {if(j$1=next_j)
-                     {return 1;}
+                     {return /* true */1;}
                     else
                      {if(phony$1(t[1][i$2+1][j$1][1]))
                        {return loop$2(j$1+1);}
                       else
-                       {return 0;}
+                       {return /* false */0;}
                       }
                     };
                 
@@ -231,18 +262,22 @@ var
                 
                 var
                  les$2=
-                  [/* :: */0,
-                   [/* tuple */0,colspan,1,[/* TDstring */0,s]],
+                  /* :: */[0,
+                   /* tuple */[0,colspan,/* CenterA */1,/* TDstring */[0,s]],
                    les$1];
                 }
               
-              var les$3=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$2];
+              var
+               les$3=
+                /* :: */[0,
+                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                 les$2];
               
               return loop(les$3,next_j);
               }
             };
         
-        var les=loop(0,0);
+        var les=loop(/* [] */0,0);
         
         return $$Array["of_list"](List["rev"](les));
         };
@@ -254,7 +289,7 @@ var
          loop=
           function(j)
            {if(j=t[1][i$2]["length"])
-             {return 0;}
+             {return /* false */0;}
             else
              {var x=t[1][i$2][j][2];
               
@@ -264,16 +299,16 @@ var
                loop1=
                 function(j$1)
                  {if(j$1=t[1][i$2]["length"])
-                   {return 0;}
+                   {return /* false */0;}
                   else
-                   {if(t[1][i$2][j$1][1]=0)
+                   {if(t[1][i$2][j$1][1]=/* Nothing */0)
                      {return loop(j$1);}
                     else
                      {if("unknown primitive:caml_notequal")
                        {return loop(j$1);}
                       else
                        {if("unknown primitive:caml_notequal")
-                         {return 1;}
+                         {return /* true */1;}
                         else
                          {return loop1(j$1+1);}
                         }
@@ -307,7 +342,7 @@ var
                  {if(j$1=t[1][i$2]["length"])
                    {return j$1;}
                   else
-                   {if((e=0)&&(t[1][i$2][j$1][1]=0))
+                   {if((e=/* Nothing */0)&&(t[1][i$2][j$1][1]=/* Nothing */0))
                      {return loop$1(j$1+1);}
                     else
                      {if("unknown primitive:caml_equal")
@@ -351,28 +386,38 @@ var
                     
                     if(next_l>next_j)
                      {Printf["eprintf"]
-                       ([0,
-                         [11,
+                       (/* Format */[0,
+                         /* String_literal */[11,
                           "assert false i ",
-                          [4,
-                           0,
-                           0,
-                           0,
-                           [11,
+                          /* Int */[4,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           /* String_literal */[11,
                             " k ",
-                            [4,
-                             0,
-                             0,
-                             0,
-                             [11,
+                            /* Int */[4,
+                             /* Int_d */0,
+                             /* No_padding */0,
+                             /* No_precision */0,
+                             /* String_literal */[11,
                               " l ",
-                              [4,
-                               0,
-                               0,
-                               0,
-                               [11,
+                              /* Int */[4,
+                               /* Int_d */0,
+                               /* No_padding */0,
+                               /* No_precision */0,
+                               /* String_literal */[11,
                                 " next_l ",
-                                [4,0,0,0,[11," next_j ",[4,0,0,0,[12,10,0]]]]]]]]]]],
+                                /* Int */[4,
+                                 /* Int_d */0,
+                                 /* No_padding */0,
+                                 /* No_precision */0,
+                                 /* String_literal */[11,
+                                  " next_j ",
+                                  /* Int */[4,
+                                   /* Int_d */0,
+                                   /* No_padding */0,
+                                   /* No_precision */0,
+                                   /* Char_literal */[12,10,/* End_of_format */0]]]]]]]]]]],
                          "assert false i %d k %d l %d next_l %d next_j %d\n"],
                         i$2,
                         k,
@@ -403,48 +448,76 @@ var
                          ph=
                           function(s)
                            {if(phony$1(t[1][k][l][1]))
-                             {return [0,"&nbsp;"];}
+                             {return /* TDstring */[0,"&nbsp;"];}
                             else
                              {return s;}
                             };
                         
                         if((l=j)&&(next_l$1=next_j))
-                         {var les$2=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$1];
+                         {var
+                           les$2=
+                            /* :: */[0,
+                             /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                             les$1];
                           
-                          var s=ph([0,"|"]);
+                          var s=ph(/* TDstring */[0,"|"]);
                           
-                          var les$3=[/* :: */0,[/* tuple */0,colspan,1,s],les$2];
+                          var
+                           les$3=
+                            /* :: */[0,/* tuple */[0,colspan,/* CenterA */1,s],les$2];
                           
-                          var les$4=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$3];
+                          var
+                           les$4=
+                            /* :: */[0,
+                             /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                             les$3];
                           }
                         else
                          {if(l=j)
-                           {var les$5=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$1];
+                           {var
+                             les$5=
+                              /* :: */[0,
+                               /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                               les$1];
                             
-                            var s$1=ph([1,2]);
+                            var s$1=ph(/* TDhr */[1,/* RightA */2]);
                             
-                            var les$6=[/* :: */0,[/* tuple */0,colspan,2,s$1],les$5];
+                            var
+                             les$6=
+                              /* :: */[0,/* tuple */[0,colspan,/* RightA */2,s$1],les$5];
                             
-                            var s$2=ph([1,1]);
+                            var s$2=ph(/* TDhr */[1,/* CenterA */1]);
                             
-                            var les$4=[/* :: */0,[/* tuple */0,1,0,s$2],les$6];
+                            var
+                             les$4=
+                              /* :: */[0,/* tuple */[0,1,/* LeftA */0,s$2],les$6];
                             }
                           else
                            {if(next_l$1=next_j)
-                             {var s$3=ph([1,1]);
+                             {var s$3=ph(/* TDhr */[1,/* CenterA */1]);
                               
-                              var les$7=[/* :: */0,[/* tuple */0,1,0,s$3],les$1];
+                              var
+                               les$7=
+                                /* :: */[0,/* tuple */[0,1,/* LeftA */0,s$3],les$1];
                               
-                              var s$4=ph([1,0]);
+                              var s$4=ph(/* TDhr */[1,/* LeftA */0]);
                               
-                              var les$8=[/* :: */0,[/* tuple */0,colspan,0,s$4],les$7];
+                              var
+                               les$8=
+                                /* :: */[0,/* tuple */[0,colspan,/* LeftA */0,s$4],les$7];
                               
-                              var les$4=[/* :: */0,[0,1,0,[0,"&nbsp;"]],les$8];
+                              var
+                               les$4=
+                                /* :: */[0,
+                                 /* tuple */[0,1,/* LeftA */0,/* TDstring */[0,"&nbsp;"]],
+                                 les$8];
                               }
                             else
-                             {var s$5=ph([1,1]);
+                             {var s$5=ph(/* TDhr */[1,/* CenterA */1]);
                               
-                              var les$4=[/* :: */0,[/* tuple */0,colspan+2,0,s$5],les$1];
+                              var
+                               les$4=
+                                /* :: */[0,/* tuple */[0,colspan+2,/* LeftA */0,s$5],les$1];
                               }
                             }
                           }
@@ -455,7 +528,12 @@ var
                      {case 334:
                        var
                         les$4=
-                         [/* :: */0,[/* tuple */0,colspan+2,0,[0,"&nbsp;"]],les$1];
+                         /* :: */[0,
+                          /* tuple */[0,
+                           colspan+2,
+                           /* LeftA */0,
+                           /* TDstring */[0,"&nbsp;"]],
+                          les$1];
                        
                       }
                     
@@ -467,7 +545,7 @@ var
               }
             };
         
-        var les=loop(0,0);
+        var les=loop(/* [] */0,0);
         
         return $$Array["of_list"](List["rev"](les));
         };
@@ -481,17 +559,17 @@ var
          {if((i$2=t[1]["length"]-1)&&all_empty(i$2))
            {return hts;}
           else
-           {var hts$1=[/* :: */0,line_elem_txt(i$2),hts];
+           {var hts$1=/* :: */[0,line_elem_txt(i$2),hts];
             
             if(i$2<t[1]["length"]-1)
-             {var hts$2=[/* :: */0,vbars_txt(i$2+1,i$2),hts$1];
+             {var hts$2=/* :: */[0,vbars_txt(i$2+1,i$2),hts$1];
               
               if(exist_several_branches(i$2,i$2))
                {var
                  hts$3=
-                  [/* :: */0,
+                  /* :: */[0,
                    alone_bar_txt(i$2),
-                   [/* :: */0,hbars_txt(i$2,i$2),hts$2]];
+                   /* :: */[0,hbars_txt(i$2,i$2),hts$2]];
                 }
               else
                {var hts$3=hts$2;}
@@ -501,9 +579,9 @@ var
                 (i$2<t[1]["length"]-2||!all_empty(i$2+1)))
                {var
                  hts$4=
-                  [/* :: */0,
+                  /* :: */[0,
                    vbars_txt(i$2+1,i$2+1),
-                   [/* :: */0,hbars_txt(i$2,i$2+1),hts$3]];
+                   /* :: */[0,hbars_txt(i$2,i$2+1),hts$3]];
                 }
               else
                {var hts$4=hts$3;}
@@ -516,7 +594,7 @@ var
           }
         };
     
-    var hts=loop(0,0);
+    var hts=loop(/* [] */0,0);
     
     return $$Array["of_list"](List["rev"](hts));
     };
@@ -528,12 +606,12 @@ var
      loop=
       function(i$2)
        {if(i$2=d[1]["length"])
-         {return 0;}
+         {return /* [] */0;}
         else
          {var n=d[1][i$2];
           
-          if(n[1]=0)
-           {return [/* :: */0,i$2,loop(i$2+1)];}
+          if(n[1]=/* [] */0)
+           {return /* :: */[0,i$2,loop(i$2+1)];}
           else
            {return loop(i$2+1);}
           }
@@ -566,7 +644,7 @@ var
                                   {if(List["mem"](c,children$2))
                                     {return children$2;}
                                    else
-                                    {return [/* :: */0,c,children$2];}
+                                    {return /* :: */[0,c,children$2];}
                                    },
                                  e[3],
                                  children$1);
@@ -574,26 +652,29 @@ var
                        case 1:exit=308;
                        }}
                    
-                   switch(exit){case 308:return 0;}
+                   switch(exit){case 308:return /* [] */0;}
                    },
                  el,
                  children);
         };
     
-    return merge_children(0,parents);
+    return merge_children(/* [] */0,parents);
     };
 
 var
  get_block=
   function(t,i$2,j)
    {if(j=t[1][i$2]["length"])
-     {return 0;}
+     {return /* None */0;}
     else
      {if(j=t[1][i$2]["length"]-1)
        {var x=t[1][i$2][j];
         
-        return [/* Some */0,
-                [/* tuple */0,[/* :: */0,[/* tuple */0,x[1],1],0],1,x[2]]];
+        return /* Some */[0,
+                /* tuple */[0,
+                 /* :: */[0,/* tuple */[0,x[1],1],/* [] */0],
+                 1,
+                 x[2]]];
         }
       else
        {var x$1=t[1][i$2][j];
@@ -624,22 +705,22 @@ var
               if("unknown primitive:caml_equal")
                {var
                  match$4=
-                  [/* tuple */0,
-                   [/* :: */0,[/* tuple */0,x1,c1+1],list],
+                  /* tuple */[0,
+                   /* :: */[0,/* tuple */[0,x1,c1+1],list],
                    Pervasives["max"](mpc,c1+1)];
                 }
               else
                {var
                  match$4=
-                  [/* tuple */0,
-                   [/* :: */0,
-                    [/* tuple */0,x$1[1],1],
-                    [/* :: */0,[/* tuple */0,x1,c1],list]],
+                  /* tuple */[0,
+                   /* :: */[0,
+                    /* tuple */[0,x$1[1],1],
+                    /* :: */[0,/* tuple */[0,x1,c1],list]],
                    Pervasives["max"](mpc,c1)];
                 }
               
-              return [/* Some */0,
-                      [/* tuple */0,match$4[1],match$4[2],match$1[3]]];
+              return /* Some */[0,
+                      /* tuple */[0,match$4[1],match$4[2],match$1[3]]];
               }
             else
              {exit=303;}
@@ -651,9 +732,9 @@ var
            {case 303:throw [0,Assert_failure,[0,"odoc_dag2html.ml",346,13]];}
           }
         else
-         {return [/* Some */0,
-                  [/* tuple */0,
-                   [/* :: */0,[/* tuple */0,x$1[1],1],0],
+         {return /* Some */[0,
+                  /* tuple */[0,
+                   /* :: */[0,/* tuple */[0,x$1[1],1],/* [] */0],
                    1,
                    x$1[2]]];
           }
@@ -678,7 +759,7 @@ var
           
           var cs=List["fold_right"](S[4],n[3],S[1]);
           
-          return [/* tuple */0,[/* :: */0,id,0],cs];
+          return /* tuple */[0,/* :: */[0,id,/* [] */0],cs];
           },
         list);
     
@@ -707,42 +788,42 @@ var
                 var nl1=match$1[1];
                 
                 if(S[2](S[8](cs,cs1)))
-                 {return loop1([/* :: */0,[/* tuple */0,nl1,cs1],beg],rest1);}
+                 {return loop1(/* :: */[0,/* tuple */[0,nl1,cs1],beg],rest1);}
                 else
                  {return loop
-                          ([/* :: */0,
-                            [/* tuple */0,Pervasives["@"](nl,nl1),S[7](cs,cs1)],
+                          (/* :: */[0,
+                            /* tuple */[0,Pervasives["@"](nl,nl1),S[7](cs,cs1)],
                             Pervasives["@"](List["rev"](beg),rest1)]);
                   }
                 }
               else
-               {return [/* :: */0,[/* tuple */0,nl,cs],loop(rest)];}
+               {return /* :: */[0,/* tuple */[0,nl,cs],loop(rest)];}
               };
           
-          return loop1(0,rest);
+          return loop1(/* [] */0,rest);
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     var nlcsl$1=loop(nlcsl);
     
     return List["fold_right"]
             (function(param,a)
-              {var span=new_span_id(0);
+              {var span=new_span_id(/* () */0);
                
                return List["fold_right"]
                        (function(n,a$1)
-                         {return [/* :: */0,[/* record */0,[/* Elem */0,n],span],a$1];
+                         {return /* :: */[0,/* record */[0,/* Elem */[0,n],span],a$1];
                           },
                         param[1],
                         a);
                },
              nlcsl$1,
-             0);
+             /* [] */0);
     };
 
-var copy_data=function(d){return [/* record */0,d[1],d[2]];};
+var copy_data=function(d){return /* record */[0,d[1],d[2]];};
 
 var
  insert_columns=
@@ -759,7 +840,7 @@ var
        loop=
         function(k)
          {if(k=line["length"])
-           {return 0;}
+           {return /* () */0;}
           else
            {if(k<j)
              {line1[k]=copy_data(line[k]),0}
@@ -776,7 +857,7 @@ var
       
       loop(0)}
     
-    return [/* record */0,t1];
+    return /* record */[0,t1];
     };
 
 var
@@ -801,14 +882,22 @@ var
           
           var children=get_children(d,parents);
           
-          if(children=0)
-           {var children$1=[/* :: */0,[/* record */0,0,new_span_id(0)],0];}
+          if(children=/* [] */0)
+           {var
+             children$1=
+              /* :: */[0,
+               /* record */[0,/* Nothing */0,new_span_id(/* () */0)],
+               /* [] */0];
+            }
           else
            {var
              children$1=
               List["map"]
                (function(n)
-                 {return [/* record */0,[/* Elem */0,n],new_span_id(0)];},
+                 {return /* record */[0,
+                          /* Elem */[0,n],
+                          new_span_id(/* () */0)];
+                  },
                 children);
             }
           
@@ -829,19 +918,19 @@ var
                    loop$1=
                     function(cnt$1,list$1)
                      {if(cnt$1=1)
-                       {return [/* :: */0,d$1,list$1];}
+                       {return /* :: */[0,d$1,list$1];}
                       else
-                       {return [/* :: */0,copy_data(d$1),loop$1(cnt$1-1,list$1)];}
+                       {return /* :: */[0,copy_data(d$1),loop$1(cnt$1-1,list$1)];}
                       };
                   
                   return loop$1(cnt,list);
                   },
                 children$1,
-                0);
+                /* [] */0);
             
             var match$2=loop(t$1,i$3,j$1);
             
-            return [/* tuple */0,
+            return /* tuple */[0,
                     match$2[1],
                     Pervasives["@"](children$2,match$2[2])];
             }
@@ -878,14 +967,14 @@ var
                   
                   var t$2=loop$1(c,param[1],j$2);
                   
-                  return [/* tuple */0,
+                  return /* tuple */[0,
                           t$2,
-                          [/* :: */0,
-                           [/* tuple */0,param$1[1],parent_colspan],
+                          /* :: */[0,
+                           /* tuple */[0,param$1[1],parent_colspan],
                            param[2]],
                           j$2+parent_colspan];
                   },
-                [/* tuple */0,t$1,0,j],
+                /* tuple */[0,t$1,/* [] */0,j],
                 parents);
             
             var parents$1=List["rev"](match$3[2]);
@@ -906,7 +995,7 @@ var
                    loop$1=
                     function(cc,t$2,j$2)
                      {if(cc=0)
-                       {return [/* tuple */0,t$2,j$2];}
+                       {return /* tuple */[0,t$2,j$2];}
                       else
                        {var t$3=insert_columns(t$2,cnt$1-1,j$2);
                         
@@ -918,7 +1007,7 @@ var
                   
                   return loop$1(param$1[2],param[1],param[2]);
                   },
-                [/* tuple */0,match$3[1],j],
+                /* tuple */[0,match$3[1],j],
                 parents$1);
             
             var cnt$2=parents_colspan/g;
@@ -933,23 +1022,23 @@ var
                      {if(cnt$3=0)
                        {return list$1;}
                       else
-                       {return [/* :: */0,d$1,loop$1(cnt$3-1,list$1)];}
+                       {return /* :: */[0,d$1,loop$1(cnt$3-1,list$1)];}
                       };
                   
                   return loop$1(cnt$2,list);
                   },
                 children$1,
-                0);
+                /* [] */0);
             
             var match$5=loop(match$4[1],i$3,match$4[2]);
             
-            return [/* tuple */0,
+            return /* tuple */[0,
                     match$5[1],
                     Pervasives["@"](children$3,match$5[2])];
             }
           }
         else
-         {return [/* tuple */0,t$1,0];}
+         {return /* tuple */[0,t$1,/* [] */0];}
         };
     
     return loop(t,i$2,0);
@@ -961,7 +1050,9 @@ var
    {t[1][t[1]["length"]-1][k]=t[1][i$2][k],0;
     for(var r=i$2;r<=t[1]["length"]-2;r++)
      {t[1][r][k]=
-      [/* record */0,[/* Ghost */1,new_ghost_id(0)],new_span_id(0)],
+      /* record */[0,
+       /* Ghost */[1,new_ghost_id(/* () */0)],
+       new_span_id(/* () */0)],
       0}
     };
 
@@ -978,7 +1069,7 @@ var
      loop=
       function(j)
        {if(j=len)
-         {return 0;}
+         {return /* () */0;}
         else
          {var match=last[j][1];
           
@@ -1104,7 +1195,7 @@ var
                  case 1:
                   if("unknown primitive:caml_equal")
                    {t[1][i$2+1][j]=
-                    [/* record */0,[/* Ghost */1,match[1]],t[1][i$2+1][j-1][2]],
+                    /* record */[0,/* Ghost */[1,match[1]],t[1][i$2+1][j-1][2]],
                     0}
                   else
                    {}
@@ -1135,7 +1226,7 @@ var
                  case 1:
                   if("unknown primitive:caml_equal")
                    {t[1][i$2][j]=
-                    [/* record */0,[/* Ghost */1,match$2[1]],t[1][i$2][j-1][2]],
+                    /* record */[0,/* Ghost */[1,match$2[1]],t[1][i$2][j-1][2]],
                     0;
                     if(i$2>0){t[1][i$2-1][j][2]=t[1][i$2-1][j-1][2],0}else{}
                     }
@@ -1160,7 +1251,7 @@ var
       var len=line["length"];
       
       for(var j=1;j<=len-1;j++)
-       {if("unknown primitive:caml_equal"&&line[j][1]!=0)
+       {if("unknown primitive:caml_equal"&&line[j][1]!=/* Nothing */0)
          {line[j][2]=line[j-1][2],0}
         else
          {}
@@ -1185,7 +1276,7 @@ var
      loop=
       function(j,cs)
        {if(j=line["length"])
-         {return 0;}
+         {return /* () */0;}
         else
          {var match=line[j][1];
           
@@ -1222,7 +1313,7 @@ var
      loop=
       function(i$3,j1$1,j2$1,j3$1,j4$1)
        {if(i$3=0)
-         {return [/* tuple */0,i$3,j1$1,j2$1,j3$1,j4$1];}
+         {return /* tuple */[0,i$3,j1$1,j2$1,j3$1,j4$1];}
         else
          {var x1=t[i$3-1][j1$1];
           
@@ -1233,7 +1324,7 @@ var
           var x4=t[i$3-1][j4$1];
           
           if("unknown primitive:caml_equal")
-           {return [/* tuple */0,i$3,j1$1,j2$1,j3$1,j4$1];}
+           {return /* tuple */[0,i$3,j1$1,j2$1,j3$1,j4$1];}
           else
            {var
              loop$1=
@@ -1310,7 +1401,7 @@ var
      loop=
       function(i$3,j1$1,j2$1,j3$1,j4$1)
        {if(i$3=t["length"]-1)
-         {return [/* tuple */0,j1$1,j2$1,j3$1,j4$1];}
+         {return /* tuple */[0,j1$1,j2$1,j3$1,j4$1];}
         else
          {var x1=t[i$3][j1$1];
           
@@ -1397,7 +1488,7 @@ var
        loop=
         function(j1$1,j2$1)
          {if(j1$1>=j2$1)
-           {return 0;}
+           {return /* () */0;}
           else
            {var v=line[j1$1];
             
@@ -1458,10 +1549,10 @@ var
           if(njj1!=jj1$2||njj2!=jj2$2||njj3!=jj3$2||njj4!=jj4$2)
            {return loop(nii$1,jj1$2,jj2$2,jj3$2,jj4$2);}
           else
-           {return [/* tuple */0,nii$1,jj1$2,jj2$2,jj3$2,jj4$2];}
+           {return /* tuple */[0,nii$1,jj1$2,jj2$2,jj3$2,jj4$2];}
           }
         else
-         {return [/* tuple */0,ii,jj1$1,jj2$1,jj3$1,jj4$1];}
+         {return /* tuple */[0,ii,jj1$1,jj2$1,jj3$1,jj4$1];}
         };
     
     return loop(i$2,jj1,jj2,jj3,jj4);
@@ -1657,7 +1748,7 @@ var
        loop=
         function(y$1,j$1)
          {if(j$1>=line["length"])
-           {return 0;}
+           {return /* () */0;}
           else
            {if("unknown primitive:caml_equal"||"unknown primitive:caml_equal")
              {var y$2=line[j$1][2];
@@ -1673,10 +1764,10 @@ var
           };
       
       loop(y,j2$1);
-      return [/* Some */0,[/* tuple */0,[/* record */0,t1$1],1]];
+      return /* Some */[0,/* tuple */[0,/* record */[0,t1$1],/* true */1]];
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
@@ -1753,7 +1844,7 @@ var
      loop=
       function(i$2)
        {if(i$2>=row["length"])
-         {return 0;}
+         {return /* () */0;}
         else
          {var x=row[i$2][1];
           
@@ -1782,7 +1873,7 @@ var
      loop=
       function(j)
        {if(j=line["length"])
-         {return 0;}
+         {return /* false */0;}
         else
          {var match=line[j][1];
           
@@ -1793,7 +1884,11 @@ var
           else
            {switch(match[0])
              {case 0:
-               if(phony(d[1][match[1]])){return 1;}else{return loop(j+1);}
+               if(phony(d[1][match[1]]))
+                {return /* true */1;}
+               else
+                {return loop(j+1);}
+               
               case 1:exit=174;
               }}
           
@@ -1811,7 +1906,7 @@ var
     
     var r=group_by_common_children(d,a);
     
-    var t=[/* record */0,[$$Array["of_list"](r)]];
+    var t=/* record */[0,[$$Array["of_list"](r)]];
     
     var
      loop=
@@ -1822,18 +1917,21 @@ var
         
         var t$2=match[1];
         
-        if(List["for_all"](function(x){return x[1]=0;},new_row))
+        if(List["for_all"](function(x){return x[1]=/* Nothing */0;},new_row))
          {return t$2;}
         else
          {var
            t$3=
-            [/* record */0,
+            /* record */[0,
              $$Array["append"](t$2[1],[$$Array["of_list"](new_row)])];
           
           if(no_group&&!has_phony_children(phony,d,t$3))
            {var t$4=t$3;}
           else
-           {if(no_optim){var match$1=0;}else{var match$1=equilibrate(t$3);}
+           {if(no_optim)
+             {var match$1=/* () */0;}
+            else
+             {var match$1=equilibrate(t$3);}
             
             var match$2=group_elem(t$3);
             
@@ -1867,7 +1965,7 @@ var
        loop=
         function(j)
          {if(j=line["length"])
-           {return 0;}
+           {return /* () */0;}
           else
            {var match=line[j][1];
             
@@ -1935,7 +2033,11 @@ var
                   {if(i1=0)
                     {var i1$1=i1;}
                    else
-                    {if(t[1][i1][j][1]=0){var i1$1=i1;}else{var i1$1=i$2;}}
+                    {if(t[1][i1][j][1]=/* Nothing */0)
+                      {var i1$1=i1;}
+                     else
+                      {var i1$1=i$2;}
+                     }
                    }
                  
                  if(i1$1<i$2)
@@ -1947,14 +2049,14 @@ var
                      }
                    
                    for(var l=j;l<=j2;l++)
-                    {if((i1$1=0)||(t[1][i1$1-1][l][1]=0))
-                      {t[1][i1$1][l][1]=0,0}
+                    {if((i1$1=0)||(t[1][i1$1-1][l][1]=/* Nothing */0))
+                      {t[1][i1$1][l][1]=/* Nothing */0,0}
                      else
                       {t[1][i1$1][l]=
                        (l=j)||"unknown primitive:caml_notequal"
-                        ?[/* record */0,
-                          [/* Ghost */1,new_ghost_id(0)],
-                          new_span_id(0)]
+                        ?/* record */[0,
+                          /* Ghost */[1,new_ghost_id(/* () */0)],
+                          new_span_id(/* () */0)]
                         :copy_data(t[1][i1$1][l-1]),
                        0}
                      }
@@ -1981,14 +2083,18 @@ var
     for(var i$2=i2-1;i$2>=0;i$2--)
      {for(var j=j1;j<=j2-1;j++)
        {t[1][i$2][j]=
-        i$2-i2+i1>=0?t[1][i$2-i2+i1][j]:[/* record */0,0,new_span_id(0)],
+        i$2-i2+i1>=0
+         ?t[1][i$2-i2+i1][j]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
         0}
       }
     
     for(var i$3=t[1]["length"]-1;i$3>=0;i$3--)
      {for(var j$1=j2;j$1<=t[1][i$3]["length"]-1;j$1++)
        {t[1][i$3][j$1]=
-        i$3-i2+i1>=0?t[1][i$3-i2+i1][j$1]:[/* record */0,0,new_span_id(0)],
+        i$3-i2+i1>=0
+         ?t[1][i$3-i2+i1][j$1]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
         0}
       }
     
@@ -1998,7 +2104,7 @@ var
      loop=
       function(j$2)
        {if(j$2=t[1][i2-1]["length"])
-         {return 0;}
+         {return /* () */0;}
         else
          {if("unknown primitive:caml_equal")
            {t[1][i2-1][j$2][2]=span,0;return loop(j$2+1);}
@@ -2018,14 +2124,18 @@ var
     for(var i$2=i2-1;i$2>=0;i$2--)
      {for(var j=j1+1;j<=j2;j++)
        {t[1][i$2][j]=
-        i$2-i2+i1>=0?t[1][i$2-i2+i1][j]:[/* record */0,0,new_span_id(0)],
+        i$2-i2+i1>=0
+         ?t[1][i$2-i2+i1][j]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
         0}
       }
     
     for(var i$3=t[1]["length"]-1;i$3>=0;i$3--)
      {for(var j$1=j1;j$1>=0;j$1--)
        {t[1][i$3][j$1]=
-        i$3-i2+i1>=0?t[1][i$3-i2+i1][j$1]:[/* record */0,0,new_span_id(0)],
+        i$3-i2+i1>=0
+         ?t[1][i$3-i2+i1][j$1]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
         0}
       }
     
@@ -2035,7 +2145,7 @@ var
      loop=
       function(j$2)
        {if(j$2<0)
-         {return 0;}
+         {return /* () */0;}
         else
          {if("unknown primitive:caml_equal")
            {t[1][i2-1][j$2][2]=span,0;return loop(j$2-1);}
@@ -2090,9 +2200,11 @@ var
              new_line=
               $$Array["init"]
                (t$1[1][0]["length"],
-                function(i$2){return [/* record */0,0,new_span_id(0)];});
+                function(i$2)
+                 {return /* record */[0,/* Nothing */0,new_span_id(/* () */0)];
+                  });
             
-            var t$2=[/* record */0,$$Array["append"](t$1[1],[new_line])];
+            var t$2=/* record */[0,$$Array["append"](t$1[1],[new_line])];
             
             return loop(cnt-1,t$2);
             }
@@ -2150,9 +2262,11 @@ var
              new_line=
               $$Array["init"]
                (t$1[1][0]["length"],
-                function(i$2){return [/* record */0,0,new_span_id(0)];});
+                function(i$2)
+                 {return /* record */[0,/* Nothing */0,new_span_id(/* () */0)];
+                  });
             
-            var t$2=[/* record */0,$$Array["append"](t$1[1],[new_line])];
+            var t$2=/* record */[0,$$Array["append"](t$1[1],[new_line])];
             
             return loop(cnt-1,t$2);
             }
@@ -2176,7 +2290,7 @@ var
     var i$3=t[1]["length"]-1;
     
     for(var j$1=j1;j$1<=j2-1;j$1++)
-     {t[1][i$3][j$1]=[/* record */0,0,new_span_id(0)],0}
+     {t[1][i$3][j$1]=/* record */[0,/* Nothing */0,new_span_id(/* () */0)],0}
     
     return t;
     };
@@ -2220,10 +2334,10 @@ var
           loop$1=
            function(i$3)
             {if(i$3<0)
-              {return 1;}
+              {return /* true */1;}
              else
               {if(j>0&&"unknown primitive:caml_equal")
-                {return 0;}
+                {return /* false */0;}
                else
                 {return loop$1(i$3-1);}
                }
@@ -2270,13 +2384,13 @@ var
           loop$3=
            function(i$3)
             {if(i$3=t[1]["length"])
-              {return 1;}
+              {return /* true */1;}
              else
               {if(j2=t[1][i$3]["length"])
-                {return 0;}
+                {return /* false */0;}
                else
                 {if("unknown primitive:caml_equal")
-                  {return 0;}
+                  {return /* false */0;}
                  else
                   {return loop$3(i$3+1);}
                  }
@@ -2286,13 +2400,13 @@ var
          var separated2=loop$3(i$2+1);
          
          if(!separated1||!separated2)
-          {return 0;}
+          {return /* None */0;}
          else
-          {return [/* Some */0,do_fall2_right(t,i1,i$2+1,j,j2)];}
+          {return /* Some */[0,do_fall2_right(t,i1,i$2+1,j,j2)];}
          
         }}
     
-    switch(exit){case 128:return 0;}
+    switch(exit){case 128:return /* None */0;}
     };
 
 var
@@ -2334,10 +2448,10 @@ var
           loop$1=
            function(i$3)
             {if(i$3<0)
-              {return 1;}
+              {return /* true */1;}
              else
               {if(j<t[1][i$3]["length"]-1&&"unknown primitive:caml_equal")
-                {return 0;}
+                {return /* false */0;}
                else
                 {return loop$1(i$3-1);}
                }
@@ -2384,13 +2498,13 @@ var
           loop$3=
            function(i$3)
             {if(i$3=t[1]["length"])
-              {return 1;}
+              {return /* true */1;}
              else
               {if(j1<0)
-                {return 0;}
+                {return /* false */0;}
                else
                 {if("unknown primitive:caml_equal")
-                  {return 0;}
+                  {return /* false */0;}
                  else
                   {return loop$3(i$3+1);}
                  }
@@ -2400,13 +2514,13 @@ var
          var separated2=loop$3(i$2+1);
          
          if(!separated1||!separated2)
-          {return 0;}
+          {return /* None */0;}
          else
-          {return [/* Some */0,do_fall2_left(t,i1,i$2+1,j1,j)];}
+          {return /* Some */[0,do_fall2_left(t,i1,i$2+1,j1,j)];}
          
         }}
     
-    switch(exit){case 118:return 0;}
+    switch(exit){case 118:return /* None */0;}
     };
 
 var
@@ -2500,10 +2614,10 @@ var
           loop$3=
            function(i$3)
             {if(i$3=i2)
-              {return 1;}
+              {return /* true */1;}
              else
               {if(j>0&&"unknown primitive:caml_equal")
-                {return 0;}
+                {return /* false */0;}
                else
                 {return loop$3(i$3+1);}
                }
@@ -2515,10 +2629,10 @@ var
           loop$4=
            function(i$3)
             {if(i$3=i2)
-              {return 1;}
+              {return /* true */1;}
              else
               {if(j2<t[1][i$3]["length"]&&"unknown primitive:caml_equal")
-                {return 0;}
+                {return /* false */0;}
                else
                 {return loop$4(i$3+1);}
                }
@@ -2527,17 +2641,17 @@ var
          var separated_right=loop$4(i$2);
          
          if(!separated_left||!separated_right)
-          {return 0;}
+          {return /* None */0;}
          else
           {if(i2<t[1]["length"])
-            {return 0;}
+            {return /* None */0;}
            else
-            {return [/* Some */0,do_shorten_too_long(t,i$2,j,j2)];}
+            {return /* Some */[0,do_shorten_too_long(t,i$2,j,j2)];}
            }
          
         }}
     
-    switch(exit){case 108:return 0;}
+    switch(exit){case 108:return /* None */0;}
     };
 
 var
@@ -2648,7 +2762,11 @@ var
              {if(j=t[1][i$2]["length"])
                {return loop(i$2+1);}
               else
-               {if(t[1][i$2][j][1]!=0){return i$2;}else{return loop_j(j+1);}}
+               {if(t[1][i$2][j][1]!=/* Nothing */0)
+                 {return i$2;}
+                else
+                 {return loop_j(j+1);}
+                }
               };
           
           return loop_j(0);
@@ -2660,7 +2778,7 @@ var
     if(di>0)
      {for(var i$2=0;i$2<=t[1]["length"]-1-di;i$2++){t[1][i$2]=t[1][i$2+di],0}
       
-      return [/* record */0,$$Array["sub"](t[1],0,t[1]["length"]-di)];
+      return /* record */[0,$$Array["sub"](t[1],0,t[1]["length"]-di)];
       }
     else
      {return t;}
@@ -2681,7 +2799,11 @@ var
              {if(j=t[1][i$2]["length"])
                {return loop(i$2-1);}
               else
-               {if(t[1][i$2][j][1]!=0){return i$2;}else{return loop_j(j+1);}}
+               {if(t[1][i$2][j][1]!=/* Nothing */0)
+                 {return i$2;}
+                else
+                 {return loop_j(j+1);}
+                }
               };
           
           return loop_j(0);
@@ -2691,7 +2813,7 @@ var
     var last_i=loop(t[1]["length"]-1);
     
     if(last_i<t[1]["length"]-1)
-     {return [/* record */0,$$Array["sub"](t[1],0,last_i+1)];}
+     {return /* record */[0,$$Array["sub"](t[1],0,last_i+1)];}
     else
      {return t;}
     };
@@ -2699,13 +2821,13 @@ var
 var
  invert_dag=
   function(d)
-   {var d$1=[/* record */0,$$Array["copy"](d[1])];
+   {var d$1=/* record */[0,$$Array["copy"](d[1])];
     
     for(var i$2=0;i$2<=d$1[1]["length"]-1;i$2++)
      {var n=d$1[1][i$2];
       
       d$1[1][i$2]=
-      [/* record */0,
+      /* record */[0,
        List["map"](function(x){return x;},n[3]),
        n[2],
        List["map"](function(x){return x;},n[1])],
@@ -2717,7 +2839,7 @@ var
 var
  invert_table=
   function(t)
-   {var t$prime=[/* record */0,$$Array["copy"](t[1])];
+   {var t$prime=/* record */[0,$$Array["copy"](t[1])];
     
     var len=t[1]["length"];
     
@@ -2726,7 +2848,7 @@ var
       $$Array["init"]
        (t[1][0]["length"],
         function(j)
-         {var d=t[1][len-1-i$2][j];return [/* record */0,d[1],d[2]];}),
+         {var d=t[1][len-1-i$2][j];return /* record */[0,d[1],d[2]];}),
       0;
       if(i$2<len-1)
        {for(var j=0;j<=t$prime[1][i$2]["length"]-1;j++)
@@ -2748,7 +2870,7 @@ var
     
     if(invert){var t$1=invert_table(t);}else{var t$1=t;}
     
-    var match=fall(0,t$1);
+    var match=fall(/* () */0,t$1);
     
     var t$2=fall2_right(t$1);
     
@@ -2831,9 +2953,9 @@ var
       if(line["length"]>0&&(line[0]=35))
        {return get_line(ic);}
       else
-       {return [/* Some */0,strip_spaces(line)];}
+       {return /* Some */[0,strip_spaces(line)];}
       }
-    catch(exn){if(exn=End_of_file){return 0;}else{throw exn;}}
+    catch(exn){if(exn=End_of_file){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -2846,7 +2968,7 @@ var
          {var n=param[1];
           
           if("unknown primitive:caml_equal")
-           {return [/* tuple */0,n,cnt];}
+           {return /* tuple */[0,n,cnt];}
           else
            {return find(cnt-1,s,param[2]);}
           }
@@ -2876,29 +2998,29 @@ var
               try
                {var match$1=find(cnt$1-1,p,nl$1);
                 
-                return [/* tuple */0,
-                        [/* :: */0,match$1[2],pl$2],
-                        [/* :: */0,match$1[1],pnl],
+                return /* tuple */[0,
+                        /* :: */[0,match$1[2],pl$2],
+                        /* :: */[0,match$1[1],pnl],
                         nl$1,
                         cnt$1];
                 }
               catch(exn)
                {if(exn=Not_found)
-                 {var n=[/* record */0,0,p,0];
+                 {var n=/* record */[0,/* [] */0,p,/* [] */0];
                   
                   var p$1=cnt$1;
                   
-                  return [/* tuple */0,
-                          [/* :: */0,p$1,pl$2],
-                          [/* :: */0,n,pnl],
-                          [/* :: */0,n,nl$1],
+                  return /* tuple */[0,
+                          /* :: */[0,p$1,pl$2],
+                          /* :: */[0,n,pnl],
+                          /* :: */[0,n,nl$1],
                           cnt$1+1];
                   }
                 else
                  {throw exn;}
                 }
               },
-            [/* tuple */0,0,0,nl,cnt],
+            /* tuple */[0,/* [] */0,/* [] */0,nl,cnt],
             pl$1);
         
         var pl$2=List["rev"](match[1]);
@@ -2919,31 +3041,31 @@ var
                 var n=match$2[1];
                 
                 n[1]=Pervasives["@"](n[1],pl$2),0;
-                return [/* tuple */0,[/* :: */0,match$2[2],cl$2],nl$1,cnt$1];
+                return /* tuple */[0,/* :: */[0,match$2[2],cl$2],nl$1,cnt$1];
                 }
               catch(exn)
                {if(exn=Not_found)
-                 {var n$1=[/* record */0,pl$2,c,0];
+                 {var n$1=/* record */[0,pl$2,c,/* [] */0];
                   
                   var c$1=cnt$1;
                   
-                  return [/* tuple */0,
-                          [/* :: */0,c$1,cl$2],
-                          [/* :: */0,n$1,nl$1],
+                  return /* tuple */[0,
+                          /* :: */[0,c$1,cl$2],
+                          /* :: */[0,n$1,nl$1],
                           cnt$1+1];
                   }
                 else
                  {throw exn;}
                 }
               },
-            [/* tuple */0,0,match[3],match[4]],
+            /* tuple */[0,/* [] */0,match[3],match[4]],
             cl$1);
         
         var cl$2=List["rev"](match$1[1]);
         
         List["iter"]
          (function(p){return p[3]=Pervasives["@"](p[3],cl$2),0;},match[2]);
-        return [/* tuple */0,match$1[2],match$1[3]];
+        return /* tuple */[0,match$1[2],match$1[3]];
         };
     
     var
@@ -2966,21 +3088,22 @@ var
                  if("unknown primitive:caml_string_equal")
                   {return Pervasives["failwith"](line);}
                  else
-                  {return input_parents(nl,[/* :: */0,p,pl],cnt,get_line(ic));
+                  {return input_parents(nl,/* :: */[0,p,pl],cnt,get_line(ic));
                    }
                  }
                }
              else
-              {if(pl=0)
+              {if(pl=/* [] */0)
                 {return Pervasives["failwith"](line);}
                else
-                {return input_children(nl,pl,0,cnt,[/* Some */0,line]);}
+                {return input_children(nl,pl,/* [] */0,cnt,/* Some */[0,line]);
+                 }
                }
              }
           }
         else
-         {if(pl=0)
-           {return [/* tuple */0,nl,cnt];}
+         {if(pl=/* [] */0)
+           {return /* tuple */[0,nl,cnt];}
           else
            {return Pervasives["failwith"]("end of file 1");}
           }
@@ -3001,13 +3124,13 @@ var
               {if(match!=111)
                 {return Pervasives["failwith"](line);}
                else
-                {if(cl=0)
+                {if(cl=/* [] */0)
                   {return Pervasives["failwith"](line);}
                  else
                   {var match$1=add_node(pl,cl,nl,cnt);
                    
                    return input_parents
-                           (match$1[1],0,match$1[2],[/* Some */0,line]);
+                           (match$1[1],/* [] */0,match$1[2],/* Some */[0,line]);
                    }
                  }
                }
@@ -3018,22 +3141,22 @@ var
                 {return Pervasives["failwith"](line);}
                else
                 {return input_children
-                         (nl,pl,[/* :: */0,c,cl],cnt,get_line(ic));
+                         (nl,pl,/* :: */[0,c,cl],cnt,get_line(ic));
                  }
                }
              }
           }
         else
-         {if(cl=0)
+         {if(cl=/* [] */0)
            {return Pervasives["failwith"]("end of file 2");}
           else
            {return add_node(pl,cl,nl,cnt);}
           }
         };
     
-    var match=input_parents(0,0,0,get_line(ic));
+    var match=input_parents(/* [] */0,/* [] */0,0,get_line(ic));
     
-    return [/* record */0,$$Array["of_list"](List["rev"](match[1]))];
+    return /* record */[0,$$Array["of_list"](List["rev"](match[1]))];
     };
 
 var
@@ -3042,9 +3165,9 @@ var
    {var
      a=
       $$Array["map"]
-       (function(d$1){return [/* record */0,d$1[1],f(d$1[2]),d$1[3]];},d[1]);
+       (function(d$1){return /* record */[0,d$1[1],f(d$1[2]),d$1[3]];},d[1]);
     
-    return [/* record */0,a];
+    return /* record */[0,a];
     };
 
 var
@@ -3062,7 +3185,7 @@ var
              d);
     };
 
-var phony=function(param){return 0;};
+var phony=function(param){return /* false */0;};
 
 var indi_txt=function(n){return n[2];};
 
@@ -3073,15 +3196,29 @@ var
     
     Printf["bprintf"]
      (buf,
-      [0,[11,"<center><table border=",[4,0,0,0,0]],"<center><table border=%d"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "<center><table border=",
+        /* Int */[4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         /* End_of_format */0]],
+       "<center><table border=%d"],
       border);
     Printf["bprintf"]
      (buf,
-      [0,
-       [11," cellspacing=0 cellpadding=0>\n",0],
+      /* Format */[0,
+       /* String_literal */[11,
+        " cellspacing=0 cellpadding=0>\n",
+        /* End_of_format */0],
        " cellspacing=0 cellpadding=0>\n"]);
     for(var i$2=0;i$2<=hts["length"]-1;i$2++)
-     {Printf["bprintf"](buf,[0,[11,"<tr>\n",0],"<tr>\n"]);
+     {Printf["bprintf"]
+       (buf,
+        /* Format */[0,
+         /* String_literal */[11,"<tr>\n",/* End_of_format */0],
+         "<tr>\n"]);
       for(var j=0;j<=hts[i$2]["length"]-1;j++)
        {var match=hts[i$2][j];
         
@@ -3089,14 +3226,28 @@ var
         
         var colspan=match[1];
         
-        Printf["bprintf"](buf,[0,[11,"<td",0],"<td"]);
+        Printf["bprintf"]
+         (buf,
+          /* Format */[0,
+           /* String_literal */[11,"<td",/* End_of_format */0],
+           "<td"]);
         if
          ((colspan=1)&&
           ("unknown primitive:caml_equal"||"unknown primitive:caml_equal"))
          {}
         else
          {Printf["bprintf"]
-           (buf,[0,[11," colspan=",[4,0,0,0,0]]," colspan=%d"],colspan)}
+           (buf,
+            /* Format */[0,
+             /* String_literal */[11,
+              " colspan=",
+              /* Int */[4,
+               /* Int_d */0,
+               /* No_padding */0,
+               /* No_precision */0,
+               /* End_of_format */0]],
+             " colspan=%d"],
+            colspan)}
         
         switch(match[2][0])
          {case 0:
@@ -3108,62 +3259,108 @@ var
               if(td[1]!=0)
                {exit=29;}
               else
-               {Printf["bprintf"](buf,[0,[11," align=left",0]," align=left"])}
+               {Printf["bprintf"]
+                 (buf,
+                  /* Format */[0,
+                   /* String_literal */[11," align=left",/* End_of_format */0],
+                   " align=left"])}
               
              }
            
            switch(exit){case 29:}
            
           case 1:
-           Printf["bprintf"](buf,[0,[11," align=center",0]," align=center"]);
+           Printf["bprintf"]
+            (buf,
+             /* Format */[0,
+              /* String_literal */[11," align=center",/* End_of_format */0],
+              " align=center"]);
           case 2:
-           Printf["bprintf"](buf,[0,[11," align=right",0]," align=right"])
+           Printf["bprintf"]
+            (buf,
+             /* Format */[0,
+              /* String_literal */[11," align=right",/* End_of_format */0],
+              " align=right"])
           }
         
-        Printf["bprintf"](buf,[0,[12,62,0],">"]);
+        Printf["bprintf"]
+         (buf,
+          /* Format */[0,/* Char_literal */[12,62,/* End_of_format */0],">"]);
         switch(td)
-         {case 0:Printf["bprintf"](buf,[0,[2,0,0],"%s"],td[1]);
+         {case 0:
+           Printf["bprintf"]
+            (buf,
+             /* Format */[0,
+              /* String */[2,/* No_padding */0,/* End_of_format */0],
+              "%s"],
+             td[1]);
           case 1:
            Printf["bprintf"]
-            (buf,[0,[11,"<hr noshade size=1",0],"<hr noshade size=1"]);
+            (buf,
+             /* Format */[0,
+              /* String_literal */[11,
+               "<hr noshade size=1",
+               /* End_of_format */0],
+              "<hr noshade size=1"]);
            switch(td[1][0])
             {case 0:
               Printf["bprintf"]
                (buf,
-                [0,
-                 [11,' width="50',[12,37,[11,'" align=left',0]]],
+                /* Format */[0,
+                 /* String_literal */[11,
+                  ' width="50',
+                  /* Char_literal */[12,
+                   37,
+                   /* String_literal */[11,'" align=left',/* End_of_format */0]]],
                  ' width="50%%" align=left']);
              case 1:
              case 2:
               Printf["bprintf"]
                (buf,
-                [0,
-                 [11,' width="50',[12,37,[11,'" align=right',0]]],
+                /* Format */[0,
+                 /* String_literal */[11,
+                  ' width="50',
+                  /* Char_literal */[12,
+                   37,
+                   /* String_literal */[11,
+                    '" align=right',
+                    /* End_of_format */0]]],
                  ' width="50%%" align=right'])
              }
            
-           Printf["bprintf"](buf,[0,[12,62,0],">"])
+           Printf["bprintf"]
+            (buf,
+             /* Format */[0,
+              /* Char_literal */[12,62,/* End_of_format */0],
+              ">"])
           }
         
-        Printf["bprintf"](buf,[0,[11,"</td>\n",0],"</td>\n"])}
+        Printf["bprintf"]
+         (buf,
+          /* Format */[0,
+           /* String_literal */[11,"</td>\n",/* End_of_format */0],
+           "</td>\n"])}
       }
     
     Printf["bprintf"]
-     (buf,[0,[11,"</table></center>\n",0],"</table></center>\n"]);
+     (buf,
+      /* Format */[0,
+       /* String_literal */[11,"</table></center>\n",/* End_of_format */0],
+       "</table></center>\n"]);
     return Buffer["contents"](buf);
     };
 
 var fname="";
 
-var invert=[0,0];
+var invert=[0,/* false */0];
 
-var $$char=0;
+var $$char=/* false */0;
 
 var border=[0,0];
 
-var no_optim=[0,0];
+var no_optim=[0,/* false */0];
 
-var no_group=[0,0];
+var no_group=[0,/* false */0];
 
 var
  html_of_dag=
@@ -3183,14 +3380,17 @@ var
     var
      cl_list2=
       List["map"]
-       (function(c){return [/* tuple */0,c[1],[/* Some */0,[/* Cl */0,c]]];},
+       (function(c){return /* tuple */[0,c[1],/* Some */[0,/* Cl */[0,c]]];},
         cl_list);
     
     var
      clt_list2=
       List["map"]
        (function(ct)
-         {return [/* tuple */0,ct[1],[/* Some */0,[/* Cltype */1,ct,0]]];},
+         {return /* tuple */[0,
+                  ct[1],
+                  /* Some */[0,/* Cltype */[1,ct,/* [] */0]]];
+          },
         clt_list);
     
     var list=Pervasives["@"](cl_list2,clt_list2);
@@ -3210,34 +3410,36 @@ var
                         var match$1=match[1][6];
                         
                         var $js;
-                        switch(match$1){case 0:$js=match$1[1];default:$js=0;}
+                        switch(match$1)
+                         {case 0:$js=match$1[1];default:$js=/* [] */0;}
                         var
                          l=
                           iter
                            (List["map"]
-                             (function(inh){return [/* tuple */0,inh[1],inh[2]];},$js));
+                             (function(inh){return /* tuple */[0,inh[1],inh[2]];},$js));
                         
                        case 1:
                         var match$2=match[1][6];
                         
                         var $js$1;
-                        switch(match$2){case 0:$js$1=match$2[1];case 1:$js$1=0;}
+                        switch(match$2)
+                         {case 0:$js$1=match$2[1];case 1:$js$1=/* [] */0;}
                         var
                          l=
                           iter
                            (List["map"]
-                             (function(inh){return [/* tuple */0,inh[1],inh[2]];},$js$1));
+                             (function(inh){return /* tuple */[0,inh[1],inh[2]];},$js$1));
                         
                        }
                      }
                    else
-                    {var l=0;}
+                    {var l=/* [] */0;}
                    
-                   return [/* :: */0,
-                           [/* tuple */0,param[1],cct_opt],
+                   return /* :: */[0,
+                           /* tuple */[0,param[1],cct_opt],
                            Pervasives["@"](acc,l)];
                    },
-                 0,
+                 /* [] */0,
                  list2);
         };
     
@@ -3258,21 +3460,21 @@ var
              (function(param$1){return "unknown primitive:caml_equal";},acc))
            {return distinct(acc,q);}
           else
-           {return distinct([/* :: */0,[/* tuple */0,name,match[2]],acc],q);}
+           {return distinct(/* :: */[0,/* tuple */[0,name,match[2]],acc],q);}
           }
         else
          {return acc;}
         };
     
-    var distinct_classes=distinct(0,all_classes);
+    var distinct_classes=distinct(/* [] */0,all_classes);
     
     var
      f=
       function(n,param)
        {if(param)
-         {return [/* :: */0,[/* tuple */0,param[1][1],n],f(n+1,param[2])];}
+         {return /* :: */[0,/* tuple */[0,param[1][1],n],f(n+1,param[2])];}
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     var liste_index=f(0,distinct_classes);
@@ -3291,26 +3493,28 @@ var
            {case 0:
              var match$1=match[1][6];
              
-             switch(match$1){case 0:var $js=match$1[1];default:var $js=0;}
+             switch(match$1)
+              {case 0:var $js=match$1[1];default:var $js=/* [] */0;}
              
             case 1:
              var match$2=match[1][6];
              
-             switch(match$2){case 0:var $js=match$2[1];case 1:var $js=0;}
+             switch(match$2)
+              {case 0:var $js=match$2[1];case 1:var $js=/* [] */0;}
              
             }
           }
         else
-         {var $js=0;}
-        return [/* record */0,
+         {var $js=/* [] */0;}
+        return /* record */[0,
                 List["map"]
                  (function(inh){return List["assoc"](inh[1],liste_index);},
                   $js),
-                [/* tuple */0,param[1],cct_opt],
-                0];
+                /* tuple */[0,param[1],cct_opt],
+                /* [] */0];
         };
     
-    var dag=[/* record */0,$$Array["map"](fmap,array1)];
+    var dag=/* record */[0,$$Array["map"](fmap,array1)];
     
     var
      fiter=

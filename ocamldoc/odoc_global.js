@@ -7,12 +7,12 @@ var Odoc_config=require("Odoc_config");
 var Odoc_messages=require("Odoc_messages");
 
 
-Clflags["dont_write_files"][1]=1,0;
+Clflags["dont_write_files"][1]=/* true */1,0;
 var include_dirs=Clflags["include_dirs"];
 
 var errors=[0,0];
 
-var warn_error=[0,0];
+var warn_error=[0,/* false */0];
 
 var
  pwarning=
@@ -26,31 +26,31 @@ var
     if(warn_error[1]){return errors[0]++;}else{return 0;}
     };
 
-var merge_options=[0,0];
+var merge_options=[0,/* [] */0];
 
 var classic=Clflags["classic"];
 
-var dump=[0,0];
+var dump=[0,/* None */0];
 
-var load=[0,0];
+var load=[0,/* [] */0];
 
-var sort_modules=[0,0];
+var sort_modules=[0,/* false */0];
 
-var no_custom_tags=[0,0];
+var no_custom_tags=[0,/* false */0];
 
-var no_stop=[0,0];
+var no_stop=[0,/* false */0];
 
-var remove_stars=[0,0];
+var remove_stars=[0,/* false */0];
 
-var keep_code=[0,0];
+var keep_code=[0,/* false */0];
 
-var inverse_merge_ml_mli=[0,0];
+var inverse_merge_ml_mli=[0,/* false */0];
 
-var filter_with_module_constraints=[0,1];
+var filter_with_module_constraints=[0,/* true */1];
 
-var hidden_modules=[0,0];
+var hidden_modules=[0,/* [] */0];
 
-var files=[0,0];
+var files=[0,/* [] */0];
 
 var out_file=[0,Odoc_messages["default_out_file"]];
 
@@ -58,17 +58,17 @@ var verbose=Clflags["verbose"];
 
 var target_dir=[0,Filename["current_dir_name"]];
 
-var title=[0,0];
+var title=[0,/* None */0];
 
-var intro_file=[0,0];
+var intro_file=[0,/* None */0];
 
-var with_header=[0,1];
+var with_header=[0,/* true */1];
 
-var with_trailer=[0,1];
+var with_trailer=[0,/* true */1];
 
-var with_toc=[0,1];
+var with_toc=[0,/* true */1];
 
-var with_index=[0,1];
+var with_index=[0,/* true */1];
 
 module["exports"]=
 {"include_dirs":include_dirs,

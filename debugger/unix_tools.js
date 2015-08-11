@@ -19,17 +19,18 @@ var
       
       var port=$$String["sub"](address,n+1,address["length"]-n-1);
       
+      var $js;
       try
-       {var $js=Unix["inet_addr_of_string"](host);}
+       {$js=Unix["inet_addr_of_string"](host);}
       catch(exn)
        {if(exn[1]=Failure)
          {try
-           {var $js=Unix["gethostbyname"](host)[4][0];}
+           {$js=Unix["gethostbyname"](host)[4][0];}
           catch(exn$1)
            {if(exn$1=Not_found)
              {Pervasives["prerr_endline"]
                (Pervasives["^"]("Unknown host: ",host));
-              var $js=Pervasives["failwith"]("Can't convert address");
+              $js=Pervasives["failwith"]("Can't convert address");
               }
             else
              {throw exn$1;}
@@ -38,17 +39,18 @@ var
         else
          {throw exn;}
         }
+      var $js$1;
       try
-       {var $js$1="unknown primitive:caml_int_of_string";}
+       {$js$1="unknown primitive:caml_int_of_string";}
       catch(exn$2)
        {if(exn$2[1]=Failure)
          {Pervasives["prerr_endline"]("The port number should be an integer");
-          var $js$1=Pervasives["failwith"]("Can't convert address");
+          $js$1=Pervasives["failwith"]("Can't convert address");
           }
         else
          {throw exn$2;}
         }
-      return [/* tuple */0,1,[/* ADDR_INET */1,$js,$js$1]];
+      return /* tuple */[0,/* PF_INET */1,/* ADDR_INET */[1,$js,$js$1]];
       }
     catch(exn$3)
      {if(exn$3=Not_found)
@@ -57,7 +59,8 @@ var
         switch(match)
          {case "Win32":
            return Pervasives["failwith"]("Unix sockets not supported");
-          default:return [/* tuple */0,0,[/* ADDR_UNIX */0,address]];}
+          default:
+           return /* tuple */[0,/* PF_UNIX */0,/* ADDR_UNIX */[0,address]];}
         }
       else
        {throw exn$3;}
@@ -92,15 +95,21 @@ var
   function(name)
    {Printf["fprintf"]
      (Pervasives["stderr"],
-      [0,
-       [11,"search_in_path [",[2,0,[11,"]\n",[10,0]]]],
+      /* Format */[0,
+       /* String_literal */[11,
+        "search_in_path [",
+        /* String */[2,
+         /* No_padding */0,
+         /* String_literal */[11,"]\n",/* Flush */[10,/* End_of_format */0]]]],
        "search_in_path [%s]\n%!"],
       name);
     var
      check=
       function(name$1)
        {try
-         {Unix["access"](name$1,[0,2,0]);return name$1;}
+         {Unix["access"](name$1,/* :: */[0,/* X_OK */2,/* [] */0]);
+          return name$1;
+          }
         catch(exn)
          {if(exn[1]=Unix["Unix_error"]){throw Not_found;}else{throw exn;}}
         };
@@ -243,7 +252,7 @@ var
  make_absolute=
   function(name)
    {if(Filename["is_relative"](name))
-     {return Filename["concat"](Unix["getcwd"](0),name);}
+     {return Filename["concat"](Unix["getcwd"](/* () */0),name);}
     else
      {return name;}
     };

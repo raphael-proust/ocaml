@@ -29,13 +29,13 @@ var tag_handler=[0,no_tag_handler];
 var
  atomize=
   function(l)
-   {return [/* S */0,My_std["List"][16](function(x){return [/* A */1,x];},l)];
+   {return /* S */[0,My_std["List"][16](function(x){return /* A */[1,x];},l)];
     };
 
 var
  atomize_paths=
   function(l)
-   {return [/* S */0,My_std["List"][16](function(x){return [/* P */2,x];},l)];
+   {return /* S */[0,My_std["List"][16](function(x){return /* P */[2,x];},l)];
     };
 
 var
@@ -63,7 +63,7 @@ var
      return My_std["List"][16](norm_current_dir_name,paths);
      }];
 
-var virtual_solvers=Hashtbl["create"](0,32);
+var virtual_solvers=Hashtbl["create"](/* None */0,32);
 
 var
  setup_virtual_command_solver=
@@ -81,14 +81,14 @@ var
          solver=
           Pervasives["failwith"]
            (My_std["sbprintf"]
-             ([0,
-               [11,
+             (/* Format */[0,
+               /* String_literal */[11,
                 "no solver for the virtual command ",
-                [3,
-                 0,
-                 [11,
+                /* Caml_string */[3,
+                 /* No_padding */0,
+                 /* String_literal */[11,
                   " (setup one with Command.setup_virtual_command_solver)",
-                  0]]],
+                  /* End_of_format */0]]],
                "no solver for the virtual command %S (setup one with Command.setup_virtual_command_solver)"],
               virtual_command));
         }
@@ -97,15 +97,19 @@ var
       }
     
     try
-     {return solver(0);}
+     {return solver(/* () */0);}
     catch(exn$1)
      {if(exn$1=Not_found)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
-                  ([0,
-                    [11,
+                  (/* Format */[0,
+                    /* String_literal */[11,
                      "the solver for the virtual command ",
-                     [3,0,[11," has failed finding a valid command",0]]],
+                     /* Caml_string */[3,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       " has failed finding a valid command",
+                       /* End_of_format */0]]],
                     "the solver for the virtual command %S has failed finding a valid command"],
                    virtual_command));
         }
@@ -158,13 +162,13 @@ var
     else
      {}
     
-    var first=[0,1];
+    var first=[0,/* true */1];
     
     var
      put_space=
       function(param)
        {if(first[1])
-         {return first[1]=0,0;}
+         {return first[1]=/* false */0,0;}
         else
          {return Buffer["add_char"](b,32);}
         };
@@ -180,7 +184,7 @@ var
        {var exit;
         
         if(typeof param=="number")
-         {switch(param){case 0:return 0;}}
+         {switch(param){case 0:return /* () */0;}}
         else
          {switch(param[0])
            {case 0:return My_std["List"][14](do_spec,param[1]);
@@ -189,11 +193,12 @@ var
             case 3:
              var u=param[1];
              
-             put_space(0);
+             put_space(/* () */0);
              put_filename(u);
              return call_with_target(u);
              
-            case 4:put_space(0);return Buffer["add_string"](b,param[1]);
+            case 4:
+             put_space(/* () */0);return Buffer["add_string"](b,param[1]);
             case 5:
              var tags=param[1];
              
@@ -206,17 +211,24 @@ var
              if(resolve_virtuals)
               {return do_spec(virtual_solver(v));}
              else
-              {put_space(0);
+              {put_space(/* () */0);
                return Printf["bprintf"]
                        (b,
-                        [0,[11,"<virtual ",[2,0,[12,62,0]]],"<virtual %s>"],
+                        /* Format */[0,
+                         /* String_literal */[11,
+                          "<virtual ",
+                          /* String */[2,
+                           /* No_padding */0,
+                           /* Char_literal */[12,62,/* End_of_format */0]]],
+                         "<virtual %s>"],
                         Shell["quote_filename_if_needed"](v));
                }
              
-            case 7:put_space(0);return put_filename($$self(param[1]));
+            case 7:put_space(/* () */0);return put_filename($$self(param[1]));
             }}
         
-        switch(exit){case 61:put_space(0);return put_filename(param[1]);}
+        switch(exit)
+         {case 61:put_space(/* () */0);return put_filename(param[1]);}
         };
     
     do_spec(spec);
@@ -227,7 +239,10 @@ var
  string_of_command_spec=
   function(x)
    {return string_of_command_spec_with_calls
-            (function(prim){return 0;},function(prim){return 0;},0,x);
+            (function(prim){return prim;},
+             function(prim){return prim;},
+             /* false */0,
+             x);
     };
 
 var
@@ -246,7 +261,7 @@ var
       string_of_command_spec_with_calls
        (union_rtags,
         function(prim,prim$1){return prim[1]=prim$1,0;}(rtarget),
-        1,
+        /* true */1,
         spec);
     
     if("unknown primitive:caml_string_equal")
@@ -254,7 +269,7 @@ var
     else
      {var target=rtarget[1];}
     
-    return [/* tuple */0,s,target,rtags[1]];
+    return /* tuple */[0,s,target,rtags[1]];
     };
 
 var
@@ -269,7 +284,7 @@ var
     var s=match[1];
     
     return function(param)
-     {if(!quiet){Log["event"]([/* Some */0,pretend],s,target,tags)}else{}
+     {if(!quiet){Log["event"](/* Some */[0,pretend],s,target,tags)}else{}
       
       return s;
       };
@@ -277,7 +292,13 @@ var
 
 var
  print_escaped_string=
-  function(f){return Format["fprintf"](f,[0,[3,0,0],"%S"]);};
+  function(f)
+   {return Format["fprintf"]
+            (f,
+             /* Format */[0,
+              /* Caml_string */[3,/* No_padding */0,/* End_of_format */0],
+              "%S"]);
+    };
 
 var
  print=
@@ -292,12 +313,25 @@ var
         case 2:
          return Format["fprintf"]
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,
+                     /* Format */[0,
+                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    /* String_literal */[11,
                      "Echo(",
-                     [15,[12,44,[17,[0,"@ ",1,0],[15,[12,41,[17,0,0]]]]]]]],
+                     /* Alpha */[15,
+                      /* Char_literal */[12,
+                       44,
+                       /* Formatting_lit */[17,
+                        /* Break */[0,"@ ",1,0],
+                        /* Alpha */[15,
+                         /* Char_literal */[12,
+                          41,
+                          /* Formatting_lit */[17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[<2>Echo(%a,@ %a)@]"],
                   My_std["List"][1](print_escaped_string),
                   param[1],
@@ -309,7 +343,12 @@ var
 
 var
  to_string=
-  function(x){return My_std["sbprintf"]([0,[15,0],"%a"],print,x);};
+  function(x)
+   {return My_std["sbprintf"]
+            (/* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+             print,
+             x);
+    };
 
 var xmin=[0,Pervasives["max_int"]];
 
@@ -344,7 +383,12 @@ var
    {if(jobs[1]!=1)
      {if(xcount[1]=0)
        {return Log["dprintf"]
-                (1,[0,[11,"# No parallelism done",0],"# No parallelism done"]);
+                (1,
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "# No parallelism done",
+                   /* End_of_format */0],
+                  "# No parallelism done"]);
         }
       else
        {var xaverage=xsumall[1]/xcountall[1];
@@ -353,34 +397,44 @@ var
         
         return Log["dprintf"]
                 (1,
-                 [0,
-                  [11,
+                 /* Format */[0,
+                  /* String_literal */[11,
                    "# Parallel statistics: { count(total): ",
-                   [4,
-                    0,
-                    0,
-                    0,
-                    [12,
+                   /* Int */[4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    /* Char_literal */[12,
                      40,
-                     [4,
-                      0,
-                      0,
-                      0,
-                      [11,
+                     /* Int */[4,
+                      /* Int_d */0,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* String_literal */[11,
                        "), max: ",
-                       [4,
-                        0,
-                        0,
-                        0,
-                        [11,
+                       /* Int */[4,
+                        /* Int_d */0,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        /* String_literal */[11,
                          ", min: ",
-                         [4,
-                          0,
-                          0,
-                          0,
-                          [11,
+                         /* Int */[4,
+                          /* Int_d */0,
+                          /* No_padding */0,
+                          /* No_precision */0,
+                          /* String_literal */[11,
                            ", average(total): ",
-                           [8,0,0,[0,3],[12,40,[8,0,0,[0,3],[11,") }",0]]]]]]]]]]]]],
+                           /* Float */[8,
+                            /* Float_f */0,
+                            /* No_padding */0,
+                            /* Lit_precision */[0,3],
+                            /* Char_literal */[12,
+                             40,
+                             /* Float */[8,
+                              /* Float_f */0,
+                              /* No_padding */0,
+                              /* Lit_precision */[0,3],
+                              /* String_literal */[11,") }",/* End_of_format */0]]]]]]]]]]]]],
                   "# Parallel statistics: { count(total): %d(%d), max: %d, min: %d, average(total): %.3f(%.3f) }"],
                  xcount[1],
                  xcountall[1],
@@ -394,7 +448,7 @@ var
      {return 0;}
     };
 
-var match=[/* tuple */0,add_parallel_stat,dump_parallel_stats];
+var match=/* tuple */[0,add_parallel_stat,dump_parallel_stats];
 
 var dump_parallel_stats$1=match[2];
 
@@ -404,7 +458,7 @@ var
  do_echo=
   function(texts,dest_path)
    {return My_std["with_output_file"]
-            (0,
+            (/* None */0,
              dest_path,
              function(oc)
               {return My_std["List"][14]
@@ -419,7 +473,11 @@ var Primitives=[0,do_echo,echo];
 var
  list_rev_iter=
   function(f,param)
-   {if(param){list_rev_iter(f,param[2]);return f(param[1]);}else{return 0;}};
+   {if(param)
+     {list_rev_iter(f,param[2]);return f(param[1]);}
+    else
+     {return /* () */0;}
+    };
 
 var
  flatten_commands=
@@ -437,14 +495,14 @@ var
              {case 0:return loop(loop(acc,match$1[1]),param[2]);
               case 1:
                return loop
-                       ([/* :: */0,
+                       (/* :: */[0,
                          string_print_of_command_spec(match$1[1],quiet,pretend),
                          acc],
                         param[2]);
                
               case 2:
                return loop
-                       ([/* :: */0,Primitives[2](match$1[1],match$1[2]),acc],
+                       (/* :: */[0,Primitives[2](match$1[1],match$1[2]),acc],
                         param[2]);
                
               }}
@@ -453,15 +511,21 @@ var
          {return acc;}
         };
     
-    return My_std["List"][9](loop(0,[/* :: */0,cmd,0]));
+    return My_std["List"][9](loop(/* [] */0,/* :: */[0,cmd,/* [] */0]));
     };
 
 var
  execute_many=
   function($staropt$star,$staropt$star$1,cmds)
-   {if($staropt$star){var quiet=$staropt$star[1];}else{var quiet=0;}
+   {if($staropt$star)
+     {var quiet=$staropt$star[1];}
+    else
+     {var quiet=/* false */0;}
     
-    if($staropt$star$1){var pretend=$staropt$star$1[1];}else{var pretend=0;}
+    if($staropt$star$1)
+     {var pretend=$staropt$star$1[1];}
+    else
+     {var pretend=/* false */0;}
     
     add_parallel_stat$1(My_std["List"][5](cmds));
     var
@@ -473,23 +537,27 @@ var
     
     if(jobs$1<0){Pervasives["invalid_arg"]("jobs < 0")}else{}
     
-    if(jobs$1=0){var max_jobs=0;}else{var max_jobs=[/* Some */0,jobs$1];}
+    if(jobs$1=0)
+     {var max_jobs=/* None */0;}
+    else
+     {var max_jobs=/* Some */[0,jobs$1];}
     
     var ticker=Log["update"];
     
     var display=Log["display"];
     
-    if(cmds=0)
-     {return 0;}
+    if(cmds=/* [] */0)
+     {return /* None */0;}
     else
      {var konts=My_std["List"][16](flatten_commands(quiet,pretend),cmds);
       
       if(pretend)
-       {My_std["List"][14](My_std["List"][14](function(f){return 0;}),konts);
-        return 0;
+       {My_std["List"][14]
+         (My_std["List"][14](function(f){return f(/* () */0);}),konts);
+        return /* None */0;
         }
       else
-       {My_std["reset_filesys_cache"](0);
+       {My_std["reset_filesys_cache"](/* () */0);
         if(degraded)
          {var
            match$1=
@@ -500,26 +568,33 @@ var
                 var acc_res=param[1];
                 
                 if(acc_exn)
-                 {return [/* tuple */0,[/* :: */0,0,acc_res],acc_exn];}
+                 {return /* tuple */[0,
+                          /* :: */[0,/* false */0,acc_res],
+                          acc_exn];
+                  }
                 else
                  {try
                    {My_std["List"][14]
                      (function(action)
-                       {var cmd=action(0);
+                       {var cmd=action(/* () */0);
                         
                         var rc=My_std["sys_command"](cmd);
                         
                         if(rc!=0)
                          {if(!quiet)
                            {Log["eprintf"]
-                             ([0,
-                               [11,
+                             (/* Format */[0,
+                               /* String_literal */[11,
                                 "Exit code ",
-                                [4,
-                                 0,
-                                 0,
-                                 0,
-                                 [11," while executing this command:",[17,3,[2,0,0]]]]],
+                                /* Int */[4,
+                                 /* Int_d */0,
+                                 /* No_padding */0,
+                                 /* No_precision */0,
+                                 /* String_literal */[11,
+                                  " while executing this command:",
+                                  /* Formatting_lit */[17,
+                                   /* Force_newline */3,
+                                   /* String */[2,/* No_padding */0,/* End_of_format */0]]]]],
                                "Exit code %d while executing this command:@\n%s"],
                               rc,
                               cmd)}
@@ -532,31 +607,35 @@ var
                          {return 0;}
                         },
                       cmds$1);
-                    return [/* tuple */0,[/* :: */0,1,acc_res],0];
+                    return /* tuple */[0,
+                            /* :: */[0,/* true */1,acc_res],
+                            /* None */0];
                     }
                   catch(e)
-                   {return [/* tuple */0,[/* :: */0,0,acc_res],[/* Some */0,e]];
+                   {return /* tuple */[0,
+                            /* :: */[0,/* false */0,acc_res],
+                            /* Some */[0,e]];
                     }
                   }
                 },
-              [0,0,0],
+              /* tuple */[0,/* [] */0,/* None */0],
               konts);
           
           var opt_exn=match$1[2];
           
           if(opt_exn)
-           {return [/* Some */0,
-                    [/* tuple */0,My_std["List"][9](match$1[1]),opt_exn[1]]];
+           {return /* Some */[0,
+                    /* tuple */[0,My_std["List"][9](match$1[1]),opt_exn[1]]];
             }
           else
-           {return 0;}
+           {return /* None */0;}
           }
         else
          {return My_unix["execute_many"]
                   (max_jobs,
-                   [/* Some */0,ticker],
-                   0,
-                   [/* Some */0,display],
+                   /* Some */[0,ticker],
+                   /* None */0,
+                   /* Some */[0,display],
                    konts);
           }
         }
@@ -566,9 +645,9 @@ var
 var
  execute=
   function(quiet,pretend,cmd)
-   {var match$1=execute_many(quiet,pretend,[/* :: */0,cmd,0]);
+   {var match$1=execute_many(quiet,pretend,/* :: */[0,cmd,/* [] */0]);
     
-    if(match$1){throw match$1[1][2];}else{return 0;}
+    if(match$1){throw match$1[1][2];}else{return /* () */0;}
     };
 
 var
@@ -587,7 +666,7 @@ var
             case 5:return f(x$1[1]);
             default:exit=19;}}
         
-        switch(exit){case 19:return 0;}
+        switch(exit){case 19:return /* () */0;}
         };
     
     var
@@ -604,7 +683,7 @@ var
             case 2:exit=18;
             }}
         
-        switch(exit){case 18:return 0;}
+        switch(exit){case 18:return /* () */0;}
         };
     
     return cmd(x);
@@ -661,18 +740,21 @@ var
          {switch(x$1[0])
            {case 0:return My_std["List"][20]($$self,x$1[1],acc);
             case 5:return $$self(tag_handler[1](x$1[1]),acc);
-            case 7:return [/* :: */0,[/* Quote */7,reduce(x$1[1])],acc];
-            default:return [/* :: */0,x$1,acc];}}
+            case 7:return /* :: */[0,/* Quote */[7,reduce(x$1[1])],acc];
+            default:return /* :: */[0,x$1,acc];}}
         };
     
-    var xs=$$self(x,0);
+    var xs=$$self(x,/* [] */0);
     
-    if(xs){if(xs[2]){return [/* S */0,xs];}else{return xs[1];}}else{return 0;}
+    if(xs)
+     {if(xs[2]){return /* S */[0,xs];}else{return xs[1];}}
+    else
+     {return /* N */0;}
     };
 
 var list=My_std["List"][20];
 
-var text=function(x,acc){return [/* :: */0,My_std["Digest"][1](x),acc];};
+var text=function(x,acc){return /* :: */[0,My_std["Digest"][1](x),acc];};
 
 var
  cmd=
@@ -686,16 +768,16 @@ var
          var spec=param[1];
          
          return function(acc)
-          {return [/* :: */0,string_of_command_spec(spec),acc];};
+          {return /* :: */[0,string_of_command_spec(spec),acc];};
          
-        case 2:return list(text,[/* :: */0,param[2],param[1]]);
+        case 2:return list(text,/* :: */[0,param[2],param[1]]);
         }}
     };
 
 var
  digest=
   function(x)
-   {var xs=cmd(x,0);
+   {var xs=cmd(x,/* [] */0);
     
     var exit;
     
@@ -710,7 +792,7 @@ var
       }
     };
 
-var all_deps_of_tags=[0,0];
+var all_deps_of_tags=[0,/* [] */0];
 
 var
  cons=
@@ -722,7 +804,7 @@ var
                 {if(My_std["List"][30](dep,acc$1))
                   {return acc$1;}
                  else
-                  {return [/* :: */0,dep,acc$1];}
+                  {return /* :: */[0,dep,acc$1];}
                  },
                acc,
                deps));
@@ -738,7 +820,7 @@ var
                else
                 {return acc;}
                },
-             0,
+             /* [] */0,
              all_deps_of_tags[1]);
     };
 
@@ -746,7 +828,7 @@ var
  set_deps_of_tags=
   function(tags,deps)
    {return all_deps_of_tags[1]=
-           [/* :: */0,[/* tuple */0,tags,deps],all_deps_of_tags[1]],
+           /* :: */[0,/* tuple */[0,tags,deps],all_deps_of_tags[1]],
            0;
     };
 
@@ -761,7 +843,7 @@ var
             (ptag,
              function(param)
               {return dep
-                       ([/* :: */0,Param_tags["make"](ptag,param),tags],
+                       (/* :: */[0,Param_tags["make"](ptag,param),tags],
                         deps(param));
                });
     };

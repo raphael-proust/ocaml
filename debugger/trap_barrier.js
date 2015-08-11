@@ -32,10 +32,10 @@ var
   function(trap_barrier,funct)
    {try
      {install_trap_barrier(trap_barrier);
-      funct(0);
-      return remove_trap_barrier(0);
+      funct(/* () */0);
+      return remove_trap_barrier(/* () */0);
       }
-    catch(x){remove_trap_barrier(0);throw x;}
+    catch(x){remove_trap_barrier(/* () */0);throw x;}
     };
 
 module["exports"]=

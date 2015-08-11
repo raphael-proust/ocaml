@@ -27,7 +27,7 @@ var
      {var s=param[2];
       
       Format["pp_print_string"](f,s);
-      return pp_repeat(f,[/* tuple */0,n-1,s]);
+      return pp_repeat(f,/* tuple */[0,n-1,s]);
       }
     else
      {return 0;}
@@ -36,15 +36,20 @@ var
 var
  $$self=
   function(depth,on_the_go_orig,target)
-   {var rules=Rule["get_rules"](0);
+   {var rules=Rule["get_rules"](/* () */0);
     
-    var on_the_go=[/* :: */0,target,on_the_go_orig];
+    var on_the_go=/* :: */[0,target,on_the_go_orig];
     
     Log["dprintf"]
      (4,
-      [0,[11,"==",[15,[11,"> ",[15,0]]]],"==%a> %a"],
+      /* Format */[0,
+       /* String_literal */[11,
+        "==",
+        /* Alpha */[15,
+         /* String_literal */[11,"> ",/* Alpha */[15,/* End_of_format */0]]]],
+       "==%a> %a"],
       pp_repeat,
-      [/* tuple */0,depth,"=="],
+      /* tuple */[0,depth,"=="],
       Resource["print"],
       target);
     if(My_std["List"][30](target,on_the_go_orig))
@@ -59,24 +64,32 @@ var
        {case 0:
          return Log["dprintf"]
                  (5,
-                  [0,[15,[11," already built",0]],"%a already built"],
+                  /* Format */[0,
+                   /* Alpha */[15,
+                    /* String_literal */[11,
+                     " already built",
+                     /* End_of_format */0]],
+                   "%a already built"],
                   Resource["print"],
                   target);
          
         case 1:
          Log["dprintf"]
           (5,
-           [0,[15,[11," already failed",0]],"%a already failed"],
+           /* Format */[0,
+            /* Alpha */[15,
+             /* String_literal */[11," already failed",/* End_of_format */0]],
+            "%a already failed"],
            Resource["print"],
            target);
-         return failed(target,[/* Leaf */0,target]);
+         return failed(target,/* Leaf */[0,target]);
          
         case 2:
          if(!Pathname["is_relative"](target)&&Pathname["exists"](target))
           {if(Resource["Cache"][15](target))
-            {return 0;}
+            {return /* () */0;}
            else
-            {return failed(target,[/* Leaf */0,target]);}
+            {return failed(target,/* Leaf */[0,target]);}
            }
          else
           {if(Resource["exists_in_source_dir"](target))
@@ -102,7 +115,7 @@ var
                         {return Rule["call"](self_firsts(depth+1,on_the_go),r);}
                        catch(exn)
                         {if(exn=Rule["Failed"])
-                          {throw [0,Failed,[/* Leaf */0,target]];}
+                          {throw [0,Failed,/* Leaf */[0,target]];}
                          else
                           {throw exn;}
                          }
@@ -111,19 +124,19 @@ var
                       {if(exn$1[1]=Failed)
                         {var backtrace=exn$1[2];
                          
-                         if(rs$1=0)
+                         if(rs$1=/* [] */0)
                           {return failed
                                    (target,
-                                    [/* Depth */2,
+                                    /* Depth */[2,
                                      target,
-                                     [/* Choice */1,[/* :: */0,backtrace,backtraces]]]);
+                                     /* Choice */[1,/* :: */[0,backtrace,backtraces]]]);
                            }
                          else
                           {switch(backtrace)
                             {case 2:var match$1=Resource["Cache"][12](backtrace[1]);
-                             default:var match$1=0;}
+                             default:var match$1=/* () */0;}
                            
-                           return until_works(rs$1,[/* :: */0,backtrace,backtraces]);
+                           return until_works(rs$1,/* :: */[0,backtrace,backtraces]);
                            }
                          }
                        else
@@ -134,10 +147,10 @@ var
                     {throw [0,Assert_failure,[0,"solver.ml",66,16]];}
                    };
                
-               return until_works(matching_rules,0);
+               return until_works(matching_rules,/* [] */0);
                }
              else
-              {return failed(target,[/* Leaf */0,target]);}
+              {return failed(target,/* Leaf */[0,target]);}
              }
            }
          
@@ -146,8 +159,11 @@ var
     else
      {Log["dprintf"]
        (5,
-        [0,
-         [15,[11," was suspended -> resuming",0]],
+        /* Format */[0,
+         /* Alpha */[15,
+          /* String_literal */[11,
+           " was suspended -> resuming",
+           /* End_of_format */0]],
          "%a was suspended -> resuming"],
         Resource["print"],
         target);
@@ -162,24 +178,24 @@ var
      {var r=rs[1];
       
       try
-       {$$self(depth,on_the_go,r);return [/* Good */0,r];}
+       {$$self(depth,on_the_go,r);return /* Good */[0,r];}
       catch(exn)
        {if(exn[1]=Failed)
          {return self_first
-                  (depth,on_the_go,[/* :: */0,exn[2],already_failed],rs[2]);
+                  (depth,on_the_go,/* :: */[0,exn[2],already_failed],rs[2]);
           }
         else
          {throw exn;}
         }
       }
     else
-     {return [/* Bad */1,[0,Failed,[/* Choice */1,already_failed]]];}
+     {return /* Bad */[1,[0,Failed,/* Choice */[1,already_failed]]];}
     };
 
 var
  self_firsts=
   function(depth,on_the_go,rss)
-   {var results=My_std["List"][16](self_first(depth,on_the_go,0),rss);
+   {var results=My_std["List"][16](self_first(depth,on_the_go,/* [] */0),rss);
     
     var
      match=
@@ -192,9 +208,9 @@ var
              if(match$1)
               {var match$2=match$1[1];
                
-               return [/* tuple */0,
-                       [/* :: */0,match$2[1],acc[1]],
-                       [/* :: */0,match$2[2],acc[2]]];
+               return /* tuple */[0,
+                       /* :: */[0,match$2[1],acc[1]],
+                       /* :: */[0,match$2[2],acc[2]]];
                }
              else
               {return acc;}
@@ -203,7 +219,7 @@ var
             }
           },
         results,
-        [0,0,0]);
+        /* tuple */[0,/* [] */0,/* [] */0]);
     
     var thunks=match[2];
     
@@ -216,15 +232,27 @@ var
     if(count>1)
      {Log["dprintf"]
        (job_debug,
-        [0,[11,">>> PARALLEL: ",[4,0,0,0,0]],">>> PARALLEL: %d"],
+        /* Format */[0,
+         /* String_literal */[11,
+          ">>> PARALLEL: ",
+          /* Int */[4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           /* End_of_format */0]],
+         ">>> PARALLEL: %d"],
         count)}
     else
      {}
     
-    var opt_exn=Command["execute_many"](0,0,cmds);
+    var opt_exn=Command["execute_many"](/* None */0,/* None */0,cmds);
     
     if(count>1)
-     {Log["dprintf"](job_debug,[0,[11,"<<< PARALLEL",0],"<<< PARALLEL"])}
+     {Log["dprintf"]
+       (job_debug,
+        /* Format */[0,
+         /* String_literal */[11,"<<< PARALLEL",/* End_of_format */0],
+         "<<< PARALLEL"])}
     else
      {}
     
@@ -232,14 +260,14 @@ var
      {var match$1=opt_exn[1];
       
       My_std["List"][21]
-       (function(res,thunk){if(res){return thunk(0);}else{return 0;}},
+       (function(res,thunk){if(res){return thunk(/* () */0);}else{return 0;}},
         match$1[1],
         thunks);
-      Log["finish"]([0,106380200],0);
+      Log["finish"](/* Some */[0,/* Error */106380200],/* () */0);
       throw match$1[2];
       }
     else
-     {My_std["List"][14](function(thunk){return thunk(0);},thunks)}
+     {My_std["List"][14](function(thunk){return thunk(/* () */0);},thunks)}
     
     return results;
     };
@@ -249,12 +277,12 @@ var
   function(depth,on_the_go,x)
    {$$self(depth,on_the_go,x);return Resource["Cache"][9](x);};
 
-var solve=force_self(0,0);
+var solve=force_self(0,/* [] */0);
 
 var
  solve_target=
   function(name,rs)
-   {var match=self_first(0,0,0,rs);
+   {var match=self_first(0,/* [] */0,/* [] */0,rs);
     
     switch(match)
      {case 0:var res=match[1];Resource["Cache"][9](res);return res;
@@ -262,7 +290,7 @@ var
        var exn=match[1];
        
        if(exn[1]=Failed)
-        {throw [0,Failed,[/* Target */3,name,exn[2]]];}
+        {throw [0,Failed,/* Target */[3,name,exn[2]]];}
        else
         {throw exn;}
        

@@ -21,7 +21,7 @@ var runtime_program="ocamlrun";
 
 var history_size=[0,30];
 
-var load_path_for=Hashtbl["create"](0,7);
+var load_path_for=Hashtbl["create"](/* None */0,7);
 
 var checkpoint_big_step=[0,Int64ops["~~"]("10000")];
 
@@ -31,10 +31,11 @@ var checkpoint_max_count=[0,15];
 
 var match$1=Sys["os_type"];
 
-switch(match$1){case "Win32":var $js=0;default:var $js=1;}
+switch(match$1)
+ {case "Win32":var $js=/* false */0;default:var $js=/* true */1;}
 var make_checkpoints=[0,$js];
 
-var environment=[0,0];
+var environment=[0,/* [] */0];
 
 module["exports"]=
 {"Toplevel":Toplevel,

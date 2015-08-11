@@ -17,7 +17,7 @@ var
    {var lexbuf=Lexing["from_string"](s);
     
     try
-     {Odoc_text_lexer["init"](0);
+     {Odoc_text_lexer["init"](/* () */0);
       return Odoc_text_parser["main"](Odoc_text_lexer["main"],lexbuf);
       }
     catch(exn)
@@ -50,7 +50,14 @@ var
     
     for(var i=0;i<=len-1;i++)
      {if((s[i]=c)&&remain>0)
-       {Printf["bprintf"](b,[0,[12,92,[0,0]],"\%c"],c);remain=-1+remain;}
+       {Printf["bprintf"]
+         (b,
+          /* Format */[0,
+           /* Char_literal */[12,92,/* Char */[0,/* End_of_format */0]],
+           "\%c"],
+          c);
+        remain=-1+remain;
+        }
       else
        {Buffer["add_char"](b,s[i])}
       }
@@ -94,7 +101,13 @@ var
       
       switch(exit)
        {case 6:Buffer["add_char"](b,c);
-        case 5:Printf["bprintf"](b,[0,[12,92,[0,0]],"\%c"],s[i])
+        case 5:
+         Printf["bprintf"]
+          (b,
+           /* Format */[0,
+            /* Char_literal */[12,92,/* Char */[0,/* End_of_format */0]],
+            "\%c"],
+           s[i])
         }
       }
     
@@ -110,9 +123,17 @@ var
   function(b,l)
    {return List["iter"]
             (function(t)
-              {p(b,[0,[11,"{- ",0],"{- "]);
+              {p
+                (b,
+                 /* Format */[0,
+                  /* String_literal */[11,"{- ",/* End_of_format */0],
+                  "{- "]);
                p_text(b,t);
-               return p(b,[0,[11,"}\n",0],"}\n"]);
+               return p
+                       (b,
+                        /* Format */[0,
+                         /* String_literal */[11,"}\n",/* End_of_format */0],
+                         "}\n"]);
                },
              l);
     };
@@ -122,56 +143,170 @@ var
   function(b,param)
    {if(typeof param=="number")
      {switch(param)
-       {case 0:return p(b,[0,[12,10,0],"\n"]);
-        case 1:return p(b,[0,[11,"{!indexlist}",0],"{!indexlist}"]);
+       {case 0:
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,10,/* End_of_format */0],
+                   "\n"]);
+         
+        case 1:
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* String_literal */[11,"{!indexlist}",/* End_of_format */0],
+                   "{!indexlist}"]);
+         
         }}
     else
      {switch(param[0])
-       {case 0:return p(b,[0,[2,0,0],"%s"],escape_raw(param[1]));
+       {case 0:
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* String */[2,/* No_padding */0,/* End_of_format */0],
+                   "%s"],
+                  escape_raw(param[1]));
+         
         case 1:
-         return p(b,[0,[12,91,[2,0,[12,93,0]]],"[%s]"],escape_code(param[1]));
-        case 2:return p(b,[0,[11,"{[",[2,0,[11,"]}",0]]],"{[%s]}"],param[1]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,
+                    91,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,93,/* End_of_format */0]]],
+                   "[%s]"],
+                  escape_code(param[1]));
+         
+        case 2:
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "{[",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,"]}",/* End_of_format */0]]],
+                   "{[%s]}"],
+                  param[1]);
+         
         case 3:
-         return p(b,[0,[11,"{v ",[2,0,[11," v}",0]]],"{v %s v}"],param[1]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "{v ",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11," v}",/* End_of_format */0]]],
+                   "{v %s v}"],
+                  param[1]);
+         
         case 4:
-         p(b,[0,[11,"{b ",0],"{b "]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{b ",/* End_of_format */0],
+            "{b "]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 5:
-         p(b,[0,[11,"{i ",0],"{i "]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{i ",/* End_of_format */0],
+            "{i "]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 6:
-         p(b,[0,[11,"{e ",0],"{e "]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{e ",/* End_of_format */0],
+            "{e "]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 7:
-         p(b,[0,[11,"{C ",0],"{C "]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{C ",/* End_of_format */0],
+            "{C "]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 8:
-         p(b,[0,[11,"{L ",0],"{L "]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{L ",/* End_of_format */0],
+            "{L "]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 9:
-         p(b,[0,[11,"{R ",0],"{R "]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{R ",/* End_of_format */0],
+            "{R "]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 10:
-         p(b,[0,[11,"{ul\n",0],"{ul\n"]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{ul\n",/* End_of_format */0],
+            "{ul\n"]);
          p_list(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 11:
-         p(b,[0,[11,"{ol\n",0],"{ol\n"]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{ol\n",/* End_of_format */0],
+            "{ol\n"]);
          p_list(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 12:return p_text(b,param[1]);
         case 13:
@@ -179,24 +314,61 @@ var
          
          p
           (b,
-           [0,[12,123,[4,0,0,0,[2,0,[12,32,0]]]],"{%d%s "],
+           /* Format */[0,
+            /* Char_literal */[12,
+             123,
+             /* Int */[4,
+              /* Int_d */0,
+              /* No_padding */0,
+              /* No_precision */0,
+              /* String */[2,
+               /* No_padding */0,
+               /* Char_literal */[12,32,/* End_of_format */0]]]],
+            "{%d%s "],
            param[1],
            l_opt?Pervasives["^"](":",l_opt[1]):"");
          p_text(b,param[3]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 14:
          return p
                  (b,
-                  [0,
-                   [12,123,[12,37,[12,32,[2,0,[12,37,[12,125,0]]]]]],
+                  /* Format */[0,
+                   /* Char_literal */[12,
+                    123,
+                    /* Char_literal */[12,
+                     37,
+                     /* Char_literal */[12,
+                      32,
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* Char_literal */[12,
+                        37,
+                        /* Char_literal */[12,125,/* End_of_format */0]]]]]],
                    "{%% %s%%}"],
                   param[1]);
          
         case 15:
-         p(b,[0,[11,"{{:",[2,0,[12,125,0]]],"{{:%s}"],param[1]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,
+             "{{:",
+             /* String */[2,
+              /* No_padding */0,
+              /* Char_literal */[12,125,/* End_of_format */0]]],
+            "{{:%s}"],
+           param[1]);
          p_text(b,param[2]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 16:
          var text_opt=param[3];
@@ -231,41 +403,114 @@ var
           {var $js="";}
          p
           (b,
-           [0,[2,0,[11,"{!",[2,0,[2,0,[12,125,0]]]]],"%s{!%s%s}"],
+           /* Format */[0,
+            /* String */[2,
+             /* No_padding */0,
+             /* String_literal */[11,
+              "{!",
+              /* String */[2,
+               /* No_padding */0,
+               /* String */[2,
+                /* No_padding */0,
+                /* Char_literal */[12,125,/* End_of_format */0]]]]],
+            "%s{!%s%s}"],
            text_opt?"{":"",
            $js,
            param[1]);
          if(text_opt)
-          {p_text(b,text_opt[1]);return p(b,[0,[12,125,0],"}"]);}
+          {p_text(b,text_opt[1]);
+           return p
+                   (b,
+                    /* Format */[0,
+                     /* Char_literal */[12,125,/* End_of_format */0],
+                     "}"]);
+           }
          else
-          {return 0;}
+          {return /* () */0;}
          
         case 17:
-         p(b,[0,[11,"{^",0],"{^"]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{^",/* End_of_format */0],
+            "{^"]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 18:
-         p(b,[0,[11,"{_",0],"{_"]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{_",/* End_of_format */0],
+            "{_"]);
          p_text(b,param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 19:
-         p(b,[0,[11,"{!modules:",0],"{!modules:"]);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,"{!modules:",/* End_of_format */0],
+            "{!modules:"]);
          List["iter"]
-          (function(s$1){return p(b,[0,[12,32,[2,0,0]]," %s"],s$1);},param[1]);
-         return p(b,[0,[12,125,0],"}"]);
+          (function(s$1)
+            {return p
+                     (b,
+                      /* Format */[0,
+                       /* Char_literal */[12,
+                        32,
+                        /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                       " %s"],
+                      s$1);
+             },
+           param[1]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 20:
-         p(b,[0,[12,123,[2,0,[12,32,0]]],"{%s "],param[1]);
+         p
+          (b,
+           /* Format */[0,
+            /* Char_literal */[12,
+             123,
+             /* String */[2,
+              /* No_padding */0,
+              /* Char_literal */[12,32,/* End_of_format */0]]],
+            "{%s "],
+           param[1]);
          p_text(b,param[2]);
-         return p(b,[0,[12,125,0],"}"]);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* Char_literal */[12,125,/* End_of_format */0],
+                   "}"]);
          
         case 21:
          return p
                  (b,
-                  [0,
-                   [12,123,[12,37,[2,0,[11,": ",[2,0,[12,125,0]]]]]],
+                  /* Format */[0,
+                   /* Char_literal */[12,
+                    123,
+                    /* Char_literal */[12,
+                     37,
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       ": ",
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,125,/* End_of_format */0]]]]]],
                    "{%%%s: %s}"],
                   param[1],
                   escape_raw(param[2]));

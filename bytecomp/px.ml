@@ -529,7 +529,10 @@ module rec
            (match args with
             | e::[] -> e
             | _ -> Gen_util.expr_of_unknow_primitive prim)
-       | Pignore  -> J_helper.unit_val
+       | Pignore  ->
+           (match args with
+            | e::[] -> e
+            | _ -> Gen_util.expr_of_unknow_primitive prim)
        | Pbintcomp (_,cmp)|Pfloatcomp cmp|Pintcomp cmp ->
            let op: J.binop = jsop_of_comp cmp in
            (match args with
@@ -623,7 +626,7 @@ module rec
        | Const_pointer (c,pointer_info) ->
            E.int ?comment:(comment_of_pointer_info pointer_info) c
        | Const_block (tag,tag_info,xs) ->
-           E.arr ?comment:(comment_of_tag_info tag_info) ((E.int tag) ::
+           E.arr ((E.int ?comment:(comment_of_tag_info tag_info) tag) ::
              (List.map (fun x  -> compile_const x) xs))
        | Const_float_array ars ->
            E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
@@ -1453,17 +1456,17 @@ module rec
                       | Ltrywith (lam,id,catch) ->
                           let aux st =
                             let b = compile_lambda { cxt with st } lam in
-                            [let open J_helper.Stmt in
-                               try_
-                                 ~with_:(id,
-                                          (Gen_util.block_of_output @@
-                                             (compile_lambda { cxt with st }
-                                                catch)))
-                                 (Gen_util.block_of_output b)] in
+                            [S.try_
+                               ~with_:(id,
+                                        (Gen_util.block_of_output @@
+                                           (compile_lambda { cxt with st }
+                                              catch)))
+                               (Gen_util.block_of_output b)] in
                           (match st with
                            | NeedValue  ->
                                let v = Gen_util.gen () in
-                               ((aux (Declare v)), (Some (E.var v)))
+                               (((S.variable v) :: (aux (Assign v))),
+                                 (Some (E.var v)))
                            | _ -> ((aux st), None))
                       | Lapply (fn,args_lambda,_) ->
                           (match compile_lambda

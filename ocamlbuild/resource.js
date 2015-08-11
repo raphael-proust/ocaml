@@ -37,7 +37,12 @@ var
     else
      {return Pervasives["invalid_arg"]
               (Printf["sprintf"]
-                ([0,[11,"in_source_dir: ",[3,0,0]],"in_source_dir: %S"],p));
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "in_source_dir: ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                  "in_source_dir: %S"],
+                 p));
       }
     };
 
@@ -49,7 +54,12 @@ var
     else
      {return Pervasives["invalid_arg"]
               (Printf["sprintf"]
-                ([0,[11,"in_build_dir: ",[3,0,0]],"in_build_dir: %S"],p));
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "in_build_dir: ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                  "in_build_dir: %S"],
+                 p));
       }
     };
 
@@ -73,10 +83,10 @@ var
                    else
                     {}
                    
-                   return 0;
+                   return /* false */0;
                    }
                  else
-                  {return 1;}
+                  {return /* true */1;}
                  },
                entry);
       }
@@ -86,7 +96,7 @@ var
  clean_up_link_to_build=
   function(param)
    {return Options["entry"][1]=
-           [/* Some */0,clean_up_links(My_std["the"](Options["entry"][1]))],
+           /* Some */[0,clean_up_links(My_std["the"](Options["entry"][1]))],
            0;
     };
 
@@ -94,7 +104,7 @@ var
  source_dir_path_set_without_links_to_build=
   [246,
    function(param)
-    {clean_up_link_to_build(0);
+    {clean_up_link_to_build(/* () */0);
      return Slurp["fold"]
              (function(path,name,param$1)
                {return My_std["StringSet"][4]
@@ -107,7 +117,11 @@ var
 var
  clean_links=
   function(param)
-   {if(My_std["!*"](My_unix["is_degraded"])){return 0;}else{return 0;}};
+   {if(My_std["!*"](My_unix["is_degraded"]))
+     {return /* () */0;}
+    else
+     {return clean_up_link_to_build(/* () */0);}
+    };
 
 var
  exists_in_source_dir=
@@ -129,7 +143,10 @@ var
     return Shell["rm_rf"](Options["build_dir"][1]);
     };
 
-var empty=function(param){return [/* record */0,2,2,Resources[1]];};
+var
+ empty=
+  function(param)
+   {return /* record */[0,/* Bnot_built_yet */2,/* Unknown */2,Resources[1]];};
 
 var
  print_knowledge=
@@ -154,15 +171,24 @@ var
     else
      {return Format["fprintf"]
               (f,
-               [0,
-                [18,
-                 [1,[0,[11,"<2>",0],"<2>"]],
-                 [11,
+               /* Format */[0,
+                /* Formatting_gen */[18,
+                 /* Open_box */[1,
+                  /* Format */[0,
+                   /* String_literal */[11,"<2>",/* End_of_format */0],
+                   "<2>"]],
+                 /* String_literal */[11,
                   "Bsuspension(",
-                  [15,
-                   [12,
+                  /* Alpha */[15,
+                   /* Char_literal */[12,
                     44,
-                    [17,[0,"@ ",1,0],[11,"(<fun> : unit -> unit))",[17,0,0]]]]]]],
+                    /* Formatting_lit */[17,
+                     /* Break */[0,"@ ",1,0],
+                     /* String_literal */[11,
+                      "(<fun> : unit -> unit))",
+                      /* Formatting_lit */[17,
+                       /* Close_box */0,
+                       /* End_of_format */0]]]]]]],
                 "@[<2>Bsuspension(%a,@ (<fun> : unit -> unit))@]"],
                Command["print"],
                param[1][1]);
@@ -174,44 +200,65 @@ var
   function(f,e)
    {return Format["fprintf"]
             (f,
-             [0,
-              [18,
-               [1,[0,[11,"<2>",0],"<2>"]],
-               [11,
+             /* Format */[0,
+              /* Formatting_gen */[18,
+               /* Open_box */[1,
+                /* Format */[0,
+                 /* String_literal */[11,"<2>",/* End_of_format */0],
+                 "<2>"]],
+               /* String_literal */[11,
                 "{ ",
-                [18,
-                 [1,[0,[11,"<2>",0],"<2>"]],
-                 [11,
+                /* Formatting_gen */[18,
+                 /* Open_box */[1,
+                  /* Format */[0,
+                   /* String_literal */[11,"<2>",/* End_of_format */0],
+                   "<2>"]],
+                 /* String_literal */[11,
                   "built =",
-                  [17,
-                   [0,"@ ",1,0],
-                   [15,
-                    [17,
-                     0,
-                     [12,
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@ ",1,0],
+                   /* Alpha */[15,
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* Char_literal */[12,
                       59,
-                      [17,
-                       [0,"@ ",1,0],
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [11,
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* Formatting_gen */[18,
+                        /* Open_box */[1,
+                         /* Format */[0,
+                          /* String_literal */[11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        /* String_literal */[11,
                          "changed =",
-                         [17,
-                          [0,"@ ",1,0],
-                          [15,
-                           [17,
-                            0,
-                            [12,
+                         /* Formatting_lit */[17,
+                          /* Break */[0,"@ ",1,0],
+                          /* Alpha */[15,
+                           /* Formatting_lit */[17,
+                            /* Close_box */0,
+                            /* Char_literal */[12,
                              59,
-                             [17,
-                              [0,"@ ",1,0],
-                              [18,
-                               [1,[0,[11,"<2>",0],"<2>"]],
-                               [11,
+                             /* Formatting_lit */[17,
+                              /* Break */[0,"@ ",1,0],
+                              /* Formatting_gen */[18,
+                               /* Open_box */[1,
+                                /* Format */[0,
+                                 /* String_literal */[11,"<2>",/* End_of_format */0],
+                                 "<2>"]],
+                               /* String_literal */[11,
                                 "dependencies =",
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [15,[17,0,[17,[0,"@ ",1,0],[12,125,[17,0,0]]]]]]]]]]]]]]]]]]]]]]]],
+                                /* Formatting_lit */[17,
+                                 /* Break */[0,"@ ",1,0],
+                                 /* Alpha */[15,
+                                  /* Formatting_lit */[17,
+                                   /* Close_box */0,
+                                   /* Formatting_lit */[17,
+                                    /* Break */[0,"@ ",1,0],
+                                    /* Char_literal */[12,
+                                     125,
+                                     /* Formatting_lit */[17,
+                                      /* Close_box */0,
+                                      /* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]],
               "@[<2>{ @[<2>built =@ %a@];@ @[<2>changed =@ %a@];@ @[<2>dependencies =@ %a@]@ }@]"],
              print_build_status,
              e[1],
@@ -221,7 +268,7 @@ var
              e[3]);
     };
 
-var cache=Hashtbl["create"](0,103);
+var cache=Hashtbl["create"](/* None */0,103);
 
 var
  get=
@@ -230,7 +277,7 @@ var
      {return Hashtbl["find"](cache,r);}
     catch(exn)
      {if(exn=Not_found)
-       {var cache_entry=empty(0);
+       {var cache_entry=empty(/* () */0);
         
         Hashtbl["add"](cache,r,cache_entry);
         return cache_entry;
@@ -247,29 +294,56 @@ var
   function(f,param)
    {Format["fprintf"]
      (f,
-      [0,
-       [18,
-        [1,[0,[11,"<hv0>",0],"<hv0>"]],
-        [18,[1,[0,[11,"<hv2>",0],"<hv2>"]],[11,"{:",0]]],
+      /* Format */[0,
+       /* Formatting_gen */[18,
+        /* Open_box */[1,
+         /* Format */[0,
+          /* String_literal */[11,"<hv0>",/* End_of_format */0],
+          "<hv0>"]],
+        /* Formatting_gen */[18,
+         /* Open_box */[1,
+          /* Format */[0,
+           /* String_literal */[11,"<hv2>",/* End_of_format */0],
+           "<hv2>"]],
+         /* String_literal */[11,"{:",/* End_of_format */0]]],
        "@[<hv0>@[<hv2>{:"]);
     fold_cache
      (function(k,v,param$1)
        {return Format["fprintf"]
                 (f,
-                 [0,
-                  [17,
-                   [0,"@ ",1,0],
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [15,[11," =>",[17,[0,"@ ",1,0],[15,[17,0,[12,59,0]]]]]]]],
+                 /* Format */[0,
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@ ",1,0],
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,
+                     /* Format */[0,
+                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    /* Alpha */[15,
+                     /* String_literal */[11,
+                      " =>",
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* Alpha */[15,
+                        /* Formatting_lit */[17,
+                         /* Close_box */0,
+                         /* Char_literal */[12,59,/* End_of_format */0]]]]]]]],
                   "@ @[<2>%a =>@ %a@];"],
                  print,
                  k,
                  print_cache_entry,
                  v);
         },
-      0);
-    return Format["fprintf"](f,[0,[17,0,[11,":}",[17,0,0]]],"@]:}@]"]);
+      /* () */0);
+    return Format["fprintf"]
+            (f,
+             /* Format */[0,
+              /* Formatting_lit */[17,
+               /* Close_box */0,
+               /* String_literal */[11,
+                ":}",
+                /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0]]],
+              "@]:}@]"]);
     };
 
 var
@@ -277,22 +351,41 @@ var
   function(f,param)
    {Format["fprintf"]
      (f,
-      [0,
-       [18,
-        [1,[0,[11,"<hv0>",0],"<hv0>"]],
-        [18,[1,[0,[11,"<hv2>",0],"<hv2>"]],[11,"{:",0]]],
+      /* Format */[0,
+       /* Formatting_gen */[18,
+        /* Open_box */[1,
+         /* Format */[0,
+          /* String_literal */[11,"<hv0>",/* End_of_format */0],
+          "<hv0>"]],
+        /* Formatting_gen */[18,
+         /* Open_box */[1,
+          /* Format */[0,
+           /* String_literal */[11,"<hv2>",/* End_of_format */0],
+           "<hv2>"]],
+         /* String_literal */[11,"{:",/* End_of_format */0]]],
        "@[<hv0>@[<hv2>{:"]);
     fold_cache
      (function(k,v,param$1)
        {if(!Resources[2](v[3]))
          {return Format["fprintf"]
                   (f,
-                   [0,
-                    [17,
-                     [0,"@ ",1,0],
-                     [18,
-                      [1,[0,[11,"<2>",0],"<2>"]],
-                      [15,[11," =>",[17,[0,"@ ",1,0],[15,[17,0,[12,59,0]]]]]]]],
+                   /* Format */[0,
+                    /* Formatting_lit */[17,
+                     /* Break */[0,"@ ",1,0],
+                     /* Formatting_gen */[18,
+                      /* Open_box */[1,
+                       /* Format */[0,
+                        /* String_literal */[11,"<2>",/* End_of_format */0],
+                        "<2>"]],
+                      /* Alpha */[15,
+                       /* String_literal */[11,
+                        " =>",
+                        /* Formatting_lit */[17,
+                         /* Break */[0,"@ ",1,0],
+                         /* Alpha */[15,
+                          /* Formatting_lit */[17,
+                           /* Close_box */0,
+                           /* Char_literal */[12,59,/* End_of_format */0]]]]]]]],
                     "@ @[<2>%a =>@ %a@];"],
                    print,
                    k,
@@ -302,9 +395,20 @@ var
         else
          {return 0;}
         },
-      0);
+      /* () */0);
     return Format["fprintf"]
-            (f,[0,[17,0,[17,[0,"@ ",1,0],[11,":}",[17,0,0]]]],"@]@ :}@]"]);
+            (f,
+             /* Format */[0,
+              /* Formatting_lit */[17,
+               /* Close_box */0,
+               /* Formatting_lit */[17,
+                /* Break */[0,"@ ",1,0],
+                /* String_literal */[11,
+                 ":}",
+                 /* Formatting_lit */[17,
+                  /* Close_box */0,
+                  /* End_of_format */0]]]],
+              "@]@ :}@]"]);
     };
 
 var
@@ -312,12 +416,16 @@ var
   function(r)
    {Log["dprintf"]
      (10,
-      [0,
-       [11,"resource_changed:",[17,[0,"@ ",1,0],[15,0]]],
+      /* Format */[0,
+       /* String_literal */[11,
+        "resource_changed:",
+        /* Formatting_lit */[17,
+         /* Break */[0,"@ ",1,0],
+         /* Alpha */[15,/* End_of_format */0]]],
        "resource_changed:@ %a"],
       print,
       r);
-    return get(r)[2]=0,0;
+    return get(r)[2]=/* Yes */0,0;
     };
 
 var
@@ -332,9 +440,10 @@ var
       
       var is_up_to_date="unknown primitive:caml_string_equal";
       }
-    catch(exn){if(exn=Not_found){var is_up_to_date=0;}else{throw exn;}}
+    catch(exn)
+     {if(exn=Not_found){var is_up_to_date=/* false */0;}else{throw exn;}}
     
-    return is_up_to_date||(Digest_cache["put"](key,digest),0);
+    return is_up_to_date||(Digest_cache["put"](key,digest),/* false */0);
     };
 
 var
@@ -344,15 +453,16 @@ var
     
     var digest=My_std["Digest"][3](r_in_source_dir);
     
+    var $js;
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      var $js="unknown primitive:caml_string_equal";
+      $js="unknown primitive:caml_string_equal";
       }
-    catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){$js=/* false */0;}else{throw exn;}}
     var r_is_up_to_date=Pathname["exists"](r_in_build_dir)&&$js;
     
-    return r_is_up_to_date||(Digest_cache["put"](key,digest),0);
+    return r_is_up_to_date||(Digest_cache["put"](key,digest),/* false */0);
     };
 
 var
@@ -373,17 +483,21 @@ var
     var match=cache_entry[2];
     
     switch(match[0])
-     {case 0:return 1;
-      case 1:return 0;
+     {case 0:return /* true */1;
+      case 1:return /* false */0;
       case 2:
        var match$1=cache_entry[1];
        
        if("unknown primitive:isint")
-        {if(match$1>=2){var res=!prod_is_up_to_date(r);}else{var res=0;}}
+        {if(match$1>=2)
+          {var res=!prod_is_up_to_date(r);}
+         else
+          {var res=/* false */0;}
+         }
        else
         {throw [0,Assert_failure,[0,"resource.ml",182,27]];}
        
-       var match$2=(cache_entry[2]=res?0:1,0);
+       var match$2=(cache_entry[2]=res?/* Yes */0:/* No */1,0);
        
        return res;
        
@@ -392,9 +506,9 @@ var
 
 var resource_state=function(r){return get(r)[1];};
 
-var resource_built=function(r){return get(r)[1]=0,0;};
+var resource_built=function(r){return get(r)[1]=/* Bbuilt */0,0;};
 
-var resource_failed=function(r){return get(r)[1]=1,0;};
+var resource_failed=function(r){return get(r)[1]=/* Bcannot_be_built */1,0;};
 
 var
  import_in_build_dir=
@@ -408,24 +522,32 @@ var
     if(source_is_up_to_date(r_in_source_dir,r_in_build_dir))
      {Log["dprintf"]
        (5,
-        [0,[15,[11," exists and up to date",0]],"%a exists and up to date"],
+        /* Format */[0,
+         /* Alpha */[15,
+          /* String_literal */[11,
+           " exists and up to date",
+           /* End_of_format */0]],
+         "%a exists and up to date"],
         print,
         r)}
     else
      {Log["dprintf"]
        (5,
-        [0,
-         [15,[11," exists in source dir -> import it",0]],
+        /* Format */[0,
+         /* Alpha */[15,
+          /* String_literal */[11,
+           " exists in source dir -> import it",
+           /* End_of_format */0]],
          "%a exists in source dir -> import it"],
         print,
         r),
       Shell["mkdir_p"](Pathname["dirname"](r)),
       Pathname["copy"](r_in_source_dir,r_in_build_dir),
       cache_entry[2]=
-      0,
+      /* Yes */0,
       0}
     
-    return cache_entry[1]=0,0;
+    return cache_entry[1]=/* Bbuilt */0,0;
     };
 
 var
@@ -437,30 +559,33 @@ var
     
     if("unknown primitive:isint")
      {switch(match[0])
-       {case 0:return 0;
+       {case 0:return /* () */0;
         case 1:throw [0,Assert_failure,[0,"resource.ml",212,26]];
         case 2:
          var
           kont$1=
            function(param)
-            {kont(0);
+            {kont(/* () */0);
              return My_std["List"][14]
-                     (function(prod){return get(prod)[1]=0,0;},prods);
+                     (function(prod){return get(prod)[1]=/* Bbuilt */0,0;},prods);
              };
          
          return cache_entry[1]=
-                [/* Bsuspension */0,[/* tuple */0,cmd,kont$1]],
+                /* Bsuspension */[0,/* tuple */[0,cmd,kont$1]],
                 0;
          
         }
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
  resume_suspension=
-  function(param){Command["execute"](0,0,param[1]);return param[2](0);};
+  function(param)
+   {Command["execute"](/* None */0,/* None */0,param[1]);
+    return param[2](/* () */0);
+    };
 
 var
  resume_resource=
@@ -470,7 +595,7 @@ var
     var match=cache_entry[1];
     
     if("unknown primitive:isint")
-     {return 0;}
+     {return /* () */0;}
     else
      {return resume_suspension(match[1]);}
     };
@@ -481,12 +606,14 @@ var
    {var match=get(r)[1];
     
     if("unknown primitive:isint")
-     {return 0;}
+     {return /* None */0;}
     else
-     {return [/* Some */0,match[1]];}
+     {return /* Some */[0,match[1]];}
     };
 
-var clear_resource_failed=function(r){return get(r)[1]=2,0;};
+var
+ clear_resource_failed=
+  function(r){return get(r)[1]=/* Bnot_built_yet */2,0;};
 
 var dependencies=function(r){return get(r)[3];};
 
@@ -565,14 +692,14 @@ var
    {return My_std["List"][16]
             (function(param$1)
               {if(param$1[1]>=970337770)
-                {return [/* A */0,param$1[2]];}
+                {return /* A */[0,param$1[2]];}
                else
-                {var match=param$1[2];return [/* V */1,match[1],match[2]];}
+                {var match=param$1[2];return /* V */[1,match[1],match[2]];}
                },
              Lexers["path_scheme"]
               (param[1],
                Const["Source"][6],
-               My_std["lexbuf_of_string"](0,param[2])));
+               My_std["lexbuf_of_string"](/* None */0,param[2])));
     };
 
 var mk$1=My_std["memo"](mk);
@@ -633,7 +760,7 @@ var
                        {return loop
                                 (match$1[2],
                                  pos$prime+s2["length"],
-                                 [/* :: */0,[/* tuple */0,$$var,matched],acc],
+                                 /* :: */[0,/* tuple */[0,$$var,matched],acc],
                                  0);
                         }
                       catch(exn)
@@ -656,7 +783,7 @@ var
               {var matched$1=My_std["String"][19](s,pos,sl-pos);
                
                if(Glob["eval"](patt,matched$1))
-                {return [/* :: */0,[/* tuple */0,$$var,matched$1],acc];}
+                {return /* :: */[0,/* tuple */[0,$$var,matched$1],acc];}
                else
                 {throw No_solution;}
                }
@@ -668,8 +795,8 @@ var
         };
     
     try
-     {return [/* Some */0,loop(p,0,0,0)];}
-    catch(exn){if(exn=No_solution){return 0;}else{throw exn;}}
+     {return /* Some */[0,loop(p,0,/* [] */0,0)];}
+    catch(exn){if(exn=No_solution){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -677,7 +804,15 @@ var
   function(pp_elt,f,param)
    {if(param)
      {return Format["fprintf"]
-              (f,[0,[11,"Some(",[15,[12,41,0]]],"Some(%a)"],pp_elt,param[1]);
+              (f,
+               /* Format */[0,
+                /* String_literal */[11,
+                 "Some(",
+                 /* Alpha */[15,
+                  /* Char_literal */[12,41,/* End_of_format */0]]],
+                "Some(%a)"],
+               pp_elt,
+               param[1]);
       }
     else
      {return Format["pp_print_string"](f,"None");}
@@ -694,13 +829,33 @@ var
                
                if("unknown primitive:caml_string_equal")
                 {return Format["fprintf"]
-                         (f,[0,[12,37,[12,61,[2,0,[12,32,0]]]],"%%=%s "],v);
+                         (f,
+                          /* Format */[0,
+                           /* Char_literal */[12,
+                            37,
+                            /* Char_literal */[12,
+                             61,
+                             /* String */[2,
+                              /* No_padding */0,
+                              /* Char_literal */[12,32,/* End_of_format */0]]]],
+                           "%%=%s "],
+                          v);
                  }
                else
                 {return Format["fprintf"]
                          (f,
-                          [0,
-                           [12,37,[12,40,[2,0,[11,")=",[2,0,[12,32,0]]]]]],
+                          /* Format */[0,
+                           /* Char_literal */[12,
+                            37,
+                            /* Char_literal */[12,
+                             40,
+                             /* String */[2,
+                              /* No_padding */0,
+                              /* String_literal */[11,
+                               ")=",
+                               /* String */[2,
+                                /* No_padding */0,
+                                /* Char_literal */[12,32,/* End_of_format */0]]]]]],
                            "%%(%s)=%s "],
                           k,
                           v);
@@ -734,17 +889,20 @@ var print_pattern=function(f,param){return Pathname["print"](f,param[1]);};
 
 var
  import_pattern=
-  function(x){return [/* tuple */0,x,MetaPath[1]([/* tuple */0,1,x])];};
+  function(x)
+   {return /* tuple */[0,x,MetaPath[1](/* tuple */[0,/* true */1,x])];};
 
 var matchit$1=function(param,x){return MetaPath[2](param[2],x);};
 
 var
  subst$1=
-  function(env,s){return MetaPath[3](env,MetaPath[1]([/* tuple */0,0,s]));};
+  function(env,s)
+   {return MetaPath[3](env,MetaPath[1](/* tuple */[0,/* false */0,s]));};
 
 var
  subst_any=
-  function(env,s){return MetaPath[3](env,MetaPath[1]([/* tuple */0,1,s]));};
+  function(env,s)
+   {return MetaPath[3](env,MetaPath[1](/* tuple */[0,/* true */1,s]));};
 
 var subst_pattern=function(env,param){return MetaPath[3](env,param[2]);};
 

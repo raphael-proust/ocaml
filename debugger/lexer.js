@@ -8,7 +8,7 @@ var Parsing=require("Parsing");
 
 var
  __ocaml_lex_tables=
-  [0,
+  /* record */[0,
    '\0\0ýÿ\x01\0ÿÿ\x02\0\x05\0ýÿ\0\0\x07\0\x01\0þÿ\x03\0H\0íÿîÿ(\x01ðÿñÿòÿóÿK\x01n\x01‘\x01÷ÿøÿ´\x01×\x01\0\0è\x01\x04\x001\x02\x01\x03\b\0üÿ\x1f\0\n\0\x12\0—\0|\x02"\0\f\0',
    "\x01\0ÿÿ\0\0ÿÿ\x01\0ÿÿÿÿ\x01\0\0\0\0\0ÿÿ\0\0ÿÿÿÿÿÿ\x10\0ÿÿÿÿÿÿÿÿ\x0b\0\n\0\t\0ÿÿÿÿ\x06\0\x05\0\x04\0\x04\0\x12\0\x02\0\x01\0\0\0ÿÿÿÿÿÿÿÿÿÿ\x04\0\x04\0\x04\0",
    '\x04\0\0\0ÿÿ\0\0\x04\0\b\0\0\0ÿÿ\b\0\x0b\0\0\0\x0b\0\r\0\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0ÿÿÿÿÿÿ\0\0\0\0ÿÿÿÿÿÿÿÿ"\0ÿÿÿÿÿÿ\0\0"\0ÿÿÿÿÿÿÿÿÿÿÿÿ',
@@ -64,9 +64,9 @@ var
       }
     else
      {switch(__ocaml_lex_state$1[0])
-       {case 0:return [/* ARGUMENT */0,Lexing["lexeme"](lexbuf)];
+       {case 0:return /* ARGUMENT */[0,Lexing["lexeme"](lexbuf)];
         case 1:return argument(lexbuf);
-        case 2:return 11;
+        case 2:return /* EOL */11;
         case 3:throw Parsing["Parse_error"];
         }
       }
@@ -89,10 +89,10 @@ var
         return __ocaml_lex_line_argument_rec(lexbuf,__ocaml_lex_state$1);
         }
       else
-       {return 11;}
+       {return /* EOL */11;}
       }
     else
-     {return [/* ARGUMENT */0,Lexing["lexeme"](lexbuf)];}
+     {return /* ARGUMENT */[0,Lexing["lexeme"](lexbuf)];}
     };
 
 var lexeme=function(lexbuf){return __ocaml_lex_lexeme_rec(lexbuf,12);};
@@ -111,28 +111,28 @@ var
     else
      {switch(__ocaml_lex_state$1[0])
        {case 0:return lexeme(lexbuf);
-        case 1:return [/* LIDENT */1,Lexing["lexeme"](lexbuf)];
-        case 2:return [/* UIDENT */2,Lexing["lexeme"](lexbuf)];
+        case 1:return /* LIDENT */[1,Lexing["lexeme"](lexbuf)];
+        case 2:return /* UIDENT */[2,Lexing["lexeme"](lexbuf)];
         case 3:
          var s=Lexing["lexeme"](lexbuf);
          
-         return [/* LIDENT */1,$$String["sub"](s,1,s["length"]-2)];
+         return /* LIDENT */[1,$$String["sub"](s,1,s["length"]-2)];
          
         case 4:
-         return [/* INTEGER */4,"unknown primitive:caml_int64_of_string"];
-        case 5:return 0;
-        case 6:return 1;
-        case 7:return 2;
-        case 8:return 3;
-        case 9:return 4;
-        case 10:return 5;
-        case 11:return 6;
-        case 12:return 7;
-        case 13:return 8;
-        case 14:return 9;
-        case 15:return 10;
-        case 16:return [/* OPERATOR */3,Lexing["lexeme"](lexbuf)];
-        case 17:return 11;
+         return /* INTEGER */[4,"unknown primitive:caml_int64_of_string"];
+        case 5:return /* STAR */0;
+        case 6:return /* MINUS */1;
+        case 7:return /* DOT */2;
+        case 8:return /* SHARP */3;
+        case 9:return /* AT */4;
+        case 10:return /* DOLLAR */5;
+        case 11:return /* BANG */6;
+        case 12:return /* LPAREN */7;
+        case 13:return /* RPAREN */8;
+        case 14:return /* LBRACKET */9;
+        case 15:return /* RBRACKET */10;
+        case 16:return /* OPERATOR */[3,Lexing["lexeme"](lexbuf)];
+        case 17:return /* EOL */11;
         case 18:throw Parsing["Parse_error"];
         }
       }

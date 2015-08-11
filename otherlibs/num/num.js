@@ -31,7 +31,12 @@ var
     switch(n)
      {case 0:exit=76;
       case 1:exit=76;
-      case 2:var r=n[1];return num_of_big_int(Ratio["numerator_ratio"](r));
+      case 2:
+       var r=n[1];
+       
+       Ratio["normalize_ratio"](r);
+       return num_of_big_int(Ratio["numerator_ratio"](r));
+       
       }
     
     switch(exit){case 76:return n;}
@@ -45,10 +50,15 @@ var
     switch(n)
      {case 0:exit=74;
       case 1:exit=74;
-      case 2:var r=n[1];return num_of_big_int(Ratio["denominator_ratio"](r));
+      case 2:
+       var r=n[1];
+       
+       Ratio["normalize_ratio"](r);
+       return num_of_big_int(Ratio["denominator_ratio"](r));
+       
       }
     
-    switch(exit){case 74:return [0,1];}
+    switch(exit){case 74:return /* Int */[0,1];}
     };
 
 var
@@ -80,7 +90,7 @@ var
 var
  num_of_ratio=
   function(r)
-   {
+   {Ratio["normalize_ratio"](r);
     if(!Ratio["is_integer_ratio"](r))
      {return /* Ratio */[2,r];}
     else
@@ -590,7 +600,7 @@ var
           {return num_of_big_int(Big_int["power_int_positive_int"](i,n));}
          }
        else
-        {return [0,1];}
+        {return /* Int */[0,1];}
        
       case 1:
        var n$1=match$1;
@@ -612,7 +622,7 @@ var
            }
          }
        else
-        {return [0,1];}
+        {return /* Int */[0,1];}
        
       case 2:
        var n$2=match$1;
@@ -631,7 +641,7 @@ var
           {return /* Ratio */[2,Ratio["power_ratio_positive_int"](r,n$2)];}
          }
        else
-        {return [0,1];}
+        {return /* Int */[0,1];}
        
       }
     };
@@ -663,7 +673,7 @@ var
           {return num_of_big_int(Big_int["power_int_positive_big_int"](i,n));}
          }
        else
-        {return [0,1];}
+        {return /* Int */[0,1];}
        
       case 1:
        var n$1=match$1;
@@ -686,7 +696,7 @@ var
            }
          }
        else
-        {return [0,1];}
+        {return /* Int */[0,1];}
        
       case 2:
        var n$2=match$1;
@@ -706,7 +716,7 @@ var
            }
          }
        else
-        {return [0,1];}
+        {return /* Int */[0,1];}
        
       }
     };
@@ -731,8 +741,8 @@ var
  is_integer_num=
   function(param)
    {switch(param)
-     {case 0:return 1;
-      case 1:return 1;
+     {case 0:return /* true */1;
+      case 1:return /* true */1;
       case 2:var r=param[1];return Ratio["is_integer_ratio"](r);
       }
     };
@@ -1041,7 +1051,7 @@ var
    {try
      {var flag=Arith_flags["normalize_ratio_flag"][1];
       
-      Arith_flags["normalize_ratio_flag"][1]=1,0;
+      Arith_flags["normalize_ratio_flag"][1]=/* true */1,0;
       var r=Ratio["ratio_of_string"](s);
       
       Arith_flags["normalize_ratio_flag"][1]=flag,0;

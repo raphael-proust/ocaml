@@ -96,7 +96,7 @@ var
         }
       }
     else
-     {throw [0,Unix["Unix_error"],62,"timed_read",""];}
+     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_read",""];}
     };
 
 var
@@ -130,7 +130,7 @@ var
         }
       }
     else
-     {throw [0,Unix["Unix_error"],62,"timed_write",""];}
+     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_write",""];}
     };
 
 var

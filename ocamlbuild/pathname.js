@@ -69,17 +69,17 @@ var
  is_directory=
   function(x)
    {try
-     {return My_unix["stat"](x)[1]=0;}
-    catch(exn){if(exn[1]=Sys_error){return 0;}else{throw exn;}}
+     {return My_unix["stat"](x)[1]=/* FK_dir */0;}
+    catch(exn){if(exn[1]=Sys_error){return /* false */0;}else{throw exn;}}
     };
 
 var
  readdir=
   function(x){return My_std["Outcome"][3](My_std["sys_readdir"](x));};
 
-var dir_seps=[0,47,[0,92,0]];
+var dir_seps=/* :: */[0,47,/* :: */[0,92,/* [] */0]];
 
-var not_normal_form_re=Glob["parse"](0,"<**/{,.,..}/**>");
+var not_normal_form_re=Glob["parse"](/* None */0,"<**/{,.,..}/**>");
 
 var parent=function(x){return concat(parent_dir_name,x);};
 
@@ -92,12 +92,12 @@ var
        {var dir=dirname(p$1);
         
         if("unknown primitive:caml_string_equal")
-         {return [/* tuple */0,dir,acc];}
+         {return /* tuple */[0,dir,acc];}
         else
-         {return go(dir,[/* :: */0,basename(p$1),acc]);}
+         {return go(dir,/* :: */[0,basename(p$1),acc]);}
         };
     
-    return go(p,0);
+    return go(p,/* [] */0);
     };
 
 var
@@ -150,12 +150,12 @@ var
          else
           {exit$1=39;}
          
-         switch(exit$1){case 39:return [/* :: */0,x,normalize_list(xs)];}
+         switch(exit$1){case 39:return /* :: */[0,x,normalize_list(xs)];}
          
         }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -182,7 +182,7 @@ var
                My_std["List"][30](y[lx],dir_seps);
         }
       else
-       {return 0;}
+       {return /* false */0;}
       }
     };
 
@@ -273,7 +273,7 @@ var with_output_file=My_std["with_output_file"];
 
 var print_path_list=My_std["List"][1](print);
 
-var context_table=Hashtbl["create"](0,107);
+var context_table=Hashtbl["create"](/* None */0,107);
 
 var
  include_dirs_of=
@@ -282,7 +282,7 @@ var
      {return Hashtbl["find"](context_table,dir);}
     catch(exn)
      {if(exn=Not_found)
-       {return [/* :: */0,
+       {return /* :: */[0,
                 dir,
                 My_std["List"][33]
                  (function(dir$prime)

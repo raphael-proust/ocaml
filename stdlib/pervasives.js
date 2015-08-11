@@ -330,8 +330,8 @@ var
          {if(n>0)
            {var res="unknown primitive:caml_create_string";
             
-            
-            
+            "unknown primitive:caml_ml_input";
+            "unknown primitive:caml_ml_input_char";
             if(accu)
              {var len$1=len+n-1;
               
@@ -346,7 +346,7 @@ var
           else
            {var beg="unknown primitive:caml_create_string";
             
-            
+            "unknown primitive:caml_ml_input";
             return scan(/* :: */[0,beg,accu],len-n);
             }
           }

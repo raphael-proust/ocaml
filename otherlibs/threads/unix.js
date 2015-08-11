@@ -22,7 +22,8 @@ var delay=function(duration){return "unknown primitive:thread_delay";};
 "unknown primitive:thread_initialize";
 var Unix_error="unknown primitive:caml_set_oo_id";
 
-Callback["register_exception"]("Unix.Unix_error",[0,Unix_error,0,"",""]);
+Callback["register_exception"]
+ ("Unix.Unix_error",[0,Unix_error,/* E2BIG */0,"",""]);
 var
  handle_unix_error=
   function(f,arg)
@@ -205,7 +206,7 @@ var
 var
  select=
   function(readfds,writefds,exceptfds,delay$1)
-   {var match=select_aux([/* tuple */0,readfds,writefds,exceptfds,delay$1]);
+   {var match=select_aux(/* tuple */[0,readfds,writefds,exceptfds,delay$1]);
     
     var exit;
     
@@ -220,11 +221,12 @@ var
          
          var r=match[1];
          
-         return [/* tuple */0,r,w,e];
+         return /* tuple */[0,r,w,e];
          
         default:exit=151;}}
     
-    switch(exit){case 151:return [0,0,0,0];}
+    switch(exit)
+     {case 151:return /* tuple */[0,/* [] */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -232,7 +234,8 @@ var
   function(fd)
    {try
      {return "unknown primitive:unix_clear_nonblock";}
-    catch(exn){var tag=exn[1];if(tag=Unix_error){return 0;}else{throw exn;}}
+    catch(exn)
+     {var tag=exn[1];if(tag=Unix_error){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -240,7 +243,8 @@ var
   function(fd)
    {try
      {return "unknown primitive:unix_set_nonblock";}
-    catch(exn){var tag=exn[1];if(tag=Unix_error){return 0;}else{throw exn;}}
+    catch(exn)
+     {var tag=exn[1];if(tag=Unix_error){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -252,12 +256,12 @@ var
     safe_clear_nonblock(stdout);
     safe_clear_nonblock(stderr);
     try
-     {return fn(0);}
+     {return fn(/* () */0);}
     catch(exn)
      {var tag=exn[1];
       
       if(tag=Unix_error)
-       {
+       {"unknown primitive:unix_setitimer";
         safe_set_nonblock(stdin);
         safe_set_nonblock(stdout);
         safe_set_nonblock(stderr);
@@ -310,7 +314,7 @@ var
          
          var pid$1=match[1];
          
-         return [/* tuple */0,pid$1,status];
+         return /* tuple */[0,pid$1,status];
          
         default:exit=138;}}
     
@@ -323,7 +327,7 @@ var wait=function(param){return wait_pid(-1);};
 var
  waitpid=
   function(flags,pid)
-   {if(List["mem"](0,flags))
+   {if(List["mem"](/* WNOHANG */0,flags))
      {return "unknown primitive:unix_waitpid";}
     else
      {return wait_pid(pid);}
@@ -368,8 +372,15 @@ var
  domain_of_sockaddr=
   function(param)
    {switch(param)
-     {case 0:return 0;
-      case 1:var a=param[1];if(is_inet6_addr(a)){return 2;}else{return 1;}
+     {case 0:return /* PF_UNIX */0;
+      case 1:
+       var a=param[1];
+       
+       if(is_inet6_addr(a))
+        {return /* PF_INET6 */2;}
+       else
+        {return /* PF_INET */1;}
+       
       }
     };
 
@@ -460,7 +471,8 @@ var
         else
          {exit=115;}
         
-        switch(exit$1){case 116:wait_write(s);return 0;}
+        switch(exit$1)
+         {case 116:wait_write(s);return "unknown primitive:unix_getpeername";}
         }
       else
        {exit=115;}
@@ -669,53 +681,54 @@ var getsockopt_float=function(fd,opt){return SO[6](SO[4],fd,opt);};
 
 var setsockopt_float=function(fd,opt,v){return SO[7](SO[4],fd,opt,v);};
 
-var getsockopt_error=function(fd){return SO[6](SO[5],fd,0);};
+var getsockopt_error=function(fd){return SO[6](SO[5],fd,/* SO_ERROR */0);};
 
 var
  getaddrinfo_emulation=
   function(node,service,opts)
-   {var opt_socktype=[0,0];
+   {var opt_socktype=[0,/* None */0];
     
     var opt_protocol=[0,0];
     
-    var opt_passive=[0,0];
+    var opt_passive=[0,/* false */0];
     
     List["iter"]
      (function(param)
        {var exit;
         
         if(typeof param=="number")
-         {switch(param){case 2:return opt_passive[1]=1,0;}}
+         {switch(param){case 2:return opt_passive[1]=/* true */1,0;}}
         else
          {switch(param[0])
-           {case 1:var s=param[1];return opt_socktype[1]=[/* Some */0,s],0;
+           {case 1:var s=param[1];return opt_socktype[1]=/* Some */[0,s],0;
             case 2:var p=param[1];return opt_protocol[1]=p,0;
             default:exit=86;}}
         
-        switch(exit){case 86:return 0;}
+        switch(exit){case 86:return /* () */0;}
         },
       opts);
     var
      get_port=
       function(ty,kind)
        {if("unknown primitive:caml_string_equal")
-         {return [/* :: */0,[/* tuple */0,ty,0],0];}
+         {return /* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
         else
          {try
-           {return [/* :: */0,
-                    [/* tuple */0,ty,"unknown primitive:caml_int_of_string"],
-                    0];
+           {return /* :: */[0,
+                    /* tuple */[0,ty,"unknown primitive:caml_int_of_string"],
+                    /* [] */0];
             }
           catch(exn$2)
            {var tag$2=exn$2[1];
             
             if(tag$2=Failure)
              {try
-               {return [/* :: */0,
-                        [/* tuple */0,ty,"unknown primitive:unix_getservbyname"[3]],
-                        0];
+               {return /* :: */[0,
+                        /* tuple */[0,ty,"unknown primitive:unix_getservbyname"[3]],
+                        /* [] */0];
                 }
-              catch(exn$3){if(exn$3=Not_found){return 0;}else{throw exn$3;}}
+              catch(exn$3)
+               {if(exn$3=Not_found){return /* [] */0;}else{throw exn$3;}}
               }
             else
              {throw exn$2;}
@@ -731,35 +744,43 @@ var
       if(ty!=1)
        {if(ty!=0)
          {if("unknown primitive:caml_string_equal")
-           {var ports=[/* :: */0,[/* tuple */0,ty,0],0];}
+           {var ports=/* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
           else
-           {var ports=0;}
+           {var ports=/* [] */0;}
           }
         else
-         {var ports=get_port(0,"tcp");}
+         {var ports=get_port(/* SOCK_STREAM */0,"tcp");}
         }
       else
-       {var ports=get_port(1,"udp");}
+       {var ports=get_port(/* SOCK_DGRAM */1,"udp");}
       }
     else
-     {var ports=Pervasives["@"](get_port(0,"tcp"),get_port(1,"udp"));}
+     {var
+       ports=
+        Pervasives["@"]
+         (get_port(/* SOCK_STREAM */0,"tcp"),
+          get_port(/* SOCK_DGRAM */1,"udp"));
+      }
     
     if("unknown primitive:caml_string_equal")
-     {if(List["mem"](2,opts))
-       {var addresses=[/* :: */0,[/* tuple */0,inet_addr_any,"0.0.0.0"],0];}
+     {if(List["mem"](/* AI_PASSIVE */2,opts))
+       {var
+         addresses=
+          /* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],/* [] */0];
+        }
       else
        {var
          addresses=
-          [/* :: */0,[/* tuple */0,inet_addr_loopback,"127.0.0.1"],0];
+          /* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],/* [] */0];
         }
       }
     else
      {try
        {var
          addresses=
-          [/* :: */0,
-           [/* tuple */0,"unknown primitive:unix_inet_addr_of_string",node],
-           0];
+          /* :: */[0,
+           /* tuple */[0,"unknown primitive:unix_inet_addr_of_string",node],
+           /* [] */0];
         }
       catch(exn$2)
        {var tag$2=exn$2[1];
@@ -771,11 +792,11 @@ var
             var
              addresses=
               List["map"]
-               (function(a){return [/* tuple */0,a,he[1]];},
+               (function(a){return /* tuple */[0,a,he[1]];},
                 $$Array["to_list"](he[4]));
             }
           catch(exn$3)
-           {if(exn$3=Not_found){var addresses=0;}else{throw exn$3;}}
+           {if(exn$3=Not_found){var addresses=/* [] */0;}else{throw exn$3;}}
           }
         else
          {throw exn$2;}
@@ -795,11 +816,11 @@ var
                             
                             var addr=param$1[1];
                             
-                            return [/* record */0,
-                                    1,
+                            return /* record */[0,
+                                    /* PF_INET */1,
                                     ty$1,
                                     opt_protocol[1],
-                                    [/* ADDR_INET */1,addr,port],
+                                    /* ADDR_INET */[1,addr,port],
                                     name];
                             },
                           addresses);
@@ -826,20 +847,20 @@ var
  getnameinfo_emulation=
   function(addr,opts)
    {switch(addr)
-     {case 0:var f=addr[1];return [/* record */0,"",f];
+     {case 0:var f=addr[1];return /* record */[0,"",f];
       case 1:
        var p=addr[2];
        
        var a=addr[1];
        
        try
-        {if(List["mem"](1,opts)){throw Not_found;}else{}
+        {if(List["mem"](/* NI_NUMERICHOST */1,opts)){throw Not_found;}else{}
          
          var hostname="unknown primitive:unix_gethostbyaddr"[1];
          }
        catch(exn$2)
         {if(exn$2=Not_found)
-          {if(List["mem"](2,opts)){throw Not_found;}else{}
+          {if(List["mem"](/* NI_NAMEREQD */2,opts)){throw Not_found;}else{}
            
            var hostname="unknown primitive:unix_string_of_inet_addr";
            }
@@ -848,9 +869,12 @@ var
          }
        
        try
-        {if(List["mem"](3,opts)){throw Not_found;}else{}
+        {if(List["mem"](/* NI_NUMERICSERV */3,opts)){throw Not_found;}else{}
          
-         if(List["mem"](4,opts)){var kind="udp";}else{var kind="tcp";}
+         if(List["mem"](/* NI_DGRAM */4,opts))
+          {var kind="udp";}
+         else
+          {var kind="tcp";}
          
          var service="unknown primitive:unix_getservbyport"[1];
          }
@@ -861,7 +885,7 @@ var
           {throw exn$3;}
          }
        
-       return [/* record */0,hostname,service];
+       return /* record */[0,hostname,service];
        
       }
     };
@@ -887,7 +911,7 @@ var
    {var id="unknown primitive:unix_fork";
     
     if(id!=0)
-     {return waitpid(0,id)[2];}
+     {return waitpid(/* [] */0,id)[2];}
     else
      {try
        {return execv("/bin/sh",["/bin/sh","-c",cmd]);}
@@ -912,7 +936,10 @@ var
    {try
      {return "unknown primitive:unix_close";}
     catch(exn$2)
-     {var tag$2=exn$2[1];if(tag$2=Unix_error){return 0;}else{throw exn$2;}}
+     {var tag$2=exn$2[1];
+      
+      if(tag$2=Unix_error){return /* () */0;}else{throw exn$2;}
+      }
     };
 
 var
@@ -967,7 +994,7 @@ var
       }
     };
 
-var popen_processes=Hashtbl["create"](0,7);
+var popen_processes=Hashtbl["create"](/* None */0,7);
 
 var
  open_proc=
@@ -998,7 +1025,7 @@ var
 var
  open_process_in=
   function(cmd)
-   {var match=pipe(0);
+   {var match=pipe(/* () */0);
     
     var in_write=match[2];
     
@@ -1007,7 +1034,11 @@ var
     var inchan="unknown primitive:caml_ml_open_descriptor_in";
     
     open_proc
-     (cmd,[/* Process_in */1,inchan],stdin,in_write,[/* :: */0,in_read,0]);
+     (cmd,
+      /* Process_in */[1,inchan],
+      stdin,
+      in_write,
+      /* :: */[0,in_read,/* [] */0]);
     "unknown primitive:unix_close";
     return inchan;
     };
@@ -1015,7 +1046,7 @@ var
 var
  open_process_out=
   function(cmd)
-   {var match=pipe(0);
+   {var match=pipe(/* () */0);
     
     var out_write=match[2];
     
@@ -1025,10 +1056,10 @@ var
     
     open_proc
      (cmd,
-      [/* Process_out */2,outchan],
+      /* Process_out */[2,outchan],
       out_read,
       stdout,
-      [/* :: */0,out_write,0]);
+      /* :: */[0,out_write,/* [] */0]);
     "unknown primitive:unix_close";
     return outchan;
     };
@@ -1036,13 +1067,13 @@ var
 var
  open_process=
   function(cmd)
-   {var match=pipe(0);
+   {var match=pipe(/* () */0);
     
     var in_write=match[2];
     
     var in_read=match[1];
     
-    var match$1=pipe(0);
+    var match$1=pipe(/* () */0);
     
     var out_write=match$1[2];
     
@@ -1054,13 +1085,13 @@ var
     
     open_proc
      (cmd,
-      [/* Process */0,inchan,outchan],
+      /* Process */[0,inchan,outchan],
       out_read,
       in_write,
-      [/* :: */0,in_read,[/* :: */0,out_write,0]]);
+      /* :: */[0,in_read,/* :: */[0,out_write,/* [] */0]]);
     "unknown primitive:unix_close";
     "unknown primitive:unix_close";
-    return [/* tuple */0,inchan,outchan];
+    return /* tuple */[0,inchan,outchan];
     };
 
 var
@@ -1088,19 +1119,19 @@ var
 var
  open_process_full=
   function(cmd,env)
-   {var match=pipe(0);
+   {var match=pipe(/* () */0);
     
     var in_write=match[2];
     
     var in_read=match[1];
     
-    var match$1=pipe(0);
+    var match$1=pipe(/* () */0);
     
     var out_write=match$1[2];
     
     var out_read=match$1[1];
     
-    var match$2=pipe(0);
+    var match$2=pipe(/* () */0);
     
     var err_write=match$2[2];
     
@@ -1115,15 +1146,15 @@ var
     open_proc_full
      (cmd,
       env,
-      [/* Process_full */3,inchan,outchan,errchan],
+      /* Process_full */[3,inchan,outchan,errchan],
       out_read,
       in_write,
       err_write,
-      [/* :: */0,in_read,[/* :: */0,out_write,[/* :: */0,err_read,0]]]);
+      /* :: */[0,in_read,/* :: */[0,out_write,/* :: */[0,err_read,/* [] */0]]]);
     "unknown primitive:unix_close";
     "unknown primitive:unix_close";
     "unknown primitive:unix_close";
-    return [/* tuple */0,inchan,outchan,errchan];
+    return /* tuple */[0,inchan,outchan,errchan];
     };
 
 var
@@ -1137,7 +1168,7 @@ var
       }
     catch(exn$2)
      {if(exn$2=Not_found)
-       {throw [0,Unix_error,3,fun_name,""];}
+       {throw [0,Unix_error,/* EBADF */3,fun_name,""];}
       else
        {throw exn$2;}
       }
@@ -1147,7 +1178,7 @@ var
  waitpid_non_intr=
   function(pid)
    {try
-     {return waitpid(0,pid);}
+     {return waitpid(/* [] */0,pid);}
     catch(exn$2)
      {var exit;
       
@@ -1171,7 +1202,7 @@ var
 var
  close_process_in=
   function(inchan)
-   {var pid=find_proc_id("close_process_in",[/* Process_in */1,inchan]);
+   {var pid=find_proc_id("close_process_in",/* Process_in */[1,inchan]);
     
     Pervasives["close_in"](inchan);
     return waitpid_non_intr(pid)[2];
@@ -1180,7 +1211,7 @@ var
 var
  close_process_out=
   function(outchan)
-   {var pid=find_proc_id("close_process_out",[/* Process_out */2,outchan]);
+   {var pid=find_proc_id("close_process_out",/* Process_out */[2,outchan]);
     
     Pervasives["close_out"](outchan);
     return waitpid_non_intr(pid)[2];
@@ -1193,7 +1224,7 @@ var
     
     var inchan=param[1];
     
-    var pid=find_proc_id("close_process",[/* Process */0,inchan,outchan]);
+    var pid=find_proc_id("close_process",/* Process */[0,inchan,outchan]);
     
     Pervasives["close_in"](inchan);
     try
@@ -1215,7 +1246,7 @@ var
     var
      pid=
       find_proc_id
-       ("close_process_full",[/* Process_full */3,inchan,outchan,errchan]);
+       ("close_process_full",/* Process_full */[3,inchan,outchan,errchan]);
     
     Pervasives["close_in"](inchan);
     try
@@ -1229,11 +1260,11 @@ var
 var
  open_connection=
   function(sockaddr)
-   {var sock=socket(domain_of_sockaddr(sockaddr),0,0);
+   {var sock=socket(domain_of_sockaddr(sockaddr),/* SOCK_STREAM */0,0);
     
     try
      {connect(sock,sockaddr);
-      return [/* tuple */0,
+      return /* tuple */[0,
               "unknown primitive:caml_ml_open_descriptor_in",
               "unknown primitive:caml_ml_open_descriptor_out"];
       }
@@ -1247,12 +1278,12 @@ var
 var
  establish_server=
   function(server_fun,sockaddr)
-   {var sock=socket(domain_of_sockaddr(sockaddr),0,0);
+   {var sock=socket(domain_of_sockaddr(sockaddr),/* SOCK_STREAM */0,0);
     
-    setsockopt(sock,2,1);
+    setsockopt(sock,/* SO_REUSEADDR */2,/* true */1);
     "unknown primitive:unix_bind";
     "unknown primitive:unix_listen";
-    while(1)
+    while(/* true */1)
      {var match=accept(sock);
       
       var s=match[1];
@@ -1260,7 +1291,7 @@ var
       var id="unknown primitive:unix_fork";
       
       if(id!=0)
-       {"unknown primitive:unix_close",0}
+       {"unknown primitive:unix_close",waitpid(/* [] */0,id)}
       else
        {if("unknown primitive:unix_fork"!=0){Pervasives["exit"](0)}else{}
         

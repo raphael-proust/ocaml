@@ -43,7 +43,7 @@ Odoc_parameter,
 Odoc_name;
 var Text_syntax=Odoc_text["Text_syntax"];
 
-var dummy_loc=[0,0,0];
+var dummy_loc=/* record */[0,/* None */0,/* None */0];
 
 var
  analyse_files=
@@ -58,30 +58,36 @@ var
    {if($staropt$star)
      {var merge_options=$staropt$star[1];}
     else
-     {var merge_options=0;}
+     {var merge_options=/* [] */0;}
     
     if($staropt$star$1)
      {var include_dirs=$staropt$star$1[1];}
     else
-     {var include_dirs=0;}
+     {var include_dirs=/* [] */0;}
     
-    if($staropt$star$2){var labels=$staropt$star$2[1];}else{var labels=0;}
+    if($staropt$star$2)
+     {var labels=$staropt$star$2[1];}
+    else
+     {var labels=/* false */0;}
     
     if($staropt$star$3)
      {var sort_modules=$staropt$star$3[1];}
     else
-     {var sort_modules=0;}
+     {var sort_modules=/* false */0;}
     
-    if($staropt$star$4){var no_stop=$staropt$star$4[1];}else{var no_stop=0;}
+    if($staropt$star$4)
+     {var no_stop=$staropt$star$4[1];}
+    else
+     {var no_stop=/* false */0;}
     
-    if($staropt$star$5){var init=$staropt$star$5[1];}else{var init=0;}
+    if($staropt$star$5){var init=$staropt$star$5[1];}else{var init=/* [] */0;}
     
     Odoc_global["merge_options"][1]=merge_options,0;
     Odoc_global["include_dirs"][1]=include_dirs,0;
     Odoc_global["classic"][1]=!labels,0;
     Odoc_global["sort_modules"][1]=sort_modules,0;
     Odoc_global["no_stop"][1]=no_stop,0;
-    return Odoc_analyse["analyse_files"]([/* Some */0,init],files);
+    return Odoc_analyse["analyse_files"](/* Some */[0,init],files);
     };
 
 var dump_modules=Odoc_analyse["dump_modules"];
@@ -93,7 +99,7 @@ var reset_type_names=Printtyp["reset"];
 var
  string_of_variance=
   function(t,param)
-   {return Odoc_str["string_of_variance"](t,[/* tuple */0,param[1],param[2]]);
+   {return Odoc_str["string_of_variance"](t,/* tuple */[0,param[1],param[2]]);
     };
 
 var
@@ -177,9 +183,11 @@ var
  verbose=
   function(s)
    {if(Odoc_global["verbose"][1])
-     {Pervasives["print_string"](s);return Pervasives["print_newline"](0);}
+     {Pervasives["print_string"](s);
+      return Pervasives["print_newline"](/* () */0);
+      }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var warning=function(s){return Odoc_global["pwarning"](s);};
@@ -225,7 +233,12 @@ var
     var match=i[1];
     
     if(match)
-     {p(b,[0,[2,0,0],"%s"],escape_arobas(text_string_of_text(match[1])))}
+     {p
+       (b,
+        /* Format */[0,
+         /* String */[2,/* No_padding */0,/* End_of_format */0],
+         "%s"],
+        escape_arobas(text_string_of_text(match[1])))}
     else
      {}
     
@@ -233,7 +246,15 @@ var
      (function(s)
        {return p
                 (b,
-                 [0,[12,10,[17,5,[11,"author ",[2,0,0]]]],"\n@@author %s"],
+                 /* Format */[0,
+                  /* Char_literal */[12,
+                   10,
+                   /* Formatting_lit */[17,
+                    /* Escaped_at */5,
+                    /* String_literal */[11,
+                     "author ",
+                     /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                  "\n@@author %s"],
                  escape_arobas(s));
         },
       i[2]);
@@ -242,7 +263,15 @@ var
     if(match$1)
      {p
        (b,
-        [0,[12,10,[17,5,[11,"version ",[2,0,0]]]],"\n@@version %s"],
+        /* Format */[0,
+         /* Char_literal */[12,
+          10,
+          /* Formatting_lit */[17,
+           /* Escaped_at */5,
+           /* String_literal */[11,
+            "version ",
+            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+         "\n@@version %s"],
         escape_arobas(match$1[1]))}
     else
      {}
@@ -253,15 +282,36 @@ var
        {switch(param)
          {case 0:
            return Printf["sprintf"]
-                   ([0,[12,60,[2,0,[12,62,0]]],"<%s>"],param[1]);
+                   (/* Format */[0,
+                     /* Char_literal */[12,
+                      60,
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* Char_literal */[12,62,/* End_of_format */0]]],
+                     "<%s>"],
+                    param[1]);
            
           case 1:
            return Printf["sprintf"]
-                   ([0,[12,39,[2,0,[12,39,0]]],"'%s'"],param[1]);
+                   (/* Format */[0,
+                     /* Char_literal */[12,
+                      39,
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* Char_literal */[12,39,/* End_of_format */0]]],
+                     "'%s'"],
+                    param[1]);
            
           case 2:
            return Printf["sprintf"]
-                   ([0,[12,34,[2,0,[12,34,0]]],'"%s"'],param[1]);
+                   (/* Format */[0,
+                     /* Char_literal */[12,
+                      34,
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* Char_literal */[12,34,/* End_of_format */0]]],
+                     '"%s"'],
+                    param[1]);
            
           }
         };
@@ -270,8 +320,18 @@ var
      (function(param)
        {return p
                 (b,
-                 [0,
-                  [12,10,[17,5,[11,"see ",[2,0,[12,32,[2,0,0]]]]]],
+                 /* Format */[0,
+                  /* Char_literal */[12,
+                   10,
+                   /* Formatting_lit */[17,
+                    /* Escaped_at */5,
+                    /* String_literal */[11,
+                     "see ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,
+                       32,
+                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@see %s %s"],
                  escape_arobas(f_see_ref(param[1])),
                  escape_arobas(text_string_of_text(param[2])));
@@ -282,7 +342,15 @@ var
     if(match$2)
      {p
        (b,
-        [0,[12,10,[17,5,[11,"since ",[2,0,0]]]],"\n@@since %s"],
+        /* Format */[0,
+         /* Char_literal */[12,
+          10,
+          /* Formatting_lit */[17,
+           /* Escaped_at */5,
+           /* String_literal */[11,
+            "since ",
+            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+         "\n@@since %s"],
         escape_arobas(match$2[1]))}
     else
      {}
@@ -292,7 +360,15 @@ var
     if(match$3)
      {p
        (b,
-        [0,[12,10,[17,5,[11,"deprecated ",[2,0,0]]]],"\n@@deprecated %s"],
+        /* Format */[0,
+         /* Char_literal */[12,
+          10,
+          /* Formatting_lit */[17,
+           /* Escaped_at */5,
+           /* String_literal */[11,
+            "deprecated ",
+            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+         "\n@@deprecated %s"],
         escape_arobas(text_string_of_text(match$3[1])))}
     else
      {}
@@ -301,8 +377,18 @@ var
      (function(param)
        {return p
                 (b,
-                 [0,
-                  [12,10,[17,5,[11,"param ",[2,0,[12,32,[2,0,0]]]]]],
+                 /* Format */[0,
+                  /* Char_literal */[12,
+                   10,
+                   /* Formatting_lit */[17,
+                    /* Escaped_at */5,
+                    /* String_literal */[11,
+                     "param ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,
+                       32,
+                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@param %s %s"],
                  escape_arobas(param[1]),
                  escape_arobas(text_string_of_text(param[2])));
@@ -312,8 +398,18 @@ var
      (function(param)
        {return p
                 (b,
-                 [0,
-                  [12,10,[17,5,[11,"raise ",[2,0,[12,32,[2,0,0]]]]]],
+                 /* Format */[0,
+                  /* Char_literal */[12,
+                   10,
+                   /* Formatting_lit */[17,
+                    /* Escaped_at */5,
+                    /* String_literal */[11,
+                     "raise ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,
+                       32,
+                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@raise %s %s"],
                  escape_arobas(param[1]),
                  escape_arobas(text_string_of_text(param[2])));
@@ -324,7 +420,15 @@ var
     if(match$4)
      {p
        (b,
-        [0,[12,10,[17,5,[11,"return ",[2,0,0]]]],"\n@@return %s"],
+        /* Format */[0,
+         /* Char_literal */[12,
+          10,
+          /* Formatting_lit */[17,
+           /* Escaped_at */5,
+           /* String_literal */[11,
+            "return ",
+            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+         "\n@@return %s"],
         escape_arobas(text_string_of_text(match$4[1])))}
     else
      {}
@@ -333,7 +437,17 @@ var
      (function(param)
        {return p
                 (b,
-                 [0,[12,10,[17,5,[2,0,[12,32,[2,0,0]]]]],"\n@@%s %s"],
+                 /* Format */[0,
+                  /* Char_literal */[12,
+                   10,
+                   /* Formatting_lit */[17,
+                    /* Escaped_at */5,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,
+                      32,
+                      /* String */[2,/* No_padding */0,/* End_of_format */0]]]]],
+                  "\n@@%s %s"],
                  param[1],
                  escape_arobas(text_string_of_text(param[2])));
         },

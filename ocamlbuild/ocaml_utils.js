@@ -24,11 +24,13 @@ var S=My_std["Set"][1]([0,$$let[40],$$let[1]]);
 var
  flag_and_dep=
   function(tags,cmd_spec)
-   {Flags["flag"](0,tags,cmd_spec);
+   {Flags["flag"](/* None */0,tags,cmd_spec);
     var
      ps=
       Command["fold_pathnames"]
-       (function(p,ps$1){return [/* :: */0,p,ps$1];},[/* Cmd */1,cmd_spec],0);
+       (function(p,ps$1){return /* :: */[0,p,ps$1];},
+        /* Cmd */[1,cmd_spec],
+        /* [] */0);
     
     return Command["dep"](tags,ps);
     };
@@ -45,15 +47,17 @@ var
      var
       match=
        Command["execute"]
-        ([0,1],
-         0,
-         [/* Cmd */1,
-          [/* S */0,
-           [/* :: */0,
+        (/* Some */[0,/* true */1],
+         /* None */0,
+         /* Cmd */[1,
+          /* S */[0,
+           /* :: */[0,
             Options["ocamlc"][1],
-            [/* :: */0,
-             [1,"-where"],
-             [/* :: */0,[4,">"],[/* :: */0,[/* P */2,ocamlc_where],0]]]]]]);
+            /* :: */[0,
+             /* A */[1,"-where"],
+             /* :: */[0,
+              /* Sh */[4,">"],
+              /* :: */[0,/* P */[2,ocamlc_where],/* [] */0]]]]]]);
      
      return My_std["String"][2](My_std["read_file"](ocamlc_where));
      }];
@@ -65,7 +69,7 @@ var
             (ptag,
              function(param)
               {return flag_and_dep
-                       ([/* :: */0,Param_tags["make"](ptag,param),tags],
+                       (/* :: */[0,Param_tags["make"](ptag,param),tags],
                         cmd_spec(param));
                });
     };
@@ -85,7 +89,7 @@ var
  ignore_stdlib=
   function(x)
    {if(Options["nostdlib"][1])
-     {return 0;}
+     {return /* false */0;}
     else
      {var
        x$prime=
@@ -97,7 +101,7 @@ var
       }
     };
 
-var non_dependencies=[0,0];
+var non_dependencies=[0,/* [] */0];
 
 var
  non_dependency=
@@ -108,7 +112,7 @@ var
      {}
     
     return non_dependencies[1]=
-           [/* :: */0,[/* tuple */0,m1,m2],non_dependencies[1]],
+           /* :: */[0,/* tuple */[0,m1,m2],non_dependencies[1]],
            0;
     };
 
@@ -116,22 +120,32 @@ var
  path_importance=
   function(path,x)
    {if
-     (My_std["List"][30]([/* tuple */0,path,x],non_dependencies[1])||
+     (My_std["List"][30](/* tuple */[0,path,x],non_dependencies[1])||
       My_std["List"][30](x,Options["ignore_list"][1]))
      {var
        match=
         Log["dprintf"]
          (3,
-          [0,
-           [11,"This module (",[2,0,[11,") is ignored by ",[2,0,0]]]],
+          /* Format */[0,
+           /* String_literal */[11,
+            "This module (",
+            /* String */[2,
+             /* No_padding */0,
+             /* String_literal */[11,
+              ") is ignored by ",
+              /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
            "This module (%s) is ignored by %s"],
           x,
           path);
       
-      return -589744366;
+      return /* ignored */-589744366;
       }
     else
-     {if(ignore_stdlib(x)){return 886832744;}else{return -38817255;}}
+     {if(ignore_stdlib(x))
+       {return /* just_try */886832744;}
+      else
+       {return /* mandatory */-38817255;}
+      }
     };
 
 var
@@ -154,11 +168,11 @@ var
               (function(include_dir)
                 {return My_std["List"][20]
                          (function(ext,acc)
-                           {return [/* :: */0,
+                           {return /* :: */[0,
                                     Pathname["Operators"][1]
                                      (include_dir,
                                       Pathname["Operators"][2](module_name_uncap,ext)),
-                                    [/* :: */0,
+                                    /* :: */[0,
                                      Pathname["Operators"][1]
                                       (include_dir,Pathname["Operators"][2](module_name_cap,ext)),
                                      acc]];
@@ -166,14 +180,14 @@ var
                           exts);
                  },
                include_dirs,
-               0);
+               /* [] */0);
       });
 
 var
  string_list_of_file=
   function(file)
    {return My_std["with_input_file"]
-            (0,
+            (/* None */0,
              file,
              function(ic)
               {return Lexers["blank_sep_strings"]
@@ -193,11 +207,13 @@ var
     
     var reduced=Command["reduce"](flags);
     
-    if(reduced=0)
-     {return 0;}
+    if(reduced=/* N */0)
+     {return /* N */0;}
     else
-     {return [/* S */0,
-              [/* :: */0,[1,"-pp"],[/* :: */0,[/* Quote */7,reduced],0]]];
+     {return /* S */[0,
+              /* :: */[0,
+               /* A */[1,"-pp"],
+               /* :: */[0,/* Quote */[7,reduced],/* [] */0]]];
       }
     };
 
@@ -207,53 +223,62 @@ var
    {if("unknown primitive:caml_string_equal")
      {return acc;}
     else
-     {return [/* :: */0,[1,"-I"],[/* :: */0,[/* A */1,x],acc]];}
+     {return /* :: */[0,/* A */[1,"-I"],/* :: */[0,/* A */[1,x],acc]];}
     };
 
 var
  ocaml_include_flags=
   function(path)
-   {return [/* S */0,
+   {return /* S */[0,
             My_std["List"][20]
              (ocaml_add_include_flag,
               Pathname["include_dirs_of"](Pathname["dirname"](path)),
-              0)];
+              /* [] */0)];
     };
 
-var info_libraries=Hashtbl["create"](0,103);
+var info_libraries=Hashtbl["create"](/* None */0,103);
 
-var libraries=Hashtbl["create"](0,103);
+var libraries=Hashtbl["create"](/* None */0,103);
 
 var
  libraries_of=
   function(m)
    {try
      {return Hashtbl["find"](libraries,m);}
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){return /* [] */0;}else{throw exn;}}
     };
 
 var
  use_lib=
   function(m,lib)
-   {return Hashtbl["replace"](libraries,m,[/* :: */0,lib,libraries_of(m)]);};
+   {return Hashtbl["replace"](libraries,m,/* :: */[0,lib,libraries_of(m)]);};
 
 var
  ocaml_lib=
   function($staropt$star,$staropt$star$1,$staropt$star$2,dir,tag_name,libpath)
-   {if($staropt$star){var extern=$staropt$star[1];}else{var extern=0;}
+   {if($staropt$star)
+     {var extern=$staropt$star[1];}
+    else
+     {var extern=/* false */0;}
     
-    if($staropt$star$1){var $$byte=$staropt$star$1[1];}else{var $$byte=1;}
+    if($staropt$star$1)
+     {var $$byte=$staropt$star$1[1];}
+    else
+     {var $$byte=/* true */1;}
     
-    if($staropt$star$2){var $$native=$staropt$star$2[1];}else{var $$native=1;}
+    if($staropt$star$2)
+     {var $$native=$staropt$star$2[1];}
+    else
+     {var $$native=/* true */1;}
     
     var
      add_dir=
       function(x)
        {if(dir)
-         {return [/* S */0,
-                  [/* :: */0,
-                   [1,"-I"],
-                   [/* :: */0,[/* P */2,dir[1]],[/* :: */0,x,0]]]];
+         {return /* S */[0,
+                  /* :: */[0,
+                   /* A */[1,"-I"],
+                   /* :: */[0,/* P */[2,dir[1]],/* :: */[0,x,/* [] */0]]]];
           }
         else
          {return x;}
@@ -267,27 +292,35 @@ var
     var
      flag_and_dep$1=
       function(tags,lib)
-       {Flags["flag"](0,tags,add_dir([/* A */1,lib]));
+       {Flags["flag"](/* None */0,tags,add_dir(/* A */[1,lib]));
         if(!extern)
-         {return Command["dep"](tags,[/* :: */0,lib,0]);}
+         {return Command["dep"](tags,/* :: */[0,lib,/* [] */0]);}
         else
          {return 0;}
         };
     
     Hashtbl["replace"]
-     (info_libraries,tag_name$1,[/* tuple */0,libpath,extern]);
+     (info_libraries,tag_name$1,/* tuple */[0,libpath,extern]);
     Flags["mark_tag_used"](tag_name$1);
     if(extern)
      {if($$byte)
        {flag_and_dep$1
-         ([/* :: */0,"ocaml",[/* :: */0,tag_name$1,[0,"link",[0,"byte",0]]]],
+         (/* :: */[0,
+           "ocaml",
+           /* :: */[0,
+            tag_name$1,
+            /* :: */[0,"link",/* :: */[0,"byte",/* [] */0]]]],
           Pervasives["^"](libpath,".cma"))}
       else
        {}
       
       if($$native)
        {flag_and_dep$1
-         ([/* :: */0,"ocaml",[/* :: */0,tag_name$1,[0,"link",[0,"native",0]]]],
+         (/* :: */[0,
+           "ocaml",
+           /* :: */[0,
+            tag_name$1,
+            /* :: */[0,"link",/* :: */[0,"native",/* [] */0]]]],
           Pervasives["^"](libpath,".cmxa"))}
       else
        {}
@@ -306,22 +339,28 @@ var
       return My_std["List"][14]
               (function(x)
                 {return Flags["flag"]
-                         (0,
-                          [/* :: */0,"ocaml",[/* :: */0,tag_name$1,[/* :: */0,x,0]]],
-                          [/* S */0,
-                           [/* :: */0,[1,"-I"],[/* :: */0,[/* P */2,dir$1],0]]]);
+                         (/* None */0,
+                          /* :: */[0,
+                           "ocaml",
+                           /* :: */[0,tag_name$1,/* :: */[0,x,/* [] */0]]],
+                          /* S */[0,
+                           /* :: */[0,
+                            /* A */[1,"-I"],
+                            /* :: */[0,/* P */[2,dir$1],/* [] */0]]]);
                  },
-               [0,"compile",[0,"doc",[0,"infer_interface",0]]]);
+               /* :: */[0,
+                "compile",
+                /* :: */[0,"doc",/* :: */[0,"infer_interface",/* [] */0]]]);
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var cmi_of=Pathname["update_extensions"]("cmi");
 
 var Ocamldep_error="unknown primitive:caml_set_oo_id";
 
-var path_dependencies=Hashtbl["create"](0,103);
+var path_dependencies=Hashtbl["create"](/* None */0,103);
 
 var
  read_path_dependencies=
@@ -331,7 +370,7 @@ var
     var depends=Pathname["Operators"][2](path,"depends");
     
     return My_std["with_input_file"]
-            (0,
+            (/* None */0,
              depends,
              function(ic)
               {try
@@ -345,8 +384,12 @@ var
                   {throw [0,
                           Ocamldep_error,
                           Printf["sprintf"]
-                           ([0,
-                             [11,"Ocamldep.ocamldep: bad output (",[2,0,[12,41,0]]],
+                           (/* Format */[0,
+                             /* String_literal */[11,
+                              "Ocamldep.ocamldep: bad output (",
+                              /* String */[2,
+                               /* No_padding */0,
+                               /* Char_literal */[12,41,/* End_of_format */0]]],
                              "Ocamldep.ocamldep: bad output (%s)"],
                             exn[2][1])];
                    }
@@ -368,21 +411,25 @@ var
                       {throw [0,
                               Ocamldep_error,
                               Printf["sprintf"]
-                               ([0,
-                                 [11,
+                               (/* Format */[0,
+                                 /* String_literal */[11,
                                   "Ocamldep.ocamldep: multiple files in ocamldep output (",
-                                  [2,0,[11," not expected)",0]]],
+                                  /* String */[2,
+                                   /* No_padding */0,
+                                   /* String_literal */[11,
+                                    " not expected)",
+                                    /* End_of_format */0]]],
                                  "Ocamldep.ocamldep: multiple files in ocamldep output (%s not expected)"],
                                 path$1)];
                        }
                      },
                    ocamldep_output,
-                   0);
+                   /* [] */0);
                
                if
                 (Options["nostdlib"][1]&&
                  !Tags["mem"]("nopervasives",Tools["tags_of_pathname"](path)))
-                {var deps$1=[/* :: */0,"Pervasives",deps];}
+                {var deps$1=/* :: */[0,"Pervasives",deps];}
                else
                 {var deps$1=deps;}
                
@@ -393,16 +440,18 @@ var
                     {var importance=path_importance(path,dep);
                      
                      if(importance>=-38817255)
-                      {return [/* :: */0,[/* tuple */0,importance,dep],acc];}
+                      {return /* :: */[0,/* tuple */[0,importance,dep],acc];}
                      else
                       {return acc;}
                      },
                    deps$1,
-                   0);
+                   /* [] */0);
                
+               var $js;
                try
-                {var $js=Hashtbl["find"](path_dependencies,path);}
-               catch(exn$1){if(exn$1=Not_found){var $js=0;}else{throw exn$1;}}
+                {$js=Hashtbl["find"](path_dependencies,path);}
+               catch(exn$1)
+                {if(exn$1=Not_found){$js=/* [] */0;}else{throw exn$1;}}
                Hashtbl["replace"]
                 (path_dependencies,path,My_std["List"][3]($js,deps$prime));
                return deps$prime;

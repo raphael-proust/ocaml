@@ -6,14 +6,14 @@ var Primitives=require("Primitives");
 var Unix=require("Unix");
 
 
-var active_files=[0,0];
+var active_files=[0,/* [] */0];
 
 var
  add_file=
   function(file,controller)
    {return active_files[1]=
-           [/* :: */0,
-            [/* tuple */0,file[3],[/* tuple */0,controller,file]],
+           /* :: */[0,
+            /* tuple */[0,file[3],/* tuple */[0,controller,file]],
             active_files[1]],
            0;
     };
@@ -39,7 +39,7 @@ var
     
     change_controller(file,controller);
     try
-     {var result=funct(0);
+     {var result=funct(/* () */0);
       
       change_controller(file,old_controller);
       return result;
@@ -47,9 +47,11 @@ var
     catch(x){change_controller(file,old_controller);throw x;}
     };
 
-var continue_main_loop=[0,1];
+var continue_main_loop=[0,/* true */1];
 
-var exit_main_loop=function(param){return continue_main_loop[1]=0,0;};
+var
+ exit_main_loop=
+  function(param){return continue_main_loop[1]=/* false */0,0;};
 
 var
  main_loop=
@@ -57,15 +59,15 @@ var
    {var old_state=continue_main_loop[1];
     
     try
-     {continue_main_loop[1]=1,0;
+     {continue_main_loop[1]=/* true */1,0;
       while(continue_main_loop[1])
        {try
          {var
            match=
             Unix["select"]
              (List["map"](function(prim){return prim[1];},active_files[1]),
-              0,
-              0,
+              /* [] */0,
+              /* [] */0,
               -1);
           
           List["iter"]
@@ -98,7 +100,7 @@ var
     catch(x){continue_main_loop[1]=old_state,0;throw x;}
     };
 
-var interactif=[0,1];
+var interactif=[0,/* true */1];
 
 var current_prompt=[0,""];
 
@@ -107,7 +109,7 @@ var user_channel=[0,Primitives["std_io"]];
 var
  read_user_input=
   function(buffer,length)
-   {main_loop(0);
+   {main_loop(/* () */0);
     return Pervasives["input"](user_channel[1][1],buffer,0,length);
     };
 

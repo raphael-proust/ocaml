@@ -252,7 +252,7 @@ var
        {var match=peek(strm);
         
         if(match)
-         {var a=match[1];junk(strm);return do_rec(/* () */0);}
+         {var a=match[1];junk(strm);f(a);return do_rec(/* () */0);}
         else
          {return /* () */0;}
         };

@@ -32,8 +32,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                ([0,
-                  [11,"Not_a_bytecode_file ",[3,0,0]],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "Not_a_bytecode_file ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
                   "Not_a_bytecode_file %S"],
                  err[1]);
              
@@ -41,8 +43,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                ([0,
-                  [11,"Inconsistent_import ",[3,0,0]],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "Inconsistent_import ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
                   "Inconsistent_import %S"],
                  err[1]);
              
@@ -50,7 +54,11 @@ var
              var
               msg=
                Printf["sprintf"]
-                ([0,[11,"Unavailable_unit ",[3,0,0]],"Unavailable_unit %S"],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "Unavailable_unit ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                  "Unavailable_unit %S"],
                  err[1]);
              
             case 3:
@@ -63,10 +71,16 @@ var
                 var
                  msg=
                   Printf["sprintf"]
-                   ([0,
-                     [11,
+                   (/* Format */[0,
+                     /* String_literal */[11,
                       "Linking_error (",
-                      [3,0,[11,", Dynlink.Undefined_global ",[3,0,[12,41,0]]]]],
+                      /* Caml_string */[3,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        ", Dynlink.Undefined_global ",
+                        /* Caml_string */[3,
+                         /* No_padding */0,
+                         /* Char_literal */[12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Undefined_global %S)"],
                     s,
                     match$1[1]);
@@ -75,12 +89,16 @@ var
                 var
                  msg=
                   Printf["sprintf"]
-                   ([0,
-                     [11,
+                   (/* Format */[0,
+                     /* String_literal */[11,
                       "Linking_error (",
-                      [3,
-                       0,
-                       [11,", Dynlink.Unavailable_primitive ",[3,0,[12,41,0]]]]],
+                      /* Caml_string */[3,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        ", Dynlink.Unavailable_primitive ",
+                        /* Caml_string */[3,
+                         /* No_padding */0,
+                         /* Char_literal */[12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Unavailable_primitive %S)"],
                     s,
                     match$1[1]);
@@ -89,10 +107,16 @@ var
                 var
                  msg=
                   Printf["sprintf"]
-                   ([0,
-                     [11,
+                   (/* Format */[0,
+                     /* String_literal */[11,
                       "Linking_error (",
-                      [3,0,[11,", Dynlink.Uninitialized_global ",[3,0,[12,41,0]]]]],
+                      /* Caml_string */[3,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        ", Dynlink.Uninitialized_global ",
+                        /* Caml_string */[3,
+                         /* No_padding */0,
+                         /* Char_literal */[12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Uninitialized_global %S)"],
                     s,
                     match$1[1]);
@@ -103,8 +127,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                ([0,
-                  [11,"Corrupted_interface ",[3,0,0]],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "Corrupted_interface ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
                   "Corrupted_interface %S"],
                  err[1]);
              
@@ -112,41 +138,55 @@ var
              var
               msg=
                Printf["sprintf"]
-                ([0,[11,"File_not_found ",[3,0,0]],"File_not_found %S"],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "File_not_found ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                  "File_not_found %S"],
                  err[1]);
              
             case 6:
              var
               msg=
                Printf["sprintf"]
-                ([0,[11,"Cannot_open_dll ",[3,0,0]],"Cannot_open_dll %S"],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "Cannot_open_dll ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                  "Cannot_open_dll %S"],
                  err[1]);
              
             case 7:
              var
               msg=
                Printf["sprintf"]
-                ([0,
-                  [11,"Inconsistent_implementation ",[3,0,0]],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "Inconsistent_implementation ",
+                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
                   "Inconsistent_implementation %S"],
                  err[1]);
              
             }}
         
-        return [/* Some */0,
+        return /* Some */[0,
                 Printf["sprintf"]
-                 ([0,
-                   [11,"Dynlink.Error(Dynlink.",[2,0,[12,41,0]]],
+                 (/* Format */[0,
+                   /* String_literal */[11,
+                    "Dynlink.Error(Dynlink.",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,41,/* End_of_format */0]]],
                    "Dynlink.Error(Dynlink.%s)"],
                   msg)];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
-var crc_interfaces=[0,Consistbl["create"](0)];
+var crc_interfaces=[0,Consistbl["create"](/* () */0)];
 
-var allow_extension=[0,1];
+var allow_extension=[0,/* true */1];
 
 var
  check_consistency=
@@ -177,16 +217,16 @@ var
                      }
                    }
                  else
-                  {return 0;}
+                  {return /* () */0;}
                  },
                cu[5]);
       }
     catch(exn)
      {if(exn[1]=Consistbl["Inconsistency"])
-       {throw [0,$$Error,[/* Inconsistent_import */1,exn[2]]];}
+       {throw [0,$$Error,/* Inconsistent_import */[1,exn[2]]];}
       else
        {if(exn[1]=Consistbl["Not_available"])
-         {throw [0,$$Error,[/* Unavailable_unit */2,exn[2]]];}
+         {throw [0,$$Error,/* Unavailable_unit */[2,exn[2]]];}
         else
          {throw exn;}
         }
@@ -196,14 +236,16 @@ var
 var
  clear_available_units=
   function(param)
-   {Consistbl["clear"](crc_interfaces[1]);return allow_extension[1]=0,0;};
+   {Consistbl["clear"](crc_interfaces[1]);
+    return allow_extension[1]=/* false */0,0;
+    };
 
 var
  allow_only=
   function(names)
    {Consistbl["filter"]
      (function(name){return List["mem"](name,names);},crc_interfaces[1]);
-    return allow_extension[1]=0,0;
+    return allow_extension[1]=/* false */0,0;
     };
 
 var
@@ -211,7 +253,7 @@ var
   function(names)
    {Consistbl["filter"]
      (function(name){return !List["mem"](name,names);},crc_interfaces[1]);
-    return allow_extension[1]=0,0;
+    return allow_extension[1]=/* false */0,0;
     };
 
 var
@@ -224,12 +266,12 @@ var
              units);
     };
 
-var default_crcs=[0,0];
+var default_crcs=[0,/* [] */0];
 
 var
  default_available_units=
   function(param)
-   {clear_available_units(0);
+   {clear_available_units(/* () */0);
     List["iter"]
      (function(param$1)
        {var crco=param$1[2];
@@ -237,21 +279,21 @@ var
         if(crco)
          {return Consistbl["set"](crc_interfaces[1],param$1[1],crco[1],"");}
         else
-         {return 0;}
+         {return /* () */0;}
         },
       default_crcs[1]);
-    return allow_extension[1]=1,0;
+    return allow_extension[1]=/* true */1,0;
     };
 
-var inited=[0,0];
+var inited=[0,/* false */0];
 
 var
  init=
   function(param)
    {if(!inited[1])
-     {default_crcs[1]=Symtable["init_toplevel"](0),0;
-      default_available_units(0);
-      return inited[1]=1,0;
+     {default_crcs[1]=Symtable["init_toplevel"](/* () */0),0;
+      default_available_units(/* () */0);
+      return inited[1]=/* true */1,0;
       }
     else
      {return 0;}
@@ -259,17 +301,19 @@ var
 
 var
  clear_available_units$1=
-  function(param){init(0);return clear_available_units(0);};
+  function(param){init(/* () */0);return clear_available_units(/* () */0);};
 
-var allow_only$1=function(l){init(0);return allow_only(l);};
+var allow_only$1=function(l){init(/* () */0);return allow_only(l);};
 
-var prohibit$1=function(l){init(0);return prohibit(l);};
+var prohibit$1=function(l){init(/* () */0);return prohibit(l);};
 
-var add_available_units$1=function(l){init(0);return add_available_units(l);};
+var
+ add_available_units$1=
+  function(l){init(/* () */0);return add_available_units(l);};
 
 var
  default_available_units$1=
-  function(param){init(0);return default_available_units(0);};
+  function(param){init(/* () */0);return default_available_units(/* () */0);};
 
 var
  digest_interface=
@@ -280,7 +324,7 @@ var
      {var filename=Misc["find_in_path_uncap"](loadpath,shortname);}
     catch(exn)
      {if(exn=Not_found)
-       {throw [0,$$Error,[/* File_not_found */5,shortname]];}
+       {throw [0,$$Error,/* File_not_found */[5,shortname]];}
       else
        {throw exn;}
       }
@@ -295,7 +339,7 @@ var
       
       if("unknown primitive:caml_string_notequal")
        {Pervasives["close_in"](ic);
-        throw [0,$$Error,[/* Corrupted_interface */4,filename]];
+        throw [0,$$Error,/* Corrupted_interface */[4,filename]];
         }
       else
        {}
@@ -316,7 +360,7 @@ var
        {exit=35;}
       
       switch(exit)
-       {case 35:throw [0,$$Error,[/* Corrupted_interface */4,filename]];}
+       {case 35:throw [0,$$Error,/* Corrupted_interface */[4,filename]];}
       }
     catch(exn$1)
      {var exit$1;
@@ -329,7 +373,7 @@ var
       switch(exit$1)
        {case 33:
          Pervasives["close_in"](ic);
-         throw [0,$$Error,[/* Corrupted_interface */4,filename]];
+         throw [0,$$Error,/* Corrupted_interface */[4,filename]];
          
         }
       }
@@ -341,18 +385,22 @@ var
    {return add_available_units$1
             (List["map"]
               (function(unit)
-                {return [/* tuple */0,unit,digest_interface(unit,loadpath)];},
+                {return /* tuple */[0,unit,digest_interface(unit,loadpath)];},
                units));
     };
 
-var unsafe_allowed=[0,0];
+var unsafe_allowed=[0,/* false */0];
 
 var allow_unsafe_modules=function(b){return unsafe_allowed[1]=b,0;};
 
 var
  check_unsafe_module=
   function(cu)
-   {if(!unsafe_allowed[1]&&cu[6]!=0){throw [0,$$Error,0];}else{return 0;}};
+   {if(!unsafe_allowed[1]&&cu[6]!=/* [] */0)
+     {throw [0,$$Error,/* Unsafe_file */0];}
+    else
+     {return 0;}
+    };
 
 var
  load_compunit=
@@ -373,24 +421,24 @@ var
     code[compunit[3]+5]=0,0;
     code[compunit[3]+6]=0,0;
     code[compunit[3]+7]=0,0;
-    var initial_symtable=Symtable["current_state"](0);
+    var initial_symtable=Symtable["current_state"](/* () */0);
     
     try
      {Symtable["patch_object"](code,compunit[4]),
       Symtable["check_global_initialized"](compunit[4]),
-      Symtable["update_global_table"](0)}
+      Symtable["update_global_table"](/* () */0)}
     catch(exn)
      {if(exn[1]=Symtable["Error"])
        {var error=exn[2];
         
         switch(error)
-         {case 0:var new_error=[/* Undefined_global */0,error[1]];
-          case 1:var new_error=[/* Unavailable_primitive */1,error[1]];
+         {case 0:var new_error=/* Undefined_global */[0,error[1]];
+          case 1:var new_error=/* Unavailable_primitive */[1,error[1]];
           case 2:throw [0,Assert_failure,[0,"dynlink.ml",231,13]];
-          case 3:var new_error=[/* Uninitialized_global */2,error[1]];
+          case 3:var new_error=/* Uninitialized_global */[2,error[1]];
           }
         
-        throw [0,$$Error,[/* Linking_error */3,file_name,new_error]];
+        throw [0,$$Error,/* Linking_error */[3,file_name,new_error]];
         }
       else
        {throw exn;}
@@ -400,16 +448,16 @@ var
     
     "unknown primitive:caml_register_code_fragment";
     try
-     {return 0;}
+     {return "unknown primitive:caml_reify_bytecode"(/* () */0);}
     catch(exn$1){Symtable["restore_state"](initial_symtable);throw exn$1;}
     };
 
 var
  loadfile=
   function(file_name)
-   {init(0);
+   {init(/* () */0);
     if(!"unknown primitive:caml_sys_file_exists")
-     {throw [0,$$Error,[/* File_not_found */5,file_name]];}
+     {throw [0,$$Error,/* File_not_found */[5,file_name]];}
     else
      {}
     
@@ -427,7 +475,7 @@ var
         }
       catch(exn)
        {if(exn=End_of_file)
-         {throw [0,$$Error,[/* Not_a_bytecode_file */0,file_name]];}
+         {throw [0,$$Error,/* Not_a_bytecode_file */[0,file_name]];}
         else
          {throw exn;}
         }
@@ -447,17 +495,19 @@ var
           var lib=Pervasives["input_value"](ic);
           
           try
-           {Dll["open_dlls"](1,List["map"](Dll["extract_dll_name"],lib[5]))}
+           {Dll["open_dlls"]
+             (/* For_execution */1,
+              List["map"](Dll["extract_dll_name"],lib[5]))}
           catch(exn$1)
            {if(exn$1[1]=Failure)
-             {throw [0,$$Error,[/* Cannot_open_dll */6,exn$1[2]]];}
+             {throw [0,$$Error,/* Cannot_open_dll */[6,exn$1[2]]];}
             else
              {throw exn$1;}
             }
           
           List["iter"](load_compunit(ic,file_name,file_digest),lib[1])}
         else
-         {throw [0,$$Error,[/* Not_a_bytecode_file */0,file_name]];}
+         {throw [0,$$Error,/* Not_a_bytecode_file */[0,file_name]];}
         }
       
       return Pervasives["close_in"](ic);
@@ -468,8 +518,8 @@ var
 var
  loadfile_private=
   function(file_name)
-   {init(0);
-    var initial_symtable=Symtable["current_state"](0);
+   {init(/* () */0);
+    var initial_symtable=Symtable["current_state"](/* () */0);
     
     var initial_crc=crc_interfaces[1];
     
@@ -550,7 +600,7 @@ var
         }}
     };
 
-var is_native=0;
+var is_native=/* false */0;
 
 var adapt_filename=function(f){return f;};
 

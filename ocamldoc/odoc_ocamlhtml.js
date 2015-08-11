@@ -26,17 +26,23 @@ var $$Error="unknown primitive:caml_set_oo_id";
 
 var
  base_escape_strings=
-  [0,[0,"&","&amp;"],[0,[0,"<","&lt;"],[0,[0,">","&gt;"],0]]];
+  /* :: */[0,
+   /* tuple */[0,"&","&amp;"],
+   /* :: */[0,
+    /* tuple */[0,"<","&lt;"],
+    /* :: */[0,/* tuple */[0,">","&gt;"],/* [] */0]]];
 
 var
  pre_escape_strings=
-  [0,
-   [0," ","&nbsp;"],
-   [0,
-    [0,"\n","<br>\n"],
-    [0,[0,"\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"],0]]];
+  /* :: */[0,
+   /* tuple */[0," ","&nbsp;"],
+   /* :: */[0,
+    /* tuple */[0,"\n","<br>\n"],
+    /* :: */[0,
+     /* tuple */[0,"\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"],
+     /* [] */0]]];
 
-var pre=[0,0];
+var pre=[0,/* false */0];
 
 var fmt=[0,Format["str_formatter"]];
 
@@ -69,7 +75,7 @@ var
 var
  print=
   function($staropt$star,s)
-   {if($staropt$star){var esc=$staropt$star[1];}else{var esc=1;}
+   {if($staropt$star){var esc=$staropt$star[1];}else{var esc=/* true */1;}
     
     return Format["pp_print_string"](fmt[1],esc?$$escape(s):s);
     };
@@ -77,10 +83,10 @@ var
 var
  print_class=
   function($staropt$star,cl,s)
-   {if($staropt$star){var esc=$staropt$star[1];}else{var esc=1;}
+   {if($staropt$star){var esc=$staropt$star[1];}else{var esc=/* true */1;}
     
     return print
-            ([0,0],
+            (/* Some */[0,/* false */0],
              Pervasives["^"]
               ('<span class="',
                Pervasives["^"]
@@ -92,7 +98,7 @@ var
 var
  create_hashtable=
   function(size,init)
-   {var tbl=Hashtbl["create"](0,size);
+   {var tbl=Hashtbl["create"](/* None */0,size);
     
     List["iter"]
      (function(param){return Hashtbl["add"](tbl,param[1],param[2]);},init);
@@ -109,115 +115,117 @@ var
  keyword_table=
   create_hashtable
    (149,
-    [0,
-     [0,"and","keyword"],
-     [0,
-      [0,"as","keyword"],
-      [0,
-       [0,"assert","keyword"],
-       [0,
-        [0,"begin","keyword"],
-        [0,
-         [0,"class","keyword"],
-         [0,
-          [0,"constraint","keyword"],
-          [0,
-           [0,"do","keyword"],
-           [0,
-            [0,"done","keyword"],
-            [0,
-             [0,"downto","keyword"],
-             [0,
-              [0,"else","keyword"],
-              [0,
-               [0,"end","keyword"],
-               [0,
-                [0,"exception","keyword"],
-                [0,
-                 [0,"external","keyword"],
-                 [0,
-                  [0,"false","keyword"],
-                  [0,
-                   [0,"for","keyword"],
-                   [0,
-                    [0,"fun","keyword"],
-                    [0,
-                     [0,"function","keyword"],
-                     [0,
-                      [0,"functor","keyword"],
-                      [0,
-                       [0,"if","keyword"],
-                       [0,
-                        [0,"in","keyword"],
-                        [0,
-                         [0,"include","keyword"],
-                         [0,
-                          [0,"inherit","keyword"],
-                          [0,
-                           [0,"initializer","keyword"],
-                           [0,
-                            [0,"lazy","keyword"],
-                            [0,
-                             [0,"let","keyword"],
-                             [0,
-                              [0,"match","keyword"],
-                              [0,
-                               [0,"method","keyword"],
-                               [0,
-                                [0,"module","keyword"],
-                                [0,
-                                 [0,"mutable","keyword"],
-                                 [0,
-                                  [0,"new","keyword"],
-                                  [0,
-                                   [0,"object","keyword"],
-                                   [0,
-                                    [0,"of","keyword"],
-                                    [0,
-                                     [0,"open","keyword"],
-                                     [0,
-                                      [0,"or","keyword"],
-                                      [0,
-                                       [0,"parser","keyword"],
-                                       [0,
-                                        [0,"private","keyword"],
-                                        [0,
-                                         [0,"rec","keyword"],
-                                         [0,
-                                          [0,"sig","keyword"],
-                                          [0,
-                                           [0,"struct","keyword"],
-                                           [0,
-                                            [0,"then","keyword"],
-                                            [0,
-                                             [0,"to","keyword"],
-                                             [0,
-                                              [0,"true","keyword"],
-                                              [0,
-                                               [0,"try","keyword"],
-                                               [0,
-                                                [0,"type","keyword"],
-                                                [0,
-                                                 [0,"val","keyword"],
-                                                 [0,
-                                                  [0,"virtual","keyword"],
-                                                  [0,
-                                                   [0,"when","keyword"],
-                                                   [0,
-                                                    [0,"while","keyword"],
-                                                    [0,
-                                                     [0,"with","keyword"],
-                                                     [0,
-                                                      [0,"mod","keyword"],
-                                                      [0,
-                                                       [0,"land","keyword"],
-                                                       [0,
-                                                        [0,"lor","keyword"],
-                                                        [0,
-                                                         [0,"lxor","keyword"],
-                                                         [0,
-                                                          [0,"lsl","keyword"],
-                                                          [0,[0,"lsr","keyword"],[0,[0,"asr","keyword"],0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
+    /* :: */[0,
+     /* tuple */[0,"and","keyword"],
+     /* :: */[0,
+      /* tuple */[0,"as","keyword"],
+      /* :: */[0,
+       /* tuple */[0,"assert","keyword"],
+       /* :: */[0,
+        /* tuple */[0,"begin","keyword"],
+        /* :: */[0,
+         /* tuple */[0,"class","keyword"],
+         /* :: */[0,
+          /* tuple */[0,"constraint","keyword"],
+          /* :: */[0,
+           /* tuple */[0,"do","keyword"],
+           /* :: */[0,
+            /* tuple */[0,"done","keyword"],
+            /* :: */[0,
+             /* tuple */[0,"downto","keyword"],
+             /* :: */[0,
+              /* tuple */[0,"else","keyword"],
+              /* :: */[0,
+               /* tuple */[0,"end","keyword"],
+               /* :: */[0,
+                /* tuple */[0,"exception","keyword"],
+                /* :: */[0,
+                 /* tuple */[0,"external","keyword"],
+                 /* :: */[0,
+                  /* tuple */[0,"false","keyword"],
+                  /* :: */[0,
+                   /* tuple */[0,"for","keyword"],
+                   /* :: */[0,
+                    /* tuple */[0,"fun","keyword"],
+                    /* :: */[0,
+                     /* tuple */[0,"function","keyword"],
+                     /* :: */[0,
+                      /* tuple */[0,"functor","keyword"],
+                      /* :: */[0,
+                       /* tuple */[0,"if","keyword"],
+                       /* :: */[0,
+                        /* tuple */[0,"in","keyword"],
+                        /* :: */[0,
+                         /* tuple */[0,"include","keyword"],
+                         /* :: */[0,
+                          /* tuple */[0,"inherit","keyword"],
+                          /* :: */[0,
+                           /* tuple */[0,"initializer","keyword"],
+                           /* :: */[0,
+                            /* tuple */[0,"lazy","keyword"],
+                            /* :: */[0,
+                             /* tuple */[0,"let","keyword"],
+                             /* :: */[0,
+                              /* tuple */[0,"match","keyword"],
+                              /* :: */[0,
+                               /* tuple */[0,"method","keyword"],
+                               /* :: */[0,
+                                /* tuple */[0,"module","keyword"],
+                                /* :: */[0,
+                                 /* tuple */[0,"mutable","keyword"],
+                                 /* :: */[0,
+                                  /* tuple */[0,"new","keyword"],
+                                  /* :: */[0,
+                                   /* tuple */[0,"object","keyword"],
+                                   /* :: */[0,
+                                    /* tuple */[0,"of","keyword"],
+                                    /* :: */[0,
+                                     /* tuple */[0,"open","keyword"],
+                                     /* :: */[0,
+                                      /* tuple */[0,"or","keyword"],
+                                      /* :: */[0,
+                                       /* tuple */[0,"parser","keyword"],
+                                       /* :: */[0,
+                                        /* tuple */[0,"private","keyword"],
+                                        /* :: */[0,
+                                         /* tuple */[0,"rec","keyword"],
+                                         /* :: */[0,
+                                          /* tuple */[0,"sig","keyword"],
+                                          /* :: */[0,
+                                           /* tuple */[0,"struct","keyword"],
+                                           /* :: */[0,
+                                            /* tuple */[0,"then","keyword"],
+                                            /* :: */[0,
+                                             /* tuple */[0,"to","keyword"],
+                                             /* :: */[0,
+                                              /* tuple */[0,"true","keyword"],
+                                              /* :: */[0,
+                                               /* tuple */[0,"try","keyword"],
+                                               /* :: */[0,
+                                                /* tuple */[0,"type","keyword"],
+                                                /* :: */[0,
+                                                 /* tuple */[0,"val","keyword"],
+                                                 /* :: */[0,
+                                                  /* tuple */[0,"virtual","keyword"],
+                                                  /* :: */[0,
+                                                   /* tuple */[0,"when","keyword"],
+                                                   /* :: */[0,
+                                                    /* tuple */[0,"while","keyword"],
+                                                    /* :: */[0,
+                                                     /* tuple */[0,"with","keyword"],
+                                                     /* :: */[0,
+                                                      /* tuple */[0,"mod","keyword"],
+                                                      /* :: */[0,
+                                                       /* tuple */[0,"land","keyword"],
+                                                       /* :: */[0,
+                                                        /* tuple */[0,"lor","keyword"],
+                                                        /* :: */[0,
+                                                         /* tuple */[0,"lxor","keyword"],
+                                                         /* :: */[0,
+                                                          /* tuple */[0,"lsl","keyword"],
+                                                          /* :: */[0,
+                                                           /* tuple */[0,"lsr","keyword"],
+                                                           /* :: */[0,/* tuple */[0,"asr","keyword"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
 
 var kwsign_class="keywordsign";
 
@@ -289,7 +297,7 @@ var
             Pervasives["^"]
              ("</code><table><tr><td>",
               Pervasives["^"]
-               (make_margin(0),
+               (make_margin(/* () */0),
                 Pervasives["^"]
                  ("</td><td>",
                   Pervasives["^"]
@@ -322,7 +330,7 @@ var
         }
       }
     
-    return print([0,0],code);
+    return print(/* Some */[0,/* false */0],code);
     };
 
 var string_buffer=Buffer["create"](32);
@@ -391,9 +399,9 @@ var
 
 var string_start_pos=[0,0];
 
-var comment_start_pos=[0,0];
+var comment_start_pos=[0,/* [] */0];
 
-var in_comment=function(param){return comment_start_pos[1]!=0;};
+var in_comment=function(param){return comment_start_pos[1]!=/* [] */0;};
 
 var
  report_error=
@@ -403,22 +411,28 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,[11,"Comment not terminated",0],"Comment not terminated"]);
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Comment not terminated",
+                    /* End_of_format */0],
+                   "Comment not terminated"]);
          
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"String literal not terminated",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "String literal not terminated",
+                    /* End_of_format */0],
                    "String literal not terminated"]);
          
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  /* Format */[0,
+                   /* String_literal */[11,
                     "This comment contains an unterminated string literal",
-                    0],
+                    /* End_of_format */0],
                    "This comment contains an unterminated string literal"]);
          
         }}
@@ -427,20 +441,26 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"Illegal character (",[2,0,[12,41,0]]],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Illegal character (",
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,41,/* End_of_format */0]]],
                    "Illegal character (%s)"],
                   Char["escaped"](param[1]));
          
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [12,
+                  /* Format */[0,
+                   /* Char_literal */[12,
                     96,
-                    [2,
-                     0,
-                     [11,"' is a keyword, it cannot be used as label name",0]]],
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,
+                      "' is a keyword, it cannot be used as label name",
+                      /* End_of_format */0]]],
                    "`%s' is a keyword, it cannot be used as label name"],
                   param[1]);
          
@@ -449,7 +469,7 @@ var
 
 var
  __ocaml_lex_tables=
-  [0,
+  /* record */[0,
    "\0\0¾ÿ¿ÿà\0\x03\x01&\x01I\x01l\x01Ìÿ\x01´\x01 \0ÔÿC\0Ù\x01ü\x01E\0G\0T\0\x1f\x02åÿçÿêÿB\x02z\0e\x02\\0{\0õÿY\0x\x02Á\x02‘\x03p\x04Ì\x04œ\x05ÿÿ{\x06™\x06üÿx\x07–\x07úÿ\x11\x03à\0c\0„\0Ü\x03@\x05\x03\x01e\0\x1b\x03%\x03“\x04a\0ôÿ/\x03p\0óÿ9\x03q\0òÿp\0ğÿu\bïÿ\x14\x06\x13\x04\x01\0îÿ\x07\0˜\b»\bŞ\b\x01\táÿİÿŞÿßÿÛÿ$\tÕÿÖÿÒÿÏÿG\tËÿÍÿj\t\tu\0üÿıÿr\0r\0ÿÿşÿà\0ùÿúÿ¢\tÿÿë\tC\x03ıÿœ\0\x03\x01ó\x03üÿ6\nûÿ",
    "ÿÿÿÿÿÿ?\0<\0;\x006\x009\0ÿÿ1\0.\0,\0ÿÿ(\0'\0%\0#\0\x1f\0\x1d\x007\0ÿÿÿÿÿÿ\x13\0\x12\0\x19\0\x17\0\x16\0ÿÿ\b\0\b\0\x07\0\x06\0\x04\0\x02\0\x01\0ÿÿ:\0ÿÿÿÿ\x1b\0ÿÿÿÿÿÿ\t\0ÿÿÿÿÿÿ\b\0\b\0\b\0\t\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x0e\0ÿÿ>\0ÿÿÿÿÿÿ\x11\0ÿÿÿÿ\x14\0=\x008\0\x1c\0ÿÿÿÿÿÿÿÿÿÿ&\0ÿÿÿÿÿÿÿÿ/\0ÿÿÿÿ9\x005\0ÿÿÿÿÿÿ\x03\0\x03\0ÿÿÿÿÿÿÿÿÿÿ\x06\0ÿÿÿÿÿÿÿÿ\x01\0\x01\0ÿÿÿÿÿÿÿÿ",
    "\x01\0\0\0\0\0ÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿÿÿÿÿÿÿ6\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿ\0\0ÿÿ\0\0F\0ÿÿÿÿ\0\0F\0ÿÿÿÿÿÿÿÿ\0\0\0\0\0\0\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0ÿÿ\0\0\0\0ÿÿÿÿ[\0\0\0\0\0ÿÿÿÿ\0\0\0\0b\0\0\0\0\0ÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿ\0\0ÿÿ\0\0",
@@ -492,11 +512,11 @@ var
          
          switch(exit$1){case 15:}
          
-         print(0,s);
+         print(/* None */0,s);
          return token(lexbuf);
          
-        case 1:print(0,"_");return token(lexbuf);
-        case 2:print(0,"~");return token(lexbuf);
+        case 1:print(/* None */0,"_");return token(lexbuf);
+        case 2:print(/* None */0,"~");return token(lexbuf);
         case 3:
          var s$1=Lexing["lexeme"](lexbuf);
          
@@ -505,17 +525,17 @@ var
          if(Hashtbl["mem"](keyword_table,name))
           {throw [0,
                   $$Error,
-                  [/* Keyword_as_label */1,name],
+                  /* Keyword_as_label */[1,name],
                   Lexing["lexeme_start"](lexbuf),
                   Lexing["lexeme_end"](lexbuf)];
            }
          else
           {}
          
-         print(0,s$1);
+         print(/* None */0,s$1);
          return token(lexbuf);
          
-        case 4:print(0,"?");return token(lexbuf);
+        case 4:print(/* None */0,"?");return token(lexbuf);
         case 5:
          var s$2=Lexing["lexeme"](lexbuf);
          
@@ -524,14 +544,14 @@ var
          if(Hashtbl["mem"](keyword_table,name$1))
           {throw [0,
                   $$Error,
-                  [/* Keyword_as_label */1,name$1],
+                  /* Keyword_as_label */[1,name$1],
                   Lexing["lexeme_start"](lexbuf),
                   Lexing["lexeme_end"](lexbuf)];
            }
          else
           {}
          
-         print(0,s$2);
+         print(/* None */0,s$2);
          return token(lexbuf);
          
         case 6:
@@ -540,33 +560,34 @@ var
          try
           {var cl=Hashtbl["find"](keyword_table,s$3);
            
-           print_class(0,cl,s$3);
+           print_class(/* None */0,cl,s$3);
            return token(lexbuf);
            }
          catch(exn)
           {if(exn=Not_found)
-            {print(0,s$3);return token(lexbuf);}
+            {print(/* None */0,s$3);return token(lexbuf);}
            else
             {throw exn;}
            }
          
         case 7:
-         print_class(0,constructor_class,Lexing["lexeme"](lexbuf));
+         print_class(/* None */0,constructor_class,Lexing["lexeme"](lexbuf));
          return token(lexbuf);
          
         case 8:exit=26;
         case 9:exit=26;
         case 10:
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          var string_start=Lexing["lexeme_start"](lexbuf);
          
          string_start_pos[1]=string_start,0;
          string(lexbuf);
          lexbuf[5]=string_start-lexbuf[4],0;
          print_class
-          (0,
+          (/* None */0,
            string_class,
-           Pervasives["^"]('"',Pervasives["^"](get_stored_string(0),'"')));
+           Pervasives["^"]
+            ('"',Pervasives["^"](get_stored_string(/* () */0),'"')));
          return token(lexbuf);
          
         case 11:exit=27;
@@ -578,8 +599,8 @@ var
          lexbuf[6]=lexbuf[6]-1,0;
          var init=lexbuf[12];
          
-         lexbuf[12]=[/* record */0,init[1],init[2],init[3],lexbuf[12][4]-1],0;
-         print(0,Lexing["lexeme"](lexbuf));
+         lexbuf[12]=/* record */[0,init[1],init[2],init[3],lexbuf[12][4]-1],0;
+         print(/* None */0,Lexing["lexeme"](lexbuf));
          return token(lexbuf);
          
         case 17:exit=26;
@@ -629,11 +650,11 @@ var
         case 61:exit=26;
         case 62:exit=26;
         case 63:exit=26;
-        case 64:return 0;
+        case 64:return /* () */0;
         case 65:
          throw [0,
                 $$Error,
-                [/* Illegal_character */0,Lexing["lexeme"](lexbuf)[0]],
+                /* Illegal_character */[0,Lexing["lexeme"](lexbuf)[0]],
                 Lexing["lexeme_start"](lexbuf),
                 Lexing["lexeme_end"](lexbuf)];
          
@@ -641,20 +662,23 @@ var
       }
     
     switch(exit)
-     {case 26:print(0,Lexing["lexeme"](lexbuf));return token(lexbuf);
+     {case 26:
+       print(/* None */0,Lexing["lexeme"](lexbuf));return token(lexbuf);
       case 27:
-       print_class(0,string_class,Lexing["lexeme"](lexbuf));
+       print_class(/* None */0,string_class,Lexing["lexeme"](lexbuf));
        return token(lexbuf);
        
       case 28:
-       reset_comment_buffer(0);
-       comment_start_pos[1]=[/* :: */0,Lexing["lexeme_start"](lexbuf),0],0;
+       reset_comment_buffer(/* () */0);
+       comment_start_pos[1]=
+       /* :: */[0,Lexing["lexeme_start"](lexbuf),/* [] */0],
+       0;
        comment(lexbuf);
-       print_comment(0);
+       print_comment(/* () */0);
        return token(lexbuf);
        
       case 29:
-       print_class(0,kwsign_class,Lexing["lexeme"](lexbuf));
+       print_class(/* None */0,kwsign_class,Lexing["lexeme"](lexbuf));
        return token(lexbuf);
        
       }
@@ -677,7 +701,7 @@ var
      {switch(__ocaml_lex_state$1[0])
        {case 0:
          comment_start_pos[1]=
-         [/* :: */0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]],
+         /* :: */[0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]],
          0;
          store_comment_char(40);
          store_comment_char(42);
@@ -696,13 +720,16 @@ var
              return comment(lexbuf);
              }
            else
-            {return comment_start_pos[1]=0,0;}
+            {return comment_start_pos[1]=/* [] */0,0;}
            }
          else
           {throw [0,Assert_failure,[0,"odoc_ocamlhtml.mll",424,16]];}
          
         case 2:
-         var st=List["hd"](comment_start_pos[1]);throw [0,$$Error,0,st,st+2];
+         var st=List["hd"](comment_start_pos[1]);
+         
+         throw [0,$$Error,/* Unterminated_comment */0,st,st+2];
+         
         case 3:
          store_comment_char(Lexing["lexeme_char"](lexbuf,0));
          return comment(lexbuf);
@@ -728,12 +755,18 @@ var
       }
     else
      {switch(__ocaml_lex_state$1[0])
-       {case 0:return 0;
+       {case 0:return /* () */0;
         case 1:return string(lexbuf);
         case 2:exit=34;
         case 3:exit=34;
         case 4:exit=34;
-        case 5:throw [0,$$Error,1,string_start_pos[1],string_start_pos[1]+1];
+        case 5:
+         throw [0,
+                $$Error,
+                /* Unterminated_string */1,
+                string_start_pos[1],
+                string_start_pos[1]+1];
+         
         case 6:
          store_string_char(Lexing["lexeme_char"](lexbuf,0));
          return string(lexbuf);
@@ -752,7 +785,10 @@ var
 var
  html_of_code=
   function(b,$staropt$star,code)
-   {if($staropt$star){var with_pre=$staropt$star[1];}else{var with_pre=1;}
+   {if($staropt$star)
+     {var with_pre=$staropt$star[1];}
+    else
+     {var with_pre=/* true */1;}
     
     var old_pre=pre[1];
     
@@ -776,17 +812,17 @@ var
     var ending="</code>";
     
     try
-     {print([0,0],start);
+     {print(/* Some */[0,/* false */0],start);
       var lexbuf=Lexing["from_string"](code);
       
       var match=token(lexbuf);
       
-      print([0,0],ending);
-      Format["pp_print_flush"](fmt[1],0);
+      print(/* Some */[0,/* false */0],ending);
+      Format["pp_print_flush"](fmt[1],/* () */0);
       var html=Buffer["contents"](buf);
       }
     catch(exn)
-     {Format["pp_print_flush"](fmt[1],0);
+     {Format["pp_print_flush"](fmt[1],/* () */0);
       var html=Pervasives["^"](start,Pervasives["^"](code,ending));
       }
     

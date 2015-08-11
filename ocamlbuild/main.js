@@ -48,14 +48,14 @@ var
      {var
        entry=
         Slurp["map"]
-         (function(param$1,param$2,param$3){return 1;},
+         (function(param$1,param$2,param$3){return /* true */1;},
           Slurp["slurp"](Filename["current_dir_name"]));
       
       Slurp["force"](Resource["clean_up_links"](entry))}
     else
      {}
     
-    Log["finish"](0,0);
+    Log["finish"](/* None */0,/* () */0);
     throw Exit_silently;
     };
 
@@ -64,10 +64,10 @@ var
   function(param)
    {if(My_std["List"][5](Options["show_tags"][1])>0)
      {Log["eprintf"]
-       ([0,
-         [11,
+       (/* Format */[0,
+         /* String_literal */[11,
           "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n",
-          0],
+          /* End_of_format */0],
          "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n"])}
     else
      {}
@@ -75,16 +75,28 @@ var
     return My_std["List"][14]
             (function(path)
               {return Log["eprintf"]
-                       ([0,
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [11,
+                       (/* Format */[0,
+                         /* Formatting_gen */[18,
+                          /* Open_box */[1,
+                           /* Format */[0,
+                            /* String_literal */[11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          /* String_literal */[11,
                            "Tags for ",
-                           [3,
-                            0,
-                            [12,
+                           /* Caml_string */[3,
+                            /* No_padding */0,
+                            /* Char_literal */[12,
                              58,
-                             [17,[0,"@ ",1,0],[11,"{. ",[15,[11," .}",[17,0,0]]]]]]]]],
+                             /* Formatting_lit */[17,
+                              /* Break */[0,"@ ",1,0],
+                              /* String_literal */[11,
+                               "{. ",
+                               /* Alpha */[15,
+                                /* String_literal */[11,
+                                 " .}",
+                                 /* Formatting_lit */[17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]]]]],
                          "@[<2>Tags for %S:@ {. %a .}@]"],
                         path,
                         Tags["print"],
@@ -96,63 +108,72 @@ var
 var
  show_documentation=
   function(param)
-   {Rule["show_documentation"](0);return Flags["show_documentation"](0);};
+   {Rule["show_documentation"](/* () */0);
+    return Flags["show_documentation"](/* () */0);
+    };
 
 var
  builtin_useful_tags=
   Tags["of_list"]
-   ([0,
+   (/* :: */[0,
      "include",
-     [0,
+     /* :: */[0,
       "traverse",
-      [0,
+      /* :: */[0,
        "not_hygienic",
-       [0,
+       /* :: */[0,
         "precious",
-        [0,
+        /* :: */[0,
          "pack",
-         [0,
+         /* :: */[0,
           "ocamlmklib",
-          [0,
+          /* :: */[0,
            "native",
-           [0,
+           /* :: */[0,
             "thread",
-            [0,"nopervasives",[0,"use_menhir",[0,"ocamldep",[0,"thread",0]]]]]]]]]]]]);
+            /* :: */[0,
+             "nopervasives",
+             /* :: */[0,
+              "use_menhir",
+              /* :: */[0,"ocamldep",/* :: */[0,"thread",/* [] */0]]]]]]]]]]]]);
 
 var
  proceed=
   function(param)
-   {Hooks["call_hook"](2);
-    Options["init"](0);
+   {Hooks["call_hook"](/* Before_options */2);
+    Options["init"](/* () */0);
     Options["include_dirs"][1]=
     My_std["List"][16](Pathname["normalize"],Options["include_dirs"][1]),
     0;
     Options["exclude_dirs"][1]=
     My_std["List"][16](Pathname["normalize"],Options["exclude_dirs"][1]),
     0;
-    if(Options["must_clean"][1]){clean(0)}else{}
+    if(Options["must_clean"][1]){clean(/* () */0)}else{}
     
-    Hooks["call_hook"](3);
+    Hooks["call_hook"](/* After_options */3);
     var options_wd="unknown primitive:caml_sys_getcwd";
     
     var
      first_run_for_plugin=
-      Plugin["we_need_a_plugin"](0)&&!Options["just_plugin"][1];
+      Plugin["we_need_a_plugin"](/* () */0)&&!Options["just_plugin"][1];
     
     var
      target_dirs=
       My_std["List"][3]
-       (0,My_std["List"][16](Pathname["dirname"],Options["targets"][1]));
+       (/* [] */0,
+        My_std["List"][16](Pathname["dirname"],Options["targets"][1]));
     
     Configuration["parse_string"]
-     ([/* Some */0,Const["Source"][7]],
+     (/* Some */[0,Const["Source"][7]],
       '<**/*.ml> or <**/*.mli> or <**/*.mlpack> or <**/*.ml.depends>: ocaml\n<**/*.byte>: ocaml, byte, program\n<**/*.odoc>: ocaml, doc\n<**/*.native>: ocaml, native, program\n<**/*.cma>: ocaml, byte, library\n<**/*.cmxa>: ocaml, native, library\n<**/*.cmo>: ocaml, byte\n<**/*.cmi>: ocaml, byte, native\n<**/*.cmx>: ocaml, native\n<**/*.mly>: infer\n<**/.svn>|".bzr"|".hg"|".git"|"_darcs": -traverse\n');
     My_std["List"][14]
-     (Configuration["parse_string"]([/* Some */0,Const["Source"][2]]),
+     (Configuration["parse_string"](/* Some */[0,Const["Source"][2]]),
       Options["tag_lines"][1]);
     Configuration["tag_any"](Options["tags"][1]);
-    if(Options["recursive"][1]||Options["ocamlbuild_project_heuristic"](0))
-     {Configuration["tag_any"]([0,"traverse",0])}
+    if
+     (Options["recursive"][1]||
+      Options["ocamlbuild_project_heuristic"](/* () */0))
+     {Configuration["tag_any"](/* :: */[0,"traverse",/* [] */0])}
     else
      {}
     
@@ -161,7 +182,7 @@ var
        (function(pkg)
          {var tag=Param_tags["make"]("package",pkg);
           
-          return Configuration["tag_any"]([/* :: */0,tag,0]);
+          return Configuration["tag_any"](/* :: */[0,tag,/* [] */0]);
           },
         Options["ocaml_pkgs"][1])}
     else
@@ -171,23 +192,23 @@ var
     
     if(match)
      {Configuration["tag_any"]
-       ([/* :: */0,Param_tags["make"]("syntax",match[1]),0])}
+       (/* :: */[0,Param_tags["make"]("syntax",match[1]),/* [] */0])}
     else
      {}
     
     var newpwd="unknown primitive:caml_sys_getcwd";
     
     "unknown primitive:caml_sys_chdir";
-    var entry_include_dirs=[0,0];
+    var entry_include_dirs=[0,/* [] */0];
     
     var
      entry=
       Slurp["filter"]
        (function(path,name,param$1)
          {if("unknown primitive:caml_string_equal")
-           {var dir=0;}
+           {var dir=/* None */0;}
           else
-           {var dir=[/* Some */0,path];}
+           {var dir=/* Some */[0,path];}
           
           var path_name=Pathname["Operators"][1](path,name);
           
@@ -200,13 +221,13 @@ var
                 Pathname["Operators"][1](Pathname["pwd"],path_name);
               }
             
-            }
+            Configuration["parse_file"](dir,tags_path)}
           else
            {}
           
           var tags=Tools["tags_of_pathname"](path_name);
           
-          return (My_std["List"][30](name,[0,"_oasis",0])||
+          return (My_std["List"][30](name,/* :: */[0,"_oasis",/* [] */0])||
                   name["length"]>
                   0&&
                   name[0]!=
@@ -218,9 +239,9 @@ var
                   (Tags["mem"]("include",tags)||
                     My_std["List"][30](path_name,Options["include_dirs"][1])
                     ?(entry_include_dirs[1]=
-                      [/* :: */0,path_name,entry_include_dirs[1]],
+                      /* :: */[0,path_name,entry_include_dirs[1]],
                       0,
-                      1)
+                      /* true */1)
                     :Tags["mem"]("traverse",tags)||
                      My_std["List"][27]
                       (Pathname["is_prefix"](path_name),
@@ -231,7 +252,7 @@ var
           },
         Slurp["slurp"](Filename["current_dir_name"]));
     
-    Hooks["call_hook"](0);
+    Hooks["call_hook"](/* Before_hygiene */0);
     var
      hygiene_entry=
       Slurp["map"]
@@ -251,40 +272,44 @@ var
     else
      {}
     
-    Hooks["call_hook"](1);
+    Hooks["call_hook"](/* After_hygiene */1);
     Options["include_dirs"][1]=
-    [/* :: */0,
+    /* :: */[0,
      Pathname["current_dir_name"],
      My_std["List"][9](entry_include_dirs[1])],
     0;
     Log["dprintf"]
      (3,
-      [0,
-       [11,"include directories are:",[17,[0,"@ ",1,0],[15,0]]],
+      /* Format */[0,
+       /* String_literal */[11,
+        "include directories are:",
+        /* Formatting_lit */[17,
+         /* Break */[0,"@ ",1,0],
+         /* Alpha */[15,/* End_of_format */0]]],
        "include directories are:@ %a"],
       My_std["print_string_list"],
       Options["include_dirs"][1]);
-    Options["entry"][1]=[/* Some */0,hygiene_entry],0;
-    Hooks["call_hook"](4);
-    Ocaml_specific["init"](0);
-    Hooks["call_hook"](5);
+    Options["entry"][1]=/* Some */[0,hygiene_entry],0;
+    Hooks["call_hook"](/* Before_rules */4);
+    Ocaml_specific["init"](/* () */0);
+    Hooks["call_hook"](/* After_rules */5);
     "unknown primitive:caml_sys_chdir";
-    Plugin["execute_plugin_if_needed"](0);
-    Param_tags["init"](0);
+    Plugin["execute_plugin_if_needed"](/* () */0);
+    Param_tags["init"](/* () */0);
     "unknown primitive:caml_sys_chdir";
     if(Options["show_documentation"][1])
-     {show_documentation(0);throw Exit_silently;}
+     {show_documentation(/* () */0);throw Exit_silently;}
     else
      {}
     
-    var used_in_flags=Flags["get_used_tags"](0);
+    var used_in_flags=Flags["get_used_tags"](/* () */0);
     
     var
      used_in_deps=
       My_std["List"][19]
        (function(acc,param$1){return Tags["union"](acc,param$1[1]);},
         Tags["empty"],
-        Command["list_all_deps"](0));
+        Command["list_all_deps"](/* () */0));
     
     var
      all_tags=
@@ -292,9 +317,9 @@ var
        (builtin_useful_tags,Tags["union"](used_in_flags,used_in_deps));
     
     Configuration["check_tags_usage"](all_tags);
-    Digest_cache["init"](0);
-    Sys["catch_break"](1);
-    show_tags(0);
+    Digest_cache["init"](/* () */0);
+    Sys["catch_break"](/* true */1);
+    show_tags(/* () */0);
     var
      targets=
       My_std["List"][16]
@@ -305,7 +330,7 @@ var
           
           var ext=Pathname["get_extension"](starget$1);
           
-          return [/* tuple */0,target,starget$1,ext];
+          return /* tuple */[0,target,starget$1,ext];
           },
         Options["targets"][1]);
     
@@ -319,12 +344,12 @@ var
             Shell["mkdir_p"](Pathname["dirname"](starget));
             var target=Solver["solve_target"](starget,param$1[1]);
             
-            return [/* tuple */0,target,param$1[3]];
+            return /* tuple */[0,target,param$1[3]];
             },
           targets);
       
-      Command["dump_parallel_stats"](0);
-      Log["finish"](0,0);
+      Command["dump_parallel_stats"](/* () */0);
+      Log["finish"](/* None */0,/* () */0);
       Shell["chdir"](Pathname["pwd"]);
       var
        call=
@@ -344,7 +369,22 @@ var
             var
              link=
               function(x)
-               {if(Options["make_links"][1]){return 0;}else{return 0;}};
+               {if(Options["make_links"][1])
+                 {return call
+                          (/* S */[0,
+                            /* :: */[0,
+                             /* A */[1,"ln"],
+                             /* :: */[0,
+                              /* A */[1,"-sf"],
+                              /* :: */[0,
+                               /* P */[2,x],
+                               /* :: */[0,
+                                /* A */[1,Pathname["current_dir_name"]],
+                                /* [] */0]]]]]);
+                  }
+                else
+                 {return 0;}
+                };
             
             var exit;
             
@@ -359,10 +399,14 @@ var
              {case 25:
                if(Options["program_to_execute"][1])
                 {Format["eprintf"]
-                  ([0,
-                    [11,
+                  (/* Format */[0,
+                    /* String_literal */[11,
                      "Warning: Won't execute ",
-                     [2,0,[11," whose extension is neither .byte nor .native",0]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       " whose extension is neither .byte nor .native",
+                       /* End_of_format */0]]],
                     "Warning: Won't execute %s whose extension is neither .byte nor .native"],
                    cmd)}
                else
@@ -370,11 +414,11 @@ var
                
                return acc;
                
-              case 24:link(cmd);return [/* :: */0,cmd,acc];
+              case 24:link(cmd);return /* :: */[0,cmd,acc];
               }
             },
           targets$1,
-          0);
+          /* [] */0);
       
       if(Options["program_to_execute"][1])
        {var match$1=My_std["List"][9](cmds);
@@ -382,26 +426,34 @@ var
         if(match$1)
          {var cmd=match$1[1];
           
-          if(match$1[2]!=0)
+          if(match$1[2]!=/* [] */0)
            {Log["dprintf"]
              (0,
-              [0,
-               [11,"Warning: Using -- only run the last target",0],
+              /* Format */[0,
+               /* String_literal */[11,
+                "Warning: Using -- only run the last target",
+                /* End_of_format */0],
                "Warning: Using -- only run the last target"])}
           else
            {}
           
           var
            cmd_spec=
-            [/* S */0,
-             [/* :: */0,
-              [/* P */2,cmd],
-              [/* :: */0,Command["atomize"](Options["program_args"][1]),0]]];
+            /* S */[0,
+             /* :: */[0,
+              /* P */[2,cmd],
+              /* :: */[0,
+               Command["atomize"](Options["program_args"][1]),
+               /* [] */0]]];
           
           Log["dprintf"]
            (3,
-            [0,
-             [11,"Running the user command:",[17,[0,"@ ",1,0],[15,0]]],
+            /* Format */[0,
+             /* String_literal */[11,
+              "Running the user command:",
+              /* Formatting_lit */[17,
+               /* Break */[0,"@ ",1,0],
+               /* Alpha */[15,/* End_of_format */0]]],
              "Running the user command:@ %a"],
             Pathname["print"],
             cmd);
@@ -411,23 +463,33 @@ var
          {throw [0,My_std["Exit_usage"],"Using -- requires one target"];}
         }
       else
-       {return 0;}
+       {return /* () */0;}
       }
     catch(exn)
      {if(exn[1]=Ocaml_dependencies["Circular_dependencies"])
        {throw [0,
                Exit_build_error,
                My_std["sbprintf"]
-                ([0,
-                  [18,
-                   [1,[0,[11,"<2>",0],"<2>"]],
-                   [11,
+                (/* Format */[0,
+                  /* Formatting_gen */[18,
+                   /* Open_box */[1,
+                    /* Format */[0,
+                     /* String_literal */[11,"<2>",/* End_of_format */0],
+                     "<2>"]],
+                   /* String_literal */[11,
                     "Circular dependencies: ",
-                    [3,
-                     0,
-                     [11,
+                    /* Caml_string */[3,
+                     /* No_padding */0,
+                     /* String_literal */[11,
                       " already seen in",
-                      [17,[0,"@ ",1,0],[15,[17,0,[17,4,0]]]]]]]],
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* Alpha */[15,
+                        /* Formatting_lit */[17,
+                         /* Close_box */0,
+                         /* Formatting_lit */[17,
+                          /* Flush_newline */4,
+                          /* End_of_format */0]]]]]]]],
                   "@[<2>Circular dependencies: %S already seen in@ %a@]@."],
                  exn[3],
                  Tools["pp_l"],
@@ -444,12 +506,14 @@ var
    {var
      exit=
       function(rc)
-       {Log["finish"]([/* Some */0,rc!=0?106380200:94326179],0);
+       {Log["finish"]
+         (/* Some */[0,rc!=0?/* Error */106380200:/* Success */94326179],
+          /* () */0);
         return Pervasives["exit"](rc);
         };
     
     try
-     {return proceed(0);}
+     {return proceed(/* () */0);}
     catch(e)
      {if(Options["catch_errors"][1])
        {try
@@ -460,16 +524,24 @@ var
           else
            {if(e$1=Fda["Exit_hygiene_failed"])
              {Log["eprintf"]
-               ([0,
-                 [11,"Exiting due to hygiene violations.",0],
+               (/* Format */[0,
+                 /* String_literal */[11,
+                  "Exiting due to hygiene violations.",
+                  /* End_of_format */0],
                  "Exiting due to hygiene violations."]);
               return exit(Exit_codes["rc_hygiene"]);
               }
             else
              {if(e$1[1]=My_std["Exit_usage"])
                {Log["eprintf"]
-                 ([0,
-                   [11,"Usage:",[17,[0,"@ ",1,0],[2,0,[12,46,0]]]],
+                 (/* Format */[0,
+                   /* String_literal */[11,
+                    "Usage:",
+                    /* Formatting_lit */[17,
+                     /* Break */[0,"@ ",1,0],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,46,/* End_of_format */0]]]],
                    "Usage:@ %s."],
                   e$1[2]);
                 return exit(Exit_codes["rc_usage"]);
@@ -477,8 +549,14 @@ var
               else
                {if(e$1[1]=My_std["Exit_system_error"])
                  {Log["eprintf"]
-                   ([0,
-                     [11,"System error:",[17,[0,"@ ",1,0],[2,0,[12,46,0]]]],
+                   (/* Format */[0,
+                     /* String_literal */[11,
+                      "System error:",
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,46,/* End_of_format */0]]]],
                      "System error:@ %s."],
                     e$1[2]);
                   return exit(Exit_codes["rc_system_error"]);
@@ -488,12 +566,14 @@ var
                    {return exit(e$1[2]);}
                   else
                    {if(e$1=Exit_silently)
-                     {Log["finish"]([0,-249890668],0);
+                     {Log["finish"]
+                       (/* Some */[0,/* Quiet */-249890668],/* () */0);
                       return Pervasives["exit"](Exit_codes["rc_ok"]);
                       }
                     else
                      {if(e$1[1]=My_std["Exit_silently_with_code"])
-                       {Log["finish"]([0,-249890668],0);
+                       {Log["finish"]
+                         (/* Some */[0,/* Quiet */-249890668],/* () */0);
                         return Pervasives["exit"](e$1[2]);
                         }
                       else
@@ -502,21 +582,48 @@ var
                           
                           Log["raw_dprintf"]
                            (-1,
-                            [0,
-                             [18,
-                              [1,[0,[11,"<v0>",0],"<v0>"]],
-                              [18,
-                               [1,[0,[11,"<2>",0],"<2>"]],
-                               [11,"Solver failed:",[17,[0,"@ ",1,0],[15,[17,0,[17,4,0]]]]]]],
+                            /* Format */[0,
+                             /* Formatting_gen */[18,
+                              /* Open_box */[1,
+                               /* Format */[0,
+                                /* String_literal */[11,"<v0>",/* End_of_format */0],
+                                "<v0>"]],
+                              /* Formatting_gen */[18,
+                               /* Open_box */[1,
+                                /* Format */[0,
+                                 /* String_literal */[11,"<2>",/* End_of_format */0],
+                                 "<2>"]],
+                               /* String_literal */[11,
+                                "Solver failed:",
+                                /* Formatting_lit */[17,
+                                 /* Break */[0,"@ ",1,0],
+                                 /* Alpha */[15,
+                                  /* Formatting_lit */[17,
+                                   /* Close_box */0,
+                                   /* Formatting_lit */[17,
+                                    /* Flush_newline */4,
+                                    /* End_of_format */0]]]]]]],
                              "@[<v0>@[<2>Solver failed:@ %a@]@."],
                             Report["print_backtrace_analyze"],
                             backtrace);
                           Log["raw_dprintf"]
                            (1,
-                            [0,
-                             [18,
-                              [1,[0,[11,"<v2>",0],"<v2>"]],
-                              [11,"Backtrace:",[15,[17,0,[17,0,[17,4,0]]]]]],
+                            /* Format */[0,
+                             /* Formatting_gen */[18,
+                              /* Open_box */[1,
+                               /* Format */[0,
+                                /* String_literal */[11,"<v2>",/* End_of_format */0],
+                                "<v2>"]],
+                              /* String_literal */[11,
+                               "Backtrace:",
+                               /* Alpha */[15,
+                                /* Formatting_lit */[17,
+                                 /* Close_box */0,
+                                 /* Formatting_lit */[17,
+                                  /* Close_box */0,
+                                  /* Formatting_lit */[17,
+                                   /* Flush_newline */4,
+                                   /* End_of_format */0]]]]]],
                              "@[<v2>Backtrace:%a@]@]@."],
                             Report["print_backtrace"],
                             backtrace);
@@ -525,8 +632,14 @@ var
                         else
                          {if(e$1[1]=Failure)
                            {Log["eprintf"]
-                             ([0,
-                               [11,"Failure:",[17,[0,"@ ",1,0],[2,0,[12,46,0]]]],
+                             (/* Format */[0,
+                               /* String_literal */[11,
+                                "Failure:",
+                                /* Formatting_lit */[17,
+                                 /* Break */[0,"@ ",1,0],
+                                 /* String */[2,
+                                  /* No_padding */0,
+                                  /* Char_literal */[12,46,/* End_of_format */0]]]],
                                "Failure:@ %s."],
                               e$1[2]);
                             return exit(Exit_codes["rc_failure"]);
@@ -534,12 +647,18 @@ var
                           else
                            {if(e$1[1]=Solver["Circular"])
                              {Log["eprintf"]
-                               ([0,
-                                 [11,
+                               (/* Format */[0,
+                                 /* String_literal */[11,
                                   "Circular build detected",
-                                  [17,
-                                   [0,"@ ",1,0],
-                                   [12,40,[15,[11," already seen in ",[15,[12,41,0]]]]]]],
+                                  /* Formatting_lit */[17,
+                                   /* Break */[0,"@ ",1,0],
+                                   /* Char_literal */[12,
+                                    40,
+                                    /* Alpha */[15,
+                                     /* String_literal */[11,
+                                      " already seen in ",
+                                      /* Alpha */[15,
+                                       /* Char_literal */[12,41,/* End_of_format */0]]]]]]],
                                  "Circular build detected@ (%a already seen in %a)"],
                                 Resource["print"],
                                 e$1[2],
@@ -550,14 +669,14 @@ var
                             else
                              {if(e$1[1]=Invalid_argument)
                                {Log["eprintf"]
-                                 ([0,
-                                   [11,
+                                 (/* Format */[0,
+                                   /* String_literal */[11,
                                     "INTERNAL ERROR: Invalid argument ",
-                                    [2,
-                                     0,
-                                     [11,
+                                    /* String */[2,
+                                     /* No_padding */0,
+                                     /* String_literal */[11,
                                       "\nThis is likely to be a bug, please report this to the ocamlbuild\ndevelopers.",
-                                      0]]],
+                                      /* End_of_format */0]]],
                                    "INTERNAL ERROR: Invalid argument %s\nThis is likely to be a bug, please report this to the ocamlbuild\ndevelopers."],
                                   e$1[2]);
                                 return exit(Exit_codes["rc_invalid_argument"]);
@@ -565,7 +684,11 @@ var
                               else
                                {if(e$1[1]=Ocaml_utils["Ocamldep_error"])
                                  {Log["eprintf"]
-                                   ([0,[11,"Ocamldep error: ",[2,0,0]],"Ocamldep error: %s"],
+                                   (/* Format */[0,
+                                     /* String_literal */[11,
+                                      "Ocamldep error: ",
+                                      /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                                     "Ocamldep error: %s"],
                                     e$1[2]);
                                   return exit(Exit_codes["rc_ocamldep_error"]);
                                   }
@@ -574,8 +697,13 @@ var
                                    {var match=e$1[2];
                                     
                                     Log["eprintf"]
-                                     ([0,
-                                       [15,[11,"Lexing error: ",[2,0,[12,46,0]]]],
+                                     (/* Format */[0,
+                                       /* Alpha */[15,
+                                        /* String_literal */[11,
+                                         "Lexing error: ",
+                                         /* String */[2,
+                                          /* No_padding */0,
+                                          /* Char_literal */[12,46,/* End_of_format */0]]]],
                                        "%aLexing error: %s."],
                                       Loc["print_loc"],
                                       match[2],
@@ -584,28 +712,49 @@ var
                                     }
                                   else
                                    {if(e$1[1]=Arg["Bad"])
-                                     {Log["eprintf"]([0,[2,0,0],"%s"],e$1[2]);
+                                     {Log["eprintf"]
+                                       (/* Format */[0,
+                                         /* String */[2,/* No_padding */0,/* End_of_format */0],
+                                         "%s"],
+                                        e$1[2]);
                                       return exit(Exit_codes["rc_usage"]);
                                       }
                                     else
                                      {if(e$1[1]=Exit_build_error)
-                                       {Log["eprintf"]([0,[2,0,0],"%s"],e$1[2]);
+                                       {Log["eprintf"]
+                                         (/* Format */[0,
+                                           /* String */[2,/* No_padding */0,/* End_of_format */0],
+                                           "%s"],
+                                          e$1[2]);
                                         return exit(Exit_codes["rc_build_error"]);
                                         }
                                       else
                                        {if(e$1[1]=Arg["Help"])
-                                         {Log["eprintf"]([0,[2,0,0],"%s"],e$1[2]);
+                                         {Log["eprintf"]
+                                           (/* Format */[0,
+                                             /* String */[2,/* No_padding */0,/* End_of_format */0],
+                                             "%s"],
+                                            e$1[2]);
                                           return exit(Exit_codes["rc_ok"]);
                                           }
                                         else
                                          {try
-                                           {Log["eprintf"]([0,[15,0],"%a"],My_unix["report_error"],e$1);
+                                           {Log["eprintf"]
+                                             (/* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+                                              My_unix["report_error"],
+                                              e$1);
                                             return exit(100);
                                             }
                                           catch(e$2)
                                            {Log["eprintf"]
-                                             ([0,
-                                               [11,"Exception",[17,[0,"@ ",1,0],[2,0,[12,46,0]]]],
+                                             (/* Format */[0,
+                                               /* String_literal */[11,
+                                                "Exception",
+                                                /* Formatting_lit */[17,
+                                                 /* Break */[0,"@ ",1,0],
+                                                 /* String */[2,
+                                                  /* No_padding */0,
+                                                  /* Char_literal */[12,46,/* End_of_format */0]]]],
                                                "Exception@ %s."],
                                               Printexc["to_string"](e$2));
                                             return exit(100);

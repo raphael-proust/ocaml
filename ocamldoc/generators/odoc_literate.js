@@ -10,25 +10,33 @@ var Buffer=require("Buffer");
 
 
 
-var
- shared=
-  [0,
-   "keyword",
-   "html_of_value",
-   "html_of_type_expr",
-   "html_of_text",
-   "html_of_parameter_list",
-   "html_of_module_comment",
-   "html_of_info",
-   "html_of_described_parameter_list",
-   "html_of_code",
-   "html_of_Title",
-   "escape",
-   "create_title_label",
-   "code_block"];
+var shared=[0,"code_id"];
 
 var
  shared$1=
+  [0,
+   "tag_functions",
+   "style_file",
+   "style",
+   "list_values",
+   "list_types",
+   "list_modules",
+   "list_module_types",
+   "list_methods",
+   "list_extensions",
+   "list_exceptions",
+   "list_classes",
+   "list_class_types",
+   "list_attributes",
+   "known_types_names",
+   "known_modules_names",
+   "known_classes_names",
+   "header",
+   "doctype",
+   "default_style_options"];
+
+var
+ shared$2=
   [0,
    "character_encoding",
    "constructor",
@@ -163,30 +171,22 @@ var
    "print_navbar",
    "title"];
 
-var shared$2=[0,"code_id"];
-
 var
  shared$3=
   [0,
-   "tag_functions",
-   "style_file",
-   "style",
-   "list_values",
-   "list_types",
-   "list_modules",
-   "list_module_types",
-   "list_methods",
-   "list_extensions",
-   "list_exceptions",
-   "list_classes",
-   "list_class_types",
-   "list_attributes",
-   "known_types_names",
-   "known_modules_names",
-   "known_classes_names",
-   "header",
-   "doctype",
-   "default_style_options"];
+   "keyword",
+   "html_of_value",
+   "html_of_type_expr",
+   "html_of_text",
+   "html_of_parameter_list",
+   "html_of_module_comment",
+   "html_of_info",
+   "html_of_described_parameter_list",
+   "html_of_code",
+   "html_of_Title",
+   "escape",
+   "create_title_label",
+   "code_block"];
 
 var Naming=0;
 
@@ -216,7 +216,7 @@ else
 var
  html_init=
   function($$class)
-   {var ids=CamlinternalOO["new_methods_variables"]($$class,shared,shared$2);
+   {var ids=CamlinternalOO["new_methods_variables"]($$class,shared$3,shared);
     
     var keyword=ids[1];
     
@@ -246,7 +246,7 @@ var
     
     var code_id=ids[14];
     
-    var inh=CamlinternalOO["inherits"]($$class,shared$3,0,shared$1,Html[1],1);
+    var inh=CamlinternalOO["inherits"]($$class,shared$1,0,shared$2,Html[1],1);
     
     var obj_init=inh[1];
     
@@ -266,20 +266,37 @@ var
            else
             {switch($js[0])
               {case 13:
-                if(text[2]){var match$2=[0,0,1];}else{var match$2=[0,0,0];}
+                if(text[2])
+                 {var match$2=/* tuple */[0,/* false */0,/* true */1];}
+                else
+                 {var match$2=/* tuple */[0,/* false */0,/* false */0];}
+                
                default:exit=2;}}
            }
          else
           {exit=2;}
          
-         switch(exit){case 2:var match$2=[0,1,1];}
+         switch(exit)
+          {case 2:var match$2=/* tuple */[0,/* true */1,/* true */1];}
          
-         if(match$2[1]){p(b,[0,[11,"<br/>",0],"<br/>"])}else{}
+         if(match$2[1])
+          {p
+            (b,
+             /* Format */[0,
+              /* String_literal */[11,"<br/>",/* End_of_format */0],
+              "<br/>"])}
+         else
+          {}
          
          "unknown block:(sendself self-1/1377 html_of_text/1388 b/1378 text/1379)";
          
          if(match$2[2])
-          {return p(b,[0,[11,"<br/><br/>\n",0],"<br/><br/>\n"]);}
+          {return p
+                   (b,
+                    /* Format */[0,
+                     /* String_literal */[11,"<br/><br/>\n",/* End_of_format */0],
+                     "<br/><br/>\n"]);
+           }
          else
           {return 0;}
          },
@@ -289,57 +306,97 @@ var
          
          p
           (b,
-           [0,[11,'<a name="',[2,0,[11,'"></a>\n',0]]],'<a name="%s"></a>\n'],
+           /* Format */[0,
+            /* String_literal */[11,
+             '<a name="',
+             /* String */[2,
+              /* No_padding */0,
+              /* String_literal */[11,'"></a>\n',/* End_of_format */0]]],
+            '<a name="%s"></a>\n'],
            Odoc_html["Naming"][35](label1));
-         p(b,[0,[11,"<h",[4,0,0,0,[12,62,0]]],"<h%d>"],n);
+         p
+          (b,
+           /* Format */[0,
+            /* String_literal */[11,
+             "<h",
+             /* Int */[4,
+              /* Int_d */0,
+              /* No_padding */0,
+              /* No_precision */0,
+              /* Char_literal */[12,62,/* End_of_format */0]]],
+            "<h%d>"],
+           n);
          "unknown block:(sendself self-1/1390 html_of_text/1388 b/1391 t/1394)";
          
-         return p(b,[0,[11,"</h",[4,0,0,0,[12,62,0]]],"</h%d>"],n);
+         return p
+                 (b,
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "</h",
+                    /* Int */[4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     /* Char_literal */[12,62,/* End_of_format */0]]],
+                   "</h%d>"],
+                  n);
          },
        code_block,
        function(self$neg1,b,code)
         {self$neg1[code_id]=self$neg1[code_id]+1,0;
          Printf["bprintf"]
           (b,
-           [0,
-            [11,
+           /* Format */[0,
+            /* String_literal */[11,
              '<span class="code_expand" onclick="if(document.getElementById(\'code',
-             [4,
-              0,
-              0,
-              0,
-              [11,
+             /* Int */[4,
+              /* Int_d */0,
+              /* No_padding */0,
+              /* No_precision */0,
+              /* String_literal */[11,
                "').style.display=='none') {document.getElementById('code",
-               [4,
-                0,
-                0,
-                0,
-                [11,
+               /* Int */[4,
+                /* Int_d */0,
+                /* No_padding */0,
+                /* No_precision */0,
+                /* String_literal */[11,
                  "').style.display='block';} else {document.getElementById('code",
-                 [4,
-                  0,
-                  0,
-                  0,
-                  [11,
+                 /* Int */[4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  /* String_literal */[11,
                    '\').style.display=\'none\';}"><img src="expand_collapse.png" alt="+/-"/></span>',
-                   0]]]]]]],
+                   /* End_of_format */0]]]]]]],
             "<span class=\"code_expand\" onclick=\"if(document.getElementById('code%d').style.display=='none') {document.getElementById('code%d').style.display='block';} else {document.getElementById('code%d').style.display='none';}\"><img src=\"expand_collapse.png\" alt=\"+/-\"/></span>"],
            self$neg1[code_id],
            self$neg1[code_id],
            self$neg1[code_id]);
          Printf["bprintf"]
           (b,
-           [0,
-            [11,'<div id="code',[4,0,0,0,[11,'" class="codeblock">',0]]],
+           /* Format */[0,
+            /* String_literal */[11,
+             '<div id="code',
+             /* Int */[4,
+              /* Int_d */0,
+              /* No_padding */0,
+              /* No_precision */0,
+              /* String_literal */[11,
+               '" class="codeblock">',
+               /* End_of_format */0]]],
             '<div id="code%d" class="codeblock">'],
            self$neg1[code_id]);
          "unknown block:(sendself self-1/1437 html_of_code/1440 b/1438 0a code/1439)";
          
-         return Printf["bprintf"](b,[0,[11,"</div>",0],"</div>"]);
+         return Printf["bprintf"]
+                 (b,
+                  /* Format */[0,
+                   /* String_literal */[11,"</div>",/* End_of_format */0],
+                   "</div>"]);
          },
        html_of_value,
        function(self$neg1,b,v)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          "unknown block:(sendself self-1/1442 html_of_info/1445 0a 0a b/1443 (field 1 v/1444))";
          
          bs(b,"<pre>");
@@ -348,7 +405,13 @@ var
          bs(b," ");
          bp
           (b,
-           [0,[11,'<a name="',[2,0,[11,'"></a>',0]]],'<a name="%s"></a>'],
+           /* Format */[0,
+            /* String_literal */[11,
+             '<a name="',
+             /* String */[2,
+              /* No_padding */0,
+              /* String_literal */[11,'"></a>',/* End_of_format */0]]],
+            '<a name="%s"></a>'],
            Odoc_html["Naming"][25](v));
          "unknown block:(sendself self-1/1442 escape/1447\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/1444)))";
          bs(b,0);
@@ -369,47 +432,47 @@ var
           {"unknown block:(sendself self-1/1442 code_block/1374 b/1443 (field 0 match/1486))";
            }
          else
-          {return 0;}
+          {return /* () */0;}
          }]);
     CamlinternalOO["add_initializer"]
      ($$class,
       function(self$neg1)
        {return self$neg1[default_style_options]=
-               [/* :: */0,
+               /* :: */[0,
                 "a:visited {color : #416DFF; text-decoration : none; }",
-                [/* :: */0,
+                /* :: */[0,
                  "a:link {color : #416DFF; text-decoration : none;}",
-                 [/* :: */0,
+                 /* :: */[0,
                   "a:hover {color : Red; text-decoration : none; background-color: #5FFF88}",
-                  [/* :: */0,
+                  /* :: */[0,
                    "a:active {color : Red; text-decoration : underline; }",
-                   [/* :: */0,
+                   /* :: */[0,
                     ".keyword { font-weight : bold ; color : Red }",
-                    [/* :: */0,
+                    /* :: */[0,
                      ".keywordsign { color : #C04600 }",
-                     [/* :: */0,
+                     /* :: */[0,
                       ".superscript { font-size : 0.6em }",
-                      [/* :: */0,
+                      /* :: */[0,
                        ".subscript { font-size : 0.6em }",
-                       [/* :: */0,
+                       /* :: */[0,
                         ".comment { color : Green }",
-                        [/* :: */0,
+                        /* :: */[0,
                          ".constructor { color : Blue }",
-                         [/* :: */0,
+                         /* :: */[0,
                           ".type { color : #5C6585 }",
-                          [/* :: */0,
+                          /* :: */[0,
                            ".string { color : Maroon }",
-                           [/* :: */0,
+                           /* :: */[0,
                             ".warning { color : Red ; font-weight : bold }",
-                            [/* :: */0,
+                            /* :: */[0,
                              ".info { margin-top: 8px; }",
-                             [/* :: */0,
+                             /* :: */[0,
                               ".param_info { margin-top: 4px; margin-left : 3em; margin-right : 3em }",
-                              [/* :: */0,
+                              /* :: */[0,
                                ".code { color : #465F91 ; }",
-                               [/* :: */0,
+                               /* :: */[0,
                                 "h1 { font-size : 20pt ; text-align: center; }",
-                                [/* :: */0,
+                                /* :: */[0,
                                  Pervasives["^"]
                                   ("h2 { font-size : 20pt ; border: 1px solid #000000; ",
                                    Pervasives["^"]
@@ -417,7 +480,7 @@ var
                                      Pervasives["^"]
                                       ("text-align: center; background-color: #90BDFF ;",
                                        "padding: 2px; }"))),
-                                 [/* :: */0,
+                                 /* :: */[0,
                                   Pervasives["^"]
                                    ("h3 { font-size : 20pt ; border: 1px solid #000000; ",
                                     Pervasives["^"]
@@ -425,7 +488,7 @@ var
                                       Pervasives["^"]
                                        ("text-align: center; background-color: #90DDFF ;",
                                         "padding: 2px; }"))),
-                                  [/* :: */0,
+                                  /* :: */[0,
                                    Pervasives["^"]
                                     ("h4 { font-size : 20pt ; border: 1px solid #000000; ",
                                      Pervasives["^"]
@@ -433,7 +496,7 @@ var
                                        Pervasives["^"]
                                         ("text-align: center; background-color: #90EDFF ;",
                                          "padding: 2px; }"))),
-                                   [/* :: */0,
+                                   /* :: */[0,
                                     Pervasives["^"]
                                      ("h5 { font-size : 20pt ; border: 1px solid #000000; ",
                                       Pervasives["^"]
@@ -441,7 +504,7 @@ var
                                         Pervasives["^"]
                                          ("text-align: center; background-color: #90FDFF ;",
                                           "padding: 2px; }"))),
-                                    [/* :: */0,
+                                    /* :: */[0,
                                      Pervasives["^"]
                                       ("h6 { font-size : 20pt ; border: 1px solid #000000; ",
                                        Pervasives["^"]
@@ -449,7 +512,7 @@ var
                                          Pervasives["^"]
                                           ("text-align: center; background-color: #C0FFFF ; ",
                                            "padding: 2px; }"))),
-                                     [/* :: */0,
+                                     /* :: */[0,
                                       Pervasives["^"]
                                        ("div.h7 { font-size : 20pt ; border: 1px solid #000000; ",
                                         Pervasives["^"]
@@ -457,7 +520,7 @@ var
                                           Pervasives["^"]
                                            ("text-align: center; background-color: #E0FFFF ; ",
                                             "padding: 2px; }"))),
-                                      [/* :: */0,
+                                      /* :: */[0,
                                        Pervasives["^"]
                                         ("div.h8 { font-size : 20pt ; border: 1px solid #000000; ",
                                          Pervasives["^"]
@@ -465,7 +528,7 @@ var
                                            Pervasives["^"]
                                             ("text-align: center; background-color: #F0FFFF ; ",
                                              "padding: 2px; }"))),
-                                       [/* :: */0,
+                                       /* :: */[0,
                                         Pervasives["^"]
                                          ("div.h9 { font-size : 20pt ; border: 1px solid #000000; ",
                                           Pervasives["^"]
@@ -473,28 +536,28 @@ var
                                             Pervasives["^"]
                                              ("text-align: center; background-color: #FFFFFF ; ",
                                               "padding: 2px; }"))),
-                                        [/* :: */0,
+                                        /* :: */[0,
                                          ".typetable { border-style : hidden }",
-                                         [/* :: */0,
+                                         /* :: */[0,
                                           ".indextable { border-style : hidden }",
-                                          [/* :: */0,
+                                          /* :: */[0,
                                            ".paramstable { border-style : hidden ; padding: 5pt 5pt}",
-                                           [/* :: */0,
+                                           /* :: */[0,
                                             "body { background-color : White }",
-                                            [/* :: */0,
+                                            /* :: */[0,
                                              "tr { background-color : White }",
-                                             [/* :: */0,
+                                             /* :: */[0,
                                               "td.typefieldcomment { background-color : #FFFFFF ; font-size: smaller ;}",
-                                              [/* :: */0,
+                                              /* :: */[0,
                                                Pervasives["^"]
                                                 ("pre { margin-bottom: 4px ; margin-left: 1em; ",
                                                  Pervasives["^"]
                                                   ("border-color: #27408b; border-style: solid; ",
                                                    Pervasives["^"]
                                                     ("border-width: 1px 1px 1px 3px; ","padding: 4px; }"))),
-                                               [/* :: */0,
+                                               /* :: */[0,
                                                 "div.sig_block {margin-left: 2em}",
-                                                [/* :: */0,
+                                                /* :: */[0,
                                                  Pervasives["^"]
                                                   ("div.codeblock { ",
                                                    Pervasives["^"]
@@ -502,11 +565,11 @@ var
                                                      Pervasives["^"]
                                                       ("margin-bottom: 8px; display: none; ",
                                                        "border-width: 1px 1px 1px 3px; border-style: solid; border-color: grey; }"))),
-                                                 [/* :: */0,
+                                                 /* :: */[0,
                                                   Pervasives["^"]
                                                    ("span.code_expand { color: blue; text-decoration: underline; cursor: pointer; ",
                                                     "margin-left: 1em ; } "),
-                                                  0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
+                                                  /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
                0;
         });
     return function(env,$$self)
@@ -656,7 +719,7 @@ var
 
 var Generator=[0,html];
 
-Odoc_args["set_generator"]([/* Html */0,Generator]);
+Odoc_args["set_generator"](/* Html */[0,Generator]);
 module["exports"]=
 {"Naming":Naming,"p":p,"bp":bp,"bs":bs,"Html":Html,"Generator":Generator};
 

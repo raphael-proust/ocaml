@@ -18,17 +18,17 @@ var $$let=$$String;
 
 var StringSet=Set["Make"]([0,$$let[25]]);
 
-var modules=[0,0];
+var modules=[0,/* [] */0];
 
-var program_source_dirs=[0,0];
+var program_source_dirs=[0,/* [] */0];
 
-var events=[0,0];
+var events=[0,/* [] */0];
 
-var events_by_pc=Hashtbl["create"](0,257);
+var events_by_pc=Hashtbl["create"](/* None */0,257);
 
-var events_by_module=Hashtbl["create"](0,17);
+var events_by_module=Hashtbl["create"](/* None */0,17);
 
-var all_events_by_module=Hashtbl["create"](0,17);
+var all_events_by_module=Hashtbl["create"](/* None */0,17);
 
 var
  relocate_event=
@@ -43,7 +43,7 @@ var
     else
      {switch(match[0]){case 0:return match[1][1]=ev[1],0;case 1:exit=44;}}
     
-    switch(exit){case 44:return 0;}
+    switch(exit){case 44:return /* () */0;}
     };
 
 var
@@ -52,7 +52,7 @@ var
    {var ic=Pervasives["open_in_bin"](bytecode_file);
     
     try
-     {Bytesections["read_toc"](ic),0}
+     {Bytesections["read_toc"](ic),Bytesections["seek_section"](ic,"SYMB")}
     catch(exn)
      {var exit;
       
@@ -72,7 +72,7 @@ var
     
     Symtable["restore_state"](Pervasives["input_value"](ic));
     try
-     {}
+     {Bytesections["seek_section"](ic,"DBUG")}
     catch(exn$1)
      {if(exn$1=Not_found)
        {Pervasives["prerr_string"](bytecode_file);
@@ -87,7 +87,7 @@ var
     
     var dirs=StringSet[1];
     
-    var eventlists=0;
+    var eventlists=/* [] */0;
     
     for(var i=1;i<=num_eventlists;i++)
      {var orig=Pervasives["input_binary_int"](ic);
@@ -95,7 +95,7 @@ var
       var evl=Pervasives["input_value"](ic);
       
       List["iter"](relocate_event(orig),evl);
-      eventlists=[/* :: */0,evl,eventlists];
+      eventlists=/* :: */[0,evl,eventlists];
       
       dirs=
       List["fold_left"]
@@ -105,7 +105,7 @@ var
       }
     
     try
-     {}
+     {Bytesections["seek_section"](ic,"CODE")}
     catch(exn$2)
      {if(exn$2=Not_found)
        {Program_loading["set_launching_function"]
@@ -115,7 +115,7 @@ var
       }
     
     Pervasives["close_in_noerr"](ic);
-    return [/* tuple */0,eventlists,dirs];
+    return /* tuple */[0,eventlists,dirs];
     };
 
 var
@@ -125,8 +125,8 @@ var
     
     var all_events=match[1];
     
-    modules[1]=0,0;
-    events[1]=0,0;
+    modules[1]=/* [] */0,0;
+    events[1]=/* [] */0,0;
     program_source_dirs[1]=StringSet[20](match[2]),0;
     Hashtbl["clear"](events_by_pc);
     Hashtbl["clear"](events_by_module);
@@ -135,7 +135,7 @@ var
      (function(evl)
        {return List["iter"]
                 (function(ev)
-                  {events[1]=[/* :: */0,ev,events[1]],0;
+                  {events[1]=/* :: */[0,ev,events[1]],0;
                    return Hashtbl["add"](events_by_pc,ev[1],ev);
                    },
                  evl);
@@ -153,7 +153,7 @@ var
                  
                  var sorted_evl=List["sort"](cmp,evl);
                  
-                 modules[1]=[/* :: */0,md,modules[1]],0;
+                 modules[1]=/* :: */[0,md,modules[1]],0;
                  Hashtbl["add"](all_events_by_module,md,sorted_evl);
                  var
                   real_evl=
@@ -164,11 +164,11 @@ var
                        var exit;
                        
                        if("unknown primitive:isint")
-                        {if(match$1!=0){return 0;}else{exit=25;}}
+                        {if(match$1!=0){return /* false */0;}else{exit=25;}}
                        else
                         {exit=25;}
                        
-                       switch(exit){case 25:return 1;}
+                       switch(exit){case 25:return /* true */1;}
                        },
                      sorted_evl);
                  
@@ -176,7 +176,7 @@ var
                          (events_by_module,md,$$Array["of_list"](real_evl));
                  }
                else
-                {return 0;}
+                {return /* () */0;}
                },
              all_events);
     };
@@ -204,8 +204,8 @@ var
  set_event_at_pc=
   function(pc)
    {try
-     {return Debugcom["set_event"](pc);}
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+     {event_at_pc(pc);return Debugcom["set_event"](pc);}
+    catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -213,7 +213,7 @@ var
   function(mdle)
    {try
      {return Hashtbl["find"](all_events_by_module,mdle);}
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){return /* [] */0;}else{throw exn;}}
     };
 
 var
@@ -293,7 +293,7 @@ var
                var exit;
                
                if("unknown primitive:isint")
-                {if(match!=0){return 0;}else{exit=5;}}
+                {if(match!=0){return /* () */0;}else{exit=5;}}
                else
                 {exit=5;}
                
@@ -302,26 +302,29 @@ var
              events_by_pc);
     };
 
-var old_pc=[0,0];
+var old_pc=[0,/* None */0];
 
 var
  update_current_event=
   function(param)
-   {var opt_pc=Checkpoints["current_pc"](0);
+   {var opt_pc=Checkpoints["current_pc"](/* () */0);
     
     if(opt_pc)
      {if("unknown primitive:caml_notequal")
-       {try
-         {var $js=[/* Some */0,event_at_pc(opt_pc[1])];}
-        catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
+       {var $js;
+        try
+         {$js=/* Some */[0,event_at_pc(opt_pc[1])];}
+        catch(exn){if(exn=Not_found){$js=/* None */0;}else{throw exn;}}
         Events["current_event"][1]=$js,0;
         return old_pc[1]=opt_pc,0;
         }
       else
-       {return 0;}
+       {return /* () */0;}
       }
     else
-     {Events["current_event"][1]=0,0;return old_pc[1]=0,0;}
+     {Events["current_event"][1]=/* None */0,0;
+      return old_pc[1]=/* None */0,0;
+      }
     };
 
 module["exports"]=

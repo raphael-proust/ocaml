@@ -52,10 +52,10 @@ var
           if("unknown primitive:caml_string_equal")
            {return iter(q);}
           else
-           {return [/* :: */0,h2,q];}
+           {return /* :: */[0,h2,q];}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     var l2=iter(l);
@@ -74,10 +74,10 @@ var
           if("unknown primitive:caml_string_equal")
            {return iter$1(q);}
           else
-           {return [/* :: */0,h2,q];}
+           {return /* :: */[0,h2,q];}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     var l3=List["rev"](iter$1(List["rev"](l2)));
@@ -96,7 +96,7 @@ var
 
 var
  __ocaml_lex_tables=
-  [0,
+  /* record */[0,
    "\0\0öÿ\0\0ùÿ\x01\0þÿ\x02\0\x02\0\x04\0\x06\0ýÿüÿ\b\0øÿ\x0b\0ûÿ\t\0\0\0\n\0\r\0ÿÿþÿýÿ-\0$\0ýÿ\r\0\x0f\0ÿÿþÿ$\x01úÿ\t\0\n\0m\0m\0e\x01a\x012\0÷ÿ\x10\0ùÿ\x10\0þÿ\x07\0\x13\0\x18\0üÿ\x1a\0øÿ",
    "ÿÿÿÿ\t\0ÿÿ\t\0ÿÿ\0\0\b\0\x05\0\x04\0ÿÿÿÿÿÿÿÿÿÿÿÿ\x04\0\x04\0\x04\0\x04\0ÿÿÿÿÿÿ\x03\0ÿÿÿÿ\x02\0\x02\0ÿÿÿÿÿÿÿÿ\x04\0\x04\0\x02\0\x01\0\0\0\x03\0ÿÿÿÿ\b\0ÿÿ\b\0ÿÿ\0\0\x05\0\x04\0ÿÿ\x02\0ÿÿ",
    "\x01\0\0\0ÿÿ\0\0ÿÿ\0\0ÿÿÿÿÿÿÿÿ\0\0\0\0ÿÿ\0\0\x0f\0\0\0ÿÿÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿ\x19\0\0\0ÿÿÿÿ\0\0\0\0 \0\0\0 \0 \0ÿÿ \0 \0ÿÿ'\0\0\0ÿÿ\0\0ÿÿ\0\0ÿÿÿÿÿÿ\0\0ÿÿ\0\0",
@@ -137,7 +137,7 @@ var
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"],
          0;
-         return [0,[0,"",0]];
+         return /* Description */[0,/* tuple */[0,"",/* None */0]];
          
         case 3:exit=2;
         case 4:exit=3;
@@ -148,14 +148,14 @@ var
          0;
          comments_level[0]++;
          if(comments_level[1]=1)
-          {reset_string_buffer(0);
+          {reset_string_buffer(/* () */0);
            description[1]="",0;
            return special_comment(lexbuf);
            }
          else
           {return main(lexbuf);}
          
-        case 6:return 9;
+        case 6:return /* EOF */9;
         case 7:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
@@ -213,7 +213,7 @@ var
          s["length"],
          0;
          if(comments_level[1]=1)
-          {var s2=lecture_string(0);
+          {var s2=lecture_string(/* () */0);
            
            var s3=remove_blanks(s2);
            
@@ -222,7 +222,7 @@ var
            else
             {var s4=s3;}
            
-           return [/* Description */0,[/* tuple */0,s4,0]];
+           return /* Description */[0,/* tuple */[0,s4,/* None */0]];
            }
          else
           {ajout_string(s);
@@ -254,17 +254,17 @@ var
          return special_comment(lexbuf);
          
         case 3:
-         var s$3=lecture_string(0);
+         var s$3=lecture_string(/* () */0);
          
          description[1]=remove_blanks(s$3),0;
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          var len=Lexing["lexeme"](lexbuf)["length"];
          
          lexbuf[6]=lexbuf[6]-len,0;
          var init=lexbuf[12];
          
          lexbuf[12]=
-         [/* record */0,init[1],init[2],init[3],lexbuf[12][4]-len],
+         /* record */[0,init[1],init[2],init[3],lexbuf[12][4]-len],
          0;
          return special_comment_part2(lexbuf);
          
@@ -311,15 +311,15 @@ var
            else
             {var desc=description[1];}
            
-           var remain=lecture_string(0);
+           var remain=lecture_string(/* () */0);
            
            if(Odoc_global["remove_stars"][1])
             {var remain2=remove_stars(remain);}
            else
             {var remain2=remain;}
            
-           return [/* Description */0,
-                   [/* tuple */0,desc,[/* Some */0,remain2]]];
+           return /* Description */[0,
+                   /* tuple */[0,desc,/* Some */[0,remain2]]];
            }
          else
           {ajout_string(s);
@@ -391,15 +391,15 @@ var
          var exit;
          
          switch(s2)
-          {case "author":return 1;
-           case "before":return 5;
-           case "deprecated":return 6;
-           case "param":return 0;
-           case "raise":return 7;
-           case "return":return 8;
-           case "see":return 3;
-           case "since":return 4;
-           case "version":return 2;
+          {case "author":return /* T_AUTHOR */1;
+           case "before":return /* T_BEFORE */5;
+           case "deprecated":return /* T_DEPRECATED */6;
+           case "param":return /* T_PARAM */0;
+           case "raise":return /* T_RAISES */7;
+           case "return":return /* T_RETURN */8;
+           case "see":return /* T_SEE */3;
+           case "since":return /* T_SINCE */4;
+           case "version":return /* T_VERSION */2;
            default:exit=22;}
          
          switch(exit)
@@ -407,7 +407,7 @@ var
             if(Odoc_global["no_custom_tags"][1])
              {throw [0,Failure,Odoc_messages["not_a_valid_tag"](s2)];}
             else
-             {return [/* T_CUSTOM */4,s2];}
+             {return /* T_CUSTOM */[4,s2];}
             
            }
          
@@ -422,9 +422,9 @@ var
          
          var s$3=remove_blanks(s$2);
          
-         return [/* Desc */5,s$3];
+         return /* Desc */[5,s$3];
          
-        case 5:return 9;
+        case 5:return /* EOF */9;
         case 6:
          var s$4=Lexing["lexeme"](lexbuf);
          
@@ -499,14 +499,14 @@ var
          0;
          comments_level[0]++;
          if(comments_level[1]=1)
-          {reset_string_buffer(0);
+          {reset_string_buffer(/* () */0);
            description[1]="",0;
            return special_comment(lexbuf);
            }
          else
           {ajout_string(s$2);return simple(lexbuf);}
          
-        case 6:return 9;
+        case 6:return /* EOF */9;
         case 7:
          var s$3=Lexing["lexeme"](lexbuf);
          

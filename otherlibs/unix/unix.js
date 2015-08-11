@@ -13,7 +13,8 @@ var Sys=require("Sys");
 
 var Unix_error="unknown primitive:caml_set_oo_id";
 
-Callback["register_exception"]("Unix.Unix_error",[0,Unix_error,0,"",""]);
+Callback["register_exception"]
+ ("Unix.Unix_error",[0,Unix_error,/* E2BIG */0,"",""]);
 var
  match=
   Printexc["register_printer"]
@@ -105,22 +106,41 @@ var
           var
            msg=
             Printf["sprintf"]
-             ([0,[11,"EUNKNOWNERR ",[4,0,0,0,0]],"EUNKNOWNERR %d"],x);
+             (/* Format */[0,
+               /* String_literal */[11,
+                "EUNKNOWNERR ",
+                /* Int */[4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 /* End_of_format */0]],
+               "EUNKNOWNERR %d"],
+              x);
           }
         
         return /* Some */[0,
                 Printf["sprintf"]
-                 ([0,
-                   [11,
+                 (/* Format */[0,
+                   /* String_literal */[11,
                     "Unix.Unix_error(Unix.",
-                    [2,0,[11,", ",[3,0,[11,", ",[3,0,[12,41,0]]]]]]],
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,
+                      ", ",
+                      /* Caml_string */[3,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        ", ",
+                        /* Caml_string */[3,
+                         /* No_padding */0,
+                         /* Char_literal */[12,41,/* End_of_format */0]]]]]]],
                    "Unix.Unix_error(Unix.%s, %S, %S)"],
                   msg,
                   s,
                   s$prime)];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 var
@@ -207,9 +227,12 @@ var
  try_set_close_on_exec=
   function(fd)
    {try
-     {"unknown primitive:unix_set_close_on_exec";return 1;}
+     {"unknown primitive:unix_set_close_on_exec";return /* true */1;}
     catch(exn)
-     {var tag=exn[1];if(tag=Invalid_argument){return 0;}else{throw exn;}}
+     {var tag=exn[1];
+      
+      if(tag=Invalid_argument){return /* false */0;}else{throw exn;}
+      }
     };
 
 var
@@ -249,8 +272,15 @@ var
  domain_of_sockaddr=
   function(param)
    {switch(param)
-     {case 0:return 0;
-      case 1:var a=param[1];if(is_inet6_addr(a)){return 2;}else{return 1;}
+     {case 0:return /* PF_UNIX */0;
+      case 1:
+       var a=param[1];
+       
+       if(is_inet6_addr(a))
+        {return /* PF_INET6 */2;}
+       else
+        {return /* PF_INET */1;}
+       
       }
     };
 
@@ -338,42 +368,42 @@ var getsockopt_float=function(fd,opt){return SO[6](SO[4],fd,opt);};
 
 var setsockopt_float=function(fd,opt,v){return SO[7](SO[4],fd,opt,v);};
 
-var getsockopt_error=function(fd){return SO[6](SO[5],fd,0);};
+var getsockopt_error=function(fd){return SO[6](SO[5],fd,/* SO_ERROR */0);};
 
 var
  getaddrinfo_emulation=
   function(node,service,opts)
-   {var opt_socktype=[0,0];
+   {var opt_socktype=[0,/* None */0];
     
     var opt_protocol=[0,0];
     
-    var opt_passive=[0,0];
+    var opt_passive=[0,/* false */0];
     
     List["iter"]
      (function(param)
        {var exit;
         
         if(typeof param=="number")
-         {switch(param){case 2:return opt_passive[1]=1,0;}}
+         {switch(param){case 2:return opt_passive[1]=/* true */1,0;}}
         else
          {switch(param[0])
            {case 1:var s=param[1];return opt_socktype[1]=/* Some */[0,s],0;
             case 2:var p=param[1];return opt_protocol[1]=p,0;
             default:exit=95;}}
         
-        switch(exit){case 95:return 0;}
+        switch(exit){case 95:return /* () */0;}
         },
       opts);
     var
      get_port=
       function(ty,kind)
        {if("unknown primitive:caml_string_equal")
-         {return /* :: */[0,/* tuple */[0,ty,0],0];}
+         {return /* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
         else
          {try
            {return /* :: */[0,
                     /* tuple */[0,ty,"unknown primitive:caml_int_of_string"],
-                    0];
+                    /* [] */0];
             }
           catch(exn$2)
            {var tag$2=exn$2[1];
@@ -382,9 +412,10 @@ var
              {try
                {return /* :: */[0,
                         /* tuple */[0,ty,"unknown primitive:unix_getservbyname"[3]],
-                        0];
+                        /* [] */0];
                 }
-              catch(exn$3){if(exn$3=Not_found){return 0;}else{throw exn$3;}}
+              catch(exn$3)
+               {if(exn$3=Not_found){return /* [] */0;}else{throw exn$3;}}
               }
             else
              {throw exn$2;}
@@ -400,26 +431,34 @@ var
       if(ty!=1)
        {if(ty!=0)
          {if("unknown primitive:caml_string_equal")
-           {var ports=/* :: */[0,/* tuple */[0,ty,0],0];}
+           {var ports=/* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
           else
-           {var ports=0;}
+           {var ports=/* [] */0;}
           }
         else
-         {var ports=get_port(0,"tcp");}
+         {var ports=get_port(/* SOCK_STREAM */0,"tcp");}
         }
       else
-       {var ports=get_port(1,"udp");}
+       {var ports=get_port(/* SOCK_DGRAM */1,"udp");}
       }
     else
-     {var ports=Pervasives["@"](get_port(0,"tcp"),get_port(1,"udp"));}
+     {var
+       ports=
+        Pervasives["@"]
+         (get_port(/* SOCK_STREAM */0,"tcp"),
+          get_port(/* SOCK_DGRAM */1,"udp"));
+      }
     
     if("unknown primitive:caml_string_equal")
-     {if(List["mem"](2,opts))
-       {var addresses=/* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],0];}
+     {if(List["mem"](/* AI_PASSIVE */2,opts))
+       {var
+         addresses=
+          /* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],/* [] */0];
+        }
       else
        {var
          addresses=
-          /* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],0];
+          /* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],/* [] */0];
         }
       }
     else
@@ -428,7 +467,7 @@ var
          addresses=
           /* :: */[0,
            /* tuple */[0,"unknown primitive:unix_inet_addr_of_string",node],
-           0];
+           /* [] */0];
         }
       catch(exn$2)
        {var tag$2=exn$2[1];
@@ -444,7 +483,7 @@ var
                 $$Array["to_list"](he[4]));
             }
           catch(exn$3)
-           {if(exn$3=Not_found){var addresses=0;}else{throw exn$3;}}
+           {if(exn$3=Not_found){var addresses=/* [] */0;}else{throw exn$3;}}
           }
         else
          {throw exn$2;}
@@ -465,7 +504,7 @@ var
                             var addr=param$1[1];
                             
                             return /* record */[0,
-                                    1,
+                                    /* PF_INET */1,
                                     ty$1,
                                     opt_protocol[1],
                                     /* ADDR_INET */[1,addr,port],
@@ -502,13 +541,13 @@ var
        var a=addr[1];
        
        try
-        {if(List["mem"](1,opts)){throw Not_found;}else{}
+        {if(List["mem"](/* NI_NUMERICHOST */1,opts)){throw Not_found;}else{}
          
          var hostname="unknown primitive:unix_gethostbyaddr"[1];
          }
        catch(exn$2)
         {if(exn$2=Not_found)
-          {if(List["mem"](2,opts)){throw Not_found;}else{}
+          {if(List["mem"](/* NI_NAMEREQD */2,opts)){throw Not_found;}else{}
            
            var hostname="unknown primitive:unix_string_of_inet_addr";
            }
@@ -517,9 +556,12 @@ var
          }
        
        try
-        {if(List["mem"](3,opts)){throw Not_found;}else{}
+        {if(List["mem"](/* NI_NUMERICSERV */3,opts)){throw Not_found;}else{}
          
-         if(List["mem"](4,opts)){var kind="udp";}else{var kind="tcp";}
+         if(List["mem"](/* NI_DGRAM */4,opts))
+          {var kind="udp";}
+         else
+          {var kind="tcp";}
          
          var service="unknown primitive:unix_getservbyport"[1];
          }
@@ -606,7 +648,10 @@ var
    {try
      {return "unknown primitive:unix_close";}
     catch(exn$2)
-     {var tag$2=exn$2[1];if(tag$2=Unix_error){return 0;}else{throw exn$2;}}
+     {var tag$2=exn$2[1];
+      
+      if(tag$2=Unix_error){return /* () */0;}else{throw exn$2;}
+      }
     };
 
 var
@@ -661,7 +706,7 @@ var
       }
     };
 
-var popen_processes=Hashtbl["create"](0,7);
+var popen_processes=Hashtbl["create"](/* None */0,7);
 
 var
  open_proc=
@@ -708,7 +753,11 @@ var
     
     try
      {open_proc
-       (cmd,/* Process_in */[1,inchan],stdin,in_write,/* :: */[0,in_read,0])}
+       (cmd,
+        /* Process_in */[1,inchan],
+        stdin,
+        in_write,
+        /* :: */[0,in_read,/* [] */0])}
     catch(e)
      {Pervasives["close_in"](inchan);"unknown primitive:unix_close";throw e;}
     
@@ -733,7 +782,7 @@ var
         /* Process_out */[2,outchan],
         out_read,
         stdout,
-        /* :: */[0,out_write,0])}
+        /* :: */[0,out_write,/* [] */0])}
     catch(e)
      {Pervasives["close_out"](outchan);
       "unknown primitive:unix_close";
@@ -753,7 +802,7 @@ var
     
     var in_read=match$1[1];
     
-    var fds_to_close=[0,/* :: */[0,in_read,/* :: */[0,in_write,0]]];
+    var fds_to_close=[0,/* :: */[0,in_read,/* :: */[0,in_write,/* [] */0]]];
     
     try
      {var match$2="unknown primitive:unix_pipe";
@@ -765,7 +814,9 @@ var
       fds_to_close[1]=
       /* :: */[0,
        in_read,
-       /* :: */[0,in_write,/* :: */[0,out_read,/* :: */[0,out_write,0]]]],
+       /* :: */[0,
+        in_write,
+        /* :: */[0,out_read,/* :: */[0,out_write,/* [] */0]]]],
       0;
       var inchan="unknown primitive:caml_ml_open_descriptor_in";
       
@@ -776,7 +827,7 @@ var
         /* Process */[0,inchan,outchan],
         out_read,
         in_write,
-        /* :: */[0,in_read,/* :: */[0,out_write,0]]);
+        /* :: */[0,in_read,/* :: */[0,out_write,/* [] */0]]);
       "unknown primitive:unix_close";
       "unknown primitive:unix_close";
       return /* tuple */[0,inchan,outchan];
@@ -826,7 +877,7 @@ var
     
     var in_read=match$1[1];
     
-    var fds_to_close=[0,/* :: */[0,in_read,/* :: */[0,in_write,0]]];
+    var fds_to_close=[0,/* :: */[0,in_read,/* :: */[0,in_write,/* [] */0]]];
     
     try
      {var match$2="unknown primitive:unix_pipe";
@@ -860,7 +911,9 @@ var
         out_read,
         in_write,
         err_write,
-        /* :: */[0,in_read,/* :: */[0,out_write,/* :: */[0,err_read,0]]]);
+        /* :: */[0,
+         in_read,
+         /* :: */[0,out_write,/* :: */[0,err_read,/* [] */0]]]);
       "unknown primitive:unix_close";
       "unknown primitive:unix_close";
       "unknown primitive:unix_close";
@@ -885,7 +938,7 @@ var
       }
     catch(exn$2)
      {if(exn$2=Not_found)
-       {throw [0,Unix_error,3,fun_name,""];}
+       {throw [0,Unix_error,/* EBADF */3,fun_name,""];}
       else
        {throw exn$2;}
       }
@@ -956,7 +1009,7 @@ var
     
     try
      {"unknown primitive:unix_connect";
-      
+      try_set_close_on_exec(sock);
       return /* tuple */[0,
               "unknown primitive:caml_ml_open_descriptor_in",
               "unknown primitive:caml_ml_open_descriptor_out"];
@@ -998,10 +1051,10 @@ var
   function(server_fun,sockaddr)
    {var sock="unknown primitive:unix_socket";
     
-    setsockopt(sock,2,1);
+    setsockopt(sock,/* SO_REUSEADDR */2,/* true */1);
     "unknown primitive:unix_bind";
     "unknown primitive:unix_listen";
-    while(1)
+    while(/* true */1)
      {var match$1=accept_non_intr(sock);
       
       var s=match$1[1];
@@ -1009,12 +1062,12 @@ var
       var id="unknown primitive:unix_fork";
       
       if(id!=0)
-       {"unknown primitive:unix_close",0}
+       {"unknown primitive:unix_close",waitpid_non_intr(id)}
       else
        {if("unknown primitive:unix_fork"!=0){Pervasives["exit"](0)}else{}
         
         "unknown primitive:unix_close";
-        
+        try_set_close_on_exec(s);
         var inchan="unknown primitive:caml_ml_open_descriptor_in";
         
         var outchan="unknown primitive:caml_ml_open_descriptor_out";

@@ -110,13 +110,13 @@ var
      ($$class,
       [0,
        scan_value,
-       function(self$neg1,v){return 0;},
+       function(self$neg1,v){return /* () */0;},
        scan_type_pre,
-       function(self$neg1,t){return 1;},
+       function(self$neg1,t){return /* true */1;},
        scan_type_recfield,
-       function(self$neg1,t,f){return 0;},
+       function(self$neg1,t,f){return /* () */0;},
        scan_type_const,
-       function(self$neg1,t,f){return 0;},
+       function(self$neg1,t,f){return /* () */0;},
        scan_type,
        function(self$neg1,t)
         {"unknown block:(sendself self-1/1060 scan_type_pre/1016 t/1061)";
@@ -139,23 +139,23 @@ var
                 
                }}
            
-           switch(exit){case 1:return 0;}
+           switch(exit){case 1:return /* () */0;}
            }
          else
           {return 0;}
          },
        scan_extension_constructor,
-       function(self$neg1,e){return 0;},
+       function(self$neg1,e){return /* () */0;},
        scan_exception,
-       function(self$neg1,e){return 0;},
+       function(self$neg1,e){return /* () */0;},
        scan_attribute,
-       function(self$neg1,a){return 0;},
+       function(self$neg1,a){return /* () */0;},
        scan_method,
-       function(self$neg1,m){return 0;},
+       function(self$neg1,m){return /* () */0;},
        scan_included_module,
-       function(self$neg1,im){return 0;},
+       function(self$neg1,im){return /* () */0;},
        scan_type_extension_pre,
-       function(self$neg1,x){return 1;},
+       function(self$neg1,x){return /* true */1;},
        scan_type_extension_constructors,
        function(self$neg1,x)
         {"unknown block:(sendself self-1/1083 scan_extension_constructor/1020)";
@@ -171,9 +171,9 @@ var
           {return 0;}
          },
        scan_class_comment,
-       function(self$neg1,t){return 0;},
+       function(self$neg1,t){return /* () */0;},
        scan_class_pre,
-       function(self$neg1,c){return 1;},
+       function(self$neg1,c){return /* true */1;},
        scan_class_elements,
        function(self$neg1,c)
         {return List["iter"]
@@ -190,7 +190,7 @@ var
                        
                       }
                     },
-                  Odoc_class["class_elements"](0,c));
+                  Odoc_class["class_elements"](/* None */0,c));
          },
        scan_class,
        function(self$neg1,c)
@@ -202,9 +202,9 @@ var
           {return 0;}
          },
        scan_class_type_comment,
-       function(self$neg1,t){return 0;},
+       function(self$neg1,t){return /* () */0;},
        scan_class_type_pre,
-       function(self$neg1,ct){return 1;},
+       function(self$neg1,ct){return /* true */1;},
        scan_class_type_elements,
        function(self$neg1,ct)
         {return List["iter"]
@@ -221,7 +221,7 @@ var
                        
                       }
                     },
-                  Odoc_class["class_type_elements"](0,ct));
+                  Odoc_class["class_type_elements"](/* None */0,ct));
          },
        scan_class_type,
        function(self$neg1,ct)
@@ -233,9 +233,9 @@ var
           {return 0;}
          },
        scan_module_comment,
-       function(self$neg1,t){return 0;},
+       function(self$neg1,t){return /* () */0;},
        scan_module_pre,
-       function(self$neg1,m){return 1;},
+       function(self$neg1,m){return /* true */1;},
        scan_module_elements,
        function(self$neg1,m)
         {return List["iter"]
@@ -273,7 +273,7 @@ var
                        
                       }
                     },
-                  Odoc_module["module_elements"](0,m));
+                  Odoc_module["module_elements"](/* None */0,m));
          },
        scan_module,
        function(self$neg1,m)
@@ -285,9 +285,9 @@ var
           {return 0;}
          },
        scan_module_type_comment,
-       function(self$neg1,t){return 0;},
+       function(self$neg1,t){return /* () */0;},
        scan_module_type_pre,
-       function(self$neg1,mt){return 1;},
+       function(self$neg1,mt){return /* true */1;},
        scan_module_type_elements,
        function(self$neg1,mt)
         {return List["iter"]
@@ -325,7 +325,7 @@ var
                        
                       }
                     },
-                  Odoc_module["module_type_elements"](0,mt));
+                  Odoc_module["module_type_elements"](/* None */0,mt));
          },
        scan_module_type,
        function(self$neg1,mt)

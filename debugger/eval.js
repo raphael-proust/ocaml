@@ -23,7 +23,10 @@ var $$Error="unknown primitive:caml_set_oo_id";
 var
  abstract_type=
   Btype["newgenty"]
-   ([/* Tconstr */3,[/* Pident */0,Ident["create"]("<abstr>")],0,[0,0]]);
+   (/* Tconstr */[3,
+     /* Pident */[0,Ident["create"]("<abstr>")],
+     /* [] */0,
+     [0,/* Mnil */0]]);
 
 var
  path=
@@ -39,7 +42,7 @@ var
            }
          catch(exn)
           {if(exn[1]=Symtable["Error"])
-            {throw [0,$$Error,[/* Unbound_identifier */0,id]];}
+            {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
            else
             {throw exn;}
            }
@@ -62,7 +65,7 @@ var
                  }
                catch(exn$2)
                 {if(exn$2=Not_found)
-                  {throw [0,$$Error,[/* Unbound_identifier */0,id]];}
+                  {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
                  else
                   {throw exn$2;}
                  }
@@ -72,7 +75,7 @@ var
              }
            }
          else
-          {throw [0,$$Error,[/* Unbound_identifier */0,id]];}
+          {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
          }
        
       case 1:
@@ -81,7 +84,7 @@ var
        var v=path($$event,root);
        
        if(!Debugcom["Remote_value"][2](v))
-        {throw [0,$$Error,[/* Not_initialized_yet */1,root]];}
+        {throw [0,$$Error,/* Not_initialized_yet */[1,root]];}
        else
         {}
        
@@ -108,8 +111,8 @@ var
             {exit=8;}
            else
             {if(Frames["current_frame"][1]=0)
-              {return [/* tuple */0,
-                       Debugcom["Remote_value"][11](0),
+              {return /* tuple */[0,
+                       Debugcom["Remote_value"][11](/* () */0),
                        Subst["type_expr"](match[7],match$1[1])];
                }
              else
@@ -119,7 +122,7 @@ var
          else
           {exit=8;}
          
-         switch(exit){case 8:throw [0,$$Error,0];}
+         switch(exit){case 8:throw [0,$$Error,/* No_result */0];}
          
         }}
     else
@@ -147,7 +150,7 @@ var
                 var
                  match$4=
                   Env["lookup_value"]
-                   ([/* Lident */0,Pervasives["^"]("self-",match$3[2])],env);
+                   (/* Lident */[0,Pervasives["^"]("self-",match$3[2])],env);
                 
                 var v=path($$event,match$4[1]);
                 
@@ -160,11 +163,11 @@ var
            
            var $js$1;
            switch(exit$1){case 6:$js$1=path($$event,p);}
-           return [/* tuple */0,$js$1,Ctype["correct_levels"](valdesc[1])];
+           return /* tuple */[0,$js$1,Ctype["correct_levels"](valdesc[1])];
            }
          catch(exn)
           {if(exn=Not_found)
-            {throw [0,$$Error,[/* Unbound_long_identifier */2,lid]];}
+            {throw [0,$$Error,/* Unbound_long_identifier */[2,lid]];}
            else
             {throw exn;}
            }
@@ -176,7 +179,7 @@ var
           {return Printval["find_named_value"](n);}
          catch(exn$1)
           {if(exn$1=Not_found)
-            {throw [0,$$Error,[/* Unknown_name */3,n]];}
+            {throw [0,$$Error,/* Unknown_name */[3,n]];}
            else
             {throw exn$1;}
            }
@@ -204,10 +207,10 @@ var
               if(n$1<1||n$1>List["length"](ty_list))
                {throw [0,
                        $$Error,
-                       [/* Tuple_index */4,ty,List["length"](ty_list),n$1]];
+                       /* Tuple_index */[4,ty,List["length"](ty_list),n$1]];
                 }
               else
-               {return [/* tuple */0,
+               {return /* tuple */[0,
                         Debugcom["Remote_value"][5](v$1,n$1-1),
                         List["nth"](ty_list,n$1-1)];
                 }
@@ -227,9 +230,9 @@ var
                    {var size=Debugcom["Remote_value"][4](v$1);
                     
                     if(n$1>=size)
-                     {throw [0,$$Error,[/* Array_index */5,size,n$1]];}
+                     {throw [0,$$Error,/* Array_index */[5,size,n$1]];}
                     else
-                     {return [/* tuple */0,
+                     {return /* tuple */[0,
                               Debugcom["Remote_value"][5](v$1,n$1),
                               ty_arg];
                       }
@@ -240,10 +243,10 @@ var
                        nth=
                         function(pos,v$2)
                          {if(!Debugcom["Remote_value"][2](v$2))
-                           {throw [0,$$Error,[/* List_index */6,pos,n$1]];}
+                           {throw [0,$$Error,/* List_index */[6,pos,n$1]];}
                           else
                            {if(pos=n$1)
-                             {return [/* tuple */0,
+                             {return /* tuple */[0,
                                       Debugcom["Remote_value"][5](v$2,0),
                                       ty_arg];
                               }
@@ -264,9 +267,9 @@ var
                  {var s=Debugcom["Remote_value"][1](v$1);
                   
                   if(n$1>=s["length"])
-                   {throw [0,$$Error,[/* String_index */7,s,s["length"],n$1]];}
+                   {throw [0,$$Error,/* String_index */[7,s,s["length"],n$1]];}
                   else
-                   {return [/* tuple */0,
+                   {return /* tuple */[0,
                             Debugcom["Remote_value"][7](s[n$1]),
                             Predef["type_char"]];
                     }
@@ -278,7 +281,7 @@ var
              default:exit$2=12;}}
          
          switch(exit$2)
-          {case 12:throw [0,$$Error,[/* Wrong_item_type */8,ty,n$1]];}
+          {case 12:throw [0,$$Error,/* Wrong_item_type */[8,ty,n$1]];}
          
         case 3:
          var match$8=expression($$event,env,param[1]);
@@ -311,19 +314,19 @@ var
                     match$11=
                      find_label(param[2],env,ty$1,path$2,tydesc,0,match$10[1]);
                    
-                   return [/* tuple */0,
+                   return /* tuple */[0,
                            Debugcom["Remote_value"][5](match$8[1],match$11[1]),
                            match$11[2]];
                    
                   default:exit$4=15;}}
               
               switch(exit$4)
-               {case 15:throw [0,$$Error,[/* Not_a_record */10,ty$1]];}
+               {case 15:throw [0,$$Error,/* Not_a_record */[10,ty$1]];}
               
              default:exit$3=17;}}
          
          switch(exit$3)
-          {case 17:throw [0,$$Error,[/* Not_a_record */10,ty$1]];}
+          {case 17:throw [0,$$Error,/* Not_a_record */[10,ty$1]];}
          
         }}
     };
@@ -335,26 +338,28 @@ var
      {var match=param[1];
       
       if("unknown primitive:caml_string_equal")
-       {var ty_res=Btype["newgenty"]([/* Tconstr */3,path$1,tydesc[1],[0,0]]);
+       {var
+         ty_res=
+          Btype["newgenty"](/* Tconstr */[3,path$1,tydesc[1],[0,/* Mnil */0]]);
         
+        var $js;
         try
-         {var
-           $js=
-            Ctype["apply"](env,[/* :: */0,ty_res,0],match[3],[/* :: */0,ty,0]);
+         {$js=
+          Ctype["apply"]
+           (env,
+            /* :: */[0,ty_res,/* [] */0],
+            match[3],
+            /* :: */[0,ty,/* [] */0]);
           }
         catch(exn)
-         {if(exn=Ctype["Cannot_apply"])
-           {var $js=abstract_type;}
-          else
-           {throw exn;}
-          }
-        return [/* tuple */0,pos,$js];
+         {if(exn=Ctype["Cannot_apply"]){$js=abstract_type;}else{throw exn;}}
+        return /* tuple */[0,pos,$js];
         }
       else
        {return find_label(lbl,env,ty,path$1,tydesc,pos+1,param[2]);}
       }
     else
-     {throw [0,$$Error,[/* Wrong_label */9,ty,lbl]];}
+     {throw [0,$$Error,/* Wrong_label */[9,ty,lbl]];}
     };
 
 var
@@ -365,12 +370,16 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "No result available at current program event",
-                     [17,0,[17,4,0]]]],
+                     /* Formatting_lit */[17,
+                      /* Close_box */0,
+                      /* Formatting_lit */[17,
+                       /* Flush_newline */4,
+                       /* End_of_format */0]]]],
                    "@[No result available at current program event@]@."]);
          
         }}
@@ -379,33 +388,45 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,"Unbound identifier ",[2,0,[17,0,[17,4,0]]]]],
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
+                     "Unbound identifier ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Formatting_lit */[17,
+                       /* Close_box */0,
+                       /* Formatting_lit */[17,
+                        /* Flush_newline */4,
+                        /* End_of_format */0]]]]],
                    "@[Unbound identifier %s@]@."],
                   Ident["name"](param[1]));
          
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "The module path ",
-                     [15,
-                      [11,
+                     /* Alpha */[15,
+                      /* String_literal */[11,
                        " is not yet initialized.",
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,
+                       /* Formatting_lit */[17,
+                        /* Break */[0,"@ ",1,0],
+                        /* String_literal */[11,
                          "Please run program forward",
-                         [17,
-                          [0,"@ ",1,0],
-                          [11,
+                         /* Formatting_lit */[17,
+                          /* Break */[0,"@ ",1,0],
+                          /* String_literal */[11,
                            "until its initialization code is executed.",
-                           [17,0,[17,4,0]]]]]]]]]],
+                           /* Formatting_lit */[17,
+                            /* Close_box */0,
+                            /* Formatting_lit */[17,
+                             /* Flush_newline */4,
+                             /* End_of_format */0]]]]]]]]]],
                    "@[The module path %a is not yet initialized.@ Please run program forward@ until its initialization code is executed.@]@."],
                   Printtyp["path"],
                   param[1]);
@@ -413,10 +434,17 @@ var
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,"Unbound identifier ",[15,[17,0,[17,4,0]]]]],
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
+                     "Unbound identifier ",
+                     /* Alpha */[15,
+                      /* Formatting_lit */[17,
+                       /* Close_box */0,
+                       /* Formatting_lit */[17,
+                        /* Flush_newline */4,
+                        /* End_of_format */0]]]]],
                    "@[Unbound identifier %a@]@."],
                   Printtyp["longident"],
                   param[1]);
@@ -424,10 +452,20 @@ var
         case 3:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,"Unknown value name $",[4,3,0,0,[17,0,[17,4,0]]]]],
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
+                     "Unknown value name $",
+                     /* Int */[4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* Formatting_lit */[17,
+                       /* Close_box */0,
+                       /* Formatting_lit */[17,
+                        /* Flush_newline */4,
+                        /* End_of_format */0]]]]],
                    "@[Unknown value name $%i@]@."],
                   param[1]);
          
@@ -437,22 +475,31 @@ var
          Printtyp["reset_and_mark_loops"](ty);
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "Cannot extract field number ",
-                     [4,
-                      3,
-                      0,
-                      0,
-                      [11,
+                     /* Int */[4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* String_literal */[11,
                        " from a ",
-                       [4,
-                        3,
-                        0,
-                        0,
-                        [11,"-tuple of type",[17,[0,"@ ",1,0],[15,[17,0,[17,4,0]]]]]]]]]],
+                       /* Int */[4,
+                        /* Int_i */3,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        /* String_literal */[11,
+                         "-tuple of type",
+                         /* Formatting_lit */[17,
+                          /* Break */[0,"@ ",1,0],
+                          /* Alpha */[15,
+                           /* Formatting_lit */[17,
+                            /* Close_box */0,
+                            /* Formatting_lit */[17,
+                             /* Flush_newline */4,
+                             /* End_of_format */0]]]]]]]]]],
                    "@[Cannot extract field number %i from a %i-tuple of type@ %a@]@."],
                   param[3],
                   param[2],
@@ -462,16 +509,26 @@ var
         case 5:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "Cannot extract element number ",
-                     [4,
-                      3,
-                      0,
-                      0,
-                      [11," from an array of length ",[4,3,0,0,[17,0,[17,4,0]]]]]]],
+                     /* Int */[4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* String_literal */[11,
+                       " from an array of length ",
+                       /* Int */[4,
+                        /* Int_i */3,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        /* Formatting_lit */[17,
+                         /* Close_box */0,
+                         /* Formatting_lit */[17,
+                          /* Flush_newline */4,
+                          /* End_of_format */0]]]]]]],
                    "@[Cannot extract element number %i from an array of length %i@]@."],
                   param[2],
                   param[1]);
@@ -479,16 +536,26 @@ var
         case 6:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "Cannot extract element number ",
-                     [4,
-                      3,
-                      0,
-                      0,
-                      [11," from a list of length ",[4,3,0,0,[17,0,[17,4,0]]]]]]],
+                     /* Int */[4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* String_literal */[11,
+                       " from a list of length ",
+                       /* Int */[4,
+                        /* Int_i */3,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        /* Formatting_lit */[17,
+                         /* Close_box */0,
+                         /* Formatting_lit */[17,
+                          /* Flush_newline */4,
+                          /* End_of_format */0]]]]]]],
                    "@[Cannot extract element number %i from a list of length %i@]@."],
                   param[2],
                   param[1]);
@@ -496,20 +563,34 @@ var
         case 7:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "Cannot extract character number ",
-                     [4,
-                      3,
-                      0,
-                      0,
-                      [17,
-                       [0,"@ ",1,0],
-                       [11,
+                     /* Int */[4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* String_literal */[11,
                         "from the following string of length ",
-                        [4,3,0,0,[12,58,[17,[0,"@ ",1,0],[3,0,[17,0,[17,4,0]]]]]]]]]]],
+                        /* Int */[4,
+                         /* Int_i */3,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         /* Char_literal */[12,
+                          58,
+                          /* Formatting_lit */[17,
+                           /* Break */[0,"@ ",1,0],
+                           /* Caml_string */[3,
+                            /* No_padding */0,
+                            /* Formatting_lit */[17,
+                             /* Close_box */0,
+                             /* Formatting_lit */[17,
+                              /* Flush_newline */4,
+                              /* End_of_format */0]]]]]]]]]]],
                    "@[Cannot extract character number %i@ from the following string of length %i:@ %S@]@."],
                   param[3],
                   param[2],
@@ -518,18 +599,25 @@ var
         case 8:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "Cannot extract item number ",
-                     [4,
-                      3,
-                      0,
-                      0,
-                      [11,
+                     /* Int */[4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* String_literal */[11,
                        " from a value of type",
-                       [17,[0,"@ ",1,0],[15,[17,0,[17,4,0]]]]]]]],
+                       /* Formatting_lit */[17,
+                        /* Break */[0,"@ ",1,0],
+                        /* Alpha */[15,
+                         /* Formatting_lit */[17,
+                          /* Close_box */0,
+                          /* Formatting_lit */[17,
+                           /* Flush_newline */4,
+                           /* End_of_format */0]]]]]]]],
                    "@[Cannot extract item number %i from a value of type@ %a@]@."],
                   param[2],
                   Printtyp["type_expr"],
@@ -538,17 +626,25 @@ var
         case 9:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "The record type",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,"has no label named ",[2,0,[17,0,[17,4,0]]]]]]]]],
+                     /* Formatting_lit */[17,
+                      /* Break */[0,"@ ",1,0],
+                      /* Alpha */[15,
+                       /* Formatting_lit */[17,
+                        /* Break */[0,"@ ",1,0],
+                        /* String_literal */[11,
+                         "has no label named ",
+                         /* String */[2,
+                          /* No_padding */0,
+                          /* Formatting_lit */[17,
+                           /* Close_box */0,
+                           /* Formatting_lit */[17,
+                            /* Flush_newline */4,
+                            /* End_of_format */0]]]]]]]]],
                    "@[The record type@ %a@ has no label named %s@]@."],
                   Printtyp["type_expr"],
                   param[1],
@@ -557,17 +653,23 @@ var
         case 10:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  /* Format */[0,
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* String_literal */[11,
                      "The type",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,"is not a record type",[17,0,[17,4,0]]]]]]]],
+                     /* Formatting_lit */[17,
+                      /* Break */[0,"@ ",1,0],
+                      /* Alpha */[15,
+                       /* Formatting_lit */[17,
+                        /* Break */[0,"@ ",1,0],
+                        /* String_literal */[11,
+                         "is not a record type",
+                         /* Formatting_lit */[17,
+                          /* Close_box */0,
+                          /* Formatting_lit */[17,
+                           /* Flush_newline */4,
+                           /* End_of_format */0]]]]]]]],
                    "@[The type@ %a@ is not a record type@]@."],
                   Printtyp["type_expr"],
                   param[1]);

@@ -20,42 +20,48 @@ switch(match)
  {case "Win32":var preempt_signal=Sys["sigterm"];
   default:var preempt_signal=Sys["sigvtalrm"];}
 
-Sys["set_signal"](preempt_signal,[/* Signal_handle */0,preempt]);
+Sys["set_signal"](preempt_signal,/* Signal_handle */[0,preempt]);
 "unknown primitive:caml_thread_initialize",
 Pervasives["at_exit"]
  (function(param)
    {"unknown primitive:caml_thread_cleanup";
-    return Sys["set_signal"](preempt_signal,0);
+    return Sys["set_signal"](preempt_signal,/* Signal_default */0);
     });
-var delay=function(time){return 0;};
+var
+ delay=
+  function(time){return Unix["select"](/* [] */0,/* [] */0,/* [] */0,time);};
 
-var wait_read=function(fd){return 0;};
+var wait_read=function(fd){return /* () */0;};
 
-var wait_write=function(fd){return 0;};
+var wait_write=function(fd){return /* () */0;};
 
 var
  wait_timed_read=
   function(fd,d)
-   {var match$1=Unix["select"]([/* :: */0,fd,0],0,0,d);
+   {var
+     match$1=
+      Unix["select"](/* :: */[0,fd,/* [] */0],/* [] */0,/* [] */0,d);
     
     var match$2=match$1[1];
     
-    if(match$2){return 1;}else{return 0;}
+    if(match$2){return /* true */1;}else{return /* false */0;}
     };
 
 var
  wait_timed_write=
   function(fd,d)
-   {var match$1=Unix["select"](0,[/* :: */0,fd,0],0,d);
+   {var
+     match$1=
+      Unix["select"](/* [] */0,/* :: */[0,fd,/* [] */0],/* [] */0,d);
     
     var match$2=match$1[2];
     
-    if(match$2){return 1;}else{return 0;}
+    if(match$2){return /* true */1;}else{return /* false */0;}
     };
 
 var select=Unix["select"];
 
-var wait_pid=function(p){return Unix["waitpid"](0,p);};
+var wait_pid=function(p){return Unix["waitpid"](/* [] */0,p);};
 
 module["exports"]=
 {"create":create,

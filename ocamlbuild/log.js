@@ -8,7 +8,7 @@ var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
 
 
-var mode=function(param){return 1;};
+var mode=function(param){return /* true */1;};
 
 var Debug=[0,mode];
 
@@ -16,15 +16,22 @@ var mode$1=Debug[1];
 
 var level=[0,1];
 
-var classic_display=[0,0];
+var classic_display=[0,/* false */0];
 
-var internal_display=[0,0];
+var internal_display=[0,/* None */0];
 
 var
  failsafe_display=
   [246,
    function(param)
-    {return Display["create"](0,[0,920812018],0,0,0,[/* Some */0,level[1]],0);
+    {return Display["create"]
+             (/* None */0,
+              /* Some */[0,/* Classic */920812018],
+              /* None */0,
+              /* None */0,
+              /* None */0,
+              /* Some */[0,level[1]],
+              /* () */0);
      }];
 
 var
@@ -43,15 +50,21 @@ var
       My_std["!*"](My_unix["is_degraded"])||
       level[1]<=
       0||
-      !My_unix["stdout_isatty"](0))
-     {var mode$2=920812018;}
+      !My_unix["stdout_isatty"](/* () */0))
+     {var mode$2=/* Classic */920812018;}
     else
-     {var mode$2=-369468030;}
+     {var mode$2=/* Sophisticated */-369468030;}
     
     return internal_display[1]=
-           [/* Some */0,
+           /* Some */[0,
             Display["create"]
-             (0,[/* Some */0,mode$2],0,0,log_file,[/* Some */0,level[1]],0)],
+             (/* None */0,
+              /* Some */[0,mode$2],
+              /* None */0,
+              /* None */0,
+              log_file,
+              /* Some */[0,level[1]],
+              /* () */0)],
            0;
     };
 
@@ -59,7 +72,7 @@ var
  raw_dprintf=
   function(log_level)
    {return Display["dprintf"]
-            ([/* Some */0,log_level],$unknown$neg(internal_display));
+            (/* Some */[0,log_level],$unknown$neg(internal_display));
     };
 
 var
@@ -68,8 +81,23 @@ var
    {return raw_dprintf
             (log_level,
              Pervasives["^^"]
-              ([0,[18,[1,[0,[11,"<2>",0],"<2>"]],0],"@[<2>"],
-               Pervasives["^^"](fmt,[0,[17,0,[17,4,0]],"@]@."])));
+              (/* Format */[0,
+                /* Formatting_gen */[18,
+                 /* Open_box */[1,
+                  /* Format */[0,
+                   /* String_literal */[11,"<2>",/* End_of_format */0],
+                   "<2>"]],
+                 /* End_of_format */0],
+                "@[<2>"],
+               Pervasives["^^"]
+                (fmt,
+                 /* Format */[0,
+                  /* Formatting_lit */[17,
+                   /* Close_box */0,
+                   /* Formatting_lit */[17,
+                    /* Flush_newline */4,
+                    /* End_of_format */0]],
+                  "@]@."])));
     };
 
 var eprintf=function(fmt){return dprintf(-1,fmt);};
@@ -87,15 +115,15 @@ var
  display=
   function(x){return Display["display"]($unknown$neg(internal_display),x);};
 
-var do_at_end=Queue["create"](0);
+var do_at_end=Queue["create"](/* () */0);
 
-var already_asked=Hashtbl["create"](0,10);
+var already_asked=Hashtbl["create"](/* None */0,10);
 
 var
  at_end_always=
   function(name,thunk)
    {if(!Hashtbl["mem"](already_asked,name))
-     {Hashtbl["add"](already_asked,name,0);
+     {Hashtbl["add"](already_asked,name,/* () */0);
       return Queue["add"](thunk,do_at_end);
       }
     else
@@ -108,7 +136,11 @@ var
    {return at_end_always
             (name,
              function(param)
-              {if(param>=94326179){return thunk(106380200);}else{return 0;}});
+              {if(param>=94326179)
+                {return thunk(/* Error */106380200);}
+               else
+                {return /* () */0;}
+               });
     };
 
 var
@@ -117,7 +149,11 @@ var
    {return at_end_always
             (name,
              function(param)
-              {if(param>=106380200){return thunk(106380200);}else{return 0;}});
+              {if(param>=106380200)
+                {return thunk(/* Error */106380200);}
+               else
+                {return /* () */0;}
+               });
     };
 
 var
@@ -128,11 +164,12 @@ var
       
       Queue["clear"](do_at_end),
       Queue["iter"]
-       (function(thunk){return thunk(how?how[1]:-249890668);},actions)}
+       (function(thunk){return thunk(how?how[1]:/* Quiet */-249890668);},
+        actions)}
     
     var match=internal_display[1];
     
-    if(match){return Display["finish"](how,match[1]);}else{return 0;}
+    if(match){return Display["finish"](how,match[1]);}else{return /* () */0;}
     };
 
 module["exports"]=

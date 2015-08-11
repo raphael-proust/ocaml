@@ -13,8 +13,59 @@ var Odoc_module=require("Odoc_module");
 
 
 
+var shared=[0,"print_header","generate"];
+
 var
- shared=
+ shared$1=
+  [0,
+   "tag_functions",
+   "style_file",
+   "style",
+   "list_values",
+   "list_types",
+   "list_modules",
+   "list_module_types",
+   "list_methods",
+   "list_extensions",
+   "list_exceptions",
+   "list_classes",
+   "list_class_types",
+   "list_attributes",
+   "known_types_names",
+   "known_modules_names",
+   "known_classes_names",
+   "header",
+   "doctype",
+   "default_style_options"];
+
+var shared$2=[0,"scanner"];
+
+var
+ shared$3=
+  [0,
+   "scan_value",
+   "scan_type_extension",
+   "scan_type",
+   "scan_module_type_pre",
+   "scan_module_type",
+   "scan_module_pre",
+   "scan_module_elements",
+   "scan_module_comment",
+   "scan_module",
+   "scan_method",
+   "scan_included_module",
+   "scan_extension_constructor",
+   "scan_exception",
+   "scan_class_type_pre",
+   "scan_class_type",
+   "scan_class_pre",
+   "scan_class",
+   "scan_attribute",
+   "gen_if_tag",
+   "buffer"];
+
+var
+ shared$4=
   [0,
    "character_encoding",
    "constructor",
@@ -150,60 +201,7 @@ var
    "title"];
 
 var
- shared$1=
-  [0,
-   "tag_functions",
-   "style_file",
-   "style",
-   "list_values",
-   "list_types",
-   "list_modules",
-   "list_module_types",
-   "list_methods",
-   "list_extensions",
-   "list_exceptions",
-   "list_classes",
-   "list_class_types",
-   "list_attributes",
-   "known_types_names",
-   "known_modules_names",
-   "known_classes_names",
-   "header",
-   "doctype",
-   "default_style_options"];
-
-var shared$2=[0,"b"];
-
-var
- shared$3=
-  [0,
-   "scan_value",
-   "scan_type_extension",
-   "scan_type",
-   "scan_module_type_pre",
-   "scan_module_type",
-   "scan_module_pre",
-   "scan_module_elements",
-   "scan_module_comment",
-   "scan_module",
-   "scan_method",
-   "scan_included_module",
-   "scan_extension_constructor",
-   "scan_exception",
-   "scan_class_type_pre",
-   "scan_class_type",
-   "scan_class_pre",
-   "scan_class",
-   "scan_attribute",
-   "gen_if_tag",
-   "buffer"];
-
-var shared$4=[0,"scanner"];
-
-var shared$5=[0,"print_header","generate"];
-
-var
- shared$6=
+ shared$5=
   [0,
    "scan_attribute",
    "scan_class",
@@ -236,6 +234,8 @@ var
    "scan_type_recfield",
    "scan_value"];
 
+var shared$6=[0,"b"];
+
 var Naming=0;
 
 var p=Printf["bprintf"];
@@ -264,7 +264,7 @@ var
     
     var
      ids=
-      CamlinternalOO["new_methods_variables"]($$class,shared$3,shared$2);
+      CamlinternalOO["new_methods_variables"]($$class,shared$3,shared$6);
     
     var scan_value=ids[1];
     
@@ -310,7 +310,7 @@ var
     
     var
      inh=
-      CamlinternalOO["inherits"]($$class,0,0,shared$6,Odoc_info["Scan"][1],1);
+      CamlinternalOO["inherits"]($$class,0,0,shared$5,Odoc_info["Scan"][1],1);
     
     var obj_init=inh[1];
     
@@ -346,15 +346,25 @@ var
                              
                              var
                               head=
-                               [/* Code */1,
+                               /* Code */[1,
                                 Printf["sprintf"]
-                                 ([0,[12,91,[4,0,0,0,[11,"] ",0]]],"[%d] "],n)];
+                                 (/* Format */[0,
+                                   /* Char_literal */[12,
+                                    91,
+                                    /* Int */[4,
+                                     /* Int_d */0,
+                                     /* No_padding */0,
+                                     /* No_precision */0,
+                                     /* String_literal */[11,"] ",/* End_of_format */0]]],
+                                   "[%d] "],
+                                  n)];
                              
-                             return [/* :: */0,
-                                     [/* tuple */0,[/* Some */0,n],[/* :: */0,head,text[2]]],
+                             return /* :: */[0,
+                                     /* tuple */[0,/* Some */[0,n],/* :: */[0,head,text[2]]],
                                      acc];
                              }
-                           catch(exn){return [/* :: */0,[/* tuple */0,0,text],acc];}
+                           catch(exn)
+                            {return /* :: */[0,/* tuple */[0,/* None */0,text],acc];}
                            
                           default:exit=12;}}
                       }
@@ -362,11 +372,13 @@ var
                      {exit=12;}
                     
                     switch(exit)
-                     {case 12:return [/* :: */0,[/* tuple */0,0,text],acc];}
+                     {case 12:
+                       return /* :: */[0,/* tuple */[0,/* None */0,text],acc];
+                      }
                     
                    default:return acc;}
                  },
-               0,
+               /* [] */0,
                info_opt[1][11]);
            
            if(l)
@@ -391,10 +403,18 @@ var
              
              p
               (self$neg1[b],
-               [0,
-                [11,
+               /* Format */[0,
+                /* String_literal */[11,
                  '<pre><a href="',
-                 [2,0,[11,'">',[2,0,[11,'</a></pre><div class="info">',0]]]]],
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,
+                   '">',
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,
+                     '</a></pre><div class="info">',
+                     /* End_of_format */0]]]]],
                 '<pre><a href="%s">%s</a></pre><div class="info">'],
                target,
                name);
@@ -408,7 +428,15 @@ var
                    
                    if(2<switcher>>>0)
                     {return Printf["sprintf"]
-                             ([0,[12,35,[4,6,[0,1,2],0,[11,"0000",0]]],"#%2x0000"],
+                             (/* Format */[0,
+                               /* Char_literal */[12,
+                                35,
+                                /* Int */[4,
+                                 /* Int_x */6,
+                                 /* Lit_padding */[0,/* Right */1,2],
+                                 /* No_precision */0,
+                                 /* String_literal */[11,"0000",/* End_of_format */0]]],
+                               "#%2x0000"],
                               170-n*16);
                      }
                    else
@@ -427,23 +455,36 @@ var
               (function(param)
                 {Printf["bprintf"]
                   (self$neg1[b],
-                   [0,
-                    [11,'<span style="color: ',[2,0,[11,'">',0]]],
+                   /* Format */[0,
+                    /* String_literal */[11,
+                     '<span style="color: ',
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,'">',/* End_of_format */0]]],
                     '<span style="color: %s">'],
                    col(param[1]));
                  "unknown block:(send (array.unsafe_get self-1/1301 html/1249) 34801153\n  (array.unsafe_get self-1/1301 b/1283) (field 1 param/1675))";
                  
                  return p
-                         (self$neg1[b],[0,[11,"</span><br/>\n",0],"</span><br/>\n"]);
+                         (self$neg1[b],
+                          /* Format */[0,
+                           /* String_literal */[11,
+                            "</span><br/>\n",
+                            /* End_of_format */0],
+                           "</span><br/>\n"]);
                  },
                l$1);
-             return p(self$neg1[b],[0,[11,"</div>",0],"</div>"]);
+             return p
+                     (self$neg1[b],
+                      /* Format */[0,
+                       /* String_literal */[11,"</div>",/* End_of_format */0],
+                       "</div>"]);
              }
            else
-            {return 0;}
+            {return /* () */0;}
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        scan_value,
        function(self$neg1,v)
@@ -506,33 +547,33 @@ var
                        
                       }
                     },
-                  Odoc_module["module_elements"]([0,0],m));
+                  Odoc_module["module_elements"](/* Some */[0,/* false */0],m));
          },
        scan_included_module,
-       function(self$neg1,param){return 0;},
+       function(self$neg1,param){return /* () */0;},
        scan_class_pre,
        function(self$neg1,c)
         {"unknown block:(sendself self-1/1364 gen_if_tag/1285 (field 0 c/1365)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 c/1365)))\n  (field 1 c/1365))";
          
-         return 1;
+         return /* true */1;
          },
        scan_class_type_pre,
        function(self$neg1,ct)
         {"unknown block:(sendself self-1/1367 gen_if_tag/1285 (field 0 ct/1368)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 ct/1368)))\n  (field 1 ct/1368))";
          
-         return 1;
+         return /* true */1;
          },
        scan_module_pre,
        function(self$neg1,m)
         {"unknown block:(sendself self-1/1370 gen_if_tag/1285 (field 0 m/1371)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 m/1371)))\n  (field 2 m/1371))";
          
-         return 1;
+         return /* true */1;
          },
        scan_module_type_pre,
        function(self$neg1,mt)
         {"unknown block:(sendself self-1/1373 gen_if_tag/1285 (field 0 mt/1374)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 mt/1374)))\n  (field 1 mt/1374))";
          
-         return 1;
+         return /* true */1;
          }]);
     return function(env,$$self,html$1)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
@@ -588,9 +629,7 @@ var
 var
  html_init=
   function($$class)
-   {var
-     ids=
-      CamlinternalOO["new_methods_variables"]($$class,shared$5,shared$4);
+   {var ids=CamlinternalOO["new_methods_variables"]($$class,shared,shared$2);
     
     var print_header=ids[1];
     
@@ -598,7 +637,7 @@ var
     
     var scanner$1=ids[3];
     
-    var inh=CamlinternalOO["inherits"]($$class,shared$1,0,shared,Html[1],1);
+    var inh=CamlinternalOO["inherits"]($$class,shared$1,0,shared$4,Html[1],1);
     
     var obj_init=inh[1];
     
@@ -611,8 +650,8 @@ var
       generate,
       function(self$neg2,modules)
        {self$neg2[tag_functions]=
-        [/* :: */0,
-         [/* tuple */0,"todo",function(param){return "";}],
+        /* :: */[0,
+         /* tuple */[0,"todo",function(param){return "";}],
          self$neg2[tag_functions]],
         0;
         generate$1(self$neg2,modules);
@@ -622,12 +661,22 @@ var
         
         var b=Buffer["create"](512);
         
-        p(b,[0,[11,"<html>",0],"<html>"]);
+        p
+         (b,
+          /* Format */[0,
+           /* String_literal */[11,"<html>",/* End_of_format */0],
+           "<html>"]);
         "unknown block:(sendself self-2/1537 print_header/1542 b/1541 0a 0a title/1539)";
         
         p
          (b,
-          [0,[11,"<body><h1>",[2,0,[11,"</h1>",0]]],"<body><h1>%s</h1>"],
+          /* Format */[0,
+           /* String_literal */[11,
+            "<body><h1>",
+            /* String */[2,
+             /* No_padding */0,
+             /* String_literal */[11,"</h1>",/* End_of_format */0]]],
+           "<body><h1>%s</h1>"],
           title);
         "unknown block:(send (array.unsafe_get self-2/1537 scanner/1534) -342620401 modules/1538)";
         
@@ -792,6 +841,6 @@ var
 
 var Generator=[0,scanner,html];
 
-Odoc_args["set_generator"]([/* Html */0,[0,Generator[2]]]);
+Odoc_args["set_generator"](/* Html */[0,[0,Generator[2]]]);
 module["exports"]={"Naming":Naming,"p":p,"Html":Html,"Generator":Generator};
 

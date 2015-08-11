@@ -116,7 +116,7 @@ var
  add_help=
   function(speclist)
    {try
-     {var add1=/* [] */0;}
+     {assoc3("-help",speclist);var add1=/* [] */0;}
     catch(exn)
      {if(exn=Not_found)
        {var
@@ -133,7 +133,7 @@ var
       }
     
     try
-     {var add2=/* [] */0;}
+     {assoc3("--help",speclist);var add2=/* [] */0;}
     catch(exn$1)
      {if(exn$1=Not_found)
        {var

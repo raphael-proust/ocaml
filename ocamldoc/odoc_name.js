@@ -13,23 +13,35 @@ var Ident=require("Ident");
 
 var
  infix_chars=
-  [0,
+  /* :: */[0,
    124,
-   [0,
+   /* :: */[0,
     60,
-    [0,
+    /* :: */[0,
      62,
-     [0,
+     /* :: */[0,
       64,
-      [0,
+      /* :: */[0,
        94,
-       [0,
+       /* :: */[0,
         38,
-        [0,
+        /* :: */[0,
          43,
-         [0,
+         /* :: */[0,
           45,
-          [0,42,[0,47,[0,36,[0,37,[0,61,[0,58,[0,126,[0,33,[0,35,0]]]]]]]]]]]]]]]]];
+          /* :: */[0,
+           42,
+           /* :: */[0,
+            47,
+            /* :: */[0,
+             36,
+             /* :: */[0,
+              37,
+              /* :: */[0,
+               61,
+               /* :: */[0,
+                58,
+                /* :: */[0,126,/* :: */[0,33,/* :: */[0,35,/* [] */0]]]]]]]]]]]]]]]]];
 
 var
  strip_string=
@@ -40,7 +52,7 @@ var
      iter_first=
       function(n)
        {if(n>=len)
-         {return 0;}
+         {return /* None */0;}
         else
          {var match=s[n];
           
@@ -54,7 +66,7 @@ var
            {if(switcher!=23){exit=51;}else{exit=50;}}
           
           switch(exit)
-           {case 51:return [/* Some */0,n];case 50:return iter_first(n+1);}
+           {case 51:return /* Some */[0,n];case 50:return iter_first(n+1);}
           }
         };
     
@@ -67,7 +79,7 @@ var
        iter_last=
         function(n)
          {if(n<=first)
-           {return 0;}
+           {return /* None */0;}
           else
            {var match$1=s[n];
             
@@ -81,7 +93,7 @@ var
              {if(switcher!=23){exit=49;}else{exit=48;}}
             
             switch(exit)
-             {case 49:return [/* Some */0,n];case 48:return iter_last(n-1);}
+             {case 49:return /* Some */[0,n];case 48:return iter_last(n-1);}
             }
           };
       
@@ -136,7 +148,7 @@ var
  cut=
   function(name)
    {switch(name)
-     {case "":return [0,"",""];
+     {case "":return /* tuple */[0,"",""];
       default:
        var len=name["length"];
        
@@ -148,12 +160,12 @@ var
            List["rev"](Str["split"](Str["regexp_string"]("."),name));
          
          if(match$1)
-          {return [/* tuple */0,
+          {return /* tuple */[0,
                    $$String["concat"](".",List["rev"](match$1[2])),
                    match$1[1]];
            }
          else
-          {return [0,"",""];}
+          {return /* tuple */[0,"",""];}
          }
        else
         {var j=0;
@@ -184,7 +196,7 @@ var
            switch(exit){case 36:Buffer["add_char"](buf[j],c)}
            }
          
-         return [/* tuple */0,
+         return /* tuple */[0,
                  Buffer["contents"](buf[0]),
                  Buffer["contents"](buf[1])];
          }
@@ -228,25 +240,25 @@ var
        {var h=$$String["sub"](n,0,pos);
         
         try
-         {return [/* tuple */0,n,""];}
+         {$$String["index"](h,40);return /* tuple */[0,n,""];}
         catch(exn)
          {if(exn=Not_found)
            {var len=n["length"];
             
             if(pos>=len-1)
-             {return [/* tuple */0,h,""];}
+             {return /* tuple */[0,h,""];}
             else
-             {return [/* tuple */0,h,$$String["sub"](n,pos+1,len-pos-1)];}
+             {return /* tuple */[0,h,$$String["sub"](n,pos+1,len-pos-1)];}
             }
           else
            {throw exn;}
           }
         }
       else
-       {return [/* tuple */0,n,""];}
+       {return /* tuple */[0,n,""];}
       }
     catch(exn$1)
-     {if(exn$1=Not_found){return [/* tuple */0,n,""];}else{throw exn$1;}}
+     {if(exn$1=Not_found){return /* tuple */[0,n,""];}else{throw exn$1;}}
     };
 
 var head=function(n){return head_and_tail(n)[1];};
@@ -264,12 +276,13 @@ var
 var
  prefix=
   function(n1,n2)
-   {try
+   {var $js;
+    try
      {var len1=n1["length"];
       
-      var $js="unknown primitive:caml_string_equal"&&(n2[len1]=46);
+      $js="unknown primitive:caml_string_equal"&&(n2[len1]=46);
       }
-    catch(exn){var $js=0;}
+    catch(exn){$js=/* false */0;}
     return "unknown primitive:caml_string_notequal"&&$js;
     };
 
@@ -345,7 +358,7 @@ var qualified=function(name){return $$String["contains"](name,46);};
 
 var from_ident=function(ident){return Ident["name"](ident);};
 
-var from_path=function(path){return Path["name"](0,path);};
+var from_path=function(path){return Path["name"](/* None */0,path);};
 
 var
  to_path=
@@ -355,11 +368,11 @@ var
       List["fold_left"]
        (function(acc_opt,s)
          {if(acc_opt)
-           {return [/* Some */0,[/* Pdot */1,acc_opt[1],s,0]];}
+           {return /* Some */[0,/* Pdot */[1,acc_opt[1],s,0]];}
           else
-           {return [/* Some */0,[/* Pident */0,Ident["create"](s)]];}
+           {return /* Some */[0,/* Pident */[0,Ident["create"](s)]];}
           },
-        0,
+        /* None */0,
         Str["split"](Str["regexp"]("\."),n));
     
     if(match){return match[1];}else{throw [0,Failure,"to_path"];}

@@ -9,7 +9,7 @@ var Debugcom=require("Debugcom");
 
 var current_frame=[0,0];
 
-var selected_event=[0,0];
+var selected_event=[0,/* None */0];
 
 var
  selected_point=
@@ -19,7 +19,7 @@ var
     if(match)
      {var ev=match[1];
       
-      return [/* tuple */0,
+      return /* tuple */[0,
               ev[2],
               Events["get_pos"](ev)[2],
               Events["get_pos"](ev)[4]-Events["get_pos"](ev)[3]];
@@ -39,14 +39,14 @@ var
      {var match$1=match[1][4];
       
       if("unknown primitive:isint")
-       {if(match$1!=0){exit=17;}else{return 1;}}
+       {if(match$1!=0){exit=17;}else{return /* true */1;}}
       else
        {exit=17;}
       }
     else
      {throw Not_found;}
     
-    switch(exit){case 17:return 0;}
+    switch(exit){case 17:return /* false */0;}
     };
 
 var
@@ -68,7 +68,7 @@ var
   function(frame_number)
    {if(frame_number<0){throw Not_found;}else{}
     
-    var match=Debugcom["get_frame"](0);
+    var match=Debugcom["get_frame"](/* () */0);
     
     try
      {var match$1=Events["current_event"][1];
@@ -81,7 +81,7 @@ var
         if(match$2)
          {if(frame_number>=current_frame[1])
            {selected_event[1]=
-            [/* Some */0,move_up(frame_number-current_frame[1],match$2[1])],
+            /* Some */[0,move_up(frame_number-current_frame[1],match$2[1])],
             0;
             return current_frame[1]=frame_number,0;
             }
@@ -93,8 +93,8 @@ var
         
         switch(exit)
          {case 13:
-           Debugcom["set_initial_frame"](0);
-           selected_event[1]=[/* Some */0,move_up(frame_number,match$1[1])],0;
+           Debugcom["set_initial_frame"](/* () */0);
+           selected_event[1]=/* Some */[0,move_up(frame_number,match$1[1])],0;
            return current_frame[1]=frame_number,0;
            
           }
@@ -115,13 +115,13 @@ var
   function(frame_number)
    {try
      {return select_frame(frame_number);}
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
     };
 
 var
  reset_frame=
   function(param)
-   {Debugcom["set_initial_frame"](0);
+   {Debugcom["set_initial_frame"](/* () */0);
     selected_event[1]=Events["current_event"][1],0;
     return current_frame[1]=0,0;
     };
@@ -132,13 +132,13 @@ var
    {var match=Events["current_event"][1];
     
     if(match)
-     {var match$1=Debugcom["get_frame"](0);
+     {var match$1=Debugcom["get_frame"](/* () */0);
       
-      Debugcom["set_initial_frame"](0);
+      Debugcom["set_initial_frame"](/* () */0);
       var $$event=match[1];
       
       try
-       {while(action([/* Some */0,$$event]))
+       {while(action(/* Some */[0,$$event]))
          {var match$2=Debugcom["up_frame"]($$event[9]);
           
           if(match$2[1]<0){throw Pervasives["Exit"];}else{}
@@ -147,7 +147,11 @@ var
           }
         }
       catch(exn)
-       {if(exn=Pervasives["Exit"]){}else{if(exn=Not_found){}else{throw exn;}}}
+       {if(exn=Pervasives["Exit"])
+         {}
+        else
+         {if(exn=Not_found){action(/* None */0)}else{throw exn;}}
+        }
       
       return Debugcom["set_frame"](match$1[1]);
       }
@@ -163,9 +167,9 @@ var
     do_backtrace
      (function(param$1)
        {if(param$1)
-         {num_frames[0]++;return 1;}
+         {num_frames[0]++;return /* true */1;}
         else
-         {num_frames[1]=-1,0;return 0;}
+         {num_frames[1]=-1,0;return /* false */0;}
         });
     return num_frames[1];
     };

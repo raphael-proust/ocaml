@@ -15,17 +15,17 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](label,match[1][8]);return [/* Some */0,t];}
-      catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+       {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t];}
+      catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
  class_elements=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     var
      iter_kind=
@@ -39,14 +39,14 @@ var
            
            if(match)
             {if(trans)
-              {return class_elements([/* Some */0,trans],match[1]);}
+              {return class_elements(/* Some */[0,trans],match[1]);}
              else
               {exit=24;}
              }
            else
             {exit=24;}
            
-           switch(exit){case 24:return 0;}
+           switch(exit){case 24:return /* [] */0;}
            
           case 2:
            var match$1=k[1][2];
@@ -59,13 +59,13 @@ var
              switch(match$2)
               {case 0:
                 if(trans)
-                 {return class_elements([/* Some */0,trans],match$2[1]);}
+                 {return class_elements(/* Some */[0,trans],match$2[1]);}
                 else
                  {exit$1=25;}
                 
                case 1:
                 if(trans)
-                 {return class_type_elements([/* Some */0,trans],match$2[1]);}
+                 {return class_type_elements(/* Some */[0,trans],match$2[1]);}
                 else
                  {exit$1=25;}
                 
@@ -74,7 +74,7 @@ var
            else
             {exit$1=25;}
            
-           switch(exit$1){case 25:return 0;}
+           switch(exit$1){case 25:return /* [] */0;}
            
           case 3:return iter_kind(k[1]);
           }
@@ -86,7 +86,7 @@ var
 var
  class_type_elements=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     var match=clt[6];
     
@@ -103,13 +103,13 @@ var
          switch(match$2)
           {case 0:
             if(trans)
-             {return class_elements([/* Some */0,trans],match$2[1]);}
+             {return class_elements(/* Some */[0,trans],match$2[1]);}
             else
              {exit=28;}
             
            case 1:
             if(trans)
-             {return class_type_elements([/* Some */0,trans],match$2[1]);}
+             {return class_type_elements(/* Some */[0,trans],match$2[1]);}
             else
              {exit=28;}
             
@@ -118,7 +118,7 @@ var
        else
         {exit=28;}
        
-       switch(exit){case 28:return 0;}
+       switch(exit){case 28:return /* [] */0;}
        
       }
     };
@@ -126,28 +126,29 @@ var
 var
  class_attributes=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
             (function(acc,ele)
               {var exit;
                
                switch(ele)
-                {case 0:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
+                {case 0:
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  case 1:exit=21;
                  case 2:exit=21;
                  }
                
                switch(exit){case 21:return acc;}
                },
-             0,
-             class_elements([/* Some */0,trans],cl));
+             /* [] */0,
+             class_elements(/* Some */[0,trans],cl));
     };
 
 var
  class_methods=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
             (function(acc,ele)
@@ -155,20 +156,21 @@ var
                
                switch(ele)
                 {case 0:exit=18;
-                 case 1:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
+                 case 1:
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  case 2:exit=18;
                  }
                
                switch(exit){case 18:return acc;}
                },
-             0,
-             class_elements([/* Some */0,trans],cl));
+             /* [] */0,
+             class_elements(/* Some */[0,trans],cl));
     };
 
 var
  class_comments=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
             (function(acc,ele)
@@ -177,13 +179,14 @@ var
                switch(ele)
                 {case 0:exit=15;
                  case 1:exit=15;
-                 case 2:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
+                 case 2:
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  }
                
                switch(exit){case 15:return acc;}
                },
-             0,
-             class_elements([/* Some */0,trans],cl));
+             /* [] */0,
+             class_elements(/* Some */[0,trans],cl));
     };
 
 var
@@ -202,28 +205,29 @@ var
 var
  class_type_attributes=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
             (function(acc,ele)
               {var exit;
                
                switch(ele)
-                {case 0:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
+                {case 0:
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  case 1:exit=10;
                  case 2:exit=10;
                  }
                
                switch(exit){case 10:return acc;}
                },
-             0,
-             class_type_elements([/* Some */0,trans],clt));
+             /* [] */0,
+             class_type_elements(/* Some */[0,trans],clt));
     };
 
 var
  class_type_methods=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
             (function(acc,ele)
@@ -231,20 +235,21 @@ var
                
                switch(ele)
                 {case 0:exit=7;
-                 case 1:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
+                 case 1:
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  case 2:exit=7;
                  }
                
                switch(exit){case 7:return acc;}
                },
-             0,
-             class_type_elements([/* Some */0,trans],clt));
+             /* [] */0,
+             class_type_elements(/* Some */[0,trans],clt));
     };
 
 var
  class_type_comments=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=1;}
+   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
             (function(acc,ele)
@@ -253,13 +258,14 @@ var
                switch(ele)
                 {case 0:exit=4;
                  case 1:exit=4;
-                 case 2:return Pervasives["@"](acc,[/* :: */0,ele[1],0]);
+                 case 2:
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  }
                
                switch(exit){case 4:return acc;}
                },
-             0,
-             class_type_elements([/* Some */0,trans],clt));
+             /* [] */0,
+             class_type_elements(/* Some */[0,trans],clt));
     };
 
 var
@@ -269,11 +275,11 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](label,match[1][8]);return [/* Some */0,t];}
-      catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+       {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t];}
+      catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 module["exports"]=

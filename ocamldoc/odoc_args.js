@@ -27,7 +27,7 @@ var Odoc_messages=require("Odoc_messages");
 
 
 
-var current_generator=[0,0];
+var current_generator=[0,/* None */0];
 
 var
  get_html_generator=
@@ -146,61 +146,61 @@ var
 var
  extend_html_generator=
   function(f)
-   {var current=get_html_generator(0);
+   {var current=get_html_generator(/* () */0);
     
     var M=f(current);
     
-    return current_generator[1]=[/* Some */0,[/* Html */0,M]],0;
+    return current_generator[1]=/* Some */[0,/* Html */[0,M]],0;
     };
 
 var
  extend_latex_generator=
   function(f)
-   {var current=get_latex_generator(0);
+   {var current=get_latex_generator(/* () */0);
     
     var M=f(current);
     
-    return current_generator[1]=[/* Some */0,[/* Latex */1,M]],0;
+    return current_generator[1]=/* Some */[0,/* Latex */[1,M]],0;
     };
 
 var
  extend_texi_generator=
   function(f)
-   {var current=get_texi_generator(0);
+   {var current=get_texi_generator(/* () */0);
     
     var M=f(current);
     
-    return current_generator[1]=[/* Some */0,[/* Texi */2,M]],0;
+    return current_generator[1]=/* Some */[0,/* Texi */[2,M]],0;
     };
 
 var
  extend_man_generator=
   function(f)
-   {var current=get_man_generator(0);
+   {var current=get_man_generator(/* () */0);
     
     var M=f(current);
     
-    return current_generator[1]=[/* Some */0,[/* Man */3,M]],0;
+    return current_generator[1]=/* Some */[0,/* Man */[3,M]],0;
     };
 
 var
  extend_dot_generator=
   function(f)
-   {var current=get_dot_generator(0);
+   {var current=get_dot_generator(/* () */0);
     
     var M=f(current);
     
-    return current_generator[1]=[/* Some */0,[/* Dot */4,M]],0;
+    return current_generator[1]=/* Some */[0,/* Dot */[4,M]],0;
     };
 
 var
  extend_base_generator=
   function(f)
-   {var current=get_base_generator(0);
+   {var current=get_base_generator(/* () */0);
     
     var M=f(current);
     
-    return current_generator[1]=[/* Some */0,[/* Base */5,M]],0;
+    return current_generator[1]=/* Some */[0,/* Base */[5,M]],0;
     };
 
 var
@@ -213,7 +213,7 @@ var
                else
                 {return acc;}
                },
-             0,
+             /* [] */0,
              l);
     };
 
@@ -222,33 +222,55 @@ var
   function(s)
    {var
      l=
-      [/* :: */0,
-       [/* tuple */0,Odoc_messages["merge_description"],[0,0,0]],
-       [/* :: */0,
-        [/* tuple */0,Odoc_messages["merge_author"],[0,1,0]],
-        [/* :: */0,
-         [/* tuple */0,Odoc_messages["merge_version"],[0,2,0]],
-         [/* :: */0,
-          [/* tuple */0,Odoc_messages["merge_see"],[0,3,0]],
-          [/* :: */0,
-           [/* tuple */0,Odoc_messages["merge_since"],[0,4,0]],
-           [/* :: */0,
-            [/* tuple */0,Odoc_messages["merge_before"],[0,5,0]],
-            [/* :: */0,
-             [/* tuple */0,Odoc_messages["merge_deprecated"],[0,6,0]],
-             [/* :: */0,
-              [/* tuple */0,Odoc_messages["merge_param"],[0,7,0]],
-              [/* :: */0,
-               [/* tuple */0,Odoc_messages["merge_raised_exception"],[0,8,0]],
-               [/* :: */0,
-                [/* tuple */0,Odoc_messages["merge_return_value"],[0,9,0]],
-                [/* :: */0,
-                 [/* tuple */0,Odoc_messages["merge_custom"],[0,10,0]],
-                 [/* :: */0,
-                  [/* tuple */0,
+      /* :: */[0,
+       /* tuple */[0,
+        Odoc_messages["merge_description"],
+        /* :: */[0,/* Merge_description */0,/* [] */0]],
+       /* :: */[0,
+        /* tuple */[0,
+         Odoc_messages["merge_author"],
+         /* :: */[0,/* Merge_author */1,/* [] */0]],
+        /* :: */[0,
+         /* tuple */[0,
+          Odoc_messages["merge_version"],
+          /* :: */[0,/* Merge_version */2,/* [] */0]],
+         /* :: */[0,
+          /* tuple */[0,
+           Odoc_messages["merge_see"],
+           /* :: */[0,/* Merge_see */3,/* [] */0]],
+          /* :: */[0,
+           /* tuple */[0,
+            Odoc_messages["merge_since"],
+            /* :: */[0,/* Merge_since */4,/* [] */0]],
+           /* :: */[0,
+            /* tuple */[0,
+             Odoc_messages["merge_before"],
+             /* :: */[0,/* Merge_before */5,/* [] */0]],
+            /* :: */[0,
+             /* tuple */[0,
+              Odoc_messages["merge_deprecated"],
+              /* :: */[0,/* Merge_deprecated */6,/* [] */0]],
+             /* :: */[0,
+              /* tuple */[0,
+               Odoc_messages["merge_param"],
+               /* :: */[0,/* Merge_param */7,/* [] */0]],
+              /* :: */[0,
+               /* tuple */[0,
+                Odoc_messages["merge_raised_exception"],
+                /* :: */[0,/* Merge_raised_exception */8,/* [] */0]],
+               /* :: */[0,
+                /* tuple */[0,
+                 Odoc_messages["merge_return_value"],
+                 /* :: */[0,/* Merge_return_value */9,/* [] */0]],
+                /* :: */[0,
+                 /* tuple */[0,
+                  Odoc_messages["merge_custom"],
+                  /* :: */[0,/* Merge_custom */10,/* [] */0]],
+                 /* :: */[0,
+                  /* tuple */[0,
                    Odoc_messages["merge_all"],
                    Odoc_types["all_merge_options"]],
-                  0]]]]]]]]]]]];
+                  /* [] */0]]]]]]]]]]]];
     
     return analyse_option_string(l,s);
     };
@@ -269,8 +291,8 @@ var
       List["remove_assoc"](n,Odoc_latex["latex_titles"][1]),
       0;
       return Odoc_latex["latex_titles"][1]=
-             [/* :: */0,
-              [/* tuple */0,n,command],
+             /* :: */[0,
+              /* tuple */[0,n,command],
               Odoc_latex["latex_titles"][1]],
              0;
       }
@@ -303,7 +325,7 @@ var
                  Str["global_replace"](Str["regexp"]("[ \n\r\t]+"),"",n);
                
                switch(name)
-                {case "":return 0;
+                {case "":return /* () */0;
                  default:
                   var match=name[0];
                   
@@ -314,7 +336,7 @@ var
                     }
                   else
                    {return Odoc_global["hidden_modules"][1]=
-                           [/* :: */0,name,Odoc_global["hidden_modules"][1]],
+                           /* :: */[0,name,Odoc_global["hidden_modules"][1]],
                            0;
                     }
                   }
@@ -322,19 +344,19 @@ var
              l);
     };
 
-var set_generator=function(g){return current_generator[1]=[/* Some */0,g],0;};
+var set_generator=function(g){return current_generator[1]=/* Some */[0,g],0;};
 
 var
  anonymous=
   function(f)
    {if(Filename["check_suffix"](f,"ml"))
-     {var sf=[/* Impl_file */0,f];}
+     {var sf=/* Impl_file */[0,f];}
     else
      {if(Filename["check_suffix"](f,Config["interface_suffix"][1]))
-       {var sf=[/* Intf_file */1,f];}
+       {var sf=/* Intf_file */[1,f];}
       else
        {if(Filename["check_suffix"](f,"txt"))
-         {var sf=[/* Text_file */2,f];}
+         {var sf=/* Text_file */[2,f];}
         else
          {var
            sf=
@@ -344,13 +366,13 @@ var
       }
     
     return Odoc_global["files"][1]=
-           Pervasives["@"](Odoc_global["files"][1],[/* :: */0,sf,0]),
+           Pervasives["@"](Odoc_global["files"][1],/* :: */[0,sf,/* [] */0]),
            0;
     };
 
-var set=function(r,param){return r[1]=1,0;};
+var set=function(r,param){return r[1]=/* true */1,0;};
 
-var unset=function(r,param){return r[1]=0,0;};
+var unset=function(r,param){return r[1]=/* false */0,0;};
 
 var _absname=set(Location["absname"]);
 
@@ -358,7 +380,7 @@ var
  _I=
   function(s)
    {return Odoc_global["include_dirs"][1]=
-           [/* :: */0,
+           /* :: */[0,
             Misc["expand_directory"](Config["standard_library"],s),
             Odoc_global["include_dirs"][1]],
            0;
@@ -369,7 +391,8 @@ var
   function(s)
    {return Odoc_global["files"][1]=
            Pervasives["@"]
-            (Odoc_global["files"][1],[/* :: */0,[/* Impl_file */0,s],0]),
+            (Odoc_global["files"][1],
+             /* :: */[0,/* Impl_file */[0,s],/* [] */0]),
            0;
     };
 
@@ -378,7 +401,8 @@ var
   function(s)
    {return Odoc_global["files"][1]=
            Pervasives["@"]
-            (Odoc_global["files"][1],[/* :: */0,[/* Intf_file */1,s],0]),
+            (Odoc_global["files"][1],
+             /* :: */[0,/* Intf_file */[1,s],/* [] */0]),
            0;
     };
 
@@ -400,16 +424,16 @@ var
  _open=
   function(s)
    {return Clflags["open_modules"][1]=
-           [/* :: */0,s,Clflags["open_modules"][1]],
+           /* :: */[0,s,Clflags["open_modules"][1]],
            0;
     };
 
-var _pp=function(s){return Clflags["preprocessor"][1]=[/* Some */0,s],0;};
+var _pp=function(s){return Clflags["preprocessor"][1]=/* Some */[0,s],0;};
 
 var
  _ppx=
   function(s)
-   {return Clflags["all_ppx"][1]=[/* :: */0,s,Clflags["all_ppx"][1]],0;};
+   {return Clflags["all_ppx"][1]=/* :: */[0,s,Clflags["all_ppx"][1]],0;};
 
 var _principal=set(Clflags["principal"]);
 
@@ -442,7 +466,7 @@ var _version=Compenv["print_version_string"];
 
 var _vnum=Compenv["print_version_string"];
 
-var _w=Warnings["parse_options"](0);
+var _w=Warnings["parse_options"](/* false */0);
 
 var
  _warn_error=
@@ -516,114 +540,117 @@ var
  default_options=
   Pervasives["@"]
    (Options[1],
-    [/* :: */0,
-     [/* tuple */0,
+    /* :: */[0,
+     /* tuple */[0,
       "-text",
-      [/* String */4,
+      /* String */[4,
        function(s)
         {return Odoc_global["files"][1]=
                 Pervasives["@"]
-                 (Odoc_global["files"][1],[/* :: */0,[/* Text_file */2,s],0]),
+                 (Odoc_global["files"][1],
+                  /* :: */[0,/* Text_file */[2,s],/* [] */0]),
                 0;
          }],
       Odoc_messages["option_text"]],
-     [/* :: */0,
-      [/* tuple */0,
+     /* :: */[0,
+      /* tuple */[0,
        "-warn-error",
-       [/* Set */2,Odoc_global["warn_error"]],
+       /* Set */[2,Odoc_global["warn_error"]],
        Odoc_messages["werr"]],
-      [/* :: */0,
-       [/* tuple */0,
+      /* :: */[0,
+       /* tuple */[0,
         "-hide-warnings",
-        [/* Clear */3,Odoc_config["print_warnings"]],
+        /* Clear */[3,Odoc_config["print_warnings"]],
         Odoc_messages["hide_warnings"]],
-       [/* :: */0,
-        [/* tuple */0,
+       /* :: */[0,
+        /* tuple */[0,
          "-o",
-         [/* String */4,function(s){return Odoc_global["out_file"][1]=s,0;}],
+         /* String */[4,function(s){return Odoc_global["out_file"][1]=s,0;}],
          Odoc_messages["out_file"]],
-        [/* :: */0,
-         [/* tuple */0,
+        /* :: */[0,
+         /* tuple */[0,
           "-d",
-          [/* String */4,
+          /* String */[4,
            function(s){return Odoc_global["target_dir"][1]=s,0;}],
           Odoc_messages["target_dir"]],
-         [/* :: */0,
-          [/* tuple */0,
+         /* :: */[0,
+          /* tuple */[0,
            "-sort",
-           [/* Unit */0,
-            function(param){return Odoc_global["sort_modules"][1]=1,0;}],
+           /* Unit */[0,
+            function(param)
+             {return Odoc_global["sort_modules"][1]=/* true */1,0;}],
            Odoc_messages["sort_modules"]],
-          [/* :: */0,
-           [/* tuple */0,
+          /* :: */[0,
+           /* tuple */[0,
             "-no-stop",
-            [/* Set */2,Odoc_global["no_stop"]],
+            /* Set */[2,Odoc_global["no_stop"]],
             Odoc_messages["no_stop"]],
-           [/* :: */0,
-            [/* tuple */0,
+           /* :: */[0,
+            /* tuple */[0,
              "-no-custom-tags",
-             [/* Set */2,Odoc_global["no_custom_tags"]],
+             /* Set */[2,Odoc_global["no_custom_tags"]],
              Odoc_messages["no_custom_tags"]],
-            [/* :: */0,
-             [/* tuple */0,
+            /* :: */[0,
+             /* tuple */[0,
               "-stars",
-              [/* Set */2,Odoc_global["remove_stars"]],
+              /* Set */[2,Odoc_global["remove_stars"]],
               Odoc_messages["remove_stars"]],
-             [/* :: */0,
-              [/* tuple */0,
+             /* :: */[0,
+              /* tuple */[0,
                "-inv-merge-ml-mli",
-               [/* Set */2,Odoc_global["inverse_merge_ml_mli"]],
+               /* Set */[2,Odoc_global["inverse_merge_ml_mli"]],
                Odoc_messages["inverse_merge_ml_mli"]],
-              [/* :: */0,
-               [/* tuple */0,
+              /* :: */[0,
+               /* tuple */[0,
                 "-no-module-constraint-filter",
-                [/* Clear */3,Odoc_global["filter_with_module_constraints"]],
+                /* Clear */[3,Odoc_global["filter_with_module_constraints"]],
                 Odoc_messages["no_filter_with_module_constraints"]],
-               [/* :: */0,
-                [/* tuple */0,
+               /* :: */[0,
+                /* tuple */[0,
                  "-keep-code",
-                 [/* Set */2,Odoc_global["keep_code"]],
+                 /* Set */[2,Odoc_global["keep_code"]],
                  Pervasives["^"](Odoc_messages["keep_code"],"\n")],
-                [/* :: */0,
-                 [/* tuple */0,
+                /* :: */[0,
+                 /* tuple */[0,
                   "-dump",
-                  [/* String */4,
+                  /* String */[4,
                    function(s)
-                    {return Odoc_global["dump"][1]=[/* Some */0,s],0;}],
+                    {return Odoc_global["dump"][1]=/* Some */[0,s],0;}],
                   Odoc_messages["dump"]],
-                 [/* :: */0,
-                  [/* tuple */0,
+                 /* :: */[0,
+                  /* tuple */[0,
                    "-load",
-                   [/* String */4,
+                   /* String */[4,
                     function(s)
                      {return Odoc_global["load"][1]=
-                             Pervasives["@"](Odoc_global["load"][1],[/* :: */0,s,0]),
+                             Pervasives["@"]
+                              (Odoc_global["load"][1],/* :: */[0,s,/* [] */0]),
                              0;
                       }],
                    Pervasives["^"](Odoc_messages["load"],"\n")],
-                  [/* :: */0,
-                   [/* tuple */0,
+                  /* :: */[0,
+                   /* tuple */[0,
                     "-t",
-                    [/* String */4,
+                    /* String */[4,
                      function(s)
-                      {return Odoc_global["title"][1]=[/* Some */0,s],0;}],
+                      {return Odoc_global["title"][1]=/* Some */[0,s],0;}],
                     Odoc_messages["option_title"]],
-                   [/* :: */0,
-                    [/* tuple */0,
+                   /* :: */[0,
+                    /* tuple */[0,
                      "-intro",
-                     [/* String */4,
+                     /* String */[4,
                       function(s)
-                       {return Odoc_global["intro_file"][1]=[/* Some */0,s],0;}],
+                       {return Odoc_global["intro_file"][1]=/* Some */[0,s],0;}],
                      Odoc_messages["option_intro"]],
-                    [/* :: */0,
-                     [/* tuple */0,
+                    /* :: */[0,
+                     /* tuple */[0,
                       "-hide",
-                      [/* String */4,add_hidden_modules],
+                      /* String */[4,add_hidden_modules],
                       Odoc_messages["hide_modules"]],
-                     [/* :: */0,
-                      [/* tuple */0,
+                     /* :: */[0,
+                      /* tuple */[0,
                        "-m",
-                       [/* String */4,
+                       /* String */[4,
                         function(s)
                          {return Odoc_global["merge_options"][1]=
                                  Pervasives["@"]
@@ -633,263 +660,271 @@ var
                        Pervasives["^"]
                         (Odoc_messages["merge_options"],
                          "\n\n *** choosing a generator ***\n")],
-                      [/* :: */0,
-                       [/* tuple */0,
+                      /* :: */[0,
+                       /* tuple */[0,
                         "-html",
-                        [/* Unit */0,
+                        /* Unit */[0,
                          function(param)
-                          {return set_generator([/* Html */0,Odoc_html["Generator"]]);
+                          {return set_generator(/* Html */[0,Odoc_html["Generator"]]);
                            }],
                         Odoc_messages["generate_html"]],
-                       [/* :: */0,
-                        [/* tuple */0,
+                       /* :: */[0,
+                        /* tuple */[0,
                          "-latex",
-                         [/* Unit */0,
+                         /* Unit */[0,
                           function(param)
                            {return set_generator
-                                    ([/* Latex */1,Odoc_latex["Generator"]]);
+                                    (/* Latex */[1,Odoc_latex["Generator"]]);
                             }],
                          Odoc_messages["generate_latex"]],
-                        [/* :: */0,
-                         [/* tuple */0,
+                        /* :: */[0,
+                         /* tuple */[0,
                           "-texi",
-                          [/* Unit */0,
+                          /* Unit */[0,
                            function(param)
-                            {return set_generator([/* Texi */2,Odoc_texi["Generator"]]);
+                            {return set_generator(/* Texi */[2,Odoc_texi["Generator"]]);
                              }],
                           Odoc_messages["generate_texinfo"]],
-                         [/* :: */0,
-                          [/* tuple */0,
+                         /* :: */[0,
+                          /* tuple */[0,
                            "-man",
-                           [/* Unit */0,
+                           /* Unit */[0,
                             function(param)
-                             {return set_generator([/* Man */3,Odoc_man["Generator"]]);}],
+                             {return set_generator(/* Man */[3,Odoc_man["Generator"]]);}],
                            Odoc_messages["generate_man"]],
-                          [/* :: */0,
-                           [/* tuple */0,
+                          /* :: */[0,
+                           /* tuple */[0,
                             "-dot",
-                            [/* Unit */0,
+                            /* Unit */[0,
                              function(param)
-                              {return set_generator([/* Dot */4,Odoc_dot["Generator"]]);}],
+                              {return set_generator(/* Dot */[4,Odoc_dot["Generator"]]);}],
                             Odoc_messages["generate_dot"]],
-                           [/* :: */0,
-                            [/* tuple */0,
+                           /* :: */[0,
+                            /* tuple */[0,
                              "-customdir",
-                             [/* Unit */0,
+                             /* Unit */[0,
                               function(param)
                                {Printf["printf"]
-                                 ([0,[2,0,[12,10,0]],"%s\n"],
+                                 (/* Format */[0,
+                                   /* String */[2,
+                                    /* No_padding */0,
+                                    /* Char_literal */[12,10,/* End_of_format */0]],
+                                   "%s\n"],
                                   Odoc_config["custom_generators_path"]);
                                 return Pervasives["exit"](0);
                                 }],
                              Odoc_messages["display_custom_generators_dir"]],
-                            [/* :: */0,
-                             [/* tuple */0,
+                            /* :: */[0,
+                             /* tuple */[0,
                               "-i",
-                              [/* String */4,function(s){return 0;}],
+                              /* String */[4,function(s){return /* () */0;}],
                               Odoc_messages["add_load_dir"]],
-                             [/* :: */0,
-                              [/* tuple */0,
+                             /* :: */[0,
+                              /* tuple */[0,
                                "-g",
-                               [/* String */4,function(s){return 0;}],
+                               /* String */[4,function(s){return /* () */0;}],
                                Pervasives["^"]
                                 (Odoc_messages["load_file"],"\n\n *** HTML options ***\n")],
-                              [/* :: */0,
-                               [/* tuple */0,
+                              /* :: */[0,
+                               /* tuple */[0,
                                 "-all-params",
-                                [/* Set */2,Odoc_html["with_parameter_list"]],
+                                /* Set */[2,Odoc_html["with_parameter_list"]],
                                 Odoc_messages["with_parameter_list"]],
-                               [/* :: */0,
-                                [/* tuple */0,
+                               /* :: */[0,
+                                /* tuple */[0,
                                  "-css-style",
-                                 [/* String */4,
+                                 /* String */[4,
                                   function(s)
-                                   {return Odoc_html["css_style"][1]=[/* Some */0,s],0;}],
+                                   {return Odoc_html["css_style"][1]=/* Some */[0,s],0;}],
                                  Odoc_messages["css_style"]],
-                                [/* :: */0,
-                                 [/* tuple */0,
+                                /* :: */[0,
+                                 /* tuple */[0,
                                   "-index-only",
-                                  [/* Set */2,Odoc_html["index_only"]],
+                                  /* Set */[2,Odoc_html["index_only"]],
                                   Odoc_messages["index_only"]],
-                                 [/* :: */0,
-                                  [/* tuple */0,
+                                 /* :: */[0,
+                                  /* tuple */[0,
                                    "-colorize-code",
-                                   [/* Set */2,Odoc_html["colorize_code"]],
+                                   /* Set */[2,Odoc_html["colorize_code"]],
                                    Odoc_messages["colorize_code"]],
-                                  [/* :: */0,
-                                   [/* tuple */0,
+                                  /* :: */[0,
+                                   /* tuple */[0,
                                     "-short-functors",
-                                    [/* Set */2,Odoc_html["html_short_functors"]],
+                                    /* Set */[2,Odoc_html["html_short_functors"]],
                                     Odoc_messages["html_short_functors"]],
-                                   [/* :: */0,
-                                    [/* tuple */0,
+                                   /* :: */[0,
+                                    /* tuple */[0,
                                      "-charset",
-                                     [/* Set_string */5,Odoc_html["charset"]],
+                                     /* Set_string */[5,Odoc_html["charset"]],
                                      Pervasives["^"]
                                       (Odoc_messages["charset"](Odoc_html["charset"][1]),
                                        "\n\n *** LaTeX options ***\n")],
-                                    [/* :: */0,
-                                     [/* tuple */0,
+                                    /* :: */[0,
+                                     /* tuple */[0,
                                       "-noheader",
-                                      [/* Unit */0,
-                                       function(param){return Odoc_global["with_header"][1]=0,0;}],
+                                      /* Unit */[0,
+                                       function(param)
+                                        {return Odoc_global["with_header"][1]=/* false */0,0;}],
                                       Odoc_messages["no_header"]],
-                                     [/* :: */0,
-                                      [/* tuple */0,
+                                     /* :: */[0,
+                                      /* tuple */[0,
                                        "-notrailer",
-                                       [/* Unit */0,
-                                        function(param){return Odoc_global["with_trailer"][1]=0,0;}],
+                                       /* Unit */[0,
+                                        function(param)
+                                         {return Odoc_global["with_trailer"][1]=/* false */0,0;}],
                                        Odoc_messages["no_trailer"]],
-                                      [/* :: */0,
-                                       [/* tuple */0,
+                                      /* :: */[0,
+                                       /* tuple */[0,
                                         "-sepfiles",
-                                        [/* Set */2,Odoc_latex["separate_files"]],
+                                        /* Set */[2,Odoc_latex["separate_files"]],
                                         Odoc_messages["separate_files"]],
-                                       [/* :: */0,
-                                        [/* tuple */0,
+                                       /* :: */[0,
+                                        /* tuple */[0,
                                          "-latextitle",
-                                         [/* String */4,f_latex_title],
+                                         /* String */[4,f_latex_title],
                                          Odoc_messages["latex_title"](Odoc_latex["latex_titles"])],
-                                        [/* :: */0,
-                                         [/* tuple */0,
+                                        /* :: */[0,
+                                         /* tuple */[0,
                                           "-latex-value-prefix",
-                                          [/* String */4,
+                                          /* String */[4,
                                            function(s){return Odoc_latex["latex_value_prefix"][1]=s,0;}],
                                           Odoc_messages["latex_value_prefix"]],
-                                         [/* :: */0,
-                                          [/* tuple */0,
+                                         /* :: */[0,
+                                          /* tuple */[0,
                                            "-latex-type-prefix",
-                                           [/* String */4,
+                                           /* String */[4,
                                             function(s){return Odoc_latex["latex_type_prefix"][1]=s,0;}],
                                            Odoc_messages["latex_type_prefix"]],
-                                          [/* :: */0,
-                                           [/* tuple */0,
+                                          /* :: */[0,
+                                           /* tuple */[0,
                                             "-latex-exception-prefix",
-                                            [/* String */4,
+                                            /* String */[4,
                                              function(s)
                                               {return Odoc_latex["latex_exception_prefix"][1]=s,0;}],
                                             Odoc_messages["latex_exception_prefix"]],
-                                           [/* :: */0,
-                                            [/* tuple */0,
+                                           /* :: */[0,
+                                            /* tuple */[0,
                                              "-latex-attribute-prefix",
-                                             [/* String */4,
+                                             /* String */[4,
                                               function(s)
                                                {return Odoc_latex["latex_attribute_prefix"][1]=s,0;}],
                                              Odoc_messages["latex_attribute_prefix"]],
-                                            [/* :: */0,
-                                             [/* tuple */0,
+                                            /* :: */[0,
+                                             /* tuple */[0,
                                               "-latex-method-prefix",
-                                              [/* String */4,
+                                              /* String */[4,
                                                function(s)
                                                 {return Odoc_latex["latex_method_prefix"][1]=s,0;}],
                                               Odoc_messages["latex_method_prefix"]],
-                                             [/* :: */0,
-                                              [/* tuple */0,
+                                             /* :: */[0,
+                                              /* tuple */[0,
                                                "-latex-module-prefix",
-                                               [/* String */4,
+                                               /* String */[4,
                                                 function(s)
                                                  {return Odoc_latex["latex_module_prefix"][1]=s,0;}],
                                                Odoc_messages["latex_module_prefix"]],
-                                              [/* :: */0,
-                                               [/* tuple */0,
+                                              /* :: */[0,
+                                               /* tuple */[0,
                                                 "-latex-module-type-prefix",
-                                                [/* String */4,
+                                                /* String */[4,
                                                  function(s)
                                                   {return Odoc_latex["latex_module_type_prefix"][1]=s,0;}],
                                                 Odoc_messages["latex_module_type_prefix"]],
-                                               [/* :: */0,
-                                                [/* tuple */0,
+                                               /* :: */[0,
+                                                /* tuple */[0,
                                                  "-latex-class-prefix",
-                                                 [/* String */4,
+                                                 /* String */[4,
                                                   function(s){return Odoc_latex["latex_class_prefix"][1]=s,0;}],
                                                  Odoc_messages["latex_class_prefix"]],
-                                                [/* :: */0,
-                                                 [/* tuple */0,
+                                                /* :: */[0,
+                                                 /* tuple */[0,
                                                   "-latex-class-type-prefix",
-                                                  [/* String */4,
+                                                  /* String */[4,
                                                    function(s)
                                                     {return Odoc_latex["latex_class_type_prefix"][1]=s,0;}],
                                                   Odoc_messages["latex_class_type_prefix"]],
-                                                 [/* :: */0,
-                                                  [/* tuple */0,
+                                                 /* :: */[0,
+                                                  /* tuple */[0,
                                                    "-notoc",
-                                                   [/* Unit */0,
-                                                    function(param){return Odoc_global["with_toc"][1]=0,0;}],
+                                                   /* Unit */[0,
+                                                    function(param)
+                                                     {return Odoc_global["with_toc"][1]=/* false */0,0;}],
                                                    Pervasives["^"]
                                                     (Odoc_messages["no_toc"],"\n\n *** texinfo options ***\n")],
-                                                  [/* :: */0,
-                                                   [/* tuple */0,
+                                                  /* :: */[0,
+                                                   /* tuple */[0,
                                                     "-noindex",
-                                                    [/* Clear */3,Odoc_global["with_index"]],
+                                                    /* Clear */[3,Odoc_global["with_index"]],
                                                     Odoc_messages["no_index"]],
-                                                   [/* :: */0,
-                                                    [/* tuple */0,
+                                                   /* :: */[0,
+                                                    /* tuple */[0,
                                                      "-esc8",
-                                                     [/* Set */2,Odoc_texi["esc_8bits"]],
+                                                     /* Set */[2,Odoc_texi["esc_8bits"]],
                                                      Odoc_messages["esc_8bits"]],
-                                                    [/* :: */0,
-                                                     [/* tuple */0,
+                                                    /* :: */[0,
+                                                     /* tuple */[0,
                                                       "-info-section",
-                                                      [/* String */4,
+                                                      /* String */[4,
                                                        function(prim,prim$1){return prim[1]=prim$1,0;}
                                                         (Odoc_texi["info_section"])],
                                                       Odoc_messages["info_section"]],
-                                                     [/* :: */0,
-                                                      [/* tuple */0,
+                                                     /* :: */[0,
+                                                      /* tuple */[0,
                                                        "-info-entry",
-                                                       [/* String */4,
+                                                       /* String */[4,
                                                         function(s)
                                                          {return Odoc_texi["info_entry"][1]=
-                                                                 Pervasives["@"](Odoc_texi["info_entry"][1],[/* :: */0,s,0]),
+                                                                 Pervasives["@"]
+                                                                  (Odoc_texi["info_entry"][1],/* :: */[0,s,/* [] */0]),
                                                                  0;
                                                           }],
                                                        Pervasives["^"]
                                                         (Odoc_messages["info_entry"],"\n\n *** dot options ***\n")],
-                                                      [/* :: */0,
-                                                       [/* tuple */0,
+                                                      /* :: */[0,
+                                                       /* tuple */[0,
                                                         "-dot-colors",
-                                                        [/* String */4,
+                                                        /* String */[4,
                                                          function(s)
                                                           {return Odoc_dot["dot_colors"][1]=
                                                                   Str["split"](Str["regexp_string"](","),s),
                                                                   0;
                                                            }],
                                                         Odoc_messages["dot_colors"]],
-                                                       [/* :: */0,
-                                                        [/* tuple */0,
+                                                       /* :: */[0,
+                                                        /* tuple */[0,
                                                          "-dot-include-all",
-                                                         [/* Set */2,Odoc_dot["dot_include_all"]],
+                                                         /* Set */[2,Odoc_dot["dot_include_all"]],
                                                          Odoc_messages["dot_include_all"]],
-                                                        [/* :: */0,
-                                                         [/* tuple */0,
+                                                        /* :: */[0,
+                                                         /* tuple */[0,
                                                           "-dot-types",
-                                                          [/* Set */2,Odoc_dot["dot_types"]],
+                                                          /* Set */[2,Odoc_dot["dot_types"]],
                                                           Odoc_messages["dot_types"]],
-                                                         [/* :: */0,
-                                                          [/* tuple */0,
+                                                         /* :: */[0,
+                                                          /* tuple */[0,
                                                            "-dot-reduce",
-                                                           [/* Set */2,Odoc_dot["dot_reduce"]],
+                                                           /* Set */[2,Odoc_dot["dot_reduce"]],
                                                            Pervasives["^"]
                                                             (Odoc_messages["dot_reduce"],
                                                              "\n\n *** man pages options ***\n")],
-                                                          [/* :: */0,
-                                                           [/* tuple */0,
+                                                          /* :: */[0,
+                                                           /* tuple */[0,
                                                             "-man-mini",
-                                                            [/* Set */2,Odoc_man["man_mini"]],
+                                                            /* Set */[2,Odoc_man["man_mini"]],
                                                             Odoc_messages["man_mini"]],
-                                                           [/* :: */0,
-                                                            [/* tuple */0,
+                                                           /* :: */[0,
+                                                            /* tuple */[0,
                                                              "-man-suffix",
-                                                             [/* String */4,
+                                                             /* String */[4,
                                                               function(s){return Odoc_man["man_suffix"][1]=s,0;}],
                                                              Odoc_messages["man_suffix"]],
-                                                            [/* :: */0,
-                                                             [/* tuple */0,
+                                                            /* :: */[0,
+                                                             /* tuple */[0,
                                                               "-man-section",
-                                                              [/* String */4,
+                                                              /* String */[4,
                                                                function(s){return Odoc_man["man_section"][1]=s,0;}],
                                                               Odoc_messages["man_section"]],
-                                                             0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
+                                                             /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
 
 var options=[0,default_options];
 
@@ -905,8 +940,8 @@ var
       
       return options[1]=
              List["rev"]
-              ([/* :: */0,
-                [/* tuple */0,
+              (/* :: */[0,
+                /* tuple */[0,
                  match$1[1],
                  match$1[2],
                  Pervasives["^"](match$1[3],suffix)],
@@ -914,10 +949,10 @@ var
              0;
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
-var help_options=[0,0];
+var help_options=[0,/* [] */0];
 
 var
  help_action=
@@ -934,17 +969,17 @@ var
 var
  match=
   (help_options[1]=
-   [/* :: */0,
-    [/* tuple */0,"-help",[/* Unit */0,help_action],Odoc_messages["help"]],
-    [/* :: */0,
-     [/* tuple */0,"--help",[/* Unit */0,help_action],Odoc_messages["help"]],
-     0]],
+   /* :: */[0,
+    /* tuple */[0,"-help",/* Unit */[0,help_action],Odoc_messages["help"]],
+    /* :: */[0,
+     /* tuple */[0,"--help",/* Unit */[0,help_action],Odoc_messages["help"]],
+     /* [] */0]],
    0);
 
 var
  add_option=
   function(o)
-   {if(!modified_options(0))
+   {if(!modified_options(/* () */0))
      {append_last_doc("\n *** custom generator options ***\n")}
     else
      {}
@@ -962,13 +997,13 @@ var
           var s2=match$1[1];
           
           if("unknown primitive:caml_string_equal")
-           {return [/* :: */0,o,q];}
+           {return /* :: */[0,o,q];}
           else
-           {return [/* :: */0,[/* tuple */0,s2,match$1[2],match$1[3]],iter(q)];
+           {return /* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)];
             }
           }
         else
-         {return [/* :: */0,o,0];}
+         {return /* :: */[0,o,/* [] */0];}
         };
     
     return options[1]=iter(options[1]),0;
@@ -977,14 +1012,14 @@ var
 var
  parse=
   function(param)
-   {if(modified_options(0)){append_last_doc("\n")}else{}
+   {if(modified_options(/* () */0)){append_last_doc("\n")}else{}
     
     var options$1=Pervasives["@"](options[1],help_options[1]);
     
     var
      match$1=
       Arg["parse"]
-       (Arg["align"]([0,13],options$1),
+       (Arg["align"](/* Some */[0,13],options$1),
         anonymous,
         Pervasives["^"](Odoc_messages["usage"],Odoc_messages["options_are"]));
     

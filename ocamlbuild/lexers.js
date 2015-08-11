@@ -17,23 +17,23 @@ var
             (function(s)
               {throw [0,
                       $$Error,
-                      [/* tuple */0,s,Loc["of_lexbuf"](source,lexbuf)]];
+                      /* tuple */[0,s,Loc["of_lexbuf"](source,lexbuf)]];
                },
              fmt);
     };
 
-var empty=[0,0,0];
+var empty=/* record */[0,/* [] */0,/* [] */0];
 
 var
  locate=
   function(source,lexbuf,txt)
-   {return [/* tuple */0,txt,Loc["of_lexbuf"](source,lexbuf)];};
+   {return /* tuple */[0,txt,Loc["of_lexbuf"](source,lexbuf)];};
 
 var sublex=function(lexer,s){return lexer(Lexing["from_string"](s));};
 
 var
  __ocaml_lex_tables=
-  [0,
+  /* record */[0,
    "\0\0ýÿþÿ\x01\0ÿÿ\x02\0\x07\0\b\0þÿ\f\0\x11\0\x16\0!\0þÿ\r\0\x03\0&\0+\0\x12\0\x04\x006\0;\0üÿ@\0E\0K\0P\0Z\0`\0þÿ\x17\0ÿÿ\x1b\0V\0üÿýÿf\0h\0l\0ÿÿ\x1d\0p\0ýÿþÿu\0{\0‚\0Š\0‘\0—\0üÿýÿœ\0 \0¤\0ÿÿ¦\0¯\0ýÿµ\0¶\0¾\0Å\0Ë\0Ð\0\x15\0ýÿ\x18\0-\0<\0ýÿþÿD\0'\0ýÿA\0O\0S\0ýÿþÿU\0Ú\0úÿâ\0üÿ\x1a\0ýÿë\0O\x01Ô\0û\0$\x01%\x01m\x01þÿ/\0ÿÿX\x010\x01s\x01ê\0ñ\0\x17\x01Œ\x01ü\0\x01\x01z\x01e\x01\x06\x01™\x01\x01×\x01ýÿÑ\x01æ\x01ÿ\x01©\0\n\x02\x14\x02ª\0\x1f\x024\x02ÿÿ?\x02þÿI\x02üÿýÿ4\0þÿ’\x01\r\x01´\x01\x15\x01D\x02h\x02\x1f\x01®\x01t\0ûÿ]\0\0\x1a\x03š\x01þÿýÿv\0H\0ýÿþÿ‘\0ÿÿ¦\x01þÿ)\0²\x01½\x010\0È\x01Ò\x014\0;\0J\0L\0P\0‹\0\x0f\x025\x01¤\x01Ù\x01d\0X\0j\0f\0q\0o\0t\0€\0~\0€\0¸\0v\x02\x10\x02-\x02Ý\x01”\0\0œ\0°\0¯\0º\0ð\0•\x02@\x01â\x01X\x02Á\0Ñ\0Ð\0Ð\0Í\0ä\0$\x01Û\0)\x01\x1a\x01ž\x02M\x02T\x02z\x02ô\0õ\0ü\0ú\0û\0ù\0\x0b\x01M\x01£\x02b\x02i\x02¤\x02\x19\x01/\x013\x01)\x016\x019\x01V\x01Ž\x01ª\x02m\x02n\x02®\x02¼\x02Ã\x02Õ\x02Û\x02„\x02à\x02ä\x02þÿù\x02¼\x01ÿÿ¶\x02ýÿ\x7f\x02‰\x02Â\x01þÿ",
    "ÿÿÿÿÿÿ\x02\0ÿÿÿÿÿÿ\x01\0ÿÿ\0\0\x02\0ÿÿÿÿÿÿ\x02\0\x02\0\0\0\x02\0ÿÿÿÿÿÿÿÿÿÿ\x02\0\x02\0\x04\0\x04\0ÿÿÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿ\x01\0\x03\0ÿÿÿÿÿÿÿÿÿÿÿÿ\x02\0\x02\0ÿÿÿÿ\0\0ÿÿÿÿÿÿ\x01\0\x03\0ÿÿÿÿÿÿÿÿÿÿ\x01\0\x03\0\x03\0ÿÿÿÿ\0\0\0\0ÿÿ\x01\0\0\0ÿÿÿÿÿÿ\0\0\0\0ÿÿ\x01\0\0\0ÿÿÿÿÿÿ\0\0ÿÿÿÿ\x05\0ÿÿ\x02\0ÿÿ\x05\0\x05\0\x04\0ÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿ\x04\0ÿÿ\0\0\0\0ÿÿÿÿÿÿÿÿÿÿ\0\0\0\0ÿÿ\x04\0ÿÿÿÿÿÿ\x01\0\x01\0\x01\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿ\x01\0ÿÿÿÿÿÿÿÿ\x01\0ÿÿ\0\0\x03\0\x03\0ÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\x03\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x01\0ÿÿÿÿÿÿ\x01\0\x01\0\x01\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0\0\0\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0\x01\0ÿÿ",
    "\x03\0\0\0\0\0\x05\0\0\0\x05\0\t\0ÿÿ\0\0\t\0\t\0\t\0\x10\0\0\0ÿÿÿÿ\x10\0\x10\0ÿÿÿÿ\x10\0\x17\0\0\0\x17\0\x18\0\x17\0\x17\0\x17\0\x17\0\0\0ÿÿ\0\0 \0$\0\0\0\0\0$\0$\0$\0\0\0ÿÿ*\0\0\0\0\x000\0ÿÿ0\0ÿÿ0\x004\0\0\0\0\x004\x004\x004\0\0\0ÿÿ;\0\0\0;\0@\0;\0@\0;\0@\0D\0\0\0C\0D\0F\0\0\0\0\0H\0L\0\0\0K\0L\0N\0\0\0\0\0P\0S\0\0\0Z\0\0\0ÿÿ\0\0\\0Z\0ÿÿZ\0Z\0\\0Z\0\0\0ÿÿ\0\0h\0\\0ÿÿÿÿÿÿÿÿÿÿh\0h\0ÿÿÿÿÿÿÿÿZ\0q\0\0\0q\0q\0v\0t\0{\0v\0w\0y\0y\0\0\0{\0\0\0~\0\0\0\0\0ÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0ÿÿ\0ÿÿ\0\0\0\0\0ÿÿ•\0\0\0\0\0ÿÿ\0\0™\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ©\0ÿÿÿÿ©\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¸\0ÿÿÿÿ¸\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÃ\0ÿÿÿÿÃ\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÑ\0ÿÿÿÿÑ\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÝ\0ÿÿÿÿÝ\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿé\0ÿÿÿÿé\0ë\0ë\0ë\0ë\0ÿÿÿÿò\0\0\0ò\0ó\0\0\0ÿÿ\0\0ÿÿÿÿÿÿ\0\0",
@@ -68,19 +68,19 @@ var
        {case 0:
          var k=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]+-1);
          
-         var x=[/* tuple */0,k,space_sep_strings_nl(source,lexbuf)];
+         var x=/* tuple */[0,k,space_sep_strings_nl(source,lexbuf)];
          
-         return [/* :: */0,x,ocamldep_output(source,lexbuf)];
+         return /* :: */[0,x,ocamldep_output(source,lexbuf)];
          
-        case 1:return 0;
+        case 1:return /* [] */0;
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,
+                  /* Format */[0,
+                   /* String_literal */[11,
                     "Expecting colon followed by space-separated module name list",
-                    0],
+                    /* End_of_format */0],
                    "Expecting colon followed by space-separated module name list"]);
          
         }
@@ -112,17 +112,17 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* :: */0,word,space_sep_strings_nl(source,lexbuf)];
+         return /* :: */[0,word,space_sep_strings_nl(source,lexbuf)];
          
-        case 1:Lexing["new_line"](lexbuf);return 0;
+        case 1:Lexing["new_line"](lexbuf);return /* [] */0;
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,
+                  /* Format */[0,
+                   /* String_literal */[11,
                     "Expecting space-separated strings terminated with newline",
-                    0],
+                    /* End_of_format */0],
                    "Expecting space-separated strings terminated with newline"]);
          
         }
@@ -154,15 +154,17 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* :: */0,word,space_sep_strings(source,lexbuf)];
+         return /* :: */[0,word,space_sep_strings(source,lexbuf)];
          
-        case 1:return 0;
+        case 1:return /* [] */0;
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Expecting space-separated strings",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Expecting space-separated strings",
+                    /* End_of_format */0],
                    "Expecting space-separated strings"]);
          
         }
@@ -198,21 +200,23 @@ var
         case 2:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* :: */0,word,blank_sep_strings(source,lexbuf)];
+         return /* :: */[0,word,blank_sep_strings(source,lexbuf)];
          
         case 3:exit=10;
         case 4:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Expecting blank-separated strings",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Expecting blank-separated strings",
+                    /* End_of_format */0],
                    "Expecting blank-separated strings"]);
          
         }
       }
     
-    switch(exit){case 10:return 0;}
+    switch(exit){case 10:return /* [] */0;}
     };
 
 var
@@ -241,20 +245,22 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
-         return [/* :: */0,word,0];
+         return /* :: */[0,word,/* [] */0];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* :: */0,word$1,comma_sep_strings_aux(source,lexbuf)];
+         return /* :: */[0,word$1,comma_sep_strings_aux(source,lexbuf)];
          
-        case 2:return 0;
+        case 2:return /* [] */0;
         case 3:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Expecting comma-separated strings (1)",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Expecting comma-separated strings (1)",
+                    /* End_of_format */0],
                    "Expecting comma-separated strings (1)"]);
          
         }
@@ -285,15 +291,17 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* :: */0,word,comma_sep_strings_aux(source,lexbuf)];
+         return /* :: */[0,word,comma_sep_strings_aux(source,lexbuf)];
          
-        case 1:return 0;
+        case 1:return /* [] */0;
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Expecting comma-separated strings (2)",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Expecting comma-separated strings (2)",
+                    /* End_of_format */0],
                    "Expecting comma-separated strings (2)"]);
          
         }
@@ -326,22 +334,24 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
-         return [/* :: */0,word,0];
+         return /* :: */[0,word,/* [] */0];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* :: */0,
+         return /* :: */[0,
                  word$1,
                  comma_or_blank_sep_strings_aux(source,lexbuf)];
          
-        case 2:return 0;
+        case 2:return /* [] */0;
         case 3:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Expecting (comma|blank)-separated strings (1)",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Expecting (comma|blank)-separated strings (1)",
+                    /* End_of_format */0],
                    "Expecting (comma|blank)-separated strings (1)"]);
          
         }
@@ -373,18 +383,20 @@ var
        {return error
                 (source,
                  lexbuf,
-                 [0,
-                  [11,"Expecting (comma|blank)-separated strings (2)",0],
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "Expecting (comma|blank)-separated strings (2)",
+                   /* End_of_format */0],
                   "Expecting (comma|blank)-separated strings (2)"]);
         }
       }
     else
      {if(__ocaml_lex_state$1>=2)
-       {return 0;}
+       {return /* [] */0;}
       else
        {var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
         
-        return [/* :: */0,word,comma_or_blank_sep_strings_aux(source,lexbuf)];
+        return /* :: */[0,word,comma_or_blank_sep_strings_aux(source,lexbuf)];
         }
       }
     };
@@ -411,18 +423,18 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return [/* :: */0,word,parse_environment_path_aux_w(source,lexbuf)];
+         return /* :: */[0,word,parse_environment_path_aux_w(source,lexbuf)];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [/* :: */0,
+         return /* :: */[0,
                  "",
-                 [/* :: */0,
+                 /* :: */[0,
                   word$1,
                   parse_environment_path_aux_w(source,lexbuf)]];
          
-        case 2:return 0;
+        case 2:return /* [] */0;
         }
       }
     };
@@ -449,15 +461,17 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [/* :: */0,word,parse_environment_path_aux_w(source,lexbuf)];
+         return /* :: */[0,word,parse_environment_path_aux_w(source,lexbuf)];
          
-        case 1:return 0;
+        case 1:return /* [] */0;
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Impossible: expecting colon-separated strings",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Impossible: expecting colon-separated strings",
+                    /* End_of_format */0],
                    "Impossible: expecting colon-separated strings"]);
          
         }
@@ -486,16 +500,16 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return [/* :: */0,word,parse_environment_path_aux(source,lexbuf)];
+         return /* :: */[0,word,parse_environment_path_aux(source,lexbuf)];
          
         case 1:
          var word$1=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [/* :: */0,
+         return /* :: */[0,
                  "",
-                 [/* :: */0,word$1,parse_environment_path_aux(source,lexbuf)]];
+                 /* :: */[0,word$1,parse_environment_path_aux(source,lexbuf)]];
          
-        case 2:return 0;
+        case 2:return /* [] */0;
         }
       }
     };
@@ -522,15 +536,17 @@ var
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [/* :: */0,word,parse_environment_path_aux(source,lexbuf)];
+         return /* :: */[0,word,parse_environment_path_aux(source,lexbuf)];
          
-        case 1:return 0;
+        case 1:return /* [] */0;
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Impossible: expecting colon-separated strings",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Impossible: expecting colon-separated strings",
+                    /* End_of_format */0],
                    "Impossible: expecting colon-separated strings"]);
          
         }
@@ -579,8 +595,10 @@ var
              error
               (source,
                lexbuf,
-               [0,
-                [11,"Invalid globbing pattern ",[3,0,0]],
+               /* Format */[0,
+                /* String_literal */[11,
+                 "Invalid globbing pattern ",
+                 /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
                 "Invalid globbing pattern %S"],
                k,
                Printexc["to_string"](exn));
@@ -594,20 +612,24 @@ var
          
          var rest=conf_lines(dir,source,lexbuf);
          
-         return [/* :: */0,[/* tuple */0,bexpr,v2],rest];
+         return /* :: */[0,/* tuple */[0,bexpr,v2],rest];
          
         case 5:
          return error
                  (source,
                   lexbuf,
-                  [0,[11,"Invalid line syntax",0],"Invalid line syntax"]);
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Invalid line syntax",
+                    /* End_of_format */0],
+                   "Invalid line syntax"]);
          
         }
       }
     
     switch(exit)
      {case 42:Lexing["new_line"](lexbuf);return conf_lines(dir,source,lexbuf);
-      case 43:return 0;
+      case 43:return /* [] */0;
       }
     };
 
@@ -635,25 +657,25 @@ var
        {case 0:
          var tag=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
-         return [/* record */0,
+         return /* record */[0,
                  x[1],
-                 [/* :: */0,locate(source,lexbuf,tag),x[2]]];
+                 /* :: */[0,locate(source,lexbuf,tag),x[2]]];
          
         case 1:
          var tag$1=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
-         return [/* record */0,
-                 [/* :: */0,locate(source,lexbuf,tag$1),x[1]],
+         return /* record */[0,
+                 /* :: */[0,locate(source,lexbuf,tag$1),x[1]],
                  x[2]];
          
         case 2:
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,
+                  /* Format */[0,
+                   /* String_literal */[11,
                     "Invalid tag modifier only '+ or '-' are allowed as prefix for tag",
-                    0],
+                    /* End_of_format */0],
                    "Invalid tag modifier only '+ or '-' are allowed as prefix for tag"]);
          
         }
@@ -696,8 +718,10 @@ var
          return error
                  (source,
                   lexbuf,
-                  [0,
-                   [11,"Only ',' separated tags are alllowed",0],
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Only ',' separated tags are alllowed",
+                    /* End_of_format */0],
                    "Only ',' separated tags are alllowed"]);
          
         }
@@ -728,15 +752,15 @@ var
        {case 0:
          var prefix=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
-         return [/* :: */0,
-                 [/* `Word */0,970337770,prefix],
+         return /* :: */[0,
+                 /* `Word */[0,970337770,prefix],
                  path_scheme(patt_allowed,source,lexbuf)];
          
         case 1:
          var $$var=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+2,lexbuf[6]+-1);
          
-         return [/* :: */0,
-                 [/* `Var */0,4298439,[/* tuple */0,$$var,0]],
+         return /* :: */[0,
+                 /* `Var */[0,4298439,/* tuple */[0,$$var,/* True */0]],
                  path_scheme(patt_allowed,source,lexbuf)];
          
         case 2:
@@ -749,38 +773,52 @@ var
             patt$1=
              My_std["String"][14]($$unescape(Lexing["from_string"](patt)));
            
-           return [/* :: */0,
-                   [/* `Var */0,
+           return /* :: */[0,
+                   /* `Var */[0,
                     4298439,
-                    [/* tuple */0,$$var$1,Glob["parse"](0,patt$1)]],
+                    /* tuple */[0,$$var$1,Glob["parse"](/* None */0,patt$1)]],
                    path_scheme(patt_allowed,source,lexbuf)];
            }
          else
           {return error
                    (source,
                     lexbuf,
-                    [0,
-                     [11,
+                    /* Format */[0,
+                     /* String_literal */[11,
                       "Patterns are not allowed in this pathname (",
-                      [12,
+                      /* Char_literal */[12,
                        37,
-                       [12,40,[2,0,[12,58,[2,0,[11,") only in ~prod)",0]]]]]]],
+                       /* Char_literal */[12,
+                        40,
+                        /* String */[2,
+                         /* No_padding */0,
+                         /* Char_literal */[12,
+                          58,
+                          /* String */[2,
+                           /* No_padding */0,
+                           /* String_literal */[11,
+                            ") only in ~prod)",
+                            /* End_of_format */0]]]]]]],
                      "Patterns are not allowed in this pathname (%%(%s:%s) only in ~prod)"],
                     $$var$1,
                     patt);
            }
          
         case 3:
-         return [/* :: */0,
-                 [0,4298439,[0,"",0]],
+         return /* :: */[0,
+                 /* `Var */[0,4298439,/* tuple */[0,"",/* True */0]],
                  path_scheme(patt_allowed,source,lexbuf)];
          
-        case 4:return 0;
+        case 4:return /* [] */0;
         case 5:
          return error
                  (source,
                   lexbuf,
-                  [0,[11,"Bad pathanme scheme",0],"Bad pathanme scheme"]);
+                  /* Format */[0,
+                   /* String_literal */[11,
+                    "Bad pathanme scheme",
+                    /* End_of_format */0],
+                   "Bad pathanme scheme"]);
          
         }
       }
@@ -804,14 +842,14 @@ var
        {case 0:
          var c=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]+1);
          
-         return [/* :: */0,c,$$unescape(lexbuf)];
+         return /* :: */[0,c,$$unescape(lexbuf)];
          
         case 1:
          var c$1=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]);
          
-         return [/* :: */0,c$1,$$unescape(lexbuf)];
+         return /* :: */[0,c$1,$$unescape(lexbuf)];
          
-        case 2:return 0;
+        case 2:return /* [] */0;
         }
       }
     };
@@ -840,7 +878,11 @@ var
        {return error
                 (source,
                  lexbuf,
-                 [0,[11,"Bad ocamlfind query",0],"Bad ocamlfind query"]);
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "Bad ocamlfind query",
+                   /* End_of_format */0],
+                  "Bad ocamlfind query"]);
         }
       }
     else
@@ -856,7 +898,7 @@ var
       
       var l=Lexing["sub_lexeme"](lexbuf,lexbuf[10][10],lexbuf[10][11]);
       
-      return [/* tuple */0,n,d,v,a,lo,l];
+      return /* tuple */[0,n,d,v,a,lo,l];
       }
     };
 
@@ -885,8 +927,10 @@ var
        {return error
                 (source,
                  lexbuf,
-                 [0,
-                  [11,"Bad input for trim_blanks",0],
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "Bad input for trim_blanks",
+                   /* End_of_format */0],
                   "Bad input for trim_blanks"]);
         }
       }
@@ -917,8 +961,10 @@ var
        {return error
                 (source,
                  lexbuf,
-                 [0,
-                  [11,"Not a valid parametrized tag",0],
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "Not a valid parametrized tag",
+                   /* End_of_format */0],
                   "Not a valid parametrized tag"]);
         }
       }
@@ -927,7 +973,7 @@ var
       
       var param=Lexing["sub_lexeme_opt"](lexbuf,lexbuf[10][2],lexbuf[10][1]);
       
-      return [/* tuple */0,name,param];
+      return /* tuple */[0,name,param];
       }
     };
 
@@ -950,7 +996,7 @@ var
      {switch(__ocaml_lex_state$1[0])
        {case 0:return count_lines(lb,lexbuf);
         case 1:Lexing["new_line"](lb);return count_lines(lb,lexbuf);
-        case 2:return 0;
+        case 2:return /* () */0;
         }
       }
     };

@@ -168,9 +168,10 @@ var
 var
  stdout_isatty=
   function(param)
-   {try
-     {var $js="unknown primitive:caml_string_notequal";}
-    catch(exn){if(exn=Not_found){var $js=/* true */1;}else{throw exn;}}
+   {var $js;
+    try
+     {$js="unknown primitive:caml_string_notequal";}
+    catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
     return Unix["isatty"](Unix["stdout"])&&$js;
     };
 

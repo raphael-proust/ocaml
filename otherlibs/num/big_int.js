@@ -104,7 +104,7 @@ var
         
         "unknown primitive:blit_nat";
         "unknown primitive:set_digit_nat";
-        
+        "unknown primitive:incr_nat";
         return /* record */[0,-1,copy_bi];
         }
       else
@@ -112,7 +112,7 @@ var
         
         var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
         
-        
+        "unknown primitive:decr_nat";
         return /* record */[0,
                 Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:1,
                 copy_bi$1];
@@ -137,7 +137,7 @@ var
         
         "unknown primitive:blit_nat";
         "unknown primitive:set_digit_nat";
-        
+        "unknown primitive:incr_nat";
         return /* record */[0,1,copy_bi];
         }
       else
@@ -148,7 +148,7 @@ var
       
       var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
       
-      
+      "unknown primitive:decr_nat";
       return /* record */[0,
               Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:-1,
               copy_bi$1];
@@ -170,7 +170,7 @@ var
         
         "unknown primitive:blit_nat";
         "unknown primitive:set_digit_nat";
-        
+        "unknown primitive:add_nat";
         var $js=res;
         }
       else
@@ -178,7 +178,7 @@ var
         
         "unknown primitive:blit_nat";
         "unknown primitive:set_digit_nat";
-        
+        "unknown primitive:add_nat";
         var $js=res$1;
         }
       return /* record */[0,bi1[1],$js];
@@ -190,12 +190,12 @@ var
        {if(match$1!=1)
          {var res$2=Nat["copy_nat"](bi2[2],0,size_bi2);
           
-          return /* record */[0,bi2[1],(0,res$2)];
+          return /* record */[0,bi2[1],("unknown primitive:sub_nat",res$2)];
           }
         else
          {var res$3=Nat["copy_nat"](bi1[2],0,size_bi1);
           
-          return /* record */[0,bi1[1],(0,res$3)];
+          return /* record */[0,bi1[1],("unknown primitive:sub_nat",res$3)];
           }
         }
       else
@@ -209,7 +209,7 @@ var
    {var res="unknown primitive:create_nat";
     
     if(i=Int_misc["monster_int"])
-     {"unknown primitive:set_digit_nat",0}
+     {"unknown primitive:set_digit_nat","unknown primitive:incr_nat"}
     else
      {"unknown primitive:set_digit_nat"}
     
@@ -234,13 +234,13 @@ var
       
       "unknown primitive:blit_nat";
       "unknown primitive:set_digit_nat";
-      
+      "unknown primitive:mult_digit_nat";
       return /* record */[0,-sign_big_int(bi),res];
       }
     else
      {var res$1=Nat["make_nat"](size_res);
       
-      
+      "unknown primitive:mult_digit_nat";
       return /* record */[0,Int_misc["sign_int"](i)*sign_big_int(bi),res$1];
       }
     };
@@ -256,7 +256,11 @@ var
     
     var res=Nat["make_nat"](size_res);
     
-    return /* record */[0,bi1[1]*bi2[1],size_bi2>size_bi1?(0,res):(0,res)];
+    return /* record */[0,
+            bi1[1]*bi2[1],
+            size_bi2>size_bi1
+             ?("unknown primitive:mult_nat",res)
+             :("unknown primitive:mult_nat",res)];
     };
 
 var
@@ -298,8 +302,10 @@ var
             return /* tuple */[0,
                     /* record */[0,
                      -bi2[1],
-                     ("unknown primitive:set_digit_nat",0,q)],
-                    /* record */[0,1,(0,new_r)]];
+                     ("unknown primitive:set_digit_nat",
+                      "unknown primitive:incr_nat",
+                      q)],
+                    /* record */[0,1,("unknown primitive:sub_nat",new_r)]];
             }
           else
            {if(bi1_negatif){"unknown primitive:set_digit_nat"}else{}
@@ -380,7 +386,8 @@ var
   function(bi)
    {var match="unknown primitive:compare_nat";
     
-    return (num_digits_big_int(bi)=1)&&(match!=-1?match!=0?0:bi[1]=-1:1);
+    return (num_digits_big_int(bi)=1)&&
+           (match!=-1?match!=0?/* false */0:bi[1]=-1:/* true */1);
     };
 
 var
@@ -470,7 +477,7 @@ var
      {return big_int_of_nativeint("unknown primitive:nativeint_of_int64");}
     else
      {if(i=0)
-       {var match=[0,0,0];}
+       {var match=/* tuple */[0,0,0];}
       else
        {if(i>0)
          {var match=/* tuple */[0,1,i];}
@@ -700,15 +707,19 @@ var
             
             var succ_len2=1+len2;
             
-            
+            "unknown primitive:square_nat";
             if((n&1<<i)>0)
-             {"unknown primitive:set_to_zero_nat",0}
+             {"unknown primitive:set_to_zero_nat",
+              "unknown primitive:mult_digit_nat"}
             else
              {"unknown primitive:blit_nat"}
             
             "unknown primitive:set_to_zero_nat"}
           
-          if(rem>0){return res2;}else{return res;}
+          if(rem>0)
+           {"unknown primitive:mult_digit_nat";return res2;}
+          else
+           {return res;}
           }
         }
       }
@@ -756,11 +767,11 @@ var
           var len2=Pervasives["min"](res_len,2*len);
           
           "unknown primitive:set_to_zero_nat";
-          
+          "unknown primitive:square_nat";
           if((n&1<<i)>0)
            {var lenp=Pervasives["min"](res_len,len2+bi_len);
             
-            "unknown primitive:set_to_zero_nat",0}
+            "unknown primitive:set_to_zero_nat","unknown primitive:mult_nat"}
           else
            {"unknown primitive:blit_nat"}
           }
@@ -847,7 +858,9 @@ var
         
         var res=Nat["make_nat"](new_len);
         
-        
+        len_bi>len_nat
+         ?"unknown primitive:mult_nat"
+         :"unknown primitive:mult_nat";
         if(Nat["is_zero_nat"](res,0,new_len))
          {return zero_big_int;}
         else
@@ -917,7 +930,7 @@ var
       
       var res=Nat["make_nat"](len_res);
       
-      
+      "unknown primitive:square_nat";
       return /* record */[0,1,res];
       }
     };
@@ -932,21 +945,21 @@ var
        round_rec=
         function(l$1)
          {if(l$1<off_set)
-           {return 1;}
+           {return /* true */1;}
           else
            {var current_char=s[l$1];
             
             if(current_char=57)
              {s[l$1]=48,0;return round_rec(-1+l$1);}
             else
-             {s[l$1]=Char["chr"](1+current_char),0;return 0;}
+             {s[l$1]=Char["chr"](1+current_char),0;return /* false */0;}
             }
           };
       
       return round_rec(-1+l);
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -1095,7 +1108,7 @@ var
         var res=Nat["make_nat"](size_res);
         
         "unknown primitive:set_digit_nat_native";
-        
+        "unknown primitive:decr_nat";
         return /* record */[0,1,res];
         }
       }
@@ -1150,7 +1163,7 @@ var
                      carry_incr(i+1);
               };
           
-          if(carry_incr(0)){}else{}
+          if(carry_incr(0)){"unknown primitive:incr_nat"}else{}
           }
         else
          {}

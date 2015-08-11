@@ -11,7 +11,7 @@ var Hashtbl=require("Hashtbl");
 var Config=require("Config");
 
 
-var source_extensions=[0,".ml",0];
+var source_extensions=/* :: */[0,".ml",/* [] */0];
 
 var
  source_of_module=
@@ -28,7 +28,8 @@ var
           
           try
            {return "unknown primitive:caml_string_equal"&&(m[len$prime]=46);}
-          catch(exn){if(exn[1]=Invalid_argument){return 0;}else{throw exn;}}
+          catch(exn)
+           {if(exn[1]=Invalid_argument){return /* false */0;}else{throw exn;}}
           };
       
       var
@@ -86,9 +87,9 @@ var buffer_max_count=[0,10];
 
 var cache_size=30;
 
-var buffer_list=[0,0];
+var buffer_list=[0,/* [] */0];
 
-var flush_buffer_list=function(param){return buffer_list[1]=0,0;};
+var flush_buffer_list=function(param){return buffer_list[1]=/* [] */0,0;};
 
 var
  get_buffer=
@@ -104,12 +105,12 @@ var
           Pervasives["really_input_string"]
            (inchan,Pervasives["in_channel_length"](inchan));
         
-        var buffer=[/* tuple */0,content,[0,0]];
+        var buffer=/* tuple */[0,content,[0,/* [] */0]];
         
         buffer_list[1]=
         Primitives["list_truncate"]
          (buffer_max_count[1],
-          [/* :: */0,[/* tuple */0,mdle,buffer],buffer_list[1]]),
+          /* :: */[0,/* tuple */[0,mdle,buffer],buffer_list[1]]),
         0;
         return buffer;
         }
@@ -138,16 +139,16 @@ var
           var lin=a[2];
           
           if("unknown primitive:caml_lessthan")
-           {return [/* :: */0,pair,l$prime];}
+           {return /* :: */[0,pair,l$prime];}
           else
            {if("unknown primitive:caml_equal")
              {return l$prime;}
             else
-             {return [/* :: */0,a,new_list(l$prime[2])];}
+             {return /* :: */[0,a,new_list(l$prime[2])];}
             }
           }
         else
-         {return [/* :: */0,[/* tuple */0,position,line],0];}
+         {return /* :: */[0,/* tuple */[0,position,line],/* [] */0];}
         };
     
     var buffer_cache=buffer[2];
@@ -177,7 +178,7 @@ var
 var
  next_line=
   function(buffer,param)
-   {return [/* tuple */0,next_linefeed(buffer,param[1])+1,param[2]+1];};
+   {return /* tuple */[0,next_linefeed(buffer,param[1])+1,param[2]+1];};
 
 var
  line_of_pos=
@@ -194,7 +195,7 @@ var
          {if(position<0)
            {throw Primitives["Out_of_range"];}
           else
-           {return [0,0,1];}
+           {return /* tuple */[0,0,1];}
           }
         };
     
@@ -224,7 +225,11 @@ var
           if(pair[2]>line){return find(param[2]);}else{return pair;}
           }
         else
-         {if(line<=0){throw Primitives["Out_of_range"];}else{return [0,0,1];}}
+         {if(line<=0)
+           {throw Primitives["Out_of_range"];}
+          else
+           {return /* tuple */[0,0,1];}
+          }
         };
     
     var
@@ -253,7 +258,7 @@ var
     
     var start=point_of_coord(buffer,line_number,1);
     
-    return [/* tuple */0,start,start+(pos[4]-pos[3])];
+    return /* tuple */[0,start,start+(pos[4]-pos[3])];
     };
 
 module["exports"]=

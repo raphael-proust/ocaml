@@ -28,7 +28,8 @@ var Exit_silently_with_code="unknown primitive:caml_set_oo_id";
 
 var
  ignore_good=
-  function(param){switch(param){case 0:return 0;case 1:throw param[1];}};
+  function(param)
+   {switch(param){case 0:return /* () */0;case 1:throw param[1];}};
 
 var
  good=
@@ -38,7 +39,7 @@ var
 var
  wrap=
   function(f,x)
-   {try {return [/* Good */0,f(x)];}catch(e){return [/* Bad */1,e];}};
+   {try {return /* Good */[0,f(x)];}catch(e){return /* Bad */[1,e];}};
 
 var Outcome=[0,ignore_good,good,wrap];
 
@@ -48,10 +49,20 @@ var
    {if(param)
      {return Format["fprintf"]
               (ppf,
-               [0,
-                [18,
-                 [1,[0,[11,"<2>",0],"<2>"]],
-                 [11,"Some",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+               /* Format */[0,
+                /* Formatting_gen */[18,
+                 /* Open_box */[1,
+                  /* Format */[0,
+                   /* String_literal */[11,"<2>",/* End_of_format */0],
+                   "<2>"]],
+                 /* String_literal */[11,
+                  "Some",
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@ ",1,0],
+                   /* Alpha */[15,
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* End_of_format */0]]]]],
                 "@[<2>Some@ %a@]"],
                elt,
                param[1]);
@@ -69,7 +80,7 @@ var
     
     return Format["kfprintf"]
             (function(f$1)
-              {Format["pp_print_flush"](f$1,0);
+              {Format["pp_print_flush"](f$1,/* () */0);
                return g(Buffer["contents"](buff));
                },
              f,
@@ -118,12 +129,22 @@ var
          match=
           Format["fprintf"]
            (f,
-            [0,
-             [18,
-              [1,[0,[11,"<hv0>",0],"<hv0>"]],
-              [18,
-               [1,[0,[11,"<hv2>",0],"<hv2>"]],
-               [11,"{.",[17,[0,"@ ",1,0],0]]]],
+            /* Format */[0,
+             /* Formatting_gen */[18,
+              /* Open_box */[1,
+               /* Format */[0,
+                /* String_literal */[11,"<hv0>",/* End_of_format */0],
+                "<hv0>"]],
+              /* Formatting_gen */[18,
+               /* Open_box */[1,
+                /* Format */[0,
+                 /* String_literal */[11,"<hv2>",/* End_of_format */0],
+                 "<hv2>"]],
+               /* String_literal */[11,
+                "{.",
+                /* Formatting_lit */[17,
+                 /* Break */[0,"@ ",1,0],
+                 /* End_of_format */0]]]],
              "@[<hv0>@[<hv2>{.@ "]);
         
         var
@@ -131,18 +152,37 @@ var
           fold
            (function(elt,first)
              {if(!first)
-               {Format["fprintf"](f,[0,[12,44,[17,[0,"@ ",1,0],0]],",@ "])}
+               {Format["fprintf"]
+                 (f,
+                  /* Format */[0,
+                   /* Char_literal */[12,
+                    44,
+                    /* Formatting_lit */[17,
+                     /* Break */[0,"@ ",1,0],
+                     /* End_of_format */0]],
+                   ",@ "])}
               else
                {}
               
               M[2](f,elt);
-              return 0;
+              return /* false */0;
               },
             s,
-            1);
+            /* true */1);
         
         return Format["fprintf"]
-                (f,[0,[17,0,[17,[0,"@ ",1,0],[11,".}",[17,0,0]]]],"@]@ .}@]"]);
+                (f,
+                 /* Format */[0,
+                  /* Formatting_lit */[17,
+                   /* Close_box */0,
+                   /* Formatting_lit */[17,
+                    /* Break */[0,"@ ",1,0],
+                    /* String_literal */[11,
+                     ".}",
+                     /* Formatting_lit */[17,
+                      /* Close_box */0,
+                      /* End_of_format */0]]]],
+                  "@]@ .}@]"]);
         };
     
     return [0,
@@ -192,25 +232,48 @@ var
   function(pp_elt,f,ls)
    {Format["fprintf"]
      (f,
-      [0,
-       [18,[1,[0,[11,"<2>",0],"<2>"]],[12,91,[17,[0,"@ ",1,0],0]]],
+      /* Format */[0,
+       /* Formatting_gen */[18,
+        /* Open_box */[1,
+         /* Format */[0,
+          /* String_literal */[11,"<2>",/* End_of_format */0],
+          "<2>"]],
+        /* Char_literal */[12,
+         91,
+         /* Formatting_lit */[17,/* Break */[0,"@ ",1,0],/* End_of_format */0]]],
        "@[<2>[@ "]);
     var
      match=
       fold_left
        (function(first,elt)
          {if(!first)
-           {Format["fprintf"](f,[0,[12,59,[17,[0,"@ ",1,0],0]],";@ "])}
+           {Format["fprintf"]
+             (f,
+              /* Format */[0,
+               /* Char_literal */[12,
+                59,
+                /* Formatting_lit */[17,
+                 /* Break */[0,"@ ",1,0],
+                 /* End_of_format */0]],
+               ";@ "])}
           else
            {}
           
           pp_elt(f,elt);
-          return 0;
+          return /* false */0;
           },
-        1,
+        /* true */1,
         ls);
     
-    return Format["fprintf"](f,[0,[17,[0,"@ ",1,0],[12,93,[17,0,0]]],"@ ]@]"]);
+    return Format["fprintf"]
+            (f,
+             /* Format */[0,
+              /* Formatting_lit */[17,
+               /* Break */[0,"@ ",1,0],
+               /* Char_literal */[12,
+                93,
+                /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0]]],
+              "@ ]@]"]);
     };
 
 var
@@ -220,10 +283,10 @@ var
             (function(x,acc)
               {var match=f(x);
                
-               if(match){return [/* :: */0,match[1],acc];}else{return acc;}
+               if(match){return /* :: */[0,match[1],acc];}else{return acc;}
                },
              xs,
-             0);
+             /* [] */0);
     };
 
 var
@@ -237,13 +300,15 @@ var
       if(mem(x,acc))
        {return rev_append_uniq(acc,xs);}
       else
-       {return rev_append_uniq([/* :: */0,x,acc],xs);}
+       {return rev_append_uniq(/* :: */[0,x,acc],xs);}
       }
     else
      {return acc;}
     };
 
-var union=function(a,b){return rev(rev_append_uniq(rev_append_uniq(0,a),b));};
+var
+ union=
+  function(a,b){return rev(rev_append_uniq(rev_append_uniq(/* [] */0,a),b));};
 
 var
  ordered_unique=
@@ -252,7 +317,7 @@ var
      compare=
       function(prim,prim$1){return "unknown primitive:caml_compare";};
     
-    var print$1=function(param,param$1){return 0;};
+    var print$1=function(param,param$1){return /* () */0;};
     
     var Set$1=Set[1]([0,compare,print$1]);
     
@@ -265,11 +330,11 @@ var
           var set=param[1];
           
           if(Set$1[3](el,set))
-           {return [/* tuple */0,set,acc];}
+           {return /* tuple */[0,set,acc];}
           else
-           {return [/* tuple */0,Set$1[4](el,set),[/* :: */0,el,acc]];}
+           {return /* tuple */[0,Set$1[4](el,set),/* :: */[0,el,acc]];}
           },
-        [/* tuple */0,Set$1[1],0],
+        /* tuple */[0,Set$1[1],/* [] */0],
         lst);
     
     return List["rev"](match[2]);
@@ -334,7 +399,16 @@ var sub=include$1[4];
 
 var index_from=include$1[16];
 
-var print$1=function(f,s){return Format["fprintf"](f,[0,[3,0,0],"%S"],s);};
+var
+ print$1=
+  function(f,s)
+   {return Format["fprintf"]
+            (f,
+             /* Format */[0,
+              /* Caml_string */[3,/* No_padding */0,/* End_of_format */0],
+              "%S"],
+             s);
+    };
 
 var
  chomp=
@@ -344,9 +418,12 @@ var
       function(param)
        {var exit;
         
-        if(param!=10){if(param!=13){return 0;}else{exit=102;}}else{exit=102;}
+        if(param!=10)
+         {if(param!=13){return /* false */0;}else{exit=102;}}
+        else
+         {exit=102;}
         
-        switch(exit){case 102:return 1;}
+        switch(exit){case 102:return /* true */1;}
         };
     
     var
@@ -379,7 +456,7 @@ var
    {if(len>0)
      {return (s1[p1]=s2[p2])&&eq_sub_strings(s1,p1+1,s2,p2+1,len-1);}
     else
-     {return 1;}
+     {return /* true */1;}
     };
 
 var
@@ -393,15 +470,15 @@ var
      {var pos=index_from(s1,p1,s2[0]);
       
       if(ls1-pos<ls2)
-       {return 0;}
+       {return /* None */0;}
       else
        {if(eq_sub_strings(s1,pos,s2,0,ls2))
-         {return [/* Some */0,pos];}
+         {return /* Some */[0,pos];}
         else
          {return contains_string(s1,pos+1,s2);}
         }
       }
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -497,7 +574,11 @@ var
     var
      go=
       function(pos)
-       {if(pos>=sl){return 0;}else{return [/* :: */0,s[pos],go(pos+1)];}};
+       {if(pos>=sl)
+         {return /* [] */0;}
+        else
+         {return /* :: */[0,s[pos],go(pos+1)];}
+        };
     
     return go(0);
     };
@@ -548,7 +629,7 @@ var
 
 var StringSet=Set[1]([0,$$String[25],$$String[26]]);
 
-var cache=Hashtbl["create"](0,103);
+var cache=Hashtbl["create"](/* None */0,103);
 
 var
  sys_readdir=
@@ -580,7 +661,7 @@ var
 
 var
  match=
-  [/* tuple */0,sys_readdir,reset_readdir_cache,reset_readdir_cache_for];
+  /* tuple */[0,sys_readdir,reset_readdir_cache,reset_readdir_cache_for];
 
 var reset_readdir_cache_for$1=match[3];
 
@@ -600,7 +681,7 @@ var
     switch(match$1)
      {case 0:
        if("unknown primitive:caml_string_equal")
-        {return 1;}
+        {return /* true */1;}
        else
         {try
           {$$Array["iter"]
@@ -611,12 +692,13 @@ var
                 {return 0;}
                },
              match$1[1]);
-           return 0;
+           return /* false */0;
            }
-         catch(exn){if(exn=Pervasives["Exit"]){return 1;}else{throw exn;}}
+         catch(exn)
+          {if(exn=Pervasives["Exit"]){return /* true */1;}else{throw exn;}}
          }
        
-      case 1:return 0;
+      case 1:return /* false */0;
       }
     };
 
@@ -694,10 +776,14 @@ var
         else
          {return Pervasives["failwith"]
                   (Format["sprintf"]
-                    ([0,
-                      [11,
+                    (/* Format */[0,
+                      /* String_literal */[11,
                        "This command must have ",
-                       [3,0,[11," in his environment",0]]],
+                       /* Caml_string */[3,
+                        /* No_padding */0,
+                        /* String_literal */[11,
+                         " in his environment",
+                         /* End_of_format */0]]],
                       "This command must have %S in his environment"],
                      $$var));
           }
@@ -710,7 +796,7 @@ var
 var
  with_input_file=
   function($staropt$star,x,f)
-   {if($staropt$star){var bin=$staropt$star[1];}else{var bin=0;}
+   {if($staropt$star){var bin=$staropt$star[1];}else{var bin=/* false */0;}
     
     var ic=(bin?Pervasives["open_in_bin"]:Pervasives["open_in"])(x);
     
@@ -722,7 +808,7 @@ var
 var
  with_output_file=
   function($staropt$star,x,f)
-   {if($staropt$star){var bin=$staropt$star[1];}else{var bin=0;}
+   {if($staropt$star){var bin=$staropt$star[1];}else{var bin=/* false */0;}
     
     reset_readdir_cache_for$1(Filename["dirname"](x));
     var oc=(bin?Pervasives["open_out_bin"]:Pervasives["open_out"])(x);
@@ -736,7 +822,7 @@ var
  read_file=
   function(x)
    {return with_input_file
-            ([0,1],
+            (/* Some */[0,/* true */1],
              x,
              function(ic)
               {var len=Pervasives["in_channel_length"](ic);
@@ -764,12 +850,12 @@ var
        {var len=Pervasives["input"](ic,buf,0,m$2);
         
         if(len>0)
-         {Pervasives["output"](oc,buf,0,len);return loop(0);}
+         {Pervasives["output"](oc,buf,0,len);return loop(/* () */0);}
         else
          {return 0;}
         };
     
-    return loop(0);
+    return loop(/* () */0);
     };
 
 var
@@ -777,11 +863,13 @@ var
   function(src,dest)
    {reset_readdir_cache_for$1(Filename["dirname"](dest));
     return with_input_file
-            ([0,1],
+            (/* Some */[0,/* true */1],
              src,
              function(ic)
               {return with_output_file
-                       ([0,1],dest,function(oc){return copy_chan(ic,oc);});
+                       (/* Some */[0,/* true */1],
+                        dest,
+                        function(oc){return copy_chan(ic,oc);});
                });
     };
 
@@ -814,7 +902,7 @@ var include$2=Digest;
 
 var file=include$2[6];
 
-var digest_cache=Hashtbl["create"](0,103);
+var digest_cache=Hashtbl["create"](/* None */0,103);
 
 var
  reset_digest_cache=
@@ -856,7 +944,8 @@ var
 
 var
  reset_filesys_cache=
-  function(param){Digest[11](0);return reset_readdir_cache$1(0);};
+  function(param)
+   {Digest[11](/* () */0);return reset_readdir_cache$1(/* () */0);};
 
 var
  reset_filesys_cache_for_file=
@@ -875,7 +964,7 @@ var
 var
  with_temp_file=
   function(pre,suf,fct)
-   {var tmp=Filename["temp_file"](0,pre,suf);
+   {var tmp=Filename["temp_file"](/* None */0,pre,suf);
     
     try
      {var res=fct(tmp);"unknown primitive:caml_sys_remove";return res;}
@@ -885,7 +974,7 @@ var
 var
  memo=
   function(f)
-   {var cache$1=Hashtbl["create"](0,103);
+   {var cache$1=Hashtbl["create"](/* None */0,103);
     
     return function(x)
      {try
@@ -902,16 +991,16 @@ var
 var
  memo2=
   function(f)
-   {var cache$1=Hashtbl["create"](0,103);
+   {var cache$1=Hashtbl["create"](/* None */0,103);
     
     return function(x,y)
      {try
-       {return Hashtbl["find"](cache$1,[/* tuple */0,x,y]);}
+       {return Hashtbl["find"](cache$1,/* tuple */[0,x,y]);}
       catch(exn)
        {if(exn=Not_found)
          {var res=f(x,y);
           
-          Hashtbl["add"](cache$1,[/* tuple */0,x,y],res);
+          Hashtbl["add"](cache$1,/* tuple */[0,x,y],res);
           return res;
           }
         else
@@ -923,16 +1012,16 @@ var
 var
  memo3=
   function(f)
-   {var cache$1=Hashtbl["create"](0,103);
+   {var cache$1=Hashtbl["create"](/* None */0,103);
     
     return function(x,y,z)
      {try
-       {return Hashtbl["find"](cache$1,[/* tuple */0,x,y,z]);}
+       {return Hashtbl["find"](cache$1,/* tuple */[0,x,y,z]);}
       catch(exn)
        {if(exn=Not_found)
          {var res=f(x,y,z);
           
-          Hashtbl["add"](cache$1,[/* tuple */0,x,y,z],res);
+          Hashtbl["add"](cache$1,/* tuple */[0,x,y,z],res);
           return res;
           }
         else
@@ -946,11 +1035,11 @@ var
   function(fname,lexbuf)
    {var init=lexbuf[11];
     
-    lexbuf[11]=[/* record */0,fname,init[2],init[3],init[4]],0;
+    lexbuf[11]=/* record */[0,fname,init[2],init[3],init[4]],0;
     var init$1=lexbuf[12];
     
-    lexbuf[12]=[/* record */0,fname,init$1[2],init$1[3],init$1[4]],0;
-    return 0;
+    lexbuf[12]=/* record */[0,fname,init$1[2],init$1[3],init$1[4]],0;
+    return /* () */0;
     };
 
 var

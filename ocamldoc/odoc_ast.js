@@ -35,11 +35,11 @@ var
      {switch(param){case 0:exit=379;}}
     else
      {switch(param[0])
-       {case 0:return [/* Some */0,Odoc_name["from_ident"](param[1])];
+       {case 0:return /* Some */[0,Odoc_name["from_ident"](param[1])];
         case 3:exit=379;
-        default:return 0;}}
+        default:return /* None */0;}}
     
-    switch(exit){case 379:return 0;}
+    switch(exit){case 379:return /* None */0;}
     };
 
 var
@@ -55,24 +55,24 @@ var
                   
                   if(match)
                    {return Hashtbl["add"]
-                            (table_values,match[1],[/* tuple */0,pat,param[2]]);
+                            (table_values,match[1],/* tuple */[0,pat,param[2]]);
                     }
                   else
-                   {return 0;}
+                   {return /* () */0;}
                   },
                 tt[2]);
        
       case 2:
        return Hashtbl["add"]
-               (table,[/* P */7,Odoc_name["from_ident"](tt[1][1])],tt);
+               (table,/* P */[7,Odoc_name["from_ident"](tt[1][1])],tt);
        
       case 3:
        return List["iter"]
                (function(td)
                  {return Hashtbl["add"]
                           (table,
-                           [/* T */2,Odoc_name["from_ident"](td[1])],
-                           [/* Tstr_type */3,[/* :: */0,td,0]]);
+                           /* T */[2,Odoc_name["from_ident"](td[1])],
+                           /* Tstr_type */[3,/* :: */[0,td,/* [] */0]]);
                   },
                 tt[1]);
        
@@ -81,32 +81,32 @@ var
        
        if(match)
         {return Hashtbl["add"]
-                 (table,[/* X */5,Odoc_name["from_ident"](match[1][1])],tt);
+                 (table,/* X */[5,Odoc_name["from_ident"](match[1][1])],tt);
          }
        else
         {throw [0,Assert_failure,[0,"odoc_ast.ml",81,18]];}
        
       case 5:
        return Hashtbl["add"]
-               (table,[/* E */6,Odoc_name["from_ident"](tt[1][1])],tt);
+               (table,/* E */[6,Odoc_name["from_ident"](tt[1][1])],tt);
        
       case 6:
        return Hashtbl["add"]
-               (table,[/* M */0,Odoc_name["from_ident"](tt[1][1])],tt);
+               (table,/* M */[0,Odoc_name["from_ident"](tt[1][1])],tt);
        
       case 7:
        return List["iter"]
                (function(mb)
                  {return Hashtbl["add"]
                           (table,
-                           [/* M */0,Odoc_name["from_ident"](mb[1])],
-                           [/* Tstr_module */6,mb]);
+                           /* M */[0,Odoc_name["from_ident"](mb[1])],
+                           /* Tstr_module */[6,mb]);
                   },
                 tt[1]);
        
       case 8:
        return Hashtbl["add"]
-               (table,[/* MT */1,Odoc_name["from_ident"](tt[1][1])],tt);
+               (table,/* MT */[1,Odoc_name["from_ident"](tt[1][1])],tt);
        
       case 10:
        return List["iter"]
@@ -115,9 +115,9 @@ var
                   
                   return Hashtbl["add"]
                           (table,
-                           [/* C */3,Odoc_name["from_ident"](ci[4])],
-                           [/* Tstr_class */10,
-                            [/* :: */0,[/* tuple */0,ci,param[2],param[3]],0]]);
+                           /* C */[3,Odoc_name["from_ident"](ci[4])],
+                           /* Tstr_class */[10,
+                            /* :: */[0,/* tuple */[0,ci,param[2],param[3]],/* [] */0]]);
                   },
                 tt[1]);
        
@@ -126,30 +126,30 @@ var
                (function(ci)
                  {return Hashtbl["add"]
                           (table,
-                           [/* CT */4,Odoc_name["from_ident"](ci[1])],
-                           [/* Tstr_class_type */11,[/* :: */0,ci,0]]);
+                           /* CT */[4,Odoc_name["from_ident"](ci[1])],
+                           /* Tstr_class_type */[11,/* :: */[0,ci,/* [] */0]]);
                   },
                 tt[1]);
        
-      default:return 0;}
+      default:return /* () */0;}
     };
 
 var
  tables=
   function(typedtree)
-   {var t=Hashtbl["create"](0,13);
+   {var t=Hashtbl["create"](/* None */0,13);
     
-    var t_values=Hashtbl["create"](0,13);
+    var t_values=Hashtbl["create"](/* None */0,13);
     
     List["iter"]
      (function(str){return add_to_hashes(t,t_values,str[1]);},typedtree);
-    return [/* tuple */0,t,t_values];
+    return /* tuple */[0,t,t_values];
     };
 
 var
  search_module=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* M */0,name]);
+   {var match=Hashtbl["find"](table,/* M */[0,name]);
     
     switch(match)
      {case 6:return match[1][3];
@@ -159,7 +159,7 @@ var
 var
  search_module_type=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* MT */1,name]);
+   {var match=Hashtbl["find"](table,/* MT */[1,name]);
     
     switch(match)
      {case 8:return match[1];
@@ -169,7 +169,7 @@ var
 var
  search_extension=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* X */5,name]);
+   {var match=Hashtbl["find"](table,/* X */[5,name]);
     
     switch(match)
      {case 4:return match[1];
@@ -179,7 +179,7 @@ var
 var
  search_exception=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* E */6,name]);
+   {var match=Hashtbl["find"](table,/* E */[6,name]);
     
     switch(match)
      {case 5:return match[1];
@@ -189,7 +189,7 @@ var
 var
  search_type_declaration=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* T */2,name]);
+   {var match=Hashtbl["find"](table,/* T */[2,name]);
     
     var exit;
     
@@ -210,7 +210,7 @@ var
 var
  search_class_exp=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* C */3,name]);
+   {var match=Hashtbl["find"](table,/* C */[3,name]);
     
     var exit;
     
@@ -227,10 +227,14 @@ var
            try
             {var type_decl=search_type_declaration(table,name);
              
-             return [/* tuple */0,ce,type_decl[4][1]];
+             return /* tuple */[0,ce,type_decl[4][1]];
              }
            catch(exn)
-            {if(exn=Not_found){return [/* tuple */0,ce,0];}else{throw exn;}}
+            {if(exn=Not_found)
+              {return /* tuple */[0,ce,/* [] */0];}
+             else
+              {throw exn;}
+             }
            }
          }
        else
@@ -244,7 +248,7 @@ var
 var
  search_class_type_declaration=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* CT */4,name]);
+   {var match=Hashtbl["find"](table,/* CT */[4,name]);
     
     var exit;
     
@@ -267,7 +271,7 @@ var search_value=function(table,name){return Hashtbl["find"](table,name);};
 var
  search_primitive=
   function(table,name)
-   {var match=Hashtbl["find"](table,[/* P */7,name]);
+   {var match=Hashtbl["find"](table,/* P */[7,name]);
     
     switch(match)
      {case 2:return match[1][4][1];
@@ -440,15 +444,15 @@ var
                {case 0:
                  var name=Odoc_name["from_ident"](match[1]);
                  
-                 return [/* Simple_name */0,
-                         [/* record */0,
+                 return /* Simple_name */[0,
+                         /* record */[0,
                           name,
                           Odoc_env["subst_type"](env,pat$1[4]),
                           f_desc(name)]];
                  
                 case 1:return iter_pattern(match[1]);
                 case 3:
-                 return [/* Tuple */1,
+                 return /* Tuple */[1,
                          List["map"](iter_pattern,match[1]),
                          Odoc_env["subst_type"](env,pat$1[4])];
                  
@@ -466,10 +470,13 @@ var
                      default:exit$1=336;}}
                  
                  var $js$1;
-                 switch(exit$1){case 336:$js$1=0;}
+                 switch(exit$1){case 336:$js$1=/* false */0;}
                  if($js$1)
-                  {return [/* Simple_name */0,
-                           [/* record */0,"()",Odoc_env["subst_type"](env,pat$1[4]),0]];
+                  {return /* Simple_name */[0,
+                           /* record */[0,
+                            "()",
+                            Odoc_env["subst_type"](env,pat$1[4]),
+                            /* None */0]];
                    }
                  else
                   {exit=337;}
@@ -478,8 +485,11 @@ var
             
             switch(exit)
              {case 337:
-               return [/* Simple_name */0,
-                       [/* record */0,"()",Odoc_env["subst_type"](env,pat$1[4]),0]];
+               return /* Simple_name */[0,
+                       /* record */[0,
+                        "()",
+                        Odoc_env["subst_type"](env,pat$1[4]),
+                        /* None */0]];
                
               }
             };
@@ -500,9 +510,11 @@ var
           if(pat_exp_list[2])
            {var
              parameter=
-              [/* Tuple */1,0,Odoc_env["subst_type"](env,pattern_param[4])];
+              /* Tuple */[1,
+               /* [] */0,
+               Odoc_env["subst_type"](env,pattern_param[4])];
             
-            return [/* :: */0,parameter,0];
+            return /* :: */[0,parameter,/* [] */0];
             }
           else
            {var
@@ -540,14 +552,14 @@ var
                             
                             var
                              new_param=
-                              [/* Simple_name */0,
-                               [/* record */0,
+                              /* Simple_name */[0,
+                               /* record */[0,
                                 name,
                                 Odoc_env["subst_type"](env,match$3[2][4]),
                                 Odoc_parameter["desc_from_info_opt"]
                                  (current_comment_opt,name)]];
                             
-                            var match$5=[/* tuple */0,new_param,match$1[3]];
+                            var match$5=/* tuple */[0,new_param,match$1[3]];
                             
                            default:exit$1=331;}}
                        }
@@ -557,7 +569,7 @@ var
                     default:exit$1=331;}
                   
                   switch(exit$1)
-                   {case 331:var match$5=[/* tuple */0,parameter$1,func_body];}
+                   {case 331:var match$5=/* tuple */[0,parameter$1,func_body];}
                   
                  default:exit=332;}
                
@@ -565,7 +577,7 @@ var
               }
             
             switch(exit)
-             {case 332:var match$5=[/* tuple */0,parameter$1,func_body];}
+             {case 332:var match$5=/* tuple */[0,parameter$1,func_body];}
             
             var p=match$5[1];
             
@@ -573,12 +585,12 @@ var
             
             switch(match$6)
              {case 3:
-               return [/* :: */0,
+               return /* :: */[0,
                        p,
                        tt_analyse_function_parameters
                         (env,current_comment_opt,match$6[2])];
                
-              default:return [/* :: */0,p,0];}
+              default:return /* :: */[0,p,/* [] */0];}
             }
           }
         else
@@ -619,23 +631,23 @@ var
                 if(Odoc_global["keep_code"][1])
                  {var
                    code=
-                    [/* Some */0,get_string_of_file(loc[1][4],loc[2][4])];
+                    /* Some */[0,get_string_of_file(loc[1][4],loc[2][4])];
                   }
                 else
-                 {var code=0;}
+                 {var code=/* None */0;}
                 
                 var
                  new_value=
-                  [/* record */0,
+                  /* record */[0,
                    complete_name,
                    comment_opt,
                    Odoc_env["subst_type"](env,pat[4]),
-                   rec_flag=1,
+                   rec_flag=/* Recursive */1,
                    tt_analyse_function_parameters(env,comment_opt,match$1[2]),
                    code,
-                   [/* record */0,[/* Some */0,loc],0]];
+                   /* record */[0,/* Some */[0,loc],/* None */0]];
                 
-                return [/* :: */0,new_value,0];
+                return /* :: */[0,new_value,/* [] */0];
                 
                default:
                 var name_pre$1=Odoc_name["from_ident"](ident);
@@ -649,29 +661,29 @@ var
                 if(Odoc_global["keep_code"][1])
                  {var
                    code$1=
-                    [/* Some */0,get_string_of_file(loc[1][4],loc[2][4])];
+                    /* Some */[0,get_string_of_file(loc[1][4],loc[2][4])];
                   }
                 else
-                 {var code$1=0;}
+                 {var code$1=/* None */0;}
                 
                 var
                  new_value$1=
-                  [/* record */0,
+                  /* record */[0,
                    complete_name$1,
                    comment_opt,
                    Odoc_env["subst_type"](env,pat[4]),
-                   rec_flag=1,
-                   0,
+                   rec_flag=/* Recursive */1,
+                   /* [] */0,
                    code$1,
-                   [/* record */0,[/* Some */0,loc],0]];
+                   /* record */[0,/* Some */[0,loc],/* None */0]];
                 
-                return [/* :: */0,new_value$1,0];
+                return /* :: */[0,new_value$1,/* [] */0];
                 }
              
-            case 3:return 0;
+            case 3:return /* [] */0;
             default:exit=323;}}
         
-        switch(exit){case 323:return 0;}
+        switch(exit){case 323:return /* [] */0;}
         };
     
     var
@@ -693,7 +705,10 @@ var
     var
      tt_analyse_method_expression=
       function(env,current_method_name,comment_opt,$staropt$star,exp)
-       {if($staropt$star){var first=$staropt$star[1];}else{var first=1;}
+       {if($staropt$star)
+         {var first=$staropt$star[1];}
+        else
+         {var first=/* true */1;}
         
         var match=exp[1];
         
@@ -712,13 +727,13 @@ var
                if(pat_exp_list[2])
                 {var
                   new_param=
-                   [/* Simple_name */0,
-                    [/* record */0,
+                   /* Simple_name */[0,
+                    /* record */[0,
                      "??",
                      Odoc_env["subst_type"](env,pattern_param[4]),
-                     0]];
+                     /* None */0]];
                  
-                 return [/* :: */0,new_param,0];
+                 return /* :: */[0,new_param,/* [] */0];
                  }
                else
                 {if(!first)
@@ -757,13 +772,13 @@ var
                                    
                                    var
                                     new_param$1=
-                                     [/* Simple_name */0,
-                                      [/* record */0,
+                                     /* Simple_name */[0,
+                                      /* record */[0,
                                        name,
                                        Odoc_env["subst_type"](env,match$4[2][4]),
                                        Odoc_parameter["desc_from_info_opt"](comment_opt,name)]];
                                    
-                                   var match$6=[/* tuple */0,new_param$1,match$2[3]];
+                                   var match$6=/* tuple */[0,new_param$1,match$2[3]];
                                    
                                   default:exit$1=303;}}
                               }
@@ -773,7 +788,7 @@ var
                            default:exit$1=303;}
                          
                          switch(exit$1)
-                          {case 303:var match$6=[/* tuple */0,parameter,body];}
+                          {case 303:var match$6=/* tuple */[0,parameter,body];}
                          
                         default:exit=304;}
                       
@@ -781,16 +796,24 @@ var
                      }
                    
                    switch(exit)
-                    {case 304:var match$6=[/* tuple */0,parameter,body];}
+                    {case 304:var match$6=/* tuple */[0,parameter,body];}
                    
-                   return [/* :: */0,
+                   return /* :: */[0,
                            match$6[1],
                            tt_analyse_method_expression
-                            (env,current_method_name,comment_opt,[0,0],match$6[2])];
+                            (env,
+                             current_method_name,
+                             comment_opt,
+                             /* Some */[0,/* false */0],
+                             match$6[2])];
                    }
                  else
                   {return tt_analyse_method_expression
-                           (env,current_method_name,comment_opt,[0,0],body);
+                           (env,
+                            current_method_name,
+                            comment_opt,
+                            /* Some */[0,/* false */0],
+                            body);
                    }
                  }
                }
@@ -807,7 +830,7 @@ var
                         Odoc_messages["method_without_param"](current_method_name)))];
              }
            
-          default:return 0;}
+          default:return /* [] */0;}
         };
     
     var
@@ -862,19 +885,19 @@ var
                  if(info_opt)
                   {var text_opt=info_opt[1][1];}
                  else
-                  {var text_opt=0;}
+                  {var text_opt=/* None */0;}
                  
                  var name=tt_name_of_class_expr(tt_clexp);
                  
                  var
                   inher=
-                   [/* record */0,
+                   /* record */[0,
                     Odoc_env["full_class_or_class_type_name"](env,name),
-                    0,
+                    /* None */0,
                     text_opt];
                  
                  return iter$1
-                         (Pervasives["@"](acc_inher,[/* :: */0,inher,0]),
+                         (Pervasives["@"](acc_inher,/* :: */[0,inher,/* [] */0]),
                           Pervasives["@"](acc_fields,match$1[2]),
                           p_clexp[2][2][4],
                           q);
@@ -884,7 +907,8 @@ var
                  
                  var label=match$2[1][1];
                  
-                 switch(match$2[3]){case 0:var virt=1;case 1:var virt=0;}
+                 switch(match$2[3])
+                  {case 0:var virt=/* true */1;case 1:var virt=/* false */0;}
                  
                  var
                   complete_name=
@@ -908,23 +932,23 @@ var
                  if(Odoc_global["keep_code"][1])
                   {var
                     code=
-                     [/* Some */0,get_string_of_file(loc[1][4],loc[2][4])];
+                     /* Some */[0,get_string_of_file(loc[1][4],loc[2][4])];
                    }
                  else
-                  {var code=0;}
+                  {var code=/* None */0;}
                  
                  var
                   att=
-                   [/* record */0,
-                    [/* record */0,
+                   /* record */[0,
+                    /* record */[0,
                      complete_name,
                      match$3[1],
                      Odoc_env["subst_type"](env,type_exp),
-                     0,
-                     0,
+                     /* false */0,
+                     /* [] */0,
                      code,
-                     [/* record */0,[/* Some */0,loc],0]],
-                    match$2[2]=1,
+                     /* record */[0,/* Some */[0,loc],/* None */0]],
+                    match$2[2]=/* Mutable */1,
                     virt];
                  
                  return iter$1
@@ -932,7 +956,8 @@ var
                           Pervasives["@"]
                            (acc_fields,
                             Pervasives["@"]
-                             (match$3[2],[/* :: */0,[/* Class_attribute */0,att],0])),
+                             (match$3[2],
+                              /* :: */[0,/* Class_attribute */[0,att],/* [] */0])),
                           loc[2][4],
                           q);
                  
@@ -982,24 +1007,24 @@ var
                     if(Odoc_global["keep_code"][1])
                      {var
                        code$1=
-                        [/* Some */0,get_string_of_file(loc[1][4],loc[2][4])];
+                        /* Some */[0,get_string_of_file(loc[1][4],loc[2][4])];
                       }
                     else
-                     {var code$1=0;}
+                     {var code$1=/* None */0;}
                     
                     var
                      met=
-                      [/* record */0,
-                       [/* record */0,
+                      /* record */[0,
+                       /* record */[0,
                         complete_name$1,
                         match$5[1],
                         Odoc_env["subst_type"](env,real_type),
-                        0,
-                        0,
+                        /* false */0,
+                        /* [] */0,
                         code$1,
-                        [/* record */0,[/* Some */0,loc],0]],
-                       private_flag=0,
-                       1];
+                        /* record */[0,/* Some */[0,loc],/* None */0]],
+                       private_flag=/* Private */0,
+                       /* true */1];
                     
                     Odoc_value["update_value_parameters_text"](met[1]);
                     return iter$1
@@ -1007,7 +1032,7 @@ var
                              Pervasives["@"]
                               (acc_fields,
                                Pervasives["@"]
-                                (match$5[2],[/* :: */0,[/* Class_method */1,met],0])),
+                                (match$5[2],/* :: */[0,/* Class_method */[1,met],/* [] */0])),
                              loc[2][4],
                              q);
                     
@@ -1048,25 +1073,25 @@ var
                     if(Odoc_global["keep_code"][1])
                      {var
                        code$2=
-                        [/* Some */0,get_string_of_file(loc[1][4],loc[2][4])];
+                        /* Some */[0,get_string_of_file(loc[1][4],loc[2][4])];
                       }
                     else
-                     {var code$2=0;}
+                     {var code$2=/* None */0;}
                     
                     var
                      met$1=
-                      [/* record */0,
-                       [/* record */0,
+                      /* record */[0,
+                       /* record */[0,
                         complete_name$2,
                         info_opt$1,
                         Odoc_env["subst_type"](env,real_type$1),
-                        0,
+                        /* false */0,
                         tt_analyse_method_expression
-                         (env,complete_name$2,info_opt$1,0,exp),
+                         (env,complete_name$2,info_opt$1,/* None */0,exp),
                         code$2,
-                        [/* record */0,[/* Some */0,loc],0]],
-                       private_flag=0,
-                       0];
+                        /* record */[0,/* Some */[0,loc],/* None */0]],
+                       private_flag=/* Private */0,
+                       /* false */0];
                     
                     Odoc_value["update_value_parameters_text"](met$1[1]);
                     return iter$1
@@ -1074,7 +1099,8 @@ var
                              Pervasives["@"]
                               (acc_fields,
                                Pervasives["@"]
-                                (match$7[2],[/* :: */0,[/* Class_method */1,met$1],0])),
+                                (match$7[2],
+                                 /* :: */[0,/* Class_method */[1,met$1],/* [] */0])),
                              loc[2][4],
                              q);
                     
@@ -1103,21 +1129,22 @@ var
                     
                     if(match$10)
                      {return Pervasives["@"]
-                              (acc,[/* :: */0,[/* Class_comment */2,match$10[1]],0]);
+                              (acc,
+                               /* :: */[0,/* Class_comment */[2,match$10[1]],/* [] */0]);
                       }
                     else
                      {return acc;}
                     },
-                  0,
+                  /* [] */0,
                   match$9[2]);
               
-              return [/* tuple */0,
+              return /* tuple */[0,
                       acc_inher,
                       Pervasives["@"](acc_fields,ele_comments)];
               }
             };
         
-        return iter$1(0,0,last_pos,p_cls[2]);
+        return iter$1(/* [] */0,/* [] */0,last_pos,p_cls[2]);
         };
     
     var
@@ -1152,14 +1179,14 @@ var
              case 2:exit$1=241;
              }
            
-           switch(exit$1){case 241:var params=0;}
+           switch(exit$1){case 241:var params=/* [] */0;}
            
-           return [/* tuple */0,
-                   0,
-                   [/* Class_constr */2,
-                    [/* record */0,
+           return /* tuple */[0,
+                   /* [] */0,
+                   /* Class_constr */[2,
+                    /* record */[0,
                      Odoc_env["full_class_name"](env,name),
-                     0,
+                     /* None */0,
                      List["map"](Odoc_env["subst_type"](env),params)]]];
            
           case 1:
@@ -1195,9 +1222,9 @@ var
                   match$1[1],
                   table);
               
-              return [/* tuple */0,
-                      0,
-                      [/* Class_structure */0,match$4[1],match$4[2]]];
+              return /* tuple */[0,
+                      /* [] */0,
+                      /* Class_structure */[0,match$4[1],match$4[2]]];
               
              default:exit=263;}
            
@@ -1240,13 +1267,13 @@ var
                                
                                var
                                 new_param=
-                                 [/* Simple_name */0,
-                                  [/* record */0,
+                                 /* Simple_name */[0,
+                                  /* record */[0,
                                    name$1,
                                    Odoc_env["subst_type"](env,match$8[2][4]),
                                    Odoc_parameter["desc_from_info_opt"](comment_opt,name$1)]];
                                
-                               var match$10=[/* tuple */0,new_param,match$6[4]];
+                               var match$10=/* tuple */[0,new_param,match$6[4]];
                                
                               default:exit$4=251;}}
                           }
@@ -1272,7 +1299,7 @@ var
                    tt_param_info_from_pattern
                     (env,Odoc_parameter["desc_from_info_opt"](comment_opt),pat);
                  
-                 var match$10=[/* tuple */0,new_param$1,tt_class_expr2];
+                 var match$10=/* tuple */[0,new_param$1,tt_class_expr2];
                  
                 }
               
@@ -1287,8 +1314,8 @@ var
                   match$10[2],
                   table);
               
-              return [/* tuple */0,
-                      [/* :: */0,match$10[1],match$11[1]],
+              return /* tuple */[0,
+                      /* :: */[0,match$10[1],match$11[1]],
                       match$11[2]];
               
              default:exit=263;}
@@ -1319,11 +1346,13 @@ var
                    {var exp_opt=param[2];
                     
                     if(exp_opt)
-                     {return Pervasives["@"](acc,[/* :: */0,exp_opt[1],0]);}
+                     {return Pervasives["@"]
+                              (acc,/* :: */[0,exp_opt[1],/* [] */0]);
+                      }
                     else
                      {return acc;}
                     },
-                  0,
+                  /* [] */0,
                   match$1[2]);
               
               var
@@ -1337,12 +1366,12 @@ var
                    {return get_string_of_file(e[2][1][4],e[2][2][4]);},
                   param_exps);
               
-              return [/* tuple */0,
-                      0,
-                      [/* Class_apply */1,
-                       [/* record */0,
+              return /* tuple */[0,
+                      /* [] */0,
+                      /* Class_apply */[1,
+                       /* record */[0,
                         Odoc_env["full_class_name"](env,applied_name),
-                        0,
+                        /* None */0,
                         param_types,
                         params_code]]];
               
@@ -1378,12 +1407,15 @@ var
               
               var
                class_type_kind=
-                [/* Class_type */1,
-                 [/* record */0,Odoc_messages["object_end"],0,0]];
+                /* Class_type */[1,
+                 /* record */[0,
+                  Odoc_messages["object_end"],
+                  /* None */0,
+                  /* [] */0]];
               
-              return [/* tuple */0,
+              return /* tuple */[0,
                       match$14[1],
-                      [/* Class_constraint */3,match$14[2],class_type_kind]];
+                      /* Class_constraint */[3,match$14[2],class_type_kind]];
               
              default:exit=263;}
            
@@ -1417,7 +1449,7 @@ var
         
         var pos_start=loc[1][4];
         
-        var virt=p_class_decl[1]=0;
+        var virt=p_class_decl[1]=/* Virtual */0;
         
         var cltype=Odoc_env["subst_class_type"](env,tt_class_exp[3]);
         
@@ -1432,7 +1464,7 @@ var
             tt_class_exp,
             table);
         
-        return [/* record */0,
+        return /* record */[0,
                 complete_name,
                 comment_opt,
                 cltype,
@@ -1440,7 +1472,7 @@ var
                 virt,
                 match[2],
                 match[1],
-                [/* record */0,[/* Some */0,loc],0]];
+                /* record */[0,/* Some */[0,loc],/* None */0]];
         };
     
     var
@@ -1466,14 +1498,17 @@ var
              {case 12:
                return Pervasives["@"]
                        (acc,
-                        [/* :: */0,
-                         [/* record */0,tt_name_from_module_expr(match[1][1]),0,0],
-                         0]);
+                        /* :: */[0,
+                         /* record */[0,
+                          tt_name_from_module_expr(match[1][1]),
+                          /* None */0,
+                          /* None */0],
+                         /* [] */0]);
                
               default:return acc;}
             };
         
-        return List["fold_left"](f,0,tt_structure[1]);
+        return List["fold_left"](f,/* [] */0,tt_structure[1]);
         };
     
     var
@@ -1498,22 +1533,22 @@ var
                  if(match$1)
                   {var im_repl=match$1[1];
                    
-                   return [/* :: */0,
-                           [/* Element_included_module */2,
-                            [/* record */0,im_repl[1],im_repl[2],im[3]]],
-                           f([/* tuple */0,q,match$1[2]])];
+                   return /* :: */[0,
+                           /* Element_included_module */[2,
+                            /* record */[0,im_repl[1],im_repl[2],im[3]]],
+                           f(/* tuple */[0,q,match$1[2]])];
                    }
                  else
-                  {return [/* :: */0,[/* Element_included_module */2,im],q];}
+                  {return /* :: */[0,/* Element_included_module */[2,im],q];}
                  
                 default:
-                 return [/* :: */0,ele,f([/* tuple */0,match[2],param[2]])];}
+                 return /* :: */[0,ele,f(/* tuple */[0,match[2],param[2]])];}
               }
             else
-             {return 0;}
+             {return /* [] */0;}
             };
         
-        return f([/* tuple */0,module_elements,included_modules]);
+        return f(/* tuple */[0,module_elements,included_modules]);
         };
     
     var
@@ -1528,7 +1563,7 @@ var
            switch(mt)
             {case 1:
               m[6]=
-              [/* Module_struct */0,
+              /* Module_struct */[0,
                filter_module_elements_with_module_type_constraint
                 (match[1],mt[1])],
               0;
@@ -1538,7 +1573,7 @@ var
            
           default:exit=195;}
         
-        switch(exit){case 195:return 0;}
+        switch(exit){case 195:return /* () */0;}
         };
     
     var
@@ -1556,12 +1591,12 @@ var
              switch(mt)
               {case 1:
                 mtyp[6]=
-                [/* Some */0,
-                 [/* Module_type_struct */0,
+                /* Some */[0,
+                 /* Module_type_struct */[0,
                   filter_module_elements_with_module_type_constraint
                    (match$1[1],mt[1])]],
                 0;
-                return mtyp[3]=[/* Some */0,mt],0;
+                return mtyp[3]=/* Some */[0,mt],0;
                 
                default:exit=196;}
              
@@ -1570,7 +1605,7 @@ var
         else
          {exit=196;}
         
-        switch(exit){case 196:return 0;}
+        switch(exit){case 196:return /* () */0;}
         };
     
     var
@@ -1596,12 +1631,12 @@ var
                       
                       if(match!=0)
                        {filter_module_with_module_type_constraint(m,param[2][1]);
-                        return 1;
+                        return /* true */1;
                         }
                       else
-                       {return 0;}
+                       {return /* false */0;}
                       
-                     default:return 0;}
+                     default:return /* false */0;}
                    };
                
               case 1:
@@ -1625,20 +1660,20 @@ var
                         
                         if(match$1!=0)
                          {filter_module_type_with_module_type_constraint(mt,match[1]);
-                          return 1;
+                          return /* true */1;
                           }
                         else
-                         {return 0;}
+                         {return /* false */0;}
                         }
                       else
                        {exit=202;}
                       
                      default:exit=202;}
                    
-                   switch(exit){case 202:return 0;}
+                   switch(exit){case 202:return /* false */0;}
                    };
                
-              case 2:var f=function(param){return 1;};
+              case 2:var f=function(param){return /* true */1;};
               case 3:
                var c=ele[1];
                
@@ -1653,7 +1688,7 @@ var
                       
                       return "unknown primitive:caml_string_equal";
                       
-                     default:return 0;}
+                     default:return /* false */0;}
                    };
                
               case 4:
@@ -1670,7 +1705,7 @@ var
                       
                       return "unknown primitive:caml_string_equal";
                       
-                     default:return 0;}
+                     default:return /* false */0;}
                    };
                
               case 5:
@@ -1687,7 +1722,7 @@ var
                       
                       return "unknown primitive:caml_string_equal";
                       
-                     default:return 0;}
+                     default:return /* false */0;}
                    };
                
               case 6:
@@ -1699,10 +1734,10 @@ var
                   (te[5],lsig);
                
                te[5]=l$1,0;
-               if(l$1!=0)
-                {var f=function(param){return 1;};}
+               if(l$1!=/* [] */0)
+                {var f=function(param){return /* true */1;};}
                else
-                {var f=function(param){return 0;};}
+                {var f=function(param){return /* false */0;};}
                
               case 7:
                var e=ele[1];
@@ -1718,7 +1753,7 @@ var
                       
                       return "unknown primitive:caml_string_equal";
                       
-                     default:return 0;}
+                     default:return /* false */0;}
                    };
                
               case 8:
@@ -1735,10 +1770,10 @@ var
                       
                       return "unknown primitive:caml_string_equal";
                       
-                     default:return 0;}
+                     default:return /* false */0;}
                    };
                
-              case 9:var f=function(param){return 1;};
+              case 9:var f=function(param){return /* true */1;};
               }
             
             return List["exists"](f,lsig);
@@ -1763,7 +1798,7 @@ var
                           
                           return "unknown primitive:caml_string_equal";
                           
-                         default:return 0;}
+                         default:return /* false */0;}
                        },
                      lsig);
             };
@@ -1825,12 +1860,14 @@ var
                          if(match$4)
                           {return Pervasives["@"]
                                    (acc,
-                                    [/* :: */0,[/* Element_module_comment */9,match$4[1]],0]);
+                                    /* :: */[0,
+                                     /* Element_module_comment */[9,match$4[1]],
+                                     /* [] */0]);
                            }
                          else
                           {return acc;}
                          },
-                       0,
+                       /* [] */0,
                        match$3[2]);
               }
             };
@@ -1853,7 +1890,7 @@ var
        {var exit;
         
         switch(parsetree_item_desc)
-         {case 0:return [/* tuple */0,0,env,0];
+         {case 0:return /* tuple */[0,0,env,/* [] */0];
           case 1:
            var rec_flag=parsetree_item_desc[1];
            
@@ -1866,12 +1903,12 @@ var
                 {switch(param){case 0:exit$1=32;}}
                else
                 {switch(param[0])
-                  {case 0:return [/* Some */0,param[1]];
+                  {case 0:return /* Some */[0,param[1]];
                    case 4:exit$1=32;
                    case 10:return iter_pat(param[1][1]);
-                   default:return 0;}}
+                   default:return /* None */0;}}
                
-               switch(exit$1){case 32:return 0;}
+               switch(exit$1){case 32:return /* None */0;}
                };
            
            var
@@ -1880,7 +1917,7 @@ var
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
-                {var first=0;}
+                {var first=/* false */0;}
                
                if(p_e_list)
                 {var q=p_e_list[2];
@@ -1900,7 +1937,7 @@ var
                        Typedtree_search[11](table_values,value_name_opt[1][1]);
                      
                      if(first)
-                      {var match$1=[/* tuple */0,comment_opt,0];}
+                      {var match$1=/* tuple */[0,comment_opt,/* [] */0];}
                      else
                       {var match$1=get_comments_in_module(last_pos,pat[2][1][4]);}
                      
@@ -1919,10 +1956,10 @@ var
                      var
                       l_ele=
                        List["map"]
-                        (function(v){return [/* Element_value */5,v];},l_values);
+                        (function(v){return /* Element_value */[5,v];},l_values);
                      
                      return iter$1
-                             (0,
+                             (/* None */0,
                               new_last_pos,
                               new_env,
                               Pervasives["@"](acc,Pervasives["@"](match$1[2],l_ele)),
@@ -1930,21 +1967,28 @@ var
                      }
                    catch(exn)
                     {if(exn=Not_found)
-                      {return iter$1(0,new_last_pos,acc_env,acc,q);}
+                      {return iter$1(/* None */0,new_last_pos,acc_env,acc,q);}
                      else
                       {throw exn;}
                      }
                    }
                  else
-                  {return iter$1(0,new_last_pos,acc_env,acc,q);}
+                  {return iter$1(/* None */0,new_last_pos,acc_env,acc,q);}
                  }
                else
-                {return [/* tuple */0,acc_env,acc];}
+                {return /* tuple */[0,acc_env,acc];}
                };
            
-           var match=iter$1([0,1],loc[1][4],env,0,parsetree_item_desc[2]);
+           var
+            match=
+             iter$1
+              (/* Some */[0,/* true */1],
+               loc[1][4],
+               env,
+               /* [] */0,
+               parsetree_item_desc[2]);
            
-           return [/* tuple */0,0,match[1],match[2]];
+           return /* tuple */[0,0,match[1],match[2]];
            
           case 2:
            var name_pre=parsetree_item_desc[1][1][1];
@@ -1956,27 +2000,27 @@ var
            var complete_name=Odoc_name["concat"](current_module_name,name);
            
            if(Odoc_global["keep_code"][1])
-            {var code=[/* Some */0,get_string_of_file(loc[1][4],loc[2][4])];}
+            {var code=/* Some */[0,get_string_of_file(loc[1][4],loc[2][4])];}
            else
-            {var code=0;}
+            {var code=/* None */0;}
            
            var
             new_value=
-             [/* record */0,
+             /* record */[0,
               complete_name,
               comment_opt,
               Odoc_env["subst_type"](env,typ),
-              0,
-              0,
+              /* false */0,
+              /* [] */0,
               code,
-              [/* record */0,[/* Some */0,loc],0]];
+              /* record */[0,/* Some */[0,loc],/* None */0]];
            
            var new_env=Odoc_env["add_value"](env,new_value[1]);
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    0,
                    new_env,
-                   [/* :: */0,[/* Element_value */5,new_value],0]];
+                   /* :: */[0,/* Element_value */[5,new_value],/* [] */0]];
            
           case 3:
            var name_typedecl_list=parsetree_item_desc[1];
@@ -2014,7 +2058,7 @@ var
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
-                {var first=0;}
+                {var first=/* false */0;}
                
                if(name_type_decl_list)
                 {var q=name_type_decl_list[2];
@@ -2060,7 +2104,7 @@ var
                  var tt_type_decl$1=tt_type_decl[4];
                  
                  if(first)
-                  {var match$2=[/* tuple */0,comment_opt,0];}
+                  {var match$2=/* tuple */[0,comment_opt,/* [] */0];}
                  else
                   {var match$2=get_comments_in_module(last_pos,loc_start);}
                  
@@ -2072,14 +2116,14 @@ var
                  
                  var
                   t=
-                   [/* record */0,
+                   /* record */[0,
                     complete_name$1,
                     match$2[1],
                     List["map2"]
                      (function(p,v)
                        {var match$4=Types["Variance"][11](v);
                         
-                        return [/* tuple */0,
+                        return /* tuple */[0,
                                 Odoc_env["subst_type"](env$1,p),
                                 match$4[1],
                                 match$4[2]];
@@ -2089,12 +2133,12 @@ var
                     kind,
                     tt_type_decl$1[4],
                     match$3
-                     ?[/* Some */0,Sig[8](env$1,name_comment_list,match$3[1])]
-                     :0,
-                    [/* record */0,[/* Some */0,loc$1],0],
+                     ?/* Some */[0,Sig[8](env$1,name_comment_list,match$3[1])]
+                     :/* None */0,
+                    /* record */[0,/* Some */[0,loc$1],/* None */0],
                     Odoc_global["keep_code"][1]
-                     ?[/* Some */0,get_string_of_file(loc_start,new_end)]
-                     :0];
+                     ?/* Some */[0,get_string_of_file(loc_start,new_end)]
+                     :/* None */0];
                  
                  var
                   match$4=
@@ -2106,20 +2150,22 @@ var
                  t[2]=Sig[10](t[2],match$4[2]),0;
                  var
                   match$5=
-                   f(0,maybe_more+maybe_more2,new_end+maybe_more2,q);
+                   f(/* None */0,maybe_more+maybe_more2,new_end+maybe_more2,q);
                  
-                 return [/* tuple */0,
+                 return /* tuple */[0,
                          match$5[1],
                          Pervasives["@"]
-                          (match$2[2],[/* :: */0,[/* Element_type */8,t],match$5[2]])];
+                          (match$2[2],/* :: */[0,/* Element_type */[8,t],match$5[2]])];
                  }
                else
-                {return [/* tuple */0,maybe_more_acc,0];}
+                {return /* tuple */[0,maybe_more_acc,/* [] */0];}
                };
            
-           var match$1=f([0,1],0,loc[1][4],name_typedecl_list);
+           var
+            match$1=
+             f(/* Some */[0,/* true */1],0,loc[1][4],name_typedecl_list);
            
-           return [/* tuple */0,match$1[1],extended_env,match$1[2]];
+           return /* tuple */[0,match$1[1],extended_env,match$1[2]];
            
           case 4:
            var tyext=parsetree_item_desc[1];
@@ -2164,7 +2210,7 @@ var
            
            var
             new_te=
-             [/* record */0,
+             /* record */[0,
               comment_opt,
               Odoc_env["full_type_name"]
                (new_env$1,Odoc_name["from_path"](tt_tyext[1])),
@@ -2173,11 +2219,11 @@ var
                  {return Odoc_env["subst_type"](new_env$1,param[1][2]);},
                 tt_tyext[3]),
               tt_tyext[5],
-              0,
-              [/* record */0,[/* Some */0,loc],0],
+              /* [] */0,
+              /* record */[0,/* Some */[0,loc],/* None */0],
               Odoc_global["keep_code"][1]
-               ?[/* Some */0,get_string_of_file(loc_start,loc_end)]
-               :0];
+               ?/* Some */[0,get_string_of_file(loc_start,loc_end)]
+               :/* None */0];
            
            var
             analyse_extension_constructors=
@@ -2199,7 +2245,7 @@ var
                   {case 0:
                     var
                      new_xt=
-                      [/* record */0,
+                      /* record */[0,
                        complete_name$1,
                        List["map"]
                         (function(ctyp)
@@ -2210,25 +2256,25 @@ var
                           {return Odoc_env["subst_type"](new_env$1,ctyp[2]);},
                          match$3[2]),
                        new_te,
-                       0,
-                       [/* record */0,[/* Some */0,tt_ext[5]],0],
-                       0];
+                       /* None */0,
+                       /* record */[0,/* Some */[0,tt_ext[5]],/* None */0],
+                       /* None */0];
                     
                    case 1:
                     var
                      new_xt=
-                      [/* record */0,
+                      /* record */[0,
                        complete_name$1,
-                       0,
-                       0,
+                       /* [] */0,
+                       /* None */0,
                        new_te,
-                       [/* Some */0,
-                        [/* record */0,
+                       /* Some */[0,
+                        /* record */[0,
                          Odoc_env["full_extension_constructor_name"]
                           (env,Odoc_name["from_path"](match$3[1])),
-                         0]],
-                       [/* record */0,[/* Some */0,tt_ext[5]],0],
-                       0];
+                         /* None */0]],
+                       /* record */[0,/* Some */[0,tt_ext[5]],/* None */0],
+                       /* None */0];
                     
                    }
                  
@@ -2243,19 +2289,21 @@ var
                  
                  new_xt[7]=match$4[2],0;
                  return analyse_extension_constructors
-                         (match$4[1],[/* :: */0,new_xt,exts_acc],q);
+                         (match$4[1],/* :: */[0,new_xt,exts_acc],q);
                  }
                else
-                {return [/* tuple */0,maybe_more,List["rev"](exts_acc)];}
+                {return /* tuple */[0,maybe_more,List["rev"](exts_acc)];}
                };
            
-           var match$3=analyse_extension_constructors(0,0,tt_tyext[4]);
+           var
+            match$3=
+             analyse_extension_constructors(0,/* [] */0,tt_tyext[4]);
            
            new_te[5]=match$3[2],0;
-           return [/* tuple */0,
+           return /* tuple */[0,
                    match$3[1],
                    new_env$1,
-                   [/* :: */0,[/* Element_type_extension */6,new_te],0]];
+                   /* :: */[0,/* Element_type_extension */[6,new_te],/* [] */0]];
            
           case 5:
            var name$1=parsetree_item_desc[1][1];
@@ -2289,7 +2337,7 @@ var
               
               var
                new_ext=
-                [/* record */0,
+                /* record */[0,
                  complete_name$1,
                  comment_opt,
                  List["map"]
@@ -2300,34 +2348,34 @@ var
                   (function(ctyp)
                     {return Odoc_env["subst_type"](new_env$2,ctyp[2]);},
                    match$4[2]),
-                 0,
-                 [/* record */0,[/* Some */0,loc],0],
+                 /* None */0,
+                 /* record */[0,/* Some */[0,loc],/* None */0],
                  Odoc_global["keep_code"][1]
-                  ?[/* Some */0,get_string_of_file(loc_start$1,loc_end$1)]
-                  :0];
+                  ?/* Some */[0,get_string_of_file(loc_start$1,loc_end$1)]
+                  :/* None */0];
               
              case 1:
               var
                new_ext=
-                [/* record */0,
+                /* record */[0,
                  complete_name$1,
                  comment_opt,
-                 0,
-                 0,
-                 [/* Some */0,
-                  [/* record */0,
+                 /* [] */0,
+                 /* None */0,
+                 /* Some */[0,
+                  /* record */[0,
                    Odoc_env["full_extension_constructor_name"]
                     (env,Odoc_name["from_path"](match$4[1])),
-                   0]],
-                 [/* record */0,[/* Some */0,loc],0],
-                 0];
+                   /* None */0]],
+                 /* record */[0,/* Some */[0,loc],/* None */0],
+                 /* None */0];
               
              }
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    0,
                    new_env$2,
-                   [/* :: */0,[/* Element_exception */7,new_ext],0]];
+                   /* :: */[0,/* Element_exception */[7,new_ext],/* [] */0]];
            
           case 6:
            var match$5=parsetree_item_desc[1];
@@ -2356,10 +2404,10 @@ var
                
                var en=loc$1[2][4];
                
-               var code$1=[/* Some */0,get_string_of_file(st,en)];
+               var code$1=/* Some */[0,get_string_of_file(st,en)];
                }
              else
-              {var code$1=0;}
+              {var code$1=/* None */0;}
              
              var newrecord="unknown primitive:duprecord regular 11";
              
@@ -2377,15 +2425,15 @@ var
                   Odoc_env["add_signature"]
                    (new_env$3,
                     new_module[1],
-                    [/* Some */0,Odoc_name["simple"](new_module[1])],
+                    /* Some */[0,Odoc_name["simple"](new_module[1])],
                     match$6[1]);
                 
                default:var new_env2=new_env$3;}
              
-             return [/* tuple */0,
+             return /* tuple */[0,
                      0,
                      new_env2,
-                     [/* :: */0,[/* Element_module */0,new_module],0]];
+                     /* :: */[0,/* Element_module */[0,new_module],/* [] */0]];
              }
            catch(exn$2)
             {if(exn$2=Not_found)
@@ -2433,7 +2481,12 @@ var
                  var
                   new_module$1=
                    analyse_module
-                    (e,current_module_name,name$3[1],0,param[2],tt_mod_exp);
+                    (e,
+                     current_module_name,
+                     name$3[1],
+                     /* None */0,
+                     param[2],
+                     tt_mod_exp);
                  
                  var match$7=new_module$1[2];
                  
@@ -2442,7 +2495,7 @@ var
                     return Odoc_env["add_signature"]
                             (e,
                              new_module$1[1],
-                             [/* Some */0,Odoc_name["simple"](new_module$1[1])],
+                             /* Some */[0,Odoc_name["simple"](new_module$1[1])],
                              match$7[1]);
                     
                    default:return e;}
@@ -2456,7 +2509,7 @@ var
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
-                {var first=0;}
+                {var first=/* false */0;}
                
                if(name_mod_exp_list)
                 {var match$7=name_mod_exp_list[1];
@@ -2487,7 +2540,7 @@ var
                    }
                  
                  if(first)
-                  {var match$8=[/* tuple */0,comment_opt,0];}
+                  {var match$8=/* tuple */[0,comment_opt,/* [] */0];}
                  else
                   {var match$8=get_comments_in_module(last_pos,loc_start$2);}
                  
@@ -2501,19 +2554,19 @@ var
                      mod_exp,
                      tt_mod_exp);
                  
-                 var eles=f$1(0,loc_end$2,name_mod_exp_list[2]);
+                 var eles=f$1(/* None */0,loc_end$2,name_mod_exp_list[2]);
                  
                  return Pervasives["@"]
                          (match$8[2],
-                          [/* :: */0,[/* Element_module */0,new_module$1],eles]);
+                          /* :: */[0,/* Element_module */[0,new_module$1],eles]);
                  }
                else
-                {return 0;}
+                {return /* [] */0;}
                };
            
-           var eles=f$1([0,1],loc[1][4],mods);
+           var eles=f$1(/* Some */[0,/* true */1],loc[1][4],mods);
            
-           return [/* tuple */0,0,new_env$4,eles];
+           return /* tuple */[0,0,new_env$4,eles];
            
           case 8:
            var match$7=parsetree_item_desc[1];
@@ -2549,10 +2602,11 @@ var
                
                var
                 match$9=
-                 [/* tuple */0,
-                  [/* Some */0,
-                   Sig[11](0,env,complete_name$3,modtype[1],mty_type[2])],
-                  [/* Some */0,mty_type[2]]];
+                 /* tuple */[0,
+                  /* Some */[0,
+                   Sig[11]
+                    (/* None */0,env,complete_name$3,modtype[1],mty_type[2])],
+                  /* Some */[0,mty_type[2]]];
                }
              else
               {exit$1=118;}
@@ -2560,20 +2614,21 @@ var
            else
             {exit$1=118;}
            
-           switch(exit$1){case 118:var match$9=[0,0,0];}
+           switch(exit$1)
+            {case 118:var match$9=/* tuple */[0,/* None */0,/* None */0];}
            
            var sig_mtype=match$9[2];
            
            var
             mt=
-             [/* record */0,
+             /* record */[0,
               complete_name$3,
               comment_opt,
               sig_mtype,
-              0,
+              /* false */0,
               file_name[1],
               match$9[1],
-              [/* record */0,[/* Some */0,loc],0]];
+              /* record */[0,/* Some */[0,loc],/* None */0]];
            
            var new_env$5=Odoc_env["add_module_type"](env,mt[1]);
            
@@ -2589,7 +2644,7 @@ var
                   Odoc_env["add_signature"]
                    (new_env$5,
                     mt[1],
-                    [/* Some */0,Odoc_name["simple"](mt[1])],
+                    /* Some */[0,Odoc_name["simple"](mt[1])],
                     match$10[1]);
                 
                default:exit$2=114;}
@@ -2599,10 +2654,10 @@ var
            
            switch(exit$2){case 114:var new_env2$1=new_env$5;}
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    0,
                    new_env2$1,
-                   [/* :: */0,[/* Element_module_type */1,mt],0]];
+                   /* :: */[0,/* Element_module_type */[1,mt],/* [] */0]];
            
           case 9:
            if(comment_opt)
@@ -2611,15 +2666,17 @@ var
              if(match$11)
               {var
                 ele_comments=
-                 [/* :: */0,[/* Element_module_comment */9,match$11[1]],0];
+                 /* :: */[0,
+                  /* Element_module_comment */[9,match$11[1]],
+                  /* [] */0];
                }
              else
-              {var ele_comments=0;}
+              {var ele_comments=/* [] */0;}
              }
            else
-            {var ele_comments=0;}
+            {var ele_comments=/* [] */0;}
            
-           return [/* tuple */0,0,env,ele_comments];
+           return /* tuple */[0,0,env,ele_comments];
            
           case 10:
            var class_decl_list=parsetree_item_desc[1];
@@ -2643,7 +2700,7 @@ var
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
-                {var first=0;}
+                {var first=/* false */0;}
                
                if(class_decl_list$1)
                 {var class_decl=class_decl_list$1[1];
@@ -2666,7 +2723,7 @@ var
                    }
                  
                  if(first)
-                  {var match$13=[/* tuple */0,comment_opt,0];}
+                  {var match$13=/* tuple */[0,comment_opt,/* [] */0];}
                  else
                   {var
                     match$13=
@@ -2688,18 +2745,18 @@ var
                  
                  return Pervasives["@"]
                          (match$13[2],
-                          [/* :: */0,
-                           [/* Element_class */3,new_class],
-                           f$2(0,last_pos2,class_decl_list$1[2])]);
+                          /* :: */[0,
+                           /* Element_class */[3,new_class],
+                           f$2(/* None */0,last_pos2,class_decl_list$1[2])]);
                  }
                else
-                {return 0;}
+                {return /* [] */0;}
                };
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    0,
                    new_env$6,
-                   f$2([0,1],loc[1][4],class_decl_list)];
+                   f$2(/* Some */[0,/* true */1],loc[1][4],class_decl_list)];
            
           case 11:
            var class_type_decl_list=parsetree_item_desc[1];
@@ -2724,7 +2781,7 @@ var
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
-                {var first=0;}
+                {var first=/* false */0;}
                
                if(class_type_decl_list$1)
                 {var class_type_decl=class_type_decl_list$1[1];
@@ -2735,7 +2792,7 @@ var
                   complete_name$4=
                    Odoc_name["concat"](current_module_name,name$4[1]);
                  
-                 var virt=class_type_decl[1]=0;
+                 var virt=class_type_decl[1]=/* Virtual */0;
                  
                  try
                   {var
@@ -2767,7 +2824,7 @@ var
                      tt_cltype_declaration$1[2]);
                  
                  if(first)
-                  {var match$12=[/* tuple */0,comment_opt,0];}
+                  {var match$12=/* tuple */[0,comment_opt,/* [] */0];}
                  else
                   {var
                     match$12=
@@ -2778,44 +2835,45 @@ var
                  
                  var
                   new_ele=
-                   [/* Element_class_type */4,
-                    [/* record */0,
+                   /* Element_class_type */[4,
+                    /* record */[0,
                      complete_name$4,
                      match$12[1],
                      Odoc_env["subst_class_type"](env,tt_cltype_declaration$1[2]),
                      List["map"](Odoc_env["subst_type"](new_env$7),type_params),
                      virt,
                      kind,
-                     [/* record */0,[/* Some */0,loc],0]]];
+                     /* record */[0,/* Some */[0,loc],/* None */0]]];
                  
                  return Pervasives["@"]
                          (match$12[2],
-                          [/* :: */0,
+                          /* :: */[0,
                            new_ele,
-                           f$3(0,last_pos2,class_type_decl_list$1[2])]);
+                           f$3(/* None */0,last_pos2,class_type_decl_list$1[2])]);
                  }
                else
-                {return 0;}
+                {return /* [] */0;}
                };
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    0,
                    new_env$7,
-                   f$3([0,1],loc[1][4],class_type_decl_list)];
+                   f$3
+                    (/* Some */[0,/* true */1],loc[1][4],class_type_decl_list)];
            
           case 12:
-           var im=[/* record */0,"dummy",0,comment_opt];
+           var im=/* record */[0,"dummy",/* None */0,comment_opt];
            
-           return [/* tuple */0,
+           return /* tuple */[0,
                    0,
                    env,
-                   [/* :: */0,[/* Element_included_module */2,im],0]];
+                   /* :: */[0,/* Element_included_module */[2,im],/* [] */0]];
            
           case 13:exit=148;
           case 14:exit=148;
           }
         
-        switch(exit){case 148:return [/* tuple */0,0,env,0];}
+        switch(exit){case 148:return /* tuple */[0,0,env,/* [] */0];}
         };
     
     var
@@ -2851,24 +2909,24 @@ var
            
            var
             m_code_intf=
-             [/* Some */0,get_string_of_file(loc_start,loc_end)];
+             /* Some */[0,get_string_of_file(loc_start,loc_end)];
            
-          default:var m_code_intf=0;}
+          default:var m_code_intf=/* None */0;}
         
         var
          m_base=
-          [/* record */0,
+          /* record */[0,
            complete_name,
            modtype,
            comment_opt,
-           0,
+           /* false */0,
            file_name[1],
-           [0,0],
-           [/* record */0,[/* Some */0,loc],0],
-           0,
-           0,
+           /* Module_struct */[0,/* [] */0],
+           /* record */[0,/* Some */[0,loc],/* None */0],
+           /* [] */0,
+           /* None */0,
            m_code_intf,
-           0];
+           /* false */0];
         
         var match$1=p_module_expr[1];
         
@@ -2916,7 +2974,7 @@ var
               
               var newrecord="unknown primitive:duprecord regular 11";
               
-              newrecord[6]=[/* Module_struct */0,elements2],0;
+              newrecord[6]=/* Module_struct */[0,elements2],0;
               return newrecord;
               
              case 4:
@@ -2950,7 +3008,7 @@ var
                  newrecord$1[2]=
                  Odoc_env["subst_module_type"](env,match$2[2]),
                  0;
-                 newrecord$1[6]=[/* Module_struct */0,elements2$1],0;
+                 newrecord$1[6]=/* Module_struct */[0,elements2$1],0;
                  return newrecord$1;
                  
                 default:exit=184;}
@@ -2984,7 +3042,11 @@ var
                  {var
                    mp_kind=
                     Sig[11]
-                     (0,env,current_module_name,pmodule_type$1[1],mtyp[1][2]);
+                     (/* None */0,
+                      env,
+                      current_module_name,
+                      pmodule_type$1[1],
+                      mtyp[1][2]);
                   }
                 else
                  {exit$1=158;}
@@ -2992,11 +3054,12 @@ var
               else
                {exit$1=158;}
               
-              switch(exit$1){case 158:var mp_kind=[0,0];}
+              switch(exit$1)
+               {case 158:var mp_kind=/* Module_type_struct */[0,/* [] */0];}
               
               var
                param=
-                [/* record */0,
+                /* record */[0,
                  mp_name,
                  Misc["may_map"]
                   (function(m)
@@ -3015,7 +3078,7 @@ var
                  (new_env,
                   current_module_name,
                   module_name,
-                  0,
+                  /* None */0,
                   match$1[3],
                   match$2[4]);
               
@@ -3023,7 +3086,7 @@ var
               
               var newrecord$2="unknown primitive:duprecord regular 11";
               
-              newrecord$2[6]=[/* Module_functor */2,param,kind],0;
+              newrecord$2[6]=/* Module_functor */[2,param,kind],0;
               return newrecord$2;
               
              default:exit=184;}
@@ -3072,12 +3135,17 @@ var
               var
                m_base2$1=
                 analyse_module
-                 (env,current_module_name,module_name,0,match$1[1],match$2[1]);
+                 (env,
+                  current_module_name,
+                  module_name,
+                  /* None */0,
+                  match$1[1],
+                  match$2[1]);
               
               var
                mtkind=
                 Sig[11]
-                 (0,
+                 (/* None */0,
                   env,
                   Odoc_name["concat"](current_module_name,"??"),
                   match$1[2],
@@ -3094,7 +3162,7 @@ var
               var newrecord$3="unknown primitive:duprecord regular 11";
               
               newrecord$3[2]=tt_modtype$1,0;
-              newrecord$3[6]=[/* Module_constraint */5,m_base2$1[6],mtkind],0;
+              newrecord$3[6]=/* Module_constraint */[5,m_base2$1[6],mtkind],0;
               return newrecord$3;
               
              default:exit=184;}
@@ -3116,7 +3184,13 @@ var
               
               var
                code=
-                Printf["sprintf"]([0,[11,"(val ...",[2,0,0]],"(val ...%s"],s);
+                Printf["sprintf"]
+                 (/* Format */[0,
+                   /* String_literal */[11,
+                    "(val ...",
+                    /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                   "(val ...%s"],
+                  s);
               
               switch(tt_modtype$2)
                {case 0:
@@ -3127,14 +3201,14 @@ var
                  
                 default:var name="";}
               
-              var alias=[/* record */0,name,0];
+              var alias=/* record */[0,name,/* None */0];
               
               var newrecord$4="unknown primitive:duprecord regular 11";
               
               newrecord$4[2]=
               Odoc_env["subst_module_type"](env,tt_modtype$2),
               0;
-              newrecord$4[6]=[/* Module_unpack */7,code,alias],0;
+              newrecord$4[6]=/* Module_unpack */[7,code,alias],0;
               return newrecord$4;
               
              default:exit=184;}
@@ -3156,7 +3230,7 @@ var
            var newrecord$5="unknown primitive:duprecord regular 11";
            
            newrecord$5[6]=
-           [/* Module_alias */1,[/* record */0,alias_name,0]],
+           /* Module_alias */[1,/* record */[0,alias_name,/* None */0]],
            0;
            return newrecord$5;
            
@@ -3167,7 +3241,7 @@ var
               (env,
                current_module_name,
                module_name,
-               0,
+               /* None */0,
                p_module_expr1$1,
                tt_module_expr1);
            
@@ -3177,13 +3251,13 @@ var
               (env,
                current_module_name,
                module_name,
-               0,
+               /* None */0,
                p_module_expr2$1,
                tt_module_expr2);
            
            var newrecord$6="unknown primitive:duprecord regular 11";
            
-           newrecord$6[6]=[/* Module_apply */3,m1[6],m2[6]],0;
+           newrecord$6[6]=/* Module_apply */[3,m1[6],m2[6]],0;
            return newrecord$6;
            
           }
@@ -3199,7 +3273,7 @@ var
           
           var
            match=
-            [/* tuple */0,
+            /* tuple */[0,
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
@@ -3247,22 +3321,22 @@ var
          elements2=
           replace_dummy_included_modules(elements,included_modules_from_tt);
         
-        var kind=[/* Module_struct */0,elements2];
+        var kind=/* Module_struct */[0,elements2];
         
-        return [/* record */0,
+        return /* record */[0,
                 mod_name,
-                [1,0],
+                /* Mty_signature */[1,/* [] */0],
                 match$1[2],
-                0,
+                /* false */0,
                 file_name[1],
                 kind,
-                [/* record */0,
-                 [/* Some */0,Location["in_file"](file_name[1])],
-                 0],
-                0,
-                Odoc_global["keep_code"][1]?[/* Some */0,file[1]]:0,
-                0,
-                0];
+                /* record */[0,
+                 /* Some */[0,Location["in_file"](file_name[1])],
+                 /* None */0],
+                /* [] */0,
+                Odoc_global["keep_code"][1]?/* Some */[0,file[1]]:/* None */0,
+                /* None */0,
+                /* false */0];
         };
     
     return [0,

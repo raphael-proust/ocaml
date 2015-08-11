@@ -50,8 +50,8 @@ var
                   {Time_travel["forget_process"]
                     (Checkpoints["current_checkpoint"][1][3],
                      Checkpoints["current_checkpoint"][1][2]);
-                   Format["pp_print_flush"](ppf$1,0);
-                   Input_handling["stop_user_input"](0);
+                   Format["pp_print_flush"](ppf$1,/* () */0);
+                   Input_handling["stop_user_input"](/* () */0);
                    return restart(ppf$1);
                    });
         }
@@ -61,8 +61,8 @@ var
                   (ppf,
                    restart,
                    function(ppf$1)
-                    {Format["pp_print_flush"](ppf$1,0);
-                     Input_handling["stop_user_input"](0);
+                    {Format["pp_print_flush"](ppf$1,/* () */0);
+                     Input_handling["stop_user_input"](/* () */0);
                      return restart(ppf$1);
                      });
           }
@@ -73,10 +73,17 @@ var
                      restart,
                      function(ppf$1)
                       {Format["fprintf"]
-                        (ppf$1,[0,[11,"Interrupted.",[17,4,0]],"Interrupted.@."]);
+                        (ppf$1,
+                         /* Format */[0,
+                          /* String_literal */[11,
+                           "Interrupted.",
+                           /* Formatting_lit */[17,
+                            /* Flush_newline */4,
+                            /* End_of_format */0]],
+                          "Interrupted.@."]);
                        Exec["protect"]
                         (function(param)
-                          {Input_handling["stop_user_input"](0);
+                          {Input_handling["stop_user_input"](/* () */0);
                            if(Program_management["loaded"][1])
                             {Frames["try_select_frame"](0);
                              return Show_information["show_current_event"](ppf$1);
@@ -95,11 +102,15 @@ var
                        function(ppf$1)
                         {Format["fprintf"]
                           (ppf$1,
-                           [0,
-                            [11,"Trying to recover...",[17,4,0]],
+                           /* Format */[0,
+                            /* String_literal */[11,
+                             "Trying to recover...",
+                             /* Formatting_lit */[17,
+                              /* Flush_newline */4,
+                              /* End_of_format */0]],
                             "Trying to recover...@."]);
-                         Input_handling["stop_user_input"](0);
-                         Time_travel["recover"](0);
+                         Input_handling["stop_user_input"](/* () */0);
+                         Time_travel["recover"](/* () */0);
                          Frames["try_select_frame"](0);
                          Show_information["show_current_event"](ppf$1);
                          return restart(ppf$1);
@@ -119,45 +130,52 @@ var
                             {var
                               msg=
                                Format["sprintf"]
-                                ([0,
-                                  [11,
+                                (/* Format */[0,
+                                  /* String_literal */[11,
                                    "Restart from time ",
-                                   [7,0,0,0,[11," and try to get closer of the problem",0]]],
+                                   /* Int64 */[7,
+                                    /* Int_d */0,
+                                    /* No_padding */0,
+                                    /* No_precision */0,
+                                    /* String_literal */[11,
+                                     " and try to get closer of the problem",
+                                     /* End_of_format */0]]],
                                   "Restart from time %Ld and try to get closer of the problem"],
                                  time);
                              
-                             Input_handling["stop_user_input"](0);
+                             Input_handling["stop_user_input"](/* () */0);
                              if(Question["yes_or_no"](msg))
-                              {current_duration[1]=init_duration,0;var b=1;}
+                              {current_duration[1]=init_duration,0;var b=/* true */1;}
                              else
-                              {var b=0;}
+                              {var b=/* false */0;}
                              }
                            else
-                            {var b=1;}
+                            {var b=/* true */1;}
                            
                            if(b)
                             {Time_travel["go_to"](time);
                              current_duration[1]=current_duration[1]/10,0;
                              if(current_duration[1]>0)
-                              {while(1){Time_travel["step"](current_duration[1])}
+                              {while(/* true */1)
+                                {Time_travel["step"](current_duration[1])}
                                return 0;
                                }
                              else
                               {current_duration[1]=-1,0;
-                               Input_handling["stop_user_input"](0);
+                               Input_handling["stop_user_input"](/* () */0);
                                Show_information["show_current_event"](ppf$1);
                                return restart(ppf$1);
                                }
                              }
                            else
-                            {Time_travel["recover"](0);
+                            {Time_travel["recover"](/* () */0);
                              Show_information["show_current_event"](ppf$1);
                              return restart(ppf$1);
                              }
                            });
                 }
               else
-               {Program_management["kill_program"](0);throw x;}
+               {Program_management["kill_program"](/* () */0);throw x;}
               }
             }
           }
@@ -183,9 +201,15 @@ var
       
       Format["fprintf"]
        (Format["std_formatter"],
-        [0,[11,"Executing file ",[2,0,[17,4,0]]],"Executing file %s@."],
+        /* Format */[0,
+         /* String_literal */[11,
+          "Executing file ",
+          /* String */[2,
+           /* No_padding */0,
+           /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]],
+         "Executing file %s@."],
         file);
-      while(1)
+      while(/* true */1)
        {var line=Primitives["string_trim"](Pervasives["input_line"](ch));
         
         if("unknown primitive:caml_string_notequal"&&line[0]!=35)
@@ -211,10 +235,10 @@ var
 var
  toplevel_loop=
   function(param)
-   {Input_handling["interactif"][1]=0,0;
+   {Input_handling["interactif"][1]=/* false */0,0;
     Input_handling["current_prompt"][1]="",0;
-    execute_file_if_any(0);
-    Input_handling["interactif"][1]=1,0;
+    execute_file_if_any(/* () */0);
+    Input_handling["interactif"][1]=/* true */1,0;
     Input_handling["current_prompt"][1]=Debugger_config["debugger_prompt"],0;
     return protect(Format["std_formatter"],loop,loop);
     };
@@ -232,7 +256,7 @@ var
  add_include=
   function(d)
    {return Parameters["default_load_path"][1]=
-           [/* :: */0,
+           /* :: */[0,
             Misc["expand_directory"](Config["standard_library"],d),
             Parameters["default_load_path"][1]],
            0;
@@ -250,8 +274,12 @@ var
  print_version=
   function(param)
    {Format["printf"]
-     ([0,
-       [11,"The OCaml debugger, version ",[2,0,[17,4,0]]],
+     (/* Format */[0,
+       /* String_literal */[11,
+        "The OCaml debugger, version ",
+        /* String */[2,
+         /* No_padding */0,
+         /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]],
        "The OCaml debugger, version %s@."],
       Sys["ocaml_version"]);
     return Pervasives["exit"](0);
@@ -260,56 +288,62 @@ var
 var
  print_version_num=
   function(param)
-   {Format["printf"]([0,[2,0,[17,4,0]],"%s@."],Sys["ocaml_version"]);
+   {Format["printf"]
+     (/* Format */[0,
+       /* String */[2,
+        /* No_padding */0,
+        /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]],
+       "%s@."],
+      Sys["ocaml_version"]);
     return Pervasives["exit"](0);
     };
 
 var
  speclist=
-  [/* :: */0,
-   [/* tuple */0,
+  /* :: */[0,
+   /* tuple */[0,
     "-c",
-    [/* Int */6,set_checkpoints],
+    /* Int */[6,set_checkpoints],
     "<count>  Set max number of checkpoints kept"],
-   [/* :: */0,
-    [/* tuple */0,
+   /* :: */[0,
+    /* tuple */[0,
      "-cd",
-     [/* String */4,set_directory],
+     /* String */[4,set_directory],
      "<dir>  Change working directory"],
-    [/* :: */0,
-     [/* tuple */0,
+    /* :: */[0,
+     /* tuple */[0,
       "-emacs",
-      [/* Tuple */10,
-       [/* :: */0,
-        [/* Set */2,Parameters["emacs"]],
-        [/* :: */0,[/* Set */2,Parameters["machine_readable"]],0]]],
+      /* Tuple */[10,
+       /* :: */[0,
+        /* Set */[2,Parameters["emacs"]],
+        /* :: */[0,/* Set */[2,Parameters["machine_readable"]],/* [] */0]]],
       "For running the debugger under emacs; implies -machine-readable"],
-     [/* :: */0,
-      [/* tuple */0,
+     /* :: */[0,
+      /* tuple */[0,
        "-I",
-       [/* String */4,add_include],
+       /* String */[4,add_include],
        "<dir>  Add <dir> to the list of include directories"],
-      [/* :: */0,
-       [/* tuple */0,
+      /* :: */[0,
+       /* tuple */[0,
         "-machine-readable",
-        [/* Set */2,Parameters["machine_readable"]],
+        /* Set */[2,Parameters["machine_readable"]],
         "Print information in a format more suitable for machines"],
-       [/* :: */0,
-        [/* tuple */0,
+       /* :: */[0,
+        /* tuple */[0,
          "-s",
-         [/* String */4,set_socket],
+         /* String */[4,set_socket],
          "<filename>  Set the name of the communication socket"],
-        [/* :: */0,
-         [/* tuple */0,
+        /* :: */[0,
+         /* tuple */[0,
           "-version",
-          [/* Unit */0,print_version],
+          /* Unit */[0,print_version],
           " Print version and exit"],
-         [/* :: */0,
-          [/* tuple */0,
+         /* :: */[0,
+          /* tuple */[0,
            "-vnum",
-           [/* Unit */0,print_version_num],
+           /* Unit */[0,print_version_num],
            " Print version number and exit"],
-          0]]]]]]]];
+          /* [] */0]]]]]]]];
 
 var function_placeholder=function(param){throw Not_found;};
 
@@ -327,15 +361,17 @@ var
            Pervasives["^"]
             (Unix["string_of_inet_addr"](Unix["inet_addr_loopback"]),
              Pervasives["^"]
-              (":",Pervasives["string_of_int"](1e4+Unix["getpid"](0)%1e4)));
+              (":",
+               Pervasives["string_of_int"](1e4+Unix["getpid"](/* () */0)%1e4)));
          
         default:
          var
           $js=
            Filename["concat"]
-            (Filename["get_temp_dir_name"](0),
+            (Filename["get_temp_dir_name"](/* () */0),
              Pervasives["^"]
-              ("camldebug",Pervasives["string_of_int"](Unix["getpid"](0))));
+              ("camldebug",
+               Pervasives["string_of_int"](Unix["getpid"](/* () */0))));
          }
       Parameters["socket_name"][1]=$js,0;
       try
@@ -358,14 +394,20 @@ var
         }
       
       Format["printf"]
-       ([0,
-         [11,"\tOCaml Debugger version ",[2,0,[17,4,[17,4,0]]]],
+       (/* Format */[0,
+         /* String_literal */[11,
+          "\tOCaml Debugger version ",
+          /* String */[2,
+           /* No_padding */0,
+           /* Formatting_lit */[17,
+            /* Flush_newline */4,
+            /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]]],
          "\tOCaml Debugger version %s@.@."],
         Config["version"]);
       Config["load_path"][1]=Parameters["default_load_path"][1],0;
-      Clflags["recursive_types"][1]=1,0;
-      toplevel_loop(0);
-      Program_management["kill_program"](0);
+      Clflags["recursive_types"][1]=/* true */1,0;
+      toplevel_loop(/* () */0);
+      Program_management["kill_program"](/* () */0);
       return Pervasives["exit"](0);
       }
     catch(exn$1)
@@ -374,35 +416,61 @@ var
       else
        {if(exn$1[1]=Env["Error"])
          {Format["eprintf"]
-           ([0,
-             [11,
+           (/* Format */[0,
+             /* String_literal */[11,
               "Debugger [version ",
-              [2,
-               0,
-               [11,
+              /* String */[2,
+               /* No_padding */0,
+               /* String_literal */[11,
                 "] environment error:",
-                [17,[0,"@ ",1,0],[18,[1,[0,0,""]],[17,[0,"@;",1,0],0]]]]]],
+                /* Formatting_lit */[17,
+                 /* Break */[0,"@ ",1,0],
+                 /* Formatting_gen */[18,
+                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@;",1,0],
+                   /* End_of_format */0]]]]]],
              "Debugger [version %s] environment error:@ @[@;"],
             Config["version"]);
           Env["report_error"](Format["err_formatter"],exn$1[2]);
-          Format["eprintf"]([0,[17,0,[17,4,0]],"@]@."]);
+          Format["eprintf"]
+           (/* Format */[0,
+             /* Formatting_lit */[17,
+              /* Close_box */0,
+              /* Formatting_lit */[17,
+               /* Flush_newline */4,
+               /* End_of_format */0]],
+             "@]@."]);
           return Pervasives["exit"](2);
           }
         else
          {if(exn$1[1]=Cmi_format["Error"])
            {Format["eprintf"]
-             ([0,
-               [11,
+             (/* Format */[0,
+               /* String_literal */[11,
                 "Debugger [version ",
-                [2,
-                 0,
-                 [11,
+                /* String */[2,
+                 /* No_padding */0,
+                 /* String_literal */[11,
                   "] environment error:",
-                  [17,[0,"@ ",1,0],[18,[1,[0,0,""]],[17,[0,"@;",1,0],0]]]]]],
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@ ",1,0],
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                    /* Formatting_lit */[17,
+                     /* Break */[0,"@;",1,0],
+                     /* End_of_format */0]]]]]],
                "Debugger [version %s] environment error:@ @[@;"],
               Config["version"]);
             Cmi_format["report_error"](Format["err_formatter"],exn$1[2]);
-            Format["eprintf"]([0,[17,0,[17,4,0]],"@]@."]);
+            Format["eprintf"]
+             (/* Format */[0,
+               /* Formatting_lit */[17,
+                /* Close_box */0,
+                /* Formatting_lit */[17,
+                 /* Flush_newline */4,
+                 /* End_of_format */0]],
+               "@]@."]);
             return Pervasives["exit"](2);
             }
           else
@@ -412,7 +480,7 @@ var
       }
     };
 
-Printexc["catch"](Unix["handle_unix_error"](main),0);
+Printexc["catch"](Unix["handle_unix_error"](main),/* () */0);
 module["exports"]=
 {"line_buffer":line_buffer,
  "loop":loop,

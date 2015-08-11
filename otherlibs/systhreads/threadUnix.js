@@ -25,7 +25,7 @@ var
    {if(Thread["wait_timed_read"](fd,timeout))
      {return Unix["read"](fd,buff,ofs,len);}
     else
-     {throw [0,Unix["Unix_error"],62,"timed_read",""];}
+     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_read",""];}
     };
 
 var
@@ -34,7 +34,7 @@ var
    {if(Thread["wait_timed_write"](fd,timeout))
      {return Unix["write"](fd,buff,ofs,len);}
     else
-     {throw [0,Unix["Unix_error"],62,"timed_write",""];}
+     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_write",""];}
     };
 
 var

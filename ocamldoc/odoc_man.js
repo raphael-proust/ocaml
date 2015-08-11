@@ -17,10 +17,8 @@ var Odoc_misc=require("Odoc_misc");
 var Odoc_messages=require("Odoc_messages");
 
 
-var shared=[0,"tag_functions"];
-
 var
- shared$1=
+ shared=
   [0,
    "remove_newlines",
    "relative_idents",
@@ -67,25 +65,12 @@ var
    "escape",
    "create_groups"];
 
-var shared$2=[0,"man_of_text"];
+var shared$1=[0,"man_of_text"];
+
+var shared$2=[0,"tag_functions"];
 
 var
  shared$3=
-  [0,
-   "man_of_info",
-   "str_man_of_author_list",
-   "str_man_of_before",
-   "str_man_of_custom",
-   "str_man_of_raised_exceptions",
-   "str_man_of_return_opt",
-   "str_man_of_see",
-   "str_man_of_sees",
-   "str_man_of_since_opt",
-   "str_man_of_text",
-   "str_man_of_version_opt"];
-
-var
- shared$4=
   [0,
    "str_man_of_version_opt",
    "str_man_of_text",
@@ -100,11 +85,26 @@ var
    "man_of_text",
    "man_of_info"];
 
+var
+ shared$4=
+  [0,
+   "man_of_info",
+   "str_man_of_author_list",
+   "str_man_of_before",
+   "str_man_of_custom",
+   "str_man_of_raised_exceptions",
+   "str_man_of_return_opt",
+   "str_man_of_see",
+   "str_man_of_sees",
+   "str_man_of_since_opt",
+   "str_man_of_text",
+   "str_man_of_version_opt"];
+
 var man_suffix=[0,Odoc_messages["default_man_suffix"]];
 
 var man_section=[0,Odoc_messages["default_man_section"]];
 
-var man_mini=[0,0];
+var man_mini=[0,/* false */0];
 
 var new_buf=function(param){return Buffer["create"](1024);};
 
@@ -119,7 +119,9 @@ var
   [0,
    0,
    function($$class)
-    {var ids=CamlinternalOO["new_methods_variables"]($$class,shared$4,shared);
+    {var
+      ids=
+       CamlinternalOO["new_methods_variables"]($$class,shared$3,shared$2);
      
      var str_man_of_version_opt=ids[1];
      
@@ -202,17 +204,26 @@ var
                   var match=param[1];
                   
                   bp
-                   (b,[0,[11,'.B "',[2,0,0]],'.B "%s'],Odoc_messages["before"]);
+                   (b,
+                    /* Format */[0,
+                     /* String_literal */[11,
+                      '.B "',
+                      /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                     '.B "%s'],
+                    Odoc_messages["before"]);
                   bs(b,match[1]);
                   bs(b,'"\n');
                   "unknown block:(sendself self-1/1274 man_of_text/1248 b/1276 (field 1 match/2220))";
                   
                   bs(b,"\n");
                   bs(b,"\n");
-                  if(q){bs(b,linebreak);return iter(q);}else{return 0;}
+                  if(q)
+                   {bs(b,linebreak);return iter(q);}
+                  else
+                   {return /* () */0;}
                   }
                 else
-                 {return 0;}
+                 {return /* () */0;}
                 };
             
             iter(l);
@@ -255,10 +266,13 @@ var
                   "unknown block:(sendself self-1/1287 man_of_text/1248 b/1289 (field 1 match/2214))";
                   
                   bs(b,"\n");
-                  if(q){bs(b,linebreak);return iter(q);}else{return 0;}
+                  if(q)
+                   {bs(b,linebreak);return iter(q);}
+                  else
+                   {return /* () */0;}
                   }
                 else
-                 {return 0;}
+                 {return /* () */0;}
                 };
             
             iter(l);
@@ -274,18 +288,21 @@ var
           var see_ref=param[1];
           
           switch(see_ref)
-           {case 0:var t_ref=[/* :: */0,[/* Link */15,see_ref[1],t],0];
+           {case 0:
+             var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
             case 1:
              var
               t_ref=
-               [/* :: */0,[/* Code */1,see_ref[1]],[/* :: */0,[0," "],t]];
+               /* :: */[0,
+                /* Code */[1,see_ref[1]],
+                /* :: */[0,/* Raw */[0," "],t]];
              
             case 2:
              var
               t_ref=
-               [/* :: */0,
-                [/* Italic */5,[/* :: */0,[/* Raw */0,see_ref[1]],0]],
-                [/* :: */0,[0," "],t]];
+               /* :: */[0,
+                /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
+                /* :: */[0,/* Raw */[0," "],t]];
              
             }
           
@@ -308,10 +325,13 @@ var
                   "unknown block:(sendself self-1/1303 str_man_of_see/1255 (field 0 param/2205))";
                   bs(b,0);
                   bs(b,"\n");
-                  if(q){bs(b,linebreak);return iter(q);}else{return 0;}
+                  if(q)
+                   {bs(b,linebreak);return iter(q);}
+                  else
+                   {return /* () */0;}
                   }
                 else
-                 {return 0;}
+                 {return /* () */0;}
                 };
             
             iter(l);
@@ -348,7 +368,7 @@ var
                        var buf=Buffer["create"](50);
                        
                        Buffer["add_string"](buf,f(param[2]));
-                       return [/* :: */0,Buffer["contents"](buf),acc];
+                       return /* :: */[0,Buffer["contents"](buf),acc];
                        }
                      catch(exn)
                       {if(exn=Not_found)
@@ -359,7 +379,7 @@ var
                         {throw exn;}
                        }
                      },
-                   0,
+                   /* [] */0,
                    l);
           },
         man_of_info,
@@ -382,24 +402,24 @@ var
               "unknown block:(sendself self-1/1323 man_of_text/1248 b/1333 (field 0 match/2194))";
               
               bs(b$1,"\n");
-              var $js=[/* :: */0,Buffer["contents"](b$1),0];
+              var $js=/* :: */[0,Buffer["contents"](b$1),/* [] */0];
               }
             else
-             {var $js=0;}
+             {var $js=/* [] */0;}
             var match$1=info$1[1];
             
             if(match$1)
              {var d=match$1[1];
               
               if("unknown primitive:caml_equal")
-               {var $js$1=0;}
+               {var $js$1=/* [] */0;}
               else
                {"unknown block:(sendself self-1/1323 str_man_of_text/1249 d/1334)";
-                var $js$1=[/* :: */0,Pervasives["^"](0,"\n"),0];
+                var $js$1=/* :: */[0,Pervasives["^"](0,"\n"),/* [] */0];
                 }
               }
             else
-             {var $js$1=0;}
+             {var $js$1=/* [] */0;}
             "unknown block:(sendself self-1/1323 str_man_of_author_list/1250 (field 1 info/1329))";
             "unknown block:(sendself self-1/1323 str_man_of_version_opt/1251 (field 2 info/1329))";
             "unknown block:(sendself self-1/1323 str_man_of_before/1252 (field 5 info/1329))";
@@ -415,13 +435,15 @@ var
                 Pervasives["@"]
                  ($js$1,
                   Pervasives["@"]
-                   ([/* :: */0,
+                   (/* :: */[0,
                      0,
-                     [/* :: */0,
+                     /* :: */[0,
                       0,
-                      [/* :: */0,
+                      /* :: */[0,
                        0,
-                       [/* :: */0,0,[/* :: */0,0,[/* :: */0,0,[/* :: */0,0,0]]]]]]],
+                       /* :: */[0,
+                        0,
+                        /* :: */[0,0,/* :: */[0,0,/* :: */[0,0,/* [] */0]]]]]]],
                     0)));
             
             var
@@ -435,12 +457,12 @@ var
             return Buffer["add_string"](b,$$String["concat"]("\n.sp\n",l$1));
             }
           else
-           {return 0;}
+           {return /* () */0;}
           }]);
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
-       $$self$1[tag_functions]=0,0;
+       $$self$1[tag_functions]=/* [] */0,0;
        return $$self$1;
        };
      },
@@ -454,7 +476,7 @@ var
   function($$class)
    {var re_slash$1=CamlinternalOO["new_variable"]($$class,"");
     
-    var ids=CamlinternalOO["get_method_labels"]($$class,shared$1);
+    var ids=CamlinternalOO["get_method_labels"]($$class,shared);
     
     var remove_newlines=ids[1];
     
@@ -546,7 +568,7 @@ var
     
     var
      inh=
-      CamlinternalOO["inherits"]($$class,shared,shared$2,shared$3,info,1);
+      CamlinternalOO["inherits"]($$class,shared$2,shared$1,shared$4,info,1);
     
     var obj_init=inh[1];
     
@@ -558,7 +580,15 @@ var
         {var
           s=
            Printf["sprintf"]
-            ([0,[2,0,[12,46,[2,0,0]]],"%s.%s"],name,man_suffix[1]);
+            (/* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* Char_literal */[12,
+                46,
+                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+              "%s.%s"],
+             name,
+             man_suffix[1]);
          
          return Str["global_replace"](self$neg2[re_slash$1],"slash",s);
          },
@@ -610,7 +640,7 @@ var
          },
        man_of_text,
        function(self$neg2,b,t)
-        {var b2=new_buf(0);
+        {var b2=new_buf(/* () */0);
          
          "unknown block:(sendself self-2/1421 man_of_text2/1361 b2/1424 t/1423)";
          
@@ -707,7 +737,7 @@ var
               }}
          
          switch(exit)
-          {case 91:return 0;
+          {case 91:return /* () */0;
            case 92:
             "unknown block:(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
             return bs(b,0);
@@ -715,13 +745,13 @@ var
            }
          },
        man_of_custom_text,
-       function(self$neg2,b,s,t){return 0;},
+       function(self$neg2,b,s,t){return /* () */0;},
        man_of_Target,
        function(self$neg2,b,target,code)
         {if("unknown primitive:caml_string_equal")
           {return bs(b,code);}
          else
-          {return 0;}
+          {return /* () */0;}
          },
        man_of_code,
        function(self$neg2,b,s)
@@ -769,7 +799,8 @@ var
            $$String["concat"]
             ("\n",
              Str["split"]
-              (Str["regexp"]("\n"),Odoc_print["string_of_class_type"](0,t)));
+              (Str["regexp"]("\n"),
+               Odoc_print["string_of_class_type"](/* None */0,t)));
          
          var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
          
@@ -804,7 +835,7 @@ var
            return bs(b,"\n");
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        man_of_module_type,
        function(self$neg2,b,m_name,t)
@@ -813,7 +844,8 @@ var
            $$String["concat"]
             ("\n",
              Str["split"]
-              (Str["regexp"]("\n"),Odoc_print["string_of_module_type"](0,0,t)));
+              (Str["regexp"]("\n"),
+               Odoc_print["string_of_module_type"](/* None */0,/* None */0,t)));
          
          var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
          
@@ -824,7 +856,7 @@ var
          },
        man_of_value,
        function(self$neg2,b,v)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          bs(b,"\n.I val ");
          bs(b,Odoc_info["Name"][1](v[1]));
          bs(b," \n: ");
@@ -837,7 +869,7 @@ var
          },
        man_of_type_extension,
        function(self$neg2,b,m_name,te)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          bs(b,".I type ");
          var l=te[3];
          
@@ -857,7 +889,7 @@ var
          bs(b,0);
          bs(b," \n");
          bs(b,"+=");
-         if(te[4]=0){bs(b," private")}else{}
+         if(te[4]=/* Private */0){bs(b," private")}else{}
          
          bs(b,"\n ");
          List["iter"]
@@ -924,7 +956,7 @@ var
          },
        man_of_exception,
        function(self$neg2,b,e)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          bs(b,"\n.I exception ");
          bs(b,Odoc_info["Name"][1](e[1]));
          bs(b," \n");
@@ -973,7 +1005,7 @@ var
          },
        man_of_type,
        function(self$neg2,b,t)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          var father=Odoc_info["Name"][5](t[1]);
          
          var
@@ -986,7 +1018,7 @@ var
                return bs(b," *) ");
                }
              else
-              {return 0;}
+              {return /* () */0;}
              };
          
          bs(b,".I type ");
@@ -998,7 +1030,7 @@ var
          
          bs(b,Odoc_info["Name"][1](t[1]));
          bs(b," \n");
-         var priv=t[5]=0;
+         var priv=t[5]=/* Private */0;
          
          var match$1=t[6];
          
@@ -1204,7 +1236,7 @@ var
            return bs(b,"\n");
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        man_of_parameter_description,
        function(self$neg2,b,p)
@@ -1222,7 +1254,7 @@ var
                           "unknown block:(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2092))";
                           }
                         else
-                         {return 0;}
+                         {return /* () */0;}
                         },
                       l);
              }
@@ -1234,11 +1266,11 @@ var
                "unknown block:(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2090))";
                }
              else
-              {return 0;}
+              {return /* () */0;}
              }
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        man_of_module_parameter_list,
        function(self$neg2,b,m_name,l)
@@ -1269,11 +1301,11 @@ var
            return bs(b,"\n\n");
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        man_of_class,
        function(self$neg2,b,c)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          var father=Odoc_info["Name"][5](c[1]);
          
          bs(b,".I class ");
@@ -1297,7 +1329,7 @@ var
          },
        man_of_class_type,
        function(self$neg2,b,ct)
-        {Odoc_info["reset_type_names"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
          bs(b,".I class type ");
          if(ct[5]){bs(b,"virtual ")}else{}
          
@@ -1418,15 +1450,15 @@ var
          },
        generate_for_class,
        function(self$neg2,cl)
-        {Odoc_info["reset_type_names"](0);
-         var date=Unix["time"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
+         var date=Unix["time"](/* () */0);
          
          "unknown block:(sendself self-2/1664 file_name/1358 (field 0 cl/1665))";
          
          try
           {"unknown block:(sendself self-2/1664 open_out/1360 file/1667)";
            
-           var b=new_buf(0);
+           var b=new_buf(/* () */0);
            
            bs(b,Pervasives["^"]('.TH "',Pervasives["^"](cl[1],'" ')));
            bs(b,man_section[1]);
@@ -1434,7 +1466,9 @@ var
             (b,
              Pervasives["^"]
               (" ",
-               Pervasives["^"](Odoc_misc["string_of_date"]([0,0],date)," ")));
+               Pervasives["^"]
+                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                 " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
            
@@ -1500,7 +1534,7 @@ var
                   
                  }
                },
-             Odoc_info["Class"][1](0,cl));
+             Odoc_info["Class"][1](/* None */0,cl));
            Buffer["output_buffer"](chanout,b);
            return Pervasives["close_out"](chanout);
            }
@@ -1515,15 +1549,15 @@ var
          },
        generate_for_class_type,
        function(self$neg2,ct)
-        {Odoc_info["reset_type_names"](0);
-         var date=Unix["time"](0);
+        {Odoc_info["reset_type_names"](/* () */0);
+         var date=Unix["time"](/* () */0);
          
          "unknown block:(sendself self-2/1680 file_name/1358 (field 0 ct/1681))";
          
          try
           {"unknown block:(sendself self-2/1680 open_out/1360 file/1683)";
            
-           var b=new_buf(0);
+           var b=new_buf(/* () */0);
            
            bs(b,Pervasives["^"]('.TH "',Pervasives["^"](ct[1],'" ')));
            bs(b,man_section[1]);
@@ -1531,7 +1565,9 @@ var
             (b,
              Pervasives["^"]
               (" ",
-               Pervasives["^"](Odoc_misc["string_of_date"]([0,0],date)," ")));
+               Pervasives["^"]
+                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                 " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
            
@@ -1595,7 +1631,7 @@ var
                   
                  }
                },
-             Odoc_info["Class"][6](0,ct));
+             Odoc_info["Class"][6](/* None */0,ct));
            Buffer["output_buffer"](chanout,b);
            return Pervasives["close_out"](chanout);
            }
@@ -1651,18 +1687,18 @@ var
                        
                       }
                     },
-                  Odoc_info["Module"][17](0,mt));
+                  Odoc_info["Module"][17](/* None */0,mt));
          },
        generate_for_module_type,
        function(self$neg2,mt)
-        {var date=Unix["time"](0);
+        {var date=Unix["time"](/* () */0);
          
          "unknown block:(sendself self-2/1711 file_name/1358 (field 0 mt/1712))";
          
          try
           {"unknown block:(sendself self-2/1711 open_out/1360 file/1714)";
            
-           var b=new_buf(0);
+           var b=new_buf(/* () */0);
            
            bs(b,Pervasives["^"]('.TH "',Pervasives["^"](mt[1],'" ')));
            bs(b,man_section[1]);
@@ -1670,7 +1706,9 @@ var
             (b,
              Pervasives["^"]
               (" ",
-               Pervasives["^"](Odoc_misc["string_of_date"]([0,0],date)," ")));
+               Pervasives["^"]
+                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                 " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
            
@@ -1789,18 +1827,18 @@ var
                        
                       }
                     },
-                  Odoc_info["Module"][1](0,m));
+                  Odoc_info["Module"][1](/* None */0,m));
          },
        generate_for_module,
        function(self$neg2,m)
-        {var date=Unix["time"](0);
+        {var date=Unix["time"](/* () */0);
          
          "unknown block:(sendself self-2/1739 file_name/1358 (field 0 m/1740))";
          
          try
           {"unknown block:(sendself self-2/1739 open_out/1360 file/1742)";
            
-           var b=new_buf(0);
+           var b=new_buf(/* () */0);
            
            bs(b,Pervasives["^"]('.TH "',Pervasives["^"](m[1],'" ')));
            bs(b,man_section[1]);
@@ -1808,7 +1846,9 @@ var
             (b,
              Pervasives["^"]
               (" ",
-               Pervasives["^"](Odoc_misc["string_of_date"]([0,0],date)," ")));
+               Pervasives["^"]
+                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                 " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
            
@@ -1913,10 +1953,10 @@ var
                  case 1:exit=16;
                  case 2:exit=16;
                  case 3:exit=16;
-                 case 10:return 0;
+                 case 10:return /* false */0;
                  default:return !mini;}
                
-               switch(exit){case 16:return 1;}
+               switch(exit){case 16:return /* true */1;}
                },
              all_items_pre);
          
@@ -1939,19 +1979,21 @@ var
                   {if(List["mem"](h,acc2))
                     {return f(acc1,acc2,q);}
                    else
-                    {return f(acc1,Pervasives["@"](acc2,[/* :: */0,h,0]),q);}
+                    {return f
+                             (acc1,Pervasives["@"](acc2,/* :: */[0,h,/* [] */0]),q);
+                     }
                    }
                  else
-                  {return f([/* :: */0,acc2,acc1],[/* :: */0,h,0],q);}
+                  {return f(/* :: */[0,acc2,acc1],/* :: */[0,h,/* [] */0],q);}
                  }
                else
-                {return f(acc1,[/* :: */0,h,0],q);}
+                {return f(acc1,/* :: */[0,h,/* [] */0],q);}
                }
              else
-              {return [/* :: */0,acc2,acc1];}
+              {return /* :: */[0,acc2,acc1];}
              };
          
-         return f(0,0,sorted_items);
+         return f(/* [] */0,/* [] */0,sorted_items);
          },
        generate_for_group,
        function(self$neg2,l)
@@ -1972,14 +2014,14 @@ var
          switch(exit){case 12:$js$1=match[1][1][1];case 13:$js$1=match[2][1];}
          var name=Odoc_info["Name"][1]($js$1);
          
-         var date=Unix["time"](0);
+         var date=Unix["time"](/* () */0);
          
          "unknown block:(sendself self-2/1797 file_name/1358 name/1799)";
          
          try
           {"unknown block:(sendself self-2/1797 open_out/1360 file/1814)";
            
-           var b=new_buf(0);
+           var b=new_buf(/* () */0);
            
            bs(b,Pervasives["^"]('.TH "',Pervasives["^"](name,'" ')));
            bs(b,man_section[1]);
@@ -1987,7 +2029,9 @@ var
             (b,
              Pervasives["^"]
               (" ",
-               Pervasives["^"](Odoc_misc["string_of_date"]([0,0],date)," ")));
+               Pervasives["^"]
+                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                 " ")));
            bs(b,"OCamldoc ");
            var match$1=Odoc_info["Global"][6][1];
            
@@ -2172,7 +2216,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](m$1[1][1]),"\n")))));
                   "unknown block:(sendself self-2/1797 man_of_method/1379 b/1816 m/1825)";
                   
-                 case 10:return 0;
+                 case 10:return /* () */0;
                  case 11:
                   var ty=ele[1];
                   
@@ -2255,7 +2299,7 @@ var
                  default:exit=1;}
                }
              else
-              {return 0;}
+              {return /* () */0;}
              
              switch(exit)
               {case 1:

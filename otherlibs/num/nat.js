@@ -207,15 +207,15 @@ var
         function(param)
          {"unknown primitive:blit_nat";
           "unknown primitive:div_nat";
-          
+          "unknown primitive:add_nat";
           "unknown primitive:shift_right_nat";
           if(lt_nat(next_cand,cand_len,cand_rest,cand,0,cand_len))
-           {"unknown primitive:blit_nat";return loop(0);}
+           {"unknown primitive:blit_nat";return loop(/* () */0);}
           else
            {return cand;}
           };
       
-      return loop(0);
+      return loop(/* () */0);
       }
     };
 
@@ -225,7 +225,7 @@ if(length_of_digit!=32)
  {if(length_of_digit!=64)
    {throw [0,Assert_failure,[0,"nat.ml",252,9]];}
   else
-   {"unknown primitive:set_digit_nat",0}
+   {"unknown primitive:set_digit_nat","unknown primitive:mult_digit_nat"}
   }
 else
  {"unknown primitive:set_digit_nat"}
@@ -299,7 +299,8 @@ var
     var j=[0,0];
     
     "unknown primitive:set_digit_nat";
-    while(i[0]++,"unknown primitive:is_digit_zero"){}
+    while(i[0]++,"unknown primitive:is_digit_zero")
+     {"unknown primitive:mult_digit_nat"}
     
     while(j[1]<i[1]-1&&"unknown primitive:is_digit_int"){j[0]++}
     
@@ -357,15 +358,19 @@ var
               
               var succ_len2=1+len2;
               
-              
+              "unknown primitive:square_nat";
               if((n&1<<i$1)>0)
-               {"unknown primitive:set_to_zero_nat",0}
+               {"unknown primitive:set_to_zero_nat",
+                "unknown primitive:mult_digit_nat"}
               else
                {"unknown primitive:blit_nat"}
               
               "unknown primitive:set_to_zero_nat"}
             
-            if(rem>0){return res2;}else{return res;}
+            if(rem>0)
+             {"unknown primitive:mult_digit_nat";return res2;}
+            else
+             {return res;}
             }
           else
            {return copy_nat(power_base,-1+rem,1);}
@@ -517,7 +522,7 @@ var
         
         for(var j=1;j<=erase_len;j++){"unknown primitive:set_digit_nat"}
         
-        0,
+        "unknown primitive:mult_digit_nat",
         "unknown primitive:blit_nat",
         current_len[1]=
         "unknown primitive:num_digits_nat",

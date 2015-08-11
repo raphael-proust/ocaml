@@ -11,7 +11,7 @@ var Sys=require("Sys");
 
 var conn=[0,Primitives["std_io"]];
 
-var fork_mode=[0,1];
+var fork_mode=[0,/* Fork_parent */1];
 
 var
  update_follow_fork_mode=
@@ -26,7 +26,8 @@ var
 
 var
  set_current_connection=
-  function(io_chan){conn[1]=io_chan,0;return update_follow_fork_mode(0);};
+  function(io_chan)
+   {conn[1]=io_chan,0;return update_follow_fork_mode(/* () */0);};
 
 var
  set_event=
@@ -59,7 +60,7 @@ var
             (Input_handling["exit_main_loop"],
              conn[1],
              function(param)
-              {Input_handling["main_loop"](0);
+              {Input_handling["main_loop"](/* () */0);
                var match=Pervasives["input_char"](conn[1][1]);
                
                var exit;
@@ -70,10 +71,10 @@ var
                 {exit=50;}
                else
                 {switch(switcher[0])
-                  {case 0:var summary=1;
+                  {case 0:var summary=/* Breakpoint */1;
                    case 1:exit=50;
                    case 2:exit=50;
-                   case 3:var summary=0;
+                   case 3:var summary=/* Event */0;
                    case 4:exit=50;
                    case 5:exit=50;
                    case 6:exit=50;
@@ -87,12 +88,12 @@ var
                    case 14:exit=50;
                    case 15:exit=50;
                    case 16:exit=50;
-                   case 17:var summary=3;
+                   case 17:var summary=/* Trap_barrier */3;
                    case 18:exit=50;
-                   case 19:var summary=4;
+                   case 19:var summary=/* Uncaught_exc */4;
                    case 20:exit=50;
                    case 21:exit=50;
-                   case 22:var summary=2;
+                   case 22:var summary=/* Exited */2;
                    }
                  }
                
@@ -105,7 +106,7 @@ var
                
                var pc=Pervasives["input_binary_int"](conn[1][1]);
                
-               return [/* record */0,summary,event_counter,stack_pos,pc];
+               return /* record */[0,summary,event_counter,stack_pos,pc];
                });
     };
 
@@ -118,7 +119,9 @@ var
      {throw [0,Assert_failure,[0,"debugcom.ml",105,2]];}
     
     if(n>Int64ops["max_small_int"])
-     {return do_go(Int64ops["--"](n,Int64ops["max_small_int"]));}
+     {do_go_smallint(Pervasives["max_int"]);
+      return do_go(Int64ops["--"](n,Int64ops["max_small_int"]));
+      }
     else
      {return do_go_smallint(n);}
     };
@@ -135,7 +138,10 @@ var
        Pervasives["flush"](conn[1][2]);
        var pid=Pervasives["input_binary_int"](conn[1][1]);
        
-       if(pid=-1){return 0;}else{return [/* Checkpoint_done */0,pid];}
+       if(pid=-1)
+        {return /* Checkpoint_failed */0;}
+       else
+        {return /* Checkpoint_done */[0,pid];}
        }
     };
 
@@ -154,7 +160,7 @@ var
       else
        {if(exn=End_of_file){exit=41;}else{throw exn;}}
       
-      switch(exit){case 41:return 0;}
+      switch(exit){case 41:return /* () */0;}
       }
     };
 
@@ -171,7 +177,7 @@ var
       else
        {if(exn=End_of_file){exit=37;}else{throw exn;}}
       
-      switch(exit){case 37:return 0;}
+      switch(exit){case 37:return /* () */0;}
       }
     };
 
@@ -184,10 +190,10 @@ var
     
     var pc=Pervasives["input_binary_int"](conn[1][1]);
     
-    return [/* tuple */0,stack_pos,pc];
+    return /* tuple */[0,stack_pos,pc];
     };
 
-var set_initial_frame=function(param){return 0;};
+var set_initial_frame=function(param){return initial_frame(/* () */0);};
 
 var
  up_frame=
@@ -202,7 +208,7 @@ var
     else
      {var pc=Pervasives["input_binary_int"](conn[1][1]);}
     
-    return [/* tuple */0,stack_pos,pc];
+    return /* tuple */[0,stack_pos,pc];
     };
 
 var
@@ -214,7 +220,7 @@ var
     
     var pc=Pervasives["input_binary_int"](conn[1][1]);
     
-    return [/* tuple */0,stack_pos,pc];
+    return /* tuple */[0,stack_pos,pc];
     };
 
 var
@@ -326,21 +332,21 @@ var
        Pervasives["output_binary_int"](conn[1][2],n);
        Pervasives["flush"](conn[1][2]);
        if(Pervasives["input_byte"](conn[1][1])=0)
-        {return [/* Remote */0,input_remote_value(conn[1][1])];}
+        {return /* Remote */[0,input_remote_value(conn[1][1])];}
        else
         {var buf=Pervasives["really_input_string"](conn[1][1],8);
          
          var floatbuf=n;
          
          "unknown primitive:caml_blit_string";
-         return [/* Local */1,floatbuf];
+         return /* Local */[1,floatbuf];
          }
        
-      case 1:return [/* Local */1,v[1][n]];
+      case 1:return /* Local */[1,v[1][n]];
       }
     };
 
-var of_int=function(n){return [/* Local */1,n];};
+var of_int=function(n){return /* Local */[1,n];};
 
 var
  local=
@@ -348,7 +354,7 @@ var
    {Pervasives["output_char"](conn[1][2],76);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return [/* Remote */0,input_remote_value(conn[1][1])];
+    return /* Remote */[0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -357,7 +363,7 @@ var
    {Pervasives["output_char"](conn[1][2],69);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return [/* Remote */0,input_remote_value(conn[1][1])];
+    return /* Remote */[0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -366,7 +372,7 @@ var
    {Pervasives["output_char"](conn[1][2],71);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return [/* Remote */0,input_remote_value(conn[1][1])];
+    return /* Remote */[0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -374,7 +380,7 @@ var
   function(param)
    {Pervasives["output_char"](conn[1][2],65);
     Pervasives["flush"](conn[1][2]);
-    return [/* Remote */0,input_remote_value(conn[1][1])];
+    return /* Remote */[0,input_remote_value(conn[1][1])];
     };
 
 var
@@ -404,7 +410,7 @@ var
       case 1:switch(rv2){case 0:exit=1;case 1:return rv1[1]=rv2[1];}
       }
     
-    switch(exit){case 1:return 0;}
+    switch(exit){case 1:return /* false */0;}
     };
 
 var

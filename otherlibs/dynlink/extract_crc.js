@@ -7,9 +7,9 @@ var Arg=require("Arg");
 var Printf=require("Printf");
 
 
-var load_path=[0,0];
+var load_path=[0,/* [] */0];
 
-var first=[0,1];
+var first=[0,/* true */1];
 
 var
  print_crc=
@@ -18,15 +18,28 @@ var
      {var
        crc=
         Dynlink["digest_interface"]
-         (unit,Pervasives["@"](load_path[1],[0,".",0]));
+         (unit,Pervasives["@"](load_path[1],/* :: */[0,".",/* [] */0]));
       
-      if(first[1]){first[1]=0,0}else{Pervasives["print_string"](";\n")}
+      if(first[1])
+       {first[1]=/* false */0,0}
+      else
+       {Pervasives["print_string"](";\n")}
       
       Pervasives["print_string"]('  "');
       Pervasives["print_string"]($$String["capitalize"](unit));
       Pervasives["print_string"]('",\n    "');
       for(var i=0;i<=crc["length"]-1;i++)
-       {Printf["printf"]([0,[12,92,[4,0,[0,2,3],0,0]],"\%03d"],crc[i])}
+       {Printf["printf"]
+         (/* Format */[0,
+           /* Char_literal */[12,
+            92,
+            /* Int */[4,
+             /* Int_d */0,
+             /* Lit_padding */[0,/* Zeros */2,3],
+             /* No_precision */0,
+             /* End_of_format */0]],
+           "\%03d"],
+          crc[i])}
       
       return Pervasives["print_string"]('"');
       }
@@ -80,17 +93,17 @@ var
         /* String */[4,
          function(dir)
           {return load_path[1]=
-                  Pervasives["@"](load_path[1],/* :: */[0,dir,0]),
+                  Pervasives["@"](load_path[1],/* :: */[0,dir,/* [] */0]),
                   0;
            }],
         "<dir>  Add <dir> to the list of include directories"],
-       0],
+       /* [] */0],
       print_crc,
       usage);
     return Pervasives["print_string"]("\n]\n");
     };
 
-main(0);
+main(/* () */0);
 Pervasives["exit"](0);
 module["exports"]=
 {"load_path":load_path,

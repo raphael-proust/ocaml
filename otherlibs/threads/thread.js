@@ -5,7 +5,7 @@ var List=require("List");
 var Sys=require("Sys");
 
 
-var critical_section=[0,0];
+var critical_section=[0,/* false */0];
 
 
 var $$yield=function(param){return "unknown primitive:thread_yield";};
@@ -13,7 +13,9 @@ var $$yield=function(param){return "unknown primitive:thread_yield";};
 var
  sleep=
   function(param)
-   {critical_section[1]=0,0;return "unknown primitive:thread_sleep";};
+   {critical_section[1]=/* false */0,0;
+    return "unknown primitive:thread_sleep";
+    };
 
 var delay=function(duration){return "unknown primitive:thread_delay";};
 
@@ -32,7 +34,7 @@ var select_aux=function(arg){return "unknown primitive:thread_select";};
 var
  select=
   function(readfds,writefds,exceptfds,delay$1)
-   {var match=select_aux([/* tuple */0,readfds,writefds,exceptfds,delay$1]);
+   {var match=select_aux(/* tuple */[0,readfds,writefds,exceptfds,delay$1]);
     
     var exit$1;
     
@@ -47,11 +49,12 @@ var
          
          var r=match[1];
          
-         return [/* tuple */0,r,w,e];
+         return /* tuple */[0,r,w,e];
          
         default:exit$1=20;}}
     
-    switch(exit$1){case 20:return [0,0,0,0];}
+    switch(exit$1)
+     {case 20:return /* tuple */[0,/* [] */0,/* [] */0,/* [] */0];}
     };
 
 var wait_read=function(fd){return "unknown primitive:thread_wait_read";};
@@ -69,31 +72,31 @@ var
 var
  wait_timed_read=
   function(fd,delay$1)
-   {var match=wait_timed_read_aux([/* tuple */0,fd,delay$1]);
+   {var match=wait_timed_read_aux(/* tuple */[0,fd,delay$1]);
     
     var exit$1;
     
     if("unknown primitive:isint")
-     {if(match>=3){return 1;}else{exit$1=14;}}
+     {if(match>=3){return /* true */1;}else{exit$1=14;}}
     else
      {exit$1=14;}
     
-    switch(exit$1){case 14:return 0;}
+    switch(exit$1){case 14:return /* false */0;}
     };
 
 var
  wait_timed_write=
   function(fd,delay$1)
-   {var match=wait_timed_write_aux([/* tuple */0,fd,delay$1]);
+   {var match=wait_timed_write_aux(/* tuple */[0,fd,delay$1]);
     
     var exit$1;
     
     if("unknown primitive:isint")
-     {if(match>=3){return 1;}else{exit$1=12;}}
+     {if(match>=3){return /* true */1;}else{exit$1=12;}}
     else
      {exit$1=12;}
     
-    switch(exit$1){case 12:return 0;}
+    switch(exit$1){case 12:return /* false */0;}
     };
 
 var wait_pid_aux=function(pid){return "unknown primitive:thread_wait_pid";};
@@ -114,7 +117,7 @@ var
          
          var pid$1=match[1];
          
-         return [/* tuple */0,pid$1,status];
+         return /* tuple */[0,pid$1,status];
          
         default:exit$1=9;}}
     
@@ -137,7 +140,7 @@ var
        (function(s){return "unknown primitive:caml_install_signal_handler";},
         sigs);
     
-    if(gotsig[1]=0){sleep(0)}else{}
+    if(gotsig[1]=0){sleep(/* () */0)}else{}
     
     List["iter2"](Sys["set_signal"],sigs,oldhdlrs);
     return gotsig[1];
@@ -149,13 +152,13 @@ var
  preempt=
   function(signal)
    {if(critical_section[1])
-     {return 0;}
+     {return /* () */0;}
     else
      {return "unknown primitive:thread_request_reschedule";}
     };
 
 "unknown primitive:thread_initialize";
-Sys["set_signal"](Sys["sigvtalrm"],[/* Signal_handle */0,preempt]),
+Sys["set_signal"](Sys["sigvtalrm"],/* Signal_handle */[0,preempt]),
 "unknown primitive:thread_initialize_preemption";
 module["exports"]=
 {"create":create,

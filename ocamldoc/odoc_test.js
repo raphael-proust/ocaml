@@ -12,19 +12,6 @@ var Printexc=require("Printexc");
 var
  shared=
   [0,
-   "set_test_kinds_from_module",
-   "scan_type",
-   "scan_module_type_pre",
-   "scan_module_pre",
-   "scan_module_list",
-   "must_display_types",
-   "generate"];
-
-var shared$1=[0,"test_kinds","fmt"];
-
-var
- shared$2=
-  [0,
    "scan_type_const",
    "scan_class",
    "scan_module_elements",
@@ -59,8 +46,23 @@ var
    "scan_method",
    "scan_type_pre"];
 
+var shared$1=[0,"test_kinds","fmt"];
+
+var shared$2=[0,"generate"];
+
 var
  shared$3=
+  [0,
+   "set_test_kinds_from_module",
+   "scan_type",
+   "scan_module_type_pre",
+   "scan_module_pre",
+   "scan_module_list",
+   "must_display_types",
+   "generate"];
+
+var
+ shared$4=
   [0,
    "scan_attribute",
    "scan_class",
@@ -93,8 +95,6 @@ var
    "scan_type_recfield",
    "scan_value"];
 
-var shared$4=[0,"generate"];
-
 var p=Format["fprintf"];
 
 var generator_tables=[0,0,0,0];
@@ -112,7 +112,7 @@ var
         function($$class)
          {var
            ids=
-            CamlinternalOO["new_methods_variables"]($$class,shared,shared$1);
+            CamlinternalOO["new_methods_variables"]($$class,shared$3,shared$1);
           
           var set_test_kinds_from_module=ids[1];
           
@@ -135,7 +135,7 @@ var
           var
            inh=
             CamlinternalOO["inherits"]
-             ($$class,0,0,shared$3,Odoc_info["Scan"][1],0);
+             ($$class,0,0,shared$4,Odoc_info["Scan"][1],0);
           
           var obj_init=inh[1];
           
@@ -145,7 +145,7 @@ var
              must_display_types,
              10,
              List["mem"],
-             0,
+             /* Types_display */0,
              test_kinds,
              set_test_kinds_from_module,
              function(self$neg1,m)
@@ -155,11 +155,12 @@ var
                       List["fold_left"]
                        (function(acc,param)
                          {switch(param[1])
-                           {case "test_types_display":return [/* :: */0,0,acc];
+                           {case "test_types_display":
+                             return /* :: */[0,/* Types_display */0,acc];
                             default:return acc;}
                           },
-                        0,
-                        match?match[1][11]:0),
+                        /* [] */0,
+                        match?match[1][11]:/* [] */0),
                       0;
                },
              scan_type,
@@ -169,7 +170,13 @@ var
                if(match)
                 {p
                   (self$neg1[fmt],
-                   [0,[11,"# type ",[2,0,[11,":\n",0]]],"# type %s:\n"],
+                   /* Format */[0,
+                    /* String_literal */[11,
+                     "# type ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,":\n",/* End_of_format */0]]],
+                    "# type %s:\n"],
                    t[1]);
                  "unknown block:(sendself self-1/1248 must_display_types/1233)";
                  if(0)
@@ -188,8 +195,12 @@ var
                     {var $js="None";}
                    return p
                            (self$neg1[fmt],
-                            [0,
-                             [11,"# manifest :\n<[",[2,0,[11,"]>\n",0]]],
+                            /* Format */[0,
+                             /* String_literal */[11,
+                              "# manifest :\n<[",
+                              /* String */[2,
+                               /* No_padding */0,
+                               /* String_literal */[11,"]>\n",/* End_of_format */0]]],
                              "# manifest :\n<[%s]>\n"],
                             $js);
                    }
@@ -197,45 +208,59 @@ var
                   {return 0;}
                  }
                else
-                {return 0;}
+                {return /* () */0;}
                },
              scan_module_pre,
              function(self$neg1,m)
               {p
                 (self$neg1[fmt],
-                 [0,
-                  [11,"#\n# module ",[2,0,[11,":\n",0]]],
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "#\n# module ",
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,":\n",/* End_of_format */0]]],
                   "#\n# module %s:\n"],
                  m[1]);
                "unknown block:(sendself self-1/1253 must_display_types/1233)";
                if(0)
                 {p
                   (self$neg1[fmt],
-                   [0,
-                    [11,
+                   /* Format */[0,
+                    /* String_literal */[11,
                      "# Odoc_info.string_of_module_type:\n<[",
-                     [2,0,[11,"]>\n",0]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type:\n<[%s]>\n"],
-                   Odoc_info["string_of_module_type"](0,0,m[2])),
+                   Odoc_info["string_of_module_type"]
+                    (/* None */0,/* None */0,m[2])),
                  p
                   (self$neg1[fmt],
-                   [0,
-                    [11,
+                   /* Format */[0,
+                    /* String_literal */[11,
                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
-                     [2,0,[11,"]>\n",0]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type ~complete: true :\n<[%s]>\n"],
-                   Odoc_info["string_of_module_type"](0,[0,1],m[2]))}
+                   Odoc_info["string_of_module_type"]
+                    (/* None */0,/* Some */[0,/* true */1],m[2]))}
                else
                 {}
                
-               return 1;
+               return /* true */1;
                },
              scan_module_type_pre,
              function(self$neg1,m)
               {p
                 (self$neg1[fmt],
-                 [0,
-                  [11,"#\n# module type ",[2,0,[11,":\n",0]]],
+                 /* Format */[0,
+                  /* String_literal */[11,
+                   "#\n# module type ",
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,":\n",/* End_of_format */0]]],
                   "#\n# module type %s:\n"],
                  m[1]);
                "unknown block:(sendself self-1/1256 must_display_types/1233)";
@@ -244,30 +269,36 @@ var
                  
                  p
                   (self$neg1[fmt],
-                   [0,
-                    [11,
+                   /* Format */[0,
+                    /* String_literal */[11,
                      "# Odoc_info.string_of_module_type:\n<[",
-                     [2,0,[11,"]>\n",0]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type:\n<[%s]>\n"],
                    match
-                    ?Odoc_info["string_of_module_type"](0,0,match[1])
+                    ?Odoc_info["string_of_module_type"]
+                      (/* None */0,/* None */0,match[1])
                     :"None");
                  var match$1=m[3];
                  
                  p
                   (self$neg1[fmt],
-                   [0,
-                    [11,
+                   /* Format */[0,
+                    /* String_literal */[11,
                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
-                     [2,0,[11,"]>\n",0]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type ~complete: true :\n<[%s]>\n"],
                    match$1
-                    ?Odoc_info["string_of_module_type"](0,[0,1],match$1[1])
+                    ?Odoc_info["string_of_module_type"]
+                      (/* None */0,/* Some */[0,/* true */1],match$1[1])
                     :"None")}
                else
                 {}
                
-               return 1;
+               return /* true */1;
                },
              generate,
              function(self$neg1,module_list)
@@ -284,7 +315,7 @@ var
                    module_list)}
                catch(e){Pervasives["prerr_endline"](Printexc["to_string"](e))}
                
-               Format["pp_print_flush"](self$neg1[fmt],0);
+               Format["pp_print_flush"](self$neg1[fmt],/* () */0);
                return Pervasives["close_out"](oc);
                }]);
           return function(env)
@@ -295,7 +326,7 @@ var
               
               obj_init(env[2],$$self$1),
               $$self$1[test_kinds]=
-              0,
+              /* [] */0,
               0,
               $$self$1[fmt]=
               Format["str_formatter"],
@@ -307,7 +338,7 @@ var
           };
       
       CamlinternalOO["make_class_store"]
-       (shared$2,string_gen_init,string_gen_tables)}
+       (shared,string_gen_init,string_gen_tables)}
     
     var envs=[0,0,Odoc_info["Scan"][1][4]];
     
@@ -333,7 +364,7 @@ var
           
           var generate=CamlinternalOO["get_method_label"]($$class,"generate");
           
-          var inh=CamlinternalOO["inherits"]($$class,0,0,shared$4,G[1],0);
+          var inh=CamlinternalOO["inherits"]($$class,0,0,shared$2,G[1],0);
           
           var obj_init=inh[1];
           
@@ -361,7 +392,7 @@ var
             };
           };
       
-      CamlinternalOO["make_class_store"](shared$4,generator_init,cached)}
+      CamlinternalOO["make_class_store"](shared$2,generator_init,cached)}
     
     var envs$1=[0,[0,0,g],G[1][4]];
     

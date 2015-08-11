@@ -43,7 +43,7 @@ var
             (Filename["check_suffix"](file,"cmo")||
              Filename["check_suffix"](file,"cma")||
              Filename["check_suffix"](file,"cmxs"))
-            {return iter([/* tuple */0,[/* :: */0,file,files],incs],match[2]);
+            {return iter(/* tuple */[0,/* :: */[0,file,files],incs],match[2]);
              }
            else
             {exit$1=21;}
@@ -56,7 +56,7 @@ var
          
          if(match$1)
           {return iter
-                   ([/* tuple */0,files,[/* :: */0,match$1[1],incs]],
+                   (/* tuple */[0,files,/* :: */[0,match$1[1],incs]],
                     match$1[2]);
            }
          else
@@ -68,7 +68,7 @@ var
        {case 21:
          var q=param$1[2];
          
-         if(q){return iter([/* tuple */0,files,incs],q);}else{exit=20;}
+         if(q){return iter(/* tuple */[0,files,incs],q);}else{exit=20;}
          
         }
       }
@@ -76,10 +76,10 @@ var
      {exit=20;}
     
     switch(exit)
-     {case 20:return [/* tuple */0,List["rev"](files),List["rev"](incs)];}
+     {case 20:return /* tuple */[0,List["rev"](files),List["rev"](incs)];}
     };
 
-var match=iter([0,0,0],arg_list);
+var match=iter(/* tuple */[0,/* [] */0,/* [] */0],arg_list);
 
 var paths=match[2];
 
@@ -94,8 +94,8 @@ var
      {var
        paths$1=
         Pervasives["@"]
-         ([/* :: */0,Filename["current_dir_name"],paths],
-          [/* :: */0,Odoc_config["custom_generators_path"],0]);
+         (/* :: */[0,Filename["current_dir_name"],paths],
+          /* :: */[0,Odoc_config["custom_generators_path"],/* [] */0]);
       
       try
        {var
@@ -122,9 +122,12 @@ var
   function(file)
    {var file$1=Dynlink["adapt_filename"](file);
     
-    Dynlink["allow_unsafe_modules"](1);
+    Dynlink["allow_unsafe_modules"](/* true */1);
     try
-     {var real_file=get_real_filename(file$1);return 0;}
+     {var real_file=get_real_filename(file$1);
+      
+      return Dynlink["loadfile"](real_file);
+      }
     catch(exn)
      {var exit;
       
@@ -159,7 +162,7 @@ var
     };
 
 List["iter"](load_plugin,plugins);
-var match$1=Odoc_args["parse"](0);
+var match$1=Odoc_args["parse"](/* () */0);
 
 var
  loaded_modules=
@@ -177,7 +180,7 @@ var
          {if(exn[1]=Failure)
            {Pervasives["prerr_endline"](exn[2]);
             Odoc_global["errors"][0]++;
-            return 0;
+            return /* [] */0;
             }
           else
            {throw exn;}
@@ -188,7 +191,7 @@ var
 var
  modules=
   Odoc_analyse["analyse_files"]
-   ([/* Some */0,loaded_modules],Odoc_global["files"][1]);
+   (/* Some */[0,loaded_modules],Odoc_global["files"][1]);
 
 var match$2=Odoc_global["dump"][1];
 

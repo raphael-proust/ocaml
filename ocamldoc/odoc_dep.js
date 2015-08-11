@@ -17,9 +17,9 @@ var Type=0;
 var
  set_to_list=
   function(s)
-   {var l=[0,0];
+   {var l=[0,/* [] */0];
     
-    Depend["StringSet"][13](function(e){return l[1]=[/* :: */0,e,l[1]],0;},s);
+    Depend["StringSet"][13](function(e){return l[1]=/* :: */[0,e,l[1]],0;},s);
     return l[1];
     };
 
@@ -28,7 +28,7 @@ var
   function(ast)
    {Depend["free_structure_names"][1]=Depend["StringSet"][1],0;
     Depend["add_use_file"]
-     (Depend["StringSet"][1],[/* :: */0,[/* Ptop_def */0,ast],0]);
+     (Depend["StringSet"][1],/* :: */[0,/* Ptop_def */[0,ast],/* [] */0]);
     return set_to_list(Depend["free_structure_names"][1]);
     };
 
@@ -47,9 +47,9 @@ var S=Set["Make"]([0,compare]);
 var
  set_to_list$1=
   function(s)
-   {var l=[0,0];
+   {var l=[0,/* [] */0];
     
-    S[13](function(e){return l[1]=[/* :: */0,e,l[1]],0;},s);
+    S[13](function(e){return l[1]=/* :: */[0,e,l[1]],0;},s);
     return l[1];
     };
 
@@ -58,7 +58,7 @@ var
   function(s,children)
    {var set=List["fold_right"](S[4],children,S[1]);
     
-    return [/* record */0,s,S[6](s,set),0,List["mem"](s,children)];
+    return /* record */[0,s,S[6](s,set),/* [] */0,List["mem"](s,children)];
     };
 
 var
@@ -69,7 +69,8 @@ var
               (function(n){return "unknown primitive:caml_string_equal";},
                graph);
       }
-    catch(exn){if(exn=Not_found){return make_node(s,0);}else{throw exn;}}
+    catch(exn)
+     {if(exn=Not_found){return make_node(s,/* [] */0);}else{throw exn;}}
     };
 
 var
@@ -95,7 +96,7 @@ var
        (function(child)
          {var set=trans_closure(graph,S[1],get_node(graph,child));
           
-          return [/* tuple */0,child,set];
+          return /* tuple */[0,child,set];
           },
         set_to_list$1(n[2]));
     
@@ -135,10 +136,13 @@ var
                  0;
           }
         else
-         {return 0;}
+         {return /* () */0;}
         },
       node[2]);
-    if(node[4]){return node[2]=S[4](node[1],node[2]),0;}else{return 0;}
+    if(node[4])
+     {return node[2]=S[4](node[1],node[2]),0;}
+    else
+     {return /* () */0;}
     };
 
 var
@@ -167,7 +171,7 @@ var
   function(t)
    {var T=Odoc_type;
     
-    var l=[0,0];
+    var l=[0,/* [] */0];
     
     var
      re=
@@ -176,7 +180,7 @@ var
     var
      f=
       function(s)
-       {var s2=Str["matched_string"](s);l[1]=[/* :: */0,s2,l[1]],0;return s2;};
+       {var s2=Str["matched_string"](s);l[1]=/* :: */[0,s2,l[1]],0;return s2;};
     
     var match=t[4];
     
@@ -191,14 +195,20 @@ var
           (function(c)
             {return List["iter"]
                      (function(e)
-                       {var s=Odoc_print["string_of_type_expr"](e);return 0;},
+                       {var s=Odoc_print["string_of_type_expr"](e);
+                        
+                        return Str["global_substitute"](re,f,s);
+                        },
                       c[2]);
              },
            match[1]);
         case 1:
          List["iter"]
           (function(r)
-            {var s=Odoc_print["string_of_type_expr"](r[3]);return 0;},
+            {var s=Odoc_print["string_of_type_expr"](r[3]);
+             
+             return Str["global_substitute"](re,f,s);
+             },
            match[1])
         }}
     
@@ -210,11 +220,17 @@ var
      {var match$2=match$1[1];
       
       switch(match$2)
-       {case 0:var s=Odoc_print["string_of_type_expr"](match$2[1]);
+       {case 0:
+         var s=Odoc_print["string_of_type_expr"](match$2[1]);
+         
+         Str["global_substitute"](re,f,s);
         case 1:
          List["iter"]
           (function(r)
-            {var s$1=Odoc_print["string_of_type_expr"](r[2]);return 0;},
+            {var s$1=Odoc_print["string_of_type_expr"](r[2]);
+             
+             return Str["global_substitute"](re,f,s$1);
+             },
            match$2[1])
         }
       }
@@ -246,11 +262,14 @@ var
 var
  deps_of_types=
   function($staropt$star,types)
-   {if($staropt$star){var kernel$1=$staropt$star[1];}else{var kernel$1=0;}
+   {if($staropt$star)
+     {var kernel$1=$staropt$star[1];}
+    else
+     {var kernel$1=/* false */0;}
     
     var
      deps_pre=
-      List["map"](function(t){return [/* tuple */0,t,type_deps(t)];},types);
+      List["map"](function(t){return /* tuple */[0,t,type_deps(t)];},types);
     
     if(kernel$1)
      {var
@@ -264,7 +283,7 @@ var
               (function(t)
                 {var node=Dep[4](k,t[1]);
                  
-                 return [/* tuple */0,t,Dep[2](node[2])];
+                 return /* tuple */[0,t,Dep[2](node[2])];
                  },
                types);
       }

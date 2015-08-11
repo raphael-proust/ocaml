@@ -26,10 +26,20 @@ var
    {if(param)
      {return Format["fprintf"]
               (ppf,
-               [0,
-                [18,
-                 [1,[0,[11,"<2>",0],"<2>"]],
-                 [11,"Some",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+               /* Format */[0,
+                /* Formatting_gen */[18,
+                 /* Open_box */[1,
+                  /* Format */[0,
+                   /* String_literal */[11,"<2>",/* End_of_format */0],
+                   "<2>"]],
+                 /* String_literal */[11,
+                  "Some",
+                  /* Formatting_lit */[17,
+                   /* Break */[0,"@ ",1,0],
+                   /* Alpha */[15,
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* End_of_format */0]]]]],
                 "@[<2>Some@ %a@]"],
                elt,
                param[1]);
@@ -47,9 +57,9 @@ var
       var d=Pathname["dirname"](s);
       
       if("unknown primitive:caml_string_notequal")
-       {var match=Pathname["define_context"](d,[/* :: */0,d,0]);
+       {var match=Pathname["define_context"](d,/* :: */[0,d,/* [] */0]);
         
-        return [/* :: */0,s,0];
+        return /* :: */[0,s,/* [] */0];
         }
       else
        {var include_dirs=Pathname["include_dirs_of"](d);
@@ -61,7 +71,7 @@ var
         }
       }
     else
-     {return [/* :: */0,s,0];}
+     {return /* :: */[0,s,/* [] */0];}
     };
 
 module["exports"]=

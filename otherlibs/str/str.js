@@ -30,7 +30,7 @@ var
  add_range=
   function(s,c1,c2){for(var i=c1;i<=c2;i++){add(s,Char["chr"](i))}};
 
-var singleton=function(c){var s=make_empty(0);add(s,c);return s;};
+var singleton=function(c){var s=make_empty(/* () */0);add(s,c);return s;};
 
 var
  complement=
@@ -59,9 +59,10 @@ var
      {for(var i=0;i<=31;i++)
        {if((s1[i]&s2[i])!=0){throw Pervasives["Exit"];}else{}}
       
-      return 1;
+      return /* true */1;
       }
-    catch(exn){if(exn=Pervasives["Exit"]){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn=Pervasives["Exit"]){return /* false */0;}else{throw exn;}}
     };
 
 var
@@ -91,7 +92,7 @@ var
 var
  fold_case=
   function(s)
-   {var r=make_empty(0);
+   {var r=make_empty(/* () */0);
     
     iter
      (function(c)
@@ -161,12 +162,16 @@ var
  is_nullable=
   function(param)
    {if(typeof param=="number")
-     {switch(param){case 0:return 1;case 1:return 1;case 2:return 1;}}
+     {switch(param)
+       {case 0:return /* true */1;
+        case 1:return /* true */1;
+        case 2:return /* true */1;
+        }}
     else
      {switch(param[0])
-       {case 0:return 0;
+       {case 0:return /* false */0;
         case 1:var s=param[1];return "unknown primitive:caml_string_equal";
-        case 2:return 0;
+        case 2:return /* false */0;
         case 3:var rl=param[1];return List["for_all"](is_nullable,rl);
         case 4:
          var r2=param[2];
@@ -175,11 +180,11 @@ var
          
          return is_nullable(r1)||is_nullable(r2);
          
-        case 5:return 1;
+        case 5:return /* true */1;
         case 6:var r=param[1];return is_nullable(r);
-        case 7:return 1;
+        case 7:return /* true */1;
         case 8:var r$1=param[2];return is_nullable(r$1);
-        case 9:return 1;
+        case 9:return /* true */1;
         }}
     };
 
@@ -269,7 +274,8 @@ var
      {switch(re){}}
     else
      {switch(re[0])
-       {case 0:var c=re[1];var match=/* tuple */[0,Charset[5](c),0];
+       {case 0:
+         var c=re[1];var match=/* tuple */[0,Charset[5](c),/* false */0];
         case 2:var compl=re[2];var cl=re[1];var match=/* tuple */[0,cl,compl];
         default:exit=133;}}
     
@@ -424,7 +430,7 @@ var
                  }
                }
              else
-              {return 0;}
+              {return /* () */0;}
              
             case 2:
              var compl=param[2];
@@ -444,10 +450,10 @@ var
              
              var r1=param[1];
              
-             var pos_pushback=emit_hole(0);
+             var pos_pushback=emit_hole(/* () */0);
              
              emit_code(r1);
-             var pos_goto_end=emit_hole(0);
+             var pos_goto_end=emit_hole(/* () */0);
              
              var lbl1=progpos[1];
              
@@ -462,7 +468,7 @@ var
              
              var regno=allocate_register_if_nullable(r);
              
-             var lbl1$1=emit_hole(0);
+             var lbl1$1=emit_hole(/* () */0);
              
              if(regno>=0){emit_instr(op_SETMARK,regno)}else{}
              
@@ -484,7 +490,7 @@ var
              emit_code(r$1);
              if(regno$1>=0){emit_instr(op_CHECKPROGRESS,regno$1)}else{}
              
-             var pos_pushback$1=emit_hole(0);
+             var pos_pushback$1=emit_hole(/* () */0);
              
              if(regno$1>=0){emit_instr(op_SETMARK,regno$1)}else{}
              
@@ -496,7 +502,7 @@ var
             case 7:
              var r$2=param[1];
              
-             var pos_pushback$2=emit_hole(0);
+             var pos_pushback$2=emit_hole(/* () */0);
              
              emit_code(r$2);
              var lbl=progpos[1];
@@ -620,7 +626,7 @@ var
             }
           }
         else
-         {return 0;}
+         {return /* () */0;}
         };
     
     var
@@ -659,7 +665,9 @@ var
             start_pos];
     };
 
-var create=function(param){return /* record */[0,Buffer["create"](16),0];};
+var
+ create=
+  function(param){return /* record */[0,Buffer["create"](16),/* [] */0];};
 
 var
  flush=
@@ -676,7 +684,7 @@ var
        {return buf[2]=/* :: */[0,/* Char */[0,s[0]],buf[2]],0;}
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -737,7 +745,9 @@ var
          {return /* tuple */[0,r1,i$1];}
         };
     
-    var regexp1=function(i$1){return regexp1cont(SeqBuffer[1](0),i$1);};
+    var
+     regexp1=
+      function(i$1){return regexp1cont(SeqBuffer[1](/* () */0),i$1);};
     
     var
      regexp1cont=
@@ -823,7 +833,7 @@ var
                  
                 case 1:return regexpbackslash(i$1+1);
                 case 2:exit=62;
-                case 3:return /* tuple */[0,0,i$1+1];
+                case 3:return /* tuple */[0,/* Bol */0,i$1+1];
                 }
               }
             }
@@ -831,11 +841,14 @@ var
            {if(c!=46)
              {exit=62;}
             else
-             {return /* tuple */[0,/* CharClass */[2,dotclass,0],i$1+1];}
+             {return /* tuple */[0,
+                      /* CharClass */[2,dotclass,/* false */0],
+                      i$1+1];
+              }
             }
           }
         else
-         {return /* tuple */[0,1,i$1+1];}
+         {return /* tuple */[0,/* Eol */1,i$1+1];}
         
         switch(exit){case 62:return /* tuple */[0,/* Char */[0,c],i$1+1];}
         };
@@ -844,7 +857,7 @@ var
      regexpbackslash=
       function(i$1)
        {if(i$1>=len)
-         {return /* tuple */[0,[0,92],i$1];}
+         {return /* tuple */[0,/* Char */[0,92],i$1];}
         else
          {var c=s[i$1];
           
@@ -888,7 +901,7 @@ var
            {if(c!=98)
              {if(c!=124){exit=67;}else{exit=65;}}
             else
-             {return /* tuple */[0,2,i$1+1];}
+             {return /* tuple */[0,/* Wordboundary */2,i$1+1];}
             }
           
           switch(exit)
@@ -908,7 +921,7 @@ var
           
           var c=match[1];
           
-          return /* tuple */[0,c,1,j];
+          return /* tuple */[0,c,/* true */1,j];
           }
         else
          {var match$1=regexpclass1(i$1);
@@ -917,14 +930,14 @@ var
           
           var c$1=match$1[1];
           
-          return /* tuple */[0,c$1,0,j$1];
+          return /* tuple */[0,c$1,/* false */0,j$1];
           }
         };
     
     var
      regexpclass1=
       function(i$1)
-       {var c=Charset[2](0);
+       {var c=Charset[2](/* () */0);
         
         var j=regexpclass2(c,i$1,i$1);
         
@@ -964,9 +977,9 @@ var
      {return Pervasives["failwith"]("spurious \) in regular expression");}
     };
 
-var regexp=function(e){return compile(0,parse(e));};
+var regexp=function(e){return compile(/* false */0,parse(e));};
 
-var regexp_case_fold=function(e){return compile(1,parse(e));};
+var regexp_case_fold=function(e){return compile(/* true */1,parse(e));};
 
 var
  quote=
@@ -1020,9 +1033,13 @@ var
     return Bytes["sub_string"](buf,0,pos[1]);
     };
 
-var regexp_string=function(s){return compile(0,/* String */[1,s]);};
+var
+ regexp_string=
+  function(s){return compile(/* false */0,/* String */[1,s]);};
 
-var regexp_string_case_fold=function(s){return compile(1,/* String */[1,s]);};
+var
+ regexp_string_case_fold=
+  function(s){return compile(/* true */1,/* String */[1,s]);};
 
 var last_search_result=[0,[]];
 
@@ -1128,7 +1145,7 @@ var
                 string_before(text,pos),
                 /* :: */[0,
                  repl_fun(text),
-                 /* :: */[0,string_after(text,match_end(0)),0]]]);
+                 /* :: */[0,string_after(text,match_end(/* () */0)),/* [] */0]]]);
       }
     catch(exn){if(exn=Not_found){return text;}else{throw exn;}}
     };
@@ -1138,7 +1155,7 @@ var
   function(re,s,pos)
    {try
      {return /* Some */[0,search_forward(re,s,pos)];}
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -1157,7 +1174,7 @@ var
           if(match)
            {var pos=match[1];
             
-            var end_pos=match_end(0);
+            var end_pos=match_end(/* () */0);
             
             var repl_text=repl_fun(text);
             
@@ -1173,7 +1190,8 @@ var
           }
         };
     
-    return $$String["concat"]("",List["rev"](replace(0,0,0)));
+    return $$String["concat"]
+            ("",List["rev"](replace(/* [] */0,0,/* false */0)));
     };
 
 var
@@ -1194,23 +1212,26 @@ var
     if(match)
      {var pos=match[1];
       
-      if(match_end(0)>start)
+      if(match_end(/* () */0)>start)
        {return /* Some */[0,pos];}
       else
        {if(start<text["length"])
          {return opt_search_forward(expr,text,start+1);}
         else
-         {return 0;}
+         {return /* None */0;}
         }
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
  bounded_split=
   function(expr,text,num)
-   {if(string_match(expr,text,0)){var start=match_end(0);}else{var start=0;}
+   {if(string_match(expr,text,0))
+     {var start=match_end(/* () */0);}
+    else
+     {var start=0;}
     
     var
      split=
@@ -1228,7 +1249,7 @@ var
               
               return split
                       (/* :: */[0,$$String["sub"](text,start$1,pos-start$1),accu],
-                       match_end(0),
+                       match_end(/* () */0),
                        n-1);
               }
             else
@@ -1237,7 +1258,7 @@ var
           }
         };
     
-    return List["rev"](split(0,start,num));
+    return List["rev"](split(/* [] */0,start,num));
     };
 
 var split=function(expr,text){return bounded_split(expr,text,0);};
@@ -1261,7 +1282,7 @@ var
               
               return split$1
                       (/* :: */[0,$$String["sub"](text,start,pos-start),accu],
-                       match_end(0),
+                       match_end(/* () */0),
                        n-1);
               }
             else
@@ -1271,9 +1292,9 @@ var
         };
     
     if("unknown primitive:caml_string_equal")
-     {return 0;}
+     {return /* [] */0;}
     else
-     {return List["rev"](split$1(0,0,num));}
+     {return List["rev"](split$1(/* [] */0,0,num));}
     };
 
 var split_delim=function(expr,text){return bounded_split_delim(expr,text,0);};
@@ -1304,12 +1325,12 @@ var
                           /* :: */[0,
                            /* Text */[0,$$String["sub"](text,start,pos-start)],
                            accu]],
-                         match_end(0),
+                         match_end(/* () */0),
                          n-1);
                 }
               else
                {return split$1
-                        (/* :: */[0,/* Delim */[1,s],accu],match_end(0),n-1);
+                        (/* :: */[0,/* Delim */[1,s],accu],match_end(/* () */0),n-1);
                 }
               }
             else
@@ -1318,7 +1339,7 @@ var
           }
         };
     
-    return List["rev"](split$1(0,0,num));
+    return List["rev"](split$1(/* [] */0,0,num));
     };
 
 var full_split=function(expr,text){return bounded_full_split(expr,text,0);};

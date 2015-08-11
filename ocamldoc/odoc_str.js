@@ -17,7 +17,9 @@ var Odoc_messages=require("Odoc_messages");
 var
  string_of_variance=
   function(t,param)
-   {if(((t[4]=0)||(t[4]=1))&&(t[6]=0))
+   {if
+     (((t[4]=/* Type_abstract */0)||(t[4]=/* Type_open */1))&&
+      (t[6]=/* None */0))
      {var cn=param[2];
       
       var exit;
@@ -44,9 +46,13 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 1:return 1;case 6:exit=51;case 7:exit=51;default:exit=50;}}
+       {case 1:return /* true */1;
+        case 6:exit=51;
+        case 7:exit=51;
+        default:exit=50;}}
     
-    switch(exit){case 51:return is_arrow_type(match[1]);case 50:return 0;}
+    switch(exit)
+     {case 51:return is_arrow_type(match[1]);case 50:return /* false */0;}
     };
 
 var
@@ -69,15 +75,15 @@ var
          {switch(match[0])
            {case 1:exit=42;
             case 2:exit=42;
-            case 3:return 0;
+            case 3:return /* false */0;
             case 6:exit=45;
             case 7:exit=45;
             default:exit=44;}}
         
         switch(exit)
          {case 45:return need_parent(match[1]);
-          case 42:return 1;
-          case 44:return 0;
+          case 42:return /* true */1;
+          case 44:return /* false */0;
           }
         };
     
@@ -86,13 +92,29 @@ var
       function(variance,t)
        {Printtyp["mark_loops"](t);
         if(need_parent(t))
-         {Format["fprintf"](fmt,[0,[12,40,[2,0,0]],"(%s"],variance);
-          Printtyp["type_scheme_max"]([0,0],fmt,t);
-          return Format["fprintf"](fmt,[0,[12,41,0],")"]);
+         {Format["fprintf"]
+           (fmt,
+            /* Format */[0,
+             /* Char_literal */[12,
+              40,
+              /* String */[2,/* No_padding */0,/* End_of_format */0]],
+             "(%s"],
+            variance);
+          Printtyp["type_scheme_max"](/* Some */[0,/* false */0],fmt,t);
+          return Format["fprintf"]
+                  (fmt,
+                   /* Format */[0,
+                    /* Char_literal */[12,41,/* End_of_format */0],
+                    ")"]);
           }
         else
-         {Format["fprintf"](fmt,[0,[2,0,0],"%s"],variance);
-          return Printtyp["type_scheme_max"]([0,0],fmt,t);
+         {Format["fprintf"]
+           (fmt,
+            /* Format */[0,
+             /* String */[2,/* No_padding */0,/* End_of_format */0],
+             "%s"],
+            variance);
+          return Printtyp["type_scheme_max"](/* Some */[0,/* false */0],fmt,t);
           }
         };
     
@@ -107,22 +129,41 @@ var
       
       if(tyl)
        {Format["fprintf"]
-         (fmt,[0,[18,[1,[0,[11,"<hov 2>",0],"<hov 2>"]],0],"@[<hov 2>"]),
+         (fmt,
+          /* Format */[0,
+           /* Formatting_gen */[18,
+            /* Open_box */[1,
+             /* Format */[0,
+              /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+              "<hov 2>"]],
+            /* End_of_format */0],
+           "@[<hov 2>"]),
         print_one_type(variance,ty),
         List["iter"]
          (function(param)
-           {Format["fprintf"](fmt,[0,[17,[0,"@,",0,0],[2,0,0]],"@,%s"],sep);
+           {Format["fprintf"]
+             (fmt,
+              /* Format */[0,
+               /* Formatting_lit */[17,
+                /* Break */[0,"@,",0,0],
+                /* String */[2,/* No_padding */0,/* End_of_format */0]],
+               "@,%s"],
+              sep);
             return print_one_type(param[1],param[2]);
             },
           tyl),
-        Format["fprintf"](fmt,[0,[17,0,0],"@]"])}
+        Format["fprintf"]
+         (fmt,
+          /* Format */[0,
+           /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0],
+           "@]"])}
       else
        {print_one_type(variance,ty)}
       }
     else
      {}
     
-    Format["pp_print_flush"](fmt,0);
+    Format["pp_print_flush"](fmt,/* () */0);
     return Buffer["contents"](buf);
     };
 
@@ -135,19 +176,25 @@ var
      {var exit;
       
       if(type_list)
-       {if(type_list[2]){var par$1=1;}else{exit=36;}}
+       {if(type_list[2]){var par$1=/* true */1;}else{exit=36;}}
       else
        {exit=36;}
       
-      switch(exit){case 36:var par$1=0;}
+      switch(exit){case 36:var par$1=/* false */0;}
       }
     
     return Printf["sprintf"]
-            ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
+            (/* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String */[2,
+                /* No_padding */0,
+                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+              "%s%s%s"],
              par$1?"(":"",
              raw_string_of_type_list
               (sep,
-               List["map"](function(t){return [/* tuple */0,"",t];},type_list)),
+               List["map"](function(t){return /* tuple */[0,"",t];},type_list)),
              par$1?")":"");
     };
 
@@ -158,19 +205,25 @@ var
     
     var exit;
     
-    if(match){if(match[2]){var par=1;}else{exit=32;}}else{exit=32;}
+    if(match){if(match[2]){var par=/* true */1;}else{exit=32;}}else{exit=32;}
     
-    switch(exit){case 32:var par=0;}
+    switch(exit){case 32:var par=/* false */0;}
     
     return Printf["sprintf"]
-            ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
+            (/* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String */[2,
+                /* No_padding */0,
+                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+              "%s%s%s"],
              par?"(":"",
              raw_string_of_type_list
               (", ",
                List["map"]
                 (function(param)
-                  {return [/* tuple */0,
-                           string_of_variance(t,[/* tuple */0,param[2],param[3]]),
+                  {return /* tuple */[0,
+                           string_of_variance(t,/* tuple */[0,param[2],param[3]]),
                            param[1]];
                    },
                  t[3])),
@@ -184,16 +237,22 @@ var
     
     var exit;
     
-    if(match){if(match[2]){var par=1;}else{exit=28;}}else{exit=28;}
+    if(match){if(match[2]){var par=/* true */1;}else{exit=28;}}else{exit=28;}
     
-    switch(exit){case 28:var par=0;}
+    switch(exit){case 28:var par=/* false */0;}
     
     return Printf["sprintf"]
-            ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
+            (/* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String */[2,
+                /* No_padding */0,
+                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+              "%s%s%s"],
              par?"(":"",
              raw_string_of_type_list
               (", ",
-               List["map"](function(typ){return [/* tuple */0,"",typ];},te[3])),
+               List["map"](function(typ){return /* tuple */[0,"",typ];},te[3])),
              par?")":"");
     };
 
@@ -202,16 +261,22 @@ var
   function(l)
    {var exit;
     
-    if(l){if(l[2]){var par=1;}else{exit=24;}}else{exit=24;}
+    if(l){if(l[2]){var par=/* true */1;}else{exit=24;}}else{exit=24;}
     
-    switch(exit){case 24:var par=0;}
+    switch(exit){case 24:var par=/* false */0;}
     
     return Printf["sprintf"]
-            ([0,[2,0,[2,0,[2,0,0]]],"%s%s%s"],
+            (/* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String */[2,
+                /* No_padding */0,
+                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+              "%s%s%s"],
              par?"[":"",
              raw_string_of_type_list
               (", ",
-               List["map"](function(typ){return [/* tuple */0,"",typ];},l)),
+               List["map"](function(typ){return /* tuple */[0,"",typ];},l)),
              par?"]":"");
     };
 
@@ -239,7 +304,17 @@ var
             {case "":var $js="";default:var $js=Pervasives["^"](label,":");}
            Printf["bprintf"]
             (b,
-             [0,[2,0,[2,0,[2,0,[2,0,[11," -> ",0]]]]],"%s%s%s%s -> "],
+             /* Format */[0,
+              /* String */[2,
+               /* No_padding */0,
+               /* String */[2,
+                /* No_padding */0,
+                /* String */[2,
+                 /* No_padding */0,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11," -> ",/* End_of_format */0]]]]],
+              "%s%s%s%s -> "],
              $js,
              parent?"(":"",
              Odoc_print["string_of_type_expr"]
@@ -249,14 +324,16 @@ var
            
           }
         
-        switch(exit){case 21:return 0;}
+        switch(exit){case 21:return /* () */0;}
         };
     
     iter(c[3]);
     return Buffer["contents"](b);
     };
 
-var bool_of_private=function(param){if(param!=0){return 0;}else{return 1;}};
+var
+ bool_of_private=
+  function(param){if(param!=0){return /* false */0;}else{return /* true */1;}};
 
 var
  string_of_type=
@@ -270,7 +347,13 @@ var
       function(param)
        {if(param)
          {return P[4]
-                  ([0,[11,"(* ",[2,0,[11," *)",0]]],"(* %s *)"],
+                  (/* Format */[0,
+                    /* String_literal */[11,
+                     "(* ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11," *)",/* End_of_format */0]]],
+                    "(* %s *)"],
                    Odoc_misc["string_of_info"](param[1]));
           }
         else
@@ -286,7 +369,7 @@ var
         List["map"]
          (function(param)
            {return Pervasives["^"]
-                    (string_of_variance(t,[/* tuple */0,param[2],param[3]]),
+                    (string_of_variance(t,/* tuple */[0,param[2],param[3]]),
                      Odoc_print["string_of_type_expr"](param[1]));
             },
           t[3]));
@@ -311,8 +394,16 @@ var
          var
           manifest_str=
            P[4]
-            ([0,
-              [11,"= ",[2,0,[11,"<\n",[2,0,[11,"\n>\n",0]]]]],
+            (/* Format */[0,
+              /* String_literal */[11,
+               "= ",
+               /* String */[2,
+                /* No_padding */0,
+                /* String_literal */[11,
+                 "<\n",
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,"\n>\n",/* End_of_format */0]]]]],
               "= %s<\n%s\n>\n"],
              priv?"private ":"",
              $$String["concat"]
@@ -320,8 +411,18 @@ var
                List["map"]
                 (function(field)
                   {return P[4]
-                           ([0,
-                             [11,"   ",[2,0,[11," : ",[2,0,[12,59,[2,0,0]]]]]],
+                           (/* Format */[0,
+                             /* String_literal */[11,
+                              "   ",
+                              /* String */[2,
+                               /* No_padding */0,
+                               /* String_literal */[11,
+                                " : ",
+                                /* String */[2,
+                                 /* No_padding */0,
+                                 /* Char_literal */[12,
+                                  59,
+                                  /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                              "   %s : %s;%s"],
                             field[1],
                             Odoc_print["string_of_type_expr"](field[2]),
@@ -345,7 +446,17 @@ var
          var
           type_kind_str=
            P[4]
-            ([0,[12,61,[2,0,[12,10,[2,0,[12,10,0]]]]],"=%s\n%s\n"],
+            (/* Format */[0,
+              /* Char_literal */[12,
+               61,
+               /* String */[2,
+                /* No_padding */0,
+                /* Char_literal */[12,
+                 10,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* Char_literal */[12,10,/* End_of_format */0]]]]],
+              "=%s\n%s\n"],
              priv?" private":"",
              $$String["concat"]
               ("\n",
@@ -357,7 +468,13 @@ var
                     {var
                       comment=
                        P[4]
-                        ([0,[11,"(* ",[2,0,[11," *)",0]]],"(* %s *)"],
+                        (/* Format */[0,
+                          /* String_literal */[11,
+                           "(* ",
+                           /* String */[2,
+                            /* No_padding */0,
+                            /* String_literal */[11," *)",/* End_of_format */0]]],
+                          "(* %s *)"],
                          Odoc_misc["string_of_info"](match$3[1]));
                      }
                    else
@@ -382,12 +499,28 @@ var
                    var match$5=cons[3];
                    
                    return P[4]
-                           ([0,[11,"  | ",[2,0,[2,0,[2,0,0]]]],"  | %s%s%s"],
+                           (/* Format */[0,
+                             /* String_literal */[11,
+                              "  | ",
+                              /* String */[2,
+                               /* No_padding */0,
+                               /* String */[2,
+                                /* No_padding */0,
+                                /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                             "  | %s%s%s"],
                             cons[1],
                             match$4
                              ?match$5
                                ?P[4]
-                                 ([0,[11," : ",[2,0,[11," -> ",[2,0,0]]]]," : %s -> %s"],
+                                 (/* Format */[0,
+                                   /* String_literal */[11,
+                                    " : ",
+                                    /* String */[2,
+                                     /* No_padding */0,
+                                     /* String_literal */[11,
+                                      " -> ",
+                                      /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                                   " : %s -> %s"],
                                   string_of_parameters(match$4),
                                   Odoc_print["string_of_type_expr"](match$5[1]))
                                :Pervasives["^"](" of ",string_of_parameters(match$4))
@@ -403,8 +536,16 @@ var
          var
           type_kind_str=
            P[4]
-            ([0,
-              [11,"= ",[2,0,[11,"{\n",[2,0,[11,"\n}\n",0]]]]],
+            (/* Format */[0,
+              /* String_literal */[11,
+               "= ",
+               /* String */[2,
+                /* No_padding */0,
+                /* String_literal */[11,
+                 "{\n",
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,"\n}\n",/* End_of_format */0]]]]],
               "= %s{\n%s\n}\n"],
              priv?"private ":"",
              $$String["concat"]
@@ -412,8 +553,20 @@ var
                List["map"]
                 (function(field)
                   {return P[4]
-                           ([0,
-                             [11,"   ",[2,0,[2,0,[11," : ",[2,0,[12,59,[2,0,0]]]]]]],
+                           (/* Format */[0,
+                             /* String_literal */[11,
+                              "   ",
+                              /* String */[2,
+                               /* No_padding */0,
+                               /* String */[2,
+                                /* No_padding */0,
+                                /* String_literal */[11,
+                                 " : ",
+                                 /* String */[2,
+                                  /* No_padding */0,
+                                  /* Char_literal */[12,
+                                   59,
+                                   /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]],
                              "   %s%s : %s;%s"],
                             field[2]?"mutable ":"",
                             field[1],
@@ -427,8 +580,22 @@ var
     var match$3=t[2];
     
     return P[4]
-            ([0,
-              [11,"type ",[2,0,[12,32,[2,0,[12,32,[2,0,[2,0,[2,0,0]]]]]]]],
+            (/* Format */[0,
+              /* String_literal */[11,
+               "type ",
+               /* String */[2,
+                /* No_padding */0,
+                /* Char_literal */[12,
+                 32,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* Char_literal */[12,
+                   32,
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]],
               "type %s %s %s%s%s"],
              parameters_str,
              Odoc_name["simple"](t[1]),

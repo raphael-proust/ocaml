@@ -11,20 +11,20 @@ var flags_of_decl=function(param){return param[2];};
 
 var tags_of_decl=function(param){return param[1];};
 
-var all_decls=[0,0];
+var all_decls=[0,/* [] */0];
 
 var
  of_tags=
   function(matched_tags)
-   {return [/* S */0,
+   {return /* S */[0,
             List["fold_left"]
              (function(acc,param)
                {if(Tags["does_match"](matched_tags,param[1]))
-                 {return [/* :: */0,param[2],acc];}
+                 {return /* :: */[0,param[2],acc];}
                 else
                  {return acc;}
                 },
-              0,
+              /* [] */0,
               all_decls[1])];
     };
 
@@ -34,16 +34,19 @@ var of_tag_list=function(x){return of_tags(Tags["of_list"](x));};
 
 var
  add_decl=
-  function(decl){return all_decls[1]=[/* :: */0,decl,all_decls[1]],0;};
+  function(decl){return all_decls[1]=/* :: */[0,decl,all_decls[1]],0;};
 
 var
  flag=
   function($staropt$star,tags,flags)
-   {if($staropt$star){var deprecated=$staropt$star[1];}else{var deprecated=0;}
+   {if($staropt$star)
+     {var deprecated=$staropt$star[1];}
+    else
+     {var deprecated=/* false */0;}
     
     var tags$1=Tags["of_list"](tags);
     
-    return add_decl([/* record */0,tags$1,flags,deprecated]);
+    return add_decl(/* record */[0,tags$1,flags,deprecated]);
     };
 
 var
@@ -53,13 +56,13 @@ var
             (ptag,
              function(param)
               {return flag
-                       (0,
-                        [/* :: */0,Param_tags["make"](ptag,param),tags],
+                       (/* None */0,
+                        /* :: */[0,Param_tags["make"](ptag,param),tags],
                         flags(param));
                });
     };
 
-var add=function(x,xs){return [/* :: */0,x,xs];};
+var add=function(x,xs){return /* :: */[0,x,xs];};
 
 var
  remove=
@@ -78,17 +81,32 @@ var
     var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
     
     return pp
-            ([0,
-              [18,
-               [1,[0,[11,"<2>",0],"<2>"]],
-               [2,
-                0,
-                [17,
-                 [0,"@ ",1,0],
-                 [11,
+            (/* Format */[0,
+              /* Formatting_gen */[18,
+               /* Open_box */[1,
+                /* Format */[0,
+                 /* String_literal */[11,"<2>",/* End_of_format */0],
+                 "<2>"]],
+               /* String */[2,
+                /* No_padding */0,
+                /* Formatting_lit */[17,
+                 /* Break */[0,"@ ",1,0],
+                 /* String_literal */[11,
                   "{. ",
-                  [15,
-                   [11," .}",[17,[0,"@ ",1,0],[3,0,[17,0,[17,3,[17,3,0]]]]]]]]]]],
+                  /* Alpha */[15,
+                   /* String_literal */[11,
+                    " .}",
+                    /* Formatting_lit */[17,
+                     /* Break */[0,"@ ",1,0],
+                     /* Caml_string */[3,
+                      /* No_padding */0,
+                      /* Formatting_lit */[17,
+                       /* Close_box */0,
+                       /* Formatting_lit */[17,
+                        /* Force_newline */3,
+                        /* Formatting_lit */[17,
+                         /* Force_newline */3,
+                         /* End_of_format */0]]]]]]]]]]],
               "@[<2>%s@ {. %a .}@ %S@]@\n@\n"],
              header,
              Tags["print"],
@@ -107,7 +125,12 @@ var
       all_decls[1]);
     var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
     
-    return pp([0,[17,4,0],"@."]);
+    return pp
+            (/* Format */[0,
+              /* Formatting_lit */[17,
+               /* Flush_newline */4,
+               /* End_of_format */0],
+              "@."]);
     };
 
 var used_tags=[0,Tags["empty"]];

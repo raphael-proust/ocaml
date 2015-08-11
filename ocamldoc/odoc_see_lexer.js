@@ -9,7 +9,7 @@ var buf=Buffer["create"](32);
 
 var
  __ocaml_lex_tables=
-  [0,
+  /* record */[0,
    "\0\0ùÿúÿûÿüÿýÿþÿ\x05\0\x01\0\x02\0ÿÿ\x04\0ÿÿ\x06\0\x03\0ÿÿ\x05\0\x07\0þÿÿÿ",
    "ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ",
    "\x01\0\0\0\0\0\0\0\0\0\0\0\0\0ÿÿ\t\0\t\0\0\0\x0b\0\0\0\x0b\0\x0e\0\0\0\x0e\0\x12\0\0\0\0\0",
@@ -44,7 +44,7 @@ var
         case 2:return url(lexbuf);
         case 3:return doc(lexbuf);
         case 4:return file(lexbuf);
-        case 5:return 9;
+        case 5:return /* EOF */9;
         case 6:
          Buffer["reset"](buf);
          Buffer["add_string"](buf,Lexing["lexeme"](lexbuf));
@@ -72,7 +72,7 @@ var
     else
      {var s=Lexing["lexeme"](lexbuf);
       
-      return [/* See_url */1,$$String["sub"](s,0,s["length"]-1)];
+      return /* See_url */[1,$$String["sub"](s,0,s["length"]-1)];
       }
     };
 
@@ -92,7 +92,7 @@ var
     else
      {var s=Lexing["lexeme"](lexbuf);
       
-      return [/* See_doc */3,$$String["sub"](s,0,s["length"]-1)];
+      return /* See_doc */[3,$$String["sub"](s,0,s["length"]-1)];
       }
     };
 
@@ -112,7 +112,7 @@ var
     else
      {var s=Lexing["lexeme"](lexbuf);
       
-      return [/* See_file */2,$$String["sub"](s,0,s["length"]-1)];
+      return /* See_file */[2,$$String["sub"](s,0,s["length"]-1)];
       }
     };
 
@@ -136,7 +136,7 @@ var
         }
       }
     else
-     {return [/* Desc */5,Buffer["contents"](buf)];}
+     {return /* Desc */[5,Buffer["contents"](buf)];}
     };
 
 module["exports"]=

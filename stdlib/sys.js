@@ -28,7 +28,10 @@ var max_string_length=word_size/8*max_array_length-1;
 
 var interactive=[0,/* false */0];
 
-var set_signal=function(sig_num,sig_beh){return 0;};
+var
+ set_signal=
+  function(sig_num,sig_beh)
+   {return "unknown primitive:caml_install_signal_handler";};
 
 var sigabrt=-1;
 

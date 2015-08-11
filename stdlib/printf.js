@@ -42,15 +42,15 @@ var
 
 var
  fprintf=
-  function(oc,fmt){return kfprintf(function(prim){return 0;},oc,fmt);};
+  function(oc,fmt){return kfprintf(function(prim){return prim;},oc,fmt);};
 
 var
  bprintf=
-  function(b,fmt){return kbprintf(function(prim){return 0;},b,fmt);};
+  function(b,fmt){return kbprintf(function(prim){return prim;},b,fmt);};
 
 var
  ifprintf=
-  function(oc,fmt){return ikfprintf(function(prim){return 0;},oc,fmt);};
+  function(oc,fmt){return ikfprintf(function(prim){return prim;},oc,fmt);};
 
 var printf=function(fmt){return fprintf(Pervasives["stdout"],fmt);};
 

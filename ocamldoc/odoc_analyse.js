@@ -34,12 +34,12 @@ var
  init_path=
   function(param)
    {Config["load_path"][1]=
-    [/* :: */0,
+    /* :: */[0,
      "",
      List["rev"]
-      ([/* :: */0,Config["standard_library"],Clflags["include_dirs"][1]])],
+      (/* :: */[0,Config["standard_library"],Clflags["include_dirs"][1]])],
     0;
-    return Env["reset_cache"](0);
+    return Env["reset_cache"](/* () */0);
     };
 
 var
@@ -72,8 +72,15 @@ var
     catch(exn)
      {if(exn[1]=Pparse["Error"])
        {Format["eprintf"]
-         ([0,
-           [11,"Preprocessing error",[17,4,[15,[17,4,0]]]],
+         (/* Format */[0,
+           /* String_literal */[11,
+            "Preprocessing error",
+            /* Formatting_lit */[17,
+             /* Flush_newline */4,
+             /* Alpha */[15,
+              /* Formatting_lit */[17,
+               /* Flush_newline */4,
+               /* End_of_format */0]]]],
            "Preprocessing error@.%a@."],
           Pparse["report_error"],
           exn[2]);
@@ -91,7 +98,7 @@ var tool_name="ocamldoc";
 var
  process_implementation_file=
   function(ppf,sourcefile)
-   {init_path(0);
+   {init_path(/* () */0);
     var prefixname=Filename["chop_extension"](sourcefile);
     
     var modulename=$$String["capitalize"](Filename["basename"](prefixname));
@@ -99,7 +106,7 @@ var
     Env["set_unit_name"](modulename);
     var inputfile=preprocess(sourcefile);
     
-    var env=initial_env(0);
+    var env=initial_env(/* () */0);
     
     try
      {var
@@ -116,24 +123,33 @@ var
         Typemod["type_implementation"]
          (sourcefile,prefixname,modulename,env,parsetree);
       
-      return [/* tuple */0,
-              [/* Some */0,[/* tuple */0,parsetree,typedtree]],
+      return /* tuple */[0,
+              /* Some */[0,/* tuple */[0,parsetree,typedtree]],
               inputfile];
       }
     catch(e)
      {if(e[1]=Syntaxerr["Error"])
        {Format["fprintf"]
          (Format["err_formatter"],
-          [0,[18,[1,[0,0,""]],[15,[17,0,[17,4,0]]]],"@[%a@]@."],
+          /* Format */[0,
+           /* Formatting_gen */[18,
+            /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+            /* Alpha */[15,
+             /* Formatting_lit */[17,
+              /* Close_box */0,
+              /* Formatting_lit */[17,
+               /* Flush_newline */4,
+               /* End_of_format */0]]]],
+           "@[%a@]@."],
           Syntaxerr["report_error"],
           e[2]);
-        return [/* tuple */0,0,inputfile];
+        return /* tuple */[0,/* None */0,inputfile];
         }
       else
        {if(e[1]=Failure)
          {Pervasives["prerr_endline"](e[2]);
           Odoc_global["errors"][0]++;
-          return [/* tuple */0,0,inputfile];
+          return /* tuple */[0,/* None */0,inputfile];
           }
         else
          {throw e;}
@@ -144,7 +160,7 @@ var
 var
  process_interface_file=
   function(ppf,sourcefile)
-   {init_path(0);
+   {init_path(/* () */0);
     var prefixname=Filename["chop_extension"](sourcefile);
     
     var modulename=$$String["capitalize"](Filename["basename"](prefixname));
@@ -161,10 +177,10 @@ var
         Parse["interface"],
         Config["ast_intf_magic_number"]);
     
-    var sg=Typemod["type_interface"](initial_env(0),ast);
+    var sg=Typemod["type_interface"](initial_env(/* () */0),ast);
     
-    Warnings["check_fatal"](0);
-    return [/* tuple */0,ast,sg,inputfile];
+    Warnings["check_fatal"](/* () */0);
+    return /* tuple */[0,ast,sg,inputfile];
     };
 
 var $$let=Odoc_comments["Basic_info_retriever"];
@@ -188,21 +204,32 @@ var
     if(match)
      {return Format["fprintf"]
               (Format["err_formatter"],
-               [0,[18,[1,[0,0,""]],[15,[17,0,[17,4,0]]]],"@[%a@]@."],
+               /* Format */[0,
+                /* Formatting_gen */[18,
+                 /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                 /* Alpha */[15,
+                  /* Formatting_lit */[17,
+                   /* Close_box */0,
+                   /* Formatting_lit */[17,
+                    /* Flush_newline */4,
+                    /* End_of_format */0]]]],
+                "@[%a@]@."],
                Location["report_error"],
                match[1]);
       }
     else
      {return Format["fprintf"]
               (Format["err_formatter"],
-               [0,
-                [11,
+               /* Format */[0,
+                /* String_literal */[11,
                  "Compilation error(",
-                 [2,
-                  0,
-                  [11,
+                 /* String */[2,
+                  /* No_padding */0,
+                  /* String_literal */[11,
                    "). Use the OCaml compiler to get more details.",
-                   [17,4,0]]]],
+                   /* Formatting_lit */[17,
+                    /* Flush_newline */4,
+                    /* End_of_format */0]]]],
                 "Compilation error(%s). Use the OCaml compiler to get more details.@."],
                Printexc["to_string"](exn));
       }
@@ -220,7 +247,7 @@ var
       switch(exit){case 50:var f=sourcefile[1];}
       
       Format["print_string"](Odoc_messages["analysing"](f)),
-      Format["print_newline"](0)}
+      Format["print_newline"](/* () */0)}
     else
      {}
     
@@ -247,15 +274,15 @@ var
            file_module[8]=Odoc_dep["impl_dependencies"](parsetree),0;
            if(Odoc_global["verbose"][1])
             {Format["print_string"](Odoc_messages["ok"]),
-             Format["print_newline"](0)}
+             Format["print_newline"](/* () */0)}
            else
             {}
            
            Pparse["remove_preprocessed"](match[2]);
-           return [/* Some */0,file_module];
+           return /* Some */[0,file_module];
            }
          else
-          {return 0;}
+          {return /* None */0;}
          }
        catch(e)
         {var exit$1;
@@ -266,14 +293,14 @@ var
           {if(e[1]=Failure)
             {var s=e[2];exit$1=28;}
            else
-            {process_error(e);Odoc_global["errors"][0]++;return 0;}
+            {process_error(e);Odoc_global["errors"][0]++;return /* None */0;}
            }
          
          switch(exit$1)
           {case 28:
             Pervasives["prerr_endline"](s);
             Odoc_global["errors"][0]++;
-            return 0;
+            return /* None */0;
             
            }
          }
@@ -295,12 +322,12 @@ var
          file_module$1[8]=Odoc_dep["intf_dependencies"](ast),0;
          if(Odoc_global["verbose"][1])
           {Format["print_string"](Odoc_messages["ok"]),
-           Format["print_newline"](0)}
+           Format["print_newline"](/* () */0)}
          else
           {}
          
          Pparse["remove_preprocessed"](match$2[3]);
-         return [/* Some */0,file_module$1];
+         return /* Some */[0,file_module$1];
          }
        catch(e$1)
         {var exit$2;
@@ -311,14 +338,17 @@ var
           {if(e$1[1]=Failure)
             {var s$1=e$1[2];exit$2=34;}
            else
-            {process_error(e$1);Odoc_global["errors"][0]++;return 0;}
+            {process_error(e$1);
+             Odoc_global["errors"][0]++;
+             return /* None */0;
+             }
            }
          
          switch(exit$2)
           {case 34:
             Pervasives["prerr_endline"](s$1);
             Odoc_global["errors"][0]++;
-            return 0;
+            return /* None */0;
             
            }
          }
@@ -352,21 +382,23 @@ var
          
          var
           m=
-           [/* record */0,
+           /* record */[0,
             mod_name,
-            [1,0],
-            0,
-            1,
+            /* Mty_signature */[1,/* [] */0],
+            /* None */0,
+            /* true */1,
             file$2,
-            [/* Module_struct */0,
-             [/* :: */0,[/* Element_module_comment */9,txt],0]],
-            [/* record */0,0,[/* Some */0,Location["in_file"](file$2)]],
-            0,
-            0,
-            0,
-            1];
+            /* Module_struct */[0,
+             /* :: */[0,/* Element_module_comment */[9,txt],/* [] */0]],
+            /* record */[0,
+             /* None */0,
+             /* Some */[0,Location["in_file"](file$2)]],
+            /* [] */0,
+            /* None */0,
+            /* None */0,
+            /* true */1];
          
-         return [/* Some */0,m];
+         return /* Some */[0,m];
          }
        catch(e$2)
         {var exit$3;
@@ -377,14 +409,17 @@ var
           {if(e$2[1]=Failure)
             {var s$3=e$2[2];exit$3=40;}
            else
-            {process_error(e$2);Odoc_global["errors"][0]++;return 0;}
+            {process_error(e$2);
+             Odoc_global["errors"][0]++;
+             return /* None */0;
+             }
            }
          
          switch(exit$3)
           {case 40:
             Pervasives["prerr_endline"](s$3);
             Odoc_global["errors"][0]++;
-            return 0;
+            return /* None */0;
             
            }
          }
@@ -435,14 +470,14 @@ var
       switch(exit)
        {case 25:
          if(keep)
-          {return [/* :: */0,ele,remove_class_elements_between_stop(keep,q)];}
+          {return /* :: */[0,ele,remove_class_elements_between_stop(keep,q)];}
          else
           {return remove_class_elements_between_stop(keep,q);}
          
         }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -452,14 +487,14 @@ var
     
     switch(k)
      {case 0:
-       return [/* Class_structure */0,
+       return /* Class_structure */[0,
                k[1],
-               remove_class_elements_between_stop(1,k[2])];
+               remove_class_elements_between_stop(/* true */1,k[2])];
        
       case 1:exit=24;
       case 2:exit=24;
       case 3:
-       return [/* Class_constraint */3,
+       return /* Class_constraint */[3,
                remove_class_elements_between_stop_in_class_kind(k[1]),
                remove_class_elements_between_stop_in_class_type_kind(k[2])];
        
@@ -473,9 +508,9 @@ var
   function(tk)
    {switch(tk)
      {case 0:
-       return [/* Class_signature */0,
+       return /* Class_signature */[0,
                tk[1],
-               remove_class_elements_between_stop(1,tk[2])];
+               remove_class_elements_between_stop(/* true */1,tk[2])];
        
       case 1:return tk;
       }
@@ -495,8 +530,8 @@ var
          
          if(keep)
           {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]),0;
-           return [/* :: */0,
-                   [/* Element_module */0,m],
+           return /* :: */[0,
+                   /* Element_module */[0,m],
                    remove_module_elements_between_stop(keep,q)];
            }
          else
@@ -510,8 +545,8 @@ var
            Odoc_misc["apply_opt"]
             (remove_module_elements_between_stop_in_module_type_kind,mt[6]),
            0;
-           return [/* :: */0,
-                   [/* Element_module_type */1,mt],
+           return /* :: */[0,
+                   /* Element_module_type */[1,mt],
                    remove_module_elements_between_stop(keep,q)];
            }
          else
@@ -519,7 +554,7 @@ var
          
         case 2:
          if(keep)
-          {return [/* :: */0,ele,remove_module_elements_between_stop(keep,q)];
+          {return /* :: */[0,ele,remove_module_elements_between_stop(keep,q)];
            }
          else
           {return remove_module_elements_between_stop(keep,q);}
@@ -529,8 +564,8 @@ var
          
          if(keep)
           {c[6]=remove_class_elements_between_stop_in_class_kind(c[6]),0;
-           return [/* :: */0,
-                   [/* Element_class */3,c],
+           return /* :: */[0,
+                   /* Element_class */[3,c],
                    remove_module_elements_between_stop(keep,q)];
            }
          else
@@ -543,8 +578,8 @@ var
           {ct[6]=
            remove_class_elements_between_stop_in_class_type_kind(ct[6]),
            0;
-           return [/* :: */0,
-                   [/* Element_class_type */4,ct],
+           return /* :: */[0,
+                   /* Element_class_type */[4,ct],
                    remove_module_elements_between_stop(keep,q)];
            }
          else
@@ -580,7 +615,7 @@ var
          switch(exit)
           {case 20:
             if(keep)
-             {return [/* :: */0,
+             {return /* :: */[0,
                       ele,
                       remove_module_elements_between_stop(keep,q)];
               }
@@ -591,14 +626,14 @@ var
          
         default:
          if(keep)
-          {return [/* :: */0,ele,remove_module_elements_between_stop(keep,q)];
+          {return /* :: */[0,ele,remove_module_elements_between_stop(keep,q)];
            }
          else
           {return remove_module_elements_between_stop(keep,q);}
          }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -606,26 +641,26 @@ var
   function(k)
    {switch(k)
      {case 0:
-       return [/* Module_struct */0,
-               remove_module_elements_between_stop(1,k[1])];
+       return /* Module_struct */[0,
+               remove_module_elements_between_stop(/* true */1,k[1])];
        
       case 2:
-       return [/* Module_functor */2,
+       return /* Module_functor */[2,
                k[1],
                remove_module_elements_between_stop_in_module_kind(k[2])];
        
       case 3:
-       return [/* Module_apply */3,
+       return /* Module_apply */[3,
                remove_module_elements_between_stop_in_module_kind(k[1]),
                remove_module_elements_between_stop_in_module_kind(k[2])];
        
       case 4:
-       return [/* Module_with */4,
+       return /* Module_with */[4,
                remove_module_elements_between_stop_in_module_type_kind(k[1]),
                k[2]];
        
       case 5:
-       return [/* Module_constraint */5,
+       return /* Module_constraint */[5,
                remove_module_elements_between_stop_in_module_kind(k[1]),
                remove_module_elements_between_stop_in_module_type_kind(k[2])];
        
@@ -639,17 +674,17 @@ var
     
     switch(tk)
      {case 0:
-       return [/* Module_type_struct */0,
-               remove_module_elements_between_stop(1,tk[1])];
+       return /* Module_type_struct */[0,
+               remove_module_elements_between_stop(/* true */1,tk[1])];
        
       case 1:
-       return [/* Module_type_functor */1,
+       return /* Module_type_functor */[1,
                tk[1],
                remove_module_elements_between_stop_in_module_type_kind(tk[2])];
        
       case 2:exit=23;
       case 3:
-       return [/* Module_type_with */3,
+       return /* Module_type_with */[3,
                remove_module_elements_between_stop_in_module_type_kind(tk[1]),
                tk[2]];
        
@@ -675,7 +710,7 @@ var
 var
  analyse_files=
   function($staropt$star,files)
-   {if($staropt$star){var init=$staropt$star[1];}else{var init=0;}
+   {if($staropt$star){var init=$staropt$star[1];}else{var init=/* [] */0;}
     
     var
      modules_pre=
@@ -687,7 +722,7 @@ var
              {var match=process_file(Format["err_formatter"],file);
               
               if(match)
-               {return Pervasives["@"](acc,[/* :: */0,match[1],0]);}
+               {return Pervasives["@"](acc,/* :: */[0,match[1],/* [] */0]);}
               else
                {return acc;}
               }
@@ -701,7 +736,7 @@ var
                {throw exn;}
               }
             },
-          0,
+          /* [] */0,
           files));
     
     if(Odoc_global["no_stop"][1])
@@ -711,7 +746,7 @@ var
     
     if(Odoc_global["verbose"][1])
      {Format["print_string"](Odoc_messages["merging"]),
-      Format["print_newline"](0)}
+      Format["print_newline"](/* () */0)}
     else
      {}
     
@@ -720,7 +755,8 @@ var
       Odoc_merge["merge"](Odoc_global["merge_options"][1],modules);
     
     if(Odoc_global["verbose"][1])
-     {Format["print_string"](Odoc_messages["ok"]),Format["print_newline"](0)}
+     {Format["print_string"](Odoc_messages["ok"]),
+      Format["print_newline"](/* () */0)}
     else
      {}
     
@@ -729,21 +765,24 @@ var
       List["fold_left"]
        (function(acc,m)
          {return Pervasives["@"]
-                  (acc,Odoc_module["module_all_submodules"]([0,0],m));
+                  (acc,
+                   Odoc_module["module_all_submodules"]
+                    (/* Some */[0,/* false */0],m));
           },
         merged_modules,
         merged_modules);
     
     if(Odoc_global["verbose"][1])
      {Format["print_string"](Odoc_messages["cross_referencing"]),
-      Format["print_newline"](0)}
+      Format["print_newline"](/* () */0)}
     else
      {}
     
     var match=Odoc_cross["associate"](modules_list);
     
     if(Odoc_global["verbose"][1])
-     {Format["print_string"](Odoc_messages["ok"]),Format["print_newline"](0)}
+     {Format["print_string"](Odoc_messages["ok"]),
+      Format["print_newline"](/* () */0)}
     else
      {}
     

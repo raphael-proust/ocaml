@@ -22,7 +22,7 @@ var
    {if(Tags["mem"]("pack",tags))
      {return Ocaml_arch["forpack_flags_of_pathname"](arg);}
     else
-     {return 0;}
+     {return /* N */0;}
     };
 
 var
@@ -32,71 +32,79 @@ var
      tags$1=
       Tags["Operators"][1](Tags["Operators"][1](tags,"ocaml"),"byte");
     
-    return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+    return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlc"][1],
-              [/* :: */0,
-               [1,"-c"],
-               [/* :: */0,
-                [/* T */5,Tags["Operators"][1](tags$1,"compile")],
-                [/* :: */0,
+              /* :: */[0,
+               /* A */[1,"-c"],
+               /* :: */[0,
+                /* T */[5,Tags["Operators"][1](tags$1,"compile")],
+                /* :: */[0,
                  Ocaml_utils["ocaml_ppflags"](tags$1),
-                 [/* :: */0,
+                 /* :: */[0,
                   Ocaml_utils["ocaml_include_flags"](arg),
-                  [/* :: */0,
-                   [1,"-o"],
-                   [/* :: */0,[/* Px */3,out],[/* :: */0,[/* P */2,arg],0]]]]]]]]]];
+                  /* :: */[0,
+                   /* A */[1,"-o"],
+                   /* :: */[0,
+                    /* Px */[3,out],
+                    /* :: */[0,/* P */[2,arg],/* [] */0]]]]]]]]]];
     };
 
 var
  ocamlc_link=
   function(flag,tags,deps,out)
-   {return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+   {return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlc"][1],
-              [/* :: */0,
+              /* :: */[0,
                flag,
-               [/* :: */0,
-                [/* T */5,tags],
-                [/* :: */0,
+               /* :: */[0,
+                /* T */[5,tags],
+                /* :: */[0,
                  Command["atomize_paths"](deps),
-                 [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]];
+                 /* :: */[0,
+                  /* A */[1,"-o"],
+                  /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]];
     };
 
-var ocamlc_link_lib=ocamlc_link([1,"-a"]);
+var ocamlc_link_lib=ocamlc_link(/* A */[1,"-a"]);
 
-var ocamlc_link_prog=ocamlc_link(0);
+var ocamlc_link_prog=ocamlc_link(/* N */0);
 
 var
  ocamlmklib=
   function(tags,deps,out)
-   {return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+   {return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlmklib"][1],
-              [/* :: */0,
-               [/* T */5,tags],
-               [/* :: */0,
+              /* :: */[0,
+               /* T */[5,tags],
+               /* :: */[0,
                 Command["atomize_paths"](deps),
-                [/* :: */0,
-                 [1,"-o"],
-                 [/* :: */0,[/* Px */3,Pathname["remove_extensions"](out)],0]]]]]]];
+                /* :: */[0,
+                 /* A */[1,"-o"],
+                 /* :: */[0,
+                  /* Px */[3,Pathname["remove_extensions"](out)],
+                  /* [] */0]]]]]]];
     };
 
 var
  ocamlmktop=
   function(tags,deps,out)
-   {return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+   {return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlmktop"][1],
-              [/* :: */0,
-               [/* T */5,Tags["Operators"][1](tags,"mktop")],
-               [/* :: */0,
+              /* :: */[0,
+               /* T */[5,Tags["Operators"][1](tags,"mktop")],
+               /* :: */[0,
                 Command["atomize_paths"](deps),
-                [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]];
+                /* :: */[0,
+                 /* A */[1,"-o"],
+                 /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]];
     };
 
 var
@@ -121,17 +129,19 @@ var
 var
  ocamlc_p=
   function(tags,deps,out)
-   {return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+   {return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlc"][1],
-              [/* :: */0,
-               [1,"-pack"],
-               [/* :: */0,
-                [/* T */5,tags],
-                [/* :: */0,
+              /* :: */[0,
+               /* A */[1,"-pack"],
+               /* :: */[0,
+                /* T */[5,tags],
+                /* :: */[0,
                  Command["atomize_paths"](deps),
-                 [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]];
+                 /* :: */[0,
+                  /* A */[1,"-o"],
+                  /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]];
     };
 
 var
@@ -141,106 +151,114 @@ var
      tags$1=
       Tags["Operators"][1](Tags["Operators"][1](tags,"ocaml"),"native");
     
-    return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+    return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlopt"][1],
-              [/* :: */0,
-               [1,"-c"],
-               [/* :: */0,
+              /* :: */[0,
+               /* A */[1,"-c"],
+               /* :: */[0,
                 Ocaml_arch["forpack_flags_of_pathname"](arg),
-                [/* :: */0,
-                 [/* T */5,Tags["Operators"][1](tags$1,"compile")],
-                 [/* :: */0,
+                /* :: */[0,
+                 /* T */[5,Tags["Operators"][1](tags$1,"compile")],
+                 /* :: */[0,
                   Ocaml_utils["ocaml_ppflags"](tags$1),
-                  [/* :: */0,
+                  /* :: */[0,
                    Ocaml_utils["ocaml_include_flags"](arg),
-                   [/* :: */0,
-                    [1,"-o"],
-                    [/* :: */0,[/* Px */3,out],[/* :: */0,[/* P */2,arg],0]]]]]]]]]]];
+                   /* :: */[0,
+                    /* A */[1,"-o"],
+                    /* :: */[0,
+                     /* Px */[3,out],
+                     /* :: */[0,/* P */[2,arg],/* [] */0]]]]]]]]]]];
     };
 
 var
  ocamlopt_link=
   function(flag,tags,deps,out)
-   {return [/* Cmd */1,
-            [/* S */0,
-             [/* :: */0,
+   {return /* Cmd */[1,
+            /* S */[0,
+             /* :: */[0,
               Options["ocamlopt"][1],
-              [/* :: */0,
+              /* :: */[0,
                flag,
-               [/* :: */0,
+               /* :: */[0,
                 forpack_flags(out,tags),
-                [/* :: */0,
-                 [/* T */5,tags],
-                 [/* :: */0,
+                /* :: */[0,
+                 /* T */[5,tags],
+                 /* :: */[0,
                   Command["atomize_paths"](deps),
-                  [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]]];
+                  /* :: */[0,
+                   /* A */[1,"-o"],
+                   /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]];
     };
 
-var ocamlopt_link_lib=ocamlopt_link([1,"-a"]);
+var ocamlopt_link_lib=ocamlopt_link(/* A */[1,"-a"]);
 
-var ocamlopt_link_shared_lib=ocamlopt_link([1,"-shared"]);
+var ocamlopt_link_shared_lib=ocamlopt_link(/* A */[1,"-shared"]);
 
-var ocamlopt_link_prog=ocamlopt_link(0);
+var ocamlopt_link_prog=ocamlopt_link(/* N */0);
 
 var
  ocamlopt_p=
   function(tags,deps,out)
    {var
      dirnames=
-      My_std["List"][3](0,My_std["List"][16](Pathname["dirname"],deps));
+      My_std["List"][3]
+       (/* [] */0,My_std["List"][16](Pathname["dirname"],deps));
     
     var
      include_flags=
-      My_std["List"][20](Ocaml_utils["ocaml_add_include_flag"],dirnames,0);
+      My_std["List"][20]
+       (Ocaml_utils["ocaml_add_include_flag"],dirnames,/* [] */0);
     
     var mli=Pathname["update_extensions"]("mli",out);
     
     var
      cmd=
-      [/* S */0,
-       [/* :: */0,
+      /* S */[0,
+       /* :: */[0,
         Options["ocamlopt"][1],
-        [/* :: */0,
-         [1,"-pack"],
-         [/* :: */0,
+        /* :: */[0,
+         /* A */[1,"-pack"],
+         /* :: */[0,
           forpack_flags(out,tags),
-          [/* :: */0,
-           [/* T */5,tags],
-           [/* :: */0,
-            [/* S */0,include_flags],
-            [/* :: */0,
+          /* :: */[0,
+           /* T */[5,tags],
+           /* :: */[0,
+            /* S */[0,include_flags],
+            /* :: */[0,
              Command["atomize_paths"](deps),
-             [/* :: */0,[1,"-o"],[/* :: */0,[/* Px */3,out],0]]]]]]]]];
+             /* :: */[0,/* A */[1,"-o"],/* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]];
     
     if(Pathname["exists"](mli))
-     {return [/* Cmd */1,cmd];}
+     {return /* Cmd */[1,cmd];}
     else
      {var
        rm=
-        [/* S */0,
-         [/* :: */0,
-          [1,"rm"],
-          [/* :: */0,[1,"-f"],[/* :: */0,[/* P */2,mli],0]]]];
+        /* S */[0,
+         /* :: */[0,
+          /* A */[1,"rm"],
+          /* :: */[0,/* A */[1,"-f"],/* :: */[0,/* P */[2,mli],/* [] */0]]]];
       
-      return [/* Cmd */1,
-              [/* S */0,
-               [/* :: */0,
-                [1,"touch"],
-                [/* :: */0,
-                 [/* P */2,mli],
-                 [/* :: */0,
-                  [4," ; if "],
-                  [/* :: */0,
+      return /* Cmd */[1,
+              /* S */[0,
+               /* :: */[0,
+                /* A */[1,"touch"],
+                /* :: */[0,
+                 /* P */[2,mli],
+                 /* :: */[0,
+                  /* Sh */[4," ; if "],
+                  /* :: */[0,
                    cmd,
-                   [/* :: */0,
-                    [4," ; then "],
-                    [/* :: */0,
+                   /* :: */[0,
+                    /* Sh */[4," ; then "],
+                    /* :: */[0,
                      rm,
-                     [/* :: */0,
-                      [4," ; else "],
-                      [/* :: */0,rm,[0,[4," ; exit 1; fi"],0]]]]]]]]]]];
+                     /* :: */[0,
+                      /* Sh */[4," ; else "],
+                      /* :: */[0,
+                       rm,
+                       /* :: */[0,/* Sh */[4," ; exit 1; fi"],/* [] */0]]]]]]]]]]];
       }
     };
 
@@ -282,283 +300,296 @@ var
        (My_std["List"][16]
          (function(param)
            {return Ocaml_utils["expand_module"]
-                    (include_dirs,param[2],[0,"cmi",0]);
+                    (include_dirs,param[2],/* :: */[0,"cmi",/* [] */0]);
             },
           modules));
     
     return My_std["List"][21]
             (function(param,res)
               {switch(res)
-                {case 0:return 0;
+                {case 0:return /* () */0;
                  case 1:
                   if(param[1]>=886832744)
-                   {return 0;}
+                   {return /* () */0;}
                   else
                    {if(!Options["ignore_auto"][1]){throw res[1];}else{}
                     
                     Log["dprintf"]
                      (3,
-                      [0,
-                       [11,
+                      /* Format */[0,
+                       /* String_literal */[11,
                         "Warning: Failed to build the module ",
-                        [2,0,[11," requested by ocamldep.",0]]],
+                        /* String */[2,
+                         /* No_padding */0,
+                         /* String_literal */[11,
+                          " requested by ocamldep.",
+                          /* End_of_format */0]]],
                        "Warning: Failed to build the module %s requested by ocamldep."],
                       param[2]);
                     if
                      (!(Options["recursive"][1]||
-                       Options["ocamlbuild_project_heuristic"](0)))
+                       Options["ocamlbuild_project_heuristic"](/* () */0)))
                      {return Log["at_failure"]
                               ("a module failed to build,\n           while recursive traversal was disabled by fragile heuristic;\n           hint that having a _tags or myocamlbuild.ml would maybe solve\n           the build error",
                                function(param$1)
                                 {return Log["eprintf"]
-                                         ([0,
-                                           [11,
+                                         (/* Format */[0,
+                                           /* String_literal */[11,
                                             "Hint:",
-                                            [17,
-                                             [0,"@ ",1,0],
-                                             [11,
+                                            /* Formatting_lit */[17,
+                                             /* Break */[0,"@ ",1,0],
+                                             /* String_literal */[11,
                                               "Recursive",
-                                              [17,
-                                               [0,"@ ",1,0],
-                                               [11,
+                                              /* Formatting_lit */[17,
+                                               /* Break */[0,"@ ",1,0],
+                                               /* String_literal */[11,
                                                 "traversal",
-                                                [17,
-                                                 [0,"@ ",1,0],
-                                                 [11,
+                                                /* Formatting_lit */[17,
+                                                 /* Break */[0,"@ ",1,0],
+                                                 /* String_literal */[11,
                                                   "of",
-                                                  [17,
-                                                   [0,"@ ",1,0],
-                                                   [11,
+                                                  /* Formatting_lit */[17,
+                                                   /* Break */[0,"@ ",1,0],
+                                                   /* String_literal */[11,
                                                     "subdirectories",
-                                                    [17,
-                                                     [0,"@ ",1,0],
-                                                     [11,
+                                                    /* Formatting_lit */[17,
+                                                     /* Break */[0,"@ ",1,0],
+                                                     /* String_literal */[11,
                                                       "was",
-                                                      [17,
-                                                       [0,"@ ",1,0],
-                                                       [11,
+                                                      /* Formatting_lit */[17,
+                                                       /* Break */[0,"@ ",1,0],
+                                                       /* String_literal */[11,
                                                         "not",
-                                                        [17,
-                                                         [0,"@ ",1,0],
-                                                         [11,
+                                                        /* Formatting_lit */[17,
+                                                         /* Break */[0,"@ ",1,0],
+                                                         /* String_literal */[11,
                                                           "enabled",
-                                                          [17,
-                                                           [0,"@ ",1,0],
-                                                           [11,
+                                                          /* Formatting_lit */[17,
+                                                           /* Break */[0,"@ ",1,0],
+                                                           /* String_literal */[11,
                                                             "for",
-                                                            [17,
-                                                             [0,"@ ",1,0],
-                                                             [11,
+                                                            /* Formatting_lit */[17,
+                                                             /* Break */[0,"@ ",1,0],
+                                                             /* String_literal */[11,
                                                               "this",
-                                                              [17,
-                                                               [0,"@ ",1,0],
-                                                               [11,
+                                                              /* Formatting_lit */[17,
+                                                               /* Break */[0,"@ ",1,0],
+                                                               /* String_literal */[11,
                                                                 "build,",
-                                                                [17,
-                                                                 [0,"@ ",1,0],
-                                                                 [11,
+                                                                /* Formatting_lit */[17,
+                                                                 /* Break */[0,"@ ",1,0],
+                                                                 /* String_literal */[11,
                                                                   "as",
-                                                                  [17,
-                                                                   [0,"@ ",1,0],
-                                                                   [11,
+                                                                  /* Formatting_lit */[17,
+                                                                   /* Break */[0,"@ ",1,0],
+                                                                   /* String_literal */[11,
                                                                     "the",
-                                                                    [17,
-                                                                     [0,"@ ",1,0],
-                                                                     [11,
+                                                                    /* Formatting_lit */[17,
+                                                                     /* Break */[0,"@ ",1,0],
+                                                                     /* String_literal */[11,
                                                                       "working",
-                                                                      [17,
-                                                                       [0,"@ ",1,0],
-                                                                       [11,
+                                                                      /* Formatting_lit */[17,
+                                                                       /* Break */[0,"@ ",1,0],
+                                                                       /* String_literal */[11,
                                                                         "directory does",
-                                                                        [17,
-                                                                         [0,"@ ",1,0],
-                                                                         [11,
+                                                                        /* Formatting_lit */[17,
+                                                                         /* Break */[0,"@ ",1,0],
+                                                                         /* String_literal */[11,
                                                                           "not",
-                                                                          [17,
-                                                                           [0,"@ ",1,0],
-                                                                           [11,
+                                                                          /* Formatting_lit */[17,
+                                                                           /* Break */[0,"@ ",1,0],
+                                                                           /* String_literal */[11,
                                                                             "look",
-                                                                            [17,
-                                                                             [0,"@ ",1,0],
-                                                                             [11,
+                                                                            /* Formatting_lit */[17,
+                                                                             /* Break */[0,"@ ",1,0],
+                                                                             /* String_literal */[11,
                                                                               "like",
-                                                                              [17,
-                                                                               [0,"@ ",1,0],
-                                                                               [11,
+                                                                              /* Formatting_lit */[17,
+                                                                               /* Break */[0,"@ ",1,0],
+                                                                               /* String_literal */[11,
                                                                                 "an",
-                                                                                [17,
-                                                                                 [0,"@ ",1,0],
-                                                                                 [11,
+                                                                                /* Formatting_lit */[17,
+                                                                                 /* Break */[0,"@ ",1,0],
+                                                                                 /* String_literal */[11,
                                                                                   "ocamlbuild",
-                                                                                  [17,
-                                                                                   [0,"@ ",1,0],
-                                                                                   [11,
+                                                                                  /* Formatting_lit */[17,
+                                                                                   /* Break */[0,"@ ",1,0],
+                                                                                   /* String_literal */[11,
                                                                                     "project",
-                                                                                    [17,
-                                                                                     [0,"@ ",1,0],
-                                                                                     [11,
+                                                                                    /* Formatting_lit */[17,
+                                                                                     /* Break */[0,"@ ",1,0],
+                                                                                     /* String_literal */[11,
                                                                                       "(no",
-                                                                                      [17,
-                                                                                       [0,"@ ",1,0],
-                                                                                       [11,
+                                                                                      /* Formatting_lit */[17,
+                                                                                       /* Break */[0,"@ ",1,0],
+                                                                                       /* String_literal */[11,
                                                                                         "'_tags'",
-                                                                                        [17,
-                                                                                         [0,"@ ",1,0],
-                                                                                         [11,
+                                                                                        /* Formatting_lit */[17,
+                                                                                         /* Break */[0,"@ ",1,0],
+                                                                                         /* String_literal */[11,
                                                                                           "or",
-                                                                                          [17,
-                                                                                           [0,"@ ",1,0],
-                                                                                           [11,
+                                                                                          /* Formatting_lit */[17,
+                                                                                           /* Break */[0,"@ ",1,0],
+                                                                                           /* String_literal */[11,
                                                                                             "'myocamlbuild.ml'",
-                                                                                            [17,
-                                                                                             [0,"@ ",1,0],
-                                                                                             [11,
+                                                                                            /* Formatting_lit */[17,
+                                                                                             /* Break */[0,"@ ",1,0],
+                                                                                             /* String_literal */[11,
                                                                                               "file).",
-                                                                                              [17,
-                                                                                               [0,"@ ",1,0],
-                                                                                               [11,
+                                                                                              /* Formatting_lit */[17,
+                                                                                               /* Break */[0,"@ ",1,0],
+                                                                                               /* String_literal */[11,
                                                                                                 "If",
-                                                                                                [17,
-                                                                                                 [0,"@ ",1,0],
-                                                                                                 [11,
+                                                                                                /* Formatting_lit */[17,
+                                                                                                 /* Break */[0,"@ ",1,0],
+                                                                                                 /* String_literal */[11,
                                                                                                   "you",
-                                                                                                  [17,
-                                                                                                   [0,"@ ",1,0],
-                                                                                                   [11,
+                                                                                                  /* Formatting_lit */[17,
+                                                                                                   /* Break */[0,"@ ",1,0],
+                                                                                                   /* String_literal */[11,
                                                                                                     "have",
-                                                                                                    [17,
-                                                                                                     [0,"@ ",1,0],
-                                                                                                     [11,
+                                                                                                    /* Formatting_lit */[17,
+                                                                                                     /* Break */[0,"@ ",1,0],
+                                                                                                     /* String_literal */[11,
                                                                                                       "modules",
-                                                                                                      [17,
-                                                                                                       [0,"@ ",1,0],
-                                                                                                       [11,
+                                                                                                      /* Formatting_lit */[17,
+                                                                                                       /* Break */[0,"@ ",1,0],
+                                                                                                       /* String_literal */[11,
                                                                                                         "in",
-                                                                                                        [17,
-                                                                                                         [0,"@ ",1,0],
-                                                                                                         [11,
+                                                                                                        /* Formatting_lit */[17,
+                                                                                                         /* Break */[0,"@ ",1,0],
+                                                                                                         /* String_literal */[11,
                                                                                                           "subdirectories,",
-                                                                                                          [17,
-                                                                                                           [0,"@ ",1,0],
-                                                                                                           [11,
+                                                                                                          /* Formatting_lit */[17,
+                                                                                                           /* Break */[0,"@ ",1,0],
+                                                                                                           /* String_literal */[11,
                                                                                                             "you",
-                                                                                                            [17,
-                                                                                                             [0,"@ ",1,0],
-                                                                                                             [11,
+                                                                                                            /* Formatting_lit */[17,
+                                                                                                             /* Break */[0,"@ ",1,0],
+                                                                                                             /* String_literal */[11,
                                                                                                               "should",
-                                                                                                              [17,
-                                                                                                               [0,"@ ",1,0],
-                                                                                                               [11,
+                                                                                                              /* Formatting_lit */[17,
+                                                                                                               /* Break */[0,"@ ",1,0],
+                                                                                                               /* String_literal */[11,
                                                                                                                 "add",
-                                                                                                                [17,
-                                                                                                                 [0,"@ ",1,0],
-                                                                                                                 [11,
+                                                                                                                /* Formatting_lit */[17,
+                                                                                                                 /* Break */[0,"@ ",1,0],
+                                                                                                                 /* String_literal */[11,
                                                                                                                   "the",
-                                                                                                                  [17,
-                                                                                                                   [0,"@ ",1,0],
-                                                                                                                   [11,
+                                                                                                                  /* Formatting_lit */[17,
+                                                                                                                   /* Break */[0,"@ ",1,0],
+                                                                                                                   /* String_literal */[11,
                                                                                                                     "option",
-                                                                                                                    [17,
-                                                                                                                     [0,"@ ",1,0],
-                                                                                                                     [11,
+                                                                                                                    /* Formatting_lit */[17,
+                                                                                                                     /* Break */[0,"@ ",1,0],
+                                                                                                                     /* String_literal */[11,
                                                                                                                       '"-r"',
-                                                                                                                      [17,
-                                                                                                                       [0,"@ ",1,0],
-                                                                                                                       [11,
+                                                                                                                      /* Formatting_lit */[17,
+                                                                                                                       /* Break */[0,"@ ",1,0],
+                                                                                                                       /* String_literal */[11,
                                                                                                                         "or",
-                                                                                                                        [17,
-                                                                                                                         [0,"@ ",1,0],
-                                                                                                                         [11,
+                                                                                                                        /* Formatting_lit */[17,
+                                                                                                                         /* Break */[0,"@ ",1,0],
+                                                                                                                         /* String_literal */[11,
                                                                                                                           "create",
-                                                                                                                          [17,
-                                                                                                                           [0,"@ ",1,0],
-                                                                                                                           [11,
+                                                                                                                          /* Formatting_lit */[17,
+                                                                                                                           /* Break */[0,"@ ",1,0],
+                                                                                                                           /* String_literal */[11,
                                                                                                                             "an",
-                                                                                                                            [17,
-                                                                                                                             [0,"@ ",1,0],
-                                                                                                                             [11,
+                                                                                                                            /* Formatting_lit */[17,
+                                                                                                                             /* Break */[0,"@ ",1,0],
+                                                                                                                             /* String_literal */[11,
                                                                                                                               "empty",
-                                                                                                                              [17,
-                                                                                                                               [0,"@ ",1,0],
-                                                                                                                               [11,
+                                                                                                                              /* Formatting_lit */[17,
+                                                                                                                               /* Break */[0,"@ ",1,0],
+                                                                                                                               /* String_literal */[11,
                                                                                                                                 "'_tags'",
-                                                                                                                                [17,
-                                                                                                                                 [0,"@ ",1,0],
-                                                                                                                                 [11,
+                                                                                                                                /* Formatting_lit */[17,
+                                                                                                                                 /* Break */[0,"@ ",1,0],
+                                                                                                                                 /* String_literal */[11,
                                                                                                                                   "file.",
-                                                                                                                                  [17,
-                                                                                                                                   3,
-                                                                                                                                   [17,
-                                                                                                                                    3,
-                                                                                                                                    [11,
+                                                                                                                                  /* Formatting_lit */[17,
+                                                                                                                                   /* Force_newline */3,
+                                                                                                                                   /* Formatting_lit */[17,
+                                                                                                                                    /* Force_newline */3,
+                                                                                                                                    /* String_literal */[11,
                                                                                                                                      "To",
-                                                                                                                                     [17,
-                                                                                                                                      [0,"@ ",1,0],
-                                                                                                                                      [11,
+                                                                                                                                     /* Formatting_lit */[17,
+                                                                                                                                      /* Break */[0,"@ ",1,0],
+                                                                                                                                      /* String_literal */[11,
                                                                                                                                        "enable",
-                                                                                                                                       [17,
-                                                                                                                                        [0,"@ ",1,0],
-                                                                                                                                        [11,
+                                                                                                                                       /* Formatting_lit */[17,
+                                                                                                                                        /* Break */[0,"@ ",1,0],
+                                                                                                                                        /* String_literal */[11,
                                                                                                                                          "recursive",
-                                                                                                                                         [17,
-                                                                                                                                          [0,"@ ",1,0],
-                                                                                                                                          [11,
+                                                                                                                                         /* Formatting_lit */[17,
+                                                                                                                                          /* Break */[0,"@ ",1,0],
+                                                                                                                                          /* String_literal */[11,
                                                                                                                                            "traversal",
-                                                                                                                                           [17,
-                                                                                                                                            [0,"@ ",1,0],
-                                                                                                                                            [11,
+                                                                                                                                           /* Formatting_lit */[17,
+                                                                                                                                            /* Break */[0,"@ ",1,0],
+                                                                                                                                            /* String_literal */[11,
                                                                                                                                              "for",
-                                                                                                                                             [17,
-                                                                                                                                              [0,"@ ",1,0],
-                                                                                                                                              [11,
+                                                                                                                                             /* Formatting_lit */[17,
+                                                                                                                                              /* Break */[0,"@ ",1,0],
+                                                                                                                                              /* String_literal */[11,
                                                                                                                                                "some",
-                                                                                                                                               [17,
-                                                                                                                                                [0,"@ ",1,0],
-                                                                                                                                                [11,
+                                                                                                                                               /* Formatting_lit */[17,
+                                                                                                                                                /* Break */[0,"@ ",1,0],
+                                                                                                                                                /* String_literal */[11,
                                                                                                                                                  "subdirectories",
-                                                                                                                                                 [17,
-                                                                                                                                                  [0,"@ ",1,0],
-                                                                                                                                                  [11,
+                                                                                                                                                 /* Formatting_lit */[17,
+                                                                                                                                                  /* Break */[0,"@ ",1,0],
+                                                                                                                                                  /* String_literal */[11,
                                                                                                                                                    "only,",
-                                                                                                                                                   [17,
-                                                                                                                                                    [0,"@ ",1,0],
-                                                                                                                                                    [11,
+                                                                                                                                                   /* Formatting_lit */[17,
+                                                                                                                                                    /* Break */[0,"@ ",1,0],
+                                                                                                                                                    /* String_literal */[11,
                                                                                                                                                      "you",
-                                                                                                                                                     [17,
-                                                                                                                                                      [0,"@ ",1,0],
-                                                                                                                                                      [11,
+                                                                                                                                                     /* Formatting_lit */[17,
+                                                                                                                                                      /* Break */[0,"@ ",1,0],
+                                                                                                                                                      /* String_literal */[11,
                                                                                                                                                        "can",
-                                                                                                                                                       [17,
-                                                                                                                                                        [0,"@ ",1,0],
-                                                                                                                                                        [11,
+                                                                                                                                                       /* Formatting_lit */[17,
+                                                                                                                                                        /* Break */[0,"@ ",1,0],
+                                                                                                                                                        /* String_literal */[11,
                                                                                                                                                          "use",
-                                                                                                                                                         [17,
-                                                                                                                                                          [0,"@ ",1,0],
-                                                                                                                                                          [11,
+                                                                                                                                                         /* Formatting_lit */[17,
+                                                                                                                                                          /* Break */[0,"@ ",1,0],
+                                                                                                                                                          /* String_literal */[11,
                                                                                                                                                            "the",
-                                                                                                                                                           [17,
-                                                                                                                                                            [0,"@ ",1,0],
-                                                                                                                                                            [11,
+                                                                                                                                                           /* Formatting_lit */[17,
+                                                                                                                                                            /* Break */[0,"@ ",1,0],
+                                                                                                                                                            /* String_literal */[11,
                                                                                                                                                              "following",
-                                                                                                                                                             [17,
-                                                                                                                                                              [0,"@ ",1,0],
-                                                                                                                                                              [11,
+                                                                                                                                                             /* Formatting_lit */[17,
+                                                                                                                                                              /* Break */[0,"@ ",1,0],
+                                                                                                                                                              /* String_literal */[11,
                                                                                                                                                                "'_tags'",
-                                                                                                                                                               [17,
-                                                                                                                                                                [0,"@ ",1,0],
-                                                                                                                                                                [11,
+                                                                                                                                                               /* Formatting_lit */[17,
+                                                                                                                                                                /* Break */[0,"@ ",1,0],
+                                                                                                                                                                /* String_literal */[11,
                                                                                                                                                                  "file:",
-                                                                                                                                                                 [17,
-                                                                                                                                                                  3,
-                                                                                                                                                                  [18,
-                                                                                                                                                                   [1,[0,[11,"<v 4>",0],"<v 4>"]],
-                                                                                                                                                                   [17,
-                                                                                                                                                                    [0,"@,",0,0],
-                                                                                                                                                                    [11,
+                                                                                                                                                                 /* Formatting_lit */[17,
+                                                                                                                                                                  /* Force_newline */3,
+                                                                                                                                                                  /* Formatting_gen */[18,
+                                                                                                                                                                   /* Open_box */[1,
+                                                                                                                                                                    /* Format */[0,
+                                                                                                                                                                     /* String_literal */[11,"<v 4>",/* End_of_format */0],
+                                                                                                                                                                     "<v 4>"]],
+                                                                                                                                                                   /* Formatting_lit */[17,
+                                                                                                                                                                    /* Break */[0,"@,",0,0],
+                                                                                                                                                                    /* String_literal */[11,
                                                                                                                                                                      "true: -traverse",
-                                                                                                                                                                     [17,
-                                                                                                                                                                      [0,"@,",0,0],
-                                                                                                                                                                      [11,"<dir1> or <dir2>: traverse",[17,[0,"@,",0,0],[17,0,0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
+                                                                                                                                                                     /* Formatting_lit */[17,
+                                                                                                                                                                      /* Break */[0,"@,",0,0],
+                                                                                                                                                                      /* String_literal */[11,
+                                                                                                                                                                       "<dir1> or <dir2>: traverse",
+                                                                                                                                                                       /* Formatting_lit */[17,
+                                                                                                                                                                        /* Break */[0,"@,",0,0],
+                                                                                                                                                                        /* Formatting_lit */[17,
+                                                                                                                                                                         /* Close_box */0,
+                                                                                                                                                                         /* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
                                            "Hint:@ Recursive@ traversal@ of@ subdirectories@ was@ not@ enabled@ for@ this@ build,@ as@ the@ working@ directory does@ not@ look@ like@ an@ ocamlbuild@ project@ (no@ '_tags'@ or@ 'myocamlbuild.ml'@ file).@ If@ you@ have@ modules@ in@ subdirectories,@ you@ should@ add@ the@ option@ \"-r\"@ or@ create@ an@ empty@ '_tags'@ file.@\n@\nTo@ enable@ recursive@ traversal@ for@ some@ subdirectories@ only,@ you@ can@ use@ the@ following@ '_tags'@ file:@\n@[<v 4>@,true: -traverse@,<dir1> or <dir2>: traverse@,@]"]);
                                  });
                       }
@@ -624,12 +655,12 @@ var
              cmo$1);
     };
 
-var cache_prepare_link=Hashtbl["create"](0,107);
+var cache_prepare_link=Hashtbl["create"](/* None */0,107);
 
 var
  prepare_link=
   function(tag,cmx,extensions,build)
-   {var key=[/* tuple */0,tag,cmx,extensions];
+   {var key=/* tuple */[0,tag,cmx,extensions];
     
     var dir=Pathname["dirname"](cmx);
     
@@ -644,23 +675,23 @@ var
       My_std["List"][3]
        (Pathname["exists"](Pathname["Operators"][2](ml,"depends"))
          ?Ocaml_utils["path_dependencies_of"](ml)
-         :0,
+         :/* [] */0,
         Pathname["exists"](Pathname["Operators"][2](mli,"depends"))
          ?Ocaml_utils["path_dependencies_of"](mli)
-         :0);
+         :/* [] */0);
     
-    if((modules=0)&&Pathname["exists"](Pervasives["^"](ml,"pack")))
+    if((modules=/* [] */0)&&Pathname["exists"](Pervasives["^"](ml,"pack")))
      {var
        modules$1=
         My_std["List"][16]
-         (function(s){return [/* tuple */0,-38817255,s];},
+         (function(s){return /* tuple */[0,/* mandatory */-38817255,s];},
           Ocaml_utils["string_list_of_file"](Pervasives["^"](ml,"pack")));
       }
     else
      {var modules$1=modules;}
     
-    if(modules$1!=0&&!Hashtbl["mem"](cache_prepare_link,key))
-     {var match=Hashtbl["add"](cache_prepare_link,key,1);
+    if(modules$1!=/* [] */0&&!Hashtbl["mem"](cache_prepare_link,key))
+     {var match=Hashtbl["add"](cache_prepare_link,key,/* true */1);
       
       var
        modules$prime=
@@ -677,7 +708,7 @@ var
                   {case 0:return prepare_link(tag,result[1],extensions,build);
                    case 1:
                     if(param[1]>=886832744)
-                     {return 0;}
+                     {return /* () */0;}
                     else
                      {if(!Options["ignore_auto"][1])
                        {throw result[1];}
@@ -705,7 +736,8 @@ var
     
     var cmx=Pathname["update_extensions"](cmx_ext,ml$1);
     
-    prepare_link(cmx,cmi,[/* :: */0,cmx_ext,[0,"cmi",0]],build);
+    prepare_link
+     (cmx,cmi,/* :: */[0,cmx_ext,/* :: */[0,"cmi",/* [] */0]],build);
     return ocamlopt_c
             (Tags["Operators"][3]
               (Tags["Operators"][1]
@@ -729,12 +761,12 @@ var
                  if(match[2])
                   {return acc;}
                  else
-                  {return [/* :: */0,match[1],acc];}
+                  {return /* :: */[0,match[1],acc];}
                  }
                catch(exn){if(exn=Not_found){return acc;}else{throw exn;}}
                },
              tags,
-             0);
+             /* [] */0);
     };
 
 var
@@ -752,8 +784,14 @@ var
      match=
       Log["dprintf"]
        (10,
-        [0,
-         [11,"prepare_libs: ",[3,0,[11," -> ",[15,0]]]],
+        /* Format */[0,
+         /* String_literal */[11,
+          "prepare_libs: ",
+          /* Caml_string */[3,
+           /* No_padding */0,
+           /* String_literal */[11,
+            " -> ",
+            /* Alpha */[15,/* End_of_format */0]]]],
          "prepare_libs: %S -> %a"],
         out,
         Tools["pp_l"],
@@ -768,23 +806,23 @@ var
      libs2=
       My_std["List"][16]
        (function(lib)
-         {return [/* :: */0,Pathname["Operators"][2](lib,a_ext),0];},
+         {return /* :: */[0,Pathname["Operators"][2](lib,a_ext),/* [] */0];},
         libs1);
     
     My_std["List"][14](My_std["Outcome"][2],build(libs2));
     return libs;
     };
 
-var library_index=Hashtbl["create"](0,32);
+var library_index=Hashtbl["create"](/* None */0,32);
 
-var package_index=Hashtbl["create"](0,32);
+var package_index=Hashtbl["create"](/* None */0,32);
 
-var hidden_packages=[0,0];
+var hidden_packages=[0,/* [] */0];
 
 var
  hide_package_contents=
   function($$package)
-   {return hidden_packages[1]=[/* :: */0,$$package,hidden_packages[1]],0;};
+   {return hidden_packages[1]=/* :: */[0,$$package,hidden_packages[1]],0;};
 
 var fold_dependencies=Resource["Cache"][14];
 
@@ -809,7 +847,7 @@ var
     
     var tags=tagger(Tools["tags_of_pathname"](out$1));
     
-    return linker(tags,[/* :: */0,cmX$1,0],out$1);
+    return linker(tags,/* :: */[0,cmX$1,/* [] */0],out$1);
     };
 
 var
@@ -839,12 +877,12 @@ var
     var
      deps=
       caml_transitive_closure
-       ([/* Some */0,cmX_ext],
-        [/* Some */0,cma_ext],
-        0,
-        [/* Some */0,libs],
-        [/* Some */0,hidden_packages$1],
-        [/* :: */0,cmX$1,dyndeps]);
+       (/* Some */[0,cmX_ext],
+        /* Some */[0,cma_ext],
+        /* None */0,
+        /* Some */[0,libs],
+        /* Some */[0,hidden_packages$1],
+        /* :: */[0,cmX$1,dyndeps]);
     
     var
      deps$1=
@@ -861,13 +899,23 @@ var
     
     var deps$2=My_std["List"][33](is_not_stdlib,deps$1);
     
-    if(deps$2=0){Pervasives["failwith"]("Link list cannot be empty")}else{}
+    if(deps$2=/* [] */0)
+     {Pervasives["failwith"]("Link list cannot be empty")}
+    else
+     {}
     
     var
      match=
       Log["dprintf"]
        (6,
-        [0,[11,"link: ",[15,[11," -o ",[15,0]]]],"link: %a -o %a"],
+        /* Format */[0,
+         /* String_literal */[11,
+          "link: ",
+          /* Alpha */[15,
+           /* String_literal */[11,
+            " -o ",
+            /* Alpha */[15,/* End_of_format */0]]]],
+         "link: %a -o %a"],
         My_std["print_string_list"],
         deps$2,
         Pathname["print"],
@@ -876,7 +924,9 @@ var
     return linker(Tags["Operators"][1](tags,"dont_link_with"),deps$2,out$1);
     };
 
-var byte_link_gen=link_gen("cmo","cma","cma",[0,"cmo",[0,"cmi",0]]);
+var
+ byte_link_gen=
+  link_gen("cmo","cma","cma",/* :: */[0,"cmo",/* :: */[0,"cmi",/* [] */0]]);
 
 var
  byte_link=
@@ -923,7 +973,8 @@ var byte_library_link=byte_link_gen(byte_lib_linker,byte_lib_linker_tags);
 
 var
  byte_debug_link_gen=
-  link_gen("d.cmo","d.cma","d.cma",[0,"d.cmo",[0,"cmi",0]]);
+  link_gen
+   ("d.cmo","d.cma","d.cma",/* :: */[0,"d.cmo",/* :: */[0,"cmi",/* [] */0]]);
 
 var
  byte_debug_link=
@@ -954,7 +1005,7 @@ var
             ("cmx",
              "cmxa",
              Options["ext_lib"][1],
-             [/* :: */0,Options["ext_obj"][1],[0,"cmi",0]],
+             /* :: */[0,Options["ext_obj"][1],/* :: */[0,"cmi",/* [] */0]],
              linker);
     };
 
@@ -1020,9 +1071,9 @@ var
             ("p.cmx",
              "p.cmxa",
              Pathname["Operators"][2]("p",Options["ext_lib"][1]),
-             [/* :: */0,
+             /* :: */[0,
               Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-              [0,"cmi",0]],
+              /* :: */[0,"cmi",/* [] */0]],
              linker);
     };
 
@@ -1118,9 +1169,9 @@ var
                 {return My_std["List"][14]
                          (My_std["Outcome"][2],
                           build
-                           ([/* :: */0,
-                             [/* :: */0,Pathname["update_extensions"](ext,p),0],
-                             0]));
+                           (/* :: */[0,
+                             /* :: */[0,Pathname["update_extensions"](ext,p),/* [] */0],
+                             /* [] */0]));
                  },
                extension_values);
              return p;
@@ -1140,11 +1191,11 @@ var
     var
      deps=
       caml_transitive_closure
-       ([/* Some */0,cmX_ext],
-        [/* Some */0,cma_ext],
-        [0,1],
-        0,
-        [/* Some */0,hidden_packages$1],
+       (/* Some */[0,cmX_ext],
+        /* Some */[0,cma_ext],
+        /* Some */[0,/* true */1],
+        /* None */0,
+        /* Some */[0,hidden_packages$1],
         module_paths);
     
     var full_contents=Pervasives["@"](libs,module_paths);
@@ -1189,14 +1240,19 @@ var
 var
  byte_library_link_modules=
   link_modules
-   ([0,[0,"cmo",0],0],"cmo","cma","cma",byte_lib_linker,byte_lib_linker_tags);
+   (/* :: */[0,/* tuple */[0,"cmo",/* [] */0],/* [] */0],
+    "cmo",
+    "cma",
+    "cma",
+    byte_lib_linker,
+    byte_lib_linker_tags);
 
 var byte_library_link_mllib=link_from_file(byte_library_link_modules);
 
 var
  byte_toplevel_link_modules=
   link_modules
-   ([0,[0,"cmo",0],0],
+   (/* :: */[0,/* tuple */[0,"cmo",/* [] */0],/* [] */0],
     "cmo",
     "cma",
     "cma",
@@ -1215,7 +1271,7 @@ var byte_toplevel_link_mltop=link_from_file(byte_toplevel_link_modules);
 var
  byte_debug_library_link_modules=
   link_modules
-   ([0,[0,"d.cmo",0],0],
+   (/* :: */[0,/* tuple */[0,"d.cmo",/* [] */0],/* [] */0],
     "d.cmo",
     "d.cma",
     "d.cma",
@@ -1230,7 +1286,9 @@ var
 var
  byte_pack_modules=
   pack_modules
-   ([0,[0,"cmo",[0,"cmi",0]],[0,[0,"cmi",0],0]],
+   (/* :: */[0,
+     /* tuple */[0,"cmo",/* :: */[0,"cmi",/* [] */0]],
+     /* :: */[0,/* tuple */[0,"cmi",/* [] */0],/* [] */0]],
     "cmo",
     "cma",
     "cma",
@@ -1246,7 +1304,9 @@ var byte_pack_mlpack=link_from_file(byte_pack_modules);
 var
  byte_debug_pack_modules=
   pack_modules
-   ([0,[0,"d.cmo",[0,"cmi",0]],[0,[0,"cmi",0],0]],
+   (/* :: */[0,
+     /* tuple */[0,"d.cmo",/* :: */[0,"cmi",/* [] */0]],
+     /* :: */[0,/* tuple */[0,"cmi",/* [] */0],/* [] */0]],
     "d.cmo",
     "d.cma",
     "d.cma",
@@ -1266,11 +1326,11 @@ var
  native_pack_modules=
   function(x)
    {return pack_modules
-            ([/* :: */0,
-              [/* tuple */0,
+            (/* :: */[0,
+              /* tuple */[0,
                "cmx",
-               [/* :: */0,"cmi",[/* :: */0,Options["ext_obj"][1],0]]],
-              [0,[0,"cmi",0],0]],
+               /* :: */[0,"cmi",/* :: */[0,Options["ext_obj"][1],/* [] */0]]],
+              /* :: */[0,/* tuple */[0,"cmi",/* [] */0],/* [] */0]],
              "cmx",
              "cmxa",
              Options["ext_lib"][1],
@@ -1290,15 +1350,15 @@ var
  native_profile_pack_modules=
   function(x)
    {return pack_modules
-            ([/* :: */0,
-              [/* tuple */0,
+            (/* :: */[0,
+              /* tuple */[0,
                "p.cmx",
-               [/* :: */0,
+               /* :: */[0,
                 "cmi",
-                [/* :: */0,
+                /* :: */[0,
                  Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-                 0]]],
-              [0,[0,"cmi",0],0]],
+                 /* [] */0]]],
+              /* :: */[0,/* tuple */[0,"cmi",/* [] */0],/* [] */0]],
              "p.cmx",
              "p.cmxa",
              Pathname["Operators"][2]("p",Options["ext_lib"][1]),
@@ -1320,9 +1380,9 @@ var
  native_library_link_modules=
   function(x)
    {return link_modules
-            ([/* :: */0,
-              [/* tuple */0,"cmx",[/* :: */0,Options["ext_obj"][1],0]],
-              0],
+            (/* :: */[0,
+              /* tuple */[0,"cmx",/* :: */[0,Options["ext_obj"][1],/* [] */0]],
+              /* [] */0],
              "cmx",
              "cmxa",
              Options["ext_lib"][1],
@@ -1335,9 +1395,9 @@ var
  native_shared_library_link_modules=
   function(x)
    {return link_modules
-            ([/* :: */0,
-              [/* tuple */0,"cmx",[/* :: */0,Options["ext_obj"][1],0]],
-              0],
+            (/* :: */[0,
+              /* tuple */[0,"cmx",/* :: */[0,Options["ext_obj"][1],/* [] */0]],
+              /* [] */0],
              "cmx",
              "cmxa",
              Options["ext_lib"][1],
@@ -1374,7 +1434,7 @@ var
 var
  native_shared_library_link=
   function($staropt$star,x)
-   {if($staropt$star){var tags=$staropt$star[1];}else{var tags=0;}
+   {if($staropt$star){var tags=$staropt$star[1];}else{var tags=/* [] */0;}
     
     return link_one_gen
             (native_shared_lib_linker,native_shared_library_tags(tags),x);
@@ -1384,13 +1444,13 @@ var
  native_profile_library_link_modules=
   function(x)
    {return link_modules
-            ([/* :: */0,
-              [/* tuple */0,
+            (/* :: */[0,
+              /* tuple */[0,
                "p.cmx",
-               [/* :: */0,
+               /* :: */[0,
                 Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-                0]],
-              0],
+                /* [] */0]],
+              /* [] */0],
              "p.cmx",
              "p.cmxa",
              Pathname["Operators"][2]("p",Options["ext_lib"][1]),
@@ -1406,13 +1466,13 @@ var
  native_profile_shared_library_link_modules=
   function(x)
    {return link_modules
-            ([/* :: */0,
-              [/* tuple */0,
+            (/* :: */[0,
+              /* tuple */[0,
                "p.cmx",
-               [/* :: */0,
+               /* :: */[0,
                 Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-                0]],
-              0],
+                /* [] */0]],
+              /* [] */0],
              "p.cmx",
              "p.cmxa",
              Pathname["Operators"][2]("p",Options["ext_lib"][1]),

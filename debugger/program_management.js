@@ -19,7 +19,7 @@ var Input_handling=require("Input_handling");
 var Config=require("Config");
 
 
-var file_name=[0,0];
+var file_name=[0,/* None */0];
 
 var buffer="unknown primitive:caml_create_string";
 
@@ -49,7 +49,7 @@ var
       
       Time_travel["new_checkpoint"](pid$prime,io_chan);
       Input_handling["add_file"](io_chan,control_connection(pid$prime));
-      return $$continue(0);
+      return $$continue(/* () */0);
       }
     else
      {if(Time_travel["set_file_descriptor"](pid,io_chan))
@@ -69,20 +69,20 @@ var
       
       var $js;
       switch(sock_address)
-       {case 0:$js=[/* Some */0,sock_address[1]];case 1:$js=0;}
+       {case 0:$js=/* Some */[0,sock_address[1]];case 1:$js=/* None */0;}
       file_name[1]=$js,0;
-      var sock=Unix["socket"](match[1],0,0);
+      var sock=Unix["socket"](match[1],/* SOCK_STREAM */0,0);
       
       try
        {Unix["bind"](sock,sock_address);
-        Unix["setsockopt"](sock,2,1);
+        Unix["setsockopt"](sock,/* SO_REUSEADDR */2,/* true */1);
         Unix["listen"](sock,3);
         Program_loading["connection"][1]=
         Primitives["io_channel_of_descr"](sock),
         0;
         Input_handling["add_file"]
          (Program_loading["connection"][1],accept_connection($$continue));
-        return Program_loading["connection_opened"][1]=1,0;
+        return Program_loading["connection_opened"][1]=/* true */1,0;
         }
       catch(x){Unix["close"](sock);throw x;}
       }
@@ -102,40 +102,40 @@ var
  close_connection=
   function(param)
    {if(Program_loading["connection_opened"][1])
-     {Program_loading["connection_opened"][1]=0,0;
+     {Program_loading["connection_opened"][1]=/* false */0,0;
       Input_handling["remove_file"](Program_loading["connection"][1]);
       Primitives["close_io"](Program_loading["connection"][1]);
       var match=file_name[1];
       
-      if(match){return Unix["unlink"](match[1]);}else{return 0;}
+      if(match){return Unix["unlink"](match[1]);}else{return /* () */0;}
       }
     else
      {return 0;}
     };
 
-var loaded=[0,0];
+var loaded=[0,/* false */0];
 
 var
  kill_program=
   function(param)
-   {Breakpoints["remove_all_breakpoints"](0);
-    History["empty_history"](0);
-    Time_travel["kill_all_checkpoints"](0);
-    loaded[1]=0,0;
-    return close_connection(0);
+   {Breakpoints["remove_all_breakpoints"](/* () */0);
+    History["empty_history"](/* () */0);
+    Time_travel["kill_all_checkpoints"](/* () */0);
+    loaded[1]=/* false */0,0;
+    return close_connection(/* () */0);
     };
 
 var
  ask_kill_program=
   function(param)
    {if(!loaded[1])
-     {return 1;}
+     {return /* true */1;}
     else
      {var
        answer=
         Question["yes_or_no"]("A program is being debugged already. Kill it");
       
-      if(answer){kill_program(0)}else{}
+      if(answer){kill_program(/* () */0)}else{}
       
       return answer;
       }
@@ -148,13 +148,20 @@ var
      {Pervasives["prerr_endline"]("Loading debugging information..."),
       Printf["fprintf"]
        (Pervasives["stderr"],
-        [0,[11,"\tProgram: [",[2,0,[11,"]\n",[10,0]]]],"\tProgram: [%s]\n%!"],
+        /* Format */[0,
+         /* String_literal */[11,
+          "\tProgram: [",
+          /* String */[2,
+           /* No_padding */0,
+           /* String_literal */[11,"]\n",/* Flush */[10,/* End_of_format */0]]]],
+         "\tProgram: [%s]\n%!"],
         Parameters["program_name"][1])}
     else
      {}
     
     try
-     {Unix["access"](Parameters["program_name"][1],[0,3,0])}
+     {Unix["access"]
+       (Parameters["program_name"][1],/* :: */[0,/* F_OK */3,/* [] */0])}
     catch(exn)
      {if(exn[1]=Unix["Unix_error"])
        {Pervasives["prerr_endline"]("Program not found.");
@@ -168,7 +175,7 @@ var
     Config["load_path"][1]=
     Pervasives["@"](Config["load_path"][1],Symbols["program_source_dirs"][1]),
     0;
-    Envaux["reset_cache"](0);
+    Envaux["reset_cache"](/* () */0);
     if(Program_loading["debug_loading"][1])
      {Pervasives["prerr_endline"]("Opening a socket...")}
     else
@@ -178,8 +185,8 @@ var
             (Parameters["socket_name"][1],
              function(param$1)
               {Time_travel["go_to"](Int64ops["_0"]);
-               Symbols["set_all_events"](0);
-               return Input_handling["exit_main_loop"](0);
+               Symbols["set_all_events"](/* () */0);
+               return Input_handling["exit_main_loop"](/* () */0);
                });
     };
 
@@ -197,18 +204,18 @@ var
        {}
       
       try
-       {initialize_loading(0);
-        Program_loading["launching_func"][1](0);
+       {initialize_loading(/* () */0);
+        Program_loading["launching_func"][1](/* () */0);
         if(Program_loading["debug_loading"][1])
          {Pervasives["prerr_endline"]("Waiting for connection...")}
         else
          {}
         
-        Input_handling["main_loop"](0);
-        loaded[1]=1,0;
+        Input_handling["main_loop"](/* () */0);
+        loaded[1]=/* true */1,0;
         return Pervasives["prerr_endline"]("done.");
         }
-      catch(x){kill_program(0);throw x;}
+      catch(x){kill_program(/* () */0);throw x;}
       }
     else
      {return 0;}

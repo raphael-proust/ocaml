@@ -9,10 +9,8 @@ var Odoc_messages=require("Odoc_messages");
 
 
 
-var shared=[0,"loc_colors","modules","colors"];
-
 var
- shared$1=
+ shared=
   [0,
    "print_type_atts",
    "print_one_dep",
@@ -26,20 +24,22 @@ var
    "generate_for_module",
    "generate"];
 
+var shared$1=[0,"loc_colors","modules","colors"];
+
 var F=0;
 
-var dot_include_all=[0,0];
+var dot_include_all=[0,/* false */0];
 
-var dot_types=[0,0];
+var dot_types=[0,/* false */0];
 
-var dot_reduce=[0,0];
+var dot_reduce=[0,/* false */0];
 
 var dot_colors=[0,List["flatten"](Odoc_messages["default_dot_colors"])];
 
 var
  dot_init=
   function($$class)
-   {var ids=CamlinternalOO["new_methods_variables"]($$class,shared$1,shared);
+   {var ids=CamlinternalOO["new_methods_variables"]($$class,shared,shared$1);
     
     var print_type_atts=ids[1];
     
@@ -89,14 +89,14 @@ var
         {var match=self$neg1[colors];
          
          if(match)
-          {self$neg1[colors]=match[2],0;return [/* Some */0,match[1]];}
+          {self$neg1[colors]=match[2],0;return /* Some */[0,match[1]];}
          else
-          {return 0;}
+          {return /* None */0;}
          },
        node_color,
        function(self$neg1,s)
         {try
-          {return [/* Some */0,List["assoc"](s,self$neg1[loc_colors])];}
+          {return /* Some */[0,List["assoc"](s,self$neg1[loc_colors])];}
          catch(exn)
           {if(exn=Not_found)
             {"unknown block:(sendself self-1/1165 get_one_color/1148)";
@@ -105,12 +105,12 @@ var
               {var c=match[1];
                
                self$neg1[loc_colors]=
-               [/* :: */0,[/* tuple */0,s,c],self$neg1[loc_colors]],
+               /* :: */[0,/* tuple */[0,s,c],self$neg1[loc_colors]],
                0;
-               return [/* Some */0,c];
+               return /* Some */[0,c];
                }
              else
-              {return 0;}
+              {return /* None */0;}
              }
            else
             {throw exn;}
@@ -123,16 +123,22 @@ var
          if(match)
           {return Format["fprintf"]
                    (fmt,
-                    [0,
-                     [12,
+                    /* Format */[0,
+                     /* Char_literal */[12,
                       34,
-                      [2,0,[11,'" [style=filled, color=',[2,0,[11,"];\n",0]]]]],
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        '" [style=filled, color=',
+                        /* String */[2,
+                         /* No_padding */0,
+                         /* String_literal */[11,"];\n",/* End_of_format */0]]]]],
                      '"%s" [style=filled, color=%s];\n'],
                     m[1],
                     match[1]);
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        print_type_atts,
        function(self$neg1,fmt,t)
@@ -141,23 +147,37 @@ var
          if(match)
           {return Format["fprintf"]
                    (fmt,
-                    [0,
-                     [12,
+                    /* Format */[0,
+                     /* Char_literal */[12,
                       34,
-                      [2,0,[11,'" [style=filled, color=',[2,0,[11,"];\n",0]]]]],
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* String_literal */[11,
+                        '" [style=filled, color=',
+                        /* String */[2,
+                         /* No_padding */0,
+                         /* String_literal */[11,"];\n",/* End_of_format */0]]]]],
                      '"%s" [style=filled, color=%s];\n'],
                     t[1],
                     match[1]);
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        print_one_dep,
        function(self$neg1,fmt,src,dest)
         {return Format["fprintf"]
                  (fmt,
-                  [0,
-                   [12,34,[2,0,[11,'" -> "',[2,0,[11,'";\n',0]]]]],
+                  /* Format */[0,
+                   /* Char_literal */[12,
+                    34,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* String_literal */[11,
+                      '" -> "',
+                      /* String */[2,
+                       /* No_padding */0,
+                       /* String_literal */[11,'";\n',/* End_of_format */0]]]]],
                    '"%s" -> "%s";\n'],
                   src,
                   dest);
@@ -198,13 +218,22 @@ var
            var fmt=Format["formatter_of_out_channel"](oc);
            
            "unknown block:(sendself self-1/1196 header/1147)";
-           Format["fprintf"](fmt,[0,[2,0,0],"%s"],0);
-           var graph=Odoc_info["Dep"][2]([/* Some */0,dot_reduce[1]],types);
+           Format["fprintf"]
+            (fmt,
+             /* Format */[0,
+              /* String */[2,/* No_padding */0,/* End_of_format */0],
+              "%s"],
+             0);
+           var graph=Odoc_info["Dep"][2](/* Some */[0,dot_reduce[1]],types);
            
            "unknown block:(sendself self-1/1196 generate_for_type/1154 fmt/1199)";
            List["iter"](0,graph);
-           Format["fprintf"](fmt,[0,[11,"}\n",0],"}\n"]);
-           Format["pp_print_flush"](fmt,0);
+           Format["fprintf"]
+            (fmt,
+             /* Format */[0,
+              /* String_literal */[11,"}\n",/* End_of_format */0],
+              "}\n"]);
+           Format["pp_print_flush"](fmt,/* () */0);
            return Pervasives["close_out"](oc);
            }
          catch(exn)
@@ -219,13 +248,22 @@ var
            var fmt=Format["formatter_of_out_channel"](oc);
            
            "unknown block:(sendself self-1/1203 header/1147)";
-           Format["fprintf"](fmt,[0,[2,0,0],"%s"],0);
+           Format["fprintf"]
+            (fmt,
+             /* Format */[0,
+              /* String */[2,/* No_padding */0,/* End_of_format */0],
+              "%s"],
+             0);
            if(dot_reduce[1]){Odoc_info["Dep"][1](modules_list)}else{}
            
            "unknown block:(sendself self-1/1203 generate_for_module/1153 fmt/1206)";
            List["iter"](0,modules_list);
-           Format["fprintf"](fmt,[0,[11,"}\n",0],"}\n"]);
-           Format["pp_print_flush"](fmt,0);
+           Format["fprintf"]
+            (fmt,
+             /* Format */[0,
+              /* String_literal */[11,"}\n",/* End_of_format */0],
+              "}\n"]);
+           Format["pp_print_flush"](fmt,/* () */0);
            return Pervasives["close_out"](oc);
            }
          catch(exn)
@@ -245,10 +283,10 @@ var
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
       $$self$1[loc_colors]=
-      0,
+      /* [] */0,
       0,
       $$self$1[modules]=
-      0,
+      /* [] */0,
       0,
       $$self$1[colors]=
       dot_colors[1],

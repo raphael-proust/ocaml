@@ -5,14 +5,14 @@ var Graphics=require("Graphics");
 var Hashtbl=require("Hashtbl");
 
 
-var subwindows=Hashtbl["create"](0,13);
+var subwindows=Hashtbl["create"](/* None */0,13);
 
 var
  open_subwindow=
   function(x,y,width,height)
    {var wid="unknown primitive:caml_gr_open_subwindow";
     
-    Hashtbl["add"](subwindows,wid,0);
+    Hashtbl["add"](subwindows,wid,/* () */0);
     return wid;
     };
 

@@ -9,7 +9,7 @@ var
   Filename["concat"]
    (Config["standard_library"],Filename["concat"]("ocamldoc","custom"));
 
-var print_warnings=[0,1];
+var print_warnings=[0,/* true */1];
 
 module["exports"]=
 {"custom_generators_path":custom_generators_path,

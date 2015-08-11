@@ -8,7 +8,7 @@ var Hashtbl=require("Hashtbl");
 var Config=require("Config");
 
 
-var program_loaded=0;
+var program_loaded=/* false */0;
 
 var program_name=[0,""];
 
@@ -19,17 +19,17 @@ var $$arguments=[0,""];
 var
  default_load_path=
   [0,
-   [/* :: */0,
+   /* :: */[0,
     Filename["current_dir_name"],
-    [/* :: */0,Config["standard_library"],0]]];
+    /* :: */[0,Config["standard_library"],/* [] */0]]];
 
 var
  add_path=
   function(dir)
    {Config["load_path"][1]=
-    [/* :: */0,dir,Primitives["except"](dir,Config["load_path"][1])],
+    /* :: */[0,dir,Primitives["except"](dir,Config["load_path"][1])],
     0;
-    return Envaux["reset_cache"](0);
+    return Envaux["reset_cache"](/* () */0);
     };
 
 var
@@ -37,15 +37,15 @@ var
   function(mdl,dir)
    {try
      {var old=Hashtbl["find"](Debugger_config["load_path_for"],mdl);}
-    catch(exn){if(exn=Not_found){var old=0;}else{throw exn;}}
+    catch(exn){if(exn=Not_found){var old=/* [] */0;}else{throw exn;}}
     
     return Hashtbl["replace"]
-            (Debugger_config["load_path_for"],mdl,[/* :: */0,dir,old]);
+            (Debugger_config["load_path_for"],mdl,/* :: */[0,dir,old]);
     };
 
-var emacs=[0,0];
+var emacs=[0,/* false */0];
 
-var machine_readable=[0,0];
+var machine_readable=[0,/* false */0];
 
 module["exports"]=
 {"program_name":program_name,

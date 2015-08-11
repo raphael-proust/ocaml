@@ -47,7 +47,7 @@ var
   function(ib)
    {var c=peek_char(ib);if(ib[1]){throw End_of_file;}else{}return c;};
 
-var end_of_input=function(ib){return ib[1];};
+var end_of_input=function(ib){peek_char(ib);return ib[1];};
 
 var eof=function(ib){return ib[1];};
 

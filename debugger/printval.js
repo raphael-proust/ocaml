@@ -10,7 +10,7 @@ var Symtable=require("Symtable");
 var Debugcom=require("Debugcom");
 
 
-var named_values=Hashtbl["create"](0,29);
+var named_values=Hashtbl["create"](/* None */0,29);
 
 var next_name=[0,1];
 
@@ -24,7 +24,7 @@ var
    {var name=next_name[1];
     
     next_name[0]++;
-    Hashtbl["add"](named_values,name,[/* tuple */0,v,ty]);
+    Hashtbl["add"](named_values,name,/* tuple */[0,v,ty]);
     return name;
     };
 
@@ -38,12 +38,12 @@ var
    {if(depth<=0)
      {var n=name_value(obj,ty);
       
-      return [/* Some */0,
-              [/* Oval_stuff */12,
+      return /* Some */[0,
+              /* Oval_stuff */[12,
                Pervasives["^"]("$",Pervasives["string_of_int"](n))]];
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var $$Error="unknown primitive:caml_set_oo_id";
@@ -96,8 +96,10 @@ var
                 {if(exn=Debugcom["Marshalling_error"])
                   {return Format["fprintf"]
                            (ppf$1,
-                            [0,
-                             [11,"<cannot fetch remote object>",0],
+                            /* Format */[0,
+                             /* String_literal */[11,
+                              "<cannot fetch remote object>",
+                              /* End_of_format */0],
                              "<cannot fetch remote object>"]);
                    }
                  else
@@ -142,7 +144,17 @@ var
            {case 0:return Printtyp["longident"](ppf$1,param[1]);
             case 1:
              return Format["fprintf"]
-                     (ppf$1,[0,[12,36,[4,3,0,0,0]],"$%i"],param[1]);
+                     (ppf$1,
+                      /* Format */[0,
+                       /* Char_literal */[12,
+                        36,
+                        /* Int */[4,
+                         /* Int_i */3,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         /* End_of_format */0]],
+                       "$%i"],
+                      param[1]);
              
             default:exit=2;}}
         
@@ -150,7 +162,18 @@ var
          {case 2:
            var n=name_value(obj,ty);
            
-           return Format["fprintf"](ppf$1,[0,[12,36,[4,3,0,0,0]],"$%i"],n);
+           return Format["fprintf"]
+                   (ppf$1,
+                    /* Format */[0,
+                     /* Char_literal */[12,
+                      36,
+                      /* Int */[4,
+                       /* Int_i */3,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       /* End_of_format */0]],
+                     "$%i"],
+                    n);
            
           }
         };
@@ -158,18 +181,30 @@ var
     Printtyp["reset_and_mark_loops"](ty);
     return Format["fprintf"]
             (ppf,
-             [0,
-              [18,
-               [1,[0,[11,"<2>",0],"<2>"]],
-               [15,
-                [12,
+             /* Format */[0,
+              /* Formatting_gen */[18,
+               /* Open_box */[1,
+                /* Format */[0,
+                 /* String_literal */[11,"<2>",/* End_of_format */0],
+                 "<2>"]],
+               /* Alpha */[15,
+                /* Char_literal */[12,
                  58,
-                 [17,
-                  [0,"@ ",1,0],
-                  [15,
-                   [17,
-                    [0,"@ ",1,0],
-                    [12,61,[17,[0,"@ ",1,0],[15,[17,0,[17,4,0]]]]]]]]]]],
+                 /* Formatting_lit */[17,
+                  /* Break */[0,"@ ",1,0],
+                  /* Alpha */[15,
+                   /* Formatting_lit */[17,
+                    /* Break */[0,"@ ",1,0],
+                    /* Char_literal */[12,
+                     61,
+                     /* Formatting_lit */[17,
+                      /* Break */[0,"@ ",1,0],
+                      /* Alpha */[15,
+                       /* Formatting_lit */[17,
+                        /* Close_box */0,
+                        /* Formatting_lit */[17,
+                         /* Flush_newline */4,
+                         /* End_of_format */0]]]]]]]]]]],
               "@[<2>%a:@ %a@ =@ %a@]@."],
              print_value_name,
              exp,

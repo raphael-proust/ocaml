@@ -20,7 +20,7 @@ var
      loop=
       function(pos)
        {if(pos>=ls)
-         {return 1;}
+         {return /* true */1;}
         else
          {var match=s[pos];
           
@@ -39,7 +39,8 @@ var
              {if(match>=43){exit=16;}else{exit=17;}}
             }
           
-          switch(exit){case 17:return 0;case 16:return loop(pos+1);}
+          switch(exit)
+           {case 17:return /* false */0;case 16:return loop(pos+1);}
           }
         };
     
@@ -53,7 +54,16 @@ var
      {return s;}
     else
      {if("unknown primitive:caml_string_equal")
-       {return Printf["sprintf"]([0,[12,39,[2,0,[12,39,0]]],"'%s'"],s);}
+       {return Printf["sprintf"]
+                (/* Format */[0,
+                  /* Char_literal */[12,
+                   39,
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* Char_literal */[12,39,/* End_of_format */0]]],
+                  "'%s'"],
+                 s);
+        }
       else
        {return Filename["quote"](s);}
       }
@@ -62,14 +72,14 @@ var
 var
  chdir=
   function(dir)
-   {My_std["reset_filesys_cache"](0);
+   {My_std["reset_filesys_cache"](/* () */0);
     return "unknown primitive:caml_sys_chdir";
     };
 
 var
  run=
   function(args,target)
-   {My_std["reset_readdir_cache"](0);
+   {My_std["reset_readdir_cache"](/* () */0);
     var
      cmd=
       My_std["String"][22]
@@ -78,44 +88,60 @@ var
     if
      (My_std["!*"](My_unix["is_degraded"])||
       "unknown primitive:caml_string_equal")
-     {Log["event"](0,cmd,target,Tags["empty"]);
+     {Log["event"](/* None */0,cmd,target,Tags["empty"]);
       var st=My_std["sys_command"](cmd);
       
       if(st!=0)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
-                  ([0,
-                    [11,
+                  (/* Format */[0,
+                    /* String_literal */[11,
                      "Error during command `",
-                     [2,0,[11,"'.\nExit code ",[4,0,0,0,[11,".\n",0]]]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       "'.\nExit code ",
+                       /* Int */[4,
+                        /* Int_d */0,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        /* String_literal */[11,".\n",/* End_of_format */0]]]]],
                     "Error during command `%s'.\nExit code %d.\n"],
                    cmd,
                    st));
         }
       else
-       {return 0;}
+       {return /* () */0;}
       }
     else
      {var
        match=
         My_unix["execute_many"]
-         (0,
-          [/* Some */0,Log["update"]],
-          0,
-          [/* Some */0,Log["display"]],
-          [/* :: */0,[/* :: */0,function(param){return cmd;},0],0]);
+         (/* None */0,
+          /* Some */[0,Log["update"]],
+          /* None */0,
+          /* Some */[0,Log["display"]],
+          /* :: */[0,
+           /* :: */[0,function(param){return cmd;},/* [] */0],
+           /* [] */0]);
       
       if(match)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
-                  ([0,
-                    [11,"Error during command ",[3,0,[11,": ",[2,0,0]]]],
+                  (/* Format */[0,
+                    /* String_literal */[11,
+                     "Error during command ",
+                     /* Caml_string */[3,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       ": ",
+                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
                     "Error during command %S: %s"],
                    cmd,
                    Printexc["to_string"](match[1][2])));
         }
       else
-       {return 0;}
+       {return /* () */0;}
       }
     };
 
@@ -129,7 +155,7 @@ var
  mkdir=
   function(dir)
    {My_std["reset_filesys_cache_for_file"](dir);
-    return run([/* :: */0,"mkdir",[/* :: */0,dir,0]],dir);
+    return run(/* :: */[0,"mkdir",/* :: */[0,dir,/* [] */0]],dir);
     };
 
 var
@@ -141,7 +167,7 @@ var
  mkdir_p=
   function(dir)
    {if(My_std["sys_file_exists"](dir))
-     {return 0;}
+     {return /* () */0;}
     else
      {mkdir_p(Filename["dirname"](dir));return mkdir(dir);}
     };
@@ -151,9 +177,9 @@ var
   function(src,dest)
    {My_std["reset_filesys_cache_for_file"](dest);
     return run
-            ([/* :: */0,
+            (/* :: */[0,
               "cp",
-              [/* :: */0,"-pf",[/* :: */0,src,[/* :: */0,dest,0]]]],
+              /* :: */[0,"-pf",/* :: */[0,src,/* :: */[0,dest,/* [] */0]]]],
              dest);
     };
 
@@ -173,8 +199,8 @@ var is_link=My_unix["is_link"];
 var
  rm_rf=
   function(x)
-   {My_std["reset_filesys_cache"](0);
-    return run([/* :: */0,"rm",[/* :: */0,"-Rf",[/* :: */0,x,0]]],x);
+   {My_std["reset_filesys_cache"](/* () */0);
+    return run(/* :: */[0,"rm",/* :: */[0,"-Rf",/* :: */[0,x,/* [] */0]]],x);
     };
 
 var
@@ -182,7 +208,8 @@ var
   function(src,dest)
    {My_std["reset_filesys_cache_for_file"](src);
     My_std["reset_filesys_cache_for_file"](dest);
-    return run([/* :: */0,"mv",[/* :: */0,src,[/* :: */0,dest,0]]],dest);
+    return run
+            (/* :: */[0,"mv",/* :: */[0,src,/* :: */[0,dest,/* [] */0]]],dest);
     };
 
 module["exports"]=

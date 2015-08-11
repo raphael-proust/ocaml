@@ -4,35 +4,35 @@ var Pervasives=require("Pervasives");
 
 
 "unknown primitive:caml_ba_init";
-var float32=0;
+var float32=/* Float32 */0;
 
-var float64=1;
+var float64=/* Float64 */1;
 
-var int8_signed=2;
+var int8_signed=/* Int8_signed */2;
 
-var int8_unsigned=3;
+var int8_unsigned=/* Int8_unsigned */3;
 
-var int16_signed=4;
+var int16_signed=/* Int16_signed */4;
 
-var int16_unsigned=5;
+var int16_unsigned=/* Int16_unsigned */5;
 
-var int32=6;
+var int32=/* Int32 */6;
 
-var int64=7;
+var int64=/* Int64 */7;
 
-var $$int=8;
+var $$int=/* Int */8;
 
-var nativeint=9;
+var nativeint=/* Nativeint */9;
 
-var complex32=10;
+var complex32=/* Complex32 */10;
 
-var complex64=11;
+var complex64=/* Complex64 */11;
 
-var $$char=12;
+var $$char=/* Char */12;
 
-var c_layout=0;
+var c_layout=/* C_layout */0;
 
-var fortran_layout=1;
+var fortran_layout=/* Fortran_layout */1;
 
 var
  dims=

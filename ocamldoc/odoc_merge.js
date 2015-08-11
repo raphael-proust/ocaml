@@ -32,12 +32,14 @@ var
            text=
             List["fold_left"]
              (function(acc$1,t)
-               {return Pervasives["@"](acc$1,Pervasives["@"]([0,[0," "],0],t));
+               {return Pervasives["@"]
+                        (acc$1,
+                         Pervasives["@"](/* :: */[0,/* Raw */[0," "],/* [] */0],t));
                 },
               match[2],
               List["map"](function(prim){return prim[2];},match$1[1]));
           
-          var acc$1=[/* :: */0,[/* tuple */0,v,text],acc];
+          var acc$1=/* :: */[0,/* tuple */[0,v,text],acc];
           
           return iter(acc$1,match$1[2]);
           }
@@ -45,7 +47,7 @@ var
          {return List["rev"](acc);}
         };
     
-    return iter(0,l);
+    return iter(/* [] */0,l);
     };
 
 var version_separators=Str["regexp"]("[\.\+]");
@@ -63,21 +65,26 @@ var
      {var d1=match[1];
       
       if(match$1)
-       {if(List["mem"](0,merge_options))
+       {if(List["mem"](/* Merge_description */0,merge_options))
          {var
            new_desc_opt=
-            [/* Some */0,Pervasives["@"](d1,[/* :: */0,0,match$1[1]])];
+            /* Some */[0,
+             Pervasives["@"](d1,/* :: */[0,/* Newline */0,match$1[1]])];
           }
         else
-         {var new_desc_opt=[/* Some */0,d1];}
+         {var new_desc_opt=/* Some */[0,d1];}
         }
       else
        {var d=d1;exit=152;}
       }
     else
-     {if(match$1){var d=match$1[1];exit=152;}else{var new_desc_opt=0;}}
+     {if(match$1)
+       {var d=match$1[1];exit=152;}
+      else
+       {var new_desc_opt=/* None */0;}
+      }
     
-    switch(exit){case 152:var new_desc_opt=[/* Some */0,d];}
+    switch(exit){case 152:var new_desc_opt=/* Some */[0,d];}
     
     var match$2=m1[2];
     
@@ -88,12 +95,12 @@ var
     if(match$2)
      {if(match$3){exit$1=149;}else{var l=match$2;exit$1=147;}}
     else
-     {if(match$3){exit$1=149;}else{var new_authors=0;}}
+     {if(match$3){exit$1=149;}else{var new_authors=/* [] */0;}}
     
     switch(exit$1)
      {case 149:
        if(match$2)
-        {if(List["mem"](1,merge_options))
+        {if(List["mem"](/* Merge_author */1,merge_options))
           {var new_authors=Pervasives["@"](match$2,match$3);}
          else
           {var new_authors=match$2;}
@@ -114,21 +121,25 @@ var
      {var v1=match$4[1];
       
       if(match$5)
-       {if(List["mem"](2,merge_options))
+       {if(List["mem"](/* Merge_version */2,merge_options))
          {var
            new_version=
-            [/* Some */0,Pervasives["^"](v1,Pervasives["^"](" ",match$5[1]))];
+            /* Some */[0,Pervasives["^"](v1,Pervasives["^"](" ",match$5[1]))];
           }
         else
-         {var new_version=[/* Some */0,v1];}
+         {var new_version=/* Some */[0,v1];}
         }
       else
        {var v=v1;exit$2=145;}
       }
     else
-     {if(match$5){var v=match$5[1];exit$2=145;}else{var new_version=0;}}
+     {if(match$5)
+       {var v=match$5[1];exit$2=145;}
+      else
+       {var new_version=/* None */0;}
+      }
     
-    switch(exit$2){case 145:var new_version=[/* Some */0,v];}
+    switch(exit$2){case 145:var new_version=/* Some */[0,v];}
     
     var match$6=m1[4];
     
@@ -139,12 +150,12 @@ var
     if(match$6)
      {if(match$7){exit$3=142;}else{var l$1=match$6;exit$3=140;}}
     else
-     {if(match$7){exit$3=142;}else{var new_sees=0;}}
+     {if(match$7){exit$3=142;}else{var new_sees=/* [] */0;}}
     
     switch(exit$3)
      {case 142:
        if(match$6)
-        {if(List["mem"](3,merge_options))
+        {if(List["mem"](/* Merge_see */3,merge_options))
           {var new_sees=Pervasives["@"](match$6,match$7);}
          else
           {var new_sees=match$6;}
@@ -165,22 +176,26 @@ var
      {var v1$1=match$8[1];
       
       if(match$9)
-       {if(List["mem"](4,merge_options))
+       {if(List["mem"](/* Merge_since */4,merge_options))
          {var
            new_since=
-            [/* Some */0,
+            /* Some */[0,
              Pervasives["^"](v1$1,Pervasives["^"](" ",match$9[1]))];
           }
         else
-         {var new_since=[/* Some */0,v1$1];}
+         {var new_since=/* Some */[0,v1$1];}
         }
       else
        {var v$1=v1$1;exit$4=138;}
       }
     else
-     {if(match$9){var v$1=match$9[1];exit$4=138;}else{var new_since=0;}}
+     {if(match$9)
+       {var v$1=match$9[1];exit$4=138;}
+      else
+       {var new_since=/* None */0;}
+      }
     
-    switch(exit$4){case 138:var new_since=[/* Some */0,v$1];}
+    switch(exit$4){case 138:var new_since=/* Some */[0,v$1];}
     
     var match$10=m1[6];
     
@@ -191,12 +206,12 @@ var
     if(match$10)
      {if(match$11){exit$5=135;}else{var l$2=match$10;exit$5=133;}}
     else
-     {if(match$11){exit$5=135;}else{var new_before=0;}}
+     {if(match$11){exit$5=135;}else{var new_before=/* [] */0;}}
     
     switch(exit$5)
      {case 135:
        if(match$10)
-        {if(List["mem"](5,merge_options))
+        {if(List["mem"](/* Merge_before */5,merge_options))
           {var new_before=merge_before_tags(Pervasives["@"](m1[6],m2[6]));}
          else
           {var new_before=match$10;}
@@ -213,7 +228,7 @@ var
        (function(param)
          {var v$2=param[1];
           
-          return [/* tuple */0,
+          return /* tuple */[0,
                   Str["split"](version_separators,v$2),
                   v$2,
                   param[2]];
@@ -229,7 +244,7 @@ var
     var
      new_before$3=
       List["map"]
-       (function(param){return [/* tuple */0,param[2],param[3]];},
+       (function(param){return /* tuple */[0,param[2],param[3]];},
         new_before$2);
     
     var match$12=m1[7];
@@ -242,21 +257,26 @@ var
      {var t1=match$12[1];
       
       if(match$13)
-       {if(List["mem"](6,merge_options))
+       {if(List["mem"](/* Merge_deprecated */6,merge_options))
          {var
            new_dep=
-            [/* Some */0,Pervasives["@"](t1,[/* :: */0,0,match$13[1]])];
+            /* Some */[0,
+             Pervasives["@"](t1,/* :: */[0,/* Newline */0,match$13[1]])];
           }
         else
-         {var new_dep=[/* Some */0,t1];}
+         {var new_dep=/* Some */[0,t1];}
         }
       else
        {var t=t1;exit$6=128;}
       }
     else
-     {if(match$13){var t=match$13[1];exit$6=128;}else{var new_dep=0;}}
+     {if(match$13)
+       {var t=match$13[1];exit$6=128;}
+      else
+       {var new_dep=/* None */0;}
+      }
     
-    switch(exit$6){case 128:var new_dep=[/* Some */0,t];}
+    switch(exit$6){case 128:var new_dep=/* Some */[0,t];}
     
     var match$14=m1[8];
     
@@ -267,12 +287,12 @@ var
     if(match$14)
      {if(match$15){exit$7=125;}else{var l$3=match$14;exit$7=123;}}
     else
-     {if(match$15){exit$7=125;}else{var new_params=0;}}
+     {if(match$15){exit$7=125;}else{var new_params=/* [] */0;}}
     
     switch(exit$7)
      {case 125:
        if(match$14)
-        {if(List["mem"](7,merge_options))
+        {if(List["mem"](/* Merge_param */7,merge_options))
           {var
             match$16=
              List["partition"]
@@ -289,14 +309,15 @@ var
                  
                  var desc1=List["assoc"](param2,match$14);
                  
-                 return [/* :: */0,
-                         [/* tuple */0,
+                 return /* :: */[0,
+                         /* tuple */[0,
                           param2,
-                          Pervasives["@"](desc1,[/* :: */0,0,match$17[2]])],
+                          Pervasives["@"]
+                           (desc1,/* :: */[0,/* Newline */0,match$17[2]])],
                          iter(param[2])];
                  }
                else
-                {return 0;}
+                {return /* [] */0;}
                };
            
            var l1_completed=iter(match$16[1]);
@@ -321,12 +342,12 @@ var
     if(match$17)
      {if(match$18){exit$8=117;}else{var l$4=match$17;exit$8=115;}}
     else
-     {if(match$18){exit$8=117;}else{var new_raised_exceptions=0;}}
+     {if(match$18){exit$8=117;}else{var new_raised_exceptions=/* [] */0;}}
     
     switch(exit$8)
      {case 117:
        if(match$17)
-        {if(List["mem"](8,merge_options))
+        {if(List["mem"](/* Merge_raised_exception */8,merge_options))
           {var
             match$19=
              List["partition"]
@@ -343,14 +364,15 @@ var
                  
                  var desc1=List["assoc"](exc2,match$17);
                  
-                 return [/* :: */0,
-                         [/* tuple */0,
+                 return /* :: */[0,
+                         /* tuple */[0,
                           exc2,
-                          Pervasives["@"](desc1,[/* :: */0,0,match$20[2]])],
+                          Pervasives["@"]
+                           (desc1,/* :: */[0,/* Newline */0,match$20[2]])],
                          iter$1(param[2])];
                  }
                else
-                {return 0;}
+                {return /* [] */0;}
                };
            
            var l1_completed$1=iter$1(match$19[1]);
@@ -378,21 +400,26 @@ var
      {var t1$1=match$20[1];
       
       if(match$21)
-       {if(List["mem"](9,merge_options))
+       {if(List["mem"](/* Merge_return_value */9,merge_options))
          {var
            new_rv=
-            [/* Some */0,Pervasives["@"](t1$1,[/* :: */0,0,match$21[1]])];
+            /* Some */[0,
+             Pervasives["@"](t1$1,/* :: */[0,/* Newline */0,match$21[1]])];
           }
         else
-         {var new_rv=[/* Some */0,t1$1];}
+         {var new_rv=/* Some */[0,t1$1];}
         }
       else
        {var t$1=t1$1;exit$9=110;}
       }
     else
-     {if(match$21){var t$1=match$21[1];exit$9=110;}else{var new_rv=0;}}
+     {if(match$21)
+       {var t$1=match$21[1];exit$9=110;}
+      else
+       {var new_rv=/* None */0;}
+      }
     
-    switch(exit$9){case 110:var new_rv=[/* Some */0,t$1];}
+    switch(exit$9){case 110:var new_rv=/* Some */[0,t$1];}
     
     var match$22=m1[11];
     
@@ -402,7 +429,7 @@ var
     
     if(match$22)
      {if(match$23)
-       {if(List["mem"](10,merge_options))
+       {if(List["mem"](/* Merge_custom */10,merge_options))
          {var new_custom=Pervasives["@"](match$22,match$23);}
         else
          {var new_custom=match$22;}
@@ -411,11 +438,15 @@ var
        {var l$5=match$22;exit$10=105;}
       }
     else
-     {if(match$23){var l$5=match$23;exit$10=105;}else{var new_custom=0;}}
+     {if(match$23)
+       {var l$5=match$23;exit$10=105;}
+      else
+       {var new_custom=/* [] */0;}
+      }
     
     switch(exit$10){case 105:var new_custom=l$5;}
     
-    return [/* record */0,
+    return /* record */[0,
             new_desc_opt,
             new_authors,
             new_version,
@@ -436,12 +467,12 @@ var
      {var i=mli_opt[1];
       
       if(ml_opt)
-       {return [/* Some */0,merge_info(merge_options,i,ml_opt[1])];}
+       {return /* Some */[0,merge_info(merge_options,i,ml_opt[1])];}
       else
-       {return [/* Some */0,i];}
+       {return /* Some */[0,i];}
       }
     else
-     {if(ml_opt){return [/* Some */0,ml_opt[1]];}else{return 0;}}
+     {if(ml_opt){return /* Some */[0,ml_opt[1]];}else{return /* None */0;}}
     };
 
 var
@@ -450,7 +481,7 @@ var
    {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
     var init=mli[7];
     
-    mli[7]=[/* record */0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]],0;
     var match=mli[8];
     
     mli[8]=match?mli[8]:ml[8],0;
@@ -462,10 +493,10 @@ var
     
     if(typeof match$1=="number")
      {switch(match$1)
-       {case 0:return 0;
+       {case 0:return /* () */0;
         case 1:
          if("unknown primitive:isint")
-          {if(match$2!=0){return 0;}else{exit=101;}}
+          {if(match$2!=0){return /* () */0;}else{exit=101;}}
          else
           {exit=101;}
          
@@ -500,13 +531,13 @@ var
                      {var d1=match$3[1];
                       
                       if(match$4)
-                       {if(List["mem"](0,merge_options))
+                       {if(List["mem"](/* Merge_description */0,merge_options))
                          {var
                            new_desc=
-                            [/* Some */0,merge_info(merge_options,d1,match$4[1])];
+                            /* Some */[0,merge_info(merge_options,d1,match$4[1])];
                           }
                         else
-                         {var new_desc=[/* Some */0,d1];}
+                         {var new_desc=/* Some */[0,d1];}
                         }
                       else
                        {var d=d1;exit$1=92;}
@@ -515,17 +546,17 @@ var
                      {if(match$4)
                        {var d=match$4[1];exit$1=92;}
                       else
-                       {var new_desc=0;}
+                       {var new_desc=/* None */0;}
                       }
                     
-                    switch(exit$1){case 92:var new_desc=[/* Some */0,d];}
+                    switch(exit$1){case 92:var new_desc=/* Some */[0,d];}
                     
                     return cons[4]=new_desc,0;
                     }
                   catch(exn)
                    {if(exn=Not_found)
                      {if(Odoc_global["inverse_merge_ml_mli"][1])
-                       {return 0;}
+                       {return /* () */0;}
                       else
                        {throw [0,Failure,Odoc_messages["different_types"](mli[1])];
                         }
@@ -567,13 +598,13 @@ var
                      {var d1=match$3[1];
                       
                       if(match$4)
-                       {if(List["mem"](0,merge_options))
+                       {if(List["mem"](/* Merge_description */0,merge_options))
                          {var
                            new_desc=
-                            [/* Some */0,merge_info(merge_options,d1,match$4[1])];
+                            /* Some */[0,merge_info(merge_options,d1,match$4[1])];
                           }
                         else
-                         {var new_desc=[/* Some */0,d1];}
+                         {var new_desc=/* Some */[0,d1];}
                         }
                       else
                        {var d=d1;exit$1=97;}
@@ -582,17 +613,17 @@ var
                      {if(match$4)
                        {var d=match$4[1];exit$1=97;}
                       else
-                       {var new_desc=0;}
+                       {var new_desc=/* None */0;}
                       }
                     
-                    switch(exit$1){case 97:var new_desc=[/* Some */0,d];}
+                    switch(exit$1){case 97:var new_desc=/* Some */[0,d];}
                     
                     return record[4]=new_desc,0;
                     }
                   catch(exn)
                    {if(exn=Not_found)
                      {if(Odoc_global["inverse_merge_ml_mli"][1])
-                       {return 0;}
+                       {return /* () */0;}
                       else
                        {throw [0,Failure,Odoc_messages["different_types"](mli[1])];
                         }
@@ -611,7 +642,7 @@ var
     switch(exit)
      {case 101:
        if(Odoc_global["inverse_merge_ml_mli"][1])
-        {return 0;}
+        {return /* () */0;}
        else
         {throw [0,Failure,Odoc_messages["different_types"](mli[1])];}
        
@@ -624,7 +655,7 @@ var
    {mli[1]=merge_info_opt(merge_options,mli[1],ml[1]),0;
     var init=mli[6];
     
-    mli[6]=[/* record */0,ml[6][1],init[2]],0;
+    mli[6]=/* record */[0,ml[6][1],init[2]],0;
     var match=mli[7];
     
     return mli[7]=match?mli[7]:ml[7],0;
@@ -643,18 +674,18 @@ var
      {var d1=match[1];
       
       if(match$1)
-       {if(List["mem"](0,merge_options))
-         {var new_desc=[/* Some */0,merge_info(merge_options,d1,match$1[1])];}
+       {if(List["mem"](/* Merge_description */0,merge_options))
+         {var new_desc=/* Some */[0,merge_info(merge_options,d1,match$1[1])];}
         else
-         {var new_desc=[/* Some */0,d1];}
+         {var new_desc=/* Some */[0,d1];}
         }
       else
        {var d=d1;exit=86;}
       }
     else
-     {if(match$1){var d=match$1[1];exit=86;}else{var new_desc=0;}}
+     {if(match$1){var d=match$1[1];exit=86;}else{var new_desc=/* None */0;}}
     
-    switch(exit){case 86:var new_desc=[/* Some */0,d];}
+    switch(exit){case 86:var new_desc=/* Some */[0,d];}
     
     return mli[7]=new_desc,0;
     };
@@ -669,8 +700,8 @@ var
        switch(pi_ml)
         {case 0:
           if("unknown primitive:caml_string_equal")
-           {return [/* Simple_name */0,
-                    [/* record */0,pi_ml[1][1],sn_mli[2],sn_mli[3]]];
+           {return /* Simple_name */[0,
+                    /* record */[0,pi_ml[1][1],sn_mli[2],sn_mli[3]]];
             }
           else
            {return pi_mli;}
@@ -687,7 +718,7 @@ var
         {case 0:
           var sn_ml=pi_ml[1];
           
-          return [/* Simple_name */0,[/* record */0,sn_ml[1],t_mli,sn_ml[3]]];
+          return /* Simple_name */[0,/* record */[0,sn_ml[1],t_mli,sn_ml[3]]];
           
          case 1:
           var l_ml=pi_ml[1];
@@ -697,7 +728,7 @@ var
           else
            {var new_l=List["map2"](merge_param_info,l_mli,l_ml);
             
-            return [/* Tuple */1,new_l,t_mli];
+            return /* Tuple */[1,new_l,t_mli];
             }
           
          }
@@ -712,7 +743,7 @@ var
     
     if(param_mli)
      {if(param_ml)
-       {return [/* :: */0,
+       {return /* :: */[0,
                 merge_param_info(param_mli[1],param_ml[1]),
                 merge_parameters(param_mli[2],param_ml[2])];
         }
@@ -720,7 +751,7 @@ var
        {var l=param_mli;exit=82;}
       }
     else
-     {if(param_ml){var l=param_ml;exit=82;}else{return 0;}}
+     {if(param_ml){var l=param_ml;exit=82;}else{return /* [] */0;}}
     
     switch(exit){case 82:return l;}
     };
@@ -731,7 +762,7 @@ var
    {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
     var init=mli[8];
     
-    mli[8]=[/* record */0,ml[8][1],init[2]],0;
+    mli[8]=/* record */[0,ml[8][1],init[2]],0;
     mli[7]=merge_parameters(mli[7],ml[7]),0;
     Odoc_class["class_update_parameters_text"](mli);
     List["iter"]
@@ -751,27 +782,27 @@ var
                     {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]),0;
                      var init$1=a[1][7];
                      
-                     a[1][7]=[/* record */0,a2[1][7][1],init$1[2]],0;
+                     a[1][7]=/* record */[0,a2[1][7][1],init$1[2]],0;
                      if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6],0}else{}
                      
-                     return 1;
+                     return /* true */1;
                      }
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
                   case 1:exit=79;
                   case 2:exit=79;
                   }
                 
-                switch(exit){case 79:return 0;}
+                switch(exit){case 79:return /* false */0;}
                 },
-              List["rev"](Odoc_class["class_elements"](0,ml)));
+              List["rev"](Odoc_class["class_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_class["class_attributes"](0,mli));
+      Odoc_class["class_attributes"](/* None */0,mli));
     return List["iter"]
             (function(m)
               {try
@@ -790,28 +821,29 @@ var
                            {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]),0;
                             var init$1=m[1][7];
                             
-                            m[1][7]=[/* record */0,m2[1][7][1],init$1[2]],0;
+                            m[1][7]=/* record */[0,m2[1][7][1],init$1[2]],0;
                             m[1][5]=merge_parameters(m[1][5],m2[1][5]),0;
                             Odoc_value["update_value_parameters_text"](m[1]);
                             if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6],0}else{}
                             
-                            return 1;
+                            return /* true */1;
                             }
                           else
-                           {return 0;}
+                           {return /* false */0;}
                           
                          case 2:exit=76;
                          }
                        
-                       switch(exit){case 76:return 0;}
+                       switch(exit){case 76:return /* false */0;}
                        },
-                     List["rev"](Odoc_class["class_elements"](0,ml)));
+                     List["rev"](Odoc_class["class_elements"](/* None */0,ml)));
                  
-                 return 0;
+                 return /* () */0;
                  }
-               catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+               catch(exn)
+                {if(exn=Not_found){return /* () */0;}else{throw exn;}}
                },
-             Odoc_class["class_methods"](0,mli));
+             Odoc_class["class_methods"](/* None */0,mli));
     };
 
 var
@@ -820,7 +852,7 @@ var
    {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
     var init=mli[7];
     
-    mli[7]=[/* record */0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]],0;
     List["iter"]
      (function(a)
        {try
@@ -838,27 +870,27 @@ var
                     {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]),0;
                      var init$1=a[1][7];
                      
-                     a[1][7]=[/* record */0,a2[1][7][1],init$1[2]],0;
+                     a[1][7]=/* record */[0,a2[1][7][1],init$1[2]],0;
                      if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6],0}else{}
                      
-                     return 1;
+                     return /* true */1;
                      }
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
                   case 1:exit=72;
                   case 2:exit=72;
                   }
                 
-                switch(exit){case 72:return 0;}
+                switch(exit){case 72:return /* false */0;}
                 },
-              List["rev"](Odoc_class["class_type_elements"](0,ml)));
+              List["rev"](Odoc_class["class_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_class["class_type_attributes"](0,mli));
+      Odoc_class["class_type_attributes"](/* None */0,mli));
     return List["iter"]
             (function(m)
               {try
@@ -877,28 +909,30 @@ var
                            {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]),0;
                             var init$1=m[1][7];
                             
-                            m[1][7]=[/* record */0,m2[1][7][1],init$1[2]],0;
+                            m[1][7]=/* record */[0,m2[1][7][1],init$1[2]],0;
                             m[1][5]=merge_parameters(m[1][5],m2[1][5]),0;
                             Odoc_value["update_value_parameters_text"](m[1]);
                             if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6],0}else{}
                             
-                            return 1;
+                            return /* true */1;
                             }
                           else
-                           {return 0;}
+                           {return /* false */0;}
                           
                          case 2:exit=69;
                          }
                        
-                       switch(exit){case 69:return 0;}
+                       switch(exit){case 69:return /* false */0;}
                        },
-                     List["rev"](Odoc_class["class_type_elements"](0,ml)));
+                     List["rev"]
+                      (Odoc_class["class_type_elements"](/* None */0,ml)));
                  
-                 return 0;
+                 return /* () */0;
                  }
-               catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+               catch(exn)
+                {if(exn=Not_found){return /* () */0;}else{throw exn;}}
                },
-             Odoc_class["class_type_methods"](0,mli));
+             Odoc_class["class_type_methods"](/* None */0,mli));
     };
 
 var
@@ -907,7 +941,7 @@ var
    {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
     var init=mli[7];
     
-    mli[7]=[/* record */0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]],0;
     List["iter"]
      (function(te)
        {var
@@ -935,14 +969,15 @@ var
                              te2[5]);
                          
                          merge_extension_constructor(merge_options,xt,xt2);
-                         return 1;
+                         return /* true */1;
                          }
-                       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+                       catch(exn)
+                        {if(exn=Not_found){return /* false */0;}else{throw exn;}}
                        };
                    
                    var match$1=List["partition"](merge_ext,exts);
                    
-                   if(match$1[1]!=0)
+                   if(match$1[1]!=/* [] */0)
                     {merge_type_extension(merge_options,te,te2)}
                    else
                     {}
@@ -957,12 +992,15 @@ var
             else
              {exit=31;}
             
-            switch(exit){case 31:return 0;}
+            switch(exit){case 31:return /* () */0;}
             };
         
-        return f(te[5],List["rev"](Odoc_module["module_type_elements"](0,ml)));
+        return f
+                (te[5],
+                 List["rev"]
+                  (Odoc_module["module_type_elements"](/* None */0,ml)));
         },
-      Odoc_module["module_type_type_extensions"](0,mli));
+      Odoc_module["module_type_type_extensions"](/* None */0,mli));
     List["iter"]
      (function(ex)
        {try
@@ -978,24 +1016,24 @@ var
                     {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]),0;
                      var init$1=ex[6];
                      
-                     ex[6]=[/* record */0,ex2[6][1],init$1[2]],0;
+                     ex[6]=/* record */[0,ex2[6][1],init$1[2]],0;
                      var match$1=ex[7];
                      
                      ex[7]=match$1?ex[7]:ex2[7],0;
-                     return 1;
+                     return /* true */1;
                      }
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_type_elements"](0,ml)));
+              List["rev"](Odoc_module["module_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_type_exceptions"](0,mli));
+      Odoc_module["module_type_exceptions"](/* None */0,mli));
     List["iter"]
      (function(ty)
        {try
@@ -1008,19 +1046,19 @@ var
                    var ty2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_types(merge_options,ty,ty2);return 1;}
+                    {merge_types(merge_options,ty,ty2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_type_elements"](0,ml)));
+              List["rev"](Odoc_module["module_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_type_types"](0,mli));
+      Odoc_module["module_type_types"](/* None */0,mli));
     List["iter"]
      (function(m)
        {try
@@ -1033,19 +1071,19 @@ var
                    var m2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {return 1;}
+                    {merge_modules(merge_options,m,m2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_type_elements"](0,ml)));
+              List["rev"](Odoc_module["module_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_type_modules"](0,mli));
+      Odoc_module["module_type_modules"](/* None */0,mli));
     List["iter"]
      (function(m)
        {try
@@ -1058,19 +1096,19 @@ var
                    var m2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_module_types(merge_options,m,m2);return 1;}
+                    {merge_module_types(merge_options,m,m2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_type_elements"](0,ml)));
+              List["rev"](Odoc_module["module_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_type_module_types"](0,mli));
+      Odoc_module["module_type_module_types"](/* None */0,mli));
     List["iter"]
      (function(v)
        {try
@@ -1086,25 +1124,25 @@ var
                     {v[2]=merge_info_opt(merge_options,v[2],v2[2]),0;
                      var init$1=v[7];
                      
-                     v[7]=[/* record */0,v2[7][1],init$1[2]],0;
+                     v[7]=/* record */[0,v2[7][1],init$1[2]],0;
                      v[5]=merge_parameters(v[5],v2[5]),0;
                      Odoc_value["update_value_parameters_text"](v);
                      if(Odoc_global["keep_code"][1]){v[6]=v2[6],0}else{}
                      
-                     return 1;
+                     return /* true */1;
                      }
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_type_elements"](0,ml)));
+              List["rev"](Odoc_module["module_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_type_values"](0,mli));
+      Odoc_module["module_type_values"](/* None */0,mli));
     List["iter"]
      (function(c)
        {try
@@ -1117,19 +1155,19 @@ var
                    var c2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_classes(merge_options,c,c2);return 1;}
+                    {merge_classes(merge_options,c,c2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_type_elements"](0,ml)));
+              List["rev"](Odoc_module["module_type_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_type_classes"](0,mli));
+      Odoc_module["module_type_classes"](/* None */0,mli));
     return List["iter"]
             (function(c)
               {try
@@ -1142,19 +1180,21 @@ var
                           var c2=ele[1];
                           
                           if("unknown primitive:caml_string_equal")
-                           {merge_class_types(merge_options,c,c2);return 1;}
+                           {merge_class_types(merge_options,c,c2);return /* true */1;}
                           else
-                           {return 0;}
+                           {return /* false */0;}
                           
-                         default:return 0;}
+                         default:return /* false */0;}
                        },
-                     List["rev"](Odoc_module["module_type_elements"](0,ml)));
+                     List["rev"]
+                      (Odoc_module["module_type_elements"](/* None */0,ml)));
                  
-                 return 0;
+                 return /* () */0;
                  }
-               catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+               catch(exn)
+                {if(exn=Not_found){return /* () */0;}else{throw exn;}}
                },
-             Odoc_module["module_type_class_types"](0,mli));
+             Odoc_module["module_type_class_types"](/* None */0,mli));
     };
 
 var
@@ -1163,7 +1203,7 @@ var
    {mli[3]=merge_info_opt(merge_options,mli[3],ml[3]),0;
     var init=mli[7];
     
-    mli[7]=[/* record */0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]],0;
     var
      remove_doubles=
       function(acc,param)
@@ -1175,7 +1215,7 @@ var
           if(List["mem"](h,acc))
            {return remove_doubles(acc,q);}
           else
-           {return remove_doubles([/* :: */0,h,acc],q);}
+           {return remove_doubles(/* :: */[0,h,acc],q);}
           }
         else
          {return acc;}
@@ -1188,12 +1228,16 @@ var
       var match$1=ml[9];
       
       if(match)
-       {var code=[/* Some */0,match[1]];}
+       {var code=/* Some */[0,match[1]];}
       else
-       {if(match$1){var code=[/* Some */0,match$1[1]];}else{var code=0;}}
+       {if(match$1)
+         {var code=/* Some */[0,match$1[1]];}
+        else
+         {var code=/* None */0;}
+        }
       }
     else
-     {var code=0;}
+     {var code=/* None */0;}
     
     if(Odoc_global["keep_code"][1])
      {var match$2=mli[10];
@@ -1201,16 +1245,16 @@ var
       var match$3=ml[10];
       
       if(match$2)
-       {var code_intf=[/* Some */0,match$2[1]];}
+       {var code_intf=/* Some */[0,match$2[1]];}
       else
        {if(match$3)
-         {var code_intf=[/* Some */0,match$3[1]];}
+         {var code_intf=/* Some */[0,match$3[1]];}
         else
-         {var code_intf=0;}
+         {var code_intf=/* None */0;}
         }
       }
     else
-     {var code_intf=0;}
+     {var code_intf=/* None */0;}
     
     mli[9]=code,0;
     mli[10]=code_intf,0;
@@ -1241,14 +1285,15 @@ var
                              te2[5]);
                          
                          merge_extension_constructor(merge_options,xt,xt2);
-                         return 1;
+                         return /* true */1;
                          }
-                       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+                       catch(exn)
+                        {if(exn=Not_found){return /* false */0;}else{throw exn;}}
                        };
                    
                    var match$5=List["partition"](merge_ext,exts);
                    
-                   if(match$5[1]!=0)
+                   if(match$5[1]!=/* [] */0)
                     {merge_type_extension(merge_options,te,te2)}
                    else
                     {}
@@ -1263,12 +1308,14 @@ var
             else
              {exit=59;}
             
-            switch(exit){case 59:return 0;}
+            switch(exit){case 59:return /* () */0;}
             };
         
-        return f(te[5],List["rev"](Odoc_module["module_elements"](0,ml)));
+        return f
+                (te[5],
+                 List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
         },
-      Odoc_module["module_type_extensions"](0,mli));
+      Odoc_module["module_type_extensions"](/* None */0,mli));
     List["iter"]
      (function(ex)
        {try
@@ -1284,24 +1331,24 @@ var
                     {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]),0;
                      var init$1=ex[6];
                      
-                     ex[6]=[/* record */0,ex[6][1],init$1[2]],0;
+                     ex[6]=/* record */[0,ex[6][1],init$1[2]],0;
                      var match$5=ex[7];
                      
                      ex[7]=match$5?ex[7]:ex2[7],0;
-                     return 1;
+                     return /* true */1;
                      }
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_elements"](0,ml)));
+              List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_exceptions"](0,mli));
+      Odoc_module["module_exceptions"](/* None */0,mli));
     List["iter"]
      (function(ty)
        {try
@@ -1314,19 +1361,19 @@ var
                    var ty2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_types(merge_options,ty,ty2);return 1;}
+                    {merge_types(merge_options,ty,ty2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_elements"](0,ml)));
+              List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_types"](0,mli));
+      Odoc_module["module_types"](/* None */0,mli));
     List["iter"]
      (function(m)
        {try
@@ -1339,19 +1386,19 @@ var
                    var m2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {return 1;}
+                    {merge_modules(merge_options,m,m2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_elements"](0,ml)));
+              List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_modules"](0,mli));
+      Odoc_module["module_modules"](/* None */0,mli));
     List["iter"]
      (function(m)
        {try
@@ -1364,19 +1411,19 @@ var
                    var m2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_module_types(merge_options,m,m2);return 1;}
+                    {merge_module_types(merge_options,m,m2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_elements"](0,ml)));
+              List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_module_types"](0,mli));
+      Odoc_module["module_module_types"](/* None */0,mli));
     List["iter"]
      (function(v)
        {try
@@ -1388,23 +1435,23 @@ var
                  {v[2]=merge_info_opt(merge_options,v[2],v2[2]),0;
                   var init$1=v[7];
                   
-                  v[7]=[/* record */0,v2[7][1],init$1[2]],0;
+                  v[7]=/* record */[0,v2[7][1],init$1[2]],0;
                   v[5]=merge_parameters(v[5],v2[5]),0;
                   Odoc_value["update_value_parameters_text"](v);
                   if(Odoc_global["keep_code"][1]){v[6]=v2[6],0}else{}
                   
-                  return 1;
+                  return /* true */1;
                   }
                 else
-                 {return 0;}
+                 {return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_values"](0,ml)));
+              List["rev"](Odoc_module["module_values"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_values"](0,mli));
+      Odoc_module["module_values"](/* None */0,mli));
     List["iter"]
      (function(c)
        {try
@@ -1417,19 +1464,19 @@ var
                    var c2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_classes(merge_options,c,c2);return 1;}
+                    {merge_classes(merge_options,c,c2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_elements"](0,ml)));
+              List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_classes"](0,mli));
+      Odoc_module["module_classes"](/* None */0,mli));
     List["iter"]
      (function(c)
        {try
@@ -1442,19 +1489,19 @@ var
                    var c2=ele[1];
                    
                    if("unknown primitive:caml_string_equal")
-                    {merge_class_types(merge_options,c,c2);return 1;}
+                    {merge_class_types(merge_options,c,c2);return /* true */1;}
                    else
-                    {return 0;}
+                    {return /* false */0;}
                    
-                  default:return 0;}
+                  default:return /* false */0;}
                 },
-              List["rev"](Odoc_module["module_elements"](0,ml)));
+              List["rev"](Odoc_module["module_elements"](/* None */0,ml)));
           
-          return 0;
+          return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
         },
-      Odoc_module["module_class_types"](0,mli));
+      Odoc_module["module_class_types"](/* None */0,mli));
     return mli;
     };
 
@@ -1508,14 +1555,14 @@ var
                    {throw [0,Failure,Odoc_messages["two_interfaces"](m[1])];}
                   }
                 else
-                 {return [/* :: */0,
+                 {return /* :: */[0,
                           merge_modules(merge_options,m,m2),
                           iter(l_others)];
                   }
                 }
               else
                {if(match$2!=0)
-                 {return [/* :: */0,
+                 {return /* :: */[0,
                           merge_modules(merge_options,m2,m),
                           iter(l_others)];
                   }
@@ -1532,10 +1579,10 @@ var
               }
             }
           else
-           {return [/* :: */0,m,iter(l_others)];}
+           {return /* :: */[0,m,iter(l_others)];}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return iter(modules_list);

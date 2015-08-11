@@ -24,7 +24,7 @@ var
           var match=f(param[1]);
           
           if(match)
-           {return loop([/* :: */0,match[1],result],rest);}
+           {return loop(/* :: */[0,match[1],result],rest);}
           else
            {return loop(result,rest);}
           }
@@ -32,7 +32,7 @@ var
          {return My_std["List"][9](result);}
         };
     
-    return loop(0,l);
+    return loop(/* [] */0,l);
     };
 
 var
@@ -44,7 +44,7 @@ var
        {if(param)
          {var y=f(param[1]);if(y){return y;}else{return loop(param[2]);}}
         else
-         {return 0;}
+         {return /* None */0;}
         };
     
     return loop(l);
@@ -59,7 +59,7 @@ var SS=My_std["Set"][1]([0,$$let[40],$$let[1]]);
 var
  check=
   function(sanitize,laws,entry)
-   {var penalties=[0,0];
+   {var penalties=[0,/* [] */0];
     
     var microbes=[0,SS[1]];
     
@@ -72,12 +72,12 @@ var
        {var match=0;}
       }
     else
-     {var match=0;}
+     {var match=/* () */0;}
     
     var
      remove=
       function(path,name)
-       {if(sanitize!=0)
+       {if(sanitize!=/* None */0)
          {return microbes[1]=
                  SS[4](My_std["filename_concat"](path,name),microbes[1]),
                  0;
@@ -131,37 +131,41 @@ var
                                           
                                          default:exit$1=10;}}
                                      
-                                     switch(exit$1){case 10:return 0;}
+                                     switch(exit$1){case 10:return /* false */0;}
                                      },
                                    entries))
                                 {remove(path,name$prime);
-                                 return [/* Some */0,
+                                 return /* Some */[0,
                                          sf
-                                          ([0,
-                                            [11,
+                                          (/* Format */[0,
+                                            /* String_literal */[11,
                                              "Files ",
-                                             [2,
-                                              0,
-                                              [11,
+                                             /* String */[2,
+                                              /* No_padding */0,
+                                              /* String_literal */[11,
                                                " and ",
-                                               [2,0,[11," should not be together in ",[2,0,0]]]]]],
+                                               /* String */[2,
+                                                /* No_padding */0,
+                                                /* String_literal */[11,
+                                                 " should not be together in ",
+                                                 /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                                             "Files %s and %s should not be together in %s"],
                                            name,
                                            name$prime,
                                            path)];
                                  }
                                else
-                                {return 0;}
+                                {return /* None */0;}
                                }
                              else
-                              {return 0;}
+                              {return /* None */0;}
                              }
                            else
                             {exit=14;}
                            
                           default:exit=14;}}
                       
-                      switch(exit){case 14:return 0;}
+                      switch(exit){case 14:return /* None */0;}
                       },
                     entries);
            
@@ -188,26 +192,34 @@ var
                                 (My_std["filename_concat"](path,name),
                                  Options["build_dir"][1]))
                               {remove(path,name);
-                               return [/* Some */0,
+                               return /* Some */[0,
                                        sf
-                                        ([0,
-                                          [11,
+                                        (/* Format */[0,
+                                          /* String_literal */[11,
                                            "File ",
-                                           [2,0,[11," in ",[2,0,[11," has suffix ",[2,0,0]]]]]],
+                                           /* String */[2,
+                                            /* No_padding */0,
+                                            /* String_literal */[11,
+                                             " in ",
+                                             /* String */[2,
+                                              /* No_padding */0,
+                                              /* String_literal */[11,
+                                               " has suffix ",
+                                               /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
                                           "File %s in %s has suffix %s"],
                                          name,
                                          path,
                                          suffix)];
                                }
                              else
-                              {return 0;}
+                              {return /* None */0;}
                              }
                            else
                             {exit=8;}
                            
                           default:exit=8;}}
                       
-                      switch(exit){case 8:return 0;}
+                      switch(exit){case 8:return /* None */0;}
                       },
                     entries);
            
@@ -237,11 +249,11 @@ var
                    
                    if(explanations)
                     {return penalties[1]=
-                            [/* :: */0,[/* tuple */0,law,explanations],penalties[1]],
+                            /* :: */[0,/* tuple */[0,law,explanations],penalties[1]],
                             0;
                      }
                    else
-                    {return 0;}
+                    {return /* () */0;}
                    },
                  laws);
                return My_std["List"][14](check_entry,My_std["!*"](entries));
@@ -251,7 +263,7 @@ var
              
             default:exit=6;}}
         
-        switch(exit){case 6:return 0;}
+        switch(exit){case 6:return /* () */0;}
         };
     
     check_entry(entry);
@@ -264,258 +276,301 @@ var
         var m=SS[19](microbes$1);
         
         Log["eprintf"]
-         ([0,
-           [18,
-            [1,[0,[11,"<hov 2>",0],"<hov 2>"]],
-            [11,
+         (/* Format */[0,
+           /* Formatting_gen */[18,
+            /* Open_box */[1,
+             /* Format */[0,
+              /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+              "<hov 2>"]],
+            /* String_literal */[11,
              "SANITIZE:",
-             [17,
-              [0,"@ ",1,0],
-              [12,
+             /* Formatting_lit */[17,
+              /* Break */[0,"@ ",1,0],
+              /* Char_literal */[12,
                97,
-               [17,
-                [0,"@ ",1,0],
-                [11,
+               /* Formatting_lit */[17,
+                /* Break */[0,"@ ",1,0],
+                /* String_literal */[11,
                  "total",
-                 [17,
-                  [0,"@ ",1,0],
-                  [11,
+                 /* Formatting_lit */[17,
+                  /* Break */[0,"@ ",1,0],
+                  /* String_literal */[11,
                    "of",
-                   [17,
-                    [0,"@ ",1,0],
-                    [4,
-                     0,
-                     0,
-                     0,
-                     [17,
-                      [0,"@ ",1,0],
-                      [11,
+                   /* Formatting_lit */[17,
+                    /* Break */[0,"@ ",1,0],
+                    /* Int */[4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     /* Formatting_lit */[17,
+                      /* Break */[0,"@ ",1,0],
+                      /* String_literal */[11,
                        "file",
-                       [2,
-                        0,
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Formatting_lit */[17,
+                         /* Break */[0,"@ ",1,0],
+                         /* String_literal */[11,
                           "that",
-                          [17,
-                           [0,"@ ",1,0],
-                           [11,
+                          /* Formatting_lit */[17,
+                           /* Break */[0,"@ ",1,0],
+                           /* String_literal */[11,
                             "should",
-                            [17,
-                             [0,"@ ",1,0],
-                             [11,
+                            /* Formatting_lit */[17,
+                             /* Break */[0,"@ ",1,0],
+                             /* String_literal */[11,
                               "probably",
-                              [17,
-                               [0,"@ ",1,0],
-                               [11,
+                              /* Formatting_lit */[17,
+                               /* Break */[0,"@ ",1,0],
+                               /* String_literal */[11,
                                 "not",
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [11,
+                                /* Formatting_lit */[17,
+                                 /* Break */[0,"@ ",1,0],
+                                 /* String_literal */[11,
                                   "be",
-                                  [17,
-                                   [0,"@ ",1,0],
-                                   [11,
+                                  /* Formatting_lit */[17,
+                                   /* Break */[0,"@ ",1,0],
+                                   /* String_literal */[11,
                                     "in",
-                                    [17,
-                                     [0,"@ ",1,0],
-                                     [11,
+                                    /* Formatting_lit */[17,
+                                     /* Break */[0,"@ ",1,0],
+                                     /* String_literal */[11,
                                       "your",
-                                      [17,
-                                       [0,"@ ",1,0],
-                                       [11,
+                                      /* Formatting_lit */[17,
+                                       /* Break */[0,"@ ",1,0],
+                                       /* String_literal */[11,
                                         "source",
-                                        [17,
-                                         [0,"@ ",1,0],
-                                         [11,
+                                        /* Formatting_lit */[17,
+                                         /* Break */[0,"@ ",1,0],
+                                         /* String_literal */[11,
                                           "tree",
-                                          [17,
-                                           [0,"@ ",1,0],
-                                           [11,
+                                          /* Formatting_lit */[17,
+                                           /* Break */[0,"@ ",1,0],
+                                           /* String_literal */[11,
                                             "has",
-                                            [17,
-                                             [0,"@ ",1,0],
-                                             [11,
+                                            /* Formatting_lit */[17,
+                                             /* Break */[0,"@ ",1,0],
+                                             /* String_literal */[11,
                                               "been",
-                                              [17,
-                                               [0,"@ ",1,0],
-                                               [11,
+                                              /* Formatting_lit */[17,
+                                               /* Break */[0,"@ ",1,0],
+                                               /* String_literal */[11,
                                                 "found.",
-                                                [17,
-                                                 [0,"@ ",1,0],
-                                                 [12,
+                                                /* Formatting_lit */[17,
+                                                 /* Break */[0,"@ ",1,0],
+                                                 /* Char_literal */[12,
                                                   65,
-                                                  [17,
-                                                   [0,"@ ",1,0],
-                                                   [11,
+                                                  /* Formatting_lit */[17,
+                                                   /* Break */[0,"@ ",1,0],
+                                                   /* String_literal */[11,
                                                     "script",
-                                                    [17,
-                                                     [0,"@ ",1,0],
-                                                     [11,
+                                                    /* Formatting_lit */[17,
+                                                     /* Break */[0,"@ ",1,0],
+                                                     /* String_literal */[11,
                                                       "shell",
-                                                      [17,
-                                                       [0,"@ ",1,0],
-                                                       [11,
+                                                      /* Formatting_lit */[17,
+                                                       /* Break */[0,"@ ",1,0],
+                                                       /* String_literal */[11,
                                                         "file",
-                                                        [17,
-                                                         [0,"@ ",1,0],
-                                                         [3,
-                                                          0,
-                                                          [17,
-                                                           [0,"@ ",1,0],
-                                                           [11,
+                                                        /* Formatting_lit */[17,
+                                                         /* Break */[0,"@ ",1,0],
+                                                         /* Caml_string */[3,
+                                                          /* No_padding */0,
+                                                          /* Formatting_lit */[17,
+                                                           /* Break */[0,"@ ",1,0],
+                                                           /* String_literal */[11,
                                                             "is",
-                                                            [17,
-                                                             [0,"@ ",1,0],
-                                                             [11,
+                                                            /* Formatting_lit */[17,
+                                                             /* Break */[0,"@ ",1,0],
+                                                             /* String_literal */[11,
                                                               "being",
-                                                              [17,
-                                                               [0,"@ ",1,0],
-                                                               [11,
+                                                              /* Formatting_lit */[17,
+                                                               /* Break */[0,"@ ",1,0],
+                                                               /* String_literal */[11,
                                                                 "created.",
-                                                                [17,
-                                                                 [0,"@ ",1,0],
-                                                                 [11,
+                                                                /* Formatting_lit */[17,
+                                                                 /* Break */[0,"@ ",1,0],
+                                                                 /* String_literal */[11,
                                                                   "Check",
-                                                                  [17,
-                                                                   [0,"@ ",1,0],
-                                                                   [11,
+                                                                  /* Formatting_lit */[17,
+                                                                   /* Break */[0,"@ ",1,0],
+                                                                   /* String_literal */[11,
                                                                     "this",
-                                                                    [17,
-                                                                     [0,"@ ",1,0],
-                                                                     [11,
+                                                                    /* Formatting_lit */[17,
+                                                                     /* Break */[0,"@ ",1,0],
+                                                                     /* String_literal */[11,
                                                                       "script",
-                                                                      [17,
-                                                                       [0,"@ ",1,0],
-                                                                       [11,
+                                                                      /* Formatting_lit */[17,
+                                                                       /* Break */[0,"@ ",1,0],
+                                                                       /* String_literal */[11,
                                                                         "and",
-                                                                        [17,
-                                                                         [0,"@ ",1,0],
-                                                                         [11,
+                                                                        /* Formatting_lit */[17,
+                                                                         /* Break */[0,"@ ",1,0],
+                                                                         /* String_literal */[11,
                                                                           "run",
-                                                                          [17,
-                                                                           [0,"@ ",1,0],
-                                                                           [11,
+                                                                          /* Formatting_lit */[17,
+                                                                           /* Break */[0,"@ ",1,0],
+                                                                           /* String_literal */[11,
                                                                             "it",
-                                                                            [17,
-                                                                             [0,"@ ",1,0],
-                                                                             [11,
+                                                                            /* Formatting_lit */[17,
+                                                                             /* Break */[0,"@ ",1,0],
+                                                                             /* String_literal */[11,
                                                                               "to",
-                                                                              [17,
-                                                                               [0,"@ ",1,0],
-                                                                               [11,
+                                                                              /* Formatting_lit */[17,
+                                                                               /* Break */[0,"@ ",1,0],
+                                                                               /* String_literal */[11,
                                                                                 "remove",
-                                                                                [17,
-                                                                                 [0,"@ ",1,0],
-                                                                                 [11,
+                                                                                /* Formatting_lit */[17,
+                                                                                 /* Break */[0,"@ ",1,0],
+                                                                                 /* String_literal */[11,
                                                                                   "unwanted",
-                                                                                  [17,
-                                                                                   [0,"@ ",1,0],
-                                                                                   [11,
+                                                                                  /* Formatting_lit */[17,
+                                                                                   /* Break */[0,"@ ",1,0],
+                                                                                   /* String_literal */[11,
                                                                                     "files",
-                                                                                    [17,
-                                                                                     [0,"@ ",1,0],
-                                                                                     [11,
+                                                                                    /* Formatting_lit */[17,
+                                                                                     /* Break */[0,"@ ",1,0],
+                                                                                     /* String_literal */[11,
                                                                                       "or",
-                                                                                      [17,
-                                                                                       [0,"@ ",1,0],
-                                                                                       [11,
+                                                                                      /* Formatting_lit */[17,
+                                                                                       /* Break */[0,"@ ",1,0],
+                                                                                       /* String_literal */[11,
                                                                                         "use",
-                                                                                        [17,
-                                                                                         [0,"@ ",1,0],
-                                                                                         [11,
+                                                                                        /* Formatting_lit */[17,
+                                                                                         /* Break */[0,"@ ",1,0],
+                                                                                         /* String_literal */[11,
                                                                                           "other",
-                                                                                          [17,
-                                                                                           [0,"@ ",1,0],
-                                                                                           [11,
+                                                                                          /* Formatting_lit */[17,
+                                                                                           /* Break */[0,"@ ",1,0],
+                                                                                           /* String_literal */[11,
                                                                                             "options",
-                                                                                            [17,
-                                                                                             [0,"@ ",1,0],
-                                                                                             [11,
+                                                                                            /* Formatting_lit */[17,
+                                                                                             /* Break */[0,"@ ",1,0],
+                                                                                             /* String_literal */[11,
                                                                                               "(such",
-                                                                                              [17,
-                                                                                               [0,"@ ",1,0],
-                                                                                               [11,
+                                                                                              /* Formatting_lit */[17,
+                                                                                               /* Break */[0,"@ ",1,0],
+                                                                                               /* String_literal */[11,
                                                                                                 "as",
-                                                                                                [17,
-                                                                                                 [0,"@ ",1,0],
-                                                                                                 [11,
+                                                                                                /* Formatting_lit */[17,
+                                                                                                 /* Break */[0,"@ ",1,0],
+                                                                                                 /* String_literal */[11,
                                                                                                   "defining",
-                                                                                                  [17,
-                                                                                                   [0,"@ ",1,0],
-                                                                                                   [11,
+                                                                                                  /* Formatting_lit */[17,
+                                                                                                   /* Break */[0,"@ ",1,0],
+                                                                                                   /* String_literal */[11,
                                                                                                     "hygiene",
-                                                                                                    [17,
-                                                                                                     [0,"@ ",1,0],
-                                                                                                     [11,
+                                                                                                    /* Formatting_lit */[17,
+                                                                                                     /* Break */[0,"@ ",1,0],
+                                                                                                     /* String_literal */[11,
                                                                                                       "exceptions",
-                                                                                                      [17,
-                                                                                                       [0,"@ ",1,0],
-                                                                                                       [11,
+                                                                                                      /* Formatting_lit */[17,
+                                                                                                       /* Break */[0,"@ ",1,0],
+                                                                                                       /* String_literal */[11,
                                                                                                         "or",
-                                                                                                        [17,
-                                                                                                         [0,"@ ",1,0],
-                                                                                                         [11,
+                                                                                                        /* Formatting_lit */[17,
+                                                                                                         /* Break */[0,"@ ",1,0],
+                                                                                                         /* String_literal */[11,
                                                                                                           "using",
-                                                                                                          [17,
-                                                                                                           [0,"@ ",1,0],
-                                                                                                           [11,
+                                                                                                          /* Formatting_lit */[17,
+                                                                                                           /* Break */[0,"@ ",1,0],
+                                                                                                           /* String_literal */[11,
                                                                                                             "the",
-                                                                                                            [17,
-                                                                                                             [0,"@ ",1,0],
-                                                                                                             [11,
+                                                                                                            /* Formatting_lit */[17,
+                                                                                                             /* Break */[0,"@ ",1,0],
+                                                                                                             /* String_literal */[11,
                                                                                                               "-no-hygiene",
-                                                                                                              [17,[0,"@ ",1,0],[11,"option).",[17,0,0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
+                                                                                                              /* Formatting_lit */[17,
+                                                                                                               /* Break */[0,"@ ",1,0],
+                                                                                                               /* String_literal */[11,
+                                                                                                                "option).",
+                                                                                                                /* Formatting_lit */[17,
+                                                                                                                 /* Close_box */0,
+                                                                                                                 /* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
            "@[<hov 2>SANITIZE:@ a@ total@ of@ %d@ file%s@ that@ should@ probably@ not@ be@ in@ your@ source@ tree@ has@ been@ found.@ A@ script@ shell@ file@ %S@ is@ being@ created.@ Check@ this@ script@ and@ run@ it@ to@ remove@ unwanted@ files@ or@ use@ other@ options@ (such@ as@ defining@ hygiene@ exceptions@ or@ using@ the@ -no-hygiene@ option).@]"],
           m,
           (m=1)?"":"s",
           fn$1);
-        var oc=Pervasives["open_out_gen"]([0,1,[0,3,[0,4,[0,6,0]]]],511,fn$1);
+        var
+         oc=
+          Pervasives["open_out_gen"]
+           (/* :: */[0,
+             /* Open_wronly */1,
+             /* :: */[0,
+              /* Open_creat */3,
+              /* :: */[0,
+               /* Open_trunc */4,
+               /* :: */[0,/* Open_binary */6,/* [] */0]]]],
+            511,
+            fn$1);
         
         var fp=Printf["fprintf"];
         
         fp
          (oc,
-          [0,
-           [11,
+          /* Format */[0,
+           /* String_literal */[11,
             "#!/bin/sh\n# File generated by ocamlbuild\n\ncd ",
-            [2,0,[11,"\n\n",0]]],
+            /* String */[2,
+             /* No_padding */0,
+             /* String_literal */[11,"\n\n",/* End_of_format */0]]],
            "#!/bin/sh\n# File generated by ocamlbuild\n\ncd %s\n\n"],
           Shell["quote_filename_if_needed"](Pathname["pwd"])),
         SS[13]
          (function(fn$2)
            {return fp
                     (oc,
-                     [0,[11,"rm -f ",[2,0,[12,10,0]]],"rm -f %s\n"],
+                     /* Format */[0,
+                      /* String_literal */[11,
+                       "rm -f ",
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,10,/* End_of_format */0]]],
+                      "rm -f %s\n"],
                      Shell["quote_filename_if_needed"](fn$2));
             },
           microbes$1),
         fp
          (oc,
-          [0,
-           [11,"# Also clean the script itself\n",0],
+          /* Format */[0,
+           /* String_literal */[11,
+            "# Also clean the script itself\n",
+            /* End_of_format */0],
            "# Also clean the script itself\n"]),
         fp
          (oc,
-          [0,[11,"rm -f ",[2,0,[12,10,0]]],"rm -f %s\n"],
+          /* Format */[0,
+           /* String_literal */[11,
+            "rm -f ",
+            /* String */[2,
+             /* No_padding */0,
+             /* Char_literal */[12,10,/* End_of_format */0]]],
+           "rm -f %s\n"],
           Shell["quote_filename_if_needed"](fn$1)),
         Pervasives["close_out"](oc)}
       else
        {Log["eprintf"]
-         ([0,
-           [11,
+         (/* Format */[0,
+           /* String_literal */[11,
             "sanitize: the following are files that should probably not be in your\nsource tree:\n",
-            0],
+            /* End_of_format */0],
            "sanitize: the following are files that should probably not be in your\nsource tree:\n"]);
         SS[13]
          (function(fn$2)
-           {return Log["eprintf"]([0,[12,32,[2,0,0]]," %s"],fn$2);},
+           {return Log["eprintf"]
+                    (/* Format */[0,
+                      /* Char_literal */[12,
+                       32,
+                       /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                      " %s"],
+                     fn$2);
+            },
           microbes$1);
         Log["eprintf"]
-         ([0,
-           [11,
+         (/* Format */[0,
+           /* String_literal */[11,
             "Remove them manually, don't use the -no-sanitize option, use -no-hygiene, or\ndefine hygiene exceptions using the tags or plugin mechanism.\n",
-            0],
+            /* End_of_format */0],
            "Remove them manually, don't use the -no-sanitize option, use -no-hygiene, or\ndefine hygiene exceptions using the tags or plugin mechanism.\n"]);
         throw Exit_hygiene_violations;
         }

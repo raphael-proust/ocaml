@@ -18,28 +18,30 @@ var Config=require("Config");
 
 var $$Error="unknown primitive:caml_set_oo_id";
 
-var debugger_symtable=[0,0];
+var debugger_symtable=[0,/* None */0];
 
 var
  use_debugger_symtable=
   function(fn,arg)
-   {var old_symtable=Symtable["current_state"](0);
+   {var old_symtable=Symtable["current_state"](/* () */0);
     
     var match=debugger_symtable[1];
     
     if(match)
      {Symtable["restore_state"](match[1])}
     else
-     {Dynlink["init"](0),
-      Dynlink["allow_unsafe_modules"](1),
+     {Dynlink["init"](/* () */0),
+      Dynlink["allow_unsafe_modules"](/* true */1),
       debugger_symtable[1]=
-      [/* Some */0,Symtable["current_state"](0)],
+      /* Some */[0,Symtable["current_state"](/* () */0)],
       0}
     
     try
      {var result=fn(arg);
       
-      debugger_symtable[1]=[/* Some */0,Symtable["current_state"](0)],0;
+      debugger_symtable[1]=
+      /* Some */[0,Symtable["current_state"](/* () */0)],
+      0;
       Symtable["restore_state"](old_symtable);
       return result;
       }
@@ -57,7 +59,7 @@ var
       
       if("unknown primitive:caml_string_notequal")
        {if(!List["mem"](d,Config["load_path"][1]))
-         {Config["load_path"][1]=[/* :: */0,d,Config["load_path"][1]],0}
+         {Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]],0}
         else
          {}
         }
@@ -66,9 +68,17 @@ var
       
       Format["fprintf"]
        (ppf,
-        [0,[11,"File ",[2,0,[11," loaded",[17,4,0]]]],"File %s loaded@."],
+        /* Format */[0,
+         /* String_literal */[11,
+          "File ",
+          /* String */[2,
+           /* No_padding */0,
+           /* String_literal */[11,
+            " loaded",
+            /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]]],
+         "File %s loaded@."],
         filename);
-      return 1;
+      return /* true */1;
       }
     catch(exn)
      {var exit;
@@ -96,15 +106,21 @@ var
          if(exn=Not_found)
           {Format["fprintf"]
             (ppf,
-             [0,
-              [11,"Cannot find file ",[2,0,[17,4,0]]],
+             /* Format */[0,
+              /* String_literal */[11,
+               "Cannot find file ",
+               /* String */[2,
+                /* No_padding */0,
+                /* Formatting_lit */[17,
+                 /* Flush_newline */4,
+                 /* End_of_format */0]]],
               "Cannot find file %s@."],
              name);
-           return 0;
+           return /* false */0;
            }
          else
           {if(exn[1]=Dynlink["Error"])
-            {throw [0,$$Error,[/* Load_failure */0,exn[2]]];}
+            {throw [0,$$Error,/* Load_failure */[0,exn[2]]];}
            else
             {throw exn;}
            }
@@ -113,7 +129,7 @@ var
       }
     };
 
-var loadfile=function(ppf,name){return 0;};
+var loadfile=function(ppf,name){return loadfiles(ppf,name);};
 
 var
  eval_path=
@@ -131,7 +147,7 @@ var
 
 var topdirs=Filename["concat"](compiler_libs,"topdirs.cmi");
 
-var match=0;
+var match=Env["read_signature"]("Topdirs",topdirs);
 
 var
  match_printer_type=
@@ -139,28 +155,29 @@ var
    {try
      {var
        match$1=
-        Env["lookup_type"]([/* Ldot */1,[0,"Topdirs"],typename],Env["empty"]);
+        Env["lookup_type"]
+         (/* Ldot */[1,/* Lident */[0,"Topdirs"],typename],Env["empty"]);
       }
     catch(exn)
      {if(exn=Not_found)
        {throw [0,
                $$Error,
-               [/* Unbound_identifier */1,
-                [/* Ldot */1,[0,"Topdirs"],typename]]];
+               /* Unbound_identifier */[1,
+                /* Ldot */[1,/* Lident */[0,"Topdirs"],typename]]];
         }
       else
        {throw exn;}
       }
     
-    Ctype["init_def"](Ident["current_time"](0));
-    Ctype["begin_def"](0);
-    var ty_arg=Ctype["newvar"](0,0);
+    Ctype["init_def"](Ident["current_time"](/* () */0));
+    Ctype["begin_def"](/* () */0);
+    var ty_arg=Ctype["newvar"](/* None */0,/* () */0);
     
     Ctype["unify"]
      (Env["empty"],
-      Ctype["newconstr"](match$1[1],[/* :: */0,ty_arg,0]),
-      Ctype["instance"](0,Env["empty"],desc[1]));
-    Ctype["end_def"](0);
+      Ctype["newconstr"](match$1[1],/* :: */[0,ty_arg,/* [] */0]),
+      Ctype["instance"](/* None */0,Env["empty"],desc[1]));
+    Ctype["end_def"](/* () */0);
     Ctype["generalize"](ty_arg);
     return ty_arg;
     };
@@ -176,26 +193,30 @@ var
       try
        {var
          match$2=
-          [/* tuple */0,match_printer_type(desc,"printer_type_new"),0];
+          /* tuple */[0,
+           match_printer_type(desc,"printer_type_new"),
+           /* false */0];
         }
       catch(exn)
        {if(exn[1]=Ctype["Unify"])
          {var
            match$2=
-            [/* tuple */0,match_printer_type(desc,"printer_type_old"),1];
+            /* tuple */[0,
+             match_printer_type(desc,"printer_type_old"),
+             /* true */1];
           }
         else
          {throw exn;}
         }
       
-      return [/* tuple */0,match$2[1],match$1[1],match$2[2]];
+      return /* tuple */[0,match$2[1],match$1[1],match$2[2]];
       }
     catch(exn$1)
      {if(exn$1=Not_found)
-       {throw [0,$$Error,[/* Unbound_identifier */1,lid]];}
+       {throw [0,$$Error,/* Unbound_identifier */[1,lid]];}
       else
        {if(exn$1[1]=Ctype["Unify"])
-         {throw [0,$$Error,[/* Wrong_type */3,lid]];}
+         {throw [0,$$Error,/* Wrong_type */[3,lid]];}
         else
          {throw exn$1;}
         }
@@ -218,7 +239,7 @@ var
        {var match$2=exn[2];
         
         switch(match$2)
-         {case 0:throw [0,$$Error,[/* Unavailable_module */2,match$2[1],lid]];
+         {case 0:throw [0,$$Error,/* Unavailable_module */[2,match$2[1],lid]];
           default:exit=6;}
         }
       else
@@ -244,7 +265,7 @@ var
      {return Printval["remove_printer"](match$1[2]);}
     catch(exn)
      {if(exn=Not_found)
-       {throw [0,$$Error,[/* No_active_printer */4,lid]];}
+       {throw [0,$$Error,/* No_active_printer */[4,lid]];}
       else
        {throw exn;}
       }
@@ -257,20 +278,35 @@ var
      {case 0:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,0,""]],
-                  [11,"Error during code loading: ",[2,0,[17,0,[17,4,0]]]]],
+                /* Format */[0,
+                 /* Formatting_gen */[18,
+                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                  /* String_literal */[11,
+                   "Error during code loading: ",
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* Formatting_lit */[17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]],
                  "@[Error during code loading: %s@]@."],
                 Dynlink["error_message"](param[1]));
        
       case 1:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,0,""]],
-                  [11,"Unbound identifier ",[15,[17,0,[17,4,0]]]]],
+                /* Format */[0,
+                 /* Formatting_gen */[18,
+                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                  /* String_literal */[11,
+                   "Unbound identifier ",
+                   /* Alpha */[15,
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* Formatting_lit */[17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]],
                  "@[Unbound identifier %a@]@."],
                 Printtyp["longident"],
                 param[1]);
@@ -278,21 +314,29 @@ var
       case 2:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,0,""]],
-                  [11,
+                /* Format */[0,
+                 /* Formatting_gen */[18,
+                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                  /* String_literal */[11,
                    "The debugger does not contain the code for",
-                   [17,
-                    [0,"@ ",1,0],
-                    [15,
-                     [12,
+                   /* Formatting_lit */[17,
+                    /* Break */[0,"@ ",1,0],
+                    /* Alpha */[15,
+                     /* Char_literal */[12,
                       46,
-                      [17,
-                       [0,"@ ",1,0],
-                       [11,
+                      /* Formatting_lit */[17,
+                       /* Break */[0,"@ ",1,0],
+                       /* String_literal */[11,
                         "Please load an implementation of ",
-                        [2,0,[11," first.",[17,0,[17,4,0]]]]]]]]]]],
+                        /* String */[2,
+                         /* No_padding */0,
+                         /* String_literal */[11,
+                          " first.",
+                          /* Formatting_lit */[17,
+                           /* Close_box */0,
+                           /* Formatting_lit */[17,
+                            /* Flush_newline */4,
+                            /* End_of_format */0]]]]]]]]]]],
                  "@[The debugger does not contain the code for@ %a.@ Please load an implementation of %s first.@]@."],
                 Printtyp["longident"],
                 param[2],
@@ -301,13 +345,17 @@ var
       case 3:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,0,""]],
-                  [15,
-                   [11,
+                /* Format */[0,
+                 /* Formatting_gen */[18,
+                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                  /* Alpha */[15,
+                   /* String_literal */[11,
                     " has the wrong type for a printing function.",
-                    [17,0,[17,4,0]]]]],
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* Formatting_lit */[17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]],
                  "@[%a has the wrong type for a printing function.@]@."],
                 Printtyp["longident"],
                 param[1]);
@@ -315,13 +363,17 @@ var
       case 4:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,0,""]],
-                  [15,
-                   [11,
+                /* Format */[0,
+                 /* Formatting_gen */[18,
+                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
+                  /* Alpha */[15,
+                   /* String_literal */[11,
                     " is not currently active as a printing function.",
-                    [17,0,[17,4,0]]]]],
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* Formatting_lit */[17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]],
                  "@[%a is not currently active as a printing function.@]@."],
                 Printtyp["longident"],
                 param[1]);

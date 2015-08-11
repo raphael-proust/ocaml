@@ -203,9 +203,10 @@ var
     List["iter2"]
      (function(met,label)
        {by_name[1]=Meths[4](met,label,by_name[1]),0;
+        var $js;
         try
-         {var $js=Labs[22](label,table[4]);}
-        catch(exn){if(exn=Not_found){var $js=/* true */1;}else{throw exn;}}
+         {$js=Labs[22](label,table[4]);}
+        catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
         return by_label[1]=Labs[4](label,$js,by_label[1]),0;
         },
       concr_meths$1,

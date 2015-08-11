@@ -6,7 +6,9 @@ var My_std=require("My_std");
 var Glob=require("Glob");
 
 
-var sources_glob=Glob["parse"](0,"<*.ml> or <*.mli> or <*.c> or <*.h>");
+var
+ sources_glob=
+  Glob["parse"](/* None */0,"<*.ml> or <*.mli> or <*.c> or <*.h>");
 
 var
  analyze=
@@ -15,17 +17,17 @@ var
      {case 0:
        Format["fprintf"]
         (f,
-         [0,
-          [11,
+         /* Format */[0,
+          /* String_literal */[11,
            "Ocamlbuild knows of no rules that apply to a target named ",
-           [15,
-            [11,
+           /* Alpha */[15,
+            /* String_literal */[11,
              ". This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories.",
-             0]]],
+             /* End_of_format */0]]],
           "Ocamlbuild knows of no rules that apply to a target named %a. This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories."],
          Resource["print"],
          bt[1]);
-       return 0;
+       return /* false */0;
        
       case 1:return My_std["List"][26](analyze(f),bt[1]);
       case 2:
@@ -34,17 +36,17 @@ var
        if(Glob["eval"](sources_glob,r))
         {Format["fprintf"]
           (f,
-           [0,
-            [11,
+           /* Format */[0,
+            /* String_literal */[11,
              "Ocamlbuild cannot find or build ",
-             [15,
-              [11,
+             /* Alpha */[15,
+              /* String_literal */[11,
                ".  A file with such a name would usually be a source file.  I suspect you have given a wrong target name to Ocamlbuild.",
-               0]]],
+               /* End_of_format */0]]],
             "Ocamlbuild cannot find or build %a.  A file with such a name would usually be a source file.  I suspect you have given a wrong target name to Ocamlbuild."],
            Resource["print"],
            r);
-         return 0;
+         return /* false */0;
          }
        else
         {return analyze(f,bt[2]);}
@@ -60,14 +62,22 @@ var
      {case 0:
        return Format["fprintf"]
                (f,
-                [0,
-                 [17,
-                  3,
-                  [11,
+                /* Format */[0,
+                 /* Formatting_lit */[17,
+                  /* Force_newline */3,
+                  /* String_literal */[11,
                    "- ",
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [11,"Building ",[15,[17,0,0]]]]]],
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,
+                     /* Format */[0,
+                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    /* String_literal */[11,
+                     "Building ",
+                     /* Alpha */[15,
+                      /* Formatting_lit */[17,
+                       /* Close_box */0,
+                       /* End_of_format */0]]]]]],
                  "@\n- @[<2>Building %a@]"],
                 Resource["print"],
                 param[1]);
@@ -90,31 +100,53 @@ var
         {case 2:
           Format["fprintf"]
            (f,
-            [0,
-             [17,
-              3,
-              [11,
+            /* Format */[0,
+             /* Formatting_lit */[17,
+              /* Force_newline */3,
+              /* String_literal */[11,
                "- ",
-               [18,
-                [1,[0,[11,"<v2>",0],"<v2>"]],
-                [11,"Failed to build all of these:",0]]]],
+               /* Formatting_gen */[18,
+                /* Open_box */[1,
+                 /* Format */[0,
+                  /* String_literal */[11,"<v2>",/* End_of_format */0],
+                  "<v2>"]],
+                /* String_literal */[11,
+                 "Failed to build all of these:",
+                 /* End_of_format */0]]]],
              "@\n- @[<v2>Failed to build all of these:"]);
           My_std["List"][14](print_backtrace(f),backtraces);
-          return Format["fprintf"](f,[0,[17,0,0],"@]"]);
+          return Format["fprintf"]
+                  (f,
+                   /* Format */[0,
+                    /* Formatting_lit */[17,
+                     /* Close_box */0,
+                     /* End_of_format */0],
+                    "@]"]);
           
          }
        
       case 2:
        return Format["fprintf"]
                (f,
-                [0,
-                 [17,
-                  3,
-                  [11,
+                /* Format */[0,
+                 /* Formatting_lit */[17,
+                  /* Force_newline */3,
+                  /* String_literal */[11,
                    "- ",
-                   [18,
-                    [1,[0,[11,"<v2>",0],"<v2>"]],
-                    [11,"Building ",[15,[12,58,[15,[17,0,0]]]]]]]],
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,
+                     /* Format */[0,
+                      /* String_literal */[11,"<v2>",/* End_of_format */0],
+                      "<v2>"]],
+                    /* String_literal */[11,
+                     "Building ",
+                     /* Alpha */[15,
+                      /* Char_literal */[12,
+                       58,
+                       /* Alpha */[15,
+                        /* Formatting_lit */[17,
+                         /* Close_box */0,
+                         /* End_of_format */0]]]]]]]],
                  "@\n- @[<v2>Building %a:%a@]"],
                 Resource["print"],
                 param[1],
@@ -124,14 +156,24 @@ var
       case 3:
        return Format["fprintf"]
                (f,
-                [0,
-                 [17,
-                  3,
-                  [11,
+                /* Format */[0,
+                 /* Formatting_lit */[17,
+                  /* Force_newline */3,
+                  /* String_literal */[11,
                    "- ",
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [11,"Failed to build the target ",[2,0,[15,[17,0,0]]]]]]],
+                   /* Formatting_gen */[18,
+                    /* Open_box */[1,
+                     /* Format */[0,
+                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    /* String_literal */[11,
+                     "Failed to build the target ",
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Alpha */[15,
+                       /* Formatting_lit */[17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]]]],
                  "@\n- @[<2>Failed to build the target %s%a@]"],
                 param[1],
                 print_backtrace,
@@ -140,7 +182,7 @@ var
       }
     };
 
-var print_backtrace_analyze=function(f,bt){return 0;};
+var print_backtrace_analyze=function(f,bt){return analyze(f,bt);};
 
 module["exports"]=
 {"print_backtrace_analyze":print_backtrace_analyze,

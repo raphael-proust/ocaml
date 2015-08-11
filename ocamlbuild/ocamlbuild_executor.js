@@ -145,7 +145,7 @@ var
     if($staropt$star$1)
      {var ticker=$staropt$star$1[1];}
     else
-     {var ticker=function(prim){return 0;};}
+     {var ticker=function(prim){return prim;};}
     
     if($staropt$star$2){var period=$staropt$star$2[1];}else{var period=0.1;}
     

@@ -15,13 +15,16 @@ var Input_handling=require("Input_handling");
 var Sys=require("Sys");
 
 
-var debug_loading=[0,0];
+var debug_loading=[0,/* false */0];
 
-var launching_func=[0,function(param){return 0;}];
+var launching_func=[0,function(param){return /* () */0;}];
 
 var
  load_program=
-  function(param){launching_func[1](0);return Input_handling["main_loop"](0);};
+  function(param)
+   {launching_func[1](/* () */0);
+    return Input_handling["main_loop"](/* () */0);
+    };
 
 var
  get_unix_environment=
@@ -30,7 +33,15 @@ var
      f=
       function(param$1)
        {return Printf["sprintf"]
-                ([0,[2,0,[12,61,[2,0,[12,32,0]]]],"%s=%s "],
+                (/* Format */[0,
+                  /* String */[2,
+                   /* No_padding */0,
+                   /* Char_literal */[12,
+                    61,
+                    /* String */[2,
+                     /* No_padding */0,
+                     /* Char_literal */[12,32,/* End_of_format */0]]]],
+                  "%s=%s "],
                  param$1[1],
                  Filename["quote"](param$1[2]));
         };
@@ -80,7 +91,17 @@ var
      f=
       function(param$1)
        {return Printf["sprintf"]
-                ([0,[11,"set ",[2,0,[12,61,[2,0,[12,38,0]]]]],"set %s=%s&"],
+                (/* Format */[0,
+                  /* String_literal */[11,
+                   "set ",
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* Char_literal */[12,
+                     61,
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,38,/* End_of_format */0]]]]],
+                  "set %s=%s&"],
                  param$1[1],
                  quote_for_windows_shell(param$1[2]));
         };
@@ -98,18 +119,18 @@ var
      {}
     
     try
-     {var child=Unix["fork"](0);}
+     {var child=Unix["fork"](/* () */0);}
     catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
     
     if(child!=0)
-     {var match=Unix["wait"](0);
+     {var match=Unix["wait"](/* () */0);
       
       var match$1=match[2];
       
       var exit;
       
       switch(match$1)
-       {case 0:if(match$1[1]!=0){exit=17;}else{return 0;}
+       {case 0:if(match$1[1]!=0){exit=17;}else{return /* () */0;}
         case 1:exit=17;
         case 2:exit=17;
         }
@@ -118,16 +139,18 @@ var
       }
     else
      {try
-       {var match$2=Unix["fork"](0);
+       {var match$2=Unix["fork"](/* () */0);
         
         if(match$2!=0)
          {return Pervasives["exit"](0);}
         else
-         {try {}catch(exn){if(exn[1]=Invalid_argument){}else{throw exn;}}
+         {try
+           {Unix["setsid"](/* () */0)}
+          catch(exn){if(exn[1]=Invalid_argument){}else{throw exn;}}
           
           return Unix["execv"]
                   (Debugger_config["shell"],
-                   [Debugger_config["shell"],"-c",cmdline(0)]);
+                   [Debugger_config["shell"],"-c",cmdline(/* () */0)]);
           }
         }
       catch(x$1)
@@ -144,7 +167,13 @@ var
      {}
     
     try
-     {return 0;}
+     {return Unix["create_process"]
+              ("cmd.exe",
+               ["/C",cmdline(/* () */0)],
+               Unix["stdin"],
+               Unix["stdout"],
+               Unix["stderr"]);
+      }
     catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
     };
 
@@ -163,14 +192,26 @@ var
       switch(match$1)
        {case "Win32":
          return Printf["sprintf"]
-                 ([0,
-                   [2,
-                    0,
-                    [11,
+                 (/* Format */[0,
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,
                      "set CAML_DEBUG_SOCKET=",
-                     [2,0,[11,"& ",[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       "& ",
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,
+                         32,
+                         /* String */[2,
+                          /* No_padding */0,
+                          /* Char_literal */[12,
+                           32,
+                           /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]]],
                    "%sset CAML_DEBUG_SOCKET=%s& %s %s %s"],
-                  get_win32_environment(0),
+                  get_win32_environment(/* () */0),
                   Parameters["socket_name"][1],
                   Debugger_config["runtime_program"],
                   Parameters["program_name"][1],
@@ -178,14 +219,26 @@ var
          
         default:
          return Printf["sprintf"]
-                 ([0,
-                   [2,
-                    0,
-                    [11,
+                 (/* Format */[0,
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,
                      "CAML_DEBUG_SOCKET=",
-                     [2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,
+                       32,
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,
+                         32,
+                         /* String */[2,
+                          /* No_padding */0,
+                          /* Char_literal */[12,
+                           32,
+                           /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]]],
                    "%sCAML_DEBUG_SOCKET=%s %s %s %s"],
-                  get_unix_environment(0),
+                  get_unix_environment(/* () */0),
                   Parameters["socket_name"][1],
                   Filename["quote"](Debugger_config["runtime_program"]),
                   Filename["quote"](Parameters["program_name"][1]),
@@ -202,28 +255,44 @@ var
       switch(match$1)
        {case "Win32":
          return Printf["sprintf"]
-                 ([0,
-                   [2,
-                    0,
-                    [11,
+                 (/* Format */[0,
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,
                      "set CAML_DEBUG_SOCKET=",
-                     [2,0,[11,"& ",[2,0,[12,32,[2,0,0]]]]]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* String_literal */[11,
+                       "& ",
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,
+                         32,
+                         /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]],
                    "%sset CAML_DEBUG_SOCKET=%s& %s %s"],
-                  get_win32_environment(0),
+                  get_win32_environment(/* () */0),
                   Parameters["socket_name"][1],
                   Parameters["program_name"][1],
                   Parameters["arguments"][1]);
          
         default:
          return Printf["sprintf"]
-                 ([0,
-                   [2,
-                    0,
-                    [11,
+                 (/* Format */[0,
+                   /* String */[2,
+                    /* No_padding */0,
+                    /* String_literal */[11,
                      "CAML_DEBUG_SOCKET=",
-                     [2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]],
+                     /* String */[2,
+                      /* No_padding */0,
+                      /* Char_literal */[12,
+                       32,
+                       /* String */[2,
+                        /* No_padding */0,
+                        /* Char_literal */[12,
+                         32,
+                         /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]],
                    "%sCAML_DEBUG_SOCKET=%s %s %s"],
-                  get_unix_environment(0),
+                  get_unix_environment(/* () */0),
                   Parameters["socket_name"][1],
                   Filename["quote"](Parameters["program_name"][1]),
                   Parameters["arguments"][1]);
@@ -233,28 +302,28 @@ var
 var
  exec_manual=
   function(param)
-   {Pervasives["print_newline"](0);
+   {Pervasives["print_newline"](/* () */0);
     Pervasives["print_string"]("Waiting for connection...");
     Pervasives["print_string"]
      (Pervasives["^"]
        ("(the socket is ",Pervasives["^"](Parameters["socket_name"][1],")")));
-    return Pervasives["print_newline"](0);
+    return Pervasives["print_newline"](/* () */0);
     };
 
 var
  loading_modes=
-  [/* :: */0,
-   [/* tuple */0,"direct",exec_direct],
-   [/* :: */0,
-    [/* tuple */0,"runtime",exec_with_runtime],
-    [/* :: */0,[/* tuple */0,"manual",exec_manual],0]]];
+  /* :: */[0,
+   /* tuple */[0,"direct",exec_direct],
+   /* :: */[0,
+    /* tuple */[0,"runtime",exec_with_runtime],
+    /* :: */[0,/* tuple */[0,"manual",exec_manual],/* [] */0]]];
 
 var set_launching_function=function(func){return launching_func[1]=func,0;};
 
 set_launching_function(exec_direct);
 var connection=[0,Primitives["std_io"]];
 
-var connection_opened=[0,0];
+var connection_opened=[0,/* false */0];
 
 module["exports"]=
 {"debug_loading":debug_loading,
