@@ -69,7 +69,7 @@ var
    "scan_class_pre",
    "scan_attribute"];
 
-var compare=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var compare=function(prim,prim){return "unknown primitive:caml_compare";};
 
 var S=Set["Make"]([0,compare]);
 
@@ -110,11 +110,11 @@ var
 
 var
  p_class=
-  function(c,param){return /* tuple */[0,/* false */0,/* false */0];};
+  function(c,param){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type=
-  function(ct,param){return /* tuple */[0,/* false */0,/* false */0];};
+  function(ct,param){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value=function(v,param){return /* false */0;};
 
@@ -124,7 +124,7 @@ var p_const=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type=
-  function(t,param){return /* tuple */[0,/* false */0,/* false */0];};
+  function(t,param){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension=function(x,param){return x[5]!=/* None */0;};
 
@@ -610,34 +610,34 @@ var
        function(self$neg1,v)
         {return add_known_element(v[1],/* Res_value */[4,v]);},
        scan_type_recfield,
-       function(self$neg1,t,f$1)
+       function(self$neg1,t,f)
         {return add_known_element
                  (Printf["sprintf"]
-                   (/* Format */[0,
-                     /* String */[2,
+                   ([/* Format */0,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        46,
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                      "%s.%s"],
                     t[1],
-                    f$1[1]),
-                  /* Res_recfield */[11,t,f$1]);
+                    f[1]),
+                  /* Res_recfield */[11,t,f]);
          },
        scan_type_const,
-       function(self$neg1,t,f$1)
+       function(self$neg1,t,f)
         {return add_known_element
                  (Printf["sprintf"]
-                   (/* Format */[0,
-                     /* String */[2,
+                   ([/* Format */0,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        46,
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                      "%s.%s"],
                     t[1],
-                    f$1[1]),
-                  /* Res_const */[12,t,f$1]);
+                    f[1]),
+                  /* Res_const */[12,t,f]);
          },
        scan_type_pre,
        function(self$neg1,t)
@@ -1521,7 +1521,7 @@ var
            
            var
             iter_parent=
-             function(parent_name$1,name)
+             function(parent_name,name)
               {var v=/* tuple */[0,name,/* Some */[0,kind]];
                
                if(was_verified(v))
@@ -1590,17 +1590,17 @@ var
                            text_option];
                    }
                  else
-                  {if(parent_name$1)
-                    {var p=parent_name$1[1];
+                  {if(parent_name)
+                    {var p=parent_name[1];
                      
                      var s=Odoc_name["father"](p);
                      
                      switch(s)
-                      {case "":var parent_name$2=/* None */0;
-                       default:var parent_name$2=/* Some */[0,s];}
+                      {case "":var parent_name$1=/* None */0;
+                       default:var parent_name$1=/* Some */[0,s];}
                      
                      return iter_parent
-                             (parent_name$2,Odoc_name["concat"](p,initial_name));
+                             (parent_name$1,Odoc_name["concat"](p,initial_name));
                      }
                    else
                     {Odoc_global["pwarning"]
@@ -1618,7 +1618,7 @@ var
            
            var
             iter_parent$1=
-             function(parent_name$1,name)
+             function(parent_name,name)
               {var name$1=Odoc_name["normalize_name"](name);
                
                var match$1=get_known_elements(name$1);
@@ -1650,12 +1650,12 @@ var
                      match$2=
                       /* tuple */[0,
                        Printf["sprintf"]
-                        (/* Format */[0,
-                          /* String */[2,
+                        ([/* Format */0,
+                          [/* String */2,
                            /* No_padding */0,
-                           /* Char_literal */[12,
+                           [/* Char_literal */12,
                             46,
-                            /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                            [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                           "%s.%s"],
                          ele[1][1],
                          ele[2][1]),
@@ -1666,12 +1666,12 @@ var
                      match$2=
                       /* tuple */[0,
                        Printf["sprintf"]
-                        (/* Format */[0,
-                          /* String */[2,
+                        ([/* Format */0,
+                          [/* String */2,
                            /* No_padding */0,
-                           /* Char_literal */[12,
+                           [/* Char_literal */12,
                             46,
-                            /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                            [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                           "%s.%s"],
                          ele[1][1],
                          ele[2][1]),
@@ -1722,17 +1722,17 @@ var
                          text_option$1];
                  }
                else
-                {if(parent_name$1)
-                  {var p=parent_name$1[1];
+                {if(parent_name)
+                  {var p=parent_name[1];
                    
                    var s=Odoc_name["father"](p);
                    
                    switch(s)
-                    {case "":var parent_name$2=/* None */0;
-                     default:var parent_name$2=/* Some */[0,s];}
+                    {case "":var parent_name$1=/* None */0;
+                     default:var parent_name$1=/* Some */[0,s];}
                    
                    return iter_parent$1
-                           (parent_name$2,Odoc_name["concat"](p,initial_name));
+                           (parent_name$1,Odoc_name["concat"](p,initial_name));
                    }
                  else
                   {Odoc_global["pwarning"]
@@ -2155,7 +2155,7 @@ var
          match=
           List["fold_left"]
            (associate_in_module(module_list),
-            /* tuple */[0,/* false */0,/* [] */0,/* [] */0],
+            [/* tuple */0,/* false */0,/* [] */0,/* [] */0],
             incomplete_modules);
         
         var remaining_no_doubles=remove_doubles(/* [] */0,match[2]);

@@ -647,7 +647,7 @@ module["exports"]=
  "close_out":close_out,
  "close_out_noerr":close_out_noerr,
  "caml_ml_set_binary_mode":
- function(prim,prim$1){return "unknown primitive:caml_ml_set_binary_mode";},
+ function(prim,prim){return "unknown primitive:caml_ml_set_binary_mode";},
  "open_in":open_in,
  "open_in_bin":open_in_bin,
  "open_in_gen":open_in_gen,
@@ -660,7 +660,7 @@ module["exports"]=
  "input_binary_int":input_binary_int,
  "input_value":input_value,
  "caml_ml_seek_in":
- function(prim,prim$1){return "unknown primitive:caml_ml_seek_in";},
+ function(prim,prim){return "unknown primitive:caml_ml_seek_in";},
  "caml_ml_pos_in":function(prim){return "unknown primitive:caml_ml_pos_in";},
  "caml_ml_channel_size":
  function(prim){return "unknown primitive:caml_ml_channel_size";},
@@ -668,13 +668,13 @@ module["exports"]=
  function(prim){return "unknown primitive:caml_ml_close_channel";},
  "close_in_noerr":close_in_noerr,
  "caml_ml_set_binary_mode":
- function(prim,prim$1){return "unknown primitive:caml_ml_set_binary_mode";},
+ function(prim,prim){return "unknown primitive:caml_ml_set_binary_mode";},
  "LargeFile":
  [0,
-  function(prim,prim$1){return "unknown primitive:caml_ml_seek_out_64";},
+  function(prim,prim){return "unknown primitive:caml_ml_seek_out_64";},
   function(prim){return "unknown primitive:caml_ml_pos_out_64";},
   function(prim){return "unknown primitive:caml_ml_channel_size_64";},
-  function(prim,prim$1){return "unknown primitive:caml_ml_seek_in_64";},
+  function(prim,prim){return "unknown primitive:caml_ml_seek_in_64";},
   function(prim){return "unknown primitive:caml_ml_pos_in_64";},
   function(prim){return "unknown primitive:caml_ml_channel_size_64";}],
  "string_of_format":string_of_format,

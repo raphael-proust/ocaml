@@ -289,7 +289,7 @@ var
         
         return add_aux
                 (t,
-                 function(prim,prim$1,prim$2)
+                 function(prim,prim,prim)
                   {return "unknown primitive:caml_weak_set";},
                  /* Some */[0,d],
                  h,
@@ -356,7 +356,7 @@ var
                  function(h,index)
                   {add_aux
                     (t,
-                     function(prim,prim$1,prim$2)
+                     function(prim,prim,prim)
                       {return "unknown primitive:caml_weak_set";},
                      /* Some */[0,d],
                      h,
@@ -487,12 +487,11 @@ var
         var lens=$$Array["map"](length,t[1]);
         
         $$Array["sort"]
-         (function(prim,prim$1){return "unknown primitive:caml_compare";},
-          lens);
+         (function(prim,prim){return "unknown primitive:caml_compare";},lens);
         var
          totlen=
           $$Array["fold_left"]
-           (function(prim,prim$1){return prim+prim$1;},0,lens);
+           (function(prim,prim){return prim$1+prim;},0,lens);
         
         return /* tuple */[0,
                 len,
@@ -523,16 +522,16 @@ module["exports"]=
  function(prim){return "unknown primitive:caml_weak_create";},
  "length":length,
  "caml_weak_set":
- function(prim,prim$1,prim$2){return "unknown primitive:caml_weak_set";},
+ function(prim,prim,prim){return "unknown primitive:caml_weak_set";},
  "caml_weak_get":
- function(prim,prim$1){return "unknown primitive:caml_weak_get";},
+ function(prim,prim){return "unknown primitive:caml_weak_get";},
  "caml_weak_get_copy":
- function(prim,prim$1){return "unknown primitive:caml_weak_get_copy";},
+ function(prim,prim){return "unknown primitive:caml_weak_get_copy";},
  "caml_weak_check":
- function(prim,prim$1){return "unknown primitive:caml_weak_check";},
+ function(prim,prim){return "unknown primitive:caml_weak_check";},
  "fill":fill,
  "caml_weak_blit":
- function(prim,prim$1,prim$2,prim$3,prim$4)
+ function(prim,prim,prim,prim,prim)
   {return "unknown primitive:caml_weak_blit";},
  "Make":Make};
 

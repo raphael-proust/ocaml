@@ -18,24 +18,24 @@ var
       
       Format["fprintf"]
        (f,
-        /* Format */[0,
-         /* String */[2,
+        [/* Format */0,
+         [/* String */2,
           /* No_padding */0,
-          /* String_literal */[11,
+          [/* String_literal */11,
            ": ",
-           /* Caml_string */[3,
+           [/* Caml_string */3,
             /* No_padding */0,
-            /* String_literal */[11," failed",/* End_of_format */0]]]],
+            [/* String_literal */11," failed",/* End_of_format */0]]]],
          "%s: %S failed"],
         Sys["argv"][0],
         exn[3]);
       if(arg["length"]>0)
        {Format["fprintf"]
          (f,
-          /* Format */[0,
-           /* String_literal */[11,
+          [/* Format */0,
+           [/* String_literal */11,
             " on ",
-            /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+            [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
            " on %S"],
           arg)}
       else
@@ -43,10 +43,10 @@ var
       
       return Format["fprintf"]
               (f,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  ": ",
-                 /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                 [/* String */2,/* No_padding */0,/* End_of_format */0]],
                 ": %s"],
                Unix["error_message"](exn[2]));
       }
@@ -64,7 +64,7 @@ var
        {throw [0,
                Sys_error,
                Ocamlbuild_pack["My_std"][8]
-                (/* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+                ([/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
                  report_error,
                  e)];
         }
@@ -92,20 +92,20 @@ var
     return /* record */[0,
             $js$1,
             Format["sprintf"]
-             (/* Format */[0,
-               /* Char_literal */[12,
+             ([/* Format */0,
+               [/* Char_literal */12,
                 40,
-                /* Int */[4,
+                [/* Int */4,
                  /* Int_d */0,
                  /* No_padding */0,
                  /* No_precision */0,
-                 /* Char_literal */[12,
+                 [/* Char_literal */12,
                   44,
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
                    /* No_padding */0,
                    /* No_precision */0,
-                   /* Char_literal */[12,41,/* End_of_format */0]]]]],
+                   [/* Char_literal */12,41,/* End_of_format */0]]]]],
                "(%d,%d)"],
               st[1],
               st[2])];
@@ -149,10 +149,10 @@ var
          {case 11:
            return Pervasives["failwith"]
                    (Printf["sprintf"]
-                     (/* Format */[0,
-                       /* String_literal */[11,
+                     ([/* Format */0,
+                       [/* String_literal */11,
                         "Error while running: ",
-                        /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
                        "Error while running: %s"],
                       s));
            

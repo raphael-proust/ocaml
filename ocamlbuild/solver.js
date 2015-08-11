@@ -42,11 +42,11 @@ var
     
     Log["dprintf"]
      (4,
-      /* Format */[0,
-       /* String_literal */[11,
+      [/* Format */0,
+       [/* String_literal */11,
         "==",
-        /* Alpha */[15,
-         /* String_literal */[11,"> ",/* Alpha */[15,/* End_of_format */0]]]],
+        [/* Alpha */15,
+         [/* String_literal */11,"> ",[/* Alpha */15,/* End_of_format */0]]]],
        "==%a> %a"],
       pp_repeat,
       /* tuple */[0,depth,"=="],
@@ -64,9 +64,9 @@ var
        {case 0:
          return Log["dprintf"]
                  (5,
-                  /* Format */[0,
-                   /* Alpha */[15,
-                    /* String_literal */[11,
+                  [/* Format */0,
+                   [/* Alpha */15,
+                    [/* String_literal */11,
                      " already built",
                      /* End_of_format */0]],
                    "%a already built"],
@@ -76,9 +76,9 @@ var
         case 1:
          Log["dprintf"]
           (5,
-           /* Format */[0,
-            /* Alpha */[15,
-             /* String_literal */[11," already failed",/* End_of_format */0]],
+           [/* Format */0,
+            [/* Alpha */15,
+             [/* String_literal */11," already failed",/* End_of_format */0]],
             "%a already failed"],
            Resource["print"],
            target);
@@ -159,9 +159,9 @@ var
     else
      {Log["dprintf"]
        (5,
-        /* Format */[0,
-         /* Alpha */[15,
-          /* String_literal */[11,
+        [/* Format */0,
+         [/* Alpha */15,
+          [/* String_literal */11,
            " was suspended -> resuming",
            /* End_of_format */0]],
          "%a was suspended -> resuming"],
@@ -219,7 +219,7 @@ var
             }
           },
         results,
-        /* tuple */[0,/* [] */0,/* [] */0]);
+        [/* tuple */0,/* [] */0,/* [] */0]);
     
     var thunks=match[2];
     
@@ -232,10 +232,10 @@ var
     if(count>1)
      {Log["dprintf"]
        (job_debug,
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           ">>> PARALLEL: ",
-          /* Int */[4,
+          [/* Int */4,
            /* Int_d */0,
            /* No_padding */0,
            /* No_precision */0,
@@ -250,8 +250,8 @@ var
     if(count>1)
      {Log["dprintf"]
        (job_debug,
-        /* Format */[0,
-         /* String_literal */[11,"<<< PARALLEL",/* End_of_format */0],
+        [/* Format */0,
+         [/* String_literal */11,"<<< PARALLEL",/* End_of_format */0],
          "<<< PARALLEL"])}
     else
      {}
@@ -263,7 +263,7 @@ var
        (function(res,thunk){if(res){return thunk(/* () */0);}else{return 0;}},
         match$1[1],
         thunks);
-      Log["finish"](/* Some */[0,/* Error */106380200],/* () */0);
+      Log["finish"]([/* Some */0,/* Error */106380200],/* () */0);
       throw match$1[2];
       }
     else

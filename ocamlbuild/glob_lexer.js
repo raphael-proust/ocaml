@@ -22,15 +22,15 @@ var
       }
     };
 
-var slash=/* Class */[1,/* Atom */[3,/* tuple */[0,47,47]]];
+var slash=[/* Class */1,[/* Atom */3,[/* tuple */0,47,47]]];
 
-var not_slash=/* Class */[1,/* Not */[2,/* Atom */[3,/* tuple */[0,47,47]]]];
+var not_slash=[/* Class */1,[/* Not */2,[/* Atom */3,[/* tuple */0,47,47]]]];
 
-var any=/* Class */[1,/* True */0];
+var any=[/* Class */1,/* True */0];
 
 var
  __ocaml_lex_tables=
-  /* record */[0,
+  [/* record */0,
    "\0\0õÿ\x05\0÷ÿøÿùÿ\x01\0úÿ\0\0ûÿ\x01\0\x01\0üÿ\0\0\x01\0ýÿ\x03\0\x03\0þÿÿÿ\0\0\0\0\x01\0\0\0\x01\0\0\0\0\0\x04\0\x02\0S\0ôÿõÿ\0\0\x01\0\0\0þÿ¢\0ýÿ\x02\0\0\0ûÿ\x03\0ùÿ\x1d\0\x1e\0\x01\0ÿÿþÿ0\0\0\0\x06\0\x01\0\x02\0ýÿþÿ",
    "ÿÿÿÿ\t\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\b\0\t\0\x03\0ÿÿ\0\0ÿÿÿÿ\x05\0ÿÿ\x07\0ÿÿÿÿ\x02\0\x03\0ÿÿÿÿÿÿ\x03\0\x03\0\0\0ÿÿÿÿÿÿ",
    "ÿÿ\0\0ÿÿ\0\0\0\0\0\0ÿÿ\0\0ÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1e\0\0\0\0\0ÿÿÿÿÿÿ\0\0ÿÿ\0\0ÿÿÿÿ\0\0ÿÿ\0\0,\0,\0ÿÿ\0\0\0\x001\0ÿÿÿÿÿÿ5\0\0\0\0\0",
@@ -61,7 +61,7 @@ var
        {case 0:
          var
           match=
-           parse_pattern(/* :: */[0,62,/* [] */0],/* Epsilon */0,lexbuf);
+           parse_pattern([/* :: */0,62,/* [] */0],/* Epsilon */0,lexbuf);
          
          return /* ATOM */[0,/* Pattern */[1,match[1]]];
          
@@ -114,7 +114,7 @@ var
             {var
               match=
                parse_pattern
-                (/* :: */[0,125,/* :: */[0,44,/* [] */0]],
+                ([/* :: */0,125,[/* :: */0,44,/* [] */0]],
                  /* Epsilon */0,
                  lexbuf);
              
@@ -196,11 +196,11 @@ var
           {throw [0,
                   Glob_ast["Parse_error"],
                   sf
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "Unexpected character ",
-                      /* Caml_char */[1,
-                       /* String_literal */[11,
+                      [/* Caml_char */1,
+                       [/* String_literal */11,
                         " in glob pattern",
                         /* End_of_format */0]]],
                      "Unexpected character %C in glob pattern"],
@@ -242,11 +242,11 @@ var
          throw [0,
                 Glob_ast["Parse_error"],
                 sf
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "Unexpected character ",
-                    /* Caml_char */[1,
-                     /* String_literal */[11," in string",/* End_of_format */0]]],
+                    [/* Caml_char */1,
+                     [/* String_literal */11," in string",/* End_of_format */0]]],
                    "Unexpected character %C in string"],
                   c)];
          
@@ -272,7 +272,7 @@ var
     else
      {switch(__ocaml_lex_state$1[0])
        {case 0:return cl;
-        case 1:return /* :: */[0,/* Atom */[3,/* tuple */[0,45,45]],cl];
+        case 1:return /* :: */[0,[/* Atom */3,[/* tuple */0,45,45]],cl];
         case 2:
          var c1=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]);
          

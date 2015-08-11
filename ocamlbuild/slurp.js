@@ -67,7 +67,7 @@ var
     
     var
      scandir=
-      function(path$1,names)
+      function(path,names)
        {var
          match=
           $$Array["fold_left"]
@@ -76,7 +76,7 @@ var
               
               var file_acc=acc[1];
               
-              var match$1=do_entry(/* true */1,path$1,name);
+              var match$1=do_entry(/* true */1,path,name);
               
               if(match$1)
                {var entry=match$1[1];
@@ -101,7 +101,7 @@ var
               else
                {return acc;}
               },
-            /* tuple */[0,/* [] */0,/* [] */0],
+            [/* tuple */0,/* [] */0,/* [] */0],
             names);
         
         return Pervasives["@"](match[1],match[2]);
@@ -109,8 +109,8 @@ var
     
     var
      do_entry=
-      function(link_mode,path$1,name)
-       {var fn=$unknown(path$1,name);
+      function(link_mode,path,name)
+       {var fn=$unknown(path,name);
         
         var absfn=abs(fn);
         
@@ -150,7 +150,7 @@ var
                     res=
                      /* Some */[0,
                       /* Dir */[0,
-                       path$1,
+                       path,
                        name,
                        [250,st],
                        /* () */0,
@@ -162,17 +162,17 @@ var
                case 1:
                 var
                  res=
-                  /* Some */[0,/* File */[1,path$1,name,[250,st],/* () */0]];
+                  /* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
                 
                case 2:
                 var fn$prime=My_unix["readlink"](absfn);
                 
                 if(My_std["sys_file_exists"](abs(fn$prime)))
-                 {var res=do_entry(/* false */0,path$1,name);}
+                 {var res=do_entry(/* false */0,path,name);}
                 else
                  {var
                    res=
-                    /* Some */[0,/* File */[1,path$1,name,[250,st],/* () */0]];
+                    /* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
                   }
                 
                case 3:var res=/* None */0;
@@ -196,13 +196,13 @@ var
   function(path)
    {var
      aux=
-      function(path$1)
+      function(path)
        {if("unknown primitive:caml_string_equal")
          {return /* [] */0;}
         else
          {return /* :: */[0,
-                  Filename["basename"](path$1),
-                  aux(Filename["dirname"](path$1))];
+                  Filename["basename"](path),
+                  aux(Filename["dirname"](path))];
           }
         };
     
@@ -361,12 +361,12 @@ var
      lines=
       My_unix["run_and_open"]
        (Printf["sprintf"]
-         (/* Format */[0,
-           /* String */[2,
+         ([/* Format */0,
+           [/* String */2,
             /* No_padding */0,
-            /* Char_literal */[12,
+            [/* Char_literal */12,
              32,
-             /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+             [/* String */2,/* No_padding */0,/* End_of_format */0]]],
            "%s %s"],
           find_cmd,
           Filename["quote"](path)),
@@ -420,8 +420,8 @@ var
        {case 0:
          return Format["fprintf"]
                  (f,
-                  /* Format */[0,
-                   /* String_literal */[11,"Nothing",/* End_of_format */0],
+                  [/* Format */0,
+                   [/* String_literal */11,"Nothing",/* End_of_format */0],
                    "Nothing"]);
          
         }}
@@ -430,39 +430,39 @@ var
        {case 0:
          return Format["fprintf"]
                  (f,
-                  /* Format */[0,
-                   /* Formatting_gen */[18,
-                    /* Open_box */[1,
-                     /* Format */[0,
-                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
                       "<2>"]],
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "Dir(",
-                     /* Caml_string */[3,
+                     [/* Caml_string */3,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        44,
-                       /* Formatting_lit */[17,
-                        /* Break */[0,"@ ",1,0],
-                        /* Caml_string */[3,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Caml_string */3,
                          /* No_padding */0,
-                         /* Char_literal */[12,
+                         [/* Char_literal */12,
                           44,
-                          /* Formatting_lit */[17,
-                           /* Break */[0,"@ ",1,0],
-                           /* String_literal */[11,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String_literal */11,
                             "_,",
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* Alpha */[15,
-                              /* Char_literal */[12,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Char_literal */12,
                                44,
-                               /* Formatting_lit */[17,
-                                /* Break */[0,"@ ",1,0],
-                                /* Alpha */[15,
-                                 /* Char_literal */[12,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,
+                                 [/* Char_literal */12,
                                   41,
-                                  /* Formatting_lit */[17,
+                                  [/* Formatting_lit */17,
                                    /* Close_box */0,
                                    /* End_of_format */0]]]]]]]]]]]]]]]],
                    "@[<2>Dir(%S,@ %S,@ _,@ %a,@ %a)@]"],
@@ -476,34 +476,34 @@ var
         case 1:
          return Format["fprintf"]
                  (f,
-                  /* Format */[0,
-                   /* Formatting_gen */[18,
-                    /* Open_box */[1,
-                     /* Format */[0,
-                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
                       "<2>"]],
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "File(",
-                     /* Caml_string */[3,
+                     [/* Caml_string */3,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        44,
-                       /* Formatting_lit */[17,
-                        /* Break */[0,"@ ",1,0],
-                        /* Caml_string */[3,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Caml_string */3,
                          /* No_padding */0,
-                         /* Char_literal */[12,
+                         [/* Char_literal */12,
                           44,
-                          /* Formatting_lit */[17,
-                           /* Break */[0,"@ ",1,0],
-                           /* String_literal */[11,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String_literal */11,
                             "_,",
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* Alpha */[15,
-                              /* Char_literal */[12,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Char_literal */12,
                                41,
-                               /* Formatting_lit */[17,
+                               [/* Formatting_lit */17,
                                 /* Close_box */0,
                                 /* End_of_format */0]]]]]]]]]]]]],
                    "@[<2>File(%S,@ %S,@ _,@ %a)@]"],
@@ -515,8 +515,8 @@ var
         case 2:
          return Format["fprintf"]
                  (f,
-                  /* Format */[0,
-                   /* String_literal */[11,"Error(_)",/* End_of_format */0],
+                  [/* Format */0,
+                   [/* String_literal */11,"Error(_)",/* End_of_format */0],
                    "Error(_)"]);
          
         }}
@@ -550,39 +550,39 @@ var
   function(f,entry)
    {var
      $$self=
-      function(entry$1)
-       {if(typeof entry$1=="number")
-         {switch(entry$1){case 0:return /* Nothing */0;}}
+      function(entry)
+       {if(typeof entry=="number")
+         {switch(entry){case 0:return /* Nothing */0;}}
         else
-         {switch(entry$1[0])
+         {switch(entry[0])
            {case 0:
-             var contents=entry$1[5];
+             var contents=entry[5];
              
-             var name=entry$1[2];
+             var name=entry[2];
              
-             var path=entry$1[1];
+             var path=entry[1];
              
              return /* Dir */[0,
                      path,
                      name,
-                     entry$1[3],
-                     f(path,name,entry$1[4]),
+                     entry[3],
+                     f(path,name,entry[4]),
                      [246,
                       function(param)
                        {return My_std["List"][16]($$self,My_std["!*"](contents));}]];
              
             case 1:
-             var name$1=entry$1[2];
+             var name$1=entry[2];
              
-             var path$1=entry$1[1];
+             var path$1=entry[1];
              
              return /* File */[1,
                      path$1,
                      name$1,
-                     entry$1[3],
-                     f(path$1,name$1,entry$1[4])];
+                     entry[3],
+                     f(path$1,name$1,entry[4])];
              
-            case 2:return /* Error */[2,entry$1[1]];
+            case 2:return /* Error */[2,entry[1]];
             }}
         };
     

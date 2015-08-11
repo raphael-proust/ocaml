@@ -380,12 +380,12 @@ var
    {var
      name=
       Printf["sprintf"]
-       (/* Format */[0,
-         /* String */[2,
+       ([/* Format */0,
+         [/* String */2,
           /* No_padding */0,
-          /* Char_literal */[12,
+          [/* Char_literal */12,
            46,
-           /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+           [/* String */2,/* No_padding */0,/* End_of_format */0]]],
          "%s.%s"],
         Odoc_info["Name"][1](t[1]),
         f[1]);
@@ -399,12 +399,12 @@ var
    {return target
             (mark_type_elt,
              Printf["sprintf"]
-              (/* Format */[0,
-                /* String */[2,
+              ([/* Format */0,
+                [/* String */2,
                  /* No_padding */0,
-                 /* Char_literal */[12,
+                 [/* Char_literal */12,
                   46,
-                  /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                 "%s.%s"],
                Odoc_info["Name"][1](t[1]),
                f[1]));
@@ -416,12 +416,12 @@ var
    {return target
             (mark_type_elt,
              Printf["sprintf"]
-              (/* Format */[0,
-                /* String */[2,
+              ([/* Format */0,
+                [/* String */2,
                  /* No_padding */0,
-                 /* Char_literal */[12,
+                 [/* Char_literal */12,
                   46,
-                  /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                 "%s.%s"],
                Odoc_info["Name"][1](t[1]),
                f[1]));
@@ -437,12 +437,12 @@ var
     var field=Odoc_info["Name"][1](name);
     
     return Printf["sprintf"]
-            (/* Format */[0,
-              /* String */[2,
+            ([/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 46,
-                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s.%s"],
              complete_target(mark_type_elt,typ),
              field);
@@ -872,14 +872,14 @@ var
           else
            {"unknown block:(sendself self-2/1482 label_of_text/1417 (field 2 param/3318))";
             return Printf["sprintf"]
-                    (/* Format */[0,
-                      /* Int */[4,
+                    ([/* Format */0,
+                      [/* Int */4,
                        /* Int_d */0,
                        /* No_padding */0,
                        /* No_precision */0,
-                       /* Char_literal */[12,
+                       [/* Char_literal */12,
                         95,
-                        /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                        [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                       "%d_%s"],
                      param[1],
                      0);
@@ -974,7 +974,7 @@ var
         html_of_custom_text,
         function(self$neg2,b,s,t){return /* () */0;},
         html_of_Target,
-        function(self$neg2,b,target$1,code)
+        function(self$neg2,b,target,code)
          {if("unknown primitive:caml_string_equal")
            {return bs(b,code);}
           else
@@ -1162,14 +1162,14 @@ var
              match=
               /* tuple */[0,
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    'div class="h',
-                   /* Int */[4,
+                   [/* Int */4,
                     /* Int_d */0,
                     /* No_padding */0,
                     /* No_precision */0,
-                    /* Char_literal */[12,34,/* End_of_format */0]]],
+                    [/* Char_literal */12,34,/* End_of_format */0]]],
                   'div class="h%d"'],
                  n),
                "div"];
@@ -1178,10 +1178,10 @@ var
            {var
              t$1=
               Printf["sprintf"]
-               (/* Format */[0,
-                 /* Char_literal */[12,
+               ([/* Format */0,
+                 [/* Char_literal */12,
                   104,
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
                    /* No_padding */0,
                    /* No_precision */0,
@@ -1195,14 +1195,14 @@ var
           bs(b,"<");
           bp
            (b,
-            /* Format */[0,
-             /* String */[2,
+            [/* Format */0,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,
+              [/* String_literal */11,
                ' id="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* Char_literal */[12,34,/* End_of_format */0]]]],
+                [/* Char_literal */12,34,/* End_of_format */0]]]],
              '%s id="%s"'],
             match[1],
             Naming[35](label1));
@@ -1231,8 +1231,8 @@ var
             
             var
              h=
-              function(name$1)
-               {return /* Code */[1,Odoc_info["use_hidden_modules"](name$1)];};
+              function(name)
+               {return /* Code */[1,Odoc_info["use_hidden_modules"](name)];};
             
             var exit;
             
@@ -1321,24 +1321,23 @@ var
                 var
                  m=
                   List["find"]
-                   (function(m$1)
-                     {return "unknown primitive:caml_string_equal";},
+                   (function(m){return "unknown primitive:caml_string_equal";},
                     0);
                 
                 var match=Naming[11](m[1]);
                 
                 bp
                  (b,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     '<a href="',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '">',
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,"</a></td>",/* End_of_format */0]]]]],
+                       [/* String_literal */11,"</a></td>",/* End_of_format */0]]]]],
                    '<a href="%s">%s</a></td>'],
                   match[1],
                   m[1]);
@@ -1351,10 +1350,10 @@ var
                    (Odoc_messages["cross_module_not_found"](name)),
                   bp
                    (b,
-                    /* Format */[0,
-                     /* String */[2,
+                    [/* Format */0,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,"</td><td>",/* End_of_format */0]],
+                      [/* String_literal */11,"</td><td>",/* End_of_format */0]],
                      "%s</td><td>"],
                     name)}
                 else
@@ -1374,16 +1373,16 @@ var
              {if(l)
                {return bp
                         (b,
-                         /* Format */[0,
-                          /* String_literal */[11,
+                         [/* Format */0,
+                          [/* String_literal */11,
                            '<li><a href="',
-                           /* String */[2,
+                           [/* String */2,
                             /* No_padding */0,
-                            /* String_literal */[11,
+                            [/* String_literal */11,
                              '">',
-                             /* String */[2,
+                             [/* String */2,
                               /* No_padding */0,
-                              /* String_literal */[11,"</a></li>\n",/* End_of_format */0]]]]],
+                              [/* String_literal */11,"</a></li>\n",/* End_of_format */0]]]]],
                           '<li><a href="%s">%s</a></li>\n'],
                          url,
                          m);
@@ -1394,8 +1393,8 @@ var
           
           bp
            (b,
-            /* Format */[0,
-             /* String_literal */[11,
+            [/* Format */0,
+             [/* String_literal */11,
               '<ul class="indexlist">\n',
               /* End_of_format */0],
              '<ul class="indexlist">\n']);
@@ -1431,8 +1430,8 @@ var
           index_if_not_empty(0,0,Odoc_messages["index_of_module_types"]);
           return bp
                   (b,
-                   /* Format */[0,
-                    /* String_literal */[11,"</ul>\n",/* End_of_format */0],
+                   [/* Format */0,
+                    [/* String_literal */11,"</ul>\n",/* End_of_format */0],
                     "</ul>\n"]);
           }]);
      return function(env,$$self)
@@ -1488,12 +1487,12 @@ var
          {if(l)
            {bp
              (b,
-              /* Format */[0,
-               /* String_literal */[11,
+              [/* Format */0,
+               [/* String_literal */11,
                 "<b>",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,":</b> ",/* End_of_format */0]]],
+                 [/* String_literal */11,":</b> ",/* End_of_format */0]]],
                "<b>%s:</b> "],
               Odoc_messages["authors"]);
             'unknown block:(sendself self-3/1680 html_of_text/1667 b/1681\n  (makeblock 0 (makeblock 0 (apply (field 6 (global String!)) ", " l/1682))\n    0a))';
@@ -1508,12 +1507,12 @@ var
          {if(v_opt)
            {bp
              (b,
-              /* Format */[0,
-               /* String_literal */[11,
+              [/* Format */0,
+               [/* String_literal */11,
                 "<b>",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,":</b> ",/* End_of_format */0]]],
+                 [/* String_literal */11,":</b> ",/* End_of_format */0]]],
                "<b>%s:</b> "],
               Odoc_messages["version"]);
             "unknown block:(sendself self-3/1684 html_of_text/1667 b/1685\n  (makeblock 0 (makeblock 0 (field 0 v_opt/1686)) 0a))";
@@ -1528,12 +1527,12 @@ var
          {if(s_opt)
            {bp
              (b,
-              /* Format */[0,
-               /* String_literal */[11,
+              [/* Format */0,
+               [/* String_literal */11,
                 "<b>",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,"</b> ",/* End_of_format */0]]],
+                 [/* String_literal */11,"</b> ",/* End_of_format */0]]],
                "<b>%s</b> "],
               Odoc_messages["since"]);
             "unknown block:(sendself self-3/1689 html_of_text/1667 b/1690\n  (makeblock 0 (makeblock 0 (field 0 s_opt/1691)) 0a))";
@@ -1550,12 +1549,12 @@ var
             function(param)
              {bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "<b>",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Char_literal */[12,32,/* End_of_format */0]]],
+                   [/* Char_literal */12,32,/* End_of_format */0]]],
                  "<b>%s "],
                 Odoc_messages["before"]);
               "unknown block:(sendself self-3/1694 html_of_text/1667 b/1695\n  (makeblock 0 (makeblock 0 (field 0 param/3245)) 0a))";
@@ -1574,24 +1573,24 @@ var
            {if(l[2])
              {bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "<b>",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,"</b><ul>",/* End_of_format */0]]],
+                   [/* String_literal */11,"</b><ul>",/* End_of_format */0]]],
                  "<b>%s</b><ul>"],
                 Odoc_messages["raises"]);
               List["iter"]
                (function(param)
                  {bp
                    (b,
-                    /* Format */[0,
-                     /* String_literal */[11,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       "<li><code>",
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,"</code> ",/* End_of_format */0]]],
+                       [/* String_literal */11,"</code> ",/* End_of_format */0]]],
                      "<li><code>%s</code> "],
                     param[1]);
                   "unknown block:(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 param/3241))";
@@ -1606,16 +1605,16 @@ var
               
               bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "<b>",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     "</b> <code>",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,"</code> ",/* End_of_format */0]]]]],
+                     [/* String_literal */11,"</code> ",/* End_of_format */0]]]]],
                  "<b>%s</b> <code>%s</code> "],
                 Odoc_messages["raises"],
                 match[1]);
@@ -1641,14 +1640,14 @@ var
               t_ref=
                /* :: */[0,
                 /* Code */[1,see_ref[1]],
-                /* :: */[0,/* Raw */[0," "],t]];
+                /* :: */[0,[/* Raw */0," "],t]];
              
             case 2:
              var
               t_ref=
                /* :: */[0,
                 /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-                /* :: */[0,/* Raw */[0," "],t]];
+                /* :: */[0,[/* Raw */0," "],t]];
              
             }
           
@@ -1660,12 +1659,12 @@ var
            {if(l[2])
              {bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "<b>",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,"</b><ul>",/* End_of_format */0]]],
+                   [/* String_literal */11,"</b><ul>",/* End_of_format */0]]],
                  "<b>%s</b><ul>"],
                 Odoc_messages["see_also"]);
               List["iter"]
@@ -1681,12 +1680,12 @@ var
             else
              {bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "<b>",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,"</b> ",/* End_of_format */0]]],
+                   [/* String_literal */11,"</b> ",/* End_of_format */0]]],
                  "<b>%s</b> "],
                 Odoc_messages["see_also"]);
               "unknown block:(sendself self-3/1718 html_of_see/1673 b/1719 (field 0 l/1720))";
@@ -1702,12 +1701,12 @@ var
          {if(return_opt)
            {bp
              (b,
-              /* Format */[0,
-               /* String_literal */[11,
+              [/* Format */0,
+               [/* String_literal */11,
                 "<b>",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,"</b> ",/* End_of_format */0]]],
+                 [/* String_literal */11,"</b> ",/* End_of_format */0]]],
                "<b>%s</b> "],
               Odoc_messages["returns"]);
             "unknown block:(sendself self-3/1724 html_of_text/1667 b/1725 (field 0 return_opt/1726))";
@@ -1740,11 +1739,11 @@ var
                    l);
           },
         html_of_info,
-        function(self$neg3,$staropt$star,$staropt$star$1,b,info_opt)
-         {if($staropt$star){var cls=$staropt$star[1];}else{var cls="";}
+        function(self$neg3,$staropt$star,$staropt$star,b,info_opt)
+         {if($staropt$star$1){var cls=$staropt$star$1[1];}else{var cls="";}
           
-          if($staropt$star$1)
-           {var indent=$staropt$star$1[1];}
+          if($staropt$star)
+           {var indent=$staropt$star[1];}
           else
            {var indent=/* true */1;}
           
@@ -2149,12 +2148,12 @@ var
        character_encoding,
        function(self$neg4,param)
         {return Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     '<meta content="text/html; charset=',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '" http-equiv="Content-Type">\n',
                       /* End_of_format */0]]],
                    '<meta content="text/html; charset=%s" http-equiv="Content-Type">\n'],
@@ -2172,101 +2171,101 @@ var
         {"unknown block:(sendself self-4/1944 index_prefix/1832)";
          
          return Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String */[2,
+                 ([/* Format */0,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,".html",/* End_of_format */0]],
+                    [/* String_literal */11,".html",/* End_of_format */0]],
                    "%s.html"],
                   p);
          },
        index_values,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_values.html",/* End_of_format */0]],
+         [/* String_literal */11,"_values.html",/* End_of_format */0]],
         "%s_values.html"],
        index_prefix,
        index_types,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_types.html",/* End_of_format */0]],
+         [/* String_literal */11,"_types.html",/* End_of_format */0]],
         "%s_types.html"],
        index_prefix,
        index_extensions,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_extensions.html",/* End_of_format */0]],
+         [/* String_literal */11,"_extensions.html",/* End_of_format */0]],
         "%s_extensions.html"],
        index_prefix,
        index_exceptions,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_exceptions.html",/* End_of_format */0]],
+         [/* String_literal */11,"_exceptions.html",/* End_of_format */0]],
         "%s_exceptions.html"],
        index_prefix,
        index_attributes,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_attributes.html",/* End_of_format */0]],
+         [/* String_literal */11,"_attributes.html",/* End_of_format */0]],
         "%s_attributes.html"],
        index_prefix,
        index_methods,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_methods.html",/* End_of_format */0]],
+         [/* String_literal */11,"_methods.html",/* End_of_format */0]],
         "%s_methods.html"],
        index_prefix,
        index_classes,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_classes.html",/* End_of_format */0]],
+         [/* String_literal */11,"_classes.html",/* End_of_format */0]],
         "%s_classes.html"],
        index_prefix,
        index_class_types,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_class_types.html",/* End_of_format */0]],
+         [/* String_literal */11,"_class_types.html",/* End_of_format */0]],
         "%s_class_types.html"],
        index_prefix,
        index_modules,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_modules.html",/* End_of_format */0]],
+         [/* String_literal */11,"_modules.html",/* End_of_format */0]],
         "%s_modules.html"],
        index_prefix,
        index_module_types,
        12,
        Printf["sprintf"],
-       /* Format */[0,
-        /* String */[2,
+       [/* Format */0,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"_module_types.html",/* End_of_format */0]],
+         [/* String_literal */11,"_module_types.html",/* End_of_format */0]],
         "%s_module_types.html"],
        index_prefix,
        list_attributes,
@@ -2362,20 +2361,20 @@ var
          return Pervasives["^"]($js,0);
          },
        print_header,
-       function(self$neg4,b,nav,comments,title$1)
-        {return self$neg4[header](b,nav,comments,title$1);},
+       function(self$neg4,b,nav,comments,title)
+        {return self$neg4[header](b,nav,comments,title);},
        prepare_header,
        function(self$neg4,module_list)
         {var
           f=
-           function(b,$staropt$star,$staropt$star$1,t)
-            {if($staropt$star)
-              {var nav=$staropt$star[1];}
+           function(b,$staropt$star,$staropt$star,t)
+            {if($staropt$star$1)
+              {var nav=$staropt$star$1[1];}
              else
               {var nav=/* None */0;}
              
-             if($staropt$star$1)
-              {var comments=$staropt$star$1[1];}
+             if($staropt$star)
+              {var comments=$staropt$star[1];}
              else
               {var comments=/* [] */0;}
              
@@ -2385,16 +2384,16 @@ var
                 {if(l)
                   {return bp
                            (b,
-                            /* Format */[0,
-                             /* String_literal */[11,
+                            [/* Format */0,
+                             [/* String_literal */11,
                               '<link title="',
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String_literal */[11,
+                               [/* String_literal */11,
                                 '" rel=Appendix href="',
-                                /* String */[2,
+                                [/* String */2,
                                  /* No_padding */0,
-                                 /* String_literal */[11,'">\n',/* End_of_format */0]]]]],
+                                 [/* String_literal */11,'">\n',/* End_of_format */0]]]]],
                              '<link title="%s" rel=Appendix href="%s">\n'],
                             m,
                             url);
@@ -2421,12 +2420,12 @@ var
                if(pre_opt)
                 {bp
                   (b,
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      '<link rel="previous" href="',
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,'">\n',/* End_of_format */0]]],
+                      [/* String_literal */11,'">\n',/* End_of_format */0]]],
                     '<link rel="previous" href="%s">\n'],
                    Naming[11](pre_opt[1])[1])}
                else
@@ -2435,12 +2434,12 @@ var
                if(post_opt)
                 {bp
                   (b,
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      '<link rel="next" href="',
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,'">\n',/* End_of_format */0]]],
+                      [/* String_literal */11,'">\n',/* End_of_format */0]]],
                     '<link rel="next" href="%s">\n'],
                    Naming[11](post_opt[1])[1])}
                else
@@ -2455,12 +2454,12 @@ var
                
                bp
                 (b,
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    '<link rel="Up" href="',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,'">\n',/* End_of_format */0]]],
+                    [/* String_literal */11,'">\n',/* End_of_format */0]]],
                   '<link rel="Up" href="%s">\n'],
                  href)}
              else
@@ -2503,16 +2502,16 @@ var
                  
                  return bp
                          (b,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             '<link title="',
-                            /* String */[2,
+                            [/* String */2,
                              /* No_padding */0,
-                             /* String_literal */[11,
+                             [/* String_literal */11,
                               '" rel="Chapter" href="',
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String_literal */[11,'">',/* End_of_format */0]]]]],
+                               [/* String_literal */11,'">',/* End_of_format */0]]]]],
                            '<link title="%s" rel="Chapter" href="%s">'],
                           m[1],
                           html_file);
@@ -2557,7 +2556,7 @@ var
          var
           sorted_levels=
            List["sort"]
-            (function(prim,prim$1){return "unknown primitive:caml_compare";},
+            (function(prim,prim){return "unknown primitive:caml_compare";},
              levels);
          
          if(sorted_levels)
@@ -2574,7 +2573,7 @@ var
             {var match$1=/* tuple */[0,/* Some */[0,n],/* None */0];}
            }
          else
-          {var match$1=/* tuple */[0,/* None */0,/* None */0];}
+          {var match$1=[/* tuple */0,/* None */0,/* None */0];}
          
          var
           titles_per_level=
@@ -2595,7 +2594,7 @@ var
          
          var
           print_lines=
-           function(s_rel,titles$1)
+           function(s_rel,titles)
             {return List["iter"]
                      (function(param)
                        {var t=param[3];
@@ -2606,26 +2605,26 @@ var
                         
                         return bp
                                 (b,
-                                 /* Format */[0,
-                                  /* String_literal */[11,
+                                 [/* Format */0,
+                                  [/* String_literal */11,
                                    '<link title="',
-                                   /* String */[2,
+                                   [/* String */2,
                                     /* No_padding */0,
-                                    /* String_literal */[11,
+                                    [/* String_literal */11,
                                      '" rel="',
-                                     /* String */[2,
+                                     [/* String */2,
                                       /* No_padding */0,
-                                      /* String_literal */[11,
+                                      [/* String_literal */11,
                                        '" href="#',
-                                       /* String */[2,
+                                       [/* String */2,
                                         /* No_padding */0,
-                                        /* String_literal */[11,'">\n',/* End_of_format */0]]]]]]],
+                                        [/* String_literal */11,'">\n',/* End_of_format */0]]]]]]],
                                   '<link title="%s" rel="%s" href="#%s">\n'],
                                  s,
                                  s_rel,
                                  label);
                         },
-                      titles$1);
+                      titles);
              };
          
          print_lines("Section",section_titles);
@@ -2639,20 +2638,20 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a class="pre" href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '" title="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"</a>\n",/* End_of_format */0]]]]]]],
+                    [/* String_literal */11,"</a>\n",/* End_of_format */0]]]]]]],
               '<a class="pre" href="%s" title="%s">%s</a>\n'],
              Naming[11](name$1)[1],
              name$1,
@@ -2675,20 +2674,20 @@ var
          
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<a class="up" href="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,
+              [/* String_literal */11,
                '" title="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>\n",/* End_of_format */0]]]]]]],
+                  [/* String_literal */11,"</a>\n",/* End_of_format */0]]]]]]],
             '<a class="up" href="%s" title="%s">%s</a>\n'],
            href,
            father_name,
@@ -2699,20 +2698,20 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a class="post" href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '" title="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"</a>\n",/* End_of_format */0]]]]]]],
+                    [/* String_literal */11,"</a>\n",/* End_of_format */0]]]]]]],
               '<a class="post" href="%s" title="%s">%s</a>\n'],
              Naming[11](name$2)[1],
              name$2,
@@ -2916,12 +2915,12 @@ var
               
               bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   ' <a href="',
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,'">..</a> ',/* End_of_format */0]]],
+                   [/* String_literal */11,'">..</a> ',/* End_of_format */0]]],
                  ' <a href="%s">..</a> '],
                 match[1])}
             else
@@ -2993,16 +2992,16 @@ var
               "unknown block:(sendself self-4/2159 escape/1996 code/2175)";
               bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   ' <a href="',
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     '">',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,"</a> ",/* End_of_format */0]]]]],
+                     [/* String_literal */11,"</a> ",/* End_of_format */0]]]]],
                  ' <a href="%s">%s</a> '],
                 match$2[1],
                 0)}
@@ -3017,9 +3016,9 @@ var
        html_of_module_parameter,
        function(self$neg4,b,father,p)
         {if(html_short_functors[1])
-          {var match=/* tuple */[0,"",""];}
+          {var match=[/* tuple */0,"",""];}
          else
-          {var match=/* tuple */[0,"functor ","-> "];}
+          {var match=[/* tuple */0,"functor ","-> "];}
          
          'unknown block:(sendself self-4/2183 html_of_text/2177 b/2184\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) (field 0 match/3097) "("))\n    (makeblock 0 (makeblock 1 (field 0 p/2186)) [0: [1: " : "] 0a])))';
          
@@ -3073,12 +3072,12 @@ var
               
               bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   ' <a href="',
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,'">..</a> ',/* End_of_format */0]]],
+                   [/* String_literal */11,'">..</a> ',/* End_of_format */0]]],
                  ' <a href="%s">..</a> '],
                 match[1])}
             else
@@ -3087,12 +3086,12 @@ var
                 
                 bp
                  (b,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     ' <a href="',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,'">..</a> ',/* End_of_format */0]]],
+                     [/* String_literal */11,'">..</a> ',/* End_of_format */0]]],
                    ' <a href="%s">..</a> '],
                   match$1[1])}
               else
@@ -3147,7 +3146,7 @@ var
           s=
            Odoc_info["remove_ending_newline"]
             (Odoc_info["string_of_module_type"]
-              (/* None */0,/* Some */[0,/* true */1],mtyp));
+              (/* None */0,[/* Some */0,/* true */1],mtyp));
          
          "unknown block:(sendself self-4/2229 output_code/1881 in_title/2230 file/2231 s/2233)";
          },
@@ -3156,7 +3155,7 @@ var
         {var
           s=
            Odoc_info["remove_ending_newline"]
-            (Odoc_info["string_of_class_type"](/* Some */[0,/* true */1],ctyp));
+            (Odoc_info["string_of_class_type"]([/* Some */0,/* true */1],ctyp));
          
          "unknown block:(sendself self-4/2235 output_code/1881 in_title/2236 file/2237 s/2239)";
          },
@@ -3166,12 +3165,12 @@ var
          bs(b,"\n<pre>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span id="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[25](v));
          'unknown block:(sendself self-4/2241 keyword/1879 "val")';
@@ -3187,16 +3186,16 @@ var
            "unknown block:(sendself self-4/2241 escape/1996\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/2243)))";
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              file,
              0)}
@@ -3256,16 +3255,16 @@ var
              bs(b,"<code>");
              bp
               (b,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  '<span id="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"</span>",/* End_of_format */0]]]]],
+                    [/* String_literal */11,"</span>",/* End_of_format */0]]]]],
                 '<span id="%s">%s</span>'],
                Naming[21](x),
                Odoc_info["Name"][1](x[1]));
@@ -3312,16 +3311,16 @@ var
                  
                  bp
                   (b,
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      '<a href="',
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        '">',
-                       /* String */[2,
+                       [/* String */2,
                         /* No_padding */0,
-                        /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                        [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
                     '<a href="%s">%s</a>'],
                    Naming[22](x$1),
                    x$1[1])}
@@ -3370,12 +3369,12 @@ var
          bs(b,"\n<pre>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span id="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[23](e));
          'unknown block:(sendself self-4/2265 keyword/1879 "exception")';
@@ -3426,16 +3425,16 @@ var
              
              bp
               (b,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  '<a href="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                    [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
                 '<a href="%s">%s</a>'],
                Naming[24](e$1),
                e$1[1])}
@@ -3495,12 +3494,12 @@ var
             :"unknown primitive:isint"?"\n<pre>":"\n<pre><code>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span id="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[14](t));
          'unknown block:(sendself self-4/2275 keyword/1879 "type")';
@@ -3540,16 +3539,16 @@ var
                  {print_field_prefix(/* () */0);
                   bp
                    (b,
-                    /* Format */[0,
-                     /* String_literal */[11,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       '<span id="',
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         '">',
-                        /* String */[2,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* String_literal */[11,
+                         [/* String_literal */11,
                           "</span>&nbsp;: ",
                           /* End_of_format */0]]]]],
                      '<span id="%s">%s</span>&nbsp;: '],
@@ -3597,16 +3596,16 @@ var
                   "unknown block:(sendself self-4/2275 constructor/1880 (field 0 constr/2290))";
                   bp
                    (b,
-                    /* Format */[0,
-                     /* String_literal */[11,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       '<span id="',
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         '">',
-                        /* String */[2,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* String_literal */[11,"</span>",/* End_of_format */0]]]]],
+                         [/* String_literal */11,"</span>",/* End_of_format */0]]]]],
                      '<span id="%s">%s</span>'],
                     Naming[15](t,constr),
                     0);
@@ -3693,16 +3692,16 @@ var
                   
                   bp
                    (b,
-                    /* Format */[0,
-                     /* String_literal */[11,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       '<span id="',
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         '">',
-                        /* String */[2,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* String_literal */[11,
+                         [/* String_literal */11,
                           "</span>&nbsp;: ",
                           /* End_of_format */0]]]]],
                      '<span id="%s">%s</span>&nbsp;: '],
@@ -3751,12 +3750,12 @@ var
          bs(b,"\n<pre>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span id="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[29](a));
          'unknown block:(sendself self-4/2300 keyword/1879 "val")';
@@ -3783,16 +3782,16 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              file,
              Odoc_info["Name"][1](a[1][1]))}
@@ -3813,12 +3812,12 @@ var
          bs(b,"\n<pre>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span id="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[32](m));
          'unknown block:(sendself self-4/2307 keyword/1879 "method")';
@@ -3844,16 +3843,16 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              file,
              Odoc_info["Name"][1](m[1][1]))}
@@ -4019,19 +4018,19 @@ var
           {return /* () */0;}
          },
        html_of_module,
-       function(self$neg4,b,$staropt$star,$staropt$star$1,$staropt$star$2,m)
-        {if($staropt$star)
-          {var info$1=$staropt$star[1];}
+       function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,m)
+        {if($staropt$star$1)
+          {var info$1=$staropt$star$1[1];}
          else
           {var info$1=/* true */1;}
          
-         if($staropt$star$1)
-          {var complete=$staropt$star$1[1];}
+         if($staropt$star$2)
+          {var complete=$staropt$star$2[1];}
          else
           {var complete=/* true */1;}
          
-         if($staropt$star$2)
-          {var with_link=$staropt$star$2[1];}
+         if($staropt$star)
+          {var with_link=$staropt$star[1];}
          else
           {var with_link=/* true */1;}
          
@@ -4045,16 +4044,16 @@ var
          if(with_link)
           {bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
              Odoc_info["Name"][1](m[1]))}
@@ -4086,19 +4085,19 @@ var
           {return /* () */0;}
          },
        html_of_modtype,
-       function(self$neg4,b,$staropt$star,$staropt$star$1,$staropt$star$2,mt)
-        {if($staropt$star)
-          {var info$1=$staropt$star[1];}
+       function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,mt)
+        {if($staropt$star$1)
+          {var info$1=$staropt$star$1[1];}
          else
           {var info$1=/* true */1;}
          
-         if($staropt$star$1)
-          {var complete=$staropt$star$1[1];}
+         if($staropt$star$2)
+          {var complete=$staropt$star$2[1];}
          else
           {var complete=/* true */1;}
          
-         if($staropt$star$2)
-          {var with_link=$staropt$star$2[1];}
+         if($staropt$star)
+          {var with_link=$staropt$star[1];}
          else
           {var with_link=/* true */1;}
          
@@ -4112,16 +4111,16 @@ var
          if(with_link)
           {bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
              Odoc_info["Name"][1](mt[1]))}
@@ -4166,16 +4165,16 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match$2[1],
              match$2[2])}
@@ -4212,12 +4211,12 @@ var
               
               bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   ' <a href="',
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,'">..</a> ',/* End_of_format */0]]],
+                   [/* String_literal */11,'">..</a> ',/* End_of_format */0]]],
                  ' <a href="%s">..</a> '],
                 match[1])}
             else
@@ -4279,12 +4278,12 @@ var
               
               bp
                (b,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   ' <a href="',
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,'">..</a> ',/* End_of_format */0]]],
+                   [/* String_literal */11,'">..</a> ',/* End_of_format */0]]],
                  ' <a href="%s">..</a> '],
                 match[1])}
             else
@@ -4320,14 +4319,14 @@ var
            }
          },
        html_of_class,
-       function(self$neg4,b,$staropt$star,$staropt$star$1,c)
-        {if($staropt$star)
-          {var complete=$staropt$star[1];}
+       function(self$neg4,b,$staropt$star,$staropt$star,c)
+        {if($staropt$star$1)
+          {var complete=$staropt$star$1[1];}
          else
           {var complete=/* true */1;}
          
-         if($staropt$star$1)
-          {var with_link=$staropt$star$1[1];}
+         if($staropt$star)
+          {var with_link=$staropt$star[1];}
          else
           {var with_link=/* true */1;}
          
@@ -4339,12 +4338,12 @@ var
          bs(b,"\n<pre>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span name="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span name="%s">'],
            Naming[14]
             (/* record */[0,
@@ -4376,16 +4375,16 @@ var
          if(with_link)
           {bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
              Odoc_info["Name"][1](c[1]))}
@@ -4408,14 +4407,14 @@ var
          return $js(b,c[2]);
          },
        html_of_class_type,
-       function(self$neg4,b,$staropt$star,$staropt$star$1,ct)
-        {if($staropt$star)
-          {var complete=$staropt$star[1];}
+       function(self$neg4,b,$staropt$star,$staropt$star,ct)
+        {if($staropt$star$1)
+          {var complete=$staropt$star$1[1];}
          else
           {var complete=/* true */1;}
          
-         if($staropt$star$1)
-          {var with_link=$staropt$star$1[1];}
+         if($staropt$star)
+          {var with_link=$staropt$star[1];}
          else
           {var with_link=/* true */1;}
          
@@ -4427,12 +4426,12 @@ var
          bs(b,"\n<pre>");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span id="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'">',/* End_of_format */0]]],
+              [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[14]
             (/* record */[0,
@@ -4464,16 +4463,16 @@ var
          if(with_link)
           {bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
              Odoc_info["Name"][1](ct[1]))}
@@ -4534,18 +4533,18 @@ var
          return Odoc_dag2html["html_of_dag"](/* record */[0,a]);
          },
        html_of_module_comment,
-       function(self$neg4,b,text$1)
+       function(self$neg4,b,text)
         {bs(b,"<br>\n");
          "unknown block:(sendself self-4/2468 html_of_text/2177 b/2469 text/2470)";
          
          return bs(b,"<br>\n");
          },
        html_of_class_comment,
-       function(self$neg4,b,text$1)
+       function(self$neg4,b,text)
         {var exit;
          
-         if(text$1)
-          {var match=text$1[1];
+         if(text)
+          {var match=text[1];
            
            if(typeof match=="number")
             {switch(match){}}
@@ -4559,14 +4558,14 @@ var
                     2,
                     /* None */0,
                     /* :: */[0,/* Raw */[0,match[1]],/* [] */0]],
-                   text$1[2]];
+                   text[2]];
                 
                default:exit=63;}}
            }
          else
           {exit=63;}
          
-         switch(exit){case 63:var text2=text$1;}
+         switch(exit){case 63:var text2=text;}
          
          "unknown block:(sendself self-4/2472 html_of_text/2177 b/2473 text2/2475)";
          },
@@ -4574,28 +4573,28 @@ var
        function(self$neg4,b,inher_l)
         {var
           f=
-           function(inh$2)
-            {var match=inh$2[2];
+           function(inh)
+            {var match=inh[2];
              
              if(match)
               {var real_name=match[1][1][1];
                
                var match$1=Naming[11](real_name);
                
-               var match$2=inh$2[3];
+               var match$2=inh[3];
                
                return /* :: */[0,
                        /* Link */[15,
                         match$1[1],
                         /* :: */[0,/* Code */[1,real_name],/* [] */0]],
-                       match$2?/* :: */[0,/* Raw */[0,"    "],match$2[1]]:/* [] */0];
+                       match$2?/* :: */[0,[/* Raw */0,"    "],match$2[1]]:/* [] */0];
                }
              else
-              {var match$3=inh$2[3];
+              {var match$3=inh[3];
                
                return /* :: */[0,
-                       /* Code */[1,inh$2[1]],
-                       match$3?/* :: */[0,/* Raw */[0,"    "],match$3[1]]:/* [] */0];
+                       /* Code */[1,inh[1]],
+                       match$3?/* :: */[0,[/* Raw */0,"    "],match$3[1]]:/* [] */0];
                }
              };
          
@@ -4653,7 +4652,7 @@ var
            }
          },
        generate_elements_index,
-       function(self$neg4,elements,name,info$1,target$1,title$1,simple_file)
+       function(self$neg4,elements,name,info,target,title,simple_file)
         {try
           {var
             chanout=
@@ -4669,7 +4668,7 @@ var
            'unknown block:(sendself self-4/2507 print_navbar/1878 b/2515 0a 0a "")';
            
            bs(b,"<h1>");
-           bs(b,title$1);
+           bs(b,title);
            bs(b,"</h1>\n");
            var
             sorted_elements=
@@ -4694,34 +4693,34 @@ var
                "unknown block:(sendself self-4/2507 escape/1996 simple_name/2523)";
                bp
                 (b,
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    '<tr><td><a href="',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      '">',
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,"</a> ",/* End_of_format */0]]]]],
+                      [/* String_literal */11,"</a> ",/* End_of_format */0]]]]],
                   '<tr><td><a href="%s">%s</a> '],
-                 target$1(e),
+                 target(e),
                  0);
                if
                 ("unknown primitive:caml_string_notequal"&&
                  "unknown primitive:caml_string_notequal")
                 {bp
                   (b,
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      '[<a href="',
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        '">',
-                       /* String */[2,
+                       [/* String */2,
                         /* No_padding */0,
-                        /* String_literal */[11,"</a>]",/* End_of_format */0]]]]],
+                        [/* String_literal */11,"</a>]",/* End_of_format */0]]]]],
                     '[<a href="%s">%s</a>]'],
                    Naming[11](father_name)[1],
                    father_name)}
@@ -4818,16 +4817,16 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              type_file,
              cl[1]);
@@ -4841,7 +4840,7 @@ var
            bs(b,'<hr width="100%">\n');
            "unknown block:(sendself self-4/2542 html_of_class_element/1910 b/2549)";
            List["iter"]
-            (0,Odoc_info["Class"][1](/* Some */[0,/* false */0],cl));
+            (0,Odoc_info["Class"][1]([/* Some */0,/* false */0],cl));
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
            Pervasives["close_out"](chanout);
@@ -4882,16 +4881,16 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                '<a href="',
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  '">',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              type_file,
              clt[1]);
@@ -4903,7 +4902,7 @@ var
            bs(b,'<hr width="100%">\n');
            "unknown block:(sendself self-4/2556 html_of_class_element/1910 b/2563)";
            List["iter"]
-            (0,Odoc_info["Class"][6](/* Some */[0,/* false */0],clt));
+            (0,Odoc_info["Class"][6]([/* Some */0,/* false */0],clt));
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
            Pervasives["close_out"](chanout);
@@ -4926,9 +4925,9 @@ var
            
            var b=new_buf(/* () */0);
            
-           var pre_name=opt(function(mt$1){return mt$1[1];},pre);
+           var pre_name=opt(function(mt){return mt[1];},pre);
            
-           var post_name=opt(function(mt$1){return mt$1[1];},post);
+           var post_name=opt(function(mt){return mt[1];},post);
            
            bs(b,self$neg4[doctype]);
            bs(b,"<html>\n");
@@ -4939,8 +4938,8 @@ var
            
            bp
             (b,
-             /* Format */[0,
-              /* String_literal */[11,"<h1>",/* End_of_format */0],
+             [/* Format */0,
+              [/* String_literal */11,"<h1>",/* End_of_format */0],
               "<h1>"]);
            bs(b,Pervasives["^"](Odoc_messages["module_type"]," "));
            var match$1=mt[3];
@@ -4948,16 +4947,16 @@ var
            if(match$1)
             {bp
               (b,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  '<a href="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                    [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
                 '<a href="%s">%s</a>'],
                type_file,
                mt[1])}
@@ -5034,16 +5033,16 @@ var
                 :Odoc_messages["modul"]);
              bp
               (b,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  ' <a href="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"</a>",/* End_of_format */0]]]]],
+                    [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
                 ' <a href="%s">%s</a>'],
                type_file,
                modu[1]);
@@ -5052,12 +5051,12 @@ var
              if(match$1)
               {bp
                 (b,
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    ' (<a href="',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,'">.ml</a>)',/* End_of_format */0]]],
+                    [/* String_literal */11,'">.ml</a>)',/* End_of_format */0]]],
                   ' (<a href="%s">.ml</a>)'],
                  code_file)}
              else
@@ -5413,31 +5412,31 @@ var
                                       Pervasives["^"]
                                        ("text-align: center; background-color: #FFFFFF ; ",
                                         "padding: 2px; }"))),
-                                  /* :: */[0,
+                                  [/* :: */0,
                                    "a {color: #416DFF; text-decoration: none}",
-                                   /* :: */[0,
+                                   [/* :: */0,
                                     "a:hover {background-color: #ddd; text-decoration: underline}",
-                                    /* :: */[0,
+                                    [/* :: */0,
                                      "pre { margin-bottom: 4px; font-family: monospace; }",
-                                     /* :: */[0,
+                                     [/* :: */0,
                                       "pre.verbatim, pre.codepre { }",
-                                      /* :: */[0,
+                                      [/* :: */0,
                                        ".indextable {border: 1px #ddd solid; border-collapse: collapse}",
-                                       /* :: */[0,
+                                       [/* :: */0,
                                         ".indextable td, .indextable th {border: 1px #ddd solid; min-width: 80px}",
-                                        /* :: */[0,
+                                        [/* :: */0,
                                          ".indextable td.module {background-color: #eee ;  padding-left: 2px; padding-right: 2px}",
-                                         /* :: */[0,
+                                         [/* :: */0,
                                           ".indextable td.module a {color: 4E6272; text-decoration: none; display: block; width: 100%}",
-                                          /* :: */[0,
+                                          [/* :: */0,
                                            ".indextable td.module a:hover {text-decoration: underline; background-color: transparent}",
-                                           /* :: */[0,
+                                           [/* :: */0,
                                             ".deprecated {color: #888; font-style: italic}",
-                                            /* :: */[0,
+                                            [/* :: */0,
                                              ".indextable tr td div.info { margin-left: 2px; margin-right: 2px }",
-                                             /* :: */[0,
+                                             [/* :: */0,
                                               "ul.indexlist { margin-left: 0; padding-left: 0;}",
-                                              /* :: */[0,
+                                              [/* :: */0,
                                                "ul.indexlist li { list-style-type: none ; margin-left: 0; padding-left: 0; }",
                                                /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
       0,
@@ -5487,11 +5486,14 @@ var
       /* [] */0,
       0,
       $$self$1[header]=
-      function(b,$staropt$star,$staropt$star$1,param)
-       {if($staropt$star){var nav=$staropt$star[1];}else{var nav=/* None */0;}
+      function(b,$staropt$star,$staropt$star,param)
+       {if($staropt$star$1)
+         {var nav=$staropt$star$1[1];}
+        else
+         {var nav=/* None */0;}
         
-        if($staropt$star$1)
-         {var comments=$staropt$star$1[1];}
+        if($staropt$star)
+         {var comments=$staropt$star[1];}
         else
          {var comments=/* [] */0;}
         

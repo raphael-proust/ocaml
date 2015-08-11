@@ -39,14 +39,14 @@ var
               {var
                 s$1=
                  Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String */[2,
+                  ([/* Format */0,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       " > '",
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Char_literal */[12,39,/* End_of_format */0]]]],
+                       [/* Char_literal */12,39,/* End_of_format */0]]]],
                     "%s > '%s'"],
                    s,
                    tmp);
@@ -56,10 +56,10 @@ var
                if(st!=0)
                 {Pervasives["failwith"]
                   (Printf["sprintf"]
-                    (/* Format */[0,
-                      /* String_literal */[11,
+                    ([/* Format */0,
+                      [/* String_literal */11,
                        "Error while running: ",
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       "Error while running: %s"],
                      s$1))}
                else
@@ -86,10 +86,10 @@ var
      {if(exn=Not_found)
        {return run_and_open
                 (Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "readlink ",
-                     /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                     [/* String */2,/* No_padding */0,/* End_of_format */0]],
                     "readlink %s"],
                    Filename["quote"](x)),
                  function(ic)

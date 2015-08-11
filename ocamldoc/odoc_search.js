@@ -70,7 +70,7 @@ var
          {case 276:
            return List["flatten"]
                    (List["map"]
-                     (function(t$2){return search_text(root,t$2,v);},e[1]));
+                     (function(t){return search_text(root,t,v);},e[1]));
            
           case 277:"unknown block:(exit 272 (field 1 e/1051))";
           case 271:return /* [] */0;
@@ -316,8 +316,8 @@ var
           var
            res_modtyp=
             List["fold_left"]
-             (function(acc,mt$1)
-               {return Pervasives["@"](acc,search_module_type(mt$1,v));},
+             (function(acc,mt)
+               {return Pervasives["@"](acc,search_module_type(mt,v));},
               /* [] */0,
               Odoc_module["module_type_module_types"](/* None */0,mt));
           
@@ -533,12 +533,12 @@ var
    {var
      name=
       Printf["sprintf"]
-       (/* Format */[0,
-         /* String */[2,
+       ([/* Format */0,
+         [/* String */2,
           /* No_padding */0,
-          /* Char_literal */[12,
+          [/* Char_literal */12,
            46,
-           /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+           [/* String */2,/* No_padding */0,/* End_of_format */0]]],
          "%s.%s"],
         t[1],
         f[1]);
@@ -552,12 +552,12 @@ var
    {var
      name=
       Printf["sprintf"]
-       (/* Format */[0,
-         /* String */[2,
+       ([/* Format */0,
+         [/* String */2,
           /* No_padding */0,
-          /* Char_literal */[12,
+          [/* Char_literal */12,
            46,
-           /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+           [/* String */2,/* No_padding */0,/* End_of_format */0]]],
          "%s.%s"],
         t[1],
         f[1]);
@@ -617,19 +617,19 @@ var
 
 var
  p_module$1=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$1=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$1=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$1=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$1=function(param,param$1){return /* true */1;};
 
@@ -639,7 +639,7 @@ var p_const$1=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$1=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$1=function(param,param$1){return /* false */0;};
 
@@ -705,19 +705,19 @@ var
 
 var
  p_module$2=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$2=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$2=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$2=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$2=function(param,param$1){return /* false */0;};
 
@@ -727,7 +727,7 @@ var p_const$2=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$2=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$2=function(param,param$1){return /* true */1;};
 
@@ -793,19 +793,19 @@ var
 
 var
  p_module$3=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$3=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$3=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$3=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$3=function(param,param$1){return /* false */0;};
 
@@ -815,7 +815,7 @@ var p_const$3=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$3=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$3=function(param,param$1){return /* false */0;};
 
@@ -881,19 +881,19 @@ var
 
 var
  p_module$4=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$4=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$4=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$4=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$4=function(param,param$1){return /* false */0;};
 
@@ -903,7 +903,7 @@ var p_const$4=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$4=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1];};
 
 var p_extension$4=function(param,param$1){return /* false */0;};
 
@@ -969,19 +969,19 @@ var
 
 var
  p_module$5=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$5=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$5=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class_type$5=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var p_value$5=function(param,param$1){return /* false */0;};
 
@@ -991,7 +991,7 @@ var p_const$5=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$5=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$5=function(param,param$1){return /* false */0;};
 
@@ -1057,19 +1057,19 @@ var
 
 var
  p_module$6=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$6=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$6=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class_type$6=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var p_value$6=function(param,param$1){return /* false */0;};
 
@@ -1079,7 +1079,7 @@ var p_const$6=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$6=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$6=function(param,param$1){return /* false */0;};
 
@@ -1145,19 +1145,19 @@ var
 
 var
  p_module$7=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$7=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$7=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1];};
 
 var
  p_class_type$7=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$7=function(param,param$1){return /* false */0;};
 
@@ -1167,7 +1167,7 @@ var p_const$7=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$7=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$7=function(param,param$1){return /* false */0;};
 
@@ -1233,19 +1233,19 @@ var
 
 var
  p_module$8=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$8=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$8=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$8=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1];};
 
 var p_value$8=function(param,param$1){return /* false */0;};
 
@@ -1255,7 +1255,7 @@ var p_const$8=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$8=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$8=function(param,param$1){return /* false */0;};
 
@@ -1321,19 +1321,19 @@ var
 
 var
  p_module$9=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* true */1];};
 
 var
  p_module_type$9=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_class$9=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$9=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$9=function(param,param$1){return /* false */0;};
 
@@ -1343,7 +1343,7 @@ var p_const$9=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$9=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$9=function(param,param$1){return /* false */0;};
 
@@ -1409,19 +1409,19 @@ var
 
 var
  p_module$10=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
 
 var
  p_module_type$10=
-  function(param,param$1){return /* tuple */[0,/* true */1,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* true */1];};
 
 var
  p_class$10=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var
  p_class_type$10=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_value$10=function(param,param$1){return /* false */0;};
 
@@ -1431,7 +1431,7 @@ var p_const$10=function(param,param$1,param$2){return /* false */0;};
 
 var
  p_type$10=
-  function(param,param$1){return /* tuple */[0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
 
 var p_extension$10=function(param,param$1){return /* false */0;};
 

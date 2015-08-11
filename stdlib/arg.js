@@ -71,18 +71,18 @@ var
          
          return Printf["bprintf"]
                  (buf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "  ",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,
+                     [/* Char_literal */12,
                       32,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String */[2,
+                       [/* String */2,
                         /* No_padding */0,
-                        /* Char_literal */[12,10,/* End_of_format */0]]]]]],
+                        [/* Char_literal */12,10,/* End_of_format */0]]]]]],
                    "  %s %s%s\n"],
                   key,
                   make_symlist("{","|","}",l),
@@ -91,16 +91,16 @@ var
         default:
          return Printf["bprintf"]
                  (buf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "  ",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,
+                     [/* Char_literal */12,
                       32,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Char_literal */[12,10,/* End_of_format */0]]]]],
+                       [/* Char_literal */12,10,/* End_of_format */0]]]]],
                    "  %s %s\n"],
                   key,
                   doc);
@@ -110,7 +110,7 @@ var
      {return 0;}
     };
 
-var help_action=function(param){throw [0,Stop,/* Unknown */[0,"-help"]];};
+var help_action=function(param){throw [0,Stop,[/* Unknown */0,"-help"]];};
 
 var
  add_help=
@@ -157,10 +157,10 @@ var
   function(buf,speclist,errmsg)
    {Printf["bprintf"]
      (buf,
-      /* Format */[0,
-       /* String */[2,
+      [/* Format */0,
+       [/* String */2,
         /* No_padding */0,
-        /* Char_literal */[12,10,/* End_of_format */0]],
+        [/* Char_literal */12,10,/* End_of_format */0]],
        "%s\n"],
       errmsg);
     return List["iter"](print_spec(buf),add_help(speclist));
@@ -179,8 +179,8 @@ var
  usage=
   function(speclist,errmsg)
    {return Printf["eprintf"]
-            (/* Format */[0,
-              /* String */[2,/* No_padding */0,/* End_of_format */0],
+            ([/* Format */0,
+              [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
              usage_string(speclist,errmsg));
     };
@@ -218,14 +218,14 @@ var
             {case 48:
               Printf["bprintf"]
                (b,
-                /* Format */[0,
-                 /* String */[2,
+                [/* Format */0,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    ": unknown option '",
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,"'.\n",/* End_of_format */0]]]],
+                    [/* String_literal */11,"'.\n",/* End_of_format */0]]]],
                  "%s: unknown option '%s'.\n"],
                 progname,
                 s)
@@ -240,22 +240,22 @@ var
            
            Printf["bprintf"]
             (b,
-             /* Format */[0,
-              /* String */[2,
+             [/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String_literal */[11,
+               [/* String_literal */11,
                 ": wrong argument '",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   "'; option '",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     "' expects ",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,".\n",/* End_of_format */0]]]]]]]],
+                     [/* String_literal */11,".\n",/* End_of_format */0]]]]]]]],
               "%s: wrong argument '%s'; option '%s' expects %s.\n"],
              progname,
              arg,
@@ -266,14 +266,14 @@ var
            
            Printf["bprintf"]
             (b,
-             /* Format */[0,
-              /* String */[2,
+             [/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String_literal */[11,
+               [/* String_literal */11,
                 ": option '",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   "' needs an argument.\n",
                   /* End_of_format */0]]]],
               "%s: option '%s' needs an argument.\n"],
@@ -284,14 +284,14 @@ var
            
            Printf["bprintf"]
             (b,
-             /* Format */[0,
-              /* String */[2,
+             [/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String_literal */[11,
+               [/* String_literal */11,
                 ": ",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,".\n",/* End_of_format */0]]]],
+                 [/* String_literal */11,".\n",/* End_of_format */0]]]],
               "%s: %s.\n"],
              progname,
              s$2)
@@ -595,8 +595,8 @@ var
        {var msg$1=exn[2];
         
         Printf["eprintf"]
-         (/* Format */[0,
-           /* String */[2,/* No_padding */0,/* End_of_format */0],
+         ([/* Format */0,
+           [/* String */2,/* No_padding */0,/* End_of_format */0],
            "%s"],
           msg$1);
         return Pervasives["exit"](2);
@@ -608,8 +608,8 @@ var
          {var msg$2=exn[2];
           
           Printf["printf"]
-           (/* Format */[0,
-             /* String */[2,/* No_padding */0,/* End_of_format */0],
+           ([/* Format */0,
+             [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
             msg$2);
           return Pervasives["exit"](0);
@@ -632,8 +632,8 @@ var
        {var msg$1=exn[2];
         
         Printf["eprintf"]
-         (/* Format */[0,
-           /* String */[2,/* No_padding */0,/* End_of_format */0],
+         ([/* Format */0,
+           [/* String */2,/* No_padding */0,/* End_of_format */0],
            "%s"],
           msg$1);
         return Pervasives["exit"](2);
@@ -645,8 +645,8 @@ var
          {var msg$2=exn[2];
           
           Printf["printf"]
-           (/* Format */[0,
-             /* String */[2,/* No_padding */0,/* End_of_format */0],
+           ([/* Format */0,
+             [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
             msg$2);
           return Pervasives["exit"](0);

@@ -55,12 +55,12 @@ var
     else
      {if("unknown primitive:caml_string_equal")
        {return Printf["sprintf"]
-                (/* Format */[0,
-                  /* Char_literal */[12,
+                ([/* Format */0,
+                  [/* Char_literal */12,
                    39,
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* Char_literal */[12,39,/* End_of_format */0]]],
+                    [/* Char_literal */12,39,/* End_of_format */0]]],
                   "'%s'"],
                  s);
         }
@@ -94,18 +94,18 @@ var
       if(st!=0)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "Error during command `",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        "'.\nExit code ",
-                       /* Int */[4,
+                       [/* Int */4,
                         /* Int_d */0,
                         /* No_padding */0,
                         /* No_precision */0,
-                        /* String_literal */[11,".\n",/* End_of_format */0]]]]],
+                        [/* String_literal */11,".\n",/* End_of_format */0]]]]],
                     "Error during command `%s'.\nExit code %d.\n"],
                    cmd,
                    st));
@@ -128,14 +128,14 @@ var
       if(match)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "Error during command ",
-                     /* Caml_string */[3,
+                     [/* Caml_string */3,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        ": ",
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                     "Error during command %S: %s"],
                    cmd,
                    Printexc["to_string"](match[1][2])));

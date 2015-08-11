@@ -13,7 +13,7 @@ var Path=require("Path");
 
 var
  empty=
-  /* record */[0,
+  [/* record */0,
    /* [] */0,
    /* [] */0,
    /* [] */0,
@@ -40,7 +40,7 @@ var
     
     var
      f=
-      function(env$1,item)
+      function(env,item)
        {switch(item)
          {case 0:
            var ident=item[1];
@@ -48,7 +48,7 @@ var
            var newrecord="unknown primitive:duprecord regular 7";
            
            newrecord[1]=
-           /* :: */[0,/* tuple */[0,rel_name(ident),qualify(ident)],env$1[1]],
+           /* :: */[0,/* tuple */[0,rel_name(ident),qualify(ident)],env[1]],
            0;
            return newrecord;
            
@@ -60,7 +60,7 @@ var
            newrecord$1[2]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$1),qualify(ident$1)],
-            env$1[2]],
+            env[2]],
            0;
            return newrecord$1;
            
@@ -72,7 +72,7 @@ var
            newrecord$2[7]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$2),qualify(ident$2)],
-            env$1[7]],
+            env[7]],
            0;
            return newrecord$2;
            
@@ -86,12 +86,12 @@ var
               var
                env2=
                 add_signature
-                 (env$1,
+                 (env,
                   qualify(ident$3),
                   /* Some */[0,rel_name(ident$3)],
                   match[1]);
               
-             default:var env2=env$1;}
+             default:var env2=env;}
            
            var newrecord$3="unknown primitive:duprecord regular 7";
            
@@ -115,15 +115,15 @@ var
                 var
                  env2$1=
                   add_signature
-                   (env$1,
+                   (env,
                     qualify(ident$4),
                     /* Some */[0,rel_name(ident$4)],
                     modtype[1]);
                 
-               default:var env2$1=env$1;}
+               default:var env2$1=env;}
              }
            else
-            {var env2$1=env$1;}
+            {var env2$1=env;}
            
            var newrecord$4="unknown primitive:duprecord regular 7";
            
@@ -142,7 +142,7 @@ var
            newrecord$5[4]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$5),qualify(ident$5)],
-            env$1[4]],
+            env[4]],
            0;
            return newrecord$5;
            
@@ -154,7 +154,7 @@ var
            newrecord$6[3]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$6),qualify(ident$6)],
-            env$1[3]],
+            env[3]],
            0;
            return newrecord$6;
            
@@ -329,14 +329,14 @@ var
    {return List["iter"]
             (function(param)
               {return Printf["printf"]
-                       (/* Format */[0,
-                         /* String */[2,
+                       ([/* Format */0,
+                         [/* String */2,
                           /* No_padding */0,
-                          /* String_literal */[11,
+                          [/* String_literal */11,
                            " = ",
-                           /* String */[2,
+                           [/* String */2,
                             /* No_padding */0,
-                            /* Char_literal */[12,10,/* End_of_format */0]]]],
+                            [/* Char_literal */12,10,/* End_of_format */0]]]],
                          "%s = %s\n"],
                         param[1],
                         param[2]);
@@ -352,13 +352,13 @@ var
     
     var
      iter=
-      function(t$1)
-       {if(List["memq"](t$1,deja_vu[1]))
+      function(t)
+       {if(List["memq"](t,deja_vu[1]))
          {return /* () */0;}
         else
-         {deja_vu[1]=/* :: */[0,t$1,deja_vu[1]],0;
-          Btype["iter_type_expr"](iter,t$1);
-          var match=t$1[1];
+         {deja_vu[1]=/* :: */[0,t,deja_vu[1]],0;
+          Btype["iter_type_expr"](iter,t);
+          var match=t[1];
           
           var exit;
           
@@ -393,7 +393,7 @@ var
                     Odoc_name["to_path"]
                      (full_type_name(env,Odoc_name["from_path"](p)));
                   
-                  return t$1[1]=/* Tconstr */[3,new_p,l,match[3]],0;
+                  return t[1]=/* Tconstr */[3,new_p,l,match[3]],0;
                   
                  }
                
@@ -432,7 +432,7 @@ var
                  
                  var newrecord="unknown primitive:duprecord regular 6";
                  
-                 return t$1[1]=
+                 return t[1]=
                         /* Tvariant */[8,
                          (newrecord[6]=
                           /* Some */[0,/* tuple */[0,new_p$2,match$4[2]]],
@@ -449,7 +449,7 @@ var
                  Odoc_name["to_path"]
                   (full_module_type_name(env,Odoc_name["from_path"](match[1])));
                
-               return t$1[1]=/* Tpackage */[11,new_p$3,match[2],match[3]],0;
+               return t[1]=/* Tpackage */[11,new_p$3,match[2],match[3]],0;
                
               default:exit=14;}}
           
@@ -466,29 +466,29 @@ var
   function(env,t)
    {var
      iter=
-      function(t$1)
+      function(t)
        {var exit;
         
-        switch(t$1)
+        switch(t)
          {case 0:
            var
             new_p=
              Odoc_name["to_path"]
-              (full_module_type_name(env,Odoc_name["from_path"](t$1[1])));
+              (full_module_type_name(env,Odoc_name["from_path"](t[1])));
            
            return /* Mty_ident */[0,new_p];
            
           case 1:exit=8;
           case 2:
            return /* Mty_functor */[2,
-                   t$1[1],
-                   Misc["may_map"](iter,t$1[2]),
-                   iter(t$1[3])];
+                   t[1],
+                   Misc["may_map"](iter,t[2]),
+                   iter(t[3])];
            
           case 3:exit=8;
           }
         
-        switch(exit){case 8:return t$1;}
+        switch(exit){case 8:return t;}
         };
     
     return iter(t);
@@ -499,27 +499,27 @@ var
   function(env,t)
    {var
      iter=
-      function(t$1)
-       {switch(t$1)
+      function(t)
+       {switch(t)
          {case 0:
            var
             new_p=
              Odoc_name["to_path"]
-              (full_type_name(env,Odoc_name["from_path"](t$1[1])));
+              (full_type_name(env,Odoc_name["from_path"](t[1])));
            
-           var new_texp_list=List["map"](subst_type(env),t$1[2]);
+           var new_texp_list=List["map"](subst_type(env),t[2]);
            
-           var new_ct=iter(t$1[3]);
+           var new_ct=iter(t[3]);
            
            return /* Cty_constr */[0,new_p,new_texp_list,new_ct];
            
-          case 1:return t$1;
+          case 1:return t;
           case 2:
-           var new_texp=subst_type(env,t$1[2]);
+           var new_texp=subst_type(env,t[2]);
            
-           var new_ct$1=iter(t$1[3]);
+           var new_ct$1=iter(t[3]);
            
-           return /* Cty_arrow */[2,t$1[1],new_texp,new_ct$1];
+           return /* Cty_arrow */[2,t[1],new_texp,new_ct$1];
            
           }
         };

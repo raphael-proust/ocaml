@@ -95,21 +95,19 @@ var
   function(name)
    {Printf["fprintf"]
      (Pervasives["stderr"],
-      /* Format */[0,
-       /* String_literal */[11,
+      [/* Format */0,
+       [/* String_literal */11,
         "search_in_path [",
-        /* String */[2,
+        [/* String */2,
          /* No_padding */0,
-         /* String_literal */[11,"]\n",/* Flush */[10,/* End_of_format */0]]]],
+         [/* String_literal */11,"]\n",[/* Flush */10,/* End_of_format */0]]]],
        "search_in_path [%s]\n%!"],
       name);
     var
      check=
-      function(name$1)
+      function(name)
        {try
-         {Unix["access"](name$1,/* :: */[0,/* X_OK */2,/* [] */0]);
-          return name$1;
-          }
+         {Unix["access"](name,[/* :: */0,/* X_OK */2,/* [] */0]);return name;}
         catch(exn)
          {if(exn[1]=Unix["Unix_error"]){throw Not_found;}else{throw exn;}}
         };
@@ -162,44 +160,40 @@ var
   function(ch)
    {var
      subst_variable=
-      function(ch$1)
+      function(ch)
        {try
-         {var pos=$$String["index"](ch$1,36);
+         {var pos=$$String["index"](ch,36);
           
-          if(pos+1<ch$1["length"]&&(ch$1[pos+1]=36))
+          if(pos+1<ch["length"]&&(ch[pos+1]=36))
            {return Pervasives["^"]
-                    ($$String["sub"](ch$1,0,pos+1),
-                     subst_variable
-                      ($$String["sub"](ch$1,pos+2,ch$1["length"]-pos-2)));
+                    ($$String["sub"](ch,0,pos+1),
+                     subst_variable($$String["sub"](ch,pos+2,ch["length"]-pos-2)));
             }
           else
            {return Pervasives["^"]
-                    ($$String["sub"](ch$1,0,pos),
-                     subst2($$String["sub"](ch$1,pos+1,ch$1["length"]-pos-1)));
+                    ($$String["sub"](ch,0,pos),
+                     subst2($$String["sub"](ch,pos+1,ch["length"]-pos-1)));
             }
           }
-        catch(exn){if(exn=Not_found){return ch$1;}else{throw exn;}}
+        catch(exn){if(exn=Not_found){return ch;}else{throw exn;}}
         };
     
     var
      subst2=
-      function(ch$1)
+      function(ch)
        {var i=0;
         
-        var c=ch$1[i];
+        var c=ch[i];
         
         while
-         (i<
-          ch$1["length"]&&
-          (c>=97&&c<=122||c>=65&&c<=90||c>=48&&c<=57||(c=95)))
+         (i<ch["length"]&&(c>=97&&c<=122||c>=65&&c<=90||c>=48&&c<=57||(c=95)))
          {i=1+i;}
         
         var suiv=i;
         
         return Pervasives["^"]
                 ("unknown primitive:caml_sys_getenv",
-                 subst_variable
-                  ($$String["sub"](ch$1,suiv,ch$1["length"]-suiv)));
+                 subst_variable($$String["sub"](ch,suiv,ch["length"]-suiv)));
         };
     
     var ch$1=subst_variable(ch);

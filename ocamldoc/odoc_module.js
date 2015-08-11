@@ -198,7 +198,7 @@ var
                    (/* Some */[0,trans],
                     /* record */[0,
                      "",
-                     /* Mty_signature */[1,/* [] */0],
+                     [/* Mty_signature */1,/* [] */0],
                      /* None */0,
                      /* false */0,
                      "",
@@ -510,9 +510,9 @@ var
     var l=module_modules(/* Some */[0,trans],m);
     
     return List["fold_left"]
-            (function(acc,m$1)
+            (function(acc,m)
               {return Pervasives["@"]
-                       (acc,module_all_submodules(/* Some */[0,trans],m$1));
+                       (acc,module_all_submodules(/* Some */[0,trans],m));
                },
              l,
              l);
@@ -688,9 +688,9 @@ var
    {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
     
     return List["fold_left"]
-            (function(acc,m$1)
+            (function(acc,m)
               {return Pervasives["@"]
-                       (acc,module_all_classes(/* Some */[0,trans],m$1));
+                       (acc,module_all_classes(/* Some */[0,trans],m));
                },
              List["fold_left"]
               (function(acc,mtyp)

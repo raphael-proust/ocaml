@@ -36,14 +36,14 @@ var
                        (function(name,digest)
                          {return Printf["fprintf"]
                                   (oc,
-                                   /* Format */[0,
-                                    /* Caml_string */[3,
+                                   [/* Format */0,
+                                    [/* Caml_string */3,
                                      /* No_padding */0,
-                                     /* String_literal */[11,
+                                     [/* String_literal */11,
                                       ": ",
-                                      /* Caml_string */[3,
+                                      [/* Caml_string */3,
                                        /* No_padding */0,
-                                       /* Char_literal */[12,10,/* End_of_format */0]]]],
+                                       [/* Char_literal */12,10,/* End_of_format */0]]]],
                                     "%S: %S\n"],
                                    name,
                                    digest);
@@ -67,12 +67,12 @@ var
               
               Scanf["sscanf"]
                (l,
-                /* Format */[0,
-                 /* Caml_string */[3,
+                [/* Format */0,
+                 [/* Caml_string */3,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    ": ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]],
                  "%S: %S"],
                 put)}
             return 0;

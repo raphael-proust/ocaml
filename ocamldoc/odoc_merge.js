@@ -31,10 +31,10 @@ var
           var
            text=
             List["fold_left"]
-             (function(acc$1,t)
+             (function(acc,t)
                {return Pervasives["@"]
-                        (acc$1,
-                         Pervasives["@"](/* :: */[0,/* Raw */[0," "],/* [] */0],t));
+                        (acc,
+                         Pervasives["@"]([/* :: */0,[/* Raw */0," "],/* [] */0],t));
                 },
               match[2],
               List["map"](function(prim){return prim[2];},match$1[1]));
@@ -238,7 +238,7 @@ var
     var
      new_before$2=
       List["sort"]
-       (function(prim,prim$1){return "unknown primitive:caml_compare";},
+       (function(prim,prim){return "unknown primitive:caml_compare";},
         new_before$1);
     
     var
@@ -964,7 +964,7 @@ var
                         {var
                           xt2=
                            List["find"]
-                            (function(xt2$1)
+                            (function(xt2)
                               {return "unknown primitive:caml_string_equal";},
                              te2[5]);
                          
@@ -1280,7 +1280,7 @@ var
                         {var
                           xt2=
                            List["find"]
-                            (function(xt2$1)
+                            (function(xt2)
                               {return "unknown primitive:caml_string_equal";},
                              te2[5]);
                          

@@ -5,7 +5,7 @@ var Bytes=require("Bytes");
 var Sys=require("Sys");
 
 
-var dummy_pos=/* record */[0,"",0,0,-1];
+var dummy_pos=[/* record */0,"",0,0,-1];
 
 var
  engine=
@@ -84,7 +84,7 @@ var
     return lexbuf[3]=lexbuf[3]+n,0;
     };
 
-var zero_pos=/* record */[0,"",1,0,0];
+var zero_pos=[/* record */0,"",1,0,0];
 
 var
  from_function=

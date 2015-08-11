@@ -91,12 +91,12 @@ var
  charset=
   function(c)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "<s> Add information about character encoding being s\n\t\t(default is ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* Char_literal */[12,41,/* End_of_format */0]]],
+                [/* Char_literal */12,41,/* End_of_format */0]]],
               "<s> Add information about character encoding being s\n\t\t(default is %s)"],
              c);
     };
@@ -145,28 +145,28 @@ var dot_types=" Generate dependency graph for types instead of modules";
 
 var
  default_dot_colors=
-  /* :: */[0,
-   /* :: */[0,
+  [/* :: */0,
+   [/* :: */0,
     "darkturquoise",
-    /* :: */[0,
+    [/* :: */0,
      "darkgoldenrod2",
-     /* :: */[0,"cyan",/* :: */[0,"green",/* [] */0]]]],
-   /* :: */[0,
-    /* :: */[0,
+     [/* :: */0,"cyan",[/* :: */0,"green",/* [] */0]]]],
+   [/* :: */0,
+    [/* :: */0,
      "magenta",
-     /* :: */[0,
+     [/* :: */0,
       "yellow",
-      /* :: */[0,
+      [/* :: */0,
        "burlywood1",
-       /* :: */[0,
+       [/* :: */0,
         "aquamarine",
-        /* :: */[0,"floralwhite",/* :: */[0,"lightpink",/* [] */0]]]]]],
-    /* :: */[0,
-     /* :: */[0,
+        [/* :: */0,"floralwhite",[/* :: */0,"lightpink",/* [] */0]]]]]],
+    [/* :: */0,
+     [/* :: */0,
       "lightblue",
-      /* :: */[0,
+      [/* :: */0,
        "mediumturquoise",
-       /* :: */[0,"salmon",/* :: */[0,"slategray3",/* [] */0]]]],
+       [/* :: */0,"salmon",[/* :: */0,"slategray3",/* [] */0]]]],
      /* [] */0]]];
 
 var
@@ -270,16 +270,16 @@ var
                        List["map"]
                         (function(param)
                           {return Printf["sprintf"]
-                                   (/* Format */[0,
-                                     /* Char_literal */[12,
+                                   ([/* Format */0,
+                                     [/* Char_literal */12,
                                       32,
-                                      /* Int */[4,
+                                      [/* Int */4,
                                        /* Int_d */0,
                                        /* No_padding */0,
                                        /* No_precision */0,
-                                       /* String_literal */[11,
+                                       [/* String_literal */11,
                                         " -> ",
-                                        /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                                      " %d -> %s"],
                                     param[1],
                                     param[2]);
@@ -438,29 +438,29 @@ var
  no_filter_with_module_constraints=
   "Do not filter module elements using module type constraints";
 
-var merge_description=/* tuple */[0,100,"merge description"];
+var merge_description=[/* tuple */0,100,"merge description"];
 
-var merge_author=/* tuple */[0,97,"merge @author"];
+var merge_author=[/* tuple */0,97,"merge @author"];
 
-var merge_version=/* tuple */[0,118,"merge @version"];
+var merge_version=[/* tuple */0,118,"merge @version"];
 
-var merge_see=/* tuple */[0,108,"merge @see"];
+var merge_see=[/* tuple */0,108,"merge @see"];
 
-var merge_since=/* tuple */[0,115,"merge @since"];
+var merge_since=[/* tuple */0,115,"merge @since"];
 
-var merge_before=/* tuple */[0,98,"merge @before"];
+var merge_before=[/* tuple */0,98,"merge @before"];
 
-var merge_deprecated=/* tuple */[0,111,"merge @deprecated"];
+var merge_deprecated=[/* tuple */0,111,"merge @deprecated"];
 
-var merge_param=/* tuple */[0,112,"merge @param"];
+var merge_param=[/* tuple */0,112,"merge @param"];
 
-var merge_raised_exception=/* tuple */[0,101,"merge @raise"];
+var merge_raised_exception=[/* tuple */0,101,"merge @raise"];
 
-var merge_return_value=/* tuple */[0,114,"merge @return"];
+var merge_return_value=[/* tuple */0,114,"merge @return"];
 
-var merge_custom=/* tuple */[0,99,"merge custom @-tags"];
+var merge_custom=[/* tuple */0,99,"merge custom @-tags"];
 
-var merge_all=/* tuple */[0,65,"merge all"];
+var merge_all=[/* tuple */0,65,"merge all"];
 
 var no_index=Pervasives["^"](" Do not build index for Info files ",texi_only);
 
@@ -591,14 +591,14 @@ var
  file_not_found_in_paths=
   function(paths,name)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "No file ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " found in the load paths: \n",
-                 /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                 [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
               "No file %s found in the load paths: \n%s"],
              name,
              $$String["concat"]("\n",paths));
@@ -984,18 +984,18 @@ var
  misplaced_comment=
   function(file,pos)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "Misplaced special comment in file ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  ", character ",
-                 /* Int */[4,
+                 [/* Int */4,
                   /* Int_d */0,
                   /* No_padding */0,
                   /* No_precision */0,
-                  /* Char_literal */[12,46,/* End_of_format */0]]]]],
+                  [/* Char_literal */12,46,/* End_of_format */0]]]]],
               "Misplaced special comment in file %s, character %d."],
              file,
              pos);
@@ -1079,12 +1079,12 @@ var
  cross_recfield_not_found=
   function(n)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "Record field ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11," not found",/* End_of_format */0]]],
+                [/* String_literal */11," not found",/* End_of_format */0]]],
               "Record field %s not found"],
              n);
     };
@@ -1093,12 +1093,12 @@ var
  cross_const_not_found=
   function(n)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "Constructor ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11," not found",/* End_of_format */0]]],
+                [/* String_literal */11," not found",/* End_of_format */0]]],
               "Constructor %s not found"],
              n);
     };
@@ -1113,12 +1113,12 @@ var
  current_generator_is_not=
   function(kind)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "Current generator is not a ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11," generator",/* End_of_format */0]]],
+                [/* String_literal */11," generator",/* End_of_format */0]]],
               "Current generator is not a %s generator"],
              kind);
     };

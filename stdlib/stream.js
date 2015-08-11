@@ -84,7 +84,7 @@ var
            if(match$3)
             {var a$2=match$3[1];return /* Scons */[0,a$2,d];}
            else
-            {g$1[1]=/* Some */[0,/* None */0],0;return /* Sempty */0;}
+            {g$1[1]=[/* Some */0,/* None */0],0;return /* Sempty */0;}
            }
          
         case 4:
@@ -271,7 +271,7 @@ var
    {return /* record */[0,
             0,
             List["fold_right"]
-             (function(x,l$1){return /* Scons */[0,x,l$1];},l,/* Sempty */0)];
+             (function(x,l){return /* Scons */[0,x,l];},l,/* Sempty */0)];
     };
 
 var
@@ -352,7 +352,7 @@ var
                {return /* Scons */[0,f(/* () */0),/* Sempty */0];}]]];
     };
 
-var sempty=/* record */[0,0,/* Sempty */0];
+var sempty=[/* record */0,0,/* Sempty */0];
 
 var
  slazy=

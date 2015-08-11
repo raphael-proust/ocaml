@@ -267,7 +267,7 @@ var
 
 var
  charclass_of_regexp=
-  function(fold_case$1,re)
+  function(fold_case,re)
    {var exit;
     
     if(typeof re=="number")
@@ -285,7 +285,7 @@ var
     
     var cl1=match[1];
     
-    if(fold_case$1){var cl2=Charset[11](cl1);}else{var cl2=cl1;}
+    if(fold_case){var cl2=Charset[11](cl1);}else{var cl2=cl1;}
     
     return Bytes["to_string"](compl$1?Charset[6](cl2):cl2);
     };
@@ -302,7 +302,7 @@ var StringMap=Map["Make"]([0,compare]);
 
 var
  compile=
-  function(fold_case$1,re)
+  function(fold_case,re)
    {var prog=[0,"unknown primitive:caml_make_vect"];
     
     var progpos=[0,0];
@@ -390,7 +390,7 @@ var
            {case 0:
              var c=param[1];
              
-             if(fold_case$1)
+             if(fold_case)
               {return emit_instr(op_CHARNORM,Char["lowercase"](c));}
              else
               {return emit_instr(op_CHAR,c);}
@@ -411,7 +411,7 @@ var
                    }
                  catch(exn)
                   {if(exn=Not_found)
-                    {if(fold_case$1)
+                    {if(fold_case)
                       {return emit_instr
                                (op_STRINGNORM,cpool_index($$String["lowercase"](s)));
                        }
@@ -423,7 +423,7 @@ var
                    }
                  }
                else
-                {if(fold_case$1)
+                {if(fold_case)
                   {return emit_instr(op_CHARNORM,Char["lowercase"](s[0]));}
                  else
                   {return emit_instr(op_CHAR,s[0]);}
@@ -437,7 +437,7 @@ var
              
              var cl=param[1];
              
-             if(fold_case$1){var cl1=Charset[11](cl);}else{var cl1=cl;}
+             if(fold_case){var cl1=Charset[11](cl);}else{var cl1=cl;}
              
              if(compl){var cl2=Charset[6](cl1);}else{var cl2=cl1;}
              
@@ -558,7 +558,7 @@ var
                   if(disjoint_modulo_case(first(r$1),first_seq(rl)))
                    {emit_instr
                      (op_SIMPLESTAR,
-                      cpool_index(charclass_of_regexp(fold_case$1,r$1)));
+                      cpool_index(charclass_of_regexp(fold_case,r$1)));
                     return emit_seq_code(rl);
                     }
                   else
@@ -584,7 +584,7 @@ var
                   if(disjoint_modulo_case(first(r$2),first_seq(rl$1)))
                    {emit_instr
                      (op_SIMPLEPLUS,
-                      cpool_index(charclass_of_regexp(fold_case$1,r$2)));
+                      cpool_index(charclass_of_regexp(fold_case,r$2)));
                     return emit_seq_code(rl$1);
                     }
                   else
@@ -610,7 +610,7 @@ var
                   if(disjoint_modulo_case(first(r$3),first_seq(rl$2)))
                    {emit_instr
                      (op_SIMPLEOPT,
-                      cpool_index(charclass_of_regexp(fold_case$1,r$3)));
+                      cpool_index(charclass_of_regexp(fold_case,r$3)));
                     return emit_seq_code(rl$2);
                     }
                   else
@@ -632,7 +632,7 @@ var
     var
      disjoint_modulo_case=
       function(c1,c2)
-       {if(fold_case$1)
+       {if(fold_case)
          {return Charset[8](Charset[11](c1),Charset[11](c2));}
         else
          {return Charset[8](c1,c2);}
@@ -642,7 +642,7 @@ var
     emit_instr(op_ACCEPT,0);
     var start=first(re);
     
-    if(fold_case$1)
+    if(fold_case)
      {var start$prime=Charset[11](start);}
     else
      {var start$prime=start;}
@@ -659,7 +659,7 @@ var
     return /* record */[0,
             $$Array["sub"](prog[1],0,progpos[1]),
             constantpool,
-            fold_case$1?fold_case_table:"",
+            fold_case?fold_case_table:"",
             numgroups[1],
             numregs[1],
             start_pos];
@@ -719,8 +719,8 @@ var
     
     var
      regexp0=
-      function(i$1)
-       {var match=regexp1(i$1);
+      function(i)
+       {var match=regexp1(i);
         
         var j=match[2];
         
@@ -731,9 +731,9 @@ var
     
     var
      regexp0cont=
-      function(r1,i$1)
-       {if(i$1+2<=len&&(s[i$1]=92)&&(s[i$1+1]=124))
-         {var match=regexp1(i$1+2);
+      function(r1,i)
+       {if(i+2<=len&&(s[i]=92)&&(s[i+1]=124))
+         {var match=regexp1(i+2);
           
           var j=match[2];
           
@@ -742,22 +742,20 @@ var
           return regexp0cont(/* Alt */[4,r1,r2],j);
           }
         else
-         {return /* tuple */[0,r1,i$1];}
+         {return /* tuple */[0,r1,i];}
         };
     
-    var
-     regexp1=
-      function(i$1){return regexp1cont(SeqBuffer[1](/* () */0),i$1);};
+    var regexp1=function(i){return regexp1cont(SeqBuffer[1](/* () */0),i);};
     
     var
      regexp1cont=
-      function(sb,i$1)
-       {var c=s[i$1+1];
+      function(sb,i)
+       {var c=s[i+1];
         
-        if(i$1>=len||i$1+2<=len&&(s[i$1]=92)&&((c=124)||(c=41)))
-         {return /* tuple */[0,SeqBuffer[4](sb),i$1];}
+        if(i>=len||i+2<=len&&(s[i]=92)&&((c=124)||(c=41)))
+         {return /* tuple */[0,SeqBuffer[4](sb),i];}
         else
-         {var match=regexp2(i$1);
+         {var match=regexp2(i);
           
           var j=match[2];
           
@@ -770,8 +768,8 @@ var
     
     var
      regexp2=
-      function(i$1)
-       {var match=regexp3(i$1);
+      function(i)
+       {var match=regexp3(i);
         
         var j=match[2];
         
@@ -782,33 +780,33 @@ var
     
     var
      regexp2cont=
-      function(r,i$1)
-       {if(i$1>=len)
-         {return /* tuple */[0,r,i$1];}
+      function(r,i)
+       {if(i>=len)
+         {return /* tuple */[0,r,i];}
         else
-         {var match=s[i$1];
+         {var match=s[i];
           
           var switcher=-42+match;
           
           if(1<switcher>>>0)
            {if(switcher!=21)
-             {return /* tuple */[0,r,i$1];}
+             {return /* tuple */[0,r,i];}
             else
-             {return regexp2cont(/* Option */[7,r],i$1+1);}
+             {return regexp2cont(/* Option */[7,r],i+1);}
             }
           else
            {if(switcher!=0)
-             {return regexp2cont(/* Plus */[6,r],i$1+1);}
+             {return regexp2cont(/* Plus */[6,r],i+1);}
             else
-             {return regexp2cont(/* Star */[5,r],i$1+1);}
+             {return regexp2cont(/* Star */[5,r],i+1);}
             }
           }
         };
     
     var
      regexp3=
-      function(i$1)
-       {var c=s[i$1];
+      function(i)
+       {var c=s[i];
         
         var exit;
         
@@ -821,7 +819,7 @@ var
               
               switch(switcher[0])
                {case 0:
-                 var match=regexpclass0(i$1+1);
+                 var match=regexpclass0(i+1);
                  
                  var j=match[3];
                  
@@ -831,9 +829,9 @@ var
                  
                  return /* tuple */[0,/* CharClass */[2,c$1,compl],j];
                  
-                case 1:return regexpbackslash(i$1+1);
+                case 1:return regexpbackslash(i+1);
                 case 2:exit=62;
-                case 3:return /* tuple */[0,/* Bol */0,i$1+1];
+                case 3:return /* tuple */[0,/* Bol */0,i+1];
                 }
               }
             }
@@ -843,23 +841,23 @@ var
             else
              {return /* tuple */[0,
                       /* CharClass */[2,dotclass,/* false */0],
-                      i$1+1];
+                      i+1];
               }
             }
           }
         else
-         {return /* tuple */[0,/* Eol */1,i$1+1];}
+         {return /* tuple */[0,/* Eol */1,i+1];}
         
-        switch(exit){case 62:return /* tuple */[0,/* Char */[0,c],i$1+1];}
+        switch(exit){case 62:return /* tuple */[0,/* Char */[0,c],i+1];}
         };
     
     var
      regexpbackslash=
-      function(i$1)
-       {if(i$1>=len)
-         {return /* tuple */[0,/* Char */[0,92],i$1];}
+      function(i)
+       {if(i>=len)
+         {return /* tuple */[0,[/* Char */0,92],i];}
         else
-         {var c=s[i$1];
+         {var c=s[i];
           
           var exit;
           
@@ -868,7 +866,7 @@ var
             
             if(1<switcher>>>0)
              {if(switcher>=9)
-               {return /* tuple */[0,/* Refgroup */[9,c-48],i$1+1];}
+               {return /* tuple */[0,/* Refgroup */[9,c-48],i+1];}
               else
                {exit=67;}
               }
@@ -880,7 +878,7 @@ var
                 
                 if(group_no<32){group_counter[0]++}else{}
                 
-                var match=regexp0(i$1+1);
+                var match=regexp0(i+1);
                 
                 var j=match[2];
                 
@@ -901,11 +899,11 @@ var
            {if(c!=98)
              {if(c!=124){exit=67;}else{exit=65;}}
             else
-             {return /* tuple */[0,/* Wordboundary */2,i$1+1];}
+             {return /* tuple */[0,/* Wordboundary */2,i+1];}
             }
           
           switch(exit)
-           {case 67:var c$1=c;return /* tuple */[0,/* Char */[0,c$1],i$1+1];
+           {case 67:var c$1=c;return /* tuple */[0,/* Char */[0,c$1],i+1];
             case 65:throw [0,Assert_failure,[0,"str.ml",511,10]];
             }
           }
@@ -913,9 +911,9 @@ var
     
     var
      regexpclass0=
-      function(i$1)
-       {if(i$1<len&&(s[i$1]=94))
-         {var match=regexpclass1(i$1+1);
+      function(i)
+       {if(i<len&&(s[i]=94))
+         {var match=regexpclass1(i+1);
           
           var j=match[2];
           
@@ -924,7 +922,7 @@ var
           return /* tuple */[0,c,/* true */1,j];
           }
         else
-         {var match$1=regexpclass1(i$1);
+         {var match$1=regexpclass1(i);
           
           var j$1=match$1[2];
           
@@ -936,32 +934,32 @@ var
     
     var
      regexpclass1=
-      function(i$1)
+      function(i)
        {var c=Charset[2](/* () */0);
         
-        var j=regexpclass2(c,i$1,i$1);
+        var j=regexpclass2(c,i,i);
         
         return /* tuple */[0,c,j];
         };
     
     var
      regexpclass2=
-      function(c,start,i$1)
-       {if(i$1>=len){Pervasives["failwith"]("[ class not closed by ]")}else{}
+      function(c,start,i)
+       {if(i>=len){Pervasives["failwith"]("[ class not closed by ]")}else{}
         
-        if((s[i$1]=93)&&i$1>start)
-         {return i$1+1;}
+        if((s[i]=93)&&i>start)
+         {return i+1;}
         else
-         {var c1=s[i$1];
+         {var c1=s[i];
           
-          if(i$1+2<len&&(s[i$1+1]=45)&&s[i$1+2]!=93)
-           {var c2=s[i$1+2];
+          if(i+2<len&&(s[i+1]=45)&&s[i+2]!=93)
+           {var c2=s[i+2];
             
             Charset[4](c,c1,c2);
-            return regexpclass2(c,start,i$1+3);
+            return regexpclass2(c,start,i+3);
             }
           else
-           {Charset[3](c,c1);return regexpclass2(c,start,i$1+1);}
+           {Charset[3](c,c1);return regexpclass2(c,start,i+1);}
           }
         };
     
@@ -1235,25 +1233,25 @@ var
     
     var
      split=
-      function(accu,start$1,n)
-       {if(start$1>=text["length"])
+      function(accu,start,n)
+       {if(start>=text["length"])
          {return accu;}
         else
          {if(n=1)
-           {return /* :: */[0,string_after(text,start$1),accu];}
+           {return /* :: */[0,string_after(text,start),accu];}
           else
-           {var match=opt_search_forward_progress(expr,text,start$1);
+           {var match=opt_search_forward_progress(expr,text,start);
             
             if(match)
              {var pos=match[1];
               
               return split
-                      (/* :: */[0,$$String["sub"](text,start$1,pos-start$1),accu],
+                      (/* :: */[0,$$String["sub"](text,start,pos-start),accu],
                        match_end(/* () */0),
                        n-1);
               }
             else
-             {return /* :: */[0,string_after(text,start$1),accu];}
+             {return /* :: */[0,string_after(text,start),accu];}
             }
           }
         };

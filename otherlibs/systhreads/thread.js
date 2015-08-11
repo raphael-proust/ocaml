@@ -83,7 +83,7 @@ module["exports"]=
  "caml_thread_yield":
  function(prim){return "unknown primitive:caml_thread_yield";},
  "caml_thread_sigmask":
- function(prim,prim$1){return "unknown primitive:caml_thread_sigmask";},
+ function(prim,prim){return "unknown primitive:caml_thread_sigmask";},
  "caml_wait_signal":
  function(prim){return "unknown primitive:caml_wait_signal";}};
 

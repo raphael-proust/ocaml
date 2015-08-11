@@ -19,16 +19,16 @@ var
     
     var
      print=
-      function(one_or_two,ppf$1,param$1)
+      function(one_or_two,ppf,param$1)
        {var start_num=param$1[1];
         
         if(one_or_two)
          {return Format["fprintf"]
-                  (ppf$1,
-                   /* Format */[0,
-                    /* Char_literal */[12,
+                  (ppf,
+                   [/* Format */0,
+                    [/* Char_literal */12,
                      32,
-                     /* Int */[4,
+                     [/* Int */4,
                       /* Int_d */0,
                       /* No_padding */0,
                       /* No_precision */0,
@@ -38,17 +38,17 @@ var
           }
         else
          {return Format["fprintf"]
-                  (ppf$1,
-                   /* Format */[0,
-                    /* String_literal */[11,
+                  (ppf,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "s ",
-                     /* Int */[4,
+                     [/* Int */4,
                       /* Int_d */0,
                       /* No_padding */0,
                       /* No_precision */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        45,
-                       /* Int */[4,
+                       [/* Int */4,
                         /* Int_d */0,
                         /* No_padding */0,
                         /* No_precision */0,
@@ -61,22 +61,22 @@ var
     
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* String */[2,
+             [/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 32,
-                /* Caml_string */[3,
+                [/* Caml_string */3,
                  /* No_padding */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   ", line",
-                  /* Alpha */[15,
-                   /* String_literal */[11,
+                  [/* Alpha */15,
+                   [/* String_literal */11,
                     ", character",
-                    /* Alpha */[15,
-                     /* Char_literal */[12,
+                    [/* Alpha */15,
+                     [/* Char_literal */12,
                       58,
-                      /* Formatting_lit */[17,
+                      [/* Formatting_lit */17,
                        /* Flush_newline */4,
                        /* End_of_format */0]]]]]]]]],
               "%s %S, line%a, character%a:@."],

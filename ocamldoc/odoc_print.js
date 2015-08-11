@@ -52,7 +52,7 @@ var
  string_of_type_expr=
   function(t)
    {Printtyp["mark_loops"](t);
-    Printtyp["type_scheme_max"](/* Some */[0,/* false */0],type_fmt,t);
+    Printtyp["type_scheme_max"]([/* Some */0,/* false */0],type_fmt,t);
     return flush_type_fmt(/* () */0);
     };
 
@@ -63,27 +63,27 @@ var
   function(code,t)
    {var
      iter=
-      function(t$1)
+      function(t)
        {var exit;
         
-        switch(t$1)
+        switch(t)
          {case 0:exit=11;
           case 1:
            if(code)
             {throw [0,Use_code,code[1]];}
            else
-            {return /* Mty_signature */[1,/* [] */0];}
+            {return [/* Mty_signature */1,/* [] */0];}
            
           case 2:
            return /* Mty_functor */[2,
-                   t$1[1],
-                   Misc["may_map"](iter,t$1[2]),
-                   iter(t$1[3])];
+                   t[1],
+                   Misc["may_map"](iter,t[2]),
+                   iter(t[3])];
            
           case 3:exit=11;
           }
         
-        switch(exit){case 11:return t$1;}
+        switch(exit){case 11:return t;}
         };
     
     return iter(t);
@@ -111,13 +111,13 @@ var
   function(t)
    {var
      iter=
-      function(t$1)
-       {switch(t$1)
-         {case 0:return t$1;
+      function(t)
+       {switch(t)
+         {case 0:return t;
           case 1:
            var tnil=/* record */[0,/* Tnil */0,0,0];
            
-           var init=t$1[1][1];
+           var init=t[1][1];
            
            return /* Cty_signature */[1,
                    /* record */[0,
@@ -130,10 +130,7 @@ var
                     /* [] */0]];
            
           case 2:
-           var new_ct=iter(t$1[3]);
-           
-           return /* Cty_arrow */[2,t$1[1],t$1[2],new_ct];
-           
+           var new_ct=iter(t[3]);return /* Cty_arrow */[2,t[1],t[2],new_ct];
           }
         };
     

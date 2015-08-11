@@ -18,7 +18,7 @@ var
      {var
        crc=
         Dynlink["digest_interface"]
-         (unit,Pervasives["@"](load_path[1],/* :: */[0,".",/* [] */0]));
+         (unit,Pervasives["@"](load_path[1],[/* :: */0,".",/* [] */0]));
       
       if(first[1])
        {first[1]=/* false */0,0}
@@ -30,12 +30,12 @@ var
       Pervasives["print_string"]('",\n    "');
       for(var i=0;i<=crc["length"]-1;i++)
        {Printf["printf"]
-         (/* Format */[0,
-           /* Char_literal */[12,
+         ([/* Format */0,
+           [/* Char_literal */12,
             92,
-            /* Int */[4,
+            [/* Int */4,
              /* Int_d */0,
-             /* Lit_padding */[0,/* Zeros */2,3],
+             [/* Lit_padding */0,/* Zeros */2,3],
              /* No_precision */0,
              /* End_of_format */0]],
            "\%03d"],

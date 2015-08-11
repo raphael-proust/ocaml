@@ -11,8 +11,8 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(o$1,acc)
-              {CamlinternalFormat["output_acc"](o$1,acc);return k(o$1);},
+            (function(o,acc)
+              {CamlinternalFormat["output_acc"](o,acc);return k(o);},
              o,
              /* End_of_acc */0,
              fmt);
@@ -24,8 +24,8 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(b$1,acc)
-              {CamlinternalFormat["bufput_acc"](b$1,acc);return k(b$1);},
+            (function(b,acc)
+              {CamlinternalFormat["bufput_acc"](b,acc);return k(b);},
              b,
              /* End_of_acc */0,
              fmt);
@@ -37,7 +37,7 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(oc$1,param$1){return k(oc$1);},oc,/* End_of_acc */0,fmt);
+            (function(oc,param$1){return k(oc);},oc,/* End_of_acc */0,fmt);
     };
 
 var

@@ -34,14 +34,14 @@ var
               /* :: */[0,
                Ocaml_utils["ocaml_ppflags"]
                 (Tags["Operators"][1](tags,"pp:dep")),
-               /* :: */[0,/* A */[1,"-modules"],/* [] */0]]]]];
+               [/* :: */0,[/* A */1,"-modules"],/* [] */0]]]]];
     };
 
 var
  menhir_ocamldep_command$prime=
   function(tags,menhir_spec,out)
    {if(Options["ocamlyacc"][1]=/* N */0)
-     {var menhir=/* V */[6,"MENHIR"];}
+     {var menhir=[/* V */6,"MENHIR"];}
     else
      {var menhir=Options["ocamlyacc"][1];}
     
@@ -52,15 +52,15 @@ var
               /* :: */[0,
                /* T */[5,tags],
                /* :: */[0,
-                /* A */[1,"--raw-depend"],
+                [/* A */1,"--raw-depend"],
                 /* :: */[0,
-                 /* A */[1,"--ocamldep"],
+                 [/* A */1,"--ocamldep"],
                  /* :: */[0,
                   /* Quote */[7,ocamldep_command$prime(Tags["empty"])],
                   /* :: */[0,
                    menhir_spec,
                    /* :: */[0,
-                    /* Sh */[4,">"],
+                    [/* Sh */4,">"],
                     /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]]];
     };
 
@@ -96,7 +96,7 @@ var
       My_std["List"][16]
        (function(module_name)
          {return Ocaml_utils["expand_module"]
-                  (include_dirs,module_name,/* :: */[0,"mly",/* [] */0]);
+                  (include_dirs,module_name,[/* :: */0,"mly",/* [] */0]);
           },
         files);
     
@@ -134,7 +134,7 @@ var
      menhir_spec=
       /* S */[0,
        /* :: */[0,
-        /* A */[1,"--base"],
+        [/* A */1,"--base"],
         /* :: */[0,
          /* P */[2,menhir_base],
          /* :: */[0,Command["atomize_paths"](match[2]),/* [] */0]]]];
@@ -146,7 +146,7 @@ var
  menhir_modular=
   function(menhir_base,mlypack,mlypack_depends,env,build)
    {if(Options["ocamlyacc"][1]=/* N */0)
-     {var menhir=/* V */[6,"MENHIR"];}
+     {var menhir=[/* V */6,"MENHIR"];}
     else
      {var menhir=Options["ocamlyacc"][1];}
     
@@ -184,7 +184,7 @@ var
              /* :: */[0,
               menhir,
               /* :: */[0,
-               /* A */[1,"--ocamlc"],
+               [/* A */1,"--ocamlc"],
                /* :: */[0,
                 /* Quote */[7,
                  /* S */[0,
@@ -198,7 +198,7 @@ var
                 /* :: */[0,
                  /* T */[5,tags$1],
                  /* :: */[0,
-                  /* A */[1,"--base"],
+                  [/* A */1,"--base"],
                   /* :: */[0,
                    /* Px */[3,menhir_base$1],
                    /* :: */[0,Command["atomize_paths"](match[2]),/* [] */0]]]]]]]]];
@@ -220,7 +220,7 @@ var
               /* :: */[0,
                /* P */[2,arg$1],
                /* :: */[0,
-                /* Sh */[4,">"],
+                [/* Sh */4,">"],
                 /* :: */[0,/* Px */[3,out$1],/* [] */0]]]]]];
     };
 
@@ -230,7 +230,7 @@ var
    {var mly$1=env(mly);
     
     if(Options["ocamlyacc"][1]=/* N */0)
-     {var ocamlyacc$1=/* V */[6,"OCAMLYACC"];}
+     {var ocamlyacc$1=[/* V */6,"OCAMLYACC"];}
     else
      {var ocamlyacc$1=Options["ocamlyacc"][1];}
     
@@ -288,15 +288,15 @@ var
                /* :: */[0,
                 Ocaml_utils["ocaml_include_flags"](ml$1),
                 /* :: */[0,
-                 /* A */[1,"-i"],
+                 [/* A */1,"-i"],
                  /* :: */[0,
-                  Tags["mem"]("thread",tags)?/* A */[1,"-thread"]:/* N */0,
+                  Tags["mem"]("thread",tags)?[/* A */1,"-thread"]:/* N */0,
                   /* :: */[0,
                    /* T */[5,Tags["Operators"][1](tags,"infer_interface")],
                    /* :: */[0,
                     /* P */[2,ml$1],
                     /* :: */[0,
-                     /* Sh */[4,">"],
+                     [/* Sh */4,">"],
                      /* :: */[0,/* Px */[3,mli$1],/* [] */0]]]]]]]]]]];
     };
 
@@ -308,7 +308,7 @@ var
     var ml=Pathname["update_extension"]("ml",mly$1);
     
     if(Options["ocamlyacc"][1]=/* N */0)
-     {var menhir$1=/* V */[6,"MENHIR"];}
+     {var menhir$1=[/* V */6,"MENHIR"];}
     else
      {var menhir$1=Options["ocamlyacc"][1];}
     
@@ -333,7 +333,7 @@ var
              /* :: */[0,
               menhir$1,
               /* :: */[0,
-               /* A */[1,"--ocamlc"],
+               [/* A */1,"--ocamlc"],
                /* :: */[0,
                 /* Quote */[7,
                  /* S */[0,
@@ -359,7 +359,7 @@ var
              /* :: */[0,
               Options["ocamldoc"][1],
               /* :: */[0,
-               /* A */[1,"-dump"],
+               [/* A */1,"-dump"],
                /* :: */[0,
                 /* Px */[3,odoc],
                 /* :: */[0,
@@ -380,17 +380,17 @@ var
              /* Cmd */[1,
               /* S */[0,
                /* :: */[0,
-                /* A */[1,"rm"],
+                [/* A */1,"rm"],
                 /* :: */[0,
-                 /* A */[1,"-rf"],
+                 [/* A */1,"-rf"],
                  /* :: */[0,/* Px */[3,docdir],/* [] */0]]]]],
              /* :: */[0,
               /* Cmd */[1,
                /* S */[0,
                 /* :: */[0,
-                 /* A */[1,"mkdir"],
+                 [/* A */1,"mkdir"],
                  /* :: */[0,
-                  /* A */[1,"-p"],
+                  [/* A */1,"-p"],
                   /* :: */[0,/* Px */[3,docdir],/* [] */0]]]]],
               /* :: */[0,
                /* Cmd */[1,
@@ -403,7 +403,7 @@ var
                      (function(a)
                        {return /* S */[0,
                                 /* :: */[0,
-                                 /* A */[1,"-load"],
+                                 [/* A */1,"-load"],
                                  /* :: */[0,/* P */[2,a],/* [] */0]]];
                         },
                       deps)],
@@ -412,7 +412,7 @@ var
                      Tags["Operators"][1]
                       (Tags["Operators"][1](tags,"doc"),"docdir")],
                     /* :: */[0,
-                     /* A */[1,"-d"],
+                     [/* A */1,"-d"],
                      /* :: */[0,/* Px */[3,docdir],/* [] */0]]]]]]],
                /* [] */0]]]];
     };
@@ -425,17 +425,17 @@ var
              /* Cmd */[1,
               /* S */[0,
                /* :: */[0,
-                /* A */[1,"rm"],
+                [/* A */1,"rm"],
                 /* :: */[0,
-                 /* A */[1,"-rf"],
+                 [/* A */1,"-rf"],
                  /* :: */[0,/* Px */[3,docout],/* [] */0]]]]],
              /* :: */[0,
               /* Cmd */[1,
                /* S */[0,
                 /* :: */[0,
-                 /* A */[1,"mkdir"],
+                 [/* A */1,"mkdir"],
                  /* :: */[0,
-                  /* A */[1,"-p"],
+                  [/* A */1,"-p"],
                   /* :: */[0,
                    /* Px */[3,Pathname["dirname"](docout)],
                    /* [] */0]]]]],
@@ -450,7 +450,7 @@ var
                      (function(a)
                        {return /* S */[0,
                                 /* :: */[0,
-                                 /* A */[1,"-load"],
+                                 [/* A */1,"-load"],
                                  /* :: */[0,/* P */[2,a],/* [] */0]]];
                         },
                       deps)],
@@ -459,7 +459,7 @@ var
                      Tags["Operators"][1]
                       (Tags["Operators"][1](tags,"doc"),"docfile")],
                     /* :: */[0,
-                     /* A */[1,"-o"],
+                     [/* A */1,"-o"],
                      /* :: */[0,/* Px */[3,docout],/* [] */0]]]]]]],
                /* [] */0]]]];
     };
@@ -517,7 +517,7 @@ var
       My_std["List"][16]
        (function(module_name)
          {return Ocaml_utils["expand_module"]
-                  (include_dirs,module_name,/* :: */[0,"odoc",/* [] */0]);
+                  (include_dirs,module_name,[/* :: */0,"odoc",/* [] */0]);
           },
         contents);
     
@@ -540,7 +540,7 @@ var
    {if($staropt$star)
      {var $$default=$staropt$star[1];}
     else
-     {var $$default=/* A */[1,"camlp4o"];}
+     {var $$default=[/* A */1,"camlp4o"];}
     
     var ml=env(i);
     
@@ -566,11 +566,11 @@ var
               /* :: */[0,
                /* P */[2,ml],
                /* :: */[0,
-                /* A */[1,"-printer"],
+                [/* A */1,"-printer"],
                 /* :: */[0,
-                 /* A */[1,"o"],
+                 [/* A */1,"o"],
                  /* :: */[0,
-                  /* A */[1,"-o"],
+                  [/* A */1,"-o"],
                   /* :: */[0,/* Px */[3,pp_ml],/* [] */0]]]]]]]];
     };
 

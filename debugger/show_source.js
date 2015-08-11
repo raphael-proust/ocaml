@@ -18,12 +18,12 @@ var
     var content=Source["buffer_content"](buffer);
     
     Printf["printf"]
-     (/* Format */[0,
-       /* Int */[4,
+     ([/* Format */0,
+       [/* Int */4,
         /* Int_i */3,
         /* No_padding */0,
         /* No_precision */0,
-        /* Char_literal */[12,32,/* End_of_format */0]],
+        [/* Char_literal */12,32,/* End_of_format */0]],
        "%i "],
       line_number);
     if(point<=next&&point>=start)
@@ -45,8 +45,8 @@ var
   function(param)
    {if(Parameters["emacs"][1])
      {return Printf["printf"]
-              (/* Format */[0,
-                /* String_literal */[11,"\x1a\x1aH\n",/* End_of_format */0],
+              ([/* Format */0,
+                [/* String_literal */11,"\x1a\x1aH\n",/* End_of_format */0],
                 "\x1a\x1aH\n"]);
       }
     else
@@ -67,20 +67,20 @@ var
         var source=Source["source_of_module"](ev[3][1],mdle);
         
         Printf["printf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "\x1a\x1aM",
-            /* String */[2,
+            [/* String */2,
              /* No_padding */0,
-             /* Char_literal */[12,
+             [/* Char_literal */12,
               58,
-              /* Int */[4,
+              [/* Int */4,
                /* Int_i */3,
                /* No_padding */0,
                /* No_precision */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 58,
-                /* Int */[4,
+                [/* Int */4,
                  /* Int_i */3,
                  /* No_padding */0,
                  /* No_precision */0,
@@ -90,10 +90,10 @@ var
           Source["start_and_cnum"](buffer,ev[3][1])[2],
           Source["start_and_cnum"](buffer,ev[3][2])[2]);
         return Printf["printf"]
-                (/* Format */[0,
-                  /* String */[2,
+                ([/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Char_literal */[12,10,/* End_of_format */0]],
+                   [/* Char_literal */12,10,/* End_of_format */0]],
                   "%s\n"],
                  before?":before":":after");
         }

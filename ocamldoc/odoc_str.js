@@ -94,27 +94,27 @@ var
         if(need_parent(t))
          {Format["fprintf"]
            (fmt,
-            /* Format */[0,
-             /* Char_literal */[12,
+            [/* Format */0,
+             [/* Char_literal */12,
               40,
-              /* String */[2,/* No_padding */0,/* End_of_format */0]],
+              [/* String */2,/* No_padding */0,/* End_of_format */0]],
              "(%s"],
             variance);
-          Printtyp["type_scheme_max"](/* Some */[0,/* false */0],fmt,t);
+          Printtyp["type_scheme_max"]([/* Some */0,/* false */0],fmt,t);
           return Format["fprintf"]
                   (fmt,
-                   /* Format */[0,
-                    /* Char_literal */[12,41,/* End_of_format */0],
+                   [/* Format */0,
+                    [/* Char_literal */12,41,/* End_of_format */0],
                     ")"]);
           }
         else
          {Format["fprintf"]
            (fmt,
-            /* Format */[0,
-             /* String */[2,/* No_padding */0,/* End_of_format */0],
+            [/* Format */0,
+             [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
             variance);
-          return Printtyp["type_scheme_max"](/* Some */[0,/* false */0],fmt,t);
+          return Printtyp["type_scheme_max"]([/* Some */0,/* false */0],fmt,t);
           }
         };
     
@@ -130,11 +130,11 @@ var
       if(tyl)
        {Format["fprintf"]
          (fmt,
-          /* Format */[0,
-           /* Formatting_gen */[18,
-            /* Open_box */[1,
-             /* Format */[0,
-              /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+          [/* Format */0,
+           [/* Formatting_gen */18,
+            [/* Open_box */1,
+             [/* Format */0,
+              [/* String_literal */11,"<hov 2>",/* End_of_format */0],
               "<hov 2>"]],
             /* End_of_format */0],
            "@[<hov 2>"]),
@@ -143,10 +143,10 @@ var
          (function(param)
            {Format["fprintf"]
              (fmt,
-              /* Format */[0,
-               /* Formatting_lit */[17,
-                /* Break */[0,"@,",0,0],
-                /* String */[2,/* No_padding */0,/* End_of_format */0]],
+              [/* Format */0,
+               [/* Formatting_lit */17,
+                [/* Break */0,"@,",0,0],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]],
                "@,%s"],
               sep);
             return print_one_type(param[1],param[2]);
@@ -154,8 +154,8 @@ var
           tyl),
         Format["fprintf"]
          (fmt,
-          /* Format */[0,
-           /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0],
+          [/* Format */0,
+           [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0],
            "@]"])}
       else
        {print_one_type(variance,ty)}
@@ -184,12 +184,12 @@ var
       }
     
     return Printf["sprintf"]
-            (/* Format */[0,
-              /* String */[2,
+            ([/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s%s%s"],
              par$1?"(":"",
              raw_string_of_type_list
@@ -210,12 +210,12 @@ var
     switch(exit){case 32:var par=/* false */0;}
     
     return Printf["sprintf"]
-            (/* Format */[0,
-              /* String */[2,
+            ([/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s%s%s"],
              par?"(":"",
              raw_string_of_type_list
@@ -242,12 +242,12 @@ var
     switch(exit){case 28:var par=/* false */0;}
     
     return Printf["sprintf"]
-            (/* Format */[0,
-              /* String */[2,
+            ([/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s%s%s"],
              par?"(":"",
              raw_string_of_type_list
@@ -266,12 +266,12 @@ var
     switch(exit){case 24:var par=/* false */0;}
     
     return Printf["sprintf"]
-            (/* Format */[0,
-              /* String */[2,
+            ([/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s%s%s"],
              par?"[":"",
              raw_string_of_type_list
@@ -304,16 +304,16 @@ var
             {case "":var $js="";default:var $js=Pervasives["^"](label,":");}
            Printf["bprintf"]
             (b,
-             /* Format */[0,
-              /* String */[2,
+             [/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11," -> ",/* End_of_format */0]]]]],
+                  [/* String_literal */11," -> ",/* End_of_format */0]]]]],
               "%s%s%s%s -> "],
              $js,
              parent?"(":"",
@@ -347,12 +347,12 @@ var
       function(param)
        {if(param)
          {return P[4]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "(* ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11," *)",/* End_of_format */0]]],
+                      [/* String_literal */11," *)",/* End_of_format */0]]],
                     "(* %s *)"],
                    Odoc_misc["string_of_info"](param[1]));
           }
@@ -394,16 +394,16 @@ var
          var
           manifest_str=
            P[4]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "= ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  "<\n",
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"\n>\n",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"\n>\n",/* End_of_format */0]]]]],
               "= %s<\n%s\n>\n"],
              priv?"private ":"",
              $$String["concat"]
@@ -411,18 +411,18 @@ var
                List["map"]
                 (function(field)
                   {return P[4]
-                           (/* Format */[0,
-                             /* String_literal */[11,
+                           ([/* Format */0,
+                             [/* String_literal */11,
                               "   ",
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String_literal */[11,
+                               [/* String_literal */11,
                                 " : ",
-                                /* String */[2,
+                                [/* String */2,
                                  /* No_padding */0,
-                                 /* Char_literal */[12,
+                                 [/* Char_literal */12,
                                   59,
-                                  /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
+                                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                              "   %s : %s;%s"],
                             field[1],
                             Odoc_print["string_of_type_expr"](field[2]),
@@ -446,16 +446,16 @@ var
          var
           type_kind_str=
            P[4]
-            (/* Format */[0,
-              /* Char_literal */[12,
+            ([/* Format */0,
+              [/* Char_literal */12,
                61,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* Char_literal */[12,
+                [/* Char_literal */12,
                  10,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* Char_literal */[12,10,/* End_of_format */0]]]]],
+                  [/* Char_literal */12,10,/* End_of_format */0]]]]],
               "=%s\n%s\n"],
              priv?" private":"",
              $$String["concat"]
@@ -468,12 +468,12 @@ var
                     {var
                       comment=
                        P[4]
-                        (/* Format */[0,
-                          /* String_literal */[11,
+                        ([/* Format */0,
+                          [/* String_literal */11,
                            "(* ",
-                           /* String */[2,
+                           [/* String */2,
                             /* No_padding */0,
-                            /* String_literal */[11," *)",/* End_of_format */0]]],
+                            [/* String_literal */11," *)",/* End_of_format */0]]],
                           "(* %s *)"],
                          Odoc_misc["string_of_info"](match$3[1]));
                      }
@@ -486,10 +486,10 @@ var
                       {return $$String["concat"]
                                (" * ",
                                 List["map"]
-                                 (function(t$1)
+                                 (function(t)
                                    {return Pervasives["^"]
                                             ("(",
-                                             Pervasives["^"](Odoc_print["string_of_type_expr"](t$1),")"));
+                                             Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"));
                                     },
                                   lst));
                        };
@@ -499,27 +499,27 @@ var
                    var match$5=cons[3];
                    
                    return P[4]
-                           (/* Format */[0,
-                             /* String_literal */[11,
+                           ([/* Format */0,
+                             [/* String_literal */11,
                               "  | ",
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String */[2,
+                               [/* String */2,
                                 /* No_padding */0,
-                                /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                                [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                              "  | %s%s%s"],
                             cons[1],
                             match$4
                              ?match$5
                                ?P[4]
-                                 (/* Format */[0,
-                                   /* String_literal */[11,
+                                 ([/* Format */0,
+                                   [/* String_literal */11,
                                     " : ",
-                                    /* String */[2,
+                                    [/* String */2,
                                      /* No_padding */0,
-                                     /* String_literal */[11,
+                                     [/* String_literal */11,
                                       " -> ",
-                                      /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                                    " : %s -> %s"],
                                   string_of_parameters(match$4),
                                   Odoc_print["string_of_type_expr"](match$5[1]))
@@ -536,16 +536,16 @@ var
          var
           type_kind_str=
            P[4]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "= ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  "{\n",
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,"\n}\n",/* End_of_format */0]]]]],
+                  [/* String_literal */11,"\n}\n",/* End_of_format */0]]]]],
               "= %s{\n%s\n}\n"],
              priv?"private ":"",
              $$String["concat"]
@@ -553,20 +553,20 @@ var
                List["map"]
                 (function(field)
                   {return P[4]
-                           (/* Format */[0,
-                             /* String_literal */[11,
+                           ([/* Format */0,
+                             [/* String_literal */11,
                               "   ",
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String */[2,
+                               [/* String */2,
                                 /* No_padding */0,
-                                /* String_literal */[11,
+                                [/* String_literal */11,
                                  " : ",
-                                 /* String */[2,
+                                 [/* String */2,
                                   /* No_padding */0,
-                                  /* Char_literal */[12,
+                                  [/* Char_literal */12,
                                    59,
-                                   /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]],
+                                   [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]],
                              "   %s%s : %s;%s"],
                             field[2]?"mutable ":"",
                             field[1],
@@ -580,22 +580,22 @@ var
     var match$3=t[2];
     
     return P[4]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "type ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* Char_literal */[12,
+                [/* Char_literal */12,
                  32,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* Char_literal */[12,
+                  [/* Char_literal */12,
                    32,
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]],
+                     [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
               "type %s %s %s%s%s"],
              parameters_str,
              Odoc_name["simple"](t[1]),

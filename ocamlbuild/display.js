@@ -20,14 +20,14 @@ var
   function(oc,n)
    {return fp
             (oc,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                "\x1b[",
-               /* Int */[4,
+               [/* Int */4,
                 /* Int_d */0,
                 /* No_padding */0,
                 /* No_precision */0,
-                /* Char_literal */[12,65,/* End_of_format */0]]],
+                [/* Char_literal */12,65,/* End_of_format */0]]],
               "\x1b[%dA"],
              n);
     };
@@ -37,8 +37,8 @@ var
   function(oc,param)
    {return fp
             (oc,
-             /* Format */[0,
-              /* String_literal */[11,"\x1b[K",/* End_of_format */0],
+             [/* Format */0,
+              [/* String_literal */11,"\x1b[K",/* End_of_format */0],
               "\x1b[K"]);
     };
 
@@ -47,8 +47,8 @@ var
   function(oc,param)
    {return fp
             (oc,
-             /* Format */[0,
-              /* Char_literal */[12,13,/* End_of_format */0],
+             [/* Format */0,
+              [/* Char_literal */12,13,/* End_of_format */0],
               "\r"]);
     };
 
@@ -70,21 +70,21 @@ var default_update_interval=0.05;
 
 var
  default_tagline_description=
-  /* :: */[0,
-   /* tuple */[0,"ocaml",79],
-   /* :: */[0,
-    /* tuple */[0,"native",78],
-    /* :: */[0,
-     /* tuple */[0,"byte",66],
-     /* :: */[0,
-      /* tuple */[0,"program",80],
-      /* :: */[0,
-       /* tuple */[0,"pp",82],
-       /* :: */[0,
-        /* tuple */[0,"debug",68],
-        /* :: */[0,
-         /* tuple */[0,"interf",73],
-         /* :: */[0,/* tuple */[0,"link",76],/* [] */0]]]]]]]];
+  [/* :: */0,
+   [/* tuple */0,"ocaml",79],
+   [/* :: */0,
+    [/* tuple */0,"native",78],
+    [/* :: */0,
+     [/* tuple */0,"byte",66],
+     [/* :: */0,
+      [/* tuple */0,"program",80],
+      [/* :: */0,
+       [/* tuple */0,"pp",82],
+       [/* :: */0,
+        [/* tuple */0,"debug",68],
+        [/* :: */0,
+         [/* tuple */0,"interf",73],
+         [/* :: */0,[/* tuple */0,"link",76],/* [] */0]]]]]]]];
 
 var countdown_chars=8;
 
@@ -119,48 +119,45 @@ var
  create=
   function
    ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
     log_file,
-    $staropt$star$4,
+    $staropt$star,
     param)
-   {if($staropt$star)
-     {var channel=$staropt$star[1];}
+   {if($staropt$star$1)
+     {var channel=$staropt$star$1[1];}
     else
      {var channel=Pervasives["stdout"];}
     
-    if($staropt$star$1)
-     {var mode=$staropt$star$1[1];}
+    if($staropt$star$2)
+     {var mode=$staropt$star$2[1];}
     else
      {var mode=/* Sophisticated */-369468030;}
     
-    if($staropt$star$2)
-     {var _columns=$staropt$star$2[1];}
+    if($staropt$star$3)
+     {var _columns=$staropt$star$3[1];}
     else
      {var _columns=75;}
     
-    if($staropt$star$3)
-     {var description=$staropt$star$3[1];}
+    if($staropt$star$4)
+     {var description=$staropt$star$4[1];}
     else
      {var description=default_tagline_description;}
     
-    if($staropt$star$4)
-     {var log_level=$staropt$star$4[1];}
-    else
-     {var log_level=1;}
+    if($staropt$star){var log_level=$staropt$star[1];}else{var log_level=1;}
     
     if(log_file)
      {var
        oc=
         Pervasives["open_out_gen"]
-         (/* :: */[0,
+         ([/* :: */0,
            /* Open_text */7,
-           /* :: */[0,
+           [/* :: */0,
             /* Open_wronly */1,
-            /* :: */[0,
+            [/* :: */0,
              /* Open_creat */3,
-             /* :: */[0,/* Open_trunc */4,/* [] */0]]]],
+             [/* :: */0,/* Open_trunc */4,/* [] */0]]]],
           438,
           log_file[1]);
       
@@ -168,8 +165,8 @@ var
       
       Format["fprintf"]
        (f,
-        /* Format */[0,
-         /* String_literal */[11,"### Starting build.\n",/* End_of_format */0],
+        [/* Format */0,
+         [/* String_literal */11,"### Starting build.\n",/* End_of_format */0],
          "### Starting build.\n"]);
       var log_channel=/* Some */[0,/* tuple */[0,f,oc]];
       }
@@ -238,22 +235,22 @@ var
     
     return fp
             (oc,
-             /* Format */[0,
-              /* Int */[4,
+             [/* Format */0,
+              [/* Int */4,
                /* Int_d */0,
-               /* Lit_padding */[0,/* Zeros */2,2],
+               [/* Lit_padding */0,/* Zeros */2,2],
                /* No_precision */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 58,
-                /* Int */[4,
+                [/* Int */4,
                  /* Int_d */0,
-                 /* Lit_padding */[0,/* Zeros */2,2],
+                 [/* Lit_padding */0,/* Zeros */2,2],
                  /* No_precision */0,
-                 /* Char_literal */[12,
+                 [/* Char_literal */12,
                   58,
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
-                   /* Lit_padding */[0,/* Zeros */2,2],
+                   [/* Lit_padding */0,/* Zeros */2,2],
                    /* No_precision */0,
                    /* End_of_format */0]]]]],
               "%02d:%02d:%02d"],
@@ -273,9 +270,9 @@ var
      {Pervasives["output_string"](oc,u);
       return fp
               (oc,
-               /* Format */[0,
-                /* String */[2,
-                 /* Arg_padding */[1,/* Right */1],
+               [/* Format */0,
+                [/* String */2,
+                 [/* Arg_padding */1,/* Right */1],
                  /* End_of_format */0],
                 "%*s"],
                length-m,
@@ -303,7 +300,7 @@ var
     ds[3]=t,0;
     fp
      (oc,
-      /* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+      [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
       ANSI[3],
       /* () */0);
     var
@@ -315,34 +312,34 @@ var
     
     fp
      (oc,
-      /* Format */[0,
-       /* Alpha */[15,
-        /* Char_literal */[12,
+      [/* Format */0,
+       [/* Alpha */15,
+        [/* Char_literal */12,
          32,
-         /* Int */[4,
+         [/* Int */4,
           /* Int_d */0,
-          /* Lit_padding */[0,/* Left */0,4],
+          [/* Lit_padding */0,/* Left */0,4],
           /* No_precision */0,
-          /* String_literal */[11,
+          [/* String_literal */11,
            " (",
-           /* Int */[4,
+           [/* Int */4,
             /* Int_d */0,
-            /* Lit_padding */[0,/* Left */0,4],
+            [/* Lit_padding */0,/* Left */0,4],
             /* No_precision */0,
-            /* String_literal */[11,
+            [/* String_literal */11,
              ") ",
-             /* Alpha */[15,
-              /* Char_literal */[12,
+             [/* Alpha */15,
+              [/* Char_literal */12,
                32,
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* Char_literal */[12,
+                [/* Char_literal */12,
                  32,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* Char_literal */[12,
+                  [/* Char_literal */12,
                    32,
-                   /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]]]],
+                   [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]]]],
        "%a %-4d (%-4d) %a %s %s %s"],
       print_time,
       dt,
@@ -355,8 +352,8 @@ var
       ticker);
     return fp
             (oc,
-             /* Format */[0,
-              /* Alpha */[15,/* Flush */[10,/* End_of_format */0]],
+             [/* Format */0,
+              [/* Alpha */15,[/* Flush */10,/* End_of_format */0]],
               "%a%!"],
              ANSI[2],
              /* () */0);
@@ -384,34 +381,34 @@ var
     if(how>=94326179)
      {fp
        (oc,
-        /* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+        [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
         ANSI[3],
         /* () */0);
       fp
        (oc,
-        /* Format */[0,
-         /* String */[2,
+        [/* Format */0,
+         [/* String */2,
           /* No_padding */0,
-          /* Char_literal */[12,
+          [/* Char_literal */12,
            32,
-           /* Int */[4,
+           [/* Int */4,
             /* Int_d */0,
             /* No_padding */0,
             /* No_precision */0,
-            /* String_literal */[11,
+            [/* String_literal */11,
              " target",
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,
+              [/* String_literal */11,
                " (",
-               /* Int */[4,
+               [/* Int */4,
                 /* Int_d */0,
                 /* No_padding */0,
                 /* No_precision */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " cached) in ",
-                 /* Alpha */[15,
-                  /* Char_literal */[12,46,/* End_of_format */0]]]]]]]]]],
+                 [/* Alpha */15,
+                  [/* Char_literal */12,46,/* End_of_format */0]]]]]]]]]],
          "%s %d target%s (%d cached) in %a."],
         (how=/* Error */106380200)
          ?"Compilation unsuccessful after building"
@@ -423,11 +420,11 @@ var
         dt);
       return fp
               (oc,
-               /* Format */[0,
-                /* Alpha */[15,
-                 /* Char_literal */[12,
+               [/* Format */0,
+                [/* Alpha */15,
+                 [/* Char_literal */12,
                   10,
-                  /* Flush */[10,/* End_of_format */0]]],
+                  [/* Flush */10,/* End_of_format */0]]],
                 "%a\n%!"],
                ANSI[2],
                /* () */0);
@@ -435,9 +432,9 @@ var
     else
      {return fp
               (oc,
-               /* Format */[0,
-                /* Alpha */[15,
-                 /* Alpha */[15,/* Flush */[10,/* End_of_format */0]]],
+               [/* Format */0,
+                [/* Alpha */15,
+                 [/* Alpha */15,[/* Flush */10,/* End_of_format */0]]],
                 "%a%a%!"],
                ANSI[3],
                /* () */0,
@@ -451,8 +448,8 @@ var
   function(ds,f)
    {fp
      (ds[1],
-      /* Format */[0,
-       /* Alpha */[15,/* Alpha */[15,/* Flush */[10,/* End_of_format */0]]],
+      [/* Format */0,
+       [/* Alpha */15,[/* Alpha */15,[/* Flush */10,/* End_of_format */0]]],
        "%a%a%!"],
       ANSI[3],
       /* () */0,
@@ -490,14 +487,14 @@ var
         function(param)
          {Format["fprintf"]
            (param[1],
-            /* Format */[0,
-             /* String_literal */[11,
+            [/* Format */0,
+             [/* String_literal */11,
               "# Compilation ",
-              /* String */[2,
+              [/* String */2,
                /* No_padding */0,
-               /* String_literal */[11,
+               [/* String_literal */11,
                 "successful.",
-                /* Formatting_lit */[17,
+                [/* Formatting_lit */17,
                  /* Flush_newline */4,
                  /* End_of_format */0]]]],
              "# Compilation %ssuccessful.@."],
@@ -569,14 +566,14 @@ var
 
 var
  set_target_sophisticated=
-  function(ds,target,tags,cached$1)
+  function(ds,target,tags,cached)
    {ds[7]=/* true */1,0;
     ds[4]=target,0;
     ds[6]=tags,0;
     ds[10]=1+ds[10],0;
-    if(cached$1){ds[11]=1+ds[11],0}else{}
+    if(cached){ds[11]=1+ds[11],0}else{}
     
-    ds[5]=cached$1,0;
+    ds[5]=cached,0;
     ds[13]=Tags["union"](ds[13],ds[6]),0;
     return update_sophisticated(ds);
     };
@@ -592,18 +589,18 @@ var
                 {first[1]=/* false */0,0;
                  return Format["fprintf"]
                          (f,
-                          /* Format */[0,
-                           /* String */[2,/* No_padding */0,/* End_of_format */0],
+                          [/* Format */0,
+                           [/* String */2,/* No_padding */0,/* End_of_format */0],
                            "%s"],
                           tag);
                  }
                else
                 {return Format["fprintf"]
                          (f,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             ", ",
-                            /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                            [/* String */2,/* No_padding */0,/* End_of_format */0]],
                            ", %s"],
                           tag);
                  }
@@ -634,27 +631,27 @@ var
         
         Format["fprintf"]
          (fmt,
-          /* Format */[0,
-           /* String_literal */[11,
+          [/* Format */0,
+           [/* String_literal */11,
             "# Target: ",
-            /* String */[2,
+            [/* String */2,
              /* No_padding */0,
-             /* String_literal */[11,
+             [/* String_literal */11,
               ", tags: { ",
-              /* Alpha */[15,
-               /* String_literal */[11," }\n",/* End_of_format */0]]]]],
+              [/* Alpha */15,
+               [/* String_literal */11," }\n",/* End_of_format */0]]]]],
            "# Target: %s, tags: { %a }\n"],
           target,
           print_tags,
           tags);
         return Format["fprintf"]
                 (fmt,
-                 /* Format */[0,
-                  /* String */[2,
+                 [/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* Formatting_lit */[17,
+                    [/* Formatting_lit */17,
                      /* Flush_newline */4,
                      /* End_of_format */0]]],
                   "%s%s@."],
@@ -676,14 +673,14 @@ var
         if(di[1]>=2)
          {return Format["fprintf"]
                   (di[4],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "[cache hit] ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        10,
-                       /* Flush */[10,/* End_of_format */0]]]],
+                       [/* Flush */10,/* End_of_format */0]]]],
                     "[cache hit] %s\n%!"],
                    command$1);
           }
@@ -694,12 +691,12 @@ var
        {if(di[1]>=1)
          {return Format["fprintf"]
                   (di[4],
-                   /* Format */[0,
-                    /* String */[2,
+                   [/* Format */0,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,
+                     [/* Char_literal */12,
                       10,
-                      /* Flush */[10,/* End_of_format */0]]],
+                      [/* Flush */10,/* End_of_format */0]]],
                     "%s\n%!"],
                    command);
           }

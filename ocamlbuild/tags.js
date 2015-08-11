@@ -70,11 +70,11 @@ var
      match=
       Format["fprintf"]
        (f,
-        /* Format */[0,
-         /* Formatting_gen */[18,
-          /* Open_box */[1,
-           /* Format */[0,
-            /* String_literal */[11,"<0>",/* End_of_format */0],
+        [/* Format */0,
+         [/* Formatting_gen */18,
+          [/* Open_box */1,
+           [/* Format */0,
+            [/* String_literal */11,"<0>",/* End_of_format */0],
             "<0>"]],
           /* End_of_format */0],
          "@[<0>"]);
@@ -86,11 +86,11 @@ var
          {if(!first)
            {Format["fprintf"]
              (f,
-              /* Format */[0,
-               /* Char_literal */[12,
+              [/* Format */0,
+               [/* Char_literal */12,
                 44,
-                /* Formatting_lit */[17,
-                 /* Break */[0,"@ ",1,0],
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]],
                ",@ "])}
           else
@@ -104,8 +104,8 @@ var
     
     return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0],
+             [/* Format */0,
+              [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0],
               "@]"]);
     };
 

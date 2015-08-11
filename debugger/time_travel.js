@@ -182,7 +182,7 @@ var
             }
           }
         else
-         {return /* tuple */[0,/* [] */0,/* [] */0];}
+         {return [/* tuple */0,/* [] */0,/* [] */0];}
         };
     
     return cut_t;
@@ -193,15 +193,15 @@ var
   function(t0,t,l)
    {var
      cut2_t0=
-      function(t$1,l$1)
-       {if(l$1)
+      function(t,l)
+       {if(l)
          {var
            match=
-            cut(Int64ops["--"](Int64ops["--"](t0,t$1),Int64ops["_1"]),l$1);
+            cut(Int64ops["--"](Int64ops["--"](t0,t),Int64ops["_1"]),l);
           
-          var l$2=cut2_t0(Int64ops["++"](t$1,t$1),match[2]);
+          var l$1=cut2_t0(Int64ops["++"](t,t),match[2]);
           
-          return /* :: */[0,match[1],l$2];
+          return /* :: */[0,match[1],l$1];
           }
         else
          {return /* [] */0;}
@@ -244,7 +244,7 @@ var
    {if(param)
      {return chk_merge2(chk_merge(param[2]),param[1]);}
     else
-     {return /* tuple */[0,/* [] */0,/* [] */0];}
+     {return [/* tuple */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -515,22 +515,22 @@ var
              var valid=param[4];
              
              return Printf["printf"]
-                     (/* Format */[0,
-                       /* Int */[4,
+                     ([/* Format */0,
+                       [/* Int */4,
                         /* Int_d */0,
                         /* No_padding */0,
                         /* No_precision */0,
-                        /* Char_literal */[12,
+                        [/* Char_literal */12,
                          40,
-                         /* Int64 */[7,
+                         [/* Int64 */7,
                           /* Int_d */0,
                           /* No_padding */0,
                           /* No_precision */0,
-                          /* Char_literal */[12,
+                          [/* Char_literal */12,
                            41,
-                           /* String */[2,
+                           [/* String */2,
                             /* No_padding */0,
-                            /* Char_literal */[12,32,/* End_of_format */0]]]]]],
+                            [/* Char_literal */12,32,/* End_of_format */0]]]]]],
                        "%d(%Ld)%s "],
                       pid,
                       time,
@@ -625,10 +625,10 @@ var
          Checkpoints["checkpoints"][1]]);
     
     Printf["eprintf"]
-     (/* Format */[0,
-       /* String_literal */[11,
+     ([/* Format */0,
+       [/* String_literal */11,
         "Lost connection with process ",
-        /* Int */[4,
+        [/* Int */4,
          /* Int_d */0,
          /* No_padding */0,
          /* No_precision */0,
@@ -637,8 +637,8 @@ var
       pid);
     if(checkpoint=Checkpoints["current_checkpoint"][1])
      {Printf["eprintf"]
-       (/* Format */[0,
-         /* String_literal */[11," (active process)\n",/* End_of_format */0],
+       ([/* Format */0,
+         [/* String_literal */11," (active process)\n",/* End_of_format */0],
          " (active process)\n"]);
       var match=Checkpoints["current_checkpoint"][1][6];
       
@@ -646,16 +646,16 @@ var
        {var duration=match[1];
         
         Printf["eprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "between time ",
-            /* Int64 */[7,
+            [/* Int64 */7,
              /* Int_d */0,
              /* No_padding */0,
              /* No_precision */0,
-             /* String_literal */[11,
+             [/* String_literal */11,
               " and time ",
-              /* Int64 */[7,
+              [/* Int64 */7,
                /* Int_d */0,
                /* No_padding */0,
                /* No_precision */0,
@@ -674,10 +674,10 @@ var
         }
       else
        {Printf["eprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "at time ",
-            /* Int64 */[7,
+            [/* Int64 */7,
              /* Int_d */0,
              /* No_padding */0,
              /* No_precision */0,
@@ -691,7 +691,7 @@ var
      {var kont=function(prim){return prim;};}
     
     Printf["eprintf"]
-     (/* Format */[0,/* Char_literal */[12,10,/* End_of_format */0],"\n"]);
+     ([/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
     Pervasives["flush"](Pervasives["stderr"]);
     Input_handling["remove_file"](fd);
     Primitives["close_io"](checkpoint[3]);

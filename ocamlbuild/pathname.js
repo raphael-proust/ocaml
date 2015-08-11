@@ -77,7 +77,7 @@ var
  readdir=
   function(x){return My_std["Outcome"][3](My_std["sys_readdir"](x));};
 
-var dir_seps=/* :: */[0,47,/* :: */[0,92,/* [] */0]];
+var dir_seps=[/* :: */0,47,[/* :: */0,92,/* [] */0]];
 
 var not_normal_form_re=Glob["parse"](/* None */0,"<**/{,.,..}/**>");
 
@@ -88,13 +88,13 @@ var
   function(p)
    {var
      go=
-      function(p$1,acc)
-       {var dir=dirname(p$1);
+      function(p,acc)
+       {var dir=dirname(p);
         
         if("unknown primitive:caml_string_equal")
          {return /* tuple */[0,dir,acc];}
         else
-         {return go(dir,/* :: */[0,basename(p$1),acc]);}
+         {return go(dir,/* :: */[0,basename(p),acc]);}
         };
     
     return go(p,/* [] */0);

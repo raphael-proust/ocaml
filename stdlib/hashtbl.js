@@ -692,7 +692,7 @@ var
     
     var
      create$2=
-      function(sz){return create$1(/* Some */[0,/* false */0],sz);};
+      function(sz){return create$1([/* Some */0,/* false */0],sz);};
     
     return [0,
             create$2,
@@ -733,5 +733,5 @@ module["exports"]=
  "seeded_hash":seeded_hash,
  "hash_param":hash_param,
  "caml_hash":
- function(prim,prim$1,prim$2,prim$3){return "unknown primitive:caml_hash";}};
+ function(prim,prim,prim,prim){return "unknown primitive:caml_hash";}};
 

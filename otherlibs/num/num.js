@@ -58,7 +58,7 @@ var
        
       }
     
-    switch(exit){case 74:return /* Int */[0,1];}
+    switch(exit){case 74:return [/* Int */0,1];}
     };
 
 var
@@ -600,7 +600,7 @@ var
           {return num_of_big_int(Big_int["power_int_positive_int"](i,n));}
          }
        else
-        {return /* Int */[0,1];}
+        {return [/* Int */0,1];}
        
       case 1:
        var n$1=match$1;
@@ -622,7 +622,7 @@ var
            }
          }
        else
-        {return /* Int */[0,1];}
+        {return [/* Int */0,1];}
        
       case 2:
        var n$2=match$1;
@@ -641,7 +641,7 @@ var
           {return /* Ratio */[2,Ratio["power_ratio_positive_int"](r,n$2)];}
          }
        else
-        {return /* Int */[0,1];}
+        {return [/* Int */0,1];}
        
       }
     };
@@ -673,7 +673,7 @@ var
           {return num_of_big_int(Big_int["power_int_positive_big_int"](i,n));}
          }
        else
-        {return /* Int */[0,1];}
+        {return [/* Int */0,1];}
        
       case 1:
        var n$1=match$1;
@@ -696,7 +696,7 @@ var
            }
          }
        else
-        {return /* Int */[0,1];}
+        {return [/* Int */0,1];}
        
       case 2:
        var n$2=match$1;
@@ -716,7 +716,7 @@ var
            }
          }
        else
-        {return /* Int */[0,1];}
+        {return [/* Int */0,1];}
        
       }
     };

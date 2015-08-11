@@ -69,8 +69,8 @@ var
 
 var
  search_value=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* V */[2,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* V */[2,name]);
     
     switch(match)
      {case 0:return match[2][1];
@@ -79,8 +79,8 @@ var
 
 var
  search_extension=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* X */[6,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* X */[6,name]);
     
     switch(match)
      {case 2:return match[2];
@@ -89,8 +89,8 @@ var
 
 var
  search_type=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* T */[3,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* T */[3,name]);
     
     switch(match)
      {case 1:return match[2];
@@ -99,8 +99,8 @@ var
 
 var
  search_class=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* C */[4,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* C */[4,name]);
     
     switch(match)
      {case 5:return match[2];
@@ -109,8 +109,8 @@ var
 
 var
  search_class_type=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* CT */[5,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* CT */[5,name]);
     
     switch(match)
      {case 6:return match[2];
@@ -119,8 +119,8 @@ var
 
 var
  search_module=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* M */[0,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* M */[0,name]);
     
     switch(match)
      {case 3:return match[2][1];
@@ -129,8 +129,8 @@ var
 
 var
  search_module_type=
-  function(table$1,name)
-   {var match=Hashtbl["find"](table$1,/* MT */[1,name]);
+  function(table,name)
+   {var match=Hashtbl["find"](table,/* MT */[1,name]);
     
     switch(match)
      {case 4:
@@ -296,12 +296,12 @@ var
                     
                    default:exit=291;}}
                
-               switch(exit){case 291:return /* tuple */[0,0,/* [] */0];}
+               switch(exit){case 291:return [/* tuple */0,0,/* [] */0];}
                }
              else
-              {return /* tuple */[0,0,/* [] */0];}
+              {return [/* tuple */0,0,/* [] */0];}
              
-            case 1:return /* tuple */[0,0,/* [] */0];
+            case 1:return [/* tuple */0,0,/* [] */0];
             }}
         else
          {switch(match[0])
@@ -514,7 +514,7 @@ var
      erased_names_of_constraints=
       function(constraints,acc)
        {return List["fold_right"]
-                (function(constraint_,acc$1)
+                (function(constraint_,acc)
                   {var exit;
                    
                    switch(constraint_)
@@ -525,8 +525,8 @@ var
                      }
                    
                    switch(exit)
-                    {case 264:return acc$1;
-                     case 265:return Odoc_name["Set"][4](s[1],acc$1);
+                    {case 264:return acc;
+                     case 265:return Odoc_name["Set"][4](s[1],acc);
                      }
                    },
                  constraints,
@@ -674,11 +674,11 @@ var
         
         var
          f=
-          function(last_pos$1,class_type_field_list$1)
-           {if(class_type_field_list$1)
-             {var q=class_type_field_list$1[2];
+          function(last_pos,class_type_field_list)
+           {if(class_type_field_list)
+             {var q=class_type_field_list[2];
               
-              var item=class_type_field_list$1[1];
+              var item=class_type_field_list[1];
               
               var loc=item[2];
               
@@ -690,7 +690,7 @@ var
                  
                  var loc$1=class_type[2];
                  
-                 var match$1=get_comments_in_class(last_pos$1,loc$1[1][4]);
+                 var match$1=get_comments_in_class(last_pos,loc$1[1][4]);
                  
                  var pos_limit2=get_pos_limit2(q);
                  
@@ -750,7 +750,7 @@ var
                  
                  var name$1=match$5[1];
                  
-                 var match$6=get_comments_in_class(last_pos$1,loc[1][4]);
+                 var match$6=get_comments_in_class(last_pos,loc[1][4]);
                  
                  var
                   complete_name=
@@ -806,7 +806,7 @@ var
                 case 2:
                  var match$9=match[1];
                  
-                 var match$10=get_comments_in_class(last_pos$1,loc[1][4]);
+                 var match$10=get_comments_in_class(last_pos,loc[1][4]);
                  
                  var
                   match$11=
@@ -828,7 +828,7 @@ var
                            /* :: */[0,/* Class_method */[1,met2],match$12[2]])];
                  
                 case 3:
-                 var match$13=get_comments_in_class(last_pos$1,loc[1][4]);
+                 var match$13=get_comments_in_class(last_pos,loc[1][4]);
                  
                  var match$14=f(loc[2][4],q);
                  
@@ -837,7 +837,7 @@ var
                          Pervasives["@"](match$13[2],match$14[2])];
                  
                 case 4:
-                 var match$15=get_comments_in_class(last_pos$1,loc[1][4]);
+                 var match$15=get_comments_in_class(last_pos,loc[1][4]);
                  
                  var match$16=f(loc[2][4],q);
                  
@@ -849,7 +849,7 @@ var
                 }
               }
             else
-             {var s=get_string_of_file(last_pos$1,pos_limit);
+             {var s=get_string_of_file(last_pos,pos_limit);
               
               var match$17=My_ir[1](file_name[1],s);
               
@@ -885,13 +885,13 @@ var
         
         var
          f=
-          function(acc_eles,acc_env,last_pos$1,param)
+          function(acc_eles,acc_env,last_pos,param)
            {if(param)
              {var q=param[2];
               
               var ele=param[1];
               
-              var match=get_comments_in_module(last_pos$1,ele[2][1][4]);
+              var match=get_comments_in_module(last_pos,ele[2][1][4]);
               
               var
                match$1=
@@ -915,7 +915,7 @@ var
                        q);
               }
             else
-             {var s=get_string_of_file(last_pos$1,pos_limit);
+             {var s=get_string_of_file(last_pos,pos_limit);
               
               var match$2=My_ir[1](file_name[1],s);
               
@@ -950,7 +950,7 @@ var
       function
        (env,
         signat,
-        table$1,
+        table,
         current_module_name,
         sig_item_loc,
         pos_start_ele,
@@ -965,7 +965,7 @@ var
            var name_pre=sig_item_desc[1][1];
            
            try
-            {var type_expr=Signature_search[3](table$1,name_pre[1]);}
+            {var type_expr=Signature_search[3](table,name_pre[1]);}
            catch(exn)
             {if(exn=Not_found)
               {throw [0,
@@ -1037,16 +1037,16 @@ var
            var
             f=
              function
-              ($staropt$star,acc_maybe_more,last_pos,name_type_decl_list$1)
+              ($staropt$star,acc_maybe_more,last_pos,name_type_decl_list)
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
                 {var first=/* false */0;}
                
-               if(name_type_decl_list$1)
-                {var q=name_type_decl_list$1[2];
+               if(name_type_decl_list)
+                {var q=name_type_decl_list[2];
                  
-                 var type_decl=name_type_decl_list$1[1];
+                 var type_decl=name_type_decl_list[1];
                  
                  var name$1=type_decl[1];
                  
@@ -1073,7 +1073,7 @@ var
                  var maybe_more=match$2[1];
                  
                  try
-                  {var sig_type_decl=Signature_search[5](table$1,name$1[1]);}
+                  {var sig_type_decl=Signature_search[5](table,name$1[1]);}
                  catch(exn$1)
                   {if(exn$1=Not_found)
                     {throw [0,
@@ -1101,8 +1101,8 @@ var
                     Odoc_name["concat"](current_module_name,name$1[1]),
                     match$1[1],
                     List["map2"]
-                     (function(p,v$1)
-                       {var match$4=Types["Variance"][11](v$1);
+                     (function(p,v)
+                       {var match$4=Types["Variance"][11](v);
                         
                         return /* tuple */[0,
                                 Odoc_env["subst_type"](env$1,p),
@@ -1148,7 +1148,7 @@ var
            
            var
             match$1=
-             f(/* Some */[0,/* true */1],0,pos_start_ele,name_type_decl_list);
+             f([/* Some */0,/* true */1],0,pos_start_ele,name_type_decl_list);
            
            return /* tuple */[0,match$1[1],extended_env,match$1[2]];
            
@@ -1168,7 +1168,7 @@ var
                    Odoc_env["add_extension"](param[1],complete_name);
                  
                  try
-                  {var types_ext=Signature_search[4](table$1,name$1);}
+                  {var types_ext=Signature_search[4](table,name$1);}
                  catch(exn$1)
                   {if(exn$1=Not_found)
                     {throw [0,
@@ -1276,7 +1276,7 @@ var
            var name$1=sig_item_desc[1][1];
            
            try
-            {var types_ext=Signature_search[4](table$1,name$1[1]);}
+            {var types_ext=Signature_search[4](table,name$1[1]);}
            catch(exn$1)
             {if(exn$1=Not_found)
               {throw [0,
@@ -1325,7 +1325,7 @@ var
              Odoc_name["concat"](current_module_name,name$2[1]);
            
            try
-            {var sig_module_type=Signature_search[8](table$1,name$2[1]);}
+            {var sig_module_type=Signature_search[8](table,name$2[1]);}
            catch(exn$2)
             {if(exn$2=Not_found)
               {throw [0,
@@ -1411,7 +1411,7 @@ var
                  var e$1=Odoc_env["add_module"](acc_env,complete_name$1);
                  
                  try
-                  {var sig_module_type$1=Signature_search[8](table$1,name$3);}
+                  {var sig_module_type$1=Signature_search[8](table,name$3);}
                  catch(exn$3)
                   {if(exn$3=Not_found)
                     {throw [0,
@@ -1474,9 +1474,7 @@ var
                   {var pos_limit2=pos_limit;}
                  
                  try
-                  {var
-                    sig_module_type$1=
-                     Signature_search[8](table$1,name$3[1]);
+                  {var sig_module_type$1=Signature_search[8](table,name$3[1]);
                    }
                  catch(exn$3)
                   {if(exn$3=Not_found)
@@ -1547,7 +1545,7 @@ var
                 {return /* tuple */[0,acc_maybe_more,/* [] */0];}
                };
            
-           var match$10=f$1(/* Some */[0,/* true */1],0,pos_start_ele,decls);
+           var match$10=f$1([/* Some */0,/* true */1],0,pos_start_ele,decls);
            
            return /* tuple */[0,match$10[1],new_env$4,match$10[2]];
            
@@ -1563,7 +1561,7 @@ var
              Odoc_name["concat"](current_module_name,name$3[1]);
            
            try
-            {var sig_mtype=Signature_search[9](table$1,name$3[1]);}
+            {var sig_mtype=Signature_search[9](table,name$3[1]);}
            catch(exn$3)
             {if(exn$3=Not_found)
               {throw [0,
@@ -1715,16 +1713,16 @@ var
            var
             f$3=
              function
-              ($staropt$star,acc_maybe_more,last_pos,class_description_list$1)
+              ($staropt$star,acc_maybe_more,last_pos,class_description_list)
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
                 {var first=/* false */0;}
                
-               if(class_description_list$1)
-                {var q=class_description_list$1[2];
+               if(class_description_list)
+                {var q=class_description_list[2];
                  
-                 var class_desc=class_description_list$1[1];
+                 var class_desc=class_description_list[1];
                  
                  if(first)
                   {var match$15=/* tuple */[0,comment_opt,/* [] */0];}
@@ -1748,7 +1746,7 @@ var
                    Odoc_name["concat"](current_module_name,name$5[1]);
                  
                  try
-                  {var sig_class_decl=Signature_search[6](table$1,name$5[1]);}
+                  {var sig_class_decl=Signature_search[6](table,name$5[1]);}
                  catch(exn$4)
                   {if(exn$4=Not_found)
                     {throw [0,
@@ -1809,7 +1807,7 @@ var
            var
             match$15=
              f$3
-              (/* Some */[0,/* true */1],
+              ([/* Some */0,/* true */1],
                0,
                pos_start_ele,
                class_description_list);
@@ -1872,8 +1870,7 @@ var
                    Odoc_name["concat"](current_module_name,name$5[1]);
                  
                  try
-                  {var sig_cltype_decl=Signature_search[7](table$1,name$5[1]);
-                   }
+                  {var sig_cltype_decl=Signature_search[7](table,name$5[1]);}
                  catch(exn$4)
                   {if(exn$4=Not_found)
                     {throw [0,
@@ -1932,7 +1929,7 @@ var
            var
             match$16=
              f$4
-              (/* Some */[0,/* true */1],
+              ([/* Some */0,/* true */1],
                0,
                pos_start_ele,
                class_type_declaration_list);
@@ -2033,7 +2030,7 @@ var
                {exit=160;}
               
               switch(exit)
-               {case 160:var mp_kind=/* Module_type_struct */[0,/* [] */0];}
+               {case 160:var mp_kind=[/* Module_type_struct */0,/* [] */0];}
               
               var
                param=
@@ -2192,7 +2189,7 @@ var
                {exit=184;}
               
               switch(exit)
-               {case 184:var mp_kind=/* Module_type_struct */[0,/* [] */0];}
+               {case 184:var mp_kind=[/* Module_type_struct */0,/* [] */0];}
               
               var
                param=

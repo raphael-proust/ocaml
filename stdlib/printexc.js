@@ -11,32 +11,32 @@ var printers=[0,/* [] */0];
 
 var
  locfmt=
-  /* Format */[0,
-   /* String_literal */[11,
+  [/* Format */0,
+   [/* String_literal */11,
     'File "',
-    /* String */[2,
+    [/* String */2,
      /* No_padding */0,
-     /* String_literal */[11,
+     [/* String_literal */11,
       '", line ',
-      /* Int */[4,
+      [/* Int */4,
        /* Int_d */0,
        /* No_padding */0,
        /* No_precision */0,
-       /* String_literal */[11,
+       [/* String_literal */11,
         ", characters ",
-        /* Int */[4,
+        [/* Int */4,
          /* Int_d */0,
          /* No_padding */0,
          /* No_precision */0,
-         /* Char_literal */[12,
+         [/* Char_literal */12,
           45,
-          /* Int */[4,
+          [/* Int */4,
            /* Int_d */0,
            /* No_padding */0,
            /* No_precision */0,
-           /* String_literal */[11,
+           [/* String_literal */11,
             ": ",
-            /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]]]],
+            [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]],
    'File "%s", line %d, characters %d-%d: %s'];
 
 var
@@ -46,8 +46,8 @@ var
     
     if(!"unknown primitive:caml_obj_is_block")
      {return Printf["sprintf"]
-              (/* Format */[0,
-                /* Int */[4,
+              ([/* Format */0,
+                [/* Int */4,
                  /* Int_d */0,
                  /* No_padding */0,
                  /* No_precision */0,
@@ -58,8 +58,8 @@ var
     else
      {if("unknown primitive:caml_obj_tag"=Obj["string_tag"])
        {return Printf["sprintf"]
-                (/* Format */[0,
-                  /* Caml_string */[3,/* No_padding */0,/* End_of_format */0],
+                ([/* Format */0,
+                  [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
                   "%S"],
                  f);
         }
@@ -79,12 +79,12 @@ var
      {return "";}
     else
      {return Printf["sprintf"]
-              (/* Format */[0,
-                /* String_literal */[11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  ", ",
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                 ", %s%s"],
                field(x,i),
                other_fields(x,i+1));
@@ -98,14 +98,14 @@ var
     
     if(2<n>>>0)
      {return Printf["sprintf"]
-              (/* Format */[0,
-                /* Char_literal */[12,
+              ([/* Format */0,
+                [/* Char_literal */12,
                  40,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Char_literal */[12,41,/* End_of_format */0]]]],
+                   [/* Char_literal */12,41,/* End_of_format */0]]]],
                 "(%s%s)"],
                field(x,1),
                other_fields(x,2));
@@ -116,12 +116,12 @@ var
         case 1:return "";
         case 2:
          return Printf["sprintf"]
-                 (/* Format */[0,
-                   /* Char_literal */[12,
+                 ([/* Format */0,
+                   [/* Char_literal */12,
                     40,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,41,/* End_of_format */0]]],
+                     [/* Char_literal */12,41,/* End_of_format */0]]],
                    "(%s)"],
                   field(x,1));
          
@@ -233,12 +233,12 @@ var
      {return fct(arg);}
     catch(x)
      {Printf["eprintf"]
-       (/* Format */[0,
-         /* String_literal */[11,
+       ([/* Format */0,
+         [/* String_literal */11,
           "Uncaught exception: ",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* Char_literal */[12,10,/* End_of_format */0]]],
+           [/* Char_literal */12,10,/* End_of_format */0]]],
          "Uncaught exception: %s\n"],
         to_string(x));
       Pervasives["flush"](Pervasives["stderr"]);
@@ -254,12 +254,12 @@ var
     catch(x)
      {Pervasives["flush"](Pervasives["stdout"]);
       Printf["eprintf"]
-       (/* Format */[0,
-         /* String_literal */[11,
+       ([/* Format */0,
+         [/* String_literal */11,
           "Uncaught exception: ",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* Char_literal */[12,10,/* End_of_format */0]]],
+           [/* Char_literal */12,10,/* End_of_format */0]]],
          "Uncaught exception: %s\n"],
         to_string(x));
       return Pervasives["exit"](2);
@@ -311,28 +311,28 @@ var
        
        return /* Some */[0,
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String */[2,
+                ([/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     ' file "',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '", line ',
-                      /* Int */[4,
+                      [/* Int */4,
                        /* Int_d */0,
                        /* No_padding */0,
                        /* No_precision */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         ", characters ",
-                        /* Int */[4,
+                        [/* Int */4,
                          /* Int_d */0,
                          /* No_padding */0,
                          /* No_precision */0,
-                         /* Char_literal */[12,
+                         [/* Char_literal */12,
                           45,
-                          /* Int */[4,
+                          [/* Int */4,
                            /* Int_d */0,
                            /* No_padding */0,
                            /* No_precision */0,
@@ -352,10 +352,10 @@ var
        else
         {return /* Some */[0,
                  Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String */[2,
+                  ([/* Format */0,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       " unknown location",
                       /* End_of_format */0]],
                     "%s unknown location"],
@@ -379,10 +379,10 @@ var
           
           Printf["fprintf"]
            (outchan,
-            /* Format */[0,
-             /* String */[2,
+            [/* Format */0,
+             [/* String */2,
               /* No_padding */0,
-              /* Char_literal */[12,10,/* End_of_format */0]],
+              [/* Char_literal */12,10,/* End_of_format */0]],
              "%s\n"],
             str)}
         else
@@ -392,8 +392,8 @@ var
     else
      {return Printf["fprintf"]
               (outchan,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "(Program not linked with -g, cannot print stack backtrace)\n",
                  /* End_of_format */0],
                 "(Program not linked with -g, cannot print stack backtrace)\n"]);
@@ -430,10 +430,10 @@ var
           
           Printf["bprintf"]
            (b,
-            /* Format */[0,
-             /* String */[2,
+            [/* Format */0,
+             [/* String */2,
               /* No_padding */0,
-              /* Char_literal */[12,10,/* End_of_format */0]],
+              [/* Char_literal */12,10,/* End_of_format */0]],
              "%s\n"],
             str)}
         else
@@ -586,22 +586,22 @@ var
          {var raw_backtrace$prime=try_get_raw_backtrace(/* () */0);
           
           Printf["eprintf"]
-           (/* Format */[0,
-             /* String_literal */[11,
+           ([/* Format */0,
+             [/* String_literal */11,
               "Fatal error: exception ",
-              /* String */[2,
+              [/* String */2,
                /* No_padding */0,
-               /* Char_literal */[12,10,/* End_of_format */0]]],
+               [/* Char_literal */12,10,/* End_of_format */0]]],
              "Fatal error: exception %s\n"],
             to_string(exn));
           print_raw_backtrace(Pervasives["stderr"],raw_backtrace);
           Printf["eprintf"]
-           (/* Format */[0,
-             /* String_literal */[11,
+           ([/* Format */0,
+             [/* String_literal */11,
               "Fatal error in uncaught exception handler: exception ",
-              /* String */[2,
+              [/* String */2,
                /* No_padding */0,
-               /* Char_literal */[12,10,/* End_of_format */0]]],
+               [/* Char_literal */12,10,/* End_of_format */0]]],
              "Fatal error in uncaught exception handler: exception %s\n"],
             to_string(exn$prime));
           print_raw_backtrace(Pervasives["stderr"],raw_backtrace$prime);
@@ -610,12 +610,12 @@ var
         }
       else
        {Printf["eprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "Fatal error: exception ",
-            /* String */[2,
+            [/* String */2,
              /* No_padding */0,
-             /* Char_literal */[12,10,/* End_of_format */0]]],
+             [/* Char_literal */12,10,/* End_of_format */0]]],
            "Fatal error: exception %s\n"],
           to_string(exn));
         print_raw_backtrace(Pervasives["stderr"],raw_backtrace);

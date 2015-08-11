@@ -49,18 +49,18 @@ var
    {if(param)
      {return Format["fprintf"]
               (ppf,
-               /* Format */[0,
-                /* Formatting_gen */[18,
-                 /* Open_box */[1,
-                  /* Format */[0,
-                   /* String_literal */[11,"<2>",/* End_of_format */0],
+               [/* Format */0,
+                [/* Formatting_gen */18,
+                 [/* Open_box */1,
+                  [/* Format */0,
+                   [/* String_literal */11,"<2>",/* End_of_format */0],
                    "<2>"]],
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   "Some",
-                  /* Formatting_lit */[17,
-                   /* Break */[0,"@ ",1,0],
-                   /* Alpha */[15,
-                    /* Formatting_lit */[17,
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* Alpha */15,
+                    [/* Formatting_lit */17,
                      /* Close_box */0,
                      /* End_of_format */0]]]]],
                 "@[<2>Some@ %a@]"],
@@ -79,8 +79,8 @@ var
     var f=Format["formatter_of_buffer"](buff);
     
     return Format["kfprintf"]
-            (function(f$1)
-              {Format["pp_print_flush"](f$1,/* () */0);
+            (function(f)
+              {Format["pp_print_flush"](f,/* () */0);
                return g(Buffer["contents"](buff));
                },
              f,
@@ -129,21 +129,21 @@ var
          match=
           Format["fprintf"]
            (f,
-            /* Format */[0,
-             /* Formatting_gen */[18,
-              /* Open_box */[1,
-               /* Format */[0,
-                /* String_literal */[11,"<hv0>",/* End_of_format */0],
+            [/* Format */0,
+             [/* Formatting_gen */18,
+              [/* Open_box */1,
+               [/* Format */0,
+                [/* String_literal */11,"<hv0>",/* End_of_format */0],
                 "<hv0>"]],
-              /* Formatting_gen */[18,
-               /* Open_box */[1,
-                /* Format */[0,
-                 /* String_literal */[11,"<hv2>",/* End_of_format */0],
+              [/* Formatting_gen */18,
+               [/* Open_box */1,
+                [/* Format */0,
+                 [/* String_literal */11,"<hv2>",/* End_of_format */0],
                  "<hv2>"]],
-               /* String_literal */[11,
+               [/* String_literal */11,
                 "{.",
-                /* Formatting_lit */[17,
-                 /* Break */[0,"@ ",1,0],
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]]]],
              "@[<hv0>@[<hv2>{.@ "]);
         
@@ -154,11 +154,11 @@ var
              {if(!first)
                {Format["fprintf"]
                  (f,
-                  /* Format */[0,
-                   /* Char_literal */[12,
+                  [/* Format */0,
+                   [/* Char_literal */12,
                     44,
-                    /* Formatting_lit */[17,
-                     /* Break */[0,"@ ",1,0],
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
                      /* End_of_format */0]],
                    ",@ "])}
               else
@@ -172,14 +172,14 @@ var
         
         return Format["fprintf"]
                 (f,
-                 /* Format */[0,
-                  /* Formatting_lit */[17,
+                 [/* Format */0,
+                  [/* Formatting_lit */17,
                    /* Close_box */0,
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* String_literal */[11,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String_literal */11,
                      ".}",
-                     /* Formatting_lit */[17,
+                     [/* Formatting_lit */17,
                       /* Close_box */0,
                       /* End_of_format */0]]]],
                   "@]@ .}@]"]);
@@ -232,15 +232,15 @@ var
   function(pp_elt,f,ls)
    {Format["fprintf"]
      (f,
-      /* Format */[0,
-       /* Formatting_gen */[18,
-        /* Open_box */[1,
-         /* Format */[0,
-          /* String_literal */[11,"<2>",/* End_of_format */0],
+      [/* Format */0,
+       [/* Formatting_gen */18,
+        [/* Open_box */1,
+         [/* Format */0,
+          [/* String_literal */11,"<2>",/* End_of_format */0],
           "<2>"]],
-        /* Char_literal */[12,
+        [/* Char_literal */12,
          91,
-         /* Formatting_lit */[17,/* Break */[0,"@ ",1,0],/* End_of_format */0]]],
+         [/* Formatting_lit */17,[/* Break */0,"@ ",1,0],/* End_of_format */0]]],
        "@[<2>[@ "]);
     var
      match=
@@ -249,11 +249,11 @@ var
          {if(!first)
            {Format["fprintf"]
              (f,
-              /* Format */[0,
-               /* Char_literal */[12,
+              [/* Format */0,
+               [/* Char_literal */12,
                 59,
-                /* Formatting_lit */[17,
-                 /* Break */[0,"@ ",1,0],
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]],
                ";@ "])}
           else
@@ -267,12 +267,12 @@ var
     
     return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* Formatting_lit */[17,
-               /* Break */[0,"@ ",1,0],
-               /* Char_literal */[12,
+             [/* Format */0,
+              [/* Formatting_lit */17,
+               [/* Break */0,"@ ",1,0],
+               [/* Char_literal */12,
                 93,
-                /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0]]],
+                [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0]]],
               "@ ]@]"]);
     };
 
@@ -313,9 +313,7 @@ var
 var
  ordered_unique=
   function(lst)
-   {var
-     compare=
-      function(prim,prim$1){return "unknown primitive:caml_compare";};
+   {var compare=function(prim,prim){return "unknown primitive:caml_compare";};
     
     var print$1=function(param,param$1){return /* () */0;};
     
@@ -404,8 +402,8 @@ var
   function(f,s)
    {return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* Caml_string */[3,/* No_padding */0,/* End_of_format */0],
+             [/* Format */0,
+              [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
               "%S"],
              s);
     };
@@ -490,19 +488,19 @@ var
     
     var
      loop=
-      function(s$1,from)
-       {var match=contains_string(s$1,from,patt);
+      function(s,from)
+       {var match=contains_string(s,from,patt);
         
         if(match)
          {var pos=match[1];
           
           return loop
                   (Pervasives["^"]
-                    (before(s$1,pos),Pervasives["^"](repl,after(s$1,pos+lpatt))),
+                    (before(s,pos),Pervasives["^"](repl,after(s,pos+lpatt))),
                    pos+lrepl);
           }
         else
-         {return s$1;}
+         {return s;}
         };
     
     return loop(s,0);
@@ -510,9 +508,9 @@ var
 
 var
  tr=
-  function(patt,subst$1,text)
+  function(patt,subst,text)
    {return $$String["map"]
-            (function(c){if(c=patt){return subst$1;}else{return c;}},text);
+            (function(c){if(c=patt){return subst;}else{return c;}},text);
     };
 
 var
@@ -685,7 +683,7 @@ var
        else
         {try
           {$$Array["iter"]
-            (function(x$1)
+            (function(x)
               {if("unknown primitive:caml_string_equal")
                 {throw Pervasives["Exit"];}
                else
@@ -776,12 +774,12 @@ var
         else
          {return Pervasives["failwith"]
                   (Format["sprintf"]
-                    (/* Format */[0,
-                      /* String_literal */[11,
+                    ([/* Format */0,
+                      [/* String_literal */11,
                        "This command must have ",
-                       /* Caml_string */[3,
+                       [/* Caml_string */3,
                         /* No_padding */0,
-                        /* String_literal */[11,
+                        [/* String_literal */11,
                          " in his environment",
                          /* End_of_format */0]]],
                       "This command must have %S in his environment"],
@@ -822,7 +820,7 @@ var
  read_file=
   function(x)
    {return with_input_file
-            (/* Some */[0,/* true */1],
+            ([/* Some */0,/* true */1],
              x,
              function(ic)
               {var len=Pervasives["in_channel_length"](ic);
@@ -863,11 +861,11 @@ var
   function(src,dest)
    {reset_readdir_cache_for$1(Filename["dirname"](dest));
     return with_input_file
-            (/* Some */[0,/* true */1],
+            ([/* Some */0,/* true */1],
              src,
              function(ic)
               {return with_output_file
-                       (/* Some */[0,/* true */1],
+                       ([/* Some */0,/* true */1],
                         dest,
                         function(oc){return copy_chan(ic,oc);});
                });
@@ -910,7 +908,7 @@ var
 
 var
  reset_digest_cache_for=
-  function(file$1){return Hashtbl["remove"](digest_cache,file$1);};
+  function(file){return Hashtbl["remove"](digest_cache,file);};
 
 var
  file$1=
@@ -949,9 +947,9 @@ var
 
 var
  reset_filesys_cache_for_file=
-  function(file$2)
-   {Digest[12](file$2);
-    return reset_readdir_cache_for$1(Filename["dirname"](file$2));
+  function(file)
+   {Digest[12](file);
+    return reset_readdir_cache_for$1(Filename["dirname"](file));
     };
 
 var

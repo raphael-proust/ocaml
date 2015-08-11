@@ -170,12 +170,12 @@ var
                if(match)
                 {p
                   (self$neg1[fmt],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "# type ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,":\n",/* End_of_format */0]]],
+                      [/* String_literal */11,":\n",/* End_of_format */0]]],
                     "# type %s:\n"],
                    t[1]);
                  "unknown block:(sendself self-1/1248 must_display_types/1233)";
@@ -195,12 +195,12 @@ var
                     {var $js="None";}
                    return p
                            (self$neg1[fmt],
-                            /* Format */[0,
-                             /* String_literal */[11,
+                            [/* Format */0,
+                             [/* String_literal */11,
                               "# manifest :\n<[",
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String_literal */[11,"]>\n",/* End_of_format */0]]],
+                               [/* String_literal */11,"]>\n",/* End_of_format */0]]],
                              "# manifest :\n<[%s]>\n"],
                             $js);
                    }
@@ -214,38 +214,38 @@ var
              function(self$neg1,m)
               {p
                 (self$neg1[fmt],
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    "#\n# module ",
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,":\n",/* End_of_format */0]]],
+                    [/* String_literal */11,":\n",/* End_of_format */0]]],
                   "#\n# module %s:\n"],
                  m[1]);
                "unknown block:(sendself self-1/1253 must_display_types/1233)";
                if(0)
                 {p
                   (self$neg1[fmt],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "# Odoc_info.string_of_module_type:\n<[",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
+                      [/* String_literal */11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type:\n<[%s]>\n"],
                    Odoc_info["string_of_module_type"]
                     (/* None */0,/* None */0,m[2])),
                  p
                   (self$neg1[fmt],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
+                      [/* String_literal */11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type ~complete: true :\n<[%s]>\n"],
                    Odoc_info["string_of_module_type"]
-                    (/* None */0,/* Some */[0,/* true */1],m[2]))}
+                    (/* None */0,[/* Some */0,/* true */1],m[2]))}
                else
                 {}
                
@@ -255,12 +255,12 @@ var
              function(self$neg1,m)
               {p
                 (self$neg1[fmt],
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    "#\n# module type ",
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,":\n",/* End_of_format */0]]],
+                    [/* String_literal */11,":\n",/* End_of_format */0]]],
                   "#\n# module type %s:\n"],
                  m[1]);
                "unknown block:(sendself self-1/1256 must_display_types/1233)";
@@ -269,12 +269,12 @@ var
                  
                  p
                   (self$neg1[fmt],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "# Odoc_info.string_of_module_type:\n<[",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
+                      [/* String_literal */11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type:\n<[%s]>\n"],
                    match
                     ?Odoc_info["string_of_module_type"]
@@ -284,16 +284,16 @@ var
                  
                  p
                   (self$neg1[fmt],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,"]>\n",/* End_of_format */0]]],
+                      [/* String_literal */11,"]>\n",/* End_of_format */0]]],
                     "# Odoc_info.string_of_module_type ~complete: true :\n<[%s]>\n"],
                    match$1
                     ?Odoc_info["string_of_module_type"]
-                      (/* None */0,/* Some */[0,/* true */1],match$1[1])
+                      (/* None */0,[/* Some */0,/* true */1],match$1[1])
                     :"None")}
                else
                 {}

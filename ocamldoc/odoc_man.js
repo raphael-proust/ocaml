@@ -205,10 +205,10 @@ var
                   
                   bp
                    (b,
-                    /* Format */[0,
-                     /* String_literal */[11,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       '.B "',
-                      /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]],
                      '.B "%s'],
                     Odoc_messages["before"]);
                   bs(b,match[1]);
@@ -295,14 +295,14 @@ var
               t_ref=
                /* :: */[0,
                 /* Code */[1,see_ref[1]],
-                /* :: */[0,/* Raw */[0," "],t]];
+                /* :: */[0,[/* Raw */0," "],t]];
              
             case 2:
              var
               t_ref=
                /* :: */[0,
                 /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-                /* :: */[0,/* Raw */[0," "],t]];
+                /* :: */[0,[/* Raw */0," "],t]];
              
             }
           
@@ -449,8 +449,7 @@ var
             var
              l$1=
               List["filter"]
-               (function(prim,prim$1)
-                  {return "unknown primitive:caml_notequal";}
+               (function(prim,prim){return "unknown primitive:caml_notequal";}
                  (""),
                 l);
             
@@ -580,12 +579,12 @@ var
         {var
           s=
            Printf["sprintf"]
-            (/* Format */[0,
-              /* String */[2,
+            ([/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 46,
-                /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s.%s"],
              name,
              man_suffix[1]);
@@ -1080,7 +1079,7 @@ var
                  {bs(b,Pervasives["^"]("| ",constr[1]));
                   var
                    print_text=
-                    function(t$1)
+                    function(t)
                      {bs(b,"  (* ");
                       "unknown block:(sendself self-2/1554 man_of_info/1525 0a b/1555 (makeblock 0 t/1568))";
                       
@@ -1467,7 +1466,7 @@ var
              Pervasives["^"]
               (" ",
                Pervasives["^"]
-                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                (Odoc_misc["string_of_date"]([/* Some */0,/* false */0],date),
                  " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
@@ -1566,7 +1565,7 @@ var
              Pervasives["^"]
               (" ",
                Pervasives["^"]
-                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                (Odoc_misc["string_of_date"]([/* Some */0,/* false */0],date),
                  " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
@@ -1707,7 +1706,7 @@ var
              Pervasives["^"]
               (" ",
                Pervasives["^"]
-                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                (Odoc_misc["string_of_date"]([/* Some */0,/* false */0],date),
                  " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
@@ -1847,7 +1846,7 @@ var
              Pervasives["^"]
               (" ",
                Pervasives["^"]
-                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                (Odoc_misc["string_of_date"]([/* Some */0,/* false */0],date),
                  " ")));
            bs(b,"OCamldoc ");
            var match=Odoc_info["Global"][6][1];
@@ -2030,7 +2029,7 @@ var
              Pervasives["^"]
               (" ",
                Pervasives["^"]
-                (Odoc_misc["string_of_date"](/* Some */[0,/* false */0],date),
+                (Odoc_misc["string_of_date"]([/* Some */0,/* false */0],date),
                  " ")));
            bs(b,"OCamldoc ");
            var match$1=Odoc_info["Global"][6][1];

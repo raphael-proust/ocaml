@@ -64,8 +64,8 @@ var
   function(param)
    {if(My_std["List"][5](Options["show_tags"][1])>0)
      {Log["eprintf"]
-       (/* Format */[0,
-         /* String_literal */[11,
+       ([/* Format */0,
+         [/* String_literal */11,
           "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n",
           /* End_of_format */0],
          "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n"])}
@@ -75,26 +75,26 @@ var
     return My_std["List"][14]
             (function(path)
               {return Log["eprintf"]
-                       (/* Format */[0,
-                         /* Formatting_gen */[18,
-                          /* Open_box */[1,
-                           /* Format */[0,
-                            /* String_literal */[11,"<2>",/* End_of_format */0],
+                       ([/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
                             "<2>"]],
-                          /* String_literal */[11,
+                          [/* String_literal */11,
                            "Tags for ",
-                           /* Caml_string */[3,
+                           [/* Caml_string */3,
                             /* No_padding */0,
-                            /* Char_literal */[12,
+                            [/* Char_literal */12,
                              58,
-                             /* Formatting_lit */[17,
-                              /* Break */[0,"@ ",1,0],
-                              /* String_literal */[11,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* String_literal */11,
                                "{. ",
-                               /* Alpha */[15,
-                                /* String_literal */[11,
+                               [/* Alpha */15,
+                                [/* String_literal */11,
                                  " .}",
-                                 /* Formatting_lit */[17,
+                                 [/* Formatting_lit */17,
                                   /* Close_box */0,
                                   /* End_of_format */0]]]]]]]]],
                          "@[<2>Tags for %S:@ {. %a .}@]"],
@@ -115,27 +115,27 @@ var
 var
  builtin_useful_tags=
   Tags["of_list"]
-   (/* :: */[0,
+   ([/* :: */0,
      "include",
-     /* :: */[0,
+     [/* :: */0,
       "traverse",
-      /* :: */[0,
+      [/* :: */0,
        "not_hygienic",
-       /* :: */[0,
+       [/* :: */0,
         "precious",
-        /* :: */[0,
+        [/* :: */0,
          "pack",
-         /* :: */[0,
+         [/* :: */0,
           "ocamlmklib",
-          /* :: */[0,
+          [/* :: */0,
            "native",
-           /* :: */[0,
+           [/* :: */0,
             "thread",
-            /* :: */[0,
+            [/* :: */0,
              "nopervasives",
-             /* :: */[0,
+             [/* :: */0,
               "use_menhir",
-              /* :: */[0,"ocamldep",/* :: */[0,"thread",/* [] */0]]]]]]]]]]]]);
+              [/* :: */0,"ocamldep",[/* :: */0,"thread",/* [] */0]]]]]]]]]]]]);
 
 var
  proceed=
@@ -173,7 +173,7 @@ var
     if
      (Options["recursive"][1]||
       Options["ocamlbuild_project_heuristic"](/* () */0))
-     {Configuration["tag_any"](/* :: */[0,"traverse",/* [] */0])}
+     {Configuration["tag_any"]([/* :: */0,"traverse",/* [] */0])}
     else
      {}
     
@@ -227,7 +227,7 @@ var
           
           var tags=Tools["tags_of_pathname"](path_name);
           
-          return (My_std["List"][30](name,/* :: */[0,"_oasis",/* [] */0])||
+          return (My_std["List"][30](name,[/* :: */0,"_oasis",/* [] */0])||
                   name["length"]>
                   0&&
                   name[0]!=
@@ -280,12 +280,12 @@ var
     0;
     Log["dprintf"]
      (3,
-      /* Format */[0,
-       /* String_literal */[11,
+      [/* Format */0,
+       [/* String_literal */11,
         "include directories are:",
-        /* Formatting_lit */[17,
-         /* Break */[0,"@ ",1,0],
-         /* Alpha */[15,/* End_of_format */0]]],
+        [/* Formatting_lit */17,
+         [/* Break */0,"@ ",1,0],
+         [/* Alpha */15,/* End_of_format */0]]],
        "include directories are:@ %a"],
       My_std["print_string_list"],
       Options["include_dirs"][1]);
@@ -373,9 +373,9 @@ var
                  {return call
                           (/* S */[0,
                             /* :: */[0,
-                             /* A */[1,"ln"],
+                             [/* A */1,"ln"],
                              /* :: */[0,
-                              /* A */[1,"-sf"],
+                              [/* A */1,"-sf"],
                               /* :: */[0,
                                /* P */[2,x],
                                /* :: */[0,
@@ -399,12 +399,12 @@ var
              {case 25:
                if(Options["program_to_execute"][1])
                 {Format["eprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "Warning: Won't execute ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        " whose extension is neither .byte nor .native",
                        /* End_of_format */0]]],
                     "Warning: Won't execute %s whose extension is neither .byte nor .native"],
@@ -429,8 +429,8 @@ var
           if(match$1[2]!=/* [] */0)
            {Log["dprintf"]
              (0,
-              /* Format */[0,
-               /* String_literal */[11,
+              [/* Format */0,
+               [/* String_literal */11,
                 "Warning: Using -- only run the last target",
                 /* End_of_format */0],
                "Warning: Using -- only run the last target"])}
@@ -448,12 +448,12 @@ var
           
           Log["dprintf"]
            (3,
-            /* Format */[0,
-             /* String_literal */[11,
+            [/* Format */0,
+             [/* String_literal */11,
               "Running the user command:",
-              /* Formatting_lit */[17,
-               /* Break */[0,"@ ",1,0],
-               /* Alpha */[15,/* End_of_format */0]]],
+              [/* Formatting_lit */17,
+               [/* Break */0,"@ ",1,0],
+               [/* Alpha */15,/* End_of_format */0]]],
              "Running the user command:@ %a"],
             Pathname["print"],
             cmd);
@@ -470,24 +470,24 @@ var
        {throw [0,
                Exit_build_error,
                My_std["sbprintf"]
-                (/* Format */[0,
-                  /* Formatting_gen */[18,
-                   /* Open_box */[1,
-                    /* Format */[0,
-                     /* String_literal */[11,"<2>",/* End_of_format */0],
+                ([/* Format */0,
+                  [/* Formatting_gen */18,
+                   [/* Open_box */1,
+                    [/* Format */0,
+                     [/* String_literal */11,"<2>",/* End_of_format */0],
                      "<2>"]],
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     "Circular dependencies: ",
-                    /* Caml_string */[3,
+                    [/* Caml_string */3,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       " already seen in",
-                      /* Formatting_lit */[17,
-                       /* Break */[0,"@ ",1,0],
-                       /* Alpha */[15,
-                        /* Formatting_lit */[17,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
                          /* Close_box */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]]]]]]]],
                   "@[<2>Circular dependencies: %S already seen in@ %a@]@."],
@@ -524,8 +524,8 @@ var
           else
            {if(e$1=Fda["Exit_hygiene_failed"])
              {Log["eprintf"]
-               (/* Format */[0,
-                 /* String_literal */[11,
+               ([/* Format */0,
+                 [/* String_literal */11,
                   "Exiting due to hygiene violations.",
                   /* End_of_format */0],
                  "Exiting due to hygiene violations."]);
@@ -534,14 +534,14 @@ var
             else
              {if(e$1[1]=My_std["Exit_usage"])
                {Log["eprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "Usage:",
-                    /* Formatting_lit */[17,
-                     /* Break */[0,"@ ",1,0],
-                     /* String */[2,
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,46,/* End_of_format */0]]]],
+                      [/* Char_literal */12,46,/* End_of_format */0]]]],
                    "Usage:@ %s."],
                   e$1[2]);
                 return exit(Exit_codes["rc_usage"]);
@@ -549,14 +549,14 @@ var
               else
                {if(e$1[1]=My_std["Exit_system_error"])
                  {Log["eprintf"]
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "System error:",
-                      /* Formatting_lit */[17,
-                       /* Break */[0,"@ ",1,0],
-                       /* String */[2,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* String */2,
                         /* No_padding */0,
-                        /* Char_literal */[12,46,/* End_of_format */0]]]],
+                        [/* Char_literal */12,46,/* End_of_format */0]]]],
                      "System error:@ %s."],
                     e$1[2]);
                   return exit(Exit_codes["rc_system_error"]);
@@ -567,13 +567,13 @@ var
                   else
                    {if(e$1=Exit_silently)
                      {Log["finish"]
-                       (/* Some */[0,/* Quiet */-249890668],/* () */0);
+                       ([/* Some */0,/* Quiet */-249890668],/* () */0);
                       return Pervasives["exit"](Exit_codes["rc_ok"]);
                       }
                     else
                      {if(e$1[1]=My_std["Exit_silently_with_code"])
                        {Log["finish"]
-                         (/* Some */[0,/* Quiet */-249890668],/* () */0);
+                         ([/* Some */0,/* Quiet */-249890668],/* () */0);
                         return Pervasives["exit"](e$1[2]);
                         }
                       else
@@ -582,25 +582,25 @@ var
                           
                           Log["raw_dprintf"]
                            (-1,
-                            /* Format */[0,
-                             /* Formatting_gen */[18,
-                              /* Open_box */[1,
-                               /* Format */[0,
-                                /* String_literal */[11,"<v0>",/* End_of_format */0],
+                            [/* Format */0,
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<v0>",/* End_of_format */0],
                                 "<v0>"]],
-                              /* Formatting_gen */[18,
-                               /* Open_box */[1,
-                                /* Format */[0,
-                                 /* String_literal */[11,"<2>",/* End_of_format */0],
+                              [/* Formatting_gen */18,
+                               [/* Open_box */1,
+                                [/* Format */0,
+                                 [/* String_literal */11,"<2>",/* End_of_format */0],
                                  "<2>"]],
-                               /* String_literal */[11,
+                               [/* String_literal */11,
                                 "Solver failed:",
-                                /* Formatting_lit */[17,
-                                 /* Break */[0,"@ ",1,0],
-                                 /* Alpha */[15,
-                                  /* Formatting_lit */[17,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
                                    /* Close_box */0,
-                                   /* Formatting_lit */[17,
+                                   [/* Formatting_lit */17,
                                     /* Flush_newline */4,
                                     /* End_of_format */0]]]]]]],
                              "@[<v0>@[<2>Solver failed:@ %a@]@."],
@@ -608,20 +608,20 @@ var
                             backtrace);
                           Log["raw_dprintf"]
                            (1,
-                            /* Format */[0,
-                             /* Formatting_gen */[18,
-                              /* Open_box */[1,
-                               /* Format */[0,
-                                /* String_literal */[11,"<v2>",/* End_of_format */0],
+                            [/* Format */0,
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<v2>",/* End_of_format */0],
                                 "<v2>"]],
-                              /* String_literal */[11,
+                              [/* String_literal */11,
                                "Backtrace:",
-                               /* Alpha */[15,
-                                /* Formatting_lit */[17,
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
                                  /* Close_box */0,
-                                 /* Formatting_lit */[17,
+                                 [/* Formatting_lit */17,
                                   /* Close_box */0,
-                                  /* Formatting_lit */[17,
+                                  [/* Formatting_lit */17,
                                    /* Flush_newline */4,
                                    /* End_of_format */0]]]]]],
                              "@[<v2>Backtrace:%a@]@]@."],
@@ -632,14 +632,14 @@ var
                         else
                          {if(e$1[1]=Failure)
                            {Log["eprintf"]
-                             (/* Format */[0,
-                               /* String_literal */[11,
+                             ([/* Format */0,
+                               [/* String_literal */11,
                                 "Failure:",
-                                /* Formatting_lit */[17,
-                                 /* Break */[0,"@ ",1,0],
-                                 /* String */[2,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* String */2,
                                   /* No_padding */0,
-                                  /* Char_literal */[12,46,/* End_of_format */0]]]],
+                                  [/* Char_literal */12,46,/* End_of_format */0]]]],
                                "Failure:@ %s."],
                               e$1[2]);
                             return exit(Exit_codes["rc_failure"]);
@@ -647,18 +647,18 @@ var
                           else
                            {if(e$1[1]=Solver["Circular"])
                              {Log["eprintf"]
-                               (/* Format */[0,
-                                 /* String_literal */[11,
+                               ([/* Format */0,
+                                 [/* String_literal */11,
                                   "Circular build detected",
-                                  /* Formatting_lit */[17,
-                                   /* Break */[0,"@ ",1,0],
-                                   /* Char_literal */[12,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Char_literal */12,
                                     40,
-                                    /* Alpha */[15,
-                                     /* String_literal */[11,
+                                    [/* Alpha */15,
+                                     [/* String_literal */11,
                                       " already seen in ",
-                                      /* Alpha */[15,
-                                       /* Char_literal */[12,41,/* End_of_format */0]]]]]]],
+                                      [/* Alpha */15,
+                                       [/* Char_literal */12,41,/* End_of_format */0]]]]]]],
                                  "Circular build detected@ (%a already seen in %a)"],
                                 Resource["print"],
                                 e$1[2],
@@ -669,12 +669,12 @@ var
                             else
                              {if(e$1[1]=Invalid_argument)
                                {Log["eprintf"]
-                                 (/* Format */[0,
-                                   /* String_literal */[11,
+                                 ([/* Format */0,
+                                   [/* String_literal */11,
                                     "INTERNAL ERROR: Invalid argument ",
-                                    /* String */[2,
+                                    [/* String */2,
                                      /* No_padding */0,
-                                     /* String_literal */[11,
+                                     [/* String_literal */11,
                                       "\nThis is likely to be a bug, please report this to the ocamlbuild\ndevelopers.",
                                       /* End_of_format */0]]],
                                    "INTERNAL ERROR: Invalid argument %s\nThis is likely to be a bug, please report this to the ocamlbuild\ndevelopers."],
@@ -684,10 +684,10 @@ var
                               else
                                {if(e$1[1]=Ocaml_utils["Ocamldep_error"])
                                  {Log["eprintf"]
-                                   (/* Format */[0,
-                                     /* String_literal */[11,
+                                   ([/* Format */0,
+                                     [/* String_literal */11,
                                       "Ocamldep error: ",
-                                      /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                                      [/* String */2,/* No_padding */0,/* End_of_format */0]],
                                      "Ocamldep error: %s"],
                                     e$1[2]);
                                   return exit(Exit_codes["rc_ocamldep_error"]);
@@ -697,13 +697,13 @@ var
                                    {var match=e$1[2];
                                     
                                     Log["eprintf"]
-                                     (/* Format */[0,
-                                       /* Alpha */[15,
-                                        /* String_literal */[11,
+                                     ([/* Format */0,
+                                       [/* Alpha */15,
+                                        [/* String_literal */11,
                                          "Lexing error: ",
-                                         /* String */[2,
+                                         [/* String */2,
                                           /* No_padding */0,
-                                          /* Char_literal */[12,46,/* End_of_format */0]]]],
+                                          [/* Char_literal */12,46,/* End_of_format */0]]]],
                                        "%aLexing error: %s."],
                                       Loc["print_loc"],
                                       match[2],
@@ -713,8 +713,8 @@ var
                                   else
                                    {if(e$1[1]=Arg["Bad"])
                                      {Log["eprintf"]
-                                       (/* Format */[0,
-                                         /* String */[2,/* No_padding */0,/* End_of_format */0],
+                                       ([/* Format */0,
+                                         [/* String */2,/* No_padding */0,/* End_of_format */0],
                                          "%s"],
                                         e$1[2]);
                                       return exit(Exit_codes["rc_usage"]);
@@ -722,8 +722,8 @@ var
                                     else
                                      {if(e$1[1]=Exit_build_error)
                                        {Log["eprintf"]
-                                         (/* Format */[0,
-                                           /* String */[2,/* No_padding */0,/* End_of_format */0],
+                                         ([/* Format */0,
+                                           [/* String */2,/* No_padding */0,/* End_of_format */0],
                                            "%s"],
                                           e$1[2]);
                                         return exit(Exit_codes["rc_build_error"]);
@@ -731,8 +731,8 @@ var
                                       else
                                        {if(e$1[1]=Arg["Help"])
                                          {Log["eprintf"]
-                                           (/* Format */[0,
-                                             /* String */[2,/* No_padding */0,/* End_of_format */0],
+                                           ([/* Format */0,
+                                             [/* String */2,/* No_padding */0,/* End_of_format */0],
                                              "%s"],
                                             e$1[2]);
                                           return exit(Exit_codes["rc_ok"]);
@@ -740,21 +740,21 @@ var
                                         else
                                          {try
                                            {Log["eprintf"]
-                                             (/* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+                                             ([/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
                                               My_unix["report_error"],
                                               e$1);
                                             return exit(100);
                                             }
                                           catch(e$2)
                                            {Log["eprintf"]
-                                             (/* Format */[0,
-                                               /* String_literal */[11,
+                                             ([/* Format */0,
+                                               [/* String_literal */11,
                                                 "Exception",
-                                                /* Formatting_lit */[17,
-                                                 /* Break */[0,"@ ",1,0],
-                                                 /* String */[2,
+                                                [/* Formatting_lit */17,
+                                                 [/* Break */0,"@ ",1,0],
+                                                 [/* String */2,
                                                   /* No_padding */0,
-                                                  /* Char_literal */[12,46,/* End_of_format */0]]]],
+                                                  [/* Char_literal */12,46,/* End_of_format */0]]]],
                                                "Exception@ %s."],
                                               Printexc["to_string"](e$2));
                                             return exit(100);

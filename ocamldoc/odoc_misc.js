@@ -91,10 +91,10 @@ var
           else
            {return iter
                     (Printf["sprintf"]
-                      (/* Format */[0,
-                        /* String */[2,
+                      ([/* Format */0,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* Char */[0,/* End_of_format */0]],
+                         [/* Char */0,/* End_of_format */0]],
                         "%s%c"],
                        acc,
                        s[pos]),
@@ -111,9 +111,9 @@ var
   function(s)
    {return split_string
             (s,
-             /* :: */[0,
+             [/* :: */0,
               32,
-              /* :: */[0,10,/* :: */[0,13,/* :: */[0,9,/* [] */0]]]]);
+              [/* :: */0,10,[/* :: */0,13,[/* :: */0,9,/* [] */0]]]]);
     };
 
 var
@@ -211,8 +211,8 @@ var
                      ($$String["concat"]
                        ("",
                         List["map"]
-                         (function(t$1)
-                           {return Pervasives["^"]("\n- ",string_of_text(t$1));},
+                         (function(t)
+                           {return Pervasives["^"]("\n- ",string_of_text(t));},
                           t_ele[1])),
                       "\n");
              
@@ -256,12 +256,12 @@ var
              
              if(match)
               {return Printf["sprintf"]
-                       (/* Format */[0,
-                         /* Char_literal */[12,
+                       ([/* Format */0,
+                         [/* Char_literal */12,
                           91,
-                          /* String */[2,
+                          [/* String */2,
                            /* No_padding */0,
-                           /* Char_literal */[12,93,/* End_of_format */0]]],
+                           [/* Char_literal */12,93,/* End_of_format */0]]],
                          "[%s]"],
                         string_of_text(match[1]));
                }
@@ -279,7 +279,7 @@ var
             case 19:
              return string_of_text
                      (list_concat
-                       (/* Raw */[0,", "],
+                       ([/* Raw */0,", "],
                         List["map"](function(s){return /* Code */[1,s];},t_ele[1])));
              
             case 20:return string_of_text(t_ele[2]);
@@ -384,14 +384,14 @@ var
       case 1:
        var
         t_ref=
-         /* :: */[0,/* Code */[1,see_ref[1]],/* :: */[0,/* Raw */[0," "],t]];
+         /* :: */[0,/* Code */[1,see_ref[1]],/* :: */[0,[/* Raw */0," "],t]];
        
       case 2:
        var
         t_ref=
          /* :: */[0,
           /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-          /* :: */[0,/* Raw */[0," "],t]];
+          /* :: */[0,[/* Raw */0," "],t]];
        
       }
     
@@ -545,7 +545,7 @@ var
         
         if(typeof t_ele=="number")
          {switch(t_ele)
-           {case 0:return /* :: */[0,/* Newline */0,/* [] */0];
+           {case 0:return [/* :: */0,/* Newline */0,/* [] */0];
             case 1:return /* [] */0;
             }}
         else
@@ -606,12 +606,12 @@ var
              
             case 19:
              return list_concat
-                     (/* Raw */[0,", "],
+                     ([/* Raw */0,", "],
                       List["map"]
                        (function(s)
                          {return /* Ref */[16,
                                   s,
-                                  /* Some */[0,/* RK_module */0],
+                                  [/* Some */0,/* RK_module */0],
                                   /* None */0];
                           },
                         t_ele[1]));
@@ -626,9 +626,9 @@ var
         switch(exit)
          {case 61:
            return /* :: */[0,
-                   /* Raw */[0," "],
+                   [/* Raw */0," "],
                    text_list_concat
-                    (/* Raw */[0,", "],
+                    ([/* Raw */0,", "],
                      List["map"](text_no_title_no_list,t_ele[1]))];
            
           }
@@ -788,7 +788,7 @@ var
         }
       }
     else
-     {return /* tuple */[0,/* false */0,/* [] */0,/* [] */0];}
+     {return [/* tuple */0,/* false */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -799,10 +799,10 @@ var
     if(typeof text_ele=="number")
      {switch(text_ele)
        {case 0:
-         return /* tuple */[0,
+         return [/* tuple */0,
                  /* true */1,
-                 /* Raw */[0,""],
-                 /* Some */[0,/* Newline */0]];
+                 [/* Raw */0,""],
+                 [/* Some */0,/* Newline */0]];
          
         }}
     else

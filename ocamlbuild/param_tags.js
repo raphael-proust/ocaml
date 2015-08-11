@@ -75,15 +75,15 @@ var
       
       if((actions=/* [] */0)&&!quiet)
        {Log["eprintf"]
-         (/* Format */[0,
-           /* Alpha */[15,
-            /* String_literal */[11,
+         ([/* Format */0,
+           [/* Alpha */15,
+            [/* String_literal */11,
              "Warning: tag ",
-             /* Caml_string */[3,
+             [/* Caml_string */3,
               /* No_padding */0,
-              /* String_literal */[11,
+              [/* String_literal */11,
                " does not expect a parameter, but is used with parameter ",
-               /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]]]]],
+               [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]]],
            "%aWarning: tag %S does not expect a parameter, but is used with parameter %S"],
           Loc["print_loc_option"],
           maybe_loc,
@@ -97,13 +97,13 @@ var
     else
      {if(Hashtbl["mem"](declared_tags,name)&&!quiet)
        {return Log["eprintf"]
-                (/* Format */[0,
-                  /* Alpha */[15,
-                   /* String_literal */[11,
+                ([/* Format */0,
+                  [/* Alpha */15,
+                   [/* String_literal */11,
                     "Warning: tag ",
-                    /* Caml_string */[3,
+                    [/* Caml_string */3,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       " expects a parameter",
                       /* End_of_format */0]]]],
                   "%aWarning: tag %S expects a parameter"],
@@ -139,14 +139,14 @@ var
 var
  make=
   Printf["sprintf"]
-   (/* Format */[0,
-     /* String */[2,
+   ([/* Format */0,
+     [/* String */2,
       /* No_padding */0,
-      /* Char_literal */[12,
+      [/* Char_literal */12,
        40,
-       /* String */[2,
+       [/* String */2,
         /* No_padding */0,
-        /* Char_literal */[12,41,/* End_of_format */0]]]],
+        [/* Char_literal */12,41,/* End_of_format */0]]]],
      "%s(%s)"]);
 
 module["exports"]=

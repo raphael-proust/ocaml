@@ -23,7 +23,7 @@ var
 
 var
  make_matrix=
-  function(sx,sy,init$1)
+  function(sx,sy,init)
    {var res="unknown primitive:caml_make_vect";
     
     for(var x=0;x<=-1+sx;x++){res[x]="unknown primitive:caml_make_vect",0}

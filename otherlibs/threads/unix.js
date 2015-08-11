@@ -205,8 +205,8 @@ var
 
 var
  select=
-  function(readfds,writefds,exceptfds,delay$1)
-   {var match=select_aux(/* tuple */[0,readfds,writefds,exceptfds,delay$1]);
+  function(readfds,writefds,exceptfds,delay)
+   {var match=select_aux(/* tuple */[0,readfds,writefds,exceptfds,delay]);
     
     var exit;
     
@@ -226,7 +226,7 @@ var
         default:exit=151;}}
     
     switch(exit)
-     {case 151:return /* tuple */[0,/* [] */0,/* [] */0,/* [] */0];}
+     {case 151:return [/* tuple */0,/* [] */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -292,7 +292,7 @@ var
   function(proc,args)
    {return do_exec
             (function(param)
-              {return function(prim,prim$1,prim$2)
+              {return function(prim,prim,prim)
                         {return "unknown primitive:unix_execvpe";}
                        (proc,args);
                });
@@ -661,9 +661,8 @@ var
    optint,
    $$float,
    error,
-   function(prim,prim$1,prim$2){return "unknown primitive:unix_getsockopt";},
-   function(prim,prim$1,prim$2,prim$3)
-    {return "unknown primitive:unix_setsockopt";}];
+   function(prim,prim,prim){return "unknown primitive:unix_getsockopt";},
+   function(prim,prim,prim,prim){return "unknown primitive:unix_setsockopt";}];
 
 var getsockopt=function(fd,opt){return SO[6](SO[1],fd,opt);};
 
@@ -1096,7 +1095,7 @@ var
 
 var
  open_proc_full=
-  function(cmd,env,proc,input,output,error$1,toclose)
+  function(cmd,env,proc,input,output,error,toclose)
    {var id="unknown primitive:unix_fork";
     
     if(id!=0)
@@ -1314,7 +1313,7 @@ module["exports"]=
  "unix_environment":
  function(prim){return "unknown primitive:unix_environment";},
  "caml_sys_getenv":function(prim){return "unknown primitive:caml_sys_getenv";},
- "unix_putenv":function(prim,prim$1){return "unknown primitive:unix_putenv";},
+ "unix_putenv":function(prim,prim){return "unknown primitive:unix_putenv";},
  "execv":execv,
  "execve":execve,
  "execvp":execvp,
@@ -1329,8 +1328,7 @@ module["exports"]=
  "stdin":stdin,
  "stdout":stdout,
  "stderr":stderr,
- "unix_open":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_open";},
+ "unix_open":function(prim,prim,prim){return "unknown primitive:unix_open";},
  "unix_close":function(prim){return "unknown primitive:unix_close";},
  "read":read,
  "write":write,
@@ -1345,37 +1343,35 @@ module["exports"]=
  function(prim){return "unknown primitive:caml_channel_descriptor";},
  "caml_channel_descriptor":
  function(prim){return "unknown primitive:caml_channel_descriptor";},
- "unix_lseek":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_lseek";},
+ "unix_lseek":function(prim,prim,prim){return "unknown primitive:unix_lseek";},
  "unix_truncate":
- function(prim,prim$1){return "unknown primitive:unix_truncate";},
+ function(prim,prim){return "unknown primitive:unix_truncate";},
  "unix_ftruncate":
- function(prim,prim$1){return "unknown primitive:unix_ftruncate";},
+ function(prim,prim){return "unknown primitive:unix_ftruncate";},
  "unix_stat":function(prim){return "unknown primitive:unix_stat";},
  "unix_lstat":function(prim){return "unknown primitive:unix_lstat";},
  "unix_fstat":function(prim){return "unknown primitive:unix_fstat";},
  "unix_isatty":function(prim){return "unknown primitive:unix_isatty";},
  "LargeFile":
  [0,
-  function(prim,prim$1,prim$2){return "unknown primitive:unix_lseek_64";},
-  function(prim,prim$1){return "unknown primitive:unix_truncate_64";},
-  function(prim,prim$1){return "unknown primitive:unix_ftruncate_64";},
+  function(prim,prim,prim){return "unknown primitive:unix_lseek_64";},
+  function(prim,prim){return "unknown primitive:unix_truncate_64";},
+  function(prim,prim){return "unknown primitive:unix_ftruncate_64";},
   function(prim){return "unknown primitive:unix_stat_64";},
   function(prim){return "unknown primitive:unix_lstat_64";},
   function(prim){return "unknown primitive:unix_fstat_64";}],
  "unix_unlink":function(prim){return "unknown primitive:unix_unlink";},
- "unix_rename":function(prim,prim$1){return "unknown primitive:unix_rename";},
- "unix_link":function(prim,prim$1){return "unknown primitive:unix_link";},
- "unix_chmod":function(prim,prim$1){return "unknown primitive:unix_chmod";},
- "unix_fchmod":function(prim,prim$1){return "unknown primitive:unix_fchmod";},
- "unix_chown":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_chown";},
+ "unix_rename":function(prim,prim){return "unknown primitive:unix_rename";},
+ "unix_link":function(prim,prim){return "unknown primitive:unix_link";},
+ "unix_chmod":function(prim,prim){return "unknown primitive:unix_chmod";},
+ "unix_fchmod":function(prim,prim){return "unknown primitive:unix_fchmod";},
+ "unix_chown":function(prim,prim,prim){return "unknown primitive:unix_chown";},
  "unix_fchown":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_fchown";},
+ function(prim,prim,prim){return "unknown primitive:unix_fchown";},
  "unix_umask":function(prim){return "unknown primitive:unix_umask";},
- "unix_access":function(prim,prim$1){return "unknown primitive:unix_access";},
+ "unix_access":function(prim,prim){return "unknown primitive:unix_access";},
  "unix_dup":function(prim){return "unknown primitive:unix_dup";},
- "unix_dup2":function(prim,prim$1){return "unknown primitive:unix_dup2";},
+ "unix_dup2":function(prim,prim){return "unknown primitive:unix_dup2";},
  "unix_set_nonblock":
  function(prim){return "unknown primitive:unix_set_nonblock";},
  "unix_clear_nonblock":
@@ -1384,7 +1380,7 @@ module["exports"]=
  function(prim){return "unknown primitive:unix_set_close_on_exec";},
  "unix_clear_close_on_exec":
  function(prim){return "unknown primitive:unix_clear_close_on_exec";},
- "unix_mkdir":function(prim,prim$1){return "unknown primitive:unix_mkdir";},
+ "unix_mkdir":function(prim,prim){return "unknown primitive:unix_mkdir";},
  "unix_rmdir":function(prim){return "unknown primitive:unix_rmdir";},
  "unix_chdir":function(prim){return "unknown primitive:unix_chdir";},
  "unix_getcwd":function(prim){return "unknown primitive:unix_getcwd";},
@@ -1394,7 +1390,7 @@ module["exports"]=
  "unix_rewinddir":function(prim){return "unknown primitive:unix_rewinddir";},
  "unix_closedir":function(prim){return "unknown primitive:unix_closedir";},
  "pipe":pipe,
- "unix_mkfifo":function(prim,prim$1){return "unknown primitive:unix_mkfifo";},
+ "unix_mkfifo":function(prim,prim){return "unknown primitive:unix_mkfifo";},
  "create_process":create_process,
  "create_process_env":create_process_env,
  "open_process_in":open_process_in,
@@ -1405,15 +1401,13 @@ module["exports"]=
  "close_process_out":close_process_out,
  "close_process":close_process,
  "close_process_full":close_process_full,
- "unix_symlink":
- function(prim,prim$1){return "unknown primitive:unix_symlink";},
+ "unix_symlink":function(prim,prim){return "unknown primitive:unix_symlink";},
  "unix_readlink":function(prim){return "unknown primitive:unix_readlink";},
  "select":select,
- "unix_lockf":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_lockf";},
- "unix_kill":function(prim,prim$1){return "unknown primitive:unix_kill";},
+ "unix_lockf":function(prim,prim,prim){return "unknown primitive:unix_lockf";},
+ "unix_kill":function(prim,prim){return "unknown primitive:unix_kill";},
  "unix_sigprocmask":
- function(prim,prim$1){return "unknown primitive:unix_sigprocmask";},
+ function(prim,prim){return "unknown primitive:unix_sigprocmask";},
  "unix_sigpending":function(prim){return "unknown primitive:unix_sigpending";},
  "unix_sigsuspend":function(prim){return "unknown primitive:unix_sigsuspend";},
  "pause":pause,
@@ -1427,10 +1421,10 @@ module["exports"]=
  "sleep":sleep,
  "unix_times":function(prim){return "unknown primitive:unix_times";},
  "unix_utimes":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_utimes";},
+ function(prim,prim,prim){return "unknown primitive:unix_utimes";},
  "unix_getitimer":function(prim){return "unknown primitive:unix_getitimer";},
  "unix_setitimer":
- function(prim,prim$1){return "unknown primitive:unix_setitimer";},
+ function(prim,prim){return "unknown primitive:unix_setitimer";},
  "unix_getuid":function(prim){return "unknown primitive:unix_getuid";},
  "unix_geteuid":function(prim){return "unknown primitive:unix_geteuid";},
  "unix_setuid":function(prim){return "unknown primitive:unix_setuid";},
@@ -1440,7 +1434,7 @@ module["exports"]=
  "unix_getgroups":function(prim){return "unknown primitive:unix_getgroups";},
  "unix_setgroups":function(prim){return "unknown primitive:unix_setgroups";},
  "unix_initgroups":
- function(prim,prim$1){return "unknown primitive:unix_initgroups";},
+ function(prim,prim){return "unknown primitive:unix_initgroups";},
  "unix_getlogin":function(prim){return "unknown primitive:unix_getlogin";},
  "unix_getpwnam":function(prim){return "unknown primitive:unix_getpwnam";},
  "unix_getgrnam":function(prim){return "unknown primitive:unix_getgrnam";},
@@ -1458,11 +1452,11 @@ module["exports"]=
  "domain_of_sockaddr":domain_of_sockaddr,
  "socketpair":socketpair,
  "accept":accept,
- "unix_bind":function(prim,prim$1){return "unknown primitive:unix_bind";},
+ "unix_bind":function(prim,prim){return "unknown primitive:unix_bind";},
  "connect":connect,
- "unix_listen":function(prim,prim$1){return "unknown primitive:unix_listen";},
+ "unix_listen":function(prim,prim){return "unknown primitive:unix_listen";},
  "unix_shutdown":
- function(prim,prim$1){return "unknown primitive:unix_shutdown";},
+ function(prim,prim){return "unknown primitive:unix_shutdown";},
  "unix_getsockname":
  function(prim){return "unknown primitive:unix_getsockname";},
  "unix_getpeername":
@@ -1496,19 +1490,18 @@ module["exports"]=
  "unix_getprotobynumber":
  function(prim){return "unknown primitive:unix_getprotobynumber";},
  "unix_getservbyname":
- function(prim,prim$1){return "unknown primitive:unix_getservbyname";},
+ function(prim,prim){return "unknown primitive:unix_getservbyname";},
  "unix_getservbyport":
- function(prim,prim$1){return "unknown primitive:unix_getservbyport";},
+ function(prim,prim){return "unknown primitive:unix_getservbyport";},
  "getaddrinfo":getaddrinfo,
  "getnameinfo":getnameinfo,
  "unix_tcgetattr":function(prim){return "unknown primitive:unix_tcgetattr";},
  "unix_tcsetattr":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_tcsetattr";},
+ function(prim,prim,prim){return "unknown primitive:unix_tcsetattr";},
  "unix_tcsendbreak":
- function(prim,prim$1){return "unknown primitive:unix_tcsendbreak";},
+ function(prim,prim){return "unknown primitive:unix_tcsendbreak";},
  "unix_tcdrain":function(prim){return "unknown primitive:unix_tcdrain";},
- "unix_tcflush":
- function(prim,prim$1){return "unknown primitive:unix_tcflush";},
- "unix_tcflow":function(prim,prim$1){return "unknown primitive:unix_tcflow";},
+ "unix_tcflush":function(prim,prim){return "unknown primitive:unix_tcflush";},
+ "unix_tcflow":function(prim,prim){return "unknown primitive:unix_tcflow";},
  "unix_setsid":function(prim){return "unknown primitive:unix_setsid";}};
 

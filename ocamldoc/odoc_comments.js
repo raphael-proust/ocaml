@@ -115,35 +115,35 @@ var
                         Odoc_comments_global["customs"][1])]]];
             }
           else
-           {return /* tuple */[0,0,/* None */0];}
+           {return [/* tuple */0,0,/* None */0];}
           }
         catch(exn)
          {if(exn[1]=Failure)
            {Odoc_global["errors"][0]++;
             Printf["eprintf"]
-             (/* Format */[0,
-               /* String_literal */[11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "File ",
-                /* Caml_string */[3,
+                [/* Caml_string */3,
                  /* No_padding */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   ", line ",
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
                    /* No_padding */0,
                    /* No_precision */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     ":\n",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,
+                     [/* Char_literal */12,
                       10,
-                      /* Flush */[10,/* End_of_format */0]]]]]]]],
+                      [/* Flush */10,/* End_of_format */0]]]]]]]],
                "File %S, line %d:\n%s\n%!"],
               file,
               Odoc_lexer["line_number"][1]+1,
               exn[2]);
-            return /* tuple */[0,0,/* None */0];
+            return [/* tuple */0,0,/* None */0];
             }
           else
            {if(exn[1]=Odoc_text["Text_syntax"])
@@ -154,7 +154,7 @@ var
                   Pervasives["^"]
                    (" : ",
                     Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4]))));
-              return /* tuple */[0,0,/* None */0];
+              return [/* tuple */0,0,/* None */0];
               }
             else
              {Odoc_global["errors"][0]++;
@@ -163,7 +163,7 @@ var
                  (file,
                   Pervasives["^"]
                    (" : ",Pervasives["^"](Odoc_messages["parse_error"],"\n"))));
-              return /* tuple */[0,0,/* None */0];
+              return [/* tuple */0,0,/* None */0];
               }
             }
           }
@@ -240,7 +240,7 @@ var
                   /* Some */[0,Odoc_types["dummy_info"]]];
           }
         else
-         {return /* tuple */[0,0,/* None */0];}
+         {return [/* tuple */0,0,/* None */0];}
         };
     
     var
@@ -291,10 +291,10 @@ var
          {if(!strict||nothing_before_simple_comment(s))
            {return /* tuple */[0,match[1],/* Some */[0,match$1[1]]];}
           else
-           {return /* tuple */[0,0,/* None */0];}
+           {return [/* tuple */0,0,/* None */0];}
           }
         else
-         {return /* tuple */[0,0,/* None */0];}
+         {return [/* tuple */0,0,/* None */0];}
         };
     
     var
@@ -391,7 +391,7 @@ var
           var match$2=retrieve_info_simple(file,$$String["sub"](s,0,len));
           
           if(match$2[2])
-           {return /* tuple */[0,0,/* None */0];}
+           {return [/* tuple */0,0,/* None */0];}
           else
            {try
              {var pos=Str["search_forward"](Str["regexp_string"]("(**"),s,0);
@@ -399,20 +399,20 @@ var
               if
                (blank_line($$String["sub"](s,0,pos))||
                 "unknown primitive:caml_equal")
-               {return /* tuple */[0,0,/* None */0];}
+               {return [/* tuple */0,0,/* None */0];}
               else
                {return /* tuple */[0,len,/* Some */[0,d]];}
               }
             catch(exn)
              {if(exn=Not_found)
-               {return /* tuple */[0,0,/* None */0];}
+               {return [/* tuple */0,0,/* None */0];}
               else
                {throw exn;}
               }
             }
           }
         else
-         {return /* tuple */[0,0,/* None */0];}
+         {return [/* tuple */0,0,/* None */0];}
         };
     
     var first_special=function(file,s){return retrieve_info_special(file,s);};
@@ -443,7 +443,7 @@ var
             }
           }
         else
-         {var match$2=/* tuple */[0,/* None */0,/* [] */0];}
+         {var match$2=[/* tuple */0,/* None */0,/* [] */0];}
         
         var
          ele_comments=
@@ -490,7 +490,7 @@ var
   function(s)
    {var
      dummy=
-      /* record */[0,
+      [/* record */0,
        /* None */0,
        /* [] */0,
        /* None */0,
@@ -506,12 +506,12 @@ var
     var
      s2=
       Printf["sprintf"]
-       (/* Format */[0,
-         /* String_literal */[11,
+       ([/* Format */0,
+         [/* String_literal */11,
           "(** ",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* String_literal */[11," *)",/* End_of_format */0]]],
+           [/* String_literal */11," *)",/* End_of_format */0]]],
          "(** %s *)"],
         s);
     

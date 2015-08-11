@@ -162,7 +162,7 @@ var
       }
     };
 
-var peek_val=function(env$1,n){return env$1[2][env$1[11]-n];};
+var peek_val=function(env,n){return env[2][env[11]-n];};
 
 var
  symbol_start_pos=

@@ -55,10 +55,10 @@ var
  error=
   function(text)
    {Format["eprintf"]
-     (/* Format */[0,
-       /* String */[2,
+     ([/* Format */0,
+       [/* String */2,
         /* No_padding */0,
-        /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]],
+        [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
        "%s@."],
       text);
     throw Debugger_config["Toplevel"];
@@ -155,16 +155,16 @@ var
     catch(exn)
      {if(exn=Not_found)
        {Format["eprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "Can't add breakpoint at pc ",
-            /* Int */[4,
+            [/* Int */4,
              /* Int_i */3,
              /* No_padding */0,
              /* No_precision */0,
-             /* String_literal */[11,
+             [/* String_literal */11,
               ": no event there.",
-              /* Formatting_lit */[17,
+              [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0]]]],
            "Can't add breakpoint at pc %i: no event there.@."],
@@ -336,20 +336,20 @@ var
     
     if(err!=0)
      {return Format["eprintf"]
-              (/* Format */[0,
-                /* String_literal */[11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  "Shell command ",
-                 /* Caml_string */[3,
+                 [/* Caml_string */3,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    " failed with exit code ",
-                   /* Int */[4,
+                   [/* Int */4,
                     /* Int_d */0,
                     /* No_padding */0,
                     /* No_precision */0,
-                    /* Char_literal */[12,
+                    [/* Char_literal */12,
                      10,
-                     /* Flush */[10,/* End_of_format */0]]]]]],
+                     [/* Flush */10,/* End_of_format */0]]]]]],
                 "Shell command %S failed with exit code %d\n%!"],
                cmd,
                err);
@@ -387,10 +387,10 @@ var
         catch(exn)
          {if(exn=Not_found)
            {return Format["eprintf"]
-                    (/* Format */[0,
-                      /* String_literal */[11,
+                    ([/* Format */0,
+                      [/* String_literal */11,
                        "Environment variable must be in name=value format\n",
-                       /* Flush */[10,/* End_of_format */0]],
+                       [/* Flush */10,/* End_of_format */0]],
                       "Environment variable must be in name=value format\n%!"]);
             }
           else
@@ -401,16 +401,16 @@ var
        {return List["iter"]
                 (function(param)
                   {return Format["printf"]
-                           (/* Format */[0,
-                             /* String */[2,
+                           ([/* Format */0,
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Char_literal */[12,
+                              [/* Char_literal */12,
                                61,
-                               /* String */[2,
+                               [/* String */2,
                                 /* No_padding */0,
-                                /* Char_literal */[12,
+                                [/* Char_literal */12,
                                  10,
-                                 /* Flush */[10,/* End_of_format */0]]]]],
+                                 [/* Flush */10,/* End_of_format */0]]]]],
                              "%s=%s\n%!"],
                             param[1],
                             param[2]);
@@ -428,10 +428,10 @@ var
    {eol(lexbuf);
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* String */[2,
+             [/* Format */0,
+              [/* String */2,
                /* No_padding */0,
-               /* Formatting_lit */[17,
+               [/* Formatting_lit */17,
                 /* Flush_newline */4,
                 /* End_of_format */0]],
               "%s@."],
@@ -494,15 +494,15 @@ var
     
     var
      print_dirs=
-      function(ppf$1,l)
+      function(ppf,l)
        {return List["iter"]
                 (function(x)
                   {return Format["fprintf"]
-                           (ppf$1,
-                            /* Format */[0,
-                             /* Formatting_lit */[17,
-                              /* Break */[0,"@ ",1,0],
-                              /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                           (ppf,
+                            [/* Format */0,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* String */2,/* No_padding */0,/* End_of_format */0]],
                              "@ %s"],
                             x);
                    },
@@ -511,45 +511,45 @@ var
     
     Format["fprintf"]
      (ppf,
-      /* Format */[0,
-       /* Formatting_gen */[18,
-        /* Open_box */[1,
-         /* Format */[0,
-          /* String_literal */[11,"<2>",/* End_of_format */0],
+      [/* Format */0,
+       [/* Formatting_gen */18,
+        [/* Open_box */1,
+         [/* Format */0,
+          [/* String_literal */11,"<2>",/* End_of_format */0],
           "<2>"]],
-        /* String_literal */[11,
+        [/* String_literal */11,
          "Directories: ",
-         /* Alpha */[15,
-          /* Formatting_lit */[17,
+         [/* Alpha */15,
+          [/* Formatting_lit */17,
            /* Close_box */0,
-           /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]]]],
+           [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]]]],
        "@[<2>Directories: %a@]@."],
       print_dirs,
       Config["load_path"][1]);
     return Hashtbl["iter"]
-            (function(mdl$1,dirs)
+            (function(mdl,dirs)
               {return Format["fprintf"]
                        (ppf,
-                        /* Format */[0,
-                         /* Formatting_gen */[18,
-                          /* Open_box */[1,
-                           /* Format */[0,
-                            /* String_literal */[11,"<2>",/* End_of_format */0],
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
                             "<2>"]],
-                          /* String_literal */[11,
+                          [/* String_literal */11,
                            "Source directories for ",
-                           /* String */[2,
+                           [/* String */2,
                             /* No_padding */0,
-                            /* String_literal */[11,
+                            [/* String_literal */11,
                              ": ",
-                             /* Alpha */[15,
-                              /* Formatting_lit */[17,
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
                                /* Close_box */0,
-                               /* Formatting_lit */[17,
+                               [/* Formatting_lit */17,
                                 /* Flush_newline */4,
                                 /* End_of_format */0]]]]]]],
                          "@[<2>Source directories for %s: %a@]@."],
-                        mdl$1,
+                        mdl,
                         print_dirs,
                         dirs);
                },
@@ -687,16 +687,16 @@ var
   function(ppf)
    {var
      pr_vars=
-      function(ppf$1)
+      function(ppf)
        {return List["iter"]
                 (function(v)
                   {return Format["fprintf"]
-                           (ppf$1,
-                            /* Format */[0,
-                             /* String */[2,
+                           (ppf,
+                            [/* Format */0,
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
                             v[1]);
@@ -705,11 +705,11 @@ var
     
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                "List of variables: ",
-               /* Alpha */[15,
-                /* Formatting_lit */[17,
+               [/* Alpha */15,
+                [/* Formatting_lit */17,
                  /* Flush_newline */4,
                  /* End_of_format */0]]],
               "List of variables: %a@."],
@@ -722,16 +722,16 @@ var
   function(ppf)
    {var
      pr_infos=
-      function(ppf$1)
+      function(ppf)
        {return List["iter"]
                 (function(i)
                   {return Format["fprintf"]
-                           (ppf$1,
-                            /* Format */[0,
-                             /* String */[2,
+                           (ppf,
+                            [/* Format */0,
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
                             i[1]);
@@ -740,11 +740,11 @@ var
     
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                "List of info commands: ",
-               /* Alpha */[15,
-                /* Formatting_lit */[17,
+               [/* Alpha */15,
+                [/* Formatting_lit */17,
                  /* Flush_newline */4,
                  /* End_of_format */0]]],
               "List of info commands: %a@."],
@@ -766,10 +766,10 @@ var
                   (function(i)
                     {return Format["fprintf"]
                              (ppf$1,
-                              /* Format */[0,
-                               /* String */[2,
+                              [/* Format */0,
+                               [/* String */2,
                                 /* No_padding */0,
-                                /* Formatting_lit */[17,
+                                [/* Formatting_lit */17,
                                  /* Flush_newline */4,
                                  /* End_of_format */0]],
                                "%s@."],
@@ -785,8 +785,8 @@ var
     
     var
      match_list=
-      function(lexbuf$1)
-       {var match=Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf$1);
+      function(lexbuf)
+       {var match=Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
         
         if(match)
          {var x=match[1];
@@ -808,9 +808,9 @@ var
                 {exit=122;}
                else
                 {if("unknown primitive:caml_string_equal")
-                  {return match_list(lexbuf$1);}
+                  {return match_list(lexbuf);}
                  else
-                  {return /* :: */[0,"help",/* [] */0];}
+                  {return [/* :: */0,"help",/* [] */0];}
                  }
                
               case "info":
@@ -820,7 +820,7 @@ var
                 {if("unknown primitive:caml_string_equal")
                   {var
                     match$1=
-                     Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf$1);
+                     Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
                    
                    if(match$1)
                     {var ident=match$1[1];
@@ -845,17 +845,15 @@ var
                       {exit$2=121;}
                      
                      switch(exit$2)
-                      {case 121:
-                        return List["map"](function(i$2){return i$2[1];},l$1);
+                      {case 121:return List["map"](function(i){return i[1];},l$1);
                        }
                      }
                    else
-                    {return List["map"]
-                             (function(i$2){return i$2[1];},info_list[1]);
+                    {return List["map"](function(i){return i[1];},info_list[1]);
                      }
                    }
                  else
-                  {return /* :: */[0,"info",/* [] */0];}
+                  {return [/* :: */0,"info",/* [] */0];}
                  }
                
               case "set":exit$1=123;
@@ -880,7 +878,7 @@ var
                 {if("unknown primitive:caml_string_equal")
                   {var
                     match$2=
-                     Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf$1);
+                     Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
                    
                    if(match$2)
                     {var ident$1=match$2[1];
@@ -905,13 +903,12 @@ var
                       {exit$3=120;}
                      
                      switch(exit$3)
-                      {case 120:
-                        return List["map"](function(v$1){return v$1[1];},l$2);
+                      {case 120:return List["map"](function(v){return v[1];},l$2);
                        }
                      }
                    else
                     {return List["map"]
-                             (function(v$1){return v$1[1];},variable_list[1]);
+                             (function(v){return v[1];},variable_list[1]);
                      }
                    }
                  else
@@ -924,12 +921,10 @@ var
            {exit=122;}
           
           switch(exit)
-           {case 122:return List["map"](function(i$2){return i$2[1];},l);}
+           {case 122:return List["map"](function(i){return i[1];},l);}
           }
         else
-         {return List["map"]
-                  (function(i$2){return i$2[1];},instruction_list[1]);
-          }
+         {return List["map"](function(i){return i[1];},instruction_list[1]);}
         };
     
     return print_list(match_list(lexbuf));
@@ -940,16 +935,16 @@ var
   function(ppf,lexbuf)
    {var
      pr_instrs=
-      function(ppf$1)
+      function(ppf)
        {return List["iter"]
                 (function(i)
                   {return Format["fprintf"]
-                           (ppf$1,
-                            /* Format */[0,
-                             /* String */[2,
+                           (ppf,
+                            [/* Format */0,
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
                             i[1]);
@@ -967,14 +962,14 @@ var
          {eol(lexbuf);
           return Format["fprintf"]
                   (ppf,
-                   /* Format */[0,
-                    /* String */[2,
+                   [/* Format */0,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       ": ",
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Formatting_lit */[17,
+                       [/* Formatting_lit */17,
                         /* Flush_newline */4,
                         /* End_of_format */0]]]],
                     "%s: %s@."],
@@ -997,12 +992,12 @@ var
             {exit=114;}
            else
             {return find_info
-                     (function(i$1,param,param$1)
-                       {return print_help(Pervasives["^"]("info ",i$1[1]),i$1[3]);},
-                      function(ppf$1)
+                     (function(i,param,param$1)
+                       {return print_help(Pervasives["^"]("info ",i[1]),i[3]);},
+                      function(ppf)
                        {print_help
                          ("info","display infos about the program being debugged.");
-                        return print_info_list(ppf$1);
+                        return print_info_list(ppf);
                         },
                       ppf,
                       lexbuf);
@@ -1017,9 +1012,9 @@ var
                        {return print_help
                                 (Pervasives["^"]("set ",v[1]),Pervasives["^"]("set ",v[3]));
                         },
-                      function(ppf$1)
+                      function(ppf)
                        {print_help("set","set debugger variable.");
-                        return print_variable_list(ppf$1);
+                        return print_variable_list(ppf);
                         },
                       ppf,
                       lexbuf);
@@ -1052,10 +1047,10 @@ var
        {eol(lexbuf);
         return Format["fprintf"]
                 (ppf,
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    "No matching command.",
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]],
                   "No matching command.@."]);
@@ -1066,15 +1061,15 @@ var
          eol(lexbuf);
          return Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     'Ambiguous command "',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '": ',
-                      /* Alpha */[15,
-                       /* Formatting_lit */[17,
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
                         /* Flush_newline */4,
                         /* End_of_format */0]]]]],
                    'Ambiguous command "%s": %a@.'],
@@ -1087,11 +1082,11 @@ var
     else
      {return Format["fprintf"]
               (ppf,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "List of commands: ",
-                 /* Alpha */[15,
-                  /* Formatting_lit */[17,
+                 [/* Alpha */15,
+                  [/* Formatting_lit */17,
                    /* Flush_newline */4,
                    /* End_of_format */0]]],
                 "List of commands: %a@."],
@@ -1182,7 +1177,7 @@ var
          (Unix["openfile"]
            (Misc["find_in_path"]
              (Config["load_path"][1],Unix_tools["expand_path"](file)),
-            /* :: */[0,/* O_RDONLY */0,/* [] */0],
+            [/* :: */0,/* O_RDONLY */0,/* [] */0],
             0));
       }
     catch(x)
@@ -1229,10 +1224,10 @@ var
               (function(param)
                 {Format["fprintf"]
                   (ppf,
-                   /* Format */[0,
-                    /* String */[2,
+                   [/* Format */0,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,": ",/* End_of_format */0]],
+                     [/* String_literal */11,": ",/* End_of_format */0]],
                     "%s: "],
                    param[1]);
                  return param[2][2](ppf);
@@ -1302,10 +1297,10 @@ var
            switch(exit)
             {case 75:
               Format["eprintf"]
-               (/* Format */[0,
-                 /* String_literal */[11,
+               ([/* Format */0,
+                 [/* String_literal */11,
                   "Not a function.",
-                  /* Formatting_lit */[17,
+                  [/* Formatting_lit */17,
                    /* Flush_newline */4,
                    /* End_of_format */0]],
                  "Not a function.@."]);
@@ -1344,14 +1339,14 @@ var
            catch(exn$2)
             {if(exn$2=Not_found)
               {Format["eprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "No source file for ",
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* Char_literal */[12,
+                    [/* Char_literal */12,
                      46,
-                     /* Formatting_lit */[17,
+                     [/* Formatting_lit */17,
                       /* Flush_newline */4,
                       /* End_of_format */0]]]],
                   "No source file for %s.@."],
@@ -1376,10 +1371,10 @@ var
          catch(exn$3)
           {if(exn$3=Not_found)
             {Format["eprintf"]
-              (/* Format */[0,
-                /* String_literal */[11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  "Can't find any event there.",
-                 /* Formatting_lit */[17,
+                 [/* Formatting_lit */17,
                   /* Flush_newline */4,
                   /* End_of_format */0]],
                 "Can't find any event there.@."]);
@@ -1388,10 +1383,10 @@ var
            else
             {if(exn$3=Primitives["Out_of_range"])
               {Format["eprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Position out of range.",
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]],
                   "Position out of range.@."]);
@@ -1413,10 +1408,10 @@ var
          catch(exn$4)
           {if(exn$4=Not_found)
             {return Format["eprintf"]
-                     (/* Format */[0,
-                       /* String_literal */[11,
+                     ([/* Format */0,
+                       [/* String_literal */11,
                         "Can't find any event there.",
-                        /* Formatting_lit */[17,
+                        [/* Formatting_lit */17,
                          /* Flush_newline */4,
                          /* End_of_format */0]],
                        "Can't find any event there.@."]);
@@ -1519,10 +1514,10 @@ var
                 if(frame_counter[1]>=last_frame)
                  {Format["fprintf"]
                    (ppf,
-                    /* Format */[0,
-                     /* String_literal */[11,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       "(More frames follow)",
-                      /* Formatting_lit */[17,
+                      [/* Formatting_lit */17,
                        /* Flush_newline */4,
                        /* End_of_format */0]],
                      "(More frames follow)@."])}
@@ -1534,10 +1529,10 @@ var
               else
                {Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "(Encountered a function with no debugging information)",
-                    /* Formatting_lit */[17,
+                    [/* Formatting_lit */17,
                      /* Flush_newline */4,
                      /* End_of_format */0]],
                    "(Encountered a function with no debugging information)@."]);
@@ -1547,10 +1542,10 @@ var
           
           Format["fprintf"]
            (ppf,
-            /* Format */[0,
-             /* String_literal */[11,
+            [/* Format */0,
+             [/* String_literal */11,
               "Backtrace:",
-              /* Formatting_lit */[17,
+              [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0]],
              "Backtrace:@."]);
@@ -1567,10 +1562,10 @@ var
               if(num_frames<0)
                {return Format["fprintf"]
                         (ppf,
-                         /* Format */[0,
-                          /* String_literal */[11,
+                         [/* Format */0,
+                          [/* String_literal */11,
                            "(Encountered a function with no debugging information)",
-                           /* Formatting_lit */[17,
+                           [/* Formatting_lit */17,
                             /* Flush_newline */4,
                             /* End_of_format */0]],
                           "(Encountered a function with no debugging information)@."]);
@@ -1653,7 +1648,7 @@ var
     try
      {var match$1=Frames["selected_point"](/* () */0);}
     catch(exn)
-     {if(exn=Not_found){var match$1=/* tuple */[0,"",-1,-1];}else{throw exn;}}
+     {if(exn=Not_found){var match$1=[/* tuple */0,"",-1,-1];}else{throw exn;}}
     
     var column=match$1[3];
     
@@ -1729,10 +1724,10 @@ var
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
-                       /* Format */[0,
-                        /* String */[2,
+                       [/* Format */0,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
@@ -1757,10 +1752,10 @@ var
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
-                       /* Format */[0,
-                        /* String */[2,
+                       [/* Format */0,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
@@ -1787,12 +1782,12 @@ var
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
-                       /* Format */[0,
-                        /* Int */[4,
+                       [/* Format */0,
+                        [/* Int */4,
                          /* Int_i */3,
                          /* No_padding */0,
                          /* No_precision */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%i@."],
@@ -1819,12 +1814,12 @@ var
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
-                       /* Format */[0,
-                        /* Int64 */[7,
+                       [/* Format */0,
+                        [/* Int64 */7,
                          /* Int_i */3,
                          /* No_padding */0,
                          /* No_precision */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%Li@."],
@@ -1860,10 +1855,10 @@ var
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
-                       /* Format */[0,
-                        /* String */[2,
+                       [/* Format */0,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
@@ -1890,10 +1885,10 @@ var
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
-                       /* Format */[0,
-                        /* String */[2,
+                       [/* Format */0,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* Formatting_lit */[17,
+                         [/* Formatting_lit */17,
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
@@ -1910,13 +1905,13 @@ var
               matching_elements
                ([0,Program_loading["loading_modes"]],
                 function(prim){return prim[1];}),
-              function(param,ppf$1,lexbuf)
+              function(param,ppf,lexbuf)
                {eol(lexbuf);
                 return Program_loading["set_launching_function"](param[2]);
                 },
-              function(ppf$1){return error("Syntax error.");},
+              function(ppf){return error("Syntax error.");},
               ppf),
-            function(ppf$1)
+            function(ppf)
              {var
                find=
                 function(param)
@@ -1925,9 +1920,9 @@ var
                     
                     if(match[2]=Program_loading["launching_func"][1])
                      {return Format["fprintf"]
-                              (ppf$1,
-                               /* Format */[0,
-                                /* String */[2,/* No_padding */0,/* End_of_format */0],
+                              (ppf,
+                               [/* Format */0,
+                                [/* String */2,/* No_padding */0,/* End_of_format */0],
                                 "%s"],
                                match[1]);
                       }
@@ -1940,9 +1935,9 @@ var
               
               find(Program_loading["loading_modes"]);
               return Format["fprintf"]
-                      (ppf$1,
-                       /* Format */[0,
-                        /* Formatting_lit */[17,
+                      (ppf,
+                       [/* Format */0,
+                        [/* Formatting_lit */17,
                          /* Flush_newline */4,
                          /* End_of_format */0],
                         "@."]);
@@ -1975,10 +1970,10 @@ var
      
      return Format["fprintf"]
              (ppf,
-              /* Format */[0,
-               /* String */[2,
+              [/* Format */0,
+               [/* String */2,
                 /* No_padding */0,
-                /* Formatting_lit */[17,
+                [/* Formatting_lit */17,
                  /* Flush_newline */4,
                  /* End_of_format */0]],
                "%s@."],
@@ -1990,16 +1985,16 @@ var
   function(ppf,mods)
    {var
      pr_mods=
-      function(ppf$1)
+      function(ppf)
        {return List["iter"]
                 (function(x)
                   {return Format["fprintf"]
-                           (ppf$1,
-                            /* Format */[0,
-                             /* String */[2,
+                           (ppf,
+                            [/* Format */0,
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
                             x);
@@ -2008,13 +2003,13 @@ var
     
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                "Used modules: ",
-               /* Formatting_lit */[17,
+               [/* Formatting_lit */17,
                 /* Flush_newline */4,
-                /* Alpha */[15,
-                 /* Formatting_lit */[17,/* FFlush */2,/* End_of_format */0]]]],
+                [/* Alpha */15,
+                 [/* Formatting_lit */17,/* FFlush */2,/* End_of_format */0]]]],
               "Used modules: @.%a@?"],
              pr_mods,
              mods);
@@ -2035,10 +2030,10 @@ var
     if(Checkpoints["checkpoints"][1]=/* [] */0)
      {return Format["fprintf"]
               (ppf,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "No checkpoint.",
-                 /* Formatting_lit */[17,
+                 [/* Formatting_lit */17,
                   /* Flush_newline */4,
                   /* End_of_format */0]],
                 "No checkpoint.@."]);
@@ -2055,24 +2050,24 @@ var
                    var version=param[8];
                    
                    return Printf["printf"]
-                           (/* Format */[0,
-                             /* Int64 */[7,
+                           ([/* Format */0,
+                             [/* Int64 */7,
                               /* Int_d */0,
-                              /* Lit_padding */[0,/* Right */1,19],
+                              [/* Lit_padding */0,/* Right */1,19],
                               /* No_precision */0,
-                              /* Char_literal */[12,
+                              [/* Char_literal */12,
                                32,
-                               /* Int */[4,
+                               [/* Int */4,
                                 /* Int_d */0,
-                                /* Lit_padding */[0,/* Right */1,5],
+                                [/* Lit_padding */0,/* Right */1,5],
                                 /* No_precision */0,
-                                /* Char_literal */[12,
+                                [/* Char_literal */12,
                                  32,
-                                 /* Int */[4,
+                                 [/* Int */4,
                                   /* Int_d */0,
                                   /* No_padding */0,
                                   /* No_precision */0,
-                                  /* Char_literal */[12,10,/* End_of_format */0]]]]]],
+                                  [/* Char_literal */12,10,/* End_of_format */0]]]]]],
                              "%19Ld %5d %d\n"],
                             time,
                             pid,
@@ -2089,18 +2084,18 @@ var
                    var pid=param[2];
                    
                    return Printf["printf"]
-                           (/* Format */[0,
-                             /* Int64 */[7,
+                           ([/* Format */0,
+                             [/* Int64 */7,
                               /* Int_d */0,
-                              /* Lit_padding */[0,/* Right */1,19],
+                              [/* Lit_padding */0,/* Right */1,19],
                               /* No_precision */0,
-                              /* Char_literal */[12,
+                              [/* Char_literal */12,
                                32,
-                               /* Int */[4,
+                               [/* Int */4,
                                 /* Int_d */0,
-                                /* Lit_padding */[0,/* Right */1,5],
+                                [/* Lit_padding */0,/* Right */1,5],
                                 /* No_precision */0,
-                                /* Char_literal */[12,10,/* End_of_format */0]]]],
+                                [/* Char_literal */12,10,/* End_of_format */0]]]],
                              "%19Ld %5d\n"],
                             time,
                             pid);
@@ -2117,22 +2112,22 @@ var
     
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* Int */[4,
+             [/* Format */0,
+              [/* Int */4,
                /* Int_d */0,
-               /* Lit_padding */[0,/* Right */1,3],
+               [/* Lit_padding */0,/* Right */1,3],
                /* No_precision */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 32,
-                /* Int */[4,
+                [/* Int */4,
                  /* Int_d */0,
-                 /* Lit_padding */[0,/* Right */1,10],
+                 [/* Lit_padding */0,/* Right */1,10],
                  /* No_precision */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   "  ",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]]]]]],
               "%3d %10d  %s@."],
@@ -2148,10 +2143,10 @@ var
     if(Breakpoints["breakpoints"][1]=/* [] */0)
      {return Format["fprintf"]
               (ppf,
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "No breakpoints.",
-                 /* Formatting_lit */[17,
+                 [/* Formatting_lit */17,
                   /* Flush_newline */4,
                   /* End_of_format */0]],
                 "No breakpoints.@."]);
@@ -2159,10 +2154,10 @@ var
     else
      {Format["fprintf"]
        (ppf,
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           "Num    Address  Where",
-          /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]],
+          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
          "Num    Address  Where@."]);
       return List["iter"]
               (info_one_breakpoint(ppf),
@@ -2211,32 +2206,32 @@ var
                    case 1:$js=Pervasives["string_of_int"](match$3[1][1]);
                    }}
                return Printf["printf"]
-                       (/* Format */[0,
-                         /* Int */[4,
+                       ([/* Format */0,
+                         [/* Int */4,
                           /* Int_d */0,
-                          /* Lit_padding */[0,/* Right */1,10],
+                          [/* Lit_padding */0,/* Right */1,10],
                           /* No_precision */0,
-                          /* Char_literal */[12,
+                          [/* Char_literal */12,
                            32,
-                           /* Int */[4,
+                           [/* Int */4,
                             /* Int_d */0,
-                            /* Lit_padding */[0,/* Right */1,6],
+                            [/* Lit_padding */0,/* Right */1,6],
                             /* No_precision */0,
-                            /* Char_literal */[12,
+                            [/* Char_literal */12,
                              45,
-                             /* Int */[4,
+                             [/* Int */4,
                               /* Int_d */0,
-                              /* Lit_padding */[0,/* Left */0,6],
+                              [/* Lit_padding */0,/* Left */0,6],
                               /* No_precision */0,
-                              /* String_literal */[11,
+                              [/* String_literal */11,
                                "  ",
-                               /* String */[2,
-                                /* Lit_padding */[0,/* Right */1,10],
-                                /* Char_literal */[12,
+                               [/* String */2,
+                                [/* Lit_padding */0,/* Right */1,10],
+                                [/* Char_literal */12,
                                  32,
-                                 /* String */[2,
-                                  /* Lit_padding */[0,/* Right */1,10],
-                                  /* Char_literal */[12,10,/* End_of_format */0]]]]]]]]]],
+                                 [/* String */2,
+                                  [/* Lit_padding */0,/* Right */1,10],
+                                  [/* Char_literal */12,10,/* End_of_format */0]]]]]]]]]],
                          "%10d %6d-%-6d  %10s %10s\n"],
                         ev[1],
                         match[1],

@@ -26,7 +26,7 @@ var
    function(param)
     {return Display["create"]
              (/* None */0,
-              /* Some */[0,/* Classic */920812018],
+              [/* Some */0,/* Classic */920812018],
               /* None */0,
               /* None */0,
               /* None */0,
@@ -81,20 +81,20 @@ var
    {return raw_dprintf
             (log_level,
              Pervasives["^^"]
-              (/* Format */[0,
-                /* Formatting_gen */[18,
-                 /* Open_box */[1,
-                  /* Format */[0,
-                   /* String_literal */[11,"<2>",/* End_of_format */0],
+              ([/* Format */0,
+                [/* Formatting_gen */18,
+                 [/* Open_box */1,
+                  [/* Format */0,
+                   [/* String_literal */11,"<2>",/* End_of_format */0],
                    "<2>"]],
                  /* End_of_format */0],
                 "@[<2>"],
                Pervasives["^^"]
                 (fmt,
-                 /* Format */[0,
-                  /* Formatting_lit */[17,
+                 [/* Format */0,
+                  [/* Formatting_lit */17,
                    /* Close_box */0,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]],
                   "@]@."])));

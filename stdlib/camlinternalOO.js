@@ -516,16 +516,16 @@ var
       
       var
        lookup_key=
-        function(tables$1)
-         {if(tables$1[1]=key)
-           {return lookup_keys(i-1,keys,tables$1[2]);}
+        function(tables)
+         {if(tables[1]=key)
+           {return lookup_keys(i-1,keys,tables[2]);}
           else
-           {if(tables$1[3]!=/* Empty */0)
-             {return lookup_key(tables$1[3]);}
+           {if(tables[3]!=/* Empty */0)
+             {return lookup_key(tables[3]);}
             else
              {var next=/* Cons */[0,key,/* Empty */0,/* Empty */0];
               
-              tables$1[3]=next,0;
+              tables[3]=next,0;
               return build_path(i-1,keys,next);
               }
             }

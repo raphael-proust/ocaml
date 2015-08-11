@@ -123,16 +123,16 @@ var
          if(match)
           {return Format["fprintf"]
                    (fmt,
-                    /* Format */[0,
-                     /* Char_literal */[12,
+                    [/* Format */0,
+                     [/* Char_literal */12,
                       34,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         '" [style=filled, color=',
-                        /* String */[2,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* String_literal */[11,"];\n",/* End_of_format */0]]]]],
+                         [/* String_literal */11,"];\n",/* End_of_format */0]]]]],
                      '"%s" [style=filled, color=%s];\n'],
                     m[1],
                     match[1]);
@@ -147,16 +147,16 @@ var
          if(match)
           {return Format["fprintf"]
                    (fmt,
-                    /* Format */[0,
-                     /* Char_literal */[12,
+                    [/* Format */0,
+                     [/* Char_literal */12,
                       34,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         '" [style=filled, color=',
-                        /* String */[2,
+                        [/* String */2,
                          /* No_padding */0,
-                         /* String_literal */[11,"];\n",/* End_of_format */0]]]]],
+                         [/* String_literal */11,"];\n",/* End_of_format */0]]]]],
                      '"%s" [style=filled, color=%s];\n'],
                     t[1],
                     match[1]);
@@ -168,16 +168,16 @@ var
        function(self$neg1,fmt,src,dest)
         {return Format["fprintf"]
                  (fmt,
-                  /* Format */[0,
-                   /* Char_literal */[12,
+                  [/* Format */0,
+                   [/* Char_literal */12,
                     34,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '" -> "',
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,'";\n',/* End_of_format */0]]]]],
+                       [/* String_literal */11,'";\n',/* End_of_format */0]]]]],
                    '"%s" -> "%s";\n'],
                   src,
                   dest);
@@ -190,8 +190,7 @@ var
             (function(n)
               {return dot_include_all[1]||
                       List["exists"]
-                       (function(m$1)
-                         {return "unknown primitive:caml_string_equal";},
+                       (function(m){return "unknown primitive:caml_string_equal";},
                         self$neg1[modules]);
                },
              m[8]);
@@ -220,8 +219,8 @@ var
            "unknown block:(sendself self-1/1196 header/1147)";
            Format["fprintf"]
             (fmt,
-             /* Format */[0,
-              /* String */[2,/* No_padding */0,/* End_of_format */0],
+             [/* Format */0,
+              [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
              0);
            var graph=Odoc_info["Dep"][2](/* Some */[0,dot_reduce[1]],types);
@@ -230,8 +229,8 @@ var
            List["iter"](0,graph);
            Format["fprintf"]
             (fmt,
-             /* Format */[0,
-              /* String_literal */[11,"}\n",/* End_of_format */0],
+             [/* Format */0,
+              [/* String_literal */11,"}\n",/* End_of_format */0],
               "}\n"]);
            Format["pp_print_flush"](fmt,/* () */0);
            return Pervasives["close_out"](oc);
@@ -250,8 +249,8 @@ var
            "unknown block:(sendself self-1/1203 header/1147)";
            Format["fprintf"]
             (fmt,
-             /* Format */[0,
-              /* String */[2,/* No_padding */0,/* End_of_format */0],
+             [/* Format */0,
+              [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
              0);
            if(dot_reduce[1]){Odoc_info["Dep"][1](modules_list)}else{}
@@ -260,8 +259,8 @@ var
            List["iter"](0,modules_list);
            Format["fprintf"]
             (fmt,
-             /* Format */[0,
-              /* String_literal */[11,"}\n",/* End_of_format */0],
+             [/* Format */0,
+              [/* String_literal */11,"}\n",/* End_of_format */0],
               "}\n"]);
            Format["pp_print_flush"](fmt,/* () */0);
            return Pervasives["close_out"](oc);

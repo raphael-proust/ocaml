@@ -126,8 +126,8 @@ var
              var qi=state(/* () */0);
              
              My_std["List"][14]
-              (function(p$1)
-                {var q=loop(qf,p$1);
+              (function(p)
+                {var q=loop(qf,p);
                  
                  var match$4=$neg$neg$great(qi,/* QEPSILON */0,q);
                  
@@ -195,11 +195,11 @@ var
           var
            future$prime=
             IS[14]
-             (function(q$prime,future$prime$1)
+             (function(q$prime,future$prime)
                {if(IS[3](q$prime,past$prime))
-                 {return future$prime$1;}
+                 {return future$prime;}
                 else
-                 {return /* :: */[0,q$prime,future$prime$1];}
+                 {return /* :: */[0,q$prime,future$prime];}
                 },
               graph[q],
               param[2]);
@@ -256,15 +256,15 @@ var
            {var
              qs$prime=
               IS[14]
-               (function(q,qs$prime$1)
+               (function(q,qs$prime)
                  {return My_std["List"][19]
-                          (function(qs$prime$2,param)
+                          (function(qs$prime,param)
                             {if(match_character_class(param[1],c))
-                              {return IS[7](qs$prime$2,param[2]);}
+                              {return IS[7](qs$prime,param[2]);}
                              else
-                              {return qs$prime$2;}
+                              {return qs$prime;}
                              },
-                           qs$prime$1,
+                           qs$prime,
                            machine[2][q]);
                   },
                 qs,
@@ -296,25 +296,25 @@ var
             
             if(trace)
              {Printf["printf"]
-               (/* Format */[0,
-                 /* Int */[4,
+               ([/* Format */0,
+                 [/* Int */4,
                   /* Int_d */0,
                   /* No_padding */0,
                   /* No_precision */0,
-                  /* Char_literal */[12,
+                  [/* Char_literal */12,
                    32,
-                   /* Caml_char */[1,
-                    /* String_literal */[11," {",/* End_of_format */0]]]],
+                   [/* Caml_char */1,
+                    [/* String_literal */11," {",/* End_of_format */0]]]],
                  "%d %C {"],
                 i,
                 c),
               IS[13]
                (function(q)
                  {return Printf["printf"]
-                          (/* Format */[0,
-                            /* Char_literal */[12,
+                          ([/* Format */0,
+                            [/* Char_literal */12,
                              32,
-                             /* Int */[4,
+                             [/* Int */4,
                               /* Int_d */0,
                               /* No_padding */0,
                               /* No_precision */0,
@@ -324,10 +324,10 @@ var
                   },
                 qs),
               Printf["printf"]
-               (/* Format */[0,
-                 /* String_literal */[11,
+               ([/* Format */0,
+                 [/* String_literal */11,
                   " }\n",
-                  /* Flush */[10,/* End_of_format */0]],
+                  [/* Flush */10,/* End_of_format */0]],
                  " }\n%!"])}
             else
              {}
@@ -480,9 +480,9 @@ var
  add_ast_dir=
   function(dir,x)
    {if(dir)
-     {var slash=/* Class */[1,/* Atom */[3,/* tuple */[0,47,47]]];
+     {var slash=[/* Class */1,[/* Atom */3,[/* tuple */0,47,47]]];
       
-      var any=/* Class */[1,/* True */0];
+      var any=[/* Class */1,/* True */0];
       
       var
        q=
@@ -530,16 +530,16 @@ var
          {throw [0,
                  Parse_error,
                  sf
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "Trying to unput token ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        " while ",
-                       /* String */[2,
+                       [/* String */2,
                         /* No_padding */0,
-                        /* String_literal */[11," is active",/* End_of_format */0]]]]],
+                        [/* String_literal */11," is active",/* End_of_format */0]]]]],
                     "Trying to unput token %s while %s is active"],
                    string_of_token(t),
                    string_of_token(match[1]))];
@@ -559,14 +559,14 @@ var
          {throw [0,
                  Parse_error,
                  sf
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "Unexpected token, expecting ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        ", got ",
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                     "Unexpected token, expecting %s, got %s"],
                    string_of_token(x),
                    string_of_token(y))];
@@ -616,12 +616,12 @@ var
            throw [0,
                   Parse_error,
                   sf
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "Unexpected token ",
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11," in atomizer",/* End_of_format */0]]],
+                       [/* String_literal */11," in atomizer",/* End_of_format */0]]],
                      "Unexpected token %s in atomizer"],
                     string_of_token(t))];
            

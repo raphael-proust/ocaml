@@ -137,12 +137,12 @@ var
      {return parse_string
               (/* None */0,
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* Caml_string */[3,
+                ([/* Format */0,
+                  [/* Caml_string */3,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     ": ",
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                   "%S: %s"],
                  file,
                  My_std["String"][22](", ",tags)));
@@ -158,10 +158,10 @@ var
      {return parse_string
               (/* None */0,
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "true: ",
-                   /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                   [/* String */2,/* No_padding */0,/* End_of_format */0]],
                   "true: %s"],
                  My_std["String"][22](", ",tags)));
       }
@@ -179,13 +179,13 @@ var
         
         if(!Tags["mem"](tag,useful_tags))
          {return Log["eprintf"]
-                  (/* Format */[0,
-                    /* Alpha */[15,
-                     /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* Alpha */15,
+                     [/* String_literal */11,
                       "Warning: the tag ",
-                      /* Caml_string */[3,
+                      [/* Caml_string */3,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         " is not used in any flag or dependency declaration, so it will have no effect; it may be a typo. Otherwise you can use `mark_tag_used` in your myocamlbuild.ml to disable this warning.",
                         /* End_of_format */0]]]],
                     "%aWarning: the tag %S is not used in any flag or dependency declaration, so it will have no effect; it may be a typo. Otherwise you can use `mark_tag_used` in your myocamlbuild.ml to disable this warning."],

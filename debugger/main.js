@@ -38,21 +38,21 @@ var current_duration=[0,-1];
 
 var
  protect=
-  function(ppf,restart,loop$1)
+  function(ppf,restart,loop)
    {try
-     {return loop$1(ppf);}
+     {return loop(ppf);}
     catch(x)
      {if(x=End_of_file)
        {return protect
                 (ppf,
                  restart,
-                 function(ppf$1)
+                 function(ppf)
                   {Time_travel["forget_process"]
                     (Checkpoints["current_checkpoint"][1][3],
                      Checkpoints["current_checkpoint"][1][2]);
-                   Format["pp_print_flush"](ppf$1,/* () */0);
+                   Format["pp_print_flush"](ppf,/* () */0);
                    Input_handling["stop_user_input"](/* () */0);
-                   return restart(ppf$1);
+                   return restart(ppf);
                    });
         }
       else
@@ -60,10 +60,10 @@ var
          {return protect
                   (ppf,
                    restart,
-                   function(ppf$1)
-                    {Format["pp_print_flush"](ppf$1,/* () */0);
+                   function(ppf)
+                    {Format["pp_print_flush"](ppf,/* () */0);
                      Input_handling["stop_user_input"](/* () */0);
-                     return restart(ppf$1);
+                     return restart(ppf);
                      });
           }
         else
@@ -71,13 +71,13 @@ var
            {return protect
                     (ppf,
                      restart,
-                     function(ppf$1)
+                     function(ppf)
                       {Format["fprintf"]
-                        (ppf$1,
-                         /* Format */[0,
-                          /* String_literal */[11,
+                        (ppf,
+                         [/* Format */0,
+                          [/* String_literal */11,
                            "Interrupted.",
-                           /* Formatting_lit */[17,
+                           [/* Formatting_lit */17,
                             /* Flush_newline */4,
                             /* End_of_format */0]],
                           "Interrupted.@."]);
@@ -86,12 +86,12 @@ var
                           {Input_handling["stop_user_input"](/* () */0);
                            if(Program_management["loaded"][1])
                             {Frames["try_select_frame"](0);
-                             return Show_information["show_current_event"](ppf$1);
+                             return Show_information["show_current_event"](ppf);
                              }
                            else
                             {return 0;}
                            });
-                       return restart(ppf$1);
+                       return restart(ppf);
                        });
             }
           else
@@ -99,21 +99,21 @@ var
              {return protect
                       (ppf,
                        restart,
-                       function(ppf$1)
+                       function(ppf)
                         {Format["fprintf"]
-                          (ppf$1,
-                           /* Format */[0,
-                            /* String_literal */[11,
+                          (ppf,
+                           [/* Format */0,
+                            [/* String_literal */11,
                              "Trying to recover...",
-                             /* Formatting_lit */[17,
+                             [/* Formatting_lit */17,
                               /* Flush_newline */4,
                               /* End_of_format */0]],
                             "Trying to recover...@."]);
                          Input_handling["stop_user_input"](/* () */0);
                          Time_travel["recover"](/* () */0);
                          Frames["try_select_frame"](0);
-                         Show_information["show_current_event"](ppf$1);
-                         return restart(ppf$1);
+                         Show_information["show_current_event"](ppf);
+                         return restart(ppf);
                          });
               }
             else
@@ -125,19 +125,19 @@ var
                 return protect
                         (ppf,
                          restart,
-                         function(ppf$1)
+                         function(ppf)
                           {if(current_duration[1]=-1)
                             {var
                               msg=
                                Format["sprintf"]
-                                (/* Format */[0,
-                                  /* String_literal */[11,
+                                ([/* Format */0,
+                                  [/* String_literal */11,
                                    "Restart from time ",
-                                   /* Int64 */[7,
+                                   [/* Int64 */7,
                                     /* Int_d */0,
                                     /* No_padding */0,
                                     /* No_precision */0,
-                                    /* String_literal */[11,
+                                    [/* String_literal */11,
                                      " and try to get closer of the problem",
                                      /* End_of_format */0]]],
                                   "Restart from time %Ld and try to get closer of the problem"],
@@ -163,14 +163,14 @@ var
                              else
                               {current_duration[1]=-1,0;
                                Input_handling["stop_user_input"](/* () */0);
-                               Show_information["show_current_event"](ppf$1);
-                               return restart(ppf$1);
+                               Show_information["show_current_event"](ppf);
+                               return restart(ppf);
                                }
                              }
                            else
                             {Time_travel["recover"](/* () */0);
-                             Show_information["show_current_event"](ppf$1);
-                             return restart(ppf$1);
+                             Show_information["show_current_event"](ppf);
+                             return restart(ppf);
                              }
                            });
                 }
@@ -201,12 +201,12 @@ var
       
       Format["fprintf"]
        (Format["std_formatter"],
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           "Executing file ",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]],
+           [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
          "Executing file %s@."],
         file);
       while(/* true */1)
@@ -274,12 +274,12 @@ var
  print_version=
   function(param)
    {Format["printf"]
-     (/* Format */[0,
-       /* String_literal */[11,
+     ([/* Format */0,
+       [/* String_literal */11,
         "The OCaml debugger, version ",
-        /* String */[2,
+        [/* String */2,
          /* No_padding */0,
-         /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]],
+         [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
        "The OCaml debugger, version %s@."],
       Sys["ocaml_version"]);
     return Pervasives["exit"](0);
@@ -289,10 +289,10 @@ var
  print_version_num=
   function(param)
    {Format["printf"]
-     (/* Format */[0,
-       /* String */[2,
+     ([/* Format */0,
+       [/* String */2,
         /* No_padding */0,
-        /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]],
+        [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
        "%s@."],
       Sys["ocaml_version"]);
     return Pervasives["exit"](0);
@@ -394,14 +394,14 @@ var
         }
       
       Format["printf"]
-       (/* Format */[0,
-         /* String_literal */[11,
+       ([/* Format */0,
+         [/* String_literal */11,
           "\tOCaml Debugger version ",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* Formatting_lit */[17,
+           [/* Formatting_lit */17,
             /* Flush_newline */4,
-            /* Formatting_lit */[17,/* Flush_newline */4,/* End_of_format */0]]]],
+            [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]]],
          "\tOCaml Debugger version %s@.@."],
         Config["version"]);
       Config["load_path"][1]=Parameters["default_load_path"][1],0;
@@ -416,28 +416,28 @@ var
       else
        {if(exn$1[1]=Env["Error"])
          {Format["eprintf"]
-           (/* Format */[0,
-             /* String_literal */[11,
+           ([/* Format */0,
+             [/* String_literal */11,
               "Debugger [version ",
-              /* String */[2,
+              [/* String */2,
                /* No_padding */0,
-               /* String_literal */[11,
+               [/* String_literal */11,
                 "] environment error:",
-                /* Formatting_lit */[17,
-                 /* Break */[0,"@ ",1,0],
-                 /* Formatting_gen */[18,
-                  /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
-                  /* Formatting_lit */[17,
-                   /* Break */[0,"@;",1,0],
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@;",1,0],
                    /* End_of_format */0]]]]]],
              "Debugger [version %s] environment error:@ @[@;"],
             Config["version"]);
           Env["report_error"](Format["err_formatter"],exn$1[2]);
           Format["eprintf"]
-           (/* Format */[0,
-             /* Formatting_lit */[17,
+           ([/* Format */0,
+             [/* Formatting_lit */17,
               /* Close_box */0,
-              /* Formatting_lit */[17,
+              [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0]],
              "@]@."]);
@@ -446,28 +446,28 @@ var
         else
          {if(exn$1[1]=Cmi_format["Error"])
            {Format["eprintf"]
-             (/* Format */[0,
-               /* String_literal */[11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "Debugger [version ",
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   "] environment error:",
-                  /* Formatting_lit */[17,
-                   /* Break */[0,"@ ",1,0],
-                   /* Formatting_gen */[18,
-                    /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
-                    /* Formatting_lit */[17,
-                     /* Break */[0,"@;",1,0],
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@;",1,0],
                      /* End_of_format */0]]]]]],
                "Debugger [version %s] environment error:@ @[@;"],
               Config["version"]);
             Cmi_format["report_error"](Format["err_formatter"],exn$1[2]);
             Format["eprintf"]
-             (/* Format */[0,
-               /* Formatting_lit */[17,
+             ([/* Format */0,
+               [/* Formatting_lit */17,
                 /* Close_box */0,
-                /* Formatting_lit */[17,
+                [/* Formatting_lit */17,
                  /* Flush_newline */4,
                  /* End_of_format */0]],
                "@]@."]);

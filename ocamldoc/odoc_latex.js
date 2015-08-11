@@ -237,15 +237,15 @@ var separate_files=[0,/* false */0];
 var
  latex_titles=
   [0,
-   /* :: */[0,
-    /* tuple */[0,1,"section"],
-    /* :: */[0,
-     /* tuple */[0,2,"subsection"],
-     /* :: */[0,
-      /* tuple */[0,3,"subsubsection"],
-      /* :: */[0,
-       /* tuple */[0,4,"paragraph"],
-       /* :: */[0,/* tuple */[0,5,"subparagraph"],/* [] */0]]]]]];
+   [/* :: */0,
+    [/* tuple */0,1,"section"],
+    [/* :: */0,
+     [/* tuple */0,2,"subsection"],
+     [/* :: */0,
+      [/* tuple */0,3,"subsubsection"],
+      [/* :: */0,
+       [/* tuple */0,4,"paragraph"],
+       [/* :: */0,[/* tuple */0,5,"subparagraph"],/* [] */0]]]]]];
 
 var latex_value_prefix=[0,Odoc_messages["default_latex_value_prefix"]];
 
@@ -306,8 +306,8 @@ var
   function(f,s)
    {return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* String */[2,/* No_padding */0,/* End_of_format */0],
+             [/* Format */0,
+              [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
              s);
     };
@@ -495,30 +495,30 @@ var
               {exit=106;}
              else
               {switch(switcher[0])
-                {case 0:var match=/* tuple */[0,"-pipe",'"|'];
+                {case 0:var match=[/* tuple */0,"-pipe",'"|'];
                  case 1:exit=106;
-                 case 2:var match=/* tuple */[0,"-tilde","~"];
+                 case 2:var match=[/* tuple */0,"-tilde","~"];
                  }
                }
              }
            else
             {if(c>=33)
               {switch((-33+c)[0])
-                {case 0:var match=/* tuple */[0,"-bang",'"!'];
+                {case 0:var match=[/* tuple */0,"-bang",'"!'];
                  case 1:exit=106;
                  case 2:exit=106;
-                 case 3:var match=/* tuple */[0,"-dollar","$"];
-                 case 4:var match=/* tuple */[0,"-percent","%"];
-                 case 5:var match=/* tuple */[0,"-ampersand","&"];
+                 case 3:var match=[/* tuple */0,"-dollar","$"];
+                 case 4:var match=[/* tuple */0,"-percent","%"];
+                 case 5:var match=[/* tuple */0,"-ampersand","&"];
                  case 6:exit=106;
                  case 7:exit=106;
                  case 8:exit=106;
-                 case 9:var match=/* tuple */[0,"-star","*"];
-                 case 10:var match=/* tuple */[0,"-plus","+"];
+                 case 9:var match=[/* tuple */0,"-star","*"];
+                 case 10:var match=[/* tuple */0,"-plus","+"];
                  case 11:exit=106;
-                 case 12:var match=/* tuple */[0,"-minus","-"];
+                 case 12:var match=[/* tuple */0,"-minus","-"];
                  case 13:exit=106;
-                 case 14:var match=/* tuple */[0,"-slash","/"];
+                 case 14:var match=[/* tuple */0,"-slash","/"];
                  case 15:exit=106;
                  case 16:exit=106;
                  case 17:exit=106;
@@ -529,13 +529,13 @@ var
                  case 22:exit=106;
                  case 23:exit=106;
                  case 24:exit=106;
-                 case 25:var match=/* tuple */[0,"-colon",":"];
+                 case 25:var match=[/* tuple */0,"-colon",":"];
                  case 26:exit=106;
-                 case 27:var match=/* tuple */[0,"-lt","<"];
-                 case 28:var match=/* tuple */[0,"-equal","="];
-                 case 29:var match=/* tuple */[0,"-gt",">"];
+                 case 27:var match=[/* tuple */0,"-lt","<"];
+                 case 28:var match=[/* tuple */0,"-equal","="];
+                 case 29:var match=[/* tuple */0,"-gt",">"];
                  case 30:exit=106;
-                 case 31:var match=/* tuple */[0,"-at",'"@'];
+                 case 31:var match=[/* tuple */0,"-at",'"@'];
                  case 32:exit=106;
                  case 33:exit=106;
                  case 34:exit=106;
@@ -565,8 +565,8 @@ var
                  case 58:exit=106;
                  case 59:exit=106;
                  case 60:exit=106;
-                 case 61:var match=/* tuple */[0,"-exp","^"];
-                 case 62:var match=/* tuple */[0,"-underscore","_"];
+                 case 61:var match=[/* tuple */0,"-exp","^"];
+                 case 62:var match=[/* tuple */0,"-underscore","_"];
                  }
                }
              else
@@ -646,11 +646,11 @@ var
          return Pervasives["^"](latex_type_elt_prefix[1],0);
          },
        make_label,
-       function(self$neg1,label$1)
-        {return Pervasives["^"]("\label{",Pervasives["^"](label$1,"}"));},
+       function(self$neg1,label)
+        {return Pervasives["^"]("\label{",Pervasives["^"](label,"}"));},
        make_ref,
-       function(self$neg1,label$1)
-        {return Pervasives["^"]("\ref{",Pervasives["^"](label$1,"}"));},
+       function(self$neg1,label)
+        {return Pervasives["^"]("\ref{",Pervasives["^"](label,"}"));},
        latex_of_text,
        function(self$neg1,fmt,t)
         {"unknown block:(sendself self-1/1400 latex_of_text_element/1289 fmt/1401)";
@@ -760,12 +760,12 @@ var
          
          return p
                  (fmt,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "{\tt{",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,"}}",/* End_of_format */0]]],
+                     [/* String_literal */11,"}}",/* End_of_format */0]]],
                    "{\tt{%s}}"],
                   s3);
          },
@@ -965,133 +965,133 @@ var
       List["map"]
        (function(param)
          {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
-        /* :: */[0,
-         /* tuple */[0,"\x01","\x01\x02"],
-         /* :: */[0,
-          /* tuple */[0,"\\","\x01b"],
-          /* :: */[0,
-           /* tuple */[0,"{","\\{"],
-           /* :: */[0,
-            /* tuple */[0,"}","\\}"],
-            /* :: */[0,
-             /* tuple */[0,"\$","\\$"],
-             /* :: */[0,
-              /* tuple */[0,"\^","{\\textasciicircum}"],
-              /* :: */[0,
-               /* tuple */[0,"à","\\`a"],
-               /* :: */[0,
-                /* tuple */[0,"â","\\^a"],
-                /* :: */[0,
-                 /* tuple */[0,"é","\\'e"],
-                 /* :: */[0,
-                  /* tuple */[0,"è","\\`e"],
-                  /* :: */[0,
-                   /* tuple */[0,"ê","\\^e"],
-                   /* :: */[0,
-                    /* tuple */[0,"ë",'\\"e'],
-                    /* :: */[0,
-                     /* tuple */[0,"ç","\\c{c}"],
-                     /* :: */[0,
-                      /* tuple */[0,"ô","\\^o"],
-                      /* :: */[0,
-                       /* tuple */[0,"ö",'\\"o'],
-                       /* :: */[0,
-                        /* tuple */[0,"î","\\^i"],
-                        /* :: */[0,
-                         /* tuple */[0,"ï",'\\"i'],
-                         /* :: */[0,
-                          /* tuple */[0,"ù","\\`u"],
-                          /* :: */[0,
-                           /* tuple */[0,"û","\\^u"],
-                           /* :: */[0,
-                            /* tuple */[0,"%","\\%"],
-                            /* :: */[0,
-                             /* tuple */[0,"_","\\_"],
-                             /* :: */[0,
-                              /* tuple */[0,"~","\\~{}"],
-                              /* :: */[0,
-                               /* tuple */[0,"#","{\char35}"],
-                               /* :: */[0,
-                                /* tuple */[0,"->","$\\rightarrow$"],
-                                /* :: */[0,
-                                 /* tuple */[0,"<-","$\\leftarrow$"],
-                                 /* :: */[0,
-                                  /* tuple */[0,">=","$\\geq$"],
-                                  /* :: */[0,
-                                   /* tuple */[0,"<=","$\\leq$"],
-                                   /* :: */[0,
-                                    /* tuple */[0,">","$>$"],
-                                    /* :: */[0,
-                                     /* tuple */[0,"<","$<$"],
-                                     /* :: */[0,
-                                      /* tuple */[0,"=","$=$"],
-                                      /* :: */[0,
-                                       /* tuple */[0,"|","{\\textbar}"],
-                                       /* :: */[0,
-                                        /* tuple */[0,"\.\.\.","$\\ldots$"],
-                                        /* :: */[0,
-                                         /* tuple */[0,"&","\\&"],
-                                         /* :: */[0,
-                                          /* tuple */[0,"\x01b","{\\char92}"],
-                                          /* :: */[0,/* tuple */[0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]),
+        [/* :: */0,
+         [/* tuple */0,"\x01","\x01\x02"],
+         [/* :: */0,
+          [/* tuple */0,"\\","\x01b"],
+          [/* :: */0,
+           [/* tuple */0,"{","\\{"],
+           [/* :: */0,
+            [/* tuple */0,"}","\\}"],
+            [/* :: */0,
+             [/* tuple */0,"\$","\\$"],
+             [/* :: */0,
+              [/* tuple */0,"\^","{\\textasciicircum}"],
+              [/* :: */0,
+               [/* tuple */0,"à","\\`a"],
+               [/* :: */0,
+                [/* tuple */0,"â","\\^a"],
+                [/* :: */0,
+                 [/* tuple */0,"é","\\'e"],
+                 [/* :: */0,
+                  [/* tuple */0,"è","\\`e"],
+                  [/* :: */0,
+                   [/* tuple */0,"ê","\\^e"],
+                   [/* :: */0,
+                    [/* tuple */0,"ë",'\\"e'],
+                    [/* :: */0,
+                     [/* tuple */0,"ç","\\c{c}"],
+                     [/* :: */0,
+                      [/* tuple */0,"ô","\\^o"],
+                      [/* :: */0,
+                       [/* tuple */0,"ö",'\\"o'],
+                       [/* :: */0,
+                        [/* tuple */0,"î","\\^i"],
+                        [/* :: */0,
+                         [/* tuple */0,"ï",'\\"i'],
+                         [/* :: */0,
+                          [/* tuple */0,"ù","\\`u"],
+                          [/* :: */0,
+                           [/* tuple */0,"û","\\^u"],
+                           [/* :: */0,
+                            [/* tuple */0,"%","\\%"],
+                            [/* :: */0,
+                             [/* tuple */0,"_","\\_"],
+                             [/* :: */0,
+                              [/* tuple */0,"~","\\~{}"],
+                              [/* :: */0,
+                               [/* tuple */0,"#","{\char35}"],
+                               [/* :: */0,
+                                [/* tuple */0,"->","$\\rightarrow$"],
+                                [/* :: */0,
+                                 [/* tuple */0,"<-","$\\leftarrow$"],
+                                 [/* :: */0,
+                                  [/* tuple */0,">=","$\\geq$"],
+                                  [/* :: */0,
+                                   [/* tuple */0,"<=","$\\leq$"],
+                                   [/* :: */0,
+                                    [/* tuple */0,">","$>$"],
+                                    [/* :: */0,
+                                     [/* tuple */0,"<","$<$"],
+                                     [/* :: */0,
+                                      [/* tuple */0,"=","$=$"],
+                                      [/* :: */0,
+                                       [/* tuple */0,"|","{\\textbar}"],
+                                       [/* :: */0,
+                                        [/* tuple */0,"\.\.\.","$\\ldots$"],
+                                        [/* :: */0,
+                                         [/* tuple */0,"&","\\&"],
+                                         [/* :: */0,
+                                          [/* tuple */0,"\x01b","{\\char92}"],
+                                          [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]),
       0,
       $$self$1[subst_strings_simple]=
       List["map"]
        (function(param)
          {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
-        /* :: */[0,
-         /* tuple */[0,"\x01","\x01\x02"],
-         /* :: */[0,
-          /* tuple */[0,"\\","\x01b"],
-          /* :: */[0,
-           /* tuple */[0,"{","\x01l"],
-           /* :: */[0,
-            /* tuple */[0,"}","{\\char125}"],
-            /* :: */[0,
-             /* tuple */[0,"'","{\\textquotesingle}"],
-             /* :: */[0,
-              /* tuple */[0,"`","{\\textasciigrave}"],
-              /* :: */[0,
-               /* tuple */[0,"\x01b","{\\char92}"],
-               /* :: */[0,
-                /* tuple */[0,"\x01l","{\\char123}"],
-                /* :: */[0,/* tuple */[0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]),
+        [/* :: */0,
+         [/* tuple */0,"\x01","\x01\x02"],
+         [/* :: */0,
+          [/* tuple */0,"\\","\x01b"],
+          [/* :: */0,
+           [/* tuple */0,"{","\x01l"],
+           [/* :: */0,
+            [/* tuple */0,"}","{\\char125}"],
+            [/* :: */0,
+             [/* tuple */0,"'","{\\textquotesingle}"],
+             [/* :: */0,
+              [/* tuple */0,"`","{\\textasciigrave}"],
+              [/* :: */0,
+               [/* tuple */0,"\x01b","{\\char92}"],
+               [/* :: */0,
+                [/* tuple */0,"\x01l","{\\char123}"],
+                [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]),
       0,
       $$self$1[subst_strings_code]=
       List["map"]
        (function(param)
          {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
-        /* :: */[0,
-         /* tuple */[0,"\x01","\x01\x02"],
-         /* :: */[0,
-          /* tuple */[0,"\\","\x01b"],
-          /* :: */[0,
-           /* tuple */[0,"{","\x01l"],
-           /* :: */[0,
-            /* tuple */[0,"}","{\\char125}"],
-            /* :: */[0,
-             /* tuple */[0,"'","{\\textquotesingle}"],
-             /* :: */[0,
-              /* tuple */[0,"`","{\\textasciigrave}"],
-              /* :: */[0,
-               /* tuple */[0,"%","\\%"],
-               /* :: */[0,
-                /* tuple */[0,"_","\\_"],
-                /* :: */[0,
-                 /* tuple */[0,"~","{\\char126}"],
-                 /* :: */[0,
-                  /* tuple */[0,"#","{\\char35}"],
-                  /* :: */[0,
-                   /* tuple */[0,"&","\\&"],
-                   /* :: */[0,
-                    /* tuple */[0,"\$","\\$"],
-                    /* :: */[0,
-                     /* tuple */[0,"\^","{\\char94}"],
-                     /* :: */[0,
-                      /* tuple */[0,"\x01b","{\\char92}"],
-                      /* :: */[0,
-                       /* tuple */[0,"\x01l","{\\char123}"],
-                       /* :: */[0,/* tuple */[0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]),
+        [/* :: */0,
+         [/* tuple */0,"\x01","\x01\x02"],
+         [/* :: */0,
+          [/* tuple */0,"\\","\x01b"],
+          [/* :: */0,
+           [/* tuple */0,"{","\x01l"],
+           [/* :: */0,
+            [/* tuple */0,"}","{\\char125}"],
+            [/* :: */0,
+             [/* tuple */0,"'","{\\textquotesingle}"],
+             [/* :: */0,
+              [/* tuple */0,"`","{\\textasciigrave}"],
+              [/* :: */0,
+               [/* tuple */0,"%","\\%"],
+               [/* :: */0,
+                [/* tuple */0,"_","\\_"],
+                [/* :: */0,
+                 [/* tuple */0,"~","{\\char126}"],
+                 [/* :: */0,
+                  [/* tuple */0,"#","{\\char35}"],
+                  [/* :: */0,
+                   [/* tuple */0,"&","\\&"],
+                   [/* :: */0,
+                    [/* tuple */0,"\$","\\$"],
+                    [/* :: */0,
+                     [/* tuple */0,"\^","{\\char94}"],
+                     [/* :: */0,
+                      [/* tuple */0,"\x01b","{\\char92}"],
+                      [/* :: */0,
+                       [/* tuple */0,"\x01l","{\\char123}"],
+                       [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]),
       0;
       return $$self$1;
       };
@@ -1351,7 +1351,7 @@ var
              }
            }
          else
-          {return /* tuple */[0,/* [] */0,/* [] */0];}
+          {return [/* tuple */0,/* [] */0,/* [] */0];}
          },
        latex_of_value,
        function(self$neg3,fmt,v)
@@ -1419,13 +1419,13 @@ var
          
          Format["fprintf"]
           (fmt2,
-           /* Format */[0,
-            /* Formatting_gen */[18,
-             /* Open_box */[1,
-              /* Format */[0,
-               /* String_literal */[11,"<h 2>",/* End_of_format */0],
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,
+              [/* Format */0,
+               [/* String_literal */11,"<h 2>",/* End_of_format */0],
                "<h 2>"]],
-             /* String_literal */[11,"type ",/* End_of_format */0]],
+             [/* String_literal */11,"type ",/* End_of_format */0]],
             "@[<h 2>type "]);
          "unknown block:(sendself self-3/1738 latex_of_type_params/1655 fmt2/1743 mod_name/1745\n  t/1740)";
          
@@ -1448,12 +1448,12 @@ var
               "unknown block:(sendself self-3/1738 normal_type/1726 mod_name/1745 (field 0 match/2292))";
               p
                (fmt2,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   " = ",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                   [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                  " = %s%s"],
                 priv?"private ":"",
                 0);
@@ -1502,10 +1502,10 @@ var
              }}
          p
           (fmt2,
-           /* Format */[0,
-            /* Char_literal */[12,
+           [/* Format */0,
+            [/* Char_literal */12,
              32,
-             /* String */[2,/* No_padding */0,/* End_of_format */0]],
+             [/* String */2,/* No_padding */0,/* End_of_format */0]],
             " %s"],
            $js);
          var s_type3=flush2(/* () */0);
@@ -1548,23 +1548,23 @@ var
                         {"unknown block:(sendself self-3/1738 normal_type/1726 mod_name/1745 (field 1 r/1758))";
                          p
                           (fmt2,
-                           /* Format */[0,
-                            /* Formatting_gen */[18,
-                             /* Open_box */[1,
-                              /* Format */[0,
-                               /* String_literal */[11,"<h 6>",/* End_of_format */0],
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<h 6>",/* End_of_format */0],
                                "<h 6>"]],
-                             /* String_literal */[11,
+                             [/* String_literal */11,
                               "  ",
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* String_literal */[11,
+                               [/* String_literal */11,
                                 " :",
-                                /* Formatting_lit */[17,
-                                 /* Break */[0,"@ ",1,0],
-                                 /* String */[2,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* String */2,
                                   /* No_padding */0,
-                                  /* String_literal */[11," ;",/* End_of_format */0]]]]]]],
+                                  [/* String_literal */11," ;",/* End_of_format */0]]]]]]],
                             "@[<h 6>  %s :@ %s ;"],
                            r[1],
                            0);
@@ -1580,7 +1580,7 @@ var
                     defs=
                      Pervasives["@"]
                       (List["flatten"](fields),
-                       /* :: */[0,/* CodePre */[2,">"],/* [] */0]);
+                       [/* :: */0,[/* CodePre */2,">"],/* [] */0]);
                    
                   }
                 }
@@ -1600,15 +1600,15 @@ var
                  (function(constr)
                    {p
                      (fmt2,
-                      /* Format */[0,
-                       /* Formatting_gen */[18,
-                        /* Open_box */[1,
-                         /* Format */[0,
-                          /* String_literal */[11,"<h 6>",/* End_of_format */0],
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<h 6>",/* End_of_format */0],
                           "<h 6>"]],
-                        /* String_literal */[11,
+                        [/* String_literal */11,
                          "  | ",
-                         /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                         [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                        "@[<h 6>  | %s"],
                       constr[1]);
                     var match$9=constr[2];
@@ -1621,20 +1621,20 @@ var
                         "unknown block:(sendself self-3/1738 normal_type/1726 mod_name/1745 (field 0 match/2277))";
                         p
                          (fmt2,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             " :",
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* String */[2,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
-                               /* String */[2,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* String */2,
                                 /* No_padding */0,
-                                /* Formatting_lit */[17,
-                                 /* Break */[0,"@ ",1,0],
-                                 /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]],
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]],
                            " :@ %s@ %s@ %s"],
                           0,
                           "->",
@@ -1643,12 +1643,12 @@ var
                        {'unknown block:(sendself self-3/1738 normal_type_list/1767 [0: 0a] mod_name/1745 " * "\n  match/2276)';
                         p
                          (fmt2,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             " of",
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                            " of@ %s"],
                           0)}
                       }
@@ -1657,12 +1657,12 @@ var
                        {"unknown block:(sendself self-3/1738 normal_type/1726 mod_name/1745 (field 0 match/2277))";
                         p
                          (fmt2,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             " :",
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                            " :@ %s"],
                           0)}
                       else
@@ -1687,25 +1687,25 @@ var
                    {"unknown block:(sendself self-3/1738 normal_type/1726 mod_name/1745 (field 2 r/1769))";
                     p
                      (fmt2,
-                      /* Format */[0,
-                       /* Formatting_gen */[18,
-                        /* Open_box */[1,
-                         /* Format */[0,
-                          /* String_literal */[11,"<h 6>",/* End_of_format */0],
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<h 6>",/* End_of_format */0],
                           "<h 6>"]],
-                        /* String_literal */[11,
+                        [/* String_literal */11,
                          "  ",
-                         /* String */[2,
+                         [/* String */2,
                           /* No_padding */0,
-                          /* String */[2,
+                          [/* String */2,
                            /* No_padding */0,
-                           /* String_literal */[11,
+                           [/* String_literal */11,
                             " :",
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* String */[2,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String */2,
                               /* No_padding */0,
-                              /* String_literal */[11," ;",/* End_of_format */0]]]]]]]],
+                              [/* String_literal */11," ;",/* End_of_format */0]]]]]]]],
                        "@[<h 6>  %s%s :@ %s ;"],
                       r[2]?"mutable ":"",
                       r[1],
@@ -1722,7 +1722,7 @@ var
                defs=
                 Pervasives["@"]
                  (List["flatten"](fields$1),
-                  /* :: */[0,/* CodePre */[2,"}"],/* [] */0]);
+                  [/* :: */0,[/* CodePre */2,"}"],/* [] */0]);
               
              }}
          
@@ -1800,13 +1800,13 @@ var
          Odoc_info["reset_type_names"](/* () */0);
          Format["fprintf"]
           (fmt2,
-           /* Format */[0,
-            /* Formatting_gen */[18,
-             /* Open_box */[1,
-              /* Format */[0,
-               /* String_literal */[11,"<h 2>",/* End_of_format */0],
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,
+              [/* Format */0,
+               [/* String_literal */11,"<h 2>",/* End_of_format */0],
                "<h 2>"]],
-             /* String_literal */[11,"type ",/* End_of_format */0]],
+             [/* String_literal */11,"type ",/* End_of_format */0]],
             "@[<h 2>type "]);
          var l=te[3];
          
@@ -1816,7 +1816,7 @@ var
              print_concat
               (fmt2,
                ", ",
-               function(p$1)
+               function(p)
                 {"unknown block:(sendself self-3/1782 normal_type/1726 mod_name/1783 p/1791)";
                  return ps(fmt2,0);
                  },
@@ -1834,10 +1834,10 @@ var
          ps(fmt2,0);
          p
           (fmt2,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              " +=",
-             /* String */[2,/* No_padding */0,/* End_of_format */0]],
+             [/* String */2,/* No_padding */0,/* End_of_format */0]],
             " +=%s"],
            (te[4]=/* Private */0)?" private":"");
          var s_type3=flush2(/* () */0);
@@ -1851,15 +1851,15 @@ var
                  
                  p
                   (fmt2,
-                   /* Format */[0,
-                    /* Formatting_gen */[18,
-                     /* Open_box */[1,
-                      /* Format */[0,
-                       /* String_literal */[11,"<h 6>",/* End_of_format */0],
+                   [/* Format */0,
+                    [/* Formatting_gen */18,
+                     [/* Open_box */1,
+                      [/* Format */0,
+                       [/* String_literal */11,"<h 6>",/* End_of_format */0],
                        "<h 6>"]],
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       "  | ",
-                      /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                     "@[<h 6>  | %s"],
                    Odoc_info["Name"][1](x[1]));
                  var match$1=x[2];
@@ -1872,22 +1872,22 @@ var
                      "unknown block:(sendself self-3/1782 normal_type/1726 father/1796 (field 0 match/2259))";
                      p
                       (fmt2,
-                       /* Format */[0,
-                        /* Char_literal */[12,
+                       [/* Format */0,
+                        [/* Char_literal */12,
                          32,
-                         /* String */[2,
+                         [/* String */2,
                           /* No_padding */0,
-                          /* Formatting_lit */[17,
-                           /* Break */[0,"@ ",1,0],
-                           /* String */[2,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String */2,
                             /* No_padding */0,
-                            /* Formatting_lit */[17,
-                             /* Break */[0,"@ ",1,0],
-                             /* String */[2,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String */2,
                               /* No_padding */0,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
-                               /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
                         " %s@ %s@ %s@ %s"],
                        ":",
                        0,
@@ -1897,14 +1897,14 @@ var
                     {'unknown block:(sendself self-3/1782 normal_type_list/1767 [0: 0a] father/1796 " * "\n  match/2258)';
                      p
                       (fmt2,
-                       /* Format */[0,
-                        /* Char_literal */[12,
+                       [/* Format */0,
+                        [/* Char_literal */12,
                          32,
-                         /* String */[2,
+                         [/* String */2,
                           /* No_padding */0,
-                          /* Formatting_lit */[17,
-                           /* Break */[0,"@ ",1,0],
-                           /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                         " %s@ %s"],
                        "of",
                        0)}
@@ -1914,14 +1914,14 @@ var
                     {"unknown block:(sendself self-3/1782 normal_type/1726 father/1796 (field 0 match/2259))";
                      p
                       (fmt2,
-                       /* Format */[0,
-                        /* Char_literal */[12,
+                       [/* Format */0,
+                        [/* Char_literal */12,
                          32,
-                         /* String */[2,
+                         [/* String */2,
                           /* No_padding */0,
-                          /* Formatting_lit */[17,
-                           /* Break */[0,"@ ",1,0],
-                           /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                         " %s@ %s"],
                        ":",
                        0)}
@@ -1938,10 +1938,10 @@ var
                    
                    p
                     (fmt2,
-                     /* Format */[0,
-                      /* String_literal */[11,
+                     [/* Format */0,
+                      [/* String_literal */11,
                        " = ",
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       " = %s"],
                      match$4?match$4[1][1]:xa[1])}
                  else
@@ -2026,7 +2026,7 @@ var
          "unknown block:(sendself self-3/1816 latex_of_text/1703 fmt/1817\n  (makeblock 0\n    (makeblock 14\n      (sendself self-3/1816 make_label/1702\n        (sendself self-3/1816 exception_label/1819 0a (field 0 e/1818))))\n    (apply text_of_exception/1630 self-3/1816 e/1818)))";
          },
        latex_of_module_parameter,
-       function(self$neg3,fmt,m_name,p$1)
+       function(self$neg3,fmt,m_name,p)
         {'unknown block:(sendself self-3/1822 latex_of_text/1703 fmt/1823\n  (makeblock 0 [1: "functor ("]\n    (makeblock 0 (makeblock 1 (field 0 p/1825)) [0: [1: " : "] 0a])))';
          
          "unknown block:(sendself self-3/1822 latex_of_module_type_kind/1661 fmt/1823 m_name/1824\n  (field 3 p/1825))";
@@ -2223,12 +2223,12 @@ var
          var
           t=
            /* :: */[0,
-            /* Latex */[14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\begin{ocamldoccode}\n"],
             /* :: */[0,
-             /* Code */[1,"module "],
+             [/* Code */1,"module "],
              /* :: */[0,
               /* Code */[1,Odoc_info["Name"][1](m[1])],
-              /* :: */[0,/* Code */[1," : "],/* [] */0]]]];
+              [/* :: */0,[/* Code */1," : "],/* [] */0]]]];
          
          "unknown block:(sendself self-3/1919 latex_of_text/1703 fmt/1920 t/1923)";
          
@@ -2240,11 +2240,11 @@ var
          
          p
           (fmt,
-           /* Format */[0,
-            /* Formatting_gen */[18,
-             /* Open_box */[1,
-              /* Format */[0,
-               /* String_literal */[11,"<h 4>",/* End_of_format */0],
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,
+              [/* Format */0,
+               [/* String_literal */11,"<h 4>",/* End_of_format */0],
                "<h 4>"]],
              /* End_of_format */0],
             "@[<h 4>"]);
@@ -2259,14 +2259,14 @@ var
             l=
              List["filter"]
               (function(param){return param[2]!=/* None */0;},
-               Odoc_info["Module"][15](/* Some */[0,/* false */0],m));
+               Odoc_info["Module"][15]([/* Some */0,/* false */0],m));
            
            if(l)
             {var
               t$1=
                /* :: */[0,
-                /* Bold */[4,
-                 /* :: */[0,/* Raw */[0,"Parameters: "],/* [] */0]],
+                [/* Bold */4,
+                 [/* :: */0,[/* Raw */0,"Parameters: "],/* [] */0]],
                 /* :: */[0,
                  /* List */[10,
                   List["map"]
@@ -2277,7 +2277,7 @@ var
                       
                       return /* :: */[0,
                               /* Raw */[0,param[1][1]],
-                              /* :: */[0,/* Raw */[0,": "],t$2]];
+                              /* :: */[0,[/* Raw */0,": "],t$2]];
                       },
                     l)],
                  /* [] */0]];
@@ -2296,8 +2296,8 @@ var
          
          return p
                  (fmt,
-                  /* Format */[0,
-                   /* Formatting_lit */[17,
+                  [/* Format */0,
+                   [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
                    "@]"]);
@@ -2309,9 +2309,9 @@ var
          var
           t=
            /* :: */[0,
-            /* Latex */[14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\begin{ocamldoccode}\n"],
             /* :: */[0,
-             /* Code */[1,"module type "],
+             [/* Code */1,"module type "],
              /* :: */[0,/* Code */[1,Odoc_info["Name"][1](mt[1])],/* [] */0]]];
          
          "unknown block:(sendself self-3/1932 latex_of_text/1703 fmt/1933 t/1936)";
@@ -2334,11 +2334,11 @@ var
              
              p
               (fmt,
-               /* Format */[0,
-                /* Formatting_gen */[18,
-                 /* Open_box */[1,
-                  /* Format */[0,
-                   /* String_literal */[11,"<h 4>",/* End_of_format */0],
+               [/* Format */0,
+                [/* Formatting_gen */18,
+                 [/* Open_box */1,
+                  [/* Format */0,
+                   [/* String_literal */11,"<h 4>",/* End_of_format */0],
                    "<h 4>"]],
                  /* End_of_format */0],
                 "@[<h 4>"]);
@@ -2358,11 +2358,11 @@ var
             
             p
              (fmt,
-              /* Format */[0,
-               /* Formatting_gen */[18,
-                /* Open_box */[1,
-                 /* Format */[0,
-                  /* String_literal */[11,"<h 4>",/* End_of_format */0],
+              [/* Format */0,
+               [/* Formatting_gen */18,
+                [/* Open_box */1,
+                 [/* Format */0,
+                  [/* String_literal */11,"<h 4>",/* End_of_format */0],
                   "<h 4>"]],
                 /* End_of_format */0],
                "@[<h 4>"])
@@ -2377,14 +2377,14 @@ var
             l=
              List["filter"]
               (function(param){return param[2]!=/* None */0;},
-               Odoc_info["Module"][30](/* Some */[0,/* false */0],mt));
+               Odoc_info["Module"][30]([/* Some */0,/* false */0],mt));
            
            if(l)
             {var
               t$1=
                /* :: */[0,
-                /* Bold */[4,
-                 /* :: */[0,/* Raw */[0,"Parameters: "],/* [] */0]],
+                [/* Bold */4,
+                 [/* :: */0,[/* Raw */0,"Parameters: "],/* [] */0]],
                 /* :: */[0,
                  /* List */[10,
                   List["map"]
@@ -2395,7 +2395,7 @@ var
                       
                       return /* :: */[0,
                               /* Raw */[0,param[1][1]],
-                              /* :: */[0,/* Raw */[0,": "],t$2]];
+                              /* :: */[0,[/* Raw */0,": "],t$2]];
                       },
                     l)],
                  /* [] */0]];
@@ -2414,8 +2414,8 @@ var
          
          return p
                  (fmt,
-                  /* Format */[0,
-                   /* Formatting_lit */[17,
+                  [/* Format */0,
+                   [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
                    "@]"]);
@@ -2441,20 +2441,20 @@ var
          var
           t=
            /* :: */[0,
-            /* Latex */[14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\begin{ocamldoccode}\n"],
             /* :: */[0,
              /* Code */[1,
               Printf["sprintf"]
-               (/* Format */[0,
-                 /* String_literal */[11,
+               ([/* Format */0,
+                 [/* String_literal */11,
                   "class ",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11," : ",/* End_of_format */0]]]]],
+                     [/* String_literal */11," : ",/* End_of_format */0]]]]],
                  "class %s%s%s : "],
                 c[5]?"virtual ":"",
                 type_params,
@@ -2481,11 +2481,11 @@ var
          
          p
           (fmt,
-           /* Format */[0,
-            /* Formatting_gen */[18,
-             /* Open_box */[1,
-              /* Format */[0,
-               /* String_literal */[11,"<h 4>",/* End_of_format */0],
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,
+              [/* Format */0,
+               [/* String_literal */11,"<h 4>",/* End_of_format */0],
                "<h 4>"]],
              /* End_of_format */0],
             "@[<h 4>"]);
@@ -2503,8 +2503,8 @@ var
          
          return p
                  (fmt,
-                  /* Format */[0,
-                   /* Formatting_lit */[17,
+                  [/* Format */0,
+                   [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
                    "@]"]);
@@ -2526,20 +2526,20 @@ var
          var
           t=
            /* :: */[0,
-            /* Latex */[14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\begin{ocamldoccode}\n"],
             /* :: */[0,
              /* Code */[1,
               Printf["sprintf"]
-               (/* Format */[0,
-                 /* String_literal */[11,
+               ([/* Format */0,
+                 [/* String_literal */11,
                   "class type ",
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11," = ",/* End_of_format */0]]]]],
+                     [/* String_literal */11," = ",/* End_of_format */0]]]]],
                  "class type %s%s%s = "],
                 ct[5]?"virtual ":"",
                 type_params,
@@ -2556,11 +2556,11 @@ var
          
          p
           (fmt,
-           /* Format */[0,
-            /* Formatting_gen */[18,
-             /* Open_box */[1,
-              /* Format */[0,
-               /* String_literal */[11,"<h 4>",/* End_of_format */0],
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,
+              [/* Format */0,
+               [/* String_literal */11,"<h 4>",/* End_of_format */0],
                "<h 4>"]],
              /* End_of_format */0],
             "@[<h 4>"]);
@@ -2572,8 +2572,8 @@ var
          
          return p
                  (fmt,
-                  /* Format */[0,
-                   /* Formatting_lit */[17,
+                  [/* Format */0,
+                   [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
                    "@]"]);
@@ -2657,8 +2657,8 @@ var
        function(self$neg3,fmt,inher_l)
         {var
           f=
-           function(inh$3)
-            {var match=inh$3[2];
+           function(inh)
+            {var match=inh[2];
              
              if(match)
               {switch(match[1])
@@ -2671,23 +2671,23 @@ var
                  }
                
                "unknown block:(sendself self-3/1993 make_ref/2001 label/2000)";
-               var match$1=inh$3[3];
+               var match$1=inh[3];
                
                return /* :: */[0,
                        /* Newline */0,
                        /* :: */[0,
-                        /* Code */[1,Pervasives["^"]("inherit ",inh$3[1])],
+                        /* Code */[1,Pervasives["^"]("inherit ",inh[1])],
                         /* :: */[0,
                          /* Latex */[14,Pervasives["^"](" [",Pervasives["^"](0,"]"))],
                          match$1?/* :: */[0,/* Newline */0,match$1[1]]:/* [] */0]]];
                }
              else
-              {var match$2=inh$3[3];
+              {var match$2=inh[3];
                
                return /* :: */[0,
                        /* Newline */0,
                        /* :: */[0,
-                        /* Code */[1,Pervasives["^"]("inherit ",inh$3[1])],
+                        /* Code */[1,Pervasives["^"]("inherit ",inh[1])],
                         match$2?/* :: */[0,/* Newline */0,match$2[1]]:/* [] */0]];
                }
              };
@@ -2754,7 +2754,7 @@ var
                /* None */0,
                Pervasives["@"]
                 (/* :: */[0,/* Raw */[0,m[1]],/* [] */0],
-                 first_t?/* :: */[0,/* Raw */[0," : "],first_t]:/* [] */0)],
+                 first_t?/* :: */[0,[/* Raw */0," : "],first_t]:/* [] */0)],
               /* [] */0];
            }
          else
@@ -2768,7 +2768,7 @@ var
                 (/* :: */[0,
                   /* Raw */[0,Pervasives["^"](Odoc_messages["modul"]," ")],
                   /* :: */[0,/* Code */[1,m[1]],/* [] */0]],
-                 first_t?/* :: */[0,/* Raw */[0," : "],first_t]:/* [] */0)],
+                 first_t?/* :: */[0,[/* Raw */0," : "],first_t]:/* [] */0)],
               /* [] */0];
            }
          
@@ -2790,7 +2790,7 @@ var
                     
                     return ps(fmt,"\n\n");
                     },
-                  Odoc_info["Module"][1](/* Some */[0,/* false */0],m));
+                  Odoc_info["Module"][1]([/* Some */0,/* false */0],m));
          },
        latex_header,
        function(self$neg3,fmt,module_list)

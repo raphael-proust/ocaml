@@ -148,12 +148,12 @@ var
      {Pervasives["prerr_endline"]("Loading debugging information..."),
       Printf["fprintf"]
        (Pervasives["stderr"],
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           "\tProgram: [",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* String_literal */[11,"]\n",/* Flush */[10,/* End_of_format */0]]]],
+           [/* String_literal */11,"]\n",[/* Flush */10,/* End_of_format */0]]]],
          "\tProgram: [%s]\n%!"],
         Parameters["program_name"][1])}
     else
@@ -161,7 +161,7 @@ var
     
     try
      {Unix["access"]
-       (Parameters["program_name"][1],/* :: */[0,/* F_OK */3,/* [] */0])}
+       (Parameters["program_name"][1],[/* :: */0,/* F_OK */3,/* [] */0])}
     catch(exn)
      {if(exn[1]=Unix["Unix_error"])
        {Pervasives["prerr_endline"]("Program not found.");

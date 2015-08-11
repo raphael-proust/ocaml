@@ -560,7 +560,7 @@ var
             }
           }
         else
-         {return /* tuple */[0,/* Empty */0,/* None */0,/* Empty */0];}
+         {return [/* tuple */0,/* Empty */0,/* None */0,/* Empty */0];}
         };
     
     var
@@ -694,7 +694,7 @@ var
            {return /* tuple */[0,concat(lt,rt),join(lf,v,d,rf)];}
           }
         else
-         {return /* tuple */[0,/* Empty */0,/* Empty */0];}
+         {return [/* tuple */0,/* Empty */0,/* Empty */0];}
         };
     
     var

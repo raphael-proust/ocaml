@@ -372,23 +372,23 @@ var
   function(a,b,c,d)
    {var
      spl=
-      function(accu,a$1,b$1,c$1,d$1)
-       {if(test(a$1,b$1,c$1,d$1))
-         {return /* :: */[0,d$1,accu];}
+      function(accu,a,b,c,d)
+       {if(test(a,b,c,d))
+         {return /* :: */[0,d,accu];}
         else
-         {var a$prime=middle(a$1,b$1);
+         {var a$prime=middle(a,b);
           
-          var o=middle(b$1,c$1);
+          var o=middle(b,c);
           
           var b$prime=middle(a$prime,o);
           
-          var d$prime=middle(c$1,d$1);
+          var d$prime=middle(c,d);
           
           var c$prime=middle(o,d$prime);
           
           var i=middle(b$prime,c$prime);
           
-          return spl(spl(accu,a$1,a$prime,b$prime,i),i,c$prime,d$prime,d$1);
+          return spl(spl(accu,a,a$prime,b$prime,i),i,c$prime,d$prime,d);
           }
         };
     
@@ -438,7 +438,7 @@ module["exports"]=
  "caml_gr_set_window_title":
  function(prim){return "unknown primitive:caml_gr_set_window_title";},
  "caml_gr_resize_window":
- function(prim,prim$1){return "unknown primitive:caml_gr_resize_window";},
+ function(prim,prim){return "unknown primitive:caml_gr_resize_window";},
  "rgb":rgb,
  "background":background,
  "foreground":foreground,

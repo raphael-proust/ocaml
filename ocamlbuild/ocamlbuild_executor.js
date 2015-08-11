@@ -12,11 +12,11 @@ var Printexc=require("Printexc");
 var Map=require("Map");
 
 
-var compare=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var compare=function(prim,prim){return "unknown primitive:caml_compare";};
 
 var JS=Set["Make"]([0,compare]);
 
-var compare$1=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var compare$1=function(prim,prim){return "unknown primitive:caml_compare";};
 
 var FDM=Map["Make"]([0,compare$1]);
 
@@ -31,10 +31,10 @@ var
      {case 0:
        return fp
                (oc,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "exit ",
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
                    /* No_padding */0,
                    /* No_precision */0,
@@ -45,10 +45,10 @@ var
       case 1:
        return fp
                (oc,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "signal ",
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
                    /* No_padding */0,
                    /* No_precision */0,
@@ -59,10 +59,10 @@ var
       case 2:
        return fp
                (oc,
-                /* Format */[0,
-                 /* String_literal */[11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "stop ",
-                  /* Int */[4,
+                  [/* Int */4,
                    /* Int_d */0,
                    /* No_padding */0,
                    /* No_precision */0,
@@ -78,14 +78,14 @@ var
   function(oc,param)
    {return fp
             (oc,
-             /* Format */[0,
-              /* Int */[4,
+             [/* Format */0,
+              [/* Int */4,
                /* Int_d */0,
                /* No_padding */0,
                /* No_precision */0,
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 46,
-                /* Int */[4,
+                [/* Int */4,
                  /* Int_d */0,
                  /* No_padding */0,
                  /* No_precision */0,
@@ -131,26 +131,21 @@ var
 var
  execute=
   function
-   ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
-    exit,
-    commands)
-   {if($staropt$star)
-     {var max_jobs=$staropt$star[1];}
+   ($staropt$star,$staropt$star,$staropt$star,$staropt$star,exit,commands)
+   {if($staropt$star$1)
+     {var max_jobs=$staropt$star$1[1];}
     else
      {var max_jobs=Pervasives["max_int"];}
     
-    if($staropt$star$1)
-     {var ticker=$staropt$star$1[1];}
+    if($staropt$star$2)
+     {var ticker=$staropt$star$2[1];}
     else
      {var ticker=function(prim){return prim;};}
     
-    if($staropt$star$2){var period=$staropt$star$2[1];}else{var period=0.1;}
+    if($staropt$star$3){var period=$staropt$star$3[1];}else{var period=0.1;}
     
-    if($staropt$star$3)
-     {var display=$staropt$star$3[1];}
+    if($staropt$star)
+     {var display=$staropt$star[1];}
     else
      {var display=function(f){return f(Pervasives["stdout"]);};}
     
@@ -185,7 +180,7 @@ var
     
     var doo=Unix["descr_of_out_channel"];
     
-    var fds=[0,/* tuple */[0,/* [] */0,/* [] */0,/* [] */0]];
+    var fds=[0,[/* tuple */0,/* [] */0,/* [] */0,/* [] */0]];
     
     var prev_jobs=[0,JS[1]];
     
@@ -211,7 +206,7 @@ var
                       /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
               },
             jobs[1],
-            /* tuple */[0,/* [] */0,/* [] */0,/* [] */0]),
+            [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]),
           0}
         else
          {}
@@ -290,9 +285,9 @@ var
     
     var
      terminate=
-      function($staropt$star$4,job)
-       {if($staropt$star$4)
-         {var $$continue=$staropt$star$4[1];}
+      function($staropt$star,job)
+       {if($staropt$star)
+         {var $$continue=$staropt$star[1];}
         else
          {var $$continue=/* true */1;}
         
@@ -317,9 +312,9 @@ var
     
     var
      do_read=
-      function($staropt$star$4,fd,job)
-       {if($staropt$star$4)
-         {var loop=$staropt$star$4[1];}
+      function($staropt$star,fd,job)
+       {if($staropt$star)
+         {var loop=$staropt$star[1];}
         else
          {var loop=/* false */0;}
         
@@ -337,12 +332,12 @@ var
                    (function(oc)
                      {return fp
                               (oc,
-                               /* Format */[0,
-                                /* String_literal */[11,
+                               [/* Format */0,
+                                [/* String_literal */11,
                                  "Error while reading stdout/stderr: ",
-                                 /* String */[2,
+                                 [/* String */2,
                                   /* No_padding */0,
-                                  /* Char_literal */[12,10,/* End_of_format */0]]],
+                                  [/* Char_literal */12,10,/* End_of_format */0]]],
                                 "Error while reading stdout/stderr: %s\n"],
                                msg);
                       });
@@ -371,18 +366,18 @@ var
            (function(oc)
              {return fp
                       (oc,
-                       /* Format */[0,
-                        /* String_literal */[11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "Exception ",
-                         /* String */[2,
+                         [/* String */2,
                           /* No_padding */0,
-                          /* String_literal */[11,
+                          [/* String_literal */11,
                            " while reading output of command ",
-                           /* Caml_string */[3,
+                           [/* Caml_string */3,
                             /* No_padding */0,
-                            /* Char_literal */[12,
+                            [/* Char_literal */12,
                              10,
-                             /* Flush */[10,/* End_of_format */0]]]]]],
+                             [/* Flush */10,/* End_of_format */0]]]]]],
                         "Exception %s while reading output of command %S\n%!"],
                        job[2],
                        Printexc["to_string"](x));
@@ -403,8 +398,8 @@ var
           jobs_active[0]--;
           Unix["clear_nonblock"](doi(job[5]));
           Unix["clear_nonblock"](doi(job[7]));
-          do_read(/* Some */[0,/* true */1],doi(job[5]),job);
-          do_read(/* Some */[0,/* true */1],doi(job[7]),job);
+          do_read([/* Some */0,/* true */1],doi(job[5]),job);
+          do_read([/* Some */0,/* true */1],doi(job[7]),job);
           outputs[1]=FDM[6](doi(job[5]),FDM[6](doi(job[7]),outputs[1])),0;
           jobs[1]=JS[6](job,jobs[1]),0;
           var
@@ -424,12 +419,12 @@ var
                           {shown[1]=/* true */1,0;
                            fp
                             (oc,
-                             /* Format */[0,
-                              /* String_literal */[11,
+                             [/* Format */0,
+                              [/* String_literal */11,
                                "+ ",
-                               /* String */[2,
+                               [/* String */2,
                                 /* No_padding */0,
-                                /* Char_literal */[12,10,/* End_of_format */0]]],
+                                [/* Char_literal */12,10,/* End_of_format */0]]],
                               "+ %s\n"],
                              job[2]);
                            return output_lines("",oc,job[8]);
@@ -451,14 +446,14 @@ var
                 (function(oc)
                   {return fp
                            (oc,
-                            /* Format */[0,
-                             /* String_literal */[11,
+                            [/* Format */0,
+                             [/* String_literal */11,
                               "Command exited with code ",
-                              /* Int */[4,
+                              [/* Int */4,
                                /* Int_d */0,
                                /* No_padding */0,
                                /* No_precision */0,
-                               /* String_literal */[11,".\n",/* End_of_format */0]]],
+                               [/* String_literal */11,".\n",/* End_of_format */0]]],
                              "Command exited with code %d.\n"],
                             rc);
                    }),
@@ -503,14 +498,14 @@ var
               (function(oc)
                 {return fp
                          (oc,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             "Command got signal ",
-                            /* Int */[4,
+                            [/* Int */4,
                              /* Int_d */0,
                              /* No_padding */0,
                              /* No_precision */0,
-                             /* String_literal */[11,".\n",/* End_of_format */0]]],
+                             [/* String_literal */11,".\n",/* End_of_format */0]]],
                            "Command got signal %d.\n"],
                           s);
                  }),
@@ -523,7 +518,7 @@ var
     var
      terminate_all_jobs=
       function(param)
-       {return JS[13](terminate(/* Some */[0,/* false */0]),jobs[1]);};
+       {return JS[13](terminate([/* Some */0,/* false */0]),jobs[1]);};
     
     var
      loop=
@@ -556,7 +551,7 @@ var
                        param$1[1]);
               },
             /* :: */[0,
-             /* tuple */[0,match$1[1],do_read(/* Some */[0,/* false */0])],
+             /* tuple */[0,match$1[1],do_read([/* Some */0,/* false */0])],
              /* :: */[0,
               /* tuple */[0,
                match$1[2],
@@ -580,14 +575,14 @@ var
          (function(oc)
            {return fp
                     (oc,
-                     /* Format */[0,
-                      /* String_literal */[11,
+                     [/* Format */0,
+                      [/* String_literal */11,
                        "Extra exception ",
-                       /* String */[2,
+                       [/* String */2,
                         /* No_padding */0,
-                        /* Char_literal */[12,
+                        [/* Char_literal */12,
                          10,
-                         /* Flush */[10,/* End_of_format */0]]]],
+                         [/* Flush */10,/* End_of_format */0]]]],
                       "Extra exception %s\n%!"],
                      Printexc["to_string"](x$prime));
             })}

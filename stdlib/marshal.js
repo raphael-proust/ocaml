@@ -49,7 +49,7 @@ var
 
 module["exports"]=
 {"caml_output_value":
- function(prim,prim$1,prim$2){return "unknown primitive:caml_output_value";},
+ function(prim,prim,prim){return "unknown primitive:caml_output_value";},
  "to_buffer":to_buffer,
  "caml_input_value":
  function(prim){return "unknown primitive:caml_input_value";},

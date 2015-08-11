@@ -133,10 +133,10 @@ var
        {if(exn=Not_found)
          {return Pervasives["failwith"]
                   (Printf["sprintf"]
-                    (/* Format */[0,
-                      /* String_literal */[11,
+                    ([/* Format */0,
+                      [/* String_literal */11,
                        "Can't find tool: ",
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       "Can't find tool: %s"],
                      cmd));
           }
@@ -164,43 +164,43 @@ var
 var
  match=
   mk_virtual_solvers
-   (/* :: */[0,
+   ([/* :: */0,
      "ocamlc",
-     /* :: */[0,
+     [/* :: */0,
       "ocamlopt",
-      /* :: */[0,
+      [/* :: */0,
        "ocamldep",
-       /* :: */[0,
+       [/* :: */0,
         "ocamldoc",
-        /* :: */[0,
+        [/* :: */0,
          "ocamlyacc",
-         /* :: */[0,
+         [/* :: */0,
           "menhir",
-          /* :: */[0,
+          [/* :: */0,
            "ocamllex",
-           /* :: */[0,
+           [/* :: */0,
             "ocamlmklib",
-            /* :: */[0,"ocamlmktop",/* :: */[0,"ocamlfind",/* [] */0]]]]]]]]]]);
+            [/* :: */0,"ocamlmktop",[/* :: */0,"ocamlfind",/* [] */0]]]]]]]]]]);
 
-var ocamlc=[0,/* V */[6,"OCAMLC"]];
+var ocamlc=[0,[/* V */6,"OCAMLC"]];
 
-var ocamlopt=[0,/* V */[6,"OCAMLOPT"]];
+var ocamlopt=[0,[/* V */6,"OCAMLOPT"]];
 
-var ocamldep=[0,/* V */[6,"OCAMLDEP"]];
+var ocamldep=[0,[/* V */6,"OCAMLDEP"]];
 
-var ocamldoc=[0,/* V */[6,"OCAMLDOC"]];
+var ocamldoc=[0,[/* V */6,"OCAMLDOC"]];
 
 var ocamlyacc=[0,/* N */0];
 
-var ocamllex=[0,/* V */[6,"OCAMLLEX"]];
+var ocamllex=[0,[/* V */6,"OCAMLLEX"]];
 
-var ocamlmklib=[0,/* V */[6,"OCAMLMKLIB"]];
+var ocamlmklib=[0,[/* V */6,"OCAMLMKLIB"]];
 
-var ocamlmktop=[0,/* V */[6,"OCAMLMKTOP"]];
+var ocamlmktop=[0,[/* V */6,"OCAMLMKTOP"]];
 
 var ocamlrun=[0,/* N */0];
 
-var ocamlfind_cmd=[0,/* V */[6,"OCAMLFIND"]];
+var ocamlfind_cmd=[0,[/* V */6,"OCAMLFIND"]];
 
 var
  ocamlfind=
@@ -251,7 +251,7 @@ var program_args_internal=[0,/* [] */0];
 
 var ignore_list_internal=[0,/* [] */0];
 
-var tags_internal=[0,/* :: */[0,/* :: */[0,"quiet",/* [] */0],/* [] */0]];
+var tags_internal=[0,[/* :: */0,[/* :: */0,"quiet",/* [] */0],/* [] */0]];
 
 var tag_lines_internal=[0,/* [] */0];
 
@@ -267,21 +267,21 @@ var
 
 var
  my_exclude_dirs=
-  [0,/* :: */[0,/* :: */[0,".svn",/* :: */[0,"CVS",/* [] */0]],/* [] */0]];
+  [0,[/* :: */0,[/* :: */0,".svn",[/* :: */0,"CVS",/* [] */0]],/* [] */0]];
 
 var dummy="*invalid-dummy-string*";
 
 var
  use_jocaml=
   function(param)
-   {ocamlc[1]=/* A */[1,"jocamlc"],0;
-    ocamlopt[1]=/* A */[1,"jocamlopt"],0;
-    ocamldep[1]=/* A */[1,"jocamldep"],0;
-    ocamlyacc[1]=/* A */[1,"jocamlyacc"],0;
-    ocamllex[1]=/* A */[1,"jocamllex"],0;
-    ocamlmklib[1]=/* A */[1,"jocamlmklib"],0;
-    ocamlmktop[1]=/* A */[1,"jocamlmktop"],0;
-    return ocamlrun[1]=/* A */[1,"jocamlrun"],0;
+   {ocamlc[1]=[/* A */1,"jocamlc"],0;
+    ocamlopt[1]=[/* A */1,"jocamlopt"],0;
+    ocamldep[1]=[/* A */1,"jocamldep"],0;
+    ocamlyacc[1]=[/* A */1,"jocamlyacc"],0;
+    ocamllex[1]=[/* A */1,"jocamllex"],0;
+    ocamlmklib[1]=[/* A */1,"jocamlmklib"],0;
+    ocamlmktop[1]=[/* A */1,"jocamlmktop"],0;
+    return ocamlrun[1]=[/* A */1,"jocamlrun"],0;
     };
 
 var
@@ -307,19 +307,19 @@ var
 var
  set_cmd=
   function(rcmd)
-   {return /* String */[4,function(s$1){return rcmd[1]=/* Sh */[4,s$1],0;}];};
+   {return /* String */[4,function(s){return rcmd[1]=/* Sh */[4,s],0;}];};
 
 var
  set_build_dir=
-  function(s$1)
+  function(s)
    {make_links[1]=/* false */0,0;
-    if(Filename["is_relative"](s$1))
+    if(Filename["is_relative"](s))
      {return build_dir[1]=
-             Filename["concat"]("unknown primitive:caml_sys_getcwd",s$1),
+             Filename["concat"]("unknown primitive:caml_sys_getcwd",s),
              0;
       }
     else
-     {return build_dir[1]=s$1,0;}
+     {return build_dir[1]=s,0;}
     };
 
 var
@@ -768,12 +768,12 @@ var
     var
      usage_msg=
       Format["sprintf"]
-       (/* Format */[0,
-         /* String_literal */[11,
+       ([/* Format */0,
+         [/* String_literal */11,
           "Usage ",
-          /* String */[2,
+          [/* String */2,
            /* No_padding */0,
-           /* String_literal */[11," [options] <target>",/* End_of_format */0]]],
+           [/* String_literal */11," [options] <target>",/* End_of_format */0]]],
          "Usage %s [options] <target>"],
         Sys["argv"][0]);
     
@@ -794,12 +794,12 @@ var
          match$1=
           Pervasives["failwith"]
            (Format["sprintf"]
-             (/* Format */[0,
-               /* String_literal */[11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "Bad log file name: the file name must be implicit (not ",
-                /* Caml_string */[3,
+                [/* Caml_string */3,
                  /* No_padding */0,
-                 /* Char_literal */[12,41,/* End_of_format */0]]],
+                 [/* Char_literal */12,41,/* End_of_format */0]]],
                "Bad log file name: the file name must be implicit (not %S)"],
               log));
         }
@@ -900,12 +900,12 @@ var
         else
          {return Pervasives["failwith"]
                   (Format["sprintf"]
-                    (/* Format */[0,
-                      /* String_literal */[11,
+                    ([/* Format */0,
+                      [/* String_literal */11,
                        "Included or excluded directories must be implicit (not ",
-                       /* Caml_string */[3,
+                       [/* Caml_string */3,
                         /* No_padding */0,
-                        /* Char_literal */[12,41,/* End_of_format */0]]],
+                        [/* Char_literal */12,41,/* End_of_format */0]]],
                       "Included or excluded directories must be implicit (not %S)"],
                      dir));
           }

@@ -116,7 +116,7 @@ var
                       /* [] */0]],
                     /* :: */[0,
                      /* Raw */[0,$$String["concat"](", ",l)],
-                     /* :: */[0,/* Newline */0,/* [] */0]]];
+                     [/* :: */0,/* Newline */0,/* [] */0]]];
             }
           else
            {return /* [] */0;}
@@ -131,7 +131,7 @@ var
                       /* [] */0]],
                     /* :: */[0,
                      /* Raw */[0,v_opt[1]],
-                     /* :: */[0,/* Newline */0,/* [] */0]]];
+                     [/* :: */0,/* Newline */0,/* [] */0]]];
             }
           else
            {return /* [] */0;}
@@ -146,7 +146,7 @@ var
                       /* [] */0]],
                     /* :: */[0,
                      /* Raw */[0,s_opt[1]],
-                     /* :: */[0,/* Newline */0,/* [] */0]]];
+                     [/* :: */0,/* Newline */0,/* [] */0]]];
             }
           else
            {return /* [] */0;}
@@ -163,20 +163,20 @@ var
                            /* :: */[0,
                             /* Raw */[0,
                              Printf["sprintf"]
-                              (/* Format */[0,
-                                /* String */[2,
+                              ([/* Format */0,
+                                [/* String */2,
                                  /* No_padding */0,
-                                 /* Char_literal */[12,
+                                 [/* Char_literal */12,
                                   32,
-                                  /* String */[2,
+                                  [/* String */2,
                                    /* No_padding */0,
-                                   /* Char_literal */[12,32,/* End_of_format */0]]]],
+                                   [/* Char_literal */12,32,/* End_of_format */0]]]],
                                 "%s %s "],
                                Odoc_messages["before"],
                                param[1])],
                             /* [] */0]],
                           param[2]],
-                         /* :: */[0,/* Newline */0,/* [] */0]);
+                         [/* :: */0,/* Newline */0,/* [] */0]);
                 };
             
             return List["flatten"](List["map"](f,l));
@@ -192,17 +192,17 @@ var
                       /* Bold */[4,
                        /* :: */[0,/* Raw */[0,Odoc_messages["raises"]],/* [] */0]],
                       /* :: */[0,
-                       /* Raw */[0," "],
+                       [/* Raw */0," "],
                        /* :: */[0,
                         /* List */[10,
                          List["map"]
                           (function(param)
                             {return /* :: */[0,
                                      /* Code */[1,param[1]],
-                                     /* :: */[0,/* Raw */[0," "],param[2]]];
+                                     /* :: */[0,[/* Raw */0," "],param[2]]];
                              },
                            l)],
-                        /* :: */[0,/* Newline */0,/* [] */0]]]];
+                        [/* :: */0,/* Newline */0,/* [] */0]]]];
               }
             else
              {var match=l[1];
@@ -212,12 +212,12 @@ var
                         /* Bold */[4,
                          /* :: */[0,/* Raw */[0,Odoc_messages["raises"]],/* [] */0]],
                         /* :: */[0,
-                         /* Raw */[0," "],
+                         [/* Raw */0," "],
                          /* :: */[0,
                           /* Code */[1,match[1]],
-                          /* :: */[0,/* Raw */[0," "],/* [] */0]]]],
+                          [/* :: */0,[/* Raw */0," "],/* [] */0]]]],
                        Pervasives["@"]
-                        (match[2],/* :: */[0,/* Newline */0,/* [] */0]));
+                        (match[2],[/* :: */0,/* Newline */0,/* [] */0]));
               }
             }
           else
@@ -234,13 +234,13 @@ var
             case 1:
              return /* :: */[0,
                      /* Code */[1,see_ref[1]],
-                     /* :: */[0,/* Raw */[0," "],t]];
+                     /* :: */[0,[/* Raw */0," "],t]];
              
             case 2:
              return /* :: */[0,
                      /* Italic */[5,
                       /* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-                     /* :: */[0,/* Raw */[0," "],t]];
+                     /* :: */[0,[/* Raw */0," "],t]];
              
             }
           },
@@ -258,7 +258,7 @@ var
                            {"unknown block:(sendself self-1/1266 text_of_see/1228 see/1269)";
                             },
                           l)],
-                       /* :: */[0,/* Newline */0,/* [] */0]]];
+                       [/* :: */0,/* Newline */0,/* [] */0]]];
               }
             else
              {"unknown block:(sendself self-1/1266 text_of_see/1228 (field 0 l/1267))";
@@ -266,8 +266,8 @@ var
                       (/* :: */[0,
                         /* Bold */[4,
                          /* :: */[0,/* Raw */[0,Odoc_messages["see_also"]],/* [] */0]],
-                        /* :: */[0,/* Raw */[0," "],0]],
-                       /* :: */[0,/* Newline */0,/* [] */0]);
+                        /* :: */[0,[/* Raw */0," "],0]],
+                       [/* :: */0,/* Newline */0,/* [] */0]);
               }
             }
           else
@@ -283,7 +283,7 @@ var
                         /* Raw */[0,Pervasives["^"](Odoc_messages["returns"]," ")],
                         /* [] */0]],
                       return_opt[1]],
-                     /* :: */[0,/* Newline */0,/* [] */0]);
+                     [/* :: */0,/* Newline */0,/* [] */0]);
             }
           else
            {return /* [] */0;}
@@ -340,7 +340,7 @@ var
               else
                {var
                  $js=
-                  Pervasives["@"](t,/* :: */[0,/* Newline */0,/* [] */0]);
+                  Pervasives["@"](t,[/* :: */0,/* Newline */0,/* [] */0]);
                 }
               }
             else
@@ -535,7 +535,7 @@ var
                     (function(s)
                       {return /* :: */[0,
                                /* Code */[1,s],
-                               /* :: */[0,/* Newline */0,/* [] */0]];
+                               [/* :: */0,/* Newline */0,/* [] */0]];
                        },
                      Str["split"](Str["regexp"]("\n"),0)));
           },
@@ -558,7 +558,7 @@ var
         function(self$neg2,module_name,c)
          {"unknown block:(sendself self-2/1402 normal_class_params/1318 module_name/1403 c/1404)";
           return Odoc_info["text_concat"]
-                  (/* :: */[0,/* Newline */0,/* [] */0],
+                  ([/* :: */0,/* Newline */0,/* [] */0],
                    List["map"]
                     (function(s){return /* :: */[0,/* Code */[1,s],/* [] */0];},
                      Str["split"](Str["regexp"]("\n"),0)));
@@ -584,21 +584,21 @@ var
           "unknown block:(sendself self-2/1412 normal_type/1315\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1413))\n  (field 2 v/1413))";
           Format["fprintf"]
            (Format["str_formatter"],
-            /* Format */[0,
-             /* Formatting_gen */[18,
-              /* Open_box */[1,
-               /* Format */[0,
-                /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+            [/* Format */0,
+             [/* Formatting_gen */18,
+              [/* Open_box */1,
+               [/* Format */0,
+                [/* String_literal */11,"<hov 2>",/* End_of_format */0],
                 "<hov 2>"]],
-              /* String_literal */[11,
+              [/* String_literal */11,
                "val ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " :",
-                 /* Formatting_lit */[17,
-                  /* Break */[0,"@ ",1,0],
-                  /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
+                 [/* Formatting_lit */17,
+                  [/* Break */0,"@ ",1,0],
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
              "@[<hov 2>val %s :@ %s"],
             s_name,
             0);
@@ -628,25 +628,25 @@ var
           "unknown block:(sendself self-2/1419 normal_type/1315 mod_name/1422\n  (field 2 (field 0 a/1420)))";
           Format["fprintf"]
            (Format["str_formatter"],
-            /* Format */[0,
-             /* Formatting_gen */[18,
-              /* Open_box */[1,
-               /* Format */[0,
-                /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+            [/* Format */0,
+             [/* Formatting_gen */18,
+              [/* Open_box */1,
+               [/* Format */0,
+                [/* String_literal */11,"<hov 2>",/* End_of_format */0],
                 "<hov 2>"]],
-              /* String_literal */[11,
+              [/* String_literal */11,
                "val ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    " :",
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]],
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
              "@[<hov 2>val %s%s%s :@ %s"],
             a[3]?"virtual ":"",
             a[2]?"mutable ":"",
@@ -678,25 +678,25 @@ var
           "unknown block:(sendself self-2/1425 normal_type/1315 mod_name/1428\n  (field 2 (field 0 m/1426)))";
           Format["fprintf"]
            (Format["str_formatter"],
-            /* Format */[0,
-             /* Formatting_gen */[18,
-              /* Open_box */[1,
-               /* Format */[0,
-                /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+            [/* Format */0,
+             [/* Formatting_gen */18,
+              [/* Open_box */1,
+               [/* Format */0,
+                [/* String_literal */11,"<hov 2>",/* End_of_format */0],
                 "<hov 2>"]],
-              /* String_literal */[11,
+              [/* String_literal */11,
                "method ",
-               /* String */[2,
+               [/* String */2,
                 /* No_padding */0,
-                /* String */[2,
+                [/* String */2,
                  /* No_padding */0,
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    " :",
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]],
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
              "@[<hov 2>method %s%s%s :@ %s"],
             m[2]?"private ":"",
             m[3]?"virtual ":"",
@@ -727,15 +727,15 @@ var
           
           Format["fprintf"]
            (Format["str_formatter"],
-            /* Format */[0,
-             /* Formatting_gen */[18,
-              /* Open_box */[1,
-               /* Format */[0,
-                /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+            [/* Format */0,
+             [/* Formatting_gen */18,
+              [/* Open_box */1,
+               [/* Format */0,
+                [/* String_literal */11,"<hov 2>",/* End_of_format */0],
                 "<hov 2>"]],
-              /* String_literal */[11,
+              [/* String_literal */11,
                "exception ",
-               /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+               [/* String */2,/* No_padding */0,/* End_of_format */0]]],
              "@[<hov 2>exception %s"],
             s_name);
           var match=e[3];
@@ -748,22 +748,22 @@ var
               "unknown block:(sendself self-2/1431 normal_type/1315 father/1434 (field 0 match/1608))";
               Format["fprintf"]
                (Format["str_formatter"],
-                /* Format */[0,
-                 /* Char_literal */[12,
+                [/* Format */0,
+                 [/* Char_literal */12,
                   32,
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* String */[2,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Formatting_lit */[17,
-                      /* Break */[0,"@ ",1,0],
-                      /* String */[2,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Formatting_lit */[17,
-                        /* Break */[0,"@ ",1,0],
-                        /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]]]],
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
                  " %s@ %s@ %s@ %s"],
                 ":",
                 0,
@@ -773,14 +773,14 @@ var
              {'unknown block:(sendself self-2/1431 normal_type_list/1316 [0: 0a] father/1434 " * "\n  match/1607)';
               Format["fprintf"]
                (Format["str_formatter"],
-                /* Format */[0,
-                 /* Char_literal */[12,
+                [/* Format */0,
+                 [/* Char_literal */12,
                   32,
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                  " %s@ %s"],
                 "of",
                 0)}
@@ -790,14 +790,14 @@ var
              {"unknown block:(sendself self-2/1431 normal_type/1315 father/1434 (field 0 match/1608))";
               Format["fprintf"]
                (Format["str_formatter"],
-                /* Format */[0,
-                 /* Char_literal */[12,
+                [/* Format */0,
+                 [/* Char_literal */12,
                   32,
-                  /* String */[2,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                  " %s@ %s"],
                 ":",
                 0)}
@@ -814,10 +814,10 @@ var
             
             Format["fprintf"]
              (Format["str_formatter"],
-              /* Format */[0,
-               /* String_literal */[11,
+              [/* Format */0,
+               [/* String_literal */11,
                 " = ",
-                /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                [/* String */2,/* No_padding */0,/* End_of_format */0]],
                " = %s"],
               match$3?match$3[1][1]:ea[1])}
           else
@@ -864,7 +864,7 @@ var
                               {return Pervasives["@"]
                                        (/* :: */[0,
                                          /* Code */[1,Pervasives["^"](n," ")],
-                                         /* :: */[0,/* Raw */[0,": "],/* [] */0]],
+                                         [/* :: */0,[/* Raw */0,": "],/* [] */0]],
                                         match[1]);
                                }
                              else
@@ -894,7 +894,7 @@ var
                       /* Raw */[0,Odoc_messages["parameters"]],
                       /* [] */0]],
                     /* :: */[0,
-                     /* Raw */[0,":"],
+                     [/* Raw */0,":"],
                      /* :: */[0,
                       /* List */[10,
                        List["map"]
@@ -902,14 +902,14 @@ var
                           {var s=Odoc_info["Parameter"][1](p);
                            
                            switch(s)
-                            {case "":var $js=/* Code */[1,"?"];
+                            {case "":var $js=[/* Code */1,"?"];
                              default:var $js=/* Code */[1,s];}
                            "unknown block:(sendself self-2/1453 text_of_short_type_expr/1320 m_name/1454\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1456))";
                            "unknown block:(sendself self-2/1453 text_of_parameter_description/1329 p/1456)";
                            return Pervasives["@"]
-                                   (/* :: */[0,$js,/* :: */[0,/* Code */[1," : "],/* [] */0]],
+                                   (/* :: */[0,$js,[/* :: */0,[/* Code */1," : "],/* [] */0]],
                                     Pervasives["@"]
-                                     (0,Pervasives["@"](/* :: */[0,/* Newline */0,/* [] */0],0)));
+                                     (0,Pervasives["@"]([/* :: */0,/* Newline */0,/* [] */0],0)));
                            },
                          l)],
                       /* [] */0]]];
@@ -928,7 +928,7 @@ var
                        /* Raw */[0,Odoc_messages["parameters"]],
                        /* [] */0]],
                      /* :: */[0,
-                      /* Raw */[0,":"],
+                      [/* Raw */0,":"],
                       /* :: */[0,
                        /* List */[10,
                         List["map"]
@@ -950,10 +950,10 @@ var
                                   0);
                               }
                             else
-                             {var $js=/* :: */[0,/* Raw */[0,""],/* [] */0];}
+                             {var $js=[/* :: */0,[/* Raw */0,""],/* [] */0];}
                             return Pervasives["@"]
                                     ($js,
-                                     desc_opt?/* :: */[0,/* Raw */[0," "],desc_opt[1]]:/* [] */0);
+                                     desc_opt?/* :: */[0,[/* Raw */0," "],desc_opt[1]]:/* [] */0);
                             },
                           l)],
                        /* [] */0]]]];
@@ -998,8 +998,8 @@ var
                var
                 $js=
                  Pervasives["@"]
-                  (/* :: */[0,/* Code */[1,"["],0],
-                   /* :: */[0,/* Code */[1,"] "],/* [] */0]);
+                  (/* :: */[0,[/* Code */1,"["],0],
+                   [/* :: */0,[/* Code */1,"] "],/* [] */0]);
                }
              else
               {var $js=/* [] */0;}
@@ -1016,12 +1016,12 @@ var
              "unknown block:(sendself self-2/1466 text_of_class_kind/1332 father/1467\n  (field 0 ckind/1468))";
              "unknown block:(sendself self-2/1466 text_of_class_type_kind/1333 father/1467\n  (field 1 ckind/1468))";
              return Pervasives["@"]
-                     (/* :: */[0,/* Code */[1,"( "],/* [] */0],
+                     ([/* :: */0,[/* Code */1,"( "],/* [] */0],
                       Pervasives["@"]
                        (0,
                         Pervasives["@"]
-                         (/* :: */[0,/* Code */[1," : "],/* [] */0],
-                          Pervasives["@"](0,/* :: */[0,/* Code */[1," )"],/* [] */0]))));
+                         ([/* :: */0,[/* Code */1," : "],/* [] */0],
+                          Pervasives["@"](0,[/* :: */0,[/* Code */1," )"],/* [] */0]))));
              
             }
           },
@@ -1043,8 +1043,8 @@ var
                var
                 $js=
                  Pervasives["@"]
-                  (/* :: */[0,/* Code */[1,"["],0],
-                   /* :: */[0,/* Code */[1,"] "],/* [] */0]);
+                  (/* :: */[0,[/* Code */1,"["],0],
+                   [/* :: */0,[/* Code */1,"] "],/* [] */0]);
                }
              else
               {var $js=/* [] */0;}
@@ -1111,31 +1111,31 @@ var
              "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 1 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
-                       ?/* :: */[0,/* Code */[1," : "],/* [] */0]
+                       ?[/* :: */0,[/* Code */1," : "],/* [] */0]
                        :/* [] */0,
                       Pervasives["@"]
-                       (/* :: */[0,/* Code */[1,"functor ... "],/* [] */0],
+                       ([/* :: */0,[/* Code */1,"functor ... "],/* [] */0],
                         Pervasives["@"]
-                         (/* :: */[0,/* Code */[1," -> "],/* [] */0],0)));
+                         ([/* :: */0,[/* Code */1," -> "],/* [] */0],0)));
              
             case 3:
              "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 0 k/1493))";
              "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 1 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
-                       ?/* :: */[0,/* Code */[1," = "],/* [] */0]
+                       ?[/* :: */0,[/* Code */1," = "],/* [] */0]
                        :/* [] */0,
                       Pervasives["@"]
                        (0,
                         Pervasives["@"]
-                         (/* :: */[0,/* Code */[1," ( "],/* [] */0],
-                          Pervasives["@"](0,/* :: */[0,/* Code */[1," ) "],/* [] */0]))));
+                         ([/* :: */0,[/* Code */1," ( "],/* [] */0],
+                          Pervasives["@"](0,[/* :: */0,[/* Code */1," ) "],/* [] */0]))));
              
             case 4:
              "unknown block:(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 0 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
-                       ?/* :: */[0,/* Code */[1," : "],/* [] */0]
+                       ?[/* :: */0,[/* Code */1," : "],/* [] */0]
                        :/* [] */0,
                       Pervasives["@"](0,/* :: */[0,/* Code */[1,k[2]],/* [] */0]));
              
@@ -1144,26 +1144,26 @@ var
              "unknown block:(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 1 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
-                       ?/* :: */[0,/* Code */[1," : "],/* [] */0]
+                       ?[/* :: */0,[/* Code */1," : "],/* [] */0]
                        :/* [] */0,
                       Pervasives["@"]
-                       (/* :: */[0,/* Code */[1,"( "],/* [] */0],
+                       ([/* :: */0,[/* Code */1,"( "],/* [] */0],
                         Pervasives["@"]
                          (0,
                           Pervasives["@"]
-                           (/* :: */[0,/* Code */[1," : "],/* [] */0],
-                            Pervasives["@"](0,/* :: */[0,/* Code */[1," )"],/* [] */0])))));
+                           ([/* :: */0,[/* Code */1," : "],/* [] */0],
+                            Pervasives["@"](0,[/* :: */0,[/* Code */1," )"],/* [] */0])))));
              
             case 6:
              var
               code=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String */[2,
+                ([/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     "module type of ",
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                   "%smodule type of %s"],
                  with_def_syntax?" : ":"",
                  k[1]);
@@ -1174,10 +1174,10 @@ var
              var
               code$1=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String */[2,
+                ([/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                   [/* String */2,/* No_padding */0,/* End_of_format */0]],
                   "%s%s"],
                  with_def_syntax?" : ":"",
                  k[1]);
@@ -1213,13 +1213,13 @@ var
                    Pervasives["^"]("(",Pervasives["^"](p[1]," : "))],
                   /* [] */0],
                  Pervasives["@"]
-                  (0,/* :: */[0,/* Code */[1,") -> "],/* [] */0]));
+                  (0,[/* :: */0,[/* Code */1,") -> "],/* [] */0]));
              
              "unknown block:(sendself self-2/1510 text_of_module_type_kind/1335 [0: 0a]\n  (field 1 tk/1514))";
              
              return Pervasives["@"]
                      (with_def_syntax
-                       ?/* :: */[0,/* Code */[1," = "],/* [] */0]
+                       ?[/* :: */0,[/* Code */1," = "],/* [] */0]
                        :/* [] */0,
                       Pervasives["@"](t1,t2));
              
@@ -1239,7 +1239,7 @@ var
              
              return Pervasives["@"]
                      (with_def_syntax
-                       ?/* :: */[0,/* Code */[1," = "],/* [] */0]
+                       ?[/* :: */0,[/* Code */1," = "],/* [] */0]
                        :/* [] */0,
                       Pervasives["@"](t,/* :: */[0,/* Code */[1,tk[2]],/* [] */0]));
              
@@ -1247,12 +1247,12 @@ var
              var
               code=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String */[2,
+                ([/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11,
+                   [/* String_literal */11,
                     "module type of ",
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                   "%smodule type of %s"],
                  with_def_syntax?" = ":"",
                  tk[1]);

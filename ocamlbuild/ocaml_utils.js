@@ -28,7 +28,7 @@ var
     var
      ps=
       Command["fold_pathnames"]
-       (function(p,ps$1){return /* :: */[0,p,ps$1];},
+       (function(p,ps){return /* :: */[0,p,ps];},
         /* Cmd */[1,cmd_spec],
         /* [] */0);
     
@@ -47,16 +47,16 @@ var
      var
       match=
        Command["execute"]
-        (/* Some */[0,/* true */1],
+        ([/* Some */0,/* true */1],
          /* None */0,
          /* Cmd */[1,
           /* S */[0,
            /* :: */[0,
             Options["ocamlc"][1],
             /* :: */[0,
-             /* A */[1,"-where"],
+             [/* A */1,"-where"],
              /* :: */[0,
-              /* Sh */[4,">"],
+              [/* Sh */4,">"],
               /* :: */[0,/* P */[2,ocamlc_where],/* [] */0]]]]]]);
      
      return My_std["String"][2](My_std["read_file"](ocamlc_where));
@@ -126,14 +126,14 @@ var
        match=
         Log["dprintf"]
          (3,
-          /* Format */[0,
-           /* String_literal */[11,
+          [/* Format */0,
+           [/* String_literal */11,
             "This module (",
-            /* String */[2,
+            [/* String */2,
              /* No_padding */0,
-             /* String_literal */[11,
+             [/* String_literal */11,
               ") is ignored by ",
-              /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+              [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
            "This module (%s) is ignored by %s"],
           x,
           path);
@@ -212,7 +212,7 @@ var
     else
      {return /* S */[0,
               /* :: */[0,
-               /* A */[1,"-pp"],
+               [/* A */1,"-pp"],
                /* :: */[0,/* Quote */[7,reduced],/* [] */0]]];
       }
     };
@@ -223,7 +223,7 @@ var
    {if("unknown primitive:caml_string_equal")
      {return acc;}
     else
-     {return /* :: */[0,/* A */[1,"-I"],/* :: */[0,/* A */[1,x],acc]];}
+     {return /* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]];}
     };
 
 var
@@ -255,19 +255,19 @@ var
 
 var
  ocaml_lib=
-  function($staropt$star,$staropt$star$1,$staropt$star$2,dir,tag_name,libpath)
-   {if($staropt$star)
-     {var extern=$staropt$star[1];}
+  function($staropt$star,$staropt$star,$staropt$star,dir,tag_name,libpath)
+   {if($staropt$star$1)
+     {var extern=$staropt$star$1[1];}
     else
      {var extern=/* false */0;}
     
-    if($staropt$star$1)
-     {var $$byte=$staropt$star$1[1];}
+    if($staropt$star$2)
+     {var $$byte=$staropt$star$2[1];}
     else
      {var $$byte=/* true */1;}
     
-    if($staropt$star$2)
-     {var $$native=$staropt$star$2[1];}
+    if($staropt$star)
+     {var $$native=$staropt$star[1];}
     else
      {var $$native=/* true */1;}
     
@@ -277,7 +277,7 @@ var
        {if(dir)
          {return /* S */[0,
                   /* :: */[0,
-                   /* A */[1,"-I"],
+                   [/* A */1,"-I"],
                    /* :: */[0,/* P */[2,dir[1]],/* :: */[0,x,/* [] */0]]]];
           }
         else
@@ -309,7 +309,7 @@ var
            "ocaml",
            /* :: */[0,
             tag_name$1,
-            /* :: */[0,"link",/* :: */[0,"byte",/* [] */0]]]],
+            [/* :: */0,"link",[/* :: */0,"byte",/* [] */0]]]],
           Pervasives["^"](libpath,".cma"))}
       else
        {}
@@ -320,7 +320,7 @@ var
            "ocaml",
            /* :: */[0,
             tag_name$1,
-            /* :: */[0,"link",/* :: */[0,"native",/* [] */0]]]],
+            [/* :: */0,"link",[/* :: */0,"native",/* [] */0]]]],
           Pervasives["^"](libpath,".cmxa"))}
       else
        {}
@@ -345,12 +345,12 @@ var
                            /* :: */[0,tag_name$1,/* :: */[0,x,/* [] */0]]],
                           /* S */[0,
                            /* :: */[0,
-                            /* A */[1,"-I"],
+                            [/* A */1,"-I"],
                             /* :: */[0,/* P */[2,dir$1],/* [] */0]]]);
                  },
-               /* :: */[0,
+               [/* :: */0,
                 "compile",
-                /* :: */[0,"doc",/* :: */[0,"infer_interface",/* [] */0]]]);
+                [/* :: */0,"doc",[/* :: */0,"infer_interface",/* [] */0]]]);
       }
     else
      {return /* () */0;}
@@ -384,12 +384,12 @@ var
                   {throw [0,
                           Ocamldep_error,
                           Printf["sprintf"]
-                           (/* Format */[0,
-                             /* String_literal */[11,
+                           ([/* Format */0,
+                             [/* String_literal */11,
                               "Ocamldep.ocamldep: bad output (",
-                              /* String */[2,
+                              [/* String */2,
                                /* No_padding */0,
-                               /* Char_literal */[12,41,/* End_of_format */0]]],
+                               [/* Char_literal */12,41,/* End_of_format */0]]],
                              "Ocamldep.ocamldep: bad output (%s)"],
                             exn[2][1])];
                    }
@@ -411,12 +411,12 @@ var
                       {throw [0,
                               Ocamldep_error,
                               Printf["sprintf"]
-                               (/* Format */[0,
-                                 /* String_literal */[11,
+                               ([/* Format */0,
+                                 [/* String_literal */11,
                                   "Ocamldep.ocamldep: multiple files in ocamldep output (",
-                                  /* String */[2,
+                                  [/* String */2,
                                    /* No_padding */0,
-                                   /* String_literal */[11,
+                                   [/* String_literal */11,
                                     " not expected)",
                                     /* End_of_format */0]]],
                                  "Ocamldep.ocamldep: multiple files in ocamldep output (%s not expected)"],

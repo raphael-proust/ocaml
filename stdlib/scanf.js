@@ -298,10 +298,10 @@ var
   function(c)
    {return bad_input
             (Printf["sprintf"]
-              (/* Format */[0,
-                /* String_literal */[11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  "illegal escape character ",
-                 /* Caml_char */[1,/* End_of_format */0]],
+                 [/* Caml_char */1,/* End_of_format */0]],
                 "illegal escape character %C"],
                c));
     };
@@ -311,12 +311,12 @@ var
   function(message)
    {return bad_input
             (Printf["sprintf"]
-              (/* Format */[0,
-                /* String_literal */[11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  "scanning of ",
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    " failed: the specified length was too short for token",
                    /* End_of_format */0]]],
                 "scanning of %s failed: the specified length was too short for token"],
@@ -328,12 +328,12 @@ var
   function(message)
    {return bad_input
             (Printf["sprintf"]
-              (/* Format */[0,
-                /* String_literal */[11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  "scanning of ",
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    " failed: premature end of file occurred before end of token",
                    /* End_of_format */0]]],
                 "scanning of %s failed: premature end of file occurred before end of token"],
@@ -349,13 +349,13 @@ var
  character_mismatch_err=
   function(c,ci)
    {return Printf["sprintf"]
-            (/* Format */[0,
-              /* String_literal */[11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "looking for ",
-               /* Caml_char */[1,
-                /* String_literal */[11,
+               [/* Caml_char */1,
+                [/* String_literal */11,
                  ", found ",
-                 /* Caml_char */[1,/* End_of_format */0]]]],
+                 [/* Caml_char */1,/* End_of_format */0]]]],
               "looking for %C, found %C"],
              c,
              ci);
@@ -435,10 +435,10 @@ var
      {case 231:
        return bad_input
                (Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "invalid boolean ",
-                    /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                    "invalid boolean %S"],
                   s));
        
@@ -577,11 +577,11 @@ var
         
         return bad_input
                 (Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "character ",
-                     /* Caml_char */[1,
-                      /* String_literal */[11,
+                     [/* Caml_char */1,
+                      [/* String_literal */11,
                        " is not a decimal digit",
                        /* End_of_format */0]]],
                     "character %C is not a decimal digit"],
@@ -600,29 +600,29 @@ var
   function(basis,digitp,width,ib)
    {var
      scan_digits=
-      function(width$1)
-       {if(width$1=0)
-         {return width$1;}
+      function(width)
+       {if(width=0)
+         {return width;}
         else
          {var c=Scanning[5](ib);
           
           if(Scanning[15](ib))
-           {return width$1;}
+           {return width;}
           else
            {var c$1=c;
             
             if(digitp(c$1))
-             {var width$2=Scanning[7](width$1,ib,c$1);
+             {var width$1=Scanning[7](width,ib,c$1);
               
-              return scan_digits(width$2);
+              return scan_digits(width$1);
               }
             else
              {if(c!=95)
-               {return width$1;}
+               {return width;}
               else
-               {var width$3=Scanning[9](width$1,ib);
+               {var width$2=Scanning[9](width,ib);
                 
-                return scan_digits(width$3);
+                return scan_digits(width$2);
                 }
               }
             }
@@ -639,15 +639,15 @@ var
       else
        {return bad_input
                 (Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "character ",
-                     /* Caml_char */[1,
-                      /* String_literal */[11,
+                     [/* Caml_char */1,
+                      [/* String_literal */11,
                        " is not a valid ",
-                       /* String */[2,
+                       [/* String */2,
                         /* No_padding */0,
-                        /* String_literal */[11," digit",/* End_of_format */0]]]]],
+                        [/* String_literal */11," digit",/* End_of_format */0]]]]],
                     "character %C is not a valid %s digit"],
                    c,
                    basis));
@@ -965,22 +965,22 @@ var
   function(stp,width,ib)
    {var
      loop=
-      function(width$1)
-       {if(width$1=0)
-         {return width$1;}
+      function(width)
+       {if(width=0)
+         {return width;}
         else
          {var c=Scanning[5](ib);
           
           if(Scanning[15](ib))
-           {return width$1;}
+           {return width;}
           else
            {if(stp)
              {var c$prime=stp[1];
               
               if(c=c$prime)
-               {return Scanning[8](width$1,ib);}
+               {return Scanning[8](width,ib);}
               else
-               {return loop(Scanning[7](width$1,ib,c));}
+               {return loop(Scanning[7](width,ib,c));}
               }
             else
              {var exit;
@@ -996,8 +996,8 @@ var
                {if(switcher!=23){exit=145;}else{exit=144;}}
               
               switch(exit)
-               {case 145:return loop(Scanning[7](width$1,ib,c));
-                case 144:return width$1;
+               {case 145:return loop(Scanning[7](width,ib,c));
+                case 144:return width;
                 }
               }
             }
@@ -1055,11 +1055,11 @@ var
     if(c<0||c>255)
      {return bad_input
               (Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "bad character decimal encoding \",
-                   /* Char */[0,
-                    /* Char */[0,/* Char */[0,/* End_of_format */0]]]],
+                   [/* Char */0,
+                    [/* Char */0,[/* Char */0,/* End_of_format */0]]]],
                   "bad character decimal encoding \%c%c%c"],
                  c0,
                  c1,
@@ -1085,10 +1085,10 @@ var
     if(c<0||c>255)
      {return bad_input
               (Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "bad character hexadecimal encoding \",
-                   /* Char */[0,/* Char */[0,/* End_of_format */0]]],
+                   [/* Char */0,[/* Char */0,/* End_of_format */0]]],
                   "bad character hexadecimal encoding \%c%c"],
                  c1,
                  c2));
@@ -1235,35 +1235,35 @@ var
   function(width,ib)
    {var
      find_start=
-      function(width$1)
+      function(width)
        {var c=Scanning[6](ib);
         
         if(c!=39)
          {return character_mismatch(39,c);}
         else
-         {return find_char(Scanning[9](width$1,ib));}
+         {return find_char(Scanning[9](width,ib));}
         };
     
     var
      find_char=
-      function(width$1)
-       {var c=check_next_char_for_char(width$1,ib);
+      function(width)
+       {var c=check_next_char_for_char(width,ib);
         
         if(c!=92)
-         {return find_stop(Scanning[7](width$1,ib,c));}
+         {return find_stop(Scanning[7](width,ib,c));}
         else
-         {return find_stop(scan_backslash_char(Scanning[9](width$1,ib),ib));}
+         {return find_stop(scan_backslash_char(Scanning[9](width,ib),ib));}
         };
     
     var
      find_stop=
-      function(width$1)
-       {var c=check_next_char_for_char(width$1,ib);
+      function(width)
+       {var c=check_next_char_for_char(width,ib);
         
         if(c!=39)
          {return character_mismatch(39,c);}
         else
-         {return Scanning[9](width$1,ib);}
+         {return Scanning[9](width,ib);}
         };
     
     return find_start(width);
@@ -1274,65 +1274,65 @@ var
   function(width,ib)
    {var
      find_start=
-      function(width$1)
+      function(width)
        {var c=Scanning[6](ib);
         
         if(c!=34)
          {return character_mismatch(34,c);}
         else
-         {return find_stop(Scanning[9](width$1,ib));}
+         {return find_stop(Scanning[9](width,ib));}
         };
     
     var
      find_stop=
-      function(width$1)
-       {var c=check_next_char_for_string(width$1,ib);
+      function(width)
+       {var c=check_next_char_for_string(width,ib);
         
         if(c!=34)
          {if(c!=92)
-           {return find_stop(Scanning[7](width$1,ib,c));}
+           {return find_stop(Scanning[7](width,ib,c));}
           else
-           {return scan_backslash(Scanning[9](width$1,ib));}
+           {return scan_backslash(Scanning[9](width,ib));}
           }
         else
-         {return Scanning[9](width$1,ib);}
+         {return Scanning[9](width,ib);}
         };
     
     var
      scan_backslash=
-      function(width$1)
-       {var match=check_next_char_for_string(width$1,ib);
+      function(width)
+       {var match=check_next_char_for_string(width,ib);
         
         if(match!=10)
          {if(match!=13)
-           {return find_stop(scan_backslash_char(width$1,ib));}
+           {return find_stop(scan_backslash_char(width,ib));}
           else
-           {return skip_newline(Scanning[9](width$1,ib));}
+           {return skip_newline(Scanning[9](width,ib));}
           }
         else
-         {return skip_spaces(Scanning[9](width$1,ib));}
+         {return skip_spaces(Scanning[9](width,ib));}
         };
     
     var
      skip_newline=
-      function(width$1)
-       {var match=check_next_char_for_string(width$1,ib);
+      function(width)
+       {var match=check_next_char_for_string(width,ib);
         
         if(match!=10)
-         {return find_stop(Scanning[7](width$1,ib,13));}
+         {return find_stop(Scanning[7](width,ib,13));}
         else
-         {return skip_spaces(Scanning[9](width$1,ib));}
+         {return skip_spaces(Scanning[9](width,ib));}
         };
     
     var
      skip_spaces=
-      function(width$1)
-       {var match=check_next_char_for_string(width$1,ib);
+      function(width)
+       {var match=check_next_char_for_string(width,ib);
         
         if(match!=32)
-         {return find_stop(width$1);}
+         {return find_stop(width);}
         else
-         {return skip_spaces(Scanning[9](width$1,ib));}
+         {return skip_spaces(Scanning[9](width,ib));}
         };
     
     return find_start(width);
@@ -1351,11 +1351,11 @@ var
          m=
           bad_input
            (Printf["sprintf"]
-             (/* Format */[0,
-               /* String_literal */[11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "the character ",
-                /* Caml_char */[1,
-                 /* String_literal */[11,
+                [/* Caml_char */1,
+                 [/* String_literal */11,
                   " cannot start a boolean",
                   /* End_of_format */0]]],
                "the character %C cannot start a boolean"],
@@ -1433,16 +1433,16 @@ var
        
        return bad_input
                (Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "scanf: bad input at char number ",
-                    /* Int */[4,
+                    [/* Int */4,
                      /* Int_i */3,
                      /* No_padding */0,
                      /* No_precision */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       ": ",
-                      /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]]]],
+                      [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
                    "scanf: bad input at char number %i: %S"],
                   i,
                   s$1));
@@ -1473,7 +1473,7 @@ var
  stopper_of_formatting_lit=
   function(fmting)
    {if(fmting=/* Escaped_percent */6)
-     {return /* tuple */[0,37,""];}
+     {return [/* tuple */0,37,""];}
     else
      {var str=CamlinternalFormat["string_of_formatting_lit"](fmting);
       
@@ -1728,8 +1728,8 @@ var
               
               var
                scan=
-                function(width,param,ib$1)
-                 {return scan_string(/* Some */[0,stp],width,ib$1);};
+                function(width,param,ib)
+                 {return scan_string(/* Some */[0,stp],width,ib);};
               
               var str_rest=/* String_literal */[11,str,rest$3];
               
@@ -1757,8 +1757,8 @@ var
                  
                  var
                   scan$1=
-                   function(width,param,ib$1)
-                    {return scan_string(/* Some */[0,123],width,ib$1);};
+                   function(width,param,ib)
+                    {return scan_string([/* Some */0,123],width,ib);};
                  
                  return pad_prec_scanf
                          (ib,
@@ -1780,8 +1780,8 @@ var
                  
                  var
                   scan$2=
-                   function(width,param,ib$1)
-                    {return scan_string(/* Some */[0,91],width,ib$1);};
+                   function(width,param,ib)
+                    {return scan_string([/* Some */0,91],width,ib);};
                  
                  return pad_prec_scanf
                          (ib,
@@ -1802,8 +1802,8 @@ var
             
             var
              scan$3=
-              function(width,param,ib$1)
-               {return scan_string(/* None */0,width,ib$1);};
+              function(width,param,ib)
+               {return scan_string(/* None */0,width,ib);};
             
             return pad_prec_scanf
                     (ib,
@@ -1823,7 +1823,7 @@ var
          
          var
           scan$4=
-           function(width,param,ib$1){return scan_caml_string(width,ib$1);};
+           function(width,param,ib){return scan_caml_string(width,ib);};
          
          return pad_prec_scanf
                  (ib,
@@ -1847,7 +1847,7 @@ var
          
          var
           scan$5=
-           function(width,param,ib$1){return scan_int_conv(c$2,width,ib$1);};
+           function(width,param,ib){return scan_int_conv(c$2,width,ib);};
          
          return pad_prec_scanf
                  (ib,rest$7,readers,pad$5,prec,scan$5,token_int(c$2));
@@ -1865,7 +1865,7 @@ var
          
          var
           scan$6=
-           function(width,param,ib$1){return scan_int_conv(c$3,width,ib$1);};
+           function(width,param,ib){return scan_int_conv(c$3,width,ib);};
          
          return pad_prec_scanf
                  (ib,rest$8,readers,pad$6,prec$1,scan$6,token_int32(c$3));
@@ -1883,7 +1883,7 @@ var
          
          var
           scan$7=
-           function(width,param,ib$1){return scan_int_conv(c$4,width,ib$1);};
+           function(width,param,ib){return scan_int_conv(c$4,width,ib);};
          
          return pad_prec_scanf
                  (ib,rest$9,readers,pad$7,prec$2,scan$7,token_nativeint(c$4));
@@ -1901,7 +1901,7 @@ var
          
          var
           scan$8=
-           function(width,param,ib$1){return scan_int_conv(c$5,width,ib$1);};
+           function(width,param,ib){return scan_int_conv(c$5,width,ib);};
          
          return pad_prec_scanf
                  (ib,rest$10,readers,pad$8,prec$3,scan$8,token_int64(c$5));
@@ -2205,7 +2205,7 @@ var
 
 var
  pad_prec_scanf=
-  function(ib,fmt,readers,pad,prec,scan,token$1)
+  function(ib,fmt,readers,pad,prec,scan,token)
    {var match=pad;
     
     var match$1=prec;
@@ -2219,7 +2219,7 @@ var
            else
             {var match$2=scan(Pervasives["max_int"],Pervasives["max_int"],ib);
              
-             var x=token$1(ib);
+             var x=token(ib);
              
              return /* Cons */[0,x,make_scanf(ib,fmt,readers)];
              }
@@ -2229,7 +2229,7 @@ var
            
            var match$3=scan(Pervasives["max_int"],p,ib);
            
-           var x$1=token$1(ib);
+           var x$1=token(ib);
            
            return /* Cons */[0,x$1,make_scanf(ib,fmt,readers)];
            }
@@ -2250,7 +2250,7 @@ var
              else
               {var match$5=scan(w,Pervasives["max_int"],ib);
                
-               var x$2=token$1(ib);
+               var x$2=token(ib);
                
                return /* Cons */[0,x$2,make_scanf(ib,fmt,readers)];
                }
@@ -2262,7 +2262,7 @@ var
              
              var match$6=scan(w$1,p$1,ib);
              
-             var x$3=token$1(ib);
+             var x$3=token(ib);
              
              return /* Cons */[0,x$3,make_scanf(ib,fmt,readers)];
              }
@@ -2417,10 +2417,10 @@ var
   function(s)
    {return sscanf
             (Pervasives["^"]('"',Pervasives["^"](s,'"')),
-             /* Format */[0,
-              /* Caml_string */[3,
+             [/* Format */0,
+              [/* Caml_string */3,
                /* No_padding */0,
-               /* Flush */[10,/* End_of_format */0]],
+               [/* Flush */10,/* End_of_format */0]],
               "%S%!"],
              function(x){return x;});
     };

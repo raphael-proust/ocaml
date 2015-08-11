@@ -26,20 +26,20 @@ var $$Error="unknown primitive:caml_set_oo_id";
 
 var
  base_escape_strings=
-  /* :: */[0,
-   /* tuple */[0,"&","&amp;"],
-   /* :: */[0,
-    /* tuple */[0,"<","&lt;"],
-    /* :: */[0,/* tuple */[0,">","&gt;"],/* [] */0]]];
+  [/* :: */0,
+   [/* tuple */0,"&","&amp;"],
+   [/* :: */0,
+    [/* tuple */0,"<","&lt;"],
+    [/* :: */0,[/* tuple */0,">","&gt;"],/* [] */0]]];
 
 var
  pre_escape_strings=
-  /* :: */[0,
-   /* tuple */[0," ","&nbsp;"],
-   /* :: */[0,
-    /* tuple */[0,"\n","<br>\n"],
-    /* :: */[0,
-     /* tuple */[0,"\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"],
+  [/* :: */0,
+   [/* tuple */0," ","&nbsp;"],
+   [/* :: */0,
+    [/* tuple */0,"\n","<br>\n"],
+    [/* :: */0,
+     [/* tuple */0,"\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"],
      /* [] */0]]];
 
 var pre=[0,/* false */0];
@@ -86,7 +86,7 @@ var
    {if($staropt$star){var esc=$staropt$star[1];}else{var esc=/* true */1;}
     
     return print
-            (/* Some */[0,/* false */0],
+            ([/* Some */0,/* false */0],
              Pervasives["^"]
               ('<span class="',
                Pervasives["^"]
@@ -115,117 +115,117 @@ var
  keyword_table=
   create_hashtable
    (149,
-    /* :: */[0,
-     /* tuple */[0,"and","keyword"],
-     /* :: */[0,
-      /* tuple */[0,"as","keyword"],
-      /* :: */[0,
-       /* tuple */[0,"assert","keyword"],
-       /* :: */[0,
-        /* tuple */[0,"begin","keyword"],
-        /* :: */[0,
-         /* tuple */[0,"class","keyword"],
-         /* :: */[0,
-          /* tuple */[0,"constraint","keyword"],
-          /* :: */[0,
-           /* tuple */[0,"do","keyword"],
-           /* :: */[0,
-            /* tuple */[0,"done","keyword"],
-            /* :: */[0,
-             /* tuple */[0,"downto","keyword"],
-             /* :: */[0,
-              /* tuple */[0,"else","keyword"],
-              /* :: */[0,
-               /* tuple */[0,"end","keyword"],
-               /* :: */[0,
-                /* tuple */[0,"exception","keyword"],
-                /* :: */[0,
-                 /* tuple */[0,"external","keyword"],
-                 /* :: */[0,
-                  /* tuple */[0,"false","keyword"],
-                  /* :: */[0,
-                   /* tuple */[0,"for","keyword"],
-                   /* :: */[0,
-                    /* tuple */[0,"fun","keyword"],
-                    /* :: */[0,
-                     /* tuple */[0,"function","keyword"],
-                     /* :: */[0,
-                      /* tuple */[0,"functor","keyword"],
-                      /* :: */[0,
-                       /* tuple */[0,"if","keyword"],
-                       /* :: */[0,
-                        /* tuple */[0,"in","keyword"],
-                        /* :: */[0,
-                         /* tuple */[0,"include","keyword"],
-                         /* :: */[0,
-                          /* tuple */[0,"inherit","keyword"],
-                          /* :: */[0,
-                           /* tuple */[0,"initializer","keyword"],
-                           /* :: */[0,
-                            /* tuple */[0,"lazy","keyword"],
-                            /* :: */[0,
-                             /* tuple */[0,"let","keyword"],
-                             /* :: */[0,
-                              /* tuple */[0,"match","keyword"],
-                              /* :: */[0,
-                               /* tuple */[0,"method","keyword"],
-                               /* :: */[0,
-                                /* tuple */[0,"module","keyword"],
-                                /* :: */[0,
-                                 /* tuple */[0,"mutable","keyword"],
-                                 /* :: */[0,
-                                  /* tuple */[0,"new","keyword"],
-                                  /* :: */[0,
-                                   /* tuple */[0,"object","keyword"],
-                                   /* :: */[0,
-                                    /* tuple */[0,"of","keyword"],
-                                    /* :: */[0,
-                                     /* tuple */[0,"open","keyword"],
-                                     /* :: */[0,
-                                      /* tuple */[0,"or","keyword"],
-                                      /* :: */[0,
-                                       /* tuple */[0,"parser","keyword"],
-                                       /* :: */[0,
-                                        /* tuple */[0,"private","keyword"],
-                                        /* :: */[0,
-                                         /* tuple */[0,"rec","keyword"],
-                                         /* :: */[0,
-                                          /* tuple */[0,"sig","keyword"],
-                                          /* :: */[0,
-                                           /* tuple */[0,"struct","keyword"],
-                                           /* :: */[0,
-                                            /* tuple */[0,"then","keyword"],
-                                            /* :: */[0,
-                                             /* tuple */[0,"to","keyword"],
-                                             /* :: */[0,
-                                              /* tuple */[0,"true","keyword"],
-                                              /* :: */[0,
-                                               /* tuple */[0,"try","keyword"],
-                                               /* :: */[0,
-                                                /* tuple */[0,"type","keyword"],
-                                                /* :: */[0,
-                                                 /* tuple */[0,"val","keyword"],
-                                                 /* :: */[0,
-                                                  /* tuple */[0,"virtual","keyword"],
-                                                  /* :: */[0,
-                                                   /* tuple */[0,"when","keyword"],
-                                                   /* :: */[0,
-                                                    /* tuple */[0,"while","keyword"],
-                                                    /* :: */[0,
-                                                     /* tuple */[0,"with","keyword"],
-                                                     /* :: */[0,
-                                                      /* tuple */[0,"mod","keyword"],
-                                                      /* :: */[0,
-                                                       /* tuple */[0,"land","keyword"],
-                                                       /* :: */[0,
-                                                        /* tuple */[0,"lor","keyword"],
-                                                        /* :: */[0,
-                                                         /* tuple */[0,"lxor","keyword"],
-                                                         /* :: */[0,
-                                                          /* tuple */[0,"lsl","keyword"],
-                                                          /* :: */[0,
-                                                           /* tuple */[0,"lsr","keyword"],
-                                                           /* :: */[0,/* tuple */[0,"asr","keyword"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
+    [/* :: */0,
+     [/* tuple */0,"and","keyword"],
+     [/* :: */0,
+      [/* tuple */0,"as","keyword"],
+      [/* :: */0,
+       [/* tuple */0,"assert","keyword"],
+       [/* :: */0,
+        [/* tuple */0,"begin","keyword"],
+        [/* :: */0,
+         [/* tuple */0,"class","keyword"],
+         [/* :: */0,
+          [/* tuple */0,"constraint","keyword"],
+          [/* :: */0,
+           [/* tuple */0,"do","keyword"],
+           [/* :: */0,
+            [/* tuple */0,"done","keyword"],
+            [/* :: */0,
+             [/* tuple */0,"downto","keyword"],
+             [/* :: */0,
+              [/* tuple */0,"else","keyword"],
+              [/* :: */0,
+               [/* tuple */0,"end","keyword"],
+               [/* :: */0,
+                [/* tuple */0,"exception","keyword"],
+                [/* :: */0,
+                 [/* tuple */0,"external","keyword"],
+                 [/* :: */0,
+                  [/* tuple */0,"false","keyword"],
+                  [/* :: */0,
+                   [/* tuple */0,"for","keyword"],
+                   [/* :: */0,
+                    [/* tuple */0,"fun","keyword"],
+                    [/* :: */0,
+                     [/* tuple */0,"function","keyword"],
+                     [/* :: */0,
+                      [/* tuple */0,"functor","keyword"],
+                      [/* :: */0,
+                       [/* tuple */0,"if","keyword"],
+                       [/* :: */0,
+                        [/* tuple */0,"in","keyword"],
+                        [/* :: */0,
+                         [/* tuple */0,"include","keyword"],
+                         [/* :: */0,
+                          [/* tuple */0,"inherit","keyword"],
+                          [/* :: */0,
+                           [/* tuple */0,"initializer","keyword"],
+                           [/* :: */0,
+                            [/* tuple */0,"lazy","keyword"],
+                            [/* :: */0,
+                             [/* tuple */0,"let","keyword"],
+                             [/* :: */0,
+                              [/* tuple */0,"match","keyword"],
+                              [/* :: */0,
+                               [/* tuple */0,"method","keyword"],
+                               [/* :: */0,
+                                [/* tuple */0,"module","keyword"],
+                                [/* :: */0,
+                                 [/* tuple */0,"mutable","keyword"],
+                                 [/* :: */0,
+                                  [/* tuple */0,"new","keyword"],
+                                  [/* :: */0,
+                                   [/* tuple */0,"object","keyword"],
+                                   [/* :: */0,
+                                    [/* tuple */0,"of","keyword"],
+                                    [/* :: */0,
+                                     [/* tuple */0,"open","keyword"],
+                                     [/* :: */0,
+                                      [/* tuple */0,"or","keyword"],
+                                      [/* :: */0,
+                                       [/* tuple */0,"parser","keyword"],
+                                       [/* :: */0,
+                                        [/* tuple */0,"private","keyword"],
+                                        [/* :: */0,
+                                         [/* tuple */0,"rec","keyword"],
+                                         [/* :: */0,
+                                          [/* tuple */0,"sig","keyword"],
+                                          [/* :: */0,
+                                           [/* tuple */0,"struct","keyword"],
+                                           [/* :: */0,
+                                            [/* tuple */0,"then","keyword"],
+                                            [/* :: */0,
+                                             [/* tuple */0,"to","keyword"],
+                                             [/* :: */0,
+                                              [/* tuple */0,"true","keyword"],
+                                              [/* :: */0,
+                                               [/* tuple */0,"try","keyword"],
+                                               [/* :: */0,
+                                                [/* tuple */0,"type","keyword"],
+                                                [/* :: */0,
+                                                 [/* tuple */0,"val","keyword"],
+                                                 [/* :: */0,
+                                                  [/* tuple */0,"virtual","keyword"],
+                                                  [/* :: */0,
+                                                   [/* tuple */0,"when","keyword"],
+                                                   [/* :: */0,
+                                                    [/* tuple */0,"while","keyword"],
+                                                    [/* :: */0,
+                                                     [/* tuple */0,"with","keyword"],
+                                                     [/* :: */0,
+                                                      [/* tuple */0,"mod","keyword"],
+                                                      [/* :: */0,
+                                                       [/* tuple */0,"land","keyword"],
+                                                       [/* :: */0,
+                                                        [/* tuple */0,"lor","keyword"],
+                                                        [/* :: */0,
+                                                         [/* tuple */0,"lxor","keyword"],
+                                                         [/* :: */0,
+                                                          [/* tuple */0,"lsl","keyword"],
+                                                          [/* :: */0,
+                                                           [/* tuple */0,"lsr","keyword"],
+                                                           [/* :: */0,[/* tuple */0,"asr","keyword"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
 
 var kwsign_class="keywordsign";
 
@@ -330,7 +330,7 @@ var
         }
       }
     
-    return print(/* Some */[0,/* false */0],code);
+    return print([/* Some */0,/* false */0],code);
     };
 
 var string_buffer=Buffer["create"](32);
@@ -411,8 +411,8 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "Comment not terminated",
                     /* End_of_format */0],
                    "Comment not terminated"]);
@@ -420,8 +420,8 @@ var
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "String literal not terminated",
                     /* End_of_format */0],
                    "String literal not terminated"]);
@@ -429,8 +429,8 @@ var
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "This comment contains an unterminated string literal",
                     /* End_of_format */0],
                    "This comment contains an unterminated string literal"]);
@@ -441,24 +441,24 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "Illegal character (",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,41,/* End_of_format */0]]],
+                     [/* Char_literal */12,41,/* End_of_format */0]]],
                    "Illegal character (%s)"],
                   Char["escaped"](param[1]));
          
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  /* Format */[0,
-                   /* Char_literal */[12,
+                  [/* Format */0,
+                   [/* Char_literal */12,
                     96,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       "' is a keyword, it cannot be used as label name",
                       /* End_of_format */0]]],
                    "`%s' is a keyword, it cannot be used as label name"],
@@ -469,7 +469,7 @@ var
 
 var
  __ocaml_lex_tables=
-  /* record */[0,
+  [/* record */0,
    "\0\0¾ÿ¿ÿà\0\x03\x01&\x01I\x01l\x01Ìÿ\x01´\x01 \0ÔÿC\0Ù\x01ü\x01E\0G\0T\0\x1f\x02åÿçÿêÿB\x02z\0e\x02\\0{\0õÿY\0x\x02Á\x02‘\x03p\x04Ì\x04œ\x05ÿÿ{\x06™\x06üÿx\x07–\x07úÿ\x11\x03à\0c\0„\0Ü\x03@\x05\x03\x01e\0\x1b\x03%\x03“\x04a\0ôÿ/\x03p\0óÿ9\x03q\0òÿp\0ðÿu\bïÿ\x14\x06\x13\x04\x01\0îÿ\x07\0˜\b»\bÞ\b\x01\táÿÝÿÞÿßÿÛÿ$\tÕÿÖÿÒÿÏÿG\tËÿÍÿj\t\tu\0üÿýÿr\0r\0ÿÿþÿà\0ùÿúÿ¢\tÿÿë\tC\x03ýÿœ\0\x03\x01ó\x03üÿ6\nûÿ",
    "ÿÿÿÿÿÿ?\0<\0;\x006\x009\0ÿÿ1\0.\0,\0ÿÿ(\0'\0%\0#\0\x1f\0\x1d\x007\0ÿÿÿÿÿÿ\x13\0\x12\0\x19\0\x17\0\x16\0ÿÿ\b\0\b\0\x07\0\x06\0\x04\0\x02\0\x01\0ÿÿ:\0ÿÿÿÿ\x1b\0ÿÿÿÿÿÿ\t\0ÿÿÿÿÿÿ\b\0\b\0\b\0\t\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x0e\0ÿÿ>\0ÿÿÿÿÿÿ\x11\0ÿÿÿÿ\x14\0=\x008\0\x1c\0ÿÿÿÿÿÿÿÿÿÿ&\0ÿÿÿÿÿÿÿÿ/\0ÿÿÿÿ9\x005\0ÿÿÿÿÿÿ\x03\0\x03\0ÿÿÿÿÿÿÿÿÿÿ\x06\0ÿÿÿÿÿÿÿÿ\x01\0\x01\0ÿÿÿÿÿÿÿÿ",
    "\x01\0\0\0\0\0ÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿÿÿÿÿÿÿ6\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿ\0\0ÿÿ\0\0F\0ÿÿÿÿ\0\0F\0ÿÿÿÿÿÿÿÿ\0\0\0\0\0\0\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0ÿÿ\0\0\0\0ÿÿÿÿ[\0\0\0\0\0ÿÿÿÿ\0\0\0\0b\0\0\0\0\0ÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿ\0\0ÿÿ\0\0",
@@ -812,12 +812,12 @@ var
     var ending="</code>";
     
     try
-     {print(/* Some */[0,/* false */0],start);
+     {print([/* Some */0,/* false */0],start);
       var lexbuf=Lexing["from_string"](code);
       
       var match=token(lexbuf);
       
-      print(/* Some */[0,/* false */0],ending);
+      print([/* Some */0,/* false */0],ending);
       Format["pp_print_flush"](fmt[1],/* () */0);
       var html=Buffer["contents"](buf);
       }

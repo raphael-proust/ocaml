@@ -69,10 +69,10 @@ var sendto_substring=Unix["sendto_substring"];
 var open_connection=Unix["open_connection"];
 
 module["exports"]=
-{"unix_execv":function(prim,prim$1){return "unknown primitive:unix_execv";},
+{"unix_execv":function(prim,prim){return "unknown primitive:unix_execv";},
  "unix_execve":
- function(prim,prim$1,prim$2){return "unknown primitive:unix_execve";},
- "unix_execvp":function(prim,prim$1){return "unknown primitive:unix_execvp";},
+ function(prim,prim,prim){return "unknown primitive:unix_execve";},
+ "unix_execvp":function(prim,prim){return "unknown primitive:unix_execvp";},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
@@ -90,8 +90,7 @@ module["exports"]=
  "unix_sleep":function(prim){return "unknown primitive:unix_sleep";},
  "socket":socket,
  "accept":accept,
- "unix_connect":
- function(prim,prim$1){return "unknown primitive:unix_connect";},
+ "unix_connect":function(prim,prim){return "unknown primitive:unix_connect";},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,

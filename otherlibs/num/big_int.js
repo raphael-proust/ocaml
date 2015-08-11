@@ -477,7 +477,7 @@ var
      {return big_int_of_nativeint("unknown primitive:nativeint_of_int64");}
     else
      {if(i=0)
-       {var match=/* tuple */[0,0,0];}
+       {var match=[/* tuple */0,0,0];}
       else
        {if(i>0)
          {var match=/* tuple */[0,1,i];}
@@ -943,16 +943,16 @@ var
     if(s[l]>=53)
      {var
        round_rec=
-        function(l$1)
-         {if(l$1<off_set)
+        function(l)
+         {if(l<off_set)
            {return /* true */1;}
           else
-           {var current_char=s[l$1];
+           {var current_char=s[l];
             
             if(current_char=57)
-             {s[l$1]=48,0;return round_rec(-1+l$1);}
+             {s[l]=48,0;return round_rec(-1+l);}
             else
-             {s[l$1]=Char["chr"](1+current_char),0;return /* false */0;}
+             {s[l]=Char["chr"](1+current_char),0;return /* false */0;}
             }
           };
       

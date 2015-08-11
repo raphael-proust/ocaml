@@ -98,8 +98,8 @@ var
             /* false */0,
             0,
             Log["eprintf"]
-             (/* Format */[0,
-               /* String_literal */[11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "Warning: Won't be able to compile a native plugin",
                 /* End_of_format */0],
                "Warning: Won't be able to compile a native plugin"])}
@@ -143,36 +143,36 @@ var
             Options["use_ocamlfind"][1]&&Options["plugin_tags"][1]!=/* [] */0;
           
           if(use_ocamlfind_pkgs)
-           {var unix_lib=/* `Package */[0,251810662,"unix"];}
+           {var unix_lib=[/* `Package */0,251810662,"unix"];}
           else
            {if(use_light_mode)
              {var unix_lib=/* Nothing */481346541;}
             else
-             {var unix_lib=/* `Lib */[0,3802917,"unix"];}
+             {var unix_lib=[/* `Lib */0,3802917,"unix"];}
             }
           
           if(use_ocamlfind_pkgs)
-           {var ocamlbuild_lib=/* `Package */[0,251810662,"ocamlbuild"];}
+           {var ocamlbuild_lib=[/* `Package */0,251810662,"ocamlbuild"];}
           else
            {if(use_light_mode)
              {var
                ocamlbuild_lib=
-                /* `Local_lib */[0,945409809,"ocamlbuildlightlib"];
+                [/* `Local_lib */0,945409809,"ocamlbuildlightlib"];
               }
             else
              {var
                ocamlbuild_lib=
-                /* `Local_lib */[0,945409809,"ocamlbuildlib"];
+                [/* `Local_lib */0,945409809,"ocamlbuildlib"];
               }
             }
           
           if(use_light_mode)
            {var
              ocamlbuild_module=
-              /* `Local_mod */[0,945460878,"ocamlbuildlight"];
+              [/* `Local_mod */0,945460878,"ocamlbuildlight"];
             }
           else
-           {var ocamlbuild_module=/* `Local_mod */[0,945460878,"ocamlbuild"];}
+           {var ocamlbuild_module=[/* `Local_mod */0,945460878,"ocamlbuild"];}
           
           var dir=Ocamlbuild_where["libdir"][1];
           
@@ -189,12 +189,12 @@ var
               if(!My_std["sys_file_exists"](path))
                {Pervasives["failwith"]
                  (Format["sprintf"]
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "Cannot find ",
-                      /* Caml_string */[3,
+                      [/* Caml_string */3,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         " in ocamlbuild -where directory",
                         /* End_of_format */0]]],
                      "Cannot find %S in ocamlbuild -where directory"],
@@ -221,7 +221,7 @@ var
                   else
                    {return /* S */[0,
                             /* :: */[0,
-                             /* A */[1,"-I"],
+                             [/* A */1,"-I"],
                              /* :: */[0,
                               /* A */[1,dir$1],
                               /* :: */[0,
@@ -233,7 +233,7 @@ var
                  {if(variant>=251810662)
                    {return /* S */[0,
                             /* :: */[0,
-                             /* A */[1,"-package"],
+                             [/* A */1,"-package"],
                              /* :: */[0,/* A */[1,param$1[2]],/* [] */0]]];
                     }
                   else
@@ -282,7 +282,7 @@ var
                     /* :: */[0,
                      match$1[3],
                      /* :: */[0,
-                      /* A */[1,"-o"],
+                      [/* A */1,"-o"],
                       /* :: */[0,
                        /* Px */[3,Pervasives["^"](plugin,Options["exe"][1])],
                        /* [] */0]]]]]]]]]]];
@@ -327,7 +327,7 @@ var
                  (Pathname["Operators"][1](Options["build_dir"][1],plugin),
                   Options["exe"][1])],
                /* :: */[0,
-                /* A */[1,"-no-plugin"],
+                [/* A */1,"-no-plugin"],
                 /* :: */[0,Command["atomize"](passed_argv),/* [] */0]]]]];
           
           Log["finish"](/* None */0,/* () */0);
@@ -343,10 +343,10 @@ var
             Options["plugin_tags"][1]!=
             /* [] */0)
            {return Log["eprintf"]
-                    (/* Format */[0,
-                      /* String_literal */[11,
+                    ([/* Format */0,
+                      [/* String_literal */11,
                        "Warning: option -plugin-tag(s) has no effect in absence of plugin file ",
-                       /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                       [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                       "Warning: option -plugin-tag(s) has no effect in absence of plugin file %S"],
                      plugin_file);
             }

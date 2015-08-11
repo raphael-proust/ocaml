@@ -89,15 +89,15 @@ var
    {return Printer[1]
             (path,
              ty,
-             function(ppf$1,remote_val)
+             function(ppf,remote_val)
               {try
-                {return fn(ppf$1,Debugcom["Remote_value"][1](remote_val));}
+                {return fn(ppf,Debugcom["Remote_value"][1](remote_val));}
                catch(exn)
                 {if(exn=Debugcom["Marshalling_error"])
                   {return Format["fprintf"]
-                           (ppf$1,
-                            /* Format */[0,
-                             /* String_literal */[11,
+                           (ppf,
+                            [/* Format */0,
+                             [/* String_literal */11,
                               "<cannot fetch remote object>",
                               /* End_of_format */0],
                              "<cannot fetch remote object>"]);
@@ -134,21 +134,21 @@ var
   function(max_depth,exp,env,obj,ppf,ty)
    {var
      print_value_name=
-      function(ppf$1,param)
+      function(ppf,param)
        {var exit;
         
         if(typeof param=="number")
          {switch(param){}}
         else
          {switch(param[0])
-           {case 0:return Printtyp["longident"](ppf$1,param[1]);
+           {case 0:return Printtyp["longident"](ppf,param[1]);
             case 1:
              return Format["fprintf"]
-                     (ppf$1,
-                      /* Format */[0,
-                       /* Char_literal */[12,
+                     (ppf,
+                      [/* Format */0,
+                       [/* Char_literal */12,
                         36,
-                        /* Int */[4,
+                        [/* Int */4,
                          /* Int_i */3,
                          /* No_padding */0,
                          /* No_precision */0,
@@ -163,11 +163,11 @@ var
            var n=name_value(obj,ty);
            
            return Format["fprintf"]
-                   (ppf$1,
-                    /* Format */[0,
-                     /* Char_literal */[12,
+                   (ppf,
+                    [/* Format */0,
+                     [/* Char_literal */12,
                       36,
-                      /* Int */[4,
+                      [/* Int */4,
                        /* Int_i */3,
                        /* No_padding */0,
                        /* No_precision */0,
@@ -181,28 +181,28 @@ var
     Printtyp["reset_and_mark_loops"](ty);
     return Format["fprintf"]
             (ppf,
-             /* Format */[0,
-              /* Formatting_gen */[18,
-               /* Open_box */[1,
-                /* Format */[0,
-                 /* String_literal */[11,"<2>",/* End_of_format */0],
+             [/* Format */0,
+              [/* Formatting_gen */18,
+               [/* Open_box */1,
+                [/* Format */0,
+                 [/* String_literal */11,"<2>",/* End_of_format */0],
                  "<2>"]],
-               /* Alpha */[15,
-                /* Char_literal */[12,
+               [/* Alpha */15,
+                [/* Char_literal */12,
                  58,
-                 /* Formatting_lit */[17,
-                  /* Break */[0,"@ ",1,0],
-                  /* Alpha */[15,
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* Char_literal */[12,
+                 [/* Formatting_lit */17,
+                  [/* Break */0,"@ ",1,0],
+                  [/* Alpha */15,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* Char_literal */12,
                      61,
-                     /* Formatting_lit */[17,
-                      /* Break */[0,"@ ",1,0],
-                      /* Alpha */[15,
-                       /* Formatting_lit */[17,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
                         /* Close_box */0,
-                        /* Formatting_lit */[17,
+                        [/* Formatting_lit */17,
                          /* Flush_newline */4,
                          /* End_of_format */0]]]]]]]]]]],
               "@[<2>%a:@ %a@ =@ %a@]@."],

@@ -43,44 +43,44 @@ Odoc_parameter,
 Odoc_name;
 var Text_syntax=Odoc_text["Text_syntax"];
 
-var dummy_loc=/* record */[0,/* None */0,/* None */0];
+var dummy_loc=[/* record */0,/* None */0,/* None */0];
 
 var
  analyse_files=
   function
    ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
-    $staropt$star$4,
-    $staropt$star$5,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
     files)
-   {if($staropt$star)
-     {var merge_options=$staropt$star[1];}
+   {if($staropt$star$1)
+     {var merge_options=$staropt$star$1[1];}
     else
      {var merge_options=/* [] */0;}
     
-    if($staropt$star$1)
-     {var include_dirs=$staropt$star$1[1];}
+    if($staropt$star$2)
+     {var include_dirs=$staropt$star$2[1];}
     else
      {var include_dirs=/* [] */0;}
     
-    if($staropt$star$2)
-     {var labels=$staropt$star$2[1];}
+    if($staropt$star$3)
+     {var labels=$staropt$star$3[1];}
     else
      {var labels=/* false */0;}
     
-    if($staropt$star$3)
-     {var sort_modules=$staropt$star$3[1];}
+    if($staropt$star$4)
+     {var sort_modules=$staropt$star$4[1];}
     else
      {var sort_modules=/* false */0;}
     
-    if($staropt$star$4)
-     {var no_stop=$staropt$star$4[1];}
+    if($staropt$star$5)
+     {var no_stop=$staropt$star$5[1];}
     else
      {var no_stop=/* false */0;}
     
-    if($staropt$star$5){var init=$staropt$star$5[1];}else{var init=/* [] */0;}
+    if($staropt$star){var init=$staropt$star[1];}else{var init=/* [] */0;}
     
     Odoc_global["merge_options"][1]=merge_options,0;
     Odoc_global["include_dirs"][1]=include_dirs,0;
@@ -235,8 +235,8 @@ var
     if(match)
      {p
        (b,
-        /* Format */[0,
-         /* String */[2,/* No_padding */0,/* End_of_format */0],
+        [/* Format */0,
+         [/* String */2,/* No_padding */0,/* End_of_format */0],
          "%s"],
         escape_arobas(text_string_of_text(match[1])))}
     else
@@ -246,14 +246,14 @@ var
      (function(s)
        {return p
                 (b,
-                 /* Format */[0,
-                  /* Char_literal */[12,
+                 [/* Format */0,
+                  [/* Char_literal */12,
                    10,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Escaped_at */5,
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "author ",
-                     /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                     [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                   "\n@@author %s"],
                  escape_arobas(s));
         },
@@ -263,14 +263,14 @@ var
     if(match$1)
      {p
        (b,
-        /* Format */[0,
-         /* Char_literal */[12,
+        [/* Format */0,
+         [/* Char_literal */12,
           10,
-          /* Formatting_lit */[17,
+          [/* Formatting_lit */17,
            /* Escaped_at */5,
-           /* String_literal */[11,
+           [/* String_literal */11,
             "version ",
-            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+            [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@version %s"],
         escape_arobas(match$1[1]))}
     else
@@ -282,34 +282,34 @@ var
        {switch(param)
          {case 0:
            return Printf["sprintf"]
-                   (/* Format */[0,
-                     /* Char_literal */[12,
+                   ([/* Format */0,
+                     [/* Char_literal */12,
                       60,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Char_literal */[12,62,/* End_of_format */0]]],
+                       [/* Char_literal */12,62,/* End_of_format */0]]],
                      "<%s>"],
                     param[1]);
            
           case 1:
            return Printf["sprintf"]
-                   (/* Format */[0,
-                     /* Char_literal */[12,
+                   ([/* Format */0,
+                     [/* Char_literal */12,
                       39,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Char_literal */[12,39,/* End_of_format */0]]],
+                       [/* Char_literal */12,39,/* End_of_format */0]]],
                      "'%s'"],
                     param[1]);
            
           case 2:
            return Printf["sprintf"]
-                   (/* Format */[0,
-                     /* Char_literal */[12,
+                   ([/* Format */0,
+                     [/* Char_literal */12,
                       34,
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* Char_literal */[12,34,/* End_of_format */0]]],
+                       [/* Char_literal */12,34,/* End_of_format */0]]],
                      '"%s"'],
                     param[1]);
            
@@ -320,18 +320,18 @@ var
      (function(param)
        {return p
                 (b,
-                 /* Format */[0,
-                  /* Char_literal */[12,
+                 [/* Format */0,
+                  [/* Char_literal */12,
                    10,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Escaped_at */5,
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "see ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        32,
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@see %s %s"],
                  escape_arobas(f_see_ref(param[1])),
                  escape_arobas(text_string_of_text(param[2])));
@@ -342,14 +342,14 @@ var
     if(match$2)
      {p
        (b,
-        /* Format */[0,
-         /* Char_literal */[12,
+        [/* Format */0,
+         [/* Char_literal */12,
           10,
-          /* Formatting_lit */[17,
+          [/* Formatting_lit */17,
            /* Escaped_at */5,
-           /* String_literal */[11,
+           [/* String_literal */11,
             "since ",
-            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+            [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@since %s"],
         escape_arobas(match$2[1]))}
     else
@@ -360,14 +360,14 @@ var
     if(match$3)
      {p
        (b,
-        /* Format */[0,
-         /* Char_literal */[12,
+        [/* Format */0,
+         [/* Char_literal */12,
           10,
-          /* Formatting_lit */[17,
+          [/* Formatting_lit */17,
            /* Escaped_at */5,
-           /* String_literal */[11,
+           [/* String_literal */11,
             "deprecated ",
-            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+            [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@deprecated %s"],
         escape_arobas(text_string_of_text(match$3[1])))}
     else
@@ -377,18 +377,18 @@ var
      (function(param)
        {return p
                 (b,
-                 /* Format */[0,
-                  /* Char_literal */[12,
+                 [/* Format */0,
+                  [/* Char_literal */12,
                    10,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Escaped_at */5,
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "param ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        32,
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@param %s %s"],
                  escape_arobas(param[1]),
                  escape_arobas(text_string_of_text(param[2])));
@@ -398,18 +398,18 @@ var
      (function(param)
        {return p
                 (b,
-                 /* Format */[0,
-                  /* Char_literal */[12,
+                 [/* Format */0,
+                  [/* Char_literal */12,
                    10,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Escaped_at */5,
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "raise ",
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        32,
-                       /* String */[2,/* No_padding */0,/* End_of_format */0]]]]]],
+                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@raise %s %s"],
                  escape_arobas(param[1]),
                  escape_arobas(text_string_of_text(param[2])));
@@ -420,14 +420,14 @@ var
     if(match$4)
      {p
        (b,
-        /* Format */[0,
-         /* Char_literal */[12,
+        [/* Format */0,
+         [/* Char_literal */12,
           10,
-          /* Formatting_lit */[17,
+          [/* Formatting_lit */17,
            /* Escaped_at */5,
-           /* String_literal */[11,
+           [/* String_literal */11,
             "return ",
-            /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+            [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@return %s"],
         escape_arobas(text_string_of_text(match$4[1])))}
     else
@@ -437,16 +437,16 @@ var
      (function(param)
        {return p
                 (b,
-                 /* Format */[0,
-                  /* Char_literal */[12,
+                 [/* Format */0,
+                  [/* Char_literal */12,
                    10,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Escaped_at */5,
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,
+                     [/* Char_literal */12,
                       32,
-                      /* String */[2,/* No_padding */0,/* End_of_format */0]]]]],
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
                   "\n@@%s %s"],
                  param[1],
                  escape_arobas(text_string_of_text(param[2])));

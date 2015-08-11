@@ -74,7 +74,7 @@ var
         return /* tuple */[0,/* :: */[0,p1[1],match[1]],match[2]];
         }
       else
-       {return /* tuple */[0,/* [] */0,/* [] */0];}
+       {return [/* tuple */0,/* [] */0,/* [] */0];}
       }
     else
      {return /* tuple */[0,/* [] */0,p1];}

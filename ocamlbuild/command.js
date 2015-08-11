@@ -81,12 +81,12 @@ var
          solver=
           Pervasives["failwith"]
            (My_std["sbprintf"]
-             (/* Format */[0,
-               /* String_literal */[11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "no solver for the virtual command ",
-                /* Caml_string */[3,
+                [/* Caml_string */3,
                  /* No_padding */0,
-                 /* String_literal */[11,
+                 [/* String_literal */11,
                   " (setup one with Command.setup_virtual_command_solver)",
                   /* End_of_format */0]]],
                "no solver for the virtual command %S (setup one with Command.setup_virtual_command_solver)"],
@@ -102,12 +102,12 @@ var
      {if(exn$1=Not_found)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
-                  (/* Format */[0,
-                    /* String_literal */[11,
+                  ([/* Format */0,
+                    [/* String_literal */11,
                      "the solver for the virtual command ",
-                     /* Caml_string */[3,
+                     [/* Caml_string */3,
                       /* No_padding */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        " has failed finding a valid command",
                        /* End_of_format */0]]],
                     "the solver for the virtual command %S has failed finding a valid command"],
@@ -214,12 +214,12 @@ var
               {put_space(/* () */0);
                return Printf["bprintf"]
                        (b,
-                        /* Format */[0,
-                         /* String_literal */[11,
+                        [/* Format */0,
+                         [/* String_literal */11,
                           "<virtual ",
-                          /* String */[2,
+                          [/* String */2,
                            /* No_padding */0,
-                           /* Char_literal */[12,62,/* End_of_format */0]]],
+                           [/* Char_literal */12,62,/* End_of_format */0]]],
                          "<virtual %s>"],
                         Shell["quote_filename_if_needed"](v));
                }
@@ -260,7 +260,7 @@ var
      s=
       string_of_command_spec_with_calls
        (union_rtags,
-        function(prim,prim$1){return prim[1]=prim$1,0;}(rtarget),
+        function(prim,prim){return prim$1[1]=prim,0;}(rtarget),
         /* true */1,
         spec);
     
@@ -295,8 +295,8 @@ var
   function(f)
    {return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* Caml_string */[3,/* No_padding */0,/* End_of_format */0],
+             [/* Format */0,
+              [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
               "%S"]);
     };
 
@@ -313,23 +313,23 @@ var
         case 2:
          return Format["fprintf"]
                  (f,
-                  /* Format */[0,
-                   /* Formatting_gen */[18,
-                    /* Open_box */[1,
-                     /* Format */[0,
-                      /* String_literal */[11,"<2>",/* End_of_format */0],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
                       "<2>"]],
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      "Echo(",
-                     /* Alpha */[15,
-                      /* Char_literal */[12,
+                     [/* Alpha */15,
+                      [/* Char_literal */12,
                        44,
-                       /* Formatting_lit */[17,
-                        /* Break */[0,"@ ",1,0],
-                        /* Alpha */[15,
-                         /* Char_literal */[12,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Alpha */15,
+                         [/* Char_literal */12,
                           41,
-                          /* Formatting_lit */[17,
+                          [/* Formatting_lit */17,
                            /* Close_box */0,
                            /* End_of_format */0]]]]]]]],
                    "@[<2>Echo(%a,@ %a)@]"],
@@ -345,7 +345,7 @@ var
  to_string=
   function(x)
    {return My_std["sbprintf"]
-            (/* Format */[0,/* Alpha */[15,/* End_of_format */0],"%a"],
+            ([/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
              print,
              x);
     };
@@ -384,8 +384,8 @@ var
      {if(xcount[1]=0)
        {return Log["dprintf"]
                 (1,
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    "# No parallelism done",
                    /* End_of_format */0],
                   "# No parallelism done"]);
@@ -397,44 +397,44 @@ var
         
         return Log["dprintf"]
                 (1,
-                 /* Format */[0,
-                  /* String_literal */[11,
+                 [/* Format */0,
+                  [/* String_literal */11,
                    "# Parallel statistics: { count(total): ",
-                   /* Int */[4,
+                   [/* Int */4,
                     /* Int_d */0,
                     /* No_padding */0,
                     /* No_precision */0,
-                    /* Char_literal */[12,
+                    [/* Char_literal */12,
                      40,
-                     /* Int */[4,
+                     [/* Int */4,
                       /* Int_d */0,
                       /* No_padding */0,
                       /* No_precision */0,
-                      /* String_literal */[11,
+                      [/* String_literal */11,
                        "), max: ",
-                       /* Int */[4,
+                       [/* Int */4,
                         /* Int_d */0,
                         /* No_padding */0,
                         /* No_precision */0,
-                        /* String_literal */[11,
+                        [/* String_literal */11,
                          ", min: ",
-                         /* Int */[4,
+                         [/* Int */4,
                           /* Int_d */0,
                           /* No_padding */0,
                           /* No_precision */0,
-                          /* String_literal */[11,
+                          [/* String_literal */11,
                            ", average(total): ",
-                           /* Float */[8,
+                           [/* Float */8,
                             /* Float_f */0,
                             /* No_padding */0,
-                            /* Lit_precision */[0,3],
-                            /* Char_literal */[12,
+                            [/* Lit_precision */0,3],
+                            [/* Char_literal */12,
                              40,
-                             /* Float */[8,
+                             [/* Float */8,
                               /* Float_f */0,
                               /* No_padding */0,
-                              /* Lit_precision */[0,3],
-                              /* String_literal */[11,") }",/* End_of_format */0]]]]]]]]]]]]],
+                              [/* Lit_precision */0,3],
+                              [/* String_literal */11,") }",/* End_of_format */0]]]]]]]]]]]]],
                   "# Parallel statistics: { count(total): %d(%d), max: %d, min: %d, average(total): %.3f(%.3f) }"],
                  xcount[1],
                  xcountall[1],
@@ -516,14 +516,14 @@ var
 
 var
  execute_many=
-  function($staropt$star,$staropt$star$1,cmds)
-   {if($staropt$star)
-     {var quiet=$staropt$star[1];}
+  function($staropt$star,$staropt$star,cmds)
+   {if($staropt$star$1)
+     {var quiet=$staropt$star$1[1];}
     else
      {var quiet=/* false */0;}
     
-    if($staropt$star$1)
-     {var pretend=$staropt$star$1[1];}
+    if($staropt$star)
+     {var pretend=$staropt$star[1];}
     else
      {var pretend=/* false */0;}
     
@@ -562,7 +562,7 @@ var
          {var
            match$1=
             My_std["List"][19]
-             (function(param,cmds$1)
+             (function(param,cmds)
                {var acc_exn=param[2];
                 
                 var acc_res=param[1];
@@ -583,18 +583,18 @@ var
                         if(rc!=0)
                          {if(!quiet)
                            {Log["eprintf"]
-                             (/* Format */[0,
-                               /* String_literal */[11,
+                             ([/* Format */0,
+                               [/* String_literal */11,
                                 "Exit code ",
-                                /* Int */[4,
+                                [/* Int */4,
                                  /* Int_d */0,
                                  /* No_padding */0,
                                  /* No_precision */0,
-                                 /* String_literal */[11,
+                                 [/* String_literal */11,
                                   " while executing this command:",
-                                  /* Formatting_lit */[17,
+                                  [/* Formatting_lit */17,
                                    /* Force_newline */3,
-                                   /* String */[2,/* No_padding */0,/* End_of_format */0]]]]],
+                                   [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
                                "Exit code %d while executing this command:@\n%s"],
                               rc,
                               cmd)}
@@ -606,7 +606,7 @@ var
                         else
                          {return 0;}
                         },
-                      cmds$1);
+                      cmds);
                     return /* tuple */[0,
                             /* :: */[0,/* true */1,acc_res],
                             /* None */0];
@@ -618,7 +618,7 @@ var
                     }
                   }
                 },
-              /* tuple */[0,/* [] */0,/* None */0],
+              [/* tuple */0,/* [] */0,/* None */0],
               konts);
           
           var opt_exn=match$1[2];
@@ -655,15 +655,15 @@ var
   function(f,x)
    {var
      spec=
-      function(x$1)
+      function(x)
        {var exit;
         
-        if(typeof x$1=="number")
-         {switch(x$1){}}
+        if(typeof x=="number")
+         {switch(x){}}
         else
-         {switch(x$1[0])
-           {case 0:return My_std["List"][14](spec,x$1[1]);
-            case 5:return f(x$1[1]);
+         {switch(x[0])
+           {case 0:return My_std["List"][14](spec,x[1]);
+            case 5:return f(x[1]);
             default:exit=19;}}
         
         switch(exit){case 19:return /* () */0;}
@@ -671,15 +671,15 @@ var
     
     var
      cmd=
-      function(x$1)
+      function(x)
        {var exit;
         
-        if(typeof x$1=="number")
-         {switch(x$1){case 0:exit=18;}}
+        if(typeof x=="number")
+         {switch(x){case 0:exit=18;}}
         else
-         {switch(x$1[0])
-           {case 0:return My_std["List"][14](cmd,x$1[1]);
-            case 1:return spec(x$1[1]);
+         {switch(x[0])
+           {case 0:return My_std["List"][14](cmd,x[1]);
+            case 1:return spec(x[1]);
             case 2:exit=18;
             }}
         
@@ -733,15 +733,15 @@ var
   function(x)
    {var
      $$self=
-      function(x$1,acc)
-       {if(typeof x$1=="number")
-         {switch(x$1){case 0:return acc;}}
+      function(x,acc)
+       {if(typeof x=="number")
+         {switch(x){case 0:return acc;}}
         else
-         {switch(x$1[0])
-           {case 0:return My_std["List"][20]($$self,x$1[1],acc);
-            case 5:return $$self(tag_handler[1](x$1[1]),acc);
-            case 7:return /* :: */[0,/* Quote */[7,reduce(x$1[1])],acc];
-            default:return /* :: */[0,x$1,acc];}}
+         {switch(x[0])
+           {case 0:return My_std["List"][20]($$self,x[1],acc);
+            case 5:return $$self(tag_handler[1](x[1]),acc);
+            case 7:return /* :: */[0,/* Quote */[7,reduce(x[1])],acc];
+            default:return /* :: */[0,x,acc];}}
         };
     
     var xs=$$self(x,/* [] */0);
@@ -800,11 +800,11 @@ var
    {return My_std["&"]
             (My_std["List"][9],
              My_std["List"][19]
-              (function(acc$1,dep)
-                {if(My_std["List"][30](dep,acc$1))
-                  {return acc$1;}
+              (function(acc,dep)
+                {if(My_std["List"][30](dep,acc))
+                  {return acc;}
                  else
-                  {return /* :: */[0,dep,acc$1];}
+                  {return /* :: */[0,dep,acc];}
                  },
                acc,
                deps));

@@ -43,92 +43,92 @@ var
     
     return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* Formatting_gen */[18,
-               /* Open_box */[1,
-                /* Format */[0,
-                 /* String_literal */[11,"<v2>",/* End_of_format */0],
+             [/* Format */0,
+              [/* Formatting_gen */18,
+               [/* Open_box */1,
+                [/* Format */0,
+                 [/* String_literal */11,"<v2>",/* End_of_format */0],
                  "<v2>"]],
-               /* Char_literal */[12,
+               [/* Char_literal */12,
                 123,
-                /* Formatting_lit */[17,
-                 /* Break */[0,"@ ",1,0],
-                 /* Formatting_gen */[18,
-                  /* Open_box */[1,
-                   /* Format */[0,
-                    /* String_literal */[11,"<2>",/* End_of_format */0],
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<2>",/* End_of_format */0],
                     "<2>"]],
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    "name  =",
-                   /* Formatting_lit */[17,
-                    /* Break */[0,"@ ",1,0],
-                    /* Caml_string */[3,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* Caml_string */3,
                      /* No_padding */0,
-                     /* Formatting_lit */[17,
+                     [/* Formatting_lit */17,
                       /* Close_box */0,
-                      /* Char_literal */[12,
+                      [/* Char_literal */12,
                        59,
-                       /* Formatting_lit */[17,
-                        /* Break */[0,"@ ",1,0],
-                        /* Formatting_gen */[18,
-                         /* Open_box */[1,
-                          /* Format */[0,
-                           /* String_literal */[11,"<2>",/* End_of_format */0],
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<2>",/* End_of_format */0],
                            "<2>"]],
-                         /* String_literal */[11,
+                         [/* String_literal */11,
                           "deps  =",
-                          /* Formatting_lit */[17,
-                           /* Break */[0,"@ ",1,0],
-                           /* Alpha */[15,
-                            /* Formatting_lit */[17,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
                              /* Close_box */0,
-                             /* Char_literal */[12,
+                             [/* Char_literal */12,
                               59,
-                              /* Formatting_lit */[17,
-                               /* Break */[0,"@ ",1,0],
-                               /* Formatting_gen */[18,
-                                /* Open_box */[1,
-                                 /* Format */[0,
-                                  /* String_literal */[11,"<2>",/* End_of_format */0],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Formatting_gen */18,
+                                [/* Open_box */1,
+                                 [/* Format */0,
+                                  [/* String_literal */11,"<2>",/* End_of_format */0],
                                   "<2>"]],
-                                /* String_literal */[11,
+                                [/* String_literal */11,
                                  "prods = ",
-                                 /* Alpha */[15,
-                                  /* Formatting_lit */[17,
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
                                    /* Close_box */0,
-                                   /* Char_literal */[12,
+                                   [/* Char_literal */12,
                                     59,
-                                    /* Formatting_lit */[17,
-                                     /* Break */[0,"@ ",1,0],
-                                     /* Formatting_gen */[18,
-                                      /* Open_box */[1,
-                                       /* Format */[0,
-                                        /* String_literal */[11,"<2>",/* End_of_format */0],
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@ ",1,0],
+                                     [/* Formatting_gen */18,
+                                      [/* Open_box */1,
+                                       [/* Format */0,
+                                        [/* String_literal */11,"<2>",/* End_of_format */0],
                                         "<2>"]],
-                                      /* String_literal */[11,
+                                      [/* String_literal */11,
                                        "code  = <fun>",
-                                       /* Formatting_lit */[17,
+                                       [/* Formatting_lit */17,
                                         /* Close_box */0,
-                                        /* Char_literal */[12,
+                                        [/* Char_literal */12,
                                          59,
-                                         /* Formatting_lit */[17,
-                                          /* Break */[0,"@ ",1,0],
-                                          /* Formatting_gen */[18,
-                                           /* Open_box */[1,
-                                            /* Format */[0,
-                                             /* String_literal */[11,"<hov 2>",/* End_of_format */0],
+                                         [/* Formatting_lit */17,
+                                          [/* Break */0,"@ ",1,0],
+                                          [/* Formatting_gen */18,
+                                           [/* Open_box */1,
+                                            [/* Format */0,
+                                             [/* String_literal */11,"<hov 2>",/* End_of_format */0],
                                              "<hov 2>"]],
-                                           /* String_literal */[11,
+                                           [/* String_literal */11,
                                             " doc = ",
-                                            /* String */[2,
+                                            [/* String */2,
                                              /* No_padding */0,
-                                             /* Formatting_lit */[17,
+                                             [/* Formatting_lit */17,
                                               /* Close_box */0,
-                                              /* Formatting_lit */[17,
+                                              [/* Formatting_lit */17,
                                                /* Close_box */0,
-                                               /* Formatting_lit */[17,
-                                                /* Break */[0,"@ ",1,0],
-                                                /* Char_literal */[12,125,/* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
+                                               [/* Formatting_lit */17,
+                                                [/* Break */0,"@ ",1,0],
+                                                [/* Char_literal */12,125,/* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
               "@[<v2>{@ @[<2>name  =@ %S@];@ @[<2>deps  =@ %a@];@ @[<2>prods = %a@];@ @[<2>code  = <fun>@];@ @[<hov 2> doc = %s@]@]@ }"],
              r[1],
              print_resource_list,
@@ -137,10 +137,10 @@ var
              r[3],
              match
               ?Format["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Some ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Some %S"],
                  match[1])
               :"None");
@@ -151,28 +151,28 @@ var
   function(ppelt,f,r)
    {Format["fprintf"]
      (f,
-      /* Format */[0,
-       /* Formatting_gen */[18,
-        /* Open_box */[1,
-         /* Format */[0,
-          /* String_literal */[11,"<hv2>",/* End_of_format */0],
+      [/* Format */0,
+       [/* Formatting_gen */18,
+        [/* Open_box */1,
+         [/* Format */0,
+          [/* String_literal */11,"<hv2>",/* End_of_format */0],
           "<hv2>"]],
-        /* String_literal */[11,
+        [/* String_literal */11,
          "rule ",
-         /* Caml_string */[3,
+         [/* Caml_string */3,
           /* No_padding */0,
-          /* Formatting_lit */[17,
-           /* Break */[0,"@ ",1,0],
-           /* String_literal */[11,
+          [/* Formatting_lit */17,
+           [/* Break */0,"@ ",1,0],
+           [/* String_literal */11,
             "~deps:",
-            /* Alpha */[15,
-             /* Formatting_lit */[17,
-              /* Break */[0,"@ ",1,0],
-              /* String_literal */[11,
+            [/* Alpha */15,
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* String_literal */11,
                "~prods:",
-               /* Alpha */[15,
-                /* Formatting_lit */[17,
-                 /* Break */[0,"@ ",1,0],
+               [/* Alpha */15,
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]]]]]]]]]],
        "@[<hv2>rule %S@ ~deps:%a@ ~prods:%a@ "],
       r[1],
@@ -185,21 +185,21 @@ var
     if(match)
      {Format["fprintf"]
        (f,
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           '~doc:"',
-          /* Formatting_gen */[18,
-           /* Open_box */[1,
-            /* Format */[0,
-             /* String_literal */[11,"<hov>",/* End_of_format */0],
+          [/* Formatting_gen */18,
+           [/* Open_box */1,
+            [/* Format */0,
+             [/* String_literal */11,"<hov>",/* End_of_format */0],
              "<hov>"]],
-           /* Alpha */[15,
-            /* Formatting_lit */[17,
+           [/* Alpha */15,
+            [/* Formatting_lit */17,
              /* Close_box */0,
-             /* Char_literal */[12,
+             [/* Char_literal */12,
               34,
-              /* Formatting_lit */[17,
-               /* Break */[0,"@ ",1,0],
+              [/* Formatting_lit */17,
+               [/* Break */0,"@ ",1,0],
                /* End_of_format */0]]]]]],
          '~doc:"@[<hov>%a@]"@ '],
         Format["pp_print_text"],
@@ -209,10 +209,10 @@ var
     
     return Format["fprintf"]
             (f,
-             /* Format */[0,
-              /* String_literal */[11,
+             [/* Format */0,
+              [/* String_literal */11,
                "<fun>",
-               /* Formatting_lit */[17,/* Close_box */0,/* End_of_format */0]],
+               [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0]],
               "<fun>@]"]);
     };
 
@@ -243,13 +243,13 @@ var
     
     return /* record */[0,
             My_std["sbprintf"]
-             (/* Format */[0,
-               /* String */[2,
+             ([/* Format */0,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " (",
-                 /* Alpha */[15,
-                  /* Char_literal */[12,41,/* End_of_format */0]]]],
+                 [/* Alpha */15,
+                  [/* Char_literal */12,41,/* End_of_format */0]]]],
                "%s (%a)"],
               rule[1],
               Resource["print_env"],
@@ -258,7 +258,7 @@ var
             prods,
             stamp,
             rule[5],
-            function(env$1){return rule[6](finder(env$1));}];
+            function(env){return rule[6](finder(env));}];
     };
 
 var Can_produce="unknown primitive:caml_set_oo_id";
@@ -309,9 +309,9 @@ var
     
     var
      add_resource=
-      function(r$1)
+      function(r)
        {return Buffer["add_string"]
-                (buf,My_std["Digest"][6](Resource["digest"](r$1)));
+                (buf,My_std["Digest"][6](Resource["digest"](r)));
         };
     
     Buffer["add_string"](buf,"deps:");
@@ -329,7 +329,7 @@ var
     Buffer["add_string"](buf,action[1]);
     var
      add_resource=
-      function(r$1){return Buffer["add_string"](buf,Resource["digest"](r$1));};
+      function(r){return Buffer["add_string"](buf,Resource["digest"](r));};
     
     Buffer["add_string"](buf,"prods:");
     My_std["List"][14](add_resource,r[3]);
@@ -421,17 +421,17 @@ var
                        match=
                         Log["dprintf"]
                          (10,
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             "new dyndep for ",
-                            /* Caml_string */[3,
+                            [/* Caml_string */3,
                              /* No_padding */0,
-                             /* Char_literal */[12,
+                             [/* Char_literal */12,
                               40,
-                              /* Alpha */[15,
-                               /* String_literal */[11,
+                              [/* Alpha */15,
+                               [/* String_literal */11,
                                 "): ",
-                                /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]]]]]],
+                                [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]]]],
                            "new dyndep for %S(%a): %S"],
                           r[1],
                           print_resource_list,
@@ -454,10 +454,10 @@ var
      match=
       Log["dprintf"]
        (5,
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           "start rule ",
-          /* Alpha */[15,/* End_of_format */0]],
+          [/* Alpha */15,/* End_of_format */0]],
          "start rule %a"],
         print,
         r);
@@ -471,10 +471,10 @@ var
      match$1=
       Log["dprintf"]
        (10,
-        /* Format */[0,
-         /* String_literal */[11,
+        [/* Format */0,
+         [/* String_literal */11,
           "dyndeps: ",
-          /* Alpha */[15,/* End_of_format */0]],
+          [/* Alpha */15,/* End_of_format */0]],
          "dyndeps: %a"],
         Resource["Resources"][29],
         dyndeps$1);
@@ -483,7 +483,7 @@ var
      match$2=
       exists2
        (My_std["List"][32],
-        function(r$1){return !Resource["exists_in_build_dir"](r$1);},
+        function(r){return !Resource["exists_in_build_dir"](r);},
         r[3]);
     
     if(match$2)
@@ -526,7 +526,7 @@ var
             if("unknown primitive:caml_string_equal")
              {var
                match$3=
-                /* tuple */[0,/* cache_hit */-805933418,/* true */1];
+                [/* tuple */0,/* cache_hit */-805933418,/* true */1];
               }
             else
              {var
@@ -541,7 +541,7 @@ var
           else
            {var
              match$3=
-              /* tuple */[0,/* cache_miss_no_digest */242554396,/* false */0];
+              [/* tuple */0,/* cache_miss_no_digest */242554396,/* false */0];
             }
           }
         }
@@ -556,10 +556,10 @@ var
       function(l)
        {Log["raw_dprintf"]
          (l+1,
-          /* Format */[0,
-           /* String_literal */[11,
+          [/* Format */0,
+           [/* String_literal */11,
             "mid rule ",
-            /* Alpha */[15,/* String_literal */[11,": ",/* End_of_format */0]]],
+            [/* Alpha */15,[/* String_literal */11,": ",/* End_of_format */0]]],
            "mid rule %a: "],
           print,
           r);
@@ -567,12 +567,12 @@ var
          {if(reason>=242554396)
            {return Log["dprintf"]
                     (l,
-                     /* Format */[0,
-                      /* String_literal */[11,
+                     [/* Format */0,
+                      [/* String_literal */11,
                        "cache miss: no digest found for ",
-                       /* Caml_string */[3,
+                       [/* Caml_string */3,
                         /* No_padding */0,
-                        /* String_literal */[11,
+                        [/* String_literal */11,
                          " (the command, a dependency, or a product)",
                          /* End_of_format */0]]],
                       "cache miss: no digest found for %S (the command, a dependency, or a product)"],
@@ -581,8 +581,8 @@ var
           else
            {return Log["dprintf"]
                     (l+1,
-                     /* Format */[0,
-                      /* String_literal */[11,"cache hit",/* End_of_format */0],
+                     [/* Format */0,
+                      [/* String_literal */11,"cache hit",/* End_of_format */0],
                       "cache hit"]);
             }
           }
@@ -593,11 +593,11 @@ var
            {if(variant>=1009970846)
              {return Log["dprintf"]
                       (l,
-                       /* Format */[0,
-                        /* String_literal */[11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "cache miss: a dependency has changed (",
-                         /* Alpha */[15,
-                          /* Char_literal */[12,41,/* End_of_format */0]]],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,41,/* End_of_format */0]]],
                         "cache miss: a dependency has changed (%a)"],
                        Resource["print"],
                        reason[2]);
@@ -605,11 +605,11 @@ var
             else
              {return Log["dprintf"]
                       (l,
-                       /* Format */[0,
-                        /* String_literal */[11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "cache miss: a dynamic dependency has changed (",
-                         /* Alpha */[15,
-                          /* Char_literal */[12,41,/* End_of_format */0]]],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,41,/* End_of_format */0]]],
                         "cache miss: a dynamic dependency has changed (%a)"],
                        Resource["print"],
                        reason[2]);
@@ -621,18 +621,18 @@ var
               
               return Log["dprintf"]
                       (l,
-                       /* Format */[0,
-                        /* String_literal */[11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "cache miss: the digest has changed for ",
-                         /* Caml_string */[3,
+                         [/* Caml_string */3,
                           /* No_padding */0,
-                          /* String_literal */[11,
+                          [/* String_literal */11,
                            " (the command, a dependency, or a product: ",
-                           /* Alpha */[15,
-                            /* String_literal */[11,
+                           [/* Alpha */15,
+                            [/* String_literal */11,
                              " <> ",
-                             /* Alpha */[15,
-                              /* Char_literal */[12,41,/* End_of_format */0]]]]]]],
+                             [/* Alpha */15,
+                              [/* Char_literal */12,41,/* End_of_format */0]]]]]]],
                         "cache miss: the digest has changed for %S (the command, a dependency, or a product: %a <> %a)"],
                        r[1],
                        print_digest,
@@ -643,11 +643,11 @@ var
             else
              {return Log["dprintf"]
                       (l,
-                       /* Format */[0,
-                        /* String_literal */[11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "cache miss: a product is not in build dir (",
-                         /* Alpha */[15,
-                          /* Char_literal */[12,41,/* End_of_format */0]]],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,41,/* End_of_format */0]]],
                         "cache miss: a product is not in build dir (%a)"],
                        Resource["print"],
                        reason[2]);
@@ -665,13 +665,13 @@ var
       var
        msg=
         My_std["sbprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "Need to rebuild ",
-            /* Alpha */[15,
-             /* String_literal */[11,
+            [/* Alpha */15,
+             [/* String_literal */11,
               " through the rule `",
-              /* Alpha */[15,/* Char_literal */[12,39,/* End_of_format */0]]]]],
+              [/* Alpha */15,[/* Char_literal */12,39,/* End_of_format */0]]]]],
            "Need to rebuild %a through the rule `%a'"],
           print_resource_list,
           r[3],
@@ -690,7 +690,7 @@ var
        {try
          {if(cached)
            {Command["execute"]
-             (/* None */0,/* Some */[0,/* true */1],action[2])}
+             (/* None */0,[/* Some */0,/* true */1],action[2])}
           else
            {var match$7=r[4];
             
@@ -708,7 +708,7 @@ var
             }
           
           My_std["List"][14]
-           (function(r$1){return Resource["Cache"][5](r$1);},r[3]);
+           (function(r){return Resource["Cache"][5](r);},r[3]);
           if(!cached)
            {var new_rule_digest=digest_rule(r,dyndeps$1,action);
             
@@ -743,10 +743,10 @@ var
           
           return Log["dprintf"]
                   (5,
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "end rule ",
-                     /* Alpha */[15,/* End_of_format */0]],
+                     [/* Alpha */15,/* End_of_format */0]],
                     "end rule %a"],
                    print,
                    r);
@@ -781,11 +781,11 @@ var
        throw [0,
               Exit_rule_error,
               My_std["sbprintf"]
-               (/* Format */[0,
-                 /* String_literal */[11,
+               ([/* Format */0,
+                 [/* String_literal */11,
                   "Rule.add_rule: already exists: (",
-                  /* Alpha */[15,
-                   /* Char_literal */[12,41,/* End_of_format */0]]],
+                  [/* Alpha */15,
+                   [/* Char_literal */12,41,/* End_of_format */0]]],
                  "Rule.add_rule: already exists: (%a)"],
                 print,
                 r)];
@@ -852,19 +852,22 @@ var
    (name,
     tags,
     $staropt$star,
-    $staropt$star$1,
+    $staropt$star,
     prod,
     dep,
     stamp,
-    $staropt$star$2,
+    $staropt$star,
     doc,
     code)
-   {if($staropt$star){var prods=$staropt$star[1];}else{var prods=/* [] */0;}
+   {if($staropt$star$1)
+     {var prods=$staropt$star$1[1];}
+    else
+     {var prods=/* [] */0;}
     
-    if($staropt$star$1){var deps=$staropt$star$1[1];}else{var deps=/* [] */0;}
+    if($staropt$star$2){var deps=$staropt$star$2[1];}else{var deps=/* [] */0;}
     
-    if($staropt$star$2)
-     {var insert=$staropt$star$2[1];}
+    if($staropt$star)
+     {var insert=$staropt$star[1];}
     else
      {var insert=/* bottom */-445061397;}
     
@@ -872,12 +875,12 @@ var
      {var
        match$1=
         Log["eprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "Warning: your ocamlbuild rule ",
-            /* Caml_string */[3,
+            [/* Caml_string */3,
              /* No_padding */0,
-             /* String_literal */[11,
+             [/* String_literal */11,
               " uses the ~tags parameter,\n                     which is deprecated and ignored.",
               /* End_of_format */0]]],
            "Warning: your ocamlbuild rule %S uses the ~tags parameter,\n                     which is deprecated and ignored."],
@@ -901,14 +904,14 @@ var
                    if(My_std["List"][30](r,acc))
                     {return Pervasives["failwith"]
                              (Format["sprintf"]
-                               (/* Format */[0,
-                                 /* String_literal */[11,
+                               ([/* Format */0,
+                                 [/* String_literal */11,
                                   "in rule ",
-                                  /* String */[2,
+                                  [/* String */2,
                                    /* No_padding */0,
-                                   /* String_literal */[11,
+                                   [/* String_literal */11,
                                     ", multiple occurrences of the resource ",
-                                    /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                                  "in rule %s, multiple occurrences of the resource %s"],
                                 name,
                                 x));
@@ -964,7 +967,7 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"mv"],
+              [/* A */1,"mv"],
               /* :: */[0,
                /* P */[2,src],
                /* :: */[0,/* Px */[3,dest],/* [] */0]]]]];
@@ -976,7 +979,7 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"cp"],
+              [/* A */1,"cp"],
               /* :: */[0,
                /* P */[2,src],
                /* :: */[0,/* Px */[3,dest],/* [] */0]]]]];
@@ -988,9 +991,9 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"cp"],
+              [/* A */1,"cp"],
               /* :: */[0,
-               /* A */[1,"-p"],
+               [/* A */1,"-p"],
                /* :: */[0,
                 /* P */[2,src],
                 /* :: */[0,/* Px */[3,dest],/* [] */0]]]]]];
@@ -1002,9 +1005,9 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"ln"],
+              [/* A */1,"ln"],
               /* :: */[0,
-               /* A */[1,"-f"],
+               [/* A */1,"-f"],
                /* :: */[0,
                 /* P */[2,pointed],
                 /* :: */[0,/* Px */[3,pointer],/* [] */0]]]]]];
@@ -1016,9 +1019,9 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"ln"],
+              [/* A */1,"ln"],
               /* :: */[0,
-               /* A */[1,"-s"],
+               [/* A */1,"-s"],
                /* :: */[0,
                 /* P */[2,pointed],
                 /* :: */[0,/* Px */[3,pointer],/* [] */0]]]]]];
@@ -1030,8 +1033,8 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"rm"],
-              /* :: */[0,/* A */[1,"-f"],/* :: */[0,/* Px */[3,x],/* [] */0]]]]];
+              [/* A */1,"rm"],
+              /* :: */[0,[/* A */1,"-f"],/* :: */[0,/* Px */[3,x],/* [] */0]]]]];
     };
 
 var
@@ -1040,7 +1043,7 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"chmod"],
+              [/* A */1,"chmod"],
               /* :: */[0,opts,/* :: */[0,/* Px */[3,file],/* [] */0]]]]];
     };
 
@@ -1050,7 +1053,7 @@ var
    {return /* Cmd */[1,
             /* S */[0,
              /* :: */[0,
-              /* A */[1,"cmp"],
+              [/* A */1,"cmp"],
               /* :: */[0,/* P */[2,a],/* :: */[0,/* Px */[3,b],/* [] */0]]]]];
     };
 
@@ -1087,23 +1090,23 @@ var
     var rules$1=get_rules(/* () */0);
     
     My_std["List"][14]
-     (function(rule$1)
+     (function(rule)
        {return pp
-                (/* Format */[0,
-                  /* Alpha */[15,
-                   /* Formatting_lit */[17,
+                ([/* Format */0,
+                  [/* Alpha */15,
+                   [/* Formatting_lit */17,
                     /* Force_newline */3,
-                    /* Formatting_lit */[17,
+                    [/* Formatting_lit */17,
                      /* Force_newline */3,
                      /* End_of_format */0]]],
                   "%a@\n@\n"],
                  pretty_print(Resource["print_pattern"]),
-                 rule$1);
+                 rule);
         },
       rules$1);
     return pp
-            (/* Format */[0,
-              /* Formatting_lit */[17,
+            ([/* Format */0,
+              [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0],
               "@."]);

@@ -32,10 +32,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Not_a_bytecode_file ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Not_a_bytecode_file %S"],
                  err[1]);
              
@@ -43,10 +43,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Inconsistent_import ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Inconsistent_import %S"],
                  err[1]);
              
@@ -54,10 +54,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Unavailable_unit ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Unavailable_unit %S"],
                  err[1]);
              
@@ -71,16 +71,16 @@ var
                 var
                  msg=
                   Printf["sprintf"]
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "Linking_error (",
-                      /* Caml_string */[3,
+                      [/* Caml_string */3,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         ", Dynlink.Undefined_global ",
-                        /* Caml_string */[3,
+                        [/* Caml_string */3,
                          /* No_padding */0,
-                         /* Char_literal */[12,41,/* End_of_format */0]]]]],
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Undefined_global %S)"],
                     s,
                     match$1[1]);
@@ -89,16 +89,16 @@ var
                 var
                  msg=
                   Printf["sprintf"]
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "Linking_error (",
-                      /* Caml_string */[3,
+                      [/* Caml_string */3,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         ", Dynlink.Unavailable_primitive ",
-                        /* Caml_string */[3,
+                        [/* Caml_string */3,
                          /* No_padding */0,
-                         /* Char_literal */[12,41,/* End_of_format */0]]]]],
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Unavailable_primitive %S)"],
                     s,
                     match$1[1]);
@@ -107,16 +107,16 @@ var
                 var
                  msg=
                   Printf["sprintf"]
-                   (/* Format */[0,
-                     /* String_literal */[11,
+                   ([/* Format */0,
+                     [/* String_literal */11,
                       "Linking_error (",
-                      /* Caml_string */[3,
+                      [/* Caml_string */3,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         ", Dynlink.Uninitialized_global ",
-                        /* Caml_string */[3,
+                        [/* Caml_string */3,
                          /* No_padding */0,
-                         /* Char_literal */[12,41,/* End_of_format */0]]]]],
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Uninitialized_global %S)"],
                     s,
                     match$1[1]);
@@ -127,10 +127,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Corrupted_interface ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Corrupted_interface %S"],
                  err[1]);
              
@@ -138,10 +138,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "File_not_found ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "File_not_found %S"],
                  err[1]);
              
@@ -149,10 +149,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Cannot_open_dll ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Cannot_open_dll %S"],
                  err[1]);
              
@@ -160,10 +160,10 @@ var
              var
               msg=
                Printf["sprintf"]
-                (/* Format */[0,
-                  /* String_literal */[11,
+                ([/* Format */0,
+                  [/* String_literal */11,
                    "Inconsistent_implementation ",
-                   /* Caml_string */[3,/* No_padding */0,/* End_of_format */0]],
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Inconsistent_implementation %S"],
                  err[1]);
              
@@ -171,12 +171,12 @@ var
         
         return /* Some */[0,
                 Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "Dynlink.Error(Dynlink.",
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* Char_literal */[12,41,/* End_of_format */0]]],
+                     [/* Char_literal */12,41,/* End_of_format */0]]],
                    "Dynlink.Error(Dynlink.%s)"],
                   msg)];
         }

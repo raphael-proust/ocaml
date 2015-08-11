@@ -432,8 +432,8 @@ var
       function(env,f_desc,pat)
        {var
          iter_pattern=
-          function(pat$1)
-           {var match=pat$1[1];
+          function(pat)
+           {var match=pat[1];
             
             var exit;
             
@@ -447,14 +447,14 @@ var
                  return /* Simple_name */[0,
                          /* record */[0,
                           name,
-                          Odoc_env["subst_type"](env,pat$1[4]),
+                          Odoc_env["subst_type"](env,pat[4]),
                           f_desc(name)]];
                  
                 case 1:return iter_pattern(match[1]);
                 case 3:
                  return /* Tuple */[1,
                          List["map"](iter_pattern,match[1]),
-                         Odoc_env["subst_type"](env,pat$1[4])];
+                         Odoc_env["subst_type"](env,pat[4])];
                  
                 case 4:
                  var match$1=match[2][2][1];
@@ -475,7 +475,7 @@ var
                   {return /* Simple_name */[0,
                            /* record */[0,
                             "()",
-                            Odoc_env["subst_type"](env,pat$1[4]),
+                            Odoc_env["subst_type"](env,pat[4]),
                             /* None */0]];
                    }
                  else
@@ -488,7 +488,7 @@ var
                return /* Simple_name */[0,
                        /* record */[0,
                         "()",
-                        Odoc_env["subst_type"](env,pat$1[4]),
+                        Odoc_env["subst_type"](env,pat[4]),
                         /* None */0]];
                
               }
@@ -804,7 +804,7 @@ var
                             (env,
                              current_method_name,
                              comment_opt,
-                             /* Some */[0,/* false */0],
+                             [/* Some */0,/* false */0],
                              match$6[2])];
                    }
                  else
@@ -812,7 +812,7 @@ var
                            (env,
                             current_method_name,
                             comment_opt,
-                            /* Some */[0,/* false */0],
+                            [/* Some */0,/* false */0],
                             body);
                    }
                  }
@@ -846,7 +846,7 @@ var
         table)
        {var
          iter$1=
-          function(acc_inher,acc_fields,last_pos$1,param)
+          function(acc_inher,acc_fields,last_pos,param)
            {if(param)
              {var q=param[2];
               
@@ -876,9 +876,7 @@ var
                     {throw exn;}
                    }
                  
-                 var
-                  match$1=
-                   get_comments_in_class(last_pos$1,p_clexp[2][1][4]);
+                 var match$1=get_comments_in_class(last_pos,p_clexp[2][1][4]);
                  
                  var info_opt=match$1[1];
                  
@@ -914,7 +912,7 @@ var
                   complete_name=
                    Odoc_name["concat"](current_class_name,label);
                  
-                 var match$3=get_comments_in_class(last_pos$1,loc[1][4]);
+                 var match$3=get_comments_in_class(last_pos,loc[1][4]);
                  
                  try
                   {var type_exp=Typedtree_search[14](tt_cls,label);}
@@ -974,7 +972,7 @@ var
                      complete_name$1=
                       Odoc_name["concat"](current_class_name,label$1);
                     
-                    var match$5=get_comments_in_class(last_pos$1,loc[1][4]);
+                    var match$5=get_comments_in_class(last_pos,loc[1][4]);
                     
                     try
                      {var
@@ -1041,7 +1039,7 @@ var
                      complete_name$2=
                       Odoc_name["concat"](current_class_name,label$1);
                     
-                    var match$7=get_comments_in_class(last_pos$1,loc[1][4]);
+                    var match$7=get_comments_in_class(last_pos,loc[1][4]);
                     
                     var info_opt$1=match$7[1];
                     
@@ -1117,7 +1115,7 @@ var
                {case 297:return iter$1(acc_inher,acc_fields,loc[2][4],q);}
               }
             else
-             {var s=get_string_of_file(last_pos$1,pos_limit);
+             {var s=get_string_of_file(last_pos,pos_limit);
               
               var match$9=My_ir[1](file_name[1],s);
               
@@ -1817,13 +1815,13 @@ var
         
         var
          iter$1=
-          function(env$1,last_pos$1,param)
+          function(env,last_pos,param)
            {if(param)
              {var q=param[2];
               
               var item=param[1];
               
-              var match$1=get_comments_in_module(last_pos$1,item[2][1][4]);
+              var match$1=get_comments_in_module(last_pos,item[2][1][4]);
               
               if(q)
                {var pos_limit2=q[1][2][1][4];}
@@ -1833,7 +1831,7 @@ var
               var
                match$2=
                 analyse_structure_item
-                 (env$1,
+                 (env,
                   current_module_name,
                   item[2],
                   pos_limit2,
@@ -1849,7 +1847,7 @@ var
                         (match$2[3],iter$1(match$2[2],item[2][2][4]+match$2[1],q)));
               }
             else
-             {var s=get_string_of_file(last_pos$1,pos_limit);
+             {var s=get_string_of_file(last_pos,pos_limit);
               
               var match$3=My_ir[1](file_name[1],s);
               
@@ -1982,7 +1980,7 @@ var
            var
             match=
              iter$1
-              (/* Some */[0,/* true */1],
+              ([/* Some */0,/* true */1],
                loc[1][4],
                env,
                /* [] */0,
@@ -2163,7 +2161,7 @@ var
            
            var
             match$1=
-             f(/* Some */[0,/* true */1],0,loc[1][4],name_typedecl_list);
+             f([/* Some */0,/* true */1],0,loc[1][4],name_typedecl_list);
            
            return /* tuple */[0,match$1[1],extended_env,match$1[2]];
            
@@ -2564,7 +2562,7 @@ var
                 {return /* [] */0;}
                };
            
-           var eles=f$1(/* Some */[0,/* true */1],loc[1][4],mods);
+           var eles=f$1([/* Some */0,/* true */1],loc[1][4],mods);
            
            return /* tuple */[0,0,new_env$4,eles];
            
@@ -2615,7 +2613,7 @@ var
             {exit$1=118;}
            
            switch(exit$1)
-            {case 118:var match$9=/* tuple */[0,/* None */0,/* None */0];}
+            {case 118:var match$9=[/* tuple */0,/* None */0,/* None */0];}
            
            var sig_mtype=match$9[2];
            
@@ -2696,14 +2694,14 @@ var
            
            var
             f$2=
-             function($staropt$star,last_pos,class_decl_list$1)
+             function($staropt$star,last_pos,class_decl_list)
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
                 {var first=/* false */0;}
                
-               if(class_decl_list$1)
-                {var class_decl=class_decl_list$1[1];
+               if(class_decl_list)
+                {var class_decl=class_decl_list[1];
                  
                  try
                   {var match$12=Typedtree_search[9](table,class_decl[3][1]);}
@@ -2747,7 +2745,7 @@ var
                          (match$13[2],
                           /* :: */[0,
                            /* Element_class */[3,new_class],
-                           f$2(/* None */0,last_pos2,class_decl_list$1[2])]);
+                           f$2(/* None */0,last_pos2,class_decl_list[2])]);
                  }
                else
                 {return /* [] */0;}
@@ -2756,7 +2754,7 @@ var
            return /* tuple */[0,
                    0,
                    new_env$6,
-                   f$2(/* Some */[0,/* true */1],loc[1][4],class_decl_list)];
+                   f$2([/* Some */0,/* true */1],loc[1][4],class_decl_list)];
            
           case 11:
            var class_type_decl_list=parsetree_item_desc[1];
@@ -2777,14 +2775,14 @@ var
            
            var
             f$3=
-             function($staropt$star,last_pos,class_type_decl_list$1)
+             function($staropt$star,last_pos,class_type_decl_list)
               {if($staropt$star)
                 {var first=$staropt$star[1];}
                else
                 {var first=/* false */0;}
                
-               if(class_type_decl_list$1)
-                {var class_type_decl=class_type_decl_list$1[1];
+               if(class_type_decl_list)
+                {var class_type_decl=class_type_decl_list[1];
                  
                  var name$4=class_type_decl[3];
                  
@@ -2849,7 +2847,7 @@ var
                          (match$12[2],
                           /* :: */[0,
                            new_ele,
-                           f$3(/* None */0,last_pos2,class_type_decl_list$1[2])]);
+                           f$3(/* None */0,last_pos2,class_type_decl_list[2])]);
                  }
                else
                 {return /* [] */0;}
@@ -2859,7 +2857,7 @@ var
                    0,
                    new_env$7,
                    f$3
-                    (/* Some */[0,/* true */1],loc[1][4],class_type_decl_list)];
+                    ([/* Some */0,/* true */1],loc[1][4],class_type_decl_list)];
            
           case 12:
            var im=/* record */[0,"dummy",/* None */0,comment_opt];
@@ -2921,7 +2919,7 @@ var
            comment_opt,
            /* false */0,
            file_name[1],
-           /* Module_struct */[0,/* [] */0],
+           [/* Module_struct */0,/* [] */0],
            /* record */[0,/* Some */[0,loc],/* None */0],
            /* [] */0,
            /* None */0,
@@ -3055,7 +3053,7 @@ var
                {exit$1=158;}
               
               switch(exit$1)
-               {case 158:var mp_kind=/* Module_type_struct */[0,/* [] */0];}
+               {case 158:var mp_kind=[/* Module_type_struct */0,/* [] */0];}
               
               var
                param=
@@ -3185,10 +3183,10 @@ var
               var
                code=
                 Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "(val ...",
-                    /* String */[2,/* No_padding */0,/* End_of_format */0]],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
                    "(val ...%s"],
                   s);
               
@@ -3325,7 +3323,7 @@ var
         
         return /* record */[0,
                 mod_name,
-                /* Mty_signature */[1,/* [] */0],
+                [/* Mty_signature */1,/* [] */0],
                 match$1[2],
                 /* false */0,
                 file_name[1],

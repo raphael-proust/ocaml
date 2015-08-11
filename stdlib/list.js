@@ -36,13 +36,13 @@ var
     else
      {var
        nth_aux=
-        function(l$1,n$1)
-         {if(l$1)
-           {var l$2=l$1[2];
+        function(l,n)
+         {if(l)
+           {var l$1=l[2];
             
-            var a=l$1[1];
+            var a=l[1];
             
-            if(n$1=0){return a;}else{return nth_aux(l$2,n$1-1);}
+            if(n=0){return a;}else{return nth_aux(l$1,n-1);}
             }
           else
            {return Pervasives["failwith"]("nth");}
@@ -198,24 +198,24 @@ var
   function(f,l1,l2)
    {var
      rmap2_f=
-      function(accu,l1$1,l2$1)
-       {var match=l1$1;
+      function(accu,l1,l2)
+       {var match=l1;
         
-        var match$1=l2$1;
+        var match$1=l2;
         
         var exit;
         
         if(match)
          {if(match$1)
-           {var l2$2=match$1[2];
+           {var l2$1=match$1[2];
             
             var a2=match$1[1];
             
-            var l1$2=match[2];
+            var l1$1=match[2];
             
             var a1=match[1];
             
-            return rmap2_f(/* :: */[0,f(a1,a2),accu],l1$2,l2$2);
+            return rmap2_f(/* :: */[0,f(a1,a2),accu],l1$1,l2$1);
             }
           else
            {exit=63;}
@@ -612,7 +612,7 @@ var
       return /* tuple */[0,/* :: */[0,x,rx],/* :: */[0,y,ry]];
       }
     else
-     {return /* tuple */[0,/* [] */0,/* [] */0];}
+     {return [/* tuple */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -750,10 +750,10 @@ var
     
     var
      sort=
-      function(n,l$1)
+      function(n,l)
        {var match=n;
         
-        var match$1=l$1;
+        var match$1=l;
         
         var exit;
         
@@ -846,7 +846,7 @@ var
         
         switch(exit)
          {case 41:
-           var l$2=match$1;
+           var l$1=match$1;
            
            var n$1=match;
            
@@ -854,9 +854,9 @@ var
            
            var n2=n$1-n1;
            
-           var l2=chop(n1,l$2);
+           var l2=chop(n1,l$1);
            
-           var s1=rev_sort(n1,l$2);
+           var s1=rev_sort(n1,l$1);
            
            var s2=rev_sort(n2,l2);
            
@@ -867,10 +867,10 @@ var
     
     var
      rev_sort=
-      function(n,l$1)
+      function(n,l)
        {var match=n;
         
-        var match$1=l$1;
+        var match$1=l;
         
         var exit;
         
@@ -963,7 +963,7 @@ var
         
         switch(exit)
          {case 47:
-           var l$2=match$1;
+           var l$1=match$1;
            
            var n$1=match;
            
@@ -971,9 +971,9 @@ var
            
            var n2=n$1-n1;
            
-           var l2=chop(n1,l$2);
+           var l2=chop(n1,l$1);
            
-           var s1=sort(n1,l$2);
+           var s1=sort(n1,l$1);
            
            var s2=sort(n2,l2);
            
@@ -1066,10 +1066,10 @@ var
     
     var
      sort$1=
-      function(n,l$1)
+      function(n,l)
        {var match=n;
         
-        var match$1=l$1;
+        var match$1=l;
         
         var exit;
         
@@ -1208,7 +1208,7 @@ var
         
         switch(exit)
          {case 14:
-           var l$2=match$1;
+           var l$1=match$1;
            
            var n$1=match;
            
@@ -1216,9 +1216,9 @@ var
            
            var n2=n$1-n1;
            
-           var l2=chop(n1,l$2);
+           var l2=chop(n1,l$1);
            
-           var s1=rev_sort(n1,l$2);
+           var s1=rev_sort(n1,l$1);
            
            var s2=rev_sort(n2,l2);
            
@@ -1229,10 +1229,10 @@ var
     
     var
      rev_sort=
-      function(n,l$1)
+      function(n,l)
        {var match=n;
         
-        var match$1=l$1;
+        var match$1=l;
         
         var exit;
         
@@ -1371,7 +1371,7 @@ var
         
         switch(exit)
          {case 27:
-           var l$2=match$1;
+           var l$1=match$1;
            
            var n$1=match;
            
@@ -1379,9 +1379,9 @@ var
            
            var n2=n$1-n1;
            
-           var l2=chop(n1,l$2);
+           var l2=chop(n1,l$1);
            
-           var s1=sort$1(n1,l$2);
+           var s1=sort$1(n1,l$1);
            
            var s2=sort$1(n2,l2);
            

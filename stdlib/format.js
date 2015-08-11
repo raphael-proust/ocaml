@@ -294,7 +294,7 @@ var
            
            var
             find=
-             function(n$2,param$1)
+             function(n,param$1)
               {if(param$1)
                 {var l=param$1[2];
                  
@@ -303,7 +303,7 @@ var
                  if("unknown primitive:caml_greaterequal")
                   {return x;}
                  else
-                  {return find(n$2,l);}
+                  {return find(n,l);}
                  }
                else
                 {throw Not_found;}
@@ -419,7 +419,7 @@ var
   function(state,s)
    {var len=s["length"];return enqueue_string_as(state,len,s);};
 
-var q_elem=make_queue_elem(-1,/* Pp_text */[0,""],0);
+var q_elem=make_queue_elem(-1,[/* Pp_text */0,""],0);
 
 var scan_stack_bottom=/* :: */[0,/* Scan_elem */[0,-1,q_elem],/* [] */0];
 
@@ -1000,7 +1000,7 @@ var
   function(f,g,h,i)
    {var pp_q=make_queue(/* () */0);
     
-    var sys_tok=make_queue_elem(-1,/* Pp_begin */[3,0,/* Pp_hovbox */3],0);
+    var sys_tok=make_queue_elem(-1,[/* Pp_begin */3,0,/* Pp_hovbox */3],0);
     
     add_queue(sys_tok,pp_q);
     var
@@ -1756,7 +1756,7 @@ var
    {var fmt=param[1];
     
     return CamlinternalFormat["make_printf"]
-            (function(o$1,acc){output_acc(o$1,acc);return k(o$1);},
+            (function(o,acc){output_acc(o,acc);return k(o);},
              o,
              /* End_of_acc */0,
              fmt);
@@ -1814,10 +1814,10 @@ var
     
     var
      k$prime=
-      function(ppf$1,acc)
-       {output_acc(ppf$1,acc);
-        pp_flush_queue(ppf$1,/* false */0);
-        return flush_buf_formatter(b,ppf$1);
+      function(ppf,acc)
+       {output_acc(ppf,acc);
+        pp_flush_queue(ppf,/* false */0);
+        return flush_buf_formatter(b,ppf);
         };
     
     return CamlinternalFormat["make_printf"]

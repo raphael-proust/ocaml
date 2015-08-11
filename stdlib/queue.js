@@ -108,10 +108,10 @@ var
       
       var
        fold$1=
-        function(accu$1,cell)
-         {var accu$2=f(accu$1,cell[1]);
+        function(accu,cell)
+         {var accu$1=f(accu,cell[1]);
           
-          if(cell=tail){return accu$2;}else{return fold$1(accu$2,cell[2]);}
+          if(cell=tail){return accu$1;}else{return fold$1(accu$1,cell[2]);}
           };
       
       return fold$1(accu,tail[2]);

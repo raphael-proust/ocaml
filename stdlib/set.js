@@ -301,7 +301,7 @@ var
             }
           }
         else
-         {return /* tuple */[0,/* Empty */0,/* false */0,/* Empty */0];}
+         {return [/* tuple */0,/* Empty */0,/* false */0,/* Empty */0];}
         };
     
     var empty=/* Empty */0;
@@ -718,7 +718,7 @@ var
            {return /* tuple */[0,concat(lt,rt),join(lf,v,rf)];}
           }
         else
-         {return /* tuple */[0,/* Empty */0,/* Empty */0];}
+         {return [/* tuple */0,/* Empty */0,/* Empty */0];}
         };
     
     var
@@ -773,10 +773,10 @@ var
       function(l)
        {var
          sub=
-          function(n,l$1)
+          function(n,l)
            {var match=n;
             
-            var match$1=l$1;
+            var match$1=l;
             
             var exit;
             
@@ -784,16 +784,16 @@ var
              {exit=6;}
             else
              {switch(match[0])
-               {case 0:var l$2=match$1;return /* tuple */[0,/* Empty */0,l$2];
+               {case 0:var l$1=match$1;return /* tuple */[0,/* Empty */0,l$1];
                 case 1:
                  if(match$1)
-                  {var l$3=match$1[2];
+                  {var l$2=match$1[2];
                    
                    var x0=match$1[1];
                    
                    return /* tuple */[0,
                            /* Node */[0,/* Empty */0,x0,/* Empty */0,1],
-                           l$3];
+                           l$2];
                    }
                  else
                   {exit=6;}
@@ -803,7 +803,7 @@ var
                   {var match$2=match$1[2];
                    
                    if(match$2)
-                    {var l$4=match$2[2];
+                    {var l$3=match$2[2];
                      
                      var x1=match$2[1];
                      
@@ -815,7 +815,7 @@ var
                               x1,
                               /* Empty */0,
                               2],
-                             l$4];
+                             l$3];
                      }
                    else
                     {exit=6;}
@@ -831,7 +831,7 @@ var
                     {var match$4=match$3[2];
                      
                      if(match$4)
-                      {var l$5=match$4[2];
+                      {var l$4=match$4[2];
                        
                        var x2=match$4[1];
                        
@@ -845,7 +845,7 @@ var
                                 x1$1,
                                 /* Node */[0,/* Empty */0,x2,/* Empty */0,1],
                                 2],
-                               l$5];
+                               l$4];
                        }
                      else
                       {exit=6;}
@@ -861,30 +861,30 @@ var
             
             switch(exit)
              {case 6:
-               var l$6=match$1;
+               var l$5=match$1;
                
                var n$1=match;
                
                var nl=n$1/2;
                
-               var match$5=sub(nl,l$6);
+               var match$5=sub(nl,l$5);
                
-               var l$7=match$5[2];
+               var l$6=match$5[2];
                
                var left=match$5[1];
                
-               if(l$7)
-                {var l$8=l$7[2];
+               if(l$6)
+                {var l$7=l$6[2];
                  
-                 var mid=l$7[1];
+                 var mid=l$6[1];
                  
-                 var match$6=sub(n$1-nl-1,l$8);
+                 var match$6=sub(n$1-nl-1,l$7);
                  
-                 var l$9=match$6[2];
+                 var l$8=match$6[2];
                  
                  var right=match$6[1];
                  
-                 return /* tuple */[0,create(left,mid,right),l$9];
+                 return /* tuple */[0,create(left,mid,right),l$8];
                  }
                else
                 {throw [0,Assert_failure,[0,"set.ml",372,18]];}

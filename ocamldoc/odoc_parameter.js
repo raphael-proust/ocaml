@@ -53,11 +53,11 @@ var
   function(pi,name)
    {var
      iter=
-      function(acc,pi$1)
-       {switch(pi$1)
+      function(acc,pi)
+       {switch(pi)
          {case 0:
-           var sn=pi$1[1];return /* :: */[0,/* tuple */[0,sn[1],sn[3]],acc];
-          case 1:return List["fold_left"](iter,acc,pi$1[1]);
+           var sn=pi[1];return /* :: */[0,/* tuple */[0,sn[1],sn[3]],acc];
+          case 1:return List["fold_left"](iter,acc,pi[1]);
           }
         };
     
@@ -71,10 +71,10 @@ var
   function(pi)
    {var
      iter=
-      function(acc,pi$1)
-       {switch(pi$1)
-         {case 0:return /* :: */[0,pi$1[1][1],acc];
-          case 1:return List["fold_left"](iter,acc,pi$1[1]);
+      function(acc,pi)
+       {switch(pi)
+         {case 0:return /* :: */[0,pi[1][1],acc];
+          case 1:return List["fold_left"](iter,acc,pi[1]);
           }
         };
     
@@ -86,11 +86,11 @@ var
   function(pi,name)
    {var
      iter=
-      function(acc,pi$1)
-       {switch(pi$1)
+      function(acc,pi)
+       {switch(pi)
          {case 0:
-           var sn=pi$1[1];return /* :: */[0,/* tuple */[0,sn[1],sn[2]],acc];
-          case 1:return List["fold_left"](iter,acc,pi$1[1]);
+           var sn=pi[1];return /* :: */[0,/* tuple */[0,sn[1],sn[2]],acc];
+          case 1:return List["fold_left"](iter,acc,pi[1]);
           }
         };
     

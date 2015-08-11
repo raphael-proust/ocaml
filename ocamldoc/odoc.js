@@ -79,7 +79,7 @@ var
      {case 20:return /* tuple */[0,List["rev"](files),List["rev"](incs)];}
     };
 
-var match=iter(/* tuple */[0,/* [] */0,/* [] */0],arg_list);
+var match=iter([/* tuple */0,/* [] */0,/* [] */0],arg_list);
 
 var paths=match[2];
 
@@ -101,7 +101,7 @@ var
        {var
          d=
           List["find"]
-           (function(d$1){return "unknown primitive:caml_sys_file_exists";},
+           (function(d){return "unknown primitive:caml_sys_file_exists";},
             paths$1);
         
         return Filename["concat"](d,name);

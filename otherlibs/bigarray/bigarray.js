@@ -48,7 +48,7 @@ var
 
 var
  map_file=
-  function(fd,$staropt$star,kind,layout,shared,dims$1)
+  function(fd,$staropt$star,kind,layout,shared,dims)
    {if($staropt$star)
      {var $starsth$star=$staropt$star[1];var pos=$starsth$star;}
     else
@@ -231,21 +231,21 @@ var
 
 var
  match=
-  function(prim,prim$1){return "unknown primitive:caml_ba_get_generic";};
+  function(prim,prim){return "unknown primitive:caml_ba_get_generic";};
 
 var
  match$1=
-  function(prim,prim$1)
+  function(prim,prim)
    {return "unknown primitive:Bigarray.get[generic,unknown]";};
 
 var
  match$2=
-  function(prim,prim$1,prim$2)
+  function(prim,prim,prim)
    {return "unknown primitive:Bigarray.get[generic,unknown]";};
 
 var
  match$3=
-  function(prim,prim$1,prim$2,prim$3)
+  function(prim,prim,prim,prim)
    {return "unknown primitive:Bigarray.get[generic,unknown]";};
 
 
@@ -273,7 +273,7 @@ module["exports"]=
  "array2_of_genarray":array2_of_genarray,
  "array3_of_genarray":array3_of_genarray,
  "caml_ba_reshape":
- function(prim,prim$1){return "unknown primitive:caml_ba_reshape";},
+ function(prim,prim){return "unknown primitive:caml_ba_reshape";},
  "reshape_1":reshape_1,
  "reshape_2":reshape_2,
  "reshape_3":reshape_3};

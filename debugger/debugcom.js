@@ -285,14 +285,14 @@ var
 
 var
  tag=
-  function(obj$1)
-   {if(!is_block(obj$1))
+  function(obj)
+   {if(!is_block(obj))
      {return Obj["int_tag"];}
     else
-     {switch(obj$1)
+     {switch(obj)
        {case 0:
          Pervasives["output_char"](conn[1][2],72);
-         output_remote_value(conn[1][2],obj$1[1]);
+         output_remote_value(conn[1][2],obj[1]);
          Pervasives["flush"](conn[1][2]);
          var header=Pervasives["input_binary_int"](conn[1][1]);
          

@@ -33,8 +33,8 @@ var select_aux=function(arg){return "unknown primitive:thread_select";};
 
 var
  select=
-  function(readfds,writefds,exceptfds,delay$1)
-   {var match=select_aux(/* tuple */[0,readfds,writefds,exceptfds,delay$1]);
+  function(readfds,writefds,exceptfds,delay)
+   {var match=select_aux(/* tuple */[0,readfds,writefds,exceptfds,delay]);
     
     var exit$1;
     
@@ -54,7 +54,7 @@ var
         default:exit$1=20;}}
     
     switch(exit$1)
-     {case 20:return /* tuple */[0,/* [] */0,/* [] */0,/* [] */0];}
+     {case 20:return [/* tuple */0,/* [] */0,/* [] */0,/* [] */0];}
     };
 
 var wait_read=function(fd){return "unknown primitive:thread_wait_read";};
@@ -71,8 +71,8 @@ var
 
 var
  wait_timed_read=
-  function(fd,delay$1)
-   {var match=wait_timed_read_aux(/* tuple */[0,fd,delay$1]);
+  function(fd,delay)
+   {var match=wait_timed_read_aux(/* tuple */[0,fd,delay]);
     
     var exit$1;
     
@@ -86,8 +86,8 @@ var
 
 var
  wait_timed_write=
-  function(fd,delay$1)
-   {var match=wait_timed_write_aux(/* tuple */[0,fd,delay$1]);
+  function(fd,delay)
+   {var match=wait_timed_write_aux(/* tuple */[0,fd,delay]);
     
     var exit$1;
     

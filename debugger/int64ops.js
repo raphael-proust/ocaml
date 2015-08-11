@@ -4,9 +4,9 @@ var Pervasives=require("Pervasives");
 var Int64=require("Int64");
 
 
-var $plus$plus=function(prim,prim$1){return prim+prim$1;};
+var $plus$plus=function(prim,prim){return prim$1+prim;};
 
-var $neg$neg=function(prim,prim$1){return prim-prim$1;};
+var $neg$neg=function(prim,prim){return prim$1-prim;};
 
 var suc64=Int64["succ"];
 

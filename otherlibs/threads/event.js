@@ -63,11 +63,11 @@ var
     
     var
      poll_events=
-      function(i$1)
-       {if(i$1>=bev["length"])
+      function(i)
+       {if(i>=bev["length"])
          {return /* false */0;}
         else
-         {return bev[i$1][1](/* () */0)||poll_events(i$1+1);}
+         {return bev[i][1](/* () */0)||poll_events(i+1);}
         };
     
     Mutex["lock"](masterlock);
@@ -193,11 +193,11 @@ var
     
     var
      poll_events=
-      function(i$1)
-       {if(i$1>=bev["length"])
+      function(i)
+       {if(i>=bev["length"])
          {return /* false */0;}
         else
-         {return bev[i$1][1](/* () */0)||poll_events(i$1+1);}
+         {return bev[i][1](/* () */0)||poll_events(i+1);}
         };
     
     Mutex["lock"](masterlock);
@@ -372,7 +372,7 @@ var
        var evl=ev[1];
        
        return /* Choose */[1,
-               List["map"](function(ev$1){return wrap(ev$1,fn);},evl)];
+               List["map"](function(ev){return wrap(ev,fn);},evl)];
        
       case 2:
        var f$prime=ev[2];

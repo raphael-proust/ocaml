@@ -267,9 +267,9 @@ var
             {switch($js[0])
               {case 13:
                 if(text[2])
-                 {var match$2=/* tuple */[0,/* false */0,/* true */1];}
+                 {var match$2=[/* tuple */0,/* false */0,/* true */1];}
                 else
-                 {var match$2=/* tuple */[0,/* false */0,/* false */0];}
+                 {var match$2=[/* tuple */0,/* false */0,/* false */0];}
                 
                default:exit=2;}}
            }
@@ -277,13 +277,13 @@ var
           {exit=2;}
          
          switch(exit)
-          {case 2:var match$2=/* tuple */[0,/* true */1,/* true */1];}
+          {case 2:var match$2=[/* tuple */0,/* true */1,/* true */1];}
          
          if(match$2[1])
           {p
             (b,
-             /* Format */[0,
-              /* String_literal */[11,"<br/>",/* End_of_format */0],
+             [/* Format */0,
+              [/* String_literal */11,"<br/>",/* End_of_format */0],
               "<br/>"])}
          else
           {}
@@ -293,8 +293,8 @@ var
          if(match$2[2])
           {return p
                    (b,
-                    /* Format */[0,
-                     /* String_literal */[11,"<br/><br/>\n",/* End_of_format */0],
+                    [/* Format */0,
+                     [/* String_literal */11,"<br/><br/>\n",/* End_of_format */0],
                      "<br/><br/>\n"]);
            }
          else
@@ -306,38 +306,38 @@ var
          
          p
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<a name="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'"></a>\n',/* End_of_format */0]]],
+              [/* String_literal */11,'"></a>\n',/* End_of_format */0]]],
             '<a name="%s"></a>\n'],
            Odoc_html["Naming"][35](label1));
          p
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              "<h",
-             /* Int */[4,
+             [/* Int */4,
               /* Int_d */0,
               /* No_padding */0,
               /* No_precision */0,
-              /* Char_literal */[12,62,/* End_of_format */0]]],
+              [/* Char_literal */12,62,/* End_of_format */0]]],
             "<h%d>"],
            n);
          "unknown block:(sendself self-1/1390 html_of_text/1388 b/1391 t/1394)";
          
          return p
                  (b,
-                  /* Format */[0,
-                   /* String_literal */[11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "</h",
-                    /* Int */[4,
+                    [/* Int */4,
                      /* Int_d */0,
                      /* No_padding */0,
                      /* No_precision */0,
-                     /* Char_literal */[12,62,/* End_of_format */0]]],
+                     [/* Char_literal */12,62,/* End_of_format */0]]],
                    "</h%d>"],
                   n);
          },
@@ -346,26 +346,26 @@ var
         {self$neg1[code_id]=self$neg1[code_id]+1,0;
          Printf["bprintf"]
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<span class="code_expand" onclick="if(document.getElementById(\'code',
-             /* Int */[4,
+             [/* Int */4,
               /* Int_d */0,
               /* No_padding */0,
               /* No_precision */0,
-              /* String_literal */[11,
+              [/* String_literal */11,
                "').style.display=='none') {document.getElementById('code",
-               /* Int */[4,
+               [/* Int */4,
                 /* Int_d */0,
                 /* No_padding */0,
                 /* No_precision */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  "').style.display='block';} else {document.getElementById('code",
-                 /* Int */[4,
+                 [/* Int */4,
                   /* Int_d */0,
                   /* No_padding */0,
                   /* No_precision */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '\').style.display=\'none\';}"><img src="expand_collapse.png" alt="+/-"/></span>',
                    /* End_of_format */0]]]]]]],
             "<span class=\"code_expand\" onclick=\"if(document.getElementById('code%d').style.display=='none') {document.getElementById('code%d').style.display='block';} else {document.getElementById('code%d').style.display='none';}\"><img src=\"expand_collapse.png\" alt=\"+/-\"/></span>"],
@@ -374,14 +374,14 @@ var
            self$neg1[code_id]);
          Printf["bprintf"]
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<div id="code',
-             /* Int */[4,
+             [/* Int */4,
               /* Int_d */0,
               /* No_padding */0,
               /* No_precision */0,
-              /* String_literal */[11,
+              [/* String_literal */11,
                '" class="codeblock">',
                /* End_of_format */0]]],
             '<div id="code%d" class="codeblock">'],
@@ -390,8 +390,8 @@ var
          
          return Printf["bprintf"]
                  (b,
-                  /* Format */[0,
-                   /* String_literal */[11,"</div>",/* End_of_format */0],
+                  [/* Format */0,
+                   [/* String_literal */11,"</div>",/* End_of_format */0],
                    "</div>"]);
          },
        html_of_value,
@@ -405,12 +405,12 @@ var
          bs(b," ");
          bp
           (b,
-           /* Format */[0,
-            /* String_literal */[11,
+           [/* Format */0,
+            [/* String_literal */11,
              '<a name="',
-             /* String */[2,
+             [/* String */2,
               /* No_padding */0,
-              /* String_literal */[11,'"></a>',/* End_of_format */0]]],
+              [/* String_literal */11,'"></a>',/* End_of_format */0]]],
             '<a name="%s"></a>'],
            Odoc_html["Naming"][25](v));
          "unknown block:(sendself self-1/1442 escape/1447\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/1444)))";

@@ -167,20 +167,20 @@ var
 
 var
  advance_to_closing=
-  function(opening,closing$1,k,s,start)
+  function(opening,closing,k,s,start)
    {var
      advance=
-      function(k$1,i,lim)
+      function(k,i,lim)
        {if(i>=lim)
          {throw Not_found;}
         else
          {if(s[i]=opening)
-           {return advance(k$1+1,i+1,lim);}
+           {return advance(k+1,i+1,lim);}
           else
-           {if(s[i]=closing$1)
-             {if(k$1=0){return i;}else{return advance(k$1-1,i+1,lim);}}
+           {if(s[i]=closing)
+             {if(k=0){return i;}else{return advance(k-1,i+1,lim);}}
             else
-             {return advance(k$1,i+1,lim);}
+             {return advance(k,i+1,lim);}
             }
           }
         };

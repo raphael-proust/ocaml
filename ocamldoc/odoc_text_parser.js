@@ -75,7 +75,7 @@ var
   [function(param){return Pervasives["failwith"]("parser");},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return _1;},
-   function(__caml_parser_env){return /* :: */[0,/* Raw */[0,""],/* [] */0];},
+   function(__caml_parser_env){return [/* :: */0,[/* Raw */0,""],/* [] */0];},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
    function(__caml_parser_env)
@@ -111,20 +111,20 @@ var
              _1];
      },
    function(__caml_parser_env){return /* None */0;},
-   function(__caml_parser_env){return /* Some */[0,/* RK_value */4];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_type */5];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_extension */6];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_exception */7];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_module */0];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_module_type */1];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_class */2];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_class_type */3];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_attribute */8];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_method */9];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_value */4];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_type */5];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_extension */6];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_exception */7];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_module */0];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_module_type */1];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_class */2];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_class_type */3];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_attribute */8];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_method */9];},
    function(__caml_parser_env)
-    {return /* Some */[0,/* RK_section */[0,/* [] */0]];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_recfield */10];},
-   function(__caml_parser_env){return /* Some */[0,/* RK_const */11];},
+    {return [/* Some */0,[/* RK_section */0,/* [] */0]];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_recfield */10];},
+   function(__caml_parser_env){return [/* Some */0,/* RK_const */11];},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      

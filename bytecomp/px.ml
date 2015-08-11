@@ -2618,44 +2618,6 @@ module rec
                                               mapping: int IMap.t SMap.t;}
                                             let empty =
                                               { mapping = SMap.empty }
-                                            let string_of_id (id : Ident.t)
-                                              (({ mapping } as cxt) : cxt) =
-                                              (match SMap.find id.name
-                                                       mapping
-                                               with
-                                               | exception Not_found  ->
-                                                   let v = 0 in
-                                                   (v,
-                                                     {
-                                                       mapping =
-                                                         (SMap.add id.name
-                                                            (let open IMap in
-                                                               add id.stamp 0
-                                                                 empty)
-                                                            mapping)
-                                                     })
-                                               | imap ->
-                                                   (match IMap.find id.stamp
-                                                            imap
-                                                    with
-                                                    | exception Not_found  ->
-                                                        let v =
-                                                          IMap.cardinal imap in
-                                                        (v,
-                                                          (let imap2:
-                                                             int IMap.t =
-                                                             let open IMap in
-                                                               add id.stamp v
-                                                                 imap in
-                                                           {
-                                                             mapping =
-                                                               (SMap.add
-                                                                  id.name
-                                                                  imap2
-                                                                  mapping)
-                                                           }))
-                                                    | i -> (i, cxt)) : 
-                                              (int* cxt))
                                             let reserved_words =
                                               ["break";
                                               "case";
@@ -2865,45 +2827,107 @@ module rec
                                                            done;
                                                            Buffer.contents
                                                              buffer)))
-                                            let ident (cxt : cxt) f
-                                              (id : Ident.t) =
-                                              if Jident.is_js id
-                                              then (Pp.string f id.name; cxt)
-                                              else
-                                                if Ident.global id
-                                                then
-                                                  (Pp.string f
-                                                     (convert id.name);
-                                                   cxt)
-                                                else
-                                                  (let (i,new_cxt) =
-                                                     string_of_id id cxt in
-                                                   let () =
-                                                     Pp.string f
-                                                       (if i == 0
-                                                        then convert id.name
+                                            let string_of_id ?(replace=
+                                              false)  (id : Ident.t)
+                                              (({ mapping } as cxt) : cxt) =
+                                              (match SMap.find id.name
+                                                       mapping
+                                               with
+                                               | exception Not_found  ->
+                                                   (0,
+                                                     {
+                                                       mapping =
+                                                         (SMap.add id.name
+                                                            (let open IMap in
+                                                               add id.stamp 0
+                                                                 empty)
+                                                            mapping)
+                                                     })
+                                               | imap ->
+                                                   (match IMap.find id.stamp
+                                                            imap
+                                                    with
+                                                    | exception Not_found  ->
+                                                        if
+                                                          replace &&
+                                                            (id.name <>
+                                                               "param")
+                                                        then
+                                                          (0,
+                                                            {
+                                                              mapping =
+                                                                (SMap.add
+                                                                   id.name
+                                                                   (let open IMap in
+                                                                    add
+                                                                    id.stamp
+                                                                    0 empty)
+                                                                   mapping)
+                                                            })
                                                         else
-                                                          Printf.sprintf
-                                                            "%s$%d"
-                                                            (convert id.name)
-                                                            i) in
-                                                   new_cxt)
+                                                          (let v =
+                                                             IMap.cardinal
+                                                               imap in
+                                                           (v,
+                                                             {
+                                                               mapping =
+                                                                 (SMap.add
+                                                                    id.name
+                                                                    (
+                                                                    let open IMap in
+                                                                    add
+                                                                    id.stamp
+                                                                    v imap : 
+                                                                    int
+                                                                    IMap.t)
+                                                                    mapping)
+                                                             }))
+                                                    | i -> (i, cxt)) : 
+                                              (int* cxt))
+                                            let ident ?replace  (cxt : cxt) f
+                                              (id : Ident.t) =
+                                              (if Jident.is_js id
+                                               then
+                                                 (Pp.string f id.name; cxt)
+                                               else
+                                                 if Ident.global id
+                                                 then
+                                                   (Pp.string f
+                                                      (convert id.name);
+                                                    cxt)
+                                                 else
+                                                   (let (i,new_cxt) =
+                                                      string_of_id ?replace
+                                                        id cxt in
+                                                    let () =
+                                                      Pp.string f
+                                                        (if i == 0
+                                                         then convert id.name
+                                                         else
+                                                           Printf.sprintf
+                                                             "%s$%d"
+                                                             (convert id.name)
+                                                             i) in
+                                                    new_cxt) : cxt)
+                                            let rec formal_parameter_list cxt
+                                              f l =
+                                              match l with
+                                              | [] -> cxt
+                                              | i::[] ->
+                                                  ident ~replace:true cxt f i
+                                              | i::r ->
+                                                  let cxt =
+                                                    ident ~replace:true cxt f
+                                                      i in
+                                                  (Pp.string f ",";
+                                                   Pp.break f;
+                                                   formal_parameter_list cxt
+                                                     f r)
                                             let opt_identifier cxt f i =
                                               match i with
                                               | None  -> cxt
                                               | Some i ->
                                                   (Pp.space f; ident cxt f i)
-                                            let rec formal_parameter_list cxt
-                                              f l =
-                                              match l with
-                                              | [] -> cxt
-                                              | i::[] -> ident cxt f i
-                                              | i::r ->
-                                                  let cxt = ident cxt f i in
-                                                  (Pp.string f ",";
-                                                   Pp.break f;
-                                                   formal_parameter_list cxt
-                                                     f r)
                                             let rec ends_with_if_without_else
                                               ({ statement_desc = st;_} :
                                                 J.statement)

@@ -72,13 +72,13 @@ var
     catch(exn)
      {if(exn[1]=Pparse["Error"])
        {Format["eprintf"]
-         (/* Format */[0,
-           /* String_literal */[11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "Preprocessing error",
-            /* Formatting_lit */[17,
+            [/* Formatting_lit */17,
              /* Flush_newline */4,
-             /* Alpha */[15,
-              /* Formatting_lit */[17,
+             [/* Alpha */15,
+              [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0]]]],
            "Preprocessing error@.%a@."],
@@ -131,13 +131,13 @@ var
      {if(e[1]=Syntaxerr["Error"])
        {Format["fprintf"]
          (Format["err_formatter"],
-          /* Format */[0,
-           /* Formatting_gen */[18,
-            /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
-            /* Alpha */[15,
-             /* Formatting_lit */[17,
+          [/* Format */0,
+           [/* Formatting_gen */18,
+            [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+            [/* Alpha */15,
+             [/* Formatting_lit */17,
               /* Close_box */0,
-              /* Formatting_lit */[17,
+              [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0]]]],
            "@[%a@]@."],
@@ -204,13 +204,13 @@ var
     if(match)
      {return Format["fprintf"]
               (Format["err_formatter"],
-               /* Format */[0,
-                /* Formatting_gen */[18,
-                 /* Open_box */[1,/* Format */[0,/* End_of_format */0,""]],
-                 /* Alpha */[15,
-                  /* Formatting_lit */[17,
+               [/* Format */0,
+                [/* Formatting_gen */18,
+                 [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                 [/* Alpha */15,
+                  [/* Formatting_lit */17,
                    /* Close_box */0,
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]]]],
                 "@[%a@]@."],
@@ -220,14 +220,14 @@ var
     else
      {return Format["fprintf"]
               (Format["err_formatter"],
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "Compilation error(",
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    "). Use the OCaml compiler to get more details.",
-                   /* Formatting_lit */[17,
+                   [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]]]],
                 "Compilation error(%s). Use the OCaml compiler to get more details.@."],
@@ -384,7 +384,7 @@ var
           m=
            /* record */[0,
             mod_name,
-            /* Mty_signature */[1,/* [] */0],
+            [/* Mty_signature */1,/* [] */0],
             /* None */0,
             /* true */1,
             file$2,
@@ -767,7 +767,7 @@ var
          {return Pervasives["@"]
                   (acc,
                    Odoc_module["module_all_submodules"]
-                    (/* Some */[0,/* false */0],m));
+                    ([/* Some */0,/* false */0],m));
           },
         merged_modules,
         merged_modules);

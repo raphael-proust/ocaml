@@ -443,13 +443,13 @@ var current_dir_name$3=match$1[1];
 
 var
  concat=
-  function(dirname$4,filename)
-   {var l=dirname$4["length"];
+  function(dirname,filename)
+   {var l=dirname["length"];
     
-    if((l=0)||is_dir_sep$3(dirname$4,l-1))
-     {return Pervasives["^"](dirname$4,filename);}
+    if((l=0)||is_dir_sep$3(dirname,l-1))
+     {return Pervasives["^"](dirname,filename);}
     else
-     {return Pervasives["^"](dirname$4,Pervasives["^"](dir_sep$3,filename));}
+     {return Pervasives["^"](dirname,Pervasives["^"](dir_sep$3,filename));}
     };
 
 var
@@ -502,14 +502,14 @@ var
     return concat
             (temp_dir,
              Printf["sprintf"]
-              (/* Format */[0,
-                /* String */[2,
+              ([/* Format */0,
+                [/* String */2,
                  /* No_padding */0,
-                 /* Int */[4,
+                 [/* Int */4,
                   /* Int_x */6,
-                  /* Lit_padding */[0,/* Zeros */2,6],
+                  [/* Lit_padding */0,/* Zeros */2,6],
                   /* No_precision */0,
-                  /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                 "%s%06x%s"],
                prefix,
                rnd,
@@ -552,14 +552,14 @@ var
 
 var
  open_temp_file=
-  function($staropt$star,$staropt$star$1,prefix,suffix)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var mode=$starsth$star;}
+  function($staropt$star,$staropt$star,prefix,suffix)
+   {if($staropt$star$1)
+     {var $starsth$star=$staropt$star$1[1];var mode=$starsth$star;}
     else
-     {var mode=/* :: */[0,/* Open_text */7,/* [] */0];}
+     {var mode=[/* :: */0,/* Open_text */7,/* [] */0];}
     
-    if($staropt$star$1)
-     {var $starsth$star$1=$staropt$star$1[1];var temp_dir=$starsth$star$1;}
+    if($staropt$star)
+     {var $starsth$star$1=$staropt$star[1];var temp_dir=$starsth$star$1;}
     else
      {var temp_dir=current_temp_dir_name[1];}
     

@@ -348,14 +348,14 @@ var
                               head=
                                /* Code */[1,
                                 Printf["sprintf"]
-                                 (/* Format */[0,
-                                   /* Char_literal */[12,
+                                 ([/* Format */0,
+                                   [/* Char_literal */12,
                                     91,
-                                    /* Int */[4,
+                                    [/* Int */4,
                                      /* Int_d */0,
                                      /* No_padding */0,
                                      /* No_precision */0,
-                                     /* String_literal */[11,"] ",/* End_of_format */0]]],
+                                     [/* String_literal */11,"] ",/* End_of_format */0]]],
                                    "[%d] "],
                                   n)];
                              
@@ -385,11 +385,11 @@ var
             {var
               l$1=
                List["sort"]
-                (function(a,b$1)
+                (function(a,b)
                   {var match$2=a[1];
                    
                    if(match$2)
-                    {var match$3=b$1[1];
+                    {var match$3=b[1];
                      
                      if(match$3)
                       {return "unknown primitive:caml_int_compare";}
@@ -403,16 +403,16 @@ var
              
              p
               (self$neg1[b],
-               /* Format */[0,
-                /* String_literal */[11,
+               [/* Format */0,
+                [/* String_literal */11,
                  '<pre><a href="',
-                 /* String */[2,
+                 [/* String */2,
                   /* No_padding */0,
-                  /* String_literal */[11,
+                  [/* String_literal */11,
                    '">',
-                   /* String */[2,
+                   [/* String */2,
                     /* No_padding */0,
-                    /* String_literal */[11,
+                    [/* String_literal */11,
                      '</a></pre><div class="info">',
                      /* End_of_format */0]]]]],
                 '<pre><a href="%s">%s</a></pre><div class="info">'],
@@ -428,14 +428,14 @@ var
                    
                    if(2<switcher>>>0)
                     {return Printf["sprintf"]
-                             (/* Format */[0,
-                               /* Char_literal */[12,
+                             ([/* Format */0,
+                               [/* Char_literal */12,
                                 35,
-                                /* Int */[4,
+                                [/* Int */4,
                                  /* Int_x */6,
-                                 /* Lit_padding */[0,/* Right */1,2],
+                                 [/* Lit_padding */0,/* Right */1,2],
                                  /* No_precision */0,
-                                 /* String_literal */[11,"0000",/* End_of_format */0]]],
+                                 [/* String_literal */11,"0000",/* End_of_format */0]]],
                                "#%2x0000"],
                               170-n*16);
                      }
@@ -455,20 +455,20 @@ var
               (function(param)
                 {Printf["bprintf"]
                   (self$neg1[b],
-                   /* Format */[0,
-                    /* String_literal */[11,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      '<span style="color: ',
-                     /* String */[2,
+                     [/* String */2,
                       /* No_padding */0,
-                      /* String_literal */[11,'">',/* End_of_format */0]]],
+                      [/* String_literal */11,'">',/* End_of_format */0]]],
                     '<span style="color: %s">'],
                    col(param[1]));
                  "unknown block:(send (array.unsafe_get self-1/1301 html/1249) 34801153\n  (array.unsafe_get self-1/1301 b/1283) (field 1 param/1675))";
                  
                  return p
                          (self$neg1[b],
-                          /* Format */[0,
-                           /* String_literal */[11,
+                          [/* Format */0,
+                           [/* String_literal */11,
                             "</span><br/>\n",
                             /* End_of_format */0],
                            "</span><br/>\n"]);
@@ -476,8 +476,8 @@ var
                l$1);
              return p
                      (self$neg1[b],
-                      /* Format */[0,
-                       /* String_literal */[11,"</div>",/* End_of_format */0],
+                      [/* Format */0,
+                       [/* String_literal */11,"</div>",/* End_of_format */0],
                        "</div>"]);
              }
            else
@@ -547,7 +547,7 @@ var
                        
                       }
                     },
-                  Odoc_module["module_elements"](/* Some */[0,/* false */0],m));
+                  Odoc_module["module_elements"]([/* Some */0,/* false */0],m));
          },
        scan_included_module,
        function(self$neg1,param){return /* () */0;},
@@ -575,11 +575,11 @@ var
          
          return /* true */1;
          }]);
-    return function(env,$$self,html$1)
+    return function(env,$$self,html)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[html]=
-      html$1,
+      $$self$1[html$1]=
+      html,
       0,
       obj_init($$self$1),
       $$self$1[b]=
@@ -663,19 +663,19 @@ var
         
         p
          (b,
-          /* Format */[0,
-           /* String_literal */[11,"<html>",/* End_of_format */0],
+          [/* Format */0,
+           [/* String_literal */11,"<html>",/* End_of_format */0],
            "<html>"]);
         "unknown block:(sendself self-2/1537 print_header/1542 b/1541 0a 0a title/1539)";
         
         p
          (b,
-          /* Format */[0,
-           /* String_literal */[11,
+          [/* Format */0,
+           [/* String_literal */11,
             "<body><h1>",
-            /* String */[2,
+            [/* String */2,
              /* No_padding */0,
-             /* String_literal */[11,"</h1>",/* End_of_format */0]]],
+             [/* String_literal */11,"</h1>",/* End_of_format */0]]],
            "<body><h1>%s</h1>"],
           title);
         "unknown block:(send (array.unsafe_get self-2/1537 scanner/1534) -342620401 modules/1538)";

@@ -23,16 +23,16 @@ var
      {switch(param[0])
        {case 0:
          return Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     'Ocamlfind returned "',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '" as a dependency for package "',
-                      /* String */[2,
+                      [/* String */2,
                        /* No_padding */0,
-                       /* String_literal */[11,
+                       [/* String_literal */11,
                         '" but does not know this dependency.',
                         /* End_of_format */0]]]]],
                    'Ocamlfind returned "%s" as a dependency for package "%s" but does not know this dependency.'],
@@ -41,25 +41,25 @@ var
          
         case 1:
          return Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     'Findlib package not found: "',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,'".',/* End_of_format */0]]],
+                     [/* String_literal */11,'".',/* End_of_format */0]]],
                    'Findlib package not found: "%s".'],
                   param[1]);
          
         case 2:
          return Printf["sprintf"]
-                 (/* Format */[0,
-                   /* String_literal */[11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     'Cannot parse Ocamlfind query for package "',
-                    /* String */[2,
+                    [/* String */2,
                      /* No_padding */0,
-                     /* String_literal */[11,
+                     [/* String_literal */11,
                       '": ',
-                      /* String */[2,/* No_padding */0,/* End_of_format */0]]]],
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                    'Cannot parse Ocamlfind query for package "%s": %s'],
                   param[1],
                   param[2]);
@@ -82,11 +82,11 @@ var
  run_and_parse=
   function(lexer,command)
    {return Printf["ksprintf"]
-            (function(command$1)
+            (function(command)
               {return My_std["&"]
                        (lexer,
                         My_std["&"]
-                         (Lexing["from_string"],My_unix["run_and_read"](command$1)));
+                         (Lexing["from_string"],My_unix["run_and_read"](command)));
                },
              command);
     };
@@ -108,12 +108,12 @@ var
            match=
             run_and_parse
              (Lexers["ocamlfind_query"](Const["Source"][4]),
-              /* Format */[0,
-               /* String */[2,
+              [/* Format */0,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " query -l -predicates byte ",
-                 /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                "%s query -l -predicates byte %s"],
               ocamlfind,
               name);
@@ -124,12 +124,12 @@ var
            a_native=
             run_and_parse
              (Lexers["trim_blanks"](Const["Source"][4]),
-              /* Format */[0,
-               /* String */[2,
+              [/* Format */0,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " query -a-format -predicates native ",
-                 /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                "%s query -a-format -predicates native %s"],
               ocamlfind,
               name);
@@ -138,12 +138,12 @@ var
            deps=
             run_and_parse
              (Lexers["blank_sep_strings"](Const["Source"][4]),
-              /* Format */[0,
-               /* String */[2,
+              [/* Format */0,
+               [/* String */2,
                 /* No_padding */0,
-                /* String_literal */[11,
+                [/* String_literal */11,
                  " query -r -p-format ",
-                 /* String */[2,/* No_padding */0,/* End_of_format */0]]],
+                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                "%s query -r -p-format %s"],
               ocamlfind,
               name);
@@ -151,7 +151,7 @@ var
           var
            deps$1=
             My_std["List"][33]
-             (function(prim,prim$1){return "unknown primitive:caml_notequal";}
+             (function(prim,prim){return "unknown primitive:caml_notequal";}
                (n),
               deps);
           
@@ -218,11 +218,11 @@ var
     
     var
      go=
-      function(s$1)
-       {var pos=My_std["String"][29](s$1,10);
+      function(s)
+       {var pos=My_std["String"][29](s,10);
         
-        x[1]=/* :: */[0,My_std["String"][3](s$1,pos),x[1]],0;
-        return go(My_std["String"][4](s$1,pos+1));
+        x[1]=/* :: */[0,My_std["String"][3](s,pos),x[1]],0;
+        return go(My_std["String"][4](s,pos+1));
         };
     
     try
@@ -246,10 +246,10 @@ var
              My_std["&"]
               (split_nl,
                run_and_read
-                (/* Format */[0,
-                  /* String */[2,
+                ([/* Format */0,
+                  [/* String */2,
                    /* No_padding */0,
-                   /* String_literal */[11," list",/* End_of_format */0]],
+                   [/* String_literal */11," list",/* End_of_format */0]],
                   "%s list"],
                  ocamlfind)));
     };
@@ -259,12 +259,8 @@ var
   function(l)
    {var
      add=
-      function(l$1,x)
-       {if(My_std["List"][30](x,l$1))
-         {return l$1;}
-        else
-         {return /* :: */[0,x,l$1];}
-        };
+      function(l,x)
+       {if(My_std["List"][30](x,l)){return l;}else{return /* :: */[0,x,l];}};
     
     var
      l$1=
@@ -310,8 +306,8 @@ var
     var
      flags$1=
       My_std["List"][19]
-       (function(acc,l$1)
-         {return add_atom(/* P */[2,l$1],add_atom(/* A */[1,"-I"],acc));},
+       (function(acc,l)
+         {return add_atom(/* P */[2,l],add_atom([/* A */1,"-I"],acc));},
         flags,
         SSet[20](locations));
     
@@ -337,8 +333,8 @@ var
     var
      flags$1=
       My_std["List"][19]
-       (function(acc,l$1)
-         {return add_atom(/* P */[2,l$1],add_atom(/* A */[1,"-I"],acc));},
+       (function(acc,l)
+         {return add_atom(/* P */[2,l],add_atom([/* A */1,"-I"],acc));},
         flags,
         SSet[20](locations));
     

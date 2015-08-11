@@ -11,7 +11,7 @@ var Hashtbl=require("Hashtbl");
 var Config=require("Config");
 
 
-var source_extensions=/* :: */[0,".ml",/* [] */0];
+var source_extensions=[/* :: */0,".ml",/* [] */0];
 
 var
  source_of_module=
@@ -195,7 +195,7 @@ var
          {if(position<0)
            {throw Primitives["Out_of_range"];}
           else
-           {return /* tuple */[0,0,1];}
+           {return [/* tuple */0,0,1];}
           }
         };
     
@@ -228,7 +228,7 @@ var
          {if(line<=0)
            {throw Primitives["Out_of_range"];}
           else
-           {return /* tuple */[0,0,1];}
+           {return [/* tuple */0,0,1];}
           }
         };
     
