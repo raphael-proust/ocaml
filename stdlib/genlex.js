@@ -94,7 +94,7 @@ var
               if(5<switcher$1>>>0)
                {exit=10;}
               else
-               {switch(switcher$1[0])
+               {switch(switcher$1)
                  {case 0:exit=13;
                   case 1:exit=11;
                   case 2:exit=13;
@@ -110,7 +110,7 @@ var
               else
                {var switcher$2=65+switcher;
                 
-                switch(switcher$2[0])
+                switch(switcher$2)
                  {case 0:exit=13;
                   case 1:exit=13;
                   case 2:exit=13;
@@ -335,7 +335,7 @@ var
              {if(c>=33)
                {var switcher$1=-33+c;
                 
-                switch(switcher$1[0])
+                switch(switcher$1)
                  {case 0:exit$1=19;
                   case 1:exit=18;
                   case 2:exit$1=19;
@@ -676,7 +676,7 @@ var
             if(6<switcher>>>0)
              {exit=56;}
             else
-             {switch(switcher[0])
+             {switch(switcher)
                {case 0:Stream["junk"](strm__);return 10;
                 case 1:exit=56;
                 case 2:exit=56;
@@ -781,7 +781,7 @@ var
           if(2<switcher>>>0)
            {exit=60;}
           else
-           {switch(switcher[0])
+           {switch(switcher)
              {case 0:
                Stream["junk"](strm__);return maybe_nested_comment(strm__);
               case 1:exit=60;

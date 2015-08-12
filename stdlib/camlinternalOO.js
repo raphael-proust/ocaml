@@ -678,8 +678,8 @@ var
     
     var clo=next(/* () */0);
     
-    if("unknown primitive:isint")
-     {switch(clo[0])
+    if(typeof clo==="number")
+     {switch(clo)
        {case 0:var x=next(/* () */0);return get_const(x);
         case 1:var n=next(/* () */0);return get_var(n);
         case 2:

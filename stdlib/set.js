@@ -783,7 +783,7 @@ var
             if(3<match>>>0)
              {exit=6;}
             else
-             {switch(match[0])
+             {switch(match)
                {case 0:var l$1=match$1;return /* tuple */[0,/* Empty */0,l$1];
                 case 1:
                  if(match$1)

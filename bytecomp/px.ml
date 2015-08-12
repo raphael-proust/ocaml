@@ -602,7 +602,11 @@ module rec
            E.call
              (E.access (E.var (Jident.create_js "CamlPrimtivie"))
                 (E.str prim_name)) args
-       | Pisint |Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
+       | Pisint  ->
+           (match args with
+            | e::[] -> let open E in bin EqEqEq (typeof e) (E.str "number")
+            | _ -> Gen_util.expr_of_unknow_primitive prim)
+       | Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
        | Pduprecord (_,_)|Plazyforce |Pbittest |Pcvtbint (_,_)|Pbigarrayref
          (_,_,_,_)|Pbigarrayset (_,_,_,_)|Pbigarraydim _|Pstring_load_16 _
          |Pstring_load_32 _|Pstring_load_64 _|Pstring_set_16 _|Pstring_set_32
@@ -1268,10 +1272,10 @@ module rec
                                        } lam))
                             with
                             | (0,_,(block,Some e)) ->
-                                aux st e sw_blocks default
-                            | (_,0,(block,Some e)) ->
-                                aux st (E.access e (E.float 0.)) sw_consts
+                                aux st (E.access e (E.float 0.)) sw_blocks
                                   default
+                            | (_,0,(block,Some e)) ->
+                                aux st e sw_consts default
                             | (_,_,(block,Some e)) ->
                                 let aux e =
                                   [S.if_

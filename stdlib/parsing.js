@@ -74,7 +74,7 @@ var
       function(cmd,arg)
        {var match=CamlPrimtivie["caml_parse_engine"](tables,env,cmd,arg);
         
-        switch(match[0])
+        switch(match)
          {case 0:
            var t=lexer(lexbuf);
            

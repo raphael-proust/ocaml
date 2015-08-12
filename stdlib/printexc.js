@@ -111,7 +111,7 @@ var
                other_fields(x,2));
       }
     else
-     {switch(n[0])
+     {switch(n)
        {case 0:return "";
         case 1:return "";
         case 2:
@@ -299,7 +299,7 @@ var
           }
         };
     
-    switch(slot)
+    switch(slot[0])
      {case 0:
        var endchar=slot[5];
        
@@ -457,7 +457,7 @@ var
 var
  backtrace_slot_is_raise=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var is_raise=param[1];return is_raise;
       case 1:var is_raise$1=param[1];return is_raise$1;
       }
@@ -466,7 +466,7 @@ var
 var
  backtrace_slot_location=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var end_char=param[5];
        
@@ -494,7 +494,8 @@ var
       var
        usable_slot=
         function(param)
-         {switch(param){case 0:return /* true */1;case 1:return /* false */0;}
+         {switch(param[0])
+           {case 0:return /* true */1;case 1:return /* false */0;}
           };
       
       var

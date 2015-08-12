@@ -65,7 +65,7 @@ var
     var key=param[1];
     
     if(doc["length"]>0)
-     {switch(spec)
+     {switch(spec[0])
        {case 11:
          var l=spec[1];
          
@@ -206,7 +206,7 @@ var
       function(error)
        {if(initpos<l){var progname=argv[initpos];}else{var progname="(?)";}
         
-        switch(error)
+        switch(error[0])
          {case 0:
            var s=error[1];
            
@@ -326,7 +326,7 @@ var
             function(param)
              {var exit;
               
-              switch(param)
+              switch(param[0])
                {case 0:var f=param[1];return f(/* () */0);
                 case 1:
                  var f$1=param[1];
@@ -687,7 +687,7 @@ var
     
     var kwd=param[1];
     
-    switch(spec)
+    switch(spec[0])
      {case 11:return Pervasives["max"](cur,kwd["length"]);
       default:return Pervasives["max"](cur,kwd["length"]+second_word(doc));}
     };
@@ -704,7 +704,7 @@ var
     switch(match)
      {case "":return ksd;
       default:
-       switch(spec)
+       switch(spec[0])
         {case 11:
           var msg=ksd[3];
           

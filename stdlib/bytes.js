@@ -246,7 +246,7 @@ var
           else
            {var switcher$2=34+switcher;
             
-            switch(switcher$2[0])
+            switch(switcher$2)
              {case 0:exit$1=27;
               case 1:exit$1=27;
               case 2:exit$1=27;

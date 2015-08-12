@@ -457,7 +457,7 @@ var
     if(32<switcher>>>0)
      {exit=228;}
     else
-     {switch(switcher[0])
+     {switch(switcher)
        {case 0:exit=227;
         case 1:exit=228;
         case 2:exit=228;
@@ -721,7 +721,7 @@ var
     if(2<switcher>>>0)
      {exit=186;}
     else
-     {switch(switcher[0])
+     {switch(switcher)
        {case 0:return Scanning[7](width,ib,c);
         case 1:exit=186;
         case 2:return Scanning[7](width,ib,c);
@@ -801,7 +801,7 @@ var
     if(32<switcher>>>0)
      {exit=174;}
     else
-     {switch(switcher[0])
+     {switch(switcher)
        {case 0:exit=173;
         case 1:exit=174;
         case 2:exit=174;
@@ -1031,7 +1031,7 @@ var
       else
        {var switcher=-110+c;
         
-        switch(switcher[0])
+        switch(switcher)
          {case 0:return 10;
           case 1:exit=141;
           case 2:exit=141;
@@ -1136,7 +1136,7 @@ var
         if(28<switcher>>>0)
          {exit=128;}
         else
-         {switch(switcher[0])
+         {switch(switcher)
            {case 0:exit=126;
             case 1:exit=128;
             case 2:exit=128;
@@ -1462,7 +1462,7 @@ var
 var
  get_counter=
   function(ib,counter)
-   {switch(counter[0])
+   {switch(counter)
      {case 0:return Scanning[13](ib);
       case 1:return Scanning[12](ib);
       case 2:return Scanning[14](ib);
@@ -1532,7 +1532,7 @@ var
         case 18:
          var match=fmt[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var rest$18=fmt[2];
             
@@ -1754,7 +1754,7 @@ var
              case 18:
               var match$3=rest$2[1];
               
-              switch(match$3)
+              switch(match$3[0])
                {case 0:
                  var pad$1=pad;
                  
@@ -2073,7 +2073,7 @@ var
         case 18:
          var match$13=fmt[1];
          
-         switch(match$13)
+         switch(match$13[0])
           {case 0:
             var rest$20=fmt[2];
             
@@ -2222,7 +2222,7 @@ var
     if(typeof match=="number")
      {switch(match)
        {case 0:
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {return Pervasives["invalid_arg"]('scanf: bad conversion "%*"');}
            else
@@ -2252,7 +2252,7 @@ var
          if(match$4!=0)
           {var w=match[2];
            
-           if("unknown primitive:isint")
+           if(typeof match$1==="number")
             {if(match$1!=0)
               {return Pervasives["invalid_arg"]('scanf: bad conversion "%*"');
                }
@@ -2344,7 +2344,7 @@ var
           switch(exit){case 21:var match=/* Exc */[1,exc];}
           }
         
-        switch(match)
+        switch(match[0])
          {case 0:var args=match[1];return apply(f,args);
           case 1:var exc$1=match[1];return ef(ib,exc$1);
           }

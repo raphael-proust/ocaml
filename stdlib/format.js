@@ -248,7 +248,7 @@ var
            
            var ty=match$8[1];
            
-           switch(ty[0])
+           switch(ty)
             {case 0:return break_same_line(state,n);
              case 1:return break_new_line(state,off,width$1);
              case 2:return break_new_line(state,off,width$1);
@@ -1275,7 +1275,7 @@ var
          
          var p$1=acc[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var acc$prime=match[1];
             
@@ -1505,7 +1505,7 @@ var
          
          var p$1=acc[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var acc$prime=match[1];
             

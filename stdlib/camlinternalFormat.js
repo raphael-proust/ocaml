@@ -236,7 +236,7 @@ var
   function(iconv)
    {var exit;
     
-    switch(iconv[0])
+    switch(iconv)
      {case 0:exit=387;
       case 1:exit=387;
       case 2:exit=387;
@@ -266,7 +266,7 @@ var
   function(fconv)
    {var exit;
     
-    switch(fconv[0])
+    switch(fconv)
      {case 0:exit=381;
       case 1:exit=381;
       case 2:exit=381;
@@ -297,7 +297,7 @@ var
 var
  char_of_counter=
   function(counter)
-   {switch(counter[0]){case 0:return 108;case 1:return 110;case 2:return 78;}};
+   {switch(counter){case 0:return 108;case 1:return 110;case 2:return 78;}};
 
 var
  bprint_char_set=
@@ -441,7 +441,7 @@ var
 var
  bprint_padty=
   function(buf,padty)
-   {switch(padty[0])
+   {switch(padty)
      {case 0:return buffer_add_char(buf,45);
       case 1:return /* () */0;
       case 2:return buffer_add_char(buf,48);
@@ -492,7 +492,7 @@ var
 var
  bprint_precision=
   function(buf,prec)
-   {if("unknown primitive:isint")
+   {if(typeof prec==="number")
      {if(prec!=0){return buffer_add_string(buf,".*");}else{return /* () */0;}}
     else
      {var n=prec[1];
@@ -507,7 +507,7 @@ var
   function(buf,iconv)
    {var exit;
     
-    switch(iconv[0])
+    switch(iconv)
      {case 0:exit=365;
       case 1:exit=362;
       case 2:exit=363;
@@ -559,7 +559,7 @@ var
   function(buf,fconv)
    {var exit;
     
-    switch(fconv[0])
+    switch(fconv)
      {case 0:exit=358;
       case 1:exit=356;
       case 2:exit=357;
@@ -624,7 +624,7 @@ var
 var
  string_of_formatting_gen=
   function(formatting_gen)
-   {switch(formatting_gen)
+   {switch(formatting_gen[0])
      {case 0:var match=formatting_gen[1];var str=match[2];return str;
       case 1:var match$1=formatting_gen[1];var str$1=match$1[2];return str$1;
       }
@@ -1824,7 +1824,7 @@ var
 var
  fmtty_of_formatting_gen=
   function(formatting_gen)
-   {switch(formatting_gen)
+   {switch(formatting_gen[0])
      {case 0:
        var match=formatting_gen[1];var fmt=match[1];return fmtty_of_fmt(fmt);
       case 1:
@@ -2052,7 +2052,7 @@ var
 var
  fmtty_of_precision_fmtty=
   function(prec,fmtty)
-   {if("unknown primitive:isint")
+   {if(typeof prec==="number")
      {if(prec!=0){return /* Int_ty */[2,fmtty];}else{return fmtty;}}
     else
      {return fmtty;}
@@ -2115,7 +2115,7 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
+    if(typeof match$1==="number")
      {if(match$1!=0)
        {var match$3=match$2[2];
         
@@ -2160,7 +2160,7 @@ var
     
     var match$1=match[2];
     
-    if("unknown primitive:isint")
+    if(typeof match$1==="number")
      {var fmt$prime=match[1];return fmt$prime;}
     else
      {throw Type_mismatch;}
@@ -2807,7 +2807,7 @@ var
 var
  type_formatting_gen=
   function(formatting_gen,fmt0,fmtty0)
-   {switch(formatting_gen)
+   {switch(formatting_gen[0])
      {case 0:
        var match=formatting_gen[1];
        
@@ -3463,7 +3463,7 @@ var
     else
      {var res=Bytes["make"](width$1,(padty$1=/* Zeros */2)?48:32);
       
-      switch(padty$1[0])
+      switch(padty$1)
        {case 0:$$String["blit"](str,0,res,0,len);
         case 1:$$String["blit"](str,0,res,width$1-len,len);
         case 2:
@@ -3504,7 +3504,7 @@ var
        {if(c>=43)
          {var switcher$1=-43+c;
           
-          switch(switcher$1[0])
+          switch(switcher$1)
            {case 0:exit=275;
             case 1:exit=274;
             case 2:exit=275;
@@ -3576,7 +3576,7 @@ var
 var
  format_of_iconv=
   function(iconv)
-   {switch(iconv[0])
+   {switch(iconv)
      {case 0:return "%d";
       case 1:return "%+d";
       case 2:return "% d";
@@ -3596,7 +3596,7 @@ var
 var
  format_of_aconv=
   function(iconv,c)
-   {switch(iconv[0])
+   {switch(iconv)
      {case 0:var seps=[/* :: */0,"%",[/* :: */0,"d",/* [] */0]];
       case 1:var seps=[/* :: */0,"%+",[/* :: */0,"d",/* [] */0]];
       case 2:var seps=[/* :: */0,"% ",[/* :: */0,"d",/* [] */0]];
@@ -3911,7 +3911,7 @@ var
         case 18:
          var match=fmt[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var rest$18=fmt[2];
             
@@ -4178,7 +4178,7 @@ var
     if(typeof match=="number")
      {switch(match)
        {case 0:
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {return function(p,x)
               {var str=fix_int_precision(p,trans(iconv,x));
@@ -4212,7 +4212,7 @@ var
          
          var padty=match[1];
          
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {var w$1=w;
              
@@ -4253,7 +4253,7 @@ var
         case 1:
          var padty$3=match[1];
          
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {var padty$4=padty$3;
              
@@ -4300,7 +4300,7 @@ var
     if(typeof match=="number")
      {switch(match)
        {case 0:
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {return function(p,x)
               {var str=convert_float(fconv,p,x);
@@ -4334,7 +4334,7 @@ var
          
          var padty=match[1];
          
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {var w$1=w;
              
@@ -4374,7 +4374,7 @@ var
         case 1:
          var padty$3=match[1];
          
-         if("unknown primitive:isint")
+         if(typeof match$1==="number")
           {if(match$1!=0)
             {var padty$4=padty$3;
              
@@ -4446,7 +4446,7 @@ var
          
          var p$1=acc[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var acc$prime=match[1];
             
@@ -4533,7 +4533,7 @@ var
          
          var p$1=acc[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var acc$prime=match[1];
             
@@ -4620,7 +4620,7 @@ var
          
          var p$1=acc[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var acc$prime=match[1];
             
@@ -4855,7 +4855,7 @@ var
 var
  make_precision_fmt_ebb=
   function(prec,fmt)
-   {if("unknown primitive:isint")
+   {if(typeof prec==="number")
      {if(prec!=0)
        {return /* Precision_fmt_EBB */[0,/* Arg_precision */1,fmt];}
       else
@@ -5113,7 +5113,7 @@ var
             if(16<switcher>>>0)
              {exit=7;}
             else
-             {switch(switcher[0])
+             {switch(switcher)
                {case 0:set_flag(str_ind,space);return read_flags(str_ind+1);
                 case 1:exit=7;
                 case 2:exit=7;
@@ -5220,7 +5220,7 @@ var
         
         switch(exit)
          {case 16:
-           switch(padty[0])
+           switch(padty)
             {case 0:
               if(!legacy_behavior$1)
                {invalid_format_without(str_ind-1,45,"padding")}
@@ -5331,7 +5331,7 @@ var
          {if(symb>=42)
            {var switcher=-42+symb;
             
-            switch(switcher[0])
+            switch(switcher)
              {case 0:
                return parse_after_precision
                        (pct_ind,
@@ -5405,14 +5405,14 @@ var
                      str[str_ind]);
             };
         
-        if("unknown primitive:isint")
+        if(typeof pad==="number")
          {var match=minus;
           
           var match$1=prec;
           
           var exit;
           
-          if("unknown primitive:isint")
+          if(typeof match$1==="number")
            {if(match$1!=0)
              {exit=24;}
             else
@@ -5424,7 +5424,7 @@ var
           switch(exit)
            {case 24:
              if(match!=0)
-              {if("unknown primitive:isint")
+              {if(typeof match$1==="number")
                 {return parse_conv([/* Arg_padding */1,/* Left */0]);}
                else
                 {var n=match$1[1];
@@ -5433,7 +5433,7 @@ var
                  }
                }
              else
-              {if("unknown primitive:isint")
+              {if(typeof match$1==="number")
                 {return parse_conv([/* Arg_padding */1,/* Right */1]);}
                else
                 {var n$1=match$1[1];
@@ -5530,7 +5530,7 @@ var
                {case 0:
                  var match=pad[1];
                  
-                 switch(match[0])
+                 switch(match)
                   {case 0:
                     var width=pad[2];
                     
@@ -5565,7 +5565,7 @@ var
           function(param)
            {var match=get_prec(/* () */0);
             
-            if("unknown primitive:isint")
+            if(typeof match==="number")
              {if(match!=0)
                {return incompatible_flag(pct_ind,str_ind,95,"'*'");}
               else
@@ -5580,7 +5580,7 @@ var
         if(symb>=124)
          {exit=63;}
         else
-         {switch(symb[0])
+         {switch(symb)
            {case 0:exit=63;
             case 1:exit=63;
             case 2:exit=63;
@@ -5988,7 +5988,7 @@ var
              
              var exit$1;
              
-             if("unknown primitive:isint")
+             if(typeof match$22==="number")
               {if(match$22!=0)
                 {exit$1=36;}
                else
@@ -6180,7 +6180,7 @@ var
              else
               {var switcher=-108+symb;
                
-               switch(switcher[0])
+               switch(switcher)
                 {case 0:
                   var
                    iconv$1=
@@ -6442,7 +6442,7 @@ var
               if(2<switcher>>>0)
                {exit=91;}
               else
-               {switch(switcher[0])
+               {switch(switcher)
                  {case 0:return parse_tag(/* true */1,str_ind+1,end_ind);
                   case 1:exit=91;
                   case 2:
@@ -6460,7 +6460,7 @@ var
              {if(c>=91)
                {var switcher$1=-91+c;
                 
-                switch(switcher$1[0])
+                switch(switcher$1)
                  {case 0:return parse_tag(/* false */0,str_ind+1,end_ind);
                   case 1:exit=91;
                   case 2:
@@ -6482,7 +6482,7 @@ var
              {if(c>=32)
                {var switcher$2=-32+c;
                 
-                switch(switcher$2[0])
+                switch(switcher$2)
                  {case 0:
                    var match$2=parse(str_ind+1,end_ind);
                    
@@ -6607,7 +6607,7 @@ var
            {case 11:
              var match=fmt[2];
              
-             if("unknown primitive:isint")
+             if(typeof match==="number")
               {var str$1=fmt[1];
                
                try
@@ -7208,7 +7208,7 @@ var
                 else
                  {var switcher=-123+match$1;
                   
-                  switch(switcher[0])
+                  switch(switcher)
                    {case 0:
                      var sub_end=search_subformat_end(str_ind+2,end_ind,125);
                      
@@ -7278,7 +7278,7 @@ var
         if(32<switcher>>>0)
          {exit=158;}
         else
-         {switch(switcher[0])
+         {switch(switcher)
            {case 0:exit=157;
             case 1:exit=158;
             case 2:exit=158;
@@ -7330,7 +7330,7 @@ var
           else
            {var switcher=-108+symb;
             
-            switch(switcher[0])
+            switch(switcher)
              {case 0:return /* Line_counter */0;
               case 1:exit=159;
               case 2:return /* Char_counter */1;
@@ -7401,7 +7401,7 @@ var
               if(32<switcher>>>0)
                {exit=160;}
               else
-               {switch(switcher[0])
+               {switch(switcher)
                  {case 0:return /* Int_X */8;
                   case 1:exit=160;
                   case 2:exit=160;
@@ -7450,7 +7450,7 @@ var
            if(32<switcher$1>>>0)
             {"unknown block:(exit 160)";}
            else
-            {switch(switcher$1[0])
+            {switch(switcher$1)
               {case 0:
                 if(legacy_behavior$1)
                  {return /* Int_CX */9;}
@@ -7575,7 +7575,7 @@ var
               if(2<switcher>>>0)
                {exit=164;}
               else
-               {switch(switcher[0])
+               {switch(switcher)
                  {case 0:return /* Float_pe */4;
                   case 1:return /* Float_pf */1;
                   case 2:return /* Float_pg */10;
@@ -7586,7 +7586,7 @@ var
              {if(match$2>=69)
                {var switcher$1=-69+match$2;
                 
-                switch(switcher$1[0])
+                switch(switcher$1)
                  {case 0:return /* Float_pE */7;
                   case 1:exit=164;
                   case 2:return /* Float_pG */13;
@@ -7618,7 +7618,7 @@ var
               if(2<switcher$2>>>0)
                {exit$1=165;}
               else
-               {switch(switcher$2[0])
+               {switch(switcher$2)
                  {case 0:return /* Float_se */5;
                   case 1:return /* Float_sf */2;
                   case 2:return /* Float_sg */11;
@@ -7629,7 +7629,7 @@ var
              {if(match$2>=69)
                {var switcher$3=-69+match$2;
                 
-                switch(switcher$3[0])
+                switch(switcher$3)
                  {case 0:return /* Float_sE */8;
                   case 1:exit$1=165;
                   case 2:return /* Float_sG */14;
@@ -7659,7 +7659,7 @@ var
               if(2<switcher$4>>>0)
                {exit$2=166;}
               else
-               {switch(switcher$4[0])
+               {switch(switcher$4)
                  {case 0:return /* Float_e */3;
                   case 1:return /* Float_f */0;
                   case 2:return /* Float_g */9;
@@ -7670,7 +7670,7 @@ var
              {if(match$2>=69)
                {var switcher$5=-69+match$2;
                 
-                switch(switcher$5[0])
+                switch(switcher$5)
                  {case 0:return /* Float_E */6;
                   case 1:return /* Float_F */15;
                   case 2:return /* Float_G */12;

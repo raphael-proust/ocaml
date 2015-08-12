@@ -22,7 +22,7 @@ var
        {if(c>=14)
          {exit=7;}
         else
-         {switch(c[0])
+         {switch(c)
            {case 0:exit=7;
             case 1:exit=7;
             case 2:exit=7;
