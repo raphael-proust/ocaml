@@ -3549,7 +3549,7 @@ var
          return Bytes["unsafe_to_string"](res$1);
          }
        else
-        {"unknown block:(exit 274)";}
+        {/* error */"(exit 274)";}
        
       case 276:
        if(prec$1>len)
@@ -3559,7 +3559,7 @@ var
          return Bytes["unsafe_to_string"](res$2);
          }
        else
-        {"unknown block:(exit 274)";}
+        {/* error */"(exit 274)";}
        
       case 274:return str;
       }
@@ -5361,7 +5361,7 @@ var
            if(legacy_behavior$1)
             {return parse_literal$1(minus||(symb=45),str_ind+1);}
            else
-            {"unknown block:(exit 19)";}
+            {/* error */"(exit 19)";}
            
           case 19:
            if(legacy_behavior$1)
@@ -6079,7 +6079,7 @@ var
                }
              }
            else
-            {"unknown block:(exit 63)";}
+            {/* error */"(exit 63)";}
            
           case 66:
            var
@@ -6176,7 +6176,7 @@ var
           case 63:
            if(symb>=108)
             {if(symb>=111)
-              {"unknown block:(exit 62)";}
+              {/* error */"(exit 62)";}
              else
               {var switcher=-108+symb;
                
@@ -6228,7 +6228,7 @@ var
                         fmt_rest$prime$4]];
                     }
                   
-                 case 1:"unknown block:(exit 62)";
+                 case 1:/* error */"(exit 62)";
                  case 2:
                   var
                    iconv$2=
@@ -6281,7 +6281,7 @@ var
              }
            else
             {if(symb!=76)
-              {"unknown block:(exit 62)";}
+              {/* error */"(exit 62)";}
              else
               {var
                 iconv$3=
@@ -6413,7 +6413,7 @@ var
             }
           
           switch(exit$2)
-           {case 28:if(legacy_behavior$1){}else{"unknown block:(exit 27)";}
+           {case 28:if(legacy_behavior$1){}else{/* error */"(exit 27)";}
             case 27:incompatible_flag(pct_ind,str_ind,symb,"'_'")
             }
           }
@@ -6963,7 +6963,7 @@ var
                  return parse_char_set_content(str_ind+1,end_ind);
                  }
                else
-                {"unknown block:(exit 132)";}
+                {/* error */"(exit 132)";}
                
               case 132:
                var c$prime$1=c$prime;
@@ -7448,56 +7448,56 @@ var
            var switcher$1=-88+match$3;
            
            if(32<switcher$1>>>0)
-            {"unknown block:(exit 160)";}
+            {/* error */"(exit 160)";}
            else
             {switch(switcher$1)
               {case 0:
                 if(legacy_behavior$1)
                  {return /* Int_CX */9;}
                 else
-                 {"unknown block:(exit 160)";}
+                 {/* error */"(exit 160)";}
                 
-               case 1:"unknown block:(exit 160)";
-               case 2:"unknown block:(exit 160)";
-               case 3:"unknown block:(exit 160)";
-               case 4:"unknown block:(exit 160)";
-               case 5:"unknown block:(exit 160)";
-               case 6:"unknown block:(exit 160)";
-               case 7:"unknown block:(exit 160)";
-               case 8:"unknown block:(exit 160)";
-               case 9:"unknown block:(exit 160)";
-               case 10:"unknown block:(exit 160)";
-               case 11:"unknown block:(exit 160)";
+               case 1:/* error */"(exit 160)";
+               case 2:/* error */"(exit 160)";
+               case 3:/* error */"(exit 160)";
+               case 4:/* error */"(exit 160)";
+               case 5:/* error */"(exit 160)";
+               case 6:/* error */"(exit 160)";
+               case 7:/* error */"(exit 160)";
+               case 8:/* error */"(exit 160)";
+               case 9:/* error */"(exit 160)";
+               case 10:/* error */"(exit 160)";
+               case 11:/* error */"(exit 160)";
                case 12:exit$1=163;
-               case 13:"unknown block:(exit 160)";
-               case 14:"unknown block:(exit 160)";
-               case 15:"unknown block:(exit 160)";
-               case 16:"unknown block:(exit 160)";
+               case 13:/* error */"(exit 160)";
+               case 14:/* error */"(exit 160)";
+               case 15:/* error */"(exit 160)";
+               case 16:/* error */"(exit 160)";
                case 17:exit$1=163;
-               case 18:"unknown block:(exit 160)";
-               case 19:"unknown block:(exit 160)";
-               case 20:"unknown block:(exit 160)";
-               case 21:"unknown block:(exit 160)";
-               case 22:"unknown block:(exit 160)";
+               case 18:/* error */"(exit 160)";
+               case 19:/* error */"(exit 160)";
+               case 20:/* error */"(exit 160)";
+               case 21:/* error */"(exit 160)";
+               case 22:/* error */"(exit 160)";
                case 23:
                 if(legacy_behavior$1)
                  {return /* Int_Co */11;}
                 else
-                 {"unknown block:(exit 160)";}
+                 {/* error */"(exit 160)";}
                 
-               case 24:"unknown block:(exit 160)";
-               case 25:"unknown block:(exit 160)";
-               case 26:"unknown block:(exit 160)";
-               case 27:"unknown block:(exit 160)";
-               case 28:"unknown block:(exit 160)";
+               case 24:/* error */"(exit 160)";
+               case 25:/* error */"(exit 160)";
+               case 26:/* error */"(exit 160)";
+               case 27:/* error */"(exit 160)";
+               case 28:/* error */"(exit 160)";
                case 29:exit$1=163;
-               case 30:"unknown block:(exit 160)";
-               case 31:"unknown block:(exit 160)";
+               case 30:/* error */"(exit 160)";
+               case 31:/* error */"(exit 160)";
                case 32:
                 if(legacy_behavior$1)
                  {return /* Int_Cx */7;}
                 else
-                 {"unknown block:(exit 160)";}
+                 {/* error */"(exit 160)";}
                 
                }
              }

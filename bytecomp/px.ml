@@ -335,6 +335,28 @@ module J :
     and case_clause = (expression* block)
     and block = statement list
   end 
+module Util :
+  sig val string_of_fmt : (Format.formatter -> 'a -> unit) -> 'a -> string
+  end =
+  struct
+    let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
+      let buf = Buffer.create 37 in
+      let fmt = Format.formatter_of_buffer buf in
+      let () = f fmt v; Format.pp_print_flush fmt () in Buffer.contents buf
+  end 
+module Lambda_util :
+  sig
+    val string_of_lambda : Lambda.lambda -> string
+    val string_of_primitive : Lambda.primitive -> string
+  end =
+  struct
+    let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
+      let buf = Buffer.create 37 in
+      let fmt = Format.formatter_of_buffer buf in
+      let () = f fmt v; Format.pp_print_flush fmt () in Buffer.contents buf
+    let string_of_lambda = string_of_fmt Printlambda.lambda
+    let string_of_primitive = string_of_fmt Printlambda.primitive
+  end 
 module Jident :
   sig
     val is_js : Ident.t -> bool
@@ -384,7 +406,7 @@ module rec
             | _ -> assert false)
        | serializable_sigs -> get_name serializable_sigs pos : string)
     let string_of_value_description id =
-      Gen_util.string_of_fmt (Printtyp.value_description id)
+      Util.string_of_fmt (Printtyp.value_description id)
     let rec dump_summary fmt (x : Env.summary) =
       match x with
       | Env_empty  -> ()
@@ -396,7 +418,7 @@ module rec
       match Env.find_value (Pident id) env with
       | exception Not_found  -> ""
       | { val_type } ->
-          Gen_util.string_of_fmt (!Oprint.out_type)
+          Util.string_of_fmt (!Oprint.out_type)
             (Printtyp.tree_of_type_scheme val_type)
     module E = J_helper.Exp
     module S = J_helper.Stmt
@@ -657,9 +679,6 @@ module rec
                     | Declare of J.ident
                     | NeedValue
                     | Assign of J.ident
-                  val string_of_fmt :
-                    (Format.formatter -> 'a -> unit) -> 'a -> string
-                  val string_of_lambda : Lambda.lambda -> string
                   val unknown_expr : Lambda.lambda -> J.expression
                   val unknown_block : Lambda.lambda -> J.block
                   val expr_of_unknow_primitive :
@@ -694,26 +713,22 @@ module rec
            | Declare of J.ident
            | NeedValue
            | Assign of J.ident
-         let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
-           let buf = Buffer.create 37 in
-           let fmt = Format.formatter_of_buffer buf in
-           let () = f fmt v; Format.pp_print_flush fmt () in
-           Buffer.contents buf
-         let string_of_lambda = string_of_fmt Printlambda.lambda
-         let string_of_primitive = string_of_fmt Printlambda.primitive
          let unknown_expr (lam : Lambda.lambda) =
-           (E.str ("unknown block:" ^ (string_of_lambda lam)) : J.expression)
+           (E.str ("unknown block:" ^ (Lambda_util.string_of_lambda lam)) : 
+           J.expression)
          let unknown_block (lam : Lambda.lambda) =
            ([let open J_helper in
                Stmt.exp @@
                  (Exp.mk
                     (EStr
-                       (("unknown block:" ^ (string_of_lambda lam)), `Utf8)))] : 
+                       (("unknown block:" ^
+                           (Lambda_util.string_of_lambda lam)), `Utf8)))] : 
            J.block)
          let string_of_unknown_lam (lam : Lambda.lambda) =
-           ("unknown block:" ^ (string_of_lambda lam) : string)
+           ("unknown block:" ^ (Lambda_util.string_of_lambda lam) : string)
          let expr_of_unknow_primitive (lam : Lambda.primitive) =
-           (E.str ("unknown primitive:" ^ (string_of_primitive lam)) : 
+           (E.str
+              ("unknown primitive:" ^ (Lambda_util.string_of_primitive lam)) : 
            J.expression)
          let rec is_pure (lam : Lambda.lambda) =
            match lam with
@@ -899,6 +914,9 @@ module rec
                          val return :
                            ?comment:string ->
                              ?loc:J.location -> J.expression option -> t
+                         val unknown_lambda :
+                           ?comment:string ->
+                             ?loc:J.location -> Lambda.lambda -> t
                        end
                      end =
             struct
@@ -1037,6 +1055,10 @@ module rec
                        statement_desc = (Try (body, with_, finally));
                        comment
                      } : t)
+                  let unknown_lambda ?comment  ?loc  (lam : Lambda.lambda) =
+                    (exp ?comment ?loc
+                       (Exp.str (Lambda_util.string_of_lambda lam)) : 
+                    t)
                 end
               let unit_val = Exp.float 0.
               let return_unit: J.block =
@@ -1325,7 +1347,7 @@ module rec
                                          fun (arg : Ident.t)  ->
                                            match x with
                                            | Lvar id ->
-                                               ([J_helper.Stmt.variable arg
+                                               ([S.variable arg
                                                    ~loc_exp:((E.var id), N)],
                                                  None)
                                            | _ ->
@@ -1340,7 +1362,8 @@ module rec
                                  ([J_helper.Stmt.assign exit_id (E.int i)],
                                    (Some Gen_util.undefined))
                            | exception Not_found  ->
-                               ((Gen_util.unknown_block lam), None))
+                               ([S.unknown_lambda ~comment:"error" lam],
+                                 None))
                       | Lstaticcatch _ ->
                           let (code_table,body) = flat_catches [] lam in
                           let exit_id = Gen_util.gen ~name:"exit" () in
@@ -1518,8 +1541,10 @@ module rec
                                Gen_util.handle_block_return st should_return
                                  lam (fn_code @ args_code) exp)
                       | Lsend (meth_kind,lam1,lam2,lams,loc) ->
-                          ((Gen_util.unknown_block lam),
-                            (Some Gen_util.unit_val))
+                          (match meth_kind with
+                           | Public |Cached |Self  ->
+                               ((Gen_util.unknown_block lam),
+                                 (Some Gen_util.unit_val)))
                       | Levent (lam,_lam_event) -> compile_lambda cxt lam
                       | Lifused (_,lam) -> compile_lambda cxt lam : Gen_util.output)
                    type group =
