@@ -741,7 +741,9 @@ var
        function(self$neg1,fmt,s,t){return /* () */0;},
        latex_of_Target,
        function(self$neg1,fmt,target,code)
-        {if("unknown primitive:caml_string_equal")
+        {if
+          (Primtivie["caml_string_equal"]
+            ($$String["lowercase"](target),"latex"))
           {"unknown block:(sendself self-1/1441 latex_of_Latex/1307 fmt/1442 code/1444)";
            }
          else
@@ -2837,7 +2839,7 @@ var
            
            var file=Filename["concat"](dir,"ocamldoc.sty");
            
-           if("unknown primitive:caml_sys_file_exists")
+           if(Primtivie["caml_sys_file_exists"](file))
             {return Odoc_info["verbose"]
                      (Odoc_messages["file_exists_dont_generate"](file));
              }

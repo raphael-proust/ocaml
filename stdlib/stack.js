@@ -3,7 +3,7 @@
 var List=require("List");
 
 
-var Empty="unknown primitive:caml_set_oo_id";
+var Empty=CamlPrimtivie["caml_set_oo_id"]([248,"Stack.Empty",0]);
 
 var create=function(param){return /* record */[0,/* [] */0];};
 

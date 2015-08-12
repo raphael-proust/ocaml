@@ -44,7 +44,7 @@ var
   function(x,i)
    {var f=x[i];
     
-    if(!"unknown primitive:caml_obj_is_block")
+    if(!CamlPrimtivie["caml_obj_is_block"](f))
      {return Printf["sprintf"]
               ([/* Format */0,
                 [/* Int */4,
@@ -56,7 +56,7 @@ var
                f);
       }
     else
-     {if("unknown primitive:caml_obj_tag"=Obj["string_tag"])
+     {if(CamlPrimtivie["caml_obj_tag"](f)=Obj["string_tag"])
        {return Printf["sprintf"]
                 ([/* Format */0,
                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
@@ -64,7 +64,7 @@ var
                  f);
         }
       else
-       {if("unknown primitive:caml_obj_tag"=Obj["double_tag"])
+       {if(CamlPrimtivie["caml_obj_tag"](f)=Obj["double_tag"])
          {return Pervasives["string_of_float"](f);}
         else
          {return "_";}
@@ -208,7 +208,7 @@ var
                   else
                    {var x$1=x;
                     
-                    if("unknown primitive:caml_obj_tag"!=0)
+                    if(CamlPrimtivie["caml_obj_tag"](x$1)!=0)
                      {return x$1[0];}
                     else
                      {var constructor=x$1[0][0];
@@ -274,7 +274,9 @@ var
      {return /* Some */[0,
               $$Array["map"]
                (function(prim)
-                 {return "unknown primitive:caml_convert_raw_backtrace_slot";},
+                 {return CamlPrimtivie["caml_convert_raw_backtrace_slot"]
+                          (prim);
+                  },
                 rbckt)];
       }
     catch(exn)
@@ -411,7 +413,8 @@ var
  print_backtrace=
   function(outchan)
    {return print_raw_backtrace
-            (outchan,"unknown primitive:caml_get_exception_raw_backtrace");
+            (outchan,
+             CamlPrimtivie["caml_get_exception_raw_backtrace"](/* () */0));
     };
 
 var
@@ -529,7 +532,7 @@ var
   function(param)
    {return backtrace_to_string
             (convert_raw_backtrace
-              ("unknown primitive:caml_get_exception_raw_backtrace"));
+              (CamlPrimtivie["caml_get_exception_raw_backtrace"](/* () */0)));
     };
 
 var
@@ -541,7 +544,7 @@ var
   function(x)
    {var x$1=x;
     
-    if("unknown primitive:caml_obj_tag"=0){return x$1[0];}else{return x$1;}
+    if(CamlPrimtivie["caml_obj_tag"](x$1)=0){return x$1[0];}else{return x$1;}
     };
 
 var exn_slot_id=function(x){var slot=exn_slot(x);return slot[1];};
@@ -554,13 +557,13 @@ var
  set_uncaught_exception_handler=
   function(fn){return uncaught_exception_handler[1]=/* Some */[0,fn],0;};
 
-var empty_backtrace="unknown primitive:caml_obj_block";
+var empty_backtrace=CamlPrimtivie["caml_obj_block"](Obj["abstract_tag"],0);
 
 var
  try_get_raw_backtrace=
   function(param)
    {try
-     {return "unknown primitive:caml_get_exception_raw_backtrace";}
+     {return CamlPrimtivie["caml_get_exception_raw_backtrace"](/* () */0);}
     catch(exn){return empty_backtrace;}
     };
 
@@ -640,7 +643,10 @@ var
     catch(exn$1){return /* () */0;}
     };
 
-var match="unknown primitive:caml_register_named_value";
+var
+ match=
+  CamlPrimtivie["caml_register_named_value"]
+   ("Printexc.handle_uncaught_exception",handle_uncaught_exception);
 
 module["exports"]=
 {"to_string":to_string,
@@ -649,23 +655,25 @@ module["exports"]=
  "print_backtrace":print_backtrace,
  "get_backtrace":get_backtrace,
  "caml_record_backtrace":
- function(prim){return "unknown primitive:caml_record_backtrace";},
+ function(prim){return CamlPrimtivie["caml_record_backtrace"](prim);},
  "caml_backtrace_status":
- function(prim){return "unknown primitive:caml_backtrace_status";},
+ function(prim){return CamlPrimtivie["caml_backtrace_status"](prim);},
  "register_printer":register_printer,
  "caml_get_exception_raw_backtrace":
- function(prim){return "unknown primitive:caml_get_exception_raw_backtrace";},
+ function(prim)
+  {return CamlPrimtivie["caml_get_exception_raw_backtrace"](prim);},
  "print_raw_backtrace":print_raw_backtrace,
  "raw_backtrace_to_string":raw_backtrace_to_string,
  "caml_get_current_callstack":
- function(prim){return "unknown primitive:caml_get_current_callstack";},
+ function(prim){return CamlPrimtivie["caml_get_current_callstack"](prim);},
  "set_uncaught_exception_handler":set_uncaught_exception_handler,
  "backtrace_slots":backtrace_slots,
  "Slot":[0,Slot[2],Slot[3],Slot[1]],
  "raw_backtrace_length":raw_backtrace_length,
  "get_raw_backtrace_slot":get_raw_backtrace_slot,
  "caml_convert_raw_backtrace_slot":
- function(prim){return "unknown primitive:caml_convert_raw_backtrace_slot";},
+ function(prim)
+  {return CamlPrimtivie["caml_convert_raw_backtrace_slot"](prim);},
  "exn_slot_id":exn_slot_id,
  "exn_slot_name":exn_slot_name};
 

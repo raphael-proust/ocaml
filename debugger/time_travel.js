@@ -20,9 +20,14 @@ var Sys=require("Sys");
 var Debugcom=require("Debugcom");
 
 
-var Current_checkpoint_lost="unknown primitive:caml_set_oo_id";
+var
+ Current_checkpoint_lost=
+  Primtivie["caml_set_oo_id"]([248,"Time_travel.Current_checkpoint_lost",0]);
 
-var Current_checkpoint_lost_start_at="unknown primitive:caml_set_oo_id";
+var
+ Current_checkpoint_lost_start_at=
+  Primtivie["caml_set_oo_id"]
+   ([248,"Time_travel.Current_checkpoint_lost_start_at",0]);
 
 var
  remove_1st=
@@ -268,7 +273,7 @@ var
                   
                   var t2=param$1[1];
                   
-                  return "unknown primitive:caml_int64_compare";
+                  return Primtivie["caml_int64_compare"](t2,t1);
                   },
                 accepted,
                 match$1[1]),

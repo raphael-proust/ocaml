@@ -335,7 +335,9 @@ var
             if(match$1)
              {var t=match$1[1];
               
-              if("unknown primitive:caml_equal")
+              if
+               (Primtivie["caml_equal"]
+                 (t,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js=/* [] */0;}
               else
                {var

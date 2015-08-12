@@ -170,7 +170,9 @@ var
   function(param)
    {var $js;
     try
-     {$js="unknown primitive:caml_string_notequal";}
+     {$js=
+      CamlPrimtivie["caml_string_notequal"](Unix["getenv"]("TERM"),"dumb");
+      }
     catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
     return Unix["isatty"](Unix["stdout"])&&$js;
     };

@@ -7,7 +7,7 @@ var Sys=require("Sys");
 var
  print_stat=
   function(c)
-   {var st="unknown primitive:caml_gc_stat";
+   {var st=CamlPrimtivie["caml_gc_stat"](/* () */0);
     
     Printf["fprintf"]
      (c,
@@ -194,7 +194,7 @@ var
 var
  allocated_bytes=
   function(param)
-   {var match="unknown primitive:caml_gc_counters";
+   {var match=CamlPrimtivie["caml_gc_counters"](/* () */0);
     
     var ma=match[3];
     
@@ -209,7 +209,9 @@ var
  call_alarm=
   function(arec)
    {if(arec[1][1])
-     {"unknown primitive:caml_final_register";return arec[2](/* () */0);}
+     {CamlPrimtivie["caml_final_register"](call_alarm,arec);
+      return arec[2](/* () */0);
+      }
     else
      {return 0;}
     };
@@ -219,7 +221,7 @@ var
   function(f)
    {var arec=/* record */[0,[0,/* true */1],f];
     
-    "unknown primitive:caml_final_register";
+    CamlPrimtivie["caml_final_register"](call_alarm,arec);
     return arec[1];
     };
 
@@ -229,9 +231,10 @@ module["exports"]=
 {"print_stat":print_stat,
  "allocated_bytes":allocated_bytes,
  "caml_final_register":
- function(prim,prim){return "unknown primitive:caml_final_register";},
+ function(prim,prim)
+  {return CamlPrimtivie["caml_final_register"](prim$1,prim);},
  "caml_final_release":
- function(prim){return "unknown primitive:caml_final_release";},
+ function(prim){return CamlPrimtivie["caml_final_release"](prim);},
  "create_alarm":create_alarm,
  "delete_alarm":delete_alarm};
 

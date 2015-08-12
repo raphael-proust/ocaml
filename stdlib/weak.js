@@ -13,7 +13,7 @@ var
    {if(ofs<0||len<0||ofs+len>length(ar))
      {throw [0,Invalid_argument,"Weak.fill"];}
     else
-     {for(var i=ofs;i<=ofs+len-1;i++){"unknown primitive:caml_weak_set"}}
+     {for(var i=ofs;i<=ofs+len-1;i++){CamlPrimtivie["caml_weak_set"](ar,i,x)}}
     };
 
 var
@@ -21,7 +21,7 @@ var
   function(H)
    {var
      weak_create=
-      function(prim){return "unknown primitive:caml_weak_create";};
+      function(prim){return CamlPrimtivie["caml_weak_create"](prim);};
     
     var emptybucket=weak_create(0);
     
@@ -44,8 +44,8 @@ var
          {var sz$2=sz$1;}
         
         return /* record */[0,
-                "unknown primitive:caml_make_vect",
-                "unknown primitive:caml_make_vect",
+                CamlPrimtivie["caml_make_vect"](sz$2,emptybucket),
+                CamlPrimtivie["caml_make_vect"](sz$2,[]),
                 limit,
                 0,
                 0];
@@ -70,7 +70,7 @@ var
            {if(i>=length(b))
              {return accu;}
             else
-             {var match="unknown primitive:caml_weak_get";
+             {var match=CamlPrimtivie["caml_weak_get"](b,i);
               
               if(match)
                {var v=match[1];return fold_bucket(i+1,b,f(v,accu));}
@@ -91,7 +91,7 @@ var
            {if(i>=length(b))
              {return /* () */0;}
             else
-             {var match="unknown primitive:caml_weak_get";
+             {var match=CamlPrimtivie["caml_weak_get"](b,i);
               
               if(match)
                {var v=match[1];f(v);return iter_bucket(i+1,b);}
@@ -112,7 +112,7 @@ var
            {if(i>=length(b))
              {return /* () */0;}
             else
-             {var match="unknown primitive:caml_weak_check";
+             {var match=CamlPrimtivie["caml_weak_check"](b,i);
               
               if(match!=0)
                {f(b,t[2][j],i);return iter_bucket(i+1,j,b);}
@@ -131,7 +131,7 @@ var
          {return accu;}
         else
          {return count_bucket
-                  (i+1,b,accu+("unknown primitive:caml_weak_check"?1:0));
+                  (i+1,b,accu+(CamlPrimtivie["caml_weak_check"](b,i)?1:0));
           }
         };
     
@@ -163,11 +163,11 @@ var
            loop=
             function(i,j)
              {if(j>=prev_len)
-               {if("unknown primitive:caml_weak_check")
+               {if(CamlPrimtivie["caml_weak_check"](bucket,i))
                  {return loop(i+1,j);}
                 else
-                 {if("unknown primitive:caml_weak_check")
-                   {"unknown primitive:caml_weak_blit";
+                 {if(CamlPrimtivie["caml_weak_check"](bucket,j))
+                   {CamlPrimtivie["caml_weak_blit"](bucket,j,bucket,i,1);
                     hbucket[i]=hbucket[j],0;
                     return loop(i+1,j-1);
                     }
@@ -183,8 +183,8 @@ var
           if(prev_len=0)
            {t[1][t[5]]=emptybucket,0,t[2][t[5]]=[],0}
           else
-           {"unknown primitive:caml_obj_truncate",
-            "unknown primitive:caml_obj_truncate"}
+           {CamlPrimtivie["caml_obj_truncate"](bucket,prev_len+1),
+            CamlPrimtivie["caml_obj_truncate"](hbucket,prev_len)}
           
           if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1,0}else{}
           }
@@ -210,7 +210,7 @@ var
              {var
                setter=
                 function(nb,ni,param)
-                 {return "unknown primitive:caml_weak_blit";};
+                 {return CamlPrimtivie["caml_weak_blit"](ob,oi,nb,ni,1);};
               
               var h=oh[oi];
               
@@ -251,9 +251,9 @@ var
               
               var newbucket=weak_create(newsz);
               
-              var newhashes="unknown primitive:caml_make_vect";
+              var newhashes=CamlPrimtivie["caml_make_vect"](newsz,0);
               
-              "unknown primitive:caml_weak_blit";
+              CamlPrimtivie["caml_weak_blit"](bucket,0,newbucket,0,sz);
               $$Array["blit"](hashes,0,newhashes,0,sz);
               setter(newbucket,sz,d);
               newhashes[sz]=h,0;
@@ -272,7 +272,7 @@ var
                {return 0;}
               }
             else
-             {if("unknown primitive:caml_weak_check")
+             {if(CamlPrimtivie["caml_weak_check"](bucket,i))
                {return loop(i+1);}
               else
                {setter(bucket,i,d);return hashes[i]=h,0;}
@@ -290,7 +290,7 @@ var
         return add_aux
                 (t,
                  function(prim,prim,prim)
-                  {return "unknown primitive:caml_weak_set";},
+                  {return CamlPrimtivie["caml_weak_set"](prim$1,prim$2,prim);},
                  /* Some */[0,d],
                  h,
                  get_index(t,h));
@@ -316,7 +316,7 @@ var
              {return ifnotfound(h,index);}
             else
              {if(h=hashes[i])
-               {var match="unknown primitive:caml_weak_get_copy";
+               {var match=CamlPrimtivie["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
                 
@@ -324,7 +324,7 @@ var
                  {var v=match[1];
                   
                   if(H[1](v,d))
-                   {var match$1="unknown primitive:caml_weak_get";
+                   {var match$1=CamlPrimtivie["caml_weak_get"](bucket,i);
                     
                     if(match$1)
                      {var v$1=match$1[1];return v$1;}
@@ -357,7 +357,7 @@ var
                   {add_aux
                     (t,
                      function(prim,prim,prim)
-                      {return "unknown primitive:caml_weak_set";},
+                      {return CamlPrimtivie["caml_weak_set"](prim$1,prim$2,prim);},
                      /* Some */[0,d],
                      h,
                      index);
@@ -389,7 +389,7 @@ var
              {return ifnotfound;}
             else
              {if(h=hashes[i])
-               {var match="unknown primitive:caml_weak_get_copy";
+               {var match=CamlPrimtivie["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
                 
@@ -417,7 +417,8 @@ var
        {return find_shadow
                 (t,
                  d,
-                 function(w,i){return "unknown primitive:caml_weak_set";},
+                 function(w,i)
+                  {return CamlPrimtivie["caml_weak_set"](w,i,/* None */0);},
                  /* () */0);
         };
     
@@ -448,7 +449,7 @@ var
              {return accu;}
             else
              {if(h=hashes[i])
-               {var match="unknown primitive:caml_weak_get_copy";
+               {var match=CamlPrimtivie["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
                 
@@ -456,7 +457,7 @@ var
                  {var v=match[1];
                   
                   if(H[1](v,d))
-                   {var match$1="unknown primitive:caml_weak_get";
+                   {var match$1=CamlPrimtivie["caml_weak_get"](bucket,i);
                     
                     if(match$1)
                      {var v$1=match$1[1];return loop(i+1,/* :: */[0,v$1,accu]);}
@@ -487,7 +488,9 @@ var
         var lens=$$Array["map"](length,t[1]);
         
         $$Array["sort"]
-         (function(prim,prim){return "unknown primitive:caml_compare";},lens);
+         (function(prim,prim)
+           {return CamlPrimtivie["caml_compare"](prim$1,prim);},
+          lens);
         var
          totlen=
           $$Array["fold_left"]
@@ -519,19 +522,20 @@ var
 
 module["exports"]=
 {"caml_weak_create":
- function(prim){return "unknown primitive:caml_weak_create";},
+ function(prim){return CamlPrimtivie["caml_weak_create"](prim);},
  "length":length,
  "caml_weak_set":
- function(prim,prim,prim){return "unknown primitive:caml_weak_set";},
+ function(prim,prim,prim)
+  {return CamlPrimtivie["caml_weak_set"](prim$1,prim$2,prim);},
  "caml_weak_get":
- function(prim,prim){return "unknown primitive:caml_weak_get";},
+ function(prim,prim){return CamlPrimtivie["caml_weak_get"](prim$1,prim);},
  "caml_weak_get_copy":
- function(prim,prim){return "unknown primitive:caml_weak_get_copy";},
+ function(prim,prim){return CamlPrimtivie["caml_weak_get_copy"](prim$1,prim);},
  "caml_weak_check":
- function(prim,prim){return "unknown primitive:caml_weak_check";},
+ function(prim,prim){return CamlPrimtivie["caml_weak_check"](prim$1,prim);},
  "fill":fill,
  "caml_weak_blit":
  function(prim,prim,prim,prim,prim)
-  {return "unknown primitive:caml_weak_blit";},
+  {return CamlPrimtivie["caml_weak_blit"](prim$1,prim$2,prim$3,prim$4,prim);},
  "Make":Make};
 

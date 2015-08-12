@@ -220,7 +220,7 @@ var
 var
  ocaml_add_include_flag=
   function(x,acc)
-   {if("unknown primitive:caml_string_equal")
+   {if(Primtivie["caml_string_equal"](x,Pathname["current_dir_name"]))
      {return acc;}
     else
      {return /* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]];}
@@ -358,7 +358,9 @@ var
 
 var cmi_of=Pathname["update_extensions"]("cmi");
 
-var Ocamldep_error="unknown primitive:caml_set_oo_id";
+var
+ Ocamldep_error=
+  Primtivie["caml_set_oo_id"]([248,"Ocaml_utils.Ocamldep_error",0]);
 
 var path_dependencies=Hashtbl["create"](/* None */0,103);
 
@@ -405,7 +407,9 @@ var
                      
                      var module_name$prime=module_name_of_pathname(path$1);
                      
-                     if("unknown primitive:caml_string_equal")
+                     if
+                      (Primtivie["caml_string_equal"]
+                        (module_name$prime,module_name))
                       {return My_std["List"][3](param[2],acc);}
                      else
                       {throw [0,

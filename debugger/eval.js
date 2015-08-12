@@ -18,7 +18,7 @@ var Symtable=require("Symtable");
 var Debugcom=require("Debugcom");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=Primtivie["caml_set_oo_id"]([248,"Eval.Error",0]);
 
 var
  abstract_type=
@@ -337,7 +337,7 @@ var
    {if(param)
      {var match=param[1];
       
-      if("unknown primitive:caml_string_equal")
+      if(Primtivie["caml_string_equal"](Ident["name"](match[1]),lbl))
        {var
          ty_res=
           Btype["newgenty"](/* Tconstr */[3,path,tydesc[1],[0,/* Mnil */0]]);

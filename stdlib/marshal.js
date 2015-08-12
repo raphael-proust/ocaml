@@ -12,7 +12,9 @@ var
               ("Marshal.to_buffer: substring out of bounds");
       }
     else
-     {return "unknown primitive:caml_output_value_to_buffer";}
+     {return CamlPrimtivie["caml_output_value_to_buffer"]
+              (buff,ofs,len,v,flags);
+      }
     };
 
 var header_size=20;
@@ -23,7 +25,7 @@ var
    {if(ofs<0||ofs>buff["length"]-header_size)
      {return Pervasives["invalid_arg"]("Marshal.data_size");}
     else
-     {return "unknown primitive:caml_marshal_data_size";}
+     {return CamlPrimtivie["caml_marshal_data_size"](buff,ofs);}
     };
 
 var total_size=function(buff,ofs){return header_size+data_size(buff,ofs);};
@@ -34,12 +36,12 @@ var
    {if(ofs<0||ofs>buff["length"]-header_size)
      {return Pervasives["invalid_arg"]("Marshal.from_bytes");}
     else
-     {var len="unknown primitive:caml_marshal_data_size";
+     {var len=CamlPrimtivie["caml_marshal_data_size"](buff,ofs);
       
       if(ofs>buff["length"]-(header_size+len))
        {return Pervasives["invalid_arg"]("Marshal.from_bytes");}
       else
-       {return "unknown primitive:caml_input_value_from_string";}
+       {return CamlPrimtivie["caml_input_value_from_string"](buff,ofs);}
       }
     };
 
@@ -49,10 +51,11 @@ var
 
 module["exports"]=
 {"caml_output_value":
- function(prim,prim,prim){return "unknown primitive:caml_output_value";},
+ function(prim,prim,prim)
+  {return CamlPrimtivie["caml_output_value"](prim$1,prim$2,prim);},
  "to_buffer":to_buffer,
  "caml_input_value":
- function(prim){return "unknown primitive:caml_input_value";},
+ function(prim){return CamlPrimtivie["caml_input_value"](prim);},
  "from_bytes":from_bytes,
  "from_string":from_string,
  "header_size":header_size,

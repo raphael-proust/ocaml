@@ -52,7 +52,7 @@ var
 var
  real_slurp=
   function(path)
-   {var cwd="unknown primitive:caml_sys_getcwd";
+   {var cwd=Primtivie["caml_sys_getcwd"](/* () */0);
     
     var
      abs=
@@ -197,7 +197,7 @@ var
    {var
      aux=
       function(path)
-       {if("unknown primitive:caml_string_equal")
+       {if(Primtivie["caml_string_equal"](path,Filename["current_dir_name"]))
          {return /* [] */0;}
         else
          {return /* :: */[0,
@@ -249,7 +249,7 @@ var
              
              var dname=d[2];
              
-             if("unknown primitive:caml_string_equal")
+             if(Primtivie["caml_string_equal"](xpath,dname))
               {return /* :: */[0,
                        /* Dir */[0,
                         d[1],
@@ -283,7 +283,7 @@ var
              
              var fname=f[2];
              
-             if("unknown primitive:caml_string_equal")
+             if(Primtivie["caml_string_equal"](xpath,fname))
               {return /* :: */[0,
                        /* Dir */[0,
                         f[1],
@@ -317,7 +317,7 @@ var
           {if(entries)
             {var f$1=entries[1];
              
-             if("unknown primitive:caml_string_equal")
+             if(Primtivie["caml_string_equal"](xpath,f$1[2]))
               {return entries;}
              else
               {return /* :: */[0,f$1,add(root,path,entries[2])];}
@@ -354,7 +354,7 @@ var
  slurp_with_find=
   function(path)
    {try
-     {var find_cmd="unknown primitive:caml_sys_getenv";}
+     {var find_cmd=Primtivie["caml_sys_getenv"]("OCAMLBUILD_FIND");}
     catch(exn){var find_cmd="find";}
     
     var

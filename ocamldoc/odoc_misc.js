@@ -46,7 +46,7 @@ var
     
     var len=1024;
     
-    var s="unknown primitive:caml_create_string";
+    var s=Primtivie["caml_create_string"](len);
     
     var buf=Buffer["create"](len);
     
@@ -177,7 +177,7 @@ var
                
                switch(exit)
                 {case 84:
-                  if("unknown primitive:caml_string_equal")
+                  if(Primtivie["caml_string_equal"](label,"*dummy method*"))
                    {return acc;}
                   else
                    {return Pervasives["@"]
@@ -454,7 +454,7 @@ var
     if(match$1)
      {var d=match$1[1];
       
-      if("unknown primitive:caml_equal")
+      if(Primtivie["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
        {var $js="";}
       else
        {var $js=Pervasives["^"](string_of_text(d),"\n");}
@@ -930,7 +930,7 @@ var
       function(s)
        {var len=s["length"];
         
-        var match="unknown primitive:caml_int_compare";
+        var match=Primtivie["caml_int_compare"](len,lenp);
         
         if(match!=-1)
          {if(match!=0)
@@ -938,13 +938,13 @@ var
             
             var s2=$$String["sub"](s,pos,lenp);
             
-            if("unknown primitive:caml_string_equal")
+            if(Primtivie["caml_string_equal"](s2,pat))
              {return pos;}
             else
              {return iter($$String["sub"](s,0,pos));}
             }
           else
-           {if("unknown primitive:caml_string_equal")
+           {if(Primtivie["caml_string_equal"](pat,s))
              {return 0;}
             else
              {throw Not_found;}

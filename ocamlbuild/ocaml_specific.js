@@ -38,7 +38,7 @@ var
       function(x)
        {if
          (Filename["check_suffix"](x,".o")&&
-          "unknown primitive:caml_string_notequal")
+          Primtivie["caml_string_notequal"](Options["ext_obj"][1],"o"))
          {return Pathname["update_extension"](Options["ext_obj"][1],x);}
         else
          {return x;}
@@ -833,7 +833,9 @@ var
                  "compile")],
               /* :: */[0,[/* A */1,"-c"],/* :: */[0,/* Px */[3,c],/* [] */0]]]]]];
         
-        if("unknown primitive:caml_string_equal")
+        if
+         (Primtivie["caml_string_equal"]
+           (Pathname["dirname"](o),Pathname["current_dir_name"]))
          {return cc;}
         else
          {return /* Seq */[0,

@@ -411,7 +411,9 @@ var
             if(match$1)
              {var d=match$1[1];
               
-              if("unknown primitive:caml_equal")
+              if
+               (Primtivie["caml_equal"]
+                 (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js$1=/* [] */0;}
               else
                {"unknown block:(sendself self-1/1323 str_man_of_text/1249 d/1334)";
@@ -449,7 +451,8 @@ var
             var
              l$1=
               List["filter"]
-               (function(prim,prim){return "unknown primitive:caml_notequal";}
+               (function(prim,prim)
+                  {return Primtivie["caml_notequal"](prim$1,prim);}
                  (""),
                 l);
             
@@ -747,7 +750,8 @@ var
        function(self$neg2,b,s,t){return /* () */0;},
        man_of_Target,
        function(self$neg2,b,target,code)
-        {if("unknown primitive:caml_string_equal")
+        {if
+          (Primtivie["caml_string_equal"]($$String["lowercase"](target),"man"))
           {return bs(b,code);}
          else
           {return /* () */0;}
@@ -1962,7 +1966,8 @@ var
          var
           sorted_items=
            List["sort"]
-            (function(e1,e2){return "unknown primitive:caml_string_compare";},
+            (function(e1,e2)
+              {return Primtivie["caml_string_compare"](name(e1),name(e2));},
              all_items);
          
          var
@@ -1974,7 +1979,7 @@ var
                var h=l[1];
                
                if(acc2)
-                {if("unknown primitive:caml_string_equal")
+                {if(Primtivie["caml_string_equal"](name(h),name(acc2[1])))
                   {if(List["mem"](h,acc2))
                     {return f(acc1,acc2,q);}
                    else
@@ -2051,7 +2056,9 @@ var
                 {case 0:
                   var m=ele[1];
                   
-                  if("unknown primitive:caml_string_notequal")
+                  if
+                   (Primtivie["caml_string_notequal"]
+                     (Odoc_info["Name"][5](m[1]),""))
                    {bs
                      (b,
                       Pervasives["^"]
@@ -2253,7 +2260,8 @@ var
         {var
           sorted_module_list=
            List["sort"]
-            (function(m1,m2){return "unknown primitive:caml_string_compare";},
+            (function(m1,m2)
+              {return Primtivie["caml_string_compare"](m1[1],m2[1]);},
              module_list);
          
          "unknown block:(sendself self-2/1837 create_groups/1398 (field 0 man_mini/1235)\n  sorted_module_list/1839)";

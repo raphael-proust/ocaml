@@ -56,7 +56,7 @@ var
       
       var d=Pathname["dirname"](s);
       
-      if("unknown primitive:caml_string_notequal")
+      if(Primtivie["caml_string_notequal"](d,Pathname["current_dir_name"]))
        {var match=Pathname["define_context"](d,/* :: */[0,d,/* [] */0]);
         
         return /* :: */[0,s,/* [] */0];

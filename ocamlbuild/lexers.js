@@ -8,7 +8,7 @@ var My_std=require("My_std");
 var Glob=require("Glob");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=Primtivie["caml_set_oo_id"]([248,"Lexers.Error",0]);
 
 var
  error=
@@ -90,7 +90,7 @@ var
 var
  space_sep_strings_nl=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_space_sep_strings_nl_rec(source,lexbuf,6);
     };
@@ -132,7 +132,7 @@ var
 var
  space_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_space_sep_strings_rec(source,lexbuf,12);
     };
@@ -174,7 +174,7 @@ var
 var
  blank_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_blank_sep_strings_rec(source,lexbuf,21);
     };
@@ -222,7 +222,7 @@ var
 var
  comma_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](5,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     lexbuf[10][2]=lexbuf[6],0;
     return __ocaml_lex_comma_sep_strings_rec(source,lexbuf,33);
@@ -270,7 +270,7 @@ var
 var
  comma_sep_strings_aux=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     return __ocaml_lex_comma_sep_strings_aux_rec(source,lexbuf,41);
     };
 
@@ -311,7 +311,7 @@ var
 var
  comma_or_blank_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](5,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     lexbuf[10][2]=lexbuf[6],0;
     return __ocaml_lex_comma_or_blank_sep_strings_rec(source,lexbuf,49);
@@ -361,7 +361,7 @@ var
 var
  comma_or_blank_sep_strings_aux=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](3,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_comma_or_blank_sep_strings_aux_rec(source,lexbuf,57);
     };
@@ -556,7 +556,7 @@ var
 var
  conf_lines=
   function(dir,source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](9,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     return __ocaml_lex_conf_lines_rec(dir,source,lexbuf,81);
     };
@@ -636,7 +636,7 @@ var
 var
  conf_value=
   function(x,source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](3,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_conf_value_rec(x,source,lexbuf,111);
     };
@@ -685,7 +685,7 @@ var
 var
  conf_values=
   function(x,source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_conf_values_rec(x,source,lexbuf,125);
     };
@@ -731,7 +731,7 @@ var
 var
  path_scheme=
   function(patt_allowed,source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     return __ocaml_lex_path_scheme_rec(patt_allowed,source,lexbuf,138);
     };
 
@@ -857,7 +857,7 @@ var
 var
  ocamlfind_query=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](24,-1),0;
     return __ocaml_lex_ocamlfind_query_rec(source,lexbuf,152);
     };
 
@@ -905,7 +905,7 @@ var
 var
  trim_blanks=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](6,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     lexbuf[10][2]=lexbuf[6],0;
     return __ocaml_lex_trim_blanks_rec(source,lexbuf,234);
@@ -941,7 +941,7 @@ var
 var
  tag_gen=
   function(source,lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](6,-1),0;
     return __ocaml_lex_tag_gen_rec(source,lexbuf,240);
     };
 

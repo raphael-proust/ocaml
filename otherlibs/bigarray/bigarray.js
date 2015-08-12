@@ -3,7 +3,7 @@
 var Pervasives=require("Pervasives");
 
 
-"unknown primitive:caml_ba_init";
+Primtivie["caml_ba_init"](/* () */0);
 var float32=/* Float32 */0;
 
 var float64=/* Float64 */1;
@@ -37,11 +37,11 @@ var fortran_layout=/* Fortran_layout */1;
 var
  dims=
   function(a)
-   {var n="unknown primitive:caml_ba_num_dims";
+   {var n=Primtivie["caml_ba_num_dims"](a);
     
-    var d="unknown primitive:caml_make_vect";
+    var d=Primtivie["caml_make_vect"](n,0);
     
-    for(var i=0;i<=n-1;i++){d[i]="unknown primitive:caml_ba_dim",0}
+    for(var i=0;i<=n-1;i++){d[i]=Primtivie["caml_ba_dim"](a,i),0}
     
     return d;
     };
@@ -54,14 +54,16 @@ var
     else
      {var pos=0;}
     
-    return "unknown primitive:caml_ba_map_file_bytecode";
+    return Primtivie["caml_ba_map_file_bytecode"]
+            (fd,kind,layout,shared,dims,pos);
     };
 
 var Genarray=[0,dims,map_file];
 
 var
  create=
-  function(kind,layout,dim){return "unknown primitive:caml_ba_create";};
+  function(kind,layout,dim)
+   {return Primtivie["caml_ba_create"](kind,layout,[dim]);};
 
 var
  of_array=
@@ -85,11 +87,12 @@ var Array1=[0,create,of_array,map_file$1];
 
 var
  create$1=
-  function(kind,layout,dim1,dim2){return "unknown primitive:caml_ba_create";};
+  function(kind,layout,dim1,dim2)
+   {return Primtivie["caml_ba_create"](kind,layout,[dim1,dim2]);};
 
-var slice_left=function(a,n){return "unknown primitive:caml_ba_slice";};
+var slice_left=function(a,n){return Primtivie["caml_ba_slice"](a,[n]);};
 
-var slice_right=function(a,n){return "unknown primitive:caml_ba_slice";};
+var slice_right=function(a,n){return Primtivie["caml_ba_slice"](a,[n]);};
 
 var
  of_array$1=
@@ -128,15 +131,17 @@ var Array2=[0,create$1,slice_left,slice_right,of_array$1,map_file$2];
 var
  create$2=
   function(kind,layout,dim1,dim2,dim3)
-   {return "unknown primitive:caml_ba_create";};
+   {return Primtivie["caml_ba_create"](kind,layout,[dim1,dim2,dim3]);};
 
-var slice_left_1=function(a,n,m){return "unknown primitive:caml_ba_slice";};
+var slice_left_1=function(a,n,m){return Primtivie["caml_ba_slice"](a,[n,m]);};
 
-var slice_right_1=function(a,n,m){return "unknown primitive:caml_ba_slice";};
+var
+ slice_right_1=
+  function(a,n,m){return Primtivie["caml_ba_slice"](a,[n,m]);};
 
-var slice_left_2=function(a,n){return "unknown primitive:caml_ba_slice";};
+var slice_left_2=function(a,n){return Primtivie["caml_ba_slice"](a,[n]);};
 
-var slice_right_2=function(a,n){return "unknown primitive:caml_ba_slice";};
+var slice_right_2=function(a,n){return Primtivie["caml_ba_slice"](a,[n]);};
 
 var
  of_array$2=
@@ -195,7 +200,7 @@ var
 var
  array1_of_genarray=
   function(a)
-   {if("unknown primitive:caml_ba_num_dims"=1)
+   {if(Primtivie["caml_ba_num_dims"](a)=1)
      {return a;}
     else
      {return Pervasives["invalid_arg"]("Bigarray.array1_of_genarray");}
@@ -204,7 +209,7 @@ var
 var
  array2_of_genarray=
   function(a)
-   {if("unknown primitive:caml_ba_num_dims"=2)
+   {if(Primtivie["caml_ba_num_dims"](a)=2)
      {return a;}
     else
      {return Pervasives["invalid_arg"]("Bigarray.array2_of_genarray");}
@@ -213,25 +218,28 @@ var
 var
  array3_of_genarray=
   function(a)
-   {if("unknown primitive:caml_ba_num_dims"=3)
+   {if(Primtivie["caml_ba_num_dims"](a)=3)
      {return a;}
     else
      {return Pervasives["invalid_arg"]("Bigarray.array3_of_genarray");}
     };
 
-var reshape_1=function(a,dim1){return "unknown primitive:caml_ba_reshape";};
+var
+ reshape_1=
+  function(a,dim1){return Primtivie["caml_ba_reshape"](a,[dim1]);};
 
 var
  reshape_2=
-  function(a,dim1,dim2){return "unknown primitive:caml_ba_reshape";};
+  function(a,dim1,dim2){return Primtivie["caml_ba_reshape"](a,[dim1,dim2]);};
 
 var
  reshape_3=
-  function(a,dim1,dim2,dim3){return "unknown primitive:caml_ba_reshape";};
+  function(a,dim1,dim2,dim3)
+   {return Primtivie["caml_ba_reshape"](a,[dim1,dim2,dim3]);};
 
 var
  match=
-  function(prim,prim){return "unknown primitive:caml_ba_get_generic";};
+  function(prim,prim){return Primtivie["caml_ba_get_generic"](prim$1,prim);};
 
 var
  match$1=
@@ -273,7 +281,7 @@ module["exports"]=
  "array2_of_genarray":array2_of_genarray,
  "array3_of_genarray":array3_of_genarray,
  "caml_ba_reshape":
- function(prim,prim){return "unknown primitive:caml_ba_reshape";},
+ function(prim,prim){return Primtivie["caml_ba_reshape"](prim$1,prim);},
  "reshape_1":reshape_1,
  "reshape_2":reshape_2,
  "reshape_3":reshape_3};

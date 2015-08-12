@@ -10,7 +10,9 @@ var My_unix=require("My_unix");
 var Hashtbl=require("Hashtbl");
 
 
-var Findlib_error="unknown primitive:caml_set_oo_id";
+var
+ Findlib_error=
+  Primtivie["caml_set_oo_id"]([248,"Findlib.Findlib_error",0]);
 
 var error=function(x){throw [0,Findlib_error,x];};
 
@@ -151,7 +153,8 @@ var
           var
            deps$1=
             My_std["List"][33]
-             (function(prim,prim){return "unknown primitive:caml_notequal";}
+             (function(prim,prim)
+                {return Primtivie["caml_notequal"](prim$1,prim);}
                (n),
               deps);
           

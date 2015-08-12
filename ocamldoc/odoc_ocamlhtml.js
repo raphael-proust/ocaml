@@ -12,7 +12,9 @@ var Printexc=require("Printexc");
 var Hashtbl=require("Hashtbl");
 
 
-var Fatal_error="unknown primitive:caml_set_oo_id";
+var
+ Fatal_error=
+  Primtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Fatal_error",0]);
 
 var
  fatal_error=
@@ -22,7 +24,7 @@ var
     throw Fatal_error;
     };
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=Primtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Error",0]);
 
 var
  base_escape_strings=

@@ -23,9 +23,13 @@ var max_int=min_int-1;
 
 var lognot=function(n){return n^-1;};
 
-var to_string=function(n){return "unknown primitive:caml_nativeint_format";};
+var
+ to_string=
+  function(n){return CamlPrimtivie["caml_nativeint_format"]("%d",n);};
 
-var compare=function(x,y){return "unknown primitive:caml_nativeint_compare";};
+var
+ compare=
+  function(x,y){return CamlPrimtivie["caml_nativeint_compare"](x,y);};
 
 module["exports"]=
 {"zero":zero,

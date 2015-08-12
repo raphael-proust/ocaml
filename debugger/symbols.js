@@ -149,7 +149,9 @@ var
                  var
                   cmp=
                    function(ev1,ev2)
-                    {return "unknown primitive:caml_int_compare";};
+                    {return Primtivie["caml_int_compare"]
+                             (Events["get_pos"](ev1)[4],Events["get_pos"](ev2)[4]);
+                     };
                  
                  var sorted_evl=List["sort"](cmp,evl);
                  
@@ -310,7 +312,7 @@ var
    {var opt_pc=Checkpoints["current_pc"](/* () */0);
     
     if(opt_pc)
-     {if("unknown primitive:caml_notequal")
+     {if(Primtivie["caml_notequal"](opt_pc,old_pc[1]))
        {var $js;
         try
          {$js=/* Some */[0,event_at_pc(opt_pc[1])];}

@@ -359,7 +359,7 @@ var
     
     var s=Odoc_info["Name"][5](complete_name);
     
-    if("unknown primitive:caml_string_equal")
+    if(Primtivie["caml_string_equal"](s,""))
      {var module_name=simple_name;}
     else
      {var module_name=s;}
@@ -678,7 +678,7 @@ var
    file_code_module_complete_target,
    file_type_class_complete_target];
 
-var compare=function(x,y){return "unknown primitive:caml_string_compare";};
+var compare=function(x,y){return Primtivie["caml_string_compare"](x,y);};
 
 var StringSet=Set["Make"]([0,compare]);
 
@@ -975,7 +975,9 @@ var
         function(self$neg2,b,s,t){return /* () */0;},
         html_of_Target,
         function(self$neg2,b,target,code)
-         {if("unknown primitive:caml_string_equal")
+         {if
+           (Primtivie["caml_string_equal"]
+             ($$String["lowercase"](target),"html"))
            {return bs(b,code);}
           else
            {return /* () */0;}
@@ -1321,7 +1323,8 @@ var
                 var
                  m=
                   List["find"]
-                   (function(m){return "unknown primitive:caml_string_equal";},
+                   (function(m)
+                     {return Primtivie["caml_string_equal"](m[1],name);},
                     0);
                 
                 var match=Naming[11](m[1]);
@@ -1777,7 +1780,9 @@ var
             if(match$1)
              {var d=match$1[1];
               
-              if("unknown primitive:caml_equal")
+              if
+               (Primtivie["caml_equal"]
+                 (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
                {"unknown block:(sendself self-3/1736 html_of_text/1667 b/1743 d/1748)";
@@ -1825,7 +1830,9 @@ var
             if(match)
              {var d=match[1];
               
-              if("unknown primitive:caml_equal")
+              if
+               (Primtivie["caml_equal"]
+                 (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
                {"unknown block:(sendself self-3/1751 html_of_text/1667 b/1752\n  (apply (field 30 (global Odoc_info!))\n    (apply (field 28 (global Odoc_info!)) d/1757)))";
@@ -2161,7 +2168,9 @@ var
          },
        index_prefix,
        function(self$neg4)
-        {if("unknown primitive:caml_string_equal")
+        {if
+          (Primtivie["caml_string_equal"]
+            (Odoc_global["out_file"][1],Odoc_messages["default_out_file"]))
           {return "index";}
          else
           {return Filename["basename"](Odoc_global["out_file"][1]);}
@@ -2315,7 +2324,7 @@ var
                Filename["concat"]
                 (Odoc_info["Global"][5][1],self$neg4[style_file]);
              
-             if("unknown primitive:caml_sys_file_exists")
+             if(Primtivie["caml_sys_file_exists"](file))
               {Odoc_info["verbose"]
                 (Odoc_messages["file_exists_dont_generate"](file))}
              else
@@ -2447,7 +2456,7 @@ var
                
                var father=Odoc_info["Name"][5](match[3]);
                
-               if("unknown primitive:caml_string_equal")
+               if(Primtivie["caml_string_equal"](father,""))
                 {"unknown block:(sendself self-4/2008 index/1833)";}
                else
                 {var href=Naming[11](father)[1];}
@@ -2556,7 +2565,8 @@ var
          var
           sorted_levels=
            List["sort"]
-            (function(prim,prim){return "unknown primitive:caml_compare";},
+            (function(prim,prim)
+              {return Primtivie["caml_compare"](prim$1,prim);},
              levels);
          
          if(sorted_levels)
@@ -2662,12 +2672,12 @@ var
          bs(b,"&nbsp;");
          var father=Odoc_info["Name"][5](name);
          
-         if("unknown primitive:caml_string_equal")
+         if(Primtivie["caml_string_equal"](father,""))
           {"unknown block:(sendself self-4/2066 index/1833)";}
          else
           {var href=Naming[11](father)[1];}
          
-         if("unknown primitive:caml_string_equal")
+         if(Primtivie["caml_string_equal"](father,""))
           {var father_name="Index";}
          else
           {var father_name=father;}
@@ -4674,7 +4684,10 @@ var
             sorted_elements=
              List["sort"]
               (function(e1,e2)
-                {return "unknown primitive:caml_string_compare";},
+                {return Primtivie["caml_string_compare"]
+                         (Odoc_info["Name"][1](name(e1)),
+                          Odoc_info["Name"][1](name(e2)));
+                 },
                elements);
            
            var
@@ -4707,8 +4720,8 @@ var
                  target(e),
                  0);
                if
-                ("unknown primitive:caml_string_notequal"&&
-                 "unknown primitive:caml_string_notequal")
+                (Primtivie["caml_string_notequal"](simple_name,father_name)&&
+                 Primtivie["caml_string_notequal"](father_name,""))
                 {bp
                   (b,
                    [/* Format */0,

@@ -191,7 +191,7 @@ var default_float_precision=6;
 var
  buffer_create=
   function(init_size)
-   {return /* record */[0,0,"unknown primitive:caml_create_string"];};
+   {return /* record */[0,0,CamlPrimtivie["caml_create_string"](init_size)];};
 
 var
  buffer_check_size=
@@ -203,7 +203,7 @@ var
     if(min_len>len)
      {var new_len=Pervasives["max"](len*2,min_len);
       
-      var new_str="unknown primitive:caml_create_string";
+      var new_str=CamlPrimtivie["caml_create_string"](new_len);
       
       Bytes["blit"](buf[2],0,new_str,0,len);
       return buf[2]=new_str,0;
@@ -2058,7 +2058,9 @@ var
      {return fmtty;}
     };
 
-var Type_mismatch="unknown primitive:caml_set_oo_id";
+var
+ Type_mismatch=
+  CamlPrimtivie["caml_set_oo_id"]([248,"CamlinternalFormat.Type_mismatch",0]);
 
 var
  type_padding=
@@ -2582,7 +2584,10 @@ var
               
               var pad_opt=match[1];
               
-              if("unknown primitive:caml_notequal")
+              if
+               (CamlPrimtivie["caml_notequal"]
+                 (/* Fmtty_EBB */[0,sub_fmtty],
+                  /* Fmtty_EBB */[0,sub_fmtty$prime]))
                {throw Type_mismatch;}
               else
                {}
@@ -2615,7 +2620,12 @@ var
               
               var pad_opt$1=match[1];
               
-              if("unknown primitive:caml_notequal")
+              if
+               (CamlPrimtivie["caml_notequal"]
+                 (/* Fmtty_EBB */[0,
+                   CamlinternalFormatBasics["erase_rel"](sub_fmtty$1)],
+                  /* Fmtty_EBB */[0,
+                   CamlinternalFormatBasics["erase_rel"](sub_fmtty1)]))
                {throw Type_mismatch;}
               else
                {}
@@ -3226,7 +3236,10 @@ var
               
               var sub2_fmtty=match[1];
               
-              if("unknown primitive:caml_notequal")
+              if
+               (CamlPrimtivie["caml_notequal"]
+                 (/* Fmtty_EBB */[0,sub2_fmtty],
+                  /* Fmtty_EBB */[0,sub2_fmtty$prime]))
                {throw Type_mismatch;}
               else
                {}
@@ -3266,12 +3279,22 @@ var
               
               var sub1_fmtty=match[1];
               
-              if("unknown primitive:caml_notequal")
+              if
+               (CamlPrimtivie["caml_notequal"]
+                 (/* Fmtty_EBB */[0,
+                   CamlinternalFormatBasics["erase_rel"](sub1_fmtty)],
+                  /* Fmtty_EBB */[0,
+                   CamlinternalFormatBasics["erase_rel"](sub1_fmtty$prime)]))
                {throw Type_mismatch;}
               else
                {}
               
-              if("unknown primitive:caml_notequal")
+              if
+               (CamlPrimtivie["caml_notequal"]
+                 (/* Fmtty_EBB */[0,
+                   CamlinternalFormatBasics["erase_rel"](sub2_fmtty$1)],
+                  /* Fmtty_EBB */[0,
+                   CamlinternalFormatBasics["erase_rel"](sub2_fmtty$prime$1)]))
                {throw Type_mismatch;}
               else
                {}
@@ -3615,26 +3638,34 @@ var
 
 var
  convert_int=
-  function(iconv,n){return "unknown primitive:caml_format_int";};
+  function(iconv,n)
+   {return CamlPrimtivie["caml_format_int"](format_of_iconv(iconv),n);};
 
 var
  convert_int32=
-  function(iconv,n){return "unknown primitive:caml_int32_format";};
+  function(iconv,n)
+   {return CamlPrimtivie["caml_int32_format"](format_of_aconv(iconv,108),n);};
 
 var
  convert_nativeint=
-  function(iconv,n){return "unknown primitive:caml_nativeint_format";};
+  function(iconv,n)
+   {return CamlPrimtivie["caml_nativeint_format"]
+            (format_of_aconv(iconv,110),n);
+    };
 
 var
  convert_int64=
-  function(iconv,n){return "unknown primitive:caml_int64_format";};
+  function(iconv,n)
+   {return CamlPrimtivie["caml_int64_format"](format_of_aconv(iconv,76),n);};
 
 var
  convert_float=
   function(fconv,prec,x)
    {var prec$1=Pervasives["abs"](prec);
     
-    var str="unknown primitive:caml_format_float";
+    var
+     str=
+      CamlPrimtivie["caml_format_float"](format_of_fconv(fconv,prec$1),x);
     
     if(fconv!=/* Float_F */15)
      {return str;}
@@ -3666,7 +3697,7 @@ var
             }
           };
       
-      var match="unknown primitive:caml_classify_float";
+      var match=CamlPrimtivie["caml_classify_float"](x);
       
       if(match!=3)
        {if(match>=4)
@@ -3935,7 +3966,9 @@ var
          return function(n)
           {var
             new_acc$1=
-             /* Acc_data_string */[4,acc,"unknown primitive:caml_format_int"];
+             /* Acc_data_string */[4,
+              acc,
+              CamlPrimtivie["caml_format_int"]("%u",n)];
            
            return make_printf(k,o,new_acc$1,rest$21);
            };
@@ -4677,7 +4710,7 @@ var
 var
  open_box_of_string=
   function(str)
-   {if("unknown primitive:caml_string_equal")
+   {if(CamlPrimtivie["caml_string_equal"](str,""))
      {return [/* tuple */0,0,/* Pp_box */4];}
     else
      {var len=str["length"];
@@ -4760,7 +4793,11 @@ var
        {var indent=0;}
       else
        {try
-         {var indent="unknown primitive:caml_int_of_string";}
+         {var
+           indent=
+            CamlPrimtivie["caml_int_of_string"]
+             ($$String["sub"](str,nstart,nend-nstart));
+          }
         catch(exn)
          {var tag=exn[1];
           
@@ -6337,12 +6374,19 @@ var
           else
            {}
           
-          if(!pad_used[1]&&"unknown primitive:caml_notequal")
+          if
+           (!pad_used[1]&&
+            CamlPrimtivie["caml_notequal"]
+             (/* Padding_EBB */[0,pad],[/* Padding_EBB */0,/* No_padding */0]))
            {incompatible_flag(pct_ind,str_ind,symb,"`padding'")}
           else
            {}
           
-          if(!prec_used[1]&&"unknown primitive:caml_notequal")
+          if
+           (!prec_used[1]&&
+            CamlPrimtivie["caml_notequal"]
+             (/* Precision_EBB */[0,prec],
+              [/* Precision_EBB */0,/* No_precision */0]))
            {incompatible_flag(pct_ind,str_ind,ign?95:symb,"`precision'")}
           else
            {}

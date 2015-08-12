@@ -2,13 +2,13 @@
 
 
 
-var match="unknown primitive:caml_sys_get_argv";
+var match=CamlPrimtivie["caml_sys_get_argv"](/* () */0);
 
 var argv=match[2];
 
 var executable_name=match[1];
 
-var match$1="unknown primitive:caml_sys_get_config";
+var match$1=CamlPrimtivie["caml_sys_get_config"](/* () */0);
 
 var os_type=match$1[1];
 
@@ -31,7 +31,7 @@ var interactive=[0,/* false */0];
 var
  set_signal=
   function(sig_num,sig_beh)
-   {return "unknown primitive:caml_install_signal_handler";};
+   {return CamlPrimtivie["caml_install_signal_handler"](sig_num,sig_beh);};
 
 var sigabrt=-1;
 
@@ -75,7 +75,7 @@ var sigvtalrm=-20;
 
 var sigprof=-21;
 
-var Break="unknown primitive:caml_set_oo_id";
+var Break=CamlPrimtivie["caml_set_oo_id"]([248,"Sys.Break",0]);
 
 var
  catch_break=

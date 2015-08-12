@@ -408,7 +408,7 @@ var
       
       var a=param[1];
       
-      return ("unknown primitive:caml_compare"=0)||mem(x,l);
+      return (CamlPrimtivie["caml_compare"](a,x)=0)||mem(x,l);
       }
     else
      {return /* false */0;}
@@ -435,7 +435,7 @@ var
       
       var a=match[1];
       
-      if("unknown primitive:caml_compare"=0)
+      if(CamlPrimtivie["caml_compare"](a,x)=0)
        {return b;}
       else
        {return assoc(x,l);}
@@ -472,7 +472,7 @@ var
       
       var a=match[1];
       
-      return ("unknown primitive:caml_compare"=0)||mem_assoc(x,l);
+      return (CamlPrimtivie["caml_compare"](a,x)=0)||mem_assoc(x,l);
       }
     else
      {return /* false */0;}
@@ -504,7 +504,7 @@ var
       
       var a=pair[1];
       
-      if("unknown primitive:caml_compare"=0)
+      if(CamlPrimtivie["caml_compare"](a,x)=0)
        {return l;}
       else
        {return /* :: */[0,pair,remove_assoc(x,l)];}

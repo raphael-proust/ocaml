@@ -33,7 +33,7 @@ var
    {if(n1=n2)
      {return 0;}
     else
-     {if("unknown primitive:caml_greaterthan"){return 1;}else{return -1;}}
+     {if(Primtivie["caml_greaterthan"](n1,n2)){return 1;}else{return -1;}}
     };
 
 module["exports"]=

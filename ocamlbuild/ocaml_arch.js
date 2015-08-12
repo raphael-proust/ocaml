@@ -21,7 +21,7 @@ var file=function(name){return /* Arch_file */[2,name,/* () */0];};
 var
  join_pack=
   function(parent,base)
-   {if("unknown primitive:caml_string_equal")
+   {if(Primtivie["caml_string_equal"](parent,""))
      {return base;}
     else
      {return Pervasives["^"](parent,Pervasives["^"](".",base));}
@@ -67,7 +67,7 @@ var
       function(name,contents,acc)
        {var current_path=Pathname["Operators"][1](acc[1],name);
         
-        if("unknown primitive:caml_string_equal")
+        if(Primtivie["caml_string_equal"](current_path,""))
          {var include_dirs=acc[2];}
         else
          {var include_dirs=/* :: */[0,current_path,acc[2]];}
@@ -338,7 +338,7 @@ var
        "@[<hv0>{:@[<hv0>"]);
     Hashtbl["iter"]
      (function(k,v)
-       {if("unknown primitive:caml_string_notequal")
+       {if(Primtivie["caml_string_notequal"](k,""))
          {return Format["fprintf"]
                   (f,
                    [/* Format */0,
@@ -452,7 +452,7 @@ var
       try
        {var for_pack=Hashtbl["find"](for_pack_table,m$prime);
         
-        if("unknown primitive:caml_string_equal")
+        if(Primtivie["caml_string_equal"](for_pack,""))
          {return /* N */0;}
         else
          {return /* S */[0,

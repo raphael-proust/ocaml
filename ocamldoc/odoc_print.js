@@ -56,7 +56,7 @@ var
     return flush_type_fmt(/* () */0);
     };
 
-var Use_code="unknown primitive:caml_set_oo_id";
+var Use_code=Primtivie["caml_set_oo_id"]([248,"Odoc_print.Use_code",0]);
 
 var
  simpl_module_type=

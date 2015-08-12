@@ -152,7 +152,8 @@ var
                           l);
                  },
                List["sort"]
-                (function(prim,prim){return "unknown primitive:caml_compare";},
+                (function(prim,prim)
+                  {return Primtivie["caml_compare"](prim$1,prim);},
                  breakpoints))}
            else
             {Format["fprintf"]
@@ -320,7 +321,8 @@ var
                        l);
               },
             List["sort"]
-             (function(prim,prim){return "unknown primitive:caml_compare";},
+             (function(prim,prim)
+               {return Primtivie["caml_compare"](prim$1,prim);},
               breakpoints))}
         else
          {Format["fprintf"]

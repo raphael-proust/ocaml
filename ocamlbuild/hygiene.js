@@ -10,7 +10,9 @@ var My_std=require("My_std");
 var Log=require("Log");
 
 
-var Exit_hygiene_violations="unknown primitive:caml_set_oo_id";
+var
+ Exit_hygiene_violations=
+  Primtivie["caml_set_oo_id"]([248,"Hygiene.Exit_hygiene_violations",0]);
 
 var
  list_collect=
@@ -125,7 +127,9 @@ var
                                       {switch(param$2[0])
                                         {case 1:
                                           if(param$2[4]!=0)
-                                           {return "unknown primitive:caml_string_equal";}
+                                           {return Primtivie["caml_string_equal"]
+                                                    (name$prime,param$2[2]);
+                                            }
                                           else
                                            {exit$1=10;}
                                           

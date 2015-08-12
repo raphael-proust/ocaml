@@ -8,28 +8,31 @@ var Sys=require("Sys");
 var critical_section=[0,/* false */0];
 
 
-var $$yield=function(param){return "unknown primitive:thread_yield";};
+var $$yield=function(param){return Primtivie["thread_yield"](/* () */0);};
 
 var
  sleep=
   function(param)
    {critical_section[1]=/* false */0,0;
-    return "unknown primitive:thread_sleep";
+    return Primtivie["thread_sleep"](/* () */0);
     };
 
-var delay=function(duration){return "unknown primitive:thread_delay";};
+var delay=function(duration){return Primtivie["thread_delay"](duration);};
 
-var join=function(th){return "unknown primitive:thread_join";};
+var join=function(th){return Primtivie["thread_join"](th);};
 
-var wakeup=function(pid){return "unknown primitive:thread_wakeup";};
+var wakeup=function(pid){return Primtivie["thread_wakeup"](pid);};
 
-var $$self=function(param){return "unknown primitive:thread_self";};
+var $$self=function(param){return Primtivie["thread_self"](/* () */0);};
 
-var kill=function(pid){return "unknown primitive:thread_kill";};
+var kill=function(pid){return Primtivie["thread_kill"](pid);};
 
-var exit=function(param){return "unknown primitive:thread_kill";};
+var
+ exit=
+  function(param)
+   {return Primtivie["thread_kill"](Primtivie["thread_self"](/* () */0));};
 
-var select_aux=function(arg){return "unknown primitive:thread_select";};
+var select_aux=function(arg){return Primtivie["thread_select"](arg);};
 
 var
  select=
@@ -57,17 +60,17 @@ var
      {case 20:return [/* tuple */0,/* [] */0,/* [] */0,/* [] */0];}
     };
 
-var wait_read=function(fd){return "unknown primitive:thread_wait_read";};
+var wait_read=function(fd){return Primtivie["thread_wait_read"](fd);};
 
-var wait_write=function(fd){return "unknown primitive:thread_wait_write";};
+var wait_write=function(fd){return Primtivie["thread_wait_write"](fd);};
 
 var
  wait_timed_read_aux=
-  function(arg){return "unknown primitive:thread_wait_timed_read";};
+  function(arg){return Primtivie["thread_wait_timed_read"](arg);};
 
 var
  wait_timed_write_aux=
-  function(arg){return "unknown primitive:thread_wait_timed_write";};
+  function(arg){return Primtivie["thread_wait_timed_write"](arg);};
 
 var
  wait_timed_read=
@@ -99,7 +102,7 @@ var
     switch(exit$1){case 12:return /* false */0;}
     };
 
-var wait_pid_aux=function(pid){return "unknown primitive:thread_wait_pid";};
+var wait_pid_aux=function(pid){return Primtivie["thread_wait_pid"](pid);};
 
 var
  wait_pid=
@@ -130,14 +133,17 @@ var
   function(sigs)
    {var gotsig=[0,0];
     
-    var $$self$1="unknown primitive:thread_self";
+    var $$self$1=Primtivie["thread_self"](/* () */0);
     
     var sighandler=function(s){gotsig[1]=s,0;return wakeup($$self$1);};
     
     var
      oldhdlrs=
       List["map"]
-       (function(s){return "unknown primitive:caml_install_signal_handler";},
+       (function(s)
+         {return Primtivie["caml_install_signal_handler"]
+                  (s,/* Signal_handle */[0,sighandler]);
+          },
         sigs);
     
     if(gotsig[1]=0){sleep(/* () */0)}else{}
@@ -146,7 +152,21 @@ var
     return gotsig[1];
     };
 
-var create=function(fn,arg){return "unknown primitive:thread_new";};
+var
+ create=
+  function(fn,arg)
+   {return Primtivie["thread_new"]
+            (function(param)
+              {try
+                {fn(arg);return exit(/* () */0);}
+               catch(x)
+                {Pervasives["flush"](Pervasives["stdout"]);
+                 Pervasives["flush"](Pervasives["stderr"]);
+                 Primtivie["thread_uncaught_exception"](x);
+                 return exit(/* () */0);
+                 }
+               });
+    };
 
 var
  preempt=
@@ -154,12 +174,12 @@ var
    {if(critical_section[1])
      {return /* () */0;}
     else
-     {return "unknown primitive:thread_request_reschedule";}
+     {return Primtivie["thread_request_reschedule"](/* () */0);}
     };
 
-"unknown primitive:thread_initialize";
+Primtivie["thread_initialize"](/* () */0);
 Sys["set_signal"](Sys["sigvtalrm"],/* Signal_handle */[0,preempt]),
-"unknown primitive:thread_initialize_preemption";
+Primtivie["thread_initialize_preemption"](/* () */0);
 module["exports"]=
 {"create":create,
  "self":$$self,

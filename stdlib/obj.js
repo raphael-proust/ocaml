@@ -10,7 +10,8 @@ var set_double_field=function(x,i,v){return x[i]=v,0;};
 
 var
  marshal=
-  function(obj){return "unknown primitive:caml_output_value_to_string";};
+  function(obj)
+   {return CamlPrimtivie["caml_output_value_to_string"](obj,/* [] */0);};
 
 var
  unmarshal=
@@ -60,8 +61,8 @@ var
    {var x$1=x;
     
     if
-     ("unknown primitive:caml_obj_is_block"&&
-      "unknown primitive:caml_obj_tag"!=
+     (CamlPrimtivie["caml_obj_is_block"](x$1)&&
+      CamlPrimtivie["caml_obj_tag"](x$1)!=
       object_tag&&
       x$1["length"]>=
       1)
@@ -70,13 +71,13 @@ var
      {var slot=x$1;}
     
     if
-     ("unknown primitive:caml_obj_is_block"&&
-      ("unknown primitive:caml_obj_tag"=object_tag))
+     (CamlPrimtivie["caml_obj_is_block"](slot)&&
+      (CamlPrimtivie["caml_obj_tag"](slot)=object_tag))
      {var name=slot[0];}
     else
      {throw Not_found;}
     
-    if("unknown primitive:caml_obj_tag"=string_tag)
+    if(CamlPrimtivie["caml_obj_tag"](name)=string_tag)
      {return slot;}
     else
      {throw Not_found;}

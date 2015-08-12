@@ -9,7 +9,7 @@ var Hashtbl=require("Hashtbl");
 var Stream=require("Stream");
 
 
-var initial_buffer="unknown primitive:caml_create_string";
+var initial_buffer=CamlPrimtivie["caml_create_string"](32);
 
 var buffer=[0,initial_buffer];
 
@@ -23,7 +23,7 @@ var
  store=
   function(c)
    {if(bufpos[1]>=buffer[1]["length"])
-     {var newbuffer="unknown primitive:caml_create_string";
+     {var newbuffer=CamlPrimtivie["caml_create_string"](2*bufpos[1]);
       
       Bytes["blit"](buffer[1],0,newbuffer,0,bufpos[1]),buffer[1]=newbuffer,0}
     else
@@ -478,7 +478,8 @@ var
         switch(exit)
          {case 27:
            return /* Some */[0,
-                   /* Int */[2,"unknown primitive:caml_int_of_string"]];
+                   /* Int */[2,
+                    CamlPrimtivie["caml_int_of_string"](get_string(/* () */0))]];
            
           }
         };
@@ -528,7 +529,8 @@ var
         switch(exit)
          {case 32:
            return /* Some */[0,
-                   /* Float */[3,"unknown primitive:caml_float_of_string"]];
+                   /* Float */[3,
+                    CamlPrimtivie["caml_float_of_string"](get_string(/* () */0))]];
            
           }
         };
@@ -591,7 +593,8 @@ var
         switch(exit)
          {case 39:
            return /* Some */[0,
-                   /* Float */[3,"unknown primitive:caml_float_of_string"]];
+                   /* Float */[3,
+                    CamlPrimtivie["caml_float_of_string"](get_string(/* () */0))]];
            
           }
         };

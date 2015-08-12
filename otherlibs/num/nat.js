@@ -8,7 +8,7 @@ var Bytes=require("Bytes");
 var Sys=require("Sys");
 
 
-"unknown primitive:initialize_nat";
+Primtivie["initialize_nat"](/* () */0);
 var length_nat=function(n){return n["length"]-1;};
 
 var length_of_digit=Sys["word_size"];
@@ -19,9 +19,9 @@ var
    {if(len<0)
      {return Pervasives["invalid_arg"]("make_nat");}
     else
-     {var res="unknown primitive:create_nat";
+     {var res=Primtivie["create_nat"](len);
       
-      "unknown primitive:set_to_zero_nat";
+      Primtivie["set_to_zero_nat"](res,0,len);
       return res;
       }
     };
@@ -35,28 +35,32 @@ var b_2=make_nat(2);
 var
  copy_nat=
   function(nat,off_set,length)
-   {var res="unknown primitive:create_nat";
+   {var res=Primtivie["create_nat"](length);
     
-    "unknown primitive:blit_nat";
+    Primtivie["blit_nat"](res,0,nat,off_set,length);
     return res;
     };
 
 var
  is_zero_nat=
-  function(n,off,len){return "unknown primitive:compare_nat"=0;};
+  function(n,off,len)
+   {return Primtivie["compare_nat"]
+            (make_nat(1),0,1,n,off,Primtivie["num_digits_nat"](n,off,len))=
+           0;
+    };
 
 var
  is_nat_int=
   function(nat,off,len)
-   {return ("unknown primitive:num_digits_nat"=1)&&
-           "unknown primitive:is_digit_int";
+   {return (Primtivie["num_digits_nat"](nat,off,len)=1)&&
+           Primtivie["is_digit_int"](nat,off);
     };
 
 var
  sys_int_of_nat=
   function(nat,off,len)
    {if(is_nat_int(nat,off,len))
-     {return "unknown primitive:nth_digit_nat";}
+     {return Primtivie["nth_digit_nat"](nat,off);}
     else
      {return Pervasives["failwith"]("int_of_nat");}
     };
@@ -71,34 +75,77 @@ var
     else
      {var res=make_nat(1);
       
-      if(i=0){return res;}else{"unknown primitive:set_digit_nat";return res;}
+      if(i=0)
+       {return res;}
+      else
+       {Primtivie["set_digit_nat"](res,0,i);return res;}
       }
     };
 
 var
  eq_nat=
   function(nat1,off1,len1,nat2,off2,len2)
-   {return "unknown primitive:compare_nat"=0;};
+   {return Primtivie["compare_nat"]
+            (nat1,
+             off1,
+             Primtivie["num_digits_nat"](nat1,off1,len1),
+             nat2,
+             off2,
+             Primtivie["num_digits_nat"](nat2,off2,len2))=
+           0;
+    };
 
 var
  le_nat=
   function(nat1,off1,len1,nat2,off2,len2)
-   {return "unknown primitive:compare_nat"<=0;};
+   {return Primtivie["compare_nat"]
+            (nat1,
+             off1,
+             Primtivie["num_digits_nat"](nat1,off1,len1),
+             nat2,
+             off2,
+             Primtivie["num_digits_nat"](nat2,off2,len2))<=
+           0;
+    };
 
 var
  lt_nat=
   function(nat1,off1,len1,nat2,off2,len2)
-   {return "unknown primitive:compare_nat"<0;};
+   {return Primtivie["compare_nat"]
+            (nat1,
+             off1,
+             Primtivie["num_digits_nat"](nat1,off1,len1),
+             nat2,
+             off2,
+             Primtivie["num_digits_nat"](nat2,off2,len2))<
+           0;
+    };
 
 var
  ge_nat=
   function(nat1,off1,len1,nat2,off2,len2)
-   {return "unknown primitive:compare_nat">=0;};
+   {return Primtivie["compare_nat"]
+            (nat1,
+             off1,
+             Primtivie["num_digits_nat"](nat1,off1,len1),
+             nat2,
+             off2,
+             Primtivie["num_digits_nat"](nat2,off2,len2))>=
+           0;
+    };
 
 var
  gt_nat=
   function(nat1,off1,len1,nat2,off2,len2)
-   {return "unknown primitive:compare_nat">0;};
+   {return Primtivie["compare_nat"]
+            (nat1,
+             off1,
+             Primtivie["num_digits_nat"](nat1,off1,len1),
+             nat2,
+             off2,
+             Primtivie["num_digits_nat"](nat2,off2,len2))>
+           0;
+    };
 
 var
  gcd_int_nat=
@@ -107,20 +154,27 @@ var
      {return 1;}
     else
      {if(is_nat_int(nat,off,len))
-       {"unknown primitive:set_digit_nat";return 0;}
+       {Primtivie["set_digit_nat"]
+         (nat,off,Int_misc["gcd_int"](Primtivie["nth_digit_nat"](nat,off),i));
+        return 0;
+        }
       else
        {var len_copy=1+len;
         
-        var copy="unknown primitive:create_nat";
+        var copy=Primtivie["create_nat"](len_copy);
         
-        var quotient="unknown primitive:create_nat";
+        var quotient=Primtivie["create_nat"](1);
         
-        var remainder="unknown primitive:create_nat";
+        var remainder=Primtivie["create_nat"](1);
         
-        "unknown primitive:blit_nat";
-        "unknown primitive:set_digit_nat";
-        "unknown primitive:div_digit_nat";
-        "unknown primitive:set_digit_nat";
+        Primtivie["blit_nat"](copy,0,nat,off,len);
+        Primtivie["set_digit_nat"](copy,len,0);
+        Primtivie["div_digit_nat"]
+         (quotient,0,remainder,0,copy,0,len_copy,nat_of_int(i),0);
+        Primtivie["set_digit_nat"]
+         (nat,
+          off,
+          Int_misc["gcd_int"](Primtivie["nth_digit_nat"](remainder,0),i));
         return 0;
         }
       }
@@ -134,34 +188,39 @@ var
  gcd_nat=
   function(nat1,off1,len1,nat2,off2,len2)
    {if(is_zero_nat(nat1,off1,len1))
-     {"unknown primitive:blit_nat";return len2;}
+     {Primtivie["blit_nat"](nat1,off1,nat2,off2,len2);return len2;}
     else
-     {var copy1=[0,"unknown primitive:create_nat"];
+     {var copy1=[0,Primtivie["create_nat"](1+len1)];
       
-      var copy2=[0,"unknown primitive:create_nat"];
+      var copy2=[0,Primtivie["create_nat"](1+len2)];
       
-      "unknown primitive:blit_nat";
-      "unknown primitive:blit_nat";
-      "unknown primitive:set_digit_nat";
-      "unknown primitive:set_digit_nat";
+      Primtivie["blit_nat"](copy1[1],0,nat1,off1,len1);
+      Primtivie["blit_nat"](copy2[1],0,nat2,off2,len2);
+      Primtivie["set_digit_nat"](copy1[1],len1,0);
+      Primtivie["set_digit_nat"](copy2[1],len2,0);
       if(lt_nat(copy1[1],0,len1,copy2[1],0,len2)){exchange(copy1,copy2)}else{}
       
-      var real_len1=[0,"unknown primitive:num_digits_nat"];
+      var
+       real_len1=
+        [0,Primtivie["num_digits_nat"](copy1[1],0,length_nat(copy1[1]))];
       
-      var real_len2=[0,"unknown primitive:num_digits_nat"];
+      var
+       real_len2=
+        [0,Primtivie["num_digits_nat"](copy2[1],0,length_nat(copy2[1]))];
       
       while(!is_zero_nat(copy2[1],0,real_len2[1]))
-       {"unknown primitive:set_digit_nat",
-        "unknown primitive:div_nat",
+       {Primtivie["set_digit_nat"](copy1[1],real_len1[1],0),
+        Primtivie["div_nat"]
+         (copy1[1],0,1+real_len1[1],copy2[1],0,real_len2[1]),
         exchange(copy1,copy2),
         real_len1[1]=
         real_len2[1],
         0,
         real_len2[1]=
-        "unknown primitive:num_digits_nat",
+        Primtivie["num_digits_nat"](copy2[1],0,real_len2[1]),
         0}
       
-      "unknown primitive:blit_nat";
+      Primtivie["blit_nat"](nat1,off1,copy1[1],0,real_len1[1]);
       return real_len1[1];
       }
     };
@@ -169,17 +228,17 @@ var
 var
  sqrt_nat=
   function(rad,off,len)
-   {var len$1="unknown primitive:num_digits_nat";
+   {var len$1=Primtivie["num_digits_nat"](rad,off,len);
     
     var len_parity=len$1%2;
     
     var rad_len=len$1+1+len_parity;
     
-    var res="unknown primitive:create_nat";
+    var res=Primtivie["create_nat"](rad_len);
     
-    "unknown primitive:blit_nat";
-    "unknown primitive:set_digit_nat";
-    "unknown primitive:set_digit_nat";
+    Primtivie["blit_nat"](res,0,rad,off,len$1);
+    Primtivie["set_digit_nat"](res,len$1,0);
+    Primtivie["set_digit_nat"](res,rad_len-1,0);
     var rad$1=res;
     
     var cand_len=(len$1+1)/2;
@@ -190,7 +249,7 @@ var
     
     var
      shift_cand=
-      ("unknown primitive:num_leading_zero_bits_in_digit"+
+      (Primtivie["num_leading_zero_bits_in_digit"](rad$1,len$1-1)+
        Sys["word_size"]*
        len_parity)/
       2;
@@ -198,19 +257,21 @@ var
     if(shift_cand=Sys["word_size"])
      {return cand;}
     else
-     {"unknown primitive:complement_nat";
-      "unknown primitive:shift_right_nat";
-      var next_cand="unknown primitive:create_nat";
+     {Primtivie["complement_nat"](cand,0,cand_len);
+      Primtivie["shift_right_nat"](cand,0,1,a_1,0,shift_cand);
+      var next_cand=Primtivie["create_nat"](rad_len);
       
       var
        loop=
         function(param)
-         {"unknown primitive:blit_nat";
-          "unknown primitive:div_nat";
-          "unknown primitive:add_nat";
-          "unknown primitive:shift_right_nat";
+         {Primtivie["blit_nat"](next_cand,0,rad$1,0,rad_len);
+          Primtivie["div_nat"](next_cand,0,rad_len,cand,0,cand_len);
+          Primtivie["add_nat"](next_cand,cand_len,cand_rest,cand,0,cand_len,0);
+          Primtivie["shift_right_nat"](next_cand,cand_len,cand_rest,a_1,0,1);
           if(lt_nat(next_cand,cand_len,cand_rest,cand,0,cand_len))
-           {"unknown primitive:blit_nat";return loop(/* () */0);}
+           {Primtivie["blit_nat"](cand,0,next_cand,cand_len,cand_len);
+            return loop(/* () */0);
+            }
           else
            {return cand;}
           };
@@ -225,10 +286,12 @@ if(length_of_digit!=32)
  {if(length_of_digit!=64)
    {throw [0,Assert_failure,[0,"nat.ml",252,9]];}
   else
-   {"unknown primitive:set_digit_nat","unknown primitive:mult_digit_nat"}
+   {Primtivie["set_digit_nat"](power_base_max,0,1e18),
+    Primtivie["mult_digit_nat"]
+     (power_base_max,0,2,power_base_max,0,1,nat_of_int(9),0)}
   }
 else
- {"unknown primitive:set_digit_nat"}
+ {Primtivie["set_digit_nat"](power_base_max,0,1e9)}
 
 if(length_of_digit!=32)
  {if(length_of_digit!=64)
@@ -261,13 +324,15 @@ var
  raw_string_of_digit=
   function(nat,off)
    {if(is_nat_int(nat,off,1))
-     {return Pervasives["string_of_int"]("unknown primitive:nth_digit_nat");}
+     {return Pervasives["string_of_int"](Primtivie["nth_digit_nat"](nat,off));
+      }
     else
-     {"unknown primitive:blit_nat";
-      "unknown primitive:div_digit_nat";
-      var leading_digits="unknown primitive:nth_digit_nat";
+     {Primtivie["blit_nat"](b_2,0,nat,off,1);
+      Primtivie["div_digit_nat"]
+       (a_2,0,a_1,0,b_2,0,2,max_power_10_power_in_int,0);
+      var leading_digits=Primtivie["nth_digit_nat"](a_2,0);
       
-      var s1=Pervasives["string_of_int"]("unknown primitive:nth_digit_nat");
+      var s1=Pervasives["string_of_int"](Primtivie["nth_digit_nat"](a_1,0));
       
       var len=s1["length"];
       
@@ -298,11 +363,12 @@ var
     
     var j=[0,0];
     
-    "unknown primitive:set_digit_nat";
-    while(i[0]++,"unknown primitive:is_digit_zero")
-     {"unknown primitive:mult_digit_nat"}
+    Primtivie["set_digit_nat"](power_base,0,base);
+    while(i[0]++,Primtivie["is_digit_zero"](power_base,i[1]))
+     {Primtivie["mult_digit_nat"]
+       (power_base,i[1],2,power_base,-1+i[1],1,power_base,0)}
     
-    while(j[1]<i[1]-1&&"unknown primitive:is_digit_int"){j[0]++}
+    while(j[1]<i[1]-1&&Primtivie["is_digit_int"](power_base,j[1])){j[0]++}
     
     return /* tuple */[0,i[1]-2,j[1]];
     };
@@ -350,25 +416,29 @@ var
             
             var l=Int_misc["num_bits_int"](n)-2;
             
-            "unknown primitive:blit_nat";
+            Primtivie["blit_nat"](res,0,power_base,pmax$1,1);
             for(var i$1=l;i$1>=0;i$1--)
-             {var len="unknown primitive:num_digits_nat";
+             {var len=Primtivie["num_digits_nat"](res,0,newn);
               
               var len2=Pervasives["min"](n,2*len);
               
               var succ_len2=1+len2;
               
-              "unknown primitive:square_nat";
+              Primtivie["square_nat"](res2,0,len2,res,0,len);
               if((n&1<<i$1)>0)
-               {"unknown primitive:set_to_zero_nat",
-                "unknown primitive:mult_digit_nat"}
+               {Primtivie["set_to_zero_nat"](res,0,len),
+                Primtivie["mult_digit_nat"]
+                 (res,0,succ_len2,res2,0,len2,power_base,pmax$1)}
               else
-               {"unknown primitive:blit_nat"}
+               {Primtivie["blit_nat"](res,0,res2,0,len2)}
               
-              "unknown primitive:set_to_zero_nat"}
+              Primtivie["set_to_zero_nat"](res2,0,len2)}
             
             if(rem>0)
-             {"unknown primitive:mult_digit_nat";return res2;}
+             {Primtivie["mult_digit_nat"]
+               (res2,0,newn,res,0,n,power_base,-1+rem);
+              return res2;
+              }
             else
              {return res;}
             }
@@ -382,14 +452,14 @@ var
 var
  unadjusted_string_of_nat=
   function(nat,off,len_nat)
-   {var len="unknown primitive:num_digits_nat";
+   {var len=Primtivie["num_digits_nat"](nat,off,len_nat);
     
     if(len=1)
      {return raw_string_of_digit(nat,off);}
     else
      {var len_copy=[0,1+len];
       
-      var copy1="unknown primitive:create_nat";
+      var copy1=Primtivie["create_nat"](len_copy[1]);
       
       var copy2=make_nat(len_copy[1]);
       
@@ -405,10 +475,11 @@ var
         var pos_ref=[0,len_s];
         
         len_copy[1]=-1+len_copy[1],0;
-        "unknown primitive:blit_nat";
-        "unknown primitive:set_digit_nat";
+        Primtivie["blit_nat"](copy1,0,nat,off,len);
+        Primtivie["set_digit_nat"](copy1,len,0);
         while(!is_zero_nat(copy1,0,len_copy[1]))
-         {"unknown primitive:div_digit_nat";
+         {Primtivie["div_digit_nat"]
+           (copy2,0,rest_digit,0,copy1,0,1+len_copy[1],power_base_max,0);
           var str=raw_string_of_digit(rest_digit,0);
           
           $$String["blit"](str,0,s,pos_ref[1]-str["length"],str["length"]),
@@ -417,10 +488,10 @@ var
           pmax,
           0,
           len_copy[1]=
-          "unknown primitive:num_digits_nat",
+          Primtivie["num_digits_nat"](copy2,0,len_copy[1]),
           0,
-          "unknown primitive:blit_nat",
-          "unknown primitive:set_digit_nat"}
+          Primtivie["blit_nat"](copy1,0,copy2,0,len_copy[1]),
+          Primtivie["set_digit_nat"](copy1,len_copy[1],0)}
         
         return Bytes["unsafe_to_string"](s);
         }
@@ -514,18 +585,26 @@ var
         }
       
       if(((digits_read[1]=pint)||(i=bound))&&!(digits_read[1]=0))
-       {"unknown primitive:set_digit_nat";
+       {Primtivie["set_digit_nat"](nat1,0,$$int[1]);
         if(new_len[1]=current_len[1])
          {var erase_len=current_len[1]-1;}
         else
          {var erase_len=current_len[1];}
         
-        for(var j=1;j<=erase_len;j++){"unknown primitive:set_digit_nat"}
+        for(var j=1;j<=erase_len;j++){Primtivie["set_digit_nat"](nat1,j,0)}
         
-        "unknown primitive:mult_digit_nat",
-        "unknown primitive:blit_nat",
+        Primtivie["mult_digit_nat"]
+         (nat1,
+          0,
+          possible_len[1],
+          nat2,
+          0,
+          current_len[1],
+          power_base,
+          -1+digits_read[1]),
+        Primtivie["blit_nat"](nat2,0,nat1,0,possible_len[1]),
         current_len[1]=
-        "unknown primitive:num_digits_nat",
+        Primtivie["num_digits_nat"](nat1,0,possible_len[1]),
         0,
         possible_len[1]=
         Pervasives["min"](new_len[1],1+current_len[1]),
@@ -540,9 +619,9 @@ var
        {}
       }
     
-    var nat="unknown primitive:create_nat";
+    var nat=Primtivie["create_nat"](current_len[1]);
     
-    "unknown primitive:blit_nat";
+    Primtivie["blit_nat"](nat,0,nat1,0,current_len[1]);
     return nat;
     };
 
@@ -550,7 +629,7 @@ var nat_of_string=function(s){return sys_nat_of_string(10,s,0,s["length"]);};
 
 var
  float_of_nat=
-  function(nat){return "unknown primitive:caml_float_of_string";};
+  function(nat){return Primtivie["caml_float_of_string"](string_of_nat(nat));};
 
 module["exports"]=
 {"make_nat":make_nat,

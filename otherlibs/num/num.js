@@ -1004,7 +1004,7 @@ var
  num_of_nat=
   function(nat)
    {if(Nat["is_nat_int"](nat,0,Nat["length_nat"](nat)))
-     {return /* Int */[0,"unknown primitive:nth_digit_nat"];}
+     {return /* Int */[0,Primtivie["nth_digit_nat"](nat,0)];}
     else
      {return /* Big_int */[1,Big_int["big_int_of_nat"](nat)];}
     };

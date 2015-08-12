@@ -4,18 +4,20 @@ var Lexing=require("Lexing");
 var $$Array=require("Array");
 
 
-var YYexit="unknown primitive:caml_set_oo_id";
+var YYexit=CamlPrimtivie["caml_set_oo_id"]([248,"Parsing.YYexit",0]);
 
-var Parse_error="unknown primitive:caml_set_oo_id";
+var
+ Parse_error=
+  CamlPrimtivie["caml_set_oo_id"]([248,"Parsing.Parse_error",0]);
 
 
 var
  env=
   /* record */[0,
-   "unknown primitive:caml_make_vect",
-   "unknown primitive:caml_make_vect",
-   "unknown primitive:caml_make_vect",
-   "unknown primitive:caml_make_vect",
+   CamlPrimtivie["caml_make_vect"](100,0),
+   CamlPrimtivie["caml_make_vect"](100,/* () */0),
+   CamlPrimtivie["caml_make_vect"](100,Lexing["dummy_pos"]),
+   CamlPrimtivie["caml_make_vect"](100,Lexing["dummy_pos"]),
    100,
    0,
    0,
@@ -36,13 +38,15 @@ var
     
     var newsize=oldsize*2;
     
-    var new_s="unknown primitive:caml_make_vect";
+    var new_s=CamlPrimtivie["caml_make_vect"](newsize,0);
     
-    var new_v="unknown primitive:caml_make_vect";
+    var new_v=CamlPrimtivie["caml_make_vect"](newsize,/* () */0);
     
-    var new_start="unknown primitive:caml_make_vect";
+    var
+     new_start=
+      CamlPrimtivie["caml_make_vect"](newsize,Lexing["dummy_pos"]);
     
-    var new_end="unknown primitive:caml_make_vect";
+    var new_end=CamlPrimtivie["caml_make_vect"](newsize,Lexing["dummy_pos"]);
     
     $$Array["blit"](env[1],0,new_s,0,oldsize);
     env[1]=new_s,0;
@@ -68,7 +72,7 @@ var
    {var
      loop=
       function(cmd,arg)
-       {var match="unknown primitive:caml_parse_engine";
+       {var match=CamlPrimtivie["caml_parse_engine"](tables,env,cmd,arg);
         
         switch(match[0])
          {case 0:
@@ -151,8 +155,8 @@ var
       else
        {current_lookahead_fun[1]=
         function(tok)
-         {if("unknown primitive:caml_obj_is_block")
-           {return tables[3]["unknown primitive:caml_obj_tag"]=curr_char;}
+         {if(CamlPrimtivie["caml_obj_is_block"](tok))
+           {return tables[3][CamlPrimtivie["caml_obj_tag"](tok)]=curr_char;}
           else
            {return tables[2][tok]=curr_char;}
           },
@@ -177,7 +181,7 @@ var
           
           var en=env[4][env[11]-i+1];
           
-          if("unknown primitive:caml_notequal")
+          if(CamlPrimtivie["caml_notequal"](st,en))
            {return st;}
           else
            {return loop(i-1);}
@@ -217,7 +221,7 @@ module["exports"]=
  "clear_parser":clear_parser,
  "Parse_error":Parse_error,
  "caml_set_parser_trace":
- function(prim){return "unknown primitive:caml_set_parser_trace";},
+ function(prim){return CamlPrimtivie["caml_set_parser_trace"](prim);},
  "YYexit":YYexit,
  "yyparse":yyparse,
  "peek_val":peek_val,

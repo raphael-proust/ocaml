@@ -55,9 +55,11 @@ var
 var
  get_columns=
   function(param)
-   {if("unknown primitive:caml_string_equal")
+   {if(Primtivie["caml_string_equal"](Sys["os_type"],"Unix"))
      {try
-       {return "unknown primitive:caml_int_of_string";}
+       {return Primtivie["caml_int_of_string"]
+                (My_std["String"][2](My_unix["run_and_read"]("tput cols")));
+        }
       catch(exn){if(exn[1]=Failure){return 80;}else{throw exn;}}
       }
     else
@@ -305,7 +307,7 @@ var
       /* () */0);
     var
      ticker_phase=
-      Pervasives["abs"]("unknown primitive:caml_ceil_float")%
+      Pervasives["abs"](Primtivie["caml_ceil_float"](dt/ticker_period))%
       ticker_animation["length"];
     
     var ticker=ticker_animation[ticker_phase];

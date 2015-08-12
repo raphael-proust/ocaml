@@ -42,13 +42,13 @@ var
   function(cl,c)
    {return Bool["eval"]
             (function(param)
-              {return "unknown primitive:caml_lessequal"&&
-                      "unknown primitive:caml_lessequal";
+              {return Primtivie["caml_lessequal"](param[1],c)&&
+                      Primtivie["caml_lessequal"](c,param[2]);
                },
              cl);
     };
 
-var compare=function(x,y){return "unknown primitive:caml_int_compare";};
+var compare=function(x,y){return Primtivie["caml_int_compare"](x,y);};
 
 var print=Format["pp_print_int"];
 
@@ -176,13 +176,13 @@ var
     
     var m=count[1];
     
-    var graph="unknown primitive:caml_make_vect";
+    var graph=Primtivie["caml_make_vect"](m,IS[1]);
     
     My_std["List"][14]
      (function(param)
        {var q=param[1];return graph[q]=IS[4](param[2],graph[q]),0;},
       epsilons[1]);
-    var closure="unknown primitive:caml_make_vect";
+    var closure=Primtivie["caml_make_vect"](m,IS[1]);
     
     var
      transitive=
@@ -213,7 +213,7 @@ var
     for(var i=0;i<=m-1;i++)
      {closure[i]=transitive(IS[1],/* :: */[0,i,/* [] */0]),0}
     
-    var table="unknown primitive:caml_make_vect";
+    var table=Primtivie["caml_make_vect"](m,/* [] */0);
     
     My_std["List"][14]
      (function(param)
@@ -344,11 +344,11 @@ var
 
 var NFA=[0,IS,ISM,build$prime,build,run];
 
-var Succeed="unknown primitive:caml_set_oo_id";
+var Succeed=Primtivie["caml_set_oo_id"]([248,"Glob.Brute.Succeed",0]);
 
-var Fail="unknown primitive:caml_set_oo_id";
+var Fail=Primtivie["caml_set_oo_id"]([248,"Glob.Brute.Fail",0]);
 
-var Too_hard="unknown primitive:caml_set_oo_id";
+var Too_hard=Primtivie["caml_set_oo_id"]([248,"Glob.Brute.Too_hard",0]);
 
 var
  match_pattern=
@@ -553,7 +553,7 @@ var
       function(x)
        {var y=f(/* () */0);
         
-        if("unknown primitive:caml_equal")
+        if(Primtivie["caml_equal"](x,y))
          {return /* () */0;}
         else
          {throw [0,
@@ -700,7 +700,7 @@ var
    {return Bool["eval"]
             (function(param)
               {switch(param)
-                {case 0:return "unknown primitive:caml_string_equal";
+                {case 0:return Primtivie["caml_string_equal"](u,param[1]);
                  case 1:
                   var kind=param[1];
                   

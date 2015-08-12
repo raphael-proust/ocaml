@@ -415,7 +415,7 @@ var
         function(part_qual,name)
          {var sname=Odoc_info["Name"][1](name);
           
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](sname,name))
            {puts
              (chan,
               pad_to(35,Pervasives["^"]("* ",Pervasives["^"](sname,":: "))));
@@ -699,7 +699,9 @@ var
        function(self$neg1,s,t){return "";},
        texi_of_Target,
        function(self$neg1,target,code)
-        {if("unknown primitive:caml_string_equal")
+        {if
+          (Primtivie["caml_string_equal"]
+            ($$String["lowercase"](target),"texi"))
           {return code;}
          else
           {return "";}
@@ -904,7 +906,7 @@ var
          
          switch(exit){case 92:var xname="";}
          
-         if("unknown primitive:caml_string_equal")
+         if(Primtivie["caml_string_equal"](xname,""))
           {"unknown block:(sendself self-1/1434 escape/1308 name/1435)";}
          else
           {return Texi[5](/* Some */[0,xname],name);}
@@ -1004,7 +1006,9 @@ var
      "texi_of_Block"],
     text_init);
 
-var Aliased_node="unknown primitive:caml_set_oo_id";
+var
+ Aliased_node=
+  Primtivie["caml_set_oo_id"]([248,"Odoc_texi.Aliased_node",0]);
 
 var
  texi_init=
@@ -2359,7 +2363,7 @@ var
          else
           {var title="";}
          
-         if("unknown primitive:caml_string_notequal")
+         if(Primtivie["caml_string_notequal"](texi_filename,"ocamldoc.texi"))
           {var fn=Filename["basename"](texi_filename);
            
            var
@@ -2371,7 +2375,7 @@ var
                ".info");
            }
          else
-          {if("unknown primitive:caml_string_notequal")
+          {if(Primtivie["caml_string_notequal"](title,""))
             {var filename=Pervasives["^"](title,".info");}
            else
             {var filename="doc.info";}
@@ -2439,7 +2443,7 @@ var
            "unknown block:(sendself self-2/1895 texi_of_info/1585\n  (makeblock 0\n    (apply (field 48 (global Odoc_info!)) m_list/1898 (field 0 match/2042))))";
            puts_nl(chan,0)}
          else
-          {if("unknown primitive:caml_string_notequal")
+          {if(Primtivie["caml_string_notequal"](title,""))
             {puts_nl(chan,"@ifinfo"),
              puts_nl(chan,Pervasives["^"]("Documentation for ",title)),
              puts_nl(chan,"@end ifinfo")}
@@ -2623,7 +2627,9 @@ var
        generate,
        function(self$neg2,module_list)
         {Hashtbl["clear"](self$neg2[node_tbl]);
-         if("unknown primitive:caml_string_equal")
+         if
+          (Primtivie["caml_string_equal"]
+            (Odoc_info["Global"][3][1],Odoc_messages["default_out_file"]))
           {var filename="ocamldoc.texi";}
          else
           {var filename=Odoc_info["Global"][3][1];}

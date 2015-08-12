@@ -11,7 +11,7 @@ var $$Array=require("Array");
 var
  new_state=
   function(param)
-   {return /* record */[0,"unknown primitive:caml_make_vect",0];};
+   {return /* record */[0,CamlPrimtivie["caml_make_vect"](55,0),0];};
 
 var
  assign=
@@ -61,7 +61,8 @@ var
 
 var
  make_self_init=
-  function(param){return make("unknown primitive:caml_sys_random_seed");};
+  function(param)
+   {return make(CamlPrimtivie["caml_sys_random_seed"](/* () */0));};
 
 var
  copy=
@@ -196,7 +197,67 @@ var
    $$float,
    bool];
 
-var $$default=/* record */[0,"unknown primitive:caml_obj_dup",0];
+var
+ $$default=
+  /* record */[0,
+   CamlPrimtivie["caml_obj_dup"]
+    ([0,
+      987910699,
+      495797812,
+      364182224,
+      414272206,
+      318284740,
+      990407751,
+      383018966,
+      270373319,
+      840823159,
+      24560019,
+      536292337,
+      512266505,
+      189156120,
+      730249596,
+      143776328,
+      51606627,
+      140166561,
+      366354223,
+      1003410265,
+      700563762,
+      981890670,
+      913149062,
+      526082594,
+      1021425055,
+      784300257,
+      667753350,
+      630144451,
+      949649812,
+      48546892,
+      415514493,
+      258888527,
+      511570777,
+      89983870,
+      283659902,
+      308386020,
+      242688715,
+      482270760,
+      865188196,
+      1027664170,
+      207196989,
+      193777847,
+      619708188,
+      671350186,
+      149669678,
+      257044018,
+      87658204,
+      558145612,
+      183450813,
+      28133145,
+      901332182,
+      710253903,
+      510646120,
+      652377910,
+      409934019,
+      801085050]),
+   0];
 
 var bits$1=function(param){return State[7]($$default);};
 
@@ -219,7 +280,7 @@ var init=function(seed){return State[3]($$default,[seed]);};
 var
  self_init=
   function(param)
-   {return full_init$1("unknown primitive:caml_sys_random_seed");};
+   {return full_init$1(CamlPrimtivie["caml_sys_random_seed"](/* () */0));};
 
 var get_state=function(param){return State[6]($$default);};
 

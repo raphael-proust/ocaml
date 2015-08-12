@@ -8,18 +8,22 @@ var $$Array=require("Array");
 var Sys=require("Sys");
 
 
-var hash=function(x){return "unknown primitive:caml_hash";};
+var hash=function(x){return CamlPrimtivie["caml_hash"](10,100,0,x);};
 
-var hash_param=function(n1,n2,x){return "unknown primitive:caml_hash";};
+var
+ hash_param=
+  function(n1,n2,x){return CamlPrimtivie["caml_hash"](n1,n2,0,x);};
 
-var seeded_hash=function(seed,x){return "unknown primitive:caml_hash";};
+var
+ seeded_hash=
+  function(seed,x){return CamlPrimtivie["caml_hash"](10,100,seed,x);};
 
 try
- {var params="unknown primitive:caml_sys_getenv";}
+ {var params=CamlPrimtivie["caml_sys_getenv"]("OCAMLRUNPARAM");}
 catch(exn)
  {if(exn=Not_found)
    {try
-     {var params="unknown primitive:caml_sys_getenv";}
+     {var params=CamlPrimtivie["caml_sys_getenv"]("CAMLRUNPARAM");}
     catch(exn$1){if(exn$1=Not_found){var params="";}else{throw exn$1;}}
     }
   else
@@ -60,7 +64,7 @@ var
     if(random)
      {var lzarg=prng;
       
-      var tag="unknown primitive:caml_obj_tag";
+      var tag=CamlPrimtivie["caml_obj_tag"](lzarg);
       
       var
        seed=
@@ -72,7 +76,11 @@ var
     else
      {var seed=0;}
     
-    return /* record */[0,0,"unknown primitive:caml_make_vect",seed,s];
+    return /* record */[0,
+            0,
+            CamlPrimtivie["caml_make_vect"](s,/* Empty */0),
+            seed,
+            s];
     };
 
 var
@@ -92,7 +100,9 @@ var
     if(h["length"]<4||(len=h[4]))
      {return clear(h);}
     else
-     {h[1]=0,0;return h[2]="unknown primitive:caml_make_vect",0;}
+     {h[1]=0,0;
+      return h[2]=CamlPrimtivie["caml_make_vect"](h[4],/* Empty */0),0;
+      }
     };
 
 var
@@ -115,7 +125,7 @@ var
     var nsize=osize*2;
     
     if(nsize<Sys["max_array_length"])
-     {var ndata="unknown primitive:caml_make_vect";
+     {var ndata=CamlPrimtivie["caml_make_vect"](nsize,/* Empty */0);
       
       h[2]=ndata,0;
       var
@@ -147,9 +157,10 @@ var
  key_index=
   function(h,key)
    {if(h["length"]>=3)
-     {return "unknown primitive:caml_hash"&h[2]["length"]-1;}
+     {return CamlPrimtivie["caml_hash"](10,100,h[3],key)&h[2]["length"]-1;}
     else
-     {return "unknown primitive:caml_hash_univ_param"%h[2]["length"];}
+     {return CamlPrimtivie["caml_hash_univ_param"](10,100,key)%h[2]["length"];
+      }
     };
 
 var
@@ -177,7 +188,7 @@ var
           
           var k=param[1];
           
-          if("unknown primitive:caml_compare"=0)
+          if(CamlPrimtivie["caml_compare"](k,key)=0)
            {h[1]=h[1]-1,0;return next;}
           else
            {return /* Cons */[0,k,i,remove_bucket(next)];}
@@ -201,7 +212,7 @@ var
       
       var k=param[1];
       
-      if("unknown primitive:caml_compare"=0)
+      if(CamlPrimtivie["caml_compare"](key,k)=0)
        {return d;}
       else
        {return find_rec(key,rest);}
@@ -222,7 +233,7 @@ var
       
       var k1=match[1];
       
-      if("unknown primitive:caml_compare"=0)
+      if(CamlPrimtivie["caml_compare"](key,k1)=0)
        {return d1;}
       else
        {if(rest1)
@@ -232,7 +243,7 @@ var
           
           var k2=rest1[1];
           
-          if("unknown primitive:caml_compare"=0)
+          if(CamlPrimtivie["caml_compare"](key,k2)=0)
            {return d2;}
           else
            {if(rest2)
@@ -242,7 +253,7 @@ var
               
               var k3=rest2[1];
               
-              if("unknown primitive:caml_compare"=0)
+              if(CamlPrimtivie["caml_compare"](key,k3)=0)
                {return d3;}
               else
                {return find_rec(key,rest3);}
@@ -272,7 +283,7 @@ var
           
           var k=param[1];
           
-          if("unknown primitive:caml_compare"=0)
+          if(CamlPrimtivie["caml_compare"](k,key)=0)
            {return /* :: */[0,d,find_in_bucket(rest)];}
           else
            {return find_in_bucket(rest);}
@@ -297,7 +308,7 @@ var
           
           var k=param[1];
           
-          if("unknown primitive:caml_compare"=0)
+          if(CamlPrimtivie["caml_compare"](k,key)=0)
            {return /* Cons */[0,key,info,next];}
           else
            {return /* Cons */[0,k,i,replace_bucket(next)];}
@@ -334,7 +345,8 @@ var
           
           var k=param[1];
           
-          return ("unknown primitive:caml_compare"=0)||mem_in_bucket(rest);
+          return (CamlPrimtivie["caml_compare"](k,key)=0)||
+                 mem_in_bucket(rest);
           }
         else
          {return /* false */0;}
@@ -413,7 +425,7 @@ var
       $$Array["fold_left"]
        (function(m,b){return Pervasives["max"](m,bucket_length(0,b));},0,h[2]);
     
-    var histo="unknown primitive:caml_make_vect";
+    var histo=CamlPrimtivie["caml_make_vect"](mbl+1,0);
     
     $$Array["iter"]
      (function(b){var l=bucket_length(0,b);return histo[l]=histo[l]+1,0;},
@@ -733,5 +745,6 @@ module["exports"]=
  "seeded_hash":seeded_hash,
  "hash_param":hash_param,
  "caml_hash":
- function(prim,prim,prim,prim){return "unknown primitive:caml_hash";}};
+ function(prim,prim,prim,prim)
+  {return CamlPrimtivie["caml_hash"](prim$1,prim$2,prim$3,prim);}};
 

@@ -13,9 +13,11 @@ var identchar="[A-Za-z_À-ÖØ-öø-ÿ'0-9]";
 
 var blank="[ \n\r\t\f]";
 
-var yytransl_const="unknown primitive:caml_obj_dup";
+var
+ yytransl_const=
+  Primtivie["caml_obj_dup"]([0,261,262,263,264,265,266,267,268,269,0,0]);
 
-var yytransl_block="unknown primitive:caml_obj_dup";
+var yytransl_block=Primtivie["caml_obj_dup"]([0,257,258,259,260,270,271,0]);
 
 var
  yylhs=

@@ -41,7 +41,7 @@ var
         }
       var $js$1;
       try
-       {$js$1="unknown primitive:caml_int_of_string";}
+       {$js$1=Primtivie["caml_int_of_string"](port);}
       catch(exn$2)
        {if(exn$2[1]=Failure)
          {Pervasives["prerr_endline"]("The port number should be an integer");
@@ -115,7 +115,7 @@ var
     if(!Filename["is_implicit"](name))
      {return check(name);}
     else
-     {var path="unknown primitive:caml_sys_getenv";
+     {var path=Primtivie["caml_sys_getenv"]("PATH");
       
       var length=path["length"];
       
@@ -135,7 +135,7 @@ var
           
           var directory=$$String["sub"](path,pos,pos2-pos);
           
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](directory,""))
            {var fullname=name;}
           else
            {var fullname=Pervasives["^"](directory,Pervasives["^"]("/",name));
@@ -192,7 +192,7 @@ var
         var suiv=i;
         
         return Pervasives["^"]
-                ("unknown primitive:caml_sys_getenv",
+                (Primtivie["caml_sys_getenv"]($$String["sub"](ch,0,suiv)),
                  subst_variable($$String["sub"](ch,suiv,ch["length"]-suiv)));
         };
     
@@ -221,11 +221,12 @@ var
           
           try
            {return Filename["concat"]
-                    ("unknown primitive:caml_sys_getenv",tail);
+                    (Primtivie["caml_sys_getenv"]("HOME"),tail);
             }
           catch(exn)
            {if(exn=Not_found)
-             {return concat_root("unknown primitive:caml_sys_getenv",tail);}
+             {return concat_root(Primtivie["caml_sys_getenv"]("LOGNAME"),tail);
+              }
             else
              {throw exn;}
             }

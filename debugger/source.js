@@ -18,7 +18,7 @@ var
   function(pos,mdle)
    {var pos_fname=pos[1];
     
-    if("unknown primitive:caml_sys_file_exists")
+    if(Primtivie["caml_sys_file_exists"](pos_fname))
      {return pos_fname;}
     else
      {var
@@ -27,7 +27,10 @@ var
          {var len$prime=m$prime["length"];
           
           try
-           {return "unknown primitive:caml_string_equal"&&(m[len$prime]=46);}
+           {return Primtivie["caml_string_equal"]
+                    ($$String["sub"](m,0,len$prime),m$prime)&&
+                   (m[len$prime]=46);
+            }
           catch(exn)
            {if(exn[1]=Invalid_argument){return /* false */0;}else{throw exn;}}
           };
@@ -42,7 +45,7 @@ var
       
       var fname=pos[1];
       
-      if("unknown primitive:caml_string_equal")
+      if(Primtivie["caml_string_equal"](fname,""))
        {try
          {var dot_index=$$String["rindex"](mdle,46);
           
@@ -74,7 +77,7 @@ var
        {if(Filename["is_relative"](fname))
          {return Misc["find_in_path_rel"](path,fname);}
         else
-         {if("unknown primitive:caml_sys_file_exists")
+         {if(Primtivie["caml_sys_file_exists"](fname))
            {return fname;}
           else
            {throw Not_found;}
@@ -138,10 +141,10 @@ var
           
           var lin=a[2];
           
-          if("unknown primitive:caml_lessthan")
+          if(Primtivie["caml_lessthan"](lin,line))
            {return /* :: */[0,pair,l$prime];}
           else
-           {if("unknown primitive:caml_equal")
+           {if(Primtivie["caml_equal"](lin,line))
              {return l$prime;}
             else
              {return /* :: */[0,a,new_list(l$prime[2])];}

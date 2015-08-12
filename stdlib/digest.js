@@ -8,7 +8,9 @@ var Bytes=require("Bytes");
 
 var compare=$$String["compare"];
 
-var string=function(str){return "unknown primitive:caml_md5_string";};
+var
+ string=
+  function(str){return CamlPrimtivie["caml_md5_string"](str,0,str["length"]);};
 
 var bytes=function(b){return string(Bytes["unsafe_to_string"](b));};
 
@@ -18,7 +20,7 @@ var
    {if(ofs<0||len<0||ofs>str["length"]-len)
      {return Pervasives["invalid_arg"]("Digest.substring");}
     else
-     {return "unknown primitive:caml_md5_string";}
+     {return CamlPrimtivie["caml_md5_string"](str,ofs,len);}
     };
 
 var
@@ -33,7 +35,7 @@ var
     var exit;
     
     try
-     {var d="unknown primitive:caml_md5_chan";exit=-1;}
+     {var d=CamlPrimtivie["caml_md5_chan"](ic,-1);exit=-1;}
     catch(e){Pervasives["close_in"](ic);throw e;}
     
     switch(exit){case -1:Pervasives["close_in"](ic);return d;}
@@ -50,7 +52,7 @@ var char_hex=function(n){return n+(n<10?48:97-10);};
 var
  to_hex=
   function(d)
-   {var result="unknown primitive:caml_create_string";
+   {var result=CamlPrimtivie["caml_create_string"](32);
     
     for(var i=0;i<=15;i++)
      {var x=d[i];result[i*2]=char_hex(x>>>4),0,result[i*2+1]=char_hex(x&15),0}
@@ -82,7 +84,7 @@ var
     
     var $$byte=function(i){return (digit(s[i])<<4)+digit(s[i+1]);};
     
-    var result="unknown primitive:caml_create_string";
+    var result=CamlPrimtivie["caml_create_string"](16);
     
     for(var i=0;i<=15;i++){result[i]=Char["chr"]($$byte(2*i)),0}
     

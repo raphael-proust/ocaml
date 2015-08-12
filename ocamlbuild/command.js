@@ -42,9 +42,9 @@ var
  env_path=
   [246,
    function(param)
-    {var path_var="unknown primitive:caml_sys_getenv";
+    {var path_var=Primtivie["caml_sys_getenv"]("PATH");
      
-     if("unknown primitive:caml_string_equal")
+     if(Primtivie["caml_string_equal"](Sys["os_type"],"Win32"))
       {var parse_path=Lexers["parse_environment_path_w"];}
      else
       {var parse_path=Lexers["parse_environment_path"];}
@@ -54,7 +54,7 @@ var
      var
       norm_current_dir_name=
        function(path)
-        {if("unknown primitive:caml_string_equal")
+        {if(Primtivie["caml_string_equal"](path,""))
           {return Filename["current_dir_name"];}
          else
           {return path;}
@@ -132,7 +132,7 @@ var
    {var
      try_path=
       function(path)
-       {if("unknown primitive:caml_string_equal")
+       {if(Primtivie["caml_string_equal"](path,Filename["current_dir_name"]))
          {return file_or_exe_exists(cmd);}
         else
          {return file_or_exe_exists(My_std["filename_concat"](path,cmd));}
@@ -157,7 +157,7 @@ var
     
     var b=Buffer["create"](256);
     
-    if("unknown primitive:caml_string_equal")
+    if(Primtivie["caml_string_equal"](Sys["os_type"],"Win32"))
      {Buffer["add_string"](b,"''")}
     else
      {}
@@ -264,7 +264,7 @@ var
         /* true */1,
         spec);
     
-    if("unknown primitive:caml_string_equal")
+    if(Primtivie["caml_string_equal"](rtarget[1],""))
      {var target=s;}
     else
      {var target=rtarget[1];}
@@ -531,7 +531,7 @@ var
     var
      degraded=
       My_std["!*"](My_unix["is_degraded"])||
-      "unknown primitive:caml_string_equal";
+      Primtivie["caml_string_equal"](Sys["os_type"],"Win32");
     
     var jobs$1=jobs[1];
     

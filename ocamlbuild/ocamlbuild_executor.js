@@ -12,11 +12,15 @@ var Printexc=require("Printexc");
 var Map=require("Map");
 
 
-var compare=function(prim,prim){return "unknown primitive:caml_compare";};
+var
+ compare=
+  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
 
 var JS=Set["Make"]([0,compare]);
 
-var compare$1=function(prim,prim){return "unknown primitive:caml_compare";};
+var
+ compare$1=
+  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
 
 var FDM=Map["Make"]([0,compare$1]);
 
@@ -253,7 +257,7 @@ var
           
           var cmd=param[1](/* () */0);
           
-          if("unknown primitive:caml_string_equal")
+          if(CamlPrimtivie["caml_string_equal"](cmd,""))
            {return skip_empty_tasks(tasks);}
           else
            {return /* Some */[0,/* tuple */[0,cmd,tasks]];}
@@ -308,7 +312,7 @@ var
         return 0;
         };
     
-    var u="unknown primitive:caml_create_string";
+    var u=CamlPrimtivie["caml_create_string"](4096);
     
     var
      do_read=

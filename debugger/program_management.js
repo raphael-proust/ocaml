@@ -21,7 +21,7 @@ var Config=require("Config");
 
 var file_name=[0,/* None */0];
 
-var buffer="unknown primitive:caml_create_string";
+var buffer=Primtivie["caml_create_string"](1024);
 
 var
  control_connection=
@@ -196,7 +196,7 @@ var
    {if(!loaded[1])
      {Pervasives["print_string"]("Loading program... ");
       Pervasives["flush"](Pervasives["stdout"]);
-      if("unknown primitive:caml_string_equal")
+      if(Primtivie["caml_string_equal"](Parameters["program_name"][1],""))
        {Pervasives["prerr_endline"]("No program specified.");
         throw Debugger_config["Toplevel"];
         }

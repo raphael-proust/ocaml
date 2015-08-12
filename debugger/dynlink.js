@@ -15,7 +15,7 @@ var Symtable=require("Symtable");
 var Config=require("Config");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=Primtivie["caml_set_oo_id"]([248,"Dynlink.Error",0]);
 
 var
  match=
@@ -201,7 +201,7 @@ var
                    
                    var name=param[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](name,cu[1]))
                     {return Consistbl["set"]
                              (crc_interfaces[1],name,crc,file_name);
                      }
@@ -337,7 +337,7 @@ var
         Pervasives["really_input_string"]
          (ic,Config["cmi_magic_number"]["length"]);
       
-      if("unknown primitive:caml_string_notequal")
+      if(Primtivie["caml_string_notequal"](buffer,Config["cmi_magic_number"]))
        {Pervasives["close_in"](ic);
         throw [0,$$Error,/* Corrupted_interface */[4,filename]];
         }
@@ -410,7 +410,7 @@ var
     Pervasives["seek_in"](ic,compunit[2]);
     var code_size=compunit[3]+8;
     
-    var code="unknown primitive:caml_static_alloc";
+    var code=Primtivie["caml_static_alloc"](code_size);
     
     Pervasives["unsafe_really_input"](ic,code,0,compunit[3]);
     code[compunit[3]]=Char["chr"](Opcodes["opRETURN"]),0;
@@ -446,9 +446,9 @@ var
     
     var digest=Digest["string"](Pervasives["^"](file_digest,compunit[1]));
     
-    "unknown primitive:caml_register_code_fragment";
+    Primtivie["caml_register_code_fragment"](code,code_size,digest);
     try
-     {return "unknown primitive:caml_reify_bytecode"(/* () */0);}
+     {return Primtivie["caml_reify_bytecode"](code,code_size)(/* () */0);}
     catch(exn$1){Symtable["restore_state"](initial_symtable);throw exn$1;}
     };
 
@@ -456,14 +456,14 @@ var
  loadfile=
   function(file_name)
    {init(/* () */0);
-    if(!"unknown primitive:caml_sys_file_exists")
+    if(!Primtivie["caml_sys_file_exists"](file_name))
      {throw [0,$$Error,/* File_not_found */[5,file_name]];}
     else
      {}
     
     var ic=Pervasives["open_in_bin"](file_name);
     
-    var file_digest="unknown primitive:caml_md5_chan";
+    var file_digest=Primtivie["caml_md5_chan"](ic,-1);
     
     Pervasives["seek_in"](ic,0);
     try
@@ -480,7 +480,7 @@ var
          {throw exn;}
         }
       
-      if("unknown primitive:caml_string_equal")
+      if(Primtivie["caml_string_equal"](buffer,Config["cmo_magic_number"]))
        {var compunit_pos=Pervasives["input_binary_int"](ic);
         
         Pervasives["seek_in"](ic,compunit_pos);
@@ -488,7 +488,7 @@ var
         
         load_compunit(ic,file_name,file_digest,cu)}
       else
-       {if("unknown primitive:caml_string_equal")
+       {if(Primtivie["caml_string_equal"](buffer,Config["cma_magic_number"]))
          {var toc_pos=Pervasives["input_binary_int"](ic);
           
           Pervasives["seek_in"](ic,toc_pos);

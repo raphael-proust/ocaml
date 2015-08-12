@@ -895,7 +895,7 @@ var
     
     var
      is_not_stdlib=
-      function(x){return "unknown primitive:caml_string_notequal";};
+      function(x){return Primtivie["caml_string_notequal"](x,stdlib);};
     
     var deps$2=My_std["List"][33](is_not_stdlib,deps$1);
     
@@ -1216,7 +1216,7 @@ var
     
     var
      is_not_stdlib=
-      function(x){return "unknown primitive:caml_string_notequal";};
+      function(x){return Primtivie["caml_string_notequal"](x,stdlib);};
     
     var deps$3=My_std["List"][33](is_not_stdlib,deps$2);
     

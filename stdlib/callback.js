@@ -5,19 +5,19 @@ var Obj=require("Obj");
 
 var
  register=
-  function(name,v){return "unknown primitive:caml_register_named_value";};
+  function(name,v){return CamlPrimtivie["caml_register_named_value"](name,v);};
 
 var
  register_exception=
   function(name,exn)
    {var exn$1=exn;
     
-    if("unknown primitive:caml_obj_tag"=Obj["object_tag"])
+    if(CamlPrimtivie["caml_obj_tag"](exn$1)=Obj["object_tag"])
      {var slot=exn$1;}
     else
      {var slot=exn$1[0];}
     
-    return "unknown primitive:caml_register_named_value";
+    return CamlPrimtivie["caml_register_named_value"](name,slot);
     };
 
 module["exports"]=

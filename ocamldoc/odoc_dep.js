@@ -40,7 +40,7 @@ var
     return set_to_list(Depend["free_structure_names"][1]);
     };
 
-var compare=function(x,y){return "unknown primitive:caml_string_compare";};
+var compare=function(x,y){return Primtivie["caml_string_compare"](x,y);};
 
 var S=Set["Make"]([0,compare]);
 
@@ -66,7 +66,7 @@ var
   function(graph,s)
    {try
      {return List["find"]
-              (function(n){return "unknown primitive:caml_string_equal";},
+              (function(n){return Primtivie["caml_string_equal"](n[1],s);},
                graph);
       }
     catch(exn)
@@ -116,7 +116,7 @@ var
          set_reachables=
           List["fold_left"]
            (function(acc,param)
-             {if("unknown primitive:caml_string_equal")
+             {if(Primtivie["caml_string_equal"](child,param[1]))
                {return acc;}
               else
                {return S[7](acc,param[2]);}
@@ -131,7 +131,7 @@ var
           return node[3]=
                  List["filter"]
                   (function(param)
-                    {return "unknown primitive:caml_string_notequal";},
+                    {return Primtivie["caml_string_notequal"](param[1],child);},
                    node[3]),
                  0;
           }

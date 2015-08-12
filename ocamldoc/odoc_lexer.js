@@ -49,7 +49,7 @@ var
               "",
               liste[1]);
           
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](h2,""))
            {return iter(q);}
           else
            {return /* :: */[0,h2,q];}
@@ -71,7 +71,7 @@ var
             Str["global_replace"]
              (Str["regexp"](Pervasives["^"](blank,"+$")),"",liste[1]);
           
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](h2,""))
            {return iter$1(q);}
           else
            {return /* :: */[0,h2,q];}

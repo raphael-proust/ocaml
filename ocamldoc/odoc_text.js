@@ -9,7 +9,7 @@ var Buffer=require("Buffer");
 var Lexing=require("Lexing");
 
 
-var Text_syntax="unknown primitive:caml_set_oo_id";
+var Text_syntax=Primtivie["caml_set_oo_id"]([248,"Odoc_text.Text_syntax",0]);
 
 var
  text_of_string=

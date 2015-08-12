@@ -675,7 +675,9 @@ var
   function(l)
    {var l_ele=Search_values[17](l,/* () */0);
     
-    var p=function(v1,v2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(v1,v2){return Primtivie["caml_string_equal"](v1[1],v2[1]);};
     
     var
      iter=
@@ -763,7 +765,9 @@ var
   function(l)
    {var l_ele=Search_extensions[17](l,/* () */0);
     
-    var p=function(x1,x2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(x1,x2){return Primtivie["caml_string_equal"](x1[1],x2[1]);};
     
     var
      iter=
@@ -851,7 +855,9 @@ var
   function(l)
    {var l_ele=Search_exceptions[17](l,/* () */0);
     
-    var p=function(e1,e2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(e1,e2){return Primtivie["caml_string_equal"](e1[1],e2[1]);};
     
     var
      iter=
@@ -939,7 +945,9 @@ var
   function(l)
    {var l_ele=Search_types[17](l,/* () */0);
     
-    var p=function(t1,t2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(t1,t2){return Primtivie["caml_string_equal"](t1[1],t2[1]);};
     
     var
      iter=
@@ -1027,7 +1035,10 @@ var
   function(l)
    {var l_ele=Search_attributes[17](l,/* () */0);
     
-    var p=function(a1,a2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(a1,a2)
+       {return Primtivie["caml_string_equal"](a1[1][1],a2[1][1]);};
     
     var
      iter=
@@ -1115,7 +1126,10 @@ var
   function(l)
    {var l_ele=Search_methods[17](l,/* () */0);
     
-    var p=function(m1,m2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(m1,m2)
+       {return Primtivie["caml_string_equal"](m1[1][1],m2[1][1]);};
     
     var
      iter=
@@ -1203,7 +1217,9 @@ var
   function(l)
    {var l_ele=Search_classes[17](l,/* () */0);
     
-    var p=function(c1,c2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(c1,c2){return Primtivie["caml_string_equal"](c1[1],c2[1]);};
     
     var
      iter=
@@ -1291,7 +1307,9 @@ var
   function(l)
    {var l_ele=Search_class_types[17](l,/* () */0);
     
-    var p=function(c1,c2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(c1,c2){return Primtivie["caml_string_equal"](c1[1],c2[1]);};
     
     var
      iter=
@@ -1379,7 +1397,9 @@ var
   function(l)
    {var l_ele=Search_modules[17](l,/* () */0);
     
-    var p=function(m1,m2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(m1,m2){return Primtivie["caml_string_equal"](m1[1],m2[1]);};
     
     var
      iter=
@@ -1467,7 +1487,9 @@ var
   function(l)
    {var l_ele=Search_module_types[17](l,/* () */0);
     
-    var p=function(m1,m2){return "unknown primitive:caml_string_equal";};
+    var
+     p=
+      function(m1,m2){return Primtivie["caml_string_equal"](m1[1],m2[1]);};
     
     var
      iter=

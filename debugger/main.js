@@ -191,10 +191,12 @@ var
     try
      {var base=".ocamldebug";
       
-      if("unknown primitive:caml_sys_file_exists")
+      if(Primtivie["caml_sys_file_exists"](base))
        {var file=base;}
       else
-       {var file=Filename["concat"]("unknown primitive:caml_sys_getenv",base);
+       {var
+         file=
+          Filename["concat"](Primtivie["caml_sys_getenv"]("HOME"),base);
         }
       
       var ch=Pervasives["open_in"](file);
@@ -212,7 +214,7 @@ var
       while(/* true */1)
        {var line=Primitives["string_trim"](Pervasives["input_line"](ch));
         
-        if("unknown primitive:caml_string_notequal"&&line[0]!=35)
+        if(Primtivie["caml_string_notequal"](line,"")&&line[0]!=35)
          {Buffer["add_string"](buffer,line),Buffer["add_char"](buffer,10)}
         else
          {}
@@ -243,7 +245,9 @@ var
     return protect(Format["std_formatter"],loop,loop);
     };
 
-var Found_program_name="unknown primitive:caml_set_oo_id";
+var
+ Found_program_name=
+  Primtivie["caml_set_oo_id"]([248,"Main.Found_program_name",0]);
 
 var
  anonymous=
@@ -268,7 +272,7 @@ var
  set_checkpoints=
   function(n){return Debugger_config["checkpoint_max_count"][1]=n,0;};
 
-var set_directory=function(dir){return "unknown primitive:caml_sys_chdir";};
+var set_directory=function(dir){return Primtivie["caml_sys_chdir"](dir);};
 
 var
  print_version=

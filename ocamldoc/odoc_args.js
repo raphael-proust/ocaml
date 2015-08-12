@@ -281,7 +281,7 @@ var
    {try
      {var pos=$$String["index"](s,44);
       
-      var n="unknown primitive:caml_int_of_string";
+      var n=Primtivie["caml_int_of_string"]($$String["sub"](s,0,pos));
       
       var len=s["length"];
       
@@ -996,7 +996,7 @@ var
           
           var s2=match$1[1];
           
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](s,s2))
            {return /* :: */[0,o,q];}
           else
            {return /* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)];
@@ -1025,7 +1025,7 @@ var
     
     return Odoc_global["hidden_modules"][1]=
            List["sort"]
-            (function(a,b){return -"unknown primitive:caml_string_compare";},
+            (function(a,b){return -Primtivie["caml_string_compare"](a,b);},
              Odoc_global["hidden_modules"][1]),
            0;
     };

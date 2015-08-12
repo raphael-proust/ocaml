@@ -20,9 +20,9 @@ var max_int=2147483647;
 
 var lognot=function(n){return n^-1;};
 
-var to_string=function(n){return "unknown primitive:caml_int32_format";};
+var to_string=function(n){return CamlPrimtivie["caml_int32_format"]("%d",n);};
 
-var compare=function(x,y){return "unknown primitive:caml_int32_compare";};
+var compare=function(x,y){return CamlPrimtivie["caml_int32_compare"](x,y);};
 
 module["exports"]=
 {"zero":zero,

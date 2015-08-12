@@ -5,7 +5,9 @@ var Pervasives=require("Pervasives");
 var Unix=require("Unix");
 
 
-var Out_of_range="unknown primitive:caml_set_oo_id";
+var
+ Out_of_range=
+  Primtivie["caml_set_oo_id"]([248,"Primitives.Out_of_range",0]);
 
 var nothing=function(param){return /* () */0;};
 
@@ -20,7 +22,7 @@ var
           
           var elem=param[1];
           
-          if("unknown primitive:caml_equal")
+          if(Primtivie["caml_equal"](e,elem))
            {return l$1;}
           else
            {return /* :: */[0,elem,except_e(l$1)];}
@@ -39,7 +41,7 @@ var
      index_rec=
       function(i,param)
        {if(param)
-         {if("unknown primitive:caml_equal")
+         {if(Primtivie["caml_equal"](a,param[1]))
            {return i;}
           else
            {return index_rec(i+1,param[2]);}
@@ -137,10 +139,10 @@ var
     var l2=s2["length"];
     
     return (l1=l2)&&
-           "unknown primitive:caml_string_equal"||
+           Primtivie["caml_string_equal"](s1,s2)||
            l1<
            l2&&
-           "unknown primitive:caml_string_equal";
+           Primtivie["caml_string_equal"](s1,$$String["sub"](s2,0,l1));
     };
 
 var

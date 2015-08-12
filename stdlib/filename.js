@@ -57,7 +57,7 @@ var
           }
         };
     
-    if("unknown primitive:caml_string_equal")
+    if(CamlPrimtivie["caml_string_equal"](name,""))
      {return current_dir_name;}
     else
      {return find_end(name["length"]-1);}
@@ -105,7 +105,7 @@ var
           }
         };
     
-    if("unknown primitive:caml_string_equal")
+    if(CamlPrimtivie["caml_string_equal"](name,""))
      {return current_dir_name;}
     else
      {return trailing_sep(name["length"]-1);}
@@ -125,8 +125,13 @@ var
  is_implicit=
   function(n)
    {return is_relative(n)&&
-           (n["length"]<2||"unknown primitive:caml_string_notequal")&&
-           (n["length"]<3||"unknown primitive:caml_string_notequal");
+           (n["length"]<
+            2||
+            CamlPrimtivie["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
+           (n["length"]<
+            3||
+            CamlPrimtivie["caml_string_notequal"]
+             ($$String["sub"](n,0,3),"../"));
     };
 
 var
@@ -134,11 +139,14 @@ var
   function(name,suff)
    {return name["length"]>=
            suff["length"]&&
-           "unknown primitive:caml_string_equal";
+           CamlPrimtivie["caml_string_equal"]
+            ($$String["sub"]
+              (name,name["length"]-suff["length"],suff["length"]),
+             suff);
     };
 
 try
- {var temp_dir_name="unknown primitive:caml_sys_getenv";}
+ {var temp_dir_name=CamlPrimtivie["caml_sys_getenv"]("TMPDIR");}
 catch(exn){if(exn=Not_found){var temp_dir_name="/tmp";}else{throw exn;}}
 
 var quote=generic_quote("'\''");
@@ -182,10 +190,20 @@ var
  is_implicit$1=
   function(n)
    {return is_relative$1(n)&&
-           (n["length"]<2||"unknown primitive:caml_string_notequal")&&
-           (n["length"]<2||"unknown primitive:caml_string_notequal")&&
-           (n["length"]<3||"unknown primitive:caml_string_notequal")&&
-           (n["length"]<3||"unknown primitive:caml_string_notequal");
+           (n["length"]<
+            2||
+            CamlPrimtivie["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
+           (n["length"]<
+            2||
+            CamlPrimtivie["caml_string_notequal"]($$String["sub"](n,0,2),".\"))&&
+           (n["length"]<
+            3||
+            CamlPrimtivie["caml_string_notequal"]
+             ($$String["sub"](n,0,3),"../"))&&
+           (n["length"]<
+            3||
+            CamlPrimtivie["caml_string_notequal"]
+             ($$String["sub"](n,0,3),"..\"));
     };
 
 var
@@ -195,11 +213,12 @@ var
     
     return name["length"]>=
            suff["length"]&&
-           "unknown primitive:caml_string_equal";
+           CamlPrimtivie["caml_string_equal"]
+            ($$String["lowercase"](s),$$String["lowercase"](suff));
     };
 
 try
- {var temp_dir_name$1="unknown primitive:caml_sys_getenv";}
+ {var temp_dir_name$1=CamlPrimtivie["caml_sys_getenv"]("TEMP");}
 catch(exn$1){if(exn$1=Not_found){var temp_dir_name$1=".";}else{throw exn$1;}}
 
 var
@@ -489,7 +508,7 @@ var
   function(temp_dir,prefix,suffix)
    {var lzarg=prng;
     
-    var tag="unknown primitive:caml_obj_tag";
+    var tag=CamlPrimtivie["caml_obj_tag"](lzarg);
     
     var
      rnd=
@@ -536,7 +555,17 @@ var
        {var name=temp_file_name(temp_dir,prefix,suffix);
         
         try
-         {"unknown primitive:caml_sys_close";return name;}
+         {CamlPrimtivie["caml_sys_close"]
+           (CamlPrimtivie["caml_sys_open"]
+             (name,
+              [/* :: */0,
+               /* Open_wronly */1,
+               [/* :: */0,
+                /* Open_creat */3,
+                [/* :: */0,/* Open_excl */5,/* [] */0]]],
+              384));
+          return name;
+          }
         catch(e)
          {var tag=e[1];
           

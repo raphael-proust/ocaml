@@ -10,7 +10,7 @@ var dummy_pos=[/* record */0,"",0,0,-1];
 var
  engine=
   function(tbl,state,buf)
-   {var result="unknown primitive:caml_lex_engine";
+   {var result=CamlPrimtivie["caml_lex_engine"](tbl,state,buf);
     
     if(result>=0)
      {buf[11]=buf[12],0;
@@ -26,7 +26,7 @@ var
 var
  new_engine=
   function(tbl,state,buf)
-   {var result="unknown primitive:caml_new_lex_engine";
+   {var result=CamlPrimtivie["caml_new_lex_engine"](tbl,state,buf);
     
     if(result>=0)
      {buf[11]=buf[12],0;
@@ -59,7 +59,7 @@ var
         else
          {}
         
-        var newbuf="unknown primitive:caml_create_string";
+        var newbuf=CamlPrimtivie["caml_create_string"](newlen);
         
         Bytes["blit"](lexbuf[2],lexbuf[5],newbuf,0,lexbuf[3]-lexbuf[5]),
         lexbuf[2]=
@@ -90,8 +90,8 @@ var
  from_function=
   function(f)
    {return /* record */[0,
-            lex_refill(f,"unknown primitive:caml_create_string"),
-            "unknown primitive:caml_create_string",
+            lex_refill(f,CamlPrimtivie["caml_create_string"](512)),
+            CamlPrimtivie["caml_create_string"](1024),
             0,
             0,
             0,

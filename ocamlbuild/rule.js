@@ -14,9 +14,11 @@ var Log=require("Log");
 
 
 
-var Exit_rule_error="unknown primitive:caml_set_oo_id";
+var
+ Exit_rule_error=
+  Primtivie["caml_set_oo_id"]([248,"Rule.Exit_rule_error",0]);
 
-var Failed="unknown primitive:caml_set_oo_id";
+var Failed=Primtivie["caml_set_oo_id"]([248,"Rule.Failed",0]);
 
 var name_of_rule=function(r){return r[1];};
 
@@ -261,7 +263,7 @@ var
             function(env){return rule[6](finder(env));}];
     };
 
-var Can_produce="unknown primitive:caml_set_oo_id";
+var Can_produce=Primtivie["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
 
 var
  can_produce=
@@ -523,7 +525,7 @@ var
             
             var rule_digest=digest_rule(r,dyndeps$1,action);
             
-            if("unknown primitive:caml_string_equal")
+            if(Primtivie["caml_string_equal"](d,rule_digest))
              {var
                match$3=
                 [/* tuple */0,/* cache_hit */-805933418,/* true */1];
@@ -725,7 +727,7 @@ var
                   
                   var new_digest=My_std["List"][36](f,new_prod_digests);
                   
-                  if("unknown primitive:caml_string_notequal")
+                  if(Primtivie["caml_string_notequal"](digest,new_digest))
                    {throw Not_found;}
                   else
                    {return 0;}
@@ -775,7 +777,7 @@ var
       {var
         match$1=
          My_std["List"][32]
-          (function(x){return "unknown primitive:caml_string_equal";},
+          (function(x){return Primtivie["caml_string_equal"](x[1],r[1]);},
            rules[1]);
        
        throw [0,
@@ -808,7 +810,7 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if("unknown primitive:caml_string_equal")
+                       {if(Primtivie["caml_string_equal"](x[1],s))
                          {return /* :: */[0,x,/* :: */[0,r,acc]];}
                         else
                          {return /* :: */[0,x,acc];}
@@ -823,7 +825,7 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if("unknown primitive:caml_string_equal")
+                       {if(Primtivie["caml_string_equal"](x[1],s$1))
                          {return /* :: */[0,r,/* :: */[0,x,acc]];}
                         else
                          {return /* :: */[0,x,acc];}

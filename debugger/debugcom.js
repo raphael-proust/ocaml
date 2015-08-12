@@ -247,7 +247,9 @@ var
  output_remote_value=
   function(ic,v){return Pervasives["output_substring"](ic,v,0,value_size);};
 
-var Marshalling_error="unknown primitive:caml_set_oo_id";
+var
+ Marshalling_error=
+  Primtivie["caml_set_oo_id"]([248,"Debugcom.Marshalling_error",0]);
 
 var
  obj=
@@ -278,8 +280,8 @@ var
  is_block=
   function(param)
    {switch(param)
-     {case 0:return "unknown primitive:caml_obj_is_block";
-      case 1:return "unknown primitive:caml_obj_is_block";
+     {case 0:return Primtivie["caml_obj_is_block"](param[1][0]);
+      case 1:return Primtivie["caml_obj_is_block"](param[1]);
       }
     };
 
@@ -298,7 +300,7 @@ var
          
          return header&255;
          
-        case 1:return "unknown primitive:caml_obj_tag";
+        case 1:return Primtivie["caml_obj_tag"](obj[1]);
         }
       }
     };
@@ -338,7 +340,7 @@ var
          
          var floatbuf=n;
          
-         "unknown primitive:caml_blit_string";
+         Primtivie["caml_blit_string"](buf,0,floatbuf,0,8);
          return /* Local */[1,floatbuf];
          }
        
@@ -405,7 +407,9 @@ var
     switch(rv1)
      {case 0:
        switch(rv2)
-        {case 0:return "unknown primitive:caml_string_equal";case 1:exit=1;}
+        {case 0:return Primtivie["caml_string_equal"](rv1[1],rv2[1]);
+         case 1:exit=1;
+         }
        
       case 1:switch(rv2){case 0:exit=1;case 1:return rv1[1]=rv2[1];}
       }

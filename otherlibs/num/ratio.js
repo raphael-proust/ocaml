@@ -857,7 +857,8 @@ var
 
 var
  float_of_ratio=
-  function(r){return "unknown primitive:caml_float_of_string";};
+  function(r)
+   {return Primtivie["caml_float_of_string"](float_of_rational_string(r));};
 
 var
  power_ratio_positive_int=

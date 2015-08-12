@@ -25,7 +25,7 @@ var
           var
            match$1=
             List["partition"]
-             (function(param$1){return "unknown primitive:caml_equal";},
+             (function(param$1){return Primtivie["caml_equal"](v,param$1[1]);},
               param[2]);
           
           var
@@ -238,7 +238,7 @@ var
     var
      new_before$2=
       List["sort"]
-       (function(prim,prim){return "unknown primitive:caml_compare";},
+       (function(prim,prim){return Primtivie["caml_compare"](prim$1,prim);},
         new_before$1);
     
     var
@@ -518,7 +518,8 @@ var
                    {var
                      cons2=
                       List["find"]
-                       (function(c2){return "unknown primitive:caml_string_equal";},
+                       (function(c2)
+                         {return Primtivie["caml_string_equal"](c2[1],cons[1]);},
                         l2);
                     
                     var match$3=cons[4];
@@ -585,7 +586,8 @@ var
                    {var
                      record2=
                       List["find"]
-                       (function(r){return "unknown primitive:caml_string_equal";},
+                       (function(r)
+                         {return Primtivie["caml_string_equal"](r[1],record[1]);},
                         l2$1);
                     
                     var match$3=record[4];
@@ -699,7 +701,7 @@ var
        
        switch(pi_ml)
         {case 0:
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](sn_mli[1],""))
            {return /* Simple_name */[0,
                     /* record */[0,pi_ml[1][1],sn_mli[2],sn_mli[3]]];
             }
@@ -778,7 +780,7 @@ var
                  {case 0:
                    var a2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](a2[1][1],a[1][1]))
                     {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]),0;
                      var init$1=a[1][7];
                      
@@ -817,7 +819,7 @@ var
                          case 1:
                           var m2=ele[1];
                           
-                          if("unknown primitive:caml_string_equal")
+                          if(Primtivie["caml_string_equal"](m2[1][1],m[1][1]))
                            {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]),0;
                             var init$1=m[1][7];
                             
@@ -866,7 +868,7 @@ var
                  {case 0:
                    var a2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](a2[1][1],a[1][1]))
                     {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]),0;
                      var init$1=a[1][7];
                      
@@ -905,7 +907,7 @@ var
                          case 1:
                           var m2=ele[1];
                           
-                          if("unknown primitive:caml_string_equal")
+                          if(Primtivie["caml_string_equal"](m2[1][1],m[1][1]))
                            {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]),0;
                             var init$1=m[1][7];
                             
@@ -965,7 +967,7 @@ var
                           xt2=
                            List["find"]
                             (function(xt2)
-                              {return "unknown primitive:caml_string_equal";},
+                              {return Primtivie["caml_string_equal"](xt[1],xt2[1]);},
                              te2[5]);
                          
                          merge_extension_constructor(merge_options,xt,xt2);
@@ -1012,7 +1014,7 @@ var
                  {case 7:
                    var ex2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](ex2[1],ex[1]))
                     {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]),0;
                      var init$1=ex[6];
                      
@@ -1045,7 +1047,7 @@ var
                  {case 8:
                    var ty2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](ty2[1],ty[1]))
                     {merge_types(merge_options,ty,ty2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1070,7 +1072,7 @@ var
                  {case 0:
                    var m2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](m2[1],m[1]))
                     {merge_modules(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1095,7 +1097,7 @@ var
                  {case 1:
                    var m2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](m2[1],m[1]))
                     {merge_module_types(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1120,7 +1122,7 @@ var
                  {case 5:
                    var v2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](v2[1],v[1]))
                     {v[2]=merge_info_opt(merge_options,v[2],v2[2]),0;
                      var init$1=v[7];
                      
@@ -1154,7 +1156,7 @@ var
                  {case 3:
                    var c2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](c2[1],c[1]))
                     {merge_classes(merge_options,c,c2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1179,7 +1181,7 @@ var
                         {case 4:
                           var c2=ele[1];
                           
-                          if("unknown primitive:caml_string_equal")
+                          if(Primtivie["caml_string_equal"](c2[1],c[1]))
                            {merge_class_types(merge_options,c,c2);return /* true */1;}
                           else
                            {return /* false */0;}
@@ -1281,7 +1283,7 @@ var
                           xt2=
                            List["find"]
                             (function(xt2)
-                              {return "unknown primitive:caml_string_equal";},
+                              {return Primtivie["caml_string_equal"](xt[1],xt2[1]);},
                              te2[5]);
                          
                          merge_extension_constructor(merge_options,xt,xt2);
@@ -1327,7 +1329,7 @@ var
                  {case 7:
                    var ex2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](ex2[1],ex[1]))
                     {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]),0;
                      var init$1=ex[6];
                      
@@ -1360,7 +1362,7 @@ var
                  {case 8:
                    var ty2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](ty2[1],ty[1]))
                     {merge_types(merge_options,ty,ty2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1385,7 +1387,7 @@ var
                  {case 0:
                    var m2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](m2[1],m[1]))
                     {merge_modules(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1410,7 +1412,7 @@ var
                  {case 1:
                    var m2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](m2[1],m[1]))
                     {merge_module_types(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1431,7 +1433,7 @@ var
            match$4=
             List["find"]
              (function(v2)
-               {if("unknown primitive:caml_string_equal")
+               {if(Primtivie["caml_string_equal"](v2[1],v[1]))
                  {v[2]=merge_info_opt(merge_options,v[2],v2[2]),0;
                   var init$1=v[7];
                   
@@ -1463,7 +1465,7 @@ var
                  {case 3:
                    var c2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](c2[1],c[1]))
                     {merge_classes(merge_options,c,c2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1488,7 +1490,7 @@ var
                  {case 4:
                    var c2=ele[1];
                    
-                   if("unknown primitive:caml_string_equal")
+                   if(Primtivie["caml_string_equal"](c2[1],c[1]))
                     {merge_class_types(merge_options,c,c2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1517,7 +1519,7 @@ var
           var
            match=
             List["partition"]
-             (function(m2){return "unknown primitive:caml_string_equal";},
+             (function(m2){return Primtivie["caml_string_equal"](m[1],m2[1]);},
               param[2]);
           
           var l_others=match[2];

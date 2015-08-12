@@ -36,9 +36,11 @@ var Log=require("Log");
 var Sys=require("Sys");
 
 
-var Exit_build_error="unknown primitive:caml_set_oo_id";
+var
+ Exit_build_error=
+  Primtivie["caml_set_oo_id"]([248,"Main.Exit_build_error",0]);
 
-var Exit_silently="unknown primitive:caml_set_oo_id";
+var Exit_silently=Primtivie["caml_set_oo_id"]([248,"Main.Exit_silently",0]);
 
 var
  clean=
@@ -151,7 +153,7 @@ var
     if(Options["must_clean"][1]){clean(/* () */0)}else{}
     
     Hooks["call_hook"](/* After_options */3);
-    var options_wd="unknown primitive:caml_sys_getcwd";
+    var options_wd=Primtivie["caml_sys_getcwd"](/* () */0);
     
     var
      first_run_for_plugin=
@@ -196,24 +198,27 @@ var
     else
      {}
     
-    var newpwd="unknown primitive:caml_sys_getcwd";
+    var newpwd=Primtivie["caml_sys_getcwd"](/* () */0);
     
-    "unknown primitive:caml_sys_chdir";
+    Primtivie["caml_sys_chdir"](Pathname["pwd"]);
     var entry_include_dirs=[0,/* [] */0];
     
     var
      entry=
       Slurp["filter"]
        (function(path,name,param$1)
-         {if("unknown primitive:caml_string_equal")
+         {if
+           (Primtivie["caml_string_equal"](path,Filename["current_dir_name"]))
            {var dir=/* None */0;}
           else
            {var dir=/* Some */[0,path];}
           
           var path_name=Pathname["Operators"][1](path,name);
           
-          if("unknown primitive:caml_string_equal")
-           {if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](name,"_tags"))
+           {if
+             (Primtivie["caml_string_equal"]
+               (Primtivie["caml_sys_getcwd"](/* () */0),Pathname["pwd"]))
              {var tags_path=path_name;}
             else
              {var
@@ -232,9 +237,11 @@ var
                   0&&
                   name[0]!=
                   95)&&
-                 "unknown primitive:caml_string_notequal"&&
+                 Primtivie["caml_string_notequal"]
+                  (name,Options["build_dir"][1])&&
                  !My_std["List"][30](name,Options["exclude_dirs"][1])&&
-                 (!("unknown primitive:caml_string_notequal"&&
+                 (!(Primtivie["caml_string_notequal"]
+                    (path_name,Filename["current_dir_name"])&&
                    Pathname["is_directory"](path_name))||
                   (Tags["mem"]("include",tags)||
                     My_std["List"][30](path_name,Options["include_dirs"][1])
@@ -248,7 +255,10 @@ var
                        Options["include_dirs"][1])||
                      My_std["List"][27]
                       (Pathname["is_prefix"](path_name),target_dirs))&&
-                  "unknown primitive:caml_string_notequal");
+                  Primtivie["caml_string_notequal"]
+                   (Pathname["normalize"](Options["build_dir"][1]),
+                    Pathname["normalize"]
+                     (Pathname["Operators"][1](Pathname["pwd"],path_name))));
           },
         Slurp["slurp"](Filename["current_dir_name"]));
     
@@ -293,10 +303,10 @@ var
     Hooks["call_hook"](/* Before_rules */4);
     Ocaml_specific["init"](/* () */0);
     Hooks["call_hook"](/* After_rules */5);
-    "unknown primitive:caml_sys_chdir";
+    Primtivie["caml_sys_chdir"](options_wd);
     Plugin["execute_plugin_if_needed"](/* () */0);
     Param_tags["init"](/* () */0);
-    "unknown primitive:caml_sys_chdir";
+    Primtivie["caml_sys_chdir"](newpwd);
     if(Options["show_documentation"][1])
      {show_documentation(/* () */0);throw Exit_silently;}
     else

@@ -55,20 +55,23 @@ var
        {return r;}
       else
        {if(r>=i$1)
-         {var q=i$1/r;return r*"unknown primitive:caml_sqrt_float";}
+         {var q=i$1/r;return r*CamlPrimtivie["caml_sqrt_float"](1+q*q);}
         else
-         {var q$1=r/i$1;return i$1*"unknown primitive:caml_sqrt_float";}
+         {var q$1=r/i$1;
+          
+          return i$1*CamlPrimtivie["caml_sqrt_float"](1+q$1*q$1);
+          }
         }
       }
     };
 
-var arg=function(x){return "unknown primitive:caml_atan2_float";};
+var arg=function(x){return CamlPrimtivie["caml_atan2_float"](x[1],x[0]);};
 
 var
  polar=
   function(n,a)
-   {return ["unknown primitive:caml_cos_float"*n,
-            "unknown primitive:caml_sin_float"*n];
+   {return [CamlPrimtivie["caml_cos_float"](a)*n,
+            CamlPrimtivie["caml_sin_float"](a)*n];
     };
 
 var
@@ -86,16 +89,18 @@ var
         
         var
          w=
-          "unknown primitive:caml_sqrt_float"*
-          "unknown primitive:caml_sqrt_float";
+          CamlPrimtivie["caml_sqrt_float"](r)*
+          CamlPrimtivie["caml_sqrt_float"]
+           (0.5*(1+CamlPrimtivie["caml_sqrt_float"](1+q*q)));
         }
       else
        {var q$1=r/i$1;
         
         var
          w=
-          "unknown primitive:caml_sqrt_float"*
-          "unknown primitive:caml_sqrt_float";
+          CamlPrimtivie["caml_sqrt_float"](i$1)*
+          CamlPrimtivie["caml_sqrt_float"]
+           (0.5*(q$1+CamlPrimtivie["caml_sqrt_float"](1+q$1*q$1)));
         }
       
       if(x[0]>=0)
@@ -108,17 +113,17 @@ var
 var
  exp=
   function(x)
-   {var e="unknown primitive:caml_exp_float";
+   {var e=CamlPrimtivie["caml_exp_float"](x[0]);
     
-    return [e*"unknown primitive:caml_cos_float",
-            e*"unknown primitive:caml_sin_float"];
+    return [e*CamlPrimtivie["caml_cos_float"](x[1]),
+            e*CamlPrimtivie["caml_sin_float"](x[1])];
     };
 
 var
  log=
   function(x)
-   {return ["unknown primitive:caml_log_float",
-            "unknown primitive:caml_atan2_float"];
+   {return [CamlPrimtivie["caml_log_float"](norm(x)),
+            CamlPrimtivie["caml_atan2_float"](x[1],x[0])];
     };
 
 var pow=function(x,y){return exp(mul(y,log(x)));};

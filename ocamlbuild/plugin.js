@@ -313,7 +313,8 @@ var
           var
            passed_argv=
             My_std["List"][33]
-             (function(s){return "unknown primitive:caml_string_notequal";},
+             (function(s)
+               {return Primtivie["caml_string_notequal"](s,"-plugin-option");},
               argv);
           
           var

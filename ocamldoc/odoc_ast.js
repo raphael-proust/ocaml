@@ -318,13 +318,17 @@ var
              
              switch(match$1)
               {case 0:
-                if("unknown primitive:caml_string_equal")
+                if
+                 (Primtivie["caml_string_equal"]
+                   (Odoc_name["from_ident"](ident),name))
                  {return match$1[1][2];}
                 else
                  {exit=349;}
                 
                case 1:
-                if("unknown primitive:caml_string_equal")
+                if
+                 (Primtivie["caml_string_equal"]
+                   (Odoc_name["from_ident"](ident),name))
                  {return match$1[2][4];}
                 else
                  {exit=349;}
@@ -372,7 +376,7 @@ var
              switch(match$1)
               {case 0:exit=345;
                case 1:
-                if("unknown primitive:caml_string_equal")
+                if(Primtivie["caml_string_equal"](match[1][1],name))
                  {return match$1[2];}
                 else
                  {exit=345;}
@@ -1242,7 +1246,9 @@ var
               else
                {switch(match$5[0])
                  {case 0:
-                   if("unknown primitive:caml_string_equal")
+                   if
+                    (Primtivie["caml_string_equal"]
+                      (Odoc_name["from_ident"](match$5[1]),"*opt*"))
                     {var match$6=tt_class_expr2[1];
                      
                      var exit$4;
@@ -1625,7 +1631,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      var match="unknown primitive:caml_string_equal";
+                      var match=Primtivie["caml_string_equal"](n1,n2);
                       
                       if(match!=0)
                        {filter_module_with_module_type_constraint(m,param[2][1]);
@@ -1654,7 +1660,7 @@ var
                         
                         var n2=Ident["name"](param[1]);
                         
-                        var match$1="unknown primitive:caml_string_equal";
+                        var match$1=Primtivie["caml_string_equal"](n1,n2);
                         
                         if(match$1!=0)
                          {filter_module_type_with_module_type_constraint(mt,match[1]);
@@ -1684,7 +1690,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return "unknown primitive:caml_string_equal";
+                      return Primtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1701,7 +1707,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return "unknown primitive:caml_string_equal";
+                      return Primtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1718,7 +1724,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return "unknown primitive:caml_string_equal";
+                      return Primtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1749,7 +1755,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return "unknown primitive:caml_string_equal";
+                      return Primtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1766,7 +1772,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return "unknown primitive:caml_string_equal";
+                      return Primtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1794,7 +1800,7 @@ var
                           
                           var n2=Ident["name"](param[1]);
                           
-                          return "unknown primitive:caml_string_equal";
+                          return Primtivie["caml_string_equal"](n1,n2);
                           
                          default:return /* false */0;}
                        },
@@ -2042,7 +2048,8 @@ var
               (function(td)
                 {return List["exists"]
                          (function(param)
-                           {return "unknown primitive:caml_string_equal";},
+                           {return Primtivie["caml_string_equal"](param[1][1],"nonrec");
+                            },
                           td[7]);
                  },
                name_typedecl_list);
@@ -3267,7 +3274,7 @@ var
        {var tree_structure=typedtree[1];
         
         try
-         {var curdir="unknown primitive:caml_sys_getcwd";
+         {var curdir=Primtivie["caml_sys_getcwd"](/* () */0);
           
           var
            match=
@@ -3275,12 +3282,13 @@ var
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
-          "unknown primitive:caml_sys_chdir";
+          Primtivie["caml_sys_chdir"](match[1]);
           var
            complete=
-            Filename["concat"]("unknown primitive:caml_sys_getcwd",match[2]);
+            Filename["concat"]
+             (Primtivie["caml_sys_getcwd"](/* () */0),match[2]);
           
-          "unknown primitive:caml_sys_chdir";
+          Primtivie["caml_sys_chdir"](curdir);
           var complete_source_file=complete;
           }
         catch(exn)

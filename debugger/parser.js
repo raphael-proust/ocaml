@@ -6,9 +6,12 @@ var Int64ops=require("Int64ops");
 var Input_handling=require("Input_handling");
 
 
-var yytransl_const="unknown primitive:caml_obj_dup";
+var
+ yytransl_const=
+  Primtivie["caml_obj_dup"]
+   ([0,262,263,264,265,266,267,268,269,270,271,272,273,0]);
 
-var yytransl_block="unknown primitive:caml_obj_dup";
+var yytransl_block=Primtivie["caml_obj_dup"]([0,257,258,259,260,261,0]);
 
 var
  yylhs=

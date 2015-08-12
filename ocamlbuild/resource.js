@@ -25,9 +25,11 @@ var Resources=My_std["Set"][1]([0,$$let[2],$$let[10]]);
 
 var print=Pathname["print"];
 
-var equal=function(prim,prim){return "unknown primitive:caml_equal";};
+var equal=function(prim,prim){return Primtivie["caml_equal"](prim$1,prim);};
 
-var compare=function(prim,prim){return "unknown primitive:caml_compare";};
+var
+ compare=
+  function(prim,prim){return Primtivie["caml_compare"](prim$1,prim);};
 
 var
  in_source_dir=
@@ -78,7 +80,7 @@ var
                  if(Pathname["link_to_dir"](pathname,Options["build_dir"][1]))
                   {var z=Pathname["readlink"](pathname);
                    
-                   if(!"unknown primitive:caml_sys_file_exists")
+                   if(!Primtivie["caml_sys_file_exists"](z))
                     {Shell["rm"](pathname)}
                    else
                     {}
@@ -438,7 +440,7 @@ var
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      var is_up_to_date="unknown primitive:caml_string_equal";
+      var is_up_to_date=Primtivie["caml_string_equal"](digest,digest$prime);
       }
     catch(exn)
      {if(exn=Not_found){var is_up_to_date=/* false */0;}else{throw exn;}}
@@ -457,7 +459,7 @@ var
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      $js="unknown primitive:caml_string_equal";
+      $js=Primtivie["caml_string_equal"](digest,digest$prime);
       }
     catch(exn){if(exn=Not_found){$js=/* false */0;}else{throw exn;}}
     var r_is_up_to_date=Pathname["exists"](r_in_build_dir)&&$js;
@@ -684,7 +686,9 @@ var
 
 var $$import=function(x){return Pathname["normalize"](x);};
 
-var No_solution="unknown primitive:caml_set_oo_id";
+var
+ No_solution=
+  Primtivie["caml_set_oo_id"]([248,"Resource.MetaPath.No_solution",0]);
 
 var
  mk=
@@ -827,7 +831,7 @@ var
                
                var k=param[1];
                
-               if("unknown primitive:caml_string_equal")
+               if(Primtivie["caml_string_equal"](k,""))
                 {return Format["fprintf"]
                          (f,
                           [/* Format */0,

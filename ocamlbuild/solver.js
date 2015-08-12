@@ -9,9 +9,9 @@ var My_std=require("My_std");
 var Log=require("Log");
 
 
-var Failed="unknown primitive:caml_set_oo_id";
+var Failed=Primtivie["caml_set_oo_id"]([248,"Solver.Failed",0]);
 
-var Circular="unknown primitive:caml_set_oo_id";
+var Circular=Primtivie["caml_set_oo_id"]([248,"Solver.Circular",0]);
 
 var
  failed=

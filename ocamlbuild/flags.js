@@ -68,7 +68,7 @@ var
  remove=
   function(me)
    {return List["filter"]
-            (function(x){return "unknown primitive:caml_notequal";});
+            (function(x){return Primtivie["caml_notequal"](me,x);});
     };
 
 var

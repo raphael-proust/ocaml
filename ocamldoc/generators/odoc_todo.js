@@ -342,7 +342,7 @@ var
                        {switch(match$2[0])
                          {case 1:
                            try
-                            {var n="unknown primitive:caml_int_of_string";
+                            {var n=Primtivie["caml_int_of_string"](match$2[1]);
                              
                              var
                               head=
@@ -392,7 +392,8 @@ var
                     {var match$3=b[1];
                      
                      if(match$3)
-                      {return "unknown primitive:caml_int_compare";}
+                      {return Primtivie["caml_int_compare"](match$2[1],match$3[1]);
+                       }
                      else
                       {return 1;}
                      }

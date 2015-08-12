@@ -598,15 +598,18 @@ module rec
                   (E.access (E.var (Jident.create_js "Math")) (E.str "abs"))
                   [e]
             | _ -> Gen_util.expr_of_unknow_primitive prim)
+       | Pccall { prim_name;_} ->
+           E.call
+             (E.access (E.var (Jident.create_js "CamlPrimtivie"))
+                (E.str prim_name)) args
        | Pisint |Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
-       | Pduprecord (_,_)|Plazyforce |Pccall _|Pbittest |Pcvtbint (_,_)
-         |Pbigarrayref (_,_,_,_)|Pbigarrayset (_,_,_,_)|Pbigarraydim _
-         |Pstring_load_16 _|Pstring_load_32 _|Pstring_load_64 _
-         |Pstring_set_16 _|Pstring_set_32 _|Pstring_set_64 _
-         |Pbigstring_load_16 _|Pbigstring_load_32 _|Pbigstring_load_64 _
-         |Pbigstring_set_16 _|Pbigstring_set_32 _|Pbigstring_set_64 _
-         |Pctconst _|Pbswap16 |Pbbswap _|Pint_as_pointer  ->
-           Gen_util.expr_of_unknow_primitive prim : J.expression)
+       | Pduprecord (_,_)|Plazyforce |Pbittest |Pcvtbint (_,_)|Pbigarrayref
+         (_,_,_,_)|Pbigarrayset (_,_,_,_)|Pbigarraydim _|Pstring_load_16 _
+         |Pstring_load_32 _|Pstring_load_64 _|Pstring_set_16 _|Pstring_set_32
+         _|Pstring_set_64 _|Pbigstring_load_16 _|Pbigstring_load_32 _
+         |Pbigstring_load_64 _|Pbigstring_set_16 _|Pbigstring_set_32 _
+         |Pbigstring_set_64 _|Pctconst _|Pbswap16 |Pbbswap _|Pint_as_pointer 
+           -> Gen_util.expr_of_unknow_primitive prim : J.expression)
     let comment_of_pointer_info (x : Lambda.pointer_info) =
       match x with
       | NullConstructor x -> Some x

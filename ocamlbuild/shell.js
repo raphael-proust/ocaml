@@ -53,7 +53,7 @@ var
    {if(is_simple_filename(s))
      {return s;}
     else
-     {if("unknown primitive:caml_string_equal")
+     {if(Primtivie["caml_string_equal"](Sys["os_type"],"Win32"))
        {return Printf["sprintf"]
                 ([/* Format */0,
                   [/* Char_literal */12,
@@ -73,7 +73,7 @@ var
  chdir=
   function(dir)
    {My_std["reset_filesys_cache"](/* () */0);
-    return "unknown primitive:caml_sys_chdir";
+    return Primtivie["caml_sys_chdir"](dir);
     };
 
 var
@@ -87,7 +87,7 @@ var
     
     if
      (My_std["!*"](My_unix["is_degraded"])||
-      "unknown primitive:caml_string_equal")
+      Primtivie["caml_string_equal"](Sys["os_type"],"Win32"))
      {Log["event"](/* None */0,cmd,target,Tags["empty"]);
       var st=My_std["sys_command"](cmd);
       

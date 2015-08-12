@@ -292,7 +292,7 @@ var
         
         var new_line=Primitives["string_trim"](Lexer["line"](line_buffer));
         
-        if("unknown primitive:caml_string_notequal")
+        if(Primtivie["caml_string_notequal"](new_line,""))
          {var line=new_line;}
         else
          {var line=previous_line;}
@@ -318,7 +318,7 @@ var
     
     if(Program_management["ask_kill_program"](/* () */0))
      {try
-       {return "unknown primitive:caml_sys_chdir";}
+       {return Primtivie["caml_sys_chdir"](Unix_tools["expand_path"](dir));}
       catch(exn){if(exn[1]=Sys_error){return error(exn[2]);}else{throw exn;}}
       }
     else
@@ -332,7 +332,7 @@ var
     
     var cmd=$$String["concat"](" ",cmdarg);
     
-    var err="unknown primitive:caml_sys_system_command";
+    var err=Primtivie["caml_sys_system_command"](cmd);
     
     if(err!=0)
      {return Format["eprintf"]
@@ -365,7 +365,7 @@ var
     
     var cmdarg$1=Primitives["string_trim"]($$String["concat"](" ",cmdarg));
     
-    if("unknown primitive:caml_string_notequal")
+    if(Primtivie["caml_string_notequal"](cmdarg$1,""))
      {if(Program_management["ask_kill_program"](/* () */0))
        {try
          {var eqpos=$$String["index"](cmdarg$1,61);
@@ -435,7 +435,7 @@ var
                 /* Flush_newline */4,
                 /* End_of_format */0]],
               "%s@."],
-             "unknown primitive:caml_sys_getcwd");
+             Primtivie["caml_sys_getcwd"](/* () */0));
     };
 
 var
@@ -467,7 +467,11 @@ var
           
           var mdl=new_directory$prime[1];
           
-          if("unknown primitive:caml_string_equal"&&List["length"](tl)>0)
+          if
+           (Primtivie["caml_string_equal"]
+             ($$String["lowercase"](match[1]),"for")&&
+            List["length"](tl)>
+            0)
            {List["iter"]
              (function(x)
                {return Parameters["add_path_for"]
@@ -807,7 +811,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if("unknown primitive:caml_string_equal")
+                {if(Primtivie["caml_string_equal"](x,"help"))
                   {return match_list(lexbuf);}
                  else
                   {return [/* :: */0,"help",/* [] */0];}
@@ -817,7 +821,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if("unknown primitive:caml_string_equal")
+                {if(Primtivie["caml_string_equal"](x,"info"))
                   {var
                     match$1=
                      Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
@@ -835,7 +839,7 @@ var
                        else
                         {var i$1=l$1[1];
                          
-                         if("unknown primitive:caml_string_equal")
+                         if(Primtivie["caml_string_equal"](i$1[1],ident))
                           {return /* [] */0;}
                          else
                           {return /* :: */[0,i$1[1],/* [] */0];}
@@ -865,7 +869,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if("unknown primitive:caml_string_equal")
+                {if(Primtivie["caml_string_equal"](x,i[1]))
                   {return /* [] */0;}
                  else
                   {return /* :: */[0,i[1],/* [] */0];}
@@ -875,7 +879,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if("unknown primitive:caml_string_equal")
+                {if(Primtivie["caml_string_equal"](x,i_full))
                   {var
                     match$2=
                      Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
@@ -893,7 +897,7 @@ var
                        else
                         {var v=l$2[1];
                          
-                         if("unknown primitive:caml_string_equal")
+                         if(Primtivie["caml_string_equal"](v[1],ident$1))
                           {return /* [] */0;}
                          else
                           {return /* :: */[0,v[1],/* [] */0];}
@@ -1695,7 +1699,7 @@ var
     
     if(e){var en=e[1];}else{var en=beginning+20;}
     
-    if("unknown primitive:caml_string_equal")
+    if(Primtivie["caml_string_equal"](mdle,match$1[1]))
      {return Show_source["show_listing"]
               (pos,
                mdle,

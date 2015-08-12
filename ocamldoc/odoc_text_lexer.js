@@ -153,7 +153,7 @@ var
                
                return /* Title */[0,
                        /* tuple */[0,
-                        "unknown primitive:caml_int_of_string",
+                        Primtivie["caml_int_of_string"](s2),
                         /* None */0]];
                }
              else
@@ -172,14 +172,14 @@ var
                  
                  return /* Title */[0,
                          /* tuple */[0,
-                          "unknown primitive:caml_int_of_string",
+                          Primtivie["caml_int_of_string"](s_n),
                           /* Some */[0,s_label]]];
                  }
                catch(exn)
                 {if(exn=Not_found)
                   {return /* Title */[0,
                            /* tuple */[0,
-                            "unknown primitive:caml_int_of_string",
+                            Primtivie["caml_int_of_string"](s2$1),
                             /* None */0]];
                    }
                  else

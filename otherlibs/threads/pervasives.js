@@ -3,23 +3,26 @@
 var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
 
 
-var match="unknown primitive:caml_register_named_value";
+var
+ match=
+  CamlPrimtivie["caml_register_named_value"]
+   ("Pervasives.array_bound_error",[0,Invalid_argument,"index out of bounds"]);
 
 var failwith=function(s){throw [0,Failure,s];};
 
 var invalid_arg=function(s){throw [0,Invalid_argument,s];};
 
-var Exit="unknown primitive:caml_set_oo_id";
+var Exit=CamlPrimtivie["caml_set_oo_id"]([248,"Pervasives.Exit",0]);
 
 var
  min=
   function(x,y)
-   {if("unknown primitive:caml_lessequal"){return x;}else{return y;}};
+   {if(CamlPrimtivie["caml_lessequal"](x,y)){return x;}else{return y;}};
 
 var
  max=
   function(x,y)
-   {if("unknown primitive:caml_greaterequal"){return x;}else{return y;}};
+   {if(CamlPrimtivie["caml_greaterequal"](x,y)){return x;}else{return y;}};
 
 var abs=function(x){if(x>=0){return x;}else{return -x;}};
 
@@ -29,17 +32,23 @@ var max_int=-1>>>1;
 
 var min_int=max_int+1;
 
-var infinity="unknown primitive:caml_int64_float_of_bits";
+var
+ infinity=
+  CamlPrimtivie["caml_int64_float_of_bits"](9.21886843722740531e+18);
 
-var neg_infinity="unknown primitive:caml_int64_float_of_bits";
+var neg_infinity=CamlPrimtivie["caml_int64_float_of_bits"](-4503599627370496);
 
-var nan="unknown primitive:caml_int64_float_of_bits";
+var nan=CamlPrimtivie["caml_int64_float_of_bits"](9.21886843722740531e+18);
 
-var max_float="unknown primitive:caml_int64_float_of_bits";
+var
+ max_float=
+  CamlPrimtivie["caml_int64_float_of_bits"](9.21886843722740531e+18);
 
-var min_float="unknown primitive:caml_int64_float_of_bits";
+var min_float=CamlPrimtivie["caml_int64_float_of_bits"](4503599627370496);
 
-var epsilon_float="unknown primitive:caml_int64_float_of_bits";
+var
+ epsilon_float=
+  CamlPrimtivie["caml_int64_float_of_bits"](4372995238176751616);
 
 var
  $caret=
@@ -48,10 +57,10 @@ var
     
     var l2=s2["length"];
     
-    var s="unknown primitive:caml_create_string";
+    var s=CamlPrimtivie["caml_create_string"](l1+l2);
     
-    "unknown primitive:caml_blit_string";
-    "unknown primitive:caml_blit_string";
+    CamlPrimtivie["caml_blit_string"](s1,0,s,0,l1);
+    CamlPrimtivie["caml_blit_string"](s2,0,s,l1,l2);
     return s;
     };
 
@@ -75,7 +84,9 @@ var
     switch(exit){case 92:return invalid_arg("bool_of_string");}
     };
 
-var string_of_int=function(n){return "unknown primitive:caml_format_int";};
+var
+ string_of_int=
+  function(n){return CamlPrimtivie["caml_format_int"]("%d",n);};
 
 var
  valid_float_lexem=
@@ -107,7 +118,7 @@ var
 var
  string_of_float=
   function(f)
-   {return valid_float_lexem("unknown primitive:caml_format_float");};
+   {return valid_float_lexem(CamlPrimtivie["caml_format_float"]("%.12g",f));};
 
 var
  $at=
@@ -118,34 +129,36 @@ var
      {return l2;}
     };
 
-var stdin="unknown primitive:caml_ml_open_descriptor_in";
+var stdin=CamlPrimtivie["caml_ml_open_descriptor_in"](0);
 
-var stdout="unknown primitive:caml_ml_open_descriptor_out";
+var stdout=CamlPrimtivie["caml_ml_open_descriptor_out"](1);
 
-var stderr="unknown primitive:caml_ml_open_descriptor_out";
+var stderr=CamlPrimtivie["caml_ml_open_descriptor_out"](2);
 
 var
  thread_wait_read=
-  function(fd){return "unknown primitive:thread_wait_read";};
+  function(fd){return CamlPrimtivie["thread_wait_read"](fd);};
 
 var
  thread_wait_write=
-  function(fd){return "unknown primitive:thread_wait_write";};
+  function(fd){return CamlPrimtivie["thread_wait_write"](fd);};
 
 var
  wait_inchan=
   function(ic)
-   {return thread_wait_read("unknown primitive:caml_channel_descriptor");};
+   {return thread_wait_read(CamlPrimtivie["caml_channel_descriptor"](ic));};
 
 var
  wait_outchan=
   function(oc,len)
-   {return thread_wait_write("unknown primitive:caml_channel_descriptor");};
+   {return thread_wait_write(CamlPrimtivie["caml_channel_descriptor"](oc));};
 
 var
  open_out_gen=
   function(mode,perm,name)
-   {return "unknown primitive:caml_ml_open_descriptor_out";};
+   {return CamlPrimtivie["caml_ml_open_descriptor_out"]
+            (CamlPrimtivie["caml_sys_open"](name,mode,perm));
+    };
 
 var
  open_out=
@@ -181,7 +194,7 @@ var
  flush=
   function(oc)
    {try
-     {var success="unknown primitive:caml_ml_flush_partial";}
+     {var success=CamlPrimtivie["caml_ml_flush_partial"](oc);}
     catch(exn)
      {if(exn=Sys_blocked_io)
        {wait_outchan(oc,-1);var success=/* false */0;}
@@ -213,7 +226,7 @@ var
          {return /* () */0;}
         };
     
-    return iter("unknown primitive:caml_ml_out_channels_list");
+    return iter(CamlPrimtivie["caml_ml_out_channels_list"](/* () */0));
     };
 
 var
@@ -221,7 +234,7 @@ var
   function(oc,buf,pos,len)
    {if(len>0)
      {try
-       {var written="unknown primitive:caml_ml_output_partial";}
+       {var written=CamlPrimtivie["caml_ml_output_partial"](oc,buf,pos,len);}
       catch(exn)
        {if(exn=Sys_blocked_io)
          {wait_outchan(oc,len);var written=0;}
@@ -239,7 +252,7 @@ var
  output_char=
   function(oc,c)
    {try
-     {return "unknown primitive:caml_ml_output_char";}
+     {return CamlPrimtivie["caml_ml_output_char"](oc,c);}
     catch(exn)
      {if(exn=Sys_blocked_io)
        {wait_outchan(oc,1);return output_char(oc,c);}
@@ -267,7 +280,7 @@ var
  output_byte=
   function(oc,b)
    {try
-     {return "unknown primitive:caml_ml_output_char";}
+     {return CamlPrimtivie["caml_ml_output_char"](oc,b);}
     catch(exn)
      {if(exn=Sys_blocked_io)
        {wait_outchan(oc,1);return output_byte(oc,b);}
@@ -288,18 +301,21 @@ var
 var
  output_value=
   function(oc,v)
-   {return output_string(oc,"unknown primitive:caml_output_value_to_string");};
+   {return output_string
+            (oc,CamlPrimtivie["caml_output_value_to_string"](v,/* [] */0));
+    };
 
 var
  seek_out=
-  function(oc,pos){flush(oc);return "unknown primitive:caml_ml_seek_out";};
+  function(oc,pos)
+   {flush(oc);return CamlPrimtivie["caml_ml_seek_out"](oc,pos);};
 
 var
  close_out=
   function(oc)
    {try {flush(oc)}catch(exn){}
     
-    return "unknown primitive:caml_ml_close_channel";
+    return CamlPrimtivie["caml_ml_close_channel"](oc);
     };
 
 var
@@ -308,14 +324,16 @@ var
    {try {flush(oc)}catch(exn){}
     
     try
-     {return "unknown primitive:caml_ml_close_channel";}
+     {return CamlPrimtivie["caml_ml_close_channel"](oc);}
     catch(exn$1){return /* () */0;}
     };
 
 var
  open_in_gen=
   function(mode,perm,name)
-   {return "unknown primitive:caml_ml_open_descriptor_in";};
+   {return CamlPrimtivie["caml_ml_open_descriptor_in"]
+            (CamlPrimtivie["caml_sys_open"](name,mode,perm));
+    };
 
 var
  open_in=
@@ -343,7 +361,7 @@ var
  input_char=
   function(ic)
    {try
-     {return "unknown primitive:caml_ml_input_char";}
+     {return CamlPrimtivie["caml_ml_input_char"](ic);}
     catch(exn)
      {if(exn=Sys_blocked_io)
        {wait_inchan(ic);return input_char(ic);}
@@ -356,7 +374,7 @@ var
  unsafe_input=
   function(ic,s,ofs,len)
    {try
-     {return "unknown primitive:caml_ml_input";}
+     {return CamlPrimtivie["caml_ml_input"](ic,s,ofs,len);}
     catch(exn)
      {if(exn=Sys_blocked_io)
        {wait_inchan(ic);return unsafe_input(ic,s,ofs,len);}
@@ -401,7 +419,7 @@ var
 var
  really_input_string=
   function(ic,len)
-   {var s="unknown primitive:caml_create_string";
+   {var s=CamlPrimtivie["caml_create_string"](len);
     
     really_input(ic,s,0,len);
     return s;
@@ -410,16 +428,19 @@ var
 var
  input_line=
   function(ic)
-   {var buf=[0,"unknown primitive:caml_create_string"];
+   {var buf=[0,CamlPrimtivie["caml_create_string"](128)];
     
     var pos=[0,0];
     
     try
      {while(/* true */1)
        {if(pos[1]=buf[1]["length"])
-         {var newbuf="unknown primitive:caml_create_string";
+         {var newbuf=CamlPrimtivie["caml_create_string"](2*pos[1]);
           
-          "unknown primitive:caml_blit_string",buf[1]=newbuf,0}
+          CamlPrimtivie["caml_blit_string"](buf[1],0,newbuf,0,pos[1]),
+          buf[1]=
+          newbuf,
+          0}
         else
          {}
         
@@ -440,9 +461,9 @@ var
         }
       }
     
-    var res="unknown primitive:caml_create_string";
+    var res=CamlPrimtivie["caml_create_string"](pos[1]);
     
-    "unknown primitive:caml_blit_string";
+    CamlPrimtivie["caml_blit_string"](buf[1],0,res,0,pos[1]);
     return res;
     };
 
@@ -450,7 +471,7 @@ var
  input_byte=
   function(ic)
    {try
-     {return "unknown primitive:caml_ml_input_char";}
+     {return CamlPrimtivie["caml_ml_input_char"](ic);}
     catch(exn)
      {if(exn=Sys_blocked_io)
        {wait_inchan(ic);return input_byte(ic);}
@@ -478,23 +499,23 @@ var
 var
  input_value=
   function(ic)
-   {var header="unknown primitive:caml_create_string";
+   {var header=CamlPrimtivie["caml_create_string"](20);
     
     really_input(ic,header,0,20);
-    var bsize="unknown primitive:caml_marshal_data_size";
+    var bsize=CamlPrimtivie["caml_marshal_data_size"](header,0);
     
-    var buffer="unknown primitive:caml_create_string";
+    var buffer=CamlPrimtivie["caml_create_string"](20+bsize);
     
-    "unknown primitive:caml_blit_string";
+    CamlPrimtivie["caml_blit_string"](header,0,buffer,0,20);
     really_input(ic,buffer,20,bsize);
-    return "unknown primitive:caml_input_value_from_string";
+    return CamlPrimtivie["caml_input_value_from_string"](buffer,0);
     };
 
 var
  close_in_noerr=
   function(ic)
    {try
-     {return "unknown primitive:caml_ml_close_channel";}
+     {return CamlPrimtivie["caml_ml_close_channel"](ic);}
     catch(exn){return /* () */0;}
     };
 
@@ -538,11 +559,15 @@ var
 
 var read_line=function(param){flush(stdout);return input_line(stdin);};
 
-var read_int=function(param){return "unknown primitive:caml_int_of_string";};
+var
+ read_int=
+  function(param)
+   {return CamlPrimtivie["caml_int_of_string"](read_line(/* () */0));};
 
 var
  read_float=
-  function(param){return "unknown primitive:caml_float_of_string";};
+  function(param)
+   {return CamlPrimtivie["caml_float_of_string"](read_line(/* () */0));};
 
 var LargeFile=[0];
 
@@ -581,9 +606,9 @@ var do_at_exit=function(param){return exit_function[1](/* () */0);};
 var
  exit=
   function(retcode)
-   {do_at_exit(/* () */0);return "unknown primitive:caml_sys_exit";};
+   {do_at_exit(/* () */0);return CamlPrimtivie["caml_sys_exit"](retcode);};
 
-"unknown primitive:caml_register_named_value";
+CamlPrimtivie["caml_register_named_value"]("Pervasives.do_at_exit",do_at_exit);
 module["exports"]=
 {"invalid_arg":invalid_arg,
  "failwith":failwith,
@@ -641,13 +666,15 @@ module["exports"]=
  "output_binary_int":output_binary_int,
  "output_value":output_value,
  "seek_out":seek_out,
- "caml_ml_pos_out":function(prim){return "unknown primitive:caml_ml_pos_out";},
+ "caml_ml_pos_out":
+ function(prim){return CamlPrimtivie["caml_ml_pos_out"](prim);},
  "caml_ml_channel_size":
- function(prim){return "unknown primitive:caml_ml_channel_size";},
+ function(prim){return CamlPrimtivie["caml_ml_channel_size"](prim);},
  "close_out":close_out,
  "close_out_noerr":close_out_noerr,
  "caml_ml_set_binary_mode":
- function(prim,prim){return "unknown primitive:caml_ml_set_binary_mode";},
+ function(prim,prim)
+  {return CamlPrimtivie["caml_ml_set_binary_mode"](prim$1,prim);},
  "open_in":open_in,
  "open_in_bin":open_in_bin,
  "open_in_gen":open_in_gen,
@@ -660,23 +687,27 @@ module["exports"]=
  "input_binary_int":input_binary_int,
  "input_value":input_value,
  "caml_ml_seek_in":
- function(prim,prim){return "unknown primitive:caml_ml_seek_in";},
- "caml_ml_pos_in":function(prim){return "unknown primitive:caml_ml_pos_in";},
+ function(prim,prim){return CamlPrimtivie["caml_ml_seek_in"](prim$1,prim);},
+ "caml_ml_pos_in":
+ function(prim){return CamlPrimtivie["caml_ml_pos_in"](prim);},
  "caml_ml_channel_size":
- function(prim){return "unknown primitive:caml_ml_channel_size";},
+ function(prim){return CamlPrimtivie["caml_ml_channel_size"](prim);},
  "caml_ml_close_channel":
- function(prim){return "unknown primitive:caml_ml_close_channel";},
+ function(prim){return CamlPrimtivie["caml_ml_close_channel"](prim);},
  "close_in_noerr":close_in_noerr,
  "caml_ml_set_binary_mode":
- function(prim,prim){return "unknown primitive:caml_ml_set_binary_mode";},
+ function(prim,prim)
+  {return CamlPrimtivie["caml_ml_set_binary_mode"](prim$1,prim);},
  "LargeFile":
  [0,
-  function(prim,prim){return "unknown primitive:caml_ml_seek_out_64";},
-  function(prim){return "unknown primitive:caml_ml_pos_out_64";},
-  function(prim){return "unknown primitive:caml_ml_channel_size_64";},
-  function(prim,prim){return "unknown primitive:caml_ml_seek_in_64";},
-  function(prim){return "unknown primitive:caml_ml_pos_in_64";},
-  function(prim){return "unknown primitive:caml_ml_channel_size_64";}],
+  function(prim,prim)
+   {return CamlPrimtivie["caml_ml_seek_out_64"](prim$1,prim);},
+  function(prim){return CamlPrimtivie["caml_ml_pos_out_64"](prim);},
+  function(prim){return CamlPrimtivie["caml_ml_channel_size_64"](prim);},
+  function(prim,prim)
+   {return CamlPrimtivie["caml_ml_seek_in_64"](prim$1,prim);},
+  function(prim){return CamlPrimtivie["caml_ml_pos_in_64"](prim);},
+  function(prim){return CamlPrimtivie["caml_ml_channel_size_64"](prim);}],
  "string_of_format":string_of_format,
  "^^":$caret$caret,
  "exit":exit,

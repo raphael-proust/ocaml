@@ -69,10 +69,13 @@ var sendto_substring=Unix["sendto_substring"];
 var open_connection=Unix["open_connection"];
 
 module["exports"]=
-{"unix_execv":function(prim,prim){return "unknown primitive:unix_execv";},
+{"unix_execv":
+ function(prim,prim){return Primtivie["unix_execv"](prim$1,prim);},
  "unix_execve":
- function(prim,prim,prim){return "unknown primitive:unix_execve";},
- "unix_execvp":function(prim,prim){return "unknown primitive:unix_execvp";},
+ function(prim,prim,prim)
+  {return Primtivie["unix_execve"](prim$1,prim$2,prim);},
+ "unix_execvp":
+ function(prim,prim){return Primtivie["unix_execvp"](prim$1,prim);},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
@@ -87,10 +90,11 @@ module["exports"]=
  "open_process_in":open_process_in,
  "open_process_out":open_process_out,
  "open_process":open_process,
- "unix_sleep":function(prim){return "unknown primitive:unix_sleep";},
+ "unix_sleep":function(prim){return Primtivie["unix_sleep"](prim);},
  "socket":socket,
  "accept":accept,
- "unix_connect":function(prim,prim){return "unknown primitive:unix_connect";},
+ "unix_connect":
+ function(prim,prim){return Primtivie["unix_connect"](prim$1,prim);},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,

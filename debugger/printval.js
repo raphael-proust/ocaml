@@ -46,7 +46,7 @@ var
      {return /* None */0;}
     };
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=Primtivie["caml_set_oo_id"]([248,"Printval.EvalPath.Error",0]);
 
 var
  eval_path=

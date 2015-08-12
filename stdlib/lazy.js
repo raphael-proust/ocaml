@@ -10,22 +10,27 @@ var force_val=CamlinternalLazy["force_val"];
 
 var
  from_fun=
-  function(f){var x="unknown primitive:caml_obj_block";x[0]=f,0;return x;};
+  function(f)
+   {var x=CamlPrimtivie["caml_obj_block"](Obj["lazy_tag"],1);
+    
+    x[0]=f,0;
+    return x;
+    };
 
 var
  from_val=
   function(v)
-   {var t="unknown primitive:caml_obj_tag";
+   {var t=CamlPrimtivie["caml_obj_tag"](v);
     
     if((t=Obj["forward_tag"])||(t=Obj["lazy_tag"])||(t=Obj["double_tag"]))
-     {return "unknown primitive:caml_lazy_make_forward";}
+     {return CamlPrimtivie["caml_lazy_make_forward"](v);}
     else
      {return v;}
     };
 
 var
  is_val=
-  function(l){return "unknown primitive:caml_obj_tag"!=Obj["lazy_tag"];};
+  function(l){return CamlPrimtivie["caml_obj_tag"](l)!=Obj["lazy_tag"];};
 
 var lazy_from_fun=from_fun;
 

@@ -16,7 +16,7 @@ var Symtable=require("Symtable");
 var Config=require("Config");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=Primtivie["caml_set_oo_id"]([248,"Loadprinter.Error",0]);
 
 var debugger_symtable=[0,/* None */0];
 
@@ -57,7 +57,7 @@ var
       use_debugger_symtable(Dynlink["loadfile"],filename);
       var d=Filename["dirname"](name);
       
-      if("unknown primitive:caml_string_notequal")
+      if(Primtivie["caml_string_notequal"](d,Filename["current_dir_name"]))
        {if(!List["mem"](d,Config["load_path"][1]))
          {Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]],0}
         else

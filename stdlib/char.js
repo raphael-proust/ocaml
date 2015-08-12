@@ -48,12 +48,12 @@ var
     
     switch(exit)
      {case 7:
-       if("unknown primitive:caml_is_printable")
-        {var s="unknown primitive:caml_create_string";s[0]=c,0;return s;}
+       if(CamlPrimtivie["caml_is_printable"](c))
+        {var s=CamlPrimtivie["caml_create_string"](1);s[0]=c,0;return s;}
        else
         {var n=c;
          
-         var s$1="unknown primitive:caml_create_string";
+         var s$1=CamlPrimtivie["caml_create_string"](4);
          
          s$1[0]=92,0;
          s$1[1]=48+n/100,0;

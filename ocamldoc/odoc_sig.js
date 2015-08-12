@@ -1027,7 +1027,8 @@ var
               (function(td)
                 {return List["exists"]
                          (function(param)
-                           {return "unknown primitive:caml_string_equal";},
+                           {return Primtivie["caml_string_equal"](param[1][1],"nonrec");
+                            },
                           td[7]);
                  },
                name_type_decl_list);
@@ -2332,7 +2333,7 @@ var
              case 2:
               var label=sig_class_type[1];
               
-              if("unknown primitive:caml_string_equal")
+              if(Primtivie["caml_string_equal"](match[1],label))
                {var
                  new_param=
                   /* Simple_name */[0,
@@ -2439,7 +2440,7 @@ var
      analyse_signature=
       function(source_file,input_file,ast,signat)
        {try
-         {var curdir="unknown primitive:caml_sys_getcwd";
+         {var curdir=Primtivie["caml_sys_getcwd"](/* () */0);
           
           var
            match=
@@ -2447,12 +2448,13 @@ var
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
-          "unknown primitive:caml_sys_chdir";
+          Primtivie["caml_sys_chdir"](match[1]);
           var
            complete=
-            Filename["concat"]("unknown primitive:caml_sys_getcwd",match[2]);
+            Filename["concat"]
+             (Primtivie["caml_sys_getcwd"](/* () */0),match[2]);
           
-          "unknown primitive:caml_sys_chdir";
+          Primtivie["caml_sys_chdir"](curdir);
           var complete_source_file=complete;
           }
         catch(exn)

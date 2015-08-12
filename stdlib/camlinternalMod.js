@@ -60,25 +60,31 @@ var
      {switch(shape)
        {case 0:
          if
-          (("unknown primitive:caml_obj_tag"=Obj["closure_tag"])&&
+          ((CamlPrimtivie["caml_obj_tag"](n)=Obj["closure_tag"])&&
            n["length"]<=
            o["length"])
-          {overwrite(o,n);return "unknown primitive:caml_obj_truncate";}
+          {overwrite(o,n);
+           return CamlPrimtivie["caml_obj_truncate"](o,n["length"]);
+           }
          else
           {return overwrite(o,function(x){return n(x);});}
          
         case 1:
-         if("unknown primitive:caml_obj_tag"=Obj["lazy_tag"])
+         if(CamlPrimtivie["caml_obj_tag"](n)=Obj["lazy_tag"])
           {return o[0]=n[0],0;}
          else
-          {if("unknown primitive:caml_obj_tag"=Obj["forward_tag"])
-            {"unknown primitive:caml_obj_set_tag";return o[0]=n[0],0;}
+          {if(CamlPrimtivie["caml_obj_tag"](n)=Obj["forward_tag"])
+            {CamlPrimtivie["caml_obj_set_tag"](o,Obj["forward_tag"]);
+             return o[0]=n[0],0;
+             }
            else
-            {"unknown primitive:caml_obj_set_tag";return o[0]=n,0;}
+            {CamlPrimtivie["caml_obj_set_tag"](o,Obj["forward_tag"]);
+             return o[0]=n,0;
+             }
            }
          
         case 2:
-         if(("unknown primitive:caml_obj_tag"=0)&&(n["length"]=4))
+         if((CamlPrimtivie["caml_obj_tag"](n)=0)&&(n["length"]=4))
           {}
          else
           {throw [0,Assert_failure,[0,"camlinternalMod.ml",63,6]];}
@@ -92,7 +98,7 @@ var
          var comps=shape[1];
          
          if
-          (("unknown primitive:caml_obj_tag"=0)&&n["length"]>=comps["length"])
+          ((CamlPrimtivie["caml_obj_tag"](n)=0)&&n["length"]>=comps["length"])
           {}
          else
           {throw [0,Assert_failure,[0,"camlinternalMod.ml",66,6]];}

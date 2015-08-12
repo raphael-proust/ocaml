@@ -23,7 +23,7 @@ var
      {q[1]=c,0;return q[2]=c,0;}
     };
 
-var Empty_queue="unknown primitive:caml_set_oo_id";
+var Empty_queue=CamlPrimtivie["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
 
 var
  peek_queue=
@@ -159,7 +159,7 @@ var
                  
                  var x=ls[1];
                  
-                 if("unknown primitive:caml_lessthan")
+                 if(CamlPrimtivie["caml_lessthan"](n,x))
                   {return /* :: */[0,n,ls];}
                  else
                   {return /* :: */[0,x,add_tab(n,l)];}
@@ -300,7 +300,7 @@ var
                  
                  var x=param$1[1];
                  
-                 if("unknown primitive:caml_greaterequal")
+                 if(CamlPrimtivie["caml_greaterequal"](x,n))
                   {return x;}
                  else
                   {return find(n,l);}

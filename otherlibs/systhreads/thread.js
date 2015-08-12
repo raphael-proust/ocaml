@@ -5,14 +5,29 @@ var Unix=require("Unix");
 var Sys=require("Sys");
 
 
-var create=function(fn,arg){return "unknown primitive:caml_thread_new";};
+var
+ create=
+  function(fn,arg)
+   {return Primtivie["caml_thread_new"]
+            (function(param)
+              {try
+                {fn(arg);return /* () */0;}
+               catch(exn)
+                {Pervasives["flush"](Pervasives["stdout"]);
+                 Pervasives["flush"](Pervasives["stderr"]);
+                 return Primtivie["caml_thread_uncaught_exception"](exn);
+                 }
+               });
+    };
 
 var
  kill=
   function(th)
    {return Pervasives["invalid_arg"]("Thread.kill: not implemented");};
 
-var preempt=function(signal){return "unknown primitive:caml_thread_yield";};
+var
+ preempt=
+  function(signal){return Primtivie["caml_thread_yield"](/* () */0);};
 
 var match=Sys["os_type"];
 
@@ -21,10 +36,10 @@ switch(match)
   default:var preempt_signal=Sys["sigvtalrm"];}
 
 Sys["set_signal"](preempt_signal,/* Signal_handle */[0,preempt]);
-"unknown primitive:caml_thread_initialize",
+Primtivie["caml_thread_initialize"](/* () */0),
 Pervasives["at_exit"]
  (function(param)
-   {"unknown primitive:caml_thread_cleanup";
+   {Primtivie["caml_thread_cleanup"](/* () */0);
     return Sys["set_signal"](preempt_signal,/* Signal_default */0);
     });
 var
@@ -66,14 +81,14 @@ var wait_pid=function(p){return Unix["waitpid"](/* [] */0,p);};
 module["exports"]=
 {"create":create,
  "caml_thread_self":
- function(prim){return "unknown primitive:caml_thread_self";},
- "caml_thread_id":function(prim){return "unknown primitive:caml_thread_id";},
+ function(prim){return Primtivie["caml_thread_self"](prim);},
+ "caml_thread_id":function(prim){return Primtivie["caml_thread_id"](prim);},
  "caml_thread_exit":
- function(prim){return "unknown primitive:caml_thread_exit";},
+ function(prim){return Primtivie["caml_thread_exit"](prim);},
  "kill":kill,
  "delay":delay,
  "caml_thread_join":
- function(prim){return "unknown primitive:caml_thread_join";},
+ function(prim){return Primtivie["caml_thread_join"](prim);},
  "wait_read":wait_read,
  "wait_write":wait_write,
  "wait_timed_read":wait_timed_read,
@@ -81,9 +96,9 @@ module["exports"]=
  "select":select,
  "wait_pid":wait_pid,
  "caml_thread_yield":
- function(prim){return "unknown primitive:caml_thread_yield";},
+ function(prim){return Primtivie["caml_thread_yield"](prim);},
  "caml_thread_sigmask":
- function(prim,prim){return "unknown primitive:caml_thread_sigmask";},
+ function(prim,prim){return Primtivie["caml_thread_sigmask"](prim$1,prim);},
  "caml_wait_signal":
- function(prim){return "unknown primitive:caml_wait_signal";}};
+ function(prim){return Primtivie["caml_wait_signal"](prim);}};
 

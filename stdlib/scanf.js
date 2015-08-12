@@ -148,7 +148,7 @@ var
   function(scan_close_ic,iname,ic)
    {var len=file_buffer_size[1];
     
-    var buf="unknown primitive:caml_create_string";
+    var buf=CamlPrimtivie["caml_create_string"](len);
     
     var i=[0,0];
     
@@ -289,7 +289,9 @@ var
    from_channel,
    close_in];
 
-var Scan_failure="unknown primitive:caml_set_oo_id";
+var
+ Scan_failure=
+  CamlPrimtivie["caml_set_oo_id"]([248,"Scanf.Scan_failure",0]);
 
 var bad_input=function(s){throw [0,Scan_failure,s];};
 
@@ -505,23 +507,30 @@ var
 
 var
  token_int=
-  function(conv,ib){return "unknown primitive:caml_int_of_string";};
+  function(conv,ib)
+   {return CamlPrimtivie["caml_int_of_string"](token_int_literal(conv,ib));};
 
 var
  token_float=
-  function(ib){return "unknown primitive:caml_float_of_string";};
+  function(ib)
+   {return CamlPrimtivie["caml_float_of_string"](Scanning[10](ib));};
 
 var
  token_nativeint=
-  function(conv,ib){return "unknown primitive:caml_nativeint_of_string";};
+  function(conv,ib)
+   {return CamlPrimtivie["caml_nativeint_of_string"]
+            (token_int_literal(conv,ib));
+    };
 
 var
  token_int32=
-  function(conv,ib){return "unknown primitive:caml_int32_of_string";};
+  function(conv,ib)
+   {return CamlPrimtivie["caml_int32_of_string"](token_int_literal(conv,ib));};
 
 var
  token_int64=
-  function(conv,ib){return "unknown primitive:caml_int64_of_string";};
+  function(conv,ib)
+   {return CamlPrimtivie["caml_int64_of_string"](token_int_literal(conv,ib));};
 
 var
  scan_decimal_digits=

@@ -280,10 +280,12 @@ var
     try
      {var len1=n1["length"];
       
-      $js="unknown primitive:caml_string_equal"&&(n2[len1]=46);
+      $js=
+      Primtivie["caml_string_equal"]($$String["sub"](n2,0,len1),n1)&&
+      (n2[len1]=46);
       }
     catch(exn){$js=/* false */0;}
-    return "unknown primitive:caml_string_notequal"&&$js;
+    return Primtivie["caml_string_notequal"](n1,n2)&&$js;
     };
 
 var
@@ -299,17 +301,17 @@ var
     
     var f2=match$1[1];
     
-    if("unknown primitive:caml_string_equal")
+    if(Primtivie["caml_string_equal"](f1,f2))
      {var s2=match$1[2];
       
       if
-       ("unknown primitive:caml_string_equal"||
-        "unknown primitive:caml_string_equal")
+       (Primtivie["caml_string_equal"](f2,s2)||
+        Primtivie["caml_string_equal"](s2,""))
        {return s2;}
       else
        {if
-         ("unknown primitive:caml_string_equal"||
-          "unknown primitive:caml_string_equal")
+         (Primtivie["caml_string_equal"](f1,s1)||
+          Primtivie["caml_string_equal"](s1,""))
          {return s2;}
         else
          {return get_relative_raw(s1,s2);}
@@ -342,7 +344,7 @@ var
        {if(param)
          {var s2=get_relative(param[1],s);
           
-          if("unknown primitive:caml_string_equal")
+          if(Primtivie["caml_string_equal"](s,s2))
            {return iter(param[2]);}
           else
            {return s2;}

@@ -56,7 +56,10 @@ var
     
     var condition=Condition["create"](/* () */0);
     
-    var bev="unknown primitive:caml_make_vect";
+    var
+     bev=
+      Primtivie["caml_make_vect"]
+       (genev["length"],genev[0][1](performed,condition,0));
     
     for(var i=1;i<=genev["length"]-1;i++)
      {bev[i]=genev[i][1](performed,condition,i),0}
@@ -186,7 +189,10 @@ var
     
     var condition=Condition["create"](/* () */0);
     
-    var bev="unknown primitive:caml_make_vect";
+    var
+     bev=
+      Primtivie["caml_make_vect"]
+       (genev["length"],genev[0][1](performed,condition,0));
     
     for(var i=1;i<=genev["length"]-1;i++)
      {bev[i]=genev[i][1](performed,condition,i),0}

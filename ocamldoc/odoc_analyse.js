@@ -789,7 +789,7 @@ var
     if(Odoc_global["sort_modules"][1])
      {return List["sort"]
               (function(m1,m2)
-                {return "unknown primitive:caml_string_compare";},
+                {return Primtivie["caml_string_compare"](m1[1],m2[1]);},
                merged_modules);
       }
     else

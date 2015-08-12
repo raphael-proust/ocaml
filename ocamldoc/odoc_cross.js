@@ -69,7 +69,9 @@ var
    "scan_class_pre",
    "scan_attribute"];
 
-var compare=function(prim,prim){return "unknown primitive:caml_compare";};
+var
+ compare=
+  function(prim,prim){return Primtivie["caml_compare"](prim$1,prim);};
 
 var S=Set["Make"]([0,compare]);
 
@@ -262,7 +264,7 @@ var
     return build_alias_list(Search_alias[15](module_list,0));
     };
 
-var Found="unknown primitive:caml_set_oo_id";
+var Found=Primtivie["caml_set_oo_id"]([248,"Odoc_cross.Found",0]);
 
 var
  f=
@@ -314,7 +316,7 @@ var
 
 var name_alias=function(name,alias_tbl){return f(alias_tbl,name);};
 
-var compare$1=function(x,y){return "unknown primitive:caml_string_compare";};
+var compare$1=function(x,y){return Primtivie["caml_string_compare"](x,y);};
 
 var Map_ord=[0,compare$1];
 
@@ -777,8 +779,10 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](m[1]),acc_inc],
-                       "unknown primitive:caml_string_equal"||
-                        "unknown primitive:caml_string_equal"
+                       Primtivie["caml_string_equal"]
+                         (ma[1],Odoc_messages["struct_end"])||
+                        Primtivie["caml_string_equal"]
+                         (ma[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mmt */[2,ma[1]],acc_names]];
                }
@@ -842,8 +846,10 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](m[1]),acc_inc],
-                       "unknown primitive:caml_string_equal"||
-                        "unknown primitive:caml_string_equal"
+                       Primtivie["caml_string_equal"]
+                         (mta[1],Odoc_messages["struct_end"])||
+                        Primtivie["caml_string_equal"]
+                         (mta[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mt */[1,mta[1]],acc_names]];
                }
@@ -903,8 +909,10 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](mt[1]),acc_inc],
-                       "unknown primitive:caml_string_equal"||
-                        "unknown primitive:caml_string_equal"
+                       Primtivie["caml_string_equal"]
+                         (mta[1],Odoc_messages["struct_end"])||
+                        Primtivie["caml_string_equal"]
+                         (mta[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mt */[1,mta[1]],acc_names]];
                }
@@ -1004,8 +1012,10 @@ var
                    /* :: */[0,
                     Odoc_name["head"](m_name),
                     acc_incomplete_top_module_names],
-                   "unknown primitive:caml_string_equal"||
-                    "unknown primitive:caml_string_equal"
+                   Primtivie["caml_string_equal"]
+                     (im[1],Odoc_messages["struct_end"])||
+                    Primtivie["caml_string_equal"]
+                     (im[1],Odoc_messages["sig_end"])
                     ?acc_names_not_found
                     :/* :: */[0,/* NF_mmt */[2,im[1]],acc_names_not_found]];
            }
@@ -1147,7 +1157,8 @@ var
                   {return /* tuple */[0,
                            acc_b2,
                            /* :: */[0,Odoc_name["head"](c[1]),acc_inc2],
-                           "unknown primitive:caml_string_equal"
+                           Primtivie["caml_string_equal"]
+                             (ic[1],Odoc_messages["object_end"])
                             ?acc_names2
                             :/* :: */[0,/* NF_cct */[5,ic[1]],acc_names2]];
                    }
@@ -1178,7 +1189,8 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](c[1]),acc_inc],
-                       "unknown primitive:caml_string_equal"
+                       Primtivie["caml_string_equal"]
+                         (capp[1],Odoc_messages["object_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_c */[3,capp[1]],acc_names]];
                }
@@ -1223,7 +1235,8 @@ var
                 {return /* tuple */[0,
                          acc_b,
                          /* :: */[0,Odoc_name["head"](c[1]),acc_inc],
-                         "unknown primitive:caml_string_equal"
+                         Primtivie["caml_string_equal"]
+                           (cco[1],Odoc_messages["object_end"])
                           ?acc_names
                           :/* :: */[0,/* NF_cct */[5,cco[1]],acc_names]];
                  }
@@ -1308,7 +1321,8 @@ var
                   {return /* tuple */[0,
                            acc_b2,
                            /* :: */[0,Odoc_name["head"](ct[1]),acc_inc2],
-                           "unknown primitive:caml_string_equal"
+                           Primtivie["caml_string_equal"]
+                             (ic[1],Odoc_messages["object_end"])
                             ?acc_names2
                             :/* :: */[0,/* NF_cct */[5,ic[1]],acc_names2]];
                    }
@@ -1356,7 +1370,8 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](ct[1]),acc_inc],
-                       "unknown primitive:caml_string_equal"
+                       Primtivie["caml_string_equal"]
+                         (cta[1],Odoc_messages["object_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_cct */[5,cta[1]],acc_names]];
                }

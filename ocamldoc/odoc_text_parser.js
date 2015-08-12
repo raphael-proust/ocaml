@@ -26,9 +26,58 @@ var
             (Str["regexp"](Pervasives["^"](blank,"+$")),"",s);
     };
 
-var yytransl_const="unknown primitive:caml_obj_dup";
+var
+ yytransl_const=
+  Primtivie["caml_obj_dup"]
+   ([0,
+     257,
+     259,
+     260,
+     261,
+     262,
+     263,
+     264,
+     266,
+     267,
+     268,
+     269,
+     270,
+     271,
+     272,
+     273,
+     274,
+     275,
+     276,
+     278,
+     279,
+     280,
+     281,
+     282,
+     283,
+     284,
+     285,
+     286,
+     287,
+     288,
+     289,
+     290,
+     291,
+     292,
+     293,
+     294,
+     295,
+     296,
+     297,
+     298,
+     299,
+     300,
+     301,
+     302,
+     303,
+     0,
+     0]);
 
-var yytransl_block="unknown primitive:caml_obj_dup";
+var yytransl_block=Primtivie["caml_obj_dup"]([0,258,265,277,304,0]);
 
 var
  yylhs=

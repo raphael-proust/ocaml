@@ -5,9 +5,9 @@ var List=require("List");
 var CamlinternalLazy=require("CamlinternalLazy");
 
 
-var Failure="unknown primitive:caml_set_oo_id";
+var Failure=CamlPrimtivie["caml_set_oo_id"]([248,"Stream.Failure",0]);
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Stream.Error",0]);
 
 var set_data=function(s,d){return s[1]=d,0;};
 
@@ -51,7 +51,7 @@ var
          
          var lzarg=f;
          
-         var tag="unknown primitive:caml_obj_tag";
+         var tag=CamlPrimtivie["caml_obj_tag"](lzarg);
          
          return get_data
                  (count,
@@ -127,7 +127,7 @@ var
          
          var lzarg=f;
          
-         var tag="unknown primitive:caml_obj_tag";
+         var tag=CamlPrimtivie["caml_obj_tag"](lzarg);
          
          set_data
           (s,
@@ -312,7 +312,7 @@ var
    {return /* record */[0,
             0,
             /* Sbuffio */[4,
-             /* record */[0,ic,"unknown primitive:caml_create_string",0,0]]];
+             /* record */[0,ic,CamlPrimtivie["caml_create_string"](4096),0,0]]];
     };
 
 var iapp=function(i,s){return /* record */[0,0,/* Sapp */[1,i[2],s[2]]];};

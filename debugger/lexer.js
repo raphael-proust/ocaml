@@ -24,7 +24,7 @@ var
 var
  line=
   function(lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_line_rec(lexbuf,0);
     };
@@ -119,7 +119,9 @@ var
          return /* LIDENT */[1,$$String["sub"](s,1,s["length"]-2)];
          
         case 4:
-         return /* INTEGER */[4,"unknown primitive:caml_int64_of_string"];
+         return /* INTEGER */[4,
+                 Primtivie["caml_int64_of_string"](Lexing["lexeme"](lexbuf))];
+         
         case 5:return /* STAR */0;
         case 6:return /* MINUS */1;
         case 7:return /* DOT */2;
