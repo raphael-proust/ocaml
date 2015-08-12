@@ -861,7 +861,7 @@ var
           
           var s=Odoc_info["string_of_text"](t2);
           
-          "(sendself self-2/1476 keep_alpha_num/1416 s/1479)";
+          /* unknown */"(sendself self-2/1476 keep_alpha_num/1416 s/1479)";
           },
         create_title_label,
         function(self$neg2,param)
@@ -870,7 +870,7 @@ var
           if(label_opt)
            {return label_opt[1];}
           else
-           {"(sendself self-2/1482 label_of_text/1417 (field 2 param/3318))";
+           {/* unknown */"(sendself self-2/1482 label_of_text/1417 (field 2 param/3318))";
             return Printf["sprintf"]
                     ([/* Format */0,
                       [/* Int */4,
@@ -887,83 +887,87 @@ var
           },
         html_of_text,
         function(self$neg2,b,t)
-         {"(sendself self-2/1488 html_of_text_element/1420 b/1489)";
+         {/* unknown */"(sendself self-2/1488 html_of_text_element/1420 b/1489)";
           return List["iter"](0,t);
           },
         html_of_text_element,
         function(self$neg2,b,txt)
          {if(typeof txt=="number")
            {switch(txt)
-             {case 0:"(sendself self-2/1492 html_of_Newline/1435 b/1493)";
-              case 1:"(sendself self-2/1492 html_of_Index_list/1445 b/1493)";
+             {case 0:
+               /* unknown */"(sendself self-2/1492 html_of_Newline/1435 b/1493)";
+               
+              case 1:
+               /* unknown */"(sendself self-2/1492 html_of_Index_list/1445 b/1493)";
+               
               }}
           else
            {switch(txt[0])
              {case 0:
-               "(sendself self-2/1492 html_of_Raw/1423 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Raw/1423 b/1493 (field 0 txt/1494))";
                
               case 1:
-               "(sendself self-2/1492 html_of_Code/1424 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Code/1424 b/1493 (field 0 txt/1494))";
                
               case 2:
-               "(sendself self-2/1492 html_of_CodePre/1425 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_CodePre/1425 b/1493 (field 0 txt/1494))";
                
               case 3:
-               "(sendself self-2/1492 html_of_Verbatim/1426 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Verbatim/1426 b/1493 (field 0 txt/1494))";
                
               case 4:
-               "(sendself self-2/1492 html_of_Bold/1427 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Bold/1427 b/1493 (field 0 txt/1494))";
                
               case 5:
-               "(sendself self-2/1492 html_of_Italic/1428 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Italic/1428 b/1493 (field 0 txt/1494))";
                
               case 6:
-               "(sendself self-2/1492 html_of_Emphasize/1429 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Emphasize/1429 b/1493 (field 0 txt/1494))";
                
               case 7:
-               "(sendself self-2/1492 html_of_Center/1430 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Center/1430 b/1493 (field 0 txt/1494))";
                
               case 8:
-               "(sendself self-2/1492 html_of_Left/1431 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Left/1431 b/1493 (field 0 txt/1494))";
                
               case 9:
-               "(sendself self-2/1492 html_of_Right/1432 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Right/1432 b/1493 (field 0 txt/1494))";
                
               case 10:
-               "(sendself self-2/1492 html_of_List/1433 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_List/1433 b/1493 (field 0 txt/1494))";
                
               case 11:
-               "(sendself self-2/1492 html_of_Enum/1434 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Enum/1434 b/1493 (field 0 txt/1494))";
                
               case 12:
-               "(sendself self-2/1492 html_of_Block/1436 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Block/1436 b/1493 (field 0 txt/1494))";
                
               case 13:
-               "(sendself self-2/1492 html_of_Title/1437 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494) (field 2 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Title/1437 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494) (field 2 txt/1494))";
                
               case 14:
-               "(sendself self-2/1492 html_of_Latex/1438 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Latex/1438 b/1493 (field 0 txt/1494))";
                
               case 15:
-               "(sendself self-2/1492 html_of_Link/1439 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Link/1439 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
                
               case 16:
-               "(sendself self-2/1492 html_of_Ref/1440 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494) (field 2 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Ref/1440 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494) (field 2 txt/1494))";
                
               case 17:
-               "(sendself self-2/1492 html_of_Superscript/1441 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Superscript/1441 b/1493 (field 0 txt/1494))";
                
               case 18:
-               "(sendself self-2/1492 html_of_Subscript/1442 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Subscript/1442 b/1493 (field 0 txt/1494))";
                
               case 19:
-               "(sendself self-2/1492 html_of_Module_list/1444 b/1493 (field 0 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Module_list/1444 b/1493 (field 0 txt/1494))";
                
               case 20:
-               "(sendself self-2/1492 html_of_custom_text/1421 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_custom_text/1421 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
                
               case 21:
-               "(sendself self-2/1492 html_of_Target/1422 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
+               /* unknown */"(sendself self-2/1492 html_of_Target/1422 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
                
               }}
           },
@@ -980,16 +984,19 @@ var
           },
         html_of_Raw,
         function(self$neg2,b,s)
-         {"(sendself self-2/1535 escape/1415 s/1537)";return bs(b,0);},
+         {/* unknown */"(sendself self-2/1535 escape/1415 s/1537)";
+          return bs(b,0);
+          },
         html_of_Code,
         function(self$neg2,b,s)
          {if(colorize_code[1])
-           {"(sendself self-2/1539 html_of_code/1542 b/1540 [0: 0a] s/1541)";}
+           {/* unknown */"(sendself self-2/1539 html_of_code/1542 b/1540 [0: 0a] s/1541)";
+            }
           else
            {bs(b,'<code class="');
             bs(b,Odoc_ocamlhtml["code_class"]);
             bs(b,'">');
-            "(sendself self-2/1539 escape/1415 s/1541)";
+            /* unknown */"(sendself self-2/1539 escape/1415 s/1541)";
             bs(b,0);
             return bs(b,"</code>");
             }
@@ -1050,7 +1057,7 @@ var
           return function(b,s)
            {if(colorize_code[1])
              {bs(b,'<pre class="codepre">');
-              "(sendself self-2/1544 html_of_code/1542 b/1554 0a\n  (apply remove_useless_newlines/1545 s/1555))";
+              /* unknown */"(sendself self-2/1544 html_of_code/1542 b/1554 0a\n  (apply remove_useless_newlines/1545 s/1555))";
               
               return bs(b,"</pre>");
               }
@@ -1058,7 +1065,7 @@ var
              {bs(b,'<pre class="codepre"><code class="');
               bs(b,Odoc_ocamlhtml["code_class"]);
               bs(b,'">');
-              "(sendself self-2/1544 escape/1415\n  (apply remove_useless_newlines/1545 s/1555))";
+              /* unknown */"(sendself self-2/1544 escape/1415\n  (apply remove_useless_newlines/1545 s/1555))";
               bs(b,0);
               return bs(b,"</code></pre>");
               }
@@ -1067,49 +1074,49 @@ var
         html_of_Verbatim,
         function(self$neg2,b,s)
          {bs(b,'<pre class="verbatim">');
-          "(sendself self-2/1557 escape/1415 s/1559)";
+          /* unknown */"(sendself self-2/1557 escape/1415 s/1559)";
           bs(b,0);
           return bs(b,"</pre>");
           },
         html_of_Bold,
         function(self$neg2,b,t)
          {bs(b,"<b>");
-          "(sendself self-2/1561 html_of_text/1419 b/1562 t/1563)";
+          /* unknown */"(sendself self-2/1561 html_of_text/1419 b/1562 t/1563)";
           
           return bs(b,"</b>");
           },
         html_of_Italic,
         function(self$neg2,b,t)
          {bs(b,"<i>");
-          "(sendself self-2/1565 html_of_text/1419 b/1566 t/1567)";
+          /* unknown */"(sendself self-2/1565 html_of_text/1419 b/1566 t/1567)";
           
           return bs(b,"</i>");
           },
         html_of_Emphasize,
         function(self$neg2,b,t)
          {bs(b,"<em>");
-          "(sendself self-2/1569 html_of_text/1419 b/1570 t/1571)";
+          /* unknown */"(sendself self-2/1569 html_of_text/1419 b/1570 t/1571)";
           
           return bs(b,"</em>");
           },
         html_of_Center,
         function(self$neg2,b,t)
          {bs(b,"<center>");
-          "(sendself self-2/1573 html_of_text/1419 b/1574 t/1575)";
+          /* unknown */"(sendself self-2/1573 html_of_text/1419 b/1574 t/1575)";
           
           return bs(b,"</center>");
           },
         html_of_Left,
         function(self$neg2,b,t)
          {bs(b,"<div align=left>");
-          "(sendself self-2/1577 html_of_text/1419 b/1578 t/1579)";
+          /* unknown */"(sendself self-2/1577 html_of_text/1419 b/1578 t/1579)";
           
           return bs(b,"</div>");
           },
         html_of_Right,
         function(self$neg2,b,t)
          {bs(b,"<div align=right>");
-          "(sendself self-2/1581 html_of_text/1419 b/1582 t/1583)";
+          /* unknown */"(sendself self-2/1581 html_of_text/1419 b/1582 t/1583)";
           
           return bs(b,"</div>");
           },
@@ -1119,7 +1126,7 @@ var
           List["iter"]
            (function(t)
              {bs(b,"<li>");
-              "(sendself self-2/1585 html_of_text/1419 b/1586 t/1588)";
+              /* unknown */"(sendself self-2/1585 html_of_text/1419 b/1586 t/1588)";
               
               return bs(b,"</li>\n");
               },
@@ -1132,7 +1139,7 @@ var
           List["iter"]
            (function(t)
              {bs(b,"<li>");
-              "(sendself self-2/1590 html_of_text/1419 b/1591 t/1593)";
+              /* unknown */"(sendself self-2/1590 html_of_text/1419 b/1591 t/1593)";
               
               return bs(b,"</li>\n");
               },
@@ -1144,13 +1151,13 @@ var
         html_of_Block,
         function(self$neg2,b,t)
          {bs(b,"<blockquote>\n");
-          "(sendself self-2/1598 html_of_text/1419 b/1599 t/1600)";
+          /* unknown */"(sendself self-2/1598 html_of_text/1419 b/1599 t/1600)";
           
           return bs(b,"</blockquote>\n");
           },
         html_of_Title,
         function(self$neg2,b,n,label_opt,t)
-         {"(sendself self-2/1602 create_title_label/1418\n  (makeblock 0 n/1604 label_opt/1605 t/1606))";
+         {/* unknown */"(sendself self-2/1602 create_title_label/1418\n  (makeblock 0 n/1604 label_opt/1605 t/1606))";
           
           if(n>6)
            {var
@@ -1202,7 +1209,7 @@ var
             match[1],
             Naming[35](label1));
           bs(b,">");
-          "(sendself self-2/1602 html_of_text/1419 b/1603 t/1606)";
+          /* unknown */"(sendself self-2/1602 html_of_text/1419 b/1603 t/1606)";
           
           bs(b,"</");
           bs(b,match[2]);
@@ -1215,7 +1222,7 @@ var
          {bs(b,'<a href="');
           bs(b,s);
           bs(b,'">');
-          "(sendself self-2/1615 html_of_text/1419 b/1616 t/1618)";
+          /* unknown */"(sendself self-2/1615 html_of_text/1419 b/1616 t/1618)";
           
           return bs(b,"</a>");
           },
@@ -1278,7 +1285,7 @@ var
              {var text$1=/* :: */[0,match[2],/* [] */0];}
             
             bs(b,Pervasives["^"]('<a href="',Pervasives["^"](match[1],'">')));
-            "(sendself self-2/1620 html_of_text/1419 b/1621 text/1634)";
+            /* unknown */"(sendself self-2/1620 html_of_text/1419 b/1621 text/1634)";
             
             return bs(b,"</a>");
             }
@@ -1288,20 +1295,20 @@ var
             else
              {var text$2=/* :: */[0,/* Code */[1,name],/* [] */0];}
             
-            "(sendself self-2/1620 html_of_text/1419 b/1621 text/1626)";
+            /* unknown */"(sendself self-2/1620 html_of_text/1419 b/1621 text/1626)";
             }
           },
         html_of_Superscript,
         function(self$neg2,b,t)
          {bs(b,'<sup class="superscript">');
-          "(sendself self-2/1637 html_of_text/1419 b/1638 t/1639)";
+          /* unknown */"(sendself self-2/1637 html_of_text/1419 b/1638 t/1639)";
           
           return bs(b,"</sup>");
           },
         html_of_Subscript,
         function(self$neg2,b,t)
          {bs(b,'<sub class="subscript">');
-          "(sendself self-2/1641 html_of_text/1419 b/1642 t/1643)";
+          /* unknown */"(sendself self-2/1641 html_of_text/1419 b/1642 t/1643)";
           
           return bs(b,"</sub>");
           },
@@ -1312,7 +1319,7 @@ var
            (function(name)
              {bs(b,'<tr><td class="module">');
               try
-               {"(sendself self-2/1645 list_modules/1462)";
+               {/* unknown */"(sendself self-2/1645 list_modules/1462)";
                 var
                  m=
                   List["find"]
@@ -1338,7 +1345,7 @@ var
                   match[1],
                   m[1]);
                 bs(b,"<td>");
-                "(sendself self-2/1645 html_of_info_first_sentence/1443 b/1646\n  (field 2 m/1649))";
+                /* unknown */"(sendself self-2/1645 html_of_info_first_sentence/1443 b/1646\n  (field 2 m/1649))";
                 }
               catch(exn)
                {if(exn=Not_found)
@@ -1394,35 +1401,35 @@ var
               '<ul class="indexlist">\n',
               /* End_of_format */0],
              '<ul class="indexlist">\n']);
-          "(sendself self-2/1653 list_types/1446)";
-          "(sendself self-2/1653 index_types/1447)";
+          /* unknown */"(sendself self-2/1653 list_types/1446)";
+          /* unknown */"(sendself self-2/1653 index_types/1447)";
           index_if_not_empty(0,0,Odoc_messages["index_of_types"]);
-          "(sendself self-2/1653 list_extensions/1448)";
-          "(sendself self-2/1653 index_extensions/1449)";
+          /* unknown */"(sendself self-2/1653 list_extensions/1448)";
+          /* unknown */"(sendself self-2/1653 index_extensions/1449)";
           index_if_not_empty(0,0,Odoc_messages["index_of_extensions"]);
-          "(sendself self-2/1653 list_exceptions/1450)";
-          "(sendself self-2/1653 index_exceptions/1451)";
+          /* unknown */"(sendself self-2/1653 list_exceptions/1450)";
+          /* unknown */"(sendself self-2/1653 index_exceptions/1451)";
           index_if_not_empty(0,0,Odoc_messages["index_of_exceptions"]);
-          "(sendself self-2/1653 list_values/1452)";
-          "(sendself self-2/1653 index_values/1453)";
+          /* unknown */"(sendself self-2/1653 list_values/1452)";
+          /* unknown */"(sendself self-2/1653 index_values/1453)";
           index_if_not_empty(0,0,Odoc_messages["index_of_values"]);
-          "(sendself self-2/1653 list_attributes/1454)";
-          "(sendself self-2/1653 index_attributes/1455)";
+          /* unknown */"(sendself self-2/1653 list_attributes/1454)";
+          /* unknown */"(sendself self-2/1653 index_attributes/1455)";
           index_if_not_empty(0,0,Odoc_messages["index_of_attributes"]);
-          "(sendself self-2/1653 list_methods/1456)";
-          "(sendself self-2/1653 index_methods/1457)";
+          /* unknown */"(sendself self-2/1653 list_methods/1456)";
+          /* unknown */"(sendself self-2/1653 index_methods/1457)";
           index_if_not_empty(0,0,Odoc_messages["index_of_methods"]);
-          "(sendself self-2/1653 list_classes/1458)";
-          "(sendself self-2/1653 index_classes/1459)";
+          /* unknown */"(sendself self-2/1653 list_classes/1458)";
+          /* unknown */"(sendself self-2/1653 index_classes/1459)";
           index_if_not_empty(0,0,Odoc_messages["index_of_classes"]);
-          "(sendself self-2/1653 list_class_types/1460)";
-          "(sendself self-2/1653 index_class_types/1461)";
+          /* unknown */"(sendself self-2/1653 list_class_types/1460)";
+          /* unknown */"(sendself self-2/1653 index_class_types/1461)";
           index_if_not_empty(0,0,Odoc_messages["index_of_class_types"]);
-          "(sendself self-2/1653 list_modules/1462)";
-          "(sendself self-2/1653 index_modules/1463)";
+          /* unknown */"(sendself self-2/1653 list_modules/1462)";
+          /* unknown */"(sendself self-2/1653 index_modules/1463)";
           index_if_not_empty(0,0,Odoc_messages["index_of_modules"]);
-          "(sendself self-2/1653 list_module_types/1464)";
-          "(sendself self-2/1653 index_module_types/1465)";
+          /* unknown */"(sendself self-2/1653 list_module_types/1464)";
+          /* unknown */"(sendself self-2/1653 index_module_types/1465)";
           index_if_not_empty(0,0,Odoc_messages["index_of_module_types"]);
           return bp
                   (b,
@@ -1491,7 +1498,7 @@ var
                  [/* String_literal */11,":</b> ",/* End_of_format */0]]],
                "<b>%s:</b> "],
               Odoc_messages["authors"]);
-            '(sendself self-3/1680 html_of_text/1667 b/1681\n  (makeblock 0 (makeblock 0 (apply (field 6 (global String!)) ", " l/1682))\n    0a))';
+            /* unknown */'(sendself self-3/1680 html_of_text/1667 b/1681\n  (makeblock 0 (makeblock 0 (apply (field 6 (global String!)) ", " l/1682))\n    0a))';
             
             return bs(b,"<br>\n");
             }
@@ -1511,7 +1518,7 @@ var
                  [/* String_literal */11,":</b> ",/* End_of_format */0]]],
                "<b>%s:</b> "],
               Odoc_messages["version"]);
-            "(sendself self-3/1684 html_of_text/1667 b/1685\n  (makeblock 0 (makeblock 0 (field 0 v_opt/1686)) 0a))";
+            /* unknown */"(sendself self-3/1684 html_of_text/1667 b/1685\n  (makeblock 0 (makeblock 0 (field 0 v_opt/1686)) 0a))";
             
             return bs(b,"<br>\n");
             }
@@ -1531,7 +1538,7 @@ var
                  [/* String_literal */11,"</b> ",/* End_of_format */0]]],
                "<b>%s</b> "],
               Odoc_messages["since"]);
-            "(sendself self-3/1689 html_of_text/1667 b/1690\n  (makeblock 0 (makeblock 0 (field 0 s_opt/1691)) 0a))";
+            /* unknown */"(sendself self-3/1689 html_of_text/1667 b/1690\n  (makeblock 0 (makeblock 0 (field 0 s_opt/1691)) 0a))";
             
             return bs(b,"<br>\n");
             }
@@ -1553,10 +1560,10 @@ var
                    [/* Char_literal */12,32,/* End_of_format */0]]],
                  "<b>%s "],
                 Odoc_messages["before"]);
-              "(sendself self-3/1694 html_of_text/1667 b/1695\n  (makeblock 0 (makeblock 0 (field 0 param/3245)) 0a))";
+              /* unknown */"(sendself self-3/1694 html_of_text/1667 b/1695\n  (makeblock 0 (makeblock 0 (field 0 param/3245)) 0a))";
               
               bs(b," </b> ");
-              "(sendself self-3/1694 html_of_text/1667 b/1695 (field 1 param/3245))";
+              /* unknown */"(sendself self-3/1694 html_of_text/1667 b/1695 (field 1 param/3245))";
               
               return bs(b,"<br>\n");
               };
@@ -1589,7 +1596,7 @@ var
                        [/* String_literal */11,"</code> ",/* End_of_format */0]]],
                      "<li><code>%s</code> "],
                     param[1]);
-                  "(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 param/3241))";
+                  /* unknown */"(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 param/3241))";
                   
                   return bs(b,"</li>\n");
                   },
@@ -1614,7 +1621,7 @@ var
                  "<b>%s</b> <code>%s</code> "],
                 Odoc_messages["raises"],
                 match[1]);
-              "(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 match/3242))";
+              /* unknown */"(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 match/3242))";
               
               return bs(b,"<br>\n");
               }
@@ -1647,7 +1654,7 @@ var
              
             }
           
-          "(sendself self-3/1709 html_of_text/1667 b/1710 t_ref/1713)";
+          /* unknown */"(sendself self-3/1709 html_of_text/1667 b/1710 t_ref/1713)";
           },
         html_of_sees,
         function(self$neg3,b,l)
@@ -1666,7 +1673,7 @@ var
               List["iter"]
                (function(see)
                  {bs(b,"<li>");
-                  "(sendself self-3/1718 html_of_see/1673 b/1719 see/1722)";
+                  /* unknown */"(sendself self-3/1718 html_of_see/1673 b/1719 see/1722)";
                   
                   return bs(b,"</li>\n");
                   },
@@ -1684,7 +1691,7 @@ var
                    [/* String_literal */11,"</b> ",/* End_of_format */0]]],
                  "<b>%s</b> "],
                 Odoc_messages["see_also"]);
-              "(sendself self-3/1718 html_of_see/1673 b/1719 (field 0 l/1720))";
+              /* unknown */"(sendself self-3/1718 html_of_see/1673 b/1719 (field 0 l/1720))";
               
               return bs(b,"<br>\n");
               }
@@ -1705,7 +1712,7 @@ var
                  [/* String_literal */11,"</b> ",/* End_of_format */0]]],
                "<b>%s</b> "],
               Odoc_messages["returns"]);
-            "(sendself self-3/1724 html_of_text/1667 b/1725 (field 0 return_opt/1726))";
+            /* unknown */"(sendself self-3/1724 html_of_text/1667 b/1725 (field 0 return_opt/1726))";
             
             return bs(b,"<br>\n");
             }
@@ -1762,7 +1769,7 @@ var
              {bs(b,'<span class="warning">');
               bs(b,Odoc_messages["deprecated"]);
               bs(b,"</span>");
-              "(sendself self-3/1736 html_of_text/1667 b/1743 (field 0 match/3225))";
+              /* unknown */"(sendself self-3/1736 html_of_text/1667 b/1743 (field 0 match/3225))";
               
               bs(b,"<br>\n")}
             else
@@ -1778,28 +1785,28 @@ var
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
-               {"(sendself self-3/1736 html_of_text/1667 b/1743 d/1748)";
+               {/* unknown */"(sendself self-3/1736 html_of_text/1667 b/1743 d/1748)";
                 
                 bs(b,"<br>\n")}
               }
             else
              {}
             
-            "(sendself self-3/1736 html_of_author_list/1668 b/1743 (field 1 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_author_list/1668 b/1743 (field 1 info/1745))";
             
-            "(sendself self-3/1736 html_of_version_opt/1669 b/1743 (field 2 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_version_opt/1669 b/1743 (field 2 info/1745))";
             
-            "(sendself self-3/1736 html_of_before/1671 b/1743 (field 5 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_before/1671 b/1743 (field 5 info/1745))";
             
-            "(sendself self-3/1736 html_of_since_opt/1670 b/1743 (field 4 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_since_opt/1670 b/1743 (field 4 info/1745))";
             
-            "(sendself self-3/1736 html_of_raised_exceptions/1672 b/1743\n  (field 8 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_raised_exceptions/1672 b/1743\n  (field 8 info/1745))";
             
-            "(sendself self-3/1736 html_of_return_opt/1675 b/1743 (field 9 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_return_opt/1675 b/1743 (field 9 info/1745))";
             
-            "(sendself self-3/1736 html_of_sees/1674 b/1743 (field 3 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_sees/1674 b/1743 (field 3 info/1745))";
             
-            "(sendself self-3/1736 html_of_custom/1676 b/1743 (field 10 info/1745))";
+            /* unknown */"(sendself self-3/1736 html_of_custom/1676 b/1743 (field 10 info/1745))";
             
             if(indent){return bs(b,"</div>\n");}else{return 0;}
             }
@@ -1828,7 +1835,7 @@ var
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
-               {"(sendself self-3/1751 html_of_text/1667 b/1752\n  (apply (field 30 (global Odoc_info!))\n    (apply (field 28 (global Odoc_info!)) d/1757)))";
+               {/* unknown */"(sendself self-3/1751 html_of_text/1667 b/1752\n  (apply (field 30 (global Odoc_info!))\n    (apply (field 28 (global Odoc_info!)) d/1757)))";
                 
                 bs(b,"\n")}
               }
@@ -2170,7 +2177,7 @@ var
          },
        index,
        function(self$neg4)
-        {"(sendself self-4/1944 index_prefix/1832)";
+        {/* unknown */"(sendself self-4/1944 index_prefix/1832)";
          
          return Printf["sprintf"]
                  ([/* Format */0,
@@ -2348,17 +2355,18 @@ var
         {var match=Odoc_info["Global"][6][1];
          
          if(match)
-          {"(sendself self-4/1994 escape/1996 (field 0 match/3159))";}
+          {/* unknown */"(sendself self-4/1994 escape/1996 (field 0 match/3159))";
+           }
          else
           {return "";}
          },
        inner_title,
        function(self$neg4,s)
-        {"(sendself self-4/1998 title/1873)";
+        {/* unknown */"(sendself self-4/1998 title/1873)";
          
          switch(t)
           {case "":var $js="";default:var $js=Pervasives["^"](t," : ");}
-         "(sendself self-4/1998 escape/1996 s/1999)";
+         /* unknown */"(sendself self-4/1998 escape/1996 s/1999)";
          return Pervasives["^"]($js,0);
          },
        print_header,
@@ -2405,10 +2413,10 @@ var
              
              bs(b,"<head>\n");
              bs(b,self$neg4[style]);
-             "(sendself self-4/2008 character_encoding/1825 0a)";
+             /* unknown */"(sendself self-4/2008 character_encoding/1825 0a)";
              bs(b,0);
              bs(b,'<link rel="Start" href="');
-             "(sendself self-4/2008 index/1833)";
+             /* unknown */"(sendself self-4/2008 index/1833)";
              bs(b,0);
              bs(b,'">\n');
              if(nav)
@@ -2449,7 +2457,7 @@ var
                var father=Odoc_info["Name"][5](match[3]);
                
                if(CamlPrimtivie["caml_string_equal"](father,""))
-                {"(sendself self-4/2008 index/1833)";}
+                {/* unknown */"(sendself self-4/2008 index/1833)";}
                else
                 {var href=Naming[11](father)[1];}
                
@@ -2466,35 +2474,35 @@ var
              else
               {}
              
-             "(sendself self-4/2008 list_types/1855)";
-             "(sendself self-4/2008 index_types/1835)";
+             /* unknown */"(sendself self-4/2008 list_types/1855)";
+             /* unknown */"(sendself self-4/2008 index_types/1835)";
              link_if_not_empty(0,Odoc_messages["index_of_types"],0);
-             "(sendself self-4/2008 list_extensions/1851)";
-             "(sendself self-4/2008 index_extensions/1836)";
+             /* unknown */"(sendself self-4/2008 list_extensions/1851)";
+             /* unknown */"(sendself self-4/2008 index_extensions/1836)";
              link_if_not_empty(0,Odoc_messages["index_of_extensions"],0);
-             "(sendself self-4/2008 list_exceptions/1853)";
-             "(sendself self-4/2008 index_exceptions/1837)";
+             /* unknown */"(sendself self-4/2008 list_exceptions/1853)";
+             /* unknown */"(sendself self-4/2008 index_exceptions/1837)";
              link_if_not_empty(0,Odoc_messages["index_of_exceptions"],0);
-             "(sendself self-4/2008 list_values/1849)";
-             "(sendself self-4/2008 index_values/1834)";
+             /* unknown */"(sendself self-4/2008 list_values/1849)";
+             /* unknown */"(sendself self-4/2008 index_values/1834)";
              link_if_not_empty(0,Odoc_messages["index_of_values"],0);
-             "(sendself self-4/2008 list_attributes/1845)";
-             "(sendself self-4/2008 index_attributes/1838)";
+             /* unknown */"(sendself self-4/2008 list_attributes/1845)";
+             /* unknown */"(sendself self-4/2008 index_attributes/1838)";
              link_if_not_empty(0,Odoc_messages["index_of_attributes"],0);
-             "(sendself self-4/2008 list_methods/1847)";
-             "(sendself self-4/2008 index_methods/1839)";
+             /* unknown */"(sendself self-4/2008 list_methods/1847)";
+             /* unknown */"(sendself self-4/2008 index_methods/1839)";
              link_if_not_empty(0,Odoc_messages["index_of_methods"],0);
-             "(sendself self-4/2008 list_classes/1861)";
-             "(sendself self-4/2008 index_classes/1840)";
+             /* unknown */"(sendself self-4/2008 list_classes/1861)";
+             /* unknown */"(sendself self-4/2008 index_classes/1840)";
              link_if_not_empty(0,Odoc_messages["index_of_classes"],0);
-             "(sendself self-4/2008 list_class_types/1863)";
-             "(sendself self-4/2008 index_class_types/1841)";
+             /* unknown */"(sendself self-4/2008 list_class_types/1863)";
+             /* unknown */"(sendself self-4/2008 index_class_types/1841)";
              link_if_not_empty(0,Odoc_messages["index_of_class_types"],0);
-             "(sendself self-4/2008 list_modules/1857)";
-             "(sendself self-4/2008 index_modules/1842)";
+             /* unknown */"(sendself self-4/2008 list_modules/1857)";
+             /* unknown */"(sendself self-4/2008 index_modules/1842)";
              link_if_not_empty(0,Odoc_messages["index_of_modules"],0);
-             "(sendself self-4/2008 list_module_types/1859)";
-             "(sendself self-4/2008 index_module_types/1843)";
+             /* unknown */"(sendself self-4/2008 list_module_types/1859)";
+             /* unknown */"(sendself self-4/2008 index_module_types/1843)";
              link_if_not_empty(0,Odoc_messages["index_of_module_types"],0);
              var
               print_one=
@@ -2519,7 +2527,7 @@ var
                  };
              
              print_concat(b,"\n",print_one,module_list);
-             "(sendself self-4/2008 html_sections_links/1877 b/2011 comments/2016)";
+             /* unknown */"(sendself self-4/2008 html_sections_links/1877 b/2011 comments/2016)";
              
              bs(b,"<title>");
              bs(b,t);
@@ -2603,7 +2611,7 @@ var
                         
                         var s=Odoc_info["string_of_text"](t);
                         
-                        "(sendself self-4/2034 create_title_label/2064\n  (makeblock 0 (field 0 param/3131) (field 1 param/3131) t/2061))";
+                        /* unknown */"(sendself self-4/2034 create_title_label/2064\n  (makeblock 0 (field 0 param/3131) (field 1 param/3131) t/2061))";
                         
                         return bp
                                 (b,
@@ -2665,7 +2673,7 @@ var
          var father=Odoc_info["Name"][5](name);
          
          if(CamlPrimtivie["caml_string_equal"](father,""))
-          {"(sendself self-4/2066 index/1833)";}
+          {/* unknown */"(sendself self-4/2066 index/1833)";}
          else
           {var href=Naming[11](father)[1];}
          
@@ -2741,10 +2749,10 @@ var
            var b=new_buf(/* () */0);
            
            bs(b,"<html>");
-           "(sendself self-4/2083 print_header/1875 b/2088 0a 0a\n  (sendself self-4/2083 inner_title/1874 in_title/2084))";
+           /* unknown */"(sendself self-4/2083 print_header/1875 b/2088 0a 0a\n  (sendself self-4/2083 inner_title/1874 in_title/2084))";
            
            bs(b,"<body>\n");
-           "(sendself self-4/2083 html_of_code/2089 b/2088 0a code/2086)";
+           /* unknown */"(sendself self-4/2083 html_of_code/2089 b/2088 0a code/2086)";
            
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
@@ -2844,7 +2852,7 @@ var
          var s2=newline_to_indented_br(s);
          
          bs(b,'<code class="type">');
-         "(sendself self-4/2114 create_fully_qualified_idents_links/1882 m_name/2116\n  s2/2119)";
+         /* unknown */"(sendself self-4/2114 create_fully_qualified_idents_links/1882 m_name/2116\n  s2/2119)";
          bs(b,0);
          return bs(b,"</code>");
          },
@@ -2855,7 +2863,7 @@ var
          var s2=newline_to_indented_br(s);
          
          bs(b,'<code class="type">');
-         "(sendself self-4/2121 create_fully_qualified_idents_links/1882 m_name/2124\n  s2/2128)";
+         /* unknown */"(sendself self-4/2121 create_fully_qualified_idents_links/1882 m_name/2124\n  s2/2128)";
          bs(b,0);
          return bs(b,"</code>");
          },
@@ -2866,7 +2874,7 @@ var
          var s2=newline_to_indented_br(s);
          
          bs(b,'<code class="type">[');
-         "(sendself self-4/2130 create_fully_qualified_idents_links/1882 m_name/2132\n  s2/2135)";
+         /* unknown */"(sendself self-4/2130 create_fully_qualified_idents_links/1882 m_name/2132\n  s2/2135)";
          bs(b,0);
          return bs(b,"]</code>");
          },
@@ -2879,7 +2887,7 @@ var
          var s2=newline_to_indented_br(s$1);
          
          bs(b,'<code class="type">');
-         "(sendself self-4/2137 create_fully_qualified_idents_links/1882 father/2139\n  s2/2143)";
+         /* unknown */"(sendself self-4/2137 create_fully_qualified_idents_links/1882 father/2139\n  s2/2143)";
          bs(b,0);
          return bs(b,"</code>");
          },
@@ -2890,7 +2898,7 @@ var
          var s2=newline_to_indented_br(s);
          
          bs(b,'<code class="type">');
-         "(sendself self-4/2145 create_fully_qualified_idents_links/1882 m_name/2147\n  s2/2150)";
+         /* unknown */"(sendself self-4/2145 create_fully_qualified_idents_links/1882 m_name/2147\n  s2/2150)";
          bs(b,0);
          return bs(b,"</code>");
          },
@@ -2902,7 +2910,7 @@ var
             (Odoc_info["string_of_module_type"](code,/* None */0,t));
          
          bs(b,'<code class="type">');
-         "(sendself self-4/2152 create_fully_qualified_module_idents_links/1883\n  m_name/2155 s/2157)";
+         /* unknown */"(sendself self-4/2152 create_fully_qualified_module_idents_links/1883\n  m_name/2155 s/2157)";
          bs(b,0);
          return bs(b,"</code>");
          },
@@ -2910,7 +2918,7 @@ var
        function(self$neg4,b,father,modu,kind)
         {switch(kind[0])
           {case 0:
-            '(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "sig"] 0a])';
+            /* unknown */'(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "sig"] 0a])';
             
             if(modu)
              {var match=Naming[11](modu[1][1]);
@@ -2927,15 +2935,15 @@ var
                 match[1])}
             else
              {bs(b,'<div class="sig_block">');
-              "(sendself self-4/2159 html_of_module_element/1892 b/2160 father/2161)";
+              /* unknown */"(sendself self-4/2159 html_of_module_element/1892 b/2160 father/2161)";
               List["iter"](0,kind[1]);
               bs(b,"</div>")}
             
-            '(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "end"] 0a])';
+            /* unknown */'(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "end"] 0a])';
             
            case 1:
             bs(b,'<code class="type">');
-            "(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 0 (field 0 kind/2163)))";
+            /* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 0 (field 0 kind/2163)))";
             bs(b,0);
             return bs(b,"</code>");
             
@@ -2947,38 +2955,38 @@ var
             else
              {bs(b,'<div class="sig_block">')}
             
-            "(sendself self-4/2159 html_of_module_parameter/1891 b/2160 father/2161\n  (field 0 kind/2163))";
+            /* unknown */"(sendself self-4/2159 html_of_module_parameter/1891 b/2160 father/2161\n  (field 0 kind/2163))";
             
             switch(k[0])
              {case 2:default:if(html_short_functors[1]){bs(b,": ")}else{}}
             
-            "(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  k/2167)";
+            /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  k/2167)";
             
             if(!html_short_functors[1]){return bs(b,"</div>");}else{return 0;}
             
            case 3:
-            "(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 0a\n  (field 0 kind/2163))";
+            /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 0a\n  (field 0 kind/2163))";
             
-            '(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "("] 0a])';
+            /* unknown */'(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "("] 0a])';
             
-            "(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 0a\n  (field 1 kind/2163))";
+            /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 0a\n  (field 1 kind/2163))";
             
-            '(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: ")"] 0a])';
+            /* unknown */'(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: ")"] 0a])';
             
            case 4:
-            "(sendself self-4/2159 html_of_module_type_kind/1893 b/2160 father/2161\n  modu/2162 0a (field 0 kind/2163))";
+            /* unknown */"(sendself self-4/2159 html_of_module_type_kind/1893 b/2160 father/2161\n  modu/2162 0a (field 0 kind/2163))";
             
             bs(b,'<code class="type"> ');
-            "(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 1 kind/2163))";
+            /* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 1 kind/2163))";
             bs(b,0);
             return bs(b,"</code>");
             
            case 5:
-            "(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  (field 0 kind/2163))";
+            /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  (field 0 kind/2163))";
             
            case 6:
             bs(b,'<code class="type">module type of ');
-            "(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 0 kind/2163))";
+            /* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 0 kind/2163))";
             bs(b,0);
             return bs(b,"</code>");
             
@@ -2991,7 +2999,7 @@ var
             if(match$1)
              {var match$2=Naming[11](match$1[1][1]);
               
-              "(sendself self-4/2159 escape/1996 code/2175)";
+              /* unknown */"(sendself self-4/2159 escape/1996 code/2175)";
               bp
                (b,
                 [/* Format */0,
@@ -3008,7 +3016,7 @@ var
                 match$2[1],
                 0)}
             else
-             {"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (sendself self-4/2159 escape/1996 code/2175))";
+             {/* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (sendself self-4/2159 escape/1996 code/2175))";
               bs(b,0)}
             
             return bs(b,"</code>");
@@ -3022,44 +3030,44 @@ var
          else
           {var match=[/* tuple */0,"functor ","-> "];}
          
-         '(sendself self-4/2183 html_of_text/2177 b/2184\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) (field 0 match/3097) "("))\n    (makeblock 0 (makeblock 1 (field 0 p/2186)) [0: [1: " : "] 0a])))';
+         /* unknown */'(sendself self-4/2183 html_of_text/2177 b/2184\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) (field 0 match/3097) "("))\n    (makeblock 0 (makeblock 1 (field 0 p/2186)) [0: [1: " : "] 0a])))';
          
-         "(sendself self-4/2183 html_of_module_type_kind/1893 b/2184 father/2185 0a 0a\n  (field 3 p/2186))";
+         /* unknown */"(sendself self-4/2183 html_of_module_type_kind/1893 b/2184 father/2185 0a 0a\n  (field 3 p/2186))";
          
-         '(sendself self-4/2183 html_of_text/2177 b/2184\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) ") " (field 1 match/3097)))\n    0a))';
+         /* unknown */'(sendself self-4/2183 html_of_text/2177 b/2184\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) ") " (field 1 match/3097)))\n    0a))';
          },
        html_of_module_element,
        function(self$neg4,b,m_name,ele)
         {switch(ele[0])
           {case 0:
-            "(sendself self-4/2190 html_of_module/1907 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_module/1907 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
             
            case 1:
-            "(sendself self-4/2190 html_of_modtype/1908 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_modtype/1908 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
             
            case 2:
-            "(sendself self-4/2190 html_of_included_module/1909 b/2191 (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_included_module/1909 b/2191 (field 0 ele/2193))";
             
            case 3:
-            "(sendself self-4/2190 html_of_class/1913 b/2191 [0: 0a] 0a\n  (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_class/1913 b/2191 [0: 0a] 0a\n  (field 0 ele/2193))";
             
            case 4:
-            "(sendself self-4/2190 html_of_class_type/1914 b/2191 [0: 0a] 0a\n  (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_class_type/1914 b/2191 [0: 0a] 0a\n  (field 0 ele/2193))";
             
            case 5:
-            "(sendself self-4/2190 html_of_value/1897 b/2191 (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_value/1897 b/2191 (field 0 ele/2193))";
             
            case 6:
-            "(sendself self-4/2190 html_of_type_extension/1898 b/2191 m_name/2192\n  (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_type_extension/1898 b/2191 m_name/2192\n  (field 0 ele/2193))";
             
            case 7:
-            "(sendself self-4/2190 html_of_exception/1899 b/2191 (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_exception/1899 b/2191 (field 0 ele/2193))";
             
            case 8:
-            "(sendself self-4/2190 html_of_type/1900 b/2191 (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_type/1900 b/2191 (field 0 ele/2193))";
             
            case 9:
-            "(sendself self-4/2190 html_of_module_comment/1916 b/2191 (field 0 ele/2193))";
+            /* unknown */"(sendself self-4/2190 html_of_module_comment/1916 b/2191 (field 0 ele/2193))";
             
            }
          },
@@ -3067,7 +3075,7 @@ var
        function(self$neg4,b,father,modu,mt,kind)
         {switch(kind[0])
           {case 0:
-            '(sendself self-4/2205 html_of_text/2177 b/2206 [0: [1: "sig"] 0a])';
+            /* unknown */'(sendself self-4/2205 html_of_text/2177 b/2206 [0: [1: "sig"] 0a])';
             
             if(mt)
              {var match=Naming[11](mt[1][1]);
@@ -3098,35 +3106,35 @@ var
                   match$1[1])}
               else
                {bs(b,'<div class="sig_block">');
-                "(sendself self-4/2205 html_of_module_element/1892 b/2206 father/2207)";
+                /* unknown */"(sendself self-4/2205 html_of_module_element/1892 b/2206 father/2207)";
                 List["iter"](0,kind[1]);
                 bs(b,"</div>")}
               }
             
-            '(sendself self-4/2205 html_of_text/2177 b/2206 [0: [1: "end"] 0a])';
+            /* unknown */'(sendself self-4/2205 html_of_text/2177 b/2206 [0: [1: "end"] 0a])';
             
            case 1:
-            "(sendself self-4/2205 html_of_module_parameter/1891 b/2206 father/2207\n  (field 0 kind/2210))";
+            /* unknown */"(sendself self-4/2205 html_of_module_parameter/1891 b/2206 father/2207\n  (field 0 kind/2210))";
             
-            "(sendself self-4/2205 html_of_module_type_kind/1893 b/2206 father/2207\n  modu/2208 mt/2209 (field 1 kind/2210))";
+            /* unknown */"(sendself self-4/2205 html_of_module_type_kind/1893 b/2206 father/2207\n  modu/2208 mt/2209 (field 1 kind/2210))";
             
            case 2:
             bs(b,'<code class="type">');
-            "(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 0 (field 0 kind/2210)))";
+            /* unknown */"(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 0 (field 0 kind/2210)))";
             bs(b,0);
             return bs(b,"</code>");
             
            case 3:
-            "(sendself self-4/2205 html_of_module_type_kind/1893 b/2206 father/2207\n  modu/2208 mt/2209 (field 0 kind/2210))";
+            /* unknown */"(sendself self-4/2205 html_of_module_type_kind/1893 b/2206 father/2207\n  modu/2208 mt/2209 (field 0 kind/2210))";
             
             bs(b,'<code class="type"> ');
-            "(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 1 kind/2210))";
+            /* unknown */"(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 1 kind/2210))";
             bs(b,0);
             return bs(b,"</code>");
             
            case 4:
             bs(b,'<code class="type">module type of ');
-            "(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 0 kind/2210))";
+            /* unknown */"(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 0 kind/2210))";
             bs(b,0);
             return bs(b,"</code>");
             
@@ -3137,7 +3145,7 @@ var
         {var match=p[2];
          
          if(match)
-          {"(sendself self-4/2223 html_of_module_type/1889 b/2224\n  (makeblock 0 (field 2 p/2226)) m_name/2225 (field 0 match/3085))";
+          {/* unknown */"(sendself self-4/2223 html_of_module_type/1889 b/2224\n  (makeblock 0 (field 2 p/2226)) m_name/2225 (field 0 match/3085))";
            }
          else
           {return bs(b,"<code>()</code>");}
@@ -3150,7 +3158,7 @@ var
             (Odoc_info["string_of_module_type"]
               (/* None */0,[/* Some */0,/* true */1],mtyp));
          
-         "(sendself self-4/2229 output_code/1881 in_title/2230 file/2231 s/2233)";
+         /* unknown */"(sendself self-4/2229 output_code/1881 in_title/2230 file/2231 s/2233)";
          },
        output_class_type,
        function(self$neg4,in_title,file,ctyp)
@@ -3159,7 +3167,7 @@ var
            Odoc_info["remove_ending_newline"]
             (Odoc_info["string_of_class_type"]([/* Some */0,/* true */1],ctyp));
          
-         "(sendself self-4/2235 output_code/1881 in_title/2236 file/2237 s/2239)";
+         /* unknown */"(sendself self-4/2235 output_code/1881 in_title/2236 file/2237 s/2239)";
          },
        html_of_value,
        function(self$neg4,b,v)
@@ -3175,7 +3183,7 @@ var
               [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[25](v));
-         '(sendself self-4/2241 keyword/1879 "val")';
+         /* unknown */'(sendself self-4/2241 keyword/1879 "val")';
          bs(b,0);
          bs(b," ");
          var match=v[6];
@@ -3183,9 +3191,9 @@ var
          if(match)
           {var file=Naming[28](v);
            
-           "(sendself self-4/2241 output_code/1881 (field 0 v/2243)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) file/2245)\n  (field 0 match/3080))";
+           /* unknown */"(sendself self-4/2241 output_code/1881 (field 0 v/2243)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) file/2245)\n  (field 0 match/3080))";
            
-           "(sendself self-4/2241 escape/1996\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/2243)))";
+           /* unknown */"(sendself self-4/2241 escape/1996\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/2243)))";
            bp
             (b,
              [/* Format */0,
@@ -3202,42 +3210,42 @@ var
              file,
              0)}
          else
-          {"(sendself self-4/2241 escape/1996\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/2243)))";
+          {/* unknown */"(sendself self-4/2241 escape/1996\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/2243)))";
            bs(b,0)}
          
          bs(b,"</span>");
          bs(b," : ");
-         "(sendself self-4/2241 html_of_type_expr/1884 b/2242\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/2243))\n  (field 2 v/2243))";
+         /* unknown */"(sendself self-4/2241 html_of_type_expr/1884 b/2242\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/2243))\n  (field 2 v/2243))";
          
          bs(b,"</pre>");
-         "(sendself self-4/2241 html_of_info/2246 0a 0a b/2242 (field 1 v/2243))";
+         /* unknown */"(sendself self-4/2241 html_of_info/2246 0a 0a b/2242 (field 1 v/2243))";
          
          if(with_parameter_list[1])
-          {"(sendself self-4/2241 html_of_parameter_list/1904 b/2242\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/2243))\n  (field 4 v/2243))";
+          {/* unknown */"(sendself self-4/2241 html_of_parameter_list/1904 b/2242\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/2243))\n  (field 4 v/2243))";
            }
          else
-          {"(sendself self-4/2241 html_of_described_parameter_list/1905 b/2242\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/2243))\n  (field 4 v/2243))";
+          {/* unknown */"(sendself self-4/2241 html_of_described_parameter_list/1905 b/2242\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/2243))\n  (field 4 v/2243))";
            }
          },
        html_of_type_extension,
        function(self$neg4,b,m_name,te)
         {Odoc_info["reset_type_names"](/* () */0);
          bs(b,"<pre><code>");
-         '(sendself self-4/2248 keyword/1879 "type")';
+         /* unknown */'(sendself self-4/2248 keyword/1879 "type")';
          bs(b,Pervasives["^"](0," "));
          var s=Odoc_info["string_of_type_extension_param_list"](te);
          
          var s2=newline_to_indented_br(s);
          
          bs(b,'<code class="type">');
-         "(sendself self-4/2248 create_fully_qualified_idents_links/1882 m_name/2250\n  s2/2253)";
+         /* unknown */"(sendself self-4/2248 create_fully_qualified_idents_links/1882 m_name/2250\n  s2/2253)";
          bs(b,0);
          bs(b,"</code>");
          var match=te[3];
          
          if(match){bs(b," ")}else{}
          
-         "(sendself self-4/2248 create_fully_qualified_idents_links/1882 m_name/2250\n  (field 1 te/2251))";
+         /* unknown */"(sendself self-4/2248 create_fully_qualified_idents_links/1882 m_name/2250\n  (field 1 te/2251))";
          bs(b,0);
          bs(b," += ");
          if(te[4]=/* Private */0){bs(b,"private ")}else{}
@@ -3251,7 +3259,7 @@ var
              
              bs(b,'<tr>\n<td align="left" valign="top" >\n');
              bs(b,"<code>");
-             '(sendself self-4/2248 keyword/1879 "|")';
+             /* unknown */'(sendself self-4/2248 keyword/1879 "|")';
              bs(b,0);
              bs(b,'</code></td>\n<td align="left" valign="top" >\n');
              bs(b,"<code>");
@@ -3276,25 +3284,25 @@ var
              
              if(match$1)
               {if(match$2)
-                {'(sendself self-4/2248 keyword/1879 ":")';
+                {/* unknown */'(sendself self-4/2248 keyword/1879 ":")';
                  bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                 '(sendself self-4/2248 html_of_type_expr_list/1885 [0: 0a] b/2249 father/2256\n  " * " match/3072)';
+                 /* unknown */'(sendself self-4/2248 html_of_type_expr_list/1885 [0: 0a] b/2249 father/2256\n  " * " match/3072)';
                  
-                 '(sendself self-4/2248 keyword/1879 "->")';
+                 /* unknown */'(sendself self-4/2248 keyword/1879 "->")';
                  bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                 "(sendself self-4/2248 html_of_type_expr/1884 b/2249 father/2256\n  (field 0 match/3073))";
+                 /* unknown */"(sendself self-4/2248 html_of_type_expr/1884 b/2249 father/2256\n  (field 0 match/3073))";
                  }
                else
-                {'(sendself self-4/2248 keyword/1879 "of")';
+                {/* unknown */'(sendself self-4/2248 keyword/1879 "of")';
                  bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                 '(sendself self-4/2248 html_of_type_expr_list/1885 [0: 0a] b/2249 father/2256\n  " * " match/3072)';
+                 /* unknown */'(sendself self-4/2248 html_of_type_expr_list/1885 [0: 0a] b/2249 father/2256\n  " * " match/3072)';
                  }
                }
              else
               {if(match$2)
-                {'(sendself self-4/2248 keyword/1879 ":")';
+                {/* unknown */'(sendself self-4/2248 keyword/1879 ":")';
                  bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                 "(sendself self-4/2248 html_of_type_expr/1884 b/2249 father/2256\n  (field 0 match/3073))";
+                 /* unknown */"(sendself self-4/2248 html_of_type_expr/1884 b/2249 father/2256\n  (field 0 match/3073))";
                  }
                else
                 {}
@@ -3343,7 +3351,7 @@ var
                bs(b,"</code></td>");
                bs
                 (b,'<td class="typefieldcomment" align="left" valign="top" >');
-               "(sendself self-4/2248 html_of_info/2246 0a 0a b/2249\n  (makeblock 0 (field 0 match/3066)))";
+               /* unknown */"(sendself self-4/2248 html_of_info/2246 0a 0a b/2249\n  (makeblock 0 (field 0 match/3066)))";
                
                bs(b,"</td>"),
                bs
@@ -3361,7 +3369,7 @@ var
          print_concat(b,"\n",print_one,te[5]);
          bs(b,"</table>\n");
          bs(b,"\n");
-         "(sendself self-4/2248 html_of_info/2246 0a 0a b/2249 (field 0 te/2251))";
+         /* unknown */"(sendself self-4/2248 html_of_info/2246 0a 0a b/2249 (field 0 te/2251))";
          
          return bs(b,"\n");
          },
@@ -3379,7 +3387,7 @@ var
               [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[23](e));
-         '(sendself self-4/2265 keyword/1879 "exception")';
+         /* unknown */'(sendself self-4/2265 keyword/1879 "exception")';
          bs(b,0);
          bs(b," ");
          bs(b,Odoc_info["Name"][1](e[1]));
@@ -3390,25 +3398,25 @@ var
          
          if(match)
           {if(match$1)
-            {'(sendself self-4/2265 keyword/1879 ":")';
+            {/* unknown */'(sendself self-4/2265 keyword/1879 ":")';
              bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-             '(sendself self-4/2265 html_of_type_expr_list/1885 [0: 0a] b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267)) " * "\n  match/3060)';
+             /* unknown */'(sendself self-4/2265 html_of_type_expr_list/1885 [0: 0a] b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267)) " * "\n  match/3060)';
              
-             '(sendself self-4/2265 keyword/1879 "->")';
+             /* unknown */'(sendself self-4/2265 keyword/1879 "->")';
              bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-             "(sendself self-4/2265 html_of_type_expr/1884 b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267))\n  (field 0 match/3061))";
+             /* unknown */"(sendself self-4/2265 html_of_type_expr/1884 b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267))\n  (field 0 match/3061))";
              }
            else
-            {'(sendself self-4/2265 keyword/1879 "of")';
+            {/* unknown */'(sendself self-4/2265 keyword/1879 "of")';
              bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-             '(sendself self-4/2265 html_of_type_expr_list/1885 [0: 0a] b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267)) " * "\n  (field 2 e/2267))';
+             /* unknown */'(sendself self-4/2265 html_of_type_expr_list/1885 [0: 0a] b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267)) " * "\n  (field 2 e/2267))';
              }
            }
          else
           {if(match$1)
-            {'(sendself self-4/2265 keyword/1879 ":")';
+            {/* unknown */'(sendself self-4/2265 keyword/1879 ":")';
              bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-             "(sendself self-4/2265 html_of_type_expr/1884 b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267))\n  (field 0 match/3061))";
+             /* unknown */"(sendself self-4/2265 html_of_type_expr/1884 b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267))\n  (field 0 match/3061))";
              }
            else
             {}
@@ -3447,7 +3455,7 @@ var
           {}
          
          bs(b,"</pre>\n");
-         "(sendself self-4/2265 html_of_info/2246 0a 0a b/2266 (field 1 e/2267))";
+         /* unknown */"(sendself self-4/2265 html_of_info/2246 0a 0a b/2266 (field 1 e/2267))";
          },
        html_of_type,
        function(self$neg4,b,t)
@@ -3474,7 +3482,7 @@ var
                bs(b,"</code></td>");
                bs
                 (b,'<td class="typefieldcomment" align="left" valign="top" >');
-               "(sendself self-4/2275 html_of_info/2246 0a 0a b/2276\n  (makeblock 0 (field 0 param/3052)))";
+               /* unknown */"(sendself self-4/2275 html_of_info/2246 0a 0a b/2276\n  (makeblock 0 (field 0 param/3052)))";
                
                bs
                 (b,
@@ -3504,9 +3512,9 @@ var
               [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[14](t));
-         '(sendself self-4/2275 keyword/1879 "type")';
+         /* unknown */'(sendself self-4/2275 keyword/1879 "type")';
          bs(b,Pervasives["^"](0," "));
-         "(sendself self-4/2275 html_of_type_expr_param_list/1888 b/2276 father/2278\n  t/2277)";
+         /* unknown */"(sendself self-4/2275 html_of_type_expr_param_list/1888 b/2276 father/2278\n  t/2277)";
          
          var match$2=t[3];
          
@@ -3526,7 +3534,7 @@ var
               bs(b,"= ");
               if(priv){bs(b,"private ")}else{}
               
-              "(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3039))";
+              /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3039))";
               
               bs(b," ");
              case 1:
@@ -3556,7 +3564,7 @@ var
                      '<span id="%s">%s</span>&nbsp;: '],
                     Naming[17](t,f),
                     f[1]);
-                  "(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 1 f/2286))";
+                  /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 1 f/2286))";
                   
                   bs(b,";</code></td>\n");
                   print_field_comment(f[3]);
@@ -3591,11 +3599,11 @@ var
                 function(constr)
                  {bs(b,'<tr>\n<td align="left" valign="top" >\n');
                   bs(b,"<code>");
-                  '(sendself self-4/2275 keyword/1879 "|")';
+                  /* unknown */'(sendself self-4/2275 keyword/1879 "|")';
                   bs(b,0);
                   bs(b,'</code></td>\n<td align="left" valign="top" >\n');
                   bs(b,"<code>");
-                  "(sendself self-4/2275 constructor/1880 (field 0 constr/2290))";
+                  /* unknown */"(sendself self-4/2275 constructor/1880 (field 0 constr/2290))";
                   bp
                    (b,
                     [/* Format */0,
@@ -3617,25 +3625,25 @@ var
                   
                   if(match$7)
                    {if(match$8)
-                     {'(sendself self-4/2275 keyword/1879 ":")';
+                     {/* unknown */'(sendself self-4/2275 keyword/1879 ":")';
                       bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                      '(sendself self-4/2275 html_of_type_expr_list/1885 [0: 0a] b/2276 father/2278\n  " * " match/3024)';
+                      /* unknown */'(sendself self-4/2275 html_of_type_expr_list/1885 [0: 0a] b/2276 father/2278\n  " * " match/3024)';
                       
-                      '(sendself self-4/2275 keyword/1879 "->")';
+                      /* unknown */'(sendself self-4/2275 keyword/1879 "->")';
                       bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                      "(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3025))";
+                      /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3025))";
                       }
                     else
-                     {'(sendself self-4/2275 keyword/1879 "of")';
+                     {/* unknown */'(sendself self-4/2275 keyword/1879 "of")';
                       bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                      '(sendself self-4/2275 html_of_type_expr_list/1885 [0: 0a] b/2276 father/2278\n  " * " match/3024)';
+                      /* unknown */'(sendself self-4/2275 html_of_type_expr_list/1885 [0: 0a] b/2276 father/2278\n  " * " match/3024)';
                       }
                     }
                   else
                    {if(match$8)
-                     {'(sendself self-4/2275 keyword/1879 ":")';
+                     {/* unknown */'(sendself self-4/2275 keyword/1879 ":")';
                       bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
-                      "(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3025))";
+                      /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3025))";
                       }
                     else
                      {}
@@ -3654,7 +3662,7 @@ var
                     bs
                      (b,
                       '<td class="typefieldcomment" align="left" valign="top" >');
-                    "(sendself self-4/2275 html_of_info/2246 0a 0a b/2276\n  (makeblock 0 (field 0 match/3022)))";
+                    /* unknown */"(sendself self-4/2275 html_of_info/2246 0a 0a b/2276\n  (makeblock 0 (field 0 match/3022)))";
                     
                     bs(b,"</td>"),
                     bs
@@ -3687,7 +3695,7 @@ var
                   bs(b,'</td>\n<td align="left" valign="top" >\n');
                   bs(b,"<code>");
                   if(r[2])
-                   {'(sendself self-4/2275 keyword/1879 "mutable&nbsp;")';
+                   {/* unknown */'(sendself self-4/2275 keyword/1879 "mutable&nbsp;")';
                     bs(b,0)}
                   else
                    {}
@@ -3709,7 +3717,7 @@ var
                      '<span id="%s">%s</span>&nbsp;: '],
                     Naming[16](t,r),
                     r[1]);
-                  "(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 2 r/2297))";
+                  /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 2 r/2297))";
                   
                   bs(b,";</code></td>\n");
                   var match$8=r[4];
@@ -3724,7 +3732,7 @@ var
                     bs
                      (b,
                       '<td class="typefieldcomment" align="left" valign="top" >');
-                    "(sendself self-4/2275 html_of_info/2246 0a 0a b/2276\n  (makeblock 0 (field 0 match/3032)))";
+                    /* unknown */"(sendself self-4/2275 html_of_info/2246 0a 0a b/2276\n  (makeblock 0 (field 0 match/3032)))";
                     
                     bs
                      (b,
@@ -3741,7 +3749,7 @@ var
              }}
          
          bs(b,"\n");
-         "(sendself self-4/2275 html_of_info/2246 0a 0a b/2276 (field 1 t/2277))";
+         /* unknown */"(sendself self-4/2275 html_of_info/2246 0a 0a b/2276 (field 1 t/2277))";
          
          return bs(b,"\n");
          },
@@ -3760,17 +3768,17 @@ var
               [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[29](a));
-         '(sendself self-4/2300 keyword/1879 "val")';
+         /* unknown */'(sendself self-4/2300 keyword/1879 "val")';
          bs(b,0);
          bs(b," ");
          if(a[3])
-          {'(sendself self-4/2300 keyword/1879 "virtual")';
+          {/* unknown */'(sendself self-4/2300 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
          else
           {}
          
          if(a[2])
-          {"(sendself self-4/2300 keyword/1879 (field 193 (global Odoc_messages!)))";
+          {/* unknown */"(sendself self-4/2300 keyword/1879 (field 193 (global Odoc_messages!)))";
            bs(b,Pervasives["^"](0," "))}
          else
           {}
@@ -3780,7 +3788,7 @@ var
          if(match)
           {var file=Naming[31](a);
            
-           "(sendself self-4/2300 output_code/1881 (field 0 (field 0 a/2302))\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) file/2305)\n  (field 0 match/3018))";
+           /* unknown */"(sendself self-4/2300 output_code/1881 (field 0 (field 0 a/2302))\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) file/2305)\n  (field 0 match/3018))";
            
            bp
             (b,
@@ -3802,10 +3810,10 @@ var
          
          bs(b,"</span>");
          bs(b," : ");
-         "(sendself self-4/2300 html_of_type_expr/1884 b/2301 module_name/2303\n  (field 2 (field 0 a/2302)))";
+         /* unknown */"(sendself self-4/2300 html_of_type_expr/1884 b/2301 module_name/2303\n  (field 2 (field 0 a/2302)))";
          
          bs(b,"</pre>");
-         "(sendself self-4/2300 html_of_info/2246 0a 0a b/2301\n  (field 1 (field 0 a/2302)))";
+         /* unknown */"(sendself self-4/2300 html_of_info/2246 0a 0a b/2301\n  (field 1 (field 0 a/2302)))";
          },
        html_of_method,
        function(self$neg4,b,m)
@@ -3822,16 +3830,16 @@ var
               [/* String_literal */11,'">',/* End_of_format */0]]],
             '<span id="%s">'],
            Naming[32](m));
-         '(sendself self-4/2307 keyword/1879 "method")';
+         /* unknown */'(sendself self-4/2307 keyword/1879 "method")';
          bs(b,Pervasives["^"](0," "));
          if(m[2])
-          {'(sendself self-4/2307 keyword/1879 "private")';
+          {/* unknown */'(sendself self-4/2307 keyword/1879 "private")';
            bs(b,Pervasives["^"](0," "))}
          else
           {}
          
          if(m[3])
-          {'(sendself self-4/2307 keyword/1879 "virtual")';
+          {/* unknown */'(sendself self-4/2307 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
          else
           {}
@@ -3841,7 +3849,7 @@ var
          if(match)
           {var file=Naming[34](m);
            
-           "(sendself self-4/2307 output_code/1881 (field 0 (field 0 m/2309))\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) file/2312)\n  (field 0 match/3015))";
+           /* unknown */"(sendself self-4/2307 output_code/1881 (field 0 (field 0 m/2309))\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) file/2312)\n  (field 0 match/3015))";
            
            bp
             (b,
@@ -3863,16 +3871,16 @@ var
          
          bs(b,"</span>");
          bs(b," : ");
-         "(sendself self-4/2307 html_of_type_expr/1884 b/2308 module_name/2310\n  (field 2 (field 0 m/2309)))";
+         /* unknown */"(sendself self-4/2307 html_of_type_expr/1884 b/2308 module_name/2310\n  (field 2 (field 0 m/2309)))";
          
          bs(b,"</pre>");
-         "(sendself self-4/2307 html_of_info/2246 0a 0a b/2308\n  (field 1 (field 0 m/2309)))";
+         /* unknown */"(sendself self-4/2307 html_of_info/2246 0a 0a b/2308\n  (field 1 (field 0 m/2309)))";
          
          if(with_parameter_list[1])
-          {"(sendself self-4/2307 html_of_parameter_list/1904 b/2308 module_name/2310\n  (field 4 (field 0 m/2309)))";
+          {/* unknown */"(sendself self-4/2307 html_of_parameter_list/1904 b/2308 module_name/2310\n  (field 4 (field 0 m/2309)))";
            }
          else
-          {"(sendself self-4/2307 html_of_described_parameter_list/1905 b/2308\n  module_name/2310 (field 4 (field 0 m/2309)))";
+          {/* unknown */"(sendself self-4/2307 html_of_described_parameter_list/1905 b/2308\n  module_name/2310 (field 4 (field 0 m/2309)))";
            }
          },
        html_of_parameter_description,
@@ -3897,7 +3905,7 @@ var
                   {bs(b,"<code>");
                    bs(b,n);
                    bs(b,"</code> : ");
-                   "(sendself self-4/2314 html_of_text/2177 b/2315 (field 0 match/3011))";
+                   /* unknown */"(sendself self-4/2314 html_of_text/2177 b/2315 (field 0 match/3011))";
                    }
                  else
                   {return /* () */0;}
@@ -3909,7 +3917,7 @@ var
             {var match=Odoc_info["Parameter"][4](p,l[1]);
              
              if(match)
-              {"(sendself self-4/2314 html_of_text/2177 b/2315 (field 0 match/3009))";
+              {/* unknown */"(sendself self-4/2314 html_of_text/2177 b/2315 (field 0 match/3009))";
                }
              else
               {return /* () */0;}
@@ -3940,10 +3948,10 @@ var
                bs(b,$js);
                bs(b,'</td>\n<td align="center" valign="top">:</td>\n');
                bs(b,"<td>");
-               "(sendself self-4/2326 html_of_type_expr/1884 b/2327 m_name/2328\n  (apply (field 1 (field 3 (global Odoc_info!))) p/2331))";
+               /* unknown */"(sendself self-4/2326 html_of_type_expr/1884 b/2327 m_name/2328\n  (apply (field 1 (field 3 (global Odoc_info!))) p/2331))";
                
                bs(b,"<br>\n");
-               "(sendself self-4/2326 html_of_parameter_description/1903 b/2327 p/2331)";
+               /* unknown */"(sendself self-4/2326 html_of_parameter_description/1903 b/2327 p/2331)";
                
                return bs(b,"\n</tr>\n");
                };
@@ -3973,7 +3981,7 @@ var
             {bs(b,'<div class="param_info"><code class="code">');
              bs(b,Odoc_info["Parameter"][1](p));
              bs(b,"</code> : ");
-             "(sendself self-4/2334 html_of_parameter_description/1903 b/2335 p/2342)";
+             /* unknown */"(sendself self-4/2334 html_of_parameter_description/1903 b/2335 p/2342)";
              
              return bs(b,"</div>\n");
              };
@@ -4001,12 +4009,12 @@ var
                bs(b,"</code></td>\n");
                bs(b,'<td align="center" valign="top">:</td>\n');
                bs(b,"<td>");
-               "(sendself self-4/2344 html_of_module_parameter_type/1894 b/2345 m_name/2346\n  p/2348)";
+               /* unknown */"(sendself self-4/2344 html_of_module_parameter_type/1894 b/2345 m_name/2346\n  p/2348)";
                
                bs(b,"\n");
                if(desc_opt)
                 {bs(b,"<br>");
-                 "(sendself self-4/2344 html_of_text/2177 b/2345 (field 0 desc_opt/2349))";
+                 /* unknown */"(sendself self-4/2344 html_of_text/2177 b/2345 (field 0 desc_opt/2349))";
                  
                  return bs(b,"\n</tr>\n");
                  }
@@ -4041,7 +4049,7 @@ var
          var father=Odoc_info["Name"][5](m[1]);
          
          bs(b,"\n<pre>");
-         '(sendself self-4/2352 keyword/1879 "module")';
+         /* unknown */'(sendself self-4/2352 keyword/1879 "module")';
          bs(b,Pervasives["^"](0," "));
          if(with_link)
           {bp
@@ -4071,15 +4079,16 @@ var
          
          switch(exit){case 94:bs(b,": ")}
          
-         "(sendself self-4/2352 html_of_module_kind/1890 b/2353 father/2365\n  (makeblock 0 m/2363) (field 5 m/2363))";
+         /* unknown */"(sendself self-4/2352 html_of_module_kind/1890 b/2353 father/2365\n  (makeblock 0 m/2363) (field 5 m/2363))";
          
          bs(b,"</pre>");
          if(info$1)
           {if(complete)
-            {'(sendself self-4/2352 html_of_info/2246 [0: "module top"] [0: 1a])';
+            {/* unknown */'(sendself self-4/2352 html_of_info/2246 [0: "module top"] [0: 1a])';
              }
            else
-            {"(sendself self-4/2352 html_of_info_first_sentence/2366)";}
+            {/* unknown */"(sendself self-4/2352 html_of_info_first_sentence/2366)";
+             }
            return $js(b,m[3]);
            }
          else
@@ -4107,7 +4116,7 @@ var
          var father=Odoc_info["Name"][5](mt[1]);
          
          bs(b,"\n<pre>");
-         '(sendself self-4/2368 keyword/1879 "module type")';
+         /* unknown */'(sendself self-4/2368 keyword/1879 "module type")';
          bs(b,Pervasives["^"](0," "));
          if(with_link)
           {bp
@@ -4132,7 +4141,7 @@ var
          
          if(match$1)
           {bs(b," = ");
-           "(sendself self-4/2368 html_of_module_type_kind/1893 b/2369 father/2381 0a\n  (makeblock 0 mt/2379) (field 0 match/2982))";
+           /* unknown */"(sendself self-4/2368 html_of_module_type_kind/1893 b/2369 father/2381 0a\n  (makeblock 0 mt/2379) (field 0 match/2982))";
            }
          else
           {}
@@ -4140,10 +4149,11 @@ var
          bs(b,"</pre>");
          if(info$1)
           {if(complete)
-            {'(sendself self-4/2368 html_of_info/2246 [0: "modtype top"] [0: 1a])';
+            {/* unknown */'(sendself self-4/2368 html_of_info/2246 [0: "modtype top"] [0: 1a])';
              }
            else
-            {"(sendself self-4/2368 html_of_info_first_sentence/2366)";}
+            {/* unknown */"(sendself self-4/2368 html_of_info_first_sentence/2366)";
+             }
            return $js(b,mt[2]);
            }
          else
@@ -4152,7 +4162,7 @@ var
        html_of_included_module,
        function(self$neg4,b,im)
         {bs(b,"\n<pre>");
-         '(sendself self-4/2384 keyword/1879 "include")';
+         /* unknown */'(sendself self-4/2384 keyword/1879 "include")';
          bs(b,Pervasives["^"](0," "));
          var match=im[2];
          
@@ -4182,19 +4192,19 @@ var
           {bs(b,im[1])}
          
          bs(b,"</pre>\n");
-         "(sendself self-4/2384 html_of_info/2246 0a 0a b/2385 (field 2 im/2386))";
+         /* unknown */"(sendself self-4/2384 html_of_info/2246 0a 0a b/2385 (field 2 im/2386))";
          },
        html_of_class_element,
        function(self$neg4,b,element)
         {switch(element[0])
           {case 0:
-            "(sendself self-4/2395 html_of_attribute/1901 b/2396 (field 0 element/2397))";
+            /* unknown */"(sendself self-4/2395 html_of_attribute/1901 b/2396 (field 0 element/2397))";
             
            case 1:
-            "(sendself self-4/2395 html_of_method/1902 b/2396 (field 0 element/2397))";
+            /* unknown */"(sendself self-4/2395 html_of_method/1902 b/2396 (field 0 element/2397))";
             
            case 2:
-            "(sendself self-4/2395 html_of_class_comment/1917 b/2396\n  (field 0 element/2397))";
+            /* unknown */"(sendself self-4/2395 html_of_class_comment/1917 b/2396\n  (field 0 element/2397))";
             
            }
          },
@@ -4204,7 +4214,7 @@ var
           {case 0:
             var inh$2=kind[1];
             
-            '(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "object"] 0a])';
+            /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "object"] 0a])';
             
             if(cl)
              {var match=Naming[11](cl[1][1]);
@@ -4222,18 +4232,18 @@ var
             else
              {bs(b,"\n");
               if(inh$2)
-               {"(sendself self-4/2402 generate_inheritance_info/1918 b/2403 inh/2407)";
+               {/* unknown */"(sendself self-4/2402 generate_inheritance_info/1918 b/2403 inh/2407)";
                 }
               else
                {}
               
-              "(sendself self-4/2402 html_of_class_element/1910 b/2403)";
+              /* unknown */"(sendself self-4/2402 html_of_class_element/1910 b/2403)";
               List["iter"](0,kind[2])}
             
-            '(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "end"] 0a])';
+            /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "end"] 0a])';
             
            case 1:
-            '(sendself self-4/2402 html_of_text/2177 b/2403\n  [0: [0: "class application not handled yet"] 0a])';
+            /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403\n  [0: [0: "class application not handled yet"] 0a])';
             
            case 2:
             var cco=kind[1];
@@ -4241,27 +4251,27 @@ var
             var l=cco[3];
             
             if(l)
-             {"(sendself self-4/2402 html_of_class_type_param_expr_list/1886 b/2403\n  father/2404 l/2415)";
+             {/* unknown */"(sendself self-4/2402 html_of_class_type_param_expr_list/1886 b/2403\n  father/2404 l/2415)";
               
               bs(b," ")}
             else
              {}
             
             bs(b,'<code class="type">');
-            "(sendself self-4/2402 create_fully_qualified_idents_links/1882 father/2404\n  (field 0 cco/2410))";
+            /* unknown */"(sendself self-4/2402 create_fully_qualified_idents_links/1882 father/2404\n  (field 0 cco/2410))";
             bs(b,0);
             return bs(b,"</code>");
             
            case 3:
-            '(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "( "] 0a])';
+            /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "( "] 0a])';
             
-            "(sendself self-4/2402 html_of_class_kind/1911 b/2403 father/2404 0a\n  (field 0 kind/2406))";
+            /* unknown */"(sendself self-4/2402 html_of_class_kind/1911 b/2403 father/2404 0a\n  (field 0 kind/2406))";
             
-            '(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: " : "] 0a])';
+            /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: " : "] 0a])';
             
-            "(sendself self-4/2402 html_of_class_type_kind/1912 b/2403 father/2404 0a\n  (field 1 kind/2406))";
+            /* unknown */"(sendself self-4/2402 html_of_class_type_kind/1912 b/2403 father/2404 0a\n  (field 1 kind/2406))";
             
-            '(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: " )"] 0a])';
+            /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: " )"] 0a])';
             
            }
          },
@@ -4271,7 +4281,7 @@ var
           {case 0:
             var inh$2=kind[1];
             
-            '(sendself self-4/2417 html_of_text/2177 b/2418 [0: [1: "object"] 0a])';
+            /* unknown */'(sendself self-4/2417 html_of_text/2177 b/2418 [0: [1: "object"] 0a])';
             
             if(ct)
              {var match=Naming[11](ct[1][1]);
@@ -4289,15 +4299,15 @@ var
             else
              {bs(b,"\n");
               if(inh$2)
-               {"(sendself self-4/2417 generate_inheritance_info/1918 b/2418 inh/2423)";
+               {/* unknown */"(sendself self-4/2417 generate_inheritance_info/1918 b/2418 inh/2423)";
                 }
               else
                {}
               
-              "(sendself self-4/2417 html_of_class_element/1910 b/2418)";
+              /* unknown */"(sendself self-4/2417 html_of_class_element/1910 b/2418)";
               List["iter"](0,kind[2])}
             
-            '(sendself self-4/2417 html_of_text/2177 b/2418 [0: [1: "end"] 0a])';
+            /* unknown */'(sendself self-4/2417 html_of_text/2177 b/2418 [0: [1: "end"] 0a])';
             
            case 1:
             var cta=kind[1];
@@ -4305,14 +4315,14 @@ var
             var l=cta[3];
             
             if(l)
-             {"(sendself self-4/2417 html_of_class_type_param_expr_list/1886 b/2418\n  father/2419 l/2425)";
+             {/* unknown */"(sendself self-4/2417 html_of_class_type_param_expr_list/1886 b/2418\n  father/2419 l/2425)";
               
               bs(b," ")}
             else
              {}
             
             bs(b,'<code class="type">');
-            "(sendself self-4/2417 create_fully_qualified_idents_links/1882 father/2419\n  (field 0 cta/2422))";
+            /* unknown */"(sendself self-4/2417 create_fully_qualified_idents_links/1882 father/2419\n  (field 0 cta/2422))";
             bs(b,0);
             return bs(b,"</code>");
             
@@ -4355,10 +4365,10 @@ var
               /* None */0,
               Odoc_info["dummy_loc"],
               /* None */0]));
-         '(sendself self-4/2429 keyword/1879 "class")';
+         /* unknown */'(sendself self-4/2429 keyword/1879 "class")';
          bs(b,Pervasives["^"](0," "));
          if(c[5])
-          {'(sendself self-4/2429 keyword/1879 "virtual")';
+          {/* unknown */'(sendself self-4/2429 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
          else
           {}
@@ -4366,7 +4376,7 @@ var
          var l=c[4];
          
          if(l)
-          {"(sendself self-4/2429 html_of_class_type_param_expr_list/1886 b/2430\n  father/2438 l/2440)";
+          {/* unknown */"(sendself self-4/2429 html_of_class_type_param_expr_list/1886 b/2430\n  father/2438 l/2440)";
            
            bs(b," ")}
          else
@@ -4393,16 +4403,17 @@ var
          
          bs(b,"</span>");
          bs(b," : ");
-         "(sendself self-4/2429 html_of_class_parameter_list/1887 b/2430 father/2438\n  c/2437)";
+         /* unknown */"(sendself self-4/2429 html_of_class_parameter_list/1887 b/2430 father/2438\n  c/2437)";
          
-         "(sendself self-4/2429 html_of_class_kind/1911 b/2430 father/2438\n  (makeblock 0 c/2437) (field 5 c/2437))";
+         /* unknown */"(sendself self-4/2429 html_of_class_kind/1911 b/2430 father/2438\n  (makeblock 0 c/2437) (field 5 c/2437))";
          
          bs(b,"</pre>");
          if(complete)
-          {'(sendself self-4/2429 html_of_info/2246 [0: "class top"] [0: 1a])';
+          {/* unknown */'(sendself self-4/2429 html_of_info/2246 [0: "class top"] [0: 1a])';
            }
          else
-          {"(sendself self-4/2429 html_of_info_first_sentence/2366)";}
+          {/* unknown */"(sendself self-4/2429 html_of_info_first_sentence/2366)";
+           }
          return $js(b,c[2]);
          },
        html_of_class_type,
@@ -4442,10 +4453,10 @@ var
               /* None */0,
               Odoc_info["dummy_loc"],
               /* None */0]));
-         '(sendself self-4/2442 keyword/1879 "class type")';
+         /* unknown */'(sendself self-4/2442 keyword/1879 "class type")';
          bs(b,Pervasives["^"](0," "));
          if(ct[5])
-          {'(sendself self-4/2442 keyword/1879 "virtual")';
+          {/* unknown */'(sendself self-4/2442 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
          else
           {}
@@ -4453,7 +4464,7 @@ var
          var l=ct[4];
          
          if(l)
-          {"(sendself self-4/2442 html_of_class_type_param_expr_list/1886 b/2443\n  father/2451 l/2453)";
+          {/* unknown */"(sendself self-4/2442 html_of_class_type_param_expr_list/1886 b/2443\n  father/2451 l/2453)";
            
            bs(b," ")}
          else
@@ -4480,14 +4491,15 @@ var
          
          bs(b,"</span>");
          bs(b," = ");
-         "(sendself self-4/2442 html_of_class_type_kind/1912 b/2443 father/2451\n  (makeblock 0 ct/2450) (field 5 ct/2450))";
+         /* unknown */"(sendself self-4/2442 html_of_class_type_kind/1912 b/2443 father/2451\n  (makeblock 0 ct/2450) (field 5 ct/2450))";
          
          bs(b,"</pre>");
          if(complete)
-          {'(sendself self-4/2442 html_of_info/2246 [0: "classtype top"] [0: 1a])';
+          {/* unknown */'(sendself self-4/2442 html_of_info/2246 [0: "classtype top"] [0: 1a])';
            }
          else
-          {"(sendself self-4/2442 html_of_info_first_sentence/2366)";}
+          {/* unknown */"(sendself self-4/2442 html_of_info_first_sentence/2366)";
+           }
          return $js(b,ct[2]);
          },
        html_of_dag,
@@ -4533,7 +4545,7 @@ var
        html_of_module_comment,
        function(self$neg4,b,text)
         {bs(b,"<br>\n");
-         "(sendself self-4/2468 html_of_text/2177 b/2469 text/2470)";
+         /* unknown */"(sendself self-4/2468 html_of_text/2177 b/2469 text/2470)";
          
          return bs(b,"<br>\n");
          },
@@ -4565,7 +4577,7 @@ var
          
          switch(exit){case 63:var text2=text;}
          
-         "(sendself self-4/2472 html_of_text/2177 b/2473 text2/2475)";
+         /* unknown */"(sendself self-4/2472 html_of_text/2177 b/2473 text2/2475)";
          },
        generate_inheritance_info,
        function(self$neg4,b,inher_l)
@@ -4603,7 +4615,7 @@ var
              /* :: */[0,/* Raw */[0,Odoc_messages["inherits"]],/* [] */0]],
             /* :: */[0,/* List */[10,List["map"](f,inher_l)],/* [] */0]];
          
-         "(sendself self-4/2479 html_of_text/2177 b/2480 text/2491)";
+         /* unknown */"(sendself self-4/2479 html_of_text/2177 b/2480 text/2491)";
          },
        generate_class_inheritance_info,
        function(self$neg4,b,cl)
@@ -4617,7 +4629,7 @@ var
                 var l=k[1];
                 
                 if(l)
-                 {"(sendself self-4/2493 generate_inheritance_info/1918 b/2494 l/2498)";
+                 {/* unknown */"(sendself self-4/2493 generate_inheritance_info/1918 b/2494 l/2498)";
                   }
                 else
                  {return /* () */0;}
@@ -4641,7 +4653,7 @@ var
             var l=match[1];
             
             if(l)
-             {"(sendself self-4/2502 generate_inheritance_info/1918 b/2503 l/2505)";
+             {/* unknown */"(sendself self-4/2502 generate_inheritance_info/1918 b/2503 l/2505)";
               }
             else
              {return /* () */0;}
@@ -4660,10 +4672,10 @@ var
            var b=new_buf(/* () */0);
            
            bs(b,"<html>\n");
-           "(sendself self-4/2507 print_header/1875 b/2515 0a 0a\n  (sendself self-4/2507 inner_title/1874 title/2512))";
+           /* unknown */"(sendself self-4/2507 print_header/1875 b/2515 0a 0a\n  (sendself self-4/2507 inner_title/1874 title/2512))";
            
            bs(b,"<body>\n");
-           '(sendself self-4/2507 print_navbar/1878 b/2515 0a 0a "")';
+           /* unknown */'(sendself self-4/2507 print_navbar/1878 b/2515 0a 0a "")';
            
            bs(b,"<h1>");
            bs(b,title);
@@ -4691,7 +4703,7 @@ var
                
                var father_name=Odoc_info["Name"][5](name(e));
                
-               "(sendself self-4/2507 escape/1996 simple_name/2523)";
+               /* unknown */"(sendself self-4/2507 escape/1996 simple_name/2523)";
                bp
                 (b,
                  [/* Format */0,
@@ -4730,7 +4742,7 @@ var
                 {}
                
                bs(b,"</td>\n<td>");
-               "(sendself self-4/2507 html_of_info_first_sentence/2366 b/2515\n  (apply info/2510 e/2522))";
+               /* unknown */"(sendself self-4/2507 html_of_info_first_sentence/2366 b/2515\n  (apply info/2510 e/2522))";
                
                return bs(b,"</td></tr>\n");
                };
@@ -4808,10 +4820,10 @@ var
            
            bs(b,self$neg4[doctype]);
            bs(b,"<html>\n");
-           "(sendself self-4/2542 print_header/1875 b/2549\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2550 post_name/2552 (field 0 cl/2545))))\n  (makeblock 0 (apply (field 4 (field 8 (global Odoc_info!))) 0a cl/2545))\n  (sendself self-4/2542 inner_title/1874 (field 0 cl/2545)))";
+           /* unknown */"(sendself self-4/2542 print_header/1875 b/2549\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2550 post_name/2552 (field 0 cl/2545))))\n  (makeblock 0 (apply (field 4 (field 8 (global Odoc_info!))) 0a cl/2545))\n  (sendself self-4/2542 inner_title/1874 (field 0 cl/2545)))";
            
            bs(b,"<body>\n");
-           "(sendself self-4/2542 print_navbar/1878 b/2549 pre_name/2550 post_name/2552\n  (field 0 cl/2545))";
+           /* unknown */"(sendself self-4/2542 print_navbar/1878 b/2549 pre_name/2550 post_name/2552\n  (field 0 cl/2545))";
            
            bs(b,"<h1>");
            bs(b,Pervasives["^"](Odoc_messages["clas"]," "));
@@ -4833,20 +4845,20 @@ var
              type_file,
              cl[1]);
            bs(b,"</h1>\n");
-           "(sendself self-4/2542 html_of_class/1913 b/2549 0a [0: 0a] cl/2545)";
+           /* unknown */"(sendself self-4/2542 html_of_class/1913 b/2549 0a [0: 0a] cl/2545)";
            
-           "(sendself self-4/2542 html_of_described_parameter_list/1905 b/2549\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 cl/2545))\n  (field 6 cl/2545))";
+           /* unknown */"(sendself self-4/2542 html_of_described_parameter_list/1905 b/2549\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 cl/2545))\n  (field 6 cl/2545))";
            
-           "(sendself self-4/2542 generate_class_inheritance_info/1919 b/2549 cl/2545)";
+           /* unknown */"(sendself self-4/2542 generate_class_inheritance_info/1919 b/2549 cl/2545)";
            
            bs(b,'<hr width="100%">\n');
-           "(sendself self-4/2542 html_of_class_element/1910 b/2549)";
+           /* unknown */"(sendself self-4/2542 html_of_class_element/1910 b/2549)";
            List["iter"]
             (0,Odoc_info["Class"][1]([/* Some */0,/* false */0],cl));
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
            Pervasives["close_out"](chanout);
-           "(sendself self-4/2542 output_class_type/1896 (field 0 cl/2545)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2547)\n  (field 2 cl/2545))";
+           /* unknown */"(sendself self-4/2542 output_class_type/1896 (field 0 cl/2545)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2547)\n  (field 2 cl/2545))";
            }
          catch(exn)
           {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
@@ -4872,10 +4884,10 @@ var
            
            bs(b,self$neg4[doctype]);
            bs(b,"<html>\n");
-           "(sendself self-4/2556 print_header/1875 b/2563\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2564 post_name/2566 (field 0 clt/2559))))\n  (makeblock 0 (apply (field 9 (field 8 (global Odoc_info!))) 0a clt/2559))\n  (sendself self-4/2556 inner_title/1874 (field 0 clt/2559)))";
+           /* unknown */"(sendself self-4/2556 print_header/1875 b/2563\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2564 post_name/2566 (field 0 clt/2559))))\n  (makeblock 0 (apply (field 9 (field 8 (global Odoc_info!))) 0a clt/2559))\n  (sendself self-4/2556 inner_title/1874 (field 0 clt/2559)))";
            
            bs(b,"<body>\n");
-           "(sendself self-4/2556 print_navbar/1878 b/2563 pre_name/2564 post_name/2566\n  (field 0 clt/2559))";
+           /* unknown */"(sendself self-4/2556 print_navbar/1878 b/2563 pre_name/2564 post_name/2566\n  (field 0 clt/2559))";
            
            bs(b,"<h1>");
            bs(b,Pervasives["^"](Odoc_messages["class_type"]," "));
@@ -4897,18 +4909,18 @@ var
              type_file,
              clt[1]);
            bs(b,"</h1>\n");
-           "(sendself self-4/2556 html_of_class_type/1914 b/2563 0a [0: 0a] clt/2559)";
+           /* unknown */"(sendself self-4/2556 html_of_class_type/1914 b/2563 0a [0: 0a] clt/2559)";
            
-           "(sendself self-4/2556 generate_class_type_inheritance_info/1920 b/2563\n  clt/2559)";
+           /* unknown */"(sendself self-4/2556 generate_class_type_inheritance_info/1920 b/2563\n  clt/2559)";
            
            bs(b,'<hr width="100%">\n');
-           "(sendself self-4/2556 html_of_class_element/1910 b/2563)";
+           /* unknown */"(sendself self-4/2556 html_of_class_element/1910 b/2563)";
            List["iter"]
             (0,Odoc_info["Class"][6]([/* Some */0,/* false */0],clt));
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
            Pervasives["close_out"](chanout);
-           "(sendself self-4/2556 output_class_type/1896 (field 0 clt/2559)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2561)\n  (field 2 clt/2559))";
+           /* unknown */"(sendself self-4/2556 output_class_type/1896 (field 0 clt/2559)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2561)\n  (field 2 clt/2559))";
            }
          catch(exn)
           {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
@@ -4933,10 +4945,10 @@ var
            
            bs(b,self$neg4[doctype]);
            bs(b,"<html>\n");
-           "(sendself self-4/2570 print_header/1875 b/2577\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2578 post_name/2580 (field 0 mt/2573))))\n  (makeblock 0 (apply (field 30 (field 9 (global Odoc_info!))) 0a mt/2573))\n  (sendself self-4/2570 inner_title/1874 (field 0 mt/2573)))";
+           /* unknown */"(sendself self-4/2570 print_header/1875 b/2577\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2578 post_name/2580 (field 0 mt/2573))))\n  (makeblock 0 (apply (field 30 (field 9 (global Odoc_info!))) 0a mt/2573))\n  (sendself self-4/2570 inner_title/1874 (field 0 mt/2573)))";
            
            bs(b,"<body>\n");
-           "(sendself self-4/2570 print_navbar/1878 b/2577 pre_name/2578 post_name/2580\n  (field 0 mt/2573))";
+           /* unknown */"(sendself self-4/2570 print_navbar/1878 b/2577 pre_name/2578 post_name/2580\n  (field 0 mt/2573))";
            
            bp
             (b,
@@ -4966,28 +4978,28 @@ var
             {bs(b,mt[1])}
            
            bs(b,"</h1>\n");
-           "(sendself self-4/2570 html_of_modtype/1908 b/2577 0a 0a [0: 0a] mt/2573)";
+           /* unknown */"(sendself self-4/2570 html_of_modtype/1908 b/2577 0a 0a [0: 0a] mt/2573)";
            
-           "(sendself self-4/2570 html_of_module_parameter_list/1906 b/2577\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/2573))\n  (apply (field 29 (field 9 (global Odoc_info!))) 0a mt/2573))";
+           /* unknown */"(sendself self-4/2570 html_of_module_parameter_list/1906 b/2577\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/2573))\n  (apply (field 29 (field 9 (global Odoc_info!))) 0a mt/2573))";
            
            bs(b,'<hr width="100%">\n');
-           "(sendself self-4/2570 html_of_module_element/1892 b/2577 (field 0 mt/2573))";
+           /* unknown */"(sendself self-4/2570 html_of_module_element/1892 b/2577 (field 0 mt/2573))";
            List["iter"](0,Odoc_info["Module"][17](/* None */0,mt));
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
            Pervasives["close_out"](chanout);
-           "(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_module/1926)\n  (apply (field 17 (field 9 (global Odoc_info!))) 0a mt/2573))";
+           /* unknown */"(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_module/1926)\n  (apply (field 17 (field 9 (global Odoc_info!))) 0a mt/2573))";
            
-           "(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_module_type/1925)\n  (apply (field 18 (field 9 (global Odoc_info!))) 0a mt/2573))";
+           /* unknown */"(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_module_type/1925)\n  (apply (field 18 (field 9 (global Odoc_info!))) 0a mt/2573))";
            
-           "(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_class/1923)\n  (apply (field 25 (field 9 (global Odoc_info!))) 0a mt/2573))";
+           /* unknown */"(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_class/1923)\n  (apply (field 25 (field 9 (global Odoc_info!))) 0a mt/2573))";
            
-           "(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_class_type/1924)\n  (apply (field 26 (field 9 (global Odoc_info!))) 0a mt/2573))";
+           /* unknown */"(sendself self-4/2570 generate_elements/1922\n  (sendself self-4/2570 generate_for_class_type/1924)\n  (apply (field 26 (field 9 (global Odoc_info!))) 0a mt/2573))";
            
            var match$2=mt[3];
            
            if(match$2)
-            {"(sendself self-4/2570 output_module_type/1895 (field 0 mt/2573)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2575)\n  (field 0 match/2880))";
+            {/* unknown */"(sendself self-4/2570 output_module_type/1895 (field 0 mt/2573)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2575)\n  (field 0 match/2880))";
              }
            else
             {return /* () */0;}
@@ -5019,10 +5031,10 @@ var
            
            bs(b,self$neg4[doctype]);
            bs(b,"<html>\n");
-           "(sendself self-4/2585 print_header/1875 b/2593\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2594 post_name/2596 (field 0 modu/2588))))\n  (makeblock 0 (apply (field 15 (field 9 (global Odoc_info!))) 0a modu/2588))\n  (sendself self-4/2585 inner_title/1874 (field 0 modu/2588)))";
+           /* unknown */"(sendself self-4/2585 print_header/1875 b/2593\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2594 post_name/2596 (field 0 modu/2588))))\n  (makeblock 0 (apply (field 15 (field 9 (global Odoc_info!))) 0a modu/2588))\n  (sendself self-4/2585 inner_title/1874 (field 0 modu/2588)))";
            
            bs(b,"<body>\n");
-           "(sendself self-4/2585 print_navbar/1878 b/2593 pre_name/2594 post_name/2596\n  (field 0 modu/2588))";
+           /* unknown */"(sendself self-4/2585 print_navbar/1878 b/2593 pre_name/2594 post_name/2596\n  (field 0 modu/2588))";
            
            bs(b,"<h1>");
            if(modu[11])
@@ -5067,34 +5079,34 @@ var
            
            bs(b,"</h1>\n");
            if(!modu[11])
-            {"(sendself self-4/2585 html_of_module/1907 b/2593 0a 0a [0: 0a] modu/2588)";
+            {/* unknown */"(sendself self-4/2585 html_of_module/1907 b/2593 0a 0a [0: 0a] modu/2588)";
              }
            else
             {}
            
-           "(sendself self-4/2585 html_of_module_parameter_list/1906 b/2593\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 modu/2588))\n  (apply (field 14 (field 9 (global Odoc_info!))) 0a modu/2588))";
+           /* unknown */"(sendself self-4/2585 html_of_module_parameter_list/1906 b/2593\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 modu/2588))\n  (apply (field 14 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
            if(!modu[11]){bs(b,'<hr width="100%">\n')}else{}
            
-           "(sendself self-4/2585 html_of_module_element/1892 b/2593 (field 0 modu/2588))";
+           /* unknown */"(sendself self-4/2585 html_of_module_element/1892 b/2593 (field 0 modu/2588))";
            List["iter"](0,Odoc_info["Module"][1](/* None */0,modu));
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
            Pervasives["close_out"](chanout);
-           "(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_module/1926)\n  (apply (field 1 (field 9 (global Odoc_info!))) 0a modu/2588))";
+           /* unknown */"(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_module/1926)\n  (apply (field 1 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
-           "(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_module_type/1925)\n  (apply (field 2 (field 9 (global Odoc_info!))) 0a modu/2588))";
+           /* unknown */"(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_module_type/1925)\n  (apply (field 2 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
-           "(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_class/1923)\n  (apply (field 10 (field 9 (global Odoc_info!))) 0a modu/2588))";
+           /* unknown */"(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_class/1923)\n  (apply (field 10 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
-           "(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_class_type/1924)\n  (apply (field 11 (field 9 (global Odoc_info!))) 0a modu/2588))";
+           /* unknown */"(sendself self-4/2585 generate_elements/1922\n  (sendself self-4/2585 generate_for_class_type/1924)\n  (apply (field 11 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
-           "(sendself self-4/2585 output_module_type/1895 (field 0 modu/2588)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2590)\n  (field 1 modu/2588))";
+           /* unknown */"(sendself self-4/2585 output_module_type/1895 (field 0 modu/2588)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2590)\n  (field 1 modu/2588))";
            
            var match$2=modu[9];
            
            if(match$2)
-            {"(sendself self-4/2585 output_code/1881 (field 0 modu/2588)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) code_file/2591)\n  (field 0 match/2864))";
+            {/* unknown */"(sendself self-4/2585 output_code/1881 (field 0 modu/2588)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) code_file/2591)\n  (field 0 match/2864))";
              }
            else
             {return /* () */0;}
@@ -5105,7 +5117,7 @@ var
        generate_index,
        function(self$neg4,module_list)
         {try
-          {"(sendself self-4/2601 index/1833)";
+          {/* unknown */"(sendself self-4/2601 index/1833)";
            var
             chanout=
              Pervasives["open_out"]
@@ -5116,13 +5128,14 @@ var
            var match=Odoc_info["Global"][6][1];
            
            if(match)
-            {"(sendself self-4/2601 escape/1996 (field 0 match/2859))";}
+            {/* unknown */"(sendself self-4/2601 escape/1996 (field 0 match/2859))";
+             }
            else
             {var title$1="";}
            
            bs(b,self$neg4[doctype]);
            bs(b,"<html>\n");
-           "(sendself self-4/2601 print_header/1875 b/2604 0a 0a\n  (sendself self-4/2601 title/1873))";
+           /* unknown */"(sendself self-4/2601 print_header/1875 b/2604 0a 0a\n  (sendself self-4/2601 title/1873))";
            
            bs(b,"<body>\n");
            bs(b,"<h1>");
@@ -5135,13 +5148,13 @@ var
                Odoc_info["Global"][7][1]);
            
            if(info$1)
-            {"(sendself self-4/2601 html_of_info/2246 0a [0: 0a] b/2604 info/2607)";
+            {/* unknown */"(sendself self-4/2601 html_of_info/2246 0a [0: 0a] b/2604 info/2607)";
              }
            else
-            {"(sendself self-4/2601 html_of_Index_list/2609 b/2604)";
+            {/* unknown */"(sendself self-4/2601 html_of_Index_list/2609 b/2604)";
              
              bs(b,"<br/>");
-             "(sendself self-4/2601 html_of_Module_list/2610 b/2604\n  (apply (field 11 (global List!)) (function m/2611 (field 0 m/2611))\n    module_list/2602))";
+             /* unknown */"(sendself self-4/2601 html_of_Module_list/2610 b/2604\n  (apply (field 11 (global List!)) (function m/2611 (field 0 m/2611))\n    module_list/2602))";
              }
            
            bs(b,"</body>\n</html>");
@@ -5153,47 +5166,47 @@ var
          },
        generate_values_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2614 generate_elements_index/1921\n  (sendself self-4/2614 list_values/1849) (function v/2616 (field 0 v/2616))\n  (function v/2617 (field 1 v/2617)) (field 26 Naming/1324)\n  (field 223 (global Odoc_messages!))\n  (sendself self-4/2614 index_values/1834))";
+        {/* unknown */"(sendself self-4/2614 generate_elements_index/1921\n  (sendself self-4/2614 list_values/1849) (function v/2616 (field 0 v/2616))\n  (function v/2617 (field 1 v/2617)) (field 26 Naming/1324)\n  (field 223 (global Odoc_messages!))\n  (sendself self-4/2614 index_values/1834))";
          },
        generate_extensions_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2619 generate_elements_index/1921\n  (sendself self-4/2619 list_extensions/1851)\n  (function x/2621 (field 0 x/2621))\n  (function x/2622 (field 0 (field 3 x/2622)))\n  (function x/2623 (apply (field 21 Naming/1324) x/2623))\n  (field 224 (global Odoc_messages!))\n  (sendself self-4/2619 index_extensions/1836))";
+        {/* unknown */"(sendself self-4/2619 generate_elements_index/1921\n  (sendself self-4/2619 list_extensions/1851)\n  (function x/2621 (field 0 x/2621))\n  (function x/2622 (field 0 (field 3 x/2622)))\n  (function x/2623 (apply (field 21 Naming/1324) x/2623))\n  (field 224 (global Odoc_messages!))\n  (sendself self-4/2619 index_extensions/1836))";
          },
        generate_exceptions_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2625 generate_elements_index/1921\n  (sendself self-4/2625 list_exceptions/1853)\n  (function e/2627 (field 0 e/2627)) (function e/2628 (field 1 e/2628))\n  (field 23 Naming/1324) (field 225 (global Odoc_messages!))\n  (sendself self-4/2625 index_exceptions/1837))";
+        {/* unknown */"(sendself self-4/2625 generate_elements_index/1921\n  (sendself self-4/2625 list_exceptions/1853)\n  (function e/2627 (field 0 e/2627)) (function e/2628 (field 1 e/2628))\n  (field 23 Naming/1324) (field 225 (global Odoc_messages!))\n  (sendself self-4/2625 index_exceptions/1837))";
          },
        generate_types_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2630 generate_elements_index/1921\n  (sendself self-4/2630 list_types/1855) (function t/2632 (field 0 t/2632))\n  (function t/2633 (field 1 t/2633)) (field 17 Naming/1324)\n  (field 226 (global Odoc_messages!))\n  (sendself self-4/2630 index_types/1835))";
+        {/* unknown */"(sendself self-4/2630 generate_elements_index/1921\n  (sendself self-4/2630 list_types/1855) (function t/2632 (field 0 t/2632))\n  (function t/2633 (field 1 t/2633)) (field 17 Naming/1324)\n  (field 226 (global Odoc_messages!))\n  (sendself self-4/2630 index_types/1835))";
          },
        generate_attributes_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2635 generate_elements_index/1921\n  (sendself self-4/2635 list_attributes/1845)\n  (function a/2637 (field 0 (field 0 a/2637)))\n  (function a/2638 (field 1 (field 0 a/2638))) (field 29 Naming/1324)\n  (field 227 (global Odoc_messages!))\n  (sendself self-4/2635 index_attributes/1838))";
+        {/* unknown */"(sendself self-4/2635 generate_elements_index/1921\n  (sendself self-4/2635 list_attributes/1845)\n  (function a/2637 (field 0 (field 0 a/2637)))\n  (function a/2638 (field 1 (field 0 a/2638))) (field 29 Naming/1324)\n  (field 227 (global Odoc_messages!))\n  (sendself self-4/2635 index_attributes/1838))";
          },
        generate_methods_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2640 generate_elements_index/1921\n  (sendself self-4/2640 list_methods/1847)\n  (function m/2642 (field 0 (field 0 m/2642)))\n  (function m/2643 (field 1 (field 0 m/2643))) (field 32 Naming/1324)\n  (field 228 (global Odoc_messages!))\n  (sendself self-4/2640 index_methods/1839))";
+        {/* unknown */"(sendself self-4/2640 generate_elements_index/1921\n  (sendself self-4/2640 list_methods/1847)\n  (function m/2642 (field 0 (field 0 m/2642)))\n  (function m/2643 (field 1 (field 0 m/2643))) (field 32 Naming/1324)\n  (field 228 (global Odoc_messages!))\n  (sendself self-4/2640 index_methods/1839))";
          },
        generate_classes_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2645 generate_elements_index/1921\n  (sendself self-4/2645 list_classes/1861) (function c/2647 (field 0 c/2647))\n  (function c/2648 (field 1 c/2648))\n  (function c/2649 (field 0 (apply (field 10 Naming/1324) (field 0 c/2649))))\n  (field 229 (global Odoc_messages!))\n  (sendself self-4/2645 index_classes/1840))";
+        {/* unknown */"(sendself self-4/2645 generate_elements_index/1921\n  (sendself self-4/2645 list_classes/1861) (function c/2647 (field 0 c/2647))\n  (function c/2648 (field 1 c/2648))\n  (function c/2649 (field 0 (apply (field 10 Naming/1324) (field 0 c/2649))))\n  (field 229 (global Odoc_messages!))\n  (sendself self-4/2645 index_classes/1840))";
          },
        generate_class_types_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2651 generate_elements_index/1921\n  (sendself self-4/2651 list_class_types/1863)\n  (function ct/2653 (field 0 ct/2653)) (function ct/2654 (field 1 ct/2654))\n  (function ct/2655\n    (field 0 (apply (field 10 Naming/1324) (field 0 ct/2655))))\n  (field 230 (global Odoc_messages!))\n  (sendself self-4/2651 index_class_types/1841))";
+        {/* unknown */"(sendself self-4/2651 generate_elements_index/1921\n  (sendself self-4/2651 list_class_types/1863)\n  (function ct/2653 (field 0 ct/2653)) (function ct/2654 (field 1 ct/2654))\n  (function ct/2655\n    (field 0 (apply (field 10 Naming/1324) (field 0 ct/2655))))\n  (field 230 (global Odoc_messages!))\n  (sendself self-4/2651 index_class_types/1841))";
          },
        generate_modules_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2657 generate_elements_index/1921\n  (sendself self-4/2657 list_modules/1857) (function m/2659 (field 0 m/2659))\n  (function m/2660 (field 2 m/2660))\n  (function m/2661 (field 0 (apply (field 10 Naming/1324) (field 0 m/2661))))\n  (field 231 (global Odoc_messages!))\n  (sendself self-4/2657 index_modules/1842))";
+        {/* unknown */"(sendself self-4/2657 generate_elements_index/1921\n  (sendself self-4/2657 list_modules/1857) (function m/2659 (field 0 m/2659))\n  (function m/2660 (field 2 m/2660))\n  (function m/2661 (field 0 (apply (field 10 Naming/1324) (field 0 m/2661))))\n  (field 231 (global Odoc_messages!))\n  (sendself self-4/2657 index_modules/1842))";
          },
        generate_module_types_index,
        function(self$neg4,module_list)
-        {"(sendself self-4/2663 generate_elements_index/1921\n  (sendself self-4/2663 list_module_types/1859)\n  (function mt/2665 (field 0 mt/2665)) (function mt/2666 (field 1 mt/2666))\n  (function mt/2667\n    (field 0 (apply (field 10 Naming/1324) (field 0 mt/2667))))\n  (field 232 (global Odoc_messages!))\n  (sendself self-4/2663 index_module_types/1843))";
+        {/* unknown */"(sendself self-4/2663 generate_elements_index/1921\n  (sendself self-4/2663 list_module_types/1859)\n  (function mt/2665 (field 0 mt/2665)) (function mt/2666 (field 1 mt/2666))\n  (function mt/2667\n    (field 0 (apply (field 10 Naming/1324) (field 0 mt/2667))))\n  (field 232 (global Odoc_messages!))\n  (sendself self-4/2663 index_module_types/1843))";
          },
        generate,
        function(self$neg4,module_list)
-        {"(sendself self-4/2669 init_style/1872)";
+        {/* unknown */"(sendself self-4/2669 init_style/1872)";
          
          self$neg4[list_values$1]=Odoc_info["Search"][2](module_list),0;
          self$neg4[list_extensions$1]=Odoc_info["Search"][3](module_list),0;
@@ -5207,7 +5220,7 @@ var
          self$neg4[list_module_types$1]=
          Odoc_info["Search"][11](module_list),
          0;
-         "(sendself self-4/2669 prepare_header/1876 module_list/2670)";
+         /* unknown */"(sendself self-4/2669 prepare_header/1876 module_list/2670)";
          
          var types=Odoc_info["Search"][5](module_list);
          
@@ -5250,33 +5263,33 @@ var
            module_types),
          0;
          if(!index_only[1])
-          {"(sendself self-4/2669 generate_elements/1922\n  (sendself self-4/2669 generate_for_module/1926) module_list/2670)";
+          {/* unknown */"(sendself self-4/2669 generate_elements/1922\n  (sendself self-4/2669 generate_for_module/1926) module_list/2670)";
            }
          else
           {}
          
          try
-          {"(sendself self-4/2669 generate_index/1927 module_list/2670)";
+          {/* unknown */"(sendself self-4/2669 generate_index/1927 module_list/2670)";
            
-           "(sendself self-4/2669 generate_values_index/1928 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_values_index/1928 module_list/2670)";
            
-           "(sendself self-4/2669 generate_extensions_index/1929 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_extensions_index/1929 module_list/2670)";
            
-           "(sendself self-4/2669 generate_exceptions_index/1930 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_exceptions_index/1930 module_list/2670)";
            
-           "(sendself self-4/2669 generate_types_index/1931 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_types_index/1931 module_list/2670)";
            
-           "(sendself self-4/2669 generate_attributes_index/1932 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_attributes_index/1932 module_list/2670)";
            
-           "(sendself self-4/2669 generate_methods_index/1933 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_methods_index/1933 module_list/2670)";
            
-           "(sendself self-4/2669 generate_classes_index/1934 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_classes_index/1934 module_list/2670)";
            
-           "(sendself self-4/2669 generate_class_types_index/1935 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_class_types_index/1935 module_list/2670)";
            
-           "(sendself self-4/2669 generate_modules_index/1936 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_modules_index/1936 module_list/2670)";
            
-           "(sendself self-4/2669 generate_module_types_index/1937 module_list/2670)";
+           /* unknown */"(sendself self-4/2669 generate_module_types_index/1937 module_list/2670)";
            }
          catch(exn)
           {if(exn[1]=Failure)
@@ -5294,7 +5307,7 @@ var
                function(s)
                 {var b=new_buf(/* () */0);
                  
-                 "(sendself self-4/2688 html_of_text/2177 b/2690\n  (apply (field 0 (field 1 (global Odoc_text!))) s/2689))";
+                 /* unknown */"(sendself self-4/2688 html_of_text/2177 b/2690\n  (apply (field 0 (field 1 (global Odoc_text!))) s/2689))";
                  
                  return Buffer["contents"](b);
                  },

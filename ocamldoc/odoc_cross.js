@@ -737,7 +737,10 @@ var
 var
  init_known_elements_map=
   function(module_list)
-   {var c=scan[1](0);"(send c/1485 -342620401 module_list/1484)";};
+   {var c=scan[1](0);
+    
+    /* unknown */"(send c/1485 -342620401 module_list/1484)";
+    };
 
 var
  associate_in_module=

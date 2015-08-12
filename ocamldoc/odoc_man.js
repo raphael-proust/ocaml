@@ -156,7 +156,7 @@ var
         function(self$neg1,t)
          {var b=Buffer["create"](256);
           
-          "(sendself self-1/1261 man_of_text/1248 b/1263 t/1262)";
+          /* unknown */"(sendself self-1/1261 man_of_text/1248 b/1263 t/1262)";
           
           return Buffer["contents"](b);
           },
@@ -213,7 +213,7 @@ var
                     Odoc_messages["before"]);
                   bs(b,match[1]);
                   bs(b,'"\n');
-                  "(sendself self-1/1274 man_of_text/1248 b/1276 (field 1 match/2220))";
+                  /* unknown */"(sendself self-1/1274 man_of_text/1248 b/1276 (field 1 match/2220))";
                   
                   bs(b,"\n");
                   bs(b,"\n");
@@ -263,7 +263,7 @@ var
                   bs(b,'.B "');
                   bs(b,Odoc_messages["raises"]);
                   bs(b,Pervasives["^"](" ",Pervasives["^"](match[1],'"\n')));
-                  "(sendself self-1/1287 man_of_text/1248 b/1289 (field 1 match/2214))";
+                  /* unknown */"(sendself self-1/1287 man_of_text/1248 b/1289 (field 1 match/2214))";
                   
                   bs(b,"\n");
                   if(q)
@@ -306,7 +306,7 @@ var
              
             }
           
-          "(sendself self-1/1295 str_man_of_text/1249 t_ref/1298)";
+          /* unknown */"(sendself self-1/1295 str_man_of_text/1249 t_ref/1298)";
           },
         str_man_of_sees,
         function(self$neg1,l)
@@ -322,7 +322,7 @@ var
                   bs(b,'.B "');
                   bs(b,Odoc_messages["see_also"]);
                   bs(b,'"\n');
-                  "(sendself self-1/1303 str_man_of_see/1255 (field 0 param/2205))";
+                  /* unknown */"(sendself self-1/1303 str_man_of_see/1255 (field 0 param/2205))";
                   bs(b,0);
                   bs(b,"\n");
                   if(q)
@@ -348,7 +348,7 @@ var
             bs(b,".B ");
             bs(b,Odoc_messages["returns"]);
             bs(b,"\n");
-            "(sendself self-1/1310 man_of_text/1248 b/1313 (field 0 return_opt/1311))";
+            /* unknown */"(sendself self-1/1310 man_of_text/1248 b/1313 (field 0 return_opt/1311))";
             
             bs(b,"\n");
             return Buffer["contents"](b);
@@ -399,7 +399,7 @@ var
               bs(b$1,'.B "');
               bs(b$1,Odoc_messages["deprecated"]);
               bs(b$1,'"\n');
-              "(sendself self-1/1323 man_of_text/1248 b/1333 (field 0 match/2194))";
+              /* unknown */"(sendself self-1/1323 man_of_text/1248 b/1333 (field 0 match/2194))";
               
               bs(b$1,"\n");
               var $js=/* :: */[0,Buffer["contents"](b$1),/* [] */0];
@@ -416,20 +416,20 @@ var
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js$1=/* [] */0;}
               else
-               {"(sendself self-1/1323 str_man_of_text/1249 d/1334)";
+               {/* unknown */"(sendself self-1/1323 str_man_of_text/1249 d/1334)";
                 var $js$1=/* :: */[0,Pervasives["^"](0,"\n"),/* [] */0];
                 }
               }
             else
              {var $js$1=/* [] */0;}
-            "(sendself self-1/1323 str_man_of_author_list/1250 (field 1 info/1329))";
-            "(sendself self-1/1323 str_man_of_version_opt/1251 (field 2 info/1329))";
-            "(sendself self-1/1323 str_man_of_before/1252 (field 5 info/1329))";
-            "(sendself self-1/1323 str_man_of_since_opt/1253 (field 4 info/1329))";
-            "(sendself self-1/1323 str_man_of_raised_exceptions/1254 (field 8 info/1329))";
-            "(sendself self-1/1323 str_man_of_return_opt/1257 (field 9 info/1329))";
-            "(sendself self-1/1323 str_man_of_sees/1256 (field 3 info/1329))";
-            "(sendself self-1/1323 str_man_of_custom/1258 (field 10 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_author_list/1250 (field 1 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_version_opt/1251 (field 2 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_before/1252 (field 5 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_since_opt/1253 (field 4 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_raised_exceptions/1254 (field 8 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_return_opt/1257 (field 9 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_sees/1256 (field 3 info/1329))";
+            /* unknown */"(sendself self-1/1323 str_man_of_custom/1258 (field 10 info/1329))";
             var
              l=
               Pervasives["@"]
@@ -637,14 +637,14 @@ var
          },
        man_of_text2,
        function(self$neg2,b,t)
-        {"(sendself self-2/1417 man_of_text_element/1364 b/1418)";
+        {/* unknown */"(sendself self-2/1417 man_of_text_element/1364 b/1418)";
          return List["iter"](0,t);
          },
        man_of_text,
        function(self$neg2,b,t)
         {var b2=new_buf(/* () */0);
          
-         "(sendself self-2/1421 man_of_text2/1361 b2/1424 t/1423)";
+         /* unknown */"(sendself self-2/1421 man_of_text2/1361 b2/1424 t/1423)";
          
          var s=Buffer["contents"](b2);
          
@@ -666,7 +666,7 @@ var
             {case 0:exit=92;
              case 1:
               bs(b,"\n.B ");
-              "(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
+              /* unknown */"(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
               return bs
                       (b,
                        Pervasives["^"]
@@ -674,7 +674,7 @@ var
               
              case 2:
               bs(b,"\n.B ");
-              "(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
+              /* unknown */"(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
               return bs
                       (b,
                        Pervasives["^"]
@@ -685,7 +685,7 @@ var
               List["iter"]
                (function(t)
                  {bs(b,"\n.sp\n \-");
-                  "(sendself self-2/1431 man_of_text2/1361 b/1432 t/1459)";
+                  /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 t/1459)";
                   
                   return bs(b,"\n");
                   },
@@ -696,7 +696,7 @@ var
               List["iter"]
                (function(t)
                  {bs(b,"\n.sp\n \-");
-                  "(sendself self-2/1431 man_of_text2/1361 b/1432 t/1460)";
+                  /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 t/1460)";
                   
                   return bs(b,"\n");
                   },
@@ -705,43 +705,43 @@ var
               
              case 12:
               bs(b,"\n.sp\n");
-              "(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
               return bs(b,"\n.sp\n");
               
              case 13:
-              "(sendself self-2/1431 man_of_text2/1361 b/1432\n  (makeblock 0\n    (makeblock 1 (apply (field 20 (global Odoc_info!)) (field 2 txt/1433)))\n    0a))";
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432\n  (makeblock 0\n    (makeblock 1 (apply (field 20 (global Odoc_info!)) (field 2 txt/1433)))\n    0a))";
               
              case 14:exit=91;
              case 15:
-              "(sendself self-2/1431 man_of_text2/1361 b/1432 (field 1 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 1 txt/1433))";
               
              case 16:
-              "(sendself self-2/1431 man_of_text_element/1364 b/1432\n  (makeblock 1 (apply (field 37 (global Odoc_info!)) (field 0 txt/1433))))";
+              /* unknown */"(sendself self-2/1431 man_of_text_element/1364 b/1432\n  (makeblock 1 (apply (field 37 (global Odoc_info!)) (field 0 txt/1433))))";
               
              case 17:
               bs(b,"^{");
-              "(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
              case 18:
               bs(b,"_{");
-              "(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
              case 19:exit=91;
              case 20:
-              "(sendself self-2/1431 man_of_custom_text/1365 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_custom_text/1365 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
               
              case 21:
-              "(sendself self-2/1431 man_of_Target/1366 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_Target/1366 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
               
              default:
-              "(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               }}
          
          switch(exit)
           {case 91:return /* () */0;
            case 92:
-            "(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
+            /* unknown */"(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
             return bs(b,0);
             
            }
@@ -759,7 +759,7 @@ var
          },
        man_of_code,
        function(self$neg2,b,s)
-        {"(sendself self-2/1472 man_of_text/1362 b/1473\n  (makeblock 0 (makeblock 1 s/1474) 0a))";
+        {/* unknown */"(sendself self-2/1472 man_of_text/1362 b/1473\n  (makeblock 0 (makeblock 1 s/1474) 0a))";
          },
        relative_idents,
        function(self$neg2,m_name,s)
@@ -792,7 +792,7 @@ var
          var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
          
          bs(b,"\n.B ");
-         "(sendself self-2/1484 relative_idents/1368 m_name/1486 s2/1489)";
+         /* unknown */"(sendself self-2/1484 relative_idents/1368 m_name/1486 s2/1489)";
          bs(b,0);
          return bs(b,"\n");
          },
@@ -809,7 +809,7 @@ var
          var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
          
          bs(b,"\n.B ");
-         "(sendself self-2/1491 relative_idents/1368 m_name/1493 s2/1496)";
+         /* unknown */"(sendself self-2/1491 relative_idents/1368 m_name/1493 s2/1496)";
          bs(b,0);
          return bs(b,"\n");
          },
@@ -820,7 +820,7 @@ var
          var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
          
          bs(b,"\n.B ");
-         "(sendself self-2/1498 relative_idents/1368 m_name/1501 s2/1505)";
+         /* unknown */"(sendself self-2/1498 relative_idents/1368 m_name/1501 s2/1505)";
          bs(b,0);
          return bs(b,"\n");
          },
@@ -834,7 +834,7 @@ var
            var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
            
            bs(b,"\n.B ");
-           "(sendself self-2/1507 relative_idents/1368 m_name/1509 s2/1513)";
+           /* unknown */"(sendself self-2/1507 relative_idents/1368 m_name/1509 s2/1513)";
            bs(b,0);
            return bs(b,"\n");
            }
@@ -854,7 +854,7 @@ var
          var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
          
          bs(b,"\n.B ");
-         "(sendself self-2/1515 relative_idents/1368 m_name/1517 s2/1520)";
+         /* unknown */"(sendself self-2/1515 relative_idents/1368 m_name/1517 s2/1520)";
          bs(b,0);
          return bs(b,"\n");
          },
@@ -864,10 +864,10 @@ var
          bs(b,"\n.I val ");
          bs(b,Odoc_info["Name"][1](v[1]));
          bs(b," \n: ");
-         "(sendself self-2/1522 man_of_type_expr/1369 b/1523\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1524))\n  (field 2 v/1524))";
+         /* unknown */"(sendself self-2/1522 man_of_type_expr/1369 b/1523\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1524))\n  (field 2 v/1524))";
          
          bs(b,".sp\n");
-         "(sendself self-2/1522 man_of_info/1525 0a b/1523 (field 1 v/1524))";
+         /* unknown */"(sendself self-2/1522 man_of_info/1525 0a b/1523 (field 1 v/1524))";
          
          return bs(b,"\n.sp\n");
          },
@@ -883,13 +883,13 @@ var
            var s2=Str["global_replace"](Str["regexp"]("\n"),"\n.B ",s);
            
            bs(b,"\n.B ");
-           "(sendself self-2/1527 relative_idents/1368 m_name/1529 s2/1533)";
+           /* unknown */"(sendself self-2/1527 relative_idents/1368 m_name/1529 s2/1533)";
            bs(b,0);
            bs(b,"\n"),bs(b,".I ")}
          else
           {}
          
-         "(sendself self-2/1527 relative_idents/1368 m_name/1529 (field 1 te/1530))";
+         /* unknown */"(sendself self-2/1527 relative_idents/1368 m_name/1529 (field 1 te/1530))";
          bs(b,0);
          bs(b," \n");
          bs(b,"+=");
@@ -908,20 +908,20 @@ var
              if(match)
               {if(match$1)
                 {bs(b,"\n.B : ");
-                 '(sendself self-2/1527 man_of_type_expr_list/1371 [0: 0a] b/1528 father/1535\n  " * " match/2132)';
+                 /* unknown */'(sendself self-2/1527 man_of_type_expr_list/1371 [0: 0a] b/1528 father/1535\n  " * " match/2132)';
                  
                  bs(b,".B -> ");
-                 "(sendself self-2/1527 man_of_type_expr/1369 b/1528 father/1535\n  (field 0 match/2133))";
+                 /* unknown */"(sendself self-2/1527 man_of_type_expr/1369 b/1528 father/1535\n  (field 0 match/2133))";
                  }
                else
                 {bs(b,"\n.B of ");
-                 '(sendself self-2/1527 man_of_type_expr_list/1371 [0: 0a] b/1528 father/1535\n  " * " match/2132)';
+                 /* unknown */'(sendself self-2/1527 man_of_type_expr_list/1371 [0: 0a] b/1528 father/1535\n  " * " match/2132)';
                  }
                }
              else
               {if(match$1)
                 {bs(b,"\n.B : ");
-                 "(sendself self-2/1527 man_of_type_expr/1369 b/1528 father/1535\n  (field 0 match/2133))";
+                 /* unknown */"(sendself self-2/1527 man_of_type_expr/1369 b/1528 father/1535\n  (field 0 match/2133))";
                  }
                else
                 {bs(b,"\n")}
@@ -945,7 +945,7 @@ var
              if(match$4)
               {bs(b,'.I "  "\n');
                bs(b,"(* ");
-               "(sendself self-2/1527 man_of_info/1525 0a b/1528\n  (makeblock 0 (field 0 match/2126)))";
+               /* unknown */"(sendself self-2/1527 man_of_info/1525 0a b/1528\n  (makeblock 0 (field 0 match/2126)))";
                
                return bs(b," *)\n ");
                }
@@ -954,7 +954,7 @@ var
              },
            te[5]);
          bs(b,"\n.sp\n");
-         "(sendself self-2/1527 man_of_info/1525 0a b/1528 (field 0 te/1530))";
+         /* unknown */"(sendself self-2/1527 man_of_info/1525 0a b/1528 (field 0 te/1530))";
          
          return bs(b,"\n.sp\n");
          },
@@ -971,20 +971,20 @@ var
          if(match)
           {if(match$1)
             {bs(b,".B : ");
-             '(sendself self-2/1544 man_of_type_expr_list/1371 [0: 0a] b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546)) " * "\n  match/2120)';
+             /* unknown */'(sendself self-2/1544 man_of_type_expr_list/1371 [0: 0a] b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546)) " * "\n  match/2120)';
              
              bs(b,".B -> ");
-             "(sendself self-2/1544 man_of_type_expr/1369 b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546))\n  (field 0 match/2121))";
+             /* unknown */"(sendself self-2/1544 man_of_type_expr/1369 b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546))\n  (field 0 match/2121))";
              }
            else
             {bs(b,".B of ");
-             '(sendself self-2/1544 man_of_type_expr_list/1371 [0: 0a] b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546)) " * "\n  (field 2 e/1546))';
+             /* unknown */'(sendself self-2/1544 man_of_type_expr_list/1371 [0: 0a] b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546)) " * "\n  (field 2 e/1546))';
              }
            }
          else
           {if(match$1)
             {bs(b,".B : ");
-             "(sendself self-2/1544 man_of_type_expr/1369 b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546))\n  (field 0 match/2121))";
+             /* unknown */"(sendself self-2/1544 man_of_type_expr/1369 b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546))\n  (field 0 match/2121))";
              }
            else
             {}
@@ -1003,7 +1003,7 @@ var
           {}
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1544 man_of_info/1525 0a b/1545 (field 1 e/1546))";
+         /* unknown */"(sendself self-2/1544 man_of_info/1525 0a b/1545 (field 1 e/1546))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1017,7 +1017,7 @@ var
            function(param)
             {if(param)
               {bs(b,"  (* ");
-               "(sendself self-2/1554 man_of_info/1525 0a b/1555\n  (makeblock 0 (field 0 param/2113)))";
+               /* unknown */"(sendself self-2/1554 man_of_info/1525 0a b/1555\n  (makeblock 0 (field 0 param/2113)))";
                
                return bs(b," *) ");
                }
@@ -1026,7 +1026,7 @@ var
              };
          
          bs(b,".I type ");
-         "(sendself self-2/1554 man_of_type_expr_param_list/1372 b/1555 father/1557\n  t/1556)";
+         /* unknown */"(sendself self-2/1554 man_of_type_expr_param_list/1372 b/1555 father/1557\n  t/1556)";
          
          var match=t[3];
          
@@ -1046,7 +1046,7 @@ var
               bs(b,"= ");
               if(priv){bs(b,"private ")}else{}
               
-              "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2110))";
+              /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2110))";
               
              case 1:
               bs(b,"= ");
@@ -1056,7 +1056,7 @@ var
               List["iter"]
                (function(r)
                  {bs(b,Pervasives["^"](r[1]," : "));
-                  "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 1 r/1563))";
+                  /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 1 r/1563))";
                   
                   bs(b,";");
                   return field_comment(r[3]);
@@ -1086,7 +1086,7 @@ var
                    print_text=
                     function(t)
                      {bs(b,"  (* ");
-                      "(sendself self-2/1554 man_of_info/1525 0a b/1555 (makeblock 0 t/1568))";
+                      /* unknown */"(sendself self-2/1554 man_of_info/1525 0a b/1555 (makeblock 0 t/1568))";
                       
                       return bs(b," *)\n ");
                       };
@@ -1103,17 +1103,17 @@ var
                       
                       if(match$6)
                        {bs(b,"\n.B of ");
-                        '(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
+                        /* unknown */'(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
                         
                         bs(b,".B -> ");
-                        "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
+                        /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
                         bs(b,'.I "  "\n');
                         return print_text(t$1);
                         }
                       else
                        {bs(b,"\n.B of ");
-                        '(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
+                        /* unknown */'(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
                         
                         bs(b,'.I "  "\n');
                         return print_text(t$1);
@@ -1122,16 +1122,16 @@ var
                     else
                      {if(match$6)
                        {bs(b,"\n.B : ");
-                        '(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
+                        /* unknown */'(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
                         
                         bs(b,".B -> ");
-                        "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
+                        /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
                         return bs(b," ");
                         }
                       else
                        {bs(b,"\n.B of ");
-                        '(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
+                        /* unknown */'(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
                         
                         return bs(b," ");
                         }
@@ -1143,7 +1143,7 @@ var
                       
                       if(match$6)
                        {bs(b,"\n.B : ");
-                        "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
+                        /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
                         bs(b,'.I "  "\n');
                         return print_text(t$2);
@@ -1154,7 +1154,7 @@ var
                     else
                      {if(match$6)
                        {bs(b,"\n.B : ");
-                        "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
+                        /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
                         return bs(b," ");
                         }
@@ -1173,7 +1173,7 @@ var
                (function(r)
                  {bs(b,r[2]?"\n\n.B mutable \n":"\n ");
                   bs(b,Pervasives["^"](r[1]," : "));
-                  "(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 2 r/1581))";
+                  /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 2 r/1581))";
                   
                   bs(b,";");
                   return field_comment(r[4]);
@@ -1183,7 +1183,7 @@ var
              }}
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1554 man_of_info/1525 0a b/1555 (field 1 t/1556))";
+         /* unknown */"(sendself self-2/1554 man_of_info/1525 0a b/1555 (field 1 t/1556))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1195,10 +1195,10 @@ var
          if(a[2]){bs(b,Pervasives["^"](Odoc_messages["mutab"]," "))}else{}
          
          bs(b,Pervasives["^"](Odoc_info["Name"][1](a[1][1])," : "));
-         "(sendself self-2/1583 man_of_type_expr/1369 b/1584\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 (field 0 a/1585)))\n  (field 2 (field 0 a/1585)))";
+         /* unknown */"(sendself self-2/1583 man_of_type_expr/1369 b/1584\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 (field 0 a/1585)))\n  (field 2 (field 0 a/1585)))";
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1583 man_of_info/1525 0a b/1584 (field 1 (field 0 a/1585)))";
+         /* unknown */"(sendself self-2/1583 man_of_info/1525 0a b/1584 (field 1 (field 0 a/1585)))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1210,10 +1210,10 @@ var
          if(m[3]){bs(b,"virtual ")}else{}
          
          bs(b,Pervasives["^"](Odoc_info["Name"][1](m[1][1])," : "));
-         "(sendself self-2/1587 man_of_type_expr/1369 b/1588\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 (field 0 m/1589)))\n  (field 2 (field 0 m/1589)))";
+         /* unknown */"(sendself self-2/1587 man_of_type_expr/1369 b/1588\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 (field 0 m/1589)))\n  (field 2 (field 0 m/1589)))";
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1587 man_of_info/1525 0a b/1588 (field 1 (field 0 m/1589)))";
+         /* unknown */"(sendself self-2/1587 man_of_info/1525 0a b/1588 (field 1 (field 0 m/1589)))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1229,10 +1229,10 @@ var
                bs(b,'"');
                bs(b,Odoc_info["Parameter"][1](p));
                bs(b,'"\n');
-               "(sendself self-2/1591 man_of_type_expr/1369 b/1592 m_name/1593\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1595))";
+               /* unknown */"(sendself self-2/1591 man_of_type_expr/1369 b/1592 m_name/1593\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1595))";
                
                bs(b,"\n");
-               "(sendself self-2/1591 man_of_parameter_description/1381 b/1592 p/1595)";
+               /* unknown */"(sendself self-2/1591 man_of_parameter_description/1381 b/1592 p/1595)";
                
                return bs(b,"\n");
                },
@@ -1253,9 +1253,9 @@ var
                        {var match=Odoc_info["Parameter"][4](p,n);
                         
                         if(match)
-                         {'(sendself self-2/1597 man_of_code/1367 b/1598\n  (apply (field 15 (global Pervasives!)) n/1603 " : "))';
+                         {/* unknown */'(sendself self-2/1597 man_of_code/1367 b/1598\n  (apply (field 15 (global Pervasives!)) n/1603 " : "))';
                           
-                          "(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2092))";
+                          /* unknown */"(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2092))";
                           }
                         else
                          {return /* () */0;}
@@ -1267,7 +1267,7 @@ var
              
              if(match)
               {bs(b,"\n ");
-               "(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2090))";
+               /* unknown */"(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2090))";
                }
              else
               {return /* () */0;}
@@ -1290,11 +1290,11 @@ var
                
                bs(b,".sp\n");
                bs(b,Pervasives["^"]('"',Pervasives["^"](p[1],'"\n')));
-               "(sendself self-2/1606 man_of_module_type/1373 b/1607 m_name/1608)";
+               /* unknown */"(sendself self-2/1606 man_of_module_type/1373 b/1607 m_name/1608)";
                Misc["may"](0,p[2]);
                bs(b,"\n");
                if(desc_opt)
-                {"(sendself self-2/1606 man_of_text/1362 b/1607 (field 0 desc_opt/1611))";
+                {/* unknown */"(sendself self-2/1606 man_of_text/1362 b/1607 (field 0 desc_opt/1611))";
                  }
                else
                 {}
@@ -1324,10 +1324,10 @@ var
          
          bs(b,Odoc_info["Name"][1](c[1]));
          bs(b," : ");
-         "(sendself self-2/1614 man_of_class_type_expr/1370 b/1615 father/1617\n  (field 2 c/1616))";
+         /* unknown */"(sendself self-2/1614 man_of_class_type_expr/1370 b/1615 father/1617\n  (field 2 c/1616))";
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1614 man_of_info/1525 0a b/1615 (field 1 c/1616))";
+         /* unknown */"(sendself self-2/1614 man_of_info/1525 0a b/1615 (field 1 c/1616))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1346,10 +1346,10 @@ var
          
          bs(b,Odoc_info["Name"][1](ct[1]));
          bs(b," = ");
-         "(sendself self-2/1620 man_of_class_type_expr/1370 b/1621\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ct/1622))\n  (field 2 ct/1622))";
+         /* unknown */"(sendself self-2/1620 man_of_class_type_expr/1370 b/1621\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ct/1622))\n  (field 2 ct/1622))";
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1620 man_of_info/1525 0a b/1621 (field 1 ct/1622))";
+         /* unknown */"(sendself self-2/1620 man_of_info/1525 0a b/1621 (field 1 ct/1622))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1358,10 +1358,10 @@ var
         {bs(b,".I module ");
          bs(b,Odoc_info["Name"][1](m[1]));
          bs(b," : ");
-         "(sendself self-2/1625 man_of_module_type/1373 b/1626\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1627))\n  (field 1 m/1627))";
+         /* unknown */"(sendself self-2/1625 man_of_module_type/1373 b/1626\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1627))\n  (field 1 m/1627))";
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1625 man_of_info/1525 0a b/1626 (field 2 m/1627))";
+         /* unknown */"(sendself self-2/1625 man_of_info/1525 0a b/1626 (field 2 m/1627))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1373,27 +1373,27 @@ var
          var match=mt[3];
          
          if(match)
-          {"(sendself self-2/1629 man_of_module_type/1373 b/1630\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1631))\n  (field 0 match/2077))";
+          {/* unknown */"(sendself self-2/1629 man_of_module_type/1373 b/1630\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1631))\n  (field 0 match/2077))";
            }
          else
           {}
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1629 man_of_info/1525 0a b/1630 (field 1 mt/1631))";
+         /* unknown */"(sendself self-2/1629 man_of_info/1525 0a b/1630 (field 1 mt/1631))";
          
          return bs(b,"\n.sp\n");
          },
        man_of_module_comment,
        function(self$neg2,b,text)
         {bs(b,"\n.PP\n");
-         '(sendself self-2/1634 man_of_text/1362 b/1635\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) "=== "\n        (apply (field 15 (global Pervasives!))\n          (apply (field 5 (global Odoc_misc!)) text/1636) " ===")))\n    0a))';
+         /* unknown */'(sendself self-2/1634 man_of_text/1362 b/1635\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) "=== "\n        (apply (field 15 (global Pervasives!))\n          (apply (field 5 (global Odoc_misc!)) text/1636) " ===")))\n    0a))';
          
          return bs(b,"\n.PP\n");
          },
        man_of_class_comment,
        function(self$neg2,b,text)
         {bs(b,"\n.PP\n");
-         '(sendself self-2/1638 man_of_text/1362 b/1639\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) "=== "\n        (apply (field 15 (global Pervasives!))\n          (apply (field 5 (global Odoc_misc!)) text/1640) " ===")))\n    0a))';
+         /* unknown */'(sendself self-2/1638 man_of_text/1362 b/1639\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) "=== "\n        (apply (field 15 (global Pervasives!))\n          (apply (field 5 (global Odoc_misc!)) text/1640) " ===")))\n    0a))';
          
          return bs(b,"\n.PP\n");
          },
@@ -1403,10 +1403,10 @@ var
          if(f[2]){bs(b,Pervasives["^"](Odoc_messages["mutab"]," "))}else{}
          
          bs(b,Pervasives["^"](f[1]," : "));
-         "(sendself self-2/1642 man_of_type_expr/1369 b/1643 modname/1644\n  (field 2 f/1645))";
+         /* unknown */"(sendself self-2/1642 man_of_type_expr/1369 b/1643 modname/1644\n  (field 2 f/1645))";
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1642 man_of_info/1525 0a b/1643 (field 3 f/1645))";
+         /* unknown */"(sendself self-2/1642 man_of_info/1525 0a b/1643 (field 3 f/1645))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1418,19 +1418,19 @@ var
          
          if(match)
           {bs(b,"of ");
-           "(sendself self-2/1647 man_of_type_expr/1369 b/1648 modname/1649\n  (field 0 match/2071))";
+           /* unknown */"(sendself self-2/1647 man_of_type_expr/1369 b/1648 modname/1649\n  (field 0 match/2071))";
            
            List["iter"]
             (function(ty)
               {bs(b," * ");
-               "(sendself self-2/1647 man_of_type_expr/1369 b/1648 modname/1649 ty/1653)";
+               /* unknown */"(sendself self-2/1647 man_of_type_expr/1369 b/1648 modname/1649 ty/1653)";
                },
              match[2])}
          else
           {}
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1647 man_of_info/1525 0a b/1648 (field 3 c/1650))";
+         /* unknown */"(sendself self-2/1647 man_of_info/1525 0a b/1648 (field 3 c/1650))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1442,13 +1442,13 @@ var
          if(match)
           {var name=match[1][1][1];
            
-           "(sendself self-2/1655 relative_idents/1368 m_name/1657 name/1660)";
+           /* unknown */"(sendself self-2/1655 relative_idents/1368 m_name/1657 name/1660)";
            bs(b,0)}
          else
           {bs(b,im[1])}
          
          bs(b,"\n.sp\n");
-         "(sendself self-2/1655 man_of_info/1525 0a b/1656 (field 2 im/1658))";
+         /* unknown */"(sendself self-2/1655 man_of_info/1525 0a b/1656 (field 2 im/1658))";
          
          return bs(b,"\n.sp\n");
          },
@@ -1457,10 +1457,10 @@ var
         {Odoc_info["reset_type_names"](/* () */0);
          var date=Unix["time"](/* () */0);
          
-         "(sendself self-2/1664 file_name/1358 (field 0 cl/1665))";
+         /* unknown */"(sendself self-2/1664 file_name/1358 (field 0 cl/1665))";
          
          try
-          {"(sendself self-2/1664 open_out/1360 file/1667)";
+          {/* unknown */"(sendself self-2/1664 open_out/1360 file/1667)";
            
            var b=new_buf(/* () */0);
            
@@ -1490,7 +1490,7 @@ var
                  Odoc_info["string_of_text"]
                   (Odoc_info["first_sentence_of_text"](match$2[1]));
                
-               "(sendself self-2/1664 remove_newlines/1363 s/1673)";
+               /* unknown */"(sendself self-2/1664 remove_newlines/1363 s/1673)";
                }
              else
               {exit=51;}
@@ -1519,22 +1519,22 @@ var
              Pervasives["^"]
               (".SH ",Pervasives["^"](Odoc_messages["documentation"],"\n")));
            bs(b,".sp\n");
-           "(sendself self-2/1664 man_of_class/1383 b/1669 cl/1665)";
+           /* unknown */"(sendself self-2/1664 man_of_class/1383 b/1669 cl/1665)";
            
-           '(sendself self-2/1664 man_of_parameter_list/1380 b/1669 "" (field 6 cl/1665))';
+           /* unknown */'(sendself self-2/1664 man_of_parameter_list/1380 b/1669 "" (field 6 cl/1665))';
            
            bs(b,"\n.sp\n.sp\n");
            List["iter"]
             (function(element)
               {switch(element[0])
                 {case 0:
-                  "(sendself self-2/1664 man_of_attribute/1378 b/1669 (field 0 element/1674))";
+                  /* unknown */"(sendself self-2/1664 man_of_attribute/1378 b/1669 (field 0 element/1674))";
                   
                  case 1:
-                  "(sendself self-2/1664 man_of_method/1379 b/1669 (field 0 element/1674))";
+                  /* unknown */"(sendself self-2/1664 man_of_method/1379 b/1669 (field 0 element/1674))";
                   
                  case 2:
-                  "(sendself self-2/1664 man_of_class_comment/1388 b/1669\n  (field 0 element/1674))";
+                  /* unknown */"(sendself self-2/1664 man_of_class_comment/1388 b/1669\n  (field 0 element/1674))";
                   
                  }
                },
@@ -1556,10 +1556,10 @@ var
         {Odoc_info["reset_type_names"](/* () */0);
          var date=Unix["time"](/* () */0);
          
-         "(sendself self-2/1680 file_name/1358 (field 0 ct/1681))";
+         /* unknown */"(sendself self-2/1680 file_name/1358 (field 0 ct/1681))";
          
          try
-          {"(sendself self-2/1680 open_out/1360 file/1683)";
+          {/* unknown */"(sendself self-2/1680 open_out/1360 file/1683)";
            
            var b=new_buf(/* () */0);
            
@@ -1589,7 +1589,7 @@ var
                  Odoc_info["string_of_text"]
                   (Odoc_info["first_sentence_of_text"](match$2[1]));
                
-               "(sendself self-2/1680 remove_newlines/1363 s/1689)";
+               /* unknown */"(sendself self-2/1680 remove_newlines/1363 s/1689)";
                }
              else
               {exit=43;}
@@ -1618,20 +1618,20 @@ var
              Pervasives["^"]
               (".SH ",Pervasives["^"](Odoc_messages["documentation"],"\n")));
            bs(b,".sp\n");
-           "(sendself self-2/1680 man_of_class_type/1384 b/1685 ct/1681)";
+           /* unknown */"(sendself self-2/1680 man_of_class_type/1384 b/1685 ct/1681)";
            
            bs(b,"\n.sp\n.sp\n");
            List["iter"]
             (function(element)
               {switch(element[0])
                 {case 0:
-                  "(sendself self-2/1680 man_of_attribute/1378 b/1685 (field 0 element/1690))";
+                  /* unknown */"(sendself self-2/1680 man_of_attribute/1378 b/1685 (field 0 element/1690))";
                   
                  case 1:
-                  "(sendself self-2/1680 man_of_method/1379 b/1685 (field 0 element/1690))";
+                  /* unknown */"(sendself self-2/1680 man_of_method/1379 b/1685 (field 0 element/1690))";
                   
                  case 2:
-                  "(sendself self-2/1680 man_of_class_comment/1388 b/1685\n  (field 0 element/1690))";
+                  /* unknown */"(sendself self-2/1680 man_of_class_comment/1388 b/1685\n  (field 0 element/1690))";
                   
                  }
                },
@@ -1650,44 +1650,44 @@ var
          },
        man_of_module_type_body,
        function(self$neg2,b,mt)
-        {"(sendself self-2/1696 man_of_info/1525 0a b/1697 (field 1 mt/1698))";
+        {/* unknown */"(sendself self-2/1696 man_of_info/1525 0a b/1697 (field 1 mt/1698))";
          
          bs(b,"\n.sp\n");
-         '(sendself self-2/1696 man_of_module_parameter_list/1382 b/1697 ""\n  (apply (field 29 (field 9 (global Odoc_info!))) 0a mt/1698))';
+         /* unknown */'(sendself self-2/1696 man_of_module_parameter_list/1382 b/1697 ""\n  (apply (field 29 (field 9 (global Odoc_info!))) 0a mt/1698))';
          
          bs(b,"\n.sp\n.sp\n");
          return List["iter"]
                  (function(ele)
                    {switch(ele[0])
                      {case 0:
-                       "(sendself self-2/1696 man_of_module/1385 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_module/1385 b/1697 (field 0 ele/1699))";
                        
                       case 1:
-                       "(sendself self-2/1696 man_of_modtype/1386 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_modtype/1386 b/1697 (field 0 ele/1699))";
                        
                       case 2:
-                       "(sendself self-2/1696 man_of_included_module/1391 b/1697 (field 0 mt/1698)\n  (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_included_module/1391 b/1697 (field 0 mt/1698)\n  (field 0 ele/1699))";
                        
                       case 3:
-                       "(sendself self-2/1696 man_of_class/1383 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_class/1383 b/1697 (field 0 ele/1699))";
                        
                       case 4:
-                       "(sendself self-2/1696 man_of_class_type/1384 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_class_type/1384 b/1697 (field 0 ele/1699))";
                        
                       case 5:
-                       "(sendself self-2/1696 man_of_value/1374 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_value/1374 b/1697 (field 0 ele/1699))";
                        
                       case 6:
-                       "(sendself self-2/1696 man_of_type_extension/1375 b/1697 (field 0 mt/1698)\n  (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_type_extension/1375 b/1697 (field 0 mt/1698)\n  (field 0 ele/1699))";
                        
                       case 7:
-                       "(sendself self-2/1696 man_of_exception/1376 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_exception/1376 b/1697 (field 0 ele/1699))";
                        
                       case 8:
-                       "(sendself self-2/1696 man_of_type/1377 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_type/1377 b/1697 (field 0 ele/1699))";
                        
                       case 9:
-                       "(sendself self-2/1696 man_of_module_comment/1387 b/1697 (field 0 ele/1699))";
+                       /* unknown */"(sendself self-2/1696 man_of_module_comment/1387 b/1697 (field 0 ele/1699))";
                        
                       }
                     },
@@ -1697,10 +1697,10 @@ var
        function(self$neg2,mt)
         {var date=Unix["time"](/* () */0);
          
-         "(sendself self-2/1711 file_name/1358 (field 0 mt/1712))";
+         /* unknown */"(sendself self-2/1711 file_name/1358 (field 0 mt/1712))";
          
          try
-          {"(sendself self-2/1711 open_out/1360 file/1714)";
+          {/* unknown */"(sendself self-2/1711 open_out/1360 file/1714)";
            
            var b=new_buf(/* () */0);
            
@@ -1730,7 +1730,7 @@ var
                  Odoc_info["string_of_text"]
                   (Odoc_info["first_sentence_of_text"](match$2[1]));
                
-               "(sendself self-2/1711 remove_newlines/1363 s/1720)";
+               /* unknown */"(sendself self-2/1711 remove_newlines/1363 s/1720)";
                }
              else
               {exit=35;}
@@ -1768,13 +1768,13 @@ var
            var match$3=mt[3];
            
            if(match$3)
-            {"(sendself self-2/1711 man_of_module_type/1373 b/1716\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1712))\n  (field 0 match/1976))";
+            {/* unknown */"(sendself self-2/1711 man_of_module_type/1373 b/1716\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1712))\n  (field 0 match/1976))";
              }
            else
             {}
            
            bs(b,"\n.sp\n");
-           "(sendself self-2/1711 man_of_module_type_body/1394 b/1716 mt/1712)";
+           /* unknown */"(sendself self-2/1711 man_of_module_type_body/1394 b/1716 mt/1712)";
            
            Buffer["output_buffer"](chanout,b);
            return Pervasives["close_out"](chanout);
@@ -1790,44 +1790,44 @@ var
          },
        man_of_module_body,
        function(self$neg2,b,m)
-        {"(sendself self-2/1724 man_of_info/1525 0a b/1725 (field 2 m/1726))";
+        {/* unknown */"(sendself self-2/1724 man_of_info/1525 0a b/1725 (field 2 m/1726))";
          
          bs(b,"\n.sp\n");
-         '(sendself self-2/1724 man_of_module_parameter_list/1382 b/1725 ""\n  (apply (field 14 (field 9 (global Odoc_info!))) 0a m/1726))';
+         /* unknown */'(sendself self-2/1724 man_of_module_parameter_list/1382 b/1725 ""\n  (apply (field 14 (field 9 (global Odoc_info!))) 0a m/1726))';
          
          bs(b,"\n.sp\n.sp\n");
          return List["iter"]
                  (function(ele)
                    {switch(ele[0])
                      {case 0:
-                       "(sendself self-2/1724 man_of_module/1385 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_module/1385 b/1725 (field 0 ele/1727))";
                        
                       case 1:
-                       "(sendself self-2/1724 man_of_modtype/1386 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_modtype/1386 b/1725 (field 0 ele/1727))";
                        
                       case 2:
-                       "(sendself self-2/1724 man_of_included_module/1391 b/1725 (field 0 m/1726)\n  (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_included_module/1391 b/1725 (field 0 m/1726)\n  (field 0 ele/1727))";
                        
                       case 3:
-                       "(sendself self-2/1724 man_of_class/1383 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_class/1383 b/1725 (field 0 ele/1727))";
                        
                       case 4:
-                       "(sendself self-2/1724 man_of_class_type/1384 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_class_type/1384 b/1725 (field 0 ele/1727))";
                        
                       case 5:
-                       "(sendself self-2/1724 man_of_value/1374 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_value/1374 b/1725 (field 0 ele/1727))";
                        
                       case 6:
-                       "(sendself self-2/1724 man_of_type_extension/1375 b/1725 (field 0 m/1726)\n  (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_type_extension/1375 b/1725 (field 0 m/1726)\n  (field 0 ele/1727))";
                        
                       case 7:
-                       "(sendself self-2/1724 man_of_exception/1376 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_exception/1376 b/1725 (field 0 ele/1727))";
                        
                       case 8:
-                       "(sendself self-2/1724 man_of_type/1377 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_type/1377 b/1725 (field 0 ele/1727))";
                        
                       case 9:
-                       "(sendself self-2/1724 man_of_module_comment/1387 b/1725 (field 0 ele/1727))";
+                       /* unknown */"(sendself self-2/1724 man_of_module_comment/1387 b/1725 (field 0 ele/1727))";
                        
                       }
                     },
@@ -1837,10 +1837,10 @@ var
        function(self$neg2,m)
         {var date=Unix["time"](/* () */0);
          
-         "(sendself self-2/1739 file_name/1358 (field 0 m/1740))";
+         /* unknown */"(sendself self-2/1739 file_name/1358 (field 0 m/1740))";
          
          try
-          {"(sendself self-2/1739 open_out/1360 file/1742)";
+          {/* unknown */"(sendself self-2/1739 open_out/1360 file/1742)";
            
            var b=new_buf(/* () */0);
            
@@ -1870,7 +1870,7 @@ var
                  Odoc_info["string_of_text"]
                   (Odoc_info["first_sentence_of_text"](match$2[1]));
                
-               "(sendself self-2/1739 remove_newlines/1363 s/1748)";
+               /* unknown */"(sendself self-2/1739 remove_newlines/1363 s/1748)";
                }
              else
               {exit=27;}
@@ -1905,10 +1905,10 @@ var
              Pervasives["^"]
               ('.BI "',Pervasives["^"](Odoc_info["Name"][1](m[1]),'"\n')));
            bs(b," : ");
-           "(sendself self-2/1739 man_of_module_type/1373 b/1744\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1740))\n  (field 1 m/1740))";
+           /* unknown */"(sendself self-2/1739 man_of_module_type/1373 b/1744\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1740))\n  (field 1 m/1740))";
            
            bs(b,"\n.sp\n");
-           "(sendself self-2/1739 man_of_module_body/1396 b/1744 m/1740)";
+           /* unknown */"(sendself self-2/1739 man_of_module_body/1396 b/1744 m/1740)";
            
            Buffer["output_buffer"](chanout,b);
            return Pervasives["close_out"](chanout);
@@ -2022,10 +2022,10 @@ var
          
          var date=Unix["time"](/* () */0);
          
-         "(sendself self-2/1797 file_name/1358 name/1799)";
+         /* unknown */"(sendself self-2/1797 file_name/1358 name/1799)";
          
          try
-          {"(sendself self-2/1797 open_out/1360 file/1814)";
+          {/* unknown */"(sendself self-2/1797 open_out/1360 file/1814)";
            
            var b=new_buf(/* () */0);
            
@@ -2075,7 +2075,7 @@ var
                       Pervasives["^"]
                        ('.BI "',Pervasives["^"](Odoc_info["Name"][1](m[1]),'"\n')));
                     bs(b," : ");
-                    "(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1832))\n  (field 1 m/1832))";
+                    /* unknown */"(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1832))\n  (field 1 m/1832))";
                     }
                   else
                    {bs
@@ -2086,11 +2086,11 @@ var
                          (Odoc_messages["modul"],
                           Pervasives["^"](" ",Pervasives["^"](m[1],"\n")))));
                     bs(b," : ");
-                    "(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1832))\n  (field 1 m/1832))";
+                    /* unknown */"(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 m/1832))\n  (field 1 m/1832))";
                     }
                   
                   bs(b,"\n.sp\n");
-                  "(sendself self-2/1797 man_of_module_body/1396 b/1816 m/1832)";
+                  /* unknown */"(sendself self-2/1797 man_of_module_body/1396 b/1816 m/1832)";
                   
                  case 1:
                   var mt=ele[1];
@@ -2112,13 +2112,13 @@ var
                   var match$2=mt[3];
                   
                   if(match$2)
-                   {"(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1833))\n  (field 0 match/1905))";
+                   {/* unknown */"(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1833))\n  (field 0 match/1905))";
                     }
                   else
                    {}
                   
                   bs(b,"\n.sp\n");
-                  "(sendself self-2/1797 man_of_module_type_body/1394 b/1816 mt/1833)";
+                  /* unknown */"(sendself self-2/1797 man_of_module_type_body/1394 b/1816 mt/1833)";
                   
                  case 2:
                   var c=ele[1];
@@ -2131,7 +2131,7 @@ var
                        (Odoc_messages["modul"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](c[1]),"\n")))));
-                  "(sendself self-2/1797 man_of_class/1383 b/1816 c/1826)";
+                  /* unknown */"(sendself self-2/1797 man_of_class/1383 b/1816 c/1826)";
                   
                  case 3:
                   var ct=ele[1];
@@ -2144,7 +2144,7 @@ var
                        (Odoc_messages["modul"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](ct[1]),"\n")))));
-                  "(sendself self-2/1797 man_of_class_type/1384 b/1816 ct/1827)";
+                  /* unknown */"(sendself self-2/1797 man_of_class_type/1384 b/1816 ct/1827)";
                   
                  case 4:
                   var v=ele[1];
@@ -2157,7 +2157,7 @@ var
                        (Odoc_messages["modul"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](v[1]),"\n")))));
-                  "(sendself self-2/1797 man_of_value/1374 b/1816 v/1820)";
+                  /* unknown */"(sendself self-2/1797 man_of_value/1374 b/1816 v/1820)";
                   
                  case 5:
                   var t=ele[1];
@@ -2170,7 +2170,7 @@ var
                        (Odoc_messages["modul"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](t[1]),"\n")))));
-                  "(sendself self-2/1797 man_of_type/1377 b/1816 t/1821)";
+                  /* unknown */"(sendself self-2/1797 man_of_type/1377 b/1816 t/1821)";
                   
                  case 6:
                   var x=ele[1];
@@ -2183,7 +2183,7 @@ var
                        (Odoc_messages["modul"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](x[1]),"\n")))));
-                  "(sendself self-2/1797 man_of_type_extension/1375 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 x/1822))\n  (field 3 x/1822))";
+                  /* unknown */"(sendself self-2/1797 man_of_type_extension/1375 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 x/1822))\n  (field 3 x/1822))";
                   
                  case 7:
                   var e=ele[1];
@@ -2196,7 +2196,7 @@ var
                        (Odoc_messages["modul"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](e[1]),"\n")))));
-                  "(sendself self-2/1797 man_of_exception/1376 b/1816 e/1823)";
+                  /* unknown */"(sendself self-2/1797 man_of_exception/1376 b/1816 e/1823)";
                   
                  case 8:
                   var a=ele[1];
@@ -2209,7 +2209,7 @@ var
                        (Odoc_messages["clas"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](a[1][1]),"\n")))));
-                  "(sendself self-2/1797 man_of_attribute/1378 b/1816 a/1824)";
+                  /* unknown */"(sendself self-2/1797 man_of_attribute/1378 b/1816 a/1824)";
                   
                  case 9:
                   var m$1=ele[1];
@@ -2222,7 +2222,7 @@ var
                        (Odoc_messages["clas"],
                         Pervasives["^"]
                          (" ",Pervasives["^"](Odoc_info["Name"][5](m$1[1][1]),"\n")))));
-                  "(sendself self-2/1797 man_of_method/1379 b/1816 m/1825)";
+                  /* unknown */"(sendself self-2/1797 man_of_method/1379 b/1816 m/1825)";
                   
                  case 10:return /* () */0;
                  case 11:
@@ -2231,7 +2231,7 @@ var
                   bs
                    (b,
                     Pervasives["^"]("\n.SH Type ",Pervasives["^"](ty[1],"\n")));
-                  "(sendself self-2/1797 man_of_recfield/1389 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ty/1828))\n  (field 1 ele/1819))";
+                  /* unknown */"(sendself self-2/1797 man_of_recfield/1389 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ty/1828))\n  (field 1 ele/1819))";
                   
                  case 12:
                   var ty$1=ele[1];
@@ -2239,7 +2239,7 @@ var
                   bs
                    (b,
                     Pervasives["^"]("\n.SH Type ",Pervasives["^"](ty$1[1],"\n")));
-                  "(sendself self-2/1797 man_of_const/1390 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ty/1830))\n  (field 1 ele/1819))";
+                  /* unknown */"(sendself self-2/1797 man_of_const/1390 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ty/1830))\n  (field 1 ele/1819))";
                   
                  }
                };
@@ -2266,7 +2266,7 @@ var
               {return CamlPrimtivie["caml_string_compare"](m1[1],m2[1]);},
              module_list);
          
-         "(sendself self-2/1837 create_groups/1398 (field 0 man_mini/1235)\n  sorted_module_list/1839)";
+         /* unknown */"(sendself self-2/1837 create_groups/1398 (field 0 man_mini/1235)\n  sorted_module_list/1839)";
          
          var
           f=
@@ -2281,28 +2281,28 @@ var
                   if(group[2])
                    {exit=1;}
                   else
-                   {"(sendself self-2/1837 generate_for_module/1397 (field 0 match/1889))";
+                   {/* unknown */"(sendself self-2/1837 generate_for_module/1397 (field 0 match/1889))";
                     }
                   
                  case 1:
                   if(group[2])
                    {exit=1;}
                   else
-                   {"(sendself self-2/1837 generate_for_module_type/1395 (field 0 match/1889))";
+                   {/* unknown */"(sendself self-2/1837 generate_for_module_type/1395 (field 0 match/1889))";
                     }
                   
                  case 2:
                   if(group[2])
                    {exit=1;}
                   else
-                   {"(sendself self-2/1837 generate_for_class/1392 (field 0 match/1889))";
+                   {/* unknown */"(sendself self-2/1837 generate_for_class/1392 (field 0 match/1889))";
                     }
                   
                  case 3:
                   if(group[2])
                    {exit=1;}
                   else
-                   {"(sendself self-2/1837 generate_for_class_type/1393 (field 0 match/1889))";
+                   {/* unknown */"(sendself self-2/1837 generate_for_class_type/1393 (field 0 match/1889))";
                     }
                   
                  default:exit=1;}
@@ -2312,7 +2312,8 @@ var
              
              switch(exit)
               {case 1:
-                "(sendself self-2/1837 generate_for_group/1399 group/1844)";
+                /* unknown */"(sendself self-2/1837 generate_for_group/1399 group/1844)";
+                
                }
              };
          

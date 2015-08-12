@@ -288,7 +288,7 @@ var
          else
           {}
          
-         "(sendself self-1/1377 html_of_text/1388 b/1378 text/1379)";
+         /* unknown */"(sendself self-1/1377 html_of_text/1388 b/1378 text/1379)";
          
          if(match$2[2])
           {return p
@@ -302,7 +302,7 @@ var
          },
        html_of_Title,
        function(self$neg1,b,n,l_opt,t)
-        {"(sendself self-1/1390 create_title_label/1396\n  (makeblock 0 n/1392 l_opt/1393 t/1394))";
+        {/* unknown */"(sendself self-1/1390 create_title_label/1396\n  (makeblock 0 n/1392 l_opt/1393 t/1394))";
          
          p
           (b,
@@ -326,7 +326,7 @@ var
               [/* Char_literal */12,62,/* End_of_format */0]]],
             "<h%d>"],
            n);
-         "(sendself self-1/1390 html_of_text/1388 b/1391 t/1394)";
+         /* unknown */"(sendself self-1/1390 html_of_text/1388 b/1391 t/1394)";
          
          return p
                  (b,
@@ -386,7 +386,7 @@ var
                /* End_of_format */0]]],
             '<div id="code%d" class="codeblock">'],
            self$neg1[code_id]);
-         "(sendself self-1/1437 html_of_code/1440 b/1438 0a code/1439)";
+         /* unknown */"(sendself self-1/1437 html_of_code/1440 b/1438 0a code/1439)";
          
          return Printf["bprintf"]
                  (b,
@@ -397,10 +397,10 @@ var
        html_of_value,
        function(self$neg1,b,v)
         {Odoc_info["reset_type_names"](/* () */0);
-         "(sendself self-1/1442 html_of_info/1445 0a 0a b/1443 (field 1 v/1444))";
+         /* unknown */"(sendself self-1/1442 html_of_info/1445 0a 0a b/1443 (field 1 v/1444))";
          
          bs(b,"<pre>");
-         '(sendself self-1/1442 keyword/1446 "val")';
+         /* unknown */'(sendself self-1/1442 keyword/1446 "val")';
          bs(b,0);
          bs(b," ");
          bp
@@ -413,23 +413,23 @@ var
               [/* String_literal */11,'"></a>',/* End_of_format */0]]],
             '<a name="%s"></a>'],
            Odoc_html["Naming"][25](v));
-         "(sendself self-1/1442 escape/1447\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/1444)))";
+         /* unknown */"(sendself self-1/1442 escape/1447\n  (apply (field 0 (field 2 (global Odoc_info!))) (field 0 v/1444)))";
          bs(b,0);
          bs(b," : ");
-         "(sendself self-1/1442 html_of_type_expr/1448 b/1443\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1444))\n  (field 2 v/1444))";
+         /* unknown */"(sendself self-1/1442 html_of_type_expr/1448 b/1443\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1444))\n  (field 2 v/1444))";
          
          bs(b,"</pre>");
          if(Odoc_html["with_parameter_list"][1])
-          {"(sendself self-1/1442 html_of_parameter_list/1449 b/1443\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1444))\n  (field 4 v/1444))";
+          {/* unknown */"(sendself self-1/1442 html_of_parameter_list/1449 b/1443\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1444))\n  (field 4 v/1444))";
            }
          else
-          {"(sendself self-1/1442 html_of_described_parameter_list/1450 b/1443\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1444))\n  (field 4 v/1444))";
+          {/* unknown */"(sendself self-1/1442 html_of_described_parameter_list/1450 b/1443\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1444))\n  (field 4 v/1444))";
            }
          
          var match$2=v[6];
          
          if(match$2)
-          {"(sendself self-1/1442 code_block/1374 b/1443 (field 0 match/1486))";
+          {/* unknown */"(sendself self-1/1442 code_block/1374 b/1443 (field 0 match/1486))";
            }
          else
           {return /* () */0;}

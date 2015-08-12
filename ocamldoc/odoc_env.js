@@ -45,7 +45,7 @@ var
          {case 0:
            var ident=item[1];
            
-           var newrecord="duprecord regular 7";
+           var newrecord=/* unknown */"duprecord regular 7";
            
            newrecord[1]=
            /* :: */[0,/* tuple */[0,rel_name(ident),qualify(ident)],env[1]],
@@ -55,7 +55,7 @@ var
           case 1:
            var ident$1=item[1];
            
-           var newrecord$1="duprecord regular 7";
+           var newrecord$1=/* unknown */"duprecord regular 7";
            
            newrecord$1[2]=
            /* :: */[0,
@@ -67,7 +67,7 @@ var
           case 2:
            var ident$2=item[1];
            
-           var newrecord$2="duprecord regular 7";
+           var newrecord$2=/* unknown */"duprecord regular 7";
            
            newrecord$2[7]=
            /* :: */[0,
@@ -93,7 +93,7 @@ var
               
              default:var env2=env;}
            
-           var newrecord$3="duprecord regular 7";
+           var newrecord$3=/* unknown */"duprecord regular 7";
            
            newrecord$3[5]=
            /* :: */[0,
@@ -125,7 +125,7 @@ var
            else
             {var env2$1=env;}
            
-           var newrecord$4="duprecord regular 7";
+           var newrecord$4=/* unknown */"duprecord regular 7";
            
            newrecord$4[6]=
            /* :: */[0,
@@ -137,7 +137,7 @@ var
           case 5:
            var ident$5=item[1];
            
-           var newrecord$5="duprecord regular 7";
+           var newrecord$5=/* unknown */"duprecord regular 7";
            
            newrecord$5[4]=
            /* :: */[0,
@@ -149,7 +149,7 @@ var
           case 6:
            var ident$6=item[1];
            
-           var newrecord$6="duprecord regular 7";
+           var newrecord$6=/* unknown */"duprecord regular 7";
            
            newrecord$6[3]=
            /* :: */[0,
@@ -169,7 +169,7 @@ var
   function(env,full_name)
    {var simple_name=Odoc_name["simple"](full_name);
     
-    var newrecord="duprecord regular 7";
+    var newrecord=/* unknown */"duprecord regular 7";
     
     newrecord[7]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[7]],0;
     return newrecord;
@@ -180,7 +180,7 @@ var
   function(env,full_name)
    {var simple_name=Odoc_name["simple"](full_name);
     
-    var newrecord="duprecord regular 7";
+    var newrecord=/* unknown */"duprecord regular 7";
     
     newrecord[2]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[2]],0;
     return newrecord;
@@ -191,7 +191,7 @@ var
   function(env,full_name)
    {var simple_name=Odoc_name["simple"](full_name);
     
-    var newrecord="duprecord regular 7";
+    var newrecord=/* unknown */"duprecord regular 7";
     
     newrecord[1]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[1]],0;
     return newrecord;
@@ -202,7 +202,7 @@ var
   function(env,full_name)
    {var simple_name=Odoc_name["simple"](full_name);
     
-    var newrecord="duprecord regular 7";
+    var newrecord=/* unknown */"duprecord regular 7";
     
     newrecord[5]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[5]],0;
     return newrecord;
@@ -213,7 +213,7 @@ var
   function(env,full_name)
    {var simple_name=Odoc_name["simple"](full_name);
     
-    var newrecord="duprecord regular 7";
+    var newrecord=/* unknown */"duprecord regular 7";
     
     newrecord[6]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[6]],0;
     return newrecord;
@@ -430,7 +430,7 @@ var
                    Odoc_name["to_path"]
                     (full_type_name(env,Odoc_name["from_path"](match$4[1])));
                  
-                 var newrecord="duprecord regular 6";
+                 var newrecord=/* unknown */"duprecord regular 6";
                  
                  return t[1]=
                         /* Tvariant */[8,

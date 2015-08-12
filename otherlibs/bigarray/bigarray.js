@@ -73,7 +73,7 @@ var
     if(layout!=0){var ofs=1;}else{var ofs=0;}
     
     for(var i=0;i<=data["length"]-1;i++)
-     {"Bigarray.unsafe_set[generic,unknown]"}
+     {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
     
     return ba;
     };
@@ -114,7 +114,8 @@ var
       else
        {}
       
-      for(var j=0;j<=dim2-1;j++){"Bigarray.unsafe_set[generic,unknown]"}
+      for(var j=0;j<=dim2-1;j++)
+       {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
       }
     
     return ba;
@@ -176,7 +177,8 @@ var
         else
          {}
         
-        for(var k=0;k<=dim3-1;k++){"Bigarray.unsafe_set[generic,unknown]"}
+        for(var k=0;k<=dim3-1;k++)
+         {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
         }
       }
     
@@ -245,13 +247,19 @@ var
   function(prim,prim)
    {return CamlPrimtivie["caml_ba_get_generic"](prim$1,prim);};
 
-var match$1=function(prim,prim){return "Bigarray.get[generic,unknown]";};
+var
+ match$1=
+  function(prim,prim){return /* unknown */"Bigarray.get[generic,unknown]";};
 
-var match$2=function(prim,prim,prim){return "Bigarray.get[generic,unknown]";};
+var
+ match$2=
+  function(prim,prim,prim)
+   {return /* unknown */"Bigarray.get[generic,unknown]";};
 
 var
  match$3=
-  function(prim,prim,prim,prim){return "Bigarray.get[generic,unknown]";};
+  function(prim,prim,prim,prim)
+   {return /* unknown */"Bigarray.get[generic,unknown]";};
 
 
 module["exports"]=

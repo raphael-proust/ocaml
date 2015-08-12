@@ -944,11 +944,13 @@ module rec
                     t)
                   let true_ = var (Jident.create_js "true")
                   let false_ = var (Jident.create_js "false")
-                  let unknown_lambda ?comment  (lam : Lambda.lambda) =
-                    (str ?comment (Lambda_util.string_of_lambda lam) : 
+                  let unknown_lambda ?(comment= "unknown") 
+                    (lam : Lambda.lambda) =
+                    (str ~comment (Lambda_util.string_of_lambda lam) : 
                     t)
-                  let unknown_primitive ?comment  (p : Lambda.primitive) =
-                    (str ?comment (Lambda_util.string_of_primitive p) : 
+                  let unknown_primitive ?(comment= "unknown") 
+                    (p : Lambda.primitive) =
+                    (str ~comment (Lambda_util.string_of_primitive p) : 
                     t)
                 end
               module Stmt =
@@ -1031,9 +1033,10 @@ module rec
                        statement_desc = (Try (body, with_, finally));
                        comment
                      } : t)
-                  let unknown_lambda ?comment  ?loc  (lam : Lambda.lambda) =
-                    (exp ?comment ?loc
-                       (Exp.str (Lambda_util.string_of_lambda lam)) : 
+                  let unknown_lambda ?(comment= "unknown")  ?loc 
+                    (lam : Lambda.lambda) =
+                    (exp @@
+                       (Exp.str ~comment (Lambda_util.string_of_lambda lam)) : 
                     t)
                 end
               let unit_val = Exp.float 0.

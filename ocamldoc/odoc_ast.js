@@ -2415,7 +2415,7 @@ var
              else
               {var code$1=/* None */0;}
              
-             var newrecord="duprecord regular 11";
+             var newrecord=/* unknown */"duprecord regular 11";
              
              newrecord[9]=code$1,0;
              var new_module=newrecord;
@@ -2978,7 +2978,7 @@ var
                 replace_dummy_included_modules
                  (elements,included_modules_from_tt);
               
-              var newrecord="duprecord regular 11";
+              var newrecord=/* unknown */"duprecord regular 11";
               
               newrecord[6]=/* Module_struct */[0,elements2],0;
               return newrecord;
@@ -3009,7 +3009,7 @@ var
                    replace_dummy_included_modules
                     (elements$1,included_modules_from_tt$1);
                  
-                 var newrecord$1="duprecord regular 11";
+                 var newrecord$1=/* unknown */"duprecord regular 11";
                  
                  newrecord$1[2]=
                  Odoc_env["subst_module_type"](env,match$2[2]),
@@ -3090,7 +3090,7 @@ var
               
               var kind=m_base2[6];
               
-              var newrecord$2="duprecord regular 11";
+              var newrecord$2=/* unknown */"duprecord regular 11";
               
               newrecord$2[6]=/* Module_functor */[2,param,kind],0;
               return newrecord$2;
@@ -3165,7 +3165,7 @@ var
               else
                {}
               
-              var newrecord$3="duprecord regular 11";
+              var newrecord$3=/* unknown */"duprecord regular 11";
               
               newrecord$3[2]=tt_modtype$1,0;
               newrecord$3[6]=/* Module_constraint */[5,m_base2$1[6],mtkind],0;
@@ -3209,7 +3209,7 @@ var
               
               var alias=/* record */[0,name,/* None */0];
               
-              var newrecord$4="duprecord regular 11";
+              var newrecord$4=/* unknown */"duprecord regular 11";
               
               newrecord$4[2]=
               Odoc_env["subst_module_type"](env,tt_modtype$2),
@@ -3233,7 +3233,7 @@ var
             alias_name=
              Odoc_env["full_module_name"](env,Odoc_name["from_path"](path));
            
-           var newrecord$5="duprecord regular 11";
+           var newrecord$5=/* unknown */"duprecord regular 11";
            
            newrecord$5[6]=
            /* Module_alias */[1,/* record */[0,alias_name,/* None */0]],
@@ -3261,7 +3261,7 @@ var
                p_module_expr2$1,
                tt_module_expr2);
            
-           var newrecord$6="duprecord regular 11";
+           var newrecord$6=/* unknown */"duprecord regular 11";
            
            newrecord$6[6]=/* Module_apply */[3,m1[6],m2[6]],0;
            return newrecord$6;
