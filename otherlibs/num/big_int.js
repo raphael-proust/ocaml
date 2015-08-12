@@ -513,10 +513,7 @@ var
       }
     };
 
-var
- big_int_of_int32=
-  function(i)
-   {return big_int_of_nativeint("unknown primitive:nativeint_of_int32");};
+var big_int_of_int32=function(i){return big_int_of_nativeint(i);};
 
 var
  int32_of_big_int=
@@ -524,7 +521,7 @@ var
    {var i=nativeint_of_big_int(bi);
     
     if(i<=2147483647&&i>=-2147483648)
-     {return "unknown primitive:int32_of_nativeint";}
+     {return i;}
     else
      {return Pervasives["failwith"]("int32_of_big_int");}
     };
@@ -533,7 +530,7 @@ var
  big_int_of_int64=
   function(i)
    {if(Sys["word_size"]=64)
-     {return big_int_of_nativeint("unknown primitive:nativeint_of_int64");}
+     {return big_int_of_nativeint(i);}
     else
      {if(i=0)
        {var match=[/* tuple */0,0,0];}
@@ -550,10 +547,8 @@ var
       
       var res=CamlPrimtivie["create_nat"](2);
       
-      CamlPrimtivie["set_digit_nat_native"]
-       (res,0,"unknown primitive:nativeint_of_int64");
-      CamlPrimtivie["set_digit_nat_native"]
-       (res,1,"unknown primitive:nativeint_of_int64");
+      CamlPrimtivie["set_digit_nat_native"](res,0,absi);
+      CamlPrimtivie["set_digit_nat_native"](res,1,absi>>32);
       return /* record */[0,sg,res];
       }
     };
@@ -562,7 +557,7 @@ var
  int64_of_big_int=
   function(bi)
    {if(Sys["word_size"]=64)
-     {return "unknown primitive:int64_of_nativeint";}
+     {return nativeint_of_big_int(bi);}
     else
      {var match=num_digits_big_int(bi);
       
@@ -572,14 +567,14 @@ var
         else
          {var
            i=
-            "unknown primitive:int64_of_nativeint"&
+            CamlPrimtivie["nth_digit_nat_native"](bi[2],0)&
             4294967295|
-            "unknown primitive:int64_of_nativeint"<<
+            CamlPrimtivie["nth_digit_nat_native"](bi[2],1)<<
             32;
           }
         }
       else
-       {var i="unknown primitive:int64_of_nativeint"&4294967295;}
+       {var i=CamlPrimtivie["nth_digit_nat_native"](bi[2],0)&4294967295;}
       
       if(bi[1]>=0)
        {if(i>=0)

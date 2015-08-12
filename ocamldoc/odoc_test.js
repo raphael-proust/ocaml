@@ -178,7 +178,7 @@ var
                       [/* String_literal */11,":\n",/* End_of_format */0]]],
                     "# type %s:\n"],
                    t[1]);
-                 "unknown block:(sendself self-1/1248 must_display_types/1233)";
+                 "(sendself self-1/1248 must_display_types/1233)";
                  if(0)
                   {var match$1=t[6];
                    
@@ -222,7 +222,7 @@ var
                     [/* String_literal */11,":\n",/* End_of_format */0]]],
                   "#\n# module %s:\n"],
                  m[1]);
-               "unknown block:(sendself self-1/1253 must_display_types/1233)";
+               "(sendself self-1/1253 must_display_types/1233)";
                if(0)
                 {p
                   (self$neg1[fmt],
@@ -263,7 +263,7 @@ var
                     [/* String_literal */11,":\n",/* End_of_format */0]]],
                   "#\n# module type %s:\n"],
                  m[1]);
-               "unknown block:(sendself self-1/1256 must_display_types/1233)";
+               "(sendself self-1/1256 must_display_types/1233)";
                if(0)
                 {var match=m[3];
                  
@@ -308,9 +308,9 @@ var
                try
                 {List["iter"]
                   (function(m)
-                    {"unknown block:(sendself self-1/1261 set_test_kinds_from_module/1234 m/1264)";
+                    {"(sendself self-1/1261 set_test_kinds_from_module/1234 m/1264)";
                      
-                     "unknown block:(sendself self-1/1261 scan_module_list/1265 (makeblock 0 m/1264 0a))";
+                     "(sendself self-1/1261 scan_module_list/1265 (makeblock 0 m/1264 0a))";
                      },
                    module_list)}
                catch(e){Pervasives["prerr_endline"](Printexc["to_string"](e))}
@@ -375,7 +375,7 @@ var
             generate,
             function(self$neg2,l)
              {generate$1(self$neg2,l);
-              "unknown block:(send (array.unsafe_get self-2/1279 g/1272) -643670219 l/1280)";
+              "(send (array.unsafe_get self-2/1279 g/1272) -643670219 l/1280)";
               });
           return function(env)
            {var env$1=env[1];

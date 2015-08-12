@@ -3549,7 +3549,7 @@ var
          return Bytes["unsafe_to_string"](res$1);
          }
        else
-        {/* error */"(exit 274)";}
+        {exit=274;}
        
       case 276:
        if(prec$1>len)
@@ -3559,7 +3559,7 @@ var
          return Bytes["unsafe_to_string"](res$2);
          }
        else
-        {/* error */"(exit 274)";}
+        {exit=274;}
        
       case 274:return str;
       }
@@ -5361,7 +5361,7 @@ var
            if(legacy_behavior$1)
             {return parse_literal$1(minus||(symb=45),str_ind+1);}
            else
-            {/* error */"(exit 19)";}
+            {exit=19;}
            
           case 19:
            if(legacy_behavior$1)
@@ -6079,7 +6079,7 @@ var
                }
              }
            else
-            {/* error */"(exit 63)";}
+            {exit=63;}
            
           case 66:
            var
@@ -6176,7 +6176,7 @@ var
           case 63:
            if(symb>=108)
             {if(symb>=111)
-              {/* error */"(exit 62)";}
+              {exit=62;}
              else
               {var switcher=-108+symb;
                
@@ -6228,7 +6228,7 @@ var
                         fmt_rest$prime$4]];
                     }
                   
-                 case 1:/* error */"(exit 62)";
+                 case 1:exit=62;
                  case 2:
                   var
                    iconv$2=
@@ -6281,7 +6281,7 @@ var
              }
            else
             {if(symb!=76)
-              {/* error */"(exit 62)";}
+              {exit=62;}
              else
               {var
                 iconv$3=
@@ -6413,7 +6413,7 @@ var
             }
           
           switch(exit$2)
-           {case 28:if(legacy_behavior$1){}else{/* error */"(exit 27)";}
+           {case 28:if(legacy_behavior$1){}else{exit$2=27;}
             case 27:incompatible_flag(pct_ind,str_ind,symb,"'_'")
             }
           }
@@ -6963,7 +6963,7 @@ var
                  return parse_char_set_content(str_ind+1,end_ind);
                  }
                else
-                {/* error */"(exit 132)";}
+                {exit=132;}
                
               case 132:
                var c$prime$1=c$prime;
@@ -7448,57 +7448,45 @@ var
            var switcher$1=-88+match$3;
            
            if(32<switcher$1>>>0)
-            {/* error */"(exit 160)";}
+            {exit=160;}
            else
             {switch(switcher$1)
               {case 0:
-                if(legacy_behavior$1)
-                 {return /* Int_CX */9;}
-                else
-                 {/* error */"(exit 160)";}
-                
-               case 1:/* error */"(exit 160)";
-               case 2:/* error */"(exit 160)";
-               case 3:/* error */"(exit 160)";
-               case 4:/* error */"(exit 160)";
-               case 5:/* error */"(exit 160)";
-               case 6:/* error */"(exit 160)";
-               case 7:/* error */"(exit 160)";
-               case 8:/* error */"(exit 160)";
-               case 9:/* error */"(exit 160)";
-               case 10:/* error */"(exit 160)";
-               case 11:/* error */"(exit 160)";
+                if(legacy_behavior$1){return /* Int_CX */9;}else{exit=160;}
+               case 1:exit=160;
+               case 2:exit=160;
+               case 3:exit=160;
+               case 4:exit=160;
+               case 5:exit=160;
+               case 6:exit=160;
+               case 7:exit=160;
+               case 8:exit=160;
+               case 9:exit=160;
+               case 10:exit=160;
+               case 11:exit=160;
                case 12:exit$1=163;
-               case 13:/* error */"(exit 160)";
-               case 14:/* error */"(exit 160)";
-               case 15:/* error */"(exit 160)";
-               case 16:/* error */"(exit 160)";
+               case 13:exit=160;
+               case 14:exit=160;
+               case 15:exit=160;
+               case 16:exit=160;
                case 17:exit$1=163;
-               case 18:/* error */"(exit 160)";
-               case 19:/* error */"(exit 160)";
-               case 20:/* error */"(exit 160)";
-               case 21:/* error */"(exit 160)";
-               case 22:/* error */"(exit 160)";
+               case 18:exit=160;
+               case 19:exit=160;
+               case 20:exit=160;
+               case 21:exit=160;
+               case 22:exit=160;
                case 23:
-                if(legacy_behavior$1)
-                 {return /* Int_Co */11;}
-                else
-                 {/* error */"(exit 160)";}
-                
-               case 24:/* error */"(exit 160)";
-               case 25:/* error */"(exit 160)";
-               case 26:/* error */"(exit 160)";
-               case 27:/* error */"(exit 160)";
-               case 28:/* error */"(exit 160)";
+                if(legacy_behavior$1){return /* Int_Co */11;}else{exit=160;}
+               case 24:exit=160;
+               case 25:exit=160;
+               case 26:exit=160;
+               case 27:exit=160;
+               case 28:exit=160;
                case 29:exit$1=163;
-               case 30:/* error */"(exit 160)";
-               case 31:/* error */"(exit 160)";
+               case 30:exit=160;
+               case 31:exit=160;
                case 32:
-                if(legacy_behavior$1)
-                 {return /* Int_Cx */7;}
-                else
-                 {/* error */"(exit 160)";}
-                
+                if(legacy_behavior$1){return /* Int_Cx */7;}else{exit=160;}
                }
              }
            

@@ -465,7 +465,7 @@ var
                       [/* String_literal */11,'">',/* End_of_format */0]]],
                     '<span style="color: %s">'],
                    col(param[1]));
-                 "unknown block:(send (array.unsafe_get self-1/1301 html/1249) 34801153\n  (array.unsafe_get self-1/1301 b/1283) (field 1 param/1675))";
+                 "(send (array.unsafe_get self-1/1301 html/1249) 34801153\n  (array.unsafe_get self-1/1301 b/1283) (field 1 param/1675))";
                  
                  return p
                          (self$neg1[b],
@@ -490,27 +490,27 @@ var
          },
        scan_value,
        function(self$neg1,v)
-        {"unknown block:(sendself self-1/1324 gen_if_tag/1285 (field 0 v/1325)\n  (apply (field 26 (field 6 (global Odoc_html!))) v/1325) (field 1 v/1325))";
+        {"(sendself self-1/1324 gen_if_tag/1285 (field 0 v/1325)\n  (apply (field 26 (field 6 (global Odoc_html!))) v/1325) (field 1 v/1325))";
          },
        scan_type,
        function(self$neg1,t)
-        {"unknown block:(sendself self-1/1327 gen_if_tag/1285 (field 0 t/1328)\n  (apply (field 17 (field 6 (global Odoc_html!))) t/1328) (field 1 t/1328))";
+        {"(sendself self-1/1327 gen_if_tag/1285 (field 0 t/1328)\n  (apply (field 17 (field 6 (global Odoc_html!))) t/1328) (field 1 t/1328))";
          },
        scan_extension_constructor,
        function(self$neg1,x)
-        {"unknown block:(sendself self-1/1330 gen_if_tag/1285 (field 0 x/1331)\n  (apply (field 21 (field 6 (global Odoc_html!))) x/1331)\n  (field 0 (field 3 x/1331)))";
+        {"(sendself self-1/1330 gen_if_tag/1285 (field 0 x/1331)\n  (apply (field 21 (field 6 (global Odoc_html!))) x/1331)\n  (field 0 (field 3 x/1331)))";
          },
        scan_exception,
        function(self$neg1,e)
-        {"unknown block:(sendself self-1/1333 gen_if_tag/1285 (field 0 e/1334)\n  (apply (field 23 (field 6 (global Odoc_html!))) e/1334) (field 1 e/1334))";
+        {"(sendself self-1/1333 gen_if_tag/1285 (field 0 e/1334)\n  (apply (field 23 (field 6 (global Odoc_html!))) e/1334) (field 1 e/1334))";
          },
        scan_attribute,
        function(self$neg1,a)
-        {"unknown block:(sendself self-1/1336 gen_if_tag/1285 (field 0 (field 0 a/1337))\n  (apply (field 29 (field 6 (global Odoc_html!))) a/1337)\n  (field 1 (field 0 a/1337)))";
+        {"(sendself self-1/1336 gen_if_tag/1285 (field 0 (field 0 a/1337))\n  (apply (field 29 (field 6 (global Odoc_html!))) a/1337)\n  (field 1 (field 0 a/1337)))";
          },
        scan_method,
        function(self$neg1,m)
-        {"unknown block:(sendself self-1/1339 gen_if_tag/1285 (field 0 (field 0 m/1340))\n  (apply (field 32 (field 6 (global Odoc_html!))) m/1340)\n  (field 1 (field 0 m/1340)))";
+        {"(sendself self-1/1339 gen_if_tag/1285 (field 0 (field 0 m/1340))\n  (apply (field 32 (field 6 (global Odoc_html!))) m/1340)\n  (field 1 (field 0 m/1340)))";
          },
        scan_module_elements,
        function(self$neg1,m)
@@ -518,34 +518,31 @@ var
                  (function(ele)
                    {switch(ele[0])
                      {case 0:
-                       "unknown block:(sendself self-1/1342 scan_module/1355 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_module/1355 (field 0 ele/1344))";
                        
                       case 1:
-                       "unknown block:(sendself self-1/1342 scan_module_type/1356 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_module_type/1356 (field 0 ele/1344))";
                        
                       case 2:
-                       "unknown block:(sendself self-1/1342 scan_included_module/1293 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_included_module/1293 (field 0 ele/1344))";
                        
                       case 3:
-                       "unknown block:(sendself self-1/1342 scan_class/1357 (field 0 ele/1344))";
-                       
+                       "(sendself self-1/1342 scan_class/1357 (field 0 ele/1344))";
                       case 4:
-                       "unknown block:(sendself self-1/1342 scan_class_type/1358 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_class_type/1358 (field 0 ele/1344))";
                        
                       case 5:
-                       "unknown block:(sendself self-1/1342 scan_value/1286 (field 0 ele/1344))";
-                       
+                       "(sendself self-1/1342 scan_value/1286 (field 0 ele/1344))";
                       case 6:
-                       "unknown block:(sendself self-1/1342 scan_type_extension/1359 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_type_extension/1359 (field 0 ele/1344))";
                        
                       case 7:
-                       "unknown block:(sendself self-1/1342 scan_exception/1289 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_exception/1289 (field 0 ele/1344))";
                        
                       case 8:
-                       "unknown block:(sendself self-1/1342 scan_type/1287 (field 0 ele/1344))";
-                       
+                       "(sendself self-1/1342 scan_type/1287 (field 0 ele/1344))";
                       case 9:
-                       "unknown block:(sendself self-1/1342 scan_module_comment/1360 (field 0 ele/1344))";
+                       "(sendself self-1/1342 scan_module_comment/1360 (field 0 ele/1344))";
                        
                       }
                     },
@@ -555,25 +552,25 @@ var
        function(self$neg1,param){return /* () */0;},
        scan_class_pre,
        function(self$neg1,c)
-        {"unknown block:(sendself self-1/1364 gen_if_tag/1285 (field 0 c/1365)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 c/1365)))\n  (field 1 c/1365))";
+        {"(sendself self-1/1364 gen_if_tag/1285 (field 0 c/1365)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 c/1365)))\n  (field 1 c/1365))";
          
          return /* true */1;
          },
        scan_class_type_pre,
        function(self$neg1,ct)
-        {"unknown block:(sendself self-1/1367 gen_if_tag/1285 (field 0 ct/1368)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 ct/1368)))\n  (field 1 ct/1368))";
+        {"(sendself self-1/1367 gen_if_tag/1285 (field 0 ct/1368)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 ct/1368)))\n  (field 1 ct/1368))";
          
          return /* true */1;
          },
        scan_module_pre,
        function(self$neg1,m)
-        {"unknown block:(sendself self-1/1370 gen_if_tag/1285 (field 0 m/1371)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 m/1371)))\n  (field 2 m/1371))";
+        {"(sendself self-1/1370 gen_if_tag/1285 (field 0 m/1371)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 m/1371)))\n  (field 2 m/1371))";
          
          return /* true */1;
          },
        scan_module_type_pre,
        function(self$neg1,mt)
-        {"unknown block:(sendself self-1/1373 gen_if_tag/1285 (field 0 mt/1374)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 mt/1374)))\n  (field 1 mt/1374))";
+        {"(sendself self-1/1373 gen_if_tag/1285 (field 0 mt/1374)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 mt/1374)))\n  (field 1 mt/1374))";
          
          return /* true */1;
          }]);
@@ -668,7 +665,7 @@ var
           [/* Format */0,
            [/* String_literal */11,"<html>",/* End_of_format */0],
            "<html>"]);
-        "unknown block:(sendself self-2/1537 print_header/1542 b/1541 0a 0a title/1539)";
+        "(sendself self-2/1537 print_header/1542 b/1541 0a 0a title/1539)";
         
         p
          (b,
@@ -680,9 +677,9 @@ var
              [/* String_literal */11,"</h1>",/* End_of_format */0]]],
            "<body><h1>%s</h1>"],
           title);
-        "unknown block:(send (array.unsafe_get self-2/1537 scanner/1534) -342620401 modules/1538)";
+        "(send (array.unsafe_get self-2/1537 scanner/1534) -342620401 modules/1538)";
         
-        "unknown block:(send (array.unsafe_get self-2/1537 scanner/1534) -795558656)";
+        "(send (array.unsafe_get self-2/1537 scanner/1534) -795558656)";
         Buffer["add_buffer"](b,0);
         var
          oc=

@@ -466,105 +466,99 @@ module rec
        | Pfield i ->
            (match args with
             | e::[] -> E.access e (E.int (i + 1))
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pnegint |Pnegbint _|Pnegfloat  ->
            (match args with
             | e::[] -> E.un Neg e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pnot  ->
            (match args with
             | e::[] -> E.un Not e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Poffsetint n ->
            (match args with
             | e::[] -> E.bin Plus (E.int n) e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Poffsetref 1 ->
            (match args with
             | e::[] -> E.un IncrA (E.access e (E.float 0.))
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Poffsetref (-1) ->
            (match args with
             | e::[] -> E.un DecrA (E.access e (E.float 0.))
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Poffsetref n ->
            (match args with
             | e::[] -> E.bin PlusEq (E.access e (E.float 0.)) (E.int n)
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Paddint |Paddbint _|Paddfloat  ->
            (match args with
             | e1::e2::[] -> E.bin Plus e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Psubint |Psubbint _|Psubfloat  ->
            (match args with
             | e1::e2::[] -> E.bin Minus e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pmulint |Pmulbint _|Pmulfloat  ->
            (match args with
             | e1::e2::[] -> E.bin Mul e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pdivfloat |Pdivint |Pdivbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Div e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pmodint |Pmodbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Mod e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Plslint |Plslbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Lsl e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Plsrint |Plsrbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Lsr e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pasrint |Pasrbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Asr e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pandint |Pandbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Band e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Porint |Porbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Bor e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pxorint |Pxorbint _ ->
            (match args with
             | e1::e2::[] -> E.bin Bxor e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Psequand  ->
            (match args with
             | e1::e2::[] -> E.bin And e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Psequor  ->
            (match args with
             | e1::e2::[] -> E.bin Or e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pisout  ->
            (match args with
             | range::e::[] -> E.bin Lt range (E.bin Lsr e (E.float 0.))
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pidentity  ->
-           (match args with
-            | e::[] -> e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+           (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
        | Pignore  ->
-           (match args with
-            | e::[] -> e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+           (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
        | Pbintcomp (_,cmp)|Pfloatcomp cmp|Pintcomp cmp ->
            let op: J.binop = jsop_of_comp cmp in
            (match args with
             | e1::e2::[] -> E.bin op e1 e2
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pgetglobal i ->
-           if Ident.global i
-           then E.var i
-           else Gen_util.expr_of_unknow_primitive prim
-       | Praise _raise_kind -> Gen_util.expr_of_unknow_primitive prim
+           if Ident.global i then E.var i else E.unknown_primitive prim
+       | Praise _raise_kind -> E.unknown_primitive prim
        | Prevapply _ ->
            (match args with
             | arg::f::[] -> E.call f [arg]
@@ -572,54 +566,50 @@ module rec
        | Pdirapply _ ->
            (match args with
             | f::arg::[] -> E.call f [arg]
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
-       | Ploc kind -> Gen_util.expr_of_unknow_primitive prim
+            | _ -> E.unknown_primitive prim)
+       | Ploc kind -> E.unknown_primitive prim
        | Pintoffloat  ->
-           (match args with
-            | e::[] -> e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+           (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
        | Psetfield (i,_) ->
            (match args with
             | e0::e1::[] ->
                 E.seq (E.bin Eq (E.access e0 (E.int (i + 1))) e1)
                   Gen_util.unit_val
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pfloatfield i ->
            (match args with
             | e::[] -> E.access e (E.int i)
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Psetfloatfield i ->
            (match args with
             | e::e0::[] ->
                 E.seq (E.bin Eq (E.access e (E.int i)) e0) Gen_util.unit_val
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Parraylength _|Pstringlength  ->
            (match args with
             | e::[] -> E.access e (E.str "length")
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pmakearray i ->
            (match i with
             | Pgenarray |Paddrarray |Pintarray |Pfloatarray  -> E.arr args)
        | Parrayrefu _|Parrayrefs _|Pstringrefu |Pstringrefs  ->
            (match args with
             | e::e1::[] -> E.access e e1
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Parraysetu _|Parraysets _|Pstringsetu |Pstringsets  ->
            (match args with
             | e::e0::e1::[] ->
                 E.seq (E.bin Eq (E.access e e0) e1) Gen_util.unit_val
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pbintofint _|Pintofbint _|Pfloatofint  ->
-           (match args with
-            | e::[] -> e
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+           (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
        | Pabsfloat  ->
            (match args with
             | e::[] ->
                 E.call
                   (E.access (E.var (Jident.create_js "Math")) (E.str "abs"))
                   [e]
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pccall { prim_name;_} ->
            E.call
              (E.access (E.var (Jident.create_js "CamlPrimtivie"))
@@ -627,7 +617,7 @@ module rec
        | Pisint  ->
            (match args with
             | e::[] -> let open E in bin EqEqEq (typeof e) (E.str "number")
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+            | _ -> E.unknown_primitive prim)
        | Pctconst ct ->
            (match ct with
             | Big_endian  -> if Sys.big_endian then E.true_ else E.false_
@@ -635,18 +625,16 @@ module rec
             | Ostype_unix  -> if Sys.unix then E.true_ else E.false_
             | Ostype_win32  -> if Sys.win32 then E.true_ else E.false_
             | Ostype_cygwin  -> if Sys.cygwin then E.true_ else E.false_)
-       | Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
+       | Psetglobal _ -> E.unknown_primitive prim
        | Pcvtbint (_boxed_integer_source,_boxed_integer_dest) ->
-           (match args with
-            | e0::[] -> e0
-            | _ -> Gen_util.expr_of_unknow_primitive prim)
+           (match args with | e0::[] -> e0 | _ -> E.unknown_primitive prim)
        | Pduprecord (_,_)|Plazyforce |Pbittest |Pbigarrayref (_,_,_,_)
          |Pbigarrayset (_,_,_,_)|Pbigarraydim _|Pstring_load_16 _
          |Pstring_load_32 _|Pstring_load_64 _|Pstring_set_16 _|Pstring_set_32
          _|Pstring_set_64 _|Pbigstring_load_16 _|Pbigstring_load_32 _
          |Pbigstring_load_64 _|Pbigstring_set_16 _|Pbigstring_set_32 _
          |Pbigstring_set_64 _|Pbswap16 |Pbbswap _|Pint_as_pointer  ->
-           Gen_util.expr_of_unknow_primitive prim : J.expression)
+           E.unknown_primitive prim : J.expression)
     let comment_of_pointer_info (x : Lambda.pointer_info) =
       match x with
       | NullConstructor x -> Some x
@@ -679,11 +667,6 @@ module rec
                     | Declare of J.ident
                     | NeedValue
                     | Assign of J.ident
-                  val unknown_expr : Lambda.lambda -> J.expression
-                  val unknown_block : Lambda.lambda -> J.block
-                  val expr_of_unknow_primitive :
-                    Lambda.primitive -> J.expression
-                  val string_of_unknown_lam : Lambda.lambda -> string
                   val gen : ?name:string -> unit -> Ident.t
                   val exports :
                     Translmod.exports list ->
@@ -713,23 +696,6 @@ module rec
            | Declare of J.ident
            | NeedValue
            | Assign of J.ident
-         let unknown_expr (lam : Lambda.lambda) =
-           (E.str ("unknown block:" ^ (Lambda_util.string_of_lambda lam)) : 
-           J.expression)
-         let unknown_block (lam : Lambda.lambda) =
-           ([let open J_helper in
-               Stmt.exp @@
-                 (Exp.mk
-                    (EStr
-                       (("unknown block:" ^
-                           (Lambda_util.string_of_lambda lam)), `Utf8)))] : 
-           J.block)
-         let string_of_unknown_lam (lam : Lambda.lambda) =
-           ("unknown block:" ^ (Lambda_util.string_of_lambda lam) : string)
-         let expr_of_unknow_primitive (lam : Lambda.primitive) =
-           (E.str
-              ("unknown primitive:" ^ (Lambda_util.string_of_primitive lam)) : 
-           J.expression)
          let rec is_pure (lam : Lambda.lambda) =
            match lam with
            | Lvar _|Lconst _|Lfunction _ -> true
@@ -750,7 +716,7 @@ module rec
             | (Declare n,false ) ->
                 ([J_helper.Stmt.variable n ~loc_exp:(exp, N)], None)
             | (Assign n,false ) -> ([J_helper.Stmt.assign n exp], None)
-            | ((Declare _|Assign _),true ) -> ((unknown_block lam), None)
+            | ((Declare _|Assign _),true ) -> ([S.unknown_lambda lam], None)
             | (NeedValue ,_) -> ([], (Some exp)) : output)
          let handle_block_return st should_return lam block exp =
            (match (st, should_return) with
@@ -759,7 +725,7 @@ module rec
                   None)
             | (Assign n,false ) ->
                 ((block @ [J_helper.Stmt.assign n exp]), None)
-            | ((Declare _|Assign _),true ) -> ((unknown_block lam), None)
+            | ((Declare _|Assign _),true ) -> ([S.unknown_lambda lam], None)
             | (EffectCall ,false ) -> (block, (Some exp))
             | (EffectCall ,true ) ->
                 ((block @ [J_helper.Stmt.return (Some exp)]), None)
@@ -854,6 +820,10 @@ module rec
                          val obj : ?comment:string -> J.property_map -> t
                          val true_ : t
                          val false_ : t
+                         val unknown_lambda :
+                           ?comment:string -> Lambda.lambda -> t
+                         val unknown_primitive :
+                           ?comment:string -> Lambda.primitive -> t
                        end
                        module Stmt :
                        sig
@@ -974,6 +944,12 @@ module rec
                     t)
                   let true_ = var (Jident.create_js "true")
                   let false_ = var (Jident.create_js "false")
+                  let unknown_lambda ?comment  (lam : Lambda.lambda) =
+                    (str ?comment (Lambda_util.string_of_lambda lam) : 
+                    t)
+                  let unknown_primitive ?comment  (p : Lambda.primitive) =
+                    (str ?comment (Lambda_util.string_of_primitive p) : 
+                    t)
                 end
               module Stmt =
                 struct
@@ -1372,28 +1348,26 @@ module rec
                               (fun (i,_,bindings)  ->
                                  (i, { exit_id; args = bindings }))
                               code_table in
-                          let aux st =
-                            [let open J_helper.Stmt in
-                               switch (E.var exit_id)
-                                 (List.map
-                                    (fun (i,handler,_)  ->
-                                       ((E.int i),
-                                         (Gen_util.block_of_output @@
-                                            (compile_lambda { cxt with st }
-                                               handler)))) code_table)] in
-                          (([J_helper.Stmt.variable exit_id], None) ++
-                             (compile_lambda
-                                {
-                                  cxt with
-                                  jmp_table = (add_jmps code_jmps jmp_table)
-                                } body))
+                          let aux st jmp_table =
+                            [S.switch (E.var exit_id)
+                               (List.map
+                                  (fun (i,handler,_)  ->
+                                     ((E.int i),
+                                       (Gen_util.block_of_output @@
+                                          (compile_lambda
+                                             { cxt with st; jmp_table }
+                                             handler)))) code_table)] in
+                          let jmp_table = add_jmps code_jmps jmp_table in
+                          (([S.variable exit_id], None) ++
+                             (compile_lambda { cxt with jmp_table } body))
                             ++
                             ((match st with
                               | NeedValue  ->
                                   let v = Gen_util.gen () in
-                                  (((J_helper.Stmt.variable v) ::
-                                    (aux (Assign v))), (Some (E.var v)))
-                              | _ -> ((aux st), None)))
+                                  (((S.variable v) ::
+                                    (aux (Assign v) jmp_table)),
+                                    (Some (E.var v)))
+                              | _ -> ((aux st jmp_table), None)))
                       | Lwhile (p,body) ->
                           (match compile_lambda
                                    {
@@ -1405,16 +1379,15 @@ module rec
                            | (block,Some e) ->
                                let block =
                                  block @
-                                   [let open J_helper.Stmt in
-                                      while_ e
-                                        (block
-                                           (Gen_util.block_of_output @@
-                                              (compile_lambda
-                                                 {
-                                                   cxt with
-                                                   st = EffectCall;
-                                                   should_return = false
-                                                 } body)))] in
+                                   [S.while_ e
+                                      (S.block
+                                         (Gen_util.block_of_output @@
+                                            (compile_lambda
+                                               {
+                                                 cxt with
+                                                 st = EffectCall;
+                                                 should_return = false
+                                               } body)))] in
                                (match (st, should_return) with
                                 | (Declare x,_) ->
                                     ((block @ [J_helper.Stmt.declare_unit x]),
@@ -1489,7 +1462,7 @@ module rec
                            | (EffectCall ,true ) ->
                                ((block @ J_helper.return_unit), None)
                            | ((Declare _|Assign _),true ) ->
-                               ((Gen_util.unknown_block lam), None)
+                               ([S.unknown_lambda lam], None)
                            | (Declare x,false ) ->
                                ((block @ [J_helper.Stmt.declare_unit x]),
                                  None)
@@ -1543,7 +1516,7 @@ module rec
                       | Lsend (meth_kind,lam1,lam2,lams,loc) ->
                           (match meth_kind with
                            | Public |Cached |Self  ->
-                               ((Gen_util.unknown_block lam),
+                               ([S.unknown_lambda lam],
                                  (Some Gen_util.unit_val)))
                       | Levent (lam,_lam_event) -> compile_lambda cxt lam
                       | Lifused (_,lam) -> compile_lambda cxt lam : Gen_util.output)

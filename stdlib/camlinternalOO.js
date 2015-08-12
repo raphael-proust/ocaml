@@ -556,8 +556,7 @@ var get_env=function(e,n){return function(obj){return obj[e][n];};};
 
 var
  get_meth=
-  function(n)
-   {return function(obj){"unknown block:(sendself obj/1330 n/1329)";};};
+  function(n){return function(obj){"(sendself obj/1330 n/1329)";};};
 
 var set_var=function(n){return function(obj,x){return obj[n]=x,0;};};
 
@@ -570,9 +569,7 @@ var app_env=function(f,e,n){return function(obj){return f(obj[e][n]);};};
 var
  app_meth=
   function(f,n)
-   {return function(obj)
-     {"unknown block:(sendself obj/1351 n/1350)";return f(0);};
-    };
+   {return function(obj){"(sendself obj/1351 n/1350)";return f(0);};};
 
 var app_const_const=function(f,x,y){return function(obj){return f(x,y);};};
 
@@ -581,18 +578,14 @@ var app_const_var=function(f,x,n){return function(obj){return f(x,obj[n]);};};
 var
  app_const_meth=
   function(f,x,n)
-   {return function(obj)
-     {"unknown block:(sendself obj/1366 n/1365)";return f(x,0);};
-    };
+   {return function(obj){"(sendself obj/1366 n/1365)";return f(x,0);};};
 
 var app_var_const=function(f,n,x){return function(obj){return f(obj[n],x);};};
 
 var
  app_meth_const=
   function(f,n,x)
-   {return function(obj)
-     {"unknown block:(sendself obj/1376 n/1374)";return f(0,x);};
-    };
+   {return function(obj){"(sendself obj/1376 n/1374)";return f(0,x);};};
 
 var
  app_const_env=
@@ -604,22 +597,20 @@ var
 
 var
  meth_app_const=
-  function(n,x)
-   {return function(obj){"unknown block:(sendself obj/1392 n/1390 x/1391)";};};
+  function(n,x){return function(obj){"(sendself obj/1392 n/1390 x/1391)";};};
 
 var
  meth_app_var=
   function(n,m)
    {return function(obj)
-     {"unknown block:(sendself obj/1396 n/1394 (array.unsafe_get obj/1396 m/1395))";
-      };
+     {"(sendself obj/1396 n/1394 (array.unsafe_get obj/1396 m/1395))";};
     };
 
 var
  meth_app_env=
   function(n,e,m)
    {return function(obj)
-     {"unknown block:(sendself obj/1401 n/1398\n  (array.unsafe_get (id (array.unsafe_get obj/1401 e/1399)) m/1400))";
+     {"(sendself obj/1401 n/1398\n  (array.unsafe_get (id (array.unsafe_get obj/1401 e/1399)) m/1400))";
       };
     };
 
@@ -627,35 +618,32 @@ var
  meth_app_meth=
   function(n,m)
    {return function(obj)
-     {"unknown block:(sendself obj/1405 n/1403 (sendself obj/1405 m/1404))";};
+     {"(sendself obj/1405 n/1403 (sendself obj/1405 m/1404))";};
     };
 
 var
  send_const=
-  function(m,x,c)
-   {return function(obj){"unknown block:(send x/1408 m/1407)";};};
+  function(m,x,c){return function(obj){"(send x/1408 m/1407)";};};
 
 var
  send_var=
   function(m,n,c)
    {return function(obj)
-     {"unknown block:(send (id (array.unsafe_get obj/1415 n/1413)) m/1412)";};
+     {"(send (id (array.unsafe_get obj/1415 n/1413)) m/1412)";};
     };
 
 var
  send_env=
   function(m,e,n,c)
    {return function(obj)
-     {"unknown block:(send (id (array.unsafe_get (id (array.unsafe_get obj/1421 e/1418)) n/1419))\n  m/1417)";
+     {"(send (id (array.unsafe_get (id (array.unsafe_get obj/1421 e/1418)) n/1419))\n  m/1417)";
       };
     };
 
 var
  send_meth=
   function(m,n,c)
-   {return function(obj)
-     {"unknown block:(send (sendself obj/1426 n/1424) m/1423)";};
-    };
+   {return function(obj){"(send (sendself obj/1426 n/1424) m/1423)";};};
 
 var
  new_cache=

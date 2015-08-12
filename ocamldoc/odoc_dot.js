@@ -99,7 +99,7 @@ var
           {return /* Some */[0,List["assoc"](s,self$neg1[loc_colors])];}
          catch(exn)
           {if(exn=Not_found)
-            {"unknown block:(sendself self-1/1165 get_one_color/1148)";
+            {"(sendself self-1/1165 get_one_color/1148)";
              
              if(match)
               {var c=match[1];
@@ -118,7 +118,7 @@ var
          },
        print_module_atts,
        function(self$neg1,fmt,m)
-        {"unknown block:(sendself self-1/1169 node_color/1149\n  (apply (field 10 (global Filename!)) (field 4 m/1171)))";
+        {"(sendself self-1/1169 node_color/1149\n  (apply (field 10 (global Filename!)) (field 4 m/1171)))";
          
          if(match)
           {return Format["fprintf"]
@@ -142,7 +142,7 @@ var
          },
        print_type_atts,
        function(self$neg1,fmt,t)
-        {"unknown block:(sendself self-1/1174 node_color/1149\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 t/1176)))";
+        {"(sendself self-1/1174 node_color/1149\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 t/1176)))";
          
          if(match)
           {return Format["fprintf"]
@@ -196,18 +196,18 @@ var
                },
              m[8]);
          
-         "unknown block:(sendself self-1/1184 print_module_atts/1150 fmt/1185 m/1186)";
+         "(sendself self-1/1184 print_module_atts/1150 fmt/1185 m/1186)";
          
-         "unknown block:(sendself self-1/1184 print_one_dep/1152 fmt/1185 (field 0 m/1186))";
+         "(sendself self-1/1184 print_one_dep/1152 fmt/1185 (field 0 m/1186))";
          return List["iter"](0,l);
          },
        generate_for_type,
        function(self$neg1,fmt,param)
         {var t=param[1];
          
-         "unknown block:(sendself self-1/1191 print_type_atts/1151 fmt/1192 t/1193)";
+         "(sendself self-1/1191 print_type_atts/1151 fmt/1192 t/1193)";
          
-         "unknown block:(sendself self-1/1191 print_one_dep/1152 fmt/1192 (field 0 t/1193))";
+         "(sendself self-1/1191 print_one_dep/1152 fmt/1192 (field 0 t/1193))";
          return List["iter"](0,param[2]);
          },
        generate_types,
@@ -217,7 +217,7 @@ var
            
            var fmt=Format["formatter_of_out_channel"](oc);
            
-           "unknown block:(sendself self-1/1196 header/1147)";
+           "(sendself self-1/1196 header/1147)";
            Format["fprintf"]
             (fmt,
              [/* Format */0,
@@ -226,7 +226,7 @@ var
              0);
            var graph=Odoc_info["Dep"][2](/* Some */[0,dot_reduce[1]],types);
            
-           "unknown block:(sendself self-1/1196 generate_for_type/1154 fmt/1199)";
+           "(sendself self-1/1196 generate_for_type/1154 fmt/1199)";
            List["iter"](0,graph);
            Format["fprintf"]
             (fmt,
@@ -247,7 +247,7 @@ var
            
            var fmt=Format["formatter_of_out_channel"](oc);
            
-           "unknown block:(sendself self-1/1203 header/1147)";
+           "(sendself self-1/1203 header/1147)";
            Format["fprintf"]
             (fmt,
              [/* Format */0,
@@ -256,7 +256,7 @@ var
              0);
            if(dot_reduce[1]){Odoc_info["Dep"][1](modules_list)}else{}
            
-           "unknown block:(sendself self-1/1203 generate_for_module/1153 fmt/1206)";
+           "(sendself self-1/1203 generate_for_module/1153 fmt/1206)";
            List["iter"](0,modules_list);
            Format["fprintf"]
             (fmt,
@@ -273,11 +273,10 @@ var
        function(self$neg1,modules_list)
         {self$neg1[colors]=dot_colors[1],0;
          if(dot_types[1])
-          {"unknown block:(sendself self-1/1209 generate_types/1155\n  (apply (field 4 (field 50 (global Odoc_info!))) modules_list/1210))";
+          {"(sendself self-1/1209 generate_types/1155\n  (apply (field 4 (field 50 (global Odoc_info!))) modules_list/1210))";
            }
          else
-          {"unknown block:(sendself self-1/1209 generate_modules/1156 modules_list/1210)";
-           }
+          {"(sendself self-1/1209 generate_modules/1156 modules_list/1210)";}
          }]);
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);

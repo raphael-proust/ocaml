@@ -217,7 +217,7 @@ if(match$3)
  {var generator=Odoc_gen["get_minimal_generator"](match$3[1]);
   
   Odoc_info["verbose"](Odoc_messages["generating_doc"]);
-  "unknown block:(send generator/1059 -643670219 modules/1045)";
+  "(send generator/1059 -643670219 modules/1045)";
   
   Odoc_info["verbose"](Odoc_messages["ok"])}
 else

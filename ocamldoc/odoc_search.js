@@ -72,7 +72,7 @@ var
                    (List["map"]
                      (function(t){return search_text(root,t,v);},e[1]));
            
-          case 277:"unknown block:(exit 272 (field 1 e/1051))";
+          case 277:var t$1=e[2];exit=272;
           case 271:return /* [] */0;
           case 272:return search_text(root,t$1,v);
           case 274:return /* [] */0;

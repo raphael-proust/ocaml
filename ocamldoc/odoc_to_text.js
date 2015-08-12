@@ -255,13 +255,12 @@ var
                        /* List */[10,
                         List["map"]
                          (function(see)
-                           {"unknown block:(sendself self-1/1266 text_of_see/1228 see/1269)";
-                            },
+                           {"(sendself self-1/1266 text_of_see/1228 see/1269)";},
                           l)],
                        [/* :: */0,/* Newline */0,/* [] */0]]];
               }
             else
-             {"unknown block:(sendself self-1/1266 text_of_see/1228 (field 0 l/1267))";
+             {"(sendself self-1/1266 text_of_see/1228 (field 0 l/1267))";
               return Pervasives["@"]
                       (/* :: */[0,
                         /* Bold */[4,
@@ -347,14 +346,14 @@ var
               }
             else
              {var $js=/* [] */0;}
-            "unknown block:(sendself self-1/1282 text_of_author_list/1223 (field 1 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_version_opt/1224 (field 2 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_before/1226 (field 5 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_since_opt/1225 (field 4 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_raised_exceptions/1227 (field 8 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_return_opt/1230 (field 9 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_sees/1229 (field 3 info/1287))";
-            "unknown block:(sendself self-1/1282 text_of_custom/1231 (field 10 info/1287))";
+            "(sendself self-1/1282 text_of_author_list/1223 (field 1 info/1287))";
+            "(sendself self-1/1282 text_of_version_opt/1224 (field 2 info/1287))";
+            "(sendself self-1/1282 text_of_before/1226 (field 5 info/1287))";
+            "(sendself self-1/1282 text_of_since_opt/1225 (field 4 info/1287))";
+            "(sendself self-1/1282 text_of_raised_exceptions/1227 (field 8 info/1287))";
+            "(sendself self-1/1282 text_of_return_opt/1230 (field 9 info/1287))";
+            "(sendself self-1/1282 text_of_sees/1229 (field 3 info/1287))";
+            "(sendself self-1/1282 text_of_custom/1231 (field 10 info/1287))";
             var
              t$1=
               Pervasives["@"]
@@ -505,33 +504,33 @@ var
           },
         normal_class_type,
         function(self$neg2,m_name,t)
-         {"unknown block:(sendself self-2/1355 relative_idents/1311 m_name/1356\n  (apply (field 19 (global Odoc_info!)) 0a t/1357))";
+         {"(sendself self-2/1355 relative_idents/1311 m_name/1356\n  (apply (field 19 (global Odoc_info!)) 0a t/1357))";
           },
         normal_module_type,
         function(self$neg2,code,m_name,t)
-         {"unknown block:(sendself self-2/1359 relative_module_idents/1312 m_name/1361\n  (apply (field 18 (global Odoc_info!)) code/1360 0a t/1362))";
+         {"(sendself self-2/1359 relative_module_idents/1312 m_name/1361\n  (apply (field 18 (global Odoc_info!)) code/1360 0a t/1362))";
           },
         normal_type,
         function(self$neg2,m_name,t)
-         {"unknown block:(sendself self-2/1364 relative_idents/1311 m_name/1365\n  (apply (field 12 (global Odoc_info!)) t/1366))";
+         {"(sendself self-2/1364 relative_idents/1311 m_name/1365\n  (apply (field 12 (global Odoc_info!)) t/1366))";
           },
         normal_type_list,
         function(self$neg2,par,m_name,sep,t)
-         {"unknown block:(sendself self-2/1368 relative_idents/1311 m_name/1370\n  (apply (field 14 (global Odoc_info!)) par/1369 sep/1371 t/1372))";
+         {"(sendself self-2/1368 relative_idents/1311 m_name/1370\n  (apply (field 14 (global Odoc_info!)) par/1369 sep/1371 t/1372))";
           },
         normal_class_type_param_list,
         function(self$neg2,m_name,t)
-         {"unknown block:(sendself self-2/1374 relative_idents/1311 m_name/1375\n  (apply (field 17 (global Odoc_info!)) t/1376))";
+         {"(sendself self-2/1374 relative_idents/1311 m_name/1375\n  (apply (field 17 (global Odoc_info!)) t/1376))";
           },
         normal_class_params,
         function(self$neg2,m_name,c)
          {var s=Odoc_info["string_of_class_params"](c);
           
-          "unknown block:(sendself self-2/1378 relative_idents/1311 m_name/1379\n  (apply (field 49 (global Odoc_info!)) s/1381))";
+          "(sendself self-2/1378 relative_idents/1311 m_name/1379\n  (apply (field 49 (global Odoc_info!)) s/1381))";
           },
         text_of_type_expr,
         function(self$neg2,module_name,t)
-         {"unknown block:(sendself self-2/1383 normal_type/1315 module_name/1384 t/1385)";
+         {"(sendself self-2/1383 normal_type/1315 module_name/1384 t/1385)";
           return List["flatten"]
                   (List["map"]
                     (function(s)
@@ -543,22 +542,22 @@ var
           },
         text_of_short_type_expr,
         function(self$neg2,module_name,t)
-         {"unknown block:(sendself self-2/1389 normal_type/1315 module_name/1390 t/1391)";
+         {"(sendself self-2/1389 normal_type/1315 module_name/1390 t/1391)";
           return /* :: */[0,/* Code */[1,0],/* [] */0];
           },
         text_of_type_expr_list,
         function(self$neg2,module_name,sep,l)
-         {"unknown block:(sendself self-2/1393 normal_type_list/1316 0a module_name/1394 sep/1395\n  l/1396)";
+         {"(sendself self-2/1393 normal_type_list/1316 0a module_name/1394 sep/1395\n  l/1396)";
           return /* :: */[0,/* Code */[1,0],/* [] */0];
           },
         text_of_class_type_param_expr_list,
         function(self$neg2,module_name,l)
-         {"unknown block:(sendself self-2/1398 normal_class_type_param_list/1317 module_name/1399\n  l/1400)";
+         {"(sendself self-2/1398 normal_class_type_param_list/1317 module_name/1399\n  l/1400)";
           return /* :: */[0,/* Code */[1,0],/* [] */0];
           },
         text_of_class_params,
         function(self$neg2,module_name,c)
-         {"unknown block:(sendself self-2/1402 normal_class_params/1318 module_name/1403 c/1404)";
+         {"(sendself self-2/1402 normal_class_params/1318 module_name/1403 c/1404)";
           return Odoc_info["text_concat"]
                   ([/* :: */0,/* Newline */0,/* [] */0],
                    List["map"]
@@ -583,7 +582,7 @@ var
           
           var s_name=Odoc_info["Name"][1](name);
           
-          "unknown block:(sendself self-2/1412 normal_type/1315\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1413))\n  (field 2 v/1413))";
+          "(sendself self-2/1412 normal_type/1315\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 v/1413))\n  (field 2 v/1413))";
           Format["fprintf"]
            (Format["str_formatter"],
             [/* Format */0,
@@ -606,9 +605,9 @@ var
             0);
           var s=Format["flush_str_formatter"](/* () */0);
           
-          "unknown block:(sendself self-2/1412 label/1310 0a s_name/1415)";
-          "unknown block:(sendself self-2/1412 label/1310 [0: 0a] s_name/1415)";
-          "unknown block:(sendself self-2/1412 text_of_info/1417 0a (field 1 v/1413))";
+          "(sendself self-2/1412 label/1310 0a s_name/1415)";
+          "(sendself self-2/1412 label/1310 [0: 0a] s_name/1415)";
+          "(sendself self-2/1412 text_of_info/1417 0a (field 1 v/1413))";
           return Pervasives["@"]
                   (/* :: */[0,/* CodePre */[2,s],/* [] */0],
                    Pervasives["@"]
@@ -627,7 +626,7 @@ var
           
           var mod_name=Odoc_info["Name"][5](a[1][1]);
           
-          "unknown block:(sendself self-2/1419 normal_type/1315 mod_name/1422\n  (field 2 (field 0 a/1420)))";
+          "(sendself self-2/1419 normal_type/1315 mod_name/1422\n  (field 2 (field 0 a/1420)))";
           Format["fprintf"]
            (Format["str_formatter"],
             [/* Format */0,
@@ -656,9 +655,9 @@ var
             0);
           var s=Format["flush_str_formatter"](/* () */0);
           
-          "unknown block:(sendself self-2/1419 label/1310 0a s_name/1421)";
-          "unknown block:(sendself self-2/1419 label/1310 [0: 0a] s_name/1421)";
-          "unknown block:(sendself self-2/1419 text_of_info/1417 0a (field 1 (field 0 a/1420)))";
+          "(sendself self-2/1419 label/1310 0a s_name/1421)";
+          "(sendself self-2/1419 label/1310 [0: 0a] s_name/1421)";
+          "(sendself self-2/1419 text_of_info/1417 0a (field 1 (field 0 a/1420)))";
           return Pervasives["@"]
                   (/* :: */[0,
                     /* CodePre */[2,s],
@@ -677,7 +676,7 @@ var
           
           var mod_name=Odoc_info["Name"][5](m[1][1]);
           
-          "unknown block:(sendself self-2/1425 normal_type/1315 mod_name/1428\n  (field 2 (field 0 m/1426)))";
+          "(sendself self-2/1425 normal_type/1315 mod_name/1428\n  (field 2 (field 0 m/1426)))";
           Format["fprintf"]
            (Format["str_formatter"],
             [/* Format */0,
@@ -706,9 +705,9 @@ var
             0);
           var s=Format["flush_str_formatter"](/* () */0);
           
-          "unknown block:(sendself self-2/1425 label/1310 0a s_name/1427)";
-          "unknown block:(sendself self-2/1425 label/1310 [0: 0a] s_name/1427)";
-          "unknown block:(sendself self-2/1425 text_of_info/1417 0a (field 1 (field 0 m/1426)))";
+          "(sendself self-2/1425 label/1310 0a s_name/1427)";
+          "(sendself self-2/1425 label/1310 [0: 0a] s_name/1427)";
+          "(sendself self-2/1425 text_of_info/1417 0a (field 1 (field 0 m/1426)))";
           return Pervasives["@"]
                   (/* :: */[0,
                     /* CodePre */[2,s],
@@ -746,8 +745,8 @@ var
           
           if(match)
            {if(match$1)
-             {'unknown block:(sendself self-2/1431 normal_type_list/1316 [0: 0a] father/1434 " * "\n  match/1607)';
-              "unknown block:(sendself self-2/1431 normal_type/1315 father/1434 (field 0 match/1608))";
+             {'(sendself self-2/1431 normal_type_list/1316 [0: 0a] father/1434 " * "\n  match/1607)';
+              "(sendself self-2/1431 normal_type/1315 father/1434 (field 0 match/1608))";
               Format["fprintf"]
                (Format["str_formatter"],
                 [/* Format */0,
@@ -772,7 +771,7 @@ var
                 "->",
                 0)}
             else
-             {'unknown block:(sendself self-2/1431 normal_type_list/1316 [0: 0a] father/1434 " * "\n  match/1607)';
+             {'(sendself self-2/1431 normal_type_list/1316 [0: 0a] father/1434 " * "\n  match/1607)';
               Format["fprintf"]
                (Format["str_formatter"],
                 [/* Format */0,
@@ -789,7 +788,7 @@ var
             }
           else
            {if(match$1)
-             {"unknown block:(sendself self-2/1431 normal_type/1315 father/1434 (field 0 match/1608))";
+             {"(sendself self-2/1431 normal_type/1315 father/1434 (field 0 match/1608))";
               Format["fprintf"]
                (Format["str_formatter"],
                 [/* Format */0,
@@ -827,9 +826,9 @@ var
           
           var s2=Format["flush_str_formatter"](/* () */0);
           
-          "unknown block:(sendself self-2/1431 label/1310 0a s_name/1433)";
-          "unknown block:(sendself self-2/1431 label/1310 [0: 0a] s_name/1433)";
-          "unknown block:(sendself self-2/1431 text_of_info/1417 0a (field 1 e/1432))";
+          "(sendself self-2/1431 label/1310 0a s_name/1433)";
+          "(sendself self-2/1431 label/1310 [0: 0a] s_name/1433)";
+          "(sendself self-2/1431 text_of_info/1417 0a (field 1 e/1432))";
           return Pervasives["@"]
                   (/* :: */[0,/* CodePre */[2,s2],/* [] */0],
                    Pervasives["@"]
@@ -906,8 +905,8 @@ var
                            switch(s)
                             {case "":var $js=[/* Code */1,"?"];
                              default:var $js=/* Code */[1,s];}
-                           "unknown block:(sendself self-2/1453 text_of_short_type_expr/1320 m_name/1454\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1456))";
-                           "unknown block:(sendself self-2/1453 text_of_parameter_description/1329 p/1456)";
+                           "(sendself self-2/1453 text_of_short_type_expr/1320 m_name/1454\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1456))";
+                           "(sendself self-2/1453 text_of_parameter_description/1329 p/1456)";
                            return Pervasives["@"]
                                    (/* :: */[0,$js,[/* :: */0,[/* Code */1," : "],/* [] */0]],
                                     Pervasives["@"]
@@ -942,7 +941,7 @@ var
                             var match=p[2];
                             
                             if(match)
-                             {"unknown block:(sendself self-2/1459 text_of_module_type/1324 (field 0 match/1588))";
+                             {"(sendself self-2/1459 text_of_module_type/1324 (field 0 match/1588))";
                               var
                                $js=
                                 Pervasives["@"]
@@ -996,7 +995,7 @@ var
              var l=cco[3];
              
              if(l)
-              {'unknown block:(sendself self-2/1466 text_of_type_expr_list/1321 father/1467 ", " l/1475)';
+              {'(sendself self-2/1466 text_of_type_expr_list/1321 father/1467 ", " l/1475)';
                var
                 $js=
                  Pervasives["@"]
@@ -1015,8 +1014,8 @@ var
                        /* [] */0]);
              
             case 3:
-             "unknown block:(sendself self-2/1466 text_of_class_kind/1332 father/1467\n  (field 0 ckind/1468))";
-             "unknown block:(sendself self-2/1466 text_of_class_type_kind/1333 father/1467\n  (field 1 ckind/1468))";
+             "(sendself self-2/1466 text_of_class_kind/1332 father/1467\n  (field 0 ckind/1468))";
+             "(sendself self-2/1466 text_of_class_type_kind/1333 father/1467\n  (field 1 ckind/1468))";
              return Pervasives["@"]
                      ([/* :: */0,[/* Code */1,"( "],/* [] */0],
                       Pervasives["@"]
@@ -1041,7 +1040,7 @@ var
              var l=cta[3];
              
              if(l)
-              {"unknown block:(sendself self-2/1479 text_of_class_type_param_expr_list/1322 father/1480\n  l/1483)";
+              {"(sendself self-2/1479 text_of_class_type_param_expr_list/1322 father/1480\n  l/1483)";
                var
                 $js=
                  Pervasives["@"]
@@ -1110,7 +1109,7 @@ var
                }
              
             case 2:
-             "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 1 k/1493))";
+             "(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 1 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
                        ?[/* :: */0,[/* Code */1," : "],/* [] */0]
@@ -1121,8 +1120,8 @@ var
                          ([/* :: */0,[/* Code */1," -> "],/* [] */0],0)));
              
             case 3:
-             "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 0 k/1493))";
-             "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 1 k/1493))";
+             "(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 0 k/1493))";
+             "(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 1 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
                        ?[/* :: */0,[/* Code */1," = "],/* [] */0]
@@ -1134,7 +1133,7 @@ var
                           Pervasives["@"](0,[/* :: */0,[/* Code */1," ) "],/* [] */0]))));
              
             case 4:
-             "unknown block:(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 0 k/1493))";
+             "(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 0 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
                        ?[/* :: */0,[/* Code */1," : "],/* [] */0]
@@ -1142,8 +1141,8 @@ var
                       Pervasives["@"](0,/* :: */[0,/* Code */[1,k[2]],/* [] */0]));
              
             case 5:
-             "unknown block:(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 0 k/1493))";
-             "unknown block:(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 1 k/1493))";
+             "(sendself self-2/1489 text_of_module_kind/1334 [0: 0a] (field 0 k/1493))";
+             "(sendself self-2/1489 text_of_module_type_kind/1335 [0: 0a] (field 1 k/1493))";
              return Pervasives["@"]
                      (with_def_syntax
                        ?[/* :: */0,[/* Code */1," : "],/* [] */0]
@@ -1206,7 +1205,7 @@ var
             case 1:
              var p=tk[1];
              
-             "unknown block:(sendself self-2/1510 text_of_module_type_kind/1335 0a (field 3 p/1515))";
+             "(sendself self-2/1510 text_of_module_type_kind/1335 0a (field 3 p/1515))";
              var
               t1=
                Pervasives["@"]
@@ -1217,7 +1216,7 @@ var
                  Pervasives["@"]
                   (0,[/* :: */0,[/* Code */1,") -> "],/* [] */0]));
              
-             "unknown block:(sendself self-2/1510 text_of_module_type_kind/1335 [0: 0a]\n  (field 1 tk/1514))";
+             "(sendself self-2/1510 text_of_module_type_kind/1335 [0: 0a]\n  (field 1 tk/1514))";
              
              return Pervasives["@"]
                      (with_def_syntax
@@ -1237,7 +1236,7 @@ var
                      /* [] */0];
              
             case 3:
-             "unknown block:(sendself self-2/1510 text_of_module_type_kind/1335 [0: 0a]\n  (field 0 tk/1514))";
+             "(sendself self-2/1510 text_of_module_type_kind/1335 [0: 0a]\n  (field 0 tk/1514))";
              
              return Pervasives["@"]
                      (with_def_syntax

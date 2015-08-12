@@ -676,7 +676,7 @@ var
         switch(exit)
          {case 53:return /* () */0;
           case 55:return List["iter"](iter_text,ele[1]);
-          case 56:"unknown block:(exit 52 (field 0 ele/1165))";
+          case 56:var t$1=ele[1];exit=52;
           case 50:return /* () */0;
           case 52:return iter_text(t$1);
           }
