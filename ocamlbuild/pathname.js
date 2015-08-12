@@ -31,13 +31,13 @@ var print_strings=My_std["List"][1](My_std["String"][1]);
 
 var concat=My_std["filename_concat"];
 
-var compare=function(x,y){return Primtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
 
 var print=Format["pp_print_string"];
 
 var mk=function(s){return s;};
 
-var pwd=Primtivie["caml_sys_getcwd"](/* () */0);
+var pwd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
 
 var
  add_extension=
@@ -57,7 +57,7 @@ var $neg$unknown$neg=function(file,ext){return add_extension(ext,file);};
 
 var Operators=[0,concat,$neg$unknown$neg];
 
-var equal=function(x,y){return Primtivie["caml_equal"](x,y);};
+var equal=function(x,y){return CamlPrimtivie["caml_equal"](x,y);};
 
 var to_string=function(x){return x;};
 
@@ -91,7 +91,7 @@ var
       function(p,acc)
        {var dir=dirname(p);
         
-        if(Primtivie["caml_string_equal"](dir,p))
+        if(CamlPrimtivie["caml_string_equal"](dir,p))
          {return /* tuple */[0,dir,acc];}
         else
          {return go(dir,/* :: */[0,basename(p),acc]);}
@@ -103,7 +103,7 @@ var
 var
  join=
   function(root,paths)
-   {if(Primtivie["caml_string_equal"](root,current_dir_name))
+   {if(CamlPrimtivie["caml_string_equal"](root,current_dir_name))
      {var root$1="";}
     else
      {var root$1=root;}
@@ -111,12 +111,12 @@ var
     return My_std["List"][19](Operators[1],root$1,paths);
     };
 
-if(Primtivie["caml_string_equal"](current_dir_name,"."))
+if(CamlPrimtivie["caml_string_equal"](current_dir_name,"."))
  {var _H1=0;}
 else
  {throw [0,Assert_failure,[0,"pathname.ml",74,10]];}
 
-if(Primtivie["caml_string_equal"](parent_dir_name,".."))
+if(CamlPrimtivie["caml_string_equal"](parent_dir_name,".."))
  {var _H2=0;}
 else
  {throw [0,Assert_failure,[0,"pathname.ml",75,10]];}
@@ -175,10 +175,10 @@ var
     var ly=y["length"];
     
     if(lx=ly)
-     {return Primtivie["caml_string_equal"](x,My_std["String"][3](y,lx));}
+     {return CamlPrimtivie["caml_string_equal"](x,My_std["String"][3](y,lx));}
     else
      {if(lx<ly)
-       {return Primtivie["caml_string_equal"](x,My_std["String"][3](y,lx))&&
+       {return CamlPrimtivie["caml_string_equal"](x,My_std["String"][3](y,lx))&&
                My_std["List"][30](y[lx],dir_seps);
         }
       else
@@ -286,7 +286,8 @@ var
                 dir,
                 My_std["List"][33]
                  (function(dir$prime)
-                   {return Primtivie["caml_string_notequal"](dir,dir$prime);},
+                   {return CamlPrimtivie["caml_string_notequal"](dir,dir$prime);
+                    },
                   Options["include_dirs"][1])];
         }
       else
@@ -297,7 +298,7 @@ var
 var
  define_context=
   function(dir,context)
-   {if(Primtivie["caml_string_equal"](dir,""))
+   {if(CamlPrimtivie["caml_string_equal"](dir,""))
      {var dir$1=current_dir_name;}
     else
      {var dir$1=dir;}
@@ -310,7 +311,7 @@ var
 var
  same_contents=
   function(x,y)
-   {return Primtivie["caml_string_equal"]
+   {return CamlPrimtivie["caml_string_equal"]
             (My_std["Digest"][3](x),My_std["Digest"][3](y));
     };
 

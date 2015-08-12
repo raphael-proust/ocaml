@@ -229,7 +229,7 @@ var
           
           var see_ref=param[1];
           
-          switch(see_ref)
+          switch(see_ref[0])
            {case 0:return /* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
             case 1:
              return /* :: */[0,
@@ -336,7 +336,7 @@ var
              {var t=match$1[1];
               
               if
-               (Primtivie["caml_equal"]
+               (CamlPrimtivie["caml_equal"]
                  (t,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js=/* [] */0;}
               else
@@ -965,7 +965,7 @@ var
           },
         text_of_class_kind,
         function(self$neg2,father,ckind)
-         {switch(ckind)
+         {switch(ckind[0])
            {case 0:
              return /* :: */[0,
                      /* Code */[1,Odoc_messages["object_end"]],
@@ -1029,7 +1029,7 @@ var
           },
         text_of_class_type_kind,
         function(self$neg2,father,ctkind)
-         {switch(ctkind)
+         {switch(ctkind[0])
            {case 0:
              return /* :: */[0,
                      /* Code */[1,Odoc_messages["object_end"]],
@@ -1070,7 +1070,7 @@ var
           else
            {var with_def_syntax=/* true */1;}
           
-          switch(k)
+          switch(k[0])
            {case 0:
              return /* :: */[0,
                      /* Code */[1,
@@ -1087,7 +1087,7 @@ var
              if(match)
               {var match$1=match[1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:
                   return /* :: */[0,
                           /* Code */[1,
@@ -1195,7 +1195,7 @@ var
           else
            {var with_def_syntax=/* true */1;}
           
-          switch(tk)
+          switch(tk[0])
            {case 0:
              return /* :: */[0,
                      /* Code */[1,

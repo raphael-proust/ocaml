@@ -51,7 +51,7 @@ var make_dump=function(a){return /* Dump */[0,magic,a];};
 var
  open_dump=
   function(param)
-   {if(Primtivie["caml_string_equal"](param[1],magic))
+   {if(CamlPrimtivie["caml_string_equal"](param[1],magic))
      {return param[2];}
     else
      {throw [0,Failure,Odoc_messages["bad_magic_number"]];}

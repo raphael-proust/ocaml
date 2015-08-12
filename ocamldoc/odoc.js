@@ -88,7 +88,7 @@ var plugins=match[1];
 var
  get_real_filename=
   function(name)
-   {if(Primtivie["caml_string_notequal"](Filename["basename"](name),name))
+   {if(CamlPrimtivie["caml_string_notequal"](Filename["basename"](name),name))
      {return name;}
     else
      {var
@@ -102,7 +102,7 @@ var
          d=
           List["find"]
            (function(d)
-             {return Primtivie["caml_sys_file_exists"]
+             {return CamlPrimtivie["caml_sys_file_exists"]
                       (Filename["concat"](d,name));
               },
             paths$1);

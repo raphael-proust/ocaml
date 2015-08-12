@@ -677,7 +677,7 @@ var
     
     var
      p=
-      function(v1,v2){return Primtivie["caml_string_equal"](v1[1],v2[1]);};
+      function(v1,v2){return CamlPrimtivie["caml_string_equal"](v1[1],v2[1]);};
     
     var
      iter=
@@ -685,7 +685,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 4:
              var q=param[2];
              
@@ -767,7 +767,7 @@ var
     
     var
      p=
-      function(x1,x2){return Primtivie["caml_string_equal"](x1[1],x2[1]);};
+      function(x1,x2){return CamlPrimtivie["caml_string_equal"](x1[1],x2[1]);};
     
     var
      iter=
@@ -775,7 +775,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 6:
              var q=param[2];
              
@@ -857,7 +857,7 @@ var
     
     var
      p=
-      function(e1,e2){return Primtivie["caml_string_equal"](e1[1],e2[1]);};
+      function(e1,e2){return CamlPrimtivie["caml_string_equal"](e1[1],e2[1]);};
     
     var
      iter=
@@ -865,7 +865,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 7:
              var q=param[2];
              
@@ -947,7 +947,7 @@ var
     
     var
      p=
-      function(t1,t2){return Primtivie["caml_string_equal"](t1[1],t2[1]);};
+      function(t1,t2){return CamlPrimtivie["caml_string_equal"](t1[1],t2[1]);};
     
     var
      iter=
@@ -955,7 +955,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 5:
              var q=param[2];
              
@@ -1038,7 +1038,7 @@ var
     var
      p=
       function(a1,a2)
-       {return Primtivie["caml_string_equal"](a1[1][1],a2[1][1]);};
+       {return CamlPrimtivie["caml_string_equal"](a1[1][1],a2[1][1]);};
     
     var
      iter=
@@ -1046,7 +1046,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 8:
              var q=param[2];
              
@@ -1129,7 +1129,7 @@ var
     var
      p=
       function(m1,m2)
-       {return Primtivie["caml_string_equal"](m1[1][1],m2[1][1]);};
+       {return CamlPrimtivie["caml_string_equal"](m1[1][1],m2[1][1]);};
     
     var
      iter=
@@ -1137,7 +1137,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 9:
              var q=param[2];
              
@@ -1219,7 +1219,7 @@ var
     
     var
      p=
-      function(c1,c2){return Primtivie["caml_string_equal"](c1[1],c2[1]);};
+      function(c1,c2){return CamlPrimtivie["caml_string_equal"](c1[1],c2[1]);};
     
     var
      iter=
@@ -1227,7 +1227,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 2:
              var q=param[2];
              
@@ -1309,7 +1309,7 @@ var
     
     var
      p=
-      function(c1,c2){return Primtivie["caml_string_equal"](c1[1],c2[1]);};
+      function(c1,c2){return CamlPrimtivie["caml_string_equal"](c1[1],c2[1]);};
     
     var
      iter=
@@ -1317,7 +1317,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 3:
              var q=param[2];
              
@@ -1399,7 +1399,7 @@ var
     
     var
      p=
-      function(m1,m2){return Primtivie["caml_string_equal"](m1[1],m2[1]);};
+      function(m1,m2){return CamlPrimtivie["caml_string_equal"](m1[1],m2[1]);};
     
     var
      iter=
@@ -1407,7 +1407,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 0:
              var q=param[2];
              
@@ -1489,7 +1489,7 @@ var
     
     var
      p=
-      function(m1,m2){return Primtivie["caml_string_equal"](m1[1],m2[1]);};
+      function(m1,m2){return CamlPrimtivie["caml_string_equal"](m1[1],m2[1]);};
     
     var
      iter=
@@ -1497,7 +1497,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 1:
              var q=param[2];
              
@@ -1524,7 +1524,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 5:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1537,7 +1537,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 4:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1550,7 +1550,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 2:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1563,7 +1563,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 3:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1576,7 +1576,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 0:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1589,7 +1589,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 1:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1602,7 +1602,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 6:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1615,7 +1615,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 7:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1628,7 +1628,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 8:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1641,7 +1641,7 @@ var
     
     return List["exists"]
             (function(param)
-              {switch(param)
+              {switch(param[0])
                 {case 9:return /* true */1;default:return /* false */0;}
                },
              l);
@@ -1656,12 +1656,12 @@ var
      match=
       List["find"]
        (function(param)
-         {switch(param)
+         {switch(param[0])
            {case 10:return /* true */1;default:return /* false */0;}
           },
         l);
     
-    switch(match)
+    switch(match[0])
      {case 10:return match[2];
       default:throw [0,Assert_failure,[0,"odoc_search.ml",752,9]];}
     };

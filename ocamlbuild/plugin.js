@@ -208,7 +208,7 @@ var
           var
            spec=
             function(param$1)
-             {if("unknown primitive:isint")
+             {if(typeof param$1==="number")
                {return /* N */0;}
               else
                {var variant=param$1[1];
@@ -314,7 +314,9 @@ var
            passed_argv=
             My_std["List"][33]
              (function(s)
-               {return Primtivie["caml_string_notequal"](s,"-plugin-option");},
+               {return CamlPrimtivie["caml_string_notequal"]
+                        (s,"-plugin-option");
+                },
               argv);
           
           var

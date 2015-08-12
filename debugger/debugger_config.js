@@ -5,7 +5,9 @@ var Hashtbl=require("Hashtbl");
 var Sys=require("Sys");
 
 
-var Toplevel=Primtivie["caml_set_oo_id"]([248,"Debugger_config.Toplevel",0]);
+var
+ Toplevel=
+  CamlPrimtivie["caml_set_oo_id"]([248,"Debugger_config.Toplevel",0]);
 
 var debugger_prompt="(ocd) ";
 

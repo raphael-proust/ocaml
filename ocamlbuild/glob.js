@@ -21,8 +21,8 @@ var brute_limit=10;
 var
  string_of_token=
   function(param)
-   {if("unknown primitive:isint")
-     {switch(param[0])
+   {if(typeof param==="number")
+     {switch(param)
        {case 0:return "AND";
         case 1:return "OR";
         case 2:return "NOT";
@@ -42,13 +42,13 @@ var
   function(cl,c)
    {return Bool["eval"]
             (function(param)
-              {return Primtivie["caml_lessequal"](param[1],c)&&
-                      Primtivie["caml_lessequal"](c,param[2]);
+              {return CamlPrimtivie["caml_lessequal"](param[1],c)&&
+                      CamlPrimtivie["caml_lessequal"](c,param[2]);
                },
              cl);
     };
 
-var compare=function(x,y){return Primtivie["caml_int_compare"](x,y);};
+var compare=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
 
 var print=Format["pp_print_int"];
 
@@ -176,13 +176,13 @@ var
     
     var m=count[1];
     
-    var graph=Primtivie["caml_make_vect"](m,IS[1]);
+    var graph=CamlPrimtivie["caml_make_vect"](m,IS[1]);
     
     My_std["List"][14]
      (function(param)
        {var q=param[1];return graph[q]=IS[4](param[2],graph[q]),0;},
       epsilons[1]);
-    var closure=Primtivie["caml_make_vect"](m,IS[1]);
+    var closure=CamlPrimtivie["caml_make_vect"](m,IS[1]);
     
     var
      transitive=
@@ -213,7 +213,7 @@ var
     for(var i=0;i<=m-1;i++)
      {closure[i]=transitive(IS[1],/* :: */[0,i,/* [] */0]),0}
     
-    var table=Primtivie["caml_make_vect"](m,/* [] */0);
+    var table=CamlPrimtivie["caml_make_vect"](m,/* [] */0);
     
     My_std["List"][14]
      (function(param)
@@ -344,11 +344,11 @@ var
 
 var NFA=[0,IS,ISM,build$prime,build,run];
 
-var Succeed=Primtivie["caml_set_oo_id"]([248,"Glob.Brute.Succeed",0]);
+var Succeed=CamlPrimtivie["caml_set_oo_id"]([248,"Glob.Brute.Succeed",0]);
 
-var Fail=Primtivie["caml_set_oo_id"]([248,"Glob.Brute.Fail",0]);
+var Fail=CamlPrimtivie["caml_set_oo_id"]([248,"Glob.Brute.Fail",0]);
 
-var Too_hard=Primtivie["caml_set_oo_id"]([248,"Glob.Brute.Too_hard",0]);
+var Too_hard=CamlPrimtivie["caml_set_oo_id"]([248,"Glob.Brute.Too_hard",0]);
 
 var
  match_pattern=
@@ -390,7 +390,7 @@ var
                   
                   var exit$1;
                   
-                  if("unknown primitive:isint")
+                  if(typeof cl==="number")
                    {if(cl!=0){exit$1=27;}else{return /* true */1;}}
                   else
                    {exit$1=27;}
@@ -462,7 +462,7 @@ var
    {if(dir)
      {var dir$1=dir[1];
       
-      switch(x)
+      switch(x[0])
        {case 0:return /* Constant */[0,My_std["filename_concat"](dir$1,x[1])];
         case 1:
          return /* Pattern */[1,
@@ -553,7 +553,7 @@ var
       function(x)
        {var y=f(/* () */0);
         
-        if(Primtivie["caml_equal"](x,y))
+        if(CamlPrimtivie["caml_equal"](x,y))
          {return /* () */0;}
         else
          {throw [0,
@@ -580,8 +580,8 @@ var
         
         var exit;
         
-        if("unknown primitive:isint")
-         {switch(t[0])
+        if(typeof t==="number")
+         {switch(t)
            {case 0:exit=8;
             case 1:exit=8;
             case 2:
@@ -603,7 +603,7 @@ var
         else
          {var match=add_dir(dir,t[1]);
           
-          switch(match)
+          switch(match[0])
            {case 0:var a=/* Constant */[0,match[1]];
             case 1:var a=/* Pattern */[1,fast_pattern_of_pattern(match[1])];
             }
@@ -635,7 +635,7 @@ var
         
         var exit;
         
-        if("unknown primitive:isint")
+        if(typeof t==="number")
          {if(t!=1)
            {if(t!=0){exit=10;}else{return parse_t(x);}}
           else
@@ -657,7 +657,7 @@ var
         
         var exit;
         
-        if("unknown primitive:isint")
+        if(typeof t==="number")
          {if(t!=1)
            {if(t!=0)
              {exit=12;}
@@ -699,14 +699,14 @@ var
   function(g,u)
    {return Bool["eval"]
             (function(param)
-              {switch(param)
-                {case 0:return Primtivie["caml_string_equal"](u,param[1]);
+              {switch(param[0])
+                {case 0:return CamlPrimtivie["caml_string_equal"](u,param[1]);
                  case 1:
                   var kind=param[1];
                   
                   var match=kind[1];
                   
-                  switch(match)
+                  switch(match[0])
                    {case 0:
                      var p=match[2];
                      

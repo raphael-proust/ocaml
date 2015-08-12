@@ -12,15 +12,15 @@ var match$1=CamlPrimtivie["caml_sys_get_config"](/* () */0);
 
 var os_type=match$1[1];
 
-var big_endian="unknown primitive:sys.constant_big_endian";
+var big_endian=false;
 
-var word_size="unknown primitive:sys.constant_word_size";
+var word_size=64;
 
-var unix="unknown primitive:sys.constant_ostype_unix";
+var unix=true;
 
-var win32="unknown primitive:sys.constant_ostype_win32";
+var win32=false;
 
-var cygwin="unknown primitive:sys.constant_ostype_cygwin";
+var cygwin=false;
 
 var max_array_length=(1<<word_size-10)-1;
 

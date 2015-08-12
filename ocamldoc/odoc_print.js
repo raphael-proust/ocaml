@@ -56,7 +56,7 @@ var
     return flush_type_fmt(/* () */0);
     };
 
-var Use_code=Primtivie["caml_set_oo_id"]([248,"Odoc_print.Use_code",0]);
+var Use_code=CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_print.Use_code",0]);
 
 var
  simpl_module_type=
@@ -66,7 +66,7 @@ var
       function(t)
        {var exit;
         
-        switch(t)
+        switch(t[0])
          {case 0:exit=11;
           case 1:
            if(code)
@@ -112,7 +112,7 @@ var
    {var
      iter=
       function(t)
-       {switch(t)
+       {switch(t[0])
          {case 0:return t;
           case 1:
            var tnil=/* record */[0,/* Tnil */0,0,0];

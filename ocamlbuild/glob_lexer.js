@@ -12,14 +12,10 @@ var sf=Printf["sprintf"];
 var
  concat_patterns=
   function(p1,p2)
-   {if("unknown primitive:isint")
+   {if(typeof p1==="number")
      {return p2;}
     else
-     {if("unknown primitive:isint")
-       {return p1;}
-      else
-       {return /* Concat */[2,p1,p2];}
-      }
+     {if(typeof p2==="number"){return p1;}else{return /* Concat */[2,p1,p2];}}
     };
 
 var slash=[/* Class */1,[/* Atom */3,[/* tuple */0,47,47]]];
@@ -57,7 +53,7 @@ var
       return __ocaml_lex_token_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var
           match=
@@ -100,7 +96,7 @@ var
               (eof_chars,p,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var u=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
@@ -227,7 +223,7 @@ var
       return __ocaml_lex_parse_string_rec(b,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return Buffer["contents"](b);
         case 1:Buffer["add_char"](b,34);return parse_string(b,lexbuf);
         case 2:
@@ -270,7 +266,7 @@ var
       return __ocaml_lex_parse_class_rec(cl,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return cl;
         case 1:return /* :: */[0,[/* Atom */3,[/* tuple */0,45,45]],cl];
         case 2:

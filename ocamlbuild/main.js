@@ -38,9 +38,11 @@ var Sys=require("Sys");
 
 var
  Exit_build_error=
-  Primtivie["caml_set_oo_id"]([248,"Main.Exit_build_error",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Main.Exit_build_error",0]);
 
-var Exit_silently=Primtivie["caml_set_oo_id"]([248,"Main.Exit_silently",0]);
+var
+ Exit_silently=
+  CamlPrimtivie["caml_set_oo_id"]([248,"Main.Exit_silently",0]);
 
 var
  clean=
@@ -153,7 +155,7 @@ var
     if(Options["must_clean"][1]){clean(/* () */0)}else{}
     
     Hooks["call_hook"](/* After_options */3);
-    var options_wd=Primtivie["caml_sys_getcwd"](/* () */0);
+    var options_wd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
     
     var
      first_run_for_plugin=
@@ -198,9 +200,9 @@ var
     else
      {}
     
-    var newpwd=Primtivie["caml_sys_getcwd"](/* () */0);
+    var newpwd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
     
-    Primtivie["caml_sys_chdir"](Pathname["pwd"]);
+    CamlPrimtivie["caml_sys_chdir"](Pathname["pwd"]);
     var entry_include_dirs=[0,/* [] */0];
     
     var
@@ -208,17 +210,18 @@ var
       Slurp["filter"]
        (function(path,name,param$1)
          {if
-           (Primtivie["caml_string_equal"](path,Filename["current_dir_name"]))
+           (CamlPrimtivie["caml_string_equal"]
+             (path,Filename["current_dir_name"]))
            {var dir=/* None */0;}
           else
            {var dir=/* Some */[0,path];}
           
           var path_name=Pathname["Operators"][1](path,name);
           
-          if(Primtivie["caml_string_equal"](name,"_tags"))
+          if(CamlPrimtivie["caml_string_equal"](name,"_tags"))
            {if
-             (Primtivie["caml_string_equal"]
-               (Primtivie["caml_sys_getcwd"](/* () */0),Pathname["pwd"]))
+             (CamlPrimtivie["caml_string_equal"]
+               (CamlPrimtivie["caml_sys_getcwd"](/* () */0),Pathname["pwd"]))
              {var tags_path=path_name;}
             else
              {var
@@ -237,10 +240,10 @@ var
                   0&&
                   name[0]!=
                   95)&&
-                 Primtivie["caml_string_notequal"]
+                 CamlPrimtivie["caml_string_notequal"]
                   (name,Options["build_dir"][1])&&
                  !My_std["List"][30](name,Options["exclude_dirs"][1])&&
-                 (!(Primtivie["caml_string_notequal"]
+                 (!(CamlPrimtivie["caml_string_notequal"]
                     (path_name,Filename["current_dir_name"])&&
                    Pathname["is_directory"](path_name))||
                   (Tags["mem"]("include",tags)||
@@ -255,7 +258,7 @@ var
                        Options["include_dirs"][1])||
                      My_std["List"][27]
                       (Pathname["is_prefix"](path_name),target_dirs))&&
-                  Primtivie["caml_string_notequal"]
+                  CamlPrimtivie["caml_string_notequal"]
                    (Pathname["normalize"](Options["build_dir"][1]),
                     Pathname["normalize"]
                      (Pathname["Operators"][1](Pathname["pwd"],path_name))));
@@ -303,10 +306,10 @@ var
     Hooks["call_hook"](/* Before_rules */4);
     Ocaml_specific["init"](/* () */0);
     Hooks["call_hook"](/* After_rules */5);
-    Primtivie["caml_sys_chdir"](options_wd);
+    CamlPrimtivie["caml_sys_chdir"](options_wd);
     Plugin["execute_plugin_if_needed"](/* () */0);
     Param_tags["init"](/* () */0);
-    Primtivie["caml_sys_chdir"](newpwd);
+    CamlPrimtivie["caml_sys_chdir"](newpwd);
     if(Options["show_documentation"][1])
      {show_documentation(/* () */0);throw Exit_silently;}
     else

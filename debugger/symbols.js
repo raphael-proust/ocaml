@@ -149,7 +149,7 @@ var
                  var
                   cmp=
                    function(ev1,ev2)
-                    {return Primtivie["caml_int_compare"]
+                    {return CamlPrimtivie["caml_int_compare"]
                              (Events["get_pos"](ev1)[4],Events["get_pos"](ev2)[4]);
                      };
                  
@@ -165,7 +165,7 @@ var
                        
                        var exit;
                        
-                       if("unknown primitive:isint")
+                       if(typeof match$1==="number")
                         {if(match$1!=0){return /* false */0;}else{exit=25;}}
                        else
                         {exit=25;}
@@ -194,7 +194,7 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
+    if(typeof match==="number")
      {if(match!=0){throw Not_found;}else{exit=21;}}
     else
      {exit=21;}
@@ -294,7 +294,7 @@ var
                
                var exit;
                
-               if("unknown primitive:isint")
+               if(typeof match==="number")
                 {if(match!=0){return /* () */0;}else{exit=5;}}
                else
                 {exit=5;}
@@ -312,7 +312,7 @@ var
    {var opt_pc=Checkpoints["current_pc"](/* () */0);
     
     if(opt_pc)
-     {if(Primtivie["caml_notequal"](opt_pc,old_pc[1]))
+     {if(CamlPrimtivie["caml_notequal"](opt_pc,old_pc[1]))
        {var $js;
         try
          {$js=/* Some */[0,event_at_pc(opt_pc[1])];}

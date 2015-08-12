@@ -16,31 +16,31 @@ var Sys=require("Sys");
 
 
 Digest,$$String,List;
-var Exit_OK=Primtivie["caml_set_oo_id"]([248,"My_std.Exit_OK",0]);
+var Exit_OK=CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_OK",0]);
 
-var Exit_usage=Primtivie["caml_set_oo_id"]([248,"My_std.Exit_usage",0]);
+var Exit_usage=CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_usage",0]);
 
 var
  Exit_system_error=
-  Primtivie["caml_set_oo_id"]([248,"My_std.Exit_system_error",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_system_error",0]);
 
 var
  Exit_with_code=
-  Primtivie["caml_set_oo_id"]([248,"My_std.Exit_with_code",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_with_code",0]);
 
 var
  Exit_silently_with_code=
-  Primtivie["caml_set_oo_id"]([248,"My_std.Exit_silently_with_code",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_silently_with_code",0]);
 
 var
  ignore_good=
   function(param)
-   {switch(param){case 0:return /* () */0;case 1:throw param[1];}};
+   {switch(param[0]){case 0:return /* () */0;case 1:throw param[1];}};
 
 var
  good=
   function(param)
-   {switch(param){case 0:return param[1];case 1:throw param[1];}};
+   {switch(param[0]){case 0:return param[1];case 1:throw param[1];}};
 
 var
  wrap=
@@ -108,7 +108,9 @@ var
     
     var fold=include[14];
     
-    var Found=Primtivie["caml_set_oo_id"]([248,"My_std.Set.Make(M).Found",0]);
+    var
+     Found=
+      CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Set.Make(M).Found",0]);
     
     var
      find_elt=
@@ -321,7 +323,7 @@ var
   function(lst)
    {var
      compare=
-      function(prim,prim){return Primtivie["caml_compare"](prim$1,prim);};
+      function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
     
     var print$1=function(param,param$1){return /* () */0;};
     
@@ -550,7 +552,7 @@ var
   function(s)
    {var sl=s["length"];
     
-    var s$prime=Primtivie["caml_create_string"](sl);
+    var s$prime=CamlPrimtivie["caml_create_string"](sl);
     
     for(var i=0;i<=sl-1;i++){s$prime[i]=s[sl-i-1],0}
     
@@ -561,7 +563,7 @@ var
  implode=
   function(l)
    {if(l)
-     {var r=Primtivie["caml_create_string"](List[1](l));
+     {var r=CamlPrimtivie["caml_create_string"](List[1](l));
       
       var pos=[0,0];
       
@@ -647,7 +649,8 @@ var
        {var
          res=
           Outcome[3]
-           (function(prim){return Primtivie["caml_sys_read_directory"](prim);},
+           (function(prim)
+             {return CamlPrimtivie["caml_sys_read_directory"](prim);},
             dir);
         
         Hashtbl["add"](cache,dir,res);
@@ -683,16 +686,17 @@ var
     
     var match$1=sys_readdir$1(dirname);
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:
        if
-        (Primtivie["caml_string_equal"](basename,Filename["current_dir_name"]))
+        (CamlPrimtivie["caml_string_equal"]
+          (basename,Filename["current_dir_name"]))
         {return /* true */1;}
        else
         {try
           {$$Array["iter"]
             (function(x)
-              {if(Primtivie["caml_string_equal"](x,basename))
+              {if(CamlPrimtivie["caml_string_equal"](x,basename))
                 {throw Pervasives["Exit"];}
                else
                 {return 0;}
@@ -715,12 +719,12 @@ switch(match$1)
    var
     sys_command=
      function(cmd)
-      {if(Primtivie["caml_string_equal"](cmd,""))
+      {if(CamlPrimtivie["caml_string_equal"](cmd,""))
         {return 0;}
        else
         {var cmd$1=Pervasives["^"]("bash --norc -c ",Filename["quote"](cmd));
          
-         return Primtivie["caml_sys_system_command"](cmd$1);
+         return CamlPrimtivie["caml_sys_system_command"](cmd$1);
          }
        };
    
@@ -728,10 +732,10 @@ switch(match$1)
    var
     sys_command=
      function(cmd)
-      {if(Primtivie["caml_string_equal"](cmd,""))
+      {if(CamlPrimtivie["caml_string_equal"](cmd,""))
         {return 0;}
        else
-        {return Primtivie["caml_sys_system_command"](cmd);}
+        {return CamlPrimtivie["caml_sys_system_command"](cmd);}
        };
    }
 
@@ -739,15 +743,15 @@ var
  filename_concat=
   function(x,y)
    {if
-     (Primtivie["caml_string_equal"](x,Filename["current_dir_name"])||
-      Primtivie["caml_string_equal"](x,""))
+     (CamlPrimtivie["caml_string_equal"](x,Filename["current_dir_name"])||
+      CamlPrimtivie["caml_string_equal"](x,""))
      {return y;}
     else
      {if
-       (Primtivie["caml_string_equal"](Sys["os_type"],"Win32")&&
+       (CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32")&&
         (x[x["length"]-1]=92)||
         (x[x["length"]-1]=47))
-       {if(Primtivie["caml_string_equal"](y,""))
+       {if(CamlPrimtivie["caml_string_equal"](y,""))
          {return x;}
         else
          {return Pervasives["^"](x,y);}
@@ -774,7 +778,7 @@ var
  getenv=
   function($$default,$$var)
    {try
-     {return Primtivie["caml_sys_getenv"]($$var);}
+     {return CamlPrimtivie["caml_sys_getenv"]($$var);}
     catch(exn)
      {if(exn=Not_found)
        {if($$default)
@@ -848,7 +852,7 @@ var
      m$2=
       Pervasives["max"](16384,Pervasives["min"](Sys["max_string_length"],m$1));
     
-    var buf=Primtivie["caml_create_string"](m$2);
+    var buf=CamlPrimtivie["caml_create_string"](m$2);
     
     var
      loop=
@@ -882,7 +886,7 @@ var
 var
  $unknown$star=
   function(prim)
-   {var tag=Primtivie["caml_obj_tag"](prim);
+   {var tag=CamlPrimtivie["caml_obj_tag"](prim);
     
     if(tag=250)
      {return prim[1];}
@@ -963,7 +967,9 @@ var
 var
  sys_remove=
   function(x)
-   {reset_filesys_cache_for_file(x);return Primtivie["caml_sys_remove"](x);};
+   {reset_filesys_cache_for_file(x);
+    return CamlPrimtivie["caml_sys_remove"](x);
+    };
 
 var
  with_temp_file=
@@ -971,8 +977,8 @@ var
    {var tmp=Filename["temp_file"](/* None */0,pre,suf);
     
     try
-     {var res=fct(tmp);Primtivie["caml_sys_remove"](tmp);return res;}
-    catch(e){Primtivie["caml_sys_remove"](tmp);throw e;}
+     {var res=fct(tmp);CamlPrimtivie["caml_sys_remove"](tmp);return res;}
+    catch(e){CamlPrimtivie["caml_sys_remove"](tmp);throw e;}
     };
 
 var

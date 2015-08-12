@@ -46,12 +46,14 @@ var
      {return /* None */0;}
     };
 
-var $$Error=Primtivie["caml_set_oo_id"]([248,"Printval.EvalPath.Error",0]);
+var
+ $$Error=
+  CamlPrimtivie["caml_set_oo_id"]([248,"Printval.EvalPath.Error",0]);
 
 var
  eval_path=
   function(env,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        try
         {return Debugcom["Remote_value"][10]

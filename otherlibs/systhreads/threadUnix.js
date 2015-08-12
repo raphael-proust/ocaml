@@ -70,12 +70,12 @@ var open_connection=Unix["open_connection"];
 
 module["exports"]=
 {"unix_execv":
- function(prim,prim){return Primtivie["unix_execv"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_execv"](prim$1,prim);},
  "unix_execve":
  function(prim,prim,prim)
-  {return Primtivie["unix_execve"](prim$1,prim$2,prim);},
+  {return CamlPrimtivie["unix_execve"](prim$1,prim$2,prim);},
  "unix_execvp":
- function(prim,prim){return Primtivie["unix_execvp"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_execvp"](prim$1,prim);},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
@@ -90,11 +90,11 @@ module["exports"]=
  "open_process_in":open_process_in,
  "open_process_out":open_process_out,
  "open_process":open_process,
- "unix_sleep":function(prim){return Primtivie["unix_sleep"](prim);},
+ "unix_sleep":function(prim){return CamlPrimtivie["unix_sleep"](prim);},
  "socket":socket,
  "accept":accept,
  "unix_connect":
- function(prim,prim){return Primtivie["unix_connect"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_connect"](prim$1,prim);},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,

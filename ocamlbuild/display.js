@@ -55,9 +55,9 @@ var
 var
  get_columns=
   function(param)
-   {if(Primtivie["caml_string_equal"](Sys["os_type"],"Unix"))
+   {if(CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Unix"))
      {try
-       {return Primtivie["caml_int_of_string"]
+       {return CamlPrimtivie["caml_int_of_string"]
                 (My_std["String"][2](My_unix["run_and_read"]("tput cols")));
         }
       catch(exn){if(exn[1]=Failure){return 80;}else{throw exn;}}
@@ -307,7 +307,7 @@ var
       /* () */0);
     var
      ticker_phase=
-      Pervasives["abs"](Primtivie["caml_ceil_float"](dt/ticker_period))%
+      Pervasives["abs"](CamlPrimtivie["caml_ceil_float"](dt/ticker_period))%
       ticker_animation["length"];
     
     var ticker=ticker_animation[ticker_phase];

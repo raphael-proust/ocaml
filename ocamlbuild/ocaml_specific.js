@@ -38,7 +38,7 @@ var
       function(x)
        {if
          (Filename["check_suffix"](x,".o")&&
-          Primtivie["caml_string_notequal"](Options["ext_obj"][1],"o"))
+          CamlPrimtivie["caml_string_notequal"](Options["ext_obj"][1],"o"))
          {return Pathname["update_extension"](Options["ext_obj"][1],x);}
         else
          {return x;}
@@ -60,7 +60,7 @@ var
      objs$1=
       My_std["List"][16]
        (function(param)
-         {switch(param){case 0:return param[1];case 1:throw param[1];}},
+         {switch(param[0]){case 0:return param[1];case 1:throw param[1];}},
         resluts);
     
     return /* Cmd */[1,
@@ -834,7 +834,7 @@ var
               /* :: */[0,[/* A */1,"-c"],/* :: */[0,/* Px */[3,c],/* [] */0]]]]]];
         
         if
-         (Primtivie["caml_string_equal"]
+         (CamlPrimtivie["caml_string_equal"]
            (Pathname["dirname"](o),Pathname["current_dir_name"]))
          {return cc;}
         else

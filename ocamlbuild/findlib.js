@@ -12,7 +12,7 @@ var Hashtbl=require("Hashtbl");
 
 var
  Findlib_error=
-  Primtivie["caml_set_oo_id"]([248,"Findlib.Findlib_error",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Findlib.Findlib_error",0]);
 
 var error=function(x){throw [0,Findlib_error,x];};
 
@@ -154,7 +154,7 @@ var
            deps$1=
             My_std["List"][33]
              (function(prim,prim)
-                {return Primtivie["caml_notequal"](prim$1,prim);}
+                {return CamlPrimtivie["caml_notequal"](prim$1,prim);}
                (n),
               deps);
           

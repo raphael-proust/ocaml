@@ -49,7 +49,7 @@ var
               "",
               liste[1]);
           
-          if(Primtivie["caml_string_equal"](h2,""))
+          if(CamlPrimtivie["caml_string_equal"](h2,""))
            {return iter(q);}
           else
            {return /* :: */[0,h2,q];}
@@ -71,7 +71,7 @@ var
             Str["global_replace"]
              (Str["regexp"](Pervasives["^"](blank,"+$")),"",liste[1]);
           
-          if(Primtivie["caml_string_equal"](h2,""))
+          if(CamlPrimtivie["caml_string_equal"](h2,""))
            {return iter$1(q);}
           else
            {return /* :: */[0,h2,q];}
@@ -125,7 +125,7 @@ var
       return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:exit=2;
         case 1:
          line_number[0]++;
@@ -204,7 +204,7 @@ var
       return __ocaml_lex_special_comment_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var s=Lexing["lexeme"](lexbuf);
          
@@ -297,7 +297,7 @@ var
       return __ocaml_lex_special_comment_part2_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var s=Lexing["lexeme"](lexbuf);
          
@@ -365,7 +365,7 @@ var
       return __ocaml_lex_elements_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
@@ -450,7 +450,7 @@ var
       return __ocaml_lex_simple_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+

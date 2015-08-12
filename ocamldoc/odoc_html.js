@@ -359,7 +359,7 @@ var
     
     var s=Odoc_info["Name"][5](complete_name);
     
-    if(Primtivie["caml_string_equal"](s,""))
+    if(CamlPrimtivie["caml_string_equal"](s,""))
      {var module_name=simple_name;}
     else
      {var module_name=s;}
@@ -490,13 +490,13 @@ var
         if(2<switcher>>>0)
          {exit=264;}
         else
-         {switch(switcher[0])
+         {switch(switcher)
            {case 0:st("_pipe_");case 1:exit=264;case 2:st("_tilde_")}
           }
         }
       else
        {if(c>=33)
-         {switch((-33+c)[0])
+         {switch(-33+c)
            {case 0:st("_bang_");
             case 1:exit=264;
             case 2:exit=264;
@@ -678,7 +678,7 @@ var
    file_code_module_complete_target,
    file_type_class_complete_target];
 
-var compare=function(x,y){return Primtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
 
 var StringSet=Set["Make"]([0,compare]);
 
@@ -976,7 +976,7 @@ var
         html_of_Target,
         function(self$neg2,b,target,code)
          {if
-           (Primtivie["caml_string_equal"]
+           (CamlPrimtivie["caml_string_equal"]
              ($$String["lowercase"](target),"html"))
            {return bs(b,code);}
           else
@@ -1238,8 +1238,8 @@ var
             
             var exit;
             
-            if("unknown primitive:isint")
-             {switch(kind[0])
+            if(typeof kind==="number")
+             {switch(kind)
                {case 0:exit=223;
                 case 1:exit=223;
                 case 2:exit=223;
@@ -1324,7 +1324,7 @@ var
                  m=
                   List["find"]
                    (function(m)
-                     {return Primtivie["caml_string_equal"](m[1],name);},
+                     {return CamlPrimtivie["caml_string_equal"](m[1],name);},
                     0);
                 
                 var match=Naming[11](m[1]);
@@ -1635,7 +1635,7 @@ var
           
           var see_ref=param[1];
           
-          switch(see_ref)
+          switch(see_ref[0])
            {case 0:
              var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
             case 1:
@@ -1781,7 +1781,7 @@ var
              {var d=match$1[1];
               
               if
-               (Primtivie["caml_equal"]
+               (CamlPrimtivie["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
@@ -1831,7 +1831,7 @@ var
              {var d=match[1];
               
               if
-               (Primtivie["caml_equal"]
+               (CamlPrimtivie["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
@@ -2169,7 +2169,7 @@ var
        index_prefix,
        function(self$neg4)
         {if
-          (Primtivie["caml_string_equal"]
+          (CamlPrimtivie["caml_string_equal"]
             (Odoc_global["out_file"][1],Odoc_messages["default_out_file"]))
           {return "index";}
          else
@@ -2324,7 +2324,7 @@ var
                Filename["concat"]
                 (Odoc_info["Global"][5][1],self$neg4[style_file]);
              
-             if(Primtivie["caml_sys_file_exists"](file))
+             if(CamlPrimtivie["caml_sys_file_exists"](file))
               {Odoc_info["verbose"]
                 (Odoc_messages["file_exists_dont_generate"](file))}
              else
@@ -2456,7 +2456,7 @@ var
                
                var father=Odoc_info["Name"][5](match[3]);
                
-               if(Primtivie["caml_string_equal"](father,""))
+               if(CamlPrimtivie["caml_string_equal"](father,""))
                 {"unknown block:(sendself self-4/2008 index/1833)";}
                else
                 {var href=Naming[11](father)[1];}
@@ -2566,7 +2566,7 @@ var
           sorted_levels=
            List["sort"]
             (function(prim,prim)
-              {return Primtivie["caml_compare"](prim$1,prim);},
+              {return CamlPrimtivie["caml_compare"](prim$1,prim);},
              levels);
          
          if(sorted_levels)
@@ -2672,12 +2672,12 @@ var
          bs(b,"&nbsp;");
          var father=Odoc_info["Name"][5](name);
          
-         if(Primtivie["caml_string_equal"](father,""))
+         if(CamlPrimtivie["caml_string_equal"](father,""))
           {"unknown block:(sendself self-4/2066 index/1833)";}
          else
           {var href=Naming[11](father)[1];}
          
-         if(Primtivie["caml_string_equal"](father,""))
+         if(CamlPrimtivie["caml_string_equal"](father,""))
           {var father_name="Index";}
          else
           {var father_name=father;}
@@ -2916,7 +2916,7 @@ var
          },
        html_of_module_kind,
        function(self$neg4,b,father,modu,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             'unknown block:(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "sig"] 0a])';
             
@@ -2957,7 +2957,7 @@ var
             
             "unknown block:(sendself self-4/2159 html_of_module_parameter/1891 b/2160 father/2161\n  (field 0 kind/2163))";
             
-            switch(k)
+            switch(k[0])
              {case 2:default:if(html_short_functors[1]){bs(b,": ")}else{}}
             
             "unknown block:(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  k/2167)";
@@ -3038,7 +3038,7 @@ var
          },
        html_of_module_element,
        function(self$neg4,b,m_name,ele)
-        {switch(ele)
+        {switch(ele[0])
           {case 0:
             "unknown block:(sendself self-4/2190 html_of_module/1907 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
             
@@ -3073,7 +3073,7 @@ var
          },
        html_of_module_type_kind,
        function(self$neg4,b,father,modu,mt,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             'unknown block:(sendself self-4/2205 html_of_text/2177 b/2206 [0: [1: "sig"] 0a])';
             
@@ -3500,8 +3500,8 @@ var
          bs
           (b,
            match
-            ?"unknown primitive:isint"?"\n<pre>":"\n<pre>"
-            :"unknown primitive:isint"?"\n<pre>":"\n<pre><code>");
+            ?typeof match$1==="number"?"\n<pre>":"\n<pre>"
+            :typeof match$1==="number"?"\n<pre>":"\n<pre><code>");
          bp
           (b,
            [/* Format */0,
@@ -3529,7 +3529,7 @@ var
          if(match$3)
           {var match$4=match$3[1];
            
-           switch(match$4)
+           switch(match$4[0])
             {case 0:
               bs(b,"= ");
               if(priv){bs(b,"private ")}else{}
@@ -4074,7 +4074,7 @@ var
          
          var exit;
          
-         switch(match$1)
+         switch(match$1[0])
           {case 2:if(html_short_functors[1]){}else{exit=94;}default:exit=94;}
          
          switch(exit){case 94:bs(b,": ")}
@@ -4196,7 +4196,7 @@ var
          },
        html_of_class_element,
        function(self$neg4,b,element)
-        {switch(element)
+        {switch(element[0])
           {case 0:
             "unknown block:(sendself self-4/2395 html_of_attribute/1901 b/2396 (field 0 element/2397))";
             
@@ -4210,7 +4210,7 @@ var
          },
        html_of_class_kind,
        function(self$neg4,b,father,cl,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             var inh$2=kind[1];
             
@@ -4277,7 +4277,7 @@ var
          },
        html_of_class_type_kind,
        function(self$neg4,b,father,ct,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             var inh$2=kind[1];
             
@@ -4624,7 +4624,7 @@ var
            function(k)
             {var exit;
              
-             switch(k)
+             switch(k[0])
               {case 0:
                 var l=k[1];
                 
@@ -4648,7 +4648,7 @@ var
        function(self$neg4,b,clt)
         {var match=clt[6];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var l=match[1];
             
@@ -4684,7 +4684,7 @@ var
             sorted_elements=
              List["sort"]
               (function(e1,e2)
-                {return Primtivie["caml_string_compare"]
+                {return CamlPrimtivie["caml_string_compare"]
                          (Odoc_info["Name"][1](name(e1)),
                           Odoc_info["Name"][1](name(e2)));
                  },
@@ -4720,8 +4720,9 @@ var
                  target(e),
                  0);
                if
-                (Primtivie["caml_string_notequal"](simple_name,father_name)&&
-                 Primtivie["caml_string_notequal"](father_name,""))
+                (CamlPrimtivie["caml_string_notequal"]
+                  (simple_name,father_name)&&
+                 CamlPrimtivie["caml_string_notequal"](father_name,""))
                 {bp
                   (b,
                    [/* Format */0,

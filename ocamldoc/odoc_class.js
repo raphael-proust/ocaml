@@ -30,7 +30,7 @@ var
     var
      iter_kind=
       function(k)
-       {switch(k)
+       {switch(k[0])
          {case 0:return k[2];
           case 1:
            var match=k[1][2];
@@ -56,7 +56,7 @@ var
            if(match$1)
             {var match$2=match$1[1];
              
-             switch(match$2)
+             switch(match$2[0])
               {case 0:
                 if(trans)
                  {return class_elements(/* Some */[0,trans],match$2[1]);}
@@ -90,7 +90,7 @@ var
     
     var match=clt[6];
     
-    switch(match)
+    switch(match[0])
      {case 0:return match[2];
       case 1:
        var match$1=match[1][2];
@@ -100,7 +100,7 @@ var
        if(match$1)
         {var match$2=match$1[1];
          
-         switch(match$2)
+         switch(match$2[0])
           {case 0:
             if(trans)
              {return class_elements(/* Some */[0,trans],match$2[1]);}
@@ -132,7 +132,7 @@ var
             (function(acc,ele)
               {var exit;
                
-               switch(ele)
+               switch(ele[0])
                 {case 0:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  case 1:exit=21;
@@ -154,7 +154,7 @@ var
             (function(acc,ele)
               {var exit;
                
-               switch(ele)
+               switch(ele[0])
                 {case 0:exit=18;
                  case 1:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
@@ -176,7 +176,7 @@ var
             (function(acc,ele)
               {var exit;
                
-               switch(ele)
+               switch(ele[0])
                 {case 0:exit=15;
                  case 1:exit=15;
                  case 2:
@@ -211,7 +211,7 @@ var
             (function(acc,ele)
               {var exit;
                
-               switch(ele)
+               switch(ele[0])
                 {case 0:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  case 1:exit=10;
@@ -233,7 +233,7 @@ var
             (function(acc,ele)
               {var exit;
                
-               switch(ele)
+               switch(ele[0])
                 {case 0:exit=7;
                  case 1:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
@@ -255,7 +255,7 @@ var
             (function(acc,ele)
               {var exit;
                
-               switch(ele)
+               switch(ele[0])
                 {case 0:exit=4;
                  case 1:exit=4;
                  case 2:

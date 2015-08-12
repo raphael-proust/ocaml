@@ -28,7 +28,7 @@ var
 
 var
  yytransl_const=
-  Primtivie["caml_obj_dup"]
+  CamlPrimtivie["caml_obj_dup"]
    ([0,
      257,
      259,
@@ -77,7 +77,7 @@ var
      0,
      0]);
 
-var yytransl_block=Primtivie["caml_obj_dup"]([0,258,265,277,304,0]);
+var yytransl_block=CamlPrimtivie["caml_obj_dup"]([0,258,265,277,304,0]);
 
 var
  yylhs=

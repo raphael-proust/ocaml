@@ -494,7 +494,7 @@ var
              if(2<switcher>>>0)
               {exit=106;}
              else
-              {switch(switcher[0])
+              {switch(switcher)
                 {case 0:var match=[/* tuple */0,"-pipe",'"|'];
                  case 1:exit=106;
                  case 2:var match=[/* tuple */0,"-tilde","~"];
@@ -503,7 +503,7 @@ var
              }
            else
             {if(c>=33)
-              {switch((-33+c)[0])
+              {switch(-33+c)
                 {case 0:var match=[/* tuple */0,"-bang",'"!'];
                  case 1:exit=106;
                  case 2:exit=106;
@@ -742,7 +742,7 @@ var
        latex_of_Target,
        function(self$neg1,fmt,target,code)
         {if
-          (Primtivie["caml_string_equal"]
+          (CamlPrimtivie["caml_string_equal"]
             ($$String["lowercase"](target),"latex"))
           {"unknown block:(sendself self-1/1441 latex_of_Latex/1307 fmt/1442 code/1444)";
            }
@@ -892,9 +892,9 @@ var
         {if(ref_opt)
           {var kind=ref_opt[1];
            
-           if("unknown primitive:isint")
-            {if("unknown primitive:isint")
-              {switch(kind[0])
+           if(typeof kind==="number")
+            {if(typeof kind==="number")
+              {switch(kind)
                 {case 0:
                   "unknown block:(sendself self-1/1524 module_label/1279)";
                  case 1:
@@ -1445,7 +1445,7 @@ var
          if(match$2)
           {var match$3=match$2[1];
            
-           switch(match$3)
+           switch(match$3[0])
             {case 0:
               "unknown block:(sendself self-3/1738 normal_type/1726 mod_name/1745 (field 0 match/2292))";
               p
@@ -1478,7 +1478,7 @@ var
               var exit$1;
               
               if(match$5)
-               {switch(match$5[1])
+               {switch(match$5[1][0])
                  {case 0:exit$1=82;
                   case 1:
                    $js=
@@ -1540,7 +1540,7 @@ var
               if(match$7)
                {var match$8=match$7[1];
                 
-                switch(match$8)
+                switch(match$8[0])
                  {case 0:exit$2=73;
                   case 1:
                    var
@@ -2037,7 +2037,7 @@ var
          },
        latex_of_module_type_kind,
        function(self$neg3,fmt,father,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             'unknown block:(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  [0: [14: "\\begin{ocamldocsigend}\n"] 0a])';
             
@@ -2065,7 +2065,7 @@ var
          },
        latex_of_module_kind,
        function(self$neg3,fmt,father,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             'unknown block:(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  [0: [14: "\\begin{ocamldocsigend}\n"] 0a])';
             
@@ -2108,7 +2108,7 @@ var
          },
        latex_of_class_kind,
        function(self$neg3,fmt,father,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             'unknown block:(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  [0: [14: "\\begin{ocamldocobjectend}\n"] 0a])';
             
@@ -2149,7 +2149,7 @@ var
          },
        latex_of_class_type_kind,
        function(self$neg3,fmt,father,kind)
-        {switch(kind)
+        {switch(kind[0])
           {case 0:
             'unknown block:(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  [0: [14: "\\begin{ocamldocobjectend}\n"] 0a])';
             
@@ -2469,7 +2469,7 @@ var
          
          var match=c[6];
          
-         switch(match)
+         switch(match[0])
           {case 2:
             "unknown block:(sendself self-3/1953 latex_of_class_kind/1663 fmt/1954 father/1956\n  (field 5 c/1955))";
             
@@ -2493,7 +2493,7 @@ var
             "@[<h 4>"]);
          var match$1=c[6];
          
-         switch(match$1)
+         switch(match$1[0])
           {case 2:
            default:
             "unknown block:(sendself self-3/1953 latex_of_class_kind/1663 fmt/1954 father/1956\n  (field 5 c/1955))";
@@ -2584,7 +2584,7 @@ var
        function(self$neg3,fmt,class_name,class_ele)
         {"unknown block:(sendself self-3/1970 latex_of_text/1703 fmt/1971 [0: 0a 0a])";
          
-         switch(class_ele)
+         switch(class_ele[0])
           {case 0:
             "unknown block:(sendself self-3/1970 latex_of_attribute/1653 fmt/1971\n  (field 0 class_ele/1973))";
             
@@ -2622,7 +2622,7 @@ var
        function(self$neg3,fmt,module_name,module_ele)
         {"unknown block:(sendself self-3/1978 latex_of_text/1703 fmt/1979 [0: 0a 0a])";
          
-         switch(module_ele)
+         switch(module_ele[0])
           {case 0:
             "unknown block:(sendself self-3/1978 latex_of_module/1673 fmt/1979\n  (field 0 module_ele/1981))";
             
@@ -2663,7 +2663,7 @@ var
             {var match=inh[2];
              
              if(match)
-              {switch(match[1])
+              {switch(match[1][0])
                 {case 0:
                   "unknown block:(sendself self-3/1993 class_label/1912 0a (field 0 inh/1997))";
                   
@@ -2704,7 +2704,7 @@ var
            function(k)
             {var exit;
              
-             switch(k)
+             switch(k[0])
               {case 0:
                 var l=k[1];
                 
@@ -2728,7 +2728,7 @@ var
        function(self$neg3,fmt,clt)
         {var match=clt[6];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var l=match[1];
             
@@ -2839,7 +2839,7 @@ var
            
            var file=Filename["concat"](dir,"ocamldoc.sty");
            
-           if(Primtivie["caml_sys_file_exists"](file))
+           if(CamlPrimtivie["caml_sys_file_exists"](file))
             {return Odoc_info["verbose"]
                      (Odoc_messages["file_exists_dont_generate"](file));
              }

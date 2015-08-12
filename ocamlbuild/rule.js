@@ -16,9 +16,9 @@ var Log=require("Log");
 
 var
  Exit_rule_error=
-  Primtivie["caml_set_oo_id"]([248,"Rule.Exit_rule_error",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Rule.Exit_rule_error",0]);
 
-var Failed=Primtivie["caml_set_oo_id"]([248,"Rule.Failed",0]);
+var Failed=CamlPrimtivie["caml_set_oo_id"]([248,"Rule.Failed",0]);
 
 var name_of_rule=function(r){return r[1];};
 
@@ -263,7 +263,7 @@ var
             function(env){return rule[6](finder(env));}];
     };
 
-var Can_produce=Primtivie["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
+var Can_produce=CamlPrimtivie["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
 
 var
  can_produce=
@@ -415,7 +415,7 @@ var
         
         return My_std["List"][16]
                 (function(res)
-                  {switch(res)
+                  {switch(res[0])
                     {case 0:
                       var res$prime=res[1];
                       
@@ -525,7 +525,7 @@ var
             
             var rule_digest=digest_rule(r,dyndeps$1,action);
             
-            if(Primtivie["caml_string_equal"](d,rule_digest))
+            if(CamlPrimtivie["caml_string_equal"](d,rule_digest))
              {var
                match$3=
                 [/* tuple */0,/* cache_hit */-805933418,/* true */1];
@@ -565,7 +565,7 @@ var
            "mid rule %a: "],
           print,
           r);
-        if("unknown primitive:isint")
+        if(typeof reason==="number")
          {if(reason>=242554396)
            {return Log["dprintf"]
                     (l,
@@ -727,7 +727,7 @@ var
                   
                   var new_digest=My_std["List"][36](f,new_prod_digests);
                   
-                  if(Primtivie["caml_string_notequal"](digest,new_digest))
+                  if(CamlPrimtivie["caml_string_notequal"](digest,new_digest))
                    {throw Not_found;}
                   else
                    {return 0;}
@@ -777,7 +777,7 @@ var
       {var
         match$1=
          My_std["List"][32]
-          (function(x){return Primtivie["caml_string_equal"](x[1],r[1]);},
+          (function(x){return CamlPrimtivie["caml_string_equal"](x[1],r[1]);},
            rules[1]);
        
        throw [0,
@@ -794,7 +794,7 @@ var
        }
      catch(exn)
       {if(exn=Not_found)
-        {if("unknown primitive:isint")
+        {if(typeof pos==="number")
           {if(pos>=5793429)
             {return rules[1]=/* :: */[0,r,rules[1]],0;}
            else
@@ -810,7 +810,7 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if(Primtivie["caml_string_equal"](x[1],s))
+                       {if(CamlPrimtivie["caml_string_equal"](x[1],s))
                          {return /* :: */[0,x,/* :: */[0,r,acc]];}
                         else
                          {return /* :: */[0,x,acc];}
@@ -825,7 +825,7 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if(Primtivie["caml_string_equal"](x[1],s$1))
+                       {if(CamlPrimtivie["caml_string_equal"](x[1],s$1))
                          {return /* :: */[0,r,/* :: */[0,x,acc]];}
                         else
                          {return /* :: */[0,x,acc];}

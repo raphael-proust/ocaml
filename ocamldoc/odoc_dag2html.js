@@ -45,7 +45,7 @@ var
     var
      bar_txt=
       function(param)
-       {if("unknown primitive:isint"){return "&nbsp;";}else{return "|";}};
+       {if(typeof param==="number"){return "&nbsp;";}else{return "|";}};
     
     var
      all_empty=
@@ -58,7 +58,7 @@ var
             else
              {var e=t[1][i][j][1];
               
-              if("unknown primitive:isint")
+              if(typeof e==="number")
                {return loop(j+1);}
               else
                {if(phony$1(e)){return loop(j+1);}else{return /* false */0;}}
@@ -85,7 +85,7 @@ var
                  {if(j=t[1][i]["length"])
                    {return j;}
                   else
-                   {if(Primtivie["caml_equal"](t[1][i][j],x))
+                   {if(CamlPrimtivie["caml_equal"](t[1][i][j],x))
                      {return loop$1(j+1);}
                     else
                      {return j;}
@@ -145,7 +145,7 @@ var
                  {if(j=t[1][i]["length"])
                    {return j;}
                   else
-                   {if(Primtivie["caml_equal"](t[1][i][j],x))
+                   {if(CamlPrimtivie["caml_equal"](t[1][i][j],x))
                      {return loop$1(j+1);}
                     else
                      {return j;}
@@ -213,7 +213,7 @@ var
                  {if(j=t[1][i]["length"])
                    {return j;}
                   else
-                   {if(Primtivie["caml_equal"](t[1][i][j][2],x))
+                   {if(CamlPrimtivie["caml_equal"](t[1][i][j][2],x))
                      {return loop$1(j+1);}
                     else
                      {return j;}
@@ -304,10 +304,10 @@ var
                    {if(t[1][i][j][1]=/* Nothing */0)
                      {return loop(j);}
                     else
-                     {if(Primtivie["caml_notequal"](t[1][i][j][2],x))
+                     {if(CamlPrimtivie["caml_notequal"](t[1][i][j][2],x))
                        {return loop(j);}
                       else
-                       {if(Primtivie["caml_notequal"](t[1][k][j][1],e))
+                       {if(CamlPrimtivie["caml_notequal"](t[1][k][j][1],e))
                          {return /* true */1;}
                         else
                          {return loop1(j+1);}
@@ -345,7 +345,7 @@ var
                    {if((e=/* Nothing */0)&&(t[1][i][j][1]=/* Nothing */0))
                      {return loop$1(j+1);}
                     else
-                     {if(Primtivie["caml_equal"](t[1][i][j][2],x))
+                     {if(CamlPrimtivie["caml_equal"](t[1][i][j][2],x))
                        {return loop$1(j+1);}
                       else
                        {return j;}
@@ -365,7 +365,7 @@ var
                     
                     var match=y[1];
                     
-                    if("unknown primitive:isint")
+                    if(typeof match==="number")
                      {var next_l=l+1;}
                     else
                      {var
@@ -374,7 +374,7 @@ var
                          {if(l=t[1][i]["length"])
                            {return l;}
                           else
-                           {if(Primtivie["caml_equal"](t[1][k][l],y))
+                           {if(CamlPrimtivie["caml_equal"](t[1][k][l],y))
                              {return loop$2(l+1);}
                             else
                              {return l;}
@@ -438,10 +438,10 @@ var
                     
                     var exit;
                     
-                    if("unknown primitive:isint")
+                    if(typeof match$1==="number")
                      {exit=334;}
                     else
-                     {if("unknown primitive:isint")
+                     {if(typeof match$2==="number")
                        {exit=334;}
                       else
                        {var
@@ -679,7 +679,7 @@ var
         
         var y=t[1][i][j+1];
         
-        if(Primtivie["caml_equal"](y[2],x$1[2]))
+        if(CamlPrimtivie["caml_equal"](y[2],x$1[2]))
          {var match=get_block(t,i,j+1);
           
           var exit;
@@ -700,7 +700,7 @@ var
               
               var x1=match$3[1];
               
-              if(Primtivie["caml_equal"](x1,x$1[1]))
+              if(CamlPrimtivie["caml_equal"](x1,x$1[1]))
                {var
                  match$4=
                   /* tuple */[0,
@@ -743,7 +743,7 @@ var
 var
  group_by_common_children=
   function(d,list)
-   {var compare=function(x,y){return Primtivie["caml_int_compare"](x,y);};
+   {var compare=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
     
     var O=[0,compare];
     
@@ -825,12 +825,12 @@ var copy_data=function(d){return /* record */[0,d[1],d[2]];};
 var
  insert_columns=
   function(t,nb,j)
-   {var t1=Primtivie["caml_make_vect"](t[1]["length"],[]);
+   {var t1=CamlPrimtivie["caml_make_vect"](t[1]["length"],[]);
     
     for(var i$2=0;i$2<=t[1]["length"]-1;i$2++)
      {var line=t[1][i$2];
       
-      var line1=Primtivie["caml_make_vect"](line["length"]+nb,line[0]);
+      var line1=CamlPrimtivie["caml_make_vect"](line["length"]+nb,line[0]);
       
       t1[i$2]=line1,0;
       var
@@ -1102,7 +1102,7 @@ var
                               {case 0:
                                 var y=match$1[1];
                                 
-                                if(Primtivie["caml_equal"](x,y))
+                                if(CamlPrimtivie["caml_equal"](x,y))
                                  {down_it(t,i,k,y);return loop(0);}
                                 else
                                  {exit$1=257;}
@@ -1151,7 +1151,7 @@ var
              else
               {switch(match$1[0])
                 {case 0:
-                  if(Primtivie["caml_equal"](match[1],match$1[1]))
+                  if(CamlPrimtivie["caml_equal"](match[1],match$1[1]))
                    {t[1][i$2][j][2]=t[1][i$2][j-1][2],0}
                   else
                    {exit=255;}
@@ -1191,7 +1191,8 @@ var
                 {case 0:exit=253;
                  case 1:
                   if
-                   (Primtivie["caml_equal"](t[1][i$2][j-1][2],t[1][i$2][j][2]))
+                   (CamlPrimtivie["caml_equal"]
+                     (t[1][i$2][j-1][2],t[1][i$2][j][2]))
                    {t[1][i$2+1][j]=
                     /* record */[0,/* Ghost */[1,match[1]],t[1][i$2+1][j-1][2]],
                     0}
@@ -1223,7 +1224,7 @@ var
                 {case 0:exit$1=252;
                  case 1:
                   if
-                   (Primtivie["caml_equal"]
+                   (CamlPrimtivie["caml_equal"]
                      (t[1][i$2+1][j-1][1],t[1][i$2+1][j][1]))
                    {t[1][i$2][j]=
                     /* record */[0,/* Ghost */[1,match$2[1]],t[1][i$2][j-1][2]],
@@ -1252,7 +1253,7 @@ var
       
       for(var j=1;j<=len-1;j++)
        {if
-         (Primtivie["caml_equal"](line[j][1],line[j-1][1])&&
+         (CamlPrimtivie["caml_equal"](line[j][1],line[j-1][1])&&
           line[j][1]!=
           /* Nothing */0)
          {line[j][2]=line[j-1][2],0}
@@ -1265,7 +1266,7 @@ var
 var
  group_span_by_common_children=
   function(d,t)
-   {var compare=function(x,y){return Primtivie["caml_int_compare"](x,y);};
+   {var compare=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
     
     var O=[0,compare];
     
@@ -1326,7 +1327,7 @@ var
           
           var x4=t[i-1][j4];
           
-          if(Primtivie["caml_equal"](x1[2],x4[2]))
+          if(CamlPrimtivie["caml_equal"](x1[2],x4[2]))
            {return /* tuple */[0,i,j1,j2,j3,j4];}
           else
            {var
@@ -1335,7 +1336,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(Primtivie["caml_equal"](t[i-1][j][2],x1[2]))
+                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x1[2]))
                    {return loop$1(j-1);}
                   else
                    {return j+1;}
@@ -1350,7 +1351,7 @@ var
                {if(j>=t[i]["length"])
                  {return j-1;}
                 else
-                 {if(Primtivie["caml_equal"](t[i-1][j][2],x2[2]))
+                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x2[2]))
                    {return loop$2(j+1);}
                   else
                    {return j-1;}
@@ -1365,7 +1366,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(Primtivie["caml_equal"](t[i-1][j][2],x3[2]))
+                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x3[2]))
                    {return loop$3(j-1);}
                   else
                    {return j+1;}
@@ -1380,7 +1381,7 @@ var
                {if(j>=t[i]["length"])
                  {return j-1;}
                 else
-                 {if(Primtivie["caml_equal"](t[i-1][j][2],x4[2]))
+                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x4[2]))
                    {return loop$4(j+1);}
                   else
                    {return j-1;}
@@ -1420,7 +1421,7 @@ var
              {if(j<0)
                {return 0;}
               else
-               {if(Primtivie["caml_equal"](t[i][j][2],x1[2]))
+               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x1[2]))
                  {return loop$1(j-1);}
                 else
                  {return j+1;}
@@ -1435,7 +1436,7 @@ var
              {if(j>=t[i]["length"])
                {return j-1;}
               else
-               {if(Primtivie["caml_equal"](t[i][j][2],x2[2]))
+               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x2[2]))
                  {return loop$2(j+1);}
                 else
                  {return j-1;}
@@ -1450,7 +1451,7 @@ var
              {if(j<0)
                {return 0;}
               else
-               {if(Primtivie["caml_equal"](t[i][j][2],x3[2]))
+               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x3[2]))
                  {return loop$3(j-1);}
                 else
                  {return j+1;}
@@ -1465,7 +1466,7 @@ var
              {if(j>=t[i]["length"])
                {return j-1;}
               else
-               {if(Primtivie["caml_equal"](t[i][j][2],x4[2]))
+               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x4[2]))
                  {return loop$4(j+1);}
                 else
                  {return j-1;}
@@ -1574,7 +1575,7 @@ var
         else
          {var x=line[j-1][1];
           
-          if("unknown primitive:isint")
+          if(typeof x==="number")
            {var ini_jj1=j-1;}
           else
            {var
@@ -1583,7 +1584,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(Primtivie["caml_equal"](line[j][1],x))
+                 {if(CamlPrimtivie["caml_equal"](line[j][1],x))
                    {return same_value(j-1);}
                   else
                    {return j+1;}
@@ -1597,7 +1598,7 @@ var
           
           var x$1=line[j][1];
           
-          if("unknown primitive:isint")
+          if(typeof x$1==="number")
            {var jj4=j;}
           else
            {var
@@ -1606,7 +1607,7 @@ var
                {if(j>=line["length"])
                  {return j-1;}
                 else
-                 {if(Primtivie["caml_equal"](line[j][1],x$1))
+                 {if(CamlPrimtivie["caml_equal"](line[j][1],x$1))
                    {return same_value$1(j+1);}
                   else
                    {return j-1;}
@@ -1655,7 +1656,7 @@ var
         else
          {var x=line[j][1];
           
-          if("unknown primitive:isint")
+          if(typeof x==="number")
            {var jj1=j;}
           else
            {var
@@ -1664,7 +1665,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(Primtivie["caml_equal"](line[j][1],x))
+                 {if(CamlPrimtivie["caml_equal"](line[j][1],x))
                    {return same_value(j-1);}
                   else
                    {return j+1;}
@@ -1678,7 +1679,7 @@ var
           
           var x$1=line[j+1][1];
           
-          if("unknown primitive:isint")
+          if(typeof x$1==="number")
            {var ini_jj4=j+1;}
           else
            {var
@@ -1687,7 +1688,7 @@ var
                {if(j>=line["length"])
                  {return j-1;}
                 else
-                 {if(Primtivie["caml_equal"](line[j][1],x$1))
+                 {if(CamlPrimtivie["caml_equal"](line[j][1],x$1))
                    {return same_value$1(j+1);}
                   else
                    {return j-1;}
@@ -1754,8 +1755,8 @@ var
            {return /* () */0;}
           else
            {if
-             (Primtivie["caml_equal"](line[j][2],y)||
-              Primtivie["caml_equal"](t1$1[i][j][1],t1$1[i][j-1][1]))
+             (CamlPrimtivie["caml_equal"](line[j][2],y)||
+              CamlPrimtivie["caml_equal"](t1$1[i][j][1],t1$1[i][j-1][1]))
              {var y$1=line[j][2];
               
               line[j][2]=x,0;
@@ -1797,7 +1798,7 @@ var
           else
            {switch(y[0])
              {case 0:
-               if(Primtivie["caml_equal"](y,line[j-1][1]))
+               if(CamlPrimtivie["caml_equal"](y,line[j-1][1]))
                 {return loop(t,j+1);}
                else
                 {var
@@ -1806,7 +1807,7 @@ var
                     {if(j1<0)
                       {return loop(t,j+1);}
                      else
-                      {if(Primtivie["caml_equal"](y,line[j1][1]))
+                      {if(CamlPrimtivie["caml_equal"](y,line[j1][1]))
                         {var match=fill_gap(d,t,i$2,j1,j);
                          
                          if(match)
@@ -1853,10 +1854,10 @@ var
         else
          {var x=row[i][1];
           
-          if("unknown primitive:isint")
+          if(typeof x==="number")
            {}
           else
-           {if(Primtivie["caml_equal"](x,row[i-1][1]))
+           {if(CamlPrimtivie["caml_equal"](x,row[i-1][1]))
              {row[i][2]=row[i-1][2],0}
             else
              {}
@@ -2000,7 +2001,7 @@ var
                         {switch(match$1[0])
                           {case 0:exit$1=155;
                            case 1:
-                            if(Primtivie["caml_equal"](match$1[1],x))
+                            if(CamlPrimtivie["caml_equal"](match$1[1],x))
                              {return loop$1(j+1);}
                             else
                              {exit$1=155;}
@@ -2023,9 +2024,10 @@ var
                        
                        if
                         (((j=0)||
-                          Primtivie["caml_notequal"](line$1[j-1][2],line$1[j][2]))&&
+                          CamlPrimtivie["caml_notequal"](line$1[j-1][2],line$1[j][2]))&&
                          ((j2=line$1["length"]-1)||
-                          Primtivie["caml_notequal"](line$1[j2+1][2],line$1[j2][2])))
+                          CamlPrimtivie["caml_notequal"]
+                           (line$1[j2+1][2],line$1[j2][2])))
                         {return loop$2(i-1);}
                        else
                         {return i+1;}
@@ -2061,7 +2063,7 @@ var
                      else
                       {t[1][i1$1][l]=
                        (l=j)||
-                        Primtivie["caml_notequal"]
+                        CamlPrimtivie["caml_notequal"]
                          (t[1][i1$1-1][l-1][2],t[1][i1$1-1][l][2])
                         ?/* record */[0,
                           /* Ghost */[1,new_ghost_id(/* () */0)],
@@ -2115,7 +2117,7 @@ var
        {if(j=t[1][i2-1]["length"])
          {return /* () */0;}
         else
-         {if(Primtivie["caml_equal"](t[1][i2-1][j][2],old_span))
+         {if(CamlPrimtivie["caml_equal"](t[1][i2-1][j][2],old_span))
            {t[1][i2-1][j][2]=span,0;return loop(j+1);}
           else
            {return 0;}
@@ -2156,7 +2158,7 @@ var
        {if(j<0)
          {return /* () */0;}
         else
-         {if(Primtivie["caml_equal"](t[1][i2-1][j][2],old_span))
+         {if(CamlPrimtivie["caml_equal"](t[1][i2-1][j][2],old_span))
            {t[1][i2-1][j][2]=span,0;return loop(j-1);}
           else
            {return 0;}
@@ -2183,7 +2185,7 @@ var
               else
                {var match=t[1][i][j][1];
                 
-                if("unknown primitive:isint")
+                if(typeof match==="number")
                  {return loop_j(j+1);}
                 else
                  {return i+1;}
@@ -2245,7 +2247,7 @@ var
               else
                {var match=t[1][i][j][1];
                 
-                if("unknown primitive:isint")
+                if(typeof match==="number")
                  {return loop_j(j-1);}
                 else
                  {return i+1;}
@@ -2345,7 +2347,10 @@ var
             {if(i<0)
               {return /* true */1;}
              else
-              {if(j>0&&Primtivie["caml_equal"](t[1][i][j-1][2],t[1][i][j][2]))
+              {if
+                (j>
+                 0&&
+                 CamlPrimtivie["caml_equal"](t[1][i][j-1][2],t[1][i][j][2]))
                 {return /* false */0;}
                else
                 {return loop$1(i-1);}
@@ -2376,7 +2381,7 @@ var
                    case 1:
                     var y=match$1[2];
                     
-                    if(Primtivie["caml_equal"](y,x))
+                    if(CamlPrimtivie["caml_equal"](y,x))
                      {return loop$2(j2+1);}
                     else
                      {exit$1=122;}
@@ -2398,7 +2403,9 @@ var
               {if(j2=t[1][i]["length"])
                 {return /* false */0;}
                else
-                {if(Primtivie["caml_equal"](t[1][i][j2-1][2],t[1][i][j2][2]))
+                {if
+                  (CamlPrimtivie["caml_equal"]
+                    (t[1][i][j2-1][2],t[1][i][j2][2]))
                   {return /* false */0;}
                  else
                   {return loop$3(i+1);}
@@ -2463,7 +2470,7 @@ var
                 (j<
                  t[1][i]["length"]-
                  1&&
-                 Primtivie["caml_equal"](t[1][i][j][2],t[1][i][j+1][2]))
+                 CamlPrimtivie["caml_equal"](t[1][i][j][2],t[1][i][j+1][2]))
                 {return /* false */0;}
                else
                 {return loop$1(i-1);}
@@ -2494,7 +2501,7 @@ var
                    case 1:
                     var y=match$1[2];
                     
-                    if(Primtivie["caml_equal"](y,x))
+                    if(CamlPrimtivie["caml_equal"](y,x))
                      {return loop$2(j1-1);}
                     else
                      {exit$1=112;}
@@ -2516,7 +2523,9 @@ var
               {if(j1<0)
                 {return /* false */0;}
                else
-                {if(Primtivie["caml_equal"](t[1][i][j1][2],t[1][i][j1+1][2]))
+                {if
+                  (CamlPrimtivie["caml_equal"]
+                    (t[1][i][j1][2],t[1][i][j1+1][2]))
                   {return /* false */0;}
                  else
                   {return loop$3(i+1);}
@@ -2571,7 +2580,7 @@ var
                    case 1:
                     var y=match$1[2];
                     
-                    if(Primtivie["caml_equal"](y,x))
+                    if(CamlPrimtivie["caml_equal"](y,x))
                      {return loop(j2+1);}
                     else
                      {exit$1=105;}
@@ -2614,7 +2623,7 @@ var
              else
               {var match$1=t[1][i][j][1];
                
-               if("unknown primitive:isint")
+               if(typeof match$1==="number")
                 {return loop$2(i+1);}
                else
                 {return i;}
@@ -2629,7 +2638,10 @@ var
             {if(i=i2)
               {return /* true */1;}
              else
-              {if(j>0&&Primtivie["caml_equal"](t[1][i][j][2],t[1][i][j-1][2]))
+              {if
+                (j>
+                 0&&
+                 CamlPrimtivie["caml_equal"](t[1][i][j][2],t[1][i][j-1][2]))
                 {return /* false */0;}
                else
                 {return loop$3(i+1);}
@@ -2647,7 +2659,7 @@ var
               {if
                 (j2<
                  t[1][i]["length"]&&
-                 Primtivie["caml_equal"](t[1][i][j2-1][2],t[1][i][j2][2]))
+                 CamlPrimtivie["caml_equal"](t[1][i][j2-1][2],t[1][i][j2][2]))
                 {return /* false */0;}
                else
                 {return loop$4(i+1);}
@@ -2983,7 +2995,7 @@ var
        {if(param)
          {var n=param[1];
           
-          if(Primtivie["caml_equal"](n[2],s))
+          if(CamlPrimtivie["caml_equal"](n[2],s))
            {return /* tuple */[0,n,cnt];}
           else
            {return find(cnt-1,s,param[2]);}
@@ -3101,7 +3113,7 @@ var
                else
                 {var p=strip_spaces($$String["sub"](line,1,line["length"]-1));
                  
-                 if(Primtivie["caml_string_equal"](p,""))
+                 if(CamlPrimtivie["caml_string_equal"](p,""))
                   {return Pervasives["failwith"](line);}
                  else
                   {return input_parents(nl,/* :: */[0,p,pl],cnt,get_line(ic));
@@ -3153,7 +3165,7 @@ var
              else
               {var c=strip_spaces($$String["sub"](line,1,line["length"]-1));
                
-               if(Primtivie["caml_string_equal"](c,""))
+               if(CamlPrimtivie["caml_string_equal"](c,""))
                 {return Pervasives["failwith"](line);}
                else
                 {return input_children
@@ -3249,8 +3261,8 @@ var
            "<td"]);
         if
          ((colspan=1)&&
-          (Primtivie["caml_equal"](td,[/* TDstring */0,"&nbsp;"])||
-           Primtivie["caml_equal"](td,[/* TDhr */1,/* CenterA */1])))
+          (CamlPrimtivie["caml_equal"](td,[/* TDstring */0,"&nbsp;"])||
+           CamlPrimtivie["caml_equal"](td,[/* TDhr */1,/* CenterA */1])))
          {}
         else
          {Printf["bprintf"]
@@ -3266,11 +3278,11 @@ var
              " colspan=%d"],
             colspan)}
         
-        switch(match[2][0])
+        switch(match[2])
          {case 0:
            var exit;
            
-           switch(td)
+           switch(td[0])
             {case 0:exit=29;
              case 1:
               if(td[1]!=0)
@@ -3303,7 +3315,7 @@ var
         Printf["bprintf"]
          (buf,
           [/* Format */0,[/* Char_literal */12,62,/* End_of_format */0],">"]);
-        switch(td)
+        switch(td[0])
          {case 0:
            Printf["bprintf"]
             (buf,
@@ -3319,7 +3331,7 @@ var
                "<hr noshade size=1",
                /* End_of_format */0],
               "<hr noshade size=1"]);
-           switch(td[1][0])
+           switch(td[1])
             {case 0:
               Printf["bprintf"]
                (buf,
@@ -3422,12 +3434,12 @@ var
                    if(cct_opt)
                     {var match=cct_opt[1];
                      
-                     switch(match)
+                     switch(match[0])
                       {case 0:
                         var match$1=match[1][6];
                         
                         var $js;
-                        switch(match$1)
+                        switch(match$1[0])
                          {case 0:$js=match$1[1];default:$js=/* [] */0;}
                         var
                          l=
@@ -3439,7 +3451,7 @@ var
                         var match$2=match[1][6];
                         
                         var $js$1;
-                        switch(match$2)
+                        switch(match$2[0])
                          {case 0:$js$1=match$2[1];case 1:$js$1=/* [] */0;}
                         var
                          l=
@@ -3475,7 +3487,7 @@ var
           if
            (List["exists"]
              (function(param$1)
-               {return Primtivie["caml_equal"](name,param$1[1]);},
+               {return CamlPrimtivie["caml_equal"](name,param$1[1]);},
               acc))
            {return distinct(acc,q);}
           else
@@ -3508,17 +3520,17 @@ var
         if(cct_opt)
          {var match=cct_opt[1];
           
-          switch(match)
+          switch(match[0])
            {case 0:
              var match$1=match[1][6];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 0:var $js=match$1[1];default:var $js=/* [] */0;}
              
             case 1:
              var match$2=match[1][6];
              
-             switch(match$2)
+             switch(match$2[0])
               {case 0:var $js=match$2[1];case 1:var $js=/* [] */0;}
              
             }

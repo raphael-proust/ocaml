@@ -35,7 +35,7 @@ var singleton=function(c){var s=make_empty(/* () */0);add(s,c);return s;};
 var
  complement=
   function(s)
-   {var r=Primtivie["caml_create_string"](32);
+   {var r=CamlPrimtivie["caml_create_string"](32);
     
     for(var i=0;i<=31;i++){r[i]=Char["chr"](s[i]^255),0}
     
@@ -45,7 +45,7 @@ var
 var
  union=
   function(s1,s2)
-   {var r=Primtivie["caml_create_string"](32);
+   {var r=CamlPrimtivie["caml_create_string"](32);
     
     for(var i=0;i<=31;i++){r[i]=Char["chr"](s1[i]|s2[i]),0}
     
@@ -170,7 +170,7 @@ var
     else
      {switch(param[0])
        {case 0:return /* false */0;
-        case 1:var s=param[1];return Primtivie["caml_string_equal"](s,"");
+        case 1:var s=param[1];return CamlPrimtivie["caml_string_equal"](s,"");
         case 2:return /* false */0;
         case 3:var rl=param[1];return List["for_all"](is_nullable,rl);
         case 4:
@@ -203,7 +203,7 @@ var
         case 1:
          var s=param[1];
          
-         if(Primtivie["caml_string_equal"](s,""))
+         if(CamlPrimtivie["caml_string_equal"](s,""))
           {return Charset[1];}
          else
           {return Charset[5](s[0]);}
@@ -290,20 +290,20 @@ var
     return Bytes["to_string"](compl$1?Charset[6](cl2):cl2);
     };
 
-var t=Primtivie["caml_create_string"](256);
+var t=CamlPrimtivie["caml_create_string"](256);
 
 for(var i=0;i<=255;i++){t[i]=Char["lowercase"](Char["chr"](i)),0}
 
 var fold_case_table=Bytes["to_string"](t);
 
-var compare=function(x,y){return Primtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
 
 var StringMap=Map["Make"]([0,compare]);
 
 var
  compile=
   function(fold_case,re)
-   {var prog=[0,Primtivie["caml_make_vect"](32,0)];
+   {var prog=[0,CamlPrimtivie["caml_make_vect"](32,0)];
     
     var progpos=[0,0];
     
@@ -323,7 +323,7 @@ var
           
           while(progpos[1]>=newlen[1]){newlen[1]=newlen[1]*2,0}
           
-          var nprog=Primtivie["caml_make_vect"](newlen[1],0);
+          var nprog=CamlPrimtivie["caml_make_vect"](newlen[1],0);
           
           $$Array["blit"](prog[1],0,nprog,0,prog[1]["length"]),prog[1]=nprog,0}
         else
@@ -647,13 +647,13 @@ var
     else
      {var start$prime=start;}
     
-    if(Primtivie["caml_equal"](start,Charset[1]))
+    if(CamlPrimtivie["caml_equal"](start,Charset[1]))
      {var start_pos=-1;}
     else
      {var start_pos=cpool_index(Bytes["to_string"](Charset[10](start$prime)));
       }
     
-    var constantpool=Primtivie["caml_make_vect"](cpoolpos[1],"");
+    var constantpool=CamlPrimtivie["caml_make_vect"](cpoolpos[1],"");
     
     StringMap[10](function(str,idx){return constantpool[idx]=str,0;},cpool[1]);
     return /* record */[0,
@@ -817,7 +817,7 @@ var
             else
              {var switcher=-91+c;
               
-              switch(switcher[0])
+              switch(switcher)
                {case 0:
                  var match=regexpclass0(i+1);
                  
@@ -984,7 +984,7 @@ var
   function(s)
    {var len=s["length"];
     
-    var buf=Primtivie["caml_create_string"](2*len);
+    var buf=CamlPrimtivie["caml_create_string"](2*len);
     
     var pos=[0,0];
     
@@ -1001,7 +1001,7 @@ var
         if(10<switcher$1>>>0)
          {exit=47;}
         else
-         {switch(switcher$1[0])
+         {switch(switcher$1)
            {case 0:exit=46;
             case 1:exit=47;
             case 2:exit=47;
@@ -1044,7 +1044,7 @@ var last_search_result=[0,[]];
 var
  string_match=
   function(re,s,pos)
-   {var res=Primtivie["re_string_match"](re,s,pos);
+   {var res=CamlPrimtivie["re_string_match"](re,s,pos);
     
     last_search_result[1]=res,0;
     return res["length"]>0;
@@ -1053,7 +1053,7 @@ var
 var
  string_partial_match=
   function(re,s,pos)
-   {var res=Primtivie["re_partial_match"](re,s,pos);
+   {var res=CamlPrimtivie["re_partial_match"](re,s,pos);
     
     last_search_result[1]=res,0;
     return res["length"]>0;
@@ -1062,7 +1062,7 @@ var
 var
  search_forward=
   function(re,s,pos)
-   {var res=Primtivie["re_search_forward"](re,s,pos);
+   {var res=CamlPrimtivie["re_search_forward"](re,s,pos);
     
     last_search_result[1]=res,0;
     if(res["length"]=0){throw Not_found;}else{return res[0];}
@@ -1071,7 +1071,7 @@ var
 var
  search_backward=
   function(re,s,pos)
-   {var res=Primtivie["re_search_backward"](re,s,pos);
+   {var res=CamlPrimtivie["re_search_backward"](re,s,pos);
     
     last_search_result[1]=res,0;
     if(res["length"]=0){throw Not_found;}else{return res[0];}
@@ -1130,7 +1130,7 @@ var matched_string=function(txt){return matched_group(0,txt);};
 var
  replace_matched=
   function(repl,matched)
-   {return Primtivie["re_replacement_text"]
+   {return CamlPrimtivie["re_replacement_text"]
             (repl,last_search_result[1],matched);
     };
 
@@ -1292,7 +1292,7 @@ var
           }
         };
     
-    if(Primtivie["caml_string_equal"](text,""))
+    if(CamlPrimtivie["caml_string_equal"](text,""))
      {return /* [] */0;}
     else
      {return List["rev"](split$1(/* [] */0,0,num));}

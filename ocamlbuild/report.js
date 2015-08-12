@@ -13,7 +13,7 @@ var
 var
  analyze=
   function(f,bt)
-   {switch(bt)
+   {switch(bt[0])
      {case 0:
        Format["fprintf"]
         (f,
@@ -58,7 +58,7 @@ var
 var
  print_backtrace=
   function(f,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (f,

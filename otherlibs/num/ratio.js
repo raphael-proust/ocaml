@@ -456,9 +456,7 @@ var
         if(2<switcher>>>0)
          {exit=67;}
         else
-         {switch(switcher[0])
-           {case 0:return -1;case 1:exit=67;case 2:return 1;}
-          }
+         {switch(switcher){case 0:return -1;case 1:exit=67;case 2:return 1;}}
         
         switch(exit)
          {case 67:
@@ -638,8 +636,7 @@ var
         if(2<switcher>>>0)
          {exit=33;}
         else
-         {switch(switcher[0])
-           {case 0:return -1+m;case 1:exit=33;case 2:return m;}
+         {switch(switcher){case 0:return -1+m;case 1:exit=33;case 2:return m;}
           }
         
         switch(exit)
@@ -858,7 +855,8 @@ var
 var
  float_of_ratio=
   function(r)
-   {return Primtivie["caml_float_of_string"](float_of_rational_string(r));};
+   {return CamlPrimtivie["caml_float_of_string"](float_of_rational_string(r));
+    };
 
 var
  power_ratio_positive_int=

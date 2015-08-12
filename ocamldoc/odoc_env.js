@@ -41,7 +41,7 @@ var
     var
      f=
       function(env,item)
-       {switch(item)
+       {switch(item[0])
          {case 0:
            var ident=item[1];
            
@@ -81,7 +81,7 @@ var
            
            var match=item[2][1];
            
-           switch(match)
+           switch(match[0])
             {case 1:
               var
                env2=
@@ -110,7 +110,7 @@ var
            if(match$1)
             {var modtype=match$1[1];
              
-             switch(modtype)
+             switch(modtype[0])
               {case 1:
                 var
                  env2$1=
@@ -469,7 +469,7 @@ var
       function(t)
        {var exit;
         
-        switch(t)
+        switch(t[0])
          {case 0:
            var
             new_p=
@@ -500,7 +500,7 @@ var
    {var
      iter=
       function(t)
-       {switch(t)
+       {switch(t[0])
          {case 0:
            var
             new_p=

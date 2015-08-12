@@ -53,7 +53,7 @@ var
    {if(is_simple_filename(s))
      {return s;}
     else
-     {if(Primtivie["caml_string_equal"](Sys["os_type"],"Win32"))
+     {if(CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32"))
        {return Printf["sprintf"]
                 ([/* Format */0,
                   [/* Char_literal */12,
@@ -73,7 +73,7 @@ var
  chdir=
   function(dir)
    {My_std["reset_filesys_cache"](/* () */0);
-    return Primtivie["caml_sys_chdir"](dir);
+    return CamlPrimtivie["caml_sys_chdir"](dir);
     };
 
 var
@@ -87,7 +87,7 @@ var
     
     if
      (My_std["!*"](My_unix["is_degraded"])||
-      Primtivie["caml_string_equal"](Sys["os_type"],"Win32"))
+      CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32"))
      {Log["event"](/* None */0,cmd,target,Tags["empty"]);
       var st=My_std["sys_command"](cmd);
       

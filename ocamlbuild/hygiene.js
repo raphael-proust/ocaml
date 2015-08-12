@@ -12,7 +12,7 @@ var Log=require("Log");
 
 var
  Exit_hygiene_violations=
-  Primtivie["caml_set_oo_id"]([248,"Hygiene.Exit_hygiene_violations",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Hygiene.Exit_hygiene_violations",0]);
 
 var
  list_collect=
@@ -91,7 +91,7 @@ var
     var
      check_rule=
       function(entries,param)
-       {switch(param)
+       {switch(param[0])
          {case 0:
            var suffix2=param[2];
            
@@ -127,7 +127,7 @@ var
                                       {switch(param$2[0])
                                         {case 1:
                                           if(param$2[4]!=0)
-                                           {return Primtivie["caml_string_equal"]
+                                           {return CamlPrimtivie["caml_string_equal"]
                                                     (name$prime,param$2[2]);
                                             }
                                           else

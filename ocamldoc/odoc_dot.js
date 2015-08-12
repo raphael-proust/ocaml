@@ -190,7 +190,8 @@ var
             (function(n)
               {return dot_include_all[1]||
                       List["exists"]
-                       (function(m){return Primtivie["caml_string_equal"](m[1],n);},
+                       (function(m)
+                         {return CamlPrimtivie["caml_string_equal"](m[1],n);},
                         self$neg1[modules]);
                },
              m[8]);

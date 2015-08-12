@@ -83,7 +83,7 @@ var
           if(exn[1]=Unix["Unix_error"])
            {var match$1=exn[2];
             
-            if("unknown primitive:isint")
+            if(typeof match$1==="number")
              {if(match$1!=11){exit=8;}else{}}
             else
              {exit=8;}

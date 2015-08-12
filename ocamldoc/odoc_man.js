@@ -287,7 +287,7 @@ var
           
           var see_ref=param[1];
           
-          switch(see_ref)
+          switch(see_ref[0])
            {case 0:
              var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
             case 1:
@@ -412,7 +412,7 @@ var
              {var d=match$1[1];
               
               if
-               (Primtivie["caml_equal"]
+               (CamlPrimtivie["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js$1=/* [] */0;}
               else
@@ -452,7 +452,7 @@ var
              l$1=
               List["filter"]
                (function(prim,prim)
-                  {return Primtivie["caml_notequal"](prim$1,prim);}
+                  {return CamlPrimtivie["caml_notequal"](prim$1,prim);}
                  (""),
                 l);
             
@@ -609,7 +609,7 @@ var
             {if(c!=92){exit=98;}else{Buffer["add_string"](b,"\(rs")}}
            else
             {if(c>=39)
-              {switch((-39+c)[0])
+              {switch(-39+c)
                 {case 0:Buffer["add_string"](b,"\&'");
                  case 1:exit=98;
                  case 2:exit=98;
@@ -751,7 +751,8 @@ var
        man_of_Target,
        function(self$neg2,b,target,code)
         {if
-          (Primtivie["caml_string_equal"]($$String["lowercase"](target),"man"))
+          (CamlPrimtivie["caml_string_equal"]
+            ($$String["lowercase"](target),"man"))
           {return bs(b,code);}
          else
           {return /* () */0;}
@@ -1040,7 +1041,7 @@ var
          if(match$1)
           {var match$2=match$1[1];
            
-           switch(match$2)
+           switch(match$2[0])
             {case 0:
               bs(b,"= ");
               if(priv){bs(b,"private ")}else{}
@@ -1525,7 +1526,7 @@ var
            bs(b,"\n.sp\n.sp\n");
            List["iter"]
             (function(element)
-              {switch(element)
+              {switch(element[0])
                 {case 0:
                   "unknown block:(sendself self-2/1664 man_of_attribute/1378 b/1669 (field 0 element/1674))";
                   
@@ -1622,7 +1623,7 @@ var
            bs(b,"\n.sp\n.sp\n");
            List["iter"]
             (function(element)
-              {switch(element)
+              {switch(element[0])
                 {case 0:
                   "unknown block:(sendself self-2/1680 man_of_attribute/1378 b/1685 (field 0 element/1690))";
                   
@@ -1657,7 +1658,7 @@ var
          bs(b,"\n.sp\n.sp\n");
          return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-2/1696 man_of_module/1385 b/1697 (field 0 ele/1699))";
                        
@@ -1797,7 +1798,7 @@ var
          bs(b,"\n.sp\n.sp\n");
          return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-2/1724 man_of_module/1385 b/1725 (field 0 ele/1727))";
                        
@@ -1922,7 +1923,7 @@ var
            function(res_ele)
             {var exit;
              
-             switch(res_ele)
+             switch(res_ele[0])
               {case 4:exit=21;
                case 5:exit=21;
                case 6:exit=21;
@@ -1951,7 +1952,7 @@ var
             (function(r)
               {var exit;
                
-               switch(r)
+               switch(r[0])
                 {case 0:exit=16;
                  case 1:exit=16;
                  case 2:exit=16;
@@ -1967,7 +1968,8 @@ var
           sorted_items=
            List["sort"]
             (function(e1,e2)
-              {return Primtivie["caml_string_compare"](name(e1),name(e2));},
+              {return CamlPrimtivie["caml_string_compare"](name(e1),name(e2));
+               },
              all_items);
          
          var
@@ -1979,7 +1981,7 @@ var
                var h=l[1];
                
                if(acc2)
-                {if(Primtivie["caml_string_equal"](name(h),name(acc2[1])))
+                {if(CamlPrimtivie["caml_string_equal"](name(h),name(acc2[1])))
                   {if(List["mem"](h,acc2))
                     {return f(acc1,acc2,q);}
                    else
@@ -2006,7 +2008,7 @@ var
          var exit;
          
          var $js;
-         switch(match)
+         switch(match[0])
           {case 8:exit=12;
            case 9:exit=12;
            case 10:$js=match[1];
@@ -2052,12 +2054,12 @@ var
            var
             f=
              function(ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 0:
                   var m=ele[1];
                   
                   if
-                   (Primtivie["caml_string_notequal"]
+                   (CamlPrimtivie["caml_string_notequal"]
                      (Odoc_info["Name"][5](m[1]),""))
                    {bs
                      (b,
@@ -2261,7 +2263,7 @@ var
           sorted_module_list=
            List["sort"]
             (function(m1,m2)
-              {return Primtivie["caml_string_compare"](m1[1],m2[1]);},
+              {return CamlPrimtivie["caml_string_compare"](m1[1],m2[1]);},
              module_list);
          
          "unknown block:(sendself self-2/1837 create_groups/1398 (field 0 man_mini/1235)\n  sorted_module_list/1839)";
@@ -2274,7 +2276,7 @@ var
              if(group)
               {var match=group[1];
                
-               switch(match)
+               switch(match[0])
                 {case 0:
                   if(group[2])
                    {exit=1;}

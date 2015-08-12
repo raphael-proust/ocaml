@@ -201,7 +201,7 @@ var match=Odoc_args["current_generator"][1];
 if(match)
  {var match$1=match[1];
   
-  switch(match$1)
+  switch(match$1[0])
    {case 0:var Html=match$1[1];
     default:
      var

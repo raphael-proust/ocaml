@@ -77,7 +77,7 @@ var
     var exit;
     
     var $js;
-    switch(match[0])
+    switch(match)
      {case 0:$js=/* FK_file */1;
       case 1:$js=/* FK_dir */0;
       case 2:exit=19;
@@ -139,7 +139,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:if(match[1]!=0){exit=11;}else{return /* () */0;}
           case 1:exit=11;
           case 2:exit=11;
@@ -182,7 +182,7 @@ var exit=function(i){throw [0,Ocamlbuild_pack["My_std"][4],i];};
 var
  exit$1=
   function(param)
-   {switch(param[0])
+   {switch(param)
      {case 0:return exit(Ocamlbuild_pack["Exit_codes"][12]);
       case 1:return exit(Ocamlbuild_pack["Exit_codes"][13]);
       case 2:return exit(Ocamlbuild_pack["Exit_codes"][14]);

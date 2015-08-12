@@ -25,11 +25,13 @@ var Resources=My_std["Set"][1]([0,$$let[2],$$let[10]]);
 
 var print=Pathname["print"];
 
-var equal=function(prim,prim){return Primtivie["caml_equal"](prim$1,prim);};
+var
+ equal=
+  function(prim,prim){return CamlPrimtivie["caml_equal"](prim$1,prim);};
 
 var
  compare=
-  function(prim,prim){return Primtivie["caml_compare"](prim$1,prim);};
+  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
 
 var
  in_source_dir=
@@ -80,7 +82,7 @@ var
                  if(Pathname["link_to_dir"](pathname,Options["build_dir"][1]))
                   {var z=Pathname["readlink"](pathname);
                    
-                   if(!Primtivie["caml_sys_file_exists"](z))
+                   if(!CamlPrimtivie["caml_sys_file_exists"](z))
                     {Shell["rm"](pathname)}
                    else
                     {}
@@ -153,7 +155,7 @@ var
 var
  print_knowledge=
   function(f,param)
-   {switch(param[0])
+   {switch(param)
      {case 0:return Format["pp_print_string"](f,"Yes");
       case 1:return Format["pp_print_string"](f,"No");
       case 2:return Format["pp_print_string"](f,"Unknown");
@@ -163,8 +165,8 @@ var
 var
  print_build_status=
   function(f,param)
-   {if("unknown primitive:isint")
-     {switch(param[0])
+   {if(typeof param==="number")
+     {switch(param)
        {case 0:return Format["pp_print_string"](f,"Bbuilt");
         case 1:return Format["pp_print_string"](f,"Bcannot_be_built");
         case 2:return Format["pp_print_string"](f,"Bnot_built_yet");
@@ -440,7 +442,9 @@ var
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      var is_up_to_date=Primtivie["caml_string_equal"](digest,digest$prime);
+      var
+       is_up_to_date=
+        CamlPrimtivie["caml_string_equal"](digest,digest$prime);
       }
     catch(exn)
      {if(exn=Not_found){var is_up_to_date=/* false */0;}else{throw exn;}}
@@ -459,7 +463,7 @@ var
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      $js=Primtivie["caml_string_equal"](digest,digest$prime);
+      $js=CamlPrimtivie["caml_string_equal"](digest,digest$prime);
       }
     catch(exn){if(exn=Not_found){$js=/* false */0;}else{throw exn;}}
     var r_is_up_to_date=Pathname["exists"](r_in_build_dir)&&$js;
@@ -484,13 +488,13 @@ var
     
     var match=cache_entry[2];
     
-    switch(match[0])
+    switch(match)
      {case 0:return /* true */1;
       case 1:return /* false */0;
       case 2:
        var match$1=cache_entry[1];
        
-       if("unknown primitive:isint")
+       if(typeof match$1==="number")
         {if(match$1>=2)
           {var res=!prod_is_up_to_date(r);}
          else
@@ -559,8 +563,8 @@ var
     
     var match=cache_entry[1];
     
-    if("unknown primitive:isint")
-     {switch(match[0])
+    if(typeof match==="number")
+     {switch(match)
        {case 0:return /* () */0;
         case 1:throw [0,Assert_failure,[0,"resource.ml",212,26]];
         case 2:
@@ -596,7 +600,7 @@ var
     
     var match=cache_entry[1];
     
-    if("unknown primitive:isint")
+    if(typeof match==="number")
      {return /* () */0;}
     else
      {return resume_suspension(match[1]);}
@@ -607,7 +611,7 @@ var
   function(r)
    {var match=get(r)[1];
     
-    if("unknown primitive:isint")
+    if(typeof match==="number")
      {return /* None */0;}
     else
      {return /* Some */[0,match[1]];}
@@ -688,7 +692,7 @@ var $$import=function(x){return Pathname["normalize"](x);};
 
 var
  No_solution=
-  Primtivie["caml_set_oo_id"]([248,"Resource.MetaPath.No_solution",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Resource.MetaPath.No_solution",0]);
 
 var
  mk=
@@ -736,7 +740,7 @@ var
        {if(xs)
          {var match=xs[1];
           
-          switch(match)
+          switch(match[0])
            {case 0:return loop(xs[2],match_prefix(s,pos,match[1]),acc,0);
             case 1:
              var match$1=xs[2];
@@ -748,7 +752,7 @@ var
              if(match$1)
               {var match$2=match$1[1];
                
-               switch(match$2)
+               switch(match$2[0])
                 {case 0:
                   var s2=match$2[1];
                   
@@ -831,7 +835,7 @@ var
                
                var k=param[1];
                
-               if(Primtivie["caml_string_equal"](k,""))
+               if(CamlPrimtivie["caml_string_equal"](k,""))
                 {return Format["fprintf"]
                          (f,
                           [/* Format */0,
@@ -875,7 +879,7 @@ var
             ("",
              My_std["List"][16]
               (function(x)
-                {switch(x)
+                {switch(x[0])
                   {case 0:return x[1];
                    case 1:
                     try

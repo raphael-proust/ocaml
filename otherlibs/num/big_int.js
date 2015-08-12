@@ -19,7 +19,7 @@ var
       (sign=-1)||
       (sign=0)&&
       Nat["is_zero_nat"]
-       (nat,0,Primtivie["num_digits_nat"](nat,0,Nat["length_nat"](nat))))
+       (nat,0,CamlPrimtivie["num_digits_nat"](nat,0,Nat["length_nat"](nat))))
      {return /* record */[0,sign,nat];}
     else
      {return Pervasives["invalid_arg"]("create_big_int");}
@@ -34,7 +34,7 @@ var unit_big_int=/* record */[0,1,Nat["nat_of_int"](1)];
 var
  num_digits_big_int=
   function(bi)
-   {return Primtivie["num_digits_nat"](bi[2],0,Nat["length_nat"](bi[2]));};
+   {return CamlPrimtivie["num_digits_nat"](bi[2],0,Nat["length_nat"](bi[2]));};
 
 var
  minus_big_int=
@@ -65,7 +65,7 @@ var
          {return 1;}
         else
          {if(bi1[1]=1)
-           {return Primtivie["compare_nat"]
+           {return CamlPrimtivie["compare_nat"]
                     (bi1[2],
                      0,
                      num_digits_big_int(bi1),
@@ -74,7 +74,7 @@ var
                      num_digits_big_int(bi2));
             }
           else
-           {return Primtivie["compare_nat"]
+           {return CamlPrimtivie["compare_nat"]
                     (bi2[2],
                      0,
                      num_digits_big_int(bi2),
@@ -116,11 +116,11 @@ var
         
         var size_res=1+size_bi;
         
-        var copy_bi=Primtivie["create_nat"](size_res);
+        var copy_bi=CamlPrimtivie["create_nat"](size_res);
         
-        Primtivie["blit_nat"](copy_bi,0,bi[2],0,size_bi);
-        Primtivie["set_digit_nat"](copy_bi,size_bi,0);
-        Primtivie["incr_nat"](copy_bi,0,size_res,1);
+        CamlPrimtivie["blit_nat"](copy_bi,0,bi[2],0,size_bi);
+        CamlPrimtivie["set_digit_nat"](copy_bi,size_bi,0);
+        CamlPrimtivie["incr_nat"](copy_bi,0,size_res,1);
         return /* record */[0,-1,copy_bi];
         }
       else
@@ -128,7 +128,7 @@ var
         
         var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
         
-        Primtivie["decr_nat"](copy_bi$1,0,size_bi$1,0);
+        CamlPrimtivie["decr_nat"](copy_bi$1,0,size_bi$1,0);
         return /* record */[0,
                 Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:1,
                 copy_bi$1];
@@ -149,11 +149,11 @@ var
         
         var size_res=1+size_bi;
         
-        var copy_bi=Primtivie["create_nat"](size_res);
+        var copy_bi=CamlPrimtivie["create_nat"](size_res);
         
-        Primtivie["blit_nat"](copy_bi,0,bi[2],0,size_bi);
-        Primtivie["set_digit_nat"](copy_bi,size_bi,0);
-        Primtivie["incr_nat"](copy_bi,0,size_res,1);
+        CamlPrimtivie["blit_nat"](copy_bi,0,bi[2],0,size_bi);
+        CamlPrimtivie["set_digit_nat"](copy_bi,size_bi,0);
+        CamlPrimtivie["incr_nat"](copy_bi,0,size_res,1);
         return /* record */[0,1,copy_bi];
         }
       else
@@ -164,7 +164,7 @@ var
       
       var copy_bi$1=Nat["copy_nat"](bi[2],0,size_bi$1);
       
-      Primtivie["decr_nat"](copy_bi$1,0,size_bi$1,0);
+      CamlPrimtivie["decr_nat"](copy_bi$1,0,size_bi$1,0);
       return /* record */[0,
               Nat["is_zero_nat"](copy_bi$1,0,size_bi$1)?0:-1,
               copy_bi$1];
@@ -179,22 +179,24 @@ var
     var size_bi2=num_digits_big_int(bi2);
     
     if(bi1[1]=bi2[1])
-     {var match=Primtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
+     {var
+       match=
+        CamlPrimtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
       
       if(match!=-1)
-       {var res=Primtivie["create_nat"](1+size_bi1);
+       {var res=CamlPrimtivie["create_nat"](1+size_bi1);
         
-        Primtivie["blit_nat"](res,0,bi1[2],0,size_bi1);
-        Primtivie["set_digit_nat"](res,size_bi1,0);
-        Primtivie["add_nat"](res,0,1+size_bi1,bi2[2],0,size_bi2,0);
+        CamlPrimtivie["blit_nat"](res,0,bi1[2],0,size_bi1);
+        CamlPrimtivie["set_digit_nat"](res,size_bi1,0);
+        CamlPrimtivie["add_nat"](res,0,1+size_bi1,bi2[2],0,size_bi2,0);
         var $js=res;
         }
       else
-       {var res$1=Primtivie["create_nat"](1+size_bi2);
+       {var res$1=CamlPrimtivie["create_nat"](1+size_bi2);
         
-        Primtivie["blit_nat"](res$1,0,bi2[2],0,size_bi2);
-        Primtivie["set_digit_nat"](res$1,size_bi2,0);
-        Primtivie["add_nat"](res$1,0,1+size_bi2,bi1[2],0,size_bi1,0);
+        CamlPrimtivie["blit_nat"](res$1,0,bi2[2],0,size_bi2);
+        CamlPrimtivie["set_digit_nat"](res$1,size_bi2,0);
+        CamlPrimtivie["add_nat"](res$1,0,1+size_bi2,bi1[2],0,size_bi1,0);
         var $js=res$1;
         }
       return /* record */[0,bi1[1],$js];
@@ -202,7 +204,7 @@ var
     else
      {var
        match$1=
-        Primtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
+        CamlPrimtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
       
       if(match$1!=0)
        {if(match$1!=1)
@@ -210,7 +212,8 @@ var
           
           return /* record */[0,
                   bi2[1],
-                  (Primtivie["sub_nat"](res$2,0,size_bi2,bi1[2],0,size_bi1,1),
+                  (CamlPrimtivie["sub_nat"]
+                    (res$2,0,size_bi2,bi1[2],0,size_bi1,1),
                    res$2)];
           }
         else
@@ -218,7 +221,8 @@ var
           
           return /* record */[0,
                   bi1[1],
-                  (Primtivie["sub_nat"](res$3,0,size_bi1,bi2[2],0,size_bi2,1),
+                  (CamlPrimtivie["sub_nat"]
+                    (res$3,0,size_bi1,bi2[2],0,size_bi2,1),
                    res$3)];
           }
         }
@@ -230,13 +234,13 @@ var
 var
  big_int_of_int=
   function(i)
-   {var res=Primtivie["create_nat"](1);
+   {var res=CamlPrimtivie["create_nat"](1);
     
     if(i=Int_misc["monster_int"])
-     {Primtivie["set_digit_nat"](res,0,Int_misc["biggest_int"]),
-      Primtivie["incr_nat"](res,0,1,1)}
+     {CamlPrimtivie["set_digit_nat"](res,0,Int_misc["biggest_int"]),
+      CamlPrimtivie["incr_nat"](res,0,1,1)}
     else
-     {Primtivie["set_digit_nat"](res,0,Pervasives["abs"](i))}
+     {CamlPrimtivie["set_digit_nat"](res,0,Pervasives["abs"](i))}
     
     return /* record */[0,Int_misc["sign_int"](i),res];
     };
@@ -255,11 +259,11 @@ var
     var size_res=1+size_bi;
     
     if(i=Int_misc["monster_int"])
-     {var res=Primtivie["create_nat"](size_res);
+     {var res=CamlPrimtivie["create_nat"](size_res);
       
-      Primtivie["blit_nat"](res,0,bi[2],0,size_bi);
-      Primtivie["set_digit_nat"](res,size_bi,0);
-      Primtivie["mult_digit_nat"]
+      CamlPrimtivie["blit_nat"](res,0,bi[2],0,size_bi);
+      CamlPrimtivie["set_digit_nat"](res,size_bi,0);
+      CamlPrimtivie["mult_digit_nat"]
        (res,
         0,
         size_res,
@@ -273,7 +277,7 @@ var
     else
      {var res$1=Nat["make_nat"](size_res);
       
-      Primtivie["mult_digit_nat"]
+      CamlPrimtivie["mult_digit_nat"]
        (res$1,
         0,
         size_res,
@@ -300,10 +304,10 @@ var
     return /* record */[0,
             bi1[1]*bi2[1],
             size_bi2>size_bi1
-             ?(Primtivie["mult_nat"]
+             ?(CamlPrimtivie["mult_nat"]
                 (res,0,size_res,bi2[2],0,size_bi2,bi1[2],0,size_bi1),
                res)
-             :(Primtivie["mult_nat"]
+             :(CamlPrimtivie["mult_nat"]
                 (res,0,size_res,bi1[2],0,size_bi1,bi2[2],0,size_bi2),
                res)];
     };
@@ -318,7 +322,9 @@ var
       
       var size_bi2=num_digits_big_int(bi2);
       
-      var match=Primtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
+      var
+       match=
+        CamlPrimtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
       
       if(match!=-1)
        {if(match!=0)
@@ -331,14 +337,14 @@ var
           
           var size_r=1+Pervasives["max"](size_bi1,size_bi2);
           
-          var q=Primtivie["create_nat"](size_q);
+          var q=CamlPrimtivie["create_nat"](size_q);
           
-          var r=Primtivie["create_nat"](size_r);
+          var r=CamlPrimtivie["create_nat"](size_r);
           
-          Primtivie["blit_nat"](r,0,bi1[2],0,size_bi1);
-          Primtivie["set_to_zero_nat"](r,size_bi1,size_r-size_bi1);
-          Primtivie["div_nat"](r,0,size_r,bi2[2],0,size_bi2);
-          Primtivie["blit_nat"](q,0,r,size_bi2,size_r-size_bi2);
+          CamlPrimtivie["blit_nat"](r,0,bi1[2],0,size_bi1);
+          CamlPrimtivie["set_to_zero_nat"](r,size_bi1,size_r-size_bi1);
+          CamlPrimtivie["div_nat"](r,0,size_r,bi2[2],0,size_bi2);
+          CamlPrimtivie["blit_nat"](q,0,r,size_bi2,size_r-size_bi2);
           var not_null_mod=!Nat["is_zero_nat"](r,0,size_bi2);
           
           if(bi1_negatif&&not_null_mod)
@@ -347,16 +353,19 @@ var
             return /* tuple */[0,
                     /* record */[0,
                      -bi2[1],
-                     (Primtivie["set_digit_nat"](q,-1+size_q,0),
-                      Primtivie["incr_nat"](q,0,size_q,1),
+                     (CamlPrimtivie["set_digit_nat"](q,-1+size_q,0),
+                      CamlPrimtivie["incr_nat"](q,0,size_q,1),
                       q)],
                     /* record */[0,
                      1,
-                     (Primtivie["sub_nat"](new_r,0,size_bi2,r,0,size_bi2,1),
+                     (CamlPrimtivie["sub_nat"](new_r,0,size_bi2,r,0,size_bi2,1),
                       new_r)]];
             }
           else
-           {if(bi1_negatif){Primtivie["set_digit_nat"](q,-1+size_q,0)}else{}
+           {if(bi1_negatif)
+             {CamlPrimtivie["set_digit_nat"](q,-1+size_q,0)}
+            else
+             {}
             
             return /* tuple */[0,
                     /* record */[0,
@@ -402,7 +411,7 @@ var
       else
        {var
          match=
-          Primtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
+          CamlPrimtivie["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
         
         if(match!=0)
          {if(match!=1)
@@ -434,7 +443,7 @@ var monster_nat=monster_big_int[2];
 var
  is_int_big_int=
   function(bi)
-   {var match=Primtivie["compare_nat"](bi[2],0,1,monster_nat,0,1);
+   {var match=CamlPrimtivie["compare_nat"](bi[2],0,1,monster_nat,0,1);
     
     return (num_digits_big_int(bi)=1)&&
            (match!=-1?match!=0?/* false */0:bi[1]=-1:/* true */1);
@@ -466,15 +475,15 @@ var
      {return zero_big_int;}
     else
      {if(i>0)
-       {var res=Primtivie["create_nat"](1);
+       {var res=CamlPrimtivie["create_nat"](1);
         
-        Primtivie["set_digit_nat_native"](res,0,i);
+        CamlPrimtivie["set_digit_nat_native"](res,0,i);
         return /* record */[0,1,res];
         }
       else
-       {var res$1=Primtivie["create_nat"](1);
+       {var res$1=CamlPrimtivie["create_nat"](1);
         
-        Primtivie["set_digit_nat_native"](res$1,0,-i);
+        CamlPrimtivie["set_digit_nat_native"](res$1,0,-i);
         return /* record */[0,-1,res$1];
         }
       }
@@ -488,7 +497,7 @@ var
     else
      {}
     
-    var i=Primtivie["nth_digit_nat_native"](bi[2],0);
+    var i=CamlPrimtivie["nth_digit_nat_native"](bi[2],0);
     
     if(bi[1]>=0)
      {if(i>=0)
@@ -539,11 +548,11 @@ var
       
       var sg=match[1];
       
-      var res=Primtivie["create_nat"](2);
+      var res=CamlPrimtivie["create_nat"](2);
       
-      Primtivie["set_digit_nat_native"]
+      CamlPrimtivie["set_digit_nat_native"]
        (res,0,"unknown primitive:nativeint_of_int64");
-      Primtivie["set_digit_nat_native"]
+      CamlPrimtivie["set_digit_nat_native"]
        (res,1,"unknown primitive:nativeint_of_int64");
       return /* record */[0,sg,res];
       }
@@ -599,7 +608,7 @@ var
 var
  sys_big_int_of_nat=
   function(nat,off,len)
-   {var length=Primtivie["num_digits_nat"](nat,off,len);
+   {var length=CamlPrimtivie["num_digits_nat"](nat,off,len);
     
     return /* record */[0,
             Nat["is_zero_nat"](nat,off,length)?0:1,
@@ -698,7 +707,7 @@ var
     if(2<switcher>>>0)
      {exit=102;}
     else
-     {switch(switcher[0])
+     {switch(switcher)
        {case 0:return sys_big_int_of_string_base(s,ofs+1,len-1,1);
         case 1:exit=102;
         case 2:return sys_big_int_of_string_base(s,ofs+1,len-1,-1);
@@ -751,26 +760,27 @@ var
           
           var l=Int_misc["num_bits_int"](n)-2;
           
-          Primtivie["blit_nat"](res,0,power_base,pmax,1);
+          CamlPrimtivie["blit_nat"](res,0,power_base,pmax,1);
           for(var i=l;i>=0;i--)
-           {var len$1=Primtivie["num_digits_nat"](res,0,n);
+           {var len$1=CamlPrimtivie["num_digits_nat"](res,0,n);
             
             var len2=Pervasives["min"](n,2*len$1);
             
             var succ_len2=1+len2;
             
-            Primtivie["square_nat"](res2,0,len2,res,0,len$1);
+            CamlPrimtivie["square_nat"](res2,0,len2,res,0,len$1);
             if((n&1<<i)>0)
-             {Primtivie["set_to_zero_nat"](res,0,len$1),
-              Primtivie["mult_digit_nat"]
+             {CamlPrimtivie["set_to_zero_nat"](res,0,len$1),
+              CamlPrimtivie["mult_digit_nat"]
                (res,0,succ_len2,res2,0,len2,power_base,pmax)}
             else
-             {Primtivie["blit_nat"](res,0,res2,0,len2)}
+             {CamlPrimtivie["blit_nat"](res,0,res2,0,len2)}
             
-            Primtivie["set_to_zero_nat"](res2,0,len2)}
+            CamlPrimtivie["set_to_zero_nat"](res2,0,len2)}
           
           if(rem>0)
-           {Primtivie["mult_digit_nat"](res2,0,1+n,res,0,n,power_base,-1+rem);
+           {CamlPrimtivie["mult_digit_nat"]
+             (res2,0,1+n,res,0,n,power_base,-1+rem);
             return res2;
             }
           else
@@ -815,21 +825,21 @@ var
         
         var l=Int_misc["num_bits_int"](n)-2;
         
-        Primtivie["blit_nat"](res,0,bi[2],0,bi_len);
+        CamlPrimtivie["blit_nat"](res,0,bi[2],0,bi_len);
         for(var i=l;i>=0;i--)
-         {var len=Primtivie["num_digits_nat"](res,0,res_len);
+         {var len=CamlPrimtivie["num_digits_nat"](res,0,res_len);
           
           var len2=Pervasives["min"](res_len,2*len);
           
-          Primtivie["set_to_zero_nat"](res2,0,len2);
-          Primtivie["square_nat"](res2,0,len2,res,0,len);
+          CamlPrimtivie["set_to_zero_nat"](res2,0,len2);
+          CamlPrimtivie["square_nat"](res2,0,len2,res,0,len);
           if((n&1<<i)>0)
            {var lenp=Pervasives["min"](res_len,len2+bi_len);
             
-            Primtivie["set_to_zero_nat"](res,0,lenp),
-            Primtivie["mult_nat"](res,0,lenp,res2,0,len2,bi[2],0,bi_len)}
+            CamlPrimtivie["set_to_zero_nat"](res,0,lenp),
+            CamlPrimtivie["mult_nat"](res,0,lenp,res2,0,len2,bi[2],0,bi_len)}
           else
-           {Primtivie["blit_nat"](res,0,res2,0,len2)}
+           {CamlPrimtivie["blit_nat"](res,0,res2,0,len2)}
           }
         
         return /* record */[0,bi[1]>=0?bi[1]:((n&1)=0)?1:-1,res];
@@ -855,7 +865,7 @@ var
         return /* record */[0,
                 i>=0
                  ?Int_misc["sign_int"](i)
-                 :Primtivie["is_digit_odd"](bi[2],0)?-1:1,
+                 :CamlPrimtivie["is_digit_odd"](bi[2],0)?-1:1,
                 nat];
         }
       else
@@ -906,7 +916,9 @@ var
      {if(match!=0)
        {var nat=Nat["power_base_int"](base,n);
         
-        var len_nat=Primtivie["num_digits_nat"](nat,0,Nat["length_nat"](nat));
+        var
+         len_nat=
+          CamlPrimtivie["num_digits_nat"](nat,0,Nat["length_nat"](nat));
         
         var len_bi=num_digits_big_int(bi);
         
@@ -915,8 +927,10 @@ var
         var res=Nat["make_nat"](new_len);
         
         len_bi>len_nat
-         ?Primtivie["mult_nat"](res,0,new_len,bi[2],0,len_bi,nat,0,len_nat)
-         :Primtivie["mult_nat"](res,0,new_len,nat,0,len_nat,bi[2],0,len_bi);
+         ?CamlPrimtivie["mult_nat"]
+           (res,0,new_len,bi[2],0,len_bi,nat,0,len_nat)
+         :CamlPrimtivie["mult_nat"]
+           (res,0,new_len,nat,0,len_nat,bi[2],0,len_bi);
         if(Nat["is_zero_nat"](res,0,new_len))
          {return zero_big_int;}
         else
@@ -930,7 +944,7 @@ var
       
       var
        len_nat$1=
-        Primtivie["num_digits_nat"](nat$1,0,Nat["length_nat"](nat$1));
+        CamlPrimtivie["num_digits_nat"](nat$1,0,Nat["length_nat"](nat$1));
       
       var len_bi$1=num_digits_big_int(bi);
       
@@ -939,14 +953,15 @@ var
       else
        {if
          ((len_bi$1=len_nat$1)&&
-          (Primtivie["compare_digits_nat"](bi[2],len_bi$1,nat$1,len_nat$1)=-1))
+          (CamlPrimtivie["compare_digits_nat"](bi[2],len_bi$1,nat$1,len_nat$1)=
+           -1))
          {return Pervasives["invalid_arg"]("base_power_big_int");}
         else
-         {var copy=Primtivie["create_nat"](1+len_bi$1);
+         {var copy=CamlPrimtivie["create_nat"](1+len_bi$1);
           
-          Primtivie["blit_nat"](copy,0,bi[2],0,len_bi$1);
-          Primtivie["set_digit_nat"](copy,len_bi$1,0);
-          Primtivie["div_nat"](copy,0,1+len_bi$1,nat$1,0,len_nat$1);
+          CamlPrimtivie["blit_nat"](copy,0,bi[2],0,len_bi$1);
+          CamlPrimtivie["set_digit_nat"](copy,len_bi$1,0);
+          CamlPrimtivie["div_nat"](copy,0,1+len_bi$1,nat$1,0,len_nat$1);
           if(!Nat["is_zero_nat"](copy,0,len_nat$1))
            {return Pervasives["invalid_arg"]("base_power_big_int");}
           else
@@ -959,7 +974,7 @@ var
 var
  float_of_big_int=
   function(bi)
-   {return Primtivie["caml_float_of_string"](string_of_big_int(bi));};
+   {return CamlPrimtivie["caml_float_of_string"](string_of_big_int(bi));};
 
 var
  sqrt_big_int=
@@ -991,7 +1006,7 @@ var
       
       var res=Nat["make_nat"](len_res);
       
-      Primtivie["square_nat"](res,0,len_res,bi[2],0,len_bi);
+      CamlPrimtivie["square_nat"](res,0,len_res,bi[2],0,len_bi);
       return /* record */[0,1,res];
       }
     };
@@ -1096,16 +1111,16 @@ var
            size_res=
             size_bi+(n+Nat["length_of_digit"]-1)/Nat["length_of_digit"];
           
-          var res=Primtivie["create_nat"](size_res);
+          var res=CamlPrimtivie["create_nat"](size_res);
           
           var ndigits=n/Nat["length_of_digit"];
           
-          Primtivie["set_to_zero_nat"](res,0,ndigits);
-          Primtivie["blit_nat"](res,ndigits,bi[2],0,size_bi);
+          CamlPrimtivie["set_to_zero_nat"](res,0,ndigits);
+          CamlPrimtivie["blit_nat"](res,ndigits,bi[2],0,size_bi);
           var nbits=n%Nat["length_of_digit"];
           
           if(nbits>0)
-           {Primtivie["shift_left_nat"]
+           {CamlPrimtivie["shift_left_nat"]
              (res,ndigits,size_bi,res,ndigits+size_bi,nbits)}
           else
            {}
@@ -1139,13 +1154,13 @@ var
           else
            {var size_res=size_bi-ndigits;
             
-            var res=Primtivie["create_nat"](size_res);
+            var res=CamlPrimtivie["create_nat"](size_res);
             
-            Primtivie["blit_nat"](res,0,bi[2],ndigits,size_res);
+            CamlPrimtivie["blit_nat"](res,0,bi[2],ndigits,size_res);
             if(nbits>0)
-             {var tmp=Primtivie["create_nat"](1);
+             {var tmp=CamlPrimtivie["create_nat"](1);
               
-              Primtivie["shift_right_nat"](res,0,size_res,tmp,0,nbits)}
+              CamlPrimtivie["shift_right_nat"](res,0,size_res,tmp,0,nbits)}
             else
              {}
             
@@ -1172,9 +1187,9 @@ var
         
         var res=Nat["make_nat"](size_res);
         
-        Primtivie["set_digit_nat_native"]
+        CamlPrimtivie["set_digit_nat_native"]
          (res,n/Nat["length_of_digit"],1<<n%Nat["length_of_digit"]);
-        Primtivie["decr_nat"](res,0,size_res,0);
+        CamlPrimtivie["decr_nat"](res,0,size_res,0);
         return /* record */[0,1,res];
         }
       }
@@ -1215,13 +1230,13 @@ var
         var res=Nat["make_nat"](size_res);
         
         if(ndigits<size_bi)
-         {Primtivie["blit_nat"]
+         {CamlPrimtivie["blit_nat"]
            (res,0,bi[2],ndigits,Pervasives["min"](size_res,size_bi-ndigits))}
         else
          {}
         
         if(bi[1]<0)
-         {Primtivie["complement_nat"](res,0,size_res);
+         {CamlPrimtivie["complement_nat"](res,0,size_res);
           var
            carry_incr=
             function(i)
@@ -1229,30 +1244,30 @@ var
                      ndigits||
                      i>=
                      size_bi||
-                     Primtivie["is_digit_zero"](bi[2],i)&&
+                     CamlPrimtivie["is_digit_zero"](bi[2],i)&&
                      carry_incr(i+1);
               };
           
-          if(carry_incr(0)){Primtivie["incr_nat"](res,0,size_res,1)}else{}
+          if(carry_incr(0)){CamlPrimtivie["incr_nat"](res,0,size_res,1)}else{}
           }
         else
          {}
         
         if(nbits>0)
-         {var tmp=Primtivie["create_nat"](1);
+         {var tmp=CamlPrimtivie["create_nat"](1);
           
-          Primtivie["shift_right_nat"](res,0,size_res,tmp,0,nbits)}
+          CamlPrimtivie["shift_right_nat"](res,0,size_res,tmp,0,nbits)}
         else
          {}
         
         var n$prime=n%Nat["length_of_digit"];
         
         if(n$prime>0)
-         {var tmp$1=Primtivie["create_nat"](1);
+         {var tmp$1=CamlPrimtivie["create_nat"](1);
           
-          Primtivie["set_digit_nat_native"]
+          CamlPrimtivie["set_digit_nat_native"]
            (tmp$1,0,-1>>>Nat["length_of_digit"]-n$prime),
-          Primtivie["land_digit_nat"](res,size_res-1,tmp$1,0)}
+          CamlPrimtivie["land_digit_nat"](res,size_res-1,tmp$1,0)}
         else
          {}
         
@@ -1279,11 +1294,11 @@ var
         
         var size_res=Pervasives["min"](size_a,size_b);
         
-        var res=Primtivie["create_nat"](size_res);
+        var res=CamlPrimtivie["create_nat"](size_res);
         
-        Primtivie["blit_nat"](res,0,a[2],0,size_res);
+        CamlPrimtivie["blit_nat"](res,0,a[2],0,size_res);
         for(var i=0;i<=size_res-1;i++)
-         {Primtivie["land_digit_nat"](res,i,b[2],i)}
+         {CamlPrimtivie["land_digit_nat"](res,i,b[2],i)}
         
         if(Nat["is_zero_nat"](res,0,size_res))
          {return zero_big_int;}
@@ -1311,14 +1326,14 @@ var
           
           var size_res=Pervasives["max"](size_a,size_b);
           
-          var res=Primtivie["create_nat"](size_res);
+          var res=CamlPrimtivie["create_nat"](size_res);
           
           var
            or_aux=
             function(a$prime,b$prime,size_b$prime)
-             {Primtivie["blit_nat"](res,0,a$prime[2],0,size_res);
+             {CamlPrimtivie["blit_nat"](res,0,a$prime[2],0,size_res);
               for(var i=0;i<=size_b$prime-1;i++)
-               {Primtivie["lor_digit_nat"](res,i,b$prime[2],i)}
+               {CamlPrimtivie["lor_digit_nat"](res,i,b$prime[2],i)}
               };
           
           if(size_a>=size_b){or_aux(a,b,size_b)}else{or_aux(b,a,size_a)}
@@ -1350,14 +1365,14 @@ var
           
           var size_res=Pervasives["max"](size_a,size_b);
           
-          var res=Primtivie["create_nat"](size_res);
+          var res=CamlPrimtivie["create_nat"](size_res);
           
           var
            xor_aux=
             function(a$prime,b$prime,size_b$prime)
-             {Primtivie["blit_nat"](res,0,a$prime[2],0,size_res);
+             {CamlPrimtivie["blit_nat"](res,0,a$prime[2],0,size_res);
               for(var i=0;i<=size_b$prime-1;i++)
-               {Primtivie["lxor_digit_nat"](res,i,b$prime[2],i)}
+               {CamlPrimtivie["lxor_digit_nat"](res,i,b$prime[2],i)}
               };
           
           if(size_a>=size_b){xor_aux(a,b,size_b)}else{xor_aux(b,a,size_a)}

@@ -26,7 +26,7 @@ Odoc_module,Odoc_name;
 var
  add_to_hash=
   function(table,signat)
-   {switch(signat)
+   {switch(signat[0])
      {case 0:
        return Hashtbl["add"]
                (table,/* V */[2,Odoc_name["from_ident"](signat[1])],signat);
@@ -72,7 +72,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* V */[2,name]);
     
-    switch(match)
+    switch(match[0])
      {case 0:return match[2][1];
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",72,13]];}
     };
@@ -82,7 +82,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* X */[6,name]);
     
-    switch(match)
+    switch(match[0])
      {case 2:return match[2];
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",77,13]];}
     };
@@ -92,7 +92,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* T */[3,name]);
     
-    switch(match)
+    switch(match[0])
      {case 1:return match[2];
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",82,13]];}
     };
@@ -102,7 +102,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* C */[4,name]);
     
-    switch(match)
+    switch(match[0])
      {case 5:return match[2];
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",87,13]];}
     };
@@ -112,7 +112,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* CT */[5,name]);
     
-    switch(match)
+    switch(match[0])
      {case 6:return match[2];
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",92,13]];}
     };
@@ -122,7 +122,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* M */[0,name]);
     
-    switch(match)
+    switch(match[0])
      {case 3:return match[2][1];
       default:throw [0,Assert_failure,[0,"odoc_sig.ml",97,13]];}
     };
@@ -132,7 +132,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* MT */[1,name]);
     
-    switch(match)
+    switch(match[0])
      {case 4:
        var match$1=match[2][1];
        
@@ -517,7 +517,7 @@ var
                 (function(constraint_,acc)
                   {var exit;
                    
-                   switch(constraint_)
+                   switch(constraint_[0])
                     {case 0:exit=264;
                      case 1:exit=264;
                      case 2:var s=constraint_[1][1];exit=265;
@@ -553,7 +553,7 @@ var
                      
                      var exit;
                      
-                     switch(tp)
+                     switch(tp[0])
                       {case 1:
                         var
                          types=
@@ -616,7 +616,7 @@ var
               
               var match=ele2[1];
               
-              switch(match)
+              switch(match[0])
                {case 0:return match[1][2][1][4];
                 case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",361,44]];
                 default:return loc[1][4];}
@@ -684,7 +684,7 @@ var
               
               var match=item[1];
               
-              switch(match)
+              switch(match[0])
                {case 0:
                  var class_type=match[1];
                  
@@ -712,7 +712,7 @@ var
                  
                  var exit;
                  
-                 switch(match$3)
+                 switch(match$3[0])
                   {case 0:
                     var name=Odoc_name["from_longident"](match$3[1][1]);
                     
@@ -960,7 +960,7 @@ var
         sig_item_desc)
        {var exit;
         
-        switch(sig_item_desc)
+        switch(sig_item_desc[0])
          {case 0:
            var name_pre=sig_item_desc[1][1];
            
@@ -1027,7 +1027,8 @@ var
               (function(td)
                 {return List["exists"]
                          (function(param)
-                           {return Primtivie["caml_string_equal"](param[1][1],"nonrec");
+                           {return CamlPrimtivie["caml_string_equal"]
+                                    (param[1][1],"nonrec");
                             },
                           td[7]);
                  },
@@ -1379,7 +1380,7 @@ var
            
            var match$9=new_module[2];
            
-           switch(match$9)
+           switch(match$9[0])
             {case 1:
               var
                new_env2=
@@ -1424,7 +1425,7 @@ var
                     {throw exn$3;}
                    }
                  
-                 switch(sig_module_type$1)
+                 switch(sig_module_type$1[0])
                   {case 1:
                     return Odoc_env["add_signature"]
                             (e$1,
@@ -1615,7 +1616,7 @@ var
            if(sig_mtype)
             {var match$13=sig_mtype[1];
              
-             switch(match$13)
+             switch(match$13[0])
               {case 1:
                 var
                  new_env2$1=
@@ -1662,7 +1663,7 @@ var
              function(param)
               {var exit$2;
                
-               switch(param)
+               switch(param[0])
                 {case 0:exit$2=115;
                  case 1:return "??";
                  case 2:return "??";
@@ -1670,7 +1671,7 @@ var
                  case 4:
                   var match$15=param[1][1];
                   
-                  switch(match$15)
+                  switch(match$15[0])
                    {case 0:return Odoc_name["from_longident"](match$15[1][1]);
                     default:return "??";}
                   
@@ -1955,9 +1956,9 @@ var
         
         var match=module_type[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 0:var name=Odoc_name["from_path"](sig_module_type[1]);
              default:var name=Odoc_name["from_longident"](match[1][1]);}
            
@@ -1969,7 +1970,7 @@ var
           case 1:
            var ast=filter_out_erased_items_from_signature(erased,match[1]);
            
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 1:
               var pos_start=module_type[2][1][4];
               
@@ -2007,7 +2008,7 @@ var
            
            var mp_type_code=get_string_of_file(loc_start,loc_end);
            
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 2:
               var param_module_type=sig_module_type[2];
               
@@ -2094,7 +2095,7 @@ var
            
           case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1296,38]];
           case 6:
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 3:var name$1=Odoc_name["from_path"](sig_module_type[1]);
              default:var name$1=Odoc_name["from_longident"](match[1][1]);}
            
@@ -2117,7 +2118,7 @@ var
         
         var match=module_type[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:
            var
             k=
@@ -2135,7 +2136,7 @@ var
             signature=
              filter_out_erased_items_from_signature(erased,match[1]);
            
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 1:
               return /* Module_struct */[0,
                       analyse_parsetree
@@ -2155,7 +2156,7 @@ var
           case 2:
            var pmodule_type2=match[2];
            
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 2:
               var param_module_type=sig_module_type[2];
               
@@ -2253,7 +2254,7 @@ var
            
           case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1385,38]];
           case 6:
-           switch(sig_module_type)
+           switch(sig_module_type[0])
             {case 3:
               var
                alias_name=
@@ -2281,9 +2282,9 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:
-           switch(sig_class_type)
+           switch(sig_class_type[0])
             {case 0:
               var path_name=Odoc_name["from_path"](sig_class_type[1]);
               
@@ -2306,7 +2307,7 @@ var
              }
            
           case 1:
-           switch(sig_class_type)
+           switch(sig_class_type[0])
             {case 0:exit=206;
              case 1:
               var
@@ -2327,13 +2328,13 @@ var
              }
            
           case 2:
-           switch(sig_class_type)
+           switch(sig_class_type[0])
             {case 0:exit=206;
              case 1:exit=206;
              case 2:
               var label=sig_class_type[1];
               
-              if(Primtivie["caml_string_equal"](match[1],label))
+              if(CamlPrimtivie["caml_string_equal"](match[1],label))
                {var
                  new_param=
                   /* Simple_name */[0,
@@ -2379,9 +2380,9 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:
-           switch(sig_class_type)
+           switch(sig_class_type[0])
             {case 0:
               return /* Class_type */[1,
                       /* record */[0,
@@ -2395,7 +2396,7 @@ var
              }
            
           case 1:
-           switch(sig_class_type)
+           switch(sig_class_type[0])
             {case 0:exit=209;
              case 1:
               var
@@ -2414,7 +2415,7 @@ var
              }
            
           case 2:
-           switch(sig_class_type)
+           switch(sig_class_type[0])
             {case 0:exit=209;
              case 1:exit=209;
              case 2:
@@ -2440,7 +2441,7 @@ var
      analyse_signature=
       function(source_file,input_file,ast,signat)
        {try
-         {var curdir=Primtivie["caml_sys_getcwd"](/* () */0);
+         {var curdir=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
           
           var
            match=
@@ -2448,13 +2449,13 @@ var
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
-          Primtivie["caml_sys_chdir"](match[1]);
+          CamlPrimtivie["caml_sys_chdir"](match[1]);
           var
            complete=
             Filename["concat"]
-             (Primtivie["caml_sys_getcwd"](/* () */0),match[2]);
+             (CamlPrimtivie["caml_sys_getcwd"](/* () */0),match[2]);
           
-          Primtivie["caml_sys_chdir"](curdir);
+          CamlPrimtivie["caml_sys_chdir"](curdir);
           var complete_source_file=complete;
           }
         catch(exn)

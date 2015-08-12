@@ -10,7 +10,7 @@ var Log=require("Log");
 
 var
  Exit_hygiene_failed=
-  Primtivie["caml_set_oo_id"]([248,"Fda.Exit_hygiene_failed",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Fda.Exit_hygiene_failed",0]);
 
 var
  laws=

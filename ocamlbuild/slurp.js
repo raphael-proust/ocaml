@@ -52,7 +52,7 @@ var
 var
  real_slurp=
   function(path)
-   {var cwd=Primtivie["caml_sys_getcwd"](/* () */0);
+   {var cwd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
     
     var
      abs=
@@ -122,7 +122,7 @@ var
           }
         catch(x){var match=/* Bad */[1,x];}
         
-        switch(match)
+        switch(match[0])
          {case 0:
            var st=match[1];
            
@@ -138,11 +138,11 @@ var
             {Hashtbl["add"](visited,key,/* true */1);
              var match$1=st[1];
              
-             switch(match$1[0])
+             switch(match$1)
               {case 0:
                 var match$2=My_std["sys_readdir"](absfn);
                 
-                switch(match$2)
+                switch(match$2[0])
                  {case 0:
                    var names=match$2[1];
                    
@@ -197,7 +197,9 @@ var
    {var
      aux=
       function(path)
-       {if(Primtivie["caml_string_equal"](path,Filename["current_dir_name"]))
+       {if
+         (CamlPrimtivie["caml_string_equal"]
+           (path,Filename["current_dir_name"]))
          {return /* [] */0;}
         else
          {return /* :: */[0,
@@ -249,7 +251,7 @@ var
              
              var dname=d[2];
              
-             if(Primtivie["caml_string_equal"](xpath,dname))
+             if(CamlPrimtivie["caml_string_equal"](xpath,dname))
               {return /* :: */[0,
                        /* Dir */[0,
                         d[1],
@@ -283,7 +285,7 @@ var
              
              var fname=f[2];
              
-             if(Primtivie["caml_string_equal"](xpath,fname))
+             if(CamlPrimtivie["caml_string_equal"](xpath,fname))
               {return /* :: */[0,
                        /* Dir */[0,
                         f[1],
@@ -317,7 +319,7 @@ var
           {if(entries)
             {var f$1=entries[1];
              
-             if(Primtivie["caml_string_equal"](xpath,f$1[2]))
+             if(CamlPrimtivie["caml_string_equal"](xpath,f$1[2]))
               {return entries;}
              else
               {return /* :: */[0,f$1,add(root,path,entries[2])];}
@@ -342,7 +344,7 @@ var
     
     switch(exit)
      {case 14:
-       if("unknown primitive:isint")
+       if(typeof entries[1]==="number")
         {return add(root,path,entries[2]);}
        else
         {return entries;}
@@ -354,7 +356,7 @@ var
  slurp_with_find=
   function(path)
    {try
-     {var find_cmd=Primtivie["caml_sys_getenv"]("OCAMLBUILD_FIND");}
+     {var find_cmd=CamlPrimtivie["caml_sys_getenv"]("OCAMLBUILD_FIND");}
     catch(exn){var find_cmd="find";}
     
     var

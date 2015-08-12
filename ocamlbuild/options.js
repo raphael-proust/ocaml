@@ -26,7 +26,7 @@ var project_root_dir=[0,/* None */0];
 
 var
  build_dir=
-  [0,Filename["concat"](Primtivie["caml_sys_getcwd"](/* () */0),"_build")];
+  [0,Filename["concat"](CamlPrimtivie["caml_sys_getcwd"](/* () */0),"_build")];
 
 var include_dirs=[0,/* [] */0];
 
@@ -298,7 +298,7 @@ var
 var
  add_to$prime=
   function(rxs,x)
-   {if(Primtivie["caml_string_notequal"](x,dummy))
+   {if(CamlPrimtivie["caml_string_notequal"](x,dummy))
      {return rxs[1]=/* :: */[0,/* :: */[0,x,/* [] */0],rxs[1]],0;}
     else
      {return /* () */0;}
@@ -315,7 +315,7 @@ var
    {make_links[1]=/* false */0,0;
     if(Filename["is_relative"](s))
      {return build_dir[1]=
-             Filename["concat"](Primtivie["caml_sys_getcwd"](/* () */0),s),
+             Filename["concat"](CamlPrimtivie["caml_sys_getcwd"](/* () */0),s),
              0;
       }
     else
@@ -784,11 +784,11 @@ var
     Arg["parse_argv"](/* None */0,argv$prime,spec[1],anon_fun,usage_msg);
     Shell["mkdir_p"](build_dir[1]);
     project_root_dir[1]=
-    /* Some */[0,Primtivie["caml_sys_getcwd"](/* () */0)],
+    /* Some */[0,CamlPrimtivie["caml_sys_getcwd"](/* () */0)],
     0;
     var log=log_file_internal[1];
     
-    if(Primtivie["caml_string_equal"](log,""))
+    if(CamlPrimtivie["caml_string_equal"](log,""))
      {var match$1=Log["init"](/* None */0);}
     else
      {if(!Filename["is_implicit"](log))
@@ -939,12 +939,12 @@ var
     if(match$1)
      {var root_dir=match$1[1];}
     else
-     {var root_dir=Primtivie["caml_sys_getcwd"](/* () */0);}
+     {var root_dir=CamlPrimtivie["caml_sys_getcwd"](/* () */0);}
     
     var at_root=function(file){return Filename["concat"](root_dir,file);};
     
-    return Primtivie["caml_sys_file_exists"](at_root("_tags"))||
-           Primtivie["caml_sys_file_exists"](at_root("myocamlbuild.ml"));
+    return CamlPrimtivie["caml_sys_file_exists"](at_root("_tags"))||
+           CamlPrimtivie["caml_sys_file_exists"](at_root("myocamlbuild.ml"));
     };
 
 module["exports"]=

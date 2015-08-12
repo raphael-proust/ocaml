@@ -290,7 +290,7 @@ var
       function(param)
        {var exit;
         
-        switch(param)
+        switch(param[0])
          {case 0:exit=21;
           case 1:exit=21;
           case 2:
@@ -379,7 +379,7 @@ var
     if(match)
      {var match$1=match[1];
       
-      switch(match$1)
+      switch(match$1[0])
        {case 0:
          var
           manifest_str=

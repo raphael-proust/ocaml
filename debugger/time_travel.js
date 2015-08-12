@@ -22,11 +22,12 @@ var Debugcom=require("Debugcom");
 
 var
  Current_checkpoint_lost=
-  Primtivie["caml_set_oo_id"]([248,"Time_travel.Current_checkpoint_lost",0]);
+  CamlPrimtivie["caml_set_oo_id"]
+   ([248,"Time_travel.Current_checkpoint_lost",0]);
 
 var
  Current_checkpoint_lost_start_at=
-  Primtivie["caml_set_oo_id"]
+  CamlPrimtivie["caml_set_oo_id"]
    ([248,"Time_travel.Current_checkpoint_lost_start_at",0]);
 
 var
@@ -273,7 +274,7 @@ var
                   
                   var t2=param$1[1];
                   
-                  return Primtivie["caml_int64_compare"](t2,t1);
+                  return CamlPrimtivie["caml_int64_compare"](t2,t1);
                   },
                 accepted,
                 match$1[1]),
@@ -398,7 +399,7 @@ var
     if(2<switcher>>>0)
      {exit=50;}
     else
-     {switch(switcher[0])
+     {switch(switcher)
        {case 0:
          last_breakpoint[1]=
          /* Some */[0,/* tuple */[0,report[4],report[3]]],
@@ -1029,7 +1030,7 @@ var
       
       var match$4=match$3[5];
       
-      if("unknown primitive:isint")
+      if(typeof match$4==="number")
        {var nargs=Misc["fatal_error"]("Time_travel.start");}
       else
        {var nargs=match$4[1];}

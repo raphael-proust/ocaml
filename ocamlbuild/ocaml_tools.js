@@ -557,7 +557,7 @@ var
     
     var pp=Command["reduce"](Flags["of_tags"](tags));
     
-    if("unknown primitive:isint"){var pp$1=$$default;}else{var pp$1=pp;}
+    if(typeof pp==="number"){var pp$1=$$default;}else{var pp$1=pp;}
     
     return /* Cmd */[1,
             /* S */[0,

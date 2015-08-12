@@ -292,7 +292,7 @@ var
         
         var new_line=Primitives["string_trim"](Lexer["line"](line_buffer));
         
-        if(Primtivie["caml_string_notequal"](new_line,""))
+        if(CamlPrimtivie["caml_string_notequal"](new_line,""))
          {var line=new_line;}
         else
          {var line=previous_line;}
@@ -318,7 +318,8 @@ var
     
     if(Program_management["ask_kill_program"](/* () */0))
      {try
-       {return Primtivie["caml_sys_chdir"](Unix_tools["expand_path"](dir));}
+       {return CamlPrimtivie["caml_sys_chdir"](Unix_tools["expand_path"](dir));
+        }
       catch(exn){if(exn[1]=Sys_error){return error(exn[2]);}else{throw exn;}}
       }
     else
@@ -332,7 +333,7 @@ var
     
     var cmd=$$String["concat"](" ",cmdarg);
     
-    var err=Primtivie["caml_sys_system_command"](cmd);
+    var err=CamlPrimtivie["caml_sys_system_command"](cmd);
     
     if(err!=0)
      {return Format["eprintf"]
@@ -365,7 +366,7 @@ var
     
     var cmdarg$1=Primitives["string_trim"]($$String["concat"](" ",cmdarg));
     
-    if(Primtivie["caml_string_notequal"](cmdarg$1,""))
+    if(CamlPrimtivie["caml_string_notequal"](cmdarg$1,""))
      {if(Program_management["ask_kill_program"](/* () */0))
        {try
          {var eqpos=$$String["index"](cmdarg$1,61);
@@ -435,7 +436,7 @@ var
                 /* Flush_newline */4,
                 /* End_of_format */0]],
               "%s@."],
-             Primtivie["caml_sys_getcwd"](/* () */0));
+             CamlPrimtivie["caml_sys_getcwd"](/* () */0));
     };
 
 var
@@ -468,7 +469,7 @@ var
           var mdl=new_directory$prime[1];
           
           if
-           (Primtivie["caml_string_equal"]
+           (CamlPrimtivie["caml_string_equal"]
              ($$String["lowercase"](match[1]),"for")&&
             List["length"](tl)>
             0)
@@ -811,7 +812,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(Primtivie["caml_string_equal"](x,"help"))
+                {if(CamlPrimtivie["caml_string_equal"](x,"help"))
                   {return match_list(lexbuf);}
                  else
                   {return [/* :: */0,"help",/* [] */0];}
@@ -821,7 +822,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(Primtivie["caml_string_equal"](x,"info"))
+                {if(CamlPrimtivie["caml_string_equal"](x,"info"))
                   {var
                     match$1=
                      Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
@@ -839,7 +840,7 @@ var
                        else
                         {var i$1=l$1[1];
                          
-                         if(Primtivie["caml_string_equal"](i$1[1],ident))
+                         if(CamlPrimtivie["caml_string_equal"](i$1[1],ident))
                           {return /* [] */0;}
                          else
                           {return /* :: */[0,i$1[1],/* [] */0];}
@@ -869,7 +870,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(Primtivie["caml_string_equal"](x,i[1]))
+                {if(CamlPrimtivie["caml_string_equal"](x,i[1]))
                   {return /* [] */0;}
                  else
                   {return /* :: */[0,i[1],/* [] */0];}
@@ -879,7 +880,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(Primtivie["caml_string_equal"](x,i_full))
+                {if(CamlPrimtivie["caml_string_equal"](x,i_full))
                   {var
                     match$2=
                      Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
@@ -897,7 +898,7 @@ var
                        else
                         {var v=l$2[1];
                          
-                         if(Primtivie["caml_string_equal"](v[1],ident$1))
+                         if(CamlPrimtivie["caml_string_equal"](v[1],ident$1))
                           {return /* [] */0;}
                          else
                           {return /* :: */[0,v[1],/* [] */0];}
@@ -1699,7 +1700,7 @@ var
     
     if(e){var en=e[1];}else{var en=beginning+20;}
     
-    if(Primtivie["caml_string_equal"](mdle,match$1[1]))
+    if(CamlPrimtivie["caml_string_equal"](mdle,match$1[1]))
      {return Show_source["show_listing"]
               (pos,
                mdle,
@@ -2241,10 +2242,10 @@ var
                         match[1],
                         match[2],
                         Pervasives["^"]
-                         ("unknown primitive:isint"
+                         (typeof match$1==="number"
                            ?match$1!=0?"pseudo":"before"
                            :"after",
-                          "unknown primitive:isint"?match$2!=0?"":"/fun":"/ret"),
+                          typeof match$2==="number"?match$2!=0?"":"/fun":"/ret"),
                         $js);
                },
              Symbols["events_in_module"](mdle));

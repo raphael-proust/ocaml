@@ -38,7 +38,7 @@ var
       return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:exit=2;
         case 1:exit=2;
         case 2:return url(lexbuf);

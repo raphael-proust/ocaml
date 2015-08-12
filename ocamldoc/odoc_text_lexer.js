@@ -107,7 +107,7 @@ var
       return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          incr_cpts(lexbuf);
          var s=Lexing["lexeme"](lexbuf);
@@ -153,7 +153,7 @@ var
                
                return /* Title */[0,
                        /* tuple */[0,
-                        Primtivie["caml_int_of_string"](s2),
+                        CamlPrimtivie["caml_int_of_string"](s2),
                         /* None */0]];
                }
              else
@@ -172,14 +172,14 @@ var
                  
                  return /* Title */[0,
                          /* tuple */[0,
-                          Primtivie["caml_int_of_string"](s_n),
+                          CamlPrimtivie["caml_int_of_string"](s_n),
                           /* Some */[0,s_label]]];
                  }
                catch(exn)
                 {if(exn=Not_found)
                   {return /* Title */[0,
                            /* tuple */[0,
-                            Primtivie["caml_int_of_string"](s2$1),
+                            CamlPrimtivie["caml_int_of_string"](s2$1),
                             /* None */0]];
                    }
                  else

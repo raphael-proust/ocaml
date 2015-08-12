@@ -9,18 +9,18 @@ var $$Array=require("Array");
 var Sys=require("Sys");
 
 
-var wait_read=function(fd){return Primtivie["thread_wait_read"](fd);};
+var wait_read=function(fd){return CamlPrimtivie["thread_wait_read"](fd);};
 
-var wait_write=function(fd){return Primtivie["thread_wait_write"](fd);};
+var wait_write=function(fd){return CamlPrimtivie["thread_wait_write"](fd);};
 
-var select_aux=function(arg){return Primtivie["thread_select"](arg);};
+var select_aux=function(arg){return CamlPrimtivie["thread_select"](arg);};
 
-var wait_pid_aux=function(pid){return Primtivie["thread_wait_pid"](pid);};
+var wait_pid_aux=function(pid){return CamlPrimtivie["thread_wait_pid"](pid);};
 
-var delay=function(duration){return Primtivie["thread_delay"](duration);};
+var delay=function(duration){return CamlPrimtivie["thread_delay"](duration);};
 
-Primtivie["thread_initialize"](/* () */0);
-var Unix_error=Primtivie["caml_set_oo_id"]([248,"Unix.Unix_error",0]);
+CamlPrimtivie["thread_initialize"](/* () */0);
+var Unix_error=CamlPrimtivie["caml_set_oo_id"]([248,"Unix.Unix_error",0]);
 
 Callback["register_exception"]
  ("Unix.Unix_error",[0,Unix_error,/* E2BIG */0,"",""]);
@@ -51,7 +51,7 @@ var
          {}
         
         Pervasives["prerr_string"](": ");
-        Pervasives["prerr_endline"](Primtivie["unix_error_message"](err));
+        Pervasives["prerr_endline"](CamlPrimtivie["unix_error_message"](err));
         return Pervasives["exit"](2);
         }
       else
@@ -72,7 +72,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.read");}
       else
-       {return Primtivie["unix_read"](fd,buf,ofs,len);}
+       {return CamlPrimtivie["unix_read"](fd,buf,ofs,len);}
       }
     catch(exn)
      {var exit;
@@ -84,7 +84,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=161;}else{exit$1=162;}}
           else
@@ -109,7 +109,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.write");}
       else
-       {return Primtivie["unix_write"](fd,buf,ofs,len);}
+       {return CamlPrimtivie["unix_write"](fd,buf,ofs,len);}
       }
     catch(exn)
      {var exit;
@@ -121,7 +121,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=159;}else{exit$1=160;}}
           else
@@ -146,7 +146,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.single_write");}
       else
-       {return Primtivie["unix_single_write"](fd,buf,ofs,len);}
+       {return CamlPrimtivie["unix_single_write"](fd,buf,ofs,len);}
       }
     catch(exn)
      {var exit;
@@ -158,7 +158,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=157;}else{exit$1=158;}}
           else
@@ -192,14 +192,14 @@ var LargeFile=[0];
 var
  pipe=
   function(param)
-   {var fd_pair=Primtivie["unix_pipe"](/* () */0);
+   {var fd_pair=CamlPrimtivie["unix_pipe"](/* () */0);
     
     var in_fd=fd_pair[2];
     
     var out_fd=fd_pair[1];
     
-    Primtivie["unix_set_nonblock"](in_fd);
-    Primtivie["unix_set_nonblock"](out_fd);
+    CamlPrimtivie["unix_set_nonblock"](in_fd);
+    CamlPrimtivie["unix_set_nonblock"](out_fd);
     return fd_pair;
     };
 
@@ -233,7 +233,7 @@ var
  safe_clear_nonblock=
   function(fd)
    {try
-     {return Primtivie["unix_clear_nonblock"](fd);}
+     {return CamlPrimtivie["unix_clear_nonblock"](fd);}
     catch(exn)
      {var tag=exn[1];if(tag=Unix_error){return /* () */0;}else{throw exn;}}
     };
@@ -242,7 +242,7 @@ var
  safe_set_nonblock=
   function(fd)
    {try
-     {return Primtivie["unix_set_nonblock"](fd);}
+     {return CamlPrimtivie["unix_set_nonblock"](fd);}
     catch(exn)
      {var tag=exn[1];if(tag=Unix_error){return /* () */0;}else{throw exn;}}
     };
@@ -250,7 +250,7 @@ var
 var
  do_exec=
   function(fn)
-   {var oldtimer=Primtivie["unix_setitimer"](/* ITIMER_VIRTUAL */1,[0,0]);
+   {var oldtimer=CamlPrimtivie["unix_setitimer"](/* ITIMER_VIRTUAL */1,[0,0]);
     
     safe_clear_nonblock(stdin);
     safe_clear_nonblock(stdout);
@@ -261,7 +261,7 @@ var
      {var tag=exn[1];
       
       if(tag=Unix_error)
-       {Primtivie["unix_setitimer"](/* ITIMER_VIRTUAL */1,oldtimer);
+       {CamlPrimtivie["unix_setitimer"](/* ITIMER_VIRTUAL */1,oldtimer);
         safe_set_nonblock(stdin);
         safe_set_nonblock(stdout);
         safe_set_nonblock(stderr);
@@ -276,21 +276,22 @@ var
  execv=
   function(proc,args)
    {return do_exec
-            (function(param){return Primtivie["unix_execv"](proc,args);});
+            (function(param){return CamlPrimtivie["unix_execv"](proc,args);});
     };
 
 var
  execve=
   function(proc,args,env)
    {return do_exec
-            (function(param){return Primtivie["unix_execve"](proc,args,env);});
+            (function(param)
+              {return CamlPrimtivie["unix_execve"](proc,args,env);});
     };
 
 var
  execvp=
   function(proc,args)
    {return do_exec
-            (function(param){return Primtivie["unix_execvp"](proc,args);});
+            (function(param){return CamlPrimtivie["unix_execvp"](proc,args);});
     };
 
 var
@@ -299,7 +300,7 @@ var
    {return do_exec
             (function(param)
               {return function(prim,prim,prim)
-                        {return Primtivie["unix_execvpe"](prim$1,prim$2,prim);}
+                        {return CamlPrimtivie["unix_execvpe"](prim$1,prim$2,prim);}
                        (proc,args);
                });
     };
@@ -334,7 +335,7 @@ var
  waitpid=
   function(flags,pid)
    {if(List["mem"](/* WNOHANG */0,flags))
-     {return Primtivie["unix_waitpid"](flags,pid);}
+     {return CamlPrimtivie["unix_waitpid"](flags,pid);}
     else
      {return wait_pid(pid);}
     };
@@ -342,19 +343,19 @@ var
 var
  pause=
   function(param)
-   {var sigs=Primtivie["unix_sigprocmask"](/* SIG_BLOCK */1,/* [] */0);
+   {var sigs=CamlPrimtivie["unix_sigprocmask"](/* SIG_BLOCK */1,/* [] */0);
     
-    return Primtivie["unix_sigsuspend"](sigs);
+    return CamlPrimtivie["unix_sigsuspend"](sigs);
     };
 
 var sleep=function(secs){return delay(secs);};
 
-var inet_addr_any=Primtivie["unix_inet_addr_of_string"]("0.0.0.0");
+var inet_addr_any=CamlPrimtivie["unix_inet_addr_of_string"]("0.0.0.0");
 
-var inet_addr_loopback=Primtivie["unix_inet_addr_of_string"]("127.0.0.1");
+var inet_addr_loopback=CamlPrimtivie["unix_inet_addr_of_string"]("127.0.0.1");
 
 try
- {var inet6_addr_any=Primtivie["unix_inet_addr_of_string"]("::");}
+ {var inet6_addr_any=CamlPrimtivie["unix_inet_addr_of_string"]("::");}
 catch(exn)
  {var tag=exn[1];
   
@@ -362,7 +363,7 @@ catch(exn)
   }
 
 try
- {var inet6_addr_loopback=Primtivie["unix_inet_addr_of_string"]("::1");}
+ {var inet6_addr_loopback=CamlPrimtivie["unix_inet_addr_of_string"]("::1");}
 catch(exn$1)
  {var tag$1=exn$1[1];
   
@@ -377,7 +378,7 @@ var is_inet6_addr=function(s){return s["length"]=16;};
 var
  domain_of_sockaddr=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return /* PF_UNIX */0;
       case 1:
        var a=param[1];
@@ -393,23 +394,23 @@ var
 var
  socket=
   function(dom,typ,proto)
-   {var s=Primtivie["unix_socket"](dom,typ,proto);
+   {var s=CamlPrimtivie["unix_socket"](dom,typ,proto);
     
-    Primtivie["unix_set_nonblock"](s);
+    CamlPrimtivie["unix_set_nonblock"](s);
     return s;
     };
 
 var
  socketpair=
   function(dom,typ,proto)
-   {var spair=Primtivie["unix_socketpair"](dom,typ,proto);
+   {var spair=CamlPrimtivie["unix_socketpair"](dom,typ,proto);
     
     var s2=spair[2];
     
     var s1=spair[1];
     
-    Primtivie["unix_set_nonblock"](s1);
-    Primtivie["unix_set_nonblock"](s2);
+    CamlPrimtivie["unix_set_nonblock"](s1);
+    CamlPrimtivie["unix_set_nonblock"](s2);
     return spair;
     };
 
@@ -418,11 +419,11 @@ var
   function(req)
    {wait_read(req);
     try
-     {var result=Primtivie["unix_accept"](req);
+     {var result=CamlPrimtivie["unix_accept"](req);
       
       var s=result[1];
       
-      Primtivie["unix_set_nonblock"](s);
+      CamlPrimtivie["unix_set_nonblock"](s);
       return result;
       }
     catch(exn$2)
@@ -435,7 +436,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=118;}else{exit$1=119;}}
           else
@@ -457,7 +458,7 @@ var
  connect=
   function(s,addr)
    {try
-     {return Primtivie["unix_connect"](s,addr);}
+     {return CamlPrimtivie["unix_connect"](s,addr);}
     catch(exn$2)
      {var exit;
       
@@ -468,7 +469,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match>=37)
            {if(match>=39){exit=115;}else{exit$1=116;}}
           else
@@ -478,7 +479,7 @@ var
          {exit=115;}
         
         switch(exit$1)
-         {case 116:wait_write(s);return Primtivie["unix_getpeername"](s);}
+         {case 116:wait_write(s);return CamlPrimtivie["unix_getpeername"](s);}
         }
       else
        {exit=115;}
@@ -494,7 +495,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.recv");}
       else
-       {return Primtivie["unix_recv"](fd,buf,ofs,len,flags);}
+       {return CamlPrimtivie["unix_recv"](fd,buf,ofs,len,flags);}
       }
     catch(exn$2)
      {var exit;
@@ -506,7 +507,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=113;}else{exit$1=114;}}
           else
@@ -532,7 +533,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.recvfrom");}
       else
-       {return Primtivie["unix_recvfrom"](fd,buf,ofs,len,flags);}
+       {return CamlPrimtivie["unix_recvfrom"](fd,buf,ofs,len,flags);}
       }
     catch(exn$2)
      {var exit;
@@ -544,7 +545,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=111;}else{exit$1=112;}}
           else
@@ -570,7 +571,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.send");}
       else
-       {return Primtivie["unix_send"](fd,buf,ofs,len,flags);}
+       {return CamlPrimtivie["unix_send"](fd,buf,ofs,len,flags);}
       }
     catch(exn$2)
      {var exit;
@@ -582,7 +583,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=109;}else{exit$1=110;}}
           else
@@ -608,7 +609,7 @@ var
      {if(ofs<0||len<0||ofs>buf["length"]-len)
        {return Pervasives["invalid_arg"]("Unix.sendto");}
       else
-       {return Primtivie["unix_sendto"](fd,buf,ofs,len,flags,addr);}
+       {return CamlPrimtivie["unix_sendto"](fd,buf,ofs,len,flags,addr);}
       }
     catch(exn$2)
      {var exit;
@@ -620,7 +621,7 @@ var
         
         var exit$1;
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=2)
            {if(match!=37){exit=107;}else{exit$1=108;}}
           else
@@ -668,9 +669,9 @@ var
    $$float,
    error,
    function(prim,prim,prim)
-    {return Primtivie["unix_getsockopt"](prim$1,prim$2,prim);},
+    {return CamlPrimtivie["unix_getsockopt"](prim$1,prim$2,prim);},
    function(prim,prim,prim,prim)
-    {return Primtivie["unix_setsockopt"](prim$1,prim$2,prim$3,prim);}];
+    {return CamlPrimtivie["unix_setsockopt"](prim$1,prim$2,prim$3,prim);}];
 
 var getsockopt=function(fd,opt){return SO[6](SO[1],fd,opt);};
 
@@ -717,12 +718,14 @@ var
     var
      get_port=
       function(ty,kind)
-       {if(Primtivie["caml_string_equal"](service,""))
+       {if(CamlPrimtivie["caml_string_equal"](service,""))
          {return /* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
         else
          {try
            {return /* :: */[0,
-                    /* tuple */[0,ty,Primtivie["caml_int_of_string"](service)],
+                    /* tuple */[0,
+                     ty,
+                     CamlPrimtivie["caml_int_of_string"](service)],
                     /* [] */0];
             }
           catch(exn$2)
@@ -733,7 +736,7 @@ var
                {return /* :: */[0,
                         /* tuple */[0,
                          ty,
-                         Primtivie["unix_getservbyname"](service,kind)[3]],
+                         CamlPrimtivie["unix_getservbyname"](service,kind)[3]],
                         /* [] */0];
                 }
               catch(exn$3)
@@ -752,7 +755,7 @@ var
       
       if(ty!=1)
        {if(ty!=0)
-         {if(Primtivie["caml_string_equal"](service,""))
+         {if(CamlPrimtivie["caml_string_equal"](service,""))
            {var ports=/* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
           else
            {var ports=/* [] */0;}
@@ -771,7 +774,7 @@ var
           get_port(/* SOCK_DGRAM */1,"udp"));
       }
     
-    if(Primtivie["caml_string_equal"](node,""))
+    if(CamlPrimtivie["caml_string_equal"](node,""))
      {if(List["mem"](/* AI_PASSIVE */2,opts))
        {var
          addresses=
@@ -788,7 +791,7 @@ var
        {var
          addresses=
           /* :: */[0,
-           /* tuple */[0,Primtivie["unix_inet_addr_of_string"](node),node],
+           /* tuple */[0,CamlPrimtivie["unix_inet_addr_of_string"](node),node],
            /* [] */0];
         }
       catch(exn$2)
@@ -796,7 +799,7 @@ var
         
         if(tag$2=Failure)
          {try
-           {var he=Primtivie["unix_gethostbyname"](node);
+           {var he=CamlPrimtivie["unix_gethostbyname"](node);
             
             var
              addresses=
@@ -841,7 +844,8 @@ var
  getaddrinfo=
   function(node,service,opts)
    {try
-     {return List["rev"](Primtivie["unix_getaddrinfo"](node,service,opts));}
+     {return List["rev"](CamlPrimtivie["unix_getaddrinfo"](node,service,opts));
+      }
     catch(exn$2)
      {var tag$2=exn$2[1];
       
@@ -855,7 +859,7 @@ var
 var
  getnameinfo_emulation=
   function(addr,opts)
-   {switch(addr)
+   {switch(addr[0])
      {case 0:var f=addr[1];return /* record */[0,"",f];
       case 1:
        var p=addr[2];
@@ -865,13 +869,13 @@ var
        try
         {if(List["mem"](/* NI_NUMERICHOST */1,opts)){throw Not_found;}else{}
          
-         var hostname=Primtivie["unix_gethostbyaddr"](a)[1];
+         var hostname=CamlPrimtivie["unix_gethostbyaddr"](a)[1];
          }
        catch(exn$2)
         {if(exn$2=Not_found)
           {if(List["mem"](/* NI_NAMEREQD */2,opts)){throw Not_found;}else{}
            
-           var hostname=Primtivie["unix_string_of_inet_addr"](a);
+           var hostname=CamlPrimtivie["unix_string_of_inet_addr"](a);
            }
          else
           {throw exn$2;}
@@ -885,7 +889,7 @@ var
          else
           {var kind="tcp";}
          
-         var service=Primtivie["unix_getservbyport"](p,kind)[1];
+         var service=CamlPrimtivie["unix_getservbyport"](p,kind)[1];
          }
        catch(exn$3)
         {if(exn$3=Not_found)
@@ -903,7 +907,7 @@ var
  getnameinfo=
   function(addr,opts)
    {try
-     {return Primtivie["unix_getnameinfo"](addr,opts);}
+     {return CamlPrimtivie["unix_getnameinfo"](addr,opts);}
     catch(exn$2)
      {var tag$2=exn$2[1];
       
@@ -917,7 +921,7 @@ var
 var
  system=
   function(cmd)
-   {var id=Primtivie["unix_fork"](/* () */0);
+   {var id=CamlPrimtivie["unix_fork"](/* () */0);
     
     if(id!=0)
      {return waitpid(/* [] */0,id)[2];}
@@ -931,19 +935,19 @@ var
 var
  safe_dup=
   function(fd)
-   {var new_fd=Primtivie["unix_dup"](fd);
+   {var new_fd=CamlPrimtivie["unix_dup"](fd);
     
     if(new_fd>=3)
      {return new_fd;}
     else
-     {var res=safe_dup(fd);Primtivie["unix_close"](new_fd);return res;}
+     {var res=safe_dup(fd);CamlPrimtivie["unix_close"](new_fd);return res;}
     };
 
 var
  safe_close=
   function(fd)
    {try
-     {return Primtivie["unix_close"](fd);}
+     {return CamlPrimtivie["unix_close"](fd);}
     catch(exn$2)
      {var tag$2=exn$2[1];
       
@@ -963,18 +967,18 @@ var
     safe_close(new_stdin);
     safe_close(new_stdout);
     safe_close(new_stderr);
-    Primtivie["unix_dup2"](newnewstdin,stdin);
-    Primtivie["unix_close"](newnewstdin);
-    Primtivie["unix_dup2"](newnewstdout,stdout);
-    Primtivie["unix_close"](newnewstdout);
-    Primtivie["unix_dup2"](newnewstderr,stderr);
-    return Primtivie["unix_close"](newnewstderr);
+    CamlPrimtivie["unix_dup2"](newnewstdin,stdin);
+    CamlPrimtivie["unix_close"](newnewstdin);
+    CamlPrimtivie["unix_dup2"](newnewstdout,stdout);
+    CamlPrimtivie["unix_close"](newnewstdout);
+    CamlPrimtivie["unix_dup2"](newnewstderr,stderr);
+    return CamlPrimtivie["unix_close"](newnewstderr);
     };
 
 var
  create_process=
   function(cmd,args,new_stdin,new_stdout,new_stderr)
-   {var id=Primtivie["unix_fork"](/* () */0);
+   {var id=CamlPrimtivie["unix_fork"](/* () */0);
     
     if(id!=0)
      {return id;}
@@ -990,7 +994,7 @@ var
 var
  create_process_env=
   function(cmd,args,env,new_stdin,new_stdout,new_stderr)
-   {var id=Primtivie["unix_fork"](/* () */0);
+   {var id=CamlPrimtivie["unix_fork"](/* () */0);
     
     if(id!=0)
      {return id;}
@@ -1008,23 +1012,25 @@ var popen_processes=Hashtbl["create"](/* None */0,7);
 var
  open_proc=
   function(cmd,proc,input,output,toclose)
-   {var id=Primtivie["unix_fork"](/* () */0);
+   {var id=CamlPrimtivie["unix_fork"](/* () */0);
     
     if(id!=0)
      {return Hashtbl["add"](popen_processes,proc,id);}
     else
      {if(input!=stdin)
-       {Primtivie["unix_dup2"](input,stdin),Primtivie["unix_close"](input)}
+       {CamlPrimtivie["unix_dup2"](input,stdin),
+        CamlPrimtivie["unix_close"](input)}
       else
        {}
       
       if(output!=stdout)
-       {Primtivie["unix_dup2"](output,stdout),Primtivie["unix_close"](output)}
+       {CamlPrimtivie["unix_dup2"](output,stdout),
+        CamlPrimtivie["unix_close"](output)}
       else
        {}
       
       List["iter"]
-       (function(prim){return Primtivie["unix_close"](prim);},toclose);
+       (function(prim){return CamlPrimtivie["unix_close"](prim);},toclose);
       try
        {return execv("/bin/sh",["/bin/sh","-c",cmd]);}
       catch(exn$2){return Pervasives["exit"](127);}
@@ -1040,7 +1046,7 @@ var
     
     var in_read=match[1];
     
-    var inchan=Primtivie["caml_ml_open_descriptor_in"](in_read);
+    var inchan=CamlPrimtivie["caml_ml_open_descriptor_in"](in_read);
     
     open_proc
      (cmd,
@@ -1048,7 +1054,7 @@ var
       stdin,
       in_write,
       /* :: */[0,in_read,/* [] */0]);
-    Primtivie["unix_close"](in_write);
+    CamlPrimtivie["unix_close"](in_write);
     return inchan;
     };
 
@@ -1061,7 +1067,7 @@ var
     
     var out_read=match[1];
     
-    var outchan=Primtivie["caml_ml_open_descriptor_out"](out_write);
+    var outchan=CamlPrimtivie["caml_ml_open_descriptor_out"](out_write);
     
     open_proc
      (cmd,
@@ -1069,7 +1075,7 @@ var
       out_read,
       stdout,
       /* :: */[0,out_write,/* [] */0]);
-    Primtivie["unix_close"](out_read);
+    CamlPrimtivie["unix_close"](out_read);
     return outchan;
     };
 
@@ -1088,9 +1094,9 @@ var
     
     var out_read=match$1[1];
     
-    var inchan=Primtivie["caml_ml_open_descriptor_in"](in_read);
+    var inchan=CamlPrimtivie["caml_ml_open_descriptor_in"](in_read);
     
-    var outchan=Primtivie["caml_ml_open_descriptor_out"](out_write);
+    var outchan=CamlPrimtivie["caml_ml_open_descriptor_out"](out_write);
     
     open_proc
      (cmd,
@@ -1098,27 +1104,27 @@ var
       out_read,
       in_write,
       /* :: */[0,in_read,/* :: */[0,out_write,/* [] */0]]);
-    Primtivie["unix_close"](out_read);
-    Primtivie["unix_close"](in_write);
+    CamlPrimtivie["unix_close"](out_read);
+    CamlPrimtivie["unix_close"](in_write);
     return /* tuple */[0,inchan,outchan];
     };
 
 var
  open_proc_full=
   function(cmd,env,proc,input,output,error,toclose)
-   {var id=Primtivie["unix_fork"](/* () */0);
+   {var id=CamlPrimtivie["unix_fork"](/* () */0);
     
     if(id!=0)
      {return Hashtbl["add"](popen_processes,proc,id);}
     else
-     {Primtivie["unix_dup2"](input,stdin);
-      Primtivie["unix_close"](input);
-      Primtivie["unix_dup2"](output,stdout);
-      Primtivie["unix_close"](output);
-      Primtivie["unix_dup2"](error,stderr);
-      Primtivie["unix_close"](error);
+     {CamlPrimtivie["unix_dup2"](input,stdin);
+      CamlPrimtivie["unix_close"](input);
+      CamlPrimtivie["unix_dup2"](output,stdout);
+      CamlPrimtivie["unix_close"](output);
+      CamlPrimtivie["unix_dup2"](error,stderr);
+      CamlPrimtivie["unix_close"](error);
       List["iter"]
-       (function(prim){return Primtivie["unix_close"](prim);},toclose);
+       (function(prim){return CamlPrimtivie["unix_close"](prim);},toclose);
       try
        {return execve("/bin/sh",["/bin/sh","-c",cmd],env);}
       catch(exn$2){return Pervasives["exit"](127);}
@@ -1146,11 +1152,11 @@ var
     
     var err_read=match$2[1];
     
-    var inchan=Primtivie["caml_ml_open_descriptor_in"](in_read);
+    var inchan=CamlPrimtivie["caml_ml_open_descriptor_in"](in_read);
     
-    var outchan=Primtivie["caml_ml_open_descriptor_out"](out_write);
+    var outchan=CamlPrimtivie["caml_ml_open_descriptor_out"](out_write);
     
-    var errchan=Primtivie["caml_ml_open_descriptor_in"](err_read);
+    var errchan=CamlPrimtivie["caml_ml_open_descriptor_in"](err_read);
     
     open_proc_full
      (cmd,
@@ -1160,9 +1166,9 @@ var
       in_write,
       err_write,
       /* :: */[0,in_read,/* :: */[0,out_write,/* :: */[0,err_read,/* [] */0]]]);
-    Primtivie["unix_close"](out_read);
-    Primtivie["unix_close"](in_write);
-    Primtivie["unix_close"](err_write);
+    CamlPrimtivie["unix_close"](out_read);
+    CamlPrimtivie["unix_close"](in_write);
+    CamlPrimtivie["unix_close"](err_write);
     return /* tuple */[0,inchan,outchan,errchan];
     };
 
@@ -1196,7 +1202,7 @@ var
       if(tag$2=Unix_error)
        {var match=exn$2[2];
         
-        if("unknown primitive:isint")
+        if(typeof match==="number")
          {if(match!=11){exit=21;}else{return waitpid_non_intr(pid);}}
         else
          {exit=21;}
@@ -1274,17 +1280,17 @@ var
     try
      {connect(sock,sockaddr);
       return /* tuple */[0,
-              Primtivie["caml_ml_open_descriptor_in"](sock),
-              Primtivie["caml_ml_open_descriptor_out"](sock)];
+              CamlPrimtivie["caml_ml_open_descriptor_in"](sock),
+              CamlPrimtivie["caml_ml_open_descriptor_out"](sock)];
       }
-    catch(exn$2){Primtivie["unix_close"](sock);throw exn$2;}
+    catch(exn$2){CamlPrimtivie["unix_close"](sock);throw exn$2;}
     };
 
 var
  shutdown_connection=
   function(inchan)
-   {return Primtivie["unix_shutdown"]
-            (Primtivie["caml_channel_descriptor"](inchan),
+   {return CamlPrimtivie["unix_shutdown"]
+            (CamlPrimtivie["caml_channel_descriptor"](inchan),
              /* SHUTDOWN_SEND */1);
     };
 
@@ -1294,23 +1300,26 @@ var
    {var sock=socket(domain_of_sockaddr(sockaddr),/* SOCK_STREAM */0,0);
     
     setsockopt(sock,/* SO_REUSEADDR */2,/* true */1);
-    Primtivie["unix_bind"](sock,sockaddr);
-    Primtivie["unix_listen"](sock,5);
+    CamlPrimtivie["unix_bind"](sock,sockaddr);
+    CamlPrimtivie["unix_listen"](sock,5);
     while(/* true */1)
      {var match=accept(sock);
       
       var s=match[1];
       
-      var id=Primtivie["unix_fork"](/* () */0);
+      var id=CamlPrimtivie["unix_fork"](/* () */0);
       
       if(id!=0)
-       {Primtivie["unix_close"](s),waitpid(/* [] */0,id)}
+       {CamlPrimtivie["unix_close"](s),waitpid(/* [] */0,id)}
       else
-       {if(Primtivie["unix_fork"](/* () */0)!=0){Pervasives["exit"](0)}else{}
+       {if(CamlPrimtivie["unix_fork"](/* () */0)!=0)
+         {Pervasives["exit"](0)}
+        else
+         {}
         
-        var inchan=Primtivie["caml_ml_open_descriptor_in"](s);
+        var inchan=CamlPrimtivie["caml_ml_open_descriptor_in"](s);
         
-        var outchan=Primtivie["caml_ml_open_descriptor_out"](s);
+        var outchan=CamlPrimtivie["caml_ml_open_descriptor_out"](s);
         
         server_fun(inchan,outchan),
         Pervasives["close_out"](outchan),
@@ -1322,101 +1331,108 @@ var
 module["exports"]=
 {"Unix_error":Unix_error,
  "unix_error_message":
- function(prim){return Primtivie["unix_error_message"](prim);},
+ function(prim){return CamlPrimtivie["unix_error_message"](prim);},
  "handle_unix_error":handle_unix_error,
  "unix_environment":
- function(prim){return Primtivie["unix_environment"](prim);},
- "caml_sys_getenv":function(prim){return Primtivie["caml_sys_getenv"](prim);},
+ function(prim){return CamlPrimtivie["unix_environment"](prim);},
+ "caml_sys_getenv":
+ function(prim){return CamlPrimtivie["caml_sys_getenv"](prim);},
  "unix_putenv":
- function(prim,prim){return Primtivie["unix_putenv"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_putenv"](prim$1,prim);},
  "execv":execv,
  "execve":execve,
  "execvp":execvp,
  "execvpe":execvpe,
- "unix_fork":function(prim){return Primtivie["unix_fork"](prim);},
+ "unix_fork":function(prim){return CamlPrimtivie["unix_fork"](prim);},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
- "unix_getpid":function(prim){return Primtivie["unix_getpid"](prim);},
- "unix_getppid":function(prim){return Primtivie["unix_getppid"](prim);},
- "unix_nice":function(prim){return Primtivie["unix_nice"](prim);},
+ "unix_getpid":function(prim){return CamlPrimtivie["unix_getpid"](prim);},
+ "unix_getppid":function(prim){return CamlPrimtivie["unix_getppid"](prim);},
+ "unix_nice":function(prim){return CamlPrimtivie["unix_nice"](prim);},
  "stdin":stdin,
  "stdout":stdout,
  "stderr":stderr,
  "unix_open":
- function(prim,prim,prim){return Primtivie["unix_open"](prim$1,prim$2,prim);},
- "unix_close":function(prim){return Primtivie["unix_close"](prim);},
+ function(prim,prim,prim)
+  {return CamlPrimtivie["unix_open"](prim$1,prim$2,prim);},
+ "unix_close":function(prim){return CamlPrimtivie["unix_close"](prim);},
  "read":read,
  "write":write,
  "single_write":single_write,
  "write_substring":write_substring,
  "single_write_substring":single_write_substring,
  "caml_ml_open_descriptor_in":
- function(prim){return Primtivie["caml_ml_open_descriptor_in"](prim);},
+ function(prim){return CamlPrimtivie["caml_ml_open_descriptor_in"](prim);},
  "caml_ml_open_descriptor_out":
- function(prim){return Primtivie["caml_ml_open_descriptor_out"](prim);},
+ function(prim){return CamlPrimtivie["caml_ml_open_descriptor_out"](prim);},
  "caml_channel_descriptor":
- function(prim){return Primtivie["caml_channel_descriptor"](prim);},
+ function(prim){return CamlPrimtivie["caml_channel_descriptor"](prim);},
  "caml_channel_descriptor":
- function(prim){return Primtivie["caml_channel_descriptor"](prim);},
+ function(prim){return CamlPrimtivie["caml_channel_descriptor"](prim);},
  "unix_lseek":
- function(prim,prim,prim){return Primtivie["unix_lseek"](prim$1,prim$2,prim);},
+ function(prim,prim,prim)
+  {return CamlPrimtivie["unix_lseek"](prim$1,prim$2,prim);},
  "unix_truncate":
- function(prim,prim){return Primtivie["unix_truncate"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_truncate"](prim$1,prim);},
  "unix_ftruncate":
- function(prim,prim){return Primtivie["unix_ftruncate"](prim$1,prim);},
- "unix_stat":function(prim){return Primtivie["unix_stat"](prim);},
- "unix_lstat":function(prim){return Primtivie["unix_lstat"](prim);},
- "unix_fstat":function(prim){return Primtivie["unix_fstat"](prim);},
- "unix_isatty":function(prim){return Primtivie["unix_isatty"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_ftruncate"](prim$1,prim);},
+ "unix_stat":function(prim){return CamlPrimtivie["unix_stat"](prim);},
+ "unix_lstat":function(prim){return CamlPrimtivie["unix_lstat"](prim);},
+ "unix_fstat":function(prim){return CamlPrimtivie["unix_fstat"](prim);},
+ "unix_isatty":function(prim){return CamlPrimtivie["unix_isatty"](prim);},
  "LargeFile":
  [0,
   function(prim,prim,prim)
-   {return Primtivie["unix_lseek_64"](prim$1,prim$2,prim);},
-  function(prim,prim){return Primtivie["unix_truncate_64"](prim$1,prim);},
-  function(prim,prim){return Primtivie["unix_ftruncate_64"](prim$1,prim);},
-  function(prim){return Primtivie["unix_stat_64"](prim);},
-  function(prim){return Primtivie["unix_lstat_64"](prim);},
-  function(prim){return Primtivie["unix_fstat_64"](prim);}],
- "unix_unlink":function(prim){return Primtivie["unix_unlink"](prim);},
+   {return CamlPrimtivie["unix_lseek_64"](prim$1,prim$2,prim);},
+  function(prim,prim){return CamlPrimtivie["unix_truncate_64"](prim$1,prim);},
+  function(prim,prim){return CamlPrimtivie["unix_ftruncate_64"](prim$1,prim);},
+  function(prim){return CamlPrimtivie["unix_stat_64"](prim);},
+  function(prim){return CamlPrimtivie["unix_lstat_64"](prim);},
+  function(prim){return CamlPrimtivie["unix_fstat_64"](prim);}],
+ "unix_unlink":function(prim){return CamlPrimtivie["unix_unlink"](prim);},
  "unix_rename":
- function(prim,prim){return Primtivie["unix_rename"](prim$1,prim);},
- "unix_link":function(prim,prim){return Primtivie["unix_link"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_rename"](prim$1,prim);},
+ "unix_link":
+ function(prim,prim){return CamlPrimtivie["unix_link"](prim$1,prim);},
  "unix_chmod":
- function(prim,prim){return Primtivie["unix_chmod"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_chmod"](prim$1,prim);},
  "unix_fchmod":
- function(prim,prim){return Primtivie["unix_fchmod"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_fchmod"](prim$1,prim);},
  "unix_chown":
- function(prim,prim,prim){return Primtivie["unix_chown"](prim$1,prim$2,prim);},
+ function(prim,prim,prim)
+  {return CamlPrimtivie["unix_chown"](prim$1,prim$2,prim);},
  "unix_fchown":
  function(prim,prim,prim)
-  {return Primtivie["unix_fchown"](prim$1,prim$2,prim);},
- "unix_umask":function(prim){return Primtivie["unix_umask"](prim);},
+  {return CamlPrimtivie["unix_fchown"](prim$1,prim$2,prim);},
+ "unix_umask":function(prim){return CamlPrimtivie["unix_umask"](prim);},
  "unix_access":
- function(prim,prim){return Primtivie["unix_access"](prim$1,prim);},
- "unix_dup":function(prim){return Primtivie["unix_dup"](prim);},
- "unix_dup2":function(prim,prim){return Primtivie["unix_dup2"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_access"](prim$1,prim);},
+ "unix_dup":function(prim){return CamlPrimtivie["unix_dup"](prim);},
+ "unix_dup2":
+ function(prim,prim){return CamlPrimtivie["unix_dup2"](prim$1,prim);},
  "unix_set_nonblock":
- function(prim){return Primtivie["unix_set_nonblock"](prim);},
+ function(prim){return CamlPrimtivie["unix_set_nonblock"](prim);},
  "unix_clear_nonblock":
- function(prim){return Primtivie["unix_clear_nonblock"](prim);},
+ function(prim){return CamlPrimtivie["unix_clear_nonblock"](prim);},
  "unix_set_close_on_exec":
- function(prim){return Primtivie["unix_set_close_on_exec"](prim);},
+ function(prim){return CamlPrimtivie["unix_set_close_on_exec"](prim);},
  "unix_clear_close_on_exec":
- function(prim){return Primtivie["unix_clear_close_on_exec"](prim);},
+ function(prim){return CamlPrimtivie["unix_clear_close_on_exec"](prim);},
  "unix_mkdir":
- function(prim,prim){return Primtivie["unix_mkdir"](prim$1,prim);},
- "unix_rmdir":function(prim){return Primtivie["unix_rmdir"](prim);},
- "unix_chdir":function(prim){return Primtivie["unix_chdir"](prim);},
- "unix_getcwd":function(prim){return Primtivie["unix_getcwd"](prim);},
- "unix_chroot":function(prim){return Primtivie["unix_chroot"](prim);},
- "unix_opendir":function(prim){return Primtivie["unix_opendir"](prim);},
- "unix_readdir":function(prim){return Primtivie["unix_readdir"](prim);},
- "unix_rewinddir":function(prim){return Primtivie["unix_rewinddir"](prim);},
- "unix_closedir":function(prim){return Primtivie["unix_closedir"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_mkdir"](prim$1,prim);},
+ "unix_rmdir":function(prim){return CamlPrimtivie["unix_rmdir"](prim);},
+ "unix_chdir":function(prim){return CamlPrimtivie["unix_chdir"](prim);},
+ "unix_getcwd":function(prim){return CamlPrimtivie["unix_getcwd"](prim);},
+ "unix_chroot":function(prim){return CamlPrimtivie["unix_chroot"](prim);},
+ "unix_opendir":function(prim){return CamlPrimtivie["unix_opendir"](prim);},
+ "unix_readdir":function(prim){return CamlPrimtivie["unix_readdir"](prim);},
+ "unix_rewinddir":
+ function(prim){return CamlPrimtivie["unix_rewinddir"](prim);},
+ "unix_closedir":function(prim){return CamlPrimtivie["unix_closedir"](prim);},
  "pipe":pipe,
  "unix_mkfifo":
- function(prim,prim){return Primtivie["unix_mkfifo"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_mkfifo"](prim$1,prim);},
  "create_process":create_process,
  "create_process_env":create_process_env,
  "open_process_in":open_process_in,
@@ -1428,51 +1444,59 @@ module["exports"]=
  "close_process":close_process,
  "close_process_full":close_process_full,
  "unix_symlink":
- function(prim,prim){return Primtivie["unix_symlink"](prim$1,prim);},
- "unix_readlink":function(prim){return Primtivie["unix_readlink"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_symlink"](prim$1,prim);},
+ "unix_readlink":function(prim){return CamlPrimtivie["unix_readlink"](prim);},
  "select":select,
  "unix_lockf":
- function(prim,prim,prim){return Primtivie["unix_lockf"](prim$1,prim$2,prim);},
- "unix_kill":function(prim,prim){return Primtivie["unix_kill"](prim$1,prim);},
+ function(prim,prim,prim)
+  {return CamlPrimtivie["unix_lockf"](prim$1,prim$2,prim);},
+ "unix_kill":
+ function(prim,prim){return CamlPrimtivie["unix_kill"](prim$1,prim);},
  "unix_sigprocmask":
- function(prim,prim){return Primtivie["unix_sigprocmask"](prim$1,prim);},
- "unix_sigpending":function(prim){return Primtivie["unix_sigpending"](prim);},
- "unix_sigsuspend":function(prim){return Primtivie["unix_sigsuspend"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_sigprocmask"](prim$1,prim);},
+ "unix_sigpending":
+ function(prim){return CamlPrimtivie["unix_sigpending"](prim);},
+ "unix_sigsuspend":
+ function(prim){return CamlPrimtivie["unix_sigsuspend"](prim);},
  "pause":pause,
- "unix_time":function(prim){return Primtivie["unix_time"](prim);},
+ "unix_time":function(prim){return CamlPrimtivie["unix_time"](prim);},
  "unix_gettimeofday":
- function(prim){return Primtivie["unix_gettimeofday"](prim);},
- "unix_gmtime":function(prim){return Primtivie["unix_gmtime"](prim);},
- "unix_localtime":function(prim){return Primtivie["unix_localtime"](prim);},
- "unix_mktime":function(prim){return Primtivie["unix_mktime"](prim);},
- "unix_alarm":function(prim){return Primtivie["unix_alarm"](prim);},
+ function(prim){return CamlPrimtivie["unix_gettimeofday"](prim);},
+ "unix_gmtime":function(prim){return CamlPrimtivie["unix_gmtime"](prim);},
+ "unix_localtime":
+ function(prim){return CamlPrimtivie["unix_localtime"](prim);},
+ "unix_mktime":function(prim){return CamlPrimtivie["unix_mktime"](prim);},
+ "unix_alarm":function(prim){return CamlPrimtivie["unix_alarm"](prim);},
  "sleep":sleep,
- "unix_times":function(prim){return Primtivie["unix_times"](prim);},
+ "unix_times":function(prim){return CamlPrimtivie["unix_times"](prim);},
  "unix_utimes":
  function(prim,prim,prim)
-  {return Primtivie["unix_utimes"](prim$1,prim$2,prim);},
- "unix_getitimer":function(prim){return Primtivie["unix_getitimer"](prim);},
+  {return CamlPrimtivie["unix_utimes"](prim$1,prim$2,prim);},
+ "unix_getitimer":
+ function(prim){return CamlPrimtivie["unix_getitimer"](prim);},
  "unix_setitimer":
- function(prim,prim){return Primtivie["unix_setitimer"](prim$1,prim);},
- "unix_getuid":function(prim){return Primtivie["unix_getuid"](prim);},
- "unix_geteuid":function(prim){return Primtivie["unix_geteuid"](prim);},
- "unix_setuid":function(prim){return Primtivie["unix_setuid"](prim);},
- "unix_getgid":function(prim){return Primtivie["unix_getgid"](prim);},
- "unix_getegid":function(prim){return Primtivie["unix_getegid"](prim);},
- "unix_setgid":function(prim){return Primtivie["unix_setgid"](prim);},
- "unix_getgroups":function(prim){return Primtivie["unix_getgroups"](prim);},
- "unix_setgroups":function(prim){return Primtivie["unix_setgroups"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_setitimer"](prim$1,prim);},
+ "unix_getuid":function(prim){return CamlPrimtivie["unix_getuid"](prim);},
+ "unix_geteuid":function(prim){return CamlPrimtivie["unix_geteuid"](prim);},
+ "unix_setuid":function(prim){return CamlPrimtivie["unix_setuid"](prim);},
+ "unix_getgid":function(prim){return CamlPrimtivie["unix_getgid"](prim);},
+ "unix_getegid":function(prim){return CamlPrimtivie["unix_getegid"](prim);},
+ "unix_setgid":function(prim){return CamlPrimtivie["unix_setgid"](prim);},
+ "unix_getgroups":
+ function(prim){return CamlPrimtivie["unix_getgroups"](prim);},
+ "unix_setgroups":
+ function(prim){return CamlPrimtivie["unix_setgroups"](prim);},
  "unix_initgroups":
- function(prim,prim){return Primtivie["unix_initgroups"](prim$1,prim);},
- "unix_getlogin":function(prim){return Primtivie["unix_getlogin"](prim);},
- "unix_getpwnam":function(prim){return Primtivie["unix_getpwnam"](prim);},
- "unix_getgrnam":function(prim){return Primtivie["unix_getgrnam"](prim);},
- "unix_getpwuid":function(prim){return Primtivie["unix_getpwuid"](prim);},
- "unix_getgrgid":function(prim){return Primtivie["unix_getgrgid"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_initgroups"](prim$1,prim);},
+ "unix_getlogin":function(prim){return CamlPrimtivie["unix_getlogin"](prim);},
+ "unix_getpwnam":function(prim){return CamlPrimtivie["unix_getpwnam"](prim);},
+ "unix_getgrnam":function(prim){return CamlPrimtivie["unix_getgrnam"](prim);},
+ "unix_getpwuid":function(prim){return CamlPrimtivie["unix_getpwuid"](prim);},
+ "unix_getgrgid":function(prim){return CamlPrimtivie["unix_getgrgid"](prim);},
  "unix_inet_addr_of_string":
- function(prim){return Primtivie["unix_inet_addr_of_string"](prim);},
+ function(prim){return CamlPrimtivie["unix_inet_addr_of_string"](prim);},
  "unix_string_of_inet_addr":
- function(prim){return Primtivie["unix_string_of_inet_addr"](prim);},
+ function(prim){return CamlPrimtivie["unix_string_of_inet_addr"](prim);},
  "inet_addr_any":inet_addr_any,
  "inet_addr_loopback":inet_addr_loopback,
  "inet6_addr_any":inet6_addr_any,
@@ -1481,16 +1505,17 @@ module["exports"]=
  "domain_of_sockaddr":domain_of_sockaddr,
  "socketpair":socketpair,
  "accept":accept,
- "unix_bind":function(prim,prim){return Primtivie["unix_bind"](prim$1,prim);},
+ "unix_bind":
+ function(prim,prim){return CamlPrimtivie["unix_bind"](prim$1,prim);},
  "connect":connect,
  "unix_listen":
- function(prim,prim){return Primtivie["unix_listen"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_listen"](prim$1,prim);},
  "unix_shutdown":
- function(prim,prim){return Primtivie["unix_shutdown"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_shutdown"](prim$1,prim);},
  "unix_getsockname":
- function(prim){return Primtivie["unix_getsockname"](prim);},
+ function(prim){return CamlPrimtivie["unix_getsockname"](prim);},
  "unix_getpeername":
- function(prim){return Primtivie["unix_getpeername"](prim);},
+ function(prim){return CamlPrimtivie["unix_getpeername"](prim);},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,
@@ -1510,31 +1535,32 @@ module["exports"]=
  "shutdown_connection":shutdown_connection,
  "establish_server":establish_server,
  "unix_gethostname":
- function(prim){return Primtivie["unix_gethostname"](prim);},
+ function(prim){return CamlPrimtivie["unix_gethostname"](prim);},
  "unix_gethostbyname":
- function(prim){return Primtivie["unix_gethostbyname"](prim);},
+ function(prim){return CamlPrimtivie["unix_gethostbyname"](prim);},
  "unix_gethostbyaddr":
- function(prim){return Primtivie["unix_gethostbyaddr"](prim);},
+ function(prim){return CamlPrimtivie["unix_gethostbyaddr"](prim);},
  "unix_getprotobyname":
- function(prim){return Primtivie["unix_getprotobyname"](prim);},
+ function(prim){return CamlPrimtivie["unix_getprotobyname"](prim);},
  "unix_getprotobynumber":
- function(prim){return Primtivie["unix_getprotobynumber"](prim);},
+ function(prim){return CamlPrimtivie["unix_getprotobynumber"](prim);},
  "unix_getservbyname":
- function(prim,prim){return Primtivie["unix_getservbyname"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_getservbyname"](prim$1,prim);},
  "unix_getservbyport":
- function(prim,prim){return Primtivie["unix_getservbyport"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_getservbyport"](prim$1,prim);},
  "getaddrinfo":getaddrinfo,
  "getnameinfo":getnameinfo,
- "unix_tcgetattr":function(prim){return Primtivie["unix_tcgetattr"](prim);},
+ "unix_tcgetattr":
+ function(prim){return CamlPrimtivie["unix_tcgetattr"](prim);},
  "unix_tcsetattr":
  function(prim,prim,prim)
-  {return Primtivie["unix_tcsetattr"](prim$1,prim$2,prim);},
+  {return CamlPrimtivie["unix_tcsetattr"](prim$1,prim$2,prim);},
  "unix_tcsendbreak":
- function(prim,prim){return Primtivie["unix_tcsendbreak"](prim$1,prim);},
- "unix_tcdrain":function(prim){return Primtivie["unix_tcdrain"](prim);},
+ function(prim,prim){return CamlPrimtivie["unix_tcsendbreak"](prim$1,prim);},
+ "unix_tcdrain":function(prim){return CamlPrimtivie["unix_tcdrain"](prim);},
  "unix_tcflush":
- function(prim,prim){return Primtivie["unix_tcflush"](prim$1,prim);},
+ function(prim,prim){return CamlPrimtivie["unix_tcflush"](prim$1,prim);},
  "unix_tcflow":
- function(prim,prim){return Primtivie["unix_tcflow"](prim$1,prim);},
- "unix_setsid":function(prim){return Primtivie["unix_setsid"](prim);}};
+ function(prim,prim){return CamlPrimtivie["unix_tcflow"](prim$1,prim);},
+ "unix_setsid":function(prim){return CamlPrimtivie["unix_setsid"](prim);}};
 

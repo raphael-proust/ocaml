@@ -241,7 +241,7 @@ var
    {if(Odoc_global["verbose"][1])
      {var exit;
       
-      switch(sourcefile)
+      switch(sourcefile[0])
        {case 0:exit=50;case 1:exit=50;case 2:var f=sourcefile[1];}
       
       switch(exit){case 50:var f=sourcefile[1];}
@@ -251,7 +251,7 @@ var
     else
      {}
     
-    switch(sourcefile)
+    switch(sourcefile[0])
      {case 0:
        var file=sourcefile[1];
        
@@ -437,7 +437,7 @@ var
       
       var exit;
       
-      switch(ele)
+      switch(ele[0])
        {case 0:exit=25;
         case 1:exit=25;
         case 2:
@@ -485,7 +485,7 @@ var
   function(k)
    {var exit;
     
-    switch(k)
+    switch(k[0])
      {case 0:
        return /* Class_structure */[0,
                k[1],
@@ -506,7 +506,7 @@ var
 var
  remove_class_elements_between_stop_in_class_type_kind=
   function(tk)
-   {switch(tk)
+   {switch(tk[0])
      {case 0:
        return /* Class_signature */[0,
                tk[1],
@@ -524,7 +524,7 @@ var
       
       var ele=eles[1];
       
-      switch(ele)
+      switch(ele[0])
        {case 0:
          var m=ele[1];
          
@@ -639,7 +639,7 @@ var
 var
  remove_module_elements_between_stop_in_module_kind=
   function(k)
-   {switch(k)
+   {switch(k[0])
      {case 0:
        return /* Module_struct */[0,
                remove_module_elements_between_stop(/* true */1,k[1])];
@@ -672,7 +672,7 @@ var
   function(tk)
    {var exit;
     
-    switch(tk)
+    switch(tk[0])
      {case 0:
        return /* Module_type_struct */[0,
                remove_module_elements_between_stop(/* true */1,tk[1])];
@@ -789,7 +789,7 @@ var
     if(Odoc_global["sort_modules"][1])
      {return List["sort"]
               (function(m1,m2)
-                {return Primtivie["caml_string_compare"](m1[1],m2[1]);},
+                {return CamlPrimtivie["caml_string_compare"](m1[1],m2[1]);},
                merged_modules);
       }
     else

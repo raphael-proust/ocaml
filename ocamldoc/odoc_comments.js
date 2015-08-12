@@ -398,7 +398,7 @@ var
               
               if
                (blank_line($$String["sub"](s,0,pos))||
-                Primtivie["caml_equal"]
+                CamlPrimtivie["caml_equal"]
                  (d[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]]))
                {return [/* tuple */0,0,/* None */0];}
               else
@@ -435,7 +435,7 @@ var
           if
            (blank_line_outside_simple
              (file,$$String["sub"](s,len,s["length"]-len))||
-            Primtivie["caml_equal"]
+            CamlPrimtivie["caml_equal"]
              (h[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]]))
            {var match$2=/* tuple */[0,/* None */0,special_coms];}
           else

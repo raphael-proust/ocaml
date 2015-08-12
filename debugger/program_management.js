@@ -21,7 +21,7 @@ var Config=require("Config");
 
 var file_name=[0,/* None */0];
 
-var buffer=Primtivie["caml_create_string"](1024);
+var buffer=CamlPrimtivie["caml_create_string"](1024);
 
 var
  control_connection=
@@ -68,7 +68,7 @@ var
       var sock_address=match[2];
       
       var $js;
-      switch(sock_address)
+      switch(sock_address[0])
        {case 0:$js=/* Some */[0,sock_address[1]];case 1:$js=/* None */0;}
       file_name[1]=$js,0;
       var sock=Unix["socket"](match[1],/* SOCK_STREAM */0,0);
@@ -196,7 +196,7 @@ var
    {if(!loaded[1])
      {Pervasives["print_string"]("Loading program... ");
       Pervasives["flush"](Pervasives["stdout"]);
-      if(Primtivie["caml_string_equal"](Parameters["program_name"][1],""))
+      if(CamlPrimtivie["caml_string_equal"](Parameters["program_name"][1],""))
        {Pervasives["prerr_endline"]("No program specified.");
         throw Debugger_config["Toplevel"];
         }

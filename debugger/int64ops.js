@@ -20,7 +20,7 @@ var _minus1=Int64["minus_one"];
 
 var
  $unknown$unknown=
-  function(prim){return Primtivie["caml_int64_of_string"](prim);};
+  function(prim){return CamlPrimtivie["caml_int64_of_string"](prim);};
 
 var max_small_int=Pervasives["max_int"];
 

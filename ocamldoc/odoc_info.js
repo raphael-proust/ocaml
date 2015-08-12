@@ -201,7 +201,7 @@ var apply_opt=Odoc_misc["apply_opt"];
 var
  apply_if_equal=
   function(f,v1,v2)
-   {if(Primtivie["caml_equal"](v1,v2)){return f(v1);}else{return v2;}};
+   {if(CamlPrimtivie["caml_equal"](v1,v2)){return f(v1);}else{return v2;}};
 
 var text_of_string=Odoc_text["Texter"][1];
 
@@ -279,7 +279,7 @@ var
     var
      f_see_ref=
       function(param)
-       {switch(param)
+       {switch(param[0])
          {case 0:
            return Printf["sprintf"]
                    ([/* Format */0,

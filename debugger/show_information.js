@@ -57,7 +57,7 @@ var
       
       var exit;
       
-      switch(match$2[1][0])
+      switch(match$2[1])
        {case 0:exit=10;
         case 1:exit=10;
         case 2:
@@ -153,7 +153,7 @@ var
                  },
                List["sort"]
                 (function(prim,prim)
-                  {return Primtivie["caml_compare"](prim$1,prim);},
+                  {return CamlPrimtivie["caml_compare"](prim$1,prim);},
                  breakpoints))}
            else
             {Format["fprintf"]
@@ -322,7 +322,7 @@ var
               },
             List["sort"]
              (function(prim,prim)
-               {return Primtivie["caml_compare"](prim$1,prim);},
+               {return CamlPrimtivie["caml_compare"](prim$1,prim);},
               breakpoints))}
         else
          {Format["fprintf"]

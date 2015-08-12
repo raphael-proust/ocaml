@@ -178,7 +178,7 @@ var
        function(self$neg1,c)
         {return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-1/1095 scan_attribute/1022 (field 0 ele/1097))";
                        
@@ -209,7 +209,7 @@ var
        function(self$neg1,ct)
         {return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-1/1111 scan_attribute/1022 (field 0 ele/1113))";
                        
@@ -240,7 +240,7 @@ var
        function(self$neg1,m)
         {return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-1/1127 scan_module/1039 (field 0 ele/1129))";
                        
@@ -292,7 +292,7 @@ var
        function(self$neg1,mt)
         {return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-1/1150 scan_module/1039 (field 0 ele/1152))";
                        

@@ -245,7 +245,7 @@ var match=Odoc_args["current_generator"][1];
 if(match)
  {var match$1=match[1];
   
-  switch(match$1)
+  switch(match$1[0])
    {case 0:var Html=match$1[1];
     default:
      var
@@ -342,7 +342,7 @@ var
                        {switch(match$2[0])
                          {case 1:
                            try
-                            {var n=Primtivie["caml_int_of_string"](match$2[1]);
+                            {var n=CamlPrimtivie["caml_int_of_string"](match$2[1]);
                              
                              var
                               head=
@@ -392,7 +392,8 @@ var
                     {var match$3=b[1];
                      
                      if(match$3)
-                      {return Primtivie["caml_int_compare"](match$2[1],match$3[1]);
+                      {return CamlPrimtivie["caml_int_compare"]
+                               (match$2[1],match$3[1]);
                        }
                      else
                       {return 1;}
@@ -441,7 +442,7 @@ var
                               170-n*16);
                      }
                    else
-                    {switch(switcher[0])
+                    {switch(switcher)
                       {case 0:return "#FF0000";
                        case 1:return "#AA5555";
                        case 2:return "#44BB00";
@@ -515,7 +516,7 @@ var
        function(self$neg1,m)
         {return List["iter"]
                  (function(ele)
-                   {switch(ele)
+                   {switch(ele[0])
                      {case 0:
                        "unknown block:(sendself self-1/1342 scan_module/1355 (field 0 ele/1344))";
                        

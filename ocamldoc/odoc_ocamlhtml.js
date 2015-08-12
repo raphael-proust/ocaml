@@ -14,7 +14,7 @@ var Hashtbl=require("Hashtbl");
 
 var
  Fatal_error=
-  Primtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Fatal_error",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Fatal_error",0]);
 
 var
  fatal_error=
@@ -24,7 +24,7 @@ var
     throw Fatal_error;
     };
 
-var $$Error=Primtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Error",0]);
+var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Error",0]);
 
 var
  base_escape_strings=
@@ -356,7 +356,7 @@ var
      {if(c>=117)
        {exit=44;}
       else
-       {switch((-110+c)[0])
+       {switch(-110+c)
          {case 0:return 10;
           case 1:exit=44;
           case 2:exit=44;
@@ -500,7 +500,7 @@ var
       return __ocaml_lex_token_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var s=Lexing["lexeme"](lexbuf);
          
@@ -700,7 +700,7 @@ var
       return __ocaml_lex_comment_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          comment_start_pos[1]=
          /* :: */[0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]],
@@ -756,7 +756,7 @@ var
       return __ocaml_lex_string_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return /* () */0;
         case 1:return string(lexbuf);
         case 2:exit=34;

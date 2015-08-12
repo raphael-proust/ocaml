@@ -45,7 +45,7 @@ var
 var
  add_to_hashes=
   function(table,table_values,tt)
-   {switch(tt)
+   {switch(tt[0])
      {case 1:
        return List["iter"]
                (function(param)
@@ -151,7 +151,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* M */[0,name]);
     
-    switch(match)
+    switch(match[0])
      {case 6:return match[1][3];
       default:throw [0,Assert_failure,[0,"odoc_ast.ml",129,13]];}
     };
@@ -161,7 +161,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* MT */[1,name]);
     
-    switch(match)
+    switch(match[0])
      {case 8:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_ast.ml",134,13]];}
     };
@@ -171,7 +171,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* X */[5,name]);
     
-    switch(match)
+    switch(match[0])
      {case 4:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_ast.ml",139,13]];}
     };
@@ -181,7 +181,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* E */[6,name]);
     
-    switch(match)
+    switch(match[0])
      {case 5:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_ast.ml",144,13]];}
     };
@@ -193,7 +193,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 3:
        var match$1=match[1];
        
@@ -214,7 +214,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 10:
        var match$1=match[1];
        
@@ -252,7 +252,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 11:
        var match$1=match[1];
        
@@ -273,7 +273,7 @@ var
   function(table,name)
    {var match=Hashtbl["find"](table,/* P */[7,name]);
     
-    switch(match)
+    switch(match[0])
      {case 2:return match[1][4][1];
       default:throw [0,Assert_failure,[0,"odoc_ast.ml",175,13]];}
     };
@@ -287,7 +287,7 @@ var
        {if(param)
          {var match=param[1][1];
           
-          switch(match)
+          switch(match[0])
            {case 0:
              if(n=cpt){return match[2];}else{return iter(cpt+1,param[2]);}
             default:return iter(cpt,param[2]);}
@@ -310,16 +310,16 @@ var
           
           var exit;
           
-          switch(match)
+          switch(match[0])
            {case 1:
              var match$1=match[4];
              
              var ident=match[3];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 0:
                 if
-                 (Primtivie["caml_string_equal"]
+                 (CamlPrimtivie["caml_string_equal"]
                    (Odoc_name["from_ident"](ident),name))
                  {return match$1[1][2];}
                 else
@@ -327,7 +327,7 @@ var
                 
                case 1:
                 if
-                 (Primtivie["caml_string_equal"]
+                 (CamlPrimtivie["caml_string_equal"]
                    (Odoc_name["from_ident"](ident),name))
                  {return match$1[2][4];}
                 else
@@ -351,7 +351,7 @@ var
   function(param)
    {var exit;
     
-    switch(param){case 0:exit=347;case 1:return param[1];case 2:exit=347;}
+    switch(param[0]){case 0:exit=347;case 1:return param[1];case 2:exit=347;}
     
     switch(exit){case 347:return iter(param[3]);}
     };
@@ -369,14 +369,14 @@ var
           
           var exit;
           
-          switch(match)
+          switch(match[0])
            {case 2:
              var match$1=match[3];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 0:exit=345;
                case 1:
-                if(Primtivie["caml_string_equal"](match[1][1],name))
+                if(CamlPrimtivie["caml_string_equal"](match[1][1],name))
                  {return match$1[2];}
                 else
                  {exit=345;}
@@ -530,7 +530,7 @@ var
             
             var exit;
             
-            switch(parameter$1)
+            switch(parameter$1[0])
              {case 0:
                switch(parameter$1[1][1])
                 {case "*opt*":
@@ -538,7 +538,7 @@ var
                   
                   var exit$1;
                   
-                  switch(match$1)
+                  switch(match$1[0])
                    {case 2:
                      var match$2=match$1[2];
                      
@@ -587,7 +587,7 @@ var
             
             var match$6=match$5[2][1];
             
-            switch(match$6)
+            switch(match$6[0])
              {case 3:
                return /* :: */[0,
                        p,
@@ -622,7 +622,7 @@ var
            {case 0:
              var ident=match[1];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 3:
                 var name_pre=Odoc_name["from_ident"](ident);
                 
@@ -697,7 +697,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:return Odoc_name["from_path"](match[1]);
           case 3:exit=312;
           case 5:exit=312;
@@ -716,7 +716,7 @@ var
         
         var match=exp[1];
         
-        switch(match)
+        switch(match[0])
          {case 3:
            var pat_exp_list=match[2];
            
@@ -750,7 +750,7 @@ var
                    
                    var exit;
                    
-                   switch(parameter)
+                   switch(parameter[0])
                     {case 0:
                       switch(parameter[1][1])
                        {case "*opt*":
@@ -758,7 +758,7 @@ var
                          
                          var exit$1;
                          
-                         switch(match$2)
+                         switch(match$2[0])
                           {case 2:
                             var match$3=match$2[2];
                             
@@ -862,7 +862,7 @@ var
               
               var exit;
               
-              switch(match)
+              switch(match[0])
                {case 0:
                  var p_clexp=match[2];
                  
@@ -909,7 +909,7 @@ var
                  
                  var label=match$2[1][1];
                  
-                 switch(match$2[3])
+                 switch(match$2[3][0])
                   {case 0:var virt=/* true */1;case 1:var virt=/* false */0;}
                  
                  var
@@ -970,7 +970,7 @@ var
                  
                  var label$1=match$4[1][1];
                  
-                 switch(match$4[3])
+                 switch(match$4[3][0])
                   {case 0:
                     var
                      complete_name$1=
@@ -1165,9 +1165,9 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:
-           switch(match$1)
+           switch(match$1[0])
             {case 0:var name=Odoc_name["from_path"](match$1[1]);
              default:var name=Odoc_name["from_longident"](match[1][1]);}
            
@@ -1175,7 +1175,7 @@ var
            
            var exit$1;
            
-           switch(match$2)
+           switch(match$2[0])
             {case 0:var params=match$2[2];
              case 1:exit$1=241;
              case 2:exit$1=241;
@@ -1192,13 +1192,13 @@ var
                      List["map"](Odoc_env["subst_type"](env),params)]]];
            
           case 1:
-           switch(match$1)
+           switch(match$1[0])
             {case 1:
               var match$3=tt_class_exp[3];
               
               var exit$2;
               
-              switch(match$3)
+              switch(match$3[0])
                {case 0:exit$2=246;
                 case 1:var tt_class_sig=match$3[1];
                 case 2:exit$2=246;
@@ -1231,7 +1231,7 @@ var
              default:exit=263;}
            
           case 2:
-           switch(match$1)
+           switch(match$1[0])
             {case 2:
               var tt_class_expr2=match$1[4];
               
@@ -1247,13 +1247,13 @@ var
                {switch(match$5[0])
                  {case 0:
                    if
-                    (Primtivie["caml_string_equal"]
+                    (CamlPrimtivie["caml_string_equal"]
                       (Odoc_name["from_ident"](match$5[1]),"*opt*"))
                     {var match$6=tt_class_expr2[1];
                      
                      var exit$4;
                      
-                     switch(match$6)
+                     switch(match$6[0])
                       {case 4:
                         var match$7=match$6[2];
                         
@@ -1325,16 +1325,16 @@ var
              default:exit=263;}
            
           case 3:
-           switch(match$1)
+           switch(match$1[0])
             {case 3:
               var match$12=match$1[1][1];
               
-              switch(match$12)
+              switch(match$12[0])
                {case 0:var applied_name=Odoc_name["from_path"](match$12[1]);
                 default:
                  var match$13=match[1][1];
                  
-                 switch(match$13)
+                 switch(match$13[0])
                   {case 0:
                     var
                      applied_name=
@@ -1382,7 +1382,7 @@ var
              default:exit=263;}
            
           case 4:
-           switch(match$1)
+           switch(match$1[0])
             {case 4:
               return analyse_class_kind
                       (env,
@@ -1396,7 +1396,7 @@ var
              default:exit=263;}
            
           case 5:
-           switch(match$1)
+           switch(match$1[0])
             {case 5:
               var
                match$14=
@@ -1484,7 +1484,7 @@ var
       function(mod_expr)
        {var match=mod_expr[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:return Odoc_name["from_path"](match[1]);
           case 4:return tt_name_from_module_expr(match[1]);
           default:return Odoc_messages["struct_end"];}
@@ -1498,7 +1498,7 @@ var
           function(acc,item)
            {var match=item[1];
             
-            switch(match)
+            switch(match[0])
              {case 12:
                return Pervasives["@"]
                        (acc,
@@ -1526,7 +1526,7 @@ var
             if(match)
              {var ele=match[1];
               
-              switch(ele)
+              switch(ele[0])
                {case 2:
                  var match$1=param[2];
                  
@@ -1562,9 +1562,9 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:
-           switch(mt)
+           switch(mt[0])
             {case 1:
               m[6]=
               /* Module_struct */[0,
@@ -1590,9 +1590,9 @@ var
         if(match)
          {var match$1=match[1];
           
-          switch(match$1)
+          switch(match$1[0])
            {case 0:
-             switch(mt)
+             switch(mt[0])
               {case 1:
                 mtyp[6]=
                 /* Some */[0,
@@ -1618,20 +1618,20 @@ var
        {var
          pred=
           function(ele)
-           {switch(ele)
+           {switch(ele[0])
              {case 0:
                var m=ele[1];
                
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {switch(param[0])
                     {case 3:
                       var n1=Odoc_name["simple"](m[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      var match=Primtivie["caml_string_equal"](n1,n2);
+                      var match=CamlPrimtivie["caml_string_equal"](n1,n2);
                       
                       if(match!=0)
                        {filter_module_with_module_type_constraint(m,param[2][1]);
@@ -1651,7 +1651,7 @@ var
                  function(param)
                   {var exit;
                    
-                   switch(param)
+                   switch(param[0])
                     {case 4:
                       var match=param[2][1];
                       
@@ -1660,7 +1660,7 @@ var
                         
                         var n2=Ident["name"](param[1]);
                         
-                        var match$1=Primtivie["caml_string_equal"](n1,n2);
+                        var match$1=CamlPrimtivie["caml_string_equal"](n1,n2);
                         
                         if(match$1!=0)
                          {filter_module_type_with_module_type_constraint(mt,match[1]);
@@ -1684,13 +1684,13 @@ var
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {switch(param[0])
                     {case 5:
                       var n1=Odoc_name["simple"](c[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return Primtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1701,13 +1701,13 @@ var
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {switch(param[0])
                     {case 6:
                       var n1=Odoc_name["simple"](ct[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return Primtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1718,13 +1718,13 @@ var
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {switch(param[0])
                     {case 0:
                       var n1=Odoc_name["simple"](v[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return Primtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1749,13 +1749,13 @@ var
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {switch(param[0])
                     {case 2:
                       var n1=Odoc_name["simple"](e[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return Primtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1766,13 +1766,13 @@ var
                var
                 f=
                  function(param)
-                  {switch(param)
+                  {switch(param[0])
                     {case 1:
                       var n1=Odoc_name["simple"](t[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return Primtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimtivie["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1794,13 +1794,13 @@ var
           function(xt)
            {return List["exists"]
                     (function(param)
-                      {switch(param)
+                      {switch(param[0])
                         {case 2:
                           var n1=Odoc_name["simple"](xt[1]);
                           
                           var n2=Ident["name"](param[1]);
                           
-                          return Primtivie["caml_string_equal"](n1,n2);
+                          return CamlPrimtivie["caml_string_equal"](n1,n2);
                           
                          default:return /* false */0;}
                        },
@@ -1893,7 +1893,7 @@ var
         table_values)
        {var exit;
         
-        switch(parsetree_item_desc)
+        switch(parsetree_item_desc[0])
          {case 0:return /* tuple */[0,0,env,/* [] */0];
           case 1:
            var rec_flag=parsetree_item_desc[1];
@@ -2048,7 +2048,8 @@ var
               (function(td)
                 {return List["exists"]
                          (function(param)
-                           {return Primtivie["caml_string_equal"](param[1][1],"nonrec");
+                           {return CamlPrimtivie["caml_string_equal"]
+                                    (param[1][1],"nonrec");
                             },
                           td[7]);
                  },
@@ -2246,7 +2247,7 @@ var
                  
                  var match$3=tt_ext[4];
                  
-                 switch(match$3)
+                 switch(match$3[0])
                   {case 0:
                     var
                      new_xt=
@@ -2334,7 +2335,7 @@ var
            
            var match$4=tt_ext[4];
            
-           switch(match$4)
+           switch(match$4[0])
             {case 0:
               var loc_start$1=loc[1][4];
               
@@ -2423,7 +2424,7 @@ var
              
              var match$6=new_module[2];
              
-             switch(match$6)
+             switch(match$6[0])
               {case 1:
                 var
                  new_env2=
@@ -2495,7 +2496,7 @@ var
                  
                  var match$7=new_module$1[2];
                  
-                 switch(match$7)
+                 switch(match$7[0])
                   {case 1:
                     return Odoc_env["add_signature"]
                             (e,
@@ -2642,7 +2643,7 @@ var
            if(sig_mtype)
             {var match$10=sig_mtype[1];
              
-             switch(match$10)
+             switch(match$10[0])
               {case 1:
                 var
                  new_env2$1=
@@ -2904,7 +2905,7 @@ var
         
         var match=p_module_expr[1];
         
-        switch(match)
+        switch(match[0])
          {case 4:
            var pmodule_type=match[2];
            
@@ -2939,14 +2940,14 @@ var
         
         var exit;
         
-        switch(match$1)
+        switch(match$1[0])
          {case 0:
-           switch(match$2)
+           switch(match$2[0])
             {case 0:var path=match$2[1];exit=182;
              case 4:
               var match$3=match$2[1][1];
               
-              switch(match$3)
+              switch(match$3[0])
                {case 0:var path=match$3[1];exit=182;default:exit=184;}
               
              default:exit=184;}
@@ -2954,7 +2955,7 @@ var
           case 1:
            var p_structure=match$1[1];
            
-           switch(match$2)
+           switch(match$2[0])
             {case 1:
               var tt_structure=match$2[1];
               
@@ -2985,7 +2986,7 @@ var
              case 4:
               var match$4=match$2[1][1];
               
-              switch(match$4)
+              switch(match$4[0])
                {case 1:
                  var tt_structure$1=match$4[1];
                  
@@ -3021,7 +3022,7 @@ var
              default:exit=184;}
            
           case 2:
-           switch(match$2)
+           switch(match$2[0])
             {case 2:
               var mtyp=match$2[3];
               
@@ -3101,7 +3102,7 @@ var
            
            var p_module_expr1=match$1[1];
            
-           switch(match$2)
+           switch(match$2[0])
             {case 3:
               var p_module_expr1$1=p_module_expr1;
               
@@ -3116,7 +3117,7 @@ var
              case 4:
               var match$5=match$2[1][1];
               
-              switch(match$5)
+              switch(match$5[0])
                {case 3:
                  var p_module_expr1$1=p_module_expr1;
                  
@@ -3133,7 +3134,7 @@ var
              default:exit=184;}
            
           case 4:
-           switch(match$2)
+           switch(match$2[0])
             {case 4:
               var tt_modtype=match$2[2];
               
@@ -3173,7 +3174,7 @@ var
              default:exit=184;}
            
           case 5:
-           switch(match$2)
+           switch(match$2[0])
             {case 5:
               var tt_modtype$2=match$2[2];
               
@@ -3197,7 +3198,7 @@ var
                    "(val ...%s"],
                   s);
               
-              switch(tt_modtype$2)
+              switch(tt_modtype$2[0])
                {case 0:
                  var
                   name=
@@ -3274,7 +3275,7 @@ var
        {var tree_structure=typedtree[1];
         
         try
-         {var curdir=Primtivie["caml_sys_getcwd"](/* () */0);
+         {var curdir=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
           
           var
            match=
@@ -3282,13 +3283,13 @@ var
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
-          Primtivie["caml_sys_chdir"](match[1]);
+          CamlPrimtivie["caml_sys_chdir"](match[1]);
           var
            complete=
             Filename["concat"]
-             (Primtivie["caml_sys_getcwd"](/* () */0),match[2]);
+             (CamlPrimtivie["caml_sys_getcwd"](/* () */0),match[2]);
           
-          Primtivie["caml_sys_chdir"](curdir);
+          CamlPrimtivie["caml_sys_chdir"](curdir);
           var complete_source_file=complete;
           }
         catch(exn)

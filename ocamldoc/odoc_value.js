@@ -103,7 +103,7 @@ var
         else
          {switch(match[0])
            {case 2:
-             if(Primtivie["caml_string_equal"](label,""))
+             if(CamlPrimtivie["caml_string_equal"](label,""))
               {return /* Tuple */[1,
                        List["map"]
                         (function(t2){return iter(/* tuple */[0,"",t2]);},match[1]),

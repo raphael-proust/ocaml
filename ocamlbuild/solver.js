@@ -9,9 +9,9 @@ var My_std=require("My_std");
 var Log=require("Log");
 
 
-var Failed=Primtivie["caml_set_oo_id"]([248,"Solver.Failed",0]);
+var Failed=CamlPrimtivie["caml_set_oo_id"]([248,"Solver.Failed",0]);
 
-var Circular=Primtivie["caml_set_oo_id"]([248,"Solver.Circular",0]);
+var Circular=CamlPrimtivie["caml_set_oo_id"]([248,"Solver.Circular",0]);
 
 var
  failed=
@@ -59,8 +59,8 @@ var
     
     var match=Resource["Cache"][2](target);
     
-    if("unknown primitive:isint")
-     {switch(match[0])
+    if(typeof match==="number")
+     {switch(match)
        {case 0:
          return Log["dprintf"]
                  (5,
@@ -132,7 +132,7 @@ var
                                      /* Choice */[1,/* :: */[0,backtrace,backtraces]]]);
                            }
                          else
-                          {switch(backtrace)
+                          {switch(backtrace[0])
                             {case 2:var match$1=Resource["Cache"][12](backtrace[1]);
                              default:var match$1=/* () */0;}
                            
@@ -201,7 +201,7 @@ var
      match=
       My_std["List"][20]
        (function(res,acc)
-         {switch(res)
+         {switch(res[0])
            {case 0:
              var match$1=Resource["Cache"][11](res[1]);
              
@@ -284,7 +284,7 @@ var
   function(name,rs)
    {var match=self_first(0,/* [] */0,/* [] */0,rs);
     
-    switch(match)
+    switch(match[0])
      {case 0:var res=match[1];Resource["Cache"][9](res);return res;
       case 1:
        var exn=match[1];

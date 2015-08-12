@@ -31,7 +31,7 @@ var fp=Printf["fprintf"];
 var
  print_unix_status=
   function(oc,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return fp
                (oc,
@@ -440,7 +440,7 @@ var
           
           var exit$1;
           
-          switch(status)
+          switch(status[0])
            {case 0:
              var rc=status[1];
              

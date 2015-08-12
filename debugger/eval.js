@@ -18,7 +18,7 @@ var Symtable=require("Symtable");
 var Debugcom=require("Debugcom");
 
 
-var $$Error=Primtivie["caml_set_oo_id"]([248,"Eval.Error",0]);
+var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Eval.Error",0]);
 
 var
  abstract_type=
@@ -31,7 +31,7 @@ var
 var
  path=
   function($$event,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var id=param[1];
        
@@ -107,7 +107,7 @@ var
            
            var match$1=match[4];
            
-           if("unknown primitive:isint")
+           if(typeof match$1==="number")
             {exit=8;}
            else
             {if(Frames["current_frame"][1]=0)
@@ -337,7 +337,7 @@ var
    {if(param)
      {var match=param[1];
       
-      if(Primtivie["caml_string_equal"](Ident["name"](match[1]),lbl))
+      if(CamlPrimtivie["caml_string_equal"](Ident["name"](match[1]),lbl))
        {var
          ty_res=
           Btype["newgenty"](/* Tconstr */[3,path,tydesc[1],[0,/* Mnil */0]]);

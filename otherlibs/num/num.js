@@ -28,7 +28,7 @@ var
   function(n)
    {var exit;
     
-    switch(n)
+    switch(n[0])
      {case 0:exit=76;
       case 1:exit=76;
       case 2:
@@ -47,7 +47,7 @@ var
   function(n)
    {var exit;
     
-    switch(n)
+    switch(n[0])
      {case 0:exit=74;
       case 1:exit=74;
       case 2:
@@ -64,7 +64,7 @@ var
 var
  normalize_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return /* Int */[0,i];
       case 1:var bi=param[1];return num_of_big_int(bi);
       case 2:
@@ -110,11 +110,11 @@ var
     
     var match$1=b;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var int1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var int2=match$1[1];
           
@@ -148,7 +148,7 @@ var
       case 1:
        var bi$1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$2=match$1[1];
           
@@ -173,7 +173,7 @@ var
       case 2:
        var r$3=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$3=match$1[1];
           
@@ -203,7 +203,7 @@ var $plus$unknown=add_num;
 var
  minus_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var i=param[1];
        
@@ -231,11 +231,11 @@ var
     
     var match$1=b;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var int1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var int2=match$1[1];
           
@@ -270,7 +270,7 @@ var
       case 1:
        var bi$1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$2=match$1[1];
           
@@ -295,7 +295,7 @@ var
       case 2:
        var r$2=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$3=match$1[1];
           
@@ -325,7 +325,7 @@ var $star$unknown=mult_num;
 var
  square_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var i=param[1];
        
@@ -345,11 +345,11 @@ var
 var
  div_num=
   function(n1,n2)
-   {switch(n1)
+   {switch(n1[0])
      {case 0:
        var i1=n1[1];
        
-       switch(n2)
+       switch(n2[0])
         {case 0:
           var i2=n2[1];
           
@@ -371,7 +371,7 @@ var
       case 1:
        var bi1=n1[1];
        
-       switch(n2)
+       switch(n2[0])
         {case 0:
           var i2$1=n2[1];
           
@@ -393,7 +393,7 @@ var
       case 2:
        var r1=n1[1];
        
-       switch(n2)
+       switch(n2[0])
         {case 0:
           var i2$2=n2[1];return num_of_ratio(Ratio["div_ratio_int"](r1,i2$2));
          case 1:
@@ -413,7 +413,7 @@ var $unknown$unknown=div_num;
 var
  floor_num=
   function(n)
-   {switch(n)
+   {switch(n[0])
      {case 0:return n;
       case 1:var n$1=n;return n$1;
       case 2:var r=n[1];return num_of_big_int(Ratio["floor_ratio"](r));
@@ -423,7 +423,7 @@ var
 var
  ratio_of_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return Ratio["ratio_of_int"](i);
       case 1:var bi=param[1];return Ratio["ratio_of_big_int"](bi);
       case 2:var r=param[1];return r;
@@ -437,11 +437,11 @@ var
     
     var match$1=n2;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var i1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i2=match$1[1];
           
@@ -475,7 +475,7 @@ var
       case 1:
        var bi1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i2$1=match$1[1];
           
@@ -525,11 +525,11 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var i1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i2=match$1[1];
           
@@ -551,7 +551,7 @@ var
       case 1:
        var bi1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i2$1=match$1[1];
           
@@ -581,7 +581,7 @@ var
     
     var match$1=b;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var n=match$1;
        
@@ -653,7 +653,7 @@ var
     
     var match$1=b;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var n=match$1;
        
@@ -728,7 +728,7 @@ var
     
     var match$1=b;
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:var n=match;var i=match$1[1];return power_num_int(n,i);
       case 1:var n$1=match;var bi=match$1[1];return power_num_big_int(n$1,bi);
       case 2:return Pervasives["invalid_arg"]("power_num");
@@ -740,7 +740,7 @@ var $star$star$unknown=power_num;
 var
  is_integer_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return /* true */1;
       case 1:return /* true */1;
       case 2:var r=param[1];return Ratio["is_integer_ratio"](r);
@@ -750,7 +750,7 @@ var
 var
  integer_num=
   function(n)
-   {switch(n)
+   {switch(n[0])
      {case 0:return n;
       case 1:var n$1=n;return n$1;
       case 2:var r=n[1];return num_of_big_int(Ratio["integer_ratio"](r));
@@ -760,7 +760,7 @@ var
 var
  round_num=
   function(n)
-   {switch(n)
+   {switch(n[0])
      {case 0:return n;
       case 1:var n$1=n;return n$1;
       case 2:var r=n[1];return num_of_big_int(Ratio["round_ratio"](r));
@@ -770,7 +770,7 @@ var
 var
  ceiling_num=
   function(n)
-   {switch(n)
+   {switch(n[0])
      {case 0:return n;
       case 1:var n$1=n;return n$1;
       case 2:var r=n[1];return num_of_big_int(Ratio["ceiling_ratio"](r));
@@ -780,7 +780,7 @@ var
 var
  sign_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return Int_misc["sign_int"](i);
       case 1:var bi=param[1];return Big_int["sign_big_int"](bi);
       case 2:var r=param[1];return Ratio["sign_ratio"](r);
@@ -794,11 +794,11 @@ var
     
     var match$1=b;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var int1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:var int2=match$1[1];return int1=int2;
          case 1:
           var i=int1;
@@ -819,7 +819,7 @@ var
       case 1:
        var bi$1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$2=match$1[1];
           
@@ -844,7 +844,7 @@ var
       case 2:
        var r$2=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$3=match$1[1];
           
@@ -874,11 +874,11 @@ var
     
     var match$1=b;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var int1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:var int2=match$1[1];return Int_misc["compare_int"](int1,int2);
          case 1:
           var i=int1;
@@ -900,7 +900,7 @@ var
       case 1:
        var bi$1=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$2=match$1[1];
           
@@ -926,7 +926,7 @@ var
       case 2:
        var r$2=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var i$3=match$1[1];
           
@@ -974,7 +974,7 @@ var
 var
  int_of_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return i;
       case 1:var bi=param[1];return Big_int["int_of_big_int"](bi);
       case 2:var r=param[1];return Ratio["int_of_ratio"](r);
@@ -993,7 +993,7 @@ var
 var
  nat_of_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return Nat["nat_of_int"](i);
       case 1:var bi=param[1];return Big_int["nat_of_big_int"](bi);
       case 2:var r=param[1];return Ratio["nat_of_ratio"](r);
@@ -1004,7 +1004,7 @@ var
  num_of_nat=
   function(nat)
    {if(Nat["is_nat_int"](nat,0,Nat["length_nat"](nat)))
-     {return /* Int */[0,Primtivie["nth_digit_nat"](nat,0)];}
+     {return /* Int */[0,CamlPrimtivie["nth_digit_nat"](nat,0)];}
     else
      {return /* Big_int */[1,Big_int["big_int_of_nat"](nat)];}
     };
@@ -1012,7 +1012,7 @@ var
 var
  big_int_of_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return Big_int["big_int_of_int"](i);
       case 1:var bi=param[1];return bi;
       case 2:var r=param[1];return Ratio["big_int_of_ratio"](r);
@@ -1033,7 +1033,7 @@ var
 var
  string_of_normalized_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return Pervasives["string_of_int"](i);
       case 1:var bi=param[1];return string_of_big_int_for_num(bi);
       case 2:var r=param[1];return Ratio["string_of_ratio"](r);
@@ -1075,7 +1075,7 @@ var
 var
  float_of_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:var i=param[1];return i;
       case 1:var bi=param[1];return Big_int["float_of_big_int"](bi);
       case 2:var r=param[1];return Ratio["float_of_ratio"](r);
@@ -1085,7 +1085,7 @@ var
 var
  succ_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var i=param[1];
        
@@ -1105,7 +1105,7 @@ var
 var
  pred_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var i=param[1];
        
@@ -1126,7 +1126,7 @@ var
 var
  abs_num=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var i=param[1];
        

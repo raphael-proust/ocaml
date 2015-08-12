@@ -606,14 +606,21 @@ module rec
            (match args with
             | e::[] -> let open E in bin EqEqEq (typeof e) (E.str "number")
             | _ -> Gen_util.expr_of_unknow_primitive prim)
+       | Pctconst ct ->
+           (match ct with
+            | Big_endian  -> if Sys.big_endian then E.true_ else E.false_
+            | Word_size  -> E.int Sys.word_size
+            | Ostype_unix  -> if Sys.unix then E.true_ else E.false_
+            | Ostype_win32  -> if Sys.win32 then E.true_ else E.false_
+            | Ostype_cygwin  -> if Sys.cygwin then E.true_ else E.false_)
        | Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
        | Pduprecord (_,_)|Plazyforce |Pbittest |Pcvtbint (_,_)|Pbigarrayref
          (_,_,_,_)|Pbigarrayset (_,_,_,_)|Pbigarraydim _|Pstring_load_16 _
          |Pstring_load_32 _|Pstring_load_64 _|Pstring_set_16 _|Pstring_set_32
          _|Pstring_set_64 _|Pbigstring_load_16 _|Pbigstring_load_32 _
          |Pbigstring_load_64 _|Pbigstring_set_16 _|Pbigstring_set_32 _
-         |Pbigstring_set_64 _|Pctconst _|Pbswap16 |Pbbswap _|Pint_as_pointer 
-           -> Gen_util.expr_of_unknow_primitive prim : J.expression)
+         |Pbigstring_set_64 _|Pbswap16 |Pbbswap _|Pint_as_pointer  ->
+           Gen_util.expr_of_unknow_primitive prim : J.expression)
     let comment_of_pointer_info (x : Lambda.pointer_info) =
       match x with
       | NullConstructor x -> Some x
@@ -826,6 +833,8 @@ module rec
                          val arr : ?comment:string -> t list -> t
                          val seq : ?comment:string -> t -> t -> t
                          val obj : ?comment:string -> J.property_map -> t
+                         val true_ : t
+                         val false_ : t
                        end
                        module Stmt :
                        sig
@@ -941,6 +950,8 @@ module rec
                   let obj ?comment  properties =
                     ({ expression_desc = (EObj properties); comment } : 
                     t)
+                  let true_ = var (Jident.create_js "true")
+                  let false_ = var (Jident.create_js "false")
                 end
               module Stmt =
                 struct

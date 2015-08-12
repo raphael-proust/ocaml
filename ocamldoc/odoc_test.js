@@ -185,7 +185,7 @@ var
                    if(match$1)
                     {var match$2=match$1[1];
                      
-                     switch(match$2)
+                     switch(match$2[0])
                       {case 0:
                         var $js=Odoc_info["string_of_type_expr"](match$2[1]);
                        case 1:var $js="< object type >";

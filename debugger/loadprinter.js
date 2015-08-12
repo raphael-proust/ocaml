@@ -16,7 +16,7 @@ var Symtable=require("Symtable");
 var Config=require("Config");
 
 
-var $$Error=Primtivie["caml_set_oo_id"]([248,"Loadprinter.Error",0]);
+var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Loadprinter.Error",0]);
 
 var debugger_symtable=[0,/* None */0];
 
@@ -57,7 +57,8 @@ var
       use_debugger_symtable(Dynlink["loadfile"],filename);
       var d=Filename["dirname"](name);
       
-      if(Primtivie["caml_string_notequal"](d,Filename["current_dir_name"]))
+      if
+       (CamlPrimtivie["caml_string_notequal"](d,Filename["current_dir_name"]))
        {if(!List["mem"](d,Config["load_path"][1]))
          {Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]],0}
         else
@@ -134,7 +135,7 @@ var loadfile=function(ppf,name){return loadfiles(ppf,name);};
 var
  eval_path=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return Symtable["get_global_value"](param[1]);
       case 1:return eval_path(param[1])[param[3]];
       case 2:return Misc["fatal_error"]("Loadprinter.eval_path");
@@ -238,7 +239,7 @@ var
       if(exn[1]=Symtable["Error"])
        {var match$2=exn[2];
         
-        switch(match$2)
+        switch(match$2[0])
          {case 0:throw [0,$$Error,/* Unavailable_module */[2,match$2[1],lid]];
           default:exit=6;}
         }
@@ -274,7 +275,7 @@ var
 var
  report_error=
   function(ppf,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (ppf,

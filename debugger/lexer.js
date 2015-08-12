@@ -24,7 +24,7 @@ var
 var
  line=
   function(lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_line_rec(lexbuf,0);
     };
@@ -41,7 +41,7 @@ var
       return __ocaml_lex_line_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[10][0]);
         case 1:return Lexing["lexeme"](lexbuf);
         case 2:throw Pervasives["Exit"];
@@ -63,7 +63,7 @@ var
       return __ocaml_lex_argument_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return /* ARGUMENT */[0,Lexing["lexeme"](lexbuf)];
         case 1:return argument(lexbuf);
         case 2:return /* EOL */11;
@@ -109,7 +109,7 @@ var
       return __ocaml_lex_lexeme_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return lexeme(lexbuf);
         case 1:return /* LIDENT */[1,Lexing["lexeme"](lexbuf)];
         case 2:return /* UIDENT */[2,Lexing["lexeme"](lexbuf)];
@@ -120,7 +120,8 @@ var
          
         case 4:
          return /* INTEGER */[4,
-                 Primtivie["caml_int64_of_string"](Lexing["lexeme"](lexbuf))];
+                 CamlPrimtivie["caml_int64_of_string"]
+                  (Lexing["lexeme"](lexbuf))];
          
         case 5:return /* STAR */0;
         case 6:return /* MINUS */1;

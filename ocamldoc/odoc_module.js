@@ -14,7 +14,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 5:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -28,7 +28,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 8:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -42,7 +42,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 6:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -56,7 +56,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 7:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -70,7 +70,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 3:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -84,7 +84,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 4:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -98,7 +98,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 0:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -112,7 +112,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 1:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -126,7 +126,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 9:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -140,7 +140,7 @@ var
   function(l)
    {return List["fold_left"]
             (function(acc,ele)
-              {switch(ele)
+              {switch(ele[0])
                 {case 2:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
                  default:return acc;}
@@ -159,7 +159,7 @@ var
       function(param)
        {var exit;
         
-        switch(param)
+        switch(param[0])
          {case 0:return param[1];
           case 1:
            if(trans)
@@ -168,7 +168,7 @@ var
              if(match)
               {var match$1=match[1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:return module_elements(/* None */0,match$1[1]);
                  case 1:return module_type_elements(/* None */0,match$1[1]);
                  }
@@ -230,7 +230,7 @@ var
        {if(param)
          {var match=param[1];
           
-          switch(match)
+          switch(match[0])
            {case 0:return match[1];
             case 1:return iter_kind(/* Some */[0,match[2]]);
             case 2:
@@ -374,7 +374,7 @@ var
           
           var exit;
           
-          switch(match)
+          switch(match[0])
            {case 0:exit=35;
             case 1:
              var p=match[1];
@@ -438,7 +438,7 @@ var
     var
      iter=
       function(param)
-       {switch(param)
+       {switch(param[0])
          {case 1:
            if(trans)
             {var match=param[1][2];
@@ -446,7 +446,7 @@ var
              if(match)
               {var match$1=match[1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:
                   return module_parameters(/* Some */[0,trans],match$1[1]);
                  case 1:
@@ -529,7 +529,7 @@ var
         if(k)
          {var match=k[1];
           
-          switch(match)
+          switch(match[0])
            {case 0:exit=29;
             case 1:return /* true */1;
             case 2:
@@ -559,14 +559,14 @@ var
    {var
      iter=
       function(param)
-       {switch(param)
+       {switch(param[0])
          {case 1:
            var match=param[1][2];
            
            if(match)
             {var match$1=match[1];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 0:return iter(match$1[1][6]);
                case 1:return module_type_is_functor(match$1[1]);
                }

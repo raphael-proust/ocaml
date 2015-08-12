@@ -17,7 +17,7 @@ var mydprintf=function(fmt){return Log["dprintf"](10,fmt);};
 
 var
  Circular_dependencies=
-  Primtivie["caml_set_oo_id"]
+  CamlPrimtivie["caml_set_oo_id"]
    ([248,"Ocaml_dependencies.Circular_dependencies",0]);
 
 var
@@ -327,7 +327,7 @@ var
               var y$1=maybe_caml_obj_ext_of_cmi(y);
               
               if
-               (Primtivie["caml_string_equal"](x$1,y$1)||
+               (CamlPrimtivie["caml_string_equal"](x$1,y$1)||
                 not_linkable(x$1)||
                 not_linkable(y$1))
                {return acc;}
@@ -484,7 +484,7 @@ var
             var
              add_if_diff=
               function(x,y)
-               {if(Primtivie["caml_string_equal"](x,y))
+               {if(CamlPrimtivie["caml_string_equal"](x,y))
                  {return acc;}
                 else
                  {return Utils[4](x,y,acc);}
@@ -618,7 +618,7 @@ var
                    {if(Filename["check_suffix"](f,".cmi"))
                      {var f$prime=caml_obj_ext_of_cmi(f);
                       
-                      if(Primtivie["caml_string_notequal"](f$prime,fn))
+                      if(CamlPrimtivie["caml_string_notequal"](f$prime,fn))
                        {if(My_std["sys_file_exists"](f$prime))
                          {return aux(f$prime);}
                         else

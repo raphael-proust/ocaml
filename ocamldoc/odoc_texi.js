@@ -243,13 +243,13 @@ var
    {if(param)
      {var match=param[1];
       
-      switch(match)
+      switch(match[0])
        {case 0:
          var m=match[1];
          
          var match$1=m[6];
          
-         switch(match$1)
+         switch(match$1[0])
           {case 1:return iter(acc,param[2]);
            default:
             return iter
@@ -264,7 +264,7 @@ var
          var exit;
          
          if(match$2)
-          {switch(match$2[1])
+          {switch(match$2[1][0])
             {case 2:return iter(acc,param[2]);default:exit=113;}
            }
          else
@@ -415,7 +415,7 @@ var
         function(part_qual,name)
          {var sname=Odoc_info["Name"][1](name);
           
-          if(Primtivie["caml_string_equal"](sname,name))
+          if(CamlPrimtivie["caml_string_equal"](sname,name))
            {puts
              (chan,
               pad_to(35,Pervasives["^"]("* ",Pervasives["^"](sname,":: "))));
@@ -439,7 +439,7 @@ var
       puts_nl(chan,"@menu");
       List["iter"]
        (function(param)
-         {if("unknown primitive:isint")
+         {if(typeof param==="number")
            {return nl(chan);}
           else
            {var variant=param[1];
@@ -700,7 +700,7 @@ var
        texi_of_Target,
        function(self$neg1,target,code)
         {if
-          (Primtivie["caml_string_equal"]
+          (CamlPrimtivie["caml_string_equal"]
             ($$String["lowercase"](target),"texi"))
           {return code;}
          else
@@ -858,8 +858,8 @@ var
          if(kind)
           {var match=kind[1];
            
-           if("unknown primitive:isint")
-            {switch(match[0])
+           if(typeof match==="number")
+            {switch(match)
               {case 0:
                 var
                  xname=
@@ -906,7 +906,7 @@ var
          
          switch(exit){case 92:var xname="";}
          
-         if(Primtivie["caml_string_equal"](xname,""))
+         if(CamlPrimtivie["caml_string_equal"](xname,""))
           {"unknown block:(sendself self-1/1434 escape/1308 name/1435)";}
          else
           {return Texi[5](/* Some */[0,xname],name);}
@@ -1008,7 +1008,7 @@ var
 
 var
  Aliased_node=
-  Primtivie["caml_set_oo_id"]([248,"Odoc_texi.Aliased_node",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_texi.Aliased_node",0]);
 
 var
  texi_init=
@@ -1292,7 +1292,7 @@ var
                       
                       var exit;
                       
-                      switch(match)
+                      switch(match[0])
                        {case 0:
                          return /* :: */[0,
                                  self$neg2[linebreak],
@@ -1713,7 +1713,7 @@ var
            function(param)
             {var match=param[6];
              
-             switch(match)
+             switch(match[0])
               {case 1:return /* true */1;default:return /* false */0;}
              };
          
@@ -1724,7 +1724,7 @@ var
              
              var exit;
              
-             switch(match)
+             switch(match[0])
               {case 1:
                 var match$1=match[1][2];
                 
@@ -1740,7 +1740,8 @@ var
            function(param)
             {var match=param[6];
              
-             switch(match){case 1:return match[1][1];default:return param[1];}
+             switch(match[0])
+              {case 1:return match[1][1];default:return param[1];}
              };
          
          'unknown block:(sendself self-2/1768 fixedblock/1708\n  (makeblock 0 0a\n    (makeblock 0 (array.unsafe_get self-2/1768 minus/1531)\n      (makeblock 0 [0: "module "]\n        (makeblock 0\n          (makeblock 0\n            (apply (field 0 (field 2 (global Odoc_info!))) (field 0 m/1769)))\n          (makeblock 0\n            (makeblock 0\n              (if (apply is_alias/1770 m/1769)\n                (apply (field 15 (global Pervasives!)) " = "\n                  (apply resolve_alias_name/1772 m/1769))\n                ""))\n            0a))))))';
@@ -1778,7 +1779,8 @@ var
              var exit;
              
              if(match)
-              {switch(match[1]){case 2:return /* true */1;default:exit=56;}}
+              {switch(match[1][0]){case 2:return /* true */1;default:exit=56;}
+               }
              else
               {exit=56;}
              
@@ -1795,7 +1797,7 @@ var
              if(match)
               {var match$1=match[1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 2:
                   var match$2=match$1[1][2];
                   
@@ -1819,7 +1821,8 @@ var
              if(match)
               {var match$1=match[1];
                
-               switch(match$1){case 2:return match$1[1][1];default:exit=52;}
+               switch(match$1[0])
+                {case 2:return match$1[1][1];default:exit=52;}
                }
              else
               {exit=52;}
@@ -1898,7 +1901,7 @@ var
          },
        texi_of_class_element,
        function(self$neg2,class_name,class_ele)
-        {switch(class_ele)
+        {switch(class_ele[0])
           {case 0:
             "unknown block:(sendself self-2/1800 texi_of_attribute/1589 (field 0 class_ele/1802))";
             
@@ -1912,7 +1915,7 @@ var
          },
        texi_of_module_element,
        function(self$neg2,module_name,module_ele)
-        {switch(module_ele)
+        {switch(module_ele[0])
           {case 0:
             "unknown block:(sendself self-2/1807 texi_of_module/1596 (field 0 module_ele/1809))";
             
@@ -1953,7 +1956,7 @@ var
             {var match=inh[2];
              
              if(match)
-              {switch(match[1])
+              {switch(match[1][0])
                 {case 0:var kind=[/* Some */0,/* RK_class */2];
                  case 1:var kind=[/* Some */0,/* RK_class_type */3];
                  }
@@ -1994,7 +1997,7 @@ var
            function(param)
             {var exit;
              
-             switch(param)
+             switch(param[0])
               {case 0:
                 var l=param[1];
                 
@@ -2018,7 +2021,7 @@ var
        function(self$neg2,chanout,clt)
         {var match=clt[6];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var l=match[1];
             
@@ -2363,7 +2366,9 @@ var
          else
           {var title="";}
          
-         if(Primtivie["caml_string_notequal"](texi_filename,"ocamldoc.texi"))
+         if
+          (CamlPrimtivie["caml_string_notequal"]
+            (texi_filename,"ocamldoc.texi"))
           {var fn=Filename["basename"](texi_filename);
            
            var
@@ -2375,7 +2380,7 @@ var
                ".info");
            }
          else
-          {if(Primtivie["caml_string_notequal"](title,""))
+          {if(CamlPrimtivie["caml_string_notequal"](title,""))
             {var filename=Pervasives["^"](title,".info");}
            else
             {var filename="doc.info";}
@@ -2443,7 +2448,7 @@ var
            "unknown block:(sendself self-2/1895 texi_of_info/1585\n  (makeblock 0\n    (apply (field 48 (global Odoc_info!)) m_list/1898 (field 0 match/2042))))";
            puts_nl(chan,0)}
          else
-          {if(Primtivie["caml_string_notequal"](title,""))
+          {if(CamlPrimtivie["caml_string_notequal"](title,""))
             {puts_nl(chan,"@ifinfo"),
              puts_nl(chan,Pervasives["^"]("Documentation for ",title)),
              puts_nl(chan,"@end ifinfo")}
@@ -2579,7 +2584,7 @@ var
        function(self$neg2,param)
         {var exit;
          
-         switch(param)
+         switch(param[0])
           {case 0:
             "unknown block:(sendself self-2/1931 do_index/1612 -177755956a)";
             
@@ -2616,7 +2621,7 @@ var
          },
        scan_for_index_in_class,
        function(self$neg2,param)
-        {switch(param)
+        {switch(param[0])
           {case 0:
             "unknown block:(sendself self-2/1937 do_index/1612 156047674a)";
            case 1:
@@ -2628,7 +2633,7 @@ var
        function(self$neg2,module_list)
         {Hashtbl["clear"](self$neg2[node_tbl]);
          if
-          (Primtivie["caml_string_equal"]
+          (CamlPrimtivie["caml_string_equal"]
             (Odoc_info["Global"][3][1],Odoc_messages["default_out_file"]))
           {var filename="ocamldoc.texi";}
          else

@@ -8,7 +8,7 @@ var My_std=require("My_std");
 var Glob=require("Glob");
 
 
-var $$Error=Primtivie["caml_set_oo_id"]([248,"Lexers.Error",0]);
+var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Lexers.Error",0]);
 
 var
  error=
@@ -64,7 +64,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var k=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]+-1);
          
@@ -90,7 +90,7 @@ var
 var
  space_sep_strings_nl=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_space_sep_strings_nl_rec(source,lexbuf,6);
     };
@@ -108,7 +108,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
@@ -132,7 +132,7 @@ var
 var
  space_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_space_sep_strings_rec(source,lexbuf,12);
     };
@@ -150,7 +150,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
@@ -174,7 +174,7 @@ var
 var
  blank_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_blank_sep_strings_rec(source,lexbuf,21);
     };
@@ -194,7 +194,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return blank_sep_strings(source,lexbuf);
         case 1:exit=10;
         case 2:
@@ -222,7 +222,7 @@ var
 var
  comma_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](5,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](5,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     lexbuf[10][2]=lexbuf[6],0;
     return __ocaml_lex_comma_sep_strings_rec(source,lexbuf,33);
@@ -241,7 +241,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
@@ -270,7 +270,7 @@ var
 var
  comma_sep_strings_aux=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     return __ocaml_lex_comma_sep_strings_aux_rec(source,lexbuf,41);
     };
 
@@ -287,7 +287,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
          
@@ -311,7 +311,7 @@ var
 var
  comma_or_blank_sep_strings=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](5,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](5,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     lexbuf[10][2]=lexbuf[6],0;
     return __ocaml_lex_comma_or_blank_sep_strings_rec(source,lexbuf,49);
@@ -330,7 +330,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
          
@@ -361,7 +361,7 @@ var
 var
  comma_or_blank_sep_strings_aux=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](3,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](3,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_comma_or_blank_sep_strings_aux_rec(source,lexbuf,57);
     };
@@ -419,7 +419,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
@@ -457,7 +457,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
@@ -496,7 +496,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
@@ -532,7 +532,7 @@ var
               (source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var word=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
@@ -556,7 +556,7 @@ var
 var
  conf_lines=
   function(dir,source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](9,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](9,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     return __ocaml_lex_conf_lines_rec(dir,source,lexbuf,81);
     };
@@ -575,7 +575,7 @@ var
       return __ocaml_lex_conf_lines_rec(dir,source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:exit=42;
         case 1:exit=43;
         case 2:exit=42;
@@ -636,7 +636,7 @@ var
 var
  conf_value=
   function(x,source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](3,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](3,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_conf_value_rec(x,source,lexbuf,111);
     };
@@ -653,7 +653,7 @@ var
       return __ocaml_lex_conf_value_rec(x,source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var tag=Lexing["sub_lexeme"](lexbuf,lexbuf[5]+1,lexbuf[6]);
          
@@ -685,7 +685,7 @@ var
 var
  conf_values=
   function(x,source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     lexbuf[10][1]=lexbuf[6],0;
     return __ocaml_lex_conf_values_rec(x,source,lexbuf,125);
     };
@@ -702,7 +702,7 @@ var
       return __ocaml_lex_conf_values_rec(x,source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var s1=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[10][0]);
          
@@ -731,7 +731,7 @@ var
 var
  path_scheme=
   function(patt_allowed,source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](2,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
     return __ocaml_lex_path_scheme_rec(patt_allowed,source,lexbuf,138);
     };
 
@@ -748,7 +748,7 @@ var
               (patt_allowed,source,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var prefix=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[6]);
          
@@ -838,7 +838,7 @@ var
       return __ocaml_lex_unescape_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          var c=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]+1);
          
@@ -857,7 +857,7 @@ var
 var
  ocamlfind_query=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](24,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](24,-1),0;
     return __ocaml_lex_ocamlfind_query_rec(source,lexbuf,152);
     };
 
@@ -905,7 +905,7 @@ var
 var
  trim_blanks=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](6,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](6,-1),0;
     lexbuf[10][3]=lexbuf[6],0;
     lexbuf[10][2]=lexbuf[6],0;
     return __ocaml_lex_trim_blanks_rec(source,lexbuf,234);
@@ -941,7 +941,7 @@ var
 var
  tag_gen=
   function(source,lexbuf)
-   {lexbuf[10]=Primtivie["caml_make_vect"](6,-1),0;
+   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](6,-1),0;
     return __ocaml_lex_tag_gen_rec(source,lexbuf,240);
     };
 
@@ -993,7 +993,7 @@ var
       return __ocaml_lex_count_lines_rec(lb,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return count_lines(lb,lexbuf);
         case 1:Lexing["new_line"](lb);return count_lines(lb,lexbuf);
         case 2:return /* () */0;

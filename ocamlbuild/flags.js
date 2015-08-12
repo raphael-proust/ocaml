@@ -68,7 +68,7 @@ var
  remove=
   function(me)
    {return List["filter"]
-            (function(x){return Primtivie["caml_notequal"](me,x);});
+            (function(x){return CamlPrimtivie["caml_notequal"](me,x);});
     };
 
 var

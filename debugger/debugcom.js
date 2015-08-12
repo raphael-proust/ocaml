@@ -70,7 +70,7 @@ var
                if(22<switcher>>>0)
                 {exit=50;}
                else
-                {switch(switcher[0])
+                {switch(switcher)
                   {case 0:var summary=/* Breakpoint */1;
                    case 1:exit=50;
                    case 2:exit=50;
@@ -249,12 +249,12 @@ var
 
 var
  Marshalling_error=
-  Primtivie["caml_set_oo_id"]([248,"Debugcom.Marshalling_error",0]);
+  CamlPrimtivie["caml_set_oo_id"]([248,"Debugcom.Marshalling_error",0]);
 
 var
  obj=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        Pervasives["output_char"](conn[1][2],77);
        output_remote_value(conn[1][2],param[1]);
@@ -279,9 +279,9 @@ var
 var
  is_block=
   function(param)
-   {switch(param)
-     {case 0:return Primtivie["caml_obj_is_block"](param[1][0]);
-      case 1:return Primtivie["caml_obj_is_block"](param[1]);
+   {switch(param[0])
+     {case 0:return CamlPrimtivie["caml_obj_is_block"](param[1][0]);
+      case 1:return CamlPrimtivie["caml_obj_is_block"](param[1]);
       }
     };
 
@@ -291,7 +291,7 @@ var
    {if(!is_block(obj))
      {return Obj["int_tag"];}
     else
-     {switch(obj)
+     {switch(obj[0])
        {case 0:
          Pervasives["output_char"](conn[1][2],72);
          output_remote_value(conn[1][2],obj[1]);
@@ -300,7 +300,7 @@ var
          
          return header&255;
          
-        case 1:return Primtivie["caml_obj_tag"](obj[1]);
+        case 1:return CamlPrimtivie["caml_obj_tag"](obj[1]);
         }
       }
     };
@@ -308,7 +308,7 @@ var
 var
  size=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        Pervasives["output_char"](conn[1][2],72);
        output_remote_value(conn[1][2],param[1]);
@@ -327,7 +327,7 @@ var
 var
  field=
   function(v,n)
-   {switch(v)
+   {switch(v[0])
      {case 0:
        Pervasives["output_char"](conn[1][2],70);
        output_remote_value(conn[1][2],v[1]);
@@ -340,7 +340,7 @@ var
          
          var floatbuf=n;
          
-         Primtivie["caml_blit_string"](buf,0,floatbuf,0,8);
+         CamlPrimtivie["caml_blit_string"](buf,0,floatbuf,0,8);
          return /* Local */[1,floatbuf];
          }
        
@@ -388,7 +388,7 @@ var
 var
  closure_code=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        Pervasives["output_char"](conn[1][2],67);
        output_remote_value(conn[1][2],param[1]);
@@ -404,14 +404,14 @@ var
   function(rv1,rv2)
    {var exit;
     
-    switch(rv1)
+    switch(rv1[0])
      {case 0:
-       switch(rv2)
-        {case 0:return Primtivie["caml_string_equal"](rv1[1],rv2[1]);
+       switch(rv2[0])
+        {case 0:return CamlPrimtivie["caml_string_equal"](rv1[1],rv2[1]);
          case 1:exit=1;
          }
        
-      case 1:switch(rv2){case 0:exit=1;case 1:return rv1[1]=rv2[1];}
+      case 1:switch(rv2[0]){case 0:exit=1;case 1:return rv1[1]=rv2[1];}
       }
     
     switch(exit){case 1:return /* false */0;}

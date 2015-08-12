@@ -129,7 +129,7 @@ var
       
       var exit;
       
-      switch(match$1)
+      switch(match$1[0])
        {case 0:if(match$1[1]!=0){exit=17;}else{return /* () */0;}
         case 1:exit=17;
         case 2:exit=17;

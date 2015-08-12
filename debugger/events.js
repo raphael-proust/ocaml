@@ -7,7 +7,7 @@ var
   function(ev)
    {var match=ev[4];
     
-    if("unknown primitive:isint")
+    if(typeof match==="number")
      {if(match!=0){return ev[3][1];}else{return ev[3][1];}}
     else
      {return ev[3][2];}
@@ -33,7 +33,7 @@ var
     if(match)
      {var match$1=match[1][4];
       
-      if("unknown primitive:isint")
+      if(typeof match$1==="number")
        {if(match$1!=0){exit=1;}else{return /* true */1;}}
       else
        {exit=1;}

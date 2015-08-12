@@ -40,7 +40,7 @@ var
     return set_to_list(Depend["free_structure_names"][1]);
     };
 
-var compare=function(x,y){return Primtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
 
 var S=Set["Make"]([0,compare]);
 
@@ -66,7 +66,7 @@ var
   function(graph,s)
    {try
      {return List["find"]
-              (function(n){return Primtivie["caml_string_equal"](n[1],s);},
+              (function(n){return CamlPrimtivie["caml_string_equal"](n[1],s);},
                graph);
       }
     catch(exn)
@@ -116,7 +116,7 @@ var
          set_reachables=
           List["fold_left"]
            (function(acc,param)
-             {if(Primtivie["caml_string_equal"](child,param[1]))
+             {if(CamlPrimtivie["caml_string_equal"](child,param[1]))
                {return acc;}
               else
                {return S[7](acc,param[2]);}
@@ -131,7 +131,9 @@ var
           return node[3]=
                  List["filter"]
                   (function(param)
-                    {return Primtivie["caml_string_notequal"](param[1],child);},
+                    {return CamlPrimtivie["caml_string_notequal"]
+                             (param[1],child);
+                     },
                    node[3]),
                  0;
           }
@@ -219,7 +221,7 @@ var
     if(match$1)
      {var match$2=match$1[1];
       
-      switch(match$2)
+      switch(match$2[0])
        {case 0:
          var s=Odoc_print["string_of_type_expr"](match$2[1]);
          

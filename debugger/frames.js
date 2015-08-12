@@ -38,7 +38,7 @@ var
     if(match)
      {var match$1=match[1][4];
       
-      if("unknown primitive:isint")
+      if(typeof match$1==="number")
        {if(match$1!=0){exit=17;}else{return /* true */1;}}
       else
        {exit=17;}

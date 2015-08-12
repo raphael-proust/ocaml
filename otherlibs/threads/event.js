@@ -58,7 +58,7 @@ var
     
     var
      bev=
-      Primtivie["caml_make_vect"]
+      CamlPrimtivie["caml_make_vect"]
        (genev["length"],genev[0][1](performed,condition,0));
     
     for(var i=1;i<=genev["length"]-1;i++)
@@ -114,7 +114,7 @@ var gensym=function(param){count[0]++;return count[1];};
 var
  flatten_event=
   function(abort_list,accu,accu_abort,ev)
-   {switch(ev)
+   {switch(ev[0])
      {case 0:
        var bev=ev[1];
        
@@ -191,7 +191,7 @@ var
     
     var
      bev=
-      Primtivie["caml_make_vect"]
+      CamlPrimtivie["caml_make_vect"]
        (genev["length"],genev[0][1](performed,condition,0));
     
     for(var i=1;i<=genev["length"]-1;i++)
@@ -360,7 +360,7 @@ var guard=function(fn){return /* Guard */[3,fn];};
 var
  wrap=
   function(ev,fn)
-   {switch(ev)
+   {switch(ev[0])
      {case 0:
        var genev=ev[1];
        

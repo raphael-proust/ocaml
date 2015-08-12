@@ -9,7 +9,9 @@ var Buffer=require("Buffer");
 var Lexing=require("Lexing");
 
 
-var Text_syntax=Primtivie["caml_set_oo_id"]([248,"Odoc_text.Text_syntax",0]);
+var
+ Text_syntax=
+  CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_text.Text_syntax",0]);
 
 var
  text_of_string=
@@ -378,8 +380,8 @@ var
          if(kind_opt)
           {var k=kind_opt[1];
            
-           if("unknown primitive:isint")
-            {switch(k[0])
+           if(typeof k==="number")
+            {switch(k)
               {case 0:var s="module";
                case 1:var s="modtype";
                case 2:var s="class";

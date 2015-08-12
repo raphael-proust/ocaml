@@ -14,7 +14,7 @@ var
  stat=
   function(f)
    {if(My_std["sys_file_exists"](f))
-     {if(Primtivie["caml_sys_is_directory"](f))
+     {if(CamlPrimtivie["caml_sys_is_directory"](f))
        {var $js=/* FK_dir */0;}
       else
        {var $js=/* FK_file */1;}
@@ -69,13 +69,15 @@ var
                });
     };
 
-var Not_a_link=Primtivie["caml_set_oo_id"]([248,"My_unix.Not_a_link",0]);
+var Not_a_link=CamlPrimtivie["caml_set_oo_id"]([248,"My_unix.Not_a_link",0]);
 
-var No_such_file=Primtivie["caml_set_oo_id"]([248,"My_unix.No_such_file",0]);
+var
+ No_such_file=
+  CamlPrimtivie["caml_set_oo_id"]([248,"My_unix.No_such_file",0]);
 
 var
  Link_to_directories_not_supported=
-  Primtivie["caml_set_oo_id"]
+  CamlPrimtivie["caml_set_oo_id"]
    ([248,"My_unix.Link_to_directories_not_supported",0]);
 
 var cache=Hashtbl["create"](/* None */0,32);
@@ -199,7 +201,7 @@ var
   function(cmd)
    {var bufsiz=2048;
     
-    var buf=Primtivie["caml_create_string"](bufsiz);
+    var buf=CamlPrimtivie["caml_create_string"](bufsiz);
     
     var totalbuf=Buffer["create"](4096);
     

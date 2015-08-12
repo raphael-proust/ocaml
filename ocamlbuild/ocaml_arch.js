@@ -21,7 +21,7 @@ var file=function(name){return /* Arch_file */[2,name,/* () */0];};
 var
  join_pack=
   function(parent,base)
-   {if(Primtivie["caml_string_equal"](parent,""))
+   {if(CamlPrimtivie["caml_string_equal"](parent,""))
      {return base;}
     else
      {return Pervasives["^"](parent,Pervasives["^"](".",base));}
@@ -33,7 +33,7 @@ var
    {var
      $$self=
       function(arch,acc)
-       {switch(arch)
+       {switch(arch[0])
          {case 0:
            var name=arch[1];
            
@@ -67,7 +67,7 @@ var
       function(name,contents,acc)
        {var current_path=Pathname["Operators"][1](acc[1],name);
         
-        if(Primtivie["caml_string_equal"](current_path,""))
+        if(CamlPrimtivie["caml_string_equal"](current_path,""))
          {var include_dirs=acc[2];}
         else
          {var include_dirs=/* :: */[0,current_path,acc[2]];}
@@ -125,7 +125,7 @@ var
         };
     
     return function(param)
-     {switch(param)
+     {switch(param[0])
        {case 0:
          return Format["fprintf"]
                  (f,
@@ -282,7 +282,7 @@ var
   function(f,param)
    {var exit;
     
-    switch(param){case 0:exit=17;case 1:exit=17;case 2:return f(param[2]);}
+    switch(param[0]){case 0:exit=17;case 1:exit=17;case 2:return f(param[2]);}
     
     switch(exit)
      {case 17:f(param[2]);return My_std["List"][14](iter_info(f),param[3]);}
@@ -293,7 +293,8 @@ var
   function(f,arch,acc)
    {var exit;
     
-    switch(arch){case 0:exit=15;case 1:exit=15;case 2:return f(arch[2],acc);}
+    switch(arch[0])
+     {case 0:exit=15;case 1:exit=15;case 2:return f(arch[2],acc);}
     
     switch(exit)
      {case 15:return My_std["List"][20](fold_info(f),arch[3],f(arch[2],acc));}
@@ -338,7 +339,7 @@ var
        "@[<hv0>{:@[<hv0>"]);
     Hashtbl["iter"]
      (function(k,v)
-       {if(Primtivie["caml_string_notequal"](k,""))
+       {if(CamlPrimtivie["caml_string_notequal"](k,""))
          {return Format["fprintf"]
                   (f,
                    [/* Format */0,
@@ -452,7 +453,7 @@ var
       try
        {var for_pack=Hashtbl["find"](for_pack_table,m$prime);
         
-        if(Primtivie["caml_string_equal"](for_pack,""))
+        if(CamlPrimtivie["caml_string_equal"](for_pack,""))
          {return /* N */0;}
         else
          {return /* S */[0,

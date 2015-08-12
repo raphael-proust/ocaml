@@ -46,7 +46,7 @@ var
     
     var len=1024;
     
-    var s=Primtivie["caml_create_string"](len);
+    var s=CamlPrimtivie["caml_create_string"](len);
     
     var buf=Buffer["create"](len);
     
@@ -142,7 +142,7 @@ var
 var
  string_of_longident=
   function(li)
-   {switch(li)
+   {switch(li[0])
      {case 0:return li[1];
       case 1:
        return Pervasives["^"]
@@ -170,14 +170,15 @@ var
                
                var exit;
                
-               if("unknown primitive:isint")
+               if(typeof field_kind==="number")
                 {if(field_kind!=0){return acc;}else{exit=84;}}
                else
                 {exit=84;}
                
                switch(exit)
                 {case 84:
-                  if(Primtivie["caml_string_equal"](label,"*dummy method*"))
+                  if
+                   (CamlPrimtivie["caml_string_equal"](label,"*dummy method*"))
                    {return acc;}
                   else
                    {return Pervasives["@"]
@@ -379,7 +380,7 @@ var
     
     var see_ref=param[1];
     
-    switch(see_ref)
+    switch(see_ref[0])
      {case 0:var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
       case 1:
        var
@@ -454,7 +455,7 @@ var
     if(match$1)
      {var d=match$1[1];
       
-      if(Primtivie["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
+      if(CamlPrimtivie["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
        {var $js="";}
       else
        {var $js=Pervasives["^"](string_of_text(d),"\n");}
@@ -930,7 +931,7 @@ var
       function(s)
        {var len=s["length"];
         
-        var match=Primtivie["caml_int_compare"](len,lenp);
+        var match=CamlPrimtivie["caml_int_compare"](len,lenp);
         
         if(match!=-1)
          {if(match!=0)
@@ -938,13 +939,13 @@ var
             
             var s2=$$String["sub"](s,pos,lenp);
             
-            if(Primtivie["caml_string_equal"](s2,pat))
+            if(CamlPrimtivie["caml_string_equal"](s2,pat))
              {return pos;}
             else
              {return iter($$String["sub"](s,0,pos));}
             }
           else
-           {if(Primtivie["caml_string_equal"](pat,s))
+           {if(CamlPrimtivie["caml_string_equal"](pat,s))
              {return 0;}
             else
              {throw Not_found;}

@@ -306,7 +306,7 @@ var
     
     return My_std["List"][21]
             (function(param,res)
-              {switch(res)
+              {switch(res[0])
                 {case 0:return /* () */0;
                  case 1:
                   if(param[1]>=886832744)
@@ -704,7 +704,7 @@ var
       
       return My_std["List"][21]
               (function(param,result)
-                {switch(result)
+                {switch(result[0])
                   {case 0:return prepare_link(tag,result[1],extensions,build);
                    case 1:
                     if(param[1]>=886832744)
@@ -895,7 +895,7 @@ var
     
     var
      is_not_stdlib=
-      function(x){return Primtivie["caml_string_notequal"](x,stdlib);};
+      function(x){return CamlPrimtivie["caml_string_notequal"](x,stdlib);};
     
     var deps$2=My_std["List"][33](is_not_stdlib,deps$1);
     
@@ -1156,7 +1156,7 @@ var
      module_paths=
       My_std["List"][16]
        (function(param)
-         {switch(param)
+         {switch(param[0])
            {case 0:
              var p=param[1];
              
@@ -1216,7 +1216,7 @@ var
     
     var
      is_not_stdlib=
-      function(x){return Primtivie["caml_string_notequal"](x,stdlib);};
+      function(x){return CamlPrimtivie["caml_string_notequal"](x,stdlib);};
     
     var deps$3=My_std["List"][33](is_not_stdlib,deps$2);
     

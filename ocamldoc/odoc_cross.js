@@ -71,7 +71,7 @@ var
 
 var
  compare=
-  function(prim,prim){return Primtivie["caml_compare"](prim$1,prim);};
+  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
 
 var S=Set["Make"]([0,compare]);
 
@@ -89,7 +89,7 @@ var
    {var match=m[6];
     
     var $js;
-    switch(match){case 1:$js=/* true */1;default:$js=/* false */0;}
+    switch(match[0]){case 1:$js=/* true */1;default:$js=/* false */0;}
     return /* tuple */[0,/* true */1,$js];
     };
 
@@ -101,7 +101,7 @@ var
     var exit;
     
     if(match)
-     {switch(match[1]){case 2:var $js=/* true */1;default:exit=159;}}
+     {switch(match[1][0]){case 2:var $js=/* true */1;default:exit=159;}}
     else
      {exit=159;}
     
@@ -171,13 +171,13 @@ var
    {if(param)
      {var match=param[1];
       
-      switch(match)
+      switch(match[0])
        {case 0:
          var m=match[1];
          
          var match$1=m[6];
          
-         switch(match$1)
+         switch(match$1[0])
           {case 1:
             var ma=match$1[1];
             
@@ -203,7 +203,7 @@ var
          if(match$2)
           {var match$3=match$2[1];
            
-           switch(match$3)
+           switch(match$3[0])
             {case 2:
               Hashtbl["add"]
                (module_and_modtype_aliases,
@@ -264,7 +264,7 @@ var
     return build_alias_list(Search_alias[15](module_list,0));
     };
 
-var Found=Primtivie["caml_set_oo_id"]([248,"Odoc_cross.Found",0]);
+var Found=CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_cross.Found",0]);
 
 var
  f=
@@ -316,7 +316,9 @@ var
 
 var name_alias=function(name,alias_tbl){return f(alias_tbl,name);};
 
-var compare$1=function(x,y){return Primtivie["caml_string_compare"](x,y);};
+var
+ compare$1=
+  function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
 
 var Map_ord=[0,compare$1];
 
@@ -356,83 +358,93 @@ var
 var
  kind_name_exists=
   function(kind)
-   {if("unknown primitive:isint")
-     {switch(kind[0])
+   {if(typeof kind==="number")
+     {switch(kind)
        {case 0:
          var
           pred=
            function(e)
-            {switch(e){case 0:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 0:return /* true */1;default:return /* false */0;}
              };
          
         case 1:
          var
           pred=
            function(e)
-            {switch(e){case 1:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 1:return /* true */1;default:return /* false */0;}
              };
          
         case 2:
          var
           pred=
            function(e)
-            {switch(e){case 2:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 2:return /* true */1;default:return /* false */0;}
              };
          
         case 3:
          var
           pred=
            function(e)
-            {switch(e){case 3:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 3:return /* true */1;default:return /* false */0;}
              };
          
         case 4:
          var
           pred=
            function(e)
-            {switch(e){case 4:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 4:return /* true */1;default:return /* false */0;}
              };
          
         case 5:
          var
           pred=
            function(e)
-            {switch(e){case 5:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 5:return /* true */1;default:return /* false */0;}
              };
          
         case 6:
          var
           pred=
            function(e)
-            {switch(e){case 6:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 6:return /* true */1;default:return /* false */0;}
              };
          
         case 7:
          var
           pred=
            function(e)
-            {switch(e){case 7:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 7:return /* true */1;default:return /* false */0;}
              };
          
         case 8:
          var
           pred=
            function(e)
-            {switch(e){case 8:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 8:return /* true */1;default:return /* false */0;}
              };
          
         case 9:
          var
           pred=
            function(e)
-            {switch(e){case 9:return /* true */1;default:return /* false */0;}
+            {switch(e[0])
+              {case 9:return /* true */1;default:return /* false */0;}
              };
          
         case 10:
          var
           pred=
            function(e)
-            {switch(e)
+            {switch(e[0])
               {case 11:return /* true */1;default:return /* false */0;}
              };
          
@@ -440,7 +452,7 @@ var
          var
           pred=
            function(e)
-            {switch(e)
+            {switch(e[0])
               {case 12:return /* true */1;default:return /* false */0;}
              };
          
@@ -487,10 +499,11 @@ var
      match=
       List["find"]
        (function(k)
-         {switch(k){case 0:return /* true */1;default:return /* false */0;}},
+         {switch(k[0]){case 0:return /* true */1;default:return /* false */0;}
+          },
         get_known_elements(name));
     
-    switch(match)
+    switch(match[0])
      {case 0:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_cross.ml",232,9]];}
     };
@@ -502,10 +515,11 @@ var
      match=
       List["find"]
        (function(k)
-         {switch(k){case 1:return /* true */1;default:return /* false */0;}},
+         {switch(k[0]){case 1:return /* true */1;default:return /* false */0;}
+          },
         get_known_elements(name));
     
-    switch(match)
+    switch(match[0])
      {case 1:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_cross.ml",240,9]];}
     };
@@ -517,10 +531,11 @@ var
      match=
       List["find"]
        (function(k)
-         {switch(k){case 2:return /* true */1;default:return /* false */0;}},
+         {switch(k[0]){case 2:return /* true */1;default:return /* false */0;}
+          },
         get_known_elements(name));
     
-    switch(match)
+    switch(match[0])
      {case 2:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_cross.ml",248,9]];}
     };
@@ -532,10 +547,11 @@ var
      match=
       List["find"]
        (function(k)
-         {switch(k){case 3:return /* true */1;default:return /* false */0;}},
+         {switch(k[0]){case 3:return /* true */1;default:return /* false */0;}
+          },
         get_known_elements(name));
     
-    switch(match)
+    switch(match[0])
      {case 3:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_cross.ml",256,9]];}
     };
@@ -547,10 +563,11 @@ var
      match=
       List["find"]
        (function(k)
-         {switch(k){case 6:return /* true */1;default:return /* false */0;}},
+         {switch(k[0]){case 6:return /* true */1;default:return /* false */0;}
+          },
         get_known_elements(name));
     
-    switch(match)
+    switch(match[0])
      {case 6:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_cross.ml",264,9]];}
     };
@@ -562,10 +579,11 @@ var
      match=
       List["find"]
        (function(k)
-         {switch(k){case 7:return /* true */1;default:return /* false */0;}},
+         {switch(k[0]){case 7:return /* true */1;default:return /* false */0;}
+          },
         get_known_elements(name));
     
-    switch(match)
+    switch(match[0])
      {case 7:return match[1];
       default:throw [0,Assert_failure,[0,"odoc_cross.ml",272,9]];}
     };
@@ -736,7 +754,7 @@ var
         
         var acc_b=param$1[1];
         
-        switch(k)
+        switch(k[0])
          {case 0:
            return List["fold_left"]
                    (associate_in_module_element(module_list,m[1]),
@@ -779,9 +797,9 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](m[1]),acc_inc],
-                       Primtivie["caml_string_equal"]
+                       CamlPrimtivie["caml_string_equal"]
                          (ma[1],Odoc_messages["struct_end"])||
-                        Primtivie["caml_string_equal"]
+                        CamlPrimtivie["caml_string_equal"]
                          (ma[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mmt */[2,ma[1]],acc_names]];
@@ -846,9 +864,9 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](m[1]),acc_inc],
-                       Primtivie["caml_string_equal"]
+                       CamlPrimtivie["caml_string_equal"]
                          (mta[1],Odoc_messages["struct_end"])||
-                        Primtivie["caml_string_equal"]
+                        CamlPrimtivie["caml_string_equal"]
                          (mta[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mt */[1,mta[1]],acc_names]];
@@ -879,7 +897,7 @@ var
         
         var acc_b=param$1[1];
         
-        switch(k)
+        switch(k[0])
          {case 0:
            return List["fold_left"]
                    (associate_in_module_element(module_list,mt[1]),
@@ -909,9 +927,9 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](mt[1]),acc_inc],
-                       Primtivie["caml_string_equal"]
+                       CamlPrimtivie["caml_string_equal"]
                          (mta[1],Odoc_messages["struct_end"])||
-                        Primtivie["caml_string_equal"]
+                        CamlPrimtivie["caml_string_equal"]
                          (mta[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mt */[1,mta[1]],acc_names]];
@@ -951,7 +969,7 @@ var
     
     var acc_b_modif=param[1];
     
-    switch(element)
+    switch(element[0])
      {case 0:
        return associate_in_module
                (module_list,
@@ -1012,9 +1030,9 @@ var
                    /* :: */[0,
                     Odoc_name["head"](m_name),
                     acc_incomplete_top_module_names],
-                   Primtivie["caml_string_equal"]
+                   CamlPrimtivie["caml_string_equal"]
                      (im[1],Odoc_messages["struct_end"])||
-                    Primtivie["caml_string_equal"]
+                    CamlPrimtivie["caml_string_equal"]
                      (im[1],Odoc_messages["sig_end"])
                     ?acc_names_not_found
                     :/* :: */[0,/* NF_mmt */[2,im[1]],acc_names_not_found]];
@@ -1112,7 +1130,7 @@ var
         
         var acc_b=param$1[1];
         
-        switch(k)
+        switch(k[0])
          {case 0:
            var
             f$1=
@@ -1157,7 +1175,7 @@ var
                   {return /* tuple */[0,
                            acc_b2,
                            /* :: */[0,Odoc_name["head"](c[1]),acc_inc2],
-                           Primtivie["caml_string_equal"]
+                           CamlPrimtivie["caml_string_equal"]
                              (ic[1],Odoc_messages["object_end"])
                             ?acc_names2
                             :/* :: */[0,/* NF_cct */[5,ic[1]],acc_names2]];
@@ -1189,7 +1207,7 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](c[1]),acc_inc],
-                       Primtivie["caml_string_equal"]
+                       CamlPrimtivie["caml_string_equal"]
                          (capp[1],Odoc_messages["object_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_c */[3,capp[1]],acc_names]];
@@ -1235,7 +1253,7 @@ var
                 {return /* tuple */[0,
                          acc_b,
                          /* :: */[0,Odoc_name["head"](c[1]),acc_inc],
-                         Primtivie["caml_string_equal"]
+                         CamlPrimtivie["caml_string_equal"]
                            (cco[1],Odoc_messages["object_end"])
                           ?acc_names
                           :/* :: */[0,/* NF_cct */[5,cco[1]],acc_names]];
@@ -1276,7 +1294,7 @@ var
         
         var acc_b=param$1[1];
         
-        switch(k)
+        switch(k[0])
          {case 0:
            var
             f$1=
@@ -1321,7 +1339,7 @@ var
                   {return /* tuple */[0,
                            acc_b2,
                            /* :: */[0,Odoc_name["head"](ct[1]),acc_inc2],
-                           Primtivie["caml_string_equal"]
+                           CamlPrimtivie["caml_string_equal"]
                              (ic[1],Odoc_messages["object_end"])
                             ?acc_names2
                             :/* :: */[0,/* NF_cct */[5,ic[1]],acc_names2]];
@@ -1370,7 +1388,7 @@ var
               {return /* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](ct[1]),acc_inc],
-                       Primtivie["caml_string_equal"]
+                       CamlPrimtivie["caml_string_equal"]
                          (cta[1],Odoc_messages["object_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_cct */[5,cta[1]],acc_names]];
@@ -1446,8 +1464,8 @@ var ao=Odoc_misc["apply_opt"];
 var
  not_found_of_kind=
   function(kind,name)
-   {if("unknown primitive:isint")
-     {switch(kind[0])
+   {if(typeof kind==="number")
+     {switch(kind)
        {case 0:var $js=Odoc_messages["cross_module_not_found"];
         case 1:var $js=Odoc_messages["cross_module_type_not_found"];
         case 2:var $js=Odoc_messages["cross_class_not_found"];
@@ -1542,9 +1560,9 @@ var
                if(was_verified(v))
                 {return /* Ref */[16,name,/* Some */[0,kind],text_option];}
                else
-                {if("unknown primitive:isint")
-                  {if("unknown primitive:isint")
-                    {switch(kind[0])
+                {if(typeof kind==="number")
+                  {if(typeof kind==="number")
+                    {switch(kind)
                       {case 0:var f$1=module_exists;
                        case 1:var f$1=module_type_exists;
                        case 2:var f$1=class_exists;
@@ -1641,7 +1659,7 @@ var
                if(match$1)
                 {var ele=match$1[1];
                  
-                 switch(ele)
+                 switch(ele[0])
                   {case 0:
                     var match$2=/* tuple */[0,ele[1][1],/* RK_module */0];
                    case 1:
@@ -1815,7 +1833,7 @@ var
 var
  assoc_comments_module_element=
   function(parent_name,module_list,m_ele)
-   {switch(m_ele)
+   {switch(m_ele[0])
      {case 0:
        return /* Element_module */[0,
                assoc_comments_module(module_list,m_ele[1])];
@@ -1857,7 +1875,7 @@ var
 var
  assoc_comments_class_element=
   function(parent_name,module_list,c_ele)
-   {switch(c_ele)
+   {switch(c_ele[0])
      {case 0:
        return /* Class_attribute */[0,
                assoc_comments_attribute(module_list,c_ele[1])];
@@ -1878,7 +1896,7 @@ var
   function(parent_name,module_list,mk)
    {var exit;
     
-    switch(mk)
+    switch(mk[0])
      {case 0:
        return /* Module_struct */[0,
                List["map"]
@@ -1913,7 +1931,7 @@ var
   function(parent_name,module_list,mtk)
    {var exit;
     
-    switch(mtk)
+    switch(mtk[0])
      {case 0:
        return /* Module_type_struct */[0,
                List["map"]
@@ -1942,7 +1960,7 @@ var
   function(parent_name,module_list,ck)
    {var exit;
     
-    switch(ck)
+    switch(ck[0])
      {case 0:
        var
         inher2=
@@ -1975,7 +1993,7 @@ var
 var
  assoc_comments_class_type_kind=
   function(parent_name,module_list,ctk)
-   {switch(ctk)
+   {switch(ctk[0])
      {case 0:
        var
         inher2=
@@ -2033,7 +2051,7 @@ var
 var
  assoc_comments_parameter=
   function(parent_name,module_list,p)
-   {switch(p)
+   {switch(p[0])
      {case 0:
        var sn=p[1];
        
@@ -2190,7 +2208,7 @@ var
      {List["iter"]
        (function(nf)
          {var $js;
-          switch(nf)
+          switch(nf[0])
            {case 0:$js=Odoc_messages["cross_module_not_found"](nf[1]);
             case 1:$js=Odoc_messages["cross_module_type_not_found"](nf[1]);
             case 2:

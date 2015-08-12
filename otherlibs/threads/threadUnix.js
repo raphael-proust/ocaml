@@ -81,7 +81,7 @@ var
           
           var exit$1;
           
-          if("unknown primitive:isint")
+          if(typeof match==="number")
            {if(match!=2){if(match!=37){exit=4;}else{exit$1=5;}}else{exit$1=5;}
             }
           else
@@ -115,7 +115,7 @@ var
           
           var exit$1;
           
-          if("unknown primitive:isint")
+          if(typeof match==="number")
            {if(match!=2){if(match!=37){exit=2;}else{exit$1=3;}}else{exit$1=3;}
             }
           else
