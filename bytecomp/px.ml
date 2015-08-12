@@ -614,8 +614,12 @@ module rec
             | Ostype_win32  -> if Sys.win32 then E.true_ else E.false_
             | Ostype_cygwin  -> if Sys.cygwin then E.true_ else E.false_)
        | Psetglobal _ -> Gen_util.expr_of_unknow_primitive prim
-       | Pduprecord (_,_)|Plazyforce |Pbittest |Pcvtbint (_,_)|Pbigarrayref
-         (_,_,_,_)|Pbigarrayset (_,_,_,_)|Pbigarraydim _|Pstring_load_16 _
+       | Pcvtbint (_boxed_integer_source,_boxed_integer_dest) ->
+           (match args with
+            | e0::[] -> e0
+            | _ -> Gen_util.expr_of_unknow_primitive prim)
+       | Pduprecord (_,_)|Plazyforce |Pbittest |Pbigarrayref (_,_,_,_)
+         |Pbigarrayset (_,_,_,_)|Pbigarraydim _|Pstring_load_16 _
          |Pstring_load_32 _|Pstring_load_64 _|Pstring_set_16 _|Pstring_set_32
          _|Pstring_set_64 _|Pbigstring_load_16 _|Pbigstring_load_32 _
          |Pbigstring_load_64 _|Pbigstring_set_16 _|Pbigstring_set_32 _

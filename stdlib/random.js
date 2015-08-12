@@ -150,15 +150,9 @@ var
     };
 
 if(Nativeint["size"]=32)
- {var
-   nativeint=
-    function(s,bound){return "unknown primitive:nativeint_of_int32";};
-  }
+ {var nativeint=function(s,bound){return int32(s,bound);};}
 else
- {var
-   nativeint=
-    function(s,bound){return "unknown primitive:nativeint_of_int64";};
-  }
+ {var nativeint=function(s,bound){return int64(s,bound);};}
 
 var
  rawfloat=
