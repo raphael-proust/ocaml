@@ -380,7 +380,10 @@ module Jident :
   end 
 module rec
   Gen_of_env:sig
-               val get_string : (Ident.t* int) -> Env.t -> string
+               type key =
+                 | GetGlobal of Ident.t* int* Env.t
+                 | CamlPrimitive of Primitive.description
+               val get_exp : key -> J.expression
                val required_modules : unit -> J.block
                val query_type : Ident.t -> Env.t -> string
                val add_built_in_module : string -> unit
@@ -408,25 +411,38 @@ module rec
         | Sig_class_type (i,_,_) -> i
         | Sig_type (i,_,_) -> i in
       ident.name[@@ocaml.doc " Used in [Pgetglobal] "]
-    let get_string ((id : Ident.t),(pos : int)) (env : Env.t) =
-      (match Hashtbl.find cached_tbl id with
-       | exception Not_found  ->
-           (match Env.find_module (Pident id) env with
-            | { md_type = Mty_signature signature;_} ->
-                let serializable_sigs =
-                  List.filter
-                    (fun x  ->
-                       match x with
-                       | Types.Sig_typext _|Sig_module _|Sig_class _ -> true
-                       | Sig_value (_,{ val_kind = Val_prim _ }) -> false
-                       | Sig_value _ -> true
-                       | _ -> false) signature in
-                (Hashtbl.add cached_tbl id (Visit serializable_sigs);
-                 get_name serializable_sigs pos)
-            | _ -> assert false)
-       | Visit serializable_sigs -> get_name serializable_sigs pos
-       | BuiltIn  -> assert false : string)[@@ocaml.doc
-                                             " Given an module name and position, find its corresponding name  "]
+    type key =
+      | GetGlobal of Ident.t* int* Env.t
+      | CamlPrimitive of Primitive.description
+    let get_exp key =
+      (match key with
+       | GetGlobal ((id : Ident.t),(pos : int),env) ->
+           let v =
+             match Hashtbl.find cached_tbl id with
+             | exception Not_found  ->
+                 (match Env.find_module (Pident id) env with
+                  | { md_type = Mty_signature signature;_} ->
+                      let serializable_sigs =
+                        List.filter
+                          (fun x  ->
+                             match x with
+                             | Types.Sig_typext _|Sig_module _|Sig_class _ ->
+                                 true
+                             | Sig_value (_,{ val_kind = Val_prim _ }) ->
+                                 false
+                             | Sig_value _ -> true
+                             | _ -> false) signature in
+                      (Hashtbl.add cached_tbl id (Visit serializable_sigs);
+                       get_name serializable_sigs pos)
+                  | _ -> assert false)
+             | Visit serializable_sigs -> get_name serializable_sigs pos
+             | BuiltIn  -> assert false in
+           E.access (E.var id) (E.str v)
+       | CamlPrimitive { prim_name;_} ->
+           let v = "CamlPrimtivie" in
+           (add_built_in_module v; E.access (E.js_var v) (E.str prim_name)) : 
+      J.expression)[@@ocaml.doc
+                     " Given an module name and position, find its corresponding name  "]
     let string_of_value_description id =
       Util.string_of_fmt (Printtyp.value_description id)
     let rec dump_summary fmt (x : Env.summary) =
@@ -628,10 +644,8 @@ module rec
            (match args with
             | e::[] -> E.call (E.access (E.js_var "Math") (E.str "abs")) [e]
             | _ -> E.unknown_primitive prim)
-       | Pccall { prim_name;_} ->
-           let v = "CamlPrimtivie" in
-           (Gen_of_env.add_built_in_module v;
-            E.call (E.access (E.js_var v) (E.str prim_name)) args)
+       | Pccall prim ->
+           let e = Gen_of_env.get_exp (CamlPrimitive prim) in E.call e args
        | Pisint  ->
            (match args with
             | e::[] -> let open E in bin EqEqEq (typeof e) (E.str "number")
@@ -786,7 +800,10 @@ module rec
            (match (x, y) with
             | (([],None ),y) -> y
             | (([],Some _),([],None )) -> x
-            | (([],Some e1),([],Some e2)) -> ([], (Some (E.seq e1 e2)))
+            | (([],Some e1),([],Some e2)) ->
+                if is_js_pure e1
+                then ([], (Some e2))
+                else ([], (Some (E.seq e1 e2)))
             | ((block1,opt_e1),(block2,opt_e2)) ->
                 ((block1 @ ((statement_of_opt_expr opt_e1) :: block2)),
                   opt_e2) : output)
@@ -1142,9 +1159,8 @@ module rec
                                      } body)))
                       | Lprim (Pfield n,(Lprim (Pgetglobal id,[]))::[]) ->
                           (Gen_util.handle_name_tail st should_return lam) @@
-                            (let open J_helper.Exp in
-                               access (var id)
-                                 (str (Gen_of_env.get_string (id, n) cxt.env)))
+                            (Gen_of_env.get_exp
+                               (GetGlobal (id, n, (cxt.env))))
                       | Lprim (Praise _raise_kind,e::[]) ->
                           (match compile_lambda
                                    {
