@@ -448,7 +448,10 @@ module rec
            fun _  ->
              fun block  ->
                (S.variable id
-                  ~loc_exp:((E.call (E.js_var "require") [E.str id.name]), N))
+                  ~loc_exp:((E.call (E.js_var "require")
+                               [E.str
+                                  (Printf.sprintf "./%s.js"
+                                     (String.uncapitalize id.name))]), N))
                :: block) cached_tbl ([] : J.block)
   end
  and

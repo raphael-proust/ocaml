@@ -1,11 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Obj=require("Obj");
-var Map=require("Map");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var List=require("./list.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Obj=require("./obj.js");
+var Map=require("./map.js");
+var $$Array=require("./array.js");
+var Sys=require("./sys.js");
 
 
 var

@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Bytes=require("Bytes");
-var Hashtbl=require("Hashtbl");
-var Stream=require("Stream");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Bytes=require("./bytes.js");
+var Hashtbl=require("./hashtbl.js");
+var Stream=require("./stream.js");
 
 
 var initial_buffer=CamlPrimtivie["caml_create_string"](32);

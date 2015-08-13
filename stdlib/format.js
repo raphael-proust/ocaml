@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalFormat=require("CamlinternalFormat");
-var Pervasives=require("Pervasives");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Buffer=require("Buffer");
+var $$String=require("./string.js");
+var CamlinternalFormat=require("./camlinternalFormat.js");
+var Pervasives=require("./pervasives.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Buffer=require("./buffer.js");
 
 
 var make_queue=function(param){return /* record */[0,/* Nil */0,/* Nil */0];};

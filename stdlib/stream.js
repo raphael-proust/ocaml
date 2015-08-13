@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var CamlPrimtivie=require("CamlPrimtivie");
-var CamlinternalLazy=require("CamlinternalLazy");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
 
 
 var Failure=CamlPrimtivie["caml_set_oo_id"]([248,"Stream.Failure",0]);

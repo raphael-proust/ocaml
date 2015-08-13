@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var CamlPrimtivie=require("CamlPrimtivie");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
 
 
 var

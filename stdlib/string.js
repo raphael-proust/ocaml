@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Bytes=require("Bytes");
+var List=require("./list.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Bytes=require("./bytes.js");
 
 
 

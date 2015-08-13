@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Marshal=require("Marshal");
+var Pervasives=require("./pervasives.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Marshal=require("./marshal.js");
 
 
 var double_field=function(x,i){return x[i];};

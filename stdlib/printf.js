@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlinternalFormat=require("CamlinternalFormat");
-var Pervasives=require("Pervasives");
-var Buffer=require("Buffer");
+var CamlinternalFormat=require("./camlinternalFormat.js");
+var Pervasives=require("./pervasives.js");
+var Buffer=require("./buffer.js");
 
 
 var

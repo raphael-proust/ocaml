@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Bytes=require("Bytes");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Bytes=require("./bytes.js");
 
 
 var compare=$$String["compare"];

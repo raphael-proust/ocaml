@@ -249,37 +249,37 @@ var
 
 var
  Compile_primitive=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",462,2],[0,[0,0,0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",465,2],[0,[0,0,0,0]]);
 
 var
  Gen_util=
   CamlinternalMod["init_mod"]
-   ([0,"bytecomp/px.ml",708,7],[0,[0,0,0,0,0,[0,[0,0]],0,0,0,0,0]]);
+   ([0,"bytecomp/px.ml",711,7],[0,[0,0,0,0,0,[0,[0,0]],0,0,0,0,0]]);
 
 var
  Compile_lambda=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1084,17],[0,[0,0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1087,17],[0,[0,0,0]]);
 
 var
  Js_pp_util=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1668,22],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1671,22],[0,[0,0]]);
 
-var Json=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1708,27],[0,[0,0]]);
+var Json=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1711,27],[0,[0,0]]);
 
 var
  Optimizer=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1807,32],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1810,32],[0,[0,0]]);
 
 var
  Pp=
   CamlinternalMod["init_mod"]
-   ([0,"bytecomp/px.ml",2278,37],[0,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
+   ([0,"bytecomp/px.ml",2281,37],[0,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
 
 var
  Source_map=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",4684,47],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",4687,47],[0,[0,0]]);
 
-var Vlq64=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",4900,52],[0,[0,0]]);
+var Vlq64=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",4903,52],[0,[0,0]]);
 
 var mk=function(comment,exp){return /* record */[0,exp,comment];};
 
@@ -762,7 +762,7 @@ var
       }
     
     switch(exit)
-     {case 1172:throw [0,Assert_failure,[0,"bytecomp/px.ml",2633,50]];}
+     {case 1172:throw [0,Assert_failure,[0,"bytecomp/px.ml",2636,50]];}
     };
 
 var
@@ -785,7 +785,7 @@ var
       }
     
     switch(exit)
-     {case 1168:throw [0,Assert_failure,[0,"bytecomp/px.ml",2642,50]];}
+     {case 1168:throw [0,Assert_failure,[0,"bytecomp/px.ml",2645,50]];}
     };
 
 var
@@ -2053,7 +2053,7 @@ var
            {return variable_declaration(cxt,f,d);}
           }
         else
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",3784,58]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",3787,58]];}
         };
     
     var
@@ -2823,7 +2823,7 @@ var
       
       if(match$1)
        {if(match$1[1])
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4540,61]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4543,61]];}
         else
          {var
            sources_content=
@@ -3094,7 +3094,16 @@ var
                          /* Some */[0,
                           /* tuple */[0,
                            E$1[13]
-                            (0,0,E$1[22](0,"require"),/* :: */[0,E$1[4](0,id[2]),0]),
+                            (0,
+                             0,
+                             E$1[22](0,"require"),
+                             /* :: */[0,
+                              E$1[4]
+                               (0,
+                                Printf["sprintf"]
+                                 ([0,[11,"./",[2,0,[11,".js",0]]],"./%s.js"],
+                                  $$String["uncapitalize"](id[2]))),
+                              0]),
                            0]],
                          id),
                        block$1];
@@ -3322,7 +3331,7 @@ var
           {exit$10=101;}
          
          switch(exit$10)
-          {case 101:throw [0,Assert_failure,[0,"bytecomp/px.ml",584,19]];}
+          {case 101:throw [0,Assert_failure,[0,"bytecomp/px.ml",587,19]];}
          
         case 1:
          var exit$11;
@@ -4032,7 +4041,7 @@ var
        if(should_return!=0)
         {return /* tuple */[0,/* :: */[0,S$1[18](0,0,lam),0],0];}
        else
-        {throw [0,Match_failure,[0,"bytecomp/px.ml",729,12]];}
+        {throw [0,Match_failure,[0,"bytecomp/px.ml",732,12]];}
        
       }
     };
@@ -4090,7 +4099,7 @@ var
        if(should_return!=0)
         {return /* tuple */[0,/* :: */[0,S$1[18](0,0,lam),0],0];}
        else
-        {throw [0,Match_failure,[0,"bytecomp/px.ml",740,12]];}
+        {throw [0,Match_failure,[0,"bytecomp/px.ml",743,12]];}
        
       }
     };
@@ -4320,7 +4329,7 @@ var
                  if(match$4)
                   {return /* tuple */[0,match$3[1],match$4[1]];}
                  else
-                  {throw [0,Assert_failure,[0,"bytecomp/px.ml",1546,48]];}
+                  {throw [0,Assert_failure,[0,"bytecomp/px.ml",1549,48]];}
                  },
                lam[2]));
          
@@ -4336,7 +4345,7 @@ var
                   exp$1);
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1532,42]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1535,42]];}
        
       case 3:
        return Gen_util[8]
@@ -4442,7 +4451,7 @@ var
                           /* Some */[0,E$4[23](0,0)]];
                   }
                 else
-                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",1155,42]];}
+                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",1158,42]];}
                 }
               }
             else
@@ -4466,7 +4475,7 @@ var
                   if(match$11)
                    {return /* tuple */[0,match$10[1],match$11[1]];}
                   else
-                   {throw [0,Assert_failure,[0,"bytecomp/px.ml",1169,43]];}
+                   {throw [0,Assert_failure,[0,"bytecomp/px.ml",1172,43]];}
                   },
                 lam[2]));
           
@@ -4589,7 +4598,7 @@ var
                    }
                 }
               else
-               {throw [0,Assert_failure,[0,"bytecomp/px.ml",1345,49]];}
+               {throw [0,Assert_failure,[0,"bytecomp/px.ml",1348,49]];}
               
              }
            };
@@ -4674,7 +4683,7 @@ var
          switch(exit$2){case 505:return /* tuple */[0,aux$1(st),0];}
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1292,34]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1295,34]];}
        
       case 9:
        var i=lam[1];
@@ -4940,7 +4949,7 @@ var
            }
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1257,34]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1260,34]];}
        
       case 13:
        return Gen_util[5][1]
@@ -4999,7 +5008,7 @@ var
              }}
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1439,34]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1442,34]];}
        
       case 15:
        var id$2=lam[1];
@@ -5051,7 +5060,7 @@ var
         {exit$8=560;}
        
        switch(exit$8)
-        {case 560:throw [0,Assert_failure,[0,"bytecomp/px.ml",1475,35]];}
+        {case 560:throw [0,Assert_failure,[0,"bytecomp/px.ml",1478,35]];}
        
        if(typeof st=="number")
         {switch(st)
@@ -5087,7 +5096,7 @@ var
              /* :: */[0,J_helper[2][10](0,0,lam[1],match$30[1]),0]);
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1495,35]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1498,35]];}
        
        var exit$9;
        
@@ -5133,7 +5142,7 @@ var
           if(should_return!=0)
            {return /* tuple */[0,/* :: */[0,S$2[18](0,0,lam),0],0];}
           else
-           {throw [0,Match_failure,[0,"bytecomp/px.ml",1496,26]];}
+           {throw [0,Match_failure,[0,"bytecomp/px.ml",1499,26]];}
           
          }
        
@@ -5278,7 +5287,7 @@ var
                                      if(match$8)
                                       {return /* tuple */[0,match$7[1],match$8[1]];}
                                      else
-                                      {throw [0,Assert_failure,[0,"bytecomp/px.ml",1640,52]];}
+                                      {throw [0,Assert_failure,[0,"bytecomp/px.ml",1643,52]];}
                                      },
                                    match$5[2]));
                              
@@ -5988,7 +5997,7 @@ var
            {if(nconsts<sw[1]||nblocks<sw[3])
              {}
             else
-             {throw [0,Assert_failure,[0,"bytecomp/px.ml",2067,45]];}
+             {throw [0,Assert_failure,[0,"bytecomp/px.ml",2070,45]];}
             
             return count(bv,al);
             }
@@ -6726,7 +6735,7 @@ var
                {if(gen_line[1]<c[1])
                  {}
                 else
-                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",4770,65]];}
+                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",4773,65]];}
                 
                 for(var _i=gen_line[1];_i<=c[1]-1;_i++)
                  {Buffer["add_char"](buf,59)}
@@ -6914,7 +6923,7 @@ var
      aux=
       function(pos$1,acc)
        {if(List["length"](acc)>10)
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4996,63]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4999,63]];}
         else
          {}
         

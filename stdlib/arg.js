@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Buffer=require("Buffer");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Buffer=require("./buffer.js");
+var Sys=require("./sys.js");
 
 
 var Bad=CamlPrimtivie["caml_set_oo_id"]([248,"Arg.Bad",0]);

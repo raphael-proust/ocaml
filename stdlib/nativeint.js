@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("CamlPrimtivie");
-var Sys=require("Sys");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Sys=require("./sys.js");
 
 
 var zero=0;

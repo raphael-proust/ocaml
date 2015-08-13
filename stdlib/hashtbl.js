@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Random=require("Random");
-var CamlPrimtivie=require("CamlPrimtivie");
-var CamlinternalLazy=require("CamlinternalLazy");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Random=require("./random.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var $$Array=require("./array.js");
+var Sys=require("./sys.js");
 
 
 var hash=function(x){return CamlPrimtivie["caml_hash"](10,100,0,x);};

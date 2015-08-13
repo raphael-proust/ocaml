@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Printf=require("Printf");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Sys=require("Sys");
+var Printf=require("./printf.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Sys=require("./sys.js");
 
 
 var

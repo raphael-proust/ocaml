@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
-var Pervasives=require("Pervasives");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Buffer=require("Buffer");
-var Bytes=require("Bytes");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var CamlinternalFormatBasics=require("./camlinternalFormatBasics.js");
+var Pervasives=require("./pervasives.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Buffer=require("./buffer.js");
+var Bytes=require("./bytes.js");
+var Sys=require("./sys.js");
 
 
 var create_char_set=function(param){return Bytes["make"](32,0);};

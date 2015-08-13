@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("CamlPrimtivie");
-var Obj=require("Obj");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Obj=require("./obj.js");
 
 
 var

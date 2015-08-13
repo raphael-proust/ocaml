@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("CamlPrimtivie");
-var Lexing=require("Lexing");
-var $$Array=require("Array");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Lexing=require("./lexing.js");
+var $$Array=require("./array.js");
 
 
 var YYexit=CamlPrimtivie["caml_set_oo_id"]([248,"Parsing.YYexit",0]);

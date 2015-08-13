@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
+var Pervasives=require("./pervasives.js");
 
 
 Pervasives["do_at_exit"](/* () */0);

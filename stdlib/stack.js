@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var CamlPrimtivie=require("CamlPrimtivie");
+var List=require("./list.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
 
 
 var Empty=CamlPrimtivie["caml_set_oo_id"]([248,"Stack.Empty",0]);

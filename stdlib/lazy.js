@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("CamlPrimtivie");
-var Obj=require("Obj");
-var CamlinternalLazy=require("CamlinternalLazy");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Obj=require("./obj.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
 
 
 var Undefined=CamlinternalLazy["Undefined"];

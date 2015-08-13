@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
 
 
 var

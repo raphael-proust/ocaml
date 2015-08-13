@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Bytes=require("Bytes");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Bytes=require("./bytes.js");
+var Sys=require("./sys.js");
 
 
 var dummy_pos=[/* record */0,"",0,0,-1];

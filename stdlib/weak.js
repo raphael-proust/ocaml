@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var CamlPrimtivie=require("CamlPrimtivie");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var $$Array=require("./array.js");
+var Sys=require("./sys.js");
 
 
 var length=function(x){return x["length"]-1;};

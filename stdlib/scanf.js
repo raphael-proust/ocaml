@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
-var CamlinternalFormat=require("CamlinternalFormat");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Buffer=require("Buffer");
+var $$String=require("./string.js");
+var CamlinternalFormatBasics=require("./camlinternalFormatBasics.js");
+var CamlinternalFormat=require("./camlinternalFormat.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Buffer=require("./buffer.js");
 
 
 var null_char=0;

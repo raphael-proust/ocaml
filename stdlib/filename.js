@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Random=require("Random");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Buffer=require("Buffer");
-var CamlinternalLazy=require("CamlinternalLazy");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Random=require("./random.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Buffer=require("./buffer.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var Sys=require("./sys.js");
 
 
 var

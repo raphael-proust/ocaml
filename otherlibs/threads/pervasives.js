@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
-var CamlPrimtivie=require("CamlPrimtivie");
+var CamlinternalFormatBasics=require("./camlinternalFormatBasics.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
 
 
 var

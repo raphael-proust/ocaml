@@ -1,11 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Obj=require("Obj");
-var Buffer=require("Buffer");
-var $$Array=require("Array");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Obj=require("./obj.js");
+var Buffer=require("./buffer.js");
+var $$Array=require("./array.js");
 
 
 var printers=[0,/* [] */0];

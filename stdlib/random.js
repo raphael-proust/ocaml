@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Nativeint=require("Nativeint");
-var Pervasives=require("Pervasives");
-var Digest=require("Digest");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Int32=require("Int32");
-var Int64=require("Int64");
-var $$Array=require("Array");
+var Nativeint=require("./nativeint.js");
+var Pervasives=require("./pervasives.js");
+var Digest=require("./digest.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Int32=require("./int32.js");
+var Int64=require("./int64.js");
+var $$Array=require("./array.js");
 
 
 var

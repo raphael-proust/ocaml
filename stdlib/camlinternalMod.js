@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlinternalOO=require("CamlinternalOO");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Obj=require("Obj");
-var $$Array=require("Array");
+var CamlinternalOO=require("./camlinternalOO.js");
+var CamlPrimtivie=require("./camlPrimtivie.js");
+var Obj=require("./obj.js");
+var $$Array=require("./array.js");
 
 
 var

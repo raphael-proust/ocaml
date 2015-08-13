@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("CamlPrimtivie");
+var CamlPrimtivie=require("./camlPrimtivie.js");
 
 
 var match=CamlPrimtivie["caml_sys_get_argv"](/* () */0);

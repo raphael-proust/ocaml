@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("CamlPrimtivie");
+var CamlPrimtivie=require("./camlPrimtivie.js");
 
 
 var zero=[0,0];
