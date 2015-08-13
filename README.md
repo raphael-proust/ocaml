@@ -5,5 +5,5 @@ This code is a mirror of my private repo(not production ready yet), it's generat
 
 You can read generated js code for each ml file, for example stdlib/*.js
 
-You can see the online in-browser compiler via http:zhanghong.me/js-demo
+You can see the online [in-browser compiler](http:zhanghong.me/js-demo)
 If you are interested in this project, please contact bobzhang1988@gmail.com
