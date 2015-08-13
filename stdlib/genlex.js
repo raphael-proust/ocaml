@@ -4,6 +4,7 @@ var $$String=require("String");
 var Char=require("Char");
 var Pervasives=require("Pervasives");
 var List=require("List");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Bytes=require("Bytes");
 var Hashtbl=require("Hashtbl");
 var Stream=require("Stream");

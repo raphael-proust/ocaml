@@ -2,6 +2,7 @@
 
 var Pervasives=require("Pervasives");
 var Printf=require("Printf");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Obj=require("Obj");
 var Buffer=require("Buffer");
 var $$Array=require("Array");

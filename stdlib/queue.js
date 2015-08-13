@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var CamlPrimtivie=require("CamlPrimtivie");
 
 
 var Empty=CamlPrimtivie["caml_set_oo_id"]([248,"Queue.Empty",0]);

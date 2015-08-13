@@ -6,6 +6,7 @@ var CamlinternalFormat=require("CamlinternalFormat");
 var Pervasives=require("Pervasives");
 var List=require("List");
 var Printf=require("Printf");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Buffer=require("Buffer");
 
 

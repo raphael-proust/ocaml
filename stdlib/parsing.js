@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var CamlPrimtivie=require("CamlPrimtivie");
 var Lexing=require("Lexing");
 var $$Array=require("Array");
 

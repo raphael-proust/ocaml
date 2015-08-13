@@ -1,6 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Printf=require("Printf");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Sys=require("Sys");
 
 

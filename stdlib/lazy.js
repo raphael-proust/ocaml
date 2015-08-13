@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var CamlPrimtivie=require("CamlPrimtivie");
 var Obj=require("Obj");
 var CamlinternalLazy=require("CamlinternalLazy");
 

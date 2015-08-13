@@ -1,10 +1,16 @@
 [@@@warning "-a"]
 module B64 :
   sig
-    val default_alphabet : string
-    val uri_safe_alphabet : string
-    val decode : ?alphabet:string -> string -> string
-    val encode : ?pad:bool -> ?alphabet:string -> string -> string
+    [@@@ocaml.text
+      " Base64 is a group of similar binary-to-text encoding schemes that represent\n    binary data in an ASCII string format by translating it into a radix-64\n    representation.  It is specified in RFC 4648. "]
+    val default_alphabet : string[@@ocaml.doc
+                                   " A 64-character string specifying the regular Base64 alphabet. "]
+    val uri_safe_alphabet : string[@@ocaml.doc
+                                    " A 64-character string specifying the URI- and filename-safe Base64\n    alphabet. "]
+    val decode : ?alphabet:string -> string -> string[@@ocaml.doc
+                                                       " [decode s] decodes the string [s] that is encoded in base64 format.\n    Will leave trailing NULLs on the string, padding it out to a multiple\n    of 3 characters.  "]
+    val encode : ?pad:bool -> ?alphabet:string -> string -> string[@@ocaml.doc
+                                                                    " [encode s] encodes the string [s] into base64. If [pad] is false,\n    no trailing padding is added. "]
   end =
   struct
     let default_alphabet =
@@ -208,7 +214,8 @@ module J :
       | Right of 'right
     and variable_declaration = (ident* (expression* location) option)
     and case_clause = (expression* block)
-    and block = statement list
+    and block = statement list[@@ocaml.doc
+                                " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
   end =
   struct
     type loc =
@@ -333,7 +340,8 @@ module J :
       | Right of 'right
     and variable_declaration = (ident* (expression* location) option)
     and case_clause = (expression* block)
-    and block = statement list
+    and block = statement list[@@ocaml.doc
+                                " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
   end 
 module Util :
   sig val string_of_fmt : (Format.formatter -> 'a -> unit) -> 'a -> string
@@ -375,19 +383,31 @@ module rec
                val get_string : (Ident.t* int) -> Env.t -> string
                val required_modules : unit -> J.block
                val query_type : Ident.t -> Env.t -> string
+               val add_built_in_module : string -> unit
+               val reset : unit -> unit
              end =
   struct
-    let cached_tbl: (Ident.t,Types.signature_item list) Hashtbl.t =
-      Hashtbl.create 31
+    module E = J_helper.Exp
+    module S = J_helper.Stmt
+    type env_value =
+      | Visit of Types.signature_item list
+      | BuiltIn
+    let cached_tbl: (Ident.t,env_value) Hashtbl.t = Hashtbl.create 31
+    let reset () = Hashtbl.clear cached_tbl[@@ocaml.doc
+                                             " For each compilation we need reset to make it re-entrant "]
+    let add_built_in_module name =
+      Hashtbl.replace cached_tbl (Ident.create_persistent name) BuiltIn
     let get_name (serializable_sigs : Types.signature_item list) (pos : int)
       =
-      (match List.nth serializable_sigs pos with
-       | Types.Sig_value (i,_)|Sig_module (i,_,_) -> i
-       | Sig_typext (i,_,_) -> i
-       | Sig_modtype (i,_) -> i
-       | Sig_class (i,_,_) -> i
-       | Sig_class_type (i,_,_) -> i
-       | Sig_type (i,_,_) -> i).name
+      let ident =
+        match List.nth serializable_sigs pos with
+        | Types.Sig_value (i,_)|Sig_module (i,_,_) -> i
+        | Sig_typext (i,_,_) -> i
+        | Sig_modtype (i,_) -> i
+        | Sig_class (i,_,_) -> i
+        | Sig_class_type (i,_,_) -> i
+        | Sig_type (i,_,_) -> i in
+      ident.name[@@ocaml.doc " Used in [Pgetglobal] "]
     let get_string ((id : Ident.t),(pos : int)) (env : Env.t) =
       (match Hashtbl.find cached_tbl id with
        | exception Not_found  ->
@@ -401,10 +421,12 @@ module rec
                        | Sig_value (_,{ val_kind = Val_prim _ }) -> false
                        | Sig_value _ -> true
                        | _ -> false) signature in
-                (Hashtbl.add cached_tbl id serializable_sigs;
+                (Hashtbl.add cached_tbl id (Visit serializable_sigs);
                  get_name serializable_sigs pos)
             | _ -> assert false)
-       | serializable_sigs -> get_name serializable_sigs pos : string)
+       | Visit serializable_sigs -> get_name serializable_sigs pos
+       | BuiltIn  -> assert false : string)[@@ocaml.doc
+                                             " Given an module name and position, find its corresponding name  "]
     let string_of_value_description id =
       Util.string_of_fmt (Printtyp.value_description id)
     let rec dump_summary fmt (x : Env.summary) =
@@ -420,26 +442,23 @@ module rec
       | { val_type } ->
           Util.string_of_fmt (!Oprint.out_type)
             (Printtyp.tree_of_type_scheme val_type)
-    module E = J_helper.Exp
-    module S = J_helper.Stmt
     let required_modules () =
       Hashtbl.fold
         (fun (id : Ident.t)  ->
            fun _  ->
              fun block  ->
                (S.variable id
-                  ~loc_exp:((E.call (E.var (Jident.create_js "require"))
-                               [E.str id.name]), N))
+                  ~loc_exp:((E.call (E.js_var "require") [E.str id.name]), N))
                :: block) cached_tbl ([] : J.block)
   end
  and
-  Gen_primitive:sig
-                  val jsop_of_comp : Lambda.comparison -> J.binop
-                  val compile_primitive :
-                    Lambda.primitive -> J.expression list -> J.expression
-                  val compile_const :
-                    Lambda.structured_constant -> J.expression
-                end =
+  Compile_primitive:sig
+                      val jsop_of_comp : Lambda.comparison -> J.binop
+                      val compile_primitive :
+                        Lambda.primitive -> J.expression list -> J.expression
+                      val compile_const :
+                        Lambda.structured_constant -> J.expression
+                    end =
   struct
     let jsop_of_comp (cmp : Lambda.comparison) =
       (match cmp with
@@ -573,8 +592,7 @@ module rec
        | Psetfield (i,_) ->
            (match args with
             | e0::e1::[] ->
-                E.seq (E.bin Eq (E.access e0 (E.int (i + 1))) e1)
-                  Gen_util.unit_val
+                E.seq (E.bin Eq (E.access e0 (E.int (i + 1))) e1) (E.unit ())
             | _ -> E.unknown_primitive prim)
        | Pfloatfield i ->
            (match args with
@@ -583,7 +601,7 @@ module rec
        | Psetfloatfield i ->
            (match args with
             | e::e0::[] ->
-                E.seq (E.bin Eq (E.access e (E.int i)) e0) Gen_util.unit_val
+                E.seq (E.bin Eq (E.access e (E.int i)) e0) (E.unit ())
             | _ -> E.unknown_primitive prim)
        | Parraylength _|Pstringlength  ->
            (match args with
@@ -599,21 +617,18 @@ module rec
        | Parraysetu _|Parraysets _|Pstringsetu |Pstringsets  ->
            (match args with
             | e::e0::e1::[] ->
-                E.seq (E.bin Eq (E.access e e0) e1) Gen_util.unit_val
+                E.seq (E.bin Eq (E.access e e0) e1) (E.unit ())
             | _ -> E.unknown_primitive prim)
        | Pbintofint _|Pintofbint _|Pfloatofint  ->
            (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
        | Pabsfloat  ->
            (match args with
-            | e::[] ->
-                E.call
-                  (E.access (E.var (Jident.create_js "Math")) (E.str "abs"))
-                  [e]
+            | e::[] -> E.call (E.access (E.js_var "Math") (E.str "abs")) [e]
             | _ -> E.unknown_primitive prim)
        | Pccall { prim_name;_} ->
-           E.call
-             (E.access (E.var (Jident.create_js "CamlPrimtivie"))
-                (E.str prim_name)) args
+           let v = "CamlPrimtivie" in
+           (Gen_of_env.add_built_in_module v;
+            E.call (E.access (E.js_var v) (E.str prim_name)) args)
        | Pisint  ->
            (match args with
             | e::[] -> let open E in bin EqEqEq (typeof e) (E.str "number")
@@ -658,7 +673,8 @@ module rec
              (List.map (fun x  -> compile_const x) xs))
        | Const_float_array ars ->
            E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
-       | Const_immstring s -> E.str s : J.expression)
+       | Const_immstring s -> E.str s : J.expression)[@@ocaml.doc
+                                                       " TODO: check "]
   end and
        Gen_util:sig
                   type output = (J.block* J.expression option)
@@ -666,21 +682,23 @@ module rec
                     | EffectCall
                     | Declare of J.ident
                     | NeedValue
-                    | Assign of J.ident
+                    | Assign of
+                    J.ident[@ocaml.doc
+                             " when use [Assign], var is not needed, since it's already declared \n      make sure all [Assigs] are declared first, otherwise you are creating global variables\n   "]
                   val gen : ?name:string -> unit -> Ident.t
                   val exports :
                     Translmod.exports list ->
                       J.expression list -> J.statement
                   val block_of_output : output -> J.block
-                  val unit_val : J.expression
-                  val return_unit : J.block
-                  val undefined : J.expression
                   val is_pure : Lambda.lambda -> bool
                   module Ops : sig val (++) : output -> output -> output end
                   val dump_output : output -> out_channel -> unit
-                  val pp_output : output -> Pp.t -> unit
+                  val pp_output : output -> Pp.t -> unit[@@ocaml.doc
+                                                          " \n    - not should_return, has name\n      assign the value \n    - should_return, has name\n      impossible\n    - not should_return, no name\n      when prue ignoe\n      otherwise make  expression statement\n    - should_return, no name\n      return it \n "]
                   val handle_name_tail :
                     st -> bool -> Lambda.lambda -> J.expression -> output
+                  [@@ocaml.doc
+                    " \n    - not should_return, has name\n      assign the value \n    - should_return, has name\n      impossible\n    - not should_return, no name\n      when prue ignoe\n      otherwise make  expression statement\n    - should_return, no name\n      return it \n "]
                   val handle_block_return :
                     st ->
                       bool ->
@@ -739,13 +757,10 @@ module rec
                    fun (e : J.expression)  ->
                      let n = match i with | Id i -> i.name | Prim i -> i in
                      ((J.PNS n), e)) idents lams in
-            let open J_helper in
-              Stmt.exp
-                (E.bin Eq
-                   (E.access (E.var (Jident.create_js "module"))
-                      (E.str "exports")) (E.obj properties)) : J.statement)
+            S.exp
+              (E.bin Eq (E.access (E.js_var "module") (E.str "exports"))
+                 (E.obj properties)) : J.statement)
          let unit_val = E.float 0.
-         let undefined = E.var (Jident.create_js "undefined")
          let return_unit: J.block =
            [J_helper.Stmt.return (Some (E.float 0.))]
          let rec is_js_pure (x : J.expression) =
@@ -791,8 +806,6 @@ module rec
            ignore (Pp_js.program cxt p [statement_of_opt_expr exp])
        end and
             J_helper:sig
-                       val return_unit : J.block
-                       val unit_val : J.expression
                        module Exp :
                        sig
                          type t = J.expression
@@ -824,6 +837,10 @@ module rec
                            ?comment:string -> Lambda.lambda -> t
                          val unknown_primitive :
                            ?comment:string -> Lambda.primitive -> t
+                         val unit : ?comment:string -> unit -> t[@@ocaml.doc
+                                                                  " [unit] in ocaml will be compiled into [0]  in js"]
+                         val js_var : ?comment:string -> string -> t
+                         val undefined : ?comment:string -> unit -> t
                        end
                        module Stmt :
                        sig
@@ -887,9 +904,14 @@ module rec
                          val unknown_lambda :
                            ?comment:string ->
                              ?loc:J.location -> Lambda.lambda -> t
+                         val return_unit :
+                           ?comment:string -> ?loc:J.location -> unit -> t
+                         [@@ocaml.doc
+                           " for ocaml function which returns unit \n      it will be compiled into [return 0] in js "]
                        end
                      end =
             struct
+              [@@@ocaml.text " A module help construct js ast "]
               module Exp =
                 struct
                   type t = J.expression
@@ -952,6 +974,10 @@ module rec
                     (p : Lambda.primitive) =
                     (str ~comment (Lambda_util.string_of_primitive p) : 
                     t)
+                  let unit ?comment  () = float ?comment 0.
+                  let js_var ?comment  (v : string) =
+                    var ?comment (Jident.create_js v)
+                  let undefined ?comment  () = js_var ?comment "undefined"
                 end
               module Stmt =
                 struct
@@ -1038,21 +1064,23 @@ module rec
                     (exp @@
                        (Exp.str ~comment (Lambda_util.string_of_lambda lam)) : 
                     t)
+                  let return_unit ?comment  ?(loc= J.N)  () =
+                    ({
+                       loc;
+                       statement_desc = (J.Return (Some (Exp.float 0.)));
+                       comment
+                     } : t)
                 end
-              let unit_val = Exp.float 0.
-              let return_unit: J.block =
-                [{
-                   loc = N;
-                   statement_desc = (J.Return (Some (Exp.float 0.)));
-                   comment = None
-                 }]
             end and
-                 Js_main:sig
-                           val compile :
-                             Env.t -> Lambda.lambda -> Gen_util.output
-                           val lambda_as_module :
-                             bool -> Env.t -> string -> Lambda.lambda -> unit
-                         end =
+                 Compile_lambda:sig
+                                  [@@@ocaml.text " Main entry "]
+                                  val compile :
+                                    Env.t -> Lambda.lambda -> Gen_util.output
+                                  val lambda_as_module :
+                                    bool ->
+                                      Env.t ->
+                                        string -> Lambda.lambda -> unit
+                                end =
                  struct
                    open Gen_util.Ops
                    module E = J_helper.Exp
@@ -1071,6 +1099,8 @@ module rec
                      List.fold_left
                        (fun acc  -> fun (l,s)  -> HandlerMap.add l s acc) m
                        ls
+                   [@@@ocaml.text
+                     " delegate to the callee to generate expression \n      Invariant: [output] should return a trailing expression\n   "]
                    type cxt =
                      {
                      st: Gen_util.st;
@@ -1082,7 +1112,10 @@ module rec
                       | Lstaticcatch (l,(code,bindings),handler) ->
                           flat_catches ((code, handler, bindings) :: acc) l
                       | _ -> (acc, x) : ((int* Lambda.lambda* Ident.t list)
-                                          list* Lambda.lambda))
+                                          list* Lambda.lambda))[@@ocaml.doc
+                                                                 " assume outer is [Lstaticcatch] "]
+                   [@@@ocaml.text
+                     " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
                    let rec compile_lambda
                      ({ st; should_return; jmp_table; env } as cxt)
                      (lam : Lambda.lambda) =
@@ -1092,7 +1125,7 @@ module rec
                             (J_helper.Exp.var id)
                       | Lconst c ->
                           (Gen_util.handle_name_tail st should_return lam) @@
-                            (Gen_primitive.compile_const c)
+                            (Compile_primitive.compile_const c)
                       | Lfunction (kind,params,body) ->
                           (Gen_util.handle_name_tail st should_return lam) @@
                             (J_helper.Exp.efun params
@@ -1118,8 +1151,7 @@ module rec
                                    } e
                            with
                            | (b,Some v) ->
-                               ((b @ [J_helper.Stmt.throw v]),
-                                 (Some Gen_util.undefined))
+                               ((b @ [S.throw v]), (Some (E.undefined ())))
                            | (_,None ) -> assert false)
                       | Lprim (prim,args_lambda) ->
                           let (args_block,args_expr) =
@@ -1137,7 +1169,8 @@ module rec
                                     | _ -> assert false) args_lambda) in
                           let args_code = List.concat args_block in
                           let exp =
-                            Gen_primitive.compile_primitive prim args_expr in
+                            Compile_primitive.compile_primitive prim
+                              args_expr in
                           Gen_util.handle_block_return st should_return lam
                             args_code exp
                       | Llet (kind,id,arg,body) ->
@@ -1339,7 +1372,7 @@ module rec
                                       (args : Ident.t list)) in
                                args_code ++
                                  ([J_helper.Stmt.assign exit_id (E.int i)],
-                                   (Some Gen_util.undefined))
+                                   (Some (E.undefined ())))
                            | exception Not_found  ->
                                ([S.unknown_lambda ~comment:"error" lam],
                                  None))
@@ -1399,10 +1432,10 @@ module rec
                                     ((block @ [J_helper.Stmt.assign_unit x]),
                                       None)
                                 | (EffectCall ,true ) ->
-                                    ((block @ Gen_util.return_unit), None)
+                                    ((block @ [S.return_unit ()]), None)
                                 | (EffectCall ,_) -> (block, None)
                                 | (NeedValue ,_) ->
-                                    (block, (Some Gen_util.unit_val)))
+                                    (block, (Some (E.unit ()))))
                            | _ -> assert false)
                       | Lfor (id,start,finish,direction,body) ->
                           let block =
@@ -1448,7 +1481,7 @@ module rec
                            | Assign x ->
                                ((block @ [J_helper.Stmt.assign_unit x]),
                                  None)
-                           | NeedValue  -> (block, (Some J_helper.unit_val)))
+                           | NeedValue  -> (block, (Some (E.unit ()))))
                       | Lassign (id,lambda) ->
                           let block =
                             match compile_lambda
@@ -1463,7 +1496,7 @@ module rec
                           (match (st, should_return) with
                            | (EffectCall ,false ) -> (block, None)
                            | (EffectCall ,true ) ->
-                               ((block @ J_helper.return_unit), None)
+                               ((block @ [S.return_unit ()]), None)
                            | ((Declare _|Assign _),true ) ->
                                ([S.unknown_lambda lam], None)
                            | (Declare x,false ) ->
@@ -1472,8 +1505,7 @@ module rec
                            | (Assign x,false ) ->
                                ((block @ [J_helper.Stmt.assign_unit x]),
                                  None)
-                           | (NeedValue ,_) ->
-                               (block, (Some J_helper.unit_val)))
+                           | (NeedValue ,_) -> (block, (Some (E.unit ()))))
                       | Ltrywith (lam,id,catch) ->
                           let aux st =
                             let b = compile_lambda { cxt with st } lam in
@@ -1519,10 +1551,11 @@ module rec
                       | Lsend (meth_kind,lam1,lam2,lams,loc) ->
                           (match meth_kind with
                            | Public |Cached |Self  ->
-                               ([S.unknown_lambda lam],
-                                 (Some Gen_util.unit_val)))
+                               ([S.unknown_lambda lam], (Some (E.unit ()))))
                       | Levent (lam,_lam_event) -> compile_lambda cxt lam
                       | Lifused (_,lam) -> compile_lambda cxt lam : Gen_util.output)
+                     [@@ocaml.text
+                       " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
                    type group =
                      | Single of (Lambda.let_kind* Ident.t* Lambda.lambda)
                      | Recursive of (Ident.t* Lambda.lambda) list
@@ -1571,6 +1604,7 @@ module rec
                    let compile env lam =
                      (let exports = Translmod.get_export_identifiers () in
                       let () = Translmod.reset () in
+                      let () = Gen_of_env.reset () in
                       let export_idents =
                         exports |>
                           (Jlist.filter_map
@@ -1618,7 +1652,8 @@ module rec
                                      None) in
                                js
                            | _ -> raise Not_a_module)
-                      | _ -> raise Not_a_module : Gen_util.output)
+                      | _ -> raise Not_a_module : Gen_util.output)[@@ocaml.doc
+                                                                    " Actually simplify_lets is kind of global optimization since it requires you to know whether \n    it's used or not \n"]
                    let lambda_as_module raw env filename
                      (lam : Lambda.lambda) =
                      let out =
@@ -2627,6 +2662,8 @@ module rec
                                                 (fun i  ->
                                                    String.make 1
                                                      ("0123456789abcdef".[i]))
+                                            [@@@ocaml.text
+                                              " purely functional environment "]
                                             module SMap = Map.Make(String)
                                             module IMap =
                                               Map.Make(struct
@@ -2850,6 +2887,8 @@ module rec
                                                            done;
                                                            Buffer.contents
                                                              buffer)))
+                                              [@@ocaml.doc
+                                                " TODO:\n    check name conflicts with javascript conventions\n "]
                                             let string_of_id ?(replace=
                                               false)  (id : Ident.t)
                                               (({ mapping } as cxt) : cxt) =

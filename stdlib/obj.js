@@ -1,6 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Pervasives=require("Pervasives");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Marshal=require("Marshal");
 
 

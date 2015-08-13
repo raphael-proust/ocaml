@@ -5,6 +5,7 @@ var Pervasives=require("Pervasives");
 var Ocamlbuild_executor=require("Ocamlbuild_executor");
 var Printf=require("Printf");
 var Format=require("Format");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Unix=require("Unix");
 var Filename=require("Filename");
 var Sys=require("Sys");

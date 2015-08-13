@@ -3,6 +3,7 @@
 var $$String=require("String");
 var Char=require("Char");
 var Pervasives=require("Pervasives");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Bytes=require("Bytes");
 
 

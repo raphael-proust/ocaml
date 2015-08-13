@@ -2,6 +2,7 @@
 
 var Pervasives=require("Pervasives");
 var List=require("List");
+var CamlPrimtivie=require("CamlPrimtivie");
 var CamlinternalLazy=require("CamlinternalLazy");
 
 

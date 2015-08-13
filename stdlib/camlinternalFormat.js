@@ -4,6 +4,7 @@ var $$String=require("String");
 var Char=require("Char");
 var CamlinternalFormatBasics=require("CamlinternalFormatBasics");
 var Pervasives=require("Pervasives");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Buffer=require("Buffer");
 var Bytes=require("Bytes");
 var Sys=require("Sys");

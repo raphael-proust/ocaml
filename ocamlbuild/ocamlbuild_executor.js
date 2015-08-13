@@ -4,6 +4,7 @@ var $$String=require("String");
 var Pervasives=require("Pervasives");
 var List=require("List");
 var Printf=require("Printf");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Set=require("Set");
 var Queue=require("Queue");
 var Unix=require("Unix");

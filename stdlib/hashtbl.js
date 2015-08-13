@@ -3,6 +3,7 @@
 var $$String=require("String");
 var Pervasives=require("Pervasives");
 var Random=require("Random");
+var CamlPrimtivie=require("CamlPrimtivie");
 var CamlinternalLazy=require("CamlinternalLazy");
 var $$Array=require("Array");
 var Sys=require("Sys");

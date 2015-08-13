@@ -1,6 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var List=require("List");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Bytes=require("Bytes");
 
 

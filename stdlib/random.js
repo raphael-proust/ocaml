@@ -3,6 +3,7 @@
 var Nativeint=require("Nativeint");
 var Pervasives=require("Pervasives");
 var Digest=require("Digest");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Int32=require("Int32");
 var Int64=require("Int64");
 var $$Array=require("Array");

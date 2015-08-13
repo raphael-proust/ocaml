@@ -3,6 +3,7 @@
 var $$String=require("String");
 var CamlinternalFormat=require("CamlinternalFormat");
 var Pervasives=require("Pervasives");
+var CamlPrimtivie=require("CamlPrimtivie");
 var Buffer=require("Buffer");
 
 

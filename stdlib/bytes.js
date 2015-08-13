@@ -3,6 +3,7 @@
 var Char=require("Char");
 var Pervasives=require("Pervasives");
 var List=require("List");
+var CamlPrimtivie=require("CamlPrimtivie");
 
 
 var
