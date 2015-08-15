@@ -1,7 +1,4 @@
 
-
-
-//concat mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json2.js
 //# 1 "mlString.js"
 // Js_of_ocaml runtime support
 // http://www.ocsigen.org/js_of_ocaml/
@@ -3039,6 +3036,7 @@ function caml_compare (a, b) { return caml_compare_val (a, b, true); }
 function caml_int_compare (a, b) {
   if (a < b) return (-1); if (a == b) return 0; return 1;
 }
+var caml_int32_compare = caml_int_compare ; 
 //Provides: caml_equal mutable (const, const)
 //Requires: caml_compare_val
 function caml_equal (x, y) { return +(caml_compare_val(x,y,false) == 0); }
@@ -4795,5 +4793,61 @@ for(var i = 0; i < predefined_exceptions.length; i++){
 }
 
 module["exports"] = {
-    "caml_global_data" : caml_global_data
+    "caml_global_data" : caml_global_data,
+    "caml_string_compare" : caml_string_compare ,
+    "caml_string_compare": caml_string_compare,
+    "caml_string_equal" :  caml_string_equal,
+    "caml_string_get" : caml_string_get,
+    "caml_string_greaterequal" : caml_string_greaterequal,
+    "caml_string_greaterthan" : caml_string_greaterthan,
+    "caml_string_lessequal" : caml_string_lessequal,
+    "caml_string_lessthan" : caml_string_lessthan,
+    "caml_string_notequal" :  caml_string_notequal,
+    "caml_string_set" : caml_string_set,
+
+    "caml_make_float_vect" : caml_make_float_vect,
+    "caml_make_vect": caml_make_vect,
+    "caml_marshal_data_size": caml_marshal_data_size,
+    "caml_md5_chan" : caml_md5_chan,
+    "caml_md5_string" : caml_md5_string,
+    "caml_ml_channel_size" : caml_ml_channel_size,
+    "caml_ml_channel_size_64" : caml_ml_channel_size_64,
+    "caml_ml_close_channel" : caml_ml_close_channel,
+    "caml_ml_flush" : caml_ml_flush,
+    "caml_ml_input" : caml_ml_input,
+    "caml_ml_input_char" : caml_ml_input_char,
+    "caml_ml_input_int" : caml_ml_input_int,
+    "caml_ml_input_scan_line" : caml_ml_input_scan_line,
+    "caml_ml_open_descriptor_in" : caml_ml_open_descriptor_in,
+    "caml_ml_open_descriptor_out" : caml_ml_open_descriptor_out,
+    "caml_ml_out_channels_list" : caml_ml_out_channels_list,
+    "caml_ml_output" : caml_ml_output,
+    "caml_ml_output_char" : caml_ml_output_char,
+    "caml_ml_output_int" : caml_ml_output_int,
+    "caml_ml_pos_in" : caml_ml_pos_in,
+    "caml_ml_pos_in_64" : caml_ml_pos_in_64,
+    "caml_ml_pos_out" : caml_ml_pos_out,
+    "caml_ml_pos_out_64" : caml_ml_pos_out_64,
+    "caml_ml_seek_in" : caml_ml_seek_in,
+    "caml_ml_seek_in_64" : caml_ml_seek_in_64,
+    "caml_ml_seek_out" :  caml_ml_seek_out,
+    "caml_ml_seek_out_64" : caml_ml_seek_out_64,
+    "caml_ml_set_binary_mode" : caml_ml_set_binary_mode,
+    "caml_ml_string_length" : caml_ml_string_length,
+    "caml_modf_float" : caml_modf_float
+    // "caml_make_array": caml_make_array,
+    // "caml_ml_flush_partial" : caml_ml_flush_partial,
+    // "caml_ml_output_partial" : caml_ml_output_partial,
+
+
+    // "caml_string_get16" :  caml_string_get16, (* required but not provided*)
+    // "caml_string_get32" : caml_string_get32,
+    // "caml_string_get64" : caml_string_get64,
+    // "caml_string_set16" : caml_string_set16,
+    // "caml_string_set32" : caml_string_set32,
+    // "caml_string_set64" : caml_string_set64
+
 } 
+// local variables:
+// compile-command: "node ./camlPrimitive.js"
+// end:
