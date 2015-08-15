@@ -579,6 +579,23 @@ module rec
                  (match args with
                   | e0::e1::[] -> E.bin Mul e0 e1
                   | _ -> assert false)
+             | {
+                 prim_name =
+                   ("caml_gc_compaction"|"caml_gc_full_major"|"caml_gc_major"
+                    |"caml_gc_major_slice"|"caml_gc_minor"|"caml_gc_set");_}
+                 -> E.unit ()
+             | { prim_name = "caml_gc_counters";_} ->
+                 E.arr [E.int 0; E.float 0.; E.float 0.; E.float 0.]
+             | { prim_name = "caml_gc_get";_} ->
+                 E.arr
+                   [E.int 0;
+                   E.int ~comment:"minor_heap_size" 0;
+                   E.int ~comment:"major_heap_increment" 0;
+                   E.int ~comment:"space_overhead" 0;
+                   E.int ~comment:"verbose" 0;
+                   E.int ~comment:"max_overhead" 0;
+                   E.int ~comment:"stack_limit" 0;
+                   E.int ~comment:"allocation_policy" 0]
              | _ -> raise X.NA in
            Some v
          with | X.NA  -> None : J.expression option)[@@ocaml.doc

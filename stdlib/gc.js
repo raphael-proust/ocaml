@@ -213,7 +213,7 @@ var
 var
  allocated_bytes=
   function(param)
-   {var match=CamlPrimtivie["caml_gc_counters"](/* () */0);
+   {var match=[0,0,0,0];
     
     var ma=match[3];
     
