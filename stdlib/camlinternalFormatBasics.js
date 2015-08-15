@@ -5,7 +5,7 @@
 var
  erase_rel=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return /* End_of_fmtty */0;}}
     else
      {switch(param[0])
@@ -52,7 +52,7 @@ var
 var
  concat_fmtty=
   function(fmtty1,fmtty2)
-   {if(typeof fmtty1=="number")
+   {if(typeof fmtty1==="number")
      {switch(fmtty1){case 0:return fmtty2;}}
     else
      {switch(fmtty1[0])
@@ -140,7 +140,7 @@ var
 var
  concat_fmt=
   function(fmt1,fmt2)
-   {if(typeof fmt1=="number")
+   {if(typeof fmt1==="number")
      {switch(fmt1){case 0:return fmt2;}}
     else
      {switch(fmt1[0])

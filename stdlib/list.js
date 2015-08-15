@@ -43,7 +43,7 @@ var
             
             var a=l[1];
             
-            if(n=0){return a;}else{return nth_aux(l$1,n-1);}
+            if(n===0){return a;}else{return nth_aux(l$1,n-1);}
             }
           else
            {return Pervasives["failwith"]("nth");}
@@ -409,7 +409,7 @@ var
       
       var a=param[1];
       
-      return (CamlPrimtivie["caml_compare"](a,x)=0)||mem(x,l);
+      return CamlPrimtivie["caml_compare"](a,x)===0||mem(x,l);
       }
     else
      {return /* false */0;}
@@ -419,7 +419,7 @@ var
  memq=
   function(x,param)
    {if(param)
-     {var l=param[2];var a=param[1];return (a=x)||memq(x,l);}
+     {var l=param[2];var a=param[1];return a===x||memq(x,l);}
     else
      {return /* false */0;}
     };
@@ -436,7 +436,7 @@ var
       
       var a=match[1];
       
-      if(CamlPrimtivie["caml_compare"](a,x)=0)
+      if(CamlPrimtivie["caml_compare"](a,x)===0)
        {return b;}
       else
        {return assoc(x,l);}
@@ -457,7 +457,7 @@ var
       
       var a=match[1];
       
-      if(a=x){return b;}else{return assq(x,l);}
+      if(a===x){return b;}else{return assq(x,l);}
       }
     else
      {throw Not_found;}
@@ -473,7 +473,7 @@ var
       
       var a=match[1];
       
-      return (CamlPrimtivie["caml_compare"](a,x)=0)||mem_assoc(x,l);
+      return CamlPrimtivie["caml_compare"](a,x)===0||mem_assoc(x,l);
       }
     else
      {return /* false */0;}
@@ -489,7 +489,7 @@ var
       
       var a=match[1];
       
-      return (a=x)||mem_assq(x,l);
+      return a===x||mem_assq(x,l);
       }
     else
      {return /* false */0;}
@@ -505,7 +505,7 @@ var
       
       var a=pair[1];
       
-      if(CamlPrimtivie["caml_compare"](a,x)=0)
+      if(CamlPrimtivie["caml_compare"](a,x)===0)
        {return l;}
       else
        {return /* :: */[0,pair,remove_assoc(x,l)];}
@@ -524,7 +524,7 @@ var
       
       var a=pair[1];
       
-      if(a=x){return l;}else{return /* :: */[0,pair,remove_assq(x,l)];}
+      if(a===x){return l;}else{return /* :: */[0,pair,remove_assq(x,l)];}
       }
     else
      {return /* [] */0;}
@@ -678,7 +678,7 @@ var
 var
  chop=
   function(k,l)
-   {if(k=0)
+   {if(k===0)
      {return l;}
     else
      {if(l)
@@ -758,8 +758,8 @@ var
         
         var exit;
         
-        if(match!=2)
-         {if(match!=3)
+        if(match!==2)
+         {if(match!==3)
            {exit=41;}
           else
            {if(match$1)
@@ -875,8 +875,8 @@ var
         
         var exit;
         
-        if(match!=2)
-         {if(match!=3)
+        if(match!==2)
+         {if(match!==3)
            {exit=47;}
           else
            {if(match$1)
@@ -1014,7 +1014,7 @@ var
             
             var c=cmp(h1,h2);
             
-            if(c=0)
+            if(c===0)
              {return rev_merge(t1,t2,/* :: */[0,h1,accu]);}
             else
              {if(c<0)
@@ -1049,7 +1049,7 @@ var
             
             var c=cmp(h1,h2);
             
-            if(c=0)
+            if(c===0)
              {return rev_merge_rev(t1,t2,/* :: */[0,h1,accu]);}
             else
              {if(c>0)
@@ -1074,8 +1074,8 @@ var
         
         var exit;
         
-        if(match!=2)
-         {if(match!=3)
+        if(match!==2)
+         {if(match!==3)
            {exit=14;}
           else
            {if(match$1)
@@ -1093,10 +1093,10 @@ var
                   
                   var c=cmp(x1,x2);
                   
-                  if(c=0)
+                  if(c===0)
                    {var c$1=cmp(x2,x3);
                     
-                    if(c$1=0)
+                    if(c$1===0)
                      {return /* :: */[0,x2,/* [] */0];}
                     else
                      {if(c$1<0)
@@ -1109,7 +1109,7 @@ var
                    {if(c<0)
                      {var c$2=cmp(x2,x3);
                       
-                      if(c$2=0)
+                      if(c$2===0)
                        {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                       else
                        {if(c$2<0)
@@ -1120,7 +1120,7 @@ var
                         else
                          {var c$3=cmp(x1,x3);
                           
-                          if(c$3=0)
+                          if(c$3===0)
                            {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                           else
                            {if(c$3<0)
@@ -1140,7 +1140,7 @@ var
                     else
                      {var c$4=cmp(x1,x3);
                       
-                      if(c$4=0)
+                      if(c$4===0)
                        {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                       else
                        {if(c$4<0)
@@ -1151,7 +1151,7 @@ var
                         else
                          {var c$5=cmp(x2,x3);
                           
-                          if(c$5=0)
+                          if(c$5===0)
                            {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                           else
                            {if(c$5<0)
@@ -1191,7 +1191,7 @@ var
               
               var c$6=cmp(x1$1,x2$1);
               
-              if(c$6=0)
+              if(c$6===0)
                {return /* :: */[0,x1$1,/* [] */0];}
               else
                {if(c$6<0)
@@ -1237,8 +1237,8 @@ var
         
         var exit;
         
-        if(match!=2)
-         {if(match!=3)
+        if(match!==2)
+         {if(match!==3)
            {exit=27;}
           else
            {if(match$1)
@@ -1256,10 +1256,10 @@ var
                   
                   var c=cmp(x1,x2);
                   
-                  if(c=0)
+                  if(c===0)
                    {var c$1=cmp(x2,x3);
                     
-                    if(c$1=0)
+                    if(c$1===0)
                      {return /* :: */[0,x2,/* [] */0];}
                     else
                      {if(c$1>0)
@@ -1272,7 +1272,7 @@ var
                    {if(c>0)
                      {var c$2=cmp(x2,x3);
                       
-                      if(c$2=0)
+                      if(c$2===0)
                        {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                       else
                        {if(c$2>0)
@@ -1283,7 +1283,7 @@ var
                         else
                          {var c$3=cmp(x1,x3);
                           
-                          if(c$3=0)
+                          if(c$3===0)
                            {return /* :: */[0,x1,/* :: */[0,x2,/* [] */0]];}
                           else
                            {if(c$3>0)
@@ -1303,7 +1303,7 @@ var
                     else
                      {var c$4=cmp(x1,x3);
                       
-                      if(c$4=0)
+                      if(c$4===0)
                        {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                       else
                        {if(c$4>0)
@@ -1314,7 +1314,7 @@ var
                         else
                          {var c$5=cmp(x2,x3);
                           
-                          if(c$5=0)
+                          if(c$5===0)
                            {return /* :: */[0,x2,/* :: */[0,x1,/* [] */0]];}
                           else
                            {if(c$5>0)
@@ -1354,7 +1354,7 @@ var
               
               var c$6=cmp(x1$1,x2$1);
               
-              if(c$6=0)
+              if(c$6===0)
                {return /* :: */[0,x1$1,/* [] */0];}
               else
                {if(c$6>0)

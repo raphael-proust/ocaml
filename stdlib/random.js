@@ -31,7 +31,7 @@ var
     
     var extract=function(d){return d[0]+(d[1]<<8)+(d[2]<<16)+(d[3]<<24);};
     
-    if(seed["length"]=0){var seed$1=[0];}else{var seed$1=seed;}
+    if(seed["length"]===0){var seed$1=[0];}else{var seed$1=seed;}
     
     var l=seed$1["length"];
     
@@ -150,7 +150,7 @@ var
      {return int64aux(s,bound);}
     };
 
-if(Nativeint["size"]=32)
+if(Nativeint["size"]===32)
  {var nativeint=function(s,bound){return int32(s,bound);};}
 else
  {var nativeint=function(s,bound){return int64(s,bound);};}
@@ -169,7 +169,7 @@ var
 
 var $$float=function(s,bound){return rawfloat(s)*bound;};
 
-var bool=function(s){return (bits(s)&1)=0;};
+var bool=function(s){return (bits(s)&1)===0;};
 
 var
  State=

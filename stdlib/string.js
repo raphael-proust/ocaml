@@ -73,9 +73,9 @@ var
     var switcher=-9+param;
     
     if(4<switcher>>>0)
-     {if(switcher!=23){exit=19;}else{exit=18;}}
+     {if(switcher!==23){exit=19;}else{exit=18;}}
     else
-     {if(switcher!=2){exit=18;}else{exit=19;}}
+     {if(switcher!==2){exit=18;}else{exit=19;}}
     
     switch(exit){case 19:return /* false */0;case 18:return /* true */1;}
     };
@@ -107,7 +107,7 @@ var
           var exit;
           
           if(c>=14)
-           {if(c!=34){if(c!=92){exit=15;}else{exit=13;}}else{exit=13;}}
+           {if(c!==34){if(c!==92){exit=15;}else{exit=13;}}else{exit=13;}}
           else
            {if(c>=11)
              {if(c>=13){exit=13;}else{exit=15;}}

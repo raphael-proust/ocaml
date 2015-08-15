@@ -382,7 +382,7 @@ module rec
   Gen_of_env:sig
                type key =
                  | GetGlobal of Ident.t* int* Env.t
-                 | CamlPrimitive of Primitive.description
+                 | CamlPrimitive of Primitive.description* J.expression list
                val get_exp : key -> J.expression
                val required_modules : unit -> J.block
                val query_type : Ident.t -> Env.t -> string
@@ -413,7 +413,176 @@ module rec
       ident.name[@@ocaml.doc " Used in [Pgetglobal] "]
     type key =
       | GetGlobal of Ident.t* int* Env.t
-      | CamlPrimitive of Primitive.description
+      | CamlPrimitive of Primitive.description* J.expression list
+    let query (prim : Primitive.description) args =
+      (let module X = struct exception NA end in
+         try
+           let v =
+             match prim with
+             | { prim_name = ("caml_gc_stat"|"caml_gc_quick_stat" as x);_} ->
+                 E.arr ~comment:x
+                   [E.int ~comment:"stat-record" 0;
+                   E.float ~comment:"minor_words" 0.;
+                   E.float ~comment:"promoted_words" 0.;
+                   E.float ~comment:"major_words" 0.;
+                   E.int ~comment:"minor_collections" 0;
+                   E.int ~comment:"major_collections" 0;
+                   E.int ~comment:"heap_words" 0;
+                   E.int ~comment:"heap_chunks" 0;
+                   E.int ~comment:"live_words" 0;
+                   E.int ~comment:"live_blocks" 0;
+                   E.int ~comment:"free_words" 0;
+                   E.int ~comment:"free_blocks" 0;
+                   E.int ~comment:"larget_blocks" 0;
+                   E.int ~comment:"fragments" 0;
+                   E.int ~comment:"compactions" 0;
+                   E.int ~comment:"top_heap_words" 0;
+                   E.int ~comment:"stack_size" 0]
+             | { prim_name = "caml_abs_float";_} ->
+                 E.call (E.math "abs") args
+             | { prim_name = "caml_acos_float";_} ->
+                 E.call (E.math "acos") args
+             | { prim_name = "caml_add_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Plus e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_div_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Div e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_sub_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Minus e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_eq_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.eqeqeq e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_ge_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Ge e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_gt_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Gt e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_tan_float";_} ->
+                 E.call (E.math "tan") args
+             | { prim_name = "caml_tanh_float";_} ->
+                 E.call (E.math "tanh") args
+             | { prim_name = "caml_asin_float";_} ->
+                 E.call (E.math "asin") args
+             | { prim_name = "caml_atan2_float";_} ->
+                 E.call (E.math "atan2") args
+             | { prim_name = "caml_atan_float";_} ->
+                 E.call (E.math "atan") args
+             | { prim_name = "caml_ceil_float";_} ->
+                 E.call (E.math "ceil") args
+             | { prim_name = "caml_cos_float";_} ->
+                 E.call (E.math "cos") args
+             | { prim_name = "caml_cosh_float";_} ->
+                 E.call (E.math "cosh") args
+             | { prim_name = "caml_exp_float";_} ->
+                 E.call (E.math "exp") args
+             | { prim_name = "caml_sin_float";_} ->
+                 E.call (E.math "sin") args
+             | { prim_name = "caml_sinh_float";_} ->
+                 E.call (E.math "sinh") args
+             | { prim_name = "caml_sqrt_float";_} ->
+                 E.call (E.math "sqrt") args
+             | { prim_name = "caml_float_of_int";_} ->
+                 (match args with | e::[] -> e | _ -> assert false)
+             | { prim_name = "caml_floor_float";_} ->
+                 E.call (E.math "floor") args
+             | { prim_name = "caml_array_append";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.call (E.access e0 (E.str "concat")) [e1]
+                  | _ -> assert false)
+             | { prim_name = "caml_array_concat";_} -> raise X.NA
+             | {
+                 prim_name =
+                   ("caml_array_get"|"caml_array_get_addr"
+                    |"caml_array_get_float"|"caml_array_unsafe_get"
+                    |"caml_array_unsafe_get_float");_}
+                 ->
+                 (match args with
+                  | e0::e1::[] -> E.access e0 e1
+                  | _ -> assert false)
+             | {
+                 prim_name =
+                   ("caml_array_set"|"caml_array_set_addr"
+                    |"caml_array_set_float"|"caml_array_unsafe_set"
+                    |"caml_array_unsafe_set_addr"
+                    |"caml_array_unsafe_set_float");_}
+                 ->
+                 (match args with
+                  | e0::e1::e2::[] -> E.eq (E.access e0 e1) e2
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_add";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Plus e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_div";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Bor (E.bin Div e0 e1) (E.int 0)
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_mul";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Mul e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_of_int";_} ->
+                 (match args with | e::[] -> e | _ -> assert false)
+             | { prim_name = ("caml_int32_of_float"|"caml_int_of_float");_}
+                 ->
+                 (match args with
+                  | e::[] -> E.bin Bor e (E.int 0)
+                  | _ -> assert false)
+             | { prim_name = ("caml_int32_to_float"|"caml_int32_to_int");_}
+                 -> (match args with | e::[] -> e | _ -> assert false)
+             | { prim_name = "caml_int32_sub";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Minus e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_xor";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Bxor e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_and";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Band e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_int32_or";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Bor e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_le_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Le e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_lt_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Lt e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_log_float";_} ->
+                 E.call (E.math "log") args
+             | { prim_name = "caml_log10_float";_} ->
+                 E.call (E.math "log10") args
+             | { prim_name = "caml_log1p_float";_} ->
+                 E.call (E.math "log1p") args
+             | { prim_name = "caml_neg_float";_} ->
+                 (match args with | e::[] -> E.un Neg e | _ -> assert false)
+             | { prim_name = "caml_neq_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin NotEqEq e0 e1
+                  | _ -> assert false)
+             | { prim_name = "caml_mul_float";_} ->
+                 (match args with
+                  | e0::e1::[] -> E.bin Mul e0 e1
+                  | _ -> assert false)
+             | _ -> raise X.NA in
+           Some v
+         with | X.NA  -> None : J.expression option)[@@ocaml.doc
+                                                      " \nThere are two things we need consider:\n1.  For some primitives we can replace caml-primitive with js primitives directly\n2.  For some standard library functions, we prefer to replace with javascript primitives\n    For example [Pervasives[\"^\"] -> ^]\n    We can collect all mli files in OCaml and replace it with an efficient javascript runtime\n"]
     let get_exp key =
       (match key with
        | GetGlobal ((id : Ident.t),(pos : int),env) ->
@@ -438,11 +607,14 @@ module rec
              | Visit serializable_sigs -> get_name serializable_sigs pos
              | BuiltIn  -> assert false in
            E.access (E.var id) (E.str v)
-       | CamlPrimitive { prim_name;_} ->
-           let v = "CamlPrimtivie" in
-           (add_built_in_module v; E.access (E.js_var v) (E.str prim_name)) : 
-      J.expression)[@@ocaml.doc
-                     " Given an module name and position, find its corresponding name  "]
+       | CamlPrimitive (prim,args) ->
+           (match query prim args with
+            | None  ->
+                let v = "CamlPrimtivie" in
+                (add_built_in_module v;
+                 E.call (E.access (E.js_var v) (E.str prim.prim_name)) args)
+            | Some x -> x) : J.expression)[@@ocaml.doc
+                                            " Given an module name and position, find its corresponding name  "]
     let string_of_value_description id =
       Util.string_of_fmt (Printtyp.value_description id)
     let rec dump_summary fmt (x : Env.summary) =
@@ -481,8 +653,8 @@ module rec
   struct
     let jsop_of_comp (cmp : Lambda.comparison) =
       (match cmp with
-       | Ceq  -> Eq
-       | Cneq  -> NotEq
+       | Ceq  -> EqEqEq
+       | Cneq  -> NotEqEq
        | Clt  -> Lt
        | Cgt  -> Gt
        | Cle  -> Le
@@ -611,7 +783,7 @@ module rec
        | Psetfield (i,_) ->
            (match args with
             | e0::e1::[] ->
-                E.seq (E.bin Eq (E.access e0 (E.int (i + 1))) e1) (E.unit ())
+                E.seq (E.eq (E.access e0 (E.int (i + 1))) e1) (E.unit ())
             | _ -> E.unknown_primitive prim)
        | Pfloatfield i ->
            (match args with
@@ -619,8 +791,7 @@ module rec
             | _ -> E.unknown_primitive prim)
        | Psetfloatfield i ->
            (match args with
-            | e::e0::[] ->
-                E.seq (E.bin Eq (E.access e (E.int i)) e0) (E.unit ())
+            | e::e0::[] -> E.seq (E.eq (E.access e (E.int i)) e0) (E.unit ())
             | _ -> E.unknown_primitive prim)
        | Parraylength _|Pstringlength  ->
            (match args with
@@ -635,8 +806,7 @@ module rec
             | _ -> E.unknown_primitive prim)
        | Parraysetu _|Parraysets _|Pstringsetu |Pstringsets  ->
            (match args with
-            | e::e0::e1::[] ->
-                E.seq (E.bin Eq (E.access e e0) e1) (E.unit ())
+            | e::e0::e1::[] -> E.seq (E.eq (E.access e e0) e1) (E.unit ())
             | _ -> E.unknown_primitive prim)
        | Pbintofint _|Pintofbint _|Pfloatofint  ->
            (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
@@ -644,8 +814,7 @@ module rec
            (match args with
             | e::[] -> E.call (E.access (E.js_var "Math") (E.str "abs")) [e]
             | _ -> E.unknown_primitive prim)
-       | Pccall prim ->
-           let e = Gen_of_env.get_exp (CamlPrimitive prim) in E.call e args
+       | Pccall prim -> Gen_of_env.get_exp (CamlPrimitive (prim, args))
        | Pisint  ->
            (match args with
             | e::[] -> let open E in bin EqEqEq (typeof e) (E.str "number")
@@ -842,6 +1011,8 @@ module rec
                          val int : ?comment:string -> int -> t
                          val float : ?comment:string -> float -> t
                          val eqeq : ?comment:string -> t -> t -> t
+                         val eq : ?comment:string -> t -> t -> t
+                         val eqeqeq : ?comment:string -> t -> t -> t
                          val typeof : ?comment:string -> t -> t
                          val bin : ?comment:string -> J.binop -> t -> t -> t
                          val un : ?comment:string -> J.unop -> t -> t
@@ -861,6 +1032,8 @@ module rec
                                                                   " [unit] in ocaml will be compiled into [0]  in js"]
                          val js_var : ?comment:string -> string -> t
                          val undefined : ?comment:string -> unit -> t
+                         val math : ?comment:string -> string -> t[@@ocaml.doc
+                                                                    " [math \"abs\"] --> Math[\"abs\"] "]
                        end
                        module Stmt :
                        sig
@@ -961,6 +1134,12 @@ module rec
                   let eqeq ?comment  e0 e1 =
                     ({ expression_desc = (EBin (EqEq, e0, e1)); comment } : 
                     t)
+                  let eq ?comment  e0 e1 =
+                    ({ expression_desc = (EBin (Eq, e0, e1)); comment } : 
+                    t)
+                  let eqeqeq ?comment  e0 e1 =
+                    ({ expression_desc = (EBin (EqEqEq, e0, e1)); comment } : 
+                    t)
                   let typeof ?comment  e =
                     ({ expression_desc = (EUn (Typeof, e)); comment } : 
                     t)
@@ -998,6 +1177,8 @@ module rec
                   let js_var ?comment  (v : string) =
                     var ?comment (Jident.create_js v)
                   let undefined ?comment  () = js_var ?comment "undefined"
+                  let math ?comment  v =
+                    access ?comment (js_var "Math") (str v)
                 end
               module Stmt =
                 struct
@@ -1347,7 +1528,7 @@ module rec
                             | (_,_,(block,Some e)) ->
                                 let aux e =
                                   [S.if_
-                                     (E.eqeq (E.typeof e)
+                                     (E.eqeqeq (E.typeof e)
                                         (let open E in str "number"))
                                      (S.block (aux st e sw_consts None))
                                      ~else_:(S.block
@@ -2893,6 +3074,14 @@ module rec
                                                                   Buffer.add_string
                                                                     buffer
                                                                     "$caret"
+                                                              | '/' ->
+                                                                  Buffer.add_string
+                                                                    buffer
+                                                                    "$slash"
+                                                              | '.' ->
+                                                                  Buffer.add_string
+                                                                    buffer
+                                                                    "$dot"
                                                               | 'a'..'z'
                                                                 |'A'..'Z'|'_'
                                                                 |'$'|'0'..'9'

@@ -107,7 +107,7 @@ var
           if(match$1>=48)
            {if(match$1>=58){exit=88;}else{exit=87;}}
           else
-           {if(match$1!=45){exit=88;}else{exit=87;}}
+           {if(match$1!==45){exit=88;}else{exit=87;}}
           
           switch(exit){case 88:return s;case 87:return loop(i+1);}
           }
@@ -197,7 +197,7 @@ var
    {try
      {var success=CamlPrimtivie["caml_ml_flush_partial"](oc);}
     catch(exn)
-     {if(exn=Sys_blocked_io)
+     {if(exn===Sys_blocked_io)
        {wait_outchan(oc,-1);var success=/* false */0;}
       else
        {throw exn;}
@@ -219,7 +219,7 @@ var
           
           try
            {flush(a)}
-          catch(exn){var tag=exn[1];if(tag=Sys_error){}else{throw exn;}}
+          catch(exn){var tag=exn[1];if(tag===Sys_error){}else{throw exn;}}
           
           return iter(l);
           }
@@ -237,7 +237,7 @@ var
      {try
        {var written=CamlPrimtivie["caml_ml_output_partial"](oc,buf,pos,len);}
       catch(exn)
-       {if(exn=Sys_blocked_io)
+       {if(exn===Sys_blocked_io)
          {wait_outchan(oc,len);var written=0;}
         else
          {throw exn;}
@@ -255,7 +255,7 @@ var
    {try
      {return CamlPrimtivie["caml_ml_output_char"](oc,c);}
     catch(exn)
-     {if(exn=Sys_blocked_io)
+     {if(exn===Sys_blocked_io)
        {wait_outchan(oc,1);return output_char(oc,c);}
       else
        {throw exn;}
@@ -283,7 +283,7 @@ var
    {try
      {return CamlPrimtivie["caml_ml_output_char"](oc,b);}
     catch(exn)
-     {if(exn=Sys_blocked_io)
+     {if(exn===Sys_blocked_io)
        {wait_outchan(oc,1);return output_byte(oc,b);}
       else
        {throw exn;}
@@ -364,7 +364,7 @@ var
    {try
      {return CamlPrimtivie["caml_ml_input_char"](ic);}
     catch(exn)
-     {if(exn=Sys_blocked_io)
+     {if(exn===Sys_blocked_io)
        {wait_inchan(ic);return input_char(ic);}
       else
        {throw exn;}
@@ -377,7 +377,7 @@ var
    {try
      {return CamlPrimtivie["caml_ml_input"](ic,s,ofs,len);}
     catch(exn)
-     {if(exn=Sys_blocked_io)
+     {if(exn===Sys_blocked_io)
        {wait_inchan(ic);return unsafe_input(ic,s,ofs,len);}
       else
        {throw exn;}
@@ -401,7 +401,7 @@ var
     else
      {var r=unsafe_input(ic,s,ofs,len);
       
-      if(r=0)
+      if(r===0)
        {throw End_of_file;}
       else
        {return unsafe_really_input(ic,s,ofs+r,len-r);}
@@ -435,7 +435,7 @@ var
     
     try
      {while(/* true */1)
-       {if(pos[1]=buf[1]["length"])
+       {if(pos[1]===buf[1]["length"])
          {var newbuf=CamlPrimtivie["caml_create_string"](2*pos[1]);
           
           CamlPrimtivie["caml_blit_string"](buf[1],0,newbuf,0,pos[1]),
@@ -447,16 +447,16 @@ var
         
         var c=input_char(ic);
         
-        if(c=10){throw Exit;}else{}
+        if(c===10){throw Exit;}else{}
         
         buf[1][pos[1]]=c,0,pos[0]++}
       }
     catch(exn)
-     {if(exn=Exit)
+     {if(exn===Exit)
        {}
       else
-       {if(exn=End_of_file)
-         {if(pos[1]=0){throw End_of_file;}else{}}
+       {if(exn===End_of_file)
+         {if(pos[1]===0){throw End_of_file;}else{}}
         else
          {throw exn;}
         }
@@ -474,7 +474,7 @@ var
    {try
      {return CamlPrimtivie["caml_ml_input_char"](ic);}
     catch(exn)
-     {if(exn=Sys_blocked_io)
+     {if(exn===Sys_blocked_io)
        {wait_inchan(ic);return input_byte(ic);}
       else
        {throw exn;}

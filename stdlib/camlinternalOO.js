@@ -131,7 +131,7 @@ var
    {try
      {return Meths[22](name,table[3]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {var label=new_method(table);
         
         table[3]=Meths[4](name,label,table[3]),0;
@@ -162,13 +162,13 @@ var
   function(table,label)
    {try
      {return List["assoc"](label,table[6]);}
-    catch(exn){if(exn=Not_found){return table[2][label];}else{throw exn;}}
+    catch(exn){if(exn===Not_found){return table[2][label];}else{throw exn;}}
     };
 
 var
  to_list=
   function(arr)
-   {if(arr=0){return /* [] */0;}else{return $$Array["to_list"](arr);}};
+   {if(arr===0){return /* [] */0;}else{return $$Array["to_list"](arr);}};
 
 var
  narrow=
@@ -209,7 +209,7 @@ var
         var $js;
         try
          {$js=Labs[22](label,table[4]);}
-        catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
+        catch(exn){if(exn===Not_found){$js=/* true */1;}else{throw exn;}}
         return by_label[1]=Labs[4](label,$js,by_label[1]),0;
         },
       concr_meths$1,
@@ -289,7 +289,7 @@ var
    {try
      {return Vars[22](name,table[7]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {var index=new_slot(table);
         
         if(CamlPrimtivie["caml_string_notequal"](name,""))
@@ -334,7 +334,7 @@ var
    {try
      {return Vars[22](name,table[7]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {throw [0,Assert_failure,[0,"camlinternalOO.ml",280,50]];}
       else
        {throw exn;}
@@ -352,7 +352,7 @@ var
 var
  create_table=
   function(public_methods)
-   {if(public_methods=0)
+   {if(public_methods===0)
      {return new_table([]);}
     else
      {var tags=$$Array["map"](public_method_label,public_methods);
@@ -470,7 +470,7 @@ var
   function(obj,table)
    {var inits=table[8];
     
-    if(inits!=/* [] */0){return iter_f(obj,inits);}else{return 0;}
+    if(inits!==/* [] */0){return iter_f(obj,inits);}else{return 0;}
     };
 
 var
@@ -481,7 +481,7 @@ var
     else
      {var inits=table[8];
       
-      if(inits!=/* [] */0){iter_f(obj,inits)}else{}
+      if(inits!==/* [] */0){iter_f(obj,inits)}else{}
       
       return obj;
       }
@@ -520,10 +520,10 @@ var
       var
        lookup_key=
         function(tables)
-         {if(tables[1]=key)
+         {if(tables[1]===key)
            {return lookup_keys(i-1,keys,tables[2]);}
           else
-           {if(tables[3]!=/* Empty */0)
+           {if(tables[3]!==/* Empty */0)
              {return lookup_key(tables[3]);}
             else
              {var next=/* Cons */[0,key,/* Empty */0,/* Empty */0];
@@ -543,7 +543,7 @@ var
   function(root,keys)
    {var root$1=root;
     
-    if(root$1[2]!=/* Empty */0)
+    if(root$1[2]!==/* Empty */0)
      {return lookup_keys(keys["length"]-1,keys,root$1[2]);}
     else
      {return build_path(keys["length"]-1,keys,root$1);}
@@ -662,7 +662,7 @@ var
   function(table)
    {var n=new_method(table);
     
-    if(((n%2)=0)||n>2+table[2][1]*16/Sys["word_size"])
+    if(n%2===0||n>2+table[2][1]*16/Sys["word_size"])
      {var n$1=n;}
     else
      {var n$1=new_method(table);}

@@ -156,8 +156,8 @@ var
 var
  closing=
   function(param)
-   {if(param!=40)
-     {if(param!=123)
+   {if(param!==40)
+     {if(param!==123)
        {throw [0,Assert_failure,[0,"buffer.ml",115,9]];}
       else
        {return 125;}
@@ -175,11 +175,11 @@ var
        {if(i>=lim)
          {throw Not_found;}
         else
-         {if(s[i]=opening)
+         {if(s[i]===opening)
            {return advance(k+1,i+1,lim);}
           else
-           {if(s[i]=closing)
-             {if(k=0){return i;}else{return advance(k-1,i+1,lim);}}
+           {if(s[i]===closing)
+             {if(k===0){return i;}else{return advance(k-1,i+1,lim);}}
             else
              {return advance(k,i+1,lim);}
             }
@@ -206,7 +206,7 @@ var
            {if(match>=97)
              {if(match>=123){exit=15;}else{exit=14;}}
             else
-             {if(match!=95){exit=15;}else{exit=14;}}
+             {if(match!==95){exit=15;}else{exit=14;}}
             }
           else
            {if(match>=58)
@@ -232,8 +232,8 @@ var
       
       var exit;
       
-      if(c!=40)
-       {if(c!=123)
+      if(c!==40)
+       {if(c!==123)
          {var stop=advance_to_non_alpha(s,start+1);
           
           return /* tuple */[0,$$String["sub"](s,start,stop-start),stop];
@@ -269,13 +269,13 @@ var
        {if(i<lim)
          {var current=s[i];
           
-          if(current!=36)
+          if(current!==36)
            {var current$1=current;
             
-            if(previous=92)
+            if(previous===92)
              {add_char(b,92);add_char(b,current$1);return subst(32,i+1);}
             else
-             {if(current!=92)
+             {if(current!==92)
                {var current$2=current;
                 
                 add_char(b,current$2);
@@ -286,7 +286,7 @@ var
               }
             }
           else
-           {if(previous=92)
+           {if(previous===92)
              {add_char(b,current);return subst(32,i+1);}
             else
              {var j=i+1;
@@ -303,7 +303,7 @@ var
             }
           }
         else
-         {if(previous=92){return add_char(b,previous);}else{return 0;}}
+         {if(previous===92){return add_char(b,previous);}else{return 0;}}
         };
     
     return subst(32,0);

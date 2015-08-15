@@ -57,7 +57,7 @@ var
        {try
          {return Hashtbl["find"](kwd_table,id);}
         catch(exn)
-         {if(exn=Not_found){return /* Ident */[1,id];}else{throw exn;}}
+         {if(exn===Not_found){return /* Ident */[1,id];}else{throw exn;}}
         };
     
     var
@@ -68,7 +68,7 @@ var
         try
          {return Hashtbl["find"](kwd_table,s);}
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===Not_found)
            {throw [0,Stream["Error"],Pervasives["^"]("Illegal character ",s)];
             }
           else
@@ -162,7 +162,7 @@ var
                    try
                     {var c$1=$$char(strm__);}
                    catch(exn)
-                    {if(exn=Stream["Failure"])
+                    {if(exn===Stream["Failure"])
                       {throw [0,Stream["Error"],""];}
                      else
                       {throw exn;}
@@ -175,7 +175,7 @@ var
                    if(match$1)
                     {var match$2=match$1[1];
                      
-                     if(match$2!=39)
+                     if(match$2!==39)
                       {exit$1=4;}
                      else
                       {Stream["junk"](strm__);
@@ -220,7 +220,7 @@ var
            {if(c>=127)
              {if(c>=192){exit=10;}else{exit=13;}}
             else
-             {if(c!=125){exit=11;}else{exit=13;}}
+             {if(c!==125){exit=11;}else{exit=13;}}
             }
           
           switch(exit)
@@ -283,7 +283,7 @@ var
             if(27<switcher>>>0)
              {if(switcher>=97){exit$1=16;}else{exit=15;}}
             else
-             {if(switcher!=1){exit$1=16;}else{exit=15;}}
+             {if(switcher!==1){exit$1=16;}else{exit=15;}}
             }
           else
            {if(c>=48)
@@ -292,7 +292,7 @@ var
               if(6<switcher$1>>>0){exit$1=16;}else{exit=15;}
               }
             else
-             {if(c!=39){exit=15;}else{exit$1=16;}}
+             {if(c!==39){exit=15;}else{exit$1=16;}}
             }
           
           switch(exit$1)
@@ -327,11 +327,11 @@ var
             if(30<switcher>>>0)
              {if(switcher>=32){exit=18;}else{exit$1=19;}}
             else
-             {if(switcher!=29){exit=18;}else{exit$1=19;}}
+             {if(switcher!==29){exit=18;}else{exit$1=19;}}
             }
           else
            {if(c>=65)
-             {if(c!=92){exit=18;}else{exit$1=19;}}
+             {if(c!==92){exit=18;}else{exit$1=19;}}
             else
              {if(c>=33)
                {var switcher$1=-33+c;
@@ -441,9 +441,9 @@ var
           var exit$1;
           
           if(c>=58)
-           {if(c!=69){if(c!=101){exit=27;}else{exit$1=29;}}else{exit$1=29;}}
+           {if(c!==69){if(c!==101){exit=27;}else{exit$1=29;}}else{exit$1=29;}}
           else
-           {if(c!=46)
+           {if(c!==46)
              {if(c>=48)
                {Stream["junk"](strm__);
                 var s=strm__;
@@ -548,7 +548,7 @@ var
           
           var exit$1;
           
-          if(c!=43){if(c!=45){exit=36;}else{exit$1=37;}}else{exit$1=37;}
+          if(c!==43){if(c!==45){exit=36;}else{exit$1=37;}}else{exit$1=37;}
           
           switch(exit$1)
            {case 37:
@@ -608,15 +608,15 @@ var
         if(match)
          {var c=match[1];
           
-          if(c!=34)
-           {if(c!=92)
+          if(c!==34)
+           {if(c!==92)
              {Stream["junk"](strm__);var s=strm__;store(c);return string(s);}
             else
              {Stream["junk"](strm__);
               try
                {var c$1=$$escape(strm__);}
               catch(exn)
-               {if(exn=Stream["Failure"])
+               {if(exn===Stream["Failure"])
                  {throw [0,Stream["Error"],""];}
                 else
                  {throw exn;}
@@ -643,14 +643,14 @@ var
         if(match)
          {var c=match[1];
           
-          if(c!=92)
+          if(c!==92)
            {Stream["junk"](strm__);return c;}
           else
            {Stream["junk"](strm__);
             try
              {return $$escape(strm__);}
             catch(exn)
-             {if(exn=Stream["Failure"])
+             {if(exn===Stream["Failure"])
                {throw [0,Stream["Error"],""];}
               else
                {throw exn;}
@@ -751,7 +751,7 @@ var
         if(match)
          {var match$1=match[1];
           
-          if(match$1!=42)
+          if(match$1!==42)
            {exit=58;}
           else
            {Stream["junk"](strm__);
@@ -804,7 +804,7 @@ var
         if(match)
          {var c=match[1];
           
-          if(c!=42)
+          if(c!==42)
            {Stream["junk"](strm__);return comment(strm__);}
           else
            {Stream["junk"](strm__);var s=strm__;comment(s);return comment(s);}
@@ -821,8 +821,8 @@ var
         if(match)
          {var c=match[1];
           
-          if(c!=41)
-           {if(c!=42)
+          if(c!==41)
+           {if(c!==42)
              {Stream["junk"](strm__);return comment(strm__);}
             else
              {Stream["junk"](strm__);return maybe_end_comment(strm__);}

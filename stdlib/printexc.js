@@ -57,7 +57,7 @@ var
                f);
       }
     else
-     {if(CamlPrimtivie["caml_obj_tag"](f)=Obj["string_tag"])
+     {if(CamlPrimtivie["caml_obj_tag"](f)===Obj["string_tag"])
        {return Printf["sprintf"]
                 ([/* Format */0,
                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
@@ -65,7 +65,7 @@ var
                  f);
         }
       else
-       {if(CamlPrimtivie["caml_obj_tag"](f)=Obj["double_tag"])
+       {if(CamlPrimtivie["caml_obj_tag"](f)===Obj["double_tag"])
          {return Pervasives["string_of_float"](f);}
         else
          {return "_";}
@@ -146,15 +146,15 @@ var
           if(match){var s=match[1];return s;}else{return conv(tl);}
           }
         else
-         {if(x=Out_of_memory)
+         {if(x===Out_of_memory)
            {return "Out of memory";}
           else
-           {if(x=Stack_overflow)
+           {if(x===Stack_overflow)
              {return "Stack overflow";}
             else
              {var tag=x[1];
               
-              if(tag=Match_failure)
+              if(tag===Match_failure)
                {var match$1=x[2];
                 
                 var $$char=match$1[3];
@@ -169,7 +169,7 @@ var
               else
                {var tag$1=x[1];
                 
-                if(tag$1=Assert_failure)
+                if(tag$1===Assert_failure)
                  {var match$2=x[2];
                   
                   var $$char$1=match$2[3];
@@ -189,7 +189,7 @@ var
                 else
                  {var tag$2=x[1];
                   
-                  if(tag$2=Undefined_recursive_module)
+                  if(tag$2===Undefined_recursive_module)
                    {var match$3=x[2];
                     
                     var $$char$2=match$3[3];
@@ -209,7 +209,7 @@ var
                   else
                    {var x$1=x;
                     
-                    if(CamlPrimtivie["caml_obj_tag"](x$1)!=0)
+                    if(CamlPrimtivie["caml_obj_tag"](x$1)!==0)
                      {return x$1[0];}
                     else
                      {var constructor=x$1[0][0];
@@ -281,7 +281,7 @@ var
                 rbckt)];
       }
     catch(exn)
-     {var tag=exn[1];if(tag=Failure){return /* None */0;}else{throw exn;}}
+     {var tag=exn[1];if(tag===Failure){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -291,9 +291,9 @@ var
      info=
       function(is_raise)
        {if(is_raise)
-         {if(pos=0){return "Raised at";}else{return "Re-raised at";}}
+         {if(pos===0){return "Raised at";}else{return "Re-raised at";}}
         else
-         {if(pos=0)
+         {if(pos===0)
            {return "Raised by primitive operation at";}
           else
            {return "Called from";}
@@ -350,7 +350,7 @@ var
       case 1:
        var match=slot[1];
        
-       if(match!=0)
+       if(match!==0)
         {return /* None */0;}
        else
         {return /* Some */[0,
@@ -502,7 +502,7 @@ var
       var
        exists_usable=
         function(i)
-         {if(i!=-1)
+         {if(i!==-1)
            {return usable_slot(backtrace[i])||exists_usable(i-1);}
           else
            {return /* false */0;}
@@ -546,7 +546,10 @@ var
   function(x)
    {var x$1=x;
     
-    if(CamlPrimtivie["caml_obj_tag"](x$1)=0){return x$1[0];}else{return x$1;}
+    if(CamlPrimtivie["caml_obj_tag"](x$1)===0)
+     {return x$1[0];}
+    else
+     {return x$1;}
     };
 
 var exn_slot_id=function(x){var slot=exn_slot(x);return slot[1];};
@@ -628,7 +631,7 @@ var
         }
       }
     catch(exn$2)
-     {if(exn$2=Out_of_memory)
+     {if(exn$2===Out_of_memory)
        {return Pervasives["prerr_endline"]
                 ("Fatal error: out of memory in uncaught exception handler");
         }

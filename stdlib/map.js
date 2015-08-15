@@ -123,7 +123,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0)
+          if(c===0)
            {return /* Node */[0,l,x,data,r,h];}
           else
            {if(c<0)
@@ -150,7 +150,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0){return d;}else{return find(x,c<0?l:r);}
+          if(c===0){return d;}else{return find(x,c<0?l:r);}
           }
         else
          {throw Not_found;}
@@ -168,7 +168,7 @@ var
           
           var c=Ord[1](x,v);
           
-          return (c=0)||mem(x,c<0?l:r);
+          return c===0||mem(x,c<0?l:r);
           }
         else
          {return /* false */0;}
@@ -265,7 +265,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0)
+          if(c===0)
            {return merge(l,r);}
           else
            {if(c<0)
@@ -532,7 +532,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0)
+          if(c===0)
            {return /* tuple */[0,l,/* Some */[0,d],r];}
           else
            {if(c<0)
@@ -745,12 +745,12 @@ var
                 
                 var c=Ord[1](v1,v2);
                 
-                if(c!=0)
+                if(c!==0)
                  {return c;}
                 else
                  {var c$1=cmp(d1,d2);
                   
-                  if(c$1!=0)
+                  if(c$1!==0)
                    {return c$1;}
                   else
                    {return compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));}
@@ -794,7 +794,8 @@ var
                 
                 var v1=match[1];
                 
-                return (Ord[1](v1,v2)=0)&&
+                return Ord[1](v1,v2)===
+                       0&&
                        cmp(d1,d2)&&
                        equal_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));
                 }

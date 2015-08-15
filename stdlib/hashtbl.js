@@ -22,10 +22,10 @@ var
 try
  {var params=CamlPrimtivie["caml_sys_getenv"]("OCAMLRUNPARAM");}
 catch(exn)
- {if(exn=Not_found)
+ {if(exn===Not_found)
    {try
      {var params=CamlPrimtivie["caml_sys_getenv"]("CAMLRUNPARAM");}
-    catch(exn$1){if(exn$1=Not_found){var params="";}else{throw exn$1;}}
+    catch(exn$1){if(exn$1===Not_found){var params="";}else{throw exn$1;}}
     }
   else
    {throw exn;}
@@ -70,9 +70,9 @@ var
       var
        seed=
         Random["State"][4]
-         ((tag=250)
+         (tag===250
            ?lzarg[1]
-           :(tag=246)?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+           :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
       }
     else
      {var seed=0;}
@@ -98,7 +98,7 @@ var
   function(h)
    {var len=h[2]["length"];
     
-    if(h["length"]<4||(len=h[4]))
+    if(h["length"]<4||len===h[4])
      {return clear(h);}
     else
      {h[1]=0,0;
@@ -189,7 +189,7 @@ var
           
           var k=param[1];
           
-          if(CamlPrimtivie["caml_compare"](k,key)=0)
+          if(CamlPrimtivie["caml_compare"](k,key)===0)
            {h[1]=h[1]-1,0;return next;}
           else
            {return /* Cons */[0,k,i,remove_bucket(next)];}
@@ -213,7 +213,7 @@ var
       
       var k=param[1];
       
-      if(CamlPrimtivie["caml_compare"](key,k)=0)
+      if(CamlPrimtivie["caml_compare"](key,k)===0)
        {return d;}
       else
        {return find_rec(key,rest);}
@@ -234,7 +234,7 @@ var
       
       var k1=match[1];
       
-      if(CamlPrimtivie["caml_compare"](key,k1)=0)
+      if(CamlPrimtivie["caml_compare"](key,k1)===0)
        {return d1;}
       else
        {if(rest1)
@@ -244,7 +244,7 @@ var
           
           var k2=rest1[1];
           
-          if(CamlPrimtivie["caml_compare"](key,k2)=0)
+          if(CamlPrimtivie["caml_compare"](key,k2)===0)
            {return d2;}
           else
            {if(rest2)
@@ -254,7 +254,7 @@ var
               
               var k3=rest2[1];
               
-              if(CamlPrimtivie["caml_compare"](key,k3)=0)
+              if(CamlPrimtivie["caml_compare"](key,k3)===0)
                {return d3;}
               else
                {return find_rec(key,rest3);}
@@ -284,7 +284,7 @@ var
           
           var k=param[1];
           
-          if(CamlPrimtivie["caml_compare"](k,key)=0)
+          if(CamlPrimtivie["caml_compare"](k,key)===0)
            {return /* :: */[0,d,find_in_bucket(rest)];}
           else
            {return find_in_bucket(rest);}
@@ -309,7 +309,7 @@ var
           
           var k=param[1];
           
-          if(CamlPrimtivie["caml_compare"](k,key)=0)
+          if(CamlPrimtivie["caml_compare"](k,key)===0)
            {return /* Cons */[0,key,info,next];}
           else
            {return /* Cons */[0,k,i,replace_bucket(next)];}
@@ -325,7 +325,7 @@ var
     try
      {return h[2][i]=replace_bucket(l),0;}
     catch(exn$2)
-     {if(exn$2=Not_found)
+     {if(exn$2===Not_found)
        {h[2][i]=/* Cons */[0,key,info,l],0;
         h[1]=h[1]+1,0;
         if(h[1]>h[2]["length"]<<1){return resize(key_index,h);}else{return 0;}
@@ -346,7 +346,8 @@ var
           
           var k=param[1];
           
-          return (CamlPrimtivie["caml_compare"](k,key)=0)||
+          return CamlPrimtivie["caml_compare"](k,key)===
+                 0||
                  mem_in_bucket(rest);
           }
         else
@@ -608,7 +609,7 @@ var
         try
          {return h[2][i]=replace_bucket(l),0;}
         catch(exn$2)
-         {if(exn$2=Not_found)
+         {if(exn$2===Not_found)
            {h[2][i]=/* Cons */[0,key,info,l],0;
             h[1]=h[1]+1,0;
             if(h[1]>h[2]["length"]<<1)

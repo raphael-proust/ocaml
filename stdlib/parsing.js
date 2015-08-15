@@ -101,7 +101,7 @@ var
                 tables[1][env[13]](env)];
              }
            catch(exn)
-            {if(exn=Parse_error)
+            {if(exn===Parse_error)
               {var match$1=/* tuple */[0,/* Error_detected */5,/* () */0];}
              else
               {throw exn;}
@@ -151,15 +151,15 @@ var
       env[16]=init_errflag,0;
       var tag=exn[1];
       
-      if(tag=YYexit)
+      if(tag===YYexit)
        {var v=exn[2];return v;}
       else
        {current_lookahead_fun[1]=
         function(tok)
          {if(CamlPrimtivie["caml_obj_is_block"](tok))
-           {return tables[3][CamlPrimtivie["caml_obj_tag"](tok)]=curr_char;}
+           {return tables[3][CamlPrimtivie["caml_obj_tag"](tok)]===curr_char;}
           else
-           {return tables[2][tok]=curr_char;}
+           {return tables[2][tok]===curr_char;}
           },
         0;
         throw exn;

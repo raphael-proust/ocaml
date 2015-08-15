@@ -19,7 +19,7 @@ var
     
     Buffer["add_char"](b,39);
     for(var i=0;i<=l-1;i++)
-     {if(s[i]=39)
+     {if(s[i]===39)
        {Buffer["add_string"](b,quotequote)}
       else
        {Buffer["add_char"](b,s[i])}
@@ -118,9 +118,9 @@ var parent_dir_name="..";
 
 var dir_sep="/";
 
-var is_dir_sep=function(s,i){return s[i]=47;};
+var is_dir_sep=function(s,i){return s[i]===47;};
 
-var is_relative=function(n){return n["length"]<1||n[0]!=47;};
+var is_relative=function(n){return n["length"]<1||n[0]!==47;};
 
 var
  is_implicit=
@@ -148,7 +148,7 @@ var
 
 try
  {var temp_dir_name=CamlPrimtivie["caml_sys_getenv"]("TMPDIR");}
-catch(exn){if(exn=Not_found){var temp_dir_name="/tmp";}else{throw exn;}}
+catch(exn){if(exn===Not_found){var temp_dir_name="/tmp";}else{throw exn;}}
 
 var quote=generic_quote("'\''");
 
@@ -177,14 +177,14 @@ var parent_dir_name$1="..";
 
 var dir_sep$1="\";
 
-var is_dir_sep$1=function(s,i){var c=s[i];return (c=47)||(c=92)||(c=58);};
+var is_dir_sep$1=function(s,i){var c=s[i];return c===47||c===92||c===58;};
 
 var
  is_relative$1=
   function(n)
-   {return (n["length"]<1||n[0]!=47)&&
-           (n["length"]<1||n[0]!=92)&&
-           (n["length"]<2||n[1]!=58);
+   {return (n["length"]<1||n[0]!==47)&&
+           (n["length"]<1||n[0]!==92)&&
+           (n["length"]<2||n[1]!==58);
     };
 
 var
@@ -220,7 +220,8 @@ var
 
 try
  {var temp_dir_name$1=CamlPrimtivie["caml_sys_getenv"]("TEMP");}
-catch(exn$1){if(exn$1=Not_found){var temp_dir_name$1=".";}else{throw exn$1;}}
+catch(exn$1)
+ {if(exn$1===Not_found){var temp_dir_name$1=".";}else{throw exn$1;}}
 
 var
  quote$1=
@@ -233,13 +234,13 @@ var
     var
      loop=
       function(i)
-       {if(i=l)
+       {if(i===l)
          {return Buffer["add_char"](b,34);}
         else
          {var c=s[i];
           
-          if(c!=34)
-           {if(c!=92)
+          if(c!==34)
+           {if(c!==92)
              {Buffer["add_char"](b,c);return loop(i+1);}
             else
              {return loop_bs(0,i);}
@@ -252,13 +253,16 @@ var
     var
      loop_bs=
       function(n,i)
-       {if(i=l)
+       {if(i===l)
          {Buffer["add_char"](b,34);return add_bs(n);}
         else
          {var c=s[i];
           
-          if(c!=34)
-           {if(c!=92){add_bs(n);return loop(i);}else{return loop_bs(n+1,i+1);}
+          if(c!==34)
+           {if(c!==92)
+             {add_bs(n);return loop(i);}
+            else
+             {return loop_bs(n+1,i+1);}
             }
           else
            {add_bs(2*n+1);Buffer["add_char"](b,34);return loop(i+1);}
@@ -289,7 +293,7 @@ var
         switch(exit){case 41:return /* false */0;case 40:return /* true */1;}
         };
     
-    return s["length"]>=2&&is_letter(s[0])&&(s[1]=58);
+    return s["length"]>=2&&is_letter(s[0])&&s[1]===58;
     };
 
 var
@@ -466,7 +470,7 @@ var
   function(dirname,filename)
    {var l=dirname["length"];
     
-    if((l=0)||is_dir_sep$3(dirname,l-1))
+    if(l===0||is_dir_sep$3(dirname,l-1))
      {return Pervasives["^"](dirname,filename);}
     else
      {return Pervasives["^"](dirname,Pervasives["^"](dir_sep$3,filename));}
@@ -492,7 +496,7 @@ var
        {if(i<0||is_dir_sep$3(name,i))
          {return Pervasives["invalid_arg"]("Filename.chop_extension");}
         else
-         {if(name[i]=46)
+         {if(name[i]===46)
            {return $$String["sub"](name,0,i);}
           else
            {return search_dot(i-1);}
@@ -514,9 +518,9 @@ var
     var
      rnd=
       Random["State"][4]
-       ((tag=250)
+       (tag===250
          ?lzarg[1]
-         :(tag=246)?CamlinternalLazy["force_lazy_block"](lzarg):lzarg)&
+         :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg)&
       16777215;
     
     return concat
@@ -570,7 +574,7 @@ var
         catch(e)
          {var tag=e[1];
           
-          if(tag=Sys_error)
+          if(tag===Sys_error)
            {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
           else
            {throw e;}
@@ -613,7 +617,7 @@ var
         catch(e)
          {var tag=e[1];
           
-          if(tag=Sys_error)
+          if(tag===Sys_error)
            {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
           else
            {throw e;}

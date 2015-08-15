@@ -64,7 +64,7 @@ var
 var
  from_hex=
   function(s)
-   {if(s["length"]!=32){throw [0,Invalid_argument,"Digest.from_hex"];}else{}
+   {if(s["length"]!==32){throw [0,Invalid_argument,"Digest.from_hex"];}else{}
     
     var
      digit=

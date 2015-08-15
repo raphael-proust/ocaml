@@ -50,7 +50,7 @@ var
       var tl=match$1[2];
       
       q[2]=tl,0;
-      if(tl=/* Nil */0){q[1]=/* Nil */0,0}else{}
+      if(tl===/* Nil */0){q[1]=/* Nil */0,0}else{}
       
       return x;
       }
@@ -113,7 +113,7 @@ var
       var bl_ty=match$1[1];
       
       if(width>state[9])
-       {if(bl_ty!=0)
+       {if(bl_ty!==0)
          {if(bl_ty>=5){return /* () */0;}else{return break_line(state,width);}
           }
         else
@@ -142,7 +142,7 @@ var
 var
  format_pp_token=
   function(state,size,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          var match=state[3];
@@ -204,7 +204,7 @@ var
           {return pp_output_newline(state);}
          
         case 4:
-         if(state[10]!=state[6]-state[9])
+         if(state[10]!==state[6]-state[9])
           {return pp_skip_token(state);}
          else
           {return 0;}
@@ -317,7 +317,7 @@ var
              
              try
               {var tab=find(insertion_point,tabs$1[1]);}
-             catch(exn){if(exn=Not_found){var tab=x;}else{throw exn;}}
+             catch(exn){if(exn===Not_found){var tab=x;}else{throw exn;}}
              }
            else
             {var tab=insertion_point;}
@@ -343,7 +343,7 @@ var
          
          var offset$1=state[9]-off$2;
          
-         if(ty$1!=1)
+         if(ty$1!==1)
           {if(size>state[9])
             {var bl_type=ty$1;}
            else
@@ -396,7 +396,7 @@ var
   function(state)
    {try
      {return advance_loop(state);}
-    catch(exn){if(exn=Empty_queue){return /* () */0;}else{throw exn;}}
+    catch(exn){if(exn===Empty_queue){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -451,7 +451,7 @@ var
       else
        {var exit;
         
-        if(typeof tok=="number")
+        if(typeof tok==="number")
          {switch(tok){}}
         else
          {switch(tok[0])
@@ -499,7 +499,7 @@ var
       return scan_push(state,/* false */0,elem);
       }
     else
-     {if(state[14]=state[15])
+     {if(state[14]===state[15])
        {return enqueue_string(state,state[16]);}
       else
        {return 0;}
@@ -840,11 +840,11 @@ var
         return left[1]=right[1],0;
         };
     
-    while(right[1]!=len)
+    while(right[1]!==len)
      {var match=s[right[1]];
       
-      if(match!=10)
-       {if(match!=32)
+      if(match!==10)
+       {if(match!==32)
          {right[0]++}
         else
          {flush(/* () */0),pp_print_space(ppf,/* () */0)}
@@ -853,7 +853,7 @@ var
        {flush(/* () */0),pp_force_newline(ppf,/* () */0)}
       }
     
-    if(left[1]!=len){return flush(/* () */0);}else{return 0;}
+    if(left[1]!==len){return flush(/* () */0);}else{return 0;}
     };
 
 var
@@ -862,7 +862,7 @@ var
 
 var pp_get_max_boxes=function(state,param){return state[15];};
 
-var pp_over_max_boxes=function(state,param){return state[14]=state[15];};
+var pp_over_max_boxes=function(state,param){return state[14]===state[15];};
 
 var pp_set_ellipsis_text=function(state,s){return state[16]=s,0;};
 
@@ -1225,7 +1225,7 @@ var
 var
  output_formatting_lit=
   function(ppf,fmting_lit)
-   {if(typeof fmting_lit=="number")
+   {if(typeof fmting_lit==="number")
      {switch(fmting_lit)
        {case 0:return pp_close_box(ppf,/* () */0);
         case 1:return pp_close_tag(ppf,/* () */0);
@@ -1259,7 +1259,7 @@ var
   function(ppf,acc)
    {var exit;
     
-    if(typeof acc=="number")
+    if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
@@ -1308,14 +1308,14 @@ var
          
          var exit$1;
          
-         if(typeof p$3=="number")
+         if(typeof p$3==="number")
           {switch(p$3){}}
          else
           {switch(p$3[0])
             {case 0:
               var match$3=p$3[2];
               
-              if(typeof match$3=="number")
+              if(typeof match$3==="number")
                {switch(match$3){}}
               else
                {switch(match$3[0])
@@ -1346,14 +1346,14 @@ var
          
          var exit$2;
          
-         if(typeof p$7=="number")
+         if(typeof p$7==="number")
           {switch(p$7){}}
          else
           {switch(p$7[0])
             {case 0:
               var match$4=p$7[2];
               
-              if(typeof match$4=="number")
+              if(typeof match$4==="number")
                {switch(match$4){}}
               else
                {switch(match$4[0])
@@ -1384,14 +1384,14 @@ var
          
          var exit$3;
          
-         if(typeof p$11=="number")
+         if(typeof p$11==="number")
           {switch(p$11){}}
          else
           {switch(p$11[0])
             {case 0:
               var match$5=p$11[2];
               
-              if(typeof match$5=="number")
+              if(typeof match$5==="number")
                {switch(match$5){}}
               else
                {switch(match$5[0])
@@ -1422,14 +1422,14 @@ var
          
          var exit$4;
          
-         if(typeof p$13=="number")
+         if(typeof p$13==="number")
           {switch(p$13){}}
          else
           {switch(p$13[0])
             {case 0:
               var match$6=p$13[2];
               
-              if(typeof match$6=="number")
+              if(typeof match$6==="number")
                {switch(match$6){}}
               else
                {switch(match$6[0])
@@ -1489,7 +1489,7 @@ var
   function(ppf,acc)
    {var exit;
     
-    if(typeof acc=="number")
+    if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
@@ -1538,14 +1538,14 @@ var
          
          var exit$1;
          
-         if(typeof p$3=="number")
+         if(typeof p$3==="number")
           {switch(p$3){}}
          else
           {switch(p$3[0])
             {case 0:
               var match$3=p$3[2];
               
-              if(typeof match$3=="number")
+              if(typeof match$3==="number")
                {switch(match$3){}}
               else
                {switch(match$3[0])
@@ -1576,14 +1576,14 @@ var
          
          var exit$2;
          
-         if(typeof p$7=="number")
+         if(typeof p$7==="number")
           {switch(p$7){}}
          else
           {switch(p$7[0])
             {case 0:
               var match$4=p$7[2];
               
-              if(typeof match$4=="number")
+              if(typeof match$4==="number")
                {switch(match$4){}}
               else
                {switch(match$4[0])
@@ -1614,14 +1614,14 @@ var
          
          var exit$3;
          
-         if(typeof p$11=="number")
+         if(typeof p$11==="number")
           {switch(p$11){}}
          else
           {switch(p$11[0])
             {case 0:
               var match$5=p$11[2];
               
-              if(typeof match$5=="number")
+              if(typeof match$5==="number")
                {switch(match$5){}}
               else
                {switch(match$5[0])
@@ -1652,14 +1652,14 @@ var
          
          var exit$4;
          
-         if(typeof p$13=="number")
+         if(typeof p$13==="number")
           {switch(p$13){}}
          else
           {switch(p$13[0])
             {case 0:
               var match$6=p$13[2];
               
-              if(typeof match$6=="number")
+              if(typeof match$6==="number")
                {switch(match$6){}}
               else
                {switch(match$6[0])
@@ -1690,14 +1690,14 @@ var
          
          var exit$5;
          
-         if(typeof p$15=="number")
+         if(typeof p$15==="number")
           {switch(p$15){}}
          else
           {switch(p$15[0])
             {case 0:
               var match$7=p$15[2];
               
-              if(typeof match$7=="number")
+              if(typeof match$7==="number")
                {switch(match$7){}}
               else
                {switch(match$7[0])

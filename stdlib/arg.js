@@ -119,7 +119,7 @@ var
    {try
      {assoc3("-help",speclist);var add1=/* [] */0;}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {var
          add1=
           /* :: */[0,
@@ -136,7 +136,7 @@ var
     try
      {assoc3("--help",speclist);var add2=/* [] */0;}
     catch(exn$1)
-     {if(exn$1=Not_found)
+     {if(exn$1===Not_found)
        {var
          add2=
           /* :: */[0,
@@ -311,11 +311,11 @@ var
     while(current$1[1]<l)
      {var s=argv[current$1[1]];
       
-      if(s["length"]>=1&&(s[0]=45))
+      if(s["length"]>=1&&s[0]===45)
        {try
          {var action=assoc3(s,speclist[1]);}
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===Not_found)
            {var action=stop(/* Unknown */[0,s]);}
           else
            {throw exn;}
@@ -342,7 +342,7 @@ var
                      
                      var tag=exn$1[1];
                      
-                     if(tag=Invalid_argument)
+                     if(tag===Invalid_argument)
                       {var match=exn$1[2];
                        
                        switch(match)
@@ -392,7 +392,7 @@ var
                      
                      var tag$1=exn$2[1];
                      
-                     if(tag$1=Failure)
+                     if(tag$1===Failure)
                       {var match$1=exn$2[2];
                        
                        switch(match$1)
@@ -424,7 +424,7 @@ var
                      
                      var tag$2=exn$3[1];
                      
-                     if(tag$2=Failure)
+                     if(tag$2===Failure)
                       {var match$2=exn$3[2];
                        
                        switch(match$2)
@@ -456,7 +456,7 @@ var
                      
                      var tag$3=exn$4[1];
                      
-                     if(tag$3=Failure)
+                     if(tag$3===Failure)
                       {var match$3=exn$4[2];
                        
                        switch(match$3)
@@ -488,7 +488,7 @@ var
                      
                      var tag$4=exn$5[1];
                      
-                     if(tag$4=Failure)
+                     if(tag$4===Failure)
                       {var match$4=exn$5[2];
                        
                        switch(match$4)
@@ -547,12 +547,12 @@ var
         catch(exn$1)
          {var tag=exn$1[1];
           
-          if(tag=Bad)
+          if(tag===Bad)
            {var m=exn$1[2];stop(/* Message */[3,m])}
           else
            {var tag$1=exn$1[1];
             
-            if(tag$1=Stop){var e=exn$1[2];stop(e)}else{throw exn$1;}
+            if(tag$1===Stop){var e=exn$1[2];stop(e)}else{throw exn$1;}
             }
           }
         
@@ -563,7 +563,7 @@ var
         catch(exn$2)
          {var tag$2=exn$2[1];
           
-          if(tag$2=Bad)
+          if(tag$2===Bad)
            {var m$1=exn$2[2];stop(/* Message */[3,m$1])}
           else
            {throw exn$2;}
@@ -594,7 +594,7 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag=Bad)
+      if(tag===Bad)
        {var msg$1=exn[2];
         
         Printf["eprintf"]
@@ -607,7 +607,7 @@ var
       else
        {var tag$1=exn[1];
         
-        if(tag$1=Help)
+        if(tag$1===Help)
          {var msg$2=exn[2];
           
           Printf["printf"]
@@ -631,7 +631,7 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag=Bad)
+      if(tag===Bad)
        {var msg$1=exn[2];
         
         Printf["eprintf"]
@@ -644,7 +644,7 @@ var
       else
        {var tag$1=exn[1];
         
-        if(tag$1=Help)
+        if(tag$1===Help)
          {var msg$2=exn[2];
           
           Printf["printf"]
@@ -671,12 +671,12 @@ var
        {if(n>=len)
          {return len;}
         else
-         {if(s[n]=32){return loop(n+1);}else{return n;}}
+         {if(s[n]===32){return loop(n+1);}else{return n;}}
         };
     
     try
      {return loop($$String["index"](s,32));}
-    catch(exn){if(exn=Not_found){return len;}else{throw exn;}}
+    catch(exn){if(exn===Not_found){return len;}else{throw exn;}}
     };
 
 var

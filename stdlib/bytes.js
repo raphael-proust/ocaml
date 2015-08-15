@@ -171,9 +171,9 @@ var
     var switcher=-9+param;
     
     if(4<switcher>>>0)
-     {if(switcher!=23){exit=38;}else{exit=37;}}
+     {if(switcher!==23){exit=38;}else{exit=37;}}
     else
-     {if(switcher!=2){exit=37;}else{exit=38;}}
+     {if(switcher!==2){exit=37;}else{exit=38;}}
     
     switch(exit){case 38:return /* false */0;case 37:return /* true */1;}
     };
@@ -205,7 +205,7 @@ var
       var exit;
       
       if(c>=14)
-       {if(c!=34){if(c!=92){exit=30;}else{exit=29;}}else{exit=29;}}
+       {if(c!==34){if(c!==92){exit=30;}else{exit=29;}}else{exit=29;}}
       else
        {if(c>=11)
          {if(c>=13){exit=29;}else{exit=30;}}
@@ -220,7 +220,7 @@ var
         }
       n[1]=n[1]+$js,0}
     
-    if(n[1]=s["length"])
+    if(n[1]===s["length"])
      {return copy(s);}
     else
      {var s$prime=CamlPrimtivie["caml_create_string"](n[1]);
@@ -311,7 +311,7 @@ var
   function(f,s)
    {var l=s["length"];
     
-    if(l=0)
+    if(l===0)
      {return s;}
     else
      {var r=CamlPrimtivie["caml_create_string"](l);
@@ -327,7 +327,7 @@ var
   function(f,s)
    {var l=s["length"];
     
-    if(l=0)
+    if(l===0)
      {return s;}
     else
      {var r=CamlPrimtivie["caml_create_string"](l);
@@ -345,7 +345,8 @@ var lowercase=function(s){return map(Char["lowercase"],s);};
 var
  apply1=
   function(f,s)
-   {if(s["length"]=0){return s;}else{var r=copy(s);r[0]=f(s[0]),0;return r;}};
+   {if(s["length"]===0){return s;}else{var r=copy(s);r[0]=f(s[0]),0;return r;}
+    };
 
 var capitalize=function(s){return apply1(Char["uppercase"],s);};
 
@@ -357,7 +358,7 @@ var
    {if(i>=lim)
      {throw Not_found;}
     else
-     {if(s[i]=c){return i;}else{return index_rec(s,lim,i+1,c);}}
+     {if(s[i]===c){return i;}else{return index_rec(s,lim,i+1,c);}}
     };
 
 var index=function(s,c){return index_rec(s,s["length"],0,c);};
@@ -380,7 +381,7 @@ var
    {if(i<0)
      {throw Not_found;}
     else
-     {if(s[i]=c){return i;}else{return rindex_rec(s,i-1,c);}}
+     {if(s[i]===c){return i;}else{return rindex_rec(s,i-1,c);}}
     };
 
 var rindex=function(s,c){return rindex_rec(s,s["length"]-1,c);};
@@ -408,7 +409,7 @@ var
     else
      {try
        {index_rec(s,l,i,c);return /* true */1;}
-      catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
+      catch(exn){if(exn===Not_found){return /* false */0;}else{throw exn;}}
       }
     };
 
@@ -424,7 +425,7 @@ var
     else
      {try
        {rindex_rec(s,i,c);return /* true */1;}
-      catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
+      catch(exn){if(exn===Not_found){return /* false */0;}else{throw exn;}}
       }
     };
 

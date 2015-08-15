@@ -23,7 +23,7 @@ var
   function(v)
    {var t=CamlPrimtivie["caml_obj_tag"](v);
     
-    if((t=Obj["forward_tag"])||(t=Obj["lazy_tag"])||(t=Obj["double_tag"]))
+    if(t===Obj["forward_tag"]||t===Obj["lazy_tag"]||t===Obj["double_tag"])
      {return CamlPrimtivie["caml_lazy_make_forward"](v);}
     else
      {return v;}
@@ -31,7 +31,7 @@ var
 
 var
  is_val=
-  function(l){return CamlPrimtivie["caml_obj_tag"](l)!=Obj["lazy_tag"];};
+  function(l){return CamlPrimtivie["caml_obj_tag"](l)!==Obj["lazy_tag"];};
 
 var lazy_from_fun=from_fun;
 

@@ -22,7 +22,7 @@ var
   function(count,d)
    {var exit;
     
-    if(typeof d=="number")
+    if(typeof d==="number")
      {switch(d){case 0:exit=30;}}
     else
      {switch(d[0])
@@ -34,7 +34,7 @@ var
          
          var match=get_data(count,d1);
          
-         if(typeof match=="number")
+         if(typeof match==="number")
           {switch(match){case 0:return get_data(count,d2);}}
          else
           {switch(match[0])
@@ -56,9 +56,9 @@ var
          
          return get_data
                  (count,
-                  (tag=250)
+                  tag===250
                    ?lzarg[1]
-                   :(tag=246)?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+                   :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
          
         case 3:
          var g=d[1];
@@ -93,7 +93,7 @@ var
          
          if(b[4]>=b[3]){fill_buff(b)}else{}
          
-         if(b[3]=0)
+         if(b[3]===0)
           {return /* Sempty */0;}
          else
           {var r=b[2][b[4]];b[4]=1+b[4],0;return /* Scons */[0,r,d];}
@@ -108,7 +108,7 @@ var
   function(s)
    {var match=s[2];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return /* None */0;}}
     else
      {switch(match[0])
@@ -116,7 +116,7 @@ var
         case 1:
          var d=get_data(s[1],s[2]);
          
-         if(typeof d=="number")
+         if(typeof d==="number")
           {switch(d){case 0:return /* None */0;}}
          else
           {switch(d[0])
@@ -132,9 +132,9 @@ var
          
          set_data
           (s,
-           (tag=250)
+           tag===250
             ?lzarg[1]
-            :(tag=246)?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+            :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
          return peek(s);
          
         case 3:
@@ -152,7 +152,7 @@ var
          
          if(b[4]>=b[3]){fill_buff(b)}else{}
          
-         if(b[3]=0)
+         if(b[3]===0)
           {set_data(s,/* Sempty */0);return /* None */0;}
          else
           {return /* Some */[0,b[2][b[4]]];}
@@ -167,7 +167,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -377,7 +377,7 @@ var
 var
  dump_data=
   function(f,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return Pervasives["print_string"]("Sempty");}}
     else
      {switch(param[0])

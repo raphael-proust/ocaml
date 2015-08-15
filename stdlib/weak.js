@@ -115,7 +115,7 @@ var
             else
              {var match=CamlPrimtivie["caml_weak_check"](b,i);
               
-              if(match!=0)
+              if(match!==0)
                {f(b,t[2][j],i);return iter_bucket(i+1,j,b);}
               else
                {return iter_bucket(i+1,j,b);}
@@ -181,7 +181,7 @@ var
               };
           
           loop(0,length(bucket)-1);
-          if(prev_len=0)
+          if(prev_len===0)
            {t[1][t[5]]=emptybucket,0,t[2][t[5]]=[],0}
           else
            {CamlPrimtivie["caml_obj_truncate"](bucket,prev_len+1),
@@ -316,7 +316,7 @@ var
            {if(i>=sz)
              {return ifnotfound(h,index);}
             else
-             {if(h=hashes[i])
+             {if(h===hashes[i])
                {var match=CamlPrimtivie["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
@@ -389,7 +389,7 @@ var
            {if(i>=sz)
              {return ifnotfound;}
             else
-             {if(h=hashes[i])
+             {if(h===hashes[i])
                {var match=CamlPrimtivie["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
@@ -449,7 +449,7 @@ var
            {if(i>=sz)
              {return accu;}
             else
-             {if(h=hashes[i])
+             {if(h===hashes[i])
                {var match=CamlPrimtivie["caml_weak_get_copy"](bucket,i);
                 
                 var exit;

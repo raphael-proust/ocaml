@@ -13,7 +13,7 @@ var
   function(name,exn)
    {var exn$1=exn;
     
-    if(CamlPrimtivie["caml_obj_tag"](exn$1)=Obj["object_tag"])
+    if(CamlPrimtivie["caml_obj_tag"](exn$1)===Obj["object_tag"])
      {var slot=exn$1;}
     else
      {var slot=exn$1[0];}

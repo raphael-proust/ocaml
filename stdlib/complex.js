@@ -1,6 +1,5 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
 
 
 var zero=[0,0];
@@ -49,36 +48,28 @@ var
     
     var i$1=Math["abs"](x[1]);
     
-    if(r=0)
+    if(r===0)
      {return i$1;}
     else
-     {if(i$1=0)
+     {if(i$1===0)
        {return r;}
       else
        {if(r>=i$1)
-         {var q=i$1/r;return r*CamlPrimtivie["caml_sqrt_float"](1+q*q);}
+         {var q=i$1/r;return r*Math["sqrt"](1+q*q);}
         else
-         {var q$1=r/i$1;
-          
-          return i$1*CamlPrimtivie["caml_sqrt_float"](1+q$1*q$1);
-          }
+         {var q$1=r/i$1;return i$1*Math["sqrt"](1+q$1*q$1);}
         }
       }
     };
 
-var arg=function(x){return CamlPrimtivie["caml_atan2_float"](x[1],x[0]);};
+var arg=function(x){return Math["atan2"](x[1],x[0]);};
 
-var
- polar=
-  function(n,a)
-   {return [CamlPrimtivie["caml_cos_float"](a)*n,
-            CamlPrimtivie["caml_sin_float"](a)*n];
-    };
+var polar=function(n,a){return [Math["cos"](a)*n,Math["sin"](a)*n];};
 
 var
  sqrt=
   function(x)
-   {if((x[0]=0)&&(x[1]=0))
+   {if(x[0]===0&&x[1]===0)
      {return [0,0];}
     else
      {var r=Math["abs"](x[0]);
@@ -88,20 +79,14 @@ var
       if(r>=i$1)
        {var q=i$1/r;
         
-        var
-         w=
-          CamlPrimtivie["caml_sqrt_float"](r)*
-          CamlPrimtivie["caml_sqrt_float"]
-           (0.5*(1+CamlPrimtivie["caml_sqrt_float"](1+q*q)));
+        var w=Math["sqrt"](r)*Math["sqrt"](0.5*(1+Math["sqrt"](1+q*q)));
         }
       else
        {var q$1=r/i$1;
         
         var
          w=
-          CamlPrimtivie["caml_sqrt_float"](i$1)*
-          CamlPrimtivie["caml_sqrt_float"]
-           (0.5*(q$1+CamlPrimtivie["caml_sqrt_float"](1+q$1*q$1)));
+          Math["sqrt"](i$1)*Math["sqrt"](0.5*(q$1+Math["sqrt"](1+q$1*q$1)));
         }
       
       if(x[0]>=0)
@@ -114,18 +99,9 @@ var
 var
  exp=
   function(x)
-   {var e=CamlPrimtivie["caml_exp_float"](x[0]);
-    
-    return [e*CamlPrimtivie["caml_cos_float"](x[1]),
-            e*CamlPrimtivie["caml_sin_float"](x[1])];
-    };
+   {var e=Math["exp"](x[0]);return [e*Math["cos"](x[1]),e*Math["sin"](x[1])];};
 
-var
- log=
-  function(x)
-   {return [CamlPrimtivie["caml_log_float"](norm(x)),
-            CamlPrimtivie["caml_atan2_float"](x[1],x[0])];
-    };
+var log=function(x){return [Math["log"](norm(x)),Math["atan2"](x[1],x[0])];};
 
 var pow=function(x,y){return exp(mul(y,log(x)));};
 

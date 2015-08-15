@@ -30,7 +30,7 @@ var
   function(s)
    {var match=s[1];if(match){var hd=match[1];return hd;}else{throw Empty;}};
 
-var is_empty=function(s){return s[1]=/* [] */0;};
+var is_empty=function(s){return s[1]===/* [] */0;};
 
 var length=function(s){return List["length"](s[1]);};
 

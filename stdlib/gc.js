@@ -8,7 +8,25 @@ var Sys=require("./sys.js");
 var
  print_stat=
   function(c)
-   {var st=CamlPrimtivie["caml_gc_stat"](/* () */0);
+   {var
+     st=
+      /* caml_gc_stat */[/* stat-record */0,
+       /* minor_words */0,
+       /* promoted_words */0,
+       /* major_words */0,
+       /* minor_collections */0,
+       /* major_collections */0,
+       /* heap_words */0,
+       /* heap_chunks */0,
+       /* live_words */0,
+       /* live_blocks */0,
+       /* free_words */0,
+       /* free_blocks */0,
+       /* larget_blocks */0,
+       /* fragments */0,
+       /* compactions */0,
+       /* top_heap_words */0,
+       /* stack_size */0];
     
     Printf["fprintf"]
      (c,

@@ -9,7 +9,7 @@ var $$Array=require("./array.js");
 var
  init_mod=
   function(loc,shape)
-   {if(typeof shape=="number")
+   {if(typeof shape==="number")
      {switch(shape)
        {case 0:
          var pad1=1;
@@ -57,11 +57,12 @@ var
 var
  update_mod=
   function(shape,o,n)
-   {if(typeof shape=="number")
+   {if(typeof shape==="number")
      {switch(shape)
        {case 0:
          if
-          ((CamlPrimtivie["caml_obj_tag"](n)=Obj["closure_tag"])&&
+          (CamlPrimtivie["caml_obj_tag"](n)===
+           Obj["closure_tag"]&&
            n["length"]<=
            o["length"])
           {overwrite(o,n);
@@ -71,10 +72,10 @@ var
           {return overwrite(o,function(x){return n(x);});}
          
         case 1:
-         if(CamlPrimtivie["caml_obj_tag"](n)=Obj["lazy_tag"])
+         if(CamlPrimtivie["caml_obj_tag"](n)===Obj["lazy_tag"])
           {return o[0]=n[0],0;}
          else
-          {if(CamlPrimtivie["caml_obj_tag"](n)=Obj["forward_tag"])
+          {if(CamlPrimtivie["caml_obj_tag"](n)===Obj["forward_tag"])
             {CamlPrimtivie["caml_obj_set_tag"](o,Obj["forward_tag"]);
              return o[0]=n[0],0;
              }
@@ -85,7 +86,7 @@ var
            }
          
         case 2:
-         if((CamlPrimtivie["caml_obj_tag"](n)=0)&&(n["length"]=4))
+         if(CamlPrimtivie["caml_obj_tag"](n)===0&&n["length"]===4)
           {}
          else
           {throw [0,Assert_failure,[0,"camlinternalMod.ml",63,6]];}
@@ -99,7 +100,7 @@ var
          var comps=shape[1];
          
          if
-          ((CamlPrimtivie["caml_obj_tag"](n)=0)&&n["length"]>=comps["length"])
+          (CamlPrimtivie["caml_obj_tag"](n)===0&&n["length"]>=comps["length"])
           {}
          else
           {throw [0,Assert_failure,[0,"camlinternalMod.ml",66,6]];}

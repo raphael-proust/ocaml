@@ -18,8 +18,8 @@ var
   function(c)
    {var exit;
     
-    if(c!=39)
-     {if(c!=92)
+    if(c!==39)
+     {if(c!==92)
        {if(c>=14)
          {exit=7;}
         else

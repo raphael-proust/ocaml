@@ -7,7 +7,7 @@ var CamlPrimtivie=require("./camlPrimtivie.js");
 var
  init=
   function(l,f)
-   {if(l=0)
+   {if(l===0)
      {return [];}
     else
      {if(l<0)
@@ -40,7 +40,7 @@ var
   function(a)
    {var l=a["length"];
     
-    if(l=0){return [];}else{return CamlPrimtivie["caml_array_sub"](a,0,l);}
+    if(l===0){return [];}else{return CamlPrimtivie["caml_array_sub"](a,0,l);}
     };
 
 var
@@ -48,13 +48,13 @@ var
   function(a1,a2)
    {var l1=a1["length"];
     
-    if(l1=0)
+    if(l1===0)
      {return copy(a2);}
     else
-     {if(a2["length"]=0)
+     {if(a2["length"]===0)
        {return CamlPrimtivie["caml_array_sub"](a1,0,l1);}
       else
-       {return CamlPrimtivie["caml_array_append"](a1,a2);}
+       {return a1["concat"](a2);}
       }
     };
 
@@ -92,7 +92,7 @@ var
   function(f,a)
    {var l=a["length"];
     
-    if(l=0)
+    if(l===0)
      {return [];}
     else
      {var r=CamlPrimtivie["caml_make_vect"](l,f(a[0]));
@@ -110,7 +110,7 @@ var
   function(f,a)
    {var l=a["length"];
     
-    if(l=0)
+    if(l===0)
      {return [];}
     else
      {var r=CamlPrimtivie["caml_make_vect"](l,f(0,a[0]));
@@ -234,7 +234,7 @@ var
         catch(exn)
          {var tag=exn[1];
           
-          if(tag=Bottom){var i$1=exn[2];return a[i$1]=e,0;}else{throw exn;}
+          if(tag===Bottom){var i$1=exn[2];return a[i$1]=e,0;}else{throw exn;}
           }
         };
     
@@ -250,7 +250,7 @@ var
         catch(exn)
          {var tag=exn[1];
           
-          if(tag=Bottom){var i$1=exn[2];return i$1;}else{throw exn;}
+          if(tag===Bottom){var i$1=exn[2];return i$1;}else{throw exn;}
           }
         };
     
@@ -259,7 +259,7 @@ var
       function(i,e)
        {var father=(i-1)/3;
         
-        if(i!=father){}else{throw [0,Assert_failure,[0,"array.ml",168,4]];}
+        if(i!==father){}else{throw [0,Assert_failure,[0,"array.ml",168,4]];}
         
         if(cmp(a[father],e)<0)
          {a[i]=a[father],0;

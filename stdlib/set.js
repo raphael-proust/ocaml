@@ -100,7 +100,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0)
+          if(c===0)
            {return t;}
           else
            {if(c<0){return bal(add(x,l),v,r);}else{return bal(l,v,add(x,r));}}
@@ -273,7 +273,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0)
+          if(c===0)
            {return /* tuple */[0,l,/* true */1,r];}
           else
            {if(c<0)
@@ -323,7 +323,7 @@ var
           
           var c=Ord[1](x,v);
           
-          return (c=0)||mem(x,c<0?l:r);
+          return c===0||mem(x,c<0?l:r);
           }
         else
          {return /* false */0;}
@@ -341,7 +341,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0)
+          if(c===0)
            {return merge(l,r);}
           else
            {if(c<0)
@@ -380,7 +380,7 @@ var
             var l1=match[1];
             
             if(h1>=h2)
-             {if(h2=1)
+             {if(h2===1)
                {return add(v2,s1);}
               else
                {var match$2=split(v1,s2);
@@ -393,7 +393,7 @@ var
                 }
               }
             else
-             {if(h1=1)
+             {if(h1===1)
                {return add(v1,s2);}
               else
                {var match$3=split(v2,s1);
@@ -436,7 +436,7 @@ var
             
             var l2=match$2[1];
             
-            if(match$3!=0)
+            if(match$3!==0)
              {var l2$1=l2;
               
               var r2=match$2[3];
@@ -476,7 +476,7 @@ var
             
             var l2=match$2[1];
             
-            if(match$3!=0)
+            if(match$3!==0)
              {var l2$1=l2;
               
               var r2=match$2[3];
@@ -532,7 +532,7 @@ var
             
             var c=Ord[1](v1,v2);
             
-            if(c!=0)
+            if(c!==0)
              {return c;}
             else
              {return compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));}
@@ -550,7 +550,7 @@ var
        {return compare_aux(cons_enum(s1,/* End */0),cons_enum(s2,/* End */0));
         };
     
-    var equal=function(s1,s2){return compare(s1,s2)=0;};
+    var equal=function(s1,s2){return compare(s1,s2)===0;};
     
     var
      subset=
@@ -577,7 +577,7 @@ var
             
             var c=Ord[1](v1,v2);
             
-            if(c=0)
+            if(c===0)
              {return subset(l1,l2)&&subset(r1,r2);}
             else
              {if(c<0)
@@ -762,7 +762,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c=0){return v;}else{return find(x,c<0?l:r);}
+          if(c===0){return v;}else{return find(x,c<0?l:r);}
           }
         else
          {throw Not_found;}

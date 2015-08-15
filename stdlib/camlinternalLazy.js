@@ -46,10 +46,10 @@ var
     
     var t=CamlPrimtivie["caml_obj_tag"](x);
     
-    if(t=Obj["forward_tag"])
+    if(t===Obj["forward_tag"])
      {return x[0];}
     else
-     {if(t!=Obj["lazy_tag"]){return x;}else{return force_lazy_block(lzv);}}
+     {if(t!==Obj["lazy_tag"]){return x;}else{return force_lazy_block(lzv);}}
     };
 
 var
@@ -59,10 +59,13 @@ var
     
     var t=CamlPrimtivie["caml_obj_tag"](x);
     
-    if(t=Obj["forward_tag"])
+    if(t===Obj["forward_tag"])
      {return x[0];}
     else
-     {if(t!=Obj["lazy_tag"]){return x;}else{return force_val_lazy_block(lzv);}
+     {if(t!==Obj["lazy_tag"])
+       {return x;}
+      else
+       {return force_val_lazy_block(lzv);}
       }
     };
 

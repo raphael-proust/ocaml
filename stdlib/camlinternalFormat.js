@@ -48,7 +48,7 @@ var
     
     var mask=1<<(ind&7);
     
-    return (char_set[str_ind]&mask)!=0;
+    return (char_set[str_ind]&mask)!==0;
     };
 
 var
@@ -72,7 +72,7 @@ var
 var
  param_format_of_ignored_format=
   function(ign,fmt)
-   {if(typeof ign=="number")
+   {if(typeof ign==="number")
      {switch(ign)
        {case 0:return /* Param_format_EBB */[0,/* Char */[0,fmt]];
         case 1:return /* Param_format_EBB */[0,/* Caml_char */[1,fmt]];
@@ -406,7 +406,7 @@ var
     var
      print_in=
       function(set,i,j)
-       {if((j=256)||!is_in_char_set(set,Pervasives["char_of_int"](j)))
+       {if(j===256||!is_in_char_set(set,Pervasives["char_of_int"](j)))
          {print_char(buf,i);
           print_char(buf,45);
           print_char(buf,j-1);
@@ -421,8 +421,8 @@ var
       function(buf,i)
        {var c=Pervasives["char_of_int"](i);
         
-        if(c!=37)
-         {if(c!=64)
+        if(c!==37)
+         {if(c!==64)
            {return buffer_add_char(buf,c);}
           else
            {buffer_add_char(buf,37);return buffer_add_char(buf,64);}
@@ -469,7 +469,7 @@ var
 var
  bprint_padding=
   function(buf,pad)
-   {if(typeof pad=="number")
+   {if(typeof pad==="number")
      {switch(pad){case 0:return /* () */0;}}
     else
      {switch(pad[0])
@@ -494,7 +494,8 @@ var
  bprint_precision=
   function(buf,prec)
    {if(typeof prec==="number")
-     {if(prec!=0){return buffer_add_string(buf,".*");}else{return /* () */0;}}
+     {if(prec!==0){return buffer_add_string(buf,".*");}else{return /* () */0;}
+      }
     else
      {var n=prec[1];
       
@@ -600,7 +601,7 @@ var
 var
  string_of_formatting_lit=
   function(formatting_lit)
-   {if(typeof formatting_lit=="number")
+   {if(typeof formatting_lit==="number")
      {switch(formatting_lit)
        {case 0:return "@]";
         case 1:return "@}";
@@ -634,7 +635,7 @@ var
 var
  bprint_char_literal=
   function(buf,chr)
-   {if(chr!=37)
+   {if(chr!==37)
      {return buffer_add_char(buf,chr);}
     else
      {return buffer_add_string(buf,"%%");}
@@ -648,7 +649,7 @@ var
 var
  bprint_fmtty=
   function(buf,fmtty)
-   {if(typeof fmtty=="number")
+   {if(typeof fmtty==="number")
      {switch(fmtty){case 0:return /* () */0;}}
     else
      {switch(fmtty[0])
@@ -764,7 +765,7 @@ var
    {var
      fmtiter=
       function(fmt,ign_flag)
-       {if(typeof fmt=="number")
+       {if(typeof fmt==="number")
          {switch(fmt){case 0:return /* () */0;}}
         else
          {switch(fmt[0])
@@ -1041,7 +1042,7 @@ var
 var
  symm=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return /* End_of_fmtty */0;}}
     else
      {switch(param[0])
@@ -1084,7 +1085,7 @@ var
 var
  fmtty_rel_det=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return /* tuple */[0,
@@ -1465,10 +1466,10 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:return /* End_of_fmtty */0;}}
          else
           {switch(match$1[0])
@@ -1488,7 +1489,7 @@ var
        {case 0:
          var rest1=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1506,7 +1507,7 @@ var
         case 1:
          var rest1$1=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1527,7 +1528,7 @@ var
         case 2:
          var rest1$2=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1548,7 +1549,7 @@ var
         case 3:
          var rest1$3=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1569,7 +1570,7 @@ var
         case 4:
          var rest1$4=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1590,7 +1591,7 @@ var
         case 5:
          var rest1$5=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1611,7 +1612,7 @@ var
         case 6:
          var rest1$6=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1632,7 +1633,7 @@ var
         case 7:
          var rest1$7=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=331;}}
          else
           {switch(match$1[0])
@@ -1655,7 +1656,7 @@ var
          
          var ty1$1=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1682,7 +1683,7 @@ var
          
          var ty11=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1720,7 +1721,7 @@ var
          
          var exit$1;
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1739,7 +1740,7 @@ var
         case 11:
          var rest1$11=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1754,7 +1755,7 @@ var
         case 12:
          var rest1$12=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1770,7 +1771,7 @@ var
         case 13:
          var rest1$13=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1787,7 +1788,7 @@ var
         case 14:
          var rest1$14=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -1841,7 +1842,7 @@ var
 var
  fmtty_of_fmt=
   function(fmtty)
-   {if(typeof fmtty=="number")
+   {if(typeof fmtty==="number")
      {switch(fmtty){case 0:return /* End_of_fmtty */0;}}
     else
      {switch(fmtty[0])
@@ -2012,7 +2013,7 @@ var
 var
  fmtty_of_ignored_format=
   function(ign,fmt)
-   {if(typeof ign=="number")
+   {if(typeof ign==="number")
      {switch(ign)
        {case 0:return fmtty_of_fmt(fmt);
         case 1:return fmtty_of_fmt(fmt);
@@ -2044,7 +2045,7 @@ var
 var
  fmtty_of_padding_fmtty=
   function(pad,fmtty)
-   {if(typeof pad=="number")
+   {if(typeof pad==="number")
      {switch(pad){case 0:return fmtty;}}
     else
      {switch(pad[0]){case 0:return fmtty;case 1:return /* Int_ty */[2,fmtty];}}
@@ -2054,7 +2055,7 @@ var
  fmtty_of_precision_fmtty=
   function(prec,fmtty)
    {if(typeof prec==="number")
-     {if(prec!=0){return /* Int_ty */[2,fmtty];}else{return fmtty;}}
+     {if(prec!==0){return /* Int_ty */[2,fmtty];}else{return fmtty;}}
     else
      {return fmtty;}
     };
@@ -2072,7 +2073,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:return /* Padding_fmtty_EBB */[0,/* No_padding */0,fmtty];}}
     else
@@ -2085,7 +2086,7 @@ var
          return /* Padding_fmtty_EBB */[0,/* Lit_padding */[0,padty,w],fmtty];
          
         case 1:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2117,10 +2118,10 @@ var
     var exit;
     
     if(typeof match$1==="number")
-     {if(match$1!=0)
+     {if(match$1!==0)
        {var match$3=match$2[2];
         
-        if(typeof match$3=="number")
+        if(typeof match$3==="number")
          {switch(match$3){}}
         else
          {switch(match$3[0])
@@ -2176,7 +2177,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:
          var fmtty_rest=match$1;
@@ -2187,7 +2188,7 @@ var
     else
      {switch(match[0])
        {case 0:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2209,7 +2210,7 @@ var
              default:exit=293;}}
          
         case 1:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2243,7 +2244,7 @@ var
          
          var exit$1;
          
-         if(typeof match$5=="number")
+         if(typeof match$5==="number")
           {switch(match$5){}}
          else
           {switch(match$5[0])
@@ -2277,7 +2278,7 @@ var
          
          var exit$2;
          
-         if(typeof match$8=="number")
+         if(typeof match$8==="number")
           {switch(match$8){}}
          else
           {switch(match$8[0])
@@ -2317,7 +2318,7 @@ var
          
          var exit$3;
          
-         if(typeof match$11=="number")
+         if(typeof match$11==="number")
           {switch(match$11){}}
          else
           {switch(match$11[0])
@@ -2357,7 +2358,7 @@ var
          
          var exit$4;
          
-         if(typeof match$14=="number")
+         if(typeof match$14==="number")
           {switch(match$14){}}
          else
           {switch(match$14[0])
@@ -2397,7 +2398,7 @@ var
          
          var exit$5;
          
-         if(typeof match$17=="number")
+         if(typeof match$17==="number")
           {switch(match$17){}}
          else
           {switch(match$17[0])
@@ -2437,7 +2438,7 @@ var
          
          var exit$6;
          
-         if(typeof match$20=="number")
+         if(typeof match$20==="number")
           {switch(match$20){}}
          else
           {switch(match$20[0])
@@ -2477,7 +2478,7 @@ var
          
          var exit$7;
          
-         if(typeof match$23=="number")
+         if(typeof match$23==="number")
           {switch(match$23){}}
          else
           {switch(match$23[0])
@@ -2499,7 +2500,7 @@ var
          switch(exit$7){case 292:throw Type_mismatch;}
          
         case 9:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2570,7 +2571,7 @@ var
                  fmtty$prime$12];
          
         case 13:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2606,7 +2607,7 @@ var
              default:exit=293;}}
          
         case 14:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2648,7 +2649,7 @@ var
              default:exit=293;}}
          
         case 15:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2670,7 +2671,7 @@ var
              default:exit=293;}}
          
         case 16:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2718,7 +2719,7 @@ var
          return type_formatting_gen(formatting_gen,fmt_rest$18,fmtty_rest$19);
          
         case 19:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2740,7 +2741,7 @@ var
              default:exit=293;}}
          
         case 20:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2766,7 +2767,7 @@ var
              default:exit=293;}}
          
         case 21:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -2865,7 +2866,7 @@ var
 var
  type_ignored_param=
   function(ign,fmt,fmtty)
-   {if(typeof ign=="number")
+   {if(typeof ign==="number")
      {switch(ign)
        {case 0:
          var ign$prime=ign;return type_ignored_param_one(ign$prime,fmt,fmtty);
@@ -2882,7 +2883,7 @@ var
         case 3:
          var exit;
          
-         if(typeof fmtty=="number")
+         if(typeof fmtty==="number")
           {switch(fmtty){}}
          else
           {switch(fmtty[0])
@@ -3011,7 +3012,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:
          var fmtty$1=match$1;
@@ -3024,7 +3025,7 @@ var
     else
      {switch(match[0])
        {case 0:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3049,7 +3050,7 @@ var
              default:exit=297;}}
          
         case 1:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3074,7 +3075,7 @@ var
              default:exit=297;}}
          
         case 2:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3099,7 +3100,7 @@ var
              default:exit=297;}}
          
         case 3:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3124,7 +3125,7 @@ var
              default:exit=297;}}
          
         case 4:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3149,7 +3150,7 @@ var
              default:exit=297;}}
          
         case 5:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3174,7 +3175,7 @@ var
              default:exit=297;}}
          
         case 6:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3199,7 +3200,7 @@ var
              default:exit=297;}}
          
         case 7:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3224,7 +3225,7 @@ var
              default:exit=297;}}
          
         case 8:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3263,7 +3264,7 @@ var
              default:exit=297;}}
          
         case 9:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3335,7 +3336,7 @@ var
              default:exit=297;}}
          
         case 10:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3360,7 +3361,7 @@ var
              default:exit=297;}}
          
         case 11:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3386,7 +3387,7 @@ var
          
         case 12:exit=297;
         case 13:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3411,7 +3412,7 @@ var
              default:exit=297;}}
          
         case 14:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3462,16 +3463,16 @@ var
     if(width$1<=len)
      {return str;}
     else
-     {var res=Bytes["make"](width$1,(padty$1=/* Zeros */2)?48:32);
+     {var res=Bytes["make"](width$1,padty$1===/* Zeros */2?48:32);
       
       switch(padty$1)
        {case 0:$$String["blit"](str,0,res,0,len);
         case 1:$$String["blit"](str,0,res,width$1-len,len);
         case 2:
-         if(len>0&&((str[0]=43)||(str[0]=45)||(str[0]=32)))
+         if(len>0&&(str[0]===43||str[0]===45||str[0]===32))
           {res[0]=str[0],0,$$String["blit"](str,1,res,width$1-len+1,len-1)}
          else
-          {if(len>1&&(str[0]=48)&&((str[1]=120)||(str[1]=88)))
+          {if(len>1&&str[0]===48&&(str[1]===120||str[1]===88))
             {res[1]=str[1],0,$$String["blit"](str,2,res,width$1-len+2,len-2)}
            else
             {$$String["blit"](str,0,res,width$1-len,len)}
@@ -3501,7 +3502,7 @@ var
        {if(c>=65){exit=276;}else{exit=274;}}
       }
     else
-     {if(c!=32)
+     {if(c!==32)
        {if(c>=43)
          {var switcher$1=-43+c;
           
@@ -3512,7 +3513,7 @@ var
             case 3:exit=274;
             case 4:exit=274;
             case 5:
-             if(prec$1+2>len&&len>1&&((str[1]=120)||(str[1]=88)))
+             if(prec$1+2>len&&len>1&&(str[1]===120||str[1]===88))
               {var res=Bytes["make"](prec$1+2,48);
                
                res[1]=str[1],0;
@@ -3619,7 +3620,7 @@ var
 var
  format_of_fconv=
   function(fconv,prec)
-   {if(fconv=/* Float_F */15)
+   {if(fconv===/* Float_F */15)
      {return "%.12g";}
     else
      {var prec$1=Pervasives["abs"](prec);
@@ -3668,7 +3669,7 @@ var
      str=
       CamlPrimtivie["caml_format_float"](format_of_fconv(fconv,prec$1),x);
     
-    if(fconv!=/* Float_F */15)
+    if(fconv!==/* Float_F */15)
      {return str;}
     else
      {var len=str["length"];
@@ -3676,7 +3677,7 @@ var
       var
        is_valid=
         function(i)
-         {if(i=len)
+         {if(i===len)
            {return /* false */0;}
           else
            {var match=str[i];
@@ -3691,7 +3692,7 @@ var
               if(21<switcher$1>>>0){exit=253;}else{exit=254;}
               }
             else
-             {if(switcher!=55){exit=254;}else{exit=253;}}
+             {if(switcher!==55){exit=254;}else{exit=253;}}
             
             switch(exit)
              {case 254:return is_valid(i+1);case 253:return /* true */1;}
@@ -3700,7 +3701,7 @@ var
       
       var match=CamlPrimtivie["caml_classify_float"](x);
       
-      if(match!=3)
+      if(match!==3)
        {if(match>=4)
          {return "nan";}
         else
@@ -3730,7 +3731,7 @@ var
 var
  make_printf=
   function(k,o,acc,fmt)
-   {if(typeof fmt=="number")
+   {if(typeof fmt==="number")
      {switch(fmt){case 0:return k(o,acc);}}
     else
      {switch(fmt[0])
@@ -4005,7 +4006,7 @@ var
 var
  make_ignored_param=
   function(k,o,acc,ign,fmt)
-   {if(typeof ign=="number")
+   {if(typeof ign==="number")
      {switch(ign)
        {case 0:return make_invalid_arg(k,o,acc,fmt);
         case 1:return make_invalid_arg(k,o,acc,fmt);
@@ -4032,7 +4033,7 @@ var
 var
  make_from_fmtty=
   function(k,o,acc,fmtty,fmt)
-   {if(typeof fmtty=="number")
+   {if(typeof fmtty==="number")
      {switch(fmtty){case 0:return make_invalid_arg(k,o,acc,fmt);}}
     else
      {switch(fmtty[0])
@@ -4130,7 +4131,7 @@ var
 var
  make_string_padding=
   function(k,o,acc,fmt,pad,trans)
-   {if(typeof pad=="number")
+   {if(typeof pad==="number")
      {switch(pad)
        {case 0:
          return function(x)
@@ -4176,11 +4177,11 @@ var
     
     var match$1=prec;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {return function(p,x)
               {var str=fix_int_precision(p,trans(iconv,x));
                
@@ -4214,7 +4215,7 @@ var
          var padty=match[1];
          
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {var w$1=w;
              
              var padty$1=padty;
@@ -4255,7 +4256,7 @@ var
          var padty$3=match[1];
          
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {var padty$4=padty$3;
              
              return function(w,p,x)
@@ -4298,11 +4299,11 @@ var
     
     var match$1=prec;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {return function(p,x)
               {var str=convert_float(fconv,p,x);
                
@@ -4336,7 +4337,7 @@ var
          var padty=match[1];
          
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {var w$1=w;
              
              var padty$1=padty;
@@ -4376,7 +4377,7 @@ var
          var padty$3=match[1];
          
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {var padty$4=padty$3;
              
              return function(w,p,x)
@@ -4428,7 +4429,7 @@ var
   function(o,acc)
    {var exit;
     
-    if(typeof acc=="number")
+    if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
@@ -4515,7 +4516,7 @@ var
   function(b,acc)
    {var exit;
     
-    if(typeof acc=="number")
+    if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
@@ -4602,7 +4603,7 @@ var
   function(b,acc)
    {var exit;
     
-    if(typeof acc=="number")
+    if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0;}}
     else
      {switch(acc[0])
@@ -4731,15 +4732,15 @@ var
       var
        parse_spaces=
         function(i)
-         {if(i=len)
+         {if(i===len)
            {return i;}
           else
            {var match=str[i];
             
             var exit;
             
-            if(match!=9)
-             {if(match!=32){return i;}else{exit=190;}}
+            if(match!==9)
+             {if(match!==32){return i;}else{exit=190;}}
             else
              {exit=190;}
             
@@ -4750,7 +4751,7 @@ var
       var
        parse_lword=
         function(i,j)
-         {if(j=len)
+         {if(j===len)
            {return j;}
           else
            {var match=str[j];
@@ -4764,7 +4765,7 @@ var
       var
        parse_int=
         function(i,j)
-         {if(j=len)
+         {if(j===len)
            {return j;}
           else
            {var match=str[j];
@@ -4774,7 +4775,7 @@ var
             if(match>=48)
              {if(match>=58){exit=195;}else{exit=194;}}
             else
-             {if(match!=45){exit=195;}else{exit=194;}}
+             {if(match!==45){exit=195;}else{exit=194;}}
             
             switch(exit){case 195:return j;case 194:return parse_int(i,j+1);}
             }
@@ -4790,7 +4791,7 @@ var
       
       var nend=parse_int(nstart,nstart);
       
-      if(nstart=nend)
+      if(nstart===nend)
        {var indent=0;}
       else
        {try
@@ -4802,13 +4803,16 @@ var
         catch(exn)
          {var tag=exn[1];
           
-          if(tag=Failure){var indent=invalid_box(/* () */0);}else{throw exn;}
+          if(tag===Failure)
+           {var indent=invalid_box(/* () */0);}
+          else
+           {throw exn;}
           }
         }
       
       var exp_end=parse_spaces(nend);
       
-      if(exp_end!=len){var match=invalid_box(/* () */0);}else{var match=0;}
+      if(exp_end!==len){var match=invalid_box(/* () */0);}else{var match=0;}
       
       var exit;
       
@@ -4833,7 +4837,7 @@ var
 var
  make_padding_fmt_ebb=
   function(pad,fmt)
-   {if(typeof pad=="number")
+   {if(typeof pad==="number")
      {switch(pad)
        {case 0:return /* Padding_fmt_EBB */[0,/* No_padding */0,fmt];}}
     else
@@ -4857,7 +4861,7 @@ var
  make_precision_fmt_ebb=
   function(prec,fmt)
    {if(typeof prec==="number")
-     {if(prec!=0)
+     {if(prec!==0)
        {return /* Precision_fmt_EBB */[0,/* Arg_precision */1,fmt];}
       else
        {return /* Precision_fmt_EBB */[0,/* No_precision */0,fmt];}
@@ -4878,7 +4882,7 @@ var
     
     var prec$1=match[1];
     
-    if(typeof pad=="number")
+    if(typeof pad==="number")
      {switch(pad)
        {case 0:
          return /* Padprec_fmt_EBB */[0,/* No_padding */0,prec$1,fmt$prime];
@@ -5015,13 +5019,13 @@ var
     var
      parse_literal=
       function(lit_start,str_ind,end_ind)
-       {if(str_ind=end_ind)
+       {if(str_ind===end_ind)
          {return add_literal(lit_start,str_ind,/* End_of_format */0);}
         else
          {var match=str[str_ind];
           
-          if(match!=37)
-           {if(match!=64)
+          if(match!==37)
+           {if(match!==64)
              {return parse_literal(lit_start,str_ind+1,end_ind);}
             else
              {var match$1=parse_after_at(str_ind+1,end_ind);
@@ -5048,11 +5052,11 @@ var
     var
      parse_ign=
       function(pct_ind,str_ind,end_ind)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var match=str[str_ind];
         
-        if(match!=95)
+        if(match!==95)
          {return parse_flags(pct_ind,str_ind,end_ind,/* false */0);}
         else
          {return parse_flags(pct_ind,str_ind+1,end_ind,/* true */1);}
@@ -5103,7 +5107,7 @@ var
         var
          read_flags=
           function(str_ind)
-           {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
             var match=str[str_ind];
             
@@ -5157,14 +5161,14 @@ var
     var
      parse_padding=
       function(pct_ind,str_ind,end_ind,zero,minus,plus,sharp,space,ign)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var match=zero;
         
         var match$1=minus;
         
-        if(match!=0)
-         {if(match$1!=0)
+        if(match!==0)
+         {if(match$1!==0)
            {if(legacy_behavior$1)
              {var padty=/* Left */0;}
             else
@@ -5174,7 +5178,8 @@ var
            {var padty=/* Zeros */2;}
           }
         else
-         {if(match$1!=0){var padty=/* Left */0;}else{var padty=/* Right */1;}}
+         {if(match$1!==0){var padty=/* Left */0;}else{var padty=/* Right */1;}
+          }
         
         var match$2=str[str_ind];
         
@@ -5203,7 +5208,7 @@ var
             }
           }
         else
-         {if(match$2!=42)
+         {if(match$2!==42)
            {exit=16;}
           else
            {return parse_after_padding
@@ -5271,11 +5276,11 @@ var
     var
      parse_after_padding=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var symb=str[str_ind];
         
-        if(symb!=46)
+        if(symb!==46)
          {return parse_conversion
                   (pct_ind,
                    str_ind+1,
@@ -5298,7 +5303,7 @@ var
     var
      parse_precision=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var
          parse_literal$1=
@@ -5360,7 +5365,7 @@ var
         switch(exit)
          {case 21:
            if(legacy_behavior$1)
-            {return parse_literal$1(minus||(symb=45),str_ind+1);}
+            {return parse_literal$1(minus||symb===45,str_ind+1);}
            else
             {exit=19;}
            
@@ -5387,7 +5392,7 @@ var
     var
      parse_after_precision=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad,prec)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var
          parse_conv=
@@ -5414,7 +5419,7 @@ var
           var exit;
           
           if(typeof match$1==="number")
-           {if(match$1!=0)
+           {if(match$1!==0)
              {exit=24;}
             else
              {return parse_conv(/* No_padding */0);}
@@ -5424,7 +5429,7 @@ var
           
           switch(exit)
            {case 24:
-             if(match!=0)
+             if(match!==0)
               {if(typeof match$1==="number")
                 {return parse_conv([/* Arg_padding */1,/* Left */0]);}
                else
@@ -5488,7 +5493,7 @@ var
         var
          check_no_0=
           function(symb,pad)
-           {if(typeof pad=="number")
+           {if(typeof pad==="number")
              {switch(pad){case 0:return pad;}}
             else
              {switch(pad[0])
@@ -5524,7 +5529,7 @@ var
         var
          opt_of_pad=
           function(c,pad)
-           {if(typeof pad=="number")
+           {if(typeof pad==="number")
              {switch(pad){case 0:return /* None */0;}}
             else
              {switch(pad[0])
@@ -5567,7 +5572,7 @@ var
            {var match=get_prec(/* () */0);
             
             if(typeof match==="number")
-             {if(match!=0)
+             {if(match!==0)
                {return incompatible_flag(pct_ind,str_ind,95,"'*'");}
               else
                {return /* None */0;}
@@ -5840,7 +5845,7 @@ var
              if(match$11)
               {var _n=match$11[1];
                
-               if(_n!=0)
+               if(_n!==0)
                 {if(!legacy_behavior$1)
                   {var fmt_result=invalid_nonnull_char_width(str_ind);}
                  else
@@ -5990,7 +5995,7 @@ var
              var exit$1;
              
              if(typeof match$22==="number")
-              {if(match$22!=0)
+              {if(match$22!==0)
                 {exit$1=36;}
                else
                 {var pad$3=match$21;var pad$4=pad$3;}
@@ -6000,7 +6005,7 @@ var
              
              switch(exit$1)
               {case 36:
-                if(typeof match$21=="number")
+                if(typeof match$21==="number")
                  {switch(match$21){case 0:var pad$4=/* No_padding */0;}}
                 else
                  {switch(match$21[0])
@@ -6057,7 +6062,7 @@ var
              }
            
           case 65:
-           if((str_ind=end_ind)||!is_int_base(str[str_ind]))
+           if(str_ind===end_ind||!is_int_base(str[str_ind]))
             {var match$26=parse(str_ind,end_ind);
              
              var fmt_rest$13=match$26[1];
@@ -6281,7 +6286,7 @@ var
                }
              }
            else
-            {if(symb!=76)
+            {if(symb!==76)
               {exit=62;}
              else
               {var
@@ -6401,13 +6406,13 @@ var
          {var exit$2;
           
           if(symb>=38)
-           {if(symb!=44)
-             {if(symb!=64){exit$2=27;}else{exit$2=28;}}
+           {if(symb!==44)
+             {if(symb!==64){exit$2=27;}else{exit$2=28;}}
             else
              {exit$2=28;}
             }
           else
-           {if(symb!=33)
+           {if(symb!==33)
              {if(symb>=37){exit$2=28;}else{exit$2=27;}}
             else
              {exit$2=28;}
@@ -6427,7 +6432,7 @@ var
     var
      parse_after_at=
       function(str_ind,end_ind)
-       {if(str_ind=end_ind)
+       {if(str_ind===end_ind)
          {return [/* Fmt_EBB */0,
                   [/* Char_literal */12,64,/* End_of_format */0]];
           }
@@ -6479,7 +6484,7 @@ var
               }
             }
           else
-           {if(c!=10)
+           {if(c!==10)
              {if(c>=32)
                {var switcher$2=-32+c;
                 
@@ -6497,7 +6502,7 @@ var
                   case 3:exit=91;
                   case 4:exit=91;
                   case 5:
-                   if(str_ind+1<end_ind&&(str[str_ind+1]=37))
+                   if(str_ind+1<end_ind&&str[str_ind+1]===37)
                     {var match$3=parse(str_ind+2,end_ind);
                      
                      var fmt_rest$3=match$3[1];
@@ -6601,7 +6606,7 @@ var
       function(fmt)
        {var exit;
         
-        if(typeof fmt=="number")
+        if(typeof fmt==="number")
          {switch(fmt){}}
         else
          {switch(fmt[0])
@@ -6616,7 +6621,7 @@ var
                catch(exn)
                 {var tag=exn[1];
                  
-                 if(tag=Failure){return /* () */0;}else{throw exn;}
+                 if(tag===Failure){return /* () */0;}else{throw exn;}
                  }
                }
              else
@@ -6631,11 +6636,11 @@ var
      parse_tag=
       function(is_open_tag,str_ind,end_ind)
        {try
-         {if(str_ind=end_ind){throw Not_found;}else{}
+         {if(str_ind===end_ind){throw Not_found;}else{}
           
           var match=str[str_ind];
           
-          if(match!=60)
+          if(match!==60)
            {throw Not_found;}
           else
            {var ind=$$String["index_from"](str,str_ind+1,62);
@@ -6666,7 +6671,7 @@ var
             }
           }
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===Not_found)
            {var match$3=parse(str_ind,end_ind);
             
             var fmt_rest$1=match$3[1];
@@ -6690,7 +6695,7 @@ var
      parse_good_break=
       function(str_ind,end_ind)
        {try
-         {if((str_ind=end_ind)||str[str_ind]!=60){throw Not_found;}else{}
+         {if(str_ind===end_ind||str[str_ind]!==60){throw Not_found;}else{}
           
           var str_ind_1=parse_spaces(str_ind+1,end_ind);
           
@@ -6701,7 +6706,7 @@ var
           if(match>=48)
            {if(match>=58){exit=114;}else{exit=113;}}
           else
-           {if(match!=45){exit=114;}else{exit=113;}}
+           {if(match!==45){exit=114;}else{exit=113;}}
           
           switch(exit)
            {case 114:throw Not_found;
@@ -6732,7 +6737,7 @@ var
                  
                  var str_ind_5=parse_spaces(str_ind_4,end_ind);
                  
-                 if(str[str_ind_5]!=62){throw Not_found;}else{}
+                 if(str[str_ind_5]!==62){throw Not_found;}else{}
                  
                  var s=$$String["sub"](str,str_ind-2,str_ind_5-str_ind+3);
                  
@@ -6744,7 +6749,7 @@ var
                 {exit$1=110;}
                }
              else
-              {if(switcher!=17)
+              {if(switcher!==17)
                 {exit$1=110;}
                else
                 {var s$1=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
@@ -6762,10 +6767,10 @@ var
         catch(exn)
          {var exit$2;
           
-          if(exn=Not_found)
+          if(exn===Not_found)
            {exit$2=103;}
           else
-           {var tag=exn[1];if(tag=Failure){exit$2=103;}else{throw exn;}}
+           {var tag=exn[1];if(tag===Failure){exit$2=103;}else{throw exn;}}
           
           switch(exit$2)
            {case 103:
@@ -6798,7 +6803,7 @@ var
           if(match>=48)
            {if(match>=58){exit=124;}else{exit=123;}}
           else
-           {if(match!=45){exit=124;}else{exit=123;}}
+           {if(match!==45){exit=124;}else{exit=123;}}
           
           switch(exit)
            {case 124:var match$1=/* None */0;
@@ -6811,7 +6816,7 @@ var
              
              var str_ind_3=parse_spaces(str_ind_2,end_ind);
              
-             if(str[str_ind_3]!=62){throw Not_found;}else{}
+             if(str[str_ind_3]!==62){throw Not_found;}else{}
              
              var s=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
              
@@ -6825,10 +6830,10 @@ var
         catch(exn)
          {var exit$1;
           
-          if(exn=Not_found)
+          if(exn===Not_found)
            {exit$1=118;}
           else
-           {var tag=exn[1];if(tag=Failure){exit$1=118;}else{throw exn;}}
+           {var tag=exn[1];if(tag===Failure){exit$1=118;}else{throw exn;}}
           
           switch(exit$1){case 118:var match$1=/* None */0;}
           }
@@ -6860,7 +6865,7 @@ var
     var
      parse_char_set=
       function(str_ind,end_ind)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var char_set=create_char_set(/* () */0);
         
@@ -6907,7 +6912,7 @@ var
         var
          parse_char_set_start=
           function(str_ind,end_ind)
-           {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
             var c=str[str_ind];
             
@@ -6917,12 +6922,12 @@ var
         var
          parse_char_set_content=
           function(str_ind,end_ind)
-           {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
             var c=str[str_ind];
             
-            if(c!=45)
-             {if(c!=93)
+            if(c!==45)
+             {if(c!==93)
                {return parse_char_set_after_char(str_ind+1,end_ind,c);}
               else
                {return str_ind+1;}
@@ -6934,20 +6939,21 @@ var
         var
          parse_char_set_after_char=
           function(str_ind,end_ind,c)
-           {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
             var c$prime=str[str_ind];
             
             var exit;
             
             if(c$prime>=46)
-             {if(c$prime!=64)
-               {if(c$prime!=93){exit=132;}else{add_char(c);return str_ind+1;}}
+             {if(c$prime!==64)
+               {if(c$prime!==93){exit=132;}else{add_char(c);return str_ind+1;}
+                }
               else
                {exit=133;}
               }
             else
-             {if(c$prime!=37)
+             {if(c$prime!==37)
                {if(c$prime>=45)
                  {return parse_char_set_after_minus(str_ind+1,end_ind,c);}
                 else
@@ -6959,7 +6965,7 @@ var
             
             switch(exit)
              {case 133:
-               if(c=37)
+               if(c===37)
                 {add_char(c$prime);
                  return parse_char_set_content(str_ind+1,end_ind);
                  }
@@ -6969,7 +6975,7 @@ var
               case 132:
                var c$prime$1=c$prime;
                
-               if(c=37){fail_single_percent(str_ind)}else{}
+               if(c===37){fail_single_percent(str_ind)}else{}
                
                add_char(c);
                return parse_char_set_after_char(str_ind+1,end_ind,c$prime$1);
@@ -6980,12 +6986,12 @@ var
         var
          parse_char_set_after_minus=
           function(str_ind,end_ind,c)
-           {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
             var c$prime=str[str_ind];
             
-            if(c$prime!=37)
-             {if(c$prime!=93)
+            if(c$prime!==37)
+             {if(c$prime!==93)
                {add_range(c,c$prime);
                 return parse_char_set_content(str_ind+1,end_ind);
                 }
@@ -6993,14 +6999,14 @@ var
                {add_char(c);add_char(45);return str_ind+1;}
               }
             else
-             {if((str_ind+1)=end_ind){unexpected_end_of_format(end_ind)}else{}
+             {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
               
               var c$prime$1=str[str_ind+1];
               
               var exit;
               
-              if(c$prime$1!=37)
-               {if(c$prime$1!=64)
+              if(c$prime$1!==37)
+               {if(c$prime$1!==64)
                  {return fail_single_percent(str_ind);}
                 else
                  {exit=134;}
@@ -7017,11 +7023,11 @@ var
               }
             };
         
-        if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+        if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var match=str[str_ind];
         
-        if(match!=94)
+        if(match!==94)
          {var match$1=/* tuple */[0,str_ind,/* false */0];}
         else
          {var match$1=/* tuple */[0,str_ind+1,/* true */1];}
@@ -7042,9 +7048,9 @@ var
     var
      parse_spaces=
       function(str_ind,end_ind)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        if(str[str_ind]=32)
+        if(str[str_ind]===32)
          {return parse_spaces(str_ind+1,end_ind);}
         else
          {return str_ind;}
@@ -7053,7 +7059,7 @@ var
     var
      parse_positive=
       function(str_ind,end_ind,acc)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var c=str[str_ind];
         
@@ -7097,7 +7103,7 @@ var
     var
      parse_integer=
       function(str_ind,end_ind)
-       {if(str_ind=end_ind){unexpected_end_of_format(end_ind)}else{}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
         var match=str[str_ind];
         
@@ -7110,10 +7116,10 @@ var
            {return parse_positive(str_ind,end_ind,0);}
           }
         else
-         {if(match!=45)
+         {if(match!==45)
            {exit=148;}
           else
-           {if((str_ind+1)=end_ind){unexpected_end_of_format(end_ind)}else{}
+           {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
             
             var c=str[str_ind+1];
             
@@ -7144,8 +7150,8 @@ var
       function(lit_start,str_ind,fmt)
        {var size=str_ind-lit_start;
         
-        if(size!=0)
-         {if(size!=1)
+        if(size!==0)
+         {if(size!==1)
            {return /* Fmt_EBB */[0,
                     /* String_literal */[11,
                      $$String["sub"](str,lit_start,size),
@@ -7162,7 +7168,7 @@ var
     var
      search_subformat_end=
       function(str_ind,end_ind,c)
-       {if(str_ind=end_ind)
+       {if(str_ind===end_ind)
          {failwith_message
            ([/* Format */0,
              [/* String_literal */11,
@@ -7190,12 +7196,12 @@ var
         
         var match=str[str_ind];
         
-        if(match!=37)
+        if(match!==37)
          {return search_subformat_end(str_ind+1,end_ind,c);}
         else
-         {if((str_ind+1)=end_ind){unexpected_end_of_format(end_ind)}else{}
+         {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
           
-          if(str[str_ind+1]=c)
+          if(str[str_ind+1]===c)
            {return str_ind;}
           else
            {var match$1=str[str_ind+1];
@@ -7225,15 +7231,15 @@ var
                {if(match$1>=96)
                  {exit=155;}
                 else
-                 {if((str_ind+2)=end_ind)
+                 {if(str_ind+2===end_ind)
                    {unexpected_end_of_format(end_ind)}
                   else
                    {}
                   
                   var match$2=str[str_ind+2];
                   
-                  if(match$2!=40)
-                   {if(match$2!=123)
+                  if(match$2!==40)
+                   {if(match$2!==123)
                      {return search_subformat_end(str_ind+3,end_ind,c);}
                     else
                      {var sub_end$1=search_subformat_end(str_ind+3,end_ind,125);
@@ -7250,8 +7256,8 @@ var
                 }
               }
             else
-             {if(match$1!=40)
-               {if(match$1!=41)
+             {if(match$1!==40)
+               {if(match$1!==41)
                  {exit=155;}
                 else
                  {return expected_character(str_ind+1,"character '}'",41);}
@@ -7339,7 +7345,7 @@ var
             }
           }
         else
-         {if(symb!=76){exit=159;}else{return /* Token_counter */2;}}
+         {if(symb!==76){exit=159;}else{return /* Token_counter */2;}}
         
         switch(exit)
          {case 159:
@@ -7360,28 +7366,28 @@ var
         
         var exit;
         
-        if(match!=0)
-         {if(match$1!=0)
+        if(match!==0)
+         {if(match$1!==0)
            {exit=161;}
           else
-           {if(match$2!=0)
+           {if(match$2!==0)
              {exit=160;}
             else
-             {if(match$3!=100)
-               {if(match$3!=105){exit=160;}else{return /* Int_pi */4;}}
+             {if(match$3!==100)
+               {if(match$3!==105){exit=160;}else{return /* Int_pi */4;}}
               else
                {return /* Int_pd */1;}
               }
             }
           }
         else
-         {if(match$1!=0)
-           {if(match$2!=0)
+         {if(match$1!==0)
+           {if(match$2!==0)
              {exit=161;}
             else
-             {if(match$3!=88)
-               {if(match$3!=111)
-                 {if(match$3!=120){exit=161;}else{return /* Int_Cx */7;}}
+             {if(match$3!==88)
+               {if(match$3!==111)
+                 {if(match$3!==120){exit=161;}else{return /* Int_Cx */7;}}
                 else
                  {return /* Int_Co */11;}
                 }
@@ -7390,9 +7396,9 @@ var
               }
             }
           else
-           {if(match$2!=0)
-             {if(match$3!=100)
-               {if(match$3!=105){exit=160;}else{return /* Int_si */5;}}
+           {if(match$2!==0)
+             {if(match$3!==100)
+               {if(match$3!==105){exit=160;}else{return /* Int_si */5;}}
               else
                {return /* Int_sd */2;}
               }
@@ -7503,8 +7509,8 @@ var
              }
            
           case 160:
-           if(match!=0)
-            {if(match$2!=0)
+           if(match!==0)
+            {if(match$2!==0)
               {if(legacy_behavior$1)
                 {return compute_int_conv
                          (pct_ind,str_ind,plus,sharp,/* false */0,symb);
@@ -7522,7 +7528,7 @@ var
                }
              }
            else
-            {if(match$2!=0)
+            {if(match$2!==0)
               {if(legacy_behavior$1)
                 {return compute_int_conv
                          (pct_ind,str_ind,plus,sharp,/* false */0,symb);
@@ -7546,8 +7552,8 @@ var
         
         var match$2=symb;
         
-        if(match!=0)
-         {if(match$1!=0)
+        if(match!==0)
+         {if(match$1!==0)
            {if(legacy_behavior$1)
              {return compute_float_conv
                       (pct_ind,str_ind,plus,/* false */0,symb);
@@ -7598,7 +7604,7 @@ var
             }
           }
         else
-         {if(match$1!=0)
+         {if(match$1!==0)
            {var exit$1;
             
             if(match$2>=72)
@@ -7725,7 +7731,7 @@ var
     try
      {return /* Format */[0,type_format(fmt,fmtty),str];}
     catch(exn)
-     {if(exn=Type_mismatch)
+     {if(exn===Type_mismatch)
        {return failwith_message
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -7758,7 +7764,7 @@ var
     try
      {return /* Format */[0,type_format(fmt,fmtty_of_fmt(fmt$prime)),str];}
     catch(exn)
-     {if(exn=Type_mismatch)
+     {if(exn===Type_mismatch)
        {return failwith_message
                 ([/* Format */0,
                   [/* String_literal */11,

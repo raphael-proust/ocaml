@@ -21,12 +21,12 @@ var
       ib[2]=c,0;
       ib[3]=/* true */1,0;
       ib[4]=1+ib[4],0;
-      if(c=10){ib[5]=1+ib[5],0}else{}
+      if(c===10){ib[5]=1+ib[5],0}else{}
       
       return c;
       }
     catch(exn)
-     {if(exn=End_of_file)
+     {if(exn===End_of_file)
        {var c$1=null_char;
         
         ib[2]=c$1,0;
@@ -52,14 +52,14 @@ var end_of_input=function(ib){peek_char(ib);return ib[1];};
 
 var eof=function(ib){return ib[1];};
 
-var beginning_of_input=function(ib){return ib[4]=0;};
+var beginning_of_input=function(ib){return ib[4]===0;};
 
 var
  name_of_input=
   function(ib)
    {var match=ib[9];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:return "unnamed character string";
         case 1:return "unnamed function";
@@ -167,7 +167,7 @@ var
            {throw End_of_file;}
           else
            {lim[1]=Pervasives["input"](ic,buf,0,len),0;
-            if(lim[1]=0)
+            if(lim[1]===0)
              {eof$1[1]=/* true */1,0;return scan_close_ic(ic);}
             else
              {i[1]=1,0;return buf[0];}
@@ -229,7 +229,7 @@ var
    {try
      {return List["assq"](ic,memo[1]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {var ib=from_ic(scan_close_ic,/* From_channel */[1,ic],ic);
         
         memo[1]=/* :: */[0,/* tuple */[0,ic,ib],memo[1]],0;
@@ -249,7 +249,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=247;case 1:exit=247;}}
     else
      {switch(match[0])
@@ -384,7 +384,7 @@ var
         if(1<switcher$1>>>0){exit=237;}else{exit=238;}
         }
       else
-       {if(switcher!=23){exit=238;}else{exit=237;}}
+       {if(switcher!==23){exit=238;}else{exit=237;}}
       
       switch(exit)
        {case 238:return /* () */0;
@@ -398,20 +398,21 @@ var
 var
  check_char=
   function(ib,c)
-   {if(c=32)
+   {if(c===32)
      {return skip_whites(ib);}
     else
      {var ci=Scanning[6](ib);
       
-      if(ci=c)
+      if(ci===c)
        {return Scanning[4](ib);}
       else
        {var exit;
         
-        if(ci!=13)
+        if(ci!==13)
          {exit=235;}
         else
-         {if(c=10){Scanning[4](ib);return check_char(ib,10);}else{exit=235;}}
+         {if(c===10){Scanning[4](ib);return check_char(ib,10);}else{exit=235;}
+          }
         
         switch(exit){case 235:return character_mismatch(c,ci);}
         }
@@ -503,7 +504,10 @@ var
     
     var l=tok["length"];
     
-    if((l=0)||tok[0]!=43){return tok;}else{return $$String["sub"](tok,1,l-1);}
+    if(l===0||tok[0]!==43)
+     {return tok;}
+    else
+     {return $$String["sub"](tok,1,l-1);}
     };
 
 var
@@ -536,7 +540,7 @@ var
 var
  scan_decimal_digits=
   function(width,ib)
-   {if(width=0)
+   {if(width===0)
      {return width;}
     else
      {var c=Scanning[5](ib);
@@ -547,7 +551,7 @@ var
        {var exit;
         
         if(c>=58)
-         {if(c!=95)
+         {if(c!==95)
            {exit=218;}
           else
            {var width$1=Scanning[9](width,ib);
@@ -575,7 +579,7 @@ var
 var
  scan_decimal_digits_plus=
   function(width,ib)
-   {if(width=0)
+   {if(width===0)
      {return bad_token_length("decimal digits");}
     else
      {var c=Scanning[6](ib);
@@ -611,7 +615,7 @@ var
    {var
      scan_digits=
       function(width)
-       {if(width=0)
+       {if(width===0)
          {return width;}
         else
          {var c=Scanning[5](ib);
@@ -627,7 +631,7 @@ var
               return scan_digits(width$1);
               }
             else
-             {if(c!=95)
+             {if(c!==95)
                {return width;}
               else
                {var width$2=Scanning[9](width,ib);
@@ -639,7 +643,7 @@ var
           }
         };
     
-    if(width=0)
+    if(width===0)
      {return bad_token_length("digits");}
     else
      {var c=Scanning[6](ib);
@@ -745,12 +749,12 @@ var
   function(width,ib)
    {var c=Scanning[6](ib);
     
-    if(c!=48)
+    if(c!==48)
      {return scan_unsigned_decimal_int(width,ib);}
     else
      {var width$1=Scanning[7](width,ib,c);
       
-      if(width$1=0)
+      if(width$1===0)
        {return width$1;}
       else
        {var c$1=Scanning[5](ib);
@@ -761,13 +765,13 @@ var
          {var exit;
           
           if(c$1>=99)
-           {if(c$1!=111)
-             {if(c$1!=120){exit=179;}else{exit=178;}}
+           {if(c$1!==111)
+             {if(c$1!==120){exit=179;}else{exit=178;}}
             else
              {return scan_octal_int(Scanning[7](width$1,ib,c$1),ib);}
             }
           else
-           {if(c$1!=88)
+           {if(c$1!==88)
              {if(c$1>=98)
                {return scan_binary_int(Scanning[7](width$1,ib,c$1),ib);}
               else
@@ -848,7 +852,7 @@ var
 var
  scan_frac_part=
   function(width,ib)
-   {if(width=0)
+   {if(width===0)
      {return width;}
     else
      {var c=Scanning[5](ib);
@@ -869,7 +873,7 @@ var
 var
  scan_exp_part=
   function(width,ib)
-   {if(width=0)
+   {if(width===0)
      {return width;}
     else
      {var c=Scanning[5](ib);
@@ -879,7 +883,7 @@ var
       else
        {var exit;
         
-        if(c!=69){if(c!=101){return width;}else{exit=165;}}else{exit=165;}
+        if(c!==69){if(c!==101){return width;}else{exit=165;}}else{exit=165;}
         
         switch(exit)
          {case 165:
@@ -903,7 +907,7 @@ var
   function(width,precision,ib)
    {var width$1=scan_int_part(width,ib);
     
-    if(width$1=0)
+    if(width$1===0)
      {return /* tuple */[0,width$1,precision];}
     else
      {var c=Scanning[5](ib);
@@ -911,7 +915,7 @@ var
       if(Scanning[15](ib))
        {return /* tuple */[0,width$1,precision];}
       else
-       {if(c!=46)
+       {if(c!==46)
          {return /* tuple */[0,scan_exp_part(width$1,ib),precision];}
         else
          {var width$2=Scanning[7](width$1,ib,c);
@@ -931,7 +935,7 @@ var
   function(width,precision,ib)
    {var width$1=scan_optionally_signed_decimal_int(width,ib);
     
-    if(width$1=0)
+    if(width$1===0)
      {return bad_float(/* () */0);}
     else
      {var c=Scanning[5](ib);
@@ -952,7 +956,7 @@ var
            {exit=152;}
           }
         else
-         {if(switcher!=-23)
+         {if(switcher!==-23)
            {exit=152;}
           else
            {var width$2=Scanning[7](width$1,ib,c);
@@ -976,7 +980,7 @@ var
    {var
      loop=
       function(width)
-       {if(width=0)
+       {if(width===0)
          {return width;}
         else
          {var c=Scanning[5](ib);
@@ -987,7 +991,7 @@ var
            {if(stp)
              {var c$prime=stp[1];
               
-              if(c=c$prime)
+              if(c===c$prime)
                {return Scanning[8](width,ib);}
               else
                {return loop(Scanning[7](width,ib,c));}
@@ -1003,7 +1007,7 @@ var
                 if(1<switcher$1>>>0){exit=144;}else{exit=145;}
                 }
               else
-               {if(switcher!=23){exit=145;}else{exit=144;}}
+               {if(switcher!==23){exit=145;}else{exit=144;}}
               
               switch(exit)
                {case 145:return loop(Scanning[7](width,ib,c));
@@ -1044,7 +1048,7 @@ var
         }
       }
     else
-     {if(c!=98){exit=141;}else{return 8;}}
+     {if(c!==98){exit=141;}else{return 8;}}
     
     switch(exit){case 141:return c;}
     };
@@ -1110,7 +1114,7 @@ var
 var
  check_next_char=
   function(message,width,ib)
-   {if(width=0)
+   {if(width===0)
      {return bad_token_length(message);}
     else
      {var c=Scanning[5](ib);
@@ -1232,7 +1236,7 @@ var
         }
       }
     else
-     {if(c!=34){if(c>=39){exit=126;}else{exit=128;}}else{exit=126;}}
+     {if(c!==34){if(c>=39){exit=126;}else{exit=128;}}else{exit=126;}}
     
     switch(exit)
      {case 128:var c$2=c;return bad_input_escape(c$2);
@@ -1248,7 +1252,7 @@ var
       function(width)
        {var c=Scanning[6](ib);
         
-        if(c!=39)
+        if(c!==39)
          {return character_mismatch(39,c);}
         else
          {return find_char(Scanning[9](width,ib));}
@@ -1259,7 +1263,7 @@ var
       function(width)
        {var c=check_next_char_for_char(width,ib);
         
-        if(c!=92)
+        if(c!==92)
          {return find_stop(Scanning[7](width,ib,c));}
         else
          {return find_stop(scan_backslash_char(Scanning[9](width,ib),ib));}
@@ -1270,7 +1274,7 @@ var
       function(width)
        {var c=check_next_char_for_char(width,ib);
         
-        if(c!=39)
+        if(c!==39)
          {return character_mismatch(39,c);}
         else
          {return Scanning[9](width,ib);}
@@ -1287,7 +1291,7 @@ var
       function(width)
        {var c=Scanning[6](ib);
         
-        if(c!=34)
+        if(c!==34)
          {return character_mismatch(34,c);}
         else
          {return find_stop(Scanning[9](width,ib));}
@@ -1298,8 +1302,8 @@ var
       function(width)
        {var c=check_next_char_for_string(width,ib);
         
-        if(c!=34)
-         {if(c!=92)
+        if(c!==34)
+         {if(c!==92)
            {return find_stop(Scanning[7](width,ib,c));}
           else
            {return scan_backslash(Scanning[9](width,ib));}
@@ -1313,8 +1317,8 @@ var
       function(width)
        {var match=check_next_char_for_string(width,ib);
         
-        if(match!=10)
-         {if(match!=13)
+        if(match!==10)
+         {if(match!==13)
            {return find_stop(scan_backslash_char(width,ib));}
           else
            {return skip_newline(Scanning[9](width,ib));}
@@ -1328,7 +1332,7 @@ var
       function(width)
        {var match=check_next_char_for_string(width,ib);
         
-        if(match!=10)
+        if(match!==10)
          {return find_stop(Scanning[7](width,ib,13));}
         else
          {return skip_spaces(Scanning[9](width,ib));}
@@ -1339,7 +1343,7 @@ var
       function(width)
        {var match=check_next_char_for_string(width,ib);
         
-        if(match!=32)
+        if(match!==32)
          {return find_stop(width);}
         else
          {return skip_spaces(Scanning[9](width,ib));}
@@ -1353,8 +1357,8 @@ var
   function(ib)
    {var c=Scanning[6](ib);
     
-    if(c!=102)
-     {if(c!=116)
+    if(c!==102)
+     {if(c!==116)
        {var c$1=c;
         
         var
@@ -1393,7 +1397,7 @@ var
           0&&
           !Scanning[15](ib)&&
           CamlinternalFormat["is_in_char_set"](char_set,c)&&
-          c!=
+          c!==
           stp)
          {var match=Scanning[7](Pervasives["max_int"],ib,c);
           
@@ -1410,7 +1414,7 @@ var
       if(!Scanning[15](ib))
        {var ci=Scanning[5](ib);
         
-        if(c=ci)
+        if(c===ci)
          {return Scanning[4](ib);}
         else
          {return character_mismatch(c,ci);}
@@ -1429,12 +1433,12 @@ var
     
     var tag=x[1];
     
-    if(tag=Scan_failure)
+    if(tag===Scan_failure)
      {var s=x[2];var s$1=s;exit=91;}
     else
      {var tag$1=x[1];
       
-      if(tag$1=Failure){var s$2=x[2];var s$1=s$2;exit=91;}else{throw x;}
+      if(tag$1===Failure){var s$2=x[2];var s$1=s$2;exit=91;}else{throw x;}
       }
     
     switch(exit)
@@ -1482,7 +1486,7 @@ var
 var
  stopper_of_formatting_lit=
   function(fmting)
-   {if(fmting=/* Escaped_percent */6)
+   {if(fmting===/* Escaped_percent */6)
      {return [/* tuple */0,37,""];}
     else
      {var str=CamlinternalFormat["string_of_formatting_lit"](fmting);
@@ -1498,7 +1502,7 @@ var
 var
  take_format_readers=
   function(k,fmt)
-   {if(typeof fmt=="number")
+   {if(typeof fmt==="number")
      {switch(fmt){case 0:return k(/* Nil */0);}}
     else
      {switch(fmt[0])
@@ -1585,7 +1589,7 @@ var
 var
  take_fmtty_format_readers=
   function(k,fmtty,fmt)
-   {if(typeof fmtty=="number")
+   {if(typeof fmtty==="number")
      {switch(fmtty){case 0:return take_format_readers(k,fmt);}}
     else
      {switch(fmtty[0])
@@ -1656,7 +1660,7 @@ var
 var
  take_ignored_format_readers=
   function(k,ign,fmt)
-   {if(typeof ign=="number")
+   {if(typeof ign==="number")
      {switch(ign)
        {case 0:return take_format_readers(k,fmt);
         case 1:return take_format_readers(k,fmt);
@@ -1692,7 +1696,7 @@ var
 var
  make_scanf=
   function(ib,fmt,readers)
-   {if(typeof fmt=="number")
+   {if(typeof fmt==="number")
      {switch(fmt){case 0:return /* Nil */0;}}
     else
      {switch(fmt[0])
@@ -1721,7 +1725,7 @@ var
          
          var exit;
          
-         if(typeof rest$2=="number")
+         if(typeof rest$2==="number")
           {switch(rest$2){}}
          else
           {switch(rest$2[0])
@@ -1995,7 +1999,7 @@ var
          catch(exn)
           {var tag=exn[1];
            
-           if(tag=Failure)
+           if(tag===Failure)
             {var msg=exn[2];var fmt$1=bad_input(msg);}
            else
             {throw exn;}
@@ -2040,7 +2044,7 @@ var
          catch(exn$1)
           {var tag$1=exn$1[1];
            
-           if(tag$1=Failure)
+           if(tag$1===Failure)
             {var msg$1=exn$1[2];var match$12=bad_input(msg$1);}
            else
             {throw exn$1;}
@@ -2125,7 +2129,7 @@ var
          
          var exit$1;
          
-         if(typeof rest$22=="number")
+         if(typeof rest$22==="number")
           {switch(rest$22){}}
          else
           {switch(rest$22[0])
@@ -2220,11 +2224,11 @@ var
     
     var match$1=prec;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:
          if(typeof match$1==="number")
-          {if(match$1!=0)
+          {if(match$1!==0)
             {return Pervasives["invalid_arg"]('scanf: bad conversion "%*"');}
            else
             {var match$2=scan(Pervasives["max_int"],Pervasives["max_int"],ib);
@@ -2250,11 +2254,11 @@ var
        {case 0:
          var match$4=match[1];
          
-         if(match$4!=0)
+         if(match$4!==0)
           {var w=match[2];
            
            if(typeof match$1==="number")
-            {if(match$1!=0)
+            {if(match$1!==0)
               {return Pervasives["invalid_arg"]('scanf: bad conversion "%*"');
                }
              else
@@ -2311,20 +2315,20 @@ var
           
           var tag=exc[1];
           
-          if(tag=Scan_failure)
+          if(tag===Scan_failure)
            {exit=21;}
           else
            {var tag$1=exc[1];
             
-            if(tag$1=Failure)
+            if(tag$1===Failure)
              {exit=21;}
             else
-             {if(exc=End_of_file)
+             {if(exc===End_of_file)
                {exit=21;}
               else
                {var tag$2=exc[1];
                 
-                if(tag$2=Invalid_argument)
+                if(tag$2===Invalid_argument)
                  {var msg=exc[2];
                   
                   var
@@ -2385,7 +2389,7 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag=Failure)
+      if(tag===Failure)
        {var msg=exn[2];var fmt$prime=bad_input(msg);}
       else
        {throw exn;}
@@ -2409,7 +2413,7 @@ var
     for(var i=0;i<=l-1;i++)
      {var c=s[i];
       
-      if(c=34){Buffer["add_char"](b,92)}else{}
+      if(c===34){Buffer["add_char"](b,92)}else{}
       
       Buffer["add_char"](b,c)}
     

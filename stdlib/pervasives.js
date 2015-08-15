@@ -107,7 +107,7 @@ var
           if(match$1>=48)
            {if(match$1>=58){exit=62;}else{exit=61;}}
           else
-           {if(match$1!=45){exit=62;}else{exit=61;}}
+           {if(match$1!==45){exit=62;}else{exit=61;}}
           
           switch(exit){case 62:return s;case 61:return loop(i+1);}
           }
@@ -289,7 +289,7 @@ var
     else
      {var r=CamlPrimtivie["caml_ml_input"](ic,s,ofs,len);
       
-      if(r=0)
+      if(r===0)
        {throw End_of_file;}
       else
        {return unsafe_really_input(ic,s,ofs+r,len-r);}
@@ -339,7 +339,7 @@ var
       function(accu,len)
        {var n=CamlPrimtivie["caml_ml_input_scan_line"](chan);
         
-        if(n=0)
+        if(n===0)
          {if(accu)
            {return build_result
                     (CamlPrimtivie["caml_create_string"](len),len,accu);

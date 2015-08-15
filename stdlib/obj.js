@@ -63,7 +63,7 @@ var
     
     if
      (CamlPrimtivie["caml_obj_is_block"](x$1)&&
-      CamlPrimtivie["caml_obj_tag"](x$1)!=
+      CamlPrimtivie["caml_obj_tag"](x$1)!==
       object_tag&&
       x$1["length"]>=
       1)
@@ -73,12 +73,13 @@ var
     
     if
      (CamlPrimtivie["caml_obj_is_block"](slot)&&
-      (CamlPrimtivie["caml_obj_tag"](slot)=object_tag))
+      CamlPrimtivie["caml_obj_tag"](slot)===
+      object_tag)
      {var name=slot[0];}
     else
      {throw Not_found;}
     
-    if(CamlPrimtivie["caml_obj_tag"](name)=string_tag)
+    if(CamlPrimtivie["caml_obj_tag"](name)===string_tag)
      {return slot;}
     else
      {throw Not_found;}
@@ -90,7 +91,7 @@ var
    {try
      {var slot=extension_slot(x);return slot[0];}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {return Pervasives["invalid_arg"]("Obj.extension_name");}
       else
        {throw exn;}
@@ -103,7 +104,7 @@ var
    {try
      {var slot=extension_slot(x);return slot[1];}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {return Pervasives["invalid_arg"]("Obj.extension_id");}
       else
        {throw exn;}
@@ -116,7 +117,7 @@ var
    {try
      {return extension_slot(x);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===Not_found)
        {return Pervasives["invalid_arg"]("Obj.extension_slot");}
       else
        {throw exn;}
