@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Pervasives=require("./pervasives.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -13,7 +13,7 @@ var
      {if(l<0)
        {return Pervasives["invalid_arg"]("Array.init");}
       else
-       {var res=CamlPrimtivie["caml_make_vect"](l,f(0));
+       {var res=CamlPrimitive["caml_make_vect"](l,f(0));
         
         for(var i=1;i<=-1+l;i++){res[i]=f(i),0}
         
@@ -25,10 +25,10 @@ var
 var
  make_matrix=
   function(sx,sy,init)
-   {var res=CamlPrimtivie["caml_make_vect"](sx,[]);
+   {var res=CamlPrimitive["caml_make_vect"](sx,[]);
     
     for(var x=0;x<=-1+sx;x++)
-     {res[x]=CamlPrimtivie["caml_make_vect"](sy,init),0}
+     {res[x]=CamlPrimitive["caml_make_vect"](sy,init),0}
     
     return res;
     };
@@ -40,7 +40,7 @@ var
   function(a)
    {var l=a["length"];
     
-    if(l===0){return [];}else{return CamlPrimtivie["caml_array_sub"](a,0,l);}
+    if(l===0){return [];}else{return CamlPrimitive["caml_array_sub"](a,0,l);}
     };
 
 var
@@ -52,7 +52,7 @@ var
      {return copy(a2);}
     else
      {if(a2["length"]===0)
-       {return CamlPrimtivie["caml_array_sub"](a1,0,l1);}
+       {return CamlPrimitive["caml_array_sub"](a1,0,l1);}
       else
        {return a1["concat"](a2);}
       }
@@ -64,7 +64,7 @@ var
    {if(len<0||ofs>a["length"]-len)
      {return Pervasives["invalid_arg"]("Array.sub");}
     else
-     {return CamlPrimtivie["caml_array_sub"](a,ofs,len);}
+     {return CamlPrimitive["caml_array_sub"](a,ofs,len);}
     };
 
 var
@@ -82,7 +82,7 @@ var
    {if(len<0||ofs1<0||ofs1>a1["length"]-len||ofs2<0||ofs2>a2["length"]-len)
      {return Pervasives["invalid_arg"]("Array.blit");}
     else
-     {return CamlPrimtivie["caml_array_blit"](a1,ofs1,a2,ofs2,len);}
+     {return CamlPrimitive["caml_array_blit"](a1,ofs1,a2,ofs2,len);}
     };
 
 var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}};
@@ -95,7 +95,7 @@ var
     if(l===0)
      {return [];}
     else
-     {var r=CamlPrimtivie["caml_make_vect"](l,f(a[0]));
+     {var r=CamlPrimitive["caml_make_vect"](l,f(a[0]));
       
       for(var i=1;i<=l-1;i++){r[i]=f(a[i]),0}
       
@@ -113,7 +113,7 @@ var
     if(l===0)
      {return [];}
     else
-     {var r=CamlPrimtivie["caml_make_vect"](l,f(0,a[0]));
+     {var r=CamlPrimitive["caml_make_vect"](l,f(0,a[0]));
       
       for(var i=1;i<=l-1;i++){r[i]=f(i,a[i]),0}
       
@@ -145,7 +145,7 @@ var
       
       var hd=l[1];
       
-      var a=CamlPrimtivie["caml_make_vect"](list_length(0,l),hd);
+      var a=CamlPrimitive["caml_make_vect"](list_length(0,l),hd);
       
       var
        fill$1=
@@ -188,7 +188,7 @@ var
     return r[1];
     };
 
-var Bottom=CamlPrimtivie["caml_set_oo_id"]([248,"Array.Bottom",0]);
+var Bottom=CamlPrimitive["caml_set_oo_id"]([248,"Array.Bottom",0]);
 
 var
  sort=
@@ -356,7 +356,7 @@ var
       
       var l2=l-l1;
       
-      var t=CamlPrimtivie["caml_make_vect"](l2,a[0]);
+      var t=CamlPrimitive["caml_make_vect"](l2,a[0]);
       
       sortto(l1,t,0,l2);
       sortto(0,a,l2,l1);
@@ -372,7 +372,7 @@ module["exports"]=
  "create_matrix":create_matrix,
  "append":append,
  "caml_array_concat":
- function(prim){return CamlPrimtivie["caml_array_concat"](prim);},
+ function(prim){return CamlPrimitive["caml_array_concat"](prim);},
  "sub":sub,
  "copy":copy,
  "fill":fill,

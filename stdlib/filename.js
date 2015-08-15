@@ -4,9 +4,9 @@ var $$String=require("./string.js");
 var Pervasives=require("./pervasives.js");
 var Printf=require("./printf.js");
 var Random=require("./random.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Buffer=require("./buffer.js");
 var CamlinternalLazy=require("./camlinternalLazy.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
@@ -58,7 +58,7 @@ var
           }
         };
     
-    if(CamlPrimtivie["caml_string_equal"](name,""))
+    if(CamlPrimitive["caml_string_equal"](name,""))
      {return current_dir_name;}
     else
      {return find_end(name["length"]-1);}
@@ -106,7 +106,7 @@ var
           }
         };
     
-    if(CamlPrimtivie["caml_string_equal"](name,""))
+    if(CamlPrimitive["caml_string_equal"](name,""))
      {return current_dir_name;}
     else
      {return trailing_sep(name["length"]-1);}
@@ -128,10 +128,10 @@ var
    {return is_relative(n)&&
            (n["length"]<
             2||
-            CamlPrimtivie["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
+            CamlPrimitive["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
            (n["length"]<
             3||
-            CamlPrimtivie["caml_string_notequal"]
+            CamlPrimitive["caml_string_notequal"]
              ($$String["sub"](n,0,3),"../"));
     };
 
@@ -140,14 +140,14 @@ var
   function(name,suff)
    {return name["length"]>=
            suff["length"]&&
-           CamlPrimtivie["caml_string_equal"]
+           CamlPrimitive["caml_string_equal"]
             ($$String["sub"]
               (name,name["length"]-suff["length"],suff["length"]),
              suff);
     };
 
 try
- {var temp_dir_name=CamlPrimtivie["caml_sys_getenv"]("TMPDIR");}
+ {var temp_dir_name=CamlPrimitive["caml_sys_getenv"]("TMPDIR");}
 catch(exn){if(exn===Not_found){var temp_dir_name="/tmp";}else{throw exn;}}
 
 var quote=generic_quote("'\''");
@@ -193,17 +193,17 @@ var
    {return is_relative$1(n)&&
            (n["length"]<
             2||
-            CamlPrimtivie["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
+            CamlPrimitive["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
            (n["length"]<
             2||
-            CamlPrimtivie["caml_string_notequal"]($$String["sub"](n,0,2),".\"))&&
+            CamlPrimitive["caml_string_notequal"]($$String["sub"](n,0,2),".\"))&&
            (n["length"]<
             3||
-            CamlPrimtivie["caml_string_notequal"]
+            CamlPrimitive["caml_string_notequal"]
              ($$String["sub"](n,0,3),"../"))&&
            (n["length"]<
             3||
-            CamlPrimtivie["caml_string_notequal"]
+            CamlPrimitive["caml_string_notequal"]
              ($$String["sub"](n,0,3),"..\"));
     };
 
@@ -214,12 +214,12 @@ var
     
     return name["length"]>=
            suff["length"]&&
-           CamlPrimtivie["caml_string_equal"]
+           CamlPrimitive["caml_string_equal"]
             ($$String["lowercase"](s),$$String["lowercase"](suff));
     };
 
 try
- {var temp_dir_name$1=CamlPrimtivie["caml_sys_getenv"]("TEMP");}
+ {var temp_dir_name$1=CamlPrimitive["caml_sys_getenv"]("TEMP");}
 catch(exn$1)
  {if(exn$1===Not_found){var temp_dir_name$1=".";}else{throw exn$1;}}
 
@@ -513,7 +513,7 @@ var
   function(temp_dir,prefix,suffix)
    {var lzarg=prng;
     
-    var tag=CamlPrimtivie["caml_obj_tag"](lzarg);
+    var tag=CamlPrimitive["caml_obj_tag"](lzarg);
     
     var
      rnd=
@@ -560,8 +560,8 @@ var
        {var name=temp_file_name(temp_dir,prefix,suffix);
         
         try
-         {CamlPrimtivie["caml_sys_close"]
-           (CamlPrimtivie["caml_sys_open"]
+         {CamlPrimitive["caml_sys_close"]
+           (CamlPrimitive["caml_sys_open"]
              (name,
               [/* :: */0,
                /* Open_wronly */1,

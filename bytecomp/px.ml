@@ -627,9 +627,8 @@ module rec
        | CamlPrimitive (prim,args) ->
            (match query prim args with
             | None  ->
-                let v = "CamlPrimtivie" in
-                (add_built_in_module v;
-                 E.call (E.access (E.js_var v) (E.str prim.prim_name)) args)
+                (add_built_in_module J_helper.prim;
+                 E.call (E.prim prim.prim_name) args)
             | Some x -> x) : J.expression)[@@ocaml.doc
                                             " Given an module name and position, find its corresponding name  "]
     let string_of_value_description id =
@@ -1012,6 +1011,7 @@ module rec
            ignore (Pp_js.program cxt p [statement_of_opt_expr exp])
        end and
             J_helper:sig
+                       val prim : string
                        module Exp :
                        sig
                          type t = J.expression
@@ -1051,6 +1051,10 @@ module rec
                          val undefined : ?comment:string -> unit -> t
                          val math : ?comment:string -> string -> t[@@ocaml.doc
                                                                     " [math \"abs\"] --> Math[\"abs\"] "]
+                         [@@ocaml.doc
+                           " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
+                         val prim : ?comment:string -> string -> t[@@ocaml.doc
+                                                                    " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
                        end
                        module Stmt :
                        sig
@@ -1122,6 +1126,7 @@ module rec
                      end =
             struct
               [@@@ocaml.text " A module help construct js ast "]
+              let prim = "CamlPrimitive"
               module Exp =
                 struct
                   type t = J.expression
@@ -1196,6 +1201,8 @@ module rec
                   let undefined ?comment  () = js_var ?comment "undefined"
                   let math ?comment  v =
                     access ?comment (js_var "Math") (str v)
+                  let prim ?comment  v =
+                    access ?comment (js_var prim) (str v)
                 end
               module Stmt =
                 struct

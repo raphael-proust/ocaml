@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Printf=require("./printf.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -228,7 +228,7 @@ var
  call_alarm=
   function(arec)
    {if(arec[1][1])
-     {CamlPrimtivie["caml_final_register"](call_alarm,arec);
+     {CamlPrimitive["caml_final_register"](call_alarm,arec);
       return arec[2](/* () */0);
       }
     else
@@ -240,7 +240,7 @@ var
   function(f)
    {var arec=/* record */[0,[0,/* true */1],f];
     
-    CamlPrimtivie["caml_final_register"](call_alarm,arec);
+    CamlPrimitive["caml_final_register"](call_alarm,arec);
     return arec[1];
     };
 
@@ -251,9 +251,9 @@ module["exports"]=
  "allocated_bytes":allocated_bytes,
  "caml_final_register":
  function(prim,prim)
-  {return CamlPrimtivie["caml_final_register"](prim$1,prim);},
+  {return CamlPrimitive["caml_final_register"](prim$1,prim);},
  "caml_final_release":
- function(prim){return CamlPrimtivie["caml_final_release"](prim);},
+ function(prim){return CamlPrimitive["caml_final_release"](prim);},
  "create_alarm":create_alarm,
  "delete_alarm":delete_alarm};
 

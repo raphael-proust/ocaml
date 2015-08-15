@@ -4,16 +4,16 @@ var $$String=require("./string.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
 var Printf=require("./printf.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Buffer=require("./buffer.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
-var Bad=CamlPrimtivie["caml_set_oo_id"]([248,"Arg.Bad",0]);
+var Bad=CamlPrimitive["caml_set_oo_id"]([248,"Arg.Bad",0]);
 
-var Help=CamlPrimtivie["caml_set_oo_id"]([248,"Arg.Help",0]);
+var Help=CamlPrimitive["caml_set_oo_id"]([248,"Arg.Help",0]);
 
-var Stop=CamlPrimtivie["caml_set_oo_id"]([248,"Arg.Stop",0]);
+var Stop=CamlPrimitive["caml_set_oo_id"]([248,"Arg.Stop",0]);
 
 var
  assoc3=
@@ -27,7 +27,7 @@ var
       
       var y1=match[1];
       
-      if(CamlPrimtivie["caml_equal"](y1,x))
+      if(CamlPrimitive["caml_equal"](y1,x))
        {return y2;}
       else
        {var t$1=t;return assoc3(x,t$1);}
@@ -300,8 +300,8 @@ var
         
         usage_b(b,speclist[1],errmsg);
         if
-         (CamlPrimtivie["caml_equal"](error,[/* Unknown */0,"-help"])||
-          CamlPrimtivie["caml_equal"](error,[/* Unknown */0,"--help"]))
+         (CamlPrimitive["caml_equal"](error,[/* Unknown */0,"-help"])||
+          CamlPrimitive["caml_equal"](error,[/* Unknown */0,"--help"]))
          {throw [0,Help,Buffer["contents"](b)];}
         else
          {throw [0,Bad,Buffer["contents"](b)];}
@@ -386,7 +386,7 @@ var
                   {var arg$1=argv[current$1[1]+1];
                    
                    try
-                    {f$3(CamlPrimtivie["caml_int_of_string"](arg$1))}
+                    {f$3(CamlPrimitive["caml_int_of_string"](arg$1))}
                    catch(exn$2)
                     {var exit$2;
                      
@@ -418,7 +418,7 @@ var
                   {var arg$2=argv[current$1[1]+1];
                    
                    try
-                    {r$3[1]=CamlPrimtivie["caml_int_of_string"](arg$2),0}
+                    {r$3[1]=CamlPrimitive["caml_int_of_string"](arg$2),0}
                    catch(exn$3)
                     {var exit$3;
                      
@@ -450,7 +450,7 @@ var
                   {var arg$3=argv[current$1[1]+1];
                    
                    try
-                    {f$4(CamlPrimtivie["caml_float_of_string"](arg$3))}
+                    {f$4(CamlPrimitive["caml_float_of_string"](arg$3))}
                    catch(exn$4)
                     {var exit$4;
                      
@@ -482,7 +482,7 @@ var
                   {var arg$4=argv[current$1[1]+1];
                    
                    try
-                    {r$4[1]=CamlPrimtivie["caml_float_of_string"](arg$4),0}
+                    {r$4[1]=CamlPrimitive["caml_float_of_string"](arg$4),0}
                    catch(exn$5)
                     {var exit$5;
                      

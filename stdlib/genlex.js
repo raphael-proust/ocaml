@@ -4,13 +4,13 @@ var $$String=require("./string.js");
 var Char=require("./char.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Bytes=require("./bytes.js");
 var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Stream=require("./stream.js");
 
 
-var initial_buffer=CamlPrimtivie["caml_create_string"](32);
+var initial_buffer=CamlPrimitive["caml_create_string"](32);
 
 var buffer=[0,initial_buffer];
 
@@ -24,7 +24,7 @@ var
  store=
   function(c)
    {if(bufpos[1]>=buffer[1]["length"])
-     {var newbuffer=CamlPrimtivie["caml_create_string"](2*bufpos[1]);
+     {var newbuffer=CamlPrimitive["caml_create_string"](2*bufpos[1]);
       
       Bytes["blit"](buffer[1],0,newbuffer,0,bufpos[1]),buffer[1]=newbuffer,0}
     else
@@ -480,7 +480,7 @@ var
          {case 27:
            return /* Some */[0,
                    /* Int */[2,
-                    CamlPrimtivie["caml_int_of_string"](get_string(/* () */0))]];
+                    CamlPrimitive["caml_int_of_string"](get_string(/* () */0))]];
            
           }
         };
@@ -531,7 +531,7 @@ var
          {case 32:
            return /* Some */[0,
                    /* Float */[3,
-                    CamlPrimtivie["caml_float_of_string"](get_string(/* () */0))]];
+                    CamlPrimitive["caml_float_of_string"](get_string(/* () */0))]];
            
           }
         };
@@ -595,7 +595,7 @@ var
          {case 39:
            return /* Some */[0,
                    /* Float */[3,
-                    CamlPrimtivie["caml_float_of_string"](get_string(/* () */0))]];
+                    CamlPrimitive["caml_float_of_string"](get_string(/* () */0))]];
            
           }
         };

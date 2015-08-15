@@ -2,8 +2,8 @@
 
 var $$String=require("./string.js");
 var Pervasives=require("./pervasives.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Bytes=require("./bytes.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
@@ -17,7 +17,7 @@ var
     else
      {var n$2=n$1;}
     
-    var s=CamlPrimtivie["caml_create_string"](n$2);
+    var s=CamlPrimitive["caml_create_string"](n$2);
     
     return /* record */[0,s,0,n$2,s];
     };
@@ -77,7 +77,7 @@ var
     else
      {}
     
-    var new_buffer=CamlPrimtivie["caml_create_string"](new_len[1]);
+    var new_buffer=CamlPrimitive["caml_create_string"](new_len[1]);
     
     Bytes["blit"](b[1],0,new_buffer,0,b[2]);
     b[1]=new_buffer,0;

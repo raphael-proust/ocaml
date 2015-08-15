@@ -3,8 +3,8 @@
 var $$String=require("./string.js");
 var CamlinternalFormat=require("./camlinternalFormat.js");
 var Pervasives=require("./pervasives.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Buffer=require("./buffer.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var make_queue=function(param){return /* record */[0,/* Nil */0,/* Nil */0];};
@@ -24,7 +24,7 @@ var
      {q[1]=c,0;return q[2]=c,0;}
     };
 
-var Empty_queue=CamlPrimtivie["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
+var Empty_queue=CamlPrimitive["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
 
 var
  peek_queue=
@@ -160,7 +160,7 @@ var
                  
                  var x=ls[1];
                  
-                 if(CamlPrimtivie["caml_lessthan"](n,x))
+                 if(CamlPrimitive["caml_lessthan"](n,x))
                   {return /* :: */[0,n,ls];}
                  else
                   {return /* :: */[0,x,add_tab(n,l)];}
@@ -301,7 +301,7 @@ var
                  
                  var x=param$1[1];
                  
-                 if(CamlPrimtivie["caml_greaterequal"](x,n))
+                 if(CamlPrimitive["caml_greaterequal"](x,n))
                   {return x;}
                  else
                   {return find(n,l);}

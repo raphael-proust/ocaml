@@ -249,37 +249,39 @@ var
 
 var
  Compile_primitive=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",670,2],[0,[0,0,0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",669,2],[0,[0,0,0,0]]);
 
 var
  Gen_util=
   CamlinternalMod["init_mod"]
-   ([0,"bytecomp/px.ml",911,7],[0,[0,0,0,0,0,[0,[0,0]],0,0,0,0,0]]);
+   ([0,"bytecomp/px.ml",910,7],[0,[0,0,0,0,0,[0,[0,0]],0,0,0,0,0]]);
 
 var
  Compile_lambda=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1302,17],[0,[0,0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1309,17],[0,[0,0,0]]);
 
 var
  Js_pp_util=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1885,22],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1892,22],[0,[0,0]]);
 
-var Json=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1925,27],[0,[0,0]]);
+var Json=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",1932,27],[0,[0,0]]);
 
 var
  Optimizer=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",2024,32],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",2031,32],[0,[0,0]]);
 
 var
  Pp=
   CamlinternalMod["init_mod"]
-   ([0,"bytecomp/px.ml",2495,37],[0,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
+   ([0,"bytecomp/px.ml",2502,37],[0,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
 
 var
  Source_map=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",4909,47],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",4916,47],[0,[0,0]]);
 
-var Vlq64=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",5125,52],[0,[0,0]]);
+var Vlq64=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",5132,52],[0,[0,0]]);
+
+var prim="CamlPrimitive";
 
 var mk=function(comment,exp){return /* record */[0,exp,comment];};
 
@@ -409,6 +411,10 @@ var
   function(comment,v){return access(comment,js_var(0,"Math"),str(0,v));};
 
 var
+ prim$1=
+  function(comment,v){return access(comment,js_var(0,prim),str(0,v));};
+
+var
  Exp=
   [0,
    mk,
@@ -436,7 +442,8 @@ var
    unit,
    js_var,
    $$undefined,
-   math];
+   math,
+   prim$1];
 
 var unit$1=/* record */[0,/* Return */[10,/* Some */[0,Exp[8](0,0)]],0,0];
 
@@ -638,6 +645,7 @@ var
 var
  J_helper=
   [0,
+   prim,
    Exp,
    [0,
     Stmt[1],
@@ -660,7 +668,7 @@ var
     Stmt[18],
     Stmt[19]]];
 
-var E=J_helper[1];
+var E=J_helper[2];
 
 var quiet=[0,0];
 
@@ -703,35 +711,35 @@ var
         case 2:return [0,5,5,5];
         case 3:return [0,6,6,6];
         case 4:return [0,7,7,7];
-        case 5:exit=1253;
-        case 6:exit=1253;
-        case 7:exit=1253;
-        case 8:exit=1253;
-        case 9:exit=1254;
-        case 10:exit=1254;
-        case 11:exit=1254;
-        case 12:exit=1254;
-        case 13:exit=1254;
-        case 14:exit=1254;
-        case 15:exit=1255;
-        case 16:exit=1255;
-        case 17:exit=1255;
-        case 18:exit=1256;
-        case 19:exit=1256;
-        case 20:exit=1257;
-        case 21:exit=1257;
-        case 22:exit=1257;
+        case 5:exit=1256;
+        case 6:exit=1256;
+        case 7:exit=1256;
+        case 8:exit=1256;
+        case 9:exit=1257;
+        case 10:exit=1257;
+        case 11:exit=1257;
+        case 12:exit=1257;
+        case 13:exit=1257;
+        case 14:exit=1257;
+        case 15:exit=1258;
+        case 16:exit=1258;
+        case 17:exit=1258;
+        case 18:exit=1259;
+        case 19:exit=1259;
+        case 20:exit=1260;
+        case 21:exit=1260;
+        case 22:exit=1260;
         }
       }
     else
      {return [0,1,13,1];}
     
     switch(exit)
-     {case 1253:return [0,8,8,9];
-      case 1254:return [0,9,9,10];
-      case 1255:return [0,10,10,11];
-      case 1256:return [0,11,11,12];
-      case 1257:return [0,12,12,13];
+     {case 1256:return [0,8,8,9];
+      case 1257:return [0,9,9,10];
+      case 1258:return [0,10,10,11];
+      case 1259:return [0,11,11,12];
+      case 1260:return [0,12,12,13];
       }
     };
 
@@ -766,8 +774,8 @@ var
       case 22:return "<=";
       case 23:return ">";
       case 24:return ">=";
-      case 25:exit=1248;
-      case 26:exit=1248;
+      case 25:exit=1251;
+      case 26:exit=1251;
       case 27:return "<<";
       case 28:return ">>>";
       case 29:return ">>";
@@ -779,7 +787,7 @@ var
       }
     
     switch(exit)
-     {case 1248:throw [0,Assert_failure,[0,"bytecomp/px.ml",2850,50]];}
+     {case 1251:throw [0,Assert_failure,[0,"bytecomp/px.ml",2857,50]];}
     };
 
 var
@@ -791,18 +799,18 @@ var
      {case 0:return "!";
       case 1:return "-";
       case 2:return "+";
-      case 3:exit=1244;
-      case 4:exit=1244;
-      case 5:exit=1244;
+      case 3:exit=1247;
+      case 4:exit=1247;
+      case 5:exit=1247;
       case 6:return "~";
-      case 7:exit=1244;
-      case 8:exit=1244;
-      case 9:exit=1244;
-      case 10:exit=1244;
+      case 7:exit=1247;
+      case 8:exit=1247;
+      case 9:exit=1247;
+      case 10:exit=1247;
       }
     
     switch(exit)
-     {case 1244:throw [0,Assert_failure,[0,"bytecomp/px.ml",2859,50]];}
+     {case 1247:throw [0,Assert_failure,[0,"bytecomp/px.ml",2866,50]];}
     };
 
 var
@@ -1088,80 +1096,80 @@ var
             var exit;
             
             if(c$1>=97)
-             {if(c$1>=123){exit=1217;}else{exit=1216;}}
+             {if(c$1>=123){exit=1220;}else{exit=1219;}}
             else
              {if(c$1>=36)
                {switch((-36+c$1)[0])
-                 {case 0:exit=1216;
-                  case 1:exit=1217;
-                  case 2:exit=1217;
+                 {case 0:exit=1219;
+                  case 1:exit=1220;
+                  case 2:exit=1220;
                   case 3:Buffer["add_string"](buffer,"$prime");
-                  case 4:exit=1217;
-                  case 5:exit=1217;
+                  case 4:exit=1220;
+                  case 5:exit=1220;
                   case 6:Buffer["add_string"](buffer,"$star");
                   case 7:Buffer["add_string"](buffer,"$plus");
-                  case 8:exit=1217;
+                  case 8:exit=1220;
                   case 9:Buffer["add_string"](buffer,"$neg");
                   case 10:Buffer["add_string"](buffer,"$dot");
                   case 11:Buffer["add_string"](buffer,"$slash");
-                  case 12:exit=1216;
-                  case 13:exit=1216;
-                  case 14:exit=1216;
-                  case 15:exit=1216;
-                  case 16:exit=1216;
-                  case 17:exit=1216;
-                  case 18:exit=1216;
-                  case 19:exit=1216;
-                  case 20:exit=1216;
-                  case 21:exit=1216;
-                  case 22:exit=1217;
-                  case 23:exit=1217;
+                  case 12:exit=1219;
+                  case 13:exit=1219;
+                  case 14:exit=1219;
+                  case 15:exit=1219;
+                  case 16:exit=1219;
+                  case 17:exit=1219;
+                  case 18:exit=1219;
+                  case 19:exit=1219;
+                  case 20:exit=1219;
+                  case 21:exit=1219;
+                  case 22:exit=1220;
+                  case 23:exit=1220;
                   case 24:Buffer["add_string"](buffer,"$less");
                   case 25:Buffer["add_string"](buffer,"$eq");
                   case 26:Buffer["add_string"](buffer,"$great");
-                  case 27:exit=1217;
+                  case 27:exit=1220;
                   case 28:Buffer["add_string"](buffer,"$at");
-                  case 29:exit=1216;
-                  case 30:exit=1216;
-                  case 31:exit=1216;
-                  case 32:exit=1216;
-                  case 33:exit=1216;
-                  case 34:exit=1216;
-                  case 35:exit=1216;
-                  case 36:exit=1216;
-                  case 37:exit=1216;
-                  case 38:exit=1216;
-                  case 39:exit=1216;
-                  case 40:exit=1216;
-                  case 41:exit=1216;
-                  case 42:exit=1216;
-                  case 43:exit=1216;
-                  case 44:exit=1216;
-                  case 45:exit=1216;
-                  case 46:exit=1216;
-                  case 47:exit=1216;
-                  case 48:exit=1216;
-                  case 49:exit=1216;
-                  case 50:exit=1216;
-                  case 51:exit=1216;
-                  case 52:exit=1216;
-                  case 53:exit=1216;
-                  case 54:exit=1216;
-                  case 55:exit=1217;
-                  case 56:exit=1217;
-                  case 57:exit=1217;
+                  case 29:exit=1219;
+                  case 30:exit=1219;
+                  case 31:exit=1219;
+                  case 32:exit=1219;
+                  case 33:exit=1219;
+                  case 34:exit=1219;
+                  case 35:exit=1219;
+                  case 36:exit=1219;
+                  case 37:exit=1219;
+                  case 38:exit=1219;
+                  case 39:exit=1219;
+                  case 40:exit=1219;
+                  case 41:exit=1219;
+                  case 42:exit=1219;
+                  case 43:exit=1219;
+                  case 44:exit=1219;
+                  case 45:exit=1219;
+                  case 46:exit=1219;
+                  case 47:exit=1219;
+                  case 48:exit=1219;
+                  case 49:exit=1219;
+                  case 50:exit=1219;
+                  case 51:exit=1219;
+                  case 52:exit=1219;
+                  case 53:exit=1219;
+                  case 54:exit=1219;
+                  case 55:exit=1220;
+                  case 56:exit=1220;
+                  case 57:exit=1220;
                   case 58:Buffer["add_string"](buffer,"$caret");
-                  case 59:exit=1216;
-                  case 60:exit=1217;
+                  case 59:exit=1219;
+                  case 60:exit=1220;
                   }
                 }
               else
-               {exit=1217;}
+               {exit=1220;}
               }
             
             switch(exit)
-             {case 1217:Buffer["add_string"](buffer,"$unknown");
-              case 1216:Buffer["add_char"](buffer,c$1)
+             {case 1220:Buffer["add_string"](buffer,"$unknown");
+              case 1219:Buffer["add_char"](buffer,c$1)
               }
             }
           
@@ -1295,15 +1303,15 @@ var
        {case 3:
          var match=st[3];
          
-         if(match){var st$1=match[1];exit=1183;}else{return 1;}
+         if(match){var st$1=match[1];exit=1186;}else{return 1;}
          
-        case 5:var st$1=st[2];exit=1183;
-        case 6:var st$1=st[4];exit=1183;
-        case 7:var st$1=st[3];exit=1183;
-        default:exit=1184;}}
+        case 5:var st$1=st[2];exit=1186;
+        case 6:var st$1=st[4];exit=1186;
+        case 7:var st$1=st[3];exit=1186;
+        default:exit=1187;}}
     
     switch(exit)
-     {case 1184:return 0;case 1183:return ends_with_if_without_else(st$1);}
+     {case 1187:return 0;case 1186:return ends_with_if_without_else(st$1);}
     };
 
 var
@@ -1321,15 +1329,15 @@ var
        
        return l<=match$1[1]&&need_paren(match$1[2],match[2]);
        
-      case 4:exit=1179;
-      case 5:exit=1179;
-      case 6:exit=1179;
-      case 9:exit=1178;
-      case 14:exit=1178;
+      case 4:exit=1182;
+      case 5:exit=1182;
+      case 6:exit=1182;
+      case 9:exit=1181;
+      case 14:exit=1181;
       default:return 0;}
     
     switch(exit)
-     {case 1179:return l<=15&&need_paren(15,match[1]);case 1178:return 1;}
+     {case 1182:return l<=15&&need_paren(15,match[1]);case 1181:return 1;}
     };
 
 var
@@ -1359,32 +1367,32 @@ var
               Pp[1](f,array_conv[c$1>>>4]),
               Pp[1](f,array_conv[c$1&15])}
             else
-             {exit=1159;}
+             {exit=1162;}
             }
           else
-           {exit=1160;}
+           {exit=1163;}
           }
         else
-         {if(c!=92){exit=1159;}else{if(!utf){Pp[1](f,"\\")}else{exit=1159;}}}
+         {if(c!=92){exit=1162;}else{if(!utf){Pp[1](f,"\\")}else{exit=1162;}}}
         }
       else
        {if(c>=14)
-         {exit=1160;}
+         {exit=1163;}
         else
          {switch(c[0])
            {case 0:
-             if((i=l-1)||s[i+1]<48||s[i+1]>57){Pp[1](f,"\0")}else{exit=1160;}
-            case 1:exit=1160;
-            case 2:exit=1160;
-            case 3:exit=1160;
-            case 4:exit=1160;
-            case 5:exit=1160;
-            case 6:exit=1160;
-            case 7:exit=1160;
+             if((i=l-1)||s[i+1]<48||s[i+1]>57){Pp[1](f,"\0")}else{exit=1163;}
+            case 1:exit=1163;
+            case 2:exit=1163;
+            case 3:exit=1163;
+            case 4:exit=1163;
+            case 5:exit=1163;
+            case 6:exit=1163;
+            case 7:exit=1163;
             case 8:Pp[1](f,"\b");
             case 9:Pp[1](f,"\t");
             case 10:Pp[1](f,"\n");
-            case 11:exit=1160;
+            case 11:exit=1163;
             case 12:Pp[1](f,"\f");
             case 13:Pp[1](f,"\r")
             }
@@ -1392,13 +1400,13 @@ var
         }
       
       switch(exit)
-       {case 1160:
+       {case 1163:
          var c$2=c;
          
          Pp[1](f,"\x"),
          Pp[1](f,array_conv[c$2>>>4]),
          Pp[1](f,array_conv[c$2&15]);
-        case 1159:
+        case 1162:
          if(c=quote)
           {Pp[1](f,"\"),Pp[1](f,array_str1[c])}
          else
@@ -1469,7 +1477,7 @@ var
            {var exit;
             
             if("unknown primitive:isint")
-             {if(loc!=0){exit=1137;}else{return 0;}}
+             {if(loc!=0){exit=1140;}else{return 0;}}
             else
              {var match$2=loc[1];
               
@@ -1487,11 +1495,11 @@ var
                           0]);
                 }
               else
-               {exit=1137;}
+               {exit=1140;}
               }
             
             switch(exit)
-             {case 1137:return push_mapping(Pp[12](f),[0,-1,-1,-1,-1,-1,0]);}
+             {case 1140:return push_mapping(Pp[12](f),[0,-1,-1,-1,-1,-1,0]);}
             };
           }
         else
@@ -1620,9 +1628,9 @@ var
            var exit;
            
            switch(op$1[0])
-            {case 0:exit=972;
-             case 1:exit=972;
-             case 2:exit=972;
+            {case 0:exit=975;
+             case 1:exit=975;
+             case 2:exit=975;
              case 3:
               if(l>13){Pp[7](f,1),Pp[1](f,"(")}else{}
               
@@ -1662,15 +1670,15 @@ var
               
               return cxt$14;
               
-             case 6:exit=972;
-             case 7:exit=971;
-             case 8:exit=971;
-             case 9:exit=971;
-             case 10:exit=971;
+             case 6:exit=975;
+             case 7:exit=974;
+             case 8:exit=974;
+             case 9:exit=974;
+             case 10:exit=974;
              }
            
            switch(exit)
-            {case 972:
+            {case 975:
               if(l>13){Pp[7](f,1),Pp[1](f,"(")}else{}
               
               Pp[1](f,unop_str(op$1));
@@ -1680,7 +1688,7 @@ var
               
               return cxt$15;
               
-             case 971:
+             case 974:
               var e=expression_desc[2];
               
               if(l>13){Pp[7](f,1),Pp[1](f,"(")}else{}
@@ -1826,7 +1834,7 @@ var
            
            var match$21=Pp[1](f,"{");
            
-           var prim=function_body(cxt$prime,f,expression_desc[3]);
+           var prim$2=function_body(cxt$prime,f,expression_desc[3]);
            
            var match$22=0;
            
@@ -2070,7 +2078,7 @@ var
            {return variable_declaration(cxt,f,d);}
           }
         else
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4009,58]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4016,58]];}
         };
     
     var
@@ -2087,7 +2095,7 @@ var
           
           if(match$2)
            {if(variables[2])
-             {exit=1031;}
+             {exit=1034;}
             else
              {var match$3=match$2[1];
               
@@ -2111,7 +2119,7 @@ var
             }
           else
            {if(variables[2])
-             {exit=1031;}
+             {exit=1034;}
             else
              {Pp[7](f,1);
               Pp[1](f,"var");
@@ -2129,7 +2137,7 @@ var
          {return cxt;}
         
         switch(exit)
-         {case 1031:
+         {case 1034:
            Pp[7](f,1);
            Pp[1](f,"var");
            Pp[6](0,f);
@@ -2223,12 +2231,12 @@ var
                          (/* Some */[0,last],
                           cxt,
                           f,
-                          J_helper[2][6]
+                          J_helper[3][6]
                            (0,
                             0,
                             /* Some */[0,s2],
                             e$1,
-                            J_helper[2][7](0,0,/* :: */[0,s1,0])));
+                            J_helper[3][7](0,0,/* :: */[0,s1,0])));
                  }
                else
                 {var $js=s2[1];
@@ -2263,11 +2271,11 @@ var
                       Pp[8](f);
                       return cxt$5;
                       
-                     default:exit=1103;}}
+                     default:exit=1106;}}
                  }
                
                switch(exit)
-                {case 1103:
+                {case 1106:
                   Pp[7](f,0);
                   Pp[7](f,1);
                   Pp[1](f,"if");
@@ -2348,10 +2356,10 @@ var
                   Pp[8](f);
                   return cxt$12;
                   
-                 default:exit$1=1105;}}
+                 default:exit$1=1108;}}
              
              switch(exit$1)
-              {case 1105:
+              {case 1108:
                 Pp[7](f,0);
                 Pp[1](f,"do");
                 Pp[6]([0,1],f);
@@ -2510,7 +2518,7 @@ var
                   Pp[3](f);
                   Pp[7](f,1);
                   Pp[1](f,"{");
-                  var prim=function_body(cxt$prime,f,match$5[3]);
+                  var prim$2=function_body(cxt$prime,f,match$5[3]);
                   
                   var match$6=0;
                   
@@ -2706,7 +2714,7 @@ var
              Pp[3](f);
              Pp[7](f,1);
              Pp[1](f,"{");
-             var prim$1=function_body(cxt$prime$1,f,s[3]);
+             var prim$3=function_body(cxt$prime$1,f,s[3]);
              
              var match$8=0;
              
@@ -2840,7 +2848,7 @@ var
       
       if(match$1)
        {if(match$1[1])
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4765,61]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4772,61]];}
         else
          {var
            sources_content=
@@ -2972,9 +2980,9 @@ var
 
 var Pp_js=[0,empty$1,program];
 
-var E$1=J_helper[1];
+var E$1=J_helper[2];
 
-var S=J_helper[2];
+var S=J_helper[3];
 
 var cached_tbl=Hashtbl["create"](0,31);
 
@@ -2992,22 +3000,22 @@ var
     
     var exit;
     
-    switch(match){case 0:exit=98;case 3:exit=98;default:var ident$1=match[1];}
+    switch(match){case 0:exit=97;case 3:exit=97;default:var ident$1=match[1];}
     
-    switch(exit){case 98:var ident$1=match[1];}
+    switch(exit){case 97:var ident$1=match[1];}
     
     return ident$1[2];
     };
 
 var
  query=
-  function(prim,args)
+  function(prim$2,args)
    {var NA="unknown primitive:caml_set_oo_id";
     
     var X=[0,NA];
     
     try
-     {var x=prim[1];
+     {var x=prim$2[1];
       
       var exit;
       
@@ -3022,18 +3030,18 @@ var
            
            if(match)
             {if(match[2])
-              {exit$1=35;}
+              {exit$1=34;}
              else
               {var v=E$1[13](0,30,args[1],match[1]);}
              }
            else
-            {exit$1=35;}
+            {exit$1=34;}
            }
          else
-          {exit$1=35;}
+          {exit$1=34;}
          
          switch(exit$1)
-          {case 35:throw [0,Assert_failure,[0,"bytecomp/px.ml",448,25]];}
+          {case 34:throw [0,Assert_failure,[0,"bytecomp/px.ml",448,25]];}
          
         case "caml_array_append":
          var exit$2;
@@ -3043,7 +3051,7 @@ var
            
            if(match$1)
             {if(match$1[2])
-              {exit$2=49;}
+              {exit$2=48;}
              else
               {var
                 v=
@@ -3055,26 +3063,26 @@ var
                }
              }
            else
-            {exit$2=49;}
+            {exit$2=48;}
            }
          else
-          {exit$2=49;}
+          {exit$2=48;}
          
          switch(exit$2)
-          {case 49:throw [0,Assert_failure,[0,"bytecomp/px.ml",500,25]];}
+          {case 48:throw [0,Assert_failure,[0,"bytecomp/px.ml",500,25]];}
          
         case "caml_array_concat":throw X[1];
-        case "caml_array_get":exit=86;
-        case "caml_array_get_addr":exit=86;
-        case "caml_array_get_float":exit=86;
-        case "caml_array_set":exit=87;
-        case "caml_array_set_addr":exit=87;
-        case "caml_array_set_float":exit=87;
-        case "caml_array_unsafe_get":exit=86;
-        case "caml_array_unsafe_get_float":exit=86;
-        case "caml_array_unsafe_set":exit=87;
-        case "caml_array_unsafe_set_addr":exit=87;
-        case "caml_array_unsafe_set_float":exit=87;
+        case "caml_array_get":exit=85;
+        case "caml_array_get_addr":exit=85;
+        case "caml_array_get_float":exit=85;
+        case "caml_array_set":exit=86;
+        case "caml_array_set_addr":exit=86;
+        case "caml_array_set_float":exit=86;
+        case "caml_array_unsafe_get":exit=85;
+        case "caml_array_unsafe_get_float":exit=85;
+        case "caml_array_unsafe_set":exit=86;
+        case "caml_array_unsafe_set_addr":exit=86;
+        case "caml_array_unsafe_set_float":exit=86;
         case "caml_asin_float":var v=E$1[15](0,0,E$1[26](0,"asin"),args);
         case "caml_atan2_float":var v=E$1[15](0,0,E$1[26](0,"atan2"),args);
         case "caml_atan_float":var v=E$1[15](0,0,E$1[26](0,"atan"),args);
@@ -3089,18 +3097,18 @@ var
            
            if(match$2)
             {if(match$2[2])
-              {exit$3=37;}
+              {exit$3=36;}
              else
               {var v=E$1[13](0,33,args[1],match$2[1]);}
              }
            else
-            {exit$3=37;}
+            {exit$3=36;}
            }
          else
-          {exit$3=37;}
+          {exit$3=36;}
          
          switch(exit$3)
-          {case 37:throw [0,Assert_failure,[0,"bytecomp/px.ml",452,25]];}
+          {case 36:throw [0,Assert_failure,[0,"bytecomp/px.ml",452,25]];}
          
         case "caml_eq_float":
          var exit$4;
@@ -3110,30 +3118,30 @@ var
            
            if(match$3)
             {if(match$3[2])
-              {exit$4=41;}
+              {exit$4=40;}
              else
               {var v=E$1[11](0,args[1],match$3[1]);}
              }
            else
-            {exit$4=41;}
+            {exit$4=40;}
            }
          else
-          {exit$4=41;}
+          {exit$4=40;}
          
          switch(exit$4)
-          {case 41:throw [0,Assert_failure,[0,"bytecomp/px.ml",460,25]];}
+          {case 40:throw [0,Assert_failure,[0,"bytecomp/px.ml",460,25]];}
          
         case "caml_exp_float":var v=E$1[15](0,0,E$1[26](0,"exp"),args);
         case "caml_float_of_int":
          var exit$5;
          
-         if(args){if(args[2]){exit$5=47;}else{var v=args[1];}}else{exit$5=47;}
+         if(args){if(args[2]){exit$5=46;}else{var v=args[1];}}else{exit$5=46;}
          
          switch(exit$5)
-          {case 47:throw [0,Assert_failure,[0,"bytecomp/px.ml",494,54]];}
+          {case 46:throw [0,Assert_failure,[0,"bytecomp/px.ml",494,54]];}
          
         case "caml_floor_float":var v=E$1[15](0,0,E$1[26](0,"floor"),args);
-        case "caml_gc_compaction":exit=90;
+        case "caml_gc_compaction":exit=89;
         case "caml_gc_counters":
          var
           v=
@@ -3145,7 +3153,7 @@ var
                E$1[8](0,0),
                /* :: */[0,E$1[8](0,0),/* :: */[0,E$1[8](0,0),0]]]]);
          
-        case "caml_gc_full_major":exit=90;
+        case "caml_gc_full_major":exit=89;
         case "caml_gc_get":
          var
           v=
@@ -3167,12 +3175,12 @@ var
                     E$1[7]([0,"stack_limit"],0),
                     /* :: */[0,E$1[7]([0,"allocation_policy"],0),0]]]]]]]]);
          
-        case "caml_gc_major":exit=90;
-        case "caml_gc_major_slice":exit=90;
-        case "caml_gc_minor":exit=90;
-        case "caml_gc_quick_stat":exit=85;
-        case "caml_gc_set":exit=90;
-        case "caml_gc_stat":exit=85;
+        case "caml_gc_major":exit=89;
+        case "caml_gc_major_slice":exit=89;
+        case "caml_gc_minor":exit=89;
+        case "caml_gc_quick_stat":exit=84;
+        case "caml_gc_set":exit=89;
+        case "caml_gc_stat":exit=84;
         case "caml_ge_float":
          var exit$6;
          
@@ -3181,18 +3189,18 @@ var
            
            if(match$4)
             {if(match$4[2])
-              {exit$6=43;}
+              {exit$6=42;}
              else
               {var v=E$1[13](0,24,args[1],match$4[1]);}
              }
            else
-            {exit$6=43;}
+            {exit$6=42;}
            }
          else
-          {exit$6=43;}
+          {exit$6=42;}
          
          switch(exit$6)
-          {case 43:throw [0,Assert_failure,[0,"bytecomp/px.ml",464,25]];}
+          {case 42:throw [0,Assert_failure,[0,"bytecomp/px.ml",464,25]];}
          
         case "caml_gt_float":
          var exit$7;
@@ -3202,18 +3210,18 @@ var
            
            if(match$5)
             {if(match$5[2])
-              {exit$7=45;}
+              {exit$7=44;}
              else
               {var v=E$1[13](0,23,args[1],match$5[1]);}
              }
            else
-            {exit$7=45;}
+            {exit$7=44;}
            }
          else
-          {exit$7=45;}
+          {exit$7=44;}
          
          switch(exit$7)
-          {case 45:throw [0,Assert_failure,[0,"bytecomp/px.ml",468,25]];}
+          {case 44:throw [0,Assert_failure,[0,"bytecomp/px.ml",468,25]];}
          
         case "caml_int32_add":
          var exit$8;
@@ -3223,18 +3231,18 @@ var
            
            if(match$6)
             {if(match$6[2])
-              {exit$8=55;}
+              {exit$8=54;}
              else
               {var v=E$1[13](0,30,args[1],match$6[1]);}
              }
            else
-            {exit$8=55;}
+            {exit$8=54;}
            }
          else
-          {exit$8=55;}
+          {exit$8=54;}
          
          switch(exit$8)
-          {case 55:throw [0,Assert_failure,[0,"bytecomp/px.ml",524,25]];}
+          {case 54:throw [0,Assert_failure,[0,"bytecomp/px.ml",524,25]];}
          
         case "caml_int32_and":
          var exit$9;
@@ -3244,18 +3252,18 @@ var
            
            if(match$7)
             {if(match$7[2])
-              {exit$9=71;}
+              {exit$9=70;}
              else
               {var v=E$1[13](0,16,args[1],match$7[1]);}
              }
            else
-            {exit$9=71;}
+            {exit$9=70;}
            }
          else
-          {exit$9=71;}
+          {exit$9=70;}
          
          switch(exit$9)
-          {case 71:throw [0,Assert_failure,[0,"bytecomp/px.ml",553,25]];}
+          {case 70:throw [0,Assert_failure,[0,"bytecomp/px.ml",553,25]];}
          
         case "caml_int32_div":
          var exit$10;
@@ -3265,7 +3273,7 @@ var
            
            if(match$8)
             {if(match$8[2])
-              {exit$10=57;}
+              {exit$10=56;}
              else
               {var
                 v=
@@ -3273,13 +3281,13 @@ var
                }
              }
            else
-            {exit$10=57;}
+            {exit$10=56;}
            }
          else
-          {exit$10=57;}
+          {exit$10=56;}
          
          switch(exit$10)
-          {case 57:throw [0,Assert_failure,[0,"bytecomp/px.ml",528,25]];}
+          {case 56:throw [0,Assert_failure,[0,"bytecomp/px.ml",528,25]];}
          
         case "caml_int32_mul":
          var exit$11;
@@ -3289,30 +3297,30 @@ var
            
            if(match$9)
             {if(match$9[2])
-              {exit$11=59;}
+              {exit$11=58;}
              else
               {var v=E$1[13](0,32,args[1],match$9[1]);}
              }
            else
-            {exit$11=59;}
+            {exit$11=58;}
            }
          else
-          {exit$11=59;}
+          {exit$11=58;}
          
          switch(exit$11)
-          {case 59:throw [0,Assert_failure,[0,"bytecomp/px.ml",532,25]];}
+          {case 58:throw [0,Assert_failure,[0,"bytecomp/px.ml",532,25]];}
          
-        case "caml_int32_of_float":exit=88;
+        case "caml_int32_of_float":exit=87;
         case "caml_int32_of_int":
          var exit$12;
          
          if(args)
-          {if(args[2]){exit$12=61;}else{var v=args[1];}}
+          {if(args[2]){exit$12=60;}else{var v=args[1];}}
          else
-          {exit$12=61;}
+          {exit$12=60;}
          
          switch(exit$12)
-          {case 61:throw [0,Assert_failure,[0,"bytecomp/px.ml",534,54]];}
+          {case 60:throw [0,Assert_failure,[0,"bytecomp/px.ml",534,54]];}
          
         case "caml_int32_or":
          var exit$13;
@@ -3322,18 +3330,18 @@ var
            
            if(match$10)
             {if(match$10[2])
-              {exit$13=73;}
+              {exit$13=72;}
              else
               {var v=E$1[13](0,14,args[1],match$10[1]);}
              }
            else
-            {exit$13=73;}
+            {exit$13=72;}
            }
          else
-          {exit$13=73;}
+          {exit$13=72;}
          
          switch(exit$13)
-          {case 73:throw [0,Assert_failure,[0,"bytecomp/px.ml",557,25]];}
+          {case 72:throw [0,Assert_failure,[0,"bytecomp/px.ml",557,25]];}
          
         case "caml_int32_sub":
          var exit$14;
@@ -3343,21 +3351,21 @@ var
            
            if(match$11)
             {if(match$11[2])
-              {exit$14=67;}
+              {exit$14=66;}
              else
               {var v=E$1[13](0,31,args[1],match$11[1]);}
              }
            else
-            {exit$14=67;}
+            {exit$14=66;}
            }
          else
-          {exit$14=67;}
+          {exit$14=66;}
          
          switch(exit$14)
-          {case 67:throw [0,Assert_failure,[0,"bytecomp/px.ml",545,25]];}
+          {case 66:throw [0,Assert_failure,[0,"bytecomp/px.ml",545,25]];}
          
-        case "caml_int32_to_float":exit=89;
-        case "caml_int32_to_int":exit=89;
+        case "caml_int32_to_float":exit=88;
+        case "caml_int32_to_int":exit=88;
         case "caml_int32_xor":
          var exit$15;
          
@@ -3366,20 +3374,20 @@ var
            
            if(match$12)
             {if(match$12[2])
-              {exit$15=69;}
+              {exit$15=68;}
              else
               {var v=E$1[13](0,15,args[1],match$12[1]);}
              }
            else
-            {exit$15=69;}
+            {exit$15=68;}
            }
          else
-          {exit$15=69;}
+          {exit$15=68;}
          
          switch(exit$15)
-          {case 69:throw [0,Assert_failure,[0,"bytecomp/px.ml",549,25]];}
+          {case 68:throw [0,Assert_failure,[0,"bytecomp/px.ml",549,25]];}
          
-        case "caml_int_of_float":exit=88;
+        case "caml_int_of_float":exit=87;
         case "caml_le_float":
          var exit$16;
          
@@ -3388,18 +3396,18 @@ var
            
            if(match$13)
             {if(match$13[2])
-              {exit$16=75;}
+              {exit$16=74;}
              else
               {var v=E$1[13](0,22,args[1],match$13[1]);}
              }
            else
-            {exit$16=75;}
+            {exit$16=74;}
            }
          else
-          {exit$16=75;}
+          {exit$16=74;}
          
          switch(exit$16)
-          {case 75:throw [0,Assert_failure,[0,"bytecomp/px.ml",561,25]];}
+          {case 74:throw [0,Assert_failure,[0,"bytecomp/px.ml",561,25]];}
          
         case "caml_log10_float":var v=E$1[15](0,0,E$1[26](0,"log10"),args);
         case "caml_log1p_float":var v=E$1[15](0,0,E$1[26](0,"log1p"),args);
@@ -3412,18 +3420,18 @@ var
            
            if(match$14)
             {if(match$14[2])
-              {exit$17=77;}
+              {exit$17=76;}
              else
               {var v=E$1[13](0,21,args[1],match$14[1]);}
              }
            else
-            {exit$17=77;}
+            {exit$17=76;}
            }
          else
-          {exit$17=77;}
+          {exit$17=76;}
          
          switch(exit$17)
-          {case 77:throw [0,Assert_failure,[0,"bytecomp/px.ml",565,25]];}
+          {case 76:throw [0,Assert_failure,[0,"bytecomp/px.ml",565,25]];}
          
         case "caml_mul_float":
          var exit$18;
@@ -3433,29 +3441,29 @@ var
            
            if(match$15)
             {if(match$15[2])
-              {exit$18=83;}
+              {exit$18=82;}
              else
               {var v=E$1[13](0,32,args[1],match$15[1]);}
              }
            else
-            {exit$18=83;}
+            {exit$18=82;}
            }
          else
-          {exit$18=83;}
+          {exit$18=82;}
          
          switch(exit$18)
-          {case 83:throw [0,Assert_failure,[0,"bytecomp/px.ml",581,25]];}
+          {case 82:throw [0,Assert_failure,[0,"bytecomp/px.ml",581,25]];}
          
         case "caml_neg_float":
          var exit$19;
          
          if(args)
-          {if(args[2]){exit$19=79;}else{var v=E$1[14](0,1,args[1]);}}
+          {if(args[2]){exit$19=78;}else{var v=E$1[14](0,1,args[1]);}}
          else
-          {exit$19=79;}
+          {exit$19=78;}
          
          switch(exit$19)
-          {case 79:throw [0,Assert_failure,[0,"bytecomp/px.ml",573,63]];}
+          {case 78:throw [0,Assert_failure,[0,"bytecomp/px.ml",573,63]];}
          
         case "caml_neq_float":
          var exit$20;
@@ -3465,18 +3473,18 @@ var
            
            if(match$16)
             {if(match$16[2])
-              {exit$20=81;}
+              {exit$20=80;}
              else
               {var v=E$1[13](0,20,args[1],match$16[1]);}
              }
            else
-            {exit$20=81;}
+            {exit$20=80;}
            }
          else
-          {exit$20=81;}
+          {exit$20=80;}
          
          switch(exit$20)
-          {case 81:throw [0,Assert_failure,[0,"bytecomp/px.ml",577,25]];}
+          {case 80:throw [0,Assert_failure,[0,"bytecomp/px.ml",577,25]];}
          
         case "caml_sin_float":var v=E$1[15](0,0,E$1[26](0,"sin"),args);
         case "caml_sinh_float":var v=E$1[15](0,0,E$1[26](0,"sinh"),args);
@@ -3489,26 +3497,26 @@ var
            
            if(match$17)
             {if(match$17[2])
-              {exit$21=39;}
+              {exit$21=38;}
              else
               {var v=E$1[13](0,31,args[1],match$17[1]);}
              }
            else
-            {exit$21=39;}
+            {exit$21=38;}
            }
          else
-          {exit$21=39;}
+          {exit$21=38;}
          
          switch(exit$21)
-          {case 39:throw [0,Assert_failure,[0,"bytecomp/px.ml",456,25]];}
+          {case 38:throw [0,Assert_failure,[0,"bytecomp/px.ml",456,25]];}
          
         case "caml_tan_float":var v=E$1[15](0,0,E$1[26](0,"tan"),args);
         case "caml_tanh_float":var v=E$1[15](0,0,E$1[26](0,"tanh"),args);
-        default:exit=91;}
+        default:exit=90;}
       
       switch(exit)
-       {case 91:throw X[1];
-        case 85:
+       {case 90:throw X[1];
+        case 84:
          var
           v=
            E$1[16]
@@ -3547,7 +3555,7 @@ var
                              E$1[7]([0,"top_heap_words"],0),
                              /* :: */[0,E$1[7]([0,"stack_size"],0),0]]]]]]]]]]]]]]]]]);
          
-        case 86:
+        case 85:
          var exit$22;
          
          if(args)
@@ -3555,20 +3563,20 @@ var
            
            if(match$18)
             {if(match$18[2])
-              {exit$22=51;}
+              {exit$22=50;}
              else
               {var v=E$1[2](0,args[1],match$18[1]);}
              }
            else
-            {exit$22=51;}
+            {exit$22=50;}
            }
          else
-          {exit$22=51;}
+          {exit$22=50;}
          
          switch(exit$22)
-          {case 51:throw [0,Assert_failure,[0,"bytecomp/px.ml",510,25]];}
+          {case 50:throw [0,Assert_failure,[0,"bytecomp/px.ml",510,25]];}
          
-        case 87:
+        case 86:
          var exit$23;
          
          if(args)
@@ -3579,49 +3587,49 @@ var
              
              if(match$20)
               {if(match$20[2])
-                {exit$23=53;}
+                {exit$23=52;}
                else
                 {var v=E$1[10](0,E$1[2](0,args[1],match$19[1]),match$20[1]);}
                }
              else
-              {exit$23=53;}
+              {exit$23=52;}
              }
            else
-            {exit$23=53;}
+            {exit$23=52;}
            }
          else
-          {exit$23=53;}
+          {exit$23=52;}
          
          switch(exit$23)
-          {case 53:throw [0,Assert_failure,[0,"bytecomp/px.ml",520,25]];}
+          {case 52:throw [0,Assert_failure,[0,"bytecomp/px.ml",520,25]];}
          
-        case 88:
+        case 87:
          var exit$24;
          
          if(args)
           {if(args[2])
-            {exit$24=63;}
+            {exit$24=62;}
            else
             {var v=E$1[13](0,14,args[1],E$1[7](0,0));}
            }
          else
-          {exit$24=63;}
+          {exit$24=62;}
          
          switch(exit$24)
-          {case 63:throw [0,Assert_failure,[0,"bytecomp/px.ml",539,25]];}
+          {case 62:throw [0,Assert_failure,[0,"bytecomp/px.ml",539,25]];}
          
-        case 89:
+        case 88:
          var exit$25;
          
          if(args)
-          {if(args[2]){exit$25=65;}else{var v=args[1];}}
+          {if(args[2]){exit$25=64;}else{var v=args[1];}}
          else
-          {exit$25=65;}
+          {exit$25=64;}
          
          switch(exit$25)
-          {case 65:throw [0,Assert_failure,[0,"bytecomp/px.ml",541,57]];}
+          {case 64:throw [0,Assert_failure,[0,"bytecomp/px.ml",541,57]];}
          
-        case 90:var v=E$1[23](0,0);
+        case 89:var v=E$1[23](0,0);
         }
       
       return /* Some */[0,v];
@@ -3700,17 +3708,15 @@ var
       case 1:
        var args=key[2];
        
-       var prim=key[1];
+       var prim$2=key[1];
        
-       var match$2=query(prim,args);
+       var match$2=query(prim$2,args);
        
        if(match$2)
         {return match$2[1];}
        else
-        {var v$1="CamlPrimtivie";
-         
-         add_built_in_module(v$1);
-         return E$1[15](0,0,E$1[2](0,E$1[24](0,v$1),E$1[4](0,prim[1])),args);
+        {add_built_in_module(J_helper[1]);
+         return E$1[15](0,0,E$1[27](0,prim$2[1]),args);
          }
        
       }
@@ -3798,7 +3804,7 @@ var
       }
     };
 
-var E$2=J_helper[1];
+var E$2=J_helper[2];
 
 var
  comment_of_tag_info=
@@ -3815,30 +3821,30 @@ var
 
 var
  compile_primitive=
-  function(prim,args)
+  function(prim$2,args)
    {var exit;
     
-    if(typeof prim=="number")
-     {switch(prim)
+    if(typeof prim$2=="number")
+     {switch(prim$2)
        {case 0:
          var exit$1;
          
          if(args)
-          {if(args[2]){exit$1=160;}else{return args[1];}}
+          {if(args[2]){exit$1=159;}else{return args[1];}}
          else
-          {exit$1=160;}
+          {exit$1=159;}
          
-         switch(exit$1){case 160:return E$2[22](0,prim);}
+         switch(exit$1){case 159:return E$2[22](0,prim$2);}
          
         case 1:
          var exit$2;
          
          if(args)
-          {if(args[2]){exit$2=162;}else{return args[1];}}
+          {if(args[2]){exit$2=161;}else{return args[1];}}
          else
-          {exit$2=162;}
+          {exit$2=161;}
          
-         switch(exit$2){case 162:return E$2[22](0,prim);}
+         switch(exit$2){case 161:return E$2[22](0,prim$2);}
          
         case 3:
          var exit$3;
@@ -3848,17 +3854,17 @@ var
            
            if(match)
             {if(match[2])
-              {exit$3=154;}
+              {exit$3=153;}
              else
               {return E$2[13](0,13,args[1],match[1]);}
              }
            else
-            {exit$3=154;}
+            {exit$3=153;}
            }
          else
-          {exit$3=154;}
+          {exit$3=153;}
          
-         switch(exit$3){case 154:return E$2[22](0,prim);}
+         switch(exit$3){case 153:return E$2[22](0,prim$2);}
          
         case 4:
          var exit$4;
@@ -3868,58 +3874,58 @@ var
            
            if(match$1)
             {if(match$1[2])
-              {exit$4=156;}
+              {exit$4=155;}
              else
               {return E$2[13](0,12,args[1],match$1[1]);}
              }
            else
-            {exit$4=156;}
+            {exit$4=155;}
            }
          else
-          {exit$4=156;}
+          {exit$4=155;}
          
-         switch(exit$4){case 156:return E$2[22](0,prim);}
+         switch(exit$4){case 155:return E$2[22](0,prim$2);}
          
         case 5:
          var exit$5;
          
          if(args)
-          {if(args[2]){exit$5=122;}else{return E$2[14](0,0,args[1]);}}
+          {if(args[2]){exit$5=121;}else{return E$2[14](0,0,args[1]);}}
          else
-          {exit$5=122;}
+          {exit$5=121;}
          
-         switch(exit$5){case 122:return E$2[22](0,prim);}
+         switch(exit$5){case 121:return E$2[22](0,prim$2);}
          
-        case 6:exit=196;
-        case 7:exit=197;
-        case 8:exit=198;
-        case 9:exit=199;
-        case 10:exit=200;
-        case 11:exit=201;
-        case 12:exit=205;
-        case 13:exit=206;
-        case 14:exit=207;
-        case 15:exit=202;
-        case 16:exit=203;
-        case 17:exit=204;
+        case 6:exit=195;
+        case 7:exit=196;
+        case 8:exit=197;
+        case 9:exit=198;
+        case 10:exit=199;
+        case 11:exit=200;
+        case 12:exit=204;
+        case 13:exit=205;
+        case 14:exit=206;
+        case 15:exit=201;
+        case 16:exit=202;
+        case 17:exit=203;
         case 18:
          var exit$6;
          
          if(args)
-          {if(args[2]){exit$6=171;}else{return args[1];}}
+          {if(args[2]){exit$6=170;}else{return args[1];}}
          else
-          {exit$6=171;}
+          {exit$6=170;}
          
-         switch(exit$6){case 171:return E$2[22](0,prim);}
+         switch(exit$6){case 170:return E$2[22](0,prim$2);}
          
-        case 19:exit=212;
-        case 20:exit=196;
+        case 19:exit=211;
+        case 20:exit=195;
         case 21:
          var exit$7;
          
          if(args)
           {if(args[2])
-            {exit$7=189;}
+            {exit$7=188;}
            else
             {return E$2[15]
                      (0,
@@ -3929,32 +3935,32 @@ var
              }
            }
          else
-          {exit$7=189;}
+          {exit$7=188;}
          
-         switch(exit$7){case 189:return E$2[22](0,prim);}
+         switch(exit$7){case 188:return E$2[22](0,prim$2);}
          
-        case 22:exit=197;
-        case 23:exit=198;
-        case 24:exit=199;
-        case 25:exit=200;
-        case 26:exit=209;
-        case 27:exit=210;
-        case 28:exit=211;
-        case 29:exit=210;
-        case 30:exit=211;
+        case 22:exit=196;
+        case 23:exit=197;
+        case 24:exit=198;
+        case 25:exit=199;
+        case 26:exit=208;
+        case 27:exit=209;
+        case 28:exit=210;
+        case 29:exit=209;
+        case 30:exit=210;
         case 31:
          var exit$8;
          
          if(args)
           {if(args[2])
-            {exit$8=191;}
+            {exit$8=190;}
            else
             {return E$2[13](0,19,E$2[12](0,args[1]),E$2[4](0,"number"));}
            }
          else
-          {exit$8=191;}
+          {exit$8=190;}
          
-         switch(exit$8){case 191:return E$2[22](0,prim);}
+         switch(exit$8){case 190:return E$2[22](0,prim$2);}
          
         case 32:
          var exit$9;
@@ -3964,23 +3970,23 @@ var
            
            if(match$2)
             {if(match$2[2])
-              {exit$9=158;}
+              {exit$9=157;}
              else
               {return E$2[13]
                        (0,21,args[1],E$2[13](0,28,match$2[1],E$2[8](0,0)));
                }
              }
            else
-            {exit$9=158;}
+            {exit$9=157;}
            }
          else
-          {exit$9=158;}
+          {exit$9=157;}
          
-         switch(exit$9){case 158:return E$2[22](0,prim);}
+         switch(exit$9){case 157:return E$2[22](0,prim$2);}
          
         }}
     else
-     {switch(prim[0])
+     {switch(prim$2[0])
        {case 0:
          var exit$10;
          
@@ -3989,18 +3995,18 @@ var
            
            if(match$3)
             {if(match$3[2])
-              {exit$10=167;}
+              {exit$10=166;}
              else
               {return E$2[15](0,0,match$3[1],/* :: */[0,args[1],0]);}
              }
            else
-            {exit$10=167;}
+            {exit$10=166;}
            }
          else
-          {exit$10=167;}
+          {exit$10=166;}
          
          switch(exit$10)
-          {case 167:throw [0,Assert_failure,[0,"bytecomp/px.ml",792,19]];}
+          {case 166:throw [0,Assert_failure,[0,"bytecomp/px.ml",791,19]];}
          
         case 1:
          var exit$11;
@@ -4010,46 +4016,46 @@ var
            
            if(match$4)
             {if(match$4[2])
-              {exit$11=169;}
+              {exit$11=168;}
              else
               {return E$2[15](0,0,args[1],/* :: */[0,match$4[1],0]);}
              }
            else
-            {exit$11=169;}
+            {exit$11=168;}
            }
          else
-          {exit$11=169;}
+          {exit$11=168;}
          
-         switch(exit$11){case 169:return E$2[22](0,prim);}
+         switch(exit$11){case 168:return E$2[22](0,prim$2);}
          
-        case 2:exit=215;
+        case 2:exit=214;
         case 3:
-         var i=prim[1];
+         var i=prim$2[1];
          
          if(Ident["global"](i))
           {return E$2[3](0,i);}
          else
-          {return E$2[22](0,prim);}
+          {return E$2[22](0,prim$2);}
          
-        case 4:exit=215;
+        case 4:exit=214;
         case 5:
          return E$2[16]
-                 (comment_of_tag_info(prim[2]),
-                  /* :: */[0,E$2[7](0,prim[1]),args]);
+                 (comment_of_tag_info(prim$2[2]),
+                  /* :: */[0,E$2[7](0,prim$2[1]),args]);
          
         case 6:
          var exit$12;
          
          if(args)
           {if(args[2])
-            {exit$12=118;}
+            {exit$12=117;}
            else
-            {return E$2[2](0,args[1],E$2[7](0,prim[1]+1));}
+            {return E$2[2](0,args[1],E$2[7](0,prim$2[1]+1));}
            }
          else
-          {exit$12=118;}
+          {exit$12=117;}
          
-         switch(exit$12){case 118:return E$2[22](0,prim);}
+         switch(exit$12){case 117:return E$2[22](0,prim$2);}
          
         case 7:
          var exit$13;
@@ -4059,35 +4065,36 @@ var
            
            if(match$5)
             {if(match$5[2])
-              {exit$13=173;}
+              {exit$13=172;}
              else
               {return E$2[17]
                        (0,
-                        E$2[10](0,E$2[2](0,args[1],E$2[7](0,prim[1]+1)),match$5[1]),
+                        E$2[10]
+                         (0,E$2[2](0,args[1],E$2[7](0,prim$2[1]+1)),match$5[1]),
                         E$2[23](0,0));
                }
              }
            else
-            {exit$13=173;}
+            {exit$13=172;}
            }
          else
-          {exit$13=173;}
+          {exit$13=172;}
          
-         switch(exit$13){case 173:return E$2[22](0,prim);}
+         switch(exit$13){case 172:return E$2[22](0,prim$2);}
          
         case 8:
          var exit$14;
          
          if(args)
           {if(args[2])
-            {exit$14=175;}
+            {exit$14=174;}
            else
-            {return E$2[2](0,args[1],E$2[7](0,prim[1]));}
+            {return E$2[2](0,args[1],E$2[7](0,prim$2[1]));}
            }
          else
-          {exit$14=175;}
+          {exit$14=174;}
          
-         switch(exit$14){case 175:return E$2[22](0,prim);}
+         switch(exit$14){case 174:return E$2[22](0,prim$2);}
          
         case 9:
          var exit$15;
@@ -4097,48 +4104,48 @@ var
            
            if(match$6)
             {if(match$6[2])
-              {exit$15=177;}
+              {exit$15=176;}
              else
               {return E$2[17]
                        (0,
-                        E$2[10](0,E$2[2](0,args[1],E$2[7](0,prim[1])),match$6[1]),
+                        E$2[10](0,E$2[2](0,args[1],E$2[7](0,prim$2[1])),match$6[1]),
                         E$2[23](0,0));
                }
              }
            else
-            {exit$15=177;}
+            {exit$15=176;}
            }
          else
-          {exit$15=177;}
+          {exit$15=176;}
          
-         switch(exit$15){case 177:return E$2[22](0,prim);}
+         switch(exit$15){case 176:return E$2[22](0,prim$2);}
          
-        case 11:return Gen_of_env[1](/* CamlPrimitive */[1,prim[1],args]);
-        case 12:exit=215;
-        case 13:exit=216;
+        case 11:return Gen_of_env[1](/* CamlPrimitive */[1,prim$2[1],args]);
+        case 12:exit=214;
+        case 13:exit=215;
         case 14:
          var exit$16;
          
          if(args)
           {if(args[2])
-            {exit$16=124;}
+            {exit$16=123;}
            else
-            {return E$2[13](0,30,E$2[7](0,prim[1]),args[1]);}
+            {return E$2[13](0,30,E$2[7](0,prim$2[1]),args[1]);}
            }
          else
-          {exit$16=124;}
+          {exit$16=123;}
          
-         switch(exit$16){case 124:return E$2[22](0,prim);}
+         switch(exit$16){case 123:return E$2[22](0,prim$2);}
          
         case 15:
-         var n=prim[1];
+         var n=prim$2[1];
          
          var exit$17;
          
          var switcher=1+n;
          
          if(2<switcher>>>0)
-          {exit$17=214;}
+          {exit$17=213;}
          else
           {switch(switcher[0])
             {case 0:
@@ -4146,85 +4153,85 @@ var
               
               if(args)
                {if(args[2])
-                 {exit$18=128;}
+                 {exit$18=127;}
                 else
                  {return E$2[14](0,8,E$2[2](0,args[1],E$2[8](0,0)));}
                 }
               else
-               {exit$18=128;}
+               {exit$18=127;}
               
-              switch(exit$18){case 128:return E$2[22](0,prim);}
+              switch(exit$18){case 127:return E$2[22](0,prim$2);}
               
-             case 1:exit$17=214;
+             case 1:exit$17=213;
              case 2:
               var exit$19;
               
               if(args)
                {if(args[2])
-                 {exit$19=126;}
+                 {exit$19=125;}
                 else
                  {return E$2[14](0,7,E$2[2](0,args[1],E$2[8](0,0)));}
                 }
               else
-               {exit$19=126;}
+               {exit$19=125;}
               
-              switch(exit$19){case 126:return E$2[22](0,prim);}
+              switch(exit$19){case 125:return E$2[22](0,prim$2);}
               
              }
            }
          
          switch(exit$17)
-          {case 214:
+          {case 213:
             var exit$20;
             
             if(args)
              {if(args[2])
-               {exit$20=130;}
+               {exit$20=129;}
               else
                {return E$2[13](0,4,E$2[2](0,args[1],E$2[8](0,0)),E$2[7](0,n));
                 }
               }
             else
-             {exit$20=130;}
+             {exit$20=129;}
             
-            switch(exit$20){case 130:return E$2[22](0,prim);}
+            switch(exit$20){case 129:return E$2[22](0,prim$2);}
             
            }
          
-        case 16:exit=216;
+        case 16:exit=215;
         case 17:return E$2[16](0,args);
-        case 18:exit=209;
-        case 19:exit=210;
-        case 20:exit=211;
-        case 21:exit=210;
-        case 22:exit=211;
-        case 23:exit=212;
-        case 24:exit=212;
+        case 18:exit=208;
+        case 19:exit=209;
+        case 20:exit=210;
+        case 21:exit=209;
+        case 22:exit=210;
+        case 23:exit=211;
+        case 24:exit=211;
         case 25:
          var exit$21;
          
          if(args)
-          {if(args[2]){exit$21=194;}else{return args[1];}}
+          {if(args[2]){exit$21=193;}else{return args[1];}}
          else
-          {exit$21=194;}
+          {exit$21=193;}
          
-         switch(exit$21){case 194:return E$2[22](0,prim);}
+         switch(exit$21){case 193:return E$2[22](0,prim$2);}
          
-        case 26:exit=196;
-        case 27:exit=197;
-        case 28:exit=198;
-        case 29:exit=199;
-        case 30:exit=200;
-        case 31:exit=201;
-        case 32:exit=205;
-        case 33:exit=206;
-        case 34:exit=207;
-        case 35:exit=202;
-        case 36:exit=203;
-        case 37:exit=204;
-        case 38:var cmp=prim[2];exit=208;
+        case 26:exit=195;
+        case 27:exit=196;
+        case 28:exit=197;
+        case 29:exit=198;
+        case 30:exit=199;
+        case 31:exit=200;
+        case 32:exit=204;
+        case 33:exit=205;
+        case 34:exit=206;
+        case 35:exit=201;
+        case 36:exit=202;
+        case 37:exit=203;
+        case 38:var cmp=prim$2[2];exit=207;
         case 54:
-         switch(prim[1][0])
+         switch(prim$2[1][0])
           {case 0:if(Sys["big_endian"]){return E$2[19];}else{return E$2[20];}
            case 1:return E$2[7](0,Sys["word_size"]);
            case 2:if(Sys["unix"]){return E$2[19];}else{return E$2[20];}
@@ -4232,22 +4239,22 @@ var
            case 4:if(Sys["cygwin"]){return E$2[19];}else{return E$2[20];}
            }
          
-        default:exit=213;}}
+        default:exit=212;}}
     
     switch(exit)
-     {case 215:return E$2[22](0,prim);
-      case 216:"unknown block:(exit 208 (field 0 prim/1819))";
-      case 196:
+     {case 214:return E$2[22](0,prim$2);
+      case 215:"unknown block:(exit 207 (field 0 prim/1823))";
+      case 195:
        var exit$22;
        
        if(args)
-        {if(args[2]){exit$22=120;}else{return E$2[14](0,1,args[1]);}}
+        {if(args[2]){exit$22=119;}else{return E$2[14](0,1,args[1]);}}
        else
-        {exit$22=120;}
+        {exit$22=119;}
        
-       switch(exit$22){case 120:return E$2[22](0,prim);}
+       switch(exit$22){case 119:return E$2[22](0,prim$2);}
        
-      case 197:
+      case 196:
        var exit$23;
        
        if(args)
@@ -4255,19 +4262,19 @@ var
          
          if(match$7)
           {if(match$7[2])
-            {exit$23=132;}
+            {exit$23=131;}
            else
             {return E$2[13](0,30,args[1],match$7[1]);}
            }
          else
-          {exit$23=132;}
+          {exit$23=131;}
          }
        else
-        {exit$23=132;}
+        {exit$23=131;}
        
-       switch(exit$23){case 132:return E$2[22](0,prim);}
+       switch(exit$23){case 131:return E$2[22](0,prim$2);}
        
-      case 198:
+      case 197:
        var exit$24;
        
        if(args)
@@ -4275,19 +4282,19 @@ var
          
          if(match$8)
           {if(match$8[2])
-            {exit$24=134;}
+            {exit$24=133;}
            else
             {return E$2[13](0,31,args[1],match$8[1]);}
            }
          else
-          {exit$24=134;}
+          {exit$24=133;}
          }
        else
-        {exit$24=134;}
+        {exit$24=133;}
        
-       switch(exit$24){case 134:return E$2[22](0,prim);}
+       switch(exit$24){case 133:return E$2[22](0,prim$2);}
        
-      case 199:
+      case 198:
        var exit$25;
        
        if(args)
@@ -4295,19 +4302,19 @@ var
          
          if(match$9)
           {if(match$9[2])
-            {exit$25=136;}
+            {exit$25=135;}
            else
             {return E$2[13](0,32,args[1],match$9[1]);}
            }
          else
-          {exit$25=136;}
+          {exit$25=135;}
          }
        else
-        {exit$25=136;}
+        {exit$25=135;}
        
-       switch(exit$25){case 136:return E$2[22](0,prim);}
+       switch(exit$25){case 135:return E$2[22](0,prim$2);}
        
-      case 200:
+      case 199:
        var exit$26;
        
        if(args)
@@ -4315,19 +4322,19 @@ var
          
          if(match$10)
           {if(match$10[2])
-            {exit$26=138;}
+            {exit$26=137;}
            else
             {return E$2[13](0,33,args[1],match$10[1]);}
            }
          else
-          {exit$26=138;}
+          {exit$26=137;}
          }
        else
-        {exit$26=138;}
+        {exit$26=137;}
        
-       switch(exit$26){case 138:return E$2[22](0,prim);}
+       switch(exit$26){case 137:return E$2[22](0,prim$2);}
        
-      case 201:
+      case 200:
        var exit$27;
        
        if(args)
@@ -4335,19 +4342,19 @@ var
          
          if(match$11)
           {if(match$11[2])
-            {exit$27=140;}
+            {exit$27=139;}
            else
             {return E$2[13](0,34,args[1],match$11[1]);}
            }
          else
-          {exit$27=140;}
+          {exit$27=139;}
          }
        else
-        {exit$27=140;}
+        {exit$27=139;}
        
-       switch(exit$27){case 140:return E$2[22](0,prim);}
+       switch(exit$27){case 139:return E$2[22](0,prim$2);}
        
-      case 202:
+      case 201:
        var exit$28;
        
        if(args)
@@ -4355,19 +4362,19 @@ var
          
          if(match$12)
           {if(match$12[2])
-            {exit$28=142;}
+            {exit$28=141;}
            else
             {return E$2[13](0,27,args[1],match$12[1]);}
            }
          else
-          {exit$28=142;}
+          {exit$28=141;}
          }
        else
-        {exit$28=142;}
+        {exit$28=141;}
        
-       switch(exit$28){case 142:return E$2[22](0,prim);}
+       switch(exit$28){case 141:return E$2[22](0,prim$2);}
        
-      case 203:
+      case 202:
        var exit$29;
        
        if(args)
@@ -4375,19 +4382,19 @@ var
          
          if(match$13)
           {if(match$13[2])
-            {exit$29=144;}
+            {exit$29=143;}
            else
             {return E$2[13](0,28,args[1],match$13[1]);}
            }
          else
-          {exit$29=144;}
+          {exit$29=143;}
          }
        else
-        {exit$29=144;}
+        {exit$29=143;}
        
-       switch(exit$29){case 144:return E$2[22](0,prim);}
+       switch(exit$29){case 143:return E$2[22](0,prim$2);}
        
-      case 204:
+      case 203:
        var exit$30;
        
        if(args)
@@ -4395,19 +4402,19 @@ var
          
          if(match$14)
           {if(match$14[2])
-            {exit$30=146;}
+            {exit$30=145;}
            else
             {return E$2[13](0,29,args[1],match$14[1]);}
            }
          else
-          {exit$30=146;}
+          {exit$30=145;}
          }
        else
-        {exit$30=146;}
+        {exit$30=145;}
        
-       switch(exit$30){case 146:return E$2[22](0,prim);}
+       switch(exit$30){case 145:return E$2[22](0,prim$2);}
        
-      case 205:
+      case 204:
        var exit$31;
        
        if(args)
@@ -4415,19 +4422,19 @@ var
          
          if(match$15)
           {if(match$15[2])
-            {exit$31=148;}
+            {exit$31=147;}
            else
             {return E$2[13](0,16,args[1],match$15[1]);}
            }
          else
-          {exit$31=148;}
+          {exit$31=147;}
          }
        else
-        {exit$31=148;}
+        {exit$31=147;}
        
-       switch(exit$31){case 148:return E$2[22](0,prim);}
+       switch(exit$31){case 147:return E$2[22](0,prim$2);}
        
-      case 206:
+      case 205:
        var exit$32;
        
        if(args)
@@ -4435,19 +4442,19 @@ var
          
          if(match$16)
           {if(match$16[2])
-            {exit$32=150;}
+            {exit$32=149;}
            else
             {return E$2[13](0,14,args[1],match$16[1]);}
            }
          else
-          {exit$32=150;}
+          {exit$32=149;}
          }
        else
-        {exit$32=150;}
+        {exit$32=149;}
        
-       switch(exit$32){case 150:return E$2[22](0,prim);}
+       switch(exit$32){case 149:return E$2[22](0,prim$2);}
        
-      case 207:
+      case 206:
        var exit$33;
        
        if(args)
@@ -4455,19 +4462,19 @@ var
          
          if(match$17)
           {if(match$17[2])
-            {exit$33=152;}
+            {exit$33=151;}
            else
             {return E$2[13](0,15,args[1],match$17[1]);}
            }
          else
-          {exit$33=152;}
+          {exit$33=151;}
          }
        else
-        {exit$33=152;}
+        {exit$33=151;}
        
-       switch(exit$33){case 152:return E$2[22](0,prim);}
+       switch(exit$33){case 151:return E$2[22](0,prim$2);}
        
-      case 208:
+      case 207:
        var op=jsop_of_comp(cmp);
        
        var exit$34;
@@ -4477,33 +4484,33 @@ var
          
          if(match$18)
           {if(match$18[2])
-            {exit$34=164;}
+            {exit$34=163;}
            else
             {return E$2[13](0,op,args[1],match$18[1]);}
            }
          else
-          {exit$34=164;}
+          {exit$34=163;}
          }
        else
-        {exit$34=164;}
+        {exit$34=163;}
        
-       switch(exit$34){case 164:return E$2[22](0,prim);}
+       switch(exit$34){case 163:return E$2[22](0,prim$2);}
        
-      case 209:
+      case 208:
        var exit$35;
        
        if(args)
         {if(args[2])
-          {exit$35=179;}
+          {exit$35=178;}
          else
           {return E$2[2](0,args[1],E$2[4](0,"length"));}
          }
        else
-        {exit$35=179;}
+        {exit$35=178;}
        
-       switch(exit$35){case 179:return E$2[22](0,prim);}
+       switch(exit$35){case 178:return E$2[22](0,prim$2);}
        
-      case 210:
+      case 209:
        var exit$36;
        
        if(args)
@@ -4511,19 +4518,19 @@ var
          
          if(match$19)
           {if(match$19[2])
-            {exit$36=183;}
+            {exit$36=182;}
            else
             {return E$2[2](0,args[1],match$19[1]);}
            }
          else
-          {exit$36=183;}
+          {exit$36=182;}
          }
        else
-        {exit$36=183;}
+        {exit$36=182;}
        
-       switch(exit$36){case 183:return E$2[22](0,prim);}
+       switch(exit$36){case 182:return E$2[22](0,prim$2);}
        
-      case 211:
+      case 210:
        var exit$37;
        
        if(args)
@@ -4534,7 +4541,7 @@ var
            
            if(match$21)
             {if(match$21[2])
-              {exit$37=185;}
+              {exit$37=184;}
              else
               {return E$2[17]
                        (0,
@@ -4543,27 +4550,27 @@ var
                }
              }
            else
-            {exit$37=185;}
+            {exit$37=184;}
            }
          else
-          {exit$37=185;}
+          {exit$37=184;}
          }
        else
-        {exit$37=185;}
+        {exit$37=184;}
        
-       switch(exit$37){case 185:return E$2[22](0,prim);}
+       switch(exit$37){case 184:return E$2[22](0,prim$2);}
        
-      case 212:
+      case 211:
        var exit$38;
        
        if(args)
-        {if(args[2]){exit$38=187;}else{return args[1];}}
+        {if(args[2]){exit$38=186;}else{return args[1];}}
        else
-        {exit$38=187;}
+        {exit$38=186;}
        
-       switch(exit$38){case 187:return E$2[22](0,prim);}
+       switch(exit$38){case 186:return E$2[22](0,prim$2);}
        
-      case 213:return E$2[22](0,prim);
+      case 212:return E$2[22](0,prim$2);
       }
     };
 
@@ -4613,9 +4620,9 @@ CamlinternalMod["update_mod"]
  ([0,[0,0,0,0]],
   Compile_primitive,
   [0,jsop_of_comp,compile_primitive,compile_const]);
-var E$3=J_helper[1];
+var E$3=J_helper[2];
 
-var S$1=J_helper[2];
+var S$1=J_helper[3];
 
 var
  is_pure=
@@ -4623,9 +4630,9 @@ var
    {var exit;
     
     switch(lam)
-     {case 0:exit=298;
-      case 1:exit=298;
-      case 3:exit=298;
+     {case 0:exit=297;
+      case 1:exit=297;
+      case 3:exit=297;
       case 4:return is_pure(lam[3])&&is_pure(lam[4]);
       case 6:
        var exit$1;
@@ -4636,20 +4643,20 @@ var
         {switch($js$1){}}
        else
         {switch($js$1[0])
-          {case 3:exit$1=295;
-           case 4:exit$1=294;
-           case 5:exit$1=295;
-           case 6:exit$1=295;
-           case 7:exit$1=294;
-           default:exit$1=296;}}
+          {case 3:exit$1=294;
+           case 4:exit$1=293;
+           case 5:exit$1=294;
+           case 6:exit$1=294;
+           case 7:exit$1=293;
+           default:exit$1=295;}}
        
        var $js$2;
-       switch(exit$1){case 296:$js$2=0;case 294:$js$2=0;case 295:$js$2=1;}
+       switch(exit$1){case 295:$js$2=0;case 293:$js$2=0;case 294:$js$2=1;}
        return List["for_all"](is_pure,lam[2])&&$js$2;
        
       default:return 0;}
     
-    switch(exit){case 298:return 1;}
+    switch(exit){case 297:return 1;}
     };
 
 var
@@ -4662,7 +4669,7 @@ var
        {case 0:
          if(should_return!=0)
           {return /* tuple */[0,
-                   /* :: */[0,J_helper[2][17](0,0,/* Some */[0,exp$1]),0],
+                   /* :: */[0,J_helper[3][17](0,0,/* Some */[0,exp$1]),0],
                    0];
            }
          else
@@ -4678,11 +4685,11 @@ var
      {switch(name[0])
        {case 0:
          if(should_return!=0)
-          {exit=285;}
+          {exit=284;}
          else
           {return /* tuple */[0,
                    /* :: */[0,
-                    J_helper[2][9]
+                    J_helper[3][9]
                      (0,0,/* Some */[0,/* tuple */[0,exp$1,0]],name[1]),
                     0],
                    0];
@@ -4690,21 +4697,21 @@ var
          
         case 1:
          if(should_return!=0)
-          {exit=285;}
+          {exit=284;}
          else
           {return /* tuple */[0,
-                   /* :: */[0,J_helper[2][10](0,0,name[1],exp$1),0],
+                   /* :: */[0,J_helper[3][10](0,0,name[1],exp$1),0],
                    0];
            }
          
         }}
     
     switch(exit)
-     {case 285:
+     {case 284:
        if(should_return!=0)
         {return /* tuple */[0,/* :: */[0,S$1[18](0,0,lam),0],0];}
        else
-        {throw [0,Match_failure,[0,"bytecomp/px.ml",932,12]];}
+        {throw [0,Match_failure,[0,"bytecomp/px.ml",931,12]];}
        
       }
     };
@@ -4721,7 +4728,7 @@ var
           {return /* tuple */[0,
                    Pervasives["@"]
                     (block$1,
-                     /* :: */[0,J_helper[2][17](0,0,/* Some */[0,exp$1]),0]),
+                     /* :: */[0,J_helper[3][17](0,0,/* Some */[0,exp$1]),0]),
                    0];
            }
          else
@@ -4733,13 +4740,13 @@ var
      {switch(st[0])
        {case 0:
          if(should_return!=0)
-          {exit=275;}
+          {exit=274;}
          else
           {return /* tuple */[0,
                    Pervasives["@"]
                     (block$1,
                      /* :: */[0,
-                      J_helper[2][9]
+                      J_helper[3][9]
                        (0,0,/* Some */[0,/* tuple */[0,exp$1,0]],st[1]),
                       0]),
                    0];
@@ -4747,22 +4754,22 @@ var
          
         case 1:
          if(should_return!=0)
-          {exit=275;}
+          {exit=274;}
          else
           {return /* tuple */[0,
                    Pervasives["@"]
-                    (block$1,/* :: */[0,J_helper[2][10](0,0,st[1],exp$1),0]),
+                    (block$1,/* :: */[0,J_helper[3][10](0,0,st[1],exp$1),0]),
                    0];
            }
          
         }}
     
     switch(exit)
-     {case 275:
+     {case 274:
        if(should_return!=0)
         {return /* tuple */[0,/* :: */[0,S$1[18](0,0,lam),0],0];}
        else
-        {throw [0,Match_failure,[0,"bytecomp/px.ml",943,12]];}
+        {throw [0,Match_failure,[0,"bytecomp/px.ml",942,12]];}
        
       }
     };
@@ -4803,7 +4810,7 @@ var unit_val=E$3[8](0,0);
 
 var
  return_unit$1=
-  /* :: */[0,J_helper[2][17](0,0,/* Some */[0,E$3[8](0,0)]),0];
+  /* :: */[0,J_helper[3][17](0,0,/* Some */[0,E$3[8](0,0)]),0];
 
 var
  is_js_pure=
@@ -4813,17 +4820,17 @@ var
     var exit;
     
     switch(match)
-     {case 8:exit=257;
+     {case 8:exit=256;
       case 11:
        return List["for_all"]
                (function(param)
                  {if(param){return is_js_pure(param[1]);}else{return 1;}},
                 match[1]);
        
-      case 13:exit=257;
+      case 13:exit=256;
       default:return 0;}
     
-    switch(exit){case 257:return 1;}
+    switch(exit){case 256:return 1;}
     };
 
 var
@@ -4833,12 +4840,12 @@ var
      {var x$1=x[1];
       
       if(is_js_pure(x$1))
-       {return J_helper[2][3](0,0,0);}
+       {return J_helper[3][3](0,0,0);}
       else
-       {return J_helper[2][16](0,0,x$1);}
+       {return J_helper[3][16](0,0,x$1);}
       }
     else
-     {return J_helper[2][3](0,0,0);}
+     {return J_helper[3][3](0,0,0);}
     };
 
 var
@@ -4854,13 +4861,13 @@ var
     var exit;
     
     if(block1)
-     {exit=244;}
+     {exit=243;}
     else
      {var match=x[2];
       
       if(match)
        {if(y[1])
-         {exit=244;}
+         {exit=243;}
         else
          {var match$1=y[2];
           
@@ -4883,7 +4890,7 @@ var
       }
     
     switch(exit)
-     {case 244:
+     {case 243:
        return /* tuple */[0,
                Pervasives["@"]
                 (block1,/* :: */[0,statement_of_opt_expr(x[2]),y[1]]),
@@ -4933,9 +4940,9 @@ CamlinternalMod["update_mod"]
    handle_name_tail,
    handle_block_return,
    concat]);
-var E$4=J_helper[1];
+var E$4=J_helper[2];
 
-var S$2=J_helper[2];
+var S$2=J_helper[3];
 
 var Not_a_module="unknown primitive:caml_set_oo_id";
 
@@ -4974,7 +4981,7 @@ var
     
     switch(lam)
      {case 0:
-       return Gen_util[8](st,should_return,lam,J_helper[1][3](0,lam[1]));
+       return Gen_util[8](st,should_return,lam,J_helper[2][3](0,lam[1]));
       case 1:
        return Gen_util[8](st,should_return,lam,Compile_primitive[3](lam[1]));
       case 2:
@@ -4997,7 +5004,7 @@ var
                  if(match$4)
                   {return /* tuple */[0,match$3[1],match$4[1]];}
                  else
-                  {throw [0,Assert_failure,[0,"bytecomp/px.ml",1763,48]];}
+                  {throw [0,Assert_failure,[0,"bytecomp/px.ml",1770,48]];}
                  },
                lam[2]));
          
@@ -5013,14 +5020,14 @@ var
                   exp$1);
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1749,42]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1756,42]];}
        
       case 3:
        return Gen_util[8]
                (st,
                 should_return,
                 lam,
-                J_helper[1][5]
+                J_helper[2][5]
                  (0,
                   0,
                   0,
@@ -5049,14 +5056,14 @@ var
                 compile_lambda(cxt,lam[2]));
        
       case 6:
-       var prim=lam[1];
+       var prim$2=lam[1];
        
        var exit;
        
-       if(typeof prim=="number")
-        {switch(prim){}}
+       if(typeof prim$2=="number")
+        {switch(prim$2){}}
        else
-        {switch(prim[0])
+        {switch(prim$2[0])
           {case 6:
             var match$3=lam[2];
             
@@ -5073,32 +5080,33 @@ var
                   {switch(match$5[0])
                     {case 3:
                       if(match$4[2])
-                       {exit=661;}
+                       {exit=664;}
                       else
                        {if(match$3[2])
-                         {exit=661;}
+                         {exit=664;}
                         else
                          {return Gen_util[8]
                                   (st,
                                    should_return,
                                    lam,
-                                   Gen_of_env[1](/* GetGlobal */[0,match$5[1],prim[1],cxt[4]]));
+                                   Gen_of_env[1]
+                                    (/* GetGlobal */[0,match$5[1],prim$2[1],cxt[4]]));
                           }
                         }
                       
-                     default:exit=661;}}
+                     default:exit=664;}}
                  
-                default:exit=661;}
+                default:exit=664;}
               }
             else
-             {exit=661;}
+             {exit=664;}
             
            case 12:
             var match$6=lam[2];
             
             if(match$6)
              {if(match$6[2])
-               {exit=661;}
+               {exit=664;}
               else
                {var
                  match$7=
@@ -5113,16 +5121,16 @@ var
                           /* Some */[0,E$4[25](0,0)]];
                   }
                 else
-                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",1372,42]];}
+                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",1379,42]];}
                 }
               }
             else
-             {exit=661;}
+             {exit=664;}
             
-           default:exit=661;}}
+           default:exit=664;}}
        
        switch(exit)
-        {case 661:
+        {case 664:
           var
            match$9=
             List["split"]
@@ -5137,13 +5145,13 @@ var
                   if(match$11)
                    {return /* tuple */[0,match$10[1],match$11[1]];}
                   else
-                   {throw [0,Assert_failure,[0,"bytecomp/px.ml",1386,43]];}
+                   {throw [0,Assert_failure,[0,"bytecomp/px.ml",1393,43]];}
                   },
                 lam[2]));
           
           var args_code$1=List["concat"](match$9[1]);
           
-          var exp$2=Compile_primitive[2](prim,match$9[2]);
+          var exp$2=Compile_primitive[2](prim$2,match$9[2]);
           
           return Gen_util[9](st,should_return,lam,args_code$1,exp$2);
           
@@ -5168,7 +5176,7 @@ var
         aux=
          function(st$1,v,table,$$default$1)
           {return /* :: */[0,
-                   J_helper[2][8]
+                   J_helper[3][8]
                     (0,
                      0,
                      0,
@@ -5202,14 +5210,14 @@ var
            
            if(sw_numconsts!=0)
             {if(sw_numblocks!=0)
-              {exit$1=597;}
+              {exit$1=600;}
              else
               {var match$12=match$11[2];
                
                if(match$12)
                 {return aux(st$1,match$12[1],sw_consts,$$default);}
                else
-                {exit$1=597;}
+                {exit$1=600;}
                }
              }
            else
@@ -5220,11 +5228,11 @@ var
                        (st$1,E$4[2](0,match$13[1],E$4[8](0,0)),sw_blocks,$$default);
                }
              else
-              {exit$1=597;}
+              {exit$1=600;}
              }
            
            switch(exit$1)
-            {case 597:
+            {case 600:
               var match$14=match$11[2];
               
               if(match$14)
@@ -5260,7 +5268,7 @@ var
                    }
                 }
               else
-               {throw [0,Assert_failure,[0,"bytecomp/px.ml",1562,49]];}
+               {throw [0,Assert_failure,[0,"bytecomp/px.ml",1569,49]];}
               
              }
            };
@@ -5272,16 +5280,16 @@ var
           {var v=Gen_util[1](0,0);
            
            return /* tuple */[0,
-                   /* :: */[0,J_helper[2][9](0,0,0,v),aux2(/* Assign */[1,v])],
+                   /* :: */[0,J_helper[3][9](0,0,0,v),aux2(/* Assign */[1,v])],
                    /* Some */[0,E$4[3](0,v)]];
            }
          else
-          {exit$1=590;}
+          {exit$1=593;}
          }
        else
-        {exit$1=590;}
+        {exit$1=593;}
        
-       switch(exit$1){case 590:return /* tuple */[0,aux2(st),0];}
+       switch(exit$1){case 593:return /* tuple */[0,aux2(st),0];}
        
       case 8:
        var $$default$1=lam[3];
@@ -5303,7 +5311,7 @@ var
             {return Pervasives["@"]
                      (v$1,
                       /* :: */[0,
-                       J_helper[2][8]
+                       J_helper[3][8]
                         (0,
                          0,
                          0,
@@ -5337,15 +5345,15 @@ var
                      /* Some */[0,E$4[3](0,v$2)]];
              }
            else
-            {exit$2=581;}
+            {exit$2=584;}
            }
          else
-          {exit$2=581;}
+          {exit$2=584;}
          
-         switch(exit$2){case 581:return /* tuple */[0,aux$1(st),0];}
+         switch(exit$2){case 584:return /* tuple */[0,aux$1(st),0];}
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1509,34]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1516,34]];}
        
       case 9:
        var i=lam[1];
@@ -5388,7 +5396,7 @@ var
           return Gen_util[5][1]
                   (args_code$2,
                    /* tuple */[0,
-                    /* :: */[0,J_helper[2][10](0,0,val[1],E$4[7](0,i)),0],
+                    /* :: */[0,J_helper[3][10](0,0,val[1],E$4[7](0,i)),0],
                     /* Some */[0,E$4[25](0,0)]]);
           
          }
@@ -5446,13 +5454,13 @@ var
               /* Some */[0,E$4[3](0,v$3)]];
            }
          else
-          {exit$4=617;}
+          {exit$4=620;}
          }
        else
-        {exit$4=617;}
+        {exit$4=620;}
        
        var $js$1;
-       switch(exit$4){case 617:$js$1=/* tuple */[0,aux$2(st,jmp_table),0];}
+       switch(exit$4){case 620:$js$1=/* tuple */[0,aux$2(st,jmp_table),0];}
        return Gen_util[5][1]
                (Gen_util[5][1]
                  (/* tuple */[0,/* :: */[0,S$2[9](0,0,0,exit_id),0],0],
@@ -5500,12 +5508,12 @@ var
                    /* Some */[0,E$4[3](0,v$4)]];
            }
          else
-          {exit$5=647;}
+          {exit$5=650;}
          }
        else
-        {exit$5=647;}
+        {exit$5=650;}
        
-       switch(exit$5){case 647:return /* tuple */[0,aux$3(st),0];}
+       switch(exit$5){case 650:return /* tuple */[0,aux$3(st),0];}
        
       case 12:
        var f_br=lam[3];
@@ -5532,31 +5540,31 @@ var
              var exit$7;
              
              if(match$16[1])
-              {exit$7=574;}
+              {exit$7=577;}
              else
               {var match$18=match$16[2];
                
                if(match$18)
                 {if(match$17[1])
-                  {exit$7=574;}
+                  {exit$7=577;}
                  else
                   {var match$19=match$17[2];
                    
                    if(match$19)
                     {return /* tuple */[0,
                              b,
-                             /* Some */[0,J_helper[1][6](0,e$1,match$18[1],match$19[1])]];
+                             /* Some */[0,J_helper[2][6](0,e$1,match$18[1],match$19[1])]];
                      }
                    else
-                    {exit$7=574;}
+                    {exit$7=577;}
                    }
                  }
                else
-                {exit$7=574;}
+                {exit$7=577;}
                }
              
              switch(exit$7)
-              {case 574:
+              {case 577:
                 var v$5=Gen_util[1](0,0);
                 
                 var
@@ -5575,43 +5583,43 @@ var
                         Pervasives["@"]
                          (b,
                           /* :: */[0,
-                           J_helper[2][6]
+                           J_helper[3][6]
                             (0,
                              0,
-                             /* Some */[0,J_helper[2][7](0,0,Gen_util[3](match$21))],
+                             /* Some */[0,J_helper[3][7](0,0,Gen_util[3](match$21))],
                              e$1,
-                             J_helper[2][7](0,0,Gen_util[3](match$20))),
+                             J_helper[3][7](0,0,Gen_util[3](match$20))),
                            0]),
                         /* Some */[0,E$4[3](0,v$5)]];
                 
                }
              }
            else
-            {exit$6=576;}
+            {exit$6=579;}
            }
          else
-          {exit$6=576;}
+          {exit$6=579;}
          
          switch(exit$6)
-          {case 576:
+          {case 579:
             return /* tuple */[0,
                     Pervasives["@"]
                      (b,
                       /* :: */[0,
-                       J_helper[2][6]
+                       J_helper[3][6]
                         (0,
                          0,
                          /* Some */[0,
-                          J_helper[2][7](0,0,Gen_util[3](compile_lambda(cxt,f_br)))],
+                          J_helper[3][7](0,0,Gen_util[3](compile_lambda(cxt,f_br)))],
                          e$1,
-                         J_helper[2][7](0,0,Gen_util[3](compile_lambda(cxt,t_br)))),
+                         J_helper[3][7](0,0,Gen_util[3](compile_lambda(cxt,t_br)))),
                        0]),
                     0];
             
            }
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1474,34]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1481,34]];}
        
       case 13:
        return Gen_util[5][1]
@@ -5658,19 +5666,19 @@ var
             {case 0:
               return /* tuple */[0,
                       Pervasives["@"]
-                       (block$1,/* :: */[0,J_helper[2][12](0,0,st[1]),0]),
+                       (block$1,/* :: */[0,J_helper[3][12](0,0,st[1]),0]),
                       0];
               
              case 1:
               return /* tuple */[0,
                       Pervasives["@"]
-                       (block$1,/* :: */[0,J_helper[2][11](0,0,st[1]),0]),
+                       (block$1,/* :: */[0,J_helper[3][11](0,0,st[1]),0]),
                       0];
               
              }}
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1656,34]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1663,34]];}
        
       case 15:
        var id$1=lam[1];
@@ -5696,7 +5704,7 @@ var
                Pervasives["@"]
                 (match$25[1],
                  /* :: */[0,
-                  J_helper[2][14]
+                  J_helper[3][14]
                    (0,
                     0,
                     /* Some */[0,
@@ -5708,7 +5716,7 @@ var
                        id$1,
                        /* Some */[0,/* tuple */[0,match$26[1],0]]],
                       0]],
-                    J_helper[2][7]
+                    J_helper[3][7]
                      (0,
                       0,
                       Gen_util[3]
@@ -5716,13 +5724,13 @@ var
                   0]));
            }
          else
-          {exit$8=636;}
+          {exit$8=639;}
          }
        else
-        {exit$8=636;}
+        {exit$8=639;}
        
        switch(exit$8)
-        {case 636:throw [0,Assert_failure,[0,"bytecomp/px.ml",1692,35]];}
+        {case 639:throw [0,Assert_failure,[0,"bytecomp/px.ml",1699,35]];}
        
        if(typeof st=="number")
         {switch(st)
@@ -5734,13 +5742,13 @@ var
           {case 0:
             return /* tuple */[0,
                     Pervasives["@"]
-                     (block$2,/* :: */[0,J_helper[2][12](0,0,st[1]),0]),
+                     (block$2,/* :: */[0,J_helper[3][12](0,0,st[1]),0]),
                     0];
             
            case 1:
             return /* tuple */[0,
                     Pervasives["@"]
-                     (block$2,/* :: */[0,J_helper[2][11](0,0,st[1]),0]),
+                     (block$2,/* :: */[0,J_helper[3][11](0,0,st[1]),0]),
                     0];
             
            }}
@@ -5755,10 +5763,10 @@ var
           block$3=
            Pervasives["@"]
             (match$29[1],
-             /* :: */[0,J_helper[2][10](0,0,lam[1],match$30[1]),0]);
+             /* :: */[0,J_helper[3][10](0,0,lam[1],match$30[1]),0]);
          }
        else
-        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1712,35]];}
+        {throw [0,Assert_failure,[0,"bytecomp/px.ml",1719,35]];}
        
        var exit$9;
        
@@ -5779,32 +5787,32 @@ var
         {switch(st[0])
           {case 0:
             if(should_return!=0)
-             {exit$9=639;}
+             {exit$9=642;}
             else
              {return /* tuple */[0,
                       Pervasives["@"]
-                       (block$3,/* :: */[0,J_helper[2][12](0,0,st[1]),0]),
+                       (block$3,/* :: */[0,J_helper[3][12](0,0,st[1]),0]),
                       0];
               }
             
            case 1:
             if(should_return!=0)
-             {exit$9=639;}
+             {exit$9=642;}
             else
              {return /* tuple */[0,
                       Pervasives["@"]
-                       (block$3,/* :: */[0,J_helper[2][11](0,0,st[1]),0]),
+                       (block$3,/* :: */[0,J_helper[3][11](0,0,st[1]),0]),
                       0];
               }
             
            }}
        
        switch(exit$9)
-        {case 639:
+        {case 642:
           if(should_return!=0)
            {return /* tuple */[0,/* :: */[0,S$2[18](0,0,lam),0],0];}
           else
-           {throw [0,Match_failure,[0,"bytecomp/px.ml",1713,26]];}
+           {throw [0,Match_failure,[0,"bytecomp/px.ml",1720,26]];}
           
          }
        
@@ -5905,7 +5913,7 @@ var
             
             if(match$2)
              {if(match$2[2])
-               {exit=541;}
+               {exit=544;}
               else
                {var match$3=flat(0,match$2[1]);
                 
@@ -5915,8 +5923,8 @@ var
                  {var match$4=match$3[1];
                   
                   switch(match$4)
-                   {case 0:exit$1=539;
-                    case 1:exit$1=539;
+                   {case 0:exit$1=542;
+                    case 1:exit$1=542;
                     case 2:
                      var match$5=match$4[1];
                      
@@ -5949,7 +5957,7 @@ var
                                      if(match$8)
                                       {return /* tuple */[0,match$7[1],match$8[1]];}
                                      else
-                                      {throw [0,Assert_failure,[0,"bytecomp/px.ml",1857,52]];}
+                                      {throw [0,Assert_failure,[0,"bytecomp/px.ml",1864,52]];}
                                      },
                                    match$5[2]));
                              
@@ -5959,7 +5967,7 @@ var
                                          (Gen_util[5][1]
                                            (/* tuple */[0,
                                              /* :: */[0,
-                                              J_helper[2][4](0,"Generated CODE, PLEASE EDIT WITH CARE "),
+                                              J_helper[3][4](0,"Generated CODE, PLEASE EDIT WITH CARE "),
                                               0],
                                              0],
                                             /* tuple */[0,Gen_of_env[2](0),0]),
@@ -5969,26 +5977,26 @@ var
                                        /* :: */[0,Gen_util[2]($$exports$1,match$6[2]),0],
                                        0]);
                              
-                            default:exit$1=539;}}
+                            default:exit$1=542;}}
                         
-                       default:exit$1=539;}
+                       default:exit$1=542;}
                      
                     }
                   }
                 else
-                 {exit$1=539;}
+                 {exit$1=542;}
                 
-                switch(exit$1){case 539:throw Not_a_module;}
+                switch(exit$1){case 542:throw Not_a_module;}
                 }
               }
             else
-             {exit=541;}
+             {exit=544;}
             
-           default:exit=541;}}
+           default:exit=544;}}
        
-      default:exit=541;}
+      default:exit=544;}
     
-    switch(exit){case 541:throw Not_a_module;}
+    switch(exit){case 544:throw Not_a_module;}
     };
 
 var
@@ -6083,11 +6091,11 @@ var
       var exit;
       
       if(c>=34)
-       {if(c!=92){if(c>=35){exit=698;}else{Pp[1](f,'\"')}}else{Pp[1](f,"\\")}}
+       {if(c!=92){if(c>=35){exit=701;}else{Pp[1](f,'\"')}}else{Pp[1](f,"\\")}}
       else
        {if(c!=10)
          {if(c>=32)
-           {exit=698;}
+           {exit=701;}
           else
            {var c$1=c;
             
@@ -6099,7 +6107,7 @@ var
          {Pp[1](f,"\n")}
         }
       
-      switch(exit){case 698:Pp[1](f,array_str1$1[c])}
+      switch(exit){case 701:Pp[1](f,array_str1$1[c])}
       }
     
     return Pp[1](f,'"');
@@ -6253,7 +6261,7 @@ var
         {switch(p[0])
           {case 6:
             if(p[1]!=0)
-             {exit=785;}
+             {exit=788;}
             else
              {var match$1=lam[2];
               
@@ -6263,23 +6271,23 @@ var
                 switch(match$2)
                  {case 0:
                    if(match$1[2])
-                    {exit=785;}
+                    {exit=788;}
                    else
                     {if(Ident["same"](match$2[1],id))
                       {return /* Lvar */[0,id];}
                      else
-                      {exit=785;}
+                      {exit=788;}
                      }
                    
-                  default:exit=785;}
+                  default:exit=788;}
                 }
               else
-               {exit=785;}
+               {exit=788;}
               }
             
            case 7:
             if(p[1]!=0)
-             {exit=785;}
+             {exit=788;}
             else
              {var match$3=lam[2];
               
@@ -6292,21 +6300,21 @@ var
                    
                    if(match$5)
                     {if(match$5[2])
-                      {exit=785;}
+                      {exit=788;}
                      else
                       {if(Ident["same"](match$4[1],id))
                         {return /* Lassign */[16,id,eliminate_ref(id,match$5[1])];}
                        else
-                        {exit=785;}
+                        {exit=788;}
                        }
                      }
                    else
-                    {exit=785;}
+                    {exit=788;}
                    
-                  default:exit=785;}
+                  default:exit=788;}
                 }
               else
-               {exit=785;}
+               {exit=788;}
               }
             
            case 15:
@@ -6318,7 +6326,7 @@ var
               switch(match$7)
                {case 0:
                  if(match$6[2])
-                  {exit=785;}
+                  {exit=788;}
                  else
                   {if(Ident["same"](match$7[1],id))
                     {return /* Lassign */[16,
@@ -6328,18 +6336,18 @@ var
                               /* :: */[0,/* Lvar */[0,id],0]]];
                      }
                    else
-                    {exit=785;}
+                    {exit=788;}
                    }
                  
-                default:exit=785;}
+                default:exit=788;}
               }
             else
-             {exit=785;}
+             {exit=788;}
             
-           default:exit=785;}}
+           default:exit=788;}}
        
        switch(exit)
-        {case 785:
+        {case 788:
           return /* Lprim */[6,p,List["map"](eliminate_ref(id),lam[2])];
          }
        
@@ -6501,7 +6509,7 @@ var
                       {switch($js[0])
                         {case 5:
                           if(match$1[2])
-                           {exit$1=743;}
+                           {exit$1=746;}
                           else
                            {var args=match$2[2];
                             
@@ -6510,15 +6518,15 @@ var
                             if(optimize&&(List["length"](params)=List["length"](args)))
                              {return count(bv,beta_reduce(params,l1[3],args));}
                             else
-                             {exit$1=743;}
+                             {exit$1=746;}
                             }
                           
-                         default:exit$1=743;}}
+                         default:exit$1=746;}}
                      
-                    default:exit$1=743;}
+                    default:exit$1=746;}
                   }
                 else
-                 {exit$1=743;}
+                 {exit$1=746;}
                 }
               else
                {var args$1=param[2];
@@ -6529,13 +6537,13 @@ var
                  (optimize&&(List["length"](params$1)=List["length"](args$1)))
                  {return count(bv,beta_reduce(params$1,l1[3],args$1));}
                 else
-                 {exit$1=743;}
+                 {exit$1=746;}
                 }
               
-             default:exit$1=743;}
+             default:exit$1=746;}
            
            switch(exit$1)
-            {case 743:count(bv,l1);return List["iter"](count(bv),param[2]);}
+            {case 746:count(bv,l1);return List["iter"](count(bv),param[2]);}
            
           case 3:return count(Tbl["empty"],param[3]);
           case 4:
@@ -6552,12 +6560,12 @@ var
                 return use_var(bv,l1$1[1],count_var(v));
                 }
               else
-               {exit$2=744;}
+               {exit$2=747;}
               
-             default:exit$2=744;}
+             default:exit$2=747;}
            
            switch(exit$2)
-            {case 744:
+            {case 747:
               count(bind_var(bv,v),param[4]);
               if((param[1]=0)||count_var(v)>0)
                {return count(bv,l1$1);}
@@ -6571,7 +6579,7 @@ var
             (function(param$1){return count(bv,param$1[2]);},param[1]);
            return count(bv,param[2]);
            
-          case 6:exit=745;
+          case 6:exit=748;
           case 7:
            var sw=param[2];
            
@@ -6597,19 +6605,19 @@ var
               {if(sw$1[2])
                 {count(bv,d$1);return count(bv,d$1);}
                else
-                {exit$3=738;}
+                {exit$3=741;}
                }
              else
-              {exit$3=738;}
+              {exit$3=741;}
              
-             switch(exit$3){case 738:return count(bv,d$1);}
+             switch(exit$3){case 741:return count(bv,d$1);}
              }
            else
             {return 0;}
            
-          case 9:exit=745;
-          case 10:exit=746;
-          case 11:exit=746;
+          case 9:exit=748;
+          case 10:exit=749;
+          case 11:exit=749;
           case 12:
            count(bv,param[1]);count(bv,param[2]);return count(bv,param[3]);
           case 13:count(bv,param[1]);return count(bv,param[2]);
@@ -6636,8 +6644,8 @@ var
           }
         
         switch(exit)
-         {case 745:return List["iter"](count(bv),param[2]);
-          case 746:count(bv,param[1]);return count(bv,param[3]);
+         {case 748:return List["iter"](count(bv),param[2]);
+          case 749:count(bv,param[1]);return count(bv,param[3]);
           }
         };
     
@@ -6659,7 +6667,7 @@ var
            {if(nconsts<sw[1]||nblocks<sw[3])
              {}
             else
-             {throw [0,Assert_failure,[0,"bytecomp/px.ml",2284,45]];}
+             {throw [0,Assert_failure,[0,"bytecomp/px.ml",2291,45]];}
             
             return count(bv,al);
             }
@@ -6687,11 +6695,11 @@ var
            if(optimize&&Ident["same"](v,e2[1])&&!List["mem"](v,export_defs))
             {return e1;}
            else
-            {exit=730;}
+            {exit=733;}
            
-          default:exit=730;}
+          default:exit=733;}
         
-        switch(exit){case 730:return /* Llet */[4,param[1],v,e1,e2];}
+        switch(exit){case 733:return /* Llet */[4,param[1],v,e1,e2];}
         };
     
     var
@@ -6726,7 +6734,7 @@ var
                       {switch($js[0])
                         {case 5:
                           if(match$1[2])
-                           {exit=725;}
+                           {exit=728;}
                           else
                            {var args=match$2[2];
                             
@@ -6735,15 +6743,15 @@ var
                             if(optimize&&(List["length"](params)=List["length"](args)))
                              {return simplif(beta_reduce(params,l1[3],args));}
                             else
-                             {exit=725;}
+                             {exit=728;}
                             }
                           
-                         default:exit=725;}}
+                         default:exit=728;}}
                      
-                    default:exit=725;}
+                    default:exit=728;}
                   }
                 else
-                 {exit=725;}
+                 {exit=728;}
                 }
               else
                {var args$1=l[2];
@@ -6754,13 +6762,13 @@ var
                  (optimize&&(List["length"](params$1)=List["length"](args$1)))
                  {return simplif(beta_reduce(params$1,l1[3],args$1));}
                 else
-                 {exit=725;}
+                 {exit=728;}
                 }
               
-             default:exit=725;}
+             default:exit=728;}
            
            switch(exit)
-            {case 725:
+            {case 728:
               return /* Lapply */[2,
                       simplif(l1),
                       List["map"](simplif,l[2]),
@@ -6785,12 +6793,12 @@ var
                 return simplif(l[4]);
                 }
               else
-               {exit$1=727;}
+               {exit$1=730;}
               
-             default:exit$1=727;}
+             default:exit$1=730;}
            
            switch(exit$1)
-            {case 727:
+            {case 730:
               switch(str$1[0])
                {case 0:
                  var match$4=l[3];
@@ -6805,14 +6813,14 @@ var
                      {switch(match$5[0])
                        {case 5:
                          if(match$5[1]!=0)
-                          {"unknown block:(exit 726)";}
+                          {"unknown block:(exit 729)";}
                          else
                           {if(match$5[3]!=0)
                             {var match$6=match$4[2];
                              
                              if(match$6)
                               {if(match$6[2])
-                                {"unknown block:(exit 726)";}
+                                {"unknown block:(exit 729)";}
                                else
                                 {if(optimize)
                                   {var v$1=l[2];
@@ -6841,19 +6849,19 @@ var
                                      }
                                    }
                                  else
-                                  {"unknown block:(exit 726)";}
+                                  {"unknown block:(exit 729)";}
                                  }
                                }
                              else
-                              {"unknown block:(exit 726)";}
+                              {"unknown block:(exit 729)";}
                              }
                            else
-                            {"unknown block:(exit 726)";}
+                            {"unknown block:(exit 729)";}
                            }
                          
-                        default:"unknown block:(exit 726)";}}
+                        default:"unknown block:(exit 729)";}}
                     
-                   default:"unknown block:(exit 726)";}
+                   default:"unknown block:(exit 729)";}
                  
                 case 1:
                  var l2=l[4];
@@ -6868,21 +6876,21 @@ var
                  
                  if(n!=0)
                   {if(n!=1)
-                    {exit$2=713;}
+                    {exit$2=716;}
                    else
                     {if(optimize&&!List["mem"](v$2,export_defs))
                       {Hashtbl["add"](subst,v$2,simplif(l1$1));
                        return simplif(l2);
                        }
                      else
-                      {exit$2=713;}
+                      {exit$2=716;}
                      }
                    }
                  else
                   {return simplif(l2);}
                  
                  switch(exit$2)
-                  {case 713:
+                  {case 716:
                     return /* Llet */[4,1,v$2,simplif(l1$1),simplif(l2)];
                    }
                  
@@ -6900,10 +6908,10 @@ var
                  else
                   {return simplif(l2$1);}
                  
-                case 3:"unknown block:(exit 726)";
+                case 3:"unknown block:(exit 729)";
                 }
               
-             case 726:
+             case 729:
               return mklet
                       (/* tuple */[0,str$1,l[2],simplif(l[3]),simplif(l[4])]);
               
@@ -7051,12 +7059,12 @@ var
       var exit;
       
       if(typeof match$1=="number")
-       {switch(match$1){case 0:exit=851;}}
+       {switch(match$1){case 0:exit=854;}}
       else
        {switch(match$1[0])
-         {case 0:exit=852;
-          case 1:exit=852;
-          case 2:exit=851;
+         {case 0:exit=855;
+          case 1:exit=855;
+          case 2:exit=854;
           case 3:
            var p=match$1[1];
            
@@ -7067,13 +7075,13 @@ var
           }}
       
       switch(exit)
-       {case 852:
+       {case 855:
          var s=match$1[1];
          
          output(st,s,s["length"]);
          return flat_render(st,l[2]);
          
-        case 851:return flat_render(st,l[2]);
+        case 854:return flat_render(st,l[2]);
         }
       }
     else
@@ -7141,14 +7149,14 @@ var
           }}
       else
        {switch(e[0])
-         {case 0:exit=844;
-          case 1:exit=844;
+         {case 0:exit=847;
+          case 1:exit=847;
           case 2:return st[7]=st[7]+1,0;
           case 3:return 0;
           }}
       
       switch(exit)
-       {case 844:
+       {case 847:
          var w=st[8]-e[1]["length"];
          
          st[8]=w,0;
@@ -7189,12 +7197,12 @@ var
            {if(match$3)
              {if(match$3[1](match$2[1],s[0])){output(st,sp,1)}else{}}
             else
-             {exit=833;}
+             {exit=836;}
             }
           else
-           {exit=833;}
+           {exit=836;}
           
-          switch(exit){case 833:if(match$3){}else{output(st,sp,1)}}
+          switch(exit){case 836:if(match$3){}else{output(st,sp,1)}}
           }
         else
          {}
@@ -7397,7 +7405,7 @@ var
                {if(gen_line[1]<c[1])
                  {}
                 else
-                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",4995,65]];}
+                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",5002,65]];}
                 
                 for(var _i=gen_line[1];_i<=c[1]-1;_i++)
                  {Buffer["add_char"](buf,59)}
@@ -7585,7 +7593,7 @@ var
      aux=
       function(pos$1,acc)
        {if(List["length"](acc)>10)
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",5221,63]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",5228,63]];}
         else
          {}
         

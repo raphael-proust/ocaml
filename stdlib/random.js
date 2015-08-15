@@ -3,16 +3,16 @@
 var Nativeint=require("./nativeint.js");
 var Pervasives=require("./pervasives.js");
 var Digest=require("./digest.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Int32=require("./int32.js");
 var Int64=require("./int64.js");
 var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  new_state=
   function(param)
-   {return /* record */[0,CamlPrimtivie["caml_make_vect"](55,0),0];};
+   {return /* record */[0,CamlPrimitive["caml_make_vect"](55,0),0];};
 
 var
  assign=
@@ -63,7 +63,7 @@ var
 var
  make_self_init=
   function(param)
-   {return make(CamlPrimtivie["caml_sys_random_seed"](/* () */0));};
+   {return make(CamlPrimitive["caml_sys_random_seed"](/* () */0));};
 
 var
  copy=
@@ -195,7 +195,7 @@ var
 var
  $$default=
   /* record */[0,
-   CamlPrimtivie["caml_obj_dup"]
+   CamlPrimitive["caml_obj_dup"]
     ([0,
       987910699,
       495797812,
@@ -275,7 +275,7 @@ var init=function(seed){return State[3]($$default,[seed]);};
 var
  self_init=
   function(param)
-   {return full_init$1(CamlPrimtivie["caml_sys_random_seed"](/* () */0));};
+   {return full_init$1(CamlPrimitive["caml_sys_random_seed"](/* () */0));};
 
 var get_state=function(param){return State[6]($$default);};
 

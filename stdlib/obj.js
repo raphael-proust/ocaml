@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Pervasives=require("./pervasives.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Marshal=require("./marshal.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var double_field=function(x,i){return x[i];};
@@ -12,7 +12,7 @@ var set_double_field=function(x,i,v){return x[i]=v,0;};
 var
  marshal=
   function(obj)
-   {return CamlPrimtivie["caml_output_value_to_string"](obj,/* [] */0);};
+   {return CamlPrimitive["caml_output_value_to_string"](obj,/* [] */0);};
 
 var
  unmarshal=
@@ -62,8 +62,8 @@ var
    {var x$1=x;
     
     if
-     (CamlPrimtivie["caml_obj_is_block"](x$1)&&
-      CamlPrimtivie["caml_obj_tag"](x$1)!==
+     (CamlPrimitive["caml_obj_is_block"](x$1)&&
+      CamlPrimitive["caml_obj_tag"](x$1)!==
       object_tag&&
       x$1["length"]>=
       1)
@@ -72,14 +72,14 @@ var
      {var slot=x$1;}
     
     if
-     (CamlPrimtivie["caml_obj_is_block"](slot)&&
-      CamlPrimtivie["caml_obj_tag"](slot)===
+     (CamlPrimitive["caml_obj_is_block"](slot)&&
+      CamlPrimitive["caml_obj_tag"](slot)===
       object_tag)
      {var name=slot[0];}
     else
      {throw Not_found;}
     
-    if(CamlPrimtivie["caml_obj_tag"](name)===string_tag)
+    if(CamlPrimitive["caml_obj_tag"](name)===string_tag)
      {return slot;}
     else
      {throw Not_found;}

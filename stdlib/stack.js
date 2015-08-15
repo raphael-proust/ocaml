@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var List=require("./list.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var Empty=CamlPrimtivie["caml_set_oo_id"]([248,"Stack.Empty",0]);
+var Empty=CamlPrimitive["caml_set_oo_id"]([248,"Stack.Empty",0]);
 
 var create=function(param){return /* record */[0,/* [] */0];};
 

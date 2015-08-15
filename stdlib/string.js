@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var List=require("./list.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Bytes=require("./bytes.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -38,16 +38,16 @@ var
        (function(s){num[0]++;return len[1]=len[1]+s["length"],0;},l);
       var
        r=
-        CamlPrimtivie["caml_create_string"](len[1]+sep["length"]*(num[1]-1));
+        CamlPrimitive["caml_create_string"](len[1]+sep["length"]*(num[1]-1));
       
-      CamlPrimtivie["caml_blit_string"](hd,0,r,0,hd["length"]);
+      CamlPrimitive["caml_blit_string"](hd,0,r,0,hd["length"]);
       var pos=[0,hd["length"]];
       
       List["iter"]
        (function(s)
-         {CamlPrimtivie["caml_blit_string"](sep,0,r,pos[1],sep["length"]);
+         {CamlPrimitive["caml_blit_string"](sep,0,r,pos[1],sep["length"]);
           pos[1]=pos[1]+sep["length"],0;
-          CamlPrimtivie["caml_blit_string"](s,0,r,pos[1],s["length"]);
+          CamlPrimitive["caml_blit_string"](s,0,r,pos[1],s["length"]);
           return pos[1]=pos[1]+s["length"],0;
           },
         tl);
@@ -83,7 +83,7 @@ var
 var
  trim=
   function(s)
-   {if(CamlPrimtivie["caml_string_equal"](s,""))
+   {if(CamlPrimitive["caml_string_equal"](s,""))
      {return s;}
     else
      {if(is_space(s[0])||is_space(s[s["length"]-1]))
@@ -117,7 +117,7 @@ var
           
           switch(exit)
            {case 15:
-             if(CamlPrimtivie["caml_is_printable"](c))
+             if(CamlPrimitive["caml_is_printable"](c))
               {return needs_escape(i+1);}
              else
               {return /* true */1;}
@@ -154,7 +154,7 @@ var capitalize=function(s){return bts(Bytes["capitalize"](bos(s)));};
 
 var uncapitalize=function(s){return bts(Bytes["uncapitalize"](bos(s)));};
 
-var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 module["exports"]=
 {"make":make,

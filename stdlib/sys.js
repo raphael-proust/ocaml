@@ -1,15 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var match=CamlPrimtivie["caml_sys_get_argv"](/* () */0);
+var match=CamlPrimitive["caml_sys_get_argv"](/* () */0);
 
 var argv=match[2];
 
 var executable_name=match[1];
 
-var match$1=CamlPrimtivie["caml_sys_get_config"](/* () */0);
+var match$1=CamlPrimitive["caml_sys_get_config"](/* () */0);
 
 var os_type=match$1[1];
 
@@ -32,7 +32,7 @@ var interactive=[0,/* false */0];
 var
  set_signal=
   function(sig_num,sig_beh)
-   {return CamlPrimtivie["caml_install_signal_handler"](sig_num,sig_beh);};
+   {return CamlPrimitive["caml_install_signal_handler"](sig_num,sig_beh);};
 
 var sigabrt=-1;
 
@@ -76,7 +76,7 @@ var sigvtalrm=-20;
 
 var sigprof=-21;
 
-var Break=CamlPrimtivie["caml_set_oo_id"]([248,"Sys.Break",0]);
+var Break=CamlPrimitive["caml_set_oo_id"]([248,"Sys.Break",0]);
 
 var
  catch_break=

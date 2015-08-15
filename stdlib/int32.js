@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var zero=0;
@@ -21,9 +21,9 @@ var max_int=2147483647;
 
 var lognot=function(n){return n^-1;};
 
-var to_string=function(n){return CamlPrimtivie["caml_int32_format"]("%d",n);};
+var to_string=function(n){return CamlPrimitive["caml_int32_format"]("%d",n);};
 
-var compare=function(x,y){return CamlPrimtivie["caml_int32_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_int32_compare"](x,y);};
 
 module["exports"]=
 {"zero":zero,

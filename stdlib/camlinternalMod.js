@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var CamlinternalOO=require("./camlinternalOO.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Obj=require("./obj.js");
 var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -61,32 +61,32 @@ var
      {switch(shape)
        {case 0:
          if
-          (CamlPrimtivie["caml_obj_tag"](n)===
+          (CamlPrimitive["caml_obj_tag"](n)===
            Obj["closure_tag"]&&
            n["length"]<=
            o["length"])
           {overwrite(o,n);
-           return CamlPrimtivie["caml_obj_truncate"](o,n["length"]);
+           return CamlPrimitive["caml_obj_truncate"](o,n["length"]);
            }
          else
           {return overwrite(o,function(x){return n(x);});}
          
         case 1:
-         if(CamlPrimtivie["caml_obj_tag"](n)===Obj["lazy_tag"])
+         if(CamlPrimitive["caml_obj_tag"](n)===Obj["lazy_tag"])
           {return o[0]=n[0],0;}
          else
-          {if(CamlPrimtivie["caml_obj_tag"](n)===Obj["forward_tag"])
-            {CamlPrimtivie["caml_obj_set_tag"](o,Obj["forward_tag"]);
+          {if(CamlPrimitive["caml_obj_tag"](n)===Obj["forward_tag"])
+            {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
              return o[0]=n[0],0;
              }
            else
-            {CamlPrimtivie["caml_obj_set_tag"](o,Obj["forward_tag"]);
+            {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
              return o[0]=n,0;
              }
            }
          
         case 2:
-         if(CamlPrimtivie["caml_obj_tag"](n)===0&&n["length"]===4)
+         if(CamlPrimitive["caml_obj_tag"](n)===0&&n["length"]===4)
           {}
          else
           {throw [0,Assert_failure,[0,"camlinternalMod.ml",63,6]];}
@@ -100,7 +100,7 @@ var
          var comps=shape[1];
          
          if
-          (CamlPrimtivie["caml_obj_tag"](n)===0&&n["length"]>=comps["length"])
+          (CamlPrimitive["caml_obj_tag"](n)===0&&n["length"]>=comps["length"])
           {}
          else
           {throw [0,Assert_failure,[0,"camlinternalMod.ml",66,6]];}

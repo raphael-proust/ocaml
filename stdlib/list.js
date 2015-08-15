@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Pervasives=require("./pervasives.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -409,7 +409,7 @@ var
       
       var a=param[1];
       
-      return CamlPrimtivie["caml_compare"](a,x)===0||mem(x,l);
+      return CamlPrimitive["caml_compare"](a,x)===0||mem(x,l);
       }
     else
      {return /* false */0;}
@@ -436,7 +436,7 @@ var
       
       var a=match[1];
       
-      if(CamlPrimtivie["caml_compare"](a,x)===0)
+      if(CamlPrimitive["caml_compare"](a,x)===0)
        {return b;}
       else
        {return assoc(x,l);}
@@ -473,7 +473,7 @@ var
       
       var a=match[1];
       
-      return CamlPrimtivie["caml_compare"](a,x)===0||mem_assoc(x,l);
+      return CamlPrimitive["caml_compare"](a,x)===0||mem_assoc(x,l);
       }
     else
      {return /* false */0;}
@@ -505,7 +505,7 @@ var
       
       var a=pair[1];
       
-      if(CamlPrimtivie["caml_compare"](a,x)===0)
+      if(CamlPrimitive["caml_compare"](a,x)===0)
        {return l;}
       else
        {return /* :: */[0,pair,remove_assoc(x,l)];}

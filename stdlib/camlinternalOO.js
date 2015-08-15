@@ -1,19 +1,19 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var List=require("./list.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Obj=require("./obj.js");
 var Map=require("./map.js");
 var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
 var
  copy=
   function(o)
-   {var o$1=CamlPrimtivie["caml_obj_dup"](o);
+   {var o$1=CamlPrimitive["caml_obj_dup"](o);
     
-    return CamlPrimtivie["caml_set_oo_id"](o$1);
+    return CamlPrimitive["caml_set_oo_id"](o$1);
     };
 
 var params=/* record */[0,/* true */1,/* true */1,/* true */1,3,16];
@@ -39,17 +39,17 @@ var
     return tag;
     };
 
-var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var Vars=Map["Make"]([0,compare]);
 
 var
  compare$1=
-  function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
+  function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var Meths=Map["Make"]([0,compare$1]);
 
-var compare$2=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
+var compare$2=function(x,y){return CamlPrimitive["caml_int_compare"](x,y);};
 
 var Labs=Map["Make"]([0,compare$2]);
 
@@ -67,7 +67,7 @@ var
 
 var table_count=[0,0];
 
-var dummy_met=CamlPrimtivie["caml_obj_block"](0,0);
+var dummy_met=CamlPrimitive["caml_obj_block"](0,0);
 
 var
  fit_size=
@@ -79,7 +79,7 @@ var
    {table_count[0]++;
     var len=pub_labels["length"];
     
-    var methods=CamlPrimtivie["caml_make_vect"](len*2+2,dummy_met);
+    var methods=CamlPrimitive["caml_make_vect"](len*2+2,dummy_met);
     
     methods[0]=len,0;
     methods[1]=fit_size(len)*Sys["word_size"]/8-1,0;
@@ -102,7 +102,7 @@ var
    {var old_size=array[2]["length"];
     
     if(new_size>old_size)
-     {var new_buck=CamlPrimtivie["caml_make_vect"](new_size,dummy_met);
+     {var new_buck=CamlPrimitive["caml_make_vect"](new_size,dummy_met);
       
       $$Array["blit"](array[2],0,new_buck,0,old_size);
       return array[2]=new_buck,0;
@@ -292,7 +292,7 @@ var
      {if(exn===Not_found)
        {var index=new_slot(table);
         
-        if(CamlPrimtivie["caml_string_notequal"](name,""))
+        if(CamlPrimitive["caml_string_notequal"](name,""))
          {table[7]=Vars[4](name,index,table[7]),0}
         else
          {}
@@ -307,7 +307,7 @@ var
 var
  to_array=
   function(arr)
-   {if(CamlPrimtivie["caml_equal"](arr,0)){return [];}else{return arr;}};
+   {if(CamlPrimitive["caml_equal"](arr,0)){return [];}else{return arr;}};
 
 var
  new_methods_variables=
@@ -318,7 +318,7 @@ var
     
     var nvals=vals["length"];
     
-    var res=CamlPrimtivie["caml_make_vect"](nmeths+nvals,0);
+    var res=CamlPrimitive["caml_make_vect"](nmeths+nvals,0);
     
     for(var i=0;i<=nmeths-1;i++){res[i]=get_method_label(table,meths$1[i]),0}
     
@@ -437,10 +437,10 @@ var
 var
  create_object=
   function(table)
-   {var obj=CamlPrimtivie["caml_obj_block"](Obj["object_tag"],table[1]);
+   {var obj=CamlPrimitive["caml_obj_block"](Obj["object_tag"],table[1]);
     
     obj[0]=table[2],0;
-    return CamlPrimtivie["caml_set_oo_id"](obj);
+    return CamlPrimitive["caml_set_oo_id"](obj);
     };
 
 var
@@ -449,10 +449,10 @@ var
    {if(obj_0)
      {return obj_0;}
     else
-     {var obj=CamlPrimtivie["caml_obj_block"](Obj["object_tag"],table[1]);
+     {var obj=CamlPrimitive["caml_obj_block"](Obj["object_tag"],table[1]);
       
       obj[0]=table[2],0;
-      return CamlPrimtivie["caml_set_oo_id"](obj);
+      return CamlPrimitive["caml_set_oo_id"](obj);
       }
     };
 

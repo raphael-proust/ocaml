@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Obj=require("./obj.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Undefined=
-  CamlPrimtivie["caml_set_oo_id"]([248,"CamlinternalLazy.Undefined",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"CamlinternalLazy.Undefined",0]);
 
 var raise_undefined=function(param){throw Undefined;};
 
@@ -20,7 +20,7 @@ var
      {var result=closure(/* () */0);
       
       blk[0]=result,0;
-      CamlPrimtivie["caml_obj_set_tag"](blk,Obj["forward_tag"]);
+      CamlPrimitive["caml_obj_set_tag"](blk,Obj["forward_tag"]);
       return result;
       }
     catch(e){blk[0]=function(param){throw e;},0;throw e;}
@@ -35,7 +35,7 @@ var
     var result=closure(/* () */0);
     
     blk[0]=result,0;
-    CamlPrimtivie["caml_obj_set_tag"](blk,Obj["forward_tag"]);
+    CamlPrimitive["caml_obj_set_tag"](blk,Obj["forward_tag"]);
     return result;
     };
 
@@ -44,7 +44,7 @@ var
   function(lzv)
    {var x=lzv;
     
-    var t=CamlPrimtivie["caml_obj_tag"](x);
+    var t=CamlPrimitive["caml_obj_tag"](x);
     
     if(t===Obj["forward_tag"])
      {return x[0];}
@@ -57,7 +57,7 @@ var
   function(lzv)
    {var x=lzv;
     
-    var t=CamlPrimtivie["caml_obj_tag"](x);
+    var t=CamlPrimitive["caml_obj_tag"](x);
     
     if(t===Obj["forward_tag"])
      {return x[0];}

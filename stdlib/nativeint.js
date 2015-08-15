@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var zero=0;
@@ -26,11 +26,11 @@ var lognot=function(n){return n^-1;};
 
 var
  to_string=
-  function(n){return CamlPrimtivie["caml_nativeint_format"]("%d",n);};
+  function(n){return CamlPrimitive["caml_nativeint_format"]("%d",n);};
 
 var
  compare=
-  function(x,y){return CamlPrimtivie["caml_nativeint_compare"](x,y);};
+  function(x,y){return CamlPrimitive["caml_nativeint_compare"](x,y);};
 
 module["exports"]=
 {"zero":zero,

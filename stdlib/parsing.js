@@ -1,24 +1,24 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Lexing=require("./lexing.js");
 var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var YYexit=CamlPrimtivie["caml_set_oo_id"]([248,"Parsing.YYexit",0]);
+var YYexit=CamlPrimitive["caml_set_oo_id"]([248,"Parsing.YYexit",0]);
 
 var
  Parse_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Parsing.Parse_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Parsing.Parse_error",0]);
 
 
 var
  env=
   /* record */[0,
-   CamlPrimtivie["caml_make_vect"](100,0),
-   CamlPrimtivie["caml_make_vect"](100,/* () */0),
-   CamlPrimtivie["caml_make_vect"](100,Lexing["dummy_pos"]),
-   CamlPrimtivie["caml_make_vect"](100,Lexing["dummy_pos"]),
+   CamlPrimitive["caml_make_vect"](100,0),
+   CamlPrimitive["caml_make_vect"](100,/* () */0),
+   CamlPrimitive["caml_make_vect"](100,Lexing["dummy_pos"]),
+   CamlPrimitive["caml_make_vect"](100,Lexing["dummy_pos"]),
    100,
    0,
    0,
@@ -39,15 +39,15 @@ var
     
     var newsize=oldsize*2;
     
-    var new_s=CamlPrimtivie["caml_make_vect"](newsize,0);
+    var new_s=CamlPrimitive["caml_make_vect"](newsize,0);
     
-    var new_v=CamlPrimtivie["caml_make_vect"](newsize,/* () */0);
+    var new_v=CamlPrimitive["caml_make_vect"](newsize,/* () */0);
     
     var
      new_start=
-      CamlPrimtivie["caml_make_vect"](newsize,Lexing["dummy_pos"]);
+      CamlPrimitive["caml_make_vect"](newsize,Lexing["dummy_pos"]);
     
-    var new_end=CamlPrimtivie["caml_make_vect"](newsize,Lexing["dummy_pos"]);
+    var new_end=CamlPrimitive["caml_make_vect"](newsize,Lexing["dummy_pos"]);
     
     $$Array["blit"](env[1],0,new_s,0,oldsize);
     env[1]=new_s,0;
@@ -73,7 +73,7 @@ var
    {var
      loop=
       function(cmd,arg)
-       {var match=CamlPrimtivie["caml_parse_engine"](tables,env,cmd,arg);
+       {var match=CamlPrimitive["caml_parse_engine"](tables,env,cmd,arg);
         
         switch(match)
          {case 0:
@@ -156,8 +156,8 @@ var
       else
        {current_lookahead_fun[1]=
         function(tok)
-         {if(CamlPrimtivie["caml_obj_is_block"](tok))
-           {return tables[3][CamlPrimtivie["caml_obj_tag"](tok)]===curr_char;}
+         {if(CamlPrimitive["caml_obj_is_block"](tok))
+           {return tables[3][CamlPrimitive["caml_obj_tag"](tok)]===curr_char;}
           else
            {return tables[2][tok]===curr_char;}
           },
@@ -182,7 +182,7 @@ var
           
           var en=env[4][env[11]-i+1];
           
-          if(CamlPrimtivie["caml_notequal"](st,en))
+          if(CamlPrimitive["caml_notequal"](st,en))
            {return st;}
           else
            {return loop(i-1);}
@@ -222,7 +222,7 @@ module["exports"]=
  "clear_parser":clear_parser,
  "Parse_error":Parse_error,
  "caml_set_parser_trace":
- function(prim){return CamlPrimtivie["caml_set_parser_trace"](prim);},
+ function(prim){return CamlPrimitive["caml_set_parser_trace"](prim);},
  "YYexit":YYexit,
  "yyparse":yyparse,
  "peek_val":peek_val,

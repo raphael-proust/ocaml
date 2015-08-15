@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Obj=require("./obj.js");
 var CamlinternalLazy=require("./camlinternalLazy.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var Undefined=CamlinternalLazy["Undefined"];
@@ -12,7 +12,7 @@ var force_val=CamlinternalLazy["force_val"];
 var
  from_fun=
   function(f)
-   {var x=CamlPrimtivie["caml_obj_block"](Obj["lazy_tag"],1);
+   {var x=CamlPrimitive["caml_obj_block"](Obj["lazy_tag"],1);
     
     x[0]=f,0;
     return x;
@@ -21,17 +21,17 @@ var
 var
  from_val=
   function(v)
-   {var t=CamlPrimtivie["caml_obj_tag"](v);
+   {var t=CamlPrimitive["caml_obj_tag"](v);
     
     if(t===Obj["forward_tag"]||t===Obj["lazy_tag"]||t===Obj["double_tag"])
-     {return CamlPrimtivie["caml_lazy_make_forward"](v);}
+     {return CamlPrimitive["caml_lazy_make_forward"](v);}
     else
      {return v;}
     };
 
 var
  is_val=
-  function(l){return CamlPrimtivie["caml_obj_tag"](l)!==Obj["lazy_tag"];};
+  function(l){return CamlPrimitive["caml_obj_tag"](l)!==Obj["lazy_tag"];};
 
 var lazy_from_fun=from_fun;
 

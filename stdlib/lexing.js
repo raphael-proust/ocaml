@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Pervasives=require("./pervasives.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Bytes=require("./bytes.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
@@ -11,7 +11,7 @@ var dummy_pos=[/* record */0,"",0,0,-1];
 var
  engine=
   function(tbl,state,buf)
-   {var result=CamlPrimtivie["caml_lex_engine"](tbl,state,buf);
+   {var result=CamlPrimitive["caml_lex_engine"](tbl,state,buf);
     
     if(result>=0)
      {buf[11]=buf[12],0;
@@ -27,7 +27,7 @@ var
 var
  new_engine=
   function(tbl,state,buf)
-   {var result=CamlPrimtivie["caml_new_lex_engine"](tbl,state,buf);
+   {var result=CamlPrimitive["caml_new_lex_engine"](tbl,state,buf);
     
     if(result>=0)
      {buf[11]=buf[12],0;
@@ -60,7 +60,7 @@ var
         else
          {}
         
-        var newbuf=CamlPrimtivie["caml_create_string"](newlen);
+        var newbuf=CamlPrimitive["caml_create_string"](newlen);
         
         Bytes["blit"](lexbuf[2],lexbuf[5],newbuf,0,lexbuf[3]-lexbuf[5]),
         lexbuf[2]=
@@ -91,8 +91,8 @@ var
  from_function=
   function(f)
    {return /* record */[0,
-            lex_refill(f,CamlPrimtivie["caml_create_string"](512)),
-            CamlPrimtivie["caml_create_string"](1024),
+            lex_refill(f,CamlPrimitive["caml_create_string"](512)),
+            CamlPrimitive["caml_create_string"](1024),
             0,
             0,
             0,

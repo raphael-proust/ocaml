@@ -6,8 +6,8 @@ var CamlinternalFormat=require("./camlinternalFormat.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
 var Printf=require("./printf.js");
-var CamlPrimtivie=require("./camlPrimtivie.js");
 var Buffer=require("./buffer.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var null_char=0;
@@ -149,7 +149,7 @@ var
   function(scan_close_ic,iname,ic)
    {var len=file_buffer_size[1];
     
-    var buf=CamlPrimtivie["caml_create_string"](len);
+    var buf=CamlPrimitive["caml_create_string"](len);
     
     var i=[0,0];
     
@@ -292,7 +292,7 @@ var
 
 var
  Scan_failure=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Scanf.Scan_failure",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Scanf.Scan_failure",0]);
 
 var bad_input=function(s){throw [0,Scan_failure,s];};
 
@@ -513,29 +513,29 @@ var
 var
  token_int=
   function(conv,ib)
-   {return CamlPrimtivie["caml_int_of_string"](token_int_literal(conv,ib));};
+   {return CamlPrimitive["caml_int_of_string"](token_int_literal(conv,ib));};
 
 var
  token_float=
   function(ib)
-   {return CamlPrimtivie["caml_float_of_string"](Scanning[10](ib));};
+   {return CamlPrimitive["caml_float_of_string"](Scanning[10](ib));};
 
 var
  token_nativeint=
   function(conv,ib)
-   {return CamlPrimtivie["caml_nativeint_of_string"]
+   {return CamlPrimitive["caml_nativeint_of_string"]
             (token_int_literal(conv,ib));
     };
 
 var
  token_int32=
   function(conv,ib)
-   {return CamlPrimtivie["caml_int32_of_string"](token_int_literal(conv,ib));};
+   {return CamlPrimitive["caml_int32_of_string"](token_int_literal(conv,ib));};
 
 var
  token_int64=
   function(conv,ib)
-   {return CamlPrimtivie["caml_int64_of_string"](token_int_literal(conv,ib));};
+   {return CamlPrimitive["caml_int64_of_string"](token_int_literal(conv,ib));};
 
 var
  scan_decimal_digits=
