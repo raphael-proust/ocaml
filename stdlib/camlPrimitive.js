@@ -813,11 +813,15 @@ function caml_int64_of_int32 (x) {
   return [255, x & 0xffffff, (x >> 24) & 0xffffff, (x >> 31) & 0xffff]
 }
 
+var caml_int64_of_int = caml_int64_of_int32;
+var caml_int64_of_nativeint = caml_int64_of_int32;
 //Provides: caml_int64_to_int32 const
 function caml_int64_to_int32 (x) {
   return x[1] | (x[2] << 24);
-}
+};
 
+var caml_int64_to_int = caml_int64_to_int32;
+var caml_int64_to_nativeint = caml_int64_to_int32;
 //Provides: caml_int64_to_float const
 function caml_int64_to_float (x) {
   return ((x[3] << 16) * Math.pow(2, 32) + x[2] * Math.pow(2, 24)) + x[1];
@@ -3037,6 +3041,7 @@ function caml_int_compare (a, b) {
   if (a < b) return (-1); if (a == b) return 0; return 1;
 }
 var caml_int32_compare = caml_int_compare ; 
+var caml_nativeint_compare = caml_int_compare ; 
 //Provides: caml_equal mutable (const, const)
 //Requires: caml_compare_val
 function caml_equal (x, y) { return +(caml_compare_val(x,y,false) == 0); }
@@ -3108,6 +3113,9 @@ function caml_int_of_string (s) {
     caml_failwith("int_of_string");
   return res | 0;
 }
+
+var caml_int32_of_string = caml_int_of_string ; 
+var caml_nativeint_of_string = caml_int_of_string ; 
 
 //Provides: caml_float_of_string (const)
 //Requires: caml_failwith, caml_bytes_of_string
@@ -3235,6 +3243,9 @@ function caml_format_int(fmt, i) {
   }
   return caml_finish_formatting(f, s);
 }
+
+var caml_int32_format = caml_format_int ; 
+var caml_nativeint_format = caml_format_int;
 
 //Provides: caml_format_float const
 //Requires: caml_parse_format, caml_finish_formatting
@@ -3695,6 +3706,8 @@ function caml_int32_bswap(x) {
           ((x & 0x00FF0000) >> 8) |
           ((x & 0xFF000000) >> 24));
 }
+
+var caml_nativeint_bswap = caml_int32_bswap;
 //Provides: caml_int64_bswap
 function caml_int64_bswap(x) {
   return [
@@ -4805,6 +4818,46 @@ module["exports"] = {
     "caml_string_notequal" :  caml_string_notequal,
     "caml_string_set" : caml_string_set,
 
+
+   "caml_int64_add" : caml_int64_add,
+   "caml_int64_and" : caml_int64_and,
+   "caml_int64_bits_of_float" : caml_int64_bits_of_float,
+   "caml_int64_bswap" : caml_int64_bswap,
+   "caml_int64_compare" : caml_int64_compare,
+   "caml_int64_div" :  caml_int64_div,
+   "caml_int64_float_of_bits" : caml_int64_float_of_bits,
+   "caml_int64_format" : caml_int64_format,
+   "caml_int64_mod"  :  caml_int64_mod,
+   "caml_int64_mul" :  caml_int64_mul,
+   "caml_int64_neg" : caml_int64_neg,
+   "caml_int64_of_float" : caml_int64_of_float,
+   "caml_int64_of_int" : caml_int64_of_int,
+   "caml_int64_of_int32" : caml_int64_of_int32,
+   "caml_int64_of_nativeint" : caml_int64_of_nativeint,
+   "caml_int64_of_string" : caml_int64_of_string,
+   "caml_int64_or" : caml_int64_or,
+   "caml_int64_shift_left" : caml_int64_shift_left,
+   "caml_int64_shift_right" : caml_int64_shift_right,
+   "caml_int64_shift_right_unsigned" : caml_int64_shift_right_unsigned,
+   "caml_int64_sub" : caml_int64_sub,
+   "caml_int64_to_float" : caml_int64_to_float,
+   "caml_int64_to_int" : caml_int64_to_int,
+   "caml_int64_to_int32" : caml_int64_to_int32,
+   "caml_int64_to_nativeint" : caml_int64_to_nativeint,
+   "caml_int64_xor" : caml_int64_xor,
+    "caml_int_compare" : caml_int_compare,
+    "caml_int32_compare" : caml_int32_compare,
+    "caml_int32_bswap": caml_int32_bswap,
+    // "caml_int32_float_of_bits" : caml_int32_float_of_bits,
+    "caml_int32_format" : caml_int32_format,
+    // "caml_int32_mod" : caml_int32_mod,
+    // "caml_int32_neg" : caml_int32_neg,
+    "caml_int32_of_string" : caml_int32_of_string,
+    // "caml_int32_shift_left" : caml_int32_shift_left,
+    // "caml_int32_shift_right" : caml_int32_shift_right,
+    // "caml_int32_shift_right_unsigned" : caml_int32_shift_right_unsigned,
+    // "caml_int32_bits_of_float" : caml_int32_bits_of_float,
+
     "caml_make_float_vect" : caml_make_float_vect,
     "caml_make_vect": caml_make_vect,
     "caml_marshal_data_size": caml_marshal_data_size,
@@ -4834,7 +4887,132 @@ module["exports"] = {
     "caml_ml_seek_out_64" : caml_ml_seek_out_64,
     "caml_ml_set_binary_mode" : caml_ml_set_binary_mode,
     "caml_ml_string_length" : caml_ml_string_length,
-    "caml_modf_float" : caml_modf_float
+    "caml_modf_float" : caml_modf_float,
+
+    "caml_lessequal" : caml_lessequal,
+    "caml_lessthan" : caml_lessthan,
+    "caml_lex_engine" : caml_lex_engine,
+
+    "caml_int_of_string" : caml_int_of_string,
+
+    "caml_new_lex_engine" : caml_new_lex_engine,
+    "caml_notequal" : caml_notequal,
+    // "caml_obj_add_offset" : caml_obj_add_offset,
+    "caml_obj_block" : caml_obj_block,
+    "caml_obj_dup" : caml_obj_dup,
+    "caml_obj_is_block" : caml_obj_is_block,
+    "caml_obj_set_tag" : caml_obj_set_tag,
+    "caml_obj_tag" : caml_obj_tag,
+    "caml_obj_truncate" : caml_obj_truncate,
+    "caml_output_value" : caml_output_value,
+    "caml_output_value_to_buffer" : caml_output_value_to_buffer,
+    "caml_output_value_to_string" : caml_output_value_to_string,
+    "caml_parse_engine" : caml_parse_engine,
+    // "caml_nativeint_mod" : caml_nativeint_mod,
+    "caml_nativeint_format" : caml_nativeint_format,
+    "caml_nativeint_compare" : caml_nativeint_compare,
+    "caml_nativeint_bswap" : caml_nativeint_bswap,
+    // "caml_power_float" : caml_power_float,
+    // "caml_nativeint_neg" : caml_nativeint_neg,
+    "caml_nativeint_of_string" : caml_nativeint_of_string,
+    // "caml_nativeint_shift_left" : caml_nativeint_shift_left,
+    // "caml_nativeint_shift_right" : caml_nativeint_shift_right,
+    // "caml_nativeint_shift_right_unsigned" : caml_nativeint_shift_right_unsigned,
+    "caml_float_compare" : caml_float_compare,
+    "caml_array_sub" : caml_array_sub,
+    "caml_expm1_float" : caml_expm1_float,
+    "caml_copysign_float" : caml_copysign_float,
+    "caml_backtrace_status" : caml_backtrace_status,
+    // "caml_bitvect_test" : caml_bitvect_test,
+    "caml_blit_string" : caml_blit_string,
+    "caml_bswap16" : caml_bswap16,
+
+    // "caml_channel_descriptor" : caml_channel_descriptor,
+    "caml_classify_float" : caml_classify_float,
+    "caml_compare" : caml_compare,
+    "caml_convert_raw_backtrace_slot" : caml_convert_raw_backtrace_slot,
+    "caml_create_string" : caml_create_string,
+    // "caml_dynlink_add_primitive" : caml_dynlink_add_primitive,
+    // "caml_dynlink_close_lib" : caml_dynlink_close_lib,
+    // "caml_dynlink_get_current_libs" : caml_dynlink_get_current_libs,
+    // "caml_dynlink_lookup_symbol" : caml_dynlink_lookup_symbol,
+    // "caml_dynlink_open_lib" : caml_dynlink_open_lib,
+    // "caml_ensure_stack_capacity" : caml_ensure_stack_capacity,
+    "caml_equal" : caml_equal,
+    "caml_fill_string" : caml_fill_string,
+    "caml_final_register" : caml_final_register,
+    "caml_final_release" : caml_final_release,
+    "caml_format_float" : caml_format_float,
+    "caml_format_int" : caml_format_int,
+    "caml_frexp_float" : caml_frexp_float,
+    "caml_get_current_callstack" : caml_get_current_callstack,
+    // "caml_get_current_environment" : caml_get_current_environment,
+    "caml_get_exception_backtrace" : caml_get_exception_backtrace,
+    "caml_get_exception_raw_backtrace" : caml_get_exception_raw_backtrace,
+    "caml_get_global_data" : caml_get_global_data,
+    "caml_get_public_method" : caml_get_public_method,
+    // "caml_get_section_table" : caml_get_section_table,
+    "caml_greaterequal" : caml_greaterequal,
+    "caml_greaterthan" : caml_greaterthan,
+    "caml_hash" : caml_hash,
+    "caml_hash_univ_param" : caml_hash_univ_param,
+    "caml_hypot_float" : caml_hypot_float,
+    "caml_input_value" : caml_input_value,
+    "caml_input_value_from_string" :caml_input_value_from_string,
+    "caml_install_signal_handler" : caml_install_signal_handler,
+    // "caml_int_as_pointer" : caml_int_as_pointer,
+    // "caml_realloc_global" : caml_realloc_global,
+    "caml_record_backtrace" : caml_record_backtrace,
+    // "caml_register_code_fragment" : caml_register_code_fragment,
+    "caml_register_named_value" : caml_register_named_value,
+    // "caml_reify_bytecode" : caml_reify_bytecode,
+    "caml_set_oo_id" : caml_set_oo_id,
+    "caml_set_parser_trace" : caml_set_parser_trace,
+    // "caml_static_alloc" : caml_static_alloc,
+    // "caml_static_free" : caml_static_free,
+    // "caml_static_release_bytecode" : caml_static_release_bytecode,
+    // "caml_static_resize" : caml_static_resize,
+    "caml_sys_chdir" : caml_sys_chdir,
+    "caml_sys_close" : caml_sys_close,
+    "caml_sys_const_big_endian" : caml_sys_const_big_endian,
+    "caml_sys_const_ostype_cygwin" : caml_sys_const_ostype_cygwin,
+    "caml_sys_const_ostype_unix" : caml_sys_const_ostype_unix,
+    "caml_sys_const_ostype_win32" : caml_sys_const_ostype_win32,
+    "caml_sys_const_word_size" : caml_sys_const_word_size,
+    "caml_sys_exit" : caml_sys_exit,
+    "caml_sys_file_exists" : caml_sys_file_exists,
+    "caml_sys_get_argv" : caml_sys_get_argv,
+    "caml_sys_get_config" : caml_sys_get_config,
+    "caml_sys_getcwd" : caml_sys_getcwd,
+    "caml_sys_getenv" : caml_sys_getenv,
+    "caml_sys_is_directory" : caml_sys_is_directory,
+    "caml_sys_open" : caml_sys_open,
+    "caml_sys_random_seed" : caml_sys_random_seed,
+    "caml_sys_read_directory" : caml_sys_read_directory,
+    "caml_sys_remove" : caml_sys_remove,
+    "caml_sys_rename" : caml_sys_rename,
+    "caml_sys_system_command" :caml_sys_system_command,
+    "caml_sys_time" : caml_sys_time,
+    // "caml_terminfo_backup" : caml_terminfo_backup,
+    // "caml_terminfo_resume" : caml_terminfo_resume,
+    // "caml_terminfo_setup" : caml_terminfo_setup,
+    // "caml_terminfo_standout" : caml_terminfo_standout,
+    "caml_update_dummy" : caml_update_dummy,
+    // "caml_weak_blit" : caml_weak_blit,
+    // "caml_weak_check" : caml_weak_check,
+    // "caml_weak_create" :  caml_weak_create,
+    // "caml_weak_get": caml_weak_get,
+    // "caml_weak_get_copy" : caml_weak_get_copy,
+    // "caml_weak_set" : caml_weak_set,
+
+    "caml_is_printable" : caml_is_printable,
+    "caml_lazy_make_forward" : caml_lazy_make_forward,
+    "caml_ldexp_float" : caml_ldexp_float,
+    // "caml_invoke_traced_function" : caml_invoke_traced_function,
+    // "caml_lazy_follow_forward" : caml_lazy_follow_forward,
+
+
+
     // "caml_make_array": caml_make_array,
     // "caml_ml_flush_partial" : caml_ml_flush_partial,
     // "caml_ml_output_partial" : caml_ml_output_partial,

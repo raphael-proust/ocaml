@@ -518,40 +518,50 @@ module rec
                  (match args with
                   | e0::e1::e2::[] -> E.eq (E.access e0 e1) e2
                   | _ -> assert false)
-             | { prim_name = "caml_int32_add";_} ->
+             | { prim_name = ("caml_int32_add"|"caml_nativeint_add");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Plus e0 e1
                   | _ -> assert false)
-             | { prim_name = "caml_int32_div";_} ->
+             | { prim_name = ("caml_int32_div"|"caml_nativeint_div");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Bor (E.bin Div e0 e1) (E.int 0)
                   | _ -> assert false)
-             | { prim_name = "caml_int32_mul";_} ->
+             | { prim_name = ("caml_int32_mul"|"caml_nativeint_mul");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Mul e0 e1
                   | _ -> assert false)
-             | { prim_name = "caml_int32_of_int";_} ->
-                 (match args with | e::[] -> e | _ -> assert false)
-             | { prim_name = ("caml_int32_of_float"|"caml_int_of_float");_}
+             | {
+                 prim_name =
+                   ("caml_int32_of_int"|"caml_nativeint_of_int"
+                    |"caml_nativeint_of_int32");_}
+                 -> (match args with | e::[] -> e | _ -> assert false)
+             | {
+                 prim_name =
+                   ("caml_int32_of_float"|"caml_int_of_float"
+                    |"caml_nativeint_of_float");_}
                  ->
                  (match args with
                   | e::[] -> E.bin Bor e (E.int 0)
                   | _ -> assert false)
-             | { prim_name = ("caml_int32_to_float"|"caml_int32_to_int");_}
+             | {
+                 prim_name =
+                   ("caml_int32_to_float"|"caml_int32_to_int"
+                    |"caml_nativeint_to_int"|"caml_nativeint_to_float"
+                    |"caml_nativeint_to_int32");_}
                  -> (match args with | e::[] -> e | _ -> assert false)
-             | { prim_name = "caml_int32_sub";_} ->
+             | { prim_name = ("caml_int32_sub"|"caml_nativeint_sub");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Minus e0 e1
                   | _ -> assert false)
-             | { prim_name = "caml_int32_xor";_} ->
+             | { prim_name = ("caml_int32_xor"|"caml_nativeint_xor");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Bxor e0 e1
                   | _ -> assert false)
-             | { prim_name = "caml_int32_and";_} ->
+             | { prim_name = ("caml_int32_and"|"caml_nativeint_and");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Band e0 e1
                   | _ -> assert false)
-             | { prim_name = "caml_int32_or";_} ->
+             | { prim_name = ("caml_int32_or"|"caml_nativeint_or");_} ->
                  (match args with
                   | e0::e1::[] -> E.bin Bor e0 e1
                   | _ -> assert false)
