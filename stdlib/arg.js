@@ -363,8 +363,8 @@ var
                  else
                   {exit=44;}
                  
-                case 2:var r=param[1];return r[1]=/* true */1;
-                case 3:var r$1=param[1];return r$1[1]=/* false */0;
+                case 2:var r=param[1];return r[1]=/* true */1,0;
+                case 3:var r$1=param[1];return r$1[1]=/* false */0,0;
                 case 4:
                  var f$2=param[1];
                  

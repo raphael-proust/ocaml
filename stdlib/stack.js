@@ -8,11 +8,11 @@ var Empty=CamlPrimitive["caml_set_oo_id"]([248,"Stack.Empty",0]);
 
 var create=function(param){return /* record */[0,/* [] */0];};
 
-var clear=function(s){return s[1]=/* [] */0;};
+var clear=function(s){return s[1]=/* [] */0,0;};
 
 var copy=function(s){return /* record */[0,s[1]];};
 
-var push=function(x,s){return s[1]=/* :: */[0,x,s[1]];};
+var push=function(x,s){return s[1]=/* :: */[0,x,s[1]],0;};
 
 var
  pop=

@@ -244,7 +244,7 @@ var
     return arec[1];
     };
 
-var delete_alarm=function(a){return a[1]=/* false */0;};
+var delete_alarm=function(a){return a[1]=/* false */0,0;};
 
 module["exports"]=
 {"print_stat":print_stat,

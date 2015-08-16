@@ -55,9 +55,9 @@ var
 
 var length=function(b){return b[2];};
 
-var clear=function(b){return b[2]=0;};
+var clear=function(b){return b[2]=0,0;};
 
-var reset=function(b){b[2]=0;b[1]=b[4];return b[3]=b[1]["length"];};
+var reset=function(b){b[2]=0;b[1]=b[4];return b[3]=b[1]["length"],0;};
 
 var
  resize=
@@ -81,7 +81,7 @@ var
     
     Bytes["blit"](b[1],0,new_buffer,0,b[2]);
     b[1]=new_buffer;
-    return b[3]=new_len[1];
+    return b[3]=new_len[1],0;
     };
 
 var
@@ -92,7 +92,7 @@ var
     if(pos>=b[3]){resize(b,1)}else{}
     
     b[1][pos]=c;
-    return b[2]=pos+1;
+    return b[2]=pos+1,0;
     };
 
 var
@@ -108,7 +108,7 @@ var
     if(new_position>b[3]){resize(b,len)}else{}
     
     Bytes["blit_string"](s,offset,b[1],b[2],len);
-    return b[2]=new_position;
+    return b[2]=new_position,0;
     };
 
 var
@@ -126,7 +126,7 @@ var
     if(new_position>b[3]){resize(b,len)}else{}
     
     Bytes["blit_string"](s,0,b[1],b[2],len);
-    return b[2]=new_position;
+    return b[2]=new_position,0;
     };
 
 var
@@ -146,7 +146,7 @@ var
     if(b[2]+len>b[3]){resize(b,len)}else{}
     
     Pervasives["really_input"](ic,b[1],b[2],len);
-    return b[2]=b[2]+len;
+    return b[2]=b[2]+len,0;
     };
 
 var

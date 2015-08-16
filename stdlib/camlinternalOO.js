@@ -105,7 +105,7 @@ var
      {var new_buck=CamlPrimitive["caml_make_vect"](new_size,dummy_met);
       
       $$Array["blit"](array[2],0,new_buck,0,old_size);
-      return array[2]=new_buck;
+      return array[2]=new_buck,0;
       }
     else
      {return 0;}
@@ -114,7 +114,7 @@ var
 var
  put=
   function(array,label,element)
-   {resize(array,label+1);return array[2][label+1]=element;};
+   {resize(array,label+1);return array[2][label+1]=element,0;};
 
 var method_count=[0,0];
 
@@ -154,7 +154,7 @@ var
     if(Labs[22](label,table[4]))
      {return put(table,label,element);}
     else
-     {return table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]];}
+     {return table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]],0;}
     };
 
 var
@@ -218,14 +218,14 @@ var
           else
            {throw exn;}
           }
-        return by_label[1]=Labs[4](label,$js,by_label[1]);
+        return by_label[1]=Labs[4](label,$js,by_label[1]),0;
         },
       concr_meths$1,
       concr_meth_labs);
     List["iter2"]
      (function(met,label)
        {by_name[1]=Meths[4](met,label,by_name[1]);
-        return by_label[1]=Labs[4](label,/* false */0,by_label[1]);
+        return by_label[1]=Labs[4](label,/* false */0,by_label[1]),0;
         },
       virt_meths$1,
       virt_meth_labs);
@@ -242,7 +242,8 @@ var
                 {return /* :: */[0,met,hm];}
                },
              table[6],
-             /* [] */0);
+             /* [] */0),
+           0;
     };
 
 var
@@ -281,7 +282,8 @@ var
                 {return /* :: */[0,met,hm];}
                },
              table[6],
-             saved_hidden_meths);
+             saved_hidden_meths),
+           0;
     };
 
 var
@@ -356,7 +358,7 @@ var
 
 var
  add_initializer=
-  function(table,f){return table[8]=/* :: */[0,f,table[8]];};
+  function(table,f){return table[8]=/* :: */[0,f,table[8]],0;};
 
 var
  create_table=
@@ -373,7 +375,7 @@ var
          {var lab=i*2+2;
           
           table[3]=Meths[4](met,lab,table[3]);
-          return table[4]=Labs[4](lab,/* true */1,table[4]);
+          return table[4]=Labs[4](lab,/* true */1,table[4]),0;
           },
         public_methods);
       return table;
@@ -432,7 +434,7 @@ var
     
     init_class(table);
     init_table[2]=class_init;
-    return init_table[1]=env_init;
+    return init_table[1]=env_init,0;
     };
 
 var
@@ -575,7 +577,7 @@ var
   function(n)
    {return function(obj){/* unknown */"(sendself obj/1330 n/1329)";};};
 
-var set_var=function(n){return function(obj,x){return obj[n+1]=x;};};
+var set_var=function(n){return function(obj,x){return obj[n+1]=x,0;};};
 
 var app_const=function(f,x){return function(obj){return f(x);};};
 

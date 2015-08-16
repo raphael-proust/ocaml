@@ -104,7 +104,7 @@ var
 
 var
  swap=
-  function(arr,i,j){var tmp=arr[i+1];arr[i+1]=arr[j+1];return arr[j+1]=tmp;};
+  function(arr,i,j){var tmp=arr[i+1];arr[i+1]=arr[j+1];return arr[j+1]=tmp,0;};
 
 var
  array=

@@ -95,15 +95,15 @@ var
          
         case 1:
          if(CamlPrimitive["caml_obj_tag"](n)===Obj["lazy_tag"])
-          {return o[1]=n[1];}
+          {return o[1]=n[1],0;}
          else
           {if(CamlPrimitive["caml_obj_tag"](n)===Obj["forward_tag"])
             {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
-             return o[1]=n[1];
+             return o[1]=n[1],0;
              }
            else
             {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
-             return o[1]=n;
+             return o[1]=n,0;
              }
            }
          

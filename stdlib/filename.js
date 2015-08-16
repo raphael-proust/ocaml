@@ -557,7 +557,7 @@ var
 
 var current_temp_dir_name=[0,temp_dir_name$3];
 
-var set_temp_dir_name=function(s){return current_temp_dir_name[1]=s;};
+var set_temp_dir_name=function(s){return current_temp_dir_name[1]=s,0;};
 
 var get_temp_dir_name=function(param){return current_temp_dir_name[1];};
 

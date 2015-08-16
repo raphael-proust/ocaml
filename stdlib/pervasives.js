@@ -489,7 +489,8 @@ var
    {var g=exit_function[1];
     
     return exit_function[1]=
-           function(param){f(/* () */0);return g(/* () */0);};
+           function(param){f(/* () */0);return g(/* () */0);},
+           0;
     };
 
 var do_at_exit=function(param){return exit_function[1](/* () */0);};

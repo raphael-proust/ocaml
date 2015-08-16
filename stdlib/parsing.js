@@ -57,13 +57,13 @@ var
     env[3]=new_start;
     $$Array["blit"](env[4],0,new_end,0,oldsize);
     env[4]=new_end;
-    return env[5]=newsize;
+    return env[5]=newsize,0;
     };
 
 var
  clear_parser=
   function(param)
-   {$$Array["fill"](env[2],0,env[5],/* () */0);return env[8]=/* () */0;};
+   {$$Array["fill"](env[2],0,env[5],/* () */0);return env[8]=/* () */0,0;};
 
 var current_lookahead_fun=[0,function(x){return /* false */0;}];
 

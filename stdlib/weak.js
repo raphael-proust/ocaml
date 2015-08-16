@@ -64,7 +64,7 @@ var
          {t[1][i+1]=emptybucket,t[2][i+1]=[0]}
         
         t[3]=limit;
-        return t[4]=0;
+        return t[4]=0,0;
         };
     
     var
@@ -197,7 +197,7 @@ var
         else
          {}
         
-        return t[5]=(t[5]+1)%t[1]["length"];
+        return t[5]=(t[5]+1)%t[1]["length"],0;
         };
     
     var
@@ -228,10 +228,10 @@ var
           t[2]=newt[2];
           t[3]=newt[3];
           t[4]=newt[4];
-          return t[5]=t[5]%newt[1]["length"];
+          return t[5]=t[5]%newt[1]["length"],0;
           }
         else
-         {t[3]=Pervasives["max_int"];return t[4]=0;}
+         {t[3]=Pervasives["max_int"];return t[4]=0,0;}
         };
     
     var
@@ -281,7 +281,7 @@ var
              {if(CamlPrimitive["caml_weak_check"](bucket,i))
                {return loop(i+1);}
               else
-               {setter(bucket,i,d);return hashes[i+1]=h;}
+               {setter(bucket,i,d);return hashes[i+1]=h,0;}
               }
             };
         

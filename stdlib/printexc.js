@@ -550,7 +550,7 @@ var
 
 var
  register_printer=
-  function(fn){return printers[1]=/* :: */[0,fn,printers[1]];};
+  function(fn){return printers[1]=/* :: */[0,fn,printers[1]],0;};
 
 var
  exn_slot=
@@ -571,7 +571,7 @@ var uncaught_exception_handler=[0,/* None */0];
 
 var
  set_uncaught_exception_handler=
-  function(fn){return uncaught_exception_handler[1]=/* Some */[0,fn];};
+  function(fn){return uncaught_exception_handler[1]=/* Some */[0,fn],0;};
 
 var empty_backtrace=CamlPrimitive["caml_obj_block"](Obj["abstract_tag"],0);
 

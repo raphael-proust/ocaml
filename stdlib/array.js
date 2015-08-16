@@ -225,7 +225,7 @@ var
         if(cmp(a[j+1],e)>0)
          {a[i+1]=a[j+1];return trickledown(l,j,e);}
         else
-         {return a[i+1]=e;}
+         {return a[i+1]=e,0;}
         };
     
     var
@@ -236,7 +236,10 @@ var
         catch(exn)
          {var tag=exn[1];
           
-          if(tag===Bottom){var i$1=exn[2];return a[i$1+1]=e;}else{throw exn;}
+          if(tag===Bottom)
+           {var i$1=exn[2];return a[i$1+1]=e,0;}
+          else
+           {throw exn;}
           }
         };
     
@@ -271,10 +274,10 @@ var
         
         if(cmp(a[father+1],e)<0)
          {a[i+1]=a[father+1];
-          if(father>0){return trickleup(father,e);}else{return a[1]=e;}
+          if(father>0){return trickleup(father,e);}else{return a[1]=e,0;}
           }
         else
-         {return a[i+1]=e;}
+         {return a[i+1]=e,0;}
         };
     
     var l=a["length"];
@@ -284,7 +287,7 @@ var
     for(var i$1=l-1;i$1>=2;i$1--)
      {var e=a[i$1+1];a[i$1+1]=a[1],trickleup(bubble(i$1,0),e)}
     
-    if(l>1){var e$1=a[2];a[2]=a[1];return a[1]=e$1;}else{return 0;}
+    if(l>1){var e$1=a[2];a[2]=a[1];return a[1]=e$1,0;}else{return 0;}
     };
 
 var cutoff=5;

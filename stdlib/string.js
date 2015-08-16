@@ -34,7 +34,8 @@ var
       
       var len=[0,0];
       
-      List["iter"](function(s){num[0]++;return len[1]=len[1]+s["length"];},l);
+      List["iter"]
+       (function(s){num[0]++;return len[1]=len[1]+s["length"],0;},l);
       var
        r=
         CamlPrimitive["caml_create_string"](len[1]+sep["length"]*(num[1]-1));
@@ -47,7 +48,7 @@ var
          {CamlPrimitive["caml_blit_string"](sep,0,r,pos[1],sep["length"]);
           pos[1]=pos[1]+sep["length"];
           CamlPrimitive["caml_blit_string"](s,0,r,pos[1],s["length"]);
-          return pos[1]=pos[1]+s["length"];
+          return pos[1]=pos[1]+s["length"],0;
           },
         tl);
       return Bytes["unsafe_to_string"](r);

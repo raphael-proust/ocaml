@@ -82,7 +82,7 @@ var line_count=function(ib){return ib[5];};
 
 var reset_token=function(ib){return Buffer["reset"](ib[8]);};
 
-var invalidate_current_char=function(ib){return ib[3]=/* false */0;};
+var invalidate_current_char=function(ib){return ib[3]=/* false */0,0;};
 
 var
  token=

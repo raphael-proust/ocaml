@@ -40,7 +40,7 @@ var randomized_default=$$String["contains"](params,82);
 
 var randomized=[0,randomized_default];
 
-var randomize=function(param){return randomized[1]=/* true */1;};
+var randomize=function(param){return randomized[1]=/* true */1,0;};
 
 var prng=[246,function(param){return Random["State"][2](/* () */0);}];
 
@@ -107,7 +107,9 @@ var
     if(h["length"]<4||len===h[4])
      {return clear(h);}
     else
-     {h[1]=0;return h[2]=CamlPrimitive["caml_make_vect"](h[4],/* Empty */0);}
+     {h[1]=0;
+      return h[2]=CamlPrimitive["caml_make_vect"](h[4],/* Empty */0),0;
+      }
     };
 
 var
@@ -146,7 +148,7 @@ var
             insert_bucket(rest);
             var nidx=indexfun(h,key);
             
-            return ndata[nidx+1]=/* Cons */[0,key,data,ndata[nidx+1]];
+            return ndata[nidx+1]=/* Cons */[0,key,data,ndata[nidx+1]],0;
             }
           else
            {return /* () */0;}
@@ -205,7 +207,7 @@ var
     
     var i=key_index(h,key);
     
-    return h[2][i+1]=remove_bucket(h[2][i+1]);
+    return h[2][i+1]=remove_bucket(h[2][i+1]),0;
     };
 
 var
@@ -328,7 +330,7 @@ var
     var l=h[2][i+1];
     
     try
-     {return h[2][i+1]=replace_bucket(l);}
+     {return h[2][i+1]=replace_bucket(l),0;}
     catch(exn$2)
      {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
        {h[2][i+1]=/* Cons */[0,key,info,l];
@@ -436,7 +438,7 @@ var
     var histo=CamlPrimitive["caml_make_vect"](mbl+1,0);
     
     $$Array["iter"]
-     (function(b){var l=bucket_length(0,b);return histo[l+1]=histo[l+1]+1;},
+     (function(b){var l=bucket_length(0,b);return histo[l+1]=histo[l+1]+1,0;},
       h[2]);
     return /* record */[0,h[1],h[2]["length"],mbl,histo];
     };
@@ -493,7 +495,7 @@ var
         
         var i=key_index$1(h,key);
         
-        return h[2][i+1]=remove_bucket(h[2][i+1]);
+        return h[2][i+1]=remove_bucket(h[2][i+1]),0;
         };
     
     var
@@ -613,7 +615,7 @@ var
         var l=h[2][i+1];
         
         try
-         {return h[2][i+1]=replace_bucket(l);}
+         {return h[2][i+1]=replace_bucket(l),0;}
         catch(exn$2)
          {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
            {h[2][i+1]=/* Cons */[0,key,info,l];

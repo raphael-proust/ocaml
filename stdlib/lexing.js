@@ -82,7 +82,7 @@ var
      {}
     
     Bytes["blit"](aux_buffer,0,lexbuf[2],lexbuf[3],n);
-    return lexbuf[3]=lexbuf[3]+n;
+    return lexbuf[3]=lexbuf[3]+n,0;
     };
 
 var zero_pos=[/* record */0,"",1,0,0];
@@ -116,7 +116,7 @@ var
  from_string=
   function(s)
    {return /* record */[0,
-            function(lexbuf){return lexbuf[9]=/* true */1;},
+            function(lexbuf){return lexbuf[9]=/* true */1,0;},
             Bytes["of_string"](s),
             s["length"],
             0,
@@ -179,7 +179,7 @@ var
     
     var init=lcp;
     
-    return lexbuf[12]=/* record */[0,init[1],lcp[2]+1,lcp[4],init[4]];
+    return lexbuf[12]=/* record */[0,init[1],lcp[2]+1,lcp[4],init[4]],0;
     };
 
 var
@@ -190,7 +190,7 @@ var
     var init=lb[12];
     
     lb[12]=/* record */[0,init[1],init[2],init[3],0];
-    return lb[3]=0;
+    return lb[3]=0,0;
     };
 
 module["exports"]=

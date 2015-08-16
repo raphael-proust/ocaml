@@ -10,12 +10,12 @@ var Failure=CamlPrimitive["caml_set_oo_id"]([248,"Stream.Failure",0]);
 
 var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Stream.Error",0]);
 
-var set_data=function(s,d){return s[2]=d;};
+var set_data=function(s,d){return s[2]=d,0;};
 
 var
  fill_buff=
   function(b)
-   {b[3]=Pervasives["input"](b[1],b[2],0,b[2]["length"]);return b[4]=0;};
+   {b[3]=Pervasives["input"](b[1],b[2],0,b[2]["length"]);return b[4]=0,0;};
 
 var
  get_data=
@@ -181,9 +181,9 @@ var
          
          var match$1=g[1];
          
-         if(match$1){s[1]=1+s[1];return g[1]=/* None */0;}else{exit=24;}
+         if(match$1){s[1]=1+s[1];return g[1]=/* None */0,0;}else{exit=24;}
          
-        case 4:var b=match[1];s[1]=1+s[1];return b[4]=1+b[4];
+        case 4:var b=match[1];s[1]=1+s[1];return b[4]=1+b[4],0;
         default:exit=24;}}
     
     switch(exit)

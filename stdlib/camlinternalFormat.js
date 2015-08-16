@@ -22,7 +22,8 @@ var
     var mask=1<<(ind&7);
     
     return char_set[str_ind]=
-           Pervasives["char_of_int"](char_set[str_ind]|mask);
+           Pervasives["char_of_int"](char_set[str_ind]|mask),
+           0;
     };
 
 var freeze_char_set=function(char_set){return Bytes["to_string"](char_set);};
@@ -206,7 +207,7 @@ var
       var new_str=CamlPrimitive["caml_create_string"](new_len);
       
       Bytes["blit"](buf[2],0,new_str,0,len);
-      return buf[2]=new_str;
+      return buf[2]=new_str,0;
       }
     else
      {return 0;}
@@ -215,7 +216,7 @@ var
 var
  buffer_add_char=
   function(buf,c)
-   {buffer_check_size(buf,1);buf[2][buf[1]]=c;return buf[1]=buf[1]+1;};
+   {buffer_check_size(buf,1);buf[2][buf[1]]=c;return buf[1]=buf[1]+1,0;};
 
 var
  buffer_add_string=
@@ -224,7 +225,7 @@ var
     
     buffer_check_size(buf,str_len);
     $$String["blit"](s,0,buf[2],buf[1],str_len);
-    return buf[1]=buf[1]+str_len;
+    return buf[1]=buf[1]+str_len,0;
     };
 
 var
@@ -5180,7 +5181,7 @@ var
             else
              {}
             
-            return flag[1]=/* true */1;
+            return flag[1]=/* true */1,0;
             };
         
         var

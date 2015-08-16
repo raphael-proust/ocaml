@@ -7,13 +7,13 @@ var Empty=CamlPrimitive["caml_set_oo_id"]([248,"Queue.Empty",0]);
 
 var create=function(param){return /* record */[0,0,/* None */0];};
 
-var clear=function(q){q[1]=0;return q[2]=/* None */0;};
+var clear=function(q){q[1]=0;return q[2]=/* None */0,0;};
 
 var
  add=
   function(x,q)
    {if(q[1]===0)
-     {var cell=/* record */[0,x,cell];q[1]=1;return q[2]=cell;}
+     {var cell=/* record */[0,x,cell];q[1]=1;return q[2]=cell,0;}
     else
      {var tail=q[2];
       
@@ -23,7 +23,7 @@ var
       
       q[1]=q[1]+1;
       tail[2]=cell$1;
-      return q[2]=cell$1;
+      return q[2]=cell$1,0;
       }
     };
 
@@ -140,7 +140,7 @@ var
        {}
       
       q2[1]=q2[1]+length1;
-      return q2[2]=tail1;
+      return q2[2]=tail1,0;
       }
     else
      {return 0;}

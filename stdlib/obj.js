@@ -7,7 +7,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var double_field=function(x,i){return x[i+1];};
 
-var set_double_field=function(x,i,v){return x[i+1]=v;};
+var set_double_field=function(x,i,v){return x[i+1]=v,0;};
 
 var
  marshal=

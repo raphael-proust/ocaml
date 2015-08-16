@@ -17,7 +17,7 @@ var
 var
  assign=
   function(st1,st2)
-   {$$Array["blit"](st2[1],0,st1[1],0,55);return st1[2]=st2[2];};
+   {$$Array["blit"](st2[1],0,st1[1],0,55);return st1[2]=st2[2],0;};
 
 var
  full_init=
@@ -50,7 +50,7 @@ var
       (s[1][j+1]^extract(accu[1]))&
       1073741823}
     
-    return s[2]=0;
+    return s[2]=0,0;
     };
 
 var

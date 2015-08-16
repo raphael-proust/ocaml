@@ -18,7 +18,7 @@ var bufpos=[0,0];
 
 var
  reset_buffer=
-  function(param){buffer[1]=initial_buffer;return bufpos[1]=0;};
+  function(param){buffer[1]=initial_buffer;return bufpos[1]=0,0;};
 
 var
  store=

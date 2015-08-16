@@ -9,7 +9,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var make_queue=function(param){return /* record */[0,/* Nil */0,/* Nil */0];};
 
-var clear_queue=function(q){q[1]=/* Nil */0;return q[2]=/* Nil */0;};
+var clear_queue=function(q){q[1]=/* Nil */0;return q[2]=/* Nil */0,0;};
 
 var
  add_queue=
@@ -19,9 +19,9 @@ var
     var match=q[1];
     
     if(match)
-     {var cell=match[1];q[1]=c;return cell[2]=c;}
+     {var cell=match[1];q[1]=c;return cell[2]=c,0;}
     else
-     {q[1]=c;return q[2]=c;}
+     {q[1]=c;return q[2]=c,0;}
     };
 
 var Empty_queue=CamlPrimitive["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
@@ -136,7 +136,7 @@ var
     var len=match[3];
     
     state[12]=state[12]-len;
-    return state[9]=state[9]+size;
+    return state[9]=state[9]+size,0;
     };
 
 var
@@ -169,7 +169,7 @@ var
                 {return /* :: */[0,n,/* [] */0];}
                };
            
-           return tabs[1]=add_tab(state[6]-state[9],tabs[1]);
+           return tabs[1]=add_tab(state[6]-state[9],tabs[1]),0;
            }
          else
           {return /* () */0;}
@@ -178,7 +178,7 @@ var
          var match$2=state[2];
          
          if(match$2)
-          {var ls=match$2[2];return state[2]=ls;}
+          {var ls=match$2[2];return state[2]=ls,0;}
          else
           {return /* () */0;}
          
@@ -186,7 +186,7 @@ var
          var match$3=state[3];
          
          if(match$3)
-          {var ls$1=match$3[2];return state[3]=ls$1;}
+          {var ls$1=match$3[2];return state[3]=ls$1,0;}
          else
           {return /* () */0;}
          
@@ -220,7 +220,7 @@ var
            var marker=state[24](tag_name);
            
            pp_output_string(state,marker);
-           return state[5]=tags;
+           return state[5]=tags,0;
            }
          else
           {return /* () */0;}
@@ -233,7 +233,7 @@ var
          
          state[9]=state[9]-size;
          pp_output_string(state,s);
-         return state[11]=/* false */0;
+         return state[11]=/* false */0,0;
          
         case 1:
          var off=param[2];
@@ -358,16 +358,17 @@ var
           {var bl_type=/* Pp_vbox */1;}
          
          return state[2]=
-                /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]];
+                /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]],
+                0;
          
-        case 4:var tbox=param[1];return state[3]=/* :: */[0,tbox,state[3]];
+        case 4:var tbox=param[1];return state[3]=/* :: */[0,tbox,state[3]],0;
         case 5:
          var tag_name$1=param[1];
          
          var marker$1=state[23](tag_name$1);
          
          pp_output_string(state,marker$1);
-         return state[5]=/* :: */[0,tag_name$1,state[5]];
+         return state[5]=/* :: */[0,tag_name$1,state[5]],0;
          
         }}
     };
@@ -428,7 +429,7 @@ var q_elem=make_queue_elem(-1,[/* Pp_text */0,""],0);
 
 var scan_stack_bottom=/* :: */[0,/* Scan_elem */[0,-1,q_elem],/* [] */0];
 
-var clear_scan_stack=function(state){return state[1]=scan_stack_bottom;};
+var clear_scan_stack=function(state){return state[1]=scan_stack_bottom,0;};
 
 var
  set_size=
@@ -463,7 +464,7 @@ var
             case 2:exit=193;
             case 3:
              if(!ty)
-              {queue_elem[1]=state[13]+size$1;return state[1]=t;}
+              {queue_elem[1]=state[13]+size$1;return state[1]=t,0;}
              else
               {return 0;}
              
@@ -472,7 +473,7 @@ var
         switch(exit)
          {case 193:
            if(ty)
-            {queue_elem[1]=state[13]+size$1;return state[1]=t;}
+            {queue_elem[1]=state[13]+size$1;return state[1]=t,0;}
            else
             {return 0;}
            
@@ -490,7 +491,7 @@ var
    {pp_enqueue(state,tok);
     if(b){set_size(state,/* true */1)}else{}
     
-    return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]];
+    return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0;
     };
 
 var
@@ -525,7 +526,7 @@ var
       else
        {}
       
-      return state[14]=state[14]-1;
+      return state[14]=state[14]-1,0;
       }
     else
      {return 0;}
@@ -564,7 +565,7 @@ var
         var tag_name=match[1];
         
         state[26](tag_name);
-        return state[4]=tags;
+        return state[4]=tags,0;
         }
       else
        {return /* () */0;}
@@ -573,9 +574,9 @@ var
      {return 0;}
     };
 
-var pp_set_print_tags=function(state,b){return state[21]=b;};
+var pp_set_print_tags=function(state,b){return state[21]=b,0;};
 
-var pp_set_mark_tags=function(state,b){return state[22]=b;};
+var pp_set_mark_tags=function(state,b){return state[22]=b,0;};
 
 var pp_get_print_tags=function(state,param){return state[21];};
 
@@ -605,7 +606,7 @@ var
     state[23]=mot;
     state[24]=mct;
     state[25]=pot;
-    return state[26]=pct;
+    return state[26]=pct,0;
     };
 
 var
@@ -763,7 +764,7 @@ var
        {var elem=make_queue_elem(0,/* Pp_tend */2,0);
         
         enqueue_advance(state,elem);
-        return state[14]=state[14]-1;
+        return state[14]=state[14]-1,0;
         }
       else
        {return 0;}
@@ -841,7 +842,7 @@ var
       function(param)
        {pp_print_string(ppf,$$String["sub"](s,left[1],right[1]-left[1]));
         right[0]++;
-        return left[1]=right[1];
+        return left[1]=right[1],0;
         };
     
     while(right[1]!==len)
@@ -862,13 +863,13 @@ var
 
 var
  pp_set_max_boxes=
-  function(state,n){if(n>1){return state[15]=n;}else{return 0;}};
+  function(state,n){if(n>1){return state[15]=n,0;}else{return 0;}};
 
 var pp_get_max_boxes=function(state,param){return state[15];};
 
 var pp_over_max_boxes=function(state,param){return state[14]===state[15];};
 
-var pp_set_ellipsis_text=function(state,s){return state[16]=s;};
+var pp_set_ellipsis_text=function(state,s){return state[16]=s,0;};
 
 var pp_get_ellipsis_text=function(state,param){return state[16];};
 
@@ -933,7 +934,7 @@ var
     state[17]=f;
     state[18]=g;
     state[19]=h;
-    return state[20]=i;
+    return state[20]=i,0;
     };
 
 var
@@ -943,7 +944,7 @@ var
 
 var
  pp_set_formatter_output_functions=
-  function(state,f,g){state[17]=f;return state[18]=g;};
+  function(state,f,g){state[17]=f;return state[18]=g,0;};
 
 var
  pp_get_formatter_output_functions=
@@ -954,7 +955,7 @@ var
   function(state,f,g,h,i)
    {pp_set_formatter_output_functions(state,f,g);
     state[19]=h;
-    return state[20]=i;
+    return state[20]=i,0;
     };
 
 var
@@ -985,7 +986,7 @@ var
    {state[17]=Pervasives["output_substring"](os);
     state[18]=function(param){return Pervasives["flush"](os);};
     state[19]=display_newline(state);
-    return state[20]=display_blanks(state);
+    return state[20]=display_blanks(state),0;
     };
 
 var
