@@ -75,7 +75,7 @@ var
       lexbuf[3]=lexbuf[3]-s;
       var t=lexbuf[10];
       
-      for(var i=0;i<=t["length"]-1;i++)
+      for(var i=0;i<=/* -1 for tag */t["length"]-1-1;i++)
        {var v=t[i+1];if(v>=0){t[i+1]=v-s}else{}}
       }
     else
@@ -100,7 +100,7 @@ var
             0,
             0,
             /* false */0,
-            [0],
+            [/* array */0],
             zero_pos,
             zero_pos];
     };
@@ -125,7 +125,7 @@ var
             0,
             0,
             /* true */1,
-            [0],
+            [/* array */0],
             zero_pos,
             zero_pos];
     };

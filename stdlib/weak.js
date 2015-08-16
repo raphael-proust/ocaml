@@ -6,7 +6,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
-var length=function(x){return x["length"]-1;};
+var length=function(x){return /* -1 for tag */x["length"]-1-1;};
 
 var
  fill=
@@ -33,7 +33,8 @@ var
     
     var
      get_index=
-      function(t,h){return (h&Pervasives["max_int"])%t[1]["length"];};
+      function(t,h)
+       {return (h&Pervasives["max_int"])%/* -1 for tag */(t[1]["length"]-1);};
     
     var limit=7;
     
@@ -51,7 +52,7 @@ var
         
         return /* record */[0,
                 CamlPrimitive["caml_make_vect"](sz$2,emptybucket),
-                CamlPrimitive["caml_make_vect"](sz$2,[0]),
+                CamlPrimitive["caml_make_vect"](sz$2,[/* array */0]),
                 limit,
                 0,
                 0];
@@ -60,8 +61,8 @@ var
     var
      clear=
       function(t)
-       {for(var i=0;i<=t[1]["length"]-1;i++)
-         {t[1][i+1]=emptybucket,t[2][i+1]=[0]}
+       {for(var i=0;i<=/* -1 for tag */t[1]["length"]-1-1;i++)
+         {t[1][i+1]=emptybucket,t[2][i+1]=[/* array */0]}
         
         t[3]=limit;
         return t[4]=0,0;
@@ -187,7 +188,7 @@ var
           
           loop(0,length(bucket)-1);
           if(prev_len===0)
-           {t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[0]}
+           {t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[/* array */0]}
           else
            {CamlPrimitive["caml_obj_truncate"](bucket,prev_len+1),
             CamlPrimitive["caml_obj_truncate"](hbucket,prev_len)}
@@ -197,13 +198,13 @@ var
         else
          {}
         
-        return t[5]=(t[5]+1)%t[1]["length"],0;
+        return t[5]=(t[5]+1)%/* -1 for tag */(t[1]["length"]-1),0;
         };
     
     var
      resize=
       function(t)
-       {var oldlen=t[1]["length"];
+       {var oldlen=/* -1 for tag */t[1]["length"]-1;
         
         var newlen=next_sz(oldlen);
         
@@ -228,7 +229,7 @@ var
           t[2]=newt[2];
           t[3]=newt[3];
           t[4]=newt[4];
-          return t[5]=t[5]%newt[1]["length"],0;
+          return t[5]=t[5]%/* -1 for tag */(newt[1]["length"]-1),0;
           }
         else
          {t[3]=Pervasives["max_int"];return t[4]=0,0;}
@@ -272,7 +273,7 @@ var
               else
                {}
               
-              if(t[4]>t[1]["length"]/over_limit)
+              if(t[4]>/* -1 for tag */(t[1]["length"]-1)/over_limit)
                {return resize(t);}
               else
                {return 0;}
@@ -495,7 +496,7 @@ var
     var
      stats=
       function(t)
-       {var len=t[1]["length"];
+       {var len=/* -1 for tag */t[1]["length"]-1;
         
         var lens=$$Array["map"](length,t[1]);
         

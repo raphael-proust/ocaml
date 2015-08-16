@@ -76,7 +76,7 @@ var
 var
  other_fields=
   function(x,i)
-   {if(i>=x["length"])
+   {if(i>=/* -1 for tag */x["length"]-1)
      {return "";}
     else
      {return Printf["sprintf"]
@@ -95,7 +95,7 @@ var
 var
  fields=
   function(x)
-   {var n=x["length"];
+   {var n=/* -1 for tag */x["length"]-1;
     
     if(2<n>>>0)
      {return Printf["sprintf"]
@@ -384,7 +384,7 @@ var
    {if(backtrace)
      {var a=backtrace[1];
       
-      for(var i=0;i<=a["length"]-1;i++)
+      for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
        {var match=format_backtrace_slot(i,a[i+1]);
         
         if(match)
@@ -437,7 +437,7 @@ var
       
       var b=Buffer["create"](1024);
       
-      for(var i=0;i<=a["length"]-1;i++)
+      for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
        {var match=format_backtrace_slot(i,a[i+1]);
         
         if(match)
@@ -519,7 +519,7 @@ var
            {return /* false */0;}
           };
       
-      if(exists_usable(backtrace["length"]-1))
+      if(exists_usable(/* -1 for tag */backtrace["length"]-1-1))
        {return /* Some */[0,backtrace];}
       else
        {return /* None */0;}
@@ -536,7 +536,9 @@ var $$location=backtrace_slot_location;
 
 var Slot=[0,format,is_raise,$$location];
 
-var raw_backtrace_length=function(bckt){return bckt["length"];};
+var
+ raw_backtrace_length=
+  function(bckt){return /* -1 for tag */bckt["length"]-1;};
 
 var get_raw_backtrace_slot=function(bckt,i){return bckt[i+1];};
 

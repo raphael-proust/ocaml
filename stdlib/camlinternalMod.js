@@ -64,7 +64,7 @@ var
 var
  overwrite=
   function(o,n)
-   {if(o["length"]>=n["length"])
+   {if(/* -1 for tag */o["length"]-1>=/* -1 for tag */n["length"]-1)
      {}
     else
      {throw [0,
@@ -72,7 +72,7 @@ var
              [0,"camlinternalMod.ml",40,2]];
       }
     
-    for(var i=0;i<=n["length"]-1;i++){o[i+1]=n[i+1]}
+    for(var i=0;i<=/* -1 for tag */n["length"]-1-1;i++){o[i+1]=n[i+1]}
     return 0;
     };
 
@@ -85,10 +85,13 @@ var
          if
           (CamlPrimitive["caml_obj_tag"](n)===
            Obj["closure_tag"]&&
-           n["length"]<=
-           o["length"])
+           /* -1 for tag */n["length"]-
+           1<=
+           /* -1 for tag */o["length"]-
+           1)
           {overwrite(o,n);
-           return CamlPrimitive["caml_obj_truncate"](o,n["length"]);
+           return CamlPrimitive["caml_obj_truncate"]
+                   (o,/* -1 for tag */n["length"]-1);
            }
          else
           {return overwrite(o,function(x){return n(x);});}
@@ -108,7 +111,12 @@ var
            }
          
         case 2:
-         if(CamlPrimitive["caml_obj_tag"](n)===0&&n["length"]===4)
+         if
+          (CamlPrimitive["caml_obj_tag"](n)===
+           0&&
+           /* -1 for tag */n["length"]-
+           1===
+           4)
           {}
          else
           {throw [0,
@@ -125,7 +133,12 @@ var
          var comps=shape[1];
          
          if
-          (CamlPrimitive["caml_obj_tag"](n)===0&&n["length"]>=comps["length"])
+          (CamlPrimitive["caml_obj_tag"](n)===
+           0&&
+           /* -1 for tag */n["length"]-
+           1>=
+           /* -1 for tag */comps["length"]-
+           1)
           {}
          else
           {throw [0,
@@ -133,7 +146,7 @@ var
                   [0,"camlinternalMod.ml",66,6]];
            }
          
-         for(var i=0;i<=comps["length"]-1;i++)
+         for(var i=0;i<=/* -1 for tag */comps["length"]-1-1;i++)
           {update_mod(comps[i+1],o[i+1],n[i+1])}
          return 0;
          

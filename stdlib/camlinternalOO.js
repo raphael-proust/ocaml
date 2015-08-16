@@ -57,7 +57,7 @@ var
  dummy_table=
   /* record */[0,
    0,
-   [0,dummy_item],
+   [/* array */0,dummy_item],
    Meths[1],
    Labs[1],
    /* [] */0,
@@ -77,7 +77,7 @@ var
  new_table=
   function(pub_labels)
    {table_count[0]++;
-    var len=pub_labels["length"];
+    var len=/* -1 for tag */pub_labels["length"]-1;
     
     var methods=CamlPrimitive["caml_make_vect"](len*2+2,dummy_met);
     
@@ -99,7 +99,7 @@ var
 var
  resize=
   function(array,new_size)
-   {var old_size=array[2]["length"];
+   {var old_size=/* -1 for tag */array[2]["length"]-1;
     
     if(new_size>old_size)
      {var new_buck=CamlPrimitive["caml_make_vect"](new_size,dummy_met);
@@ -123,7 +123,11 @@ var inst_var_count=[0,0];
 var
  new_method=
   function(table)
-   {var index=table[2]["length"];resize(table,index+1);return index;};
+   {var index=/* -1 for tag */table[2]["length"]-1;
+    
+    resize(table,index+1);
+    return index;
+    };
 
 var
  get_method_label=
@@ -314,16 +318,20 @@ var
 var
  to_array=
   function(arr)
-   {if(CamlPrimitive["caml_equal"](arr,0)){return [0];}else{return arr;}};
+   {if(CamlPrimitive["caml_equal"](arr,0))
+     {return [/* array */0];}
+    else
+     {return arr;}
+    };
 
 var
  new_methods_variables=
   function(table,meths,vals)
    {var meths$1=to_array(meths);
     
-    var nmeths=meths$1["length"];
+    var nmeths=/* -1 for tag */meths$1["length"]-1;
     
-    var nvals=vals["length"];
+    var nvals=/* -1 for tag */vals["length"]-1;
     
     var res=CamlPrimitive["caml_make_vect"](nmeths+nvals,0);
     
@@ -364,7 +372,7 @@ var
  create_table=
   function(public_methods)
    {if(public_methods===0)
-     {return new_table([0]);}
+     {return new_table([/* array */0]);}
     else
      {var tags=$$Array["map"](public_method_label,public_methods);
       
@@ -403,7 +411,7 @@ var
     widen(cla);
     return $$Array["concat"]
             (/* :: */[0,
-              [0,init],
+              [/* array */0,init],
               /* :: */[0,
                $$Array["map"](get_variable(cla),to_array(vals)),
                /* :: */[0,
@@ -561,9 +569,9 @@ var
    {var root$1=root;
     
     if(root$1[2]!==/* Empty */0)
-     {return lookup_keys(keys["length"]-1,keys,root$1[2]);}
+     {return lookup_keys(/* -1 for tag */keys["length"]-1-1,keys,root$1[2]);}
     else
-     {return build_path(keys["length"]-1,keys,root$1);}
+     {return build_path(/* -1 for tag */keys["length"]-1-1,keys,root$1);}
     };
 
 var get_const=function(x){return function(obj){return x;};};
@@ -873,7 +881,7 @@ var
 var
  set_methods=
   function(table,methods)
-   {var len=methods["length"];
+   {var len=/* -1 for tag */methods["length"]-1;
     
     var i=[0,0];
     

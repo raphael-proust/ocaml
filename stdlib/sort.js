@@ -156,8 +156,8 @@ var
          {return 0;}
         };
     
-    qsort(0,arr["length"]-1);
-    for(var i=1;i<=arr["length"]-1;i++)
+    qsort(0,/* -1 for tag */arr["length"]-1-1);
+    for(var i=1;i<=/* -1 for tag */arr["length"]-1-1;i++)
      {var val_i=arr[i+1];
       
       if(!cmp(arr[i-1+1],val_i))

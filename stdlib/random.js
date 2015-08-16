@@ -31,9 +31,12 @@ var
     
     var extract=function(d){return d[0]+(d[1]<<8)+(d[2]<<16)+(d[3]<<24);};
     
-    if(seed["length"]===0){var seed$1=[0,0];}else{var seed$1=seed;}
+    if(/* -1 for tag */seed["length"]-1===0)
+     {var seed$1=[/* array */0,0];}
+    else
+     {var seed$1=seed;}
     
-    var l=seed$1["length"];
+    var l=/* -1 for tag */seed$1["length"]-1;
     
     for(var i=0;i<=54;i++){s[1][i+1]=i}
     
@@ -268,7 +271,7 @@ var bool$1=function(param){return State[17]($$default);};
 
 var full_init$1=function(seed){return State[3]($$default,seed);};
 
-var init=function(seed){return State[3]($$default,[0,seed]);};
+var init=function(seed){return State[3]($$default,[/* array */0,seed]);};
 
 var
  self_init=

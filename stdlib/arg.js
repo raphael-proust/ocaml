@@ -196,7 +196,7 @@ var
     else
      {var current$1=current;}
     
-    var l=argv["length"];
+    var l=/* -1 for tag */argv["length"]-1;
     
     var b=Buffer["create"](200);
     

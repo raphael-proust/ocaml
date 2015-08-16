@@ -8,7 +8,7 @@ var
  init=
   function(l,f)
    {if(l===0)
-     {return [0];}
+     {return [/* array */0];}
     else
      {if(l<0)
        {return Pervasives["invalid_arg"]("Array.init");}
@@ -25,7 +25,7 @@ var
 var
  make_matrix=
   function(sx,sy,init)
-   {var res=CamlPrimitive["caml_make_vect"](sx,[0]);
+   {var res=CamlPrimitive["caml_make_vect"](sx,[/* array */0]);
     
     for(var x=0;x<=-1+sx;x++)
      {res[x+1]=CamlPrimitive["caml_make_vect"](sy,init)}
@@ -38,20 +38,23 @@ var create_matrix=make_matrix;
 var
  copy=
   function(a)
-   {var l=a["length"];
+   {var l=/* -1 for tag */a["length"]-1;
     
-    if(l===0){return [0];}else{return CamlPrimitive["caml_array_sub"](a,0,l);}
+    if(l===0)
+     {return [/* array */0];}
+    else
+     {return CamlPrimitive["caml_array_sub"](a,0,l);}
     };
 
 var
  append=
   function(a1,a2)
-   {var l1=a1["length"];
+   {var l1=/* -1 for tag */a1["length"]-1;
     
     if(l1===0)
      {return copy(a2);}
     else
-     {if(a2["length"]===0)
+     {if(/* -1 for tag */a2["length"]-1===0)
        {return CamlPrimitive["caml_array_sub"](a1,0,l1);}
       else
        {return a1["concat"](a2);}
@@ -61,7 +64,7 @@ var
 var
  sub=
   function(a,ofs,len)
-   {if(len<0||ofs>a["length"]-len)
+   {if(len<0||ofs>/* -1 for tag */a["length"]-1-len)
      {return Pervasives["invalid_arg"]("Array.sub");}
     else
      {return CamlPrimitive["caml_array_sub"](a,ofs,len);}
@@ -70,7 +73,7 @@ var
 var
  fill=
   function(a,ofs,len,v)
-   {if(ofs<0||len<0||ofs>a["length"]-len)
+   {if(ofs<0||len<0||ofs>/* -1 for tag */a["length"]-1-len)
      {return Pervasives["invalid_arg"]("Array.fill");}
     else
      {for(var i=ofs;i<=ofs+len-1;i++){a[i+1]=v}return 0;}
@@ -79,21 +82,38 @@ var
 var
  blit=
   function(a1,ofs1,a2,ofs2,len)
-   {if(len<0||ofs1<0||ofs1>a1["length"]-len||ofs2<0||ofs2>a2["length"]-len)
+   {if
+     (len<
+      0||
+      ofs1<
+      0||
+      ofs1>
+      /* -1 for tag */a1["length"]-
+      1-
+      len||
+      ofs2<
+      0||
+      ofs2>
+      /* -1 for tag */a2["length"]-
+      1-
+      len)
      {return Pervasives["invalid_arg"]("Array.blit");}
     else
      {return CamlPrimitive["caml_array_blit"](a1,ofs1,a2,ofs2,len);}
     };
 
-var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i+1])}return 0;};
+var
+ iter=
+  function(f,a)
+   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){f(a[i+1])}return 0;};
 
 var
  map=
   function(f,a)
-   {var l=a["length"];
+   {var l=/* -1 for tag */a["length"]-1;
     
     if(l===0)
-     {return [0];}
+     {return [/* array */0];}
     else
      {var r=CamlPrimitive["caml_make_vect"](l,f(a[1]));
       
@@ -105,15 +125,16 @@ var
 
 var
  iteri=
-  function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i+1])}return 0;};
+  function(f,a)
+   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){f(i,a[i+1])}return 0;};
 
 var
  mapi=
   function(f,a)
-   {var l=a["length"];
+   {var l=/* -1 for tag */a["length"]-1;
     
     if(l===0)
-     {return [0];}
+     {return [/* array */0];}
     else
      {var r=CamlPrimitive["caml_make_vect"](l,f(0,a[1]));
       
@@ -131,7 +152,7 @@ var
       function(i,res)
        {if(i<0){return res;}else{return tolist(i-1,/* :: */[0,a[i+1],res]);}};
     
-    return tolist(a["length"]-1,/* [] */0);
+    return tolist(/* -1 for tag */a["length"]-1-1,/* [] */0);
     };
 
 var
@@ -167,7 +188,7 @@ var
       return fill$1(1,tl);
       }
     else
-     {return [0];}
+     {return [/* array */0];}
     };
 
 var
@@ -175,7 +196,7 @@ var
   function(f,x,a)
    {var r=[0,x];
     
-    for(var i=0;i<=a["length"]-1;i++){r[1]=f(r[1],a[i+1])}
+    for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){r[1]=f(r[1],a[i+1])}
     
     return r[1];
     };
@@ -185,7 +206,7 @@ var
   function(f,a,x)
    {var r=[0,x];
     
-    for(var i=a["length"]-1;i>=0;i--){r[1]=f(a[i+1],r[1])}
+    for(var i=/* -1 for tag */a["length"]-1-1;i>=0;i--){r[1]=f(a[i+1],r[1])}
     
     return r[1];
     };
@@ -280,7 +301,7 @@ var
          {return a[i+1]=e,0;}
         };
     
-    var l=a["length"];
+    var l=/* -1 for tag */a["length"]-1;
     
     for(var i=(l+1)/3-1;i>=0;i--){trickle(l,i,a[i+1])}
     
@@ -359,7 +380,7 @@ var
           }
         };
     
-    var l=a["length"];
+    var l=/* -1 for tag */a["length"]-1;
     
     if(l<=cutoff)
      {return isortto(0,a,0,l);}

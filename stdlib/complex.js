@@ -8,15 +8,18 @@ var one=[1,0];
 
 var i=[0,1];
 
-var add=function(x,y){return [254,x[1]+y[1],x[2]+y[2]];};
+var add=function(x,y){return [/* floatarray */254,x[1]+y[1],x[2]+y[2]];};
 
-var sub=function(x,y){return [254,x[1]-y[1],x[2]-y[2]];};
+var sub=function(x,y){return [/* floatarray */254,x[1]-y[1],x[2]-y[2]];};
 
-var neg=function(x){return [254,-x[1],-x[2]];};
+var neg=function(x){return [/* floatarray */254,-x[1],-x[2]];};
 
-var conj=function(x){return [254,x[1],-x[2]];};
+var conj=function(x){return [/* floatarray */254,x[1],-x[2]];};
 
-var mul=function(x,y){return [254,x[1]*y[1]-x[2]*y[2],x[1]*y[2]+x[2]*y[1]];};
+var
+ mul=
+  function(x,y)
+   {return [/* floatarray */254,x[1]*y[1]-x[2]*y[2],x[1]*y[2]+x[2]*y[1]];};
 
 var
  div=
@@ -26,14 +29,14 @@ var
       
       var d=y[1]+r*y[2];
       
-      return [254,(x[1]+r*x[2])/d,(x[2]-r*x[1])/d];
+      return [/* floatarray */254,(x[1]+r*x[2])/d,(x[2]-r*x[1])/d];
       }
     else
      {var r$1=y[1]/y[2];
       
       var d$1=y[2]+r$1*y[1];
       
-      return [254,(r$1*x[1]+x[2])/d$1,(r$1*x[2]-x[1])/d$1];
+      return [/* floatarray */254,(r$1*x[1]+x[2])/d$1,(r$1*x[2]-x[1])/d$1];
       }
     };
 
@@ -64,7 +67,10 @@ var
 
 var arg=function(x){return Math["atan2"](x[2],x[1]);};
 
-var polar=function(n,a){return [254,Math["cos"](a)*n,Math["sin"](a)*n];};
+var
+ polar=
+  function(n,a)
+   {return [/* floatarray */254,Math["cos"](a)*n,Math["sin"](a)*n];};
 
 var
  sqrt=
@@ -90,9 +96,9 @@ var
         }
       
       if(x[1]>=0)
-       {return [254,w,0.5*x[2]/w];}
+       {return [/* floatarray */254,w,0.5*x[2]/w];}
       else
-       {return [254,0.5*i$1/w,x[2]>=0?w:-w];}
+       {return [/* floatarray */254,0.5*i$1/w,x[2]>=0?w:-w];}
       }
     };
 
@@ -101,12 +107,14 @@ var
   function(x)
    {var e=Math["exp"](x[1]);
     
-    return [254,e*Math["cos"](x[2]),e*Math["sin"](x[2])];
+    return [/* floatarray */254,e*Math["cos"](x[2]),e*Math["sin"](x[2])];
     };
 
 var
  log=
-  function(x){return [254,Math["log"](norm(x)),Math["atan2"](x[2],x[1])];};
+  function(x)
+   {return [/* floatarray */254,Math["log"](norm(x)),Math["atan2"](x[2],x[1])];
+    };
 
 var pow=function(x,y){return exp(mul(y,log(x)));};
 

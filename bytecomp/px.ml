@@ -855,7 +855,13 @@ module rec
             | Ploc kind -> E.unknown_primitive prim
             | Pintoffloat  ->
                 (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
-            | Parraylength _|Pstringlength  ->
+            | Parraylength _ ->
+                (match args with
+                 | e::[] ->
+                     E.dec ~comment:"-1 for tag"
+                       (E.access e (E.str "length"))
+                 | _ -> E.unknown_primitive prim)
+            | Pstringlength  ->
                 (match args with
                  | e::[] -> E.access e (E.str "length")
                  | _ -> E.unknown_primitive prim)
@@ -897,9 +903,11 @@ module rec
             | Pmakearray i ->
                 (match i with
                  | Pgenarray |Paddrarray |Pintarray  ->
-                     E.arr ((E.int 0) :: args)
+                     E.arr ((E.int ~comment:"array" 0) :: args)
                  | Pfloatarray  ->
-                     E.arr ((E.int Obj.double_array_tag) :: args))
+                     E.arr
+                       ((E.int ~comment:"floatarray" Obj.double_array_tag) ::
+                       args))
             | Pbintofint _|Pintofbint _|Pfloatofint  ->
                 (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
             | Pabsfloat  ->
@@ -1154,6 +1162,7 @@ module rec
                               [@@ocaml.doc
                                 " [global \"xx\"] -> CamlPrimtivie[\"caml_global_data\"][\"xx\"]\n      this name is subject to change, don't use it externally\n   "]
                               val inc : ?comment:string -> t -> t
+                              val dec : ?comment:string -> t -> t
                             end
                             module Stmt :
                             sig
@@ -1320,6 +1329,17 @@ module rec
                              { e with expression_desc = (ENum (i +. 1.)) }
                          | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
                                                              " handle comment "]
+                       let inc ?comment  (e : t) =
+                         match e with
+                         | { expression_desc = ENum i;_} ->
+                             { e with expression_desc = (ENum (i +. 1.)) }
+                         | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
+                                                             " handle comment "]
+                       let dec ?comment  (e : t) =
+                         match e with
+                         | { expression_desc = ENum i;_} ->
+                             { e with expression_desc = (ENum (i -. 1.)) }
+                         | _ -> bin ?comment Minus e (int 1)
                        let prim ?comment  v =
                          access ?comment (js_var prim) (str v)
                        let global ?comment  v =
