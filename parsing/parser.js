@@ -1,81 +1,94 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Clflags=require("Clflags");
-var Docstrings=require("Docstrings");
-var Syntaxerr=require("Syntaxerr");
-var Parsing=require("Parsing");
-var Longident=require("Longident");
-var Location=require("Location");
-var CamlinternalLazy=require("CamlinternalLazy");
-var Ast_helper=require("Ast_helper");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Clflags=require("./clflags.js");
+var Docstrings=require("./docstrings.js");
+var Syntaxerr=require("./syntaxerr.js");
+var Parsing=require("./parsing.js");
+var Longident=require("./longident.js");
+var Location=require("./location.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var Ast_helper=require("./ast_helper.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  mktyp=
   function(d)
-   {return Ast_helper["Typ"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);
+   {return Ast_helper["Typ"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
     };
 
 var
  mkpat=
   function(d)
-   {return Ast_helper["Pat"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);
+   {return Ast_helper["Pat"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
     };
 
 var
  mkexp=
   function(d)
-   {return Ast_helper["Exp"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);
+   {return Ast_helper["Exp"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
     };
 
 var
  mkmty=
   function(d)
-   {return Ast_helper["Mty"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);
+   {return Ast_helper["Mty"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
     };
 
 var
  mksig=
   function(d)
-   {return Ast_helper["Sig"][1](/* Some */[0,Location["symbol_rloc"](0)],d);};
+   {return Ast_helper["Sig"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],d);
+    };
 
 var
  mkmod=
   function(d)
-   {return Ast_helper["Mod"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);
+   {return Ast_helper["Mod"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
     };
 
 var
  mkstr=
   function(d)
-   {return Ast_helper["Str"][1](/* Some */[0,Location["symbol_rloc"](0)],d);};
+   {return Ast_helper["Str"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],d);
+    };
 
 var
  mkclass=
   function(d)
-   {return Ast_helper["Cl"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);};
+   {return Ast_helper["Cl"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
+    };
 
 var
  mkcty=
   function(d)
-   {return Ast_helper["Cty"][1](/* Some */[0,Location["symbol_rloc"](0)],0,d);
+   {return Ast_helper["Cty"][1]
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],/* None */0,d);
     };
 
 var
  mkctf=
   function(attrs,docs,d)
    {return Ast_helper["Ctf"][1]
-            (/* Some */[0,Location["symbol_rloc"](0)],attrs,docs,d);
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],attrs,docs,d);
     };
 
 var
  mkcf=
   function(attrs,docs,d)
    {return Ast_helper["Cf"][1]
-            (/* Some */[0,Location["symbol_rloc"](0)],attrs,docs,d);
+            (/* Some */[0,Location["symbol_rloc"](/* () */0)],attrs,docs,d);
     };
 
 var
@@ -87,23 +100,26 @@ var
   function(d)
    {var init=d[2];
     
-    var loc=/* record */[0,init[1],init[2],1];
+    var loc=/* record */[0,init[1],init[2],/* true */1];
     
     return Ast_helper["Typ"][1]
             (/* Some */[0,loc],
-             0,
+             /* None */0,
              /* Ptyp_constr */[3,
-              Location["mkloc"]([1,[0,"*predef*"],"option"],loc),
-              /* :: */[0,d,0]]);
+              Location["mkloc"]
+               ([/* Ldot */1,[/* Lident */0,"*predef*"],"option"],loc),
+              /* :: */[0,d,/* [] */0]]);
     };
 
 var
  reloc_pat=
-  function(x){return /* record */[0,x[1],Location["symbol_rloc"](0),x[3]];};
+  function(x)
+   {return /* record */[0,x[1],Location["symbol_rloc"](/* () */0),x[3]];};
 
 var
  reloc_exp=
-  function(x){return /* record */[0,x[1],Location["symbol_rloc"](0),x[3]];};
+  function(x)
+   {return /* record */[0,x[1],Location["symbol_rloc"](/* () */0),x[3]];};
 
 var
  mkoperator=
@@ -112,7 +128,7 @@ var
     
     return Ast_helper["Exp"][1]
             (/* Some */[0,loc],
-             0,
+             /* None */0,
              /* Pexp_ident */[0,Location["mkloc"](/* Lident */[0,name],loc)]);
     };
 
@@ -121,39 +137,50 @@ var
   function(name,pos)
    {return Ast_helper["Pat"][1]
             (/* Some */[0,Location["rhs_loc"](pos)],
-             0,
+             /* None */0,
              /* Ppat_var */[0,mkrhs(name,pos)]);
     };
 
 var
  ghexp=
   function(d)
-   {return Ast_helper["Exp"][1](/* Some */[0,Location["symbol_gloc"](0)],0,d);
+   {return Ast_helper["Exp"][1]
+            (/* Some */[0,Location["symbol_gloc"](/* () */0)],/* None */0,d);
     };
 
 var
  ghpat=
   function(d)
-   {return Ast_helper["Pat"][1](/* Some */[0,Location["symbol_gloc"](0)],0,d);
+   {return Ast_helper["Pat"][1]
+            (/* Some */[0,Location["symbol_gloc"](/* () */0)],/* None */0,d);
     };
 
 var
  ghtyp=
   function(d)
-   {return Ast_helper["Typ"][1](/* Some */[0,Location["symbol_gloc"](0)],0,d);
+   {return Ast_helper["Typ"][1]
+            (/* Some */[0,Location["symbol_gloc"](/* () */0)],/* None */0,d);
     };
 
-var ghloc=function(d){return /* record */[0,d,Location["symbol_gloc"](0)];};
+var
+ ghloc=
+  function(d){return /* record */[0,d,Location["symbol_gloc"](/* () */0)];};
 
 var
  ghstr=
   function(d)
-   {return Ast_helper["Str"][1](/* Some */[0,Location["symbol_gloc"](0)],d);};
+   {return Ast_helper["Str"][1]
+            (/* Some */[0,Location["symbol_gloc"](/* () */0)],d);
+    };
 
 var
  ghunit=
   function(param)
-   {return ghexp(/* Pexp_construct */[9,Location["mknoloc"]([0,"()"]),0]);};
+   {return ghexp
+            (/* Pexp_construct */[9,
+              Location["mknoloc"]([/* Lident */0,"()"]),
+              /* None */0]);
+    };
 
 var
  mkinfix=
@@ -163,13 +190,13 @@ var
               mkoperator(name,2),
               /* :: */[0,
                /* tuple */[0,"",arg1],
-               /* :: */[0,/* tuple */[0,"",arg2],0]]]);
+               /* :: */[0,/* tuple */[0,"",arg2],/* [] */0]]]);
     };
 
 var
  neg_float_string=
   function(f)
-   {if(f["length"]>0&&(f[0]=45))
+   {if(f["length"]>0&&f[0]===45)
      {return $$String["sub"](f,1,f["length"]-1);}
     else
      {return Pervasives["^"]("-",f);}
@@ -184,11 +211,11 @@ var
     
     switch(name)
      {case "-":
-       switch(match)
+       switch(match[0])
         {case 1:
           var match$1=match[1];
           
-          switch(match$1)
+          switch(match$1[0])
            {case 0:
              return mkexp
                      (/* Pexp_constant */[1,/* Const_int */[0,-match$1[1]]]);
@@ -214,25 +241,25 @@ var
     
     switch(exit)
      {case 1219:
-       switch(match)
+       switch(match[0])
         {case 1:
           var match$2=match[1];
           
-          switch(match$2)
+          switch(match$2[0])
            {case 3:
              return mkexp
                      (/* Pexp_constant */[1,
                        /* Const_float */[3,neg_float_string(match$2[1])]]);
              
-            default:"unknown block:(exit 1218)";}
+            default:exit=1218;}
           
-         default:"unknown block:(exit 1218)";}
+         default:exit=1218;}
        
       case 1218:
        return mkexp
                (/* Pexp_apply */[5,
                  mkoperator(Pervasives["^"]("~",name),1),
-                 /* :: */[0,/* tuple */[0,"",arg],0]]);
+                 /* :: */[0,/* tuple */[0,"",arg],/* [] */0]]);
        
       }
     };
@@ -246,9 +273,9 @@ var
     
     switch(name)
      {case "+":
-       switch(desc)
+       switch(desc[0])
         {case 1:
-          switch(desc[1])
+          switch(desc[1][0])
            {case 1:exit=1214;
             case 2:exit=1214;
             case 3:exit=1214;
@@ -261,19 +288,15 @@ var
     
     switch(exit)
      {case 1214:
-       switch(desc)
-        {case 1:
-          switch(desc[1])
-           {case 3:"unknown block:(exit 1212)";
-            default:"unknown block:(exit 1213)";}
-          
-         default:"unknown block:(exit 1213)";}
+       switch(desc[0])
+        {case 1:switch(desc[1][0]){case 3:exit=1212;default:exit=1213;}
+         default:exit=1213;}
        
       case 1213:
        return mkexp
                (/* Pexp_apply */[5,
                  mkoperator(Pervasives["^"]("~",name),1),
-                 /* :: */[0,/* tuple */[0,"",arg],0]]);
+                 /* :: */[0,/* tuple */[0,"",arg],/* [] */0]]);
        
       case 1212:return mkexp(desc);
       }
@@ -284,9 +307,9 @@ var
   function(consloc,args,loc)
    {return Ast_helper["Exp"][1]
             (/* Some */[0,loc],
-             0,
+             /* None */0,
              /* Pexp_construct */[9,
-              Location["mkloc"]([0,"::"],consloc),
+              Location["mkloc"]([/* Lident */0,"::"],consloc),
               /* Some */[0,args]]);
     };
 
@@ -295,9 +318,9 @@ var
   function(consloc,args,loc)
    {return Ast_helper["Pat"][1]
             (/* Some */[0,loc],
-             0,
+             /* None */0,
              /* Ppat_construct */[5,
-              Location["mkloc"]([0,"::"],consloc),
+              Location["mkloc"]([/* Lident */0,"::"],consloc),
               /* Some */[0,args]]);
     };
 
@@ -309,24 +332,26 @@ var
       
       var exp_el=mktailexp(nilloc,param[2]);
       
-      var loc=/* record */[0,e1[2][1],exp_el[2][2],1];
+      var loc=/* record */[0,e1[2][1],exp_el[2][2],/* true */1];
       
       var
        arg=
         Ast_helper["Exp"][1]
          (/* Some */[0,loc],
-          0,
-          /* Pexp_tuple */[8,/* :: */[0,e1,/* :: */[0,exp_el,0]]]);
+          /* None */0,
+          /* Pexp_tuple */[8,/* :: */[0,e1,/* :: */[0,exp_el,/* [] */0]]]);
       
-      return mkexp_cons(/* record */[0,loc[1],loc[2],1],arg,loc);
+      return mkexp_cons(/* record */[0,loc[1],loc[2],/* true */1],arg,loc);
       }
     else
-     {var loc$1=/* record */[0,nilloc[1],nilloc[2],1];
+     {var loc$1=/* record */[0,nilloc[1],nilloc[2],/* true */1];
       
-      var nil=/* record */[0,[0,"[]"],loc$1];
+      var nil=/* record */[0,[/* Lident */0,"[]"],loc$1];
       
       return Ast_helper["Exp"][1]
-              (/* Some */[0,loc$1],0,/* Pexp_construct */[9,nil,0]);
+              (/* Some */[0,loc$1],
+               /* None */0,
+               /* Pexp_construct */[9,nil,/* None */0]);
       }
     };
 
@@ -338,24 +363,26 @@ var
       
       var pat_pl=mktailpat(nilloc,param[2]);
       
-      var loc=/* record */[0,p1[2][1],pat_pl[2][2],1];
+      var loc=/* record */[0,p1[2][1],pat_pl[2][2],/* true */1];
       
       var
        arg=
         Ast_helper["Pat"][1]
          (/* Some */[0,loc],
-          0,
-          /* Ppat_tuple */[4,/* :: */[0,p1,/* :: */[0,pat_pl,0]]]);
+          /* None */0,
+          /* Ppat_tuple */[4,/* :: */[0,p1,/* :: */[0,pat_pl,/* [] */0]]]);
       
-      return mkpat_cons(/* record */[0,loc[1],loc[2],1],arg,loc);
+      return mkpat_cons(/* record */[0,loc[1],loc[2],/* true */1],arg,loc);
       }
     else
-     {var loc$1=/* record */[0,nilloc[1],nilloc[2],1];
+     {var loc$1=/* record */[0,nilloc[1],nilloc[2],/* true */1];
       
-      var nil=/* record */[0,[0,"[]"],loc$1];
+      var nil=/* record */[0,[/* Lident */0,"[]"],loc$1];
       
       return Ast_helper["Pat"][1]
-              (/* Some */[0,loc$1],0,/* Ppat_construct */[5,nil,0]);
+              (/* Some */[0,loc$1],
+               /* None */0,
+               /* Ppat_construct */[5,nil,/* None */0]);
       }
     };
 
@@ -379,7 +406,10 @@ var
      {if(t2)
        {exit=1197;}
       else
-       {throw [0,Assert_failure,[0,"parsing/parser.mly",153,18]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"parsing/parser.mly",153,18]];
+        }
       }
     
     switch(exit){case 1197:return ghexp(/* Pexp_coerce */[20,e,t1,t2[1]]);}
@@ -427,14 +457,17 @@ var
 var
  bigarray_function=
   function(str,name)
-   {return ghloc(/* Ldot */[1,/* Ldot */[1,[0,"Bigarray"],str],name]);};
+   {return ghloc
+            (/* Ldot */[1,/* Ldot */[1,[/* Lident */0,"Bigarray"],str],name]);
+    };
 
 var
  bigarray_untuplify=
   function(exp)
    {var match=exp[1];
     
-    switch(match){case 8:return match[1];default:return /* :: */[0,exp,0];}
+    switch(match[0])
+     {case 8:return match[1];default:return /* :: */[0,exp,/* [] */0];}
     };
 
 var
@@ -469,7 +502,7 @@ var
                         /* tuple */[0,"",c1],
                         /* :: */[0,
                          /* tuple */[0,"",c2],
-                         /* :: */[0,/* tuple */[0,"",match$1[1]],0]]]]]);
+                         /* :: */[0,/* tuple */[0,"",match$1[1]],/* [] */0]]]]]);
             }
           }
         else
@@ -480,7 +513,7 @@ var
                      /* tuple */[0,"",arr],
                      /* :: */[0,
                       /* tuple */[0,"",c1],
-                      /* :: */[0,/* tuple */[0,"",c2],0]]]]);
+                      /* :: */[0,/* tuple */[0,"",c2],/* [] */0]]]]);
           }
         }
       else
@@ -489,7 +522,7 @@ var
                   ghexp(/* Pexp_ident */[0,bigarray_function("Array1",get)]),
                   /* :: */[0,
                    /* tuple */[0,"",arr],
-                   /* :: */[0,/* tuple */[0,"",c1],0]]]);
+                   /* :: */[0,/* tuple */[0,"",c1],/* [] */0]]]);
         }
       }
     else
@@ -505,7 +538,7 @@ var
                   /* tuple */[0,"",arr],
                   /* :: */[0,
                    /* tuple */[0,"",ghexp(/* Pexp_array */[14,coords])],
-                   0]]]);
+                   /* [] */0]]]);
        
       }
     };
@@ -544,7 +577,7 @@ var
                          /* tuple */[0,"",c2],
                          /* :: */[0,
                           /* tuple */[0,"",match$1[1]],
-                          /* :: */[0,/* tuple */[0,"",newval],0]]]]]]);
+                          /* :: */[0,/* tuple */[0,"",newval],/* [] */0]]]]]]);
             }
           }
         else
@@ -557,7 +590,7 @@ var
                       /* tuple */[0,"",c1],
                       /* :: */[0,
                        /* tuple */[0,"",c2],
-                       /* :: */[0,/* tuple */[0,"",newval],0]]]]]);
+                       /* :: */[0,/* tuple */[0,"",newval],/* [] */0]]]]]);
           }
         }
       else
@@ -568,7 +601,7 @@ var
                    /* tuple */[0,"",arr],
                    /* :: */[0,
                     /* tuple */[0,"",c1],
-                    /* :: */[0,/* tuple */[0,"",newval],0]]]]);
+                    /* :: */[0,/* tuple */[0,"",newval],/* [] */0]]]]);
         }
       }
     else
@@ -584,7 +617,7 @@ var
                   /* tuple */[0,"",arr],
                   /* :: */[0,
                    /* tuple */[0,"",ghexp(/* Pexp_array */[14,coords])],
-                   /* :: */[0,/* tuple */[0,"",newval],0]]]]);
+                   /* :: */[0,/* tuple */[0,"",newval],/* [] */0]]]]);
        
       }
     };
@@ -597,7 +630,7 @@ var
     else
      {throw [0,
              Syntaxerr["Error"],
-             /* Applicative_path */[3,Location["symbol_rloc"](0)]];
+             /* Applicative_path */[3,Location["symbol_rloc"](/* () */0)]];
       }
     };
 
@@ -628,17 +661,17 @@ var
   function(var_names,t)
    {var
      loop=
-      function(t$1)
-       {var match=t$1[1];
+      function(t)
+       {var match=t[1];
         
-        if(typeof match=="number")
-         {switch(match){case 0:var desc=0;}}
+        if(typeof match==="number")
+         {switch(match){case 0:var desc=/* Ptyp_any */0;}}
         else
          {switch(match[0])
            {case 0:
              var x=match[1];
              
-             check_variable(var_names,t$1[2],x);
+             check_variable(var_names,t[2],x);
              var desc=/* Ptyp_var */[0,x];
              
             case 1:
@@ -654,7 +687,7 @@ var
              
              var exit;
              
-             switch(match$1)
+             switch(match$1[0])
               {case 0:
                 if(match[2])
                  {exit=1176;}
@@ -694,7 +727,7 @@ var
             case 6:
              var string=match[2];
              
-             check_variable(var_names,t$1[2],string);
+             check_variable(var_names,t[2],string);
              var desc=/* Ptyp_alias */[6,loop(match[1]),string];
              
             case 7:
@@ -708,7 +741,7 @@ var
             case 8:
              var string_lst=match[1];
              
-             List["iter"](check_variable(var_names,t$1[2]),string_lst);
+             List["iter"](check_variable(var_names,t[2]),string_lst);
              var desc=/* Ptyp_poly */[8,string_lst,loop(match[2])];
              
             case 9:
@@ -733,13 +766,13 @@ var
              
             }}
         
-        return /* record */[0,desc,t$1[2],t$1[3]];
+        return /* record */[0,desc,t[2],t[3]];
         };
     
     var
      loop_row_field=
       function(param)
-       {switch(param)
+       {switch(param[0])
          {case 0:
            return /* Rtag */[0,
                    param[1],
@@ -762,8 +795,8 @@ var
     var
      exp$1=
       List["fold_right"]
-       (function(newtype,exp$2)
-         {return mkexp(/* Pexp_newtype */[30,newtype,exp$2]);},
+       (function(newtype,exp)
+         {return mkexp(/* Pexp_newtype */[30,newtype,exp]);},
         newtypes,
         exp);
     
@@ -789,7 +822,8 @@ var
               (/* Pexp_extension */[33,
                 /* tuple */[0,
                  ext[1],
-                 /* PStr */[0,/* :: */[0,mkstrexp(body$1,0),0]]]]);
+                 /* PStr */[0,
+                  /* :: */[0,mkstrexp(body$1,/* [] */0),/* [] */0]]]]);
       }
     else
      {return body$1;}
@@ -819,7 +853,7 @@ var
    {return /* :: */[0,
             /* Ptop_def */[0,
              Ast_helper["Str"][17](Docstrings["rhs_text"](pos))],
-            0];
+            /* [] */0];
     };
 
 var
@@ -856,7 +890,7 @@ var
             (function(txt)
               {return /* :: */[0,
                        /* Ptop_def */[0,Ast_helper["Str"][17](txt)],
-                       0];
+                       /* [] */0];
                },
              pos,
              items);
@@ -865,12 +899,12 @@ var
 var
  add_nonrec=
   function(rf,attrs,pos)
-   {if(rf!=0)
+   {if(rf!==0)
      {return attrs;}
     else
      {var name=/* record */[0,"nonrec",Location["rhs_loc"](pos)];
       
-      return /* :: */[0,/* tuple */[0,name,[0,0]],attrs];
+      return /* :: */[0,/* tuple */[0,name,[/* PStr */0,/* [] */0]],attrs];
       }
     };
 
@@ -881,20 +915,20 @@ var
             param[1],
             param[2],
             attrs,
-            Docstrings["symbol_docs_lazy"](0),
-            Docstrings["symbol_text_lazy"](0),
-            Location["symbol_rloc"](0)];
+            Docstrings["symbol_docs_lazy"](/* () */0),
+            Docstrings["symbol_text_lazy"](/* () */0),
+            Location["symbol_rloc"](/* () */0)];
     };
 
 var
  mklbs=
   function(param,rf,lb)
    {return /* record */[0,
-            /* :: */[0,lb,0],
+            /* :: */[0,lb,/* [] */0],
             rf,
             param[1],
             param[2],
-            Location["symbol_rloc"](0)];
+            Location["symbol_rloc"](/* () */0)];
     };
 
 var
@@ -912,11 +946,11 @@ var
     if(bindings)
      {var lb=bindings[1];
       
-      if("unknown primitive:isint")
+      if(typeof lb[1][1]==="number")
        {if(bindings[2])
          {exit=1149;}
         else
-         {var exp=wrap_exp_attrs(lb[2],/* tuple */[0,0,lbs[4]]);
+         {var exp=wrap_exp_attrs(lb[2],/* tuple */[0,/* None */0,lbs[4]]);
           
           var str=mkstr(/* Pstr_eval */[0,exp,lb[3]]);
           }
@@ -929,7 +963,7 @@ var
     
     switch(exit)
      {case 1149:
-       if(lbs[4]!=0)
+       if(lbs[4]!==/* [] */0)
         {throw [0,
                 Syntaxerr["Error"],
                 /* Not_expecting */[2,lbs[5],"attributes"]];
@@ -940,30 +974,30 @@ var
        var
         bindings$1=
          List["map"]
-          (function(lb$1)
-            {var lzarg=lb$1[4];
+          (function(lb)
+            {var lzarg=lb[4];
              
-             var tag="unknown primitive:caml_obj_tag";
+             var tag=CamlPrimitive["caml_obj_tag"](lzarg);
              
-             var lzarg$1=lb$1[5];
+             var lzarg$1=lb[5];
              
-             var tag$1="unknown primitive:caml_obj_tag";
+             var tag$1=CamlPrimitive["caml_obj_tag"](lzarg$1);
              
              return Ast_helper["Vb"][1]
-                     (/* Some */[0,lb$1[6]],
-                      /* Some */[0,lb$1[3]],
+                     (/* Some */[0,lb[6]],
+                      /* Some */[0,lb[3]],
                       /* Some */[0,
-                       (tag=250)
+                       tag===250
                         ?lzarg[1]
-                        :(tag=246)?CamlinternalLazy["force_lazy_block"](lzarg):lzarg],
+                        :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg],
                       /* Some */[0,
-                       (tag$1=250)
+                       tag$1===250
                         ?lzarg$1[1]
-                        :(tag$1=246)
+                        :tag$1===246
                           ?CamlinternalLazy["force_lazy_block"](lzarg$1)
                           :lzarg$1],
-                      lb$1[1],
-                      lb$1[2]);
+                      lb[1],
+                      lb[2]);
              },
            bindings);
        
@@ -976,8 +1010,10 @@ var
     if(match)
      {return ghstr
               (/* Pstr_extension */[14,
-                /* tuple */[0,match[1],/* PStr */[0,/* :: */[0,str,0]]],
-                0]);
+                /* tuple */[0,
+                 match[1],
+                 /* PStr */[0,/* :: */[0,str,/* [] */0]]],
+                /* [] */0]);
       }
     else
      {return str;}
@@ -990,7 +1026,7 @@ var
      bindings=
       List["map"]
        (function(lb)
-         {if(lb[3]!=0)
+         {if(lb[3]!==/* [] */0)
            {throw [0,
                    Syntaxerr["Error"],
                    /* Not_expecting */[2,lb[6],"item attribute"]];
@@ -998,7 +1034,13 @@ var
           else
            {}
           
-          return Ast_helper["Vb"][1](/* Some */[0,lb[6]],0,0,0,lb[1],lb[2]);
+          return Ast_helper["Vb"][1]
+                  (/* Some */[0,lb[6]],
+                   /* None */0,
+                   /* None */0,
+                   /* None */0,
+                   lb[1],
+                   lb[2]);
           },
         lbs[1]);
     
@@ -1014,7 +1056,7 @@ var
      bindings=
       List["map"]
        (function(lb)
-         {if(lb[3]!=0)
+         {if(lb[3]!==/* [] */0)
            {throw [0,
                    Syntaxerr["Error"],
                    /* Not_expecting */[2,lb[6],"item attribute"]];
@@ -1022,16 +1064,22 @@ var
           else
            {}
           
-          return Ast_helper["Vb"][1](/* Some */[0,lb[6]],0,0,0,lb[1],lb[2]);
+          return Ast_helper["Vb"][1]
+                  (/* Some */[0,lb[6]],
+                   /* None */0,
+                   /* None */0,
+                   /* None */0,
+                   lb[1],
+                   lb[2]);
           },
         lbs[1]);
     
-    if(lbs[3]!=0)
+    if(lbs[3]!==/* None */0)
      {throw [0,Syntaxerr["Error"],/* Not_expecting */[2,lbs[5],"extension"]];}
     else
      {}
     
-    if(lbs[4]!=0)
+    if(lbs[4]!==/* [] */0)
      {throw [0,Syntaxerr["Error"],/* Not_expecting */[2,lbs[5],"attributes"]];
       }
     else
@@ -1040,9 +1088,138 @@ var
     return mkclass(/* Pcl_let */[4,lbs[2],List["rev"](bindings),body]);
     };
 
-var yytransl_const="unknown primitive:caml_obj_dup";
+var
+ yytransl_const=
+  CamlPrimitive["caml_obj_dup"]
+   ([0,
+     257,
+     258,
+     259,
+     260,
+     261,
+     262,
+     263,
+     264,
+     265,
+     266,
+     267,
+     269,
+     270,
+     271,
+     272,
+     273,
+     274,
+     275,
+     276,
+     277,
+     278,
+     279,
+     280,
+     281,
+     282,
+     0,
+     283,
+     284,
+     285,
+     286,
+     288,
+     289,
+     290,
+     291,
+     292,
+     293,
+     294,
+     295,
+     296,
+     297,
+     303,
+     304,
+     309,
+     310,
+     311,
+     312,
+     313,
+     314,
+     315,
+     316,
+     317,
+     318,
+     319,
+     320,
+     322,
+     323,
+     324,
+     325,
+     326,
+     327,
+     328,
+     329,
+     330,
+     331,
+     332,
+     334,
+     335,
+     336,
+     337,
+     338,
+     340,
+     341,
+     342,
+     343,
+     344,
+     346,
+     347,
+     348,
+     349,
+     350,
+     351,
+     352,
+     353,
+     354,
+     355,
+     357,
+     358,
+     360,
+     361,
+     362,
+     363,
+     364,
+     365,
+     366,
+     368,
+     369,
+     370,
+     371,
+     372,
+     373,
+     376,
+     0]);
 
-var yytransl_block="unknown primitive:caml_obj_dup";
+var
+ yytransl_block=
+  CamlPrimitive["caml_obj_dup"]
+   ([0,
+     268,
+     287,
+     298,
+     299,
+     300,
+     301,
+     302,
+     305,
+     306,
+     307,
+     308,
+     321,
+     333,
+     339,
+     345,
+     356,
+     359,
+     367,
+     374,
+     375,
+     0]);
 
 var
  yylhs=
@@ -1092,7 +1269,8 @@ var
 
 var
  yyact=
-  [function(param){return Pervasives["failwith"]("parser");},
+  [/* array */0,
+   function(param){return Pervasives["failwith"]("parser");},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return extra_str(1,_1);},
    function(__caml_parser_env)
@@ -1104,17 +1282,18 @@ var
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return _1;},
-   function(__caml_parser_env){throw End_of_file;return undefined;},
+   function(__caml_parser_env)
+    {throw CamlPrimitive["caml_global_data"]["End_of_file"];return undefined;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Pervasives["@"](text_str(1),/* :: */[0,mkstrexp(_1,_2),0]);
+     return Pervasives["@"](text_str(1),/* :: */[0,mkstrexp(_1,_2),/* [] */0]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -1135,9 +1314,11 @@ var
      
      return Pervasives["@"]
              (text_def(1),
-              /* :: */[0,/* Ptop_def */[0,/* :: */[0,mkstrexp(_1,_2),0]],_3]);
+              /* :: */[0,
+               /* Ptop_def */[0,/* :: */[0,mkstrexp(_1,_2),/* [] */0]],
+               _3]);
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env){return text_def(1);},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
@@ -1151,7 +1332,9 @@ var
              (text_def(1),
               Pervasives["@"]
                (text_def(2),
-                /* :: */[0,/* Ptop_def */[0,/* :: */[0,mkstrexp(_2,_3),0]],_4]));
+                /* :: */[0,
+                 /* Ptop_def */[0,/* :: */[0,mkstrexp(_2,_3),/* [] */0]],
+                 _4]));
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -1161,7 +1344,8 @@ var
      return Pervasives["@"]
              (text_def(1),
               Pervasives["@"]
-               (text_def(2),/* :: */[0,/* Ptop_def */[0,/* :: */[0,_2,0]],_3]));
+               (text_def(2),
+                /* :: */[0,/* Ptop_def */[0,/* :: */[0,_2,/* [] */0]],_3]));
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -1178,7 +1362,8 @@ var
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      return Pervasives["@"]
-             (text_def(1),/* :: */[0,/* Ptop_def */[0,/* :: */[0,_1,0]],_2]);
+             (text_def(1),
+              /* :: */[0,/* Ptop_def */[0,/* :: */[0,_1,/* [] */0]],_2]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
@@ -1194,7 +1379,8 @@ var
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return _1;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return _1;},
-   function(__caml_parser_env){return /* tuple */[0,mkrhs("*",2),0];},
+   function(__caml_parser_env)
+    {return /* tuple */[0,mkrhs("*",2),/* None */0];},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
      
@@ -1213,7 +1399,10 @@ var
      return /* :: */[0,_2,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -1250,7 +1439,8 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
-     return mkmod(/* Pmod_apply */[3,_1,mkmod([1,0])]);
+     return mkmod
+             (/* Pmod_apply */[3,_1,mkmod([/* Pmod_structure */1,/* [] */0])]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,3);
@@ -1318,7 +1508,10 @@ var
      return mkmod
              (/* Pmod_unpack */[5,
                ghexp
-                (/* Pexp_coerce */[20,_3,0,ghtyp(/* Ptyp_package */[9,_5])])]);
+                (/* Pexp_coerce */[20,
+                  _3,
+                  /* None */0,
+                  ghtyp(/* Ptyp_package */[9,_5])])]);
      },
    function(__caml_parser_env)
     {var _3=Parsing["peek_val"](__caml_parser_env,2);
@@ -1359,7 +1552,7 @@ var
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -1440,12 +1633,13 @@ var
      return mkstr
              (/* Pstr_extension */[14,
                _1,
-               Docstrings["add_docs_attrs"](Docstrings["symbol_docs"](0),_2)]);
+               Docstrings["add_docs_attrs"]
+                (Docstrings["symbol_docs"](/* () */0),_2)]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Docstrings["mark_symbol_docs"](0),
+     return Docstrings["mark_symbol_docs"](/* () */0),
             mkstr(/* Pstr_attribute */[13,_1]);
      },
    function(__caml_parser_env)
@@ -1454,9 +1648,9 @@ var
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Incl"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               _2);
      },
    function(__caml_parser_env)
@@ -1483,15 +1677,18 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Mb"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_2,2),
               _3);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -1507,10 +1704,10 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Mb"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_3,3),
               _4);
      },
@@ -1522,10 +1719,10 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Mb"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              /* Some */[0,Docstrings["symbol_text"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* Some */[0,Docstrings["symbol_text"](/* () */0)],
               mkrhs(_2,2),
               _3);
      },
@@ -1586,7 +1783,7 @@ var
      
      return Ast_helper["Mty"][2](_1,_2);
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -1672,12 +1869,13 @@ var
      return mksig
              (/* Psig_extension */[12,
                _1,
-               Docstrings["add_docs_attrs"](Docstrings["symbol_docs"](0),_2)]);
+               Docstrings["add_docs_attrs"]
+                (Docstrings["symbol_docs"](/* () */0),_2)]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Docstrings["mark_symbol_docs"](0),
+     return Docstrings["mark_symbol_docs"](/* () */0),
             mksig(/* Psig_attribute */[11,_1]);
      },
    function(__caml_parser_env)
@@ -1688,9 +1886,9 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Opn"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Some */[0,_2],
               mkrhs(_3,3));
      },
@@ -1700,9 +1898,9 @@ var
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Incl"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               _2);
      },
    function(__caml_parser_env)
@@ -1719,7 +1917,7 @@ var
    function(__caml_parser_env)
     {var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkmty(/* Pmty_functor */[2,mkrhs("*",1),0,_3]);
+     return mkmty(/* Pmty_functor */[2,mkrhs("*",1),/* None */0,_3]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
@@ -1729,10 +1927,10 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Md"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_2,2),
               _3);
      },
@@ -1744,16 +1942,19 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Md"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_2,2),
               Ast_helper["Mty"][4]
-               (/* Some */[0,Location["rhs_loc"](4)],0,mkrhs(_4,4)));
+               (/* Some */[0,Location["rhs_loc"](4)],/* None */0,mkrhs(_4,4)));
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -1769,10 +1970,10 @@ var
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Md"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_6],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_3,3),
               _5);
      },
@@ -1784,14 +1985,14 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Md"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              /* Some */[0,Docstrings["symbol_text"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* Some */[0,Docstrings["symbol_text"](/* () */0)],
               mkrhs(_2,2),
               _4);
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* None */0;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_2];},
    function(__caml_parser_env)
@@ -1802,15 +2003,18 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Mtd"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               _4,
               mkrhs(_3,3));
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -1830,10 +2034,10 @@ var
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Ci"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_6],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               /* Some */[0,_2],
               /* Some */[0,_3],
               mkrhs(_4,4),
@@ -1851,10 +2055,10 @@ var
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Ci"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_6],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              /* Some */[0,Docstrings["symbol_text"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* Some */[0,Docstrings["symbol_text"](/* () */0)],
               /* Some */[0,_2],
               /* Some */[0,_3],
               mkrhs(_4,4),
@@ -1876,7 +2080,7 @@ var
      
      return mkclass(/* Pcl_fun */[2,_1[1],_1[2],_1[3],_2]);
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);return List["rev"](_2);},
    function(__caml_parser_env)
@@ -1936,7 +2140,7 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkclass(/* Pcl_constr */[0,mkrhs(_1,1),0]);
+     return mkclass(/* Pcl_constr */[0,mkrhs(_1,1),/* [] */0]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -1985,8 +2189,8 @@ var
      
      return mkpat(/* Ppat_constraint */[10,_2,_4]);
      },
-   function(__caml_parser_env){return ghpat(0);},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return ghpat(/* Ppat_any */0);},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -2005,7 +2209,7 @@ var
      
      return mkcf
              (/* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pcf_inherit */[0,_2,_3,_4]);
      },
    function(__caml_parser_env)
@@ -2015,7 +2219,7 @@ var
      
      return mkcf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pcf_val */[1,_2]);
      },
    function(__caml_parser_env)
@@ -2025,7 +2229,7 @@ var
      
      return mkcf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pcf_method */[2,_2]);
      },
    function(__caml_parser_env)
@@ -2035,7 +2239,7 @@ var
      
      return mkcf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pcf_constraint */[3,_2]);
      },
    function(__caml_parser_env)
@@ -2045,7 +2249,7 @@ var
      
      return mkcf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pcf_initializer */[4,_2]);
      },
    function(__caml_parser_env)
@@ -2055,18 +2259,18 @@ var
      
      return mkcf
              (/* Some */[0,_2],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pcf_extension */[6,_1]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Docstrings["mark_symbol_docs"](0),
-            mkcf(0,0,/* Pcf_attribute */[5,_1]);
+     return Docstrings["mark_symbol_docs"](/* () */0),
+            mkcf(/* None */0,/* None */0,/* Pcf_attribute */[5,_1]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_2];},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* None */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,5);
      
@@ -2074,11 +2278,11 @@ var
      
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
-     if(_1=0){syntax_error(0)}else{}
+     if(_1===/* Override */0){syntax_error(/* () */0)}else{}
      
      return /* tuple */[0,
              Location["mkloc"](_4,Location["rhs_loc"](4)),
-             1,
+             /* Mutable */1,
              /* Cfk_virtual */[0,_6]];
      },
    function(__caml_parser_env)
@@ -2123,11 +2327,11 @@ var
      
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
-     if(_1=0){syntax_error(0)}else{}
+     if(_1===/* Override */0){syntax_error(/* () */0)}else{}
      
      return /* tuple */[0,
              Location["mkloc"](_4,Location["rhs_loc"](4)),
-             0,
+             /* Private */0,
              /* Cfk_virtual */[0,_6]];
      },
    function(__caml_parser_env)
@@ -2139,7 +2343,7 @@ var
      
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
-     if(_1=0){syntax_error(0)}else{}
+     if(_1===/* Override */0){syntax_error(/* () */0)}else{}
      
      return /* tuple */[0,
              Location["mkloc"](_4,Location["rhs_loc"](4)),
@@ -2158,7 +2362,9 @@ var
      return /* tuple */[0,
              Location["mkloc"](_3,Location["rhs_loc"](3)),
              _2,
-             /* Cfk_concrete */[1,_1,ghexp(/* Pexp_poly */[28,_4,0])]];
+             /* Cfk_concrete */[1,
+              _1,
+              ghexp(/* Pexp_poly */[28,_4,/* None */0])]];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,6);
@@ -2249,7 +2455,7 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkcty(/* Pcty_constr */[0,mkrhs(_1,1),0]);
+     return mkcty(/* Pcty_constr */[0,mkrhs(_1,1),/* [] */0]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -2282,8 +2488,8 @@ var
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);return _2;},
-   function(__caml_parser_env){return mktyp(0);},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return mktyp(/* Ptyp_any */0);},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -2298,7 +2504,7 @@ var
      
      return mkctf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pctf_inherit */[0,_2]);
      },
    function(__caml_parser_env)
@@ -2308,7 +2514,7 @@ var
      
      return mkctf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pctf_val */[1,_2]);
      },
    function(__caml_parser_env)
@@ -2322,7 +2528,7 @@ var
      
      return mkctf
              (/* Some */[0,_6],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pctf_method */[2,/* tuple */[0,_3,_2[1],_2[2],_5]]);
      },
    function(__caml_parser_env)
@@ -2332,7 +2538,7 @@ var
      
      return mkctf
              (/* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pctf_constraint */[3,_2]);
      },
    function(__caml_parser_env)
@@ -2342,14 +2548,14 @@ var
      
      return mkctf
              (/* Some */[0,_2],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Pctf_extension */[5,_1]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Docstrings["mark_symbol_docs"](0),
-            mkctf(0,0,/* Pctf_attribute */[4,_1]);
+     return Docstrings["mark_symbol_docs"](/* () */0),
+            mkctf(/* None */0,/* None */0,/* Pctf_attribute */[4,_1]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
@@ -2358,7 +2564,7 @@ var
      
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_3,_2,0,_5];
+     return /* tuple */[0,_3,_2,/* Virtual */0,_5];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
@@ -2367,21 +2573,21 @@ var
      
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_3,1,_2,_5];
+     return /* tuple */[0,_3,/* Mutable */1,_2,_5];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_1,0,1,_3];
+     return /* tuple */[0,_1,/* Immutable */0,/* Concrete */1,_3];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_1,_3,Location["symbol_rloc"](0)];
+     return /* tuple */[0,_1,_3,Location["symbol_rloc"](/* () */0)];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -2391,7 +2597,10 @@ var
      return /* tuple */[0,_1,_3];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -2411,10 +2620,10 @@ var
      var _7=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Ci"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_7],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               /* Some */[0,_2],
               /* Some */[0,_3],
               mkrhs(_4,4),
@@ -2432,17 +2641,20 @@ var
      var _7=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Ci"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_7],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              /* Some */[0,Docstrings["symbol_text"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* Some */[0,Docstrings["symbol_text"](/* () */0)],
               /* Some */[0,_2],
               /* Some */[0,_3],
               mkrhs(_4,4),
               _6);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -2462,10 +2674,10 @@ var
      var _8=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Ci"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_8],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               /* Some */[0,_3],
               /* Some */[0,_4],
               mkrhs(_5,5),
@@ -2483,10 +2695,10 @@ var
      var _7=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Ci"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_7],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              /* Some */[0,Docstrings["symbol_text"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* Some */[0,Docstrings["symbol_text"](/* () */0)],
               /* Some */[0,_2],
               /* Some */[0,_3],
               mkrhs(_4,4),
@@ -2513,7 +2725,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,Pervasives["^"]("?",_2[1]),0,_2[2]];
+     return /* tuple */[0,Pervasives["^"]("?",_2[1]),/* None */0,_2[2]];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -2529,37 +2741,37 @@ var
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,Pervasives["^"]("?",_1),0,_2];
+     return /* tuple */[0,Pervasives["^"]("?",_1),/* None */0,_2];
      },
    function(__caml_parser_env)
     {var _3=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* tuple */[0,_3[1],0,_3[2]];
+     return /* tuple */[0,_3[1],/* None */0,_3[2]];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_2[1],0,_2[2]];
+     return /* tuple */[0,_2[1],/* None */0,_2[2]];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_1,0,_2];
+     return /* tuple */[0,_1,/* None */0,_2];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,"",0,_1];
+     return /* tuple */[0,"",/* None */0,_1];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
      return mkpat(/* Ppat_var */[0,mkrhs(_1,1)]);
      },
-   function(__caml_parser_env){return mkpat(0);},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return mkpat(/* Ppat_any */0);},
+   function(__caml_parser_env){return /* None */0;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_2];},
    function(__caml_parser_env)
@@ -2677,7 +2889,7 @@ var
      
      var _3=Parsing["peek_val"](__caml_parser_env,2);
      
-     return syntax_error(0);
+     return syntax_error(/* () */0);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
@@ -2716,7 +2928,7 @@ var
      
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkexp_attrs(/* Pexp_ifthenelse */[15,_3,_5,0],_2);
+     return mkexp_attrs(/* Pexp_ifthenelse */[15,_3,_5,/* None */0],_2);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,4);
@@ -2749,8 +2961,9 @@ var
      
      return mkexp_cons
              (Location["rhs_loc"](2),
-              ghexp(/* Pexp_tuple */[8,/* :: */[0,_1,/* :: */[0,_3,0]]]),
-              Location["symbol_rloc"](0));
+              ghexp
+               (/* Pexp_tuple */[8,/* :: */[0,_1,/* :: */[0,_3,/* [] */0]]]),
+              Location["symbol_rloc"](/* () */0));
      },
    function(__caml_parser_env)
     {var _5=Parsing["peek_val"](__caml_parser_env,3);
@@ -2759,8 +2972,9 @@ var
      
      return mkexp_cons
              (Location["rhs_loc"](2),
-              ghexp(/* Pexp_tuple */[8,/* :: */[0,_5,/* :: */[0,_7,0]]]),
-              Location["symbol_rloc"](0));
+              ghexp
+               (/* Pexp_tuple */[8,/* :: */[0,_5,/* :: */[0,_7,/* [] */0]]]),
+              Location["symbol_rloc"](/* () */0));
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -2949,7 +3163,7 @@ var
                 /* tuple */[0,"",_1],
                 /* :: */[0,
                  /* tuple */[0,"",_4],
-                 /* :: */[0,/* tuple */[0,"",_7],0]]]]);
+                 /* :: */[0,/* tuple */[0,"",_7],/* [] */0]]]]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,6);
@@ -2965,7 +3179,7 @@ var
                 /* tuple */[0,"",_1],
                 /* :: */[0,
                  /* tuple */[0,"",_4],
-                 /* :: */[0,/* tuple */[0,"",_7],0]]]]);
+                 /* :: */[0,/* tuple */[0,"",_7],/* [] */0]]]]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,6);
@@ -3031,12 +3245,12 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkexp(/* Pexp_construct */[9,mkrhs(_1,1),0]);
+     return mkexp(/* Pexp_construct */[9,mkrhs(_1,1),/* None */0]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkexp(/* Pexp_variant */[10,_1,0]);
+     return mkexp(/* Pexp_variant */[10,_1,/* None */0]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);return reloc_exp(_2);},
@@ -3057,8 +3271,9 @@ var
      
      return mkexp_attrs
              (/* Pexp_construct */[9,
-               Location["mkloc"]([0,"()"],Location["symbol_rloc"](0)),
-               0],
+               Location["mkloc"]
+                ([/* Lident */0,"()"],Location["symbol_rloc"](/* () */0)),
+               /* None */0],
               _2);
      },
    function(__caml_parser_env)
@@ -3087,7 +3302,7 @@ var
      
      var _4=Parsing["peek_val"](__caml_parser_env,1);
      
-     return mkexp(/* Pexp_open */[32,1,mkrhs(_1,1),_4]);
+     return mkexp(/* Pexp_open */[32,/* Fresh */1,mkrhs(_1,1),_4]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -3106,7 +3321,7 @@ var
                ghexp(/* Pexp_ident */[0,array_function("Array","get")]),
                /* :: */[0,
                 /* tuple */[0,"",_1],
-                /* :: */[0,/* tuple */[0,"",_4],0]]]);
+                /* :: */[0,/* tuple */[0,"",_4],/* [] */0]]]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -3125,7 +3340,7 @@ var
                ghexp(/* Pexp_ident */[0,array_function("String","get")]),
                /* :: */[0,
                 /* tuple */[0,"",_1],
-                /* :: */[0,/* tuple */[0,"",_4],0]]]);
+                /* :: */[0,/* tuple */[0,"",_4],/* [] */0]]]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -3165,7 +3380,7 @@ var
      
      var rec_exp=mkexp(/* Pexp_record */[11,_4[2],_4[1]]);
      
-     return mkexp(/* Pexp_open */[32,1,mkrhs(_1,1),rec_exp]);
+     return mkexp(/* Pexp_open */[32,/* Fresh */1,mkrhs(_1,1),rec_exp]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -3188,7 +3403,7 @@ var
      
      return unclosed("[|",1,"|]",4);
      },
-   function(__caml_parser_env){return mkexp([14,0]);},
+   function(__caml_parser_env){return mkexp([/* Pexp_array */14,/* [] */0]);},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,5);
      
@@ -3198,7 +3413,7 @@ var
      
      return mkexp
              (/* Pexp_open */[32,
-               1,
+               /* Fresh */1,
                mkrhs(_1,1),
                mkexp(/* Pexp_array */[14,List["rev"](_4)])]);
      },
@@ -3236,7 +3451,7 @@ var
       list_exp=
        reloc_exp(mktailexp(Location["rhs_loc"](6),List["rev"](_4)));
      
-     return mkexp(/* Pexp_open */[32,1,mkrhs(_1,1),list_exp]);
+     return mkexp(/* Pexp_open */[32,/* Fresh */1,mkrhs(_1,1),list_exp]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,5);
@@ -3255,7 +3470,7 @@ var
      return mkexp
              (/* Pexp_apply */[5,
                mkoperator(_1,1),
-               /* :: */[0,/* tuple */[0,"",_2],0]]);
+               /* :: */[0,/* tuple */[0,"",_2],/* [] */0]]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
@@ -3263,7 +3478,7 @@ var
      return mkexp
              (/* Pexp_apply */[5,
                mkoperator("!",1),
-               /* :: */[0,/* tuple */[0,"",_2],0]]);
+               /* :: */[0,/* tuple */[0,"",_2],/* [] */0]]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -3286,7 +3501,8 @@ var
      
      return unclosed("{<",1,">}",4);
      },
-   function(__caml_parser_env){return mkexp([24,0]);},
+   function(__caml_parser_env)
+    {return mkexp([/* Pexp_override */24,/* [] */0]);},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,5);
      
@@ -3296,7 +3512,7 @@ var
      
      return mkexp
              (/* Pexp_open */[32,
-               1,
+               /* Fresh */1,
                mkrhs(_1,1),
                mkexp(/* Pexp_override */[24,List["rev"](_4)])]);
      },
@@ -3354,7 +3570,7 @@ var
      
      return mkexp
              (/* Pexp_open */[32,
-               1,
+               /* Fresh */1,
                mkrhs(_1,1),
                mkexp
                 (/* Pexp_constraint */[19,
@@ -3374,7 +3590,10 @@ var
      return mkexp(/* Pexp_extension */[33,_1]);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -3418,7 +3637,10 @@ var
              mkexp(/* Pexp_ident */[0,mkrhs(/* Lident */[0,_1],1)])];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -3533,7 +3755,10 @@ var
      return mkexp(/* Pexp_newtype */[30,_3,_5]);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -3546,7 +3771,7 @@ var
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Ast_helper["Exp"][37](_1,0,_3);
+     return Ast_helper["Exp"][37](_1,/* None */0,_3);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -3585,7 +3810,7 @@ var
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,_3,/* :: */[0,_1,0]];
+     return /* :: */[0,_3,/* :: */[0,_1,/* [] */0]];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -3597,10 +3822,13 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,0,_1];
+     return /* tuple */[0,/* None */0,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -3609,7 +3837,10 @@ var
      return /* :: */[0,_1,_3];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,1);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,1);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -3627,7 +3858,7 @@ var
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,/* tuple */[0,mkrhs(_1,1),_3],0];
+     return /* :: */[0,/* tuple */[0,mkrhs(_1,1),_3],/* [] */0];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -3639,7 +3870,10 @@ var
      return /* :: */[0,/* tuple */[0,mkrhs(_3,3),_5],_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -3650,7 +3884,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,/* Some */[0,_2],0];
+     return /* tuple */[0,/* Some */[0,_2],/* None */0];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
@@ -3662,10 +3896,10 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,0,/* Some */[0,_2]];
+     return /* tuple */[0,/* None */0,/* Some */[0,_2]];
      },
-   function(__caml_parser_env){return syntax_error(0);},
-   function(__caml_parser_env){return syntax_error(0);},
+   function(__caml_parser_env){return syntax_error(/* () */0);},
+   function(__caml_parser_env){return syntax_error(/* () */0);},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
    function(__caml_parser_env)
@@ -3706,8 +3940,9 @@ var
      
      return mkpat_cons
              (Location["rhs_loc"](2),
-              ghpat(/* Ppat_tuple */[4,/* :: */[0,_1,/* :: */[0,_3,0]]]),
-              Location["symbol_rloc"](0));
+              ghpat
+               (/* Ppat_tuple */[4,/* :: */[0,_1,/* :: */[0,_3,/* [] */0]]]),
+              Location["symbol_rloc"](/* () */0));
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -3721,8 +3956,9 @@ var
      
      return mkpat_cons
              (Location["rhs_loc"](2),
-              ghpat(/* Ppat_tuple */[4,/* :: */[0,_5,/* :: */[0,_7,0]]]),
-              Location["symbol_rloc"](0));
+              ghpat
+               (/* Ppat_tuple */[4,/* :: */[0,_5,/* :: */[0,_7,/* [] */0]]]),
+              Location["symbol_rloc"](/* () */0));
      },
    function(__caml_parser_env)
     {var _5=Parsing["peek_val"](__caml_parser_env,3);
@@ -3767,7 +4003,7 @@ var
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
-   function(__caml_parser_env){return mkpat(0);},
+   function(__caml_parser_env){return mkpat(/* Ppat_any */0);},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -3783,12 +4019,12 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkpat(/* Ppat_construct */[5,mkrhs(_1,1),0]);
+     return mkpat(/* Ppat_construct */[5,mkrhs(_1,1),/* None */0]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mkpat(/* Ppat_variant */[6,_1,0]);
+     return mkpat(/* Ppat_variant */[6,_1,/* None */0]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
@@ -3826,7 +4062,7 @@ var
      
      return mkpat(/* Ppat_array */[8,List["rev"](_2)]);
      },
-   function(__caml_parser_env){return mkpat([8,0]);},
+   function(__caml_parser_env){return mkpat([/* Ppat_array */8,/* [] */0]);},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -3899,7 +4135,7 @@ var
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,_3,/* :: */[0,_1,0]];
+     return /* :: */[0,_3,/* :: */[0,_1,/* [] */0]];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -3907,7 +4143,10 @@ var
      return expecting(3,"pattern");
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -3918,19 +4157,19 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,/* :: */[0,_1,0],0];
+     return /* tuple */[0,/* :: */[0,_1,/* [] */0],/* Closed */0];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* tuple */[0,/* :: */[0,_1,0],0];
+     return /* tuple */[0,/* :: */[0,_1,/* [] */0],/* Closed */0];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,3);
      
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,/* :: */[0,_1,0],1];
+     return /* tuple */[0,/* :: */[0,_1,/* [] */0],/* Open */1];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -3959,17 +4198,17 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Val"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_2,2),
               _4);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,_1[1],0];
+     return /* :: */[0,_1[1],/* [] */0];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
@@ -3988,15 +4227,18 @@ var
      var _7=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Val"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_7],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Some */[0,_6],
               mkrhs(_2,2),
               _4);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -4018,10 +4260,10 @@ var
      var _7=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Type"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,add_nonrec(_2,_7,2)],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               /* Some */[0,_3],
               /* Some */[0,List["rev"](_6)],
               /* Some */[0,_5[1]],
@@ -4041,10 +4283,10 @@ var
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Type"][1]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_6],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              /* Some */[0,Docstrings["symbol_text"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* Some */[0,Docstrings["symbol_text"](/* () */0)],
               /* Some */[0,_2],
               /* Some */[0,List["rev"](_5)],
               /* Some */[0,_4[1]],
@@ -4059,35 +4301,49 @@ var
      
      return /* :: */[0,_3,_1];
      },
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return [0,0,1,0];},
+   function(__caml_parser_env){return /* [] */0;},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Ptype_abstract */0,/* Public */1,/* None */0];},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,0,1,/* Some */[0,_2]];
+     return /* tuple */[0,
+             /* Ptype_abstract */0,
+             /* Public */1,
+             /* Some */[0,_2]];
      },
    function(__caml_parser_env)
     {var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,0,0,/* Some */[0,_3]];
+     return /* tuple */[0,
+             /* Ptype_abstract */0,
+             /* Private */0,
+             /* Some */[0,_3]];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,/* Ptype_variant */[0,List["rev"](_2)],1,0];
+     return /* tuple */[0,
+             /* Ptype_variant */[0,List["rev"](_2)],
+             /* Public */1,
+             /* None */0];
      },
    function(__caml_parser_env)
     {var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,/* Ptype_variant */[0,List["rev"](_3)],0,0];
+     return /* tuple */[0,
+             /* Ptype_variant */[0,List["rev"](_3)],
+             /* Private */0,
+             /* None */0];
      },
-   function(__caml_parser_env){return [0,1,1,0];},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Ptype_open */1,/* Public */1,/* None */0];},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
      
      var _4=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* tuple */[0,/* Ptype_record */[1,_4],_2,0];
+     return /* tuple */[0,/* Ptype_record */[1,_4],_2,/* None */0];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
@@ -4104,7 +4360,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
      
-     return /* tuple */[0,1,1,/* Some */[0,_2]];
+     return /* tuple */[0,/* Ptype_open */1,/* Public */1,/* Some */[0,_2]];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,5);
@@ -4115,9 +4371,12 @@ var
      
      return /* tuple */[0,/* Ptype_record */[1,_6],_4,/* Some */[0,_2]];
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);return List["rev"](_2);},
    function(__caml_parser_env)
@@ -4128,7 +4387,10 @@ var
      return /* tuple */[0,_2,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4141,10 +4403,13 @@ var
      
      return mktyp(/* Ptyp_var */[0,_2]);
      },
-   function(__caml_parser_env){return mktyp(0);},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return mktyp(/* Ptyp_any */0);},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);return List["rev"](_2);},
    function(__caml_parser_env)
@@ -4154,16 +4419,19 @@ var
      
      return /* tuple */[0,_2,_1];
      },
-   function(__caml_parser_env){return 2;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 1;},
+   function(__caml_parser_env){return /* Invariant */2;},
+   function(__caml_parser_env){return /* Covariant */0;},
+   function(__caml_parser_env){return /* Contravariant */1;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      return mktyp(/* Ptyp_var */[0,_2]);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4172,9 +4440,15 @@ var
      return /* :: */[0,_3,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -4190,9 +4464,9 @@ var
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Type"][2]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_3],
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               /* Some */[0,_2[1]],
               _2[2],
               mkrhs(_1,1));
@@ -4205,9 +4479,9 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Type"][2]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               /* Some */[0,_3[1]],
               _3[2],
               mkrhs(_2,2));
@@ -4224,10 +4498,10 @@ var
      var _6=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Te"][4]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,Pervasives["@"](_5,_6)],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               mkrhs(_2,2),
               mkrhs(_4,4));
      },
@@ -4241,19 +4515,19 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Te"][3]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,Pervasives["@"](_4,_5)],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
-              0,
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
+              /* None */0,
               /* Some */[0,_3[1]],
               _3[2],
               mkrhs(_2,2));
      },
-   function(__caml_parser_env){return [0,0,0];},
+   function(__caml_parser_env){return [/* tuple */0,/* [] */0,/* None */0];},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,List["rev"](_2),0];
+     return /* tuple */[0,List["rev"](_2),/* None */0];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
@@ -4265,12 +4539,18 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,0,/* Some */[0,_2]];
+     return /* tuple */[0,/* [] */0,/* Some */[0,_2]];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -4288,9 +4568,9 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Type"][3]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               /* Some */[0,_1],
               mkrhs(_2,2),
               _4);
@@ -4311,10 +4591,10 @@ var
      if(info_before_semi)
       {var info=info_before_semi;}
      else
-      {var info=Docstrings["symbol_info"](0);}
+      {var info=Docstrings["symbol_info"](/* () */0);}
      
      return Ast_helper["Type"][3]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,Pervasives["@"](_5,_7)],
               /* Some */[0,info],
               /* Some */[0,_1],
@@ -4334,11 +4614,11 @@ var
      
      var _8=Parsing["peek_val"](__caml_parser_env,0);
      
-     if(_2!=1){not_expecting(2,"nonrec flag")}else{}
+     if(_2!==/* Recursive */1){not_expecting(2,"nonrec flag")}else{}
      
      return Ast_helper["Te"][1]
              (/* Some */[0,_8],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Some */[0,_3],
               /* Some */[0,_6],
               mkrhs(_4,4),
@@ -4357,30 +4637,35 @@ var
      
      var _8=Parsing["peek_val"](__caml_parser_env,0);
      
-     if(_2!=1){not_expecting(2,"nonrec flag")}else{}
+     if(_2!==/* Recursive */1){not_expecting(2,"nonrec flag")}else{}
      
      return Ast_helper["Te"][1]
              (/* Some */[0,_8],
-              /* Some */[0,Docstrings["symbol_docs"](0)],
+              /* Some */[0,Docstrings["symbol_docs"](/* () */0)],
               /* Some */[0,_3],
               /* Some */[0,_6],
               mkrhs(_4,4),
               List["rev"](_7));
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,1);
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     var _2=Parsing["peek_val"](__caml_parser_env,0);
+     return /* :: */[0,_1,/* [] */0];
+     },
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,_2,_1];
+     return /* :: */[0,_1,/* [] */0];
+     },
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
@@ -4390,9 +4675,22 @@ var
      return /* :: */[0,_2,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,1);
+     
+     var _2=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_2,_1];
+     },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -4408,10 +4706,10 @@ var
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Te"][3]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_3],
-              0,
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* None */0,
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               /* Some */[0,_2[1]],
               _2[2],
               mkrhs(_1,1));
@@ -4424,10 +4722,10 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Te"][3]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              0,
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* None */0,
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               /* Some */[0,_3[1]],
               _3[2],
               mkrhs(_2,2));
@@ -4440,10 +4738,10 @@ var
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Te"][4]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_4],
-              0,
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* None */0,
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               mkrhs(_1,1),
               mkrhs(_3,3));
      },
@@ -4455,15 +4753,18 @@ var
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
      return Ast_helper["Te"][4]
-             (/* Some */[0,Location["symbol_rloc"](0)],
+             (/* Some */[0,Location["symbol_rloc"](/* () */0)],
               /* Some */[0,_5],
-              0,
-              /* Some */[0,Docstrings["symbol_info"](0)],
+              /* None */0,
+              /* Some */[0,Docstrings["symbol_info"](/* () */0)],
               mkrhs(_2,2),
               mkrhs(_4,4));
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4485,13 +4786,13 @@ var
      return /* Pwith_type */[0,
              mkrhs(_3,3),
              Ast_helper["Type"][1]
-              (/* Some */[0,Location["symbol_rloc"](0)],
-               0,
-               0,
-               0,
+              (/* Some */[0,Location["symbol_rloc"](/* () */0)],
+               /* None */0,
+               /* None */0,
+               /* None */0,
                /* Some */[0,_2],
                /* Some */[0,List["rev"](_6)],
-               0,
+               /* None */0,
                /* Some */[0,_4],
                /* Some */[0,_5],
                mkrhs(Longident["last"](_3),3))];
@@ -4505,14 +4806,14 @@ var
      
      return /* Pwith_typesubst */[2,
              Ast_helper["Type"][1]
-              (/* Some */[0,Location["symbol_rloc"](0)],
-               0,
-               0,
-               0,
+              (/* Some */[0,Location["symbol_rloc"](/* () */0)],
+               /* None */0,
+               /* None */0,
+               /* None */0,
                /* Some */[0,_2],
-               0,
-               0,
-               0,
+               /* None */0,
+               /* None */0,
+               /* None */0,
                /* Some */[0,_5],
                mkrhs(_3,3))];
      },
@@ -4530,10 +4831,13 @@ var
      
      return /* Pwith_modsubst */[3,mkrhs(_2,2),mkrhs(_4,4)];
      },
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* Public */1;},
+   function(__caml_parser_env){return /* Private */0;},
    function(__caml_parser_env)
-    {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_2,0];},
+    {var _2=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_2,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4644,18 +4948,18 @@ var
      
      return mktyp(/* Ptyp_var */[0,_2]);
      },
-   function(__caml_parser_env){return mktyp(0);},
+   function(__caml_parser_env){return mktyp(/* Ptyp_any */0);},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mktyp(/* Ptyp_constr */[3,mkrhs(_1,1),0]);
+     return mktyp(/* Ptyp_constr */[3,mkrhs(_1,1),/* [] */0]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mktyp(/* Ptyp_constr */[3,mkrhs(_2,2),/* :: */[0,_1,0]]);
+     return mktyp(/* Ptyp_constr */[3,mkrhs(_2,2),/* :: */[0,_1,/* [] */0]]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
@@ -4669,18 +4973,19 @@ var
      
      return mktyp(/* Ptyp_object */[4,_2[1],_2[2]]);
      },
-   function(__caml_parser_env){return mktyp([4,0,0]);},
+   function(__caml_parser_env)
+    {return mktyp([/* Ptyp_object */4,/* [] */0,/* Closed */0]);},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mktyp(/* Ptyp_class */[5,mkrhs(_2,2),0]);
+     return mktyp(/* Ptyp_class */[5,mkrhs(_2,2),/* [] */0]);
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return mktyp(/* Ptyp_class */[5,mkrhs(_3,3),/* :: */[0,_1,0]]);
+     return mktyp(/* Ptyp_class */[5,mkrhs(_3,3),/* :: */[0,_1,/* [] */0]]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
@@ -4692,34 +4997,49 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
      
-     return mktyp(/* Ptyp_variant */[7,/* :: */[0,_2,0],0,0]);
+     return mktyp
+             (/* Ptyp_variant */[7,
+               /* :: */[0,_2,/* [] */0],
+               /* Closed */0,
+               /* None */0]);
      },
    function(__caml_parser_env)
     {var _3=Parsing["peek_val"](__caml_parser_env,1);
      
-     return mktyp(/* Ptyp_variant */[7,List["rev"](_3),0,0]);
+     return mktyp
+             (/* Ptyp_variant */[7,List["rev"](_3),/* Closed */0,/* None */0]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,3);
      
      var _4=Parsing["peek_val"](__caml_parser_env,1);
      
-     return mktyp(/* Ptyp_variant */[7,/* :: */[0,_2,List["rev"](_4)],0,0]);
+     return mktyp
+             (/* Ptyp_variant */[7,
+               /* :: */[0,_2,List["rev"](_4)],
+               /* Closed */0,
+               /* None */0]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,1);
      
-     return mktyp(/* Ptyp_variant */[7,List["rev"](_3),1,0]);
+     return mktyp
+             (/* Ptyp_variant */[7,List["rev"](_3),/* Open */1,/* None */0]);
      },
-   function(__caml_parser_env){return mktyp([7,0,1,0]);},
+   function(__caml_parser_env)
+    {return mktyp([/* Ptyp_variant */7,/* [] */0,/* Open */1,/* None */0]);},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,1);
      
-     return mktyp(/* Ptyp_variant */[7,List["rev"](_3),0,[0,0]]);
+     return mktyp
+             (/* Ptyp_variant */[7,
+               List["rev"](_3),
+               /* Closed */0,
+               [/* Some */0,/* [] */0]]);
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,4);
@@ -4731,7 +5051,7 @@ var
      return mktyp
              (/* Ptyp_variant */[7,
                List["rev"](_3),
-               0,
+               /* Closed */0,
                /* Some */[0,List["rev"](_5)]]);
      },
    function(__caml_parser_env)
@@ -4747,7 +5067,7 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,mkrhs(_1,1),0];
+     return /* tuple */[0,mkrhs(_1,1),/* [] */0];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -4764,7 +5084,10 @@ var
      return /* tuple */[0,mkrhs(_2,2),_4];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4773,7 +5096,10 @@ var
      return /* :: */[0,_1,_3];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4804,12 +5130,15 @@ var
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Rtag */[0,_1,_2,1,0];
+     return /* Rtag */[0,_1,_2,/* true */1,/* [] */0];
      },
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* true */1;},
+   function(__caml_parser_env){return /* false */0;},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4818,7 +5147,10 @@ var
      return /* :: */[0,_3,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -4845,7 +5177,10 @@ var
      return mktyp(/* Ptyp_tuple */[2,/* :: */[0,_1,List["rev"](_3)]]);
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4854,7 +5189,10 @@ var
      return /* :: */[0,_3,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4863,7 +5201,10 @@ var
      return /* :: */[0,_3,_1];
      },
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* :: */[0,_1,0];},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* :: */[0,_1,/* [] */0];
+     },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -4883,9 +5224,9 @@ var
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,/* :: */[0,_1,0],0];
+     return /* tuple */[0,/* :: */[0,_1,/* [] */0],/* Closed */0];
      },
-   function(__caml_parser_env){return [0,0,1];},
+   function(__caml_parser_env){return [/* tuple */0,/* [] */0,/* Open */1];},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,3);
      
@@ -5049,10 +5390,10 @@ var
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
-   function(__caml_parser_env){return [0,"[]"];},
-   function(__caml_parser_env){return [0,"()"];},
-   function(__caml_parser_env){return [0,"false"];},
-   function(__caml_parser_env){return [0,"true"];},
+   function(__caml_parser_env){return [/* Lident */0,"[]"];},
+   function(__caml_parser_env){return [/* Lident */0,"()"];},
+   function(__caml_parser_env){return [/* Lident */0,"false"];},
+   function(__caml_parser_env){return [/* Lident */0,"true"];},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -5147,7 +5488,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Ptop_dir */[1,_2,0];
+     return /* Ptop_dir */[1,_2,/* Pdir_none */0];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -5180,38 +5521,43 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* Ptop_dir */[1,_2,[3,0]];
+     return /* Ptop_dir */[1,_2,[/* Pdir_bool */3,/* false */0]];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* Ptop_dir */[1,_2,[3,1]];
+     return /* Ptop_dir */[1,_2,[/* Pdir_bool */3,/* true */1]];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);return _2;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return [0,1,1];},
-   function(__caml_parser_env){return [0,0,1];},
-   function(__caml_parser_env){return [0,1,0];},
-   function(__caml_parser_env){return [0,0,0];},
-   function(__caml_parser_env){return [0,0,0];},
-   function(__caml_parser_env){return 1;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 0;},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* Nonrecursive */0;},
+   function(__caml_parser_env){return /* Recursive */1;},
+   function(__caml_parser_env){return /* Recursive */1;},
+   function(__caml_parser_env){return /* Nonrecursive */0;},
+   function(__caml_parser_env){return /* Upto */0;},
+   function(__caml_parser_env){return /* Downto */1;},
+   function(__caml_parser_env){return /* Public */1;},
+   function(__caml_parser_env){return /* Private */0;},
+   function(__caml_parser_env){return /* Immutable */0;},
+   function(__caml_parser_env){return /* Mutable */1;},
+   function(__caml_parser_env){return /* Concrete */1;},
+   function(__caml_parser_env){return /* Virtual */0;},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Public */1,/* Concrete */1];},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Private */0,/* Concrete */1];},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Public */1,/* Virtual */0];},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Private */0,/* Virtual */0];},
+   function(__caml_parser_env)
+    {return [/* tuple */0,/* Private */0,/* Virtual */0];},
+   function(__caml_parser_env){return /* Fresh */1;},
+   function(__caml_parser_env){return /* Override */0;},
+   function(__caml_parser_env){return /* () */0;},
+   function(__caml_parser_env){return /* () */0;},
+   function(__caml_parser_env){return /* () */0;},
+   function(__caml_parser_env){return /* () */0;},
    function(__caml_parser_env){return "-";},
    function(__caml_parser_env){return "-.";},
    function(__caml_parser_env){return "+";},
@@ -5271,7 +5617,7 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Location["mkloc"](_1,Location["symbol_rloc"](0));
+     return Location["mkloc"](_1,Location["symbol_rloc"](/* () */0));
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
@@ -5280,7 +5626,7 @@ var
      
      return Location["mkloc"]
              (Pervasives["^"](_1,Pervasives["^"](".",_3[1])),
-              Location["symbol_rloc"](0));
+              Location["symbol_rloc"](/* () */0));
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
@@ -5303,7 +5649,7 @@ var
      
      return /* tuple */[0,_2,_3];
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -5311,7 +5657,7 @@ var
      
      return /* :: */[0,_1,_2];
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -5319,13 +5665,13 @@ var
      
      return /* :: */[0,_1,_2];
      },
-   function(__caml_parser_env){return [0,0,0];},
+   function(__caml_parser_env){return [/* tuple */0,/* None */0,/* [] */0];},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,0,/* :: */[0,_1,_2]];
+     return /* tuple */[0,/* None */0,/* :: */[0,_1,_2]];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,1);
@@ -5355,7 +5701,7 @@ var
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* PPat */[2,_2,0];
+     return /* PPat */[2,_2,/* None */0];
      },
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);

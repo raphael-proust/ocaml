@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Stack=require("Stack");
-var Instruct=require("Instruct");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Matching=require("Matching");
-var Printf=require("Printf");
-var Switch=require("Switch");
-var Misc=require("Misc");
-var Lambda=require("Lambda");
-var Subst=require("Subst");
-var Ident=require("Ident");
-var Config=require("Config");
+var Stack=require("./stack.js");
+var Instruct=require("./instruct.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Matching=require("./matching.js");
+var Printf=require("./printf.js");
+var Switch=require("./switch.js");
+var Misc=require("./misc.js");
+var Lambda=require("./lambda.js");
+var Subst=require("./subst.js");
+var Ident=require("./ident.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var label_counter=[0,0];
@@ -44,20 +45,20 @@ var
       
       var exit$1;
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
-         {case 0:exit$1=180;case 22:exit$1=180;default:exit=179;}}
+         {case 0:exit$1=181;case 22:exit$1=181;default:exit=180;}}
       
-      switch(exit$1){case 180:return /* tuple */[0,match[1],cont];}
+      switch(exit$1){case 181:return /* tuple */[0,match[1],cont];}
       }
     else
-     {exit=179;}
+     {exit=180;}
     
     switch(exit)
-     {case 179:
-       var lbl=new_label(0);
+     {case 180:
+       var lbl=new_label(/* () */0);
        
        return /* tuple */[0,lbl,/* :: */[0,/* Klabel */[0,lbl],cont]];
        
@@ -72,24 +73,24 @@ var
     if(param)
      {var match=param[1];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
          {case 0:return make_branch_2(lbl,n,cont,param[2]);
           case 3:return make_branch_2(lbl,n+match[1],cont,param[2]);
           case 8:return /* tuple */[0,/* Kreturn */[8,n+match[1]],cont];
-          default:exit=177;}}
+          default:exit=178;}}
       }
     else
-     {exit=177;}
+     {exit=178;}
     
     switch(exit)
-     {case 177:
+     {case 178:
        if(lbl)
         {return /* tuple */[0,/* Kbranch */[22,lbl[1]],cont];}
        else
-        {var lbl$1=new_label(0);
+        {var lbl$1=new_label(/* () */0);
          
          return /* tuple */[0,
                  /* Kbranch */[22,lbl$1],
@@ -109,22 +110,22 @@ var
       
       var exit$1;
       
-      if(typeof branch=="number")
+      if(typeof branch==="number")
        {switch(branch){}}
       else
        {switch(branch[0])
          {case 0:return make_branch_2(/* Some */[0,branch[1]],0,cont,cont);
-          case 8:exit$1=174;
-          case 22:exit$1=174;
+          case 8:exit$1=175;
+          case 22:exit$1=175;
           case 29:return /* tuple */[0,/* Kraise */[29,branch[1]],cont];
-          default:exit=173;}}
+          default:exit=174;}}
       
-      switch(exit$1){case 174:return /* tuple */[0,branch,cont];}
+      switch(exit$1){case 175:return /* tuple */[0,branch,cont];}
       }
     else
-     {exit=173;}
+     {exit=174;}
     
-    switch(exit){case 173:return make_branch_2(0,0,cont,cont);}
+    switch(exit){case 174:return make_branch_2(/* None */0,0,cont,cont);}
     };
 
 var
@@ -135,17 +136,17 @@ var
     if(cont)
      {var match=cont[1];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
-         {case 0:if(label=match[1]){return cont;}else{exit=171;}
-          default:exit=171;}}
+         {case 0:if(label===match[1]){return cont;}else{exit=172;}
+          default:exit=172;}}
       }
     else
-     {exit=171;}
+     {exit=172;}
     
-    switch(exit){case 171:return /* :: */[0,/* Kbranch */[22,label],cont];}
+    switch(exit){case 172:return /* :: */[0,/* Kbranch */[22,label],cont];}
     };
 
 var
@@ -155,16 +156,16 @@ var
      {var exit;
       
       var $js=cont[1];
-      if(typeof $js=="number")
-       {switch($js){case 1:exit=169;}}
+      if(typeof $js==="number")
+       {switch($js){case 1:exit=170;}}
       else
-       {switch($js[0]){case 0:exit=169;case 14:exit=169;default:exit=170;}}
+       {switch($js[0]){case 0:exit=170;case 14:exit=170;default:exit=171;}}
       
       switch(exit)
-       {case 170:return discard_dead_code(cont[2]);case 169:return cont;}
+       {case 171:return discard_dead_code(cont[2]);case 170:return cont;}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -176,27 +177,27 @@ var
      {var exit$1;
       
       var $js=param[1];
-      if(typeof $js=="number")
+      if(typeof $js==="number")
        {switch($js){}}
       else
        {switch($js[0])
-         {case 0:exit$1=168;
-          case 3:exit$1=168;
-          case 8:return 1;
-          default:exit=167;}}
+         {case 0:exit$1=169;
+          case 3:exit$1=169;
+          case 8:return /* true */1;
+          default:exit=168;}}
       
-      switch(exit$1){case 168:return is_tailcall(param[2]);}
+      switch(exit$1){case 169:return is_tailcall(param[2]);}
       }
     else
-     {exit=167;}
+     {exit=168;}
     
-    switch(exit){case 167:return 0;}
+    switch(exit){case 168:return /* false */0;}
     };
 
 var
  add_pop=
   function(n,cont)
-   {if(n=0)
+   {if(n===0)
      {return cont;}
     else
      {var exit;
@@ -204,19 +205,19 @@ var
       if(cont)
        {var match=cont[1];
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
            {case 3:return add_pop(n+match[1],cont[2]);
             case 8:return /* :: */[0,/* Kreturn */[8,n+match[1]],cont[2]];
             case 29:return cont;
-            default:exit=166;}}
+            default:exit=167;}}
         }
       else
-       {exit=166;}
+       {exit=167;}
       
-      switch(exit){case 166:return /* :: */[0,/* Kpop */[3,n],cont];}
+      switch(exit){case 167:return /* :: */[0,/* Kpop */[3,n],cont];}
       }
     };
 
@@ -229,32 +230,32 @@ var
      {var exit$1;
       
       var $js=cont[1];
-      if(typeof $js=="number")
+      if(typeof $js==="number")
        {switch($js){}}
       else
        {switch($js[0])
-         {case 1:exit$1=164;
-          case 5:exit$1=164;
-          case 13:exit$1=164;
-          case 15:exit$1=164;
-          default:exit=163;}}
+         {case 1:exit$1=165;
+          case 5:exit$1=165;
+          case 13:exit$1=165;
+          case 15:exit$1=165;
+          default:exit=164;}}
       
-      switch(exit$1){case 164:return cont;}
+      switch(exit$1){case 165:return cont;}
       }
     else
-     {exit=163;}
+     {exit=164;}
     
     switch(exit)
-     {case 163:return /* :: */[0,/* Kconst */[15,Lambda["const_unit"]],cont];}
+     {case 164:return /* :: */[0,/* Kconst */[15,Lambda["const_unit"]],cont];}
     };
 
 var
  push_dummies=
   function(n,k)
-   {if(n!=0)
+   {if(n!==0)
      {return /* :: */[0,
               /* Kconst */[15,Lambda["const_unit"]],
-              /* :: */[0,0,push_dummies(n-1,k)]];
+              /* :: */[0,/* Kpush */0,push_dummies(n-1,k)]];
       }
     else
      {return k;}
@@ -265,56 +266,56 @@ var
   function(id,e)
    {var exit;
     
-    switch(e)
-     {case 0:return "unknown primitive:caml_equal";
+    switch(e[0])
+     {case 0:return CamlPrimitive["caml_equal"](e[1],id);
       case 13:
        var match=e[1];
        
-       switch(match)
+       switch(match[0])
         {case 6:
           var exit$1;
           
           var $js=match[1];
-          if(typeof $js=="number")
+          if(typeof $js==="number")
            {switch($js){}}
           else
            {switch($js[0])
-             {case 7:exit$1=161;case 9:exit$1=161;default:exit=160;}}
+             {case 7:exit$1=162;case 9:exit$1=162;default:exit=161;}}
           
           switch(exit$1)
-           {case 161:
+           {case 162:
              var match$1=match[2];
              
              if(match$1)
               {var match$2=match$1[1];
                
-               switch(match$2)
+               switch(match$2[0])
                 {case 0:
                   var match$3=match$1[2];
                   
                   if(match$3)
                    {if(match$3[2])
-                     {exit=160;}
+                     {exit=161;}
                     else
-                     {return "unknown primitive:caml_equal"&&
+                     {return CamlPrimitive["caml_equal"](match$2[1],id)&&
                              check_recordwith_updates(id,e[2]);
                       }
                     }
                   else
-                   {exit=160;}
+                   {exit=161;}
                   
-                 default:exit=160;}
+                 default:exit=161;}
                }
              else
-              {exit=160;}
+              {exit=161;}
              
             }
           
-         default:exit=160;}
+         default:exit=161;}
        
-      default:exit=160;}
+      default:exit=161;}
     
-    switch(exit){case 160:return 0;}
+    switch(exit){case 161:return /* false */0;}
     };
 
 var
@@ -322,7 +323,7 @@ var
   function(funct)
    {var exit;
     
-    switch(funct)
+    switch(funct[0])
      {case 3:
        return /* RHS_block */[0,
                1+Lambda["IdentSet"][19](Lambda["free_variables"](funct))];
@@ -330,16 +331,16 @@ var
       case 4:
        var exit$1;
        
-       if(funct[1]!=0)
-        {exit$1=157;}
+       if(funct[1]!==0)
+        {exit$1=158;}
        else
         {var match=funct[3];
          
-         switch(match)
+         switch(match[0])
           {case 6:
             var match$1=match[1];
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){}}
             else
              {switch(match$1[0])
@@ -347,32 +348,32 @@ var
                  var size=match$1[2];
                  
                  if(check_recordwith_updates(funct[2],funct[4]))
-                  {if(match$1[1]!=0)
+                  {if(match$1[1]!==0)
                     {return /* RHS_floatblock */[1,size];}
                    else
                     {return /* RHS_block */[0,size];}
                    }
                  else
-                  {exit$1=157;}
+                  {exit$1=158;}
                  
-                default:exit$1=157;}}
+                default:exit$1=158;}}
             
-           default:exit$1=157;}
+           default:exit$1=158;}
          }
        
-       switch(exit$1){case 157:return size_of_lambda(funct[4]);}
+       switch(exit$1){case 158:return size_of_lambda(funct[4]);}
        
-      case 5:exit=159;
+      case 5:exit=160;
       case 6:
        var match$2=funct[1];
        
-       if(typeof match$2=="number")
+       if(typeof match$2==="number")
         {switch(match$2){}}
        else
         {switch(match$2[0])
           {case 5:return /* RHS_block */[0,List["length"](funct[2])];
            case 10:
-            if(match$2[1]!=0)
+            if(match$2[1]!==0)
              {return /* RHS_floatblock */[1,match$2[2]];}
             else
              {return /* RHS_block */[0,match$2[2]];}
@@ -380,22 +381,28 @@ var
            case 17:
             var match$3=match$2[1];
             
-            if(match$3!=0)
+            if(match$3!==0)
              {if(match$3>=3)
                {return /* RHS_floatblock */[1,List["length"](funct[2])];}
               else
                {return /* RHS_block */[0,List["length"](funct[2])];}
               }
             else
-             {throw [0,Assert_failure,[0,"bytecomp/bytegen.ml",156,42]];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"bytecomp/bytegen.ml",156,42]];
+              }
             
-           default:exit=156;}}
+           default:exit=157;}}
        
-      case 13:exit=159;
+      case 13:exit=160;
       case 18:return size_of_lambda(funct[1]);
-      default:exit=156;}
+      default:exit=157;}
     
-    switch(exit){case 159:return size_of_lambda(funct[2]);case 156:return 0;}
+    switch(exit)
+     {case 160:return size_of_lambda(funct[2]);
+      case 157:return /* RHS_nonrec */0;
+      }
     };
 
 var
@@ -423,19 +430,19 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
-     {if(match!=0){return match$1;}else{exit=153;}}
+    if(typeof match==="number")
+     {if(match!==0){return match$1;}else{exit=154;}}
     else
-     {exit=153;}
+     {exit=154;}
     
     switch(exit)
-     {case 153:
-       if("unknown primitive:isint")
-        {if(match$1!=0){return match;}else{"unknown block:(exit 152)";}}
+     {case 154:
+       if(typeof match$1==="number")
+        {if(match$1!==0){return match;}else{exit=153;}}
        else
-        {"unknown block:(exit 152)";}
+        {exit=153;}
        
-      case 152:return Misc["fatal_error"]("Bytegen.merge_infos");
+      case 153:return Misc["fatal_error"]("Bytegen.merge_infos");
       }
     };
 
@@ -448,42 +455,47 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return match$1;}}
     else
      {switch(match[0])
        {case 0:
          var r=match[1];
          
-         if(typeof match$1=="number")
-          {switch(match$1){case 0:exit=150;}}
+         if(typeof match$1==="number")
+          {switch(match$1){case 0:exit=151;}}
          else
           {switch(match$1[0])
-            {case 0:exit=149;
-             case 1:if((r=match$1[1])&&(r[1]=1)){return 0;}else{exit=149;}
+            {case 0:exit=150;
+             case 1:
+              if(r===match$1[1]&&r[1]===1)
+               {return /* Event_none */0;}
+              else
+               {exit=150;}
+              
              }}
          
         case 1:
          var r$1=match[1];
          
-         if(typeof match$1=="number")
-          {switch(match$1){case 0:exit=150;}}
+         if(typeof match$1==="number")
+          {switch(match$1){case 0:exit=151;}}
          else
           {switch(match$1[0])
             {case 0:
-              if(r$1=match$1[1])
+              if(r$1===match$1[1])
                {return /* Event_parent */[0,r$1];}
               else
-               {exit=149;}
+               {exit=150;}
               
-             case 1:exit=149;
+             case 1:exit=150;
              }}
          
         }}
     
     switch(exit)
-     {case 150:return match;
-      case 149:return Misc["fatal_error"]("Bytegen.merge_repr");
+     {case 151:return match;
+      case 150:return Misc["fatal_error"]("Bytegen.merge_repr");
       }
     };
 
@@ -496,32 +508,32 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
-     {if(match!=0)
+    if(typeof match==="number")
+     {if(match!==0)
        {var match$2=/* tuple */[0,ev$prime,ev];}
       else
        {var exit$1;
         
-        if("unknown primitive:isint")
-         {if(match$1!=0){exit=144;}else{exit$1=145;}}
+        if(typeof match$1==="number")
+         {if(match$1!==0){exit=145;}else{exit$1=146;}}
         else
-         {exit$1=145;}
+         {exit$1=146;}
         
-        switch(exit$1){case 145:var match$2=/* tuple */[0,ev$prime,ev];}
+        switch(exit$1){case 146:var match$2=/* tuple */[0,ev$prime,ev];}
         }
       }
     else
      {var exit$2;
       
-      if("unknown primitive:isint")
-       {if(match$1!=0){exit=144;}else{exit$2=146;}}
+      if(typeof match$1==="number")
+       {if(match$1!==0){exit=145;}else{exit$2=147;}}
       else
-       {exit$2=146;}
+       {exit$2=147;}
       
-      switch(exit$2){case 146:var match$2=/* tuple */[0,ev,ev$prime];}
+      switch(exit$2){case 147:var match$2=/* tuple */[0,ev,ev$prime];}
       }
     
-    switch(exit){case 144:var match$2=/* tuple */[0,ev,ev$prime];}
+    switch(exit){case 145:var match$2=/* tuple */[0,ev,ev$prime];}
     
     var min=match$2[2];
     
@@ -535,7 +547,7 @@ var
   function(ev,cont)
    {var match=ev[4];
     
-    if("unknown primitive:isint")
+    if(typeof match==="number")
      {return /* :: */[0,/* Kevent */[35,ev],cont];}
     else
      {var exit;
@@ -543,31 +555,34 @@ var
       if(cont)
        {var match$1=cont[1];
         
-        if("unknown primitive:isint")
-         {if(match$1!=0)
-           {exit=141;}
+        if(typeof match$1==="number")
+         {if(match$1!==0)
+           {exit=142;}
           else
            {var match$2=cont[2];
             
             if(match$2)
              {var match$3=match$2[1];
               
-              if(typeof match$3=="number")
+              if(typeof match$3==="number")
                {switch(match$3){}}
               else
                {switch(match$3[0])
                  {case 35:
                    var ev$prime=match$3[1];
                    
-                   if("unknown primitive:isint")
+                   if(typeof ev$prime[10]==="number")
                     {var match$4=ev[5];
                      
-                     if("unknown primitive:isint")
+                     if(typeof match$4==="number")
                       {return cont;}
                      else
                       {var repr=[0,1];
                        
-                       var ev$1=copy_event(ev,1,ev[5],/* Event_parent */[0,repr]);
+                       var
+                        ev$1=
+                         copy_event
+                          (ev,/* Event_pseudo */1,ev[5],/* Event_parent */[0,repr]);
                        
                        var
                         ev$prime$1=
@@ -577,26 +592,26 @@ var
                        return /* :: */[0,
                                /* Kevent */[35,ev$1],
                                /* :: */[0,
-                                0,
+                                /* Kpush */0,
                                 /* :: */[0,/* Kevent */[35,ev$prime$1],match$2[2]]]];
                        }
                      }
                    else
-                    {exit=141;}
+                    {exit=142;}
                    
-                  default:exit=141;}}
+                  default:exit=142;}}
               }
             else
-             {exit=141;}
+             {exit=142;}
             }
           }
         else
-         {exit=141;}
+         {exit=142;}
         }
       else
-       {exit=141;}
+       {exit=142;}
       
-      switch(exit){case 141:return /* :: */[0,/* Kevent */[35,ev],cont];}
+      switch(exit){case 142:return /* :: */[0,/* Kevent */[35,ev],cont];}
       }
     };
 
@@ -608,22 +623,22 @@ var
     if(cont)
      {var match=cont[1];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
          {case 35:return weaken_event(merge_events(ev,match[1]),cont[2]);
-          default:exit=135;}}
+          default:exit=136;}}
       }
     else
-     {exit=135;}
+     {exit=136;}
     
-    switch(exit){case 135:return weaken_event(ev,cont);}
+    switch(exit){case 136:return weaken_event(ev,cont);}
     };
 
-var try_blocks=[0,0];
+var try_blocks=[0,/* [] */0];
 
-var sz_static_raises=[0,0];
+var sz_static_raises=[0,/* [] */0];
 
 var
  push_static_raise=
@@ -641,7 +656,7 @@ var
    {try
      {return List["assoc"](i,sz_static_raises[1]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return Misc["fatal_error"]
                 (Pervasives["^"]
                   ("exit(",
@@ -659,25 +674,25 @@ var
   function(l,sz)
    {var exit;
     
-    switch(l)
+    switch(l[0])
      {case 9:
        if(l[2])
-        {exit=128;}
+        {exit=129;}
        else
         {var match=find_raise_label(l[1]);
          
-         if((sz=match[2])&&(match[3]=try_blocks[1]))
+         if(sz===match[2]&&match[3]===try_blocks[1])
           {return /* Some */[0,match[1]];}
          else
-          {return 0;}
+          {return /* None */0;}
          }
        
-      default:exit=128;}
+      default:exit=129;}
     
-    switch(exit){case 128:return 0;}
+    switch(exit){case 129:return /* None */0;}
     };
 
-var functions_to_compile=Stack["create"](0);
+var functions_to_compile=Stack["create"](/* () */0);
 
 var compunit_name=[0,""];
 
@@ -686,7 +701,7 @@ var max_stack_used=[0,0];
 var
  comp_bint_primitive=
   function(bi,suff,args)
-   {switch(bi[0])
+   {switch(bi)
      {case 0:var pref="caml_nativeint_";
       case 1:var pref="caml_int32_";
       case 2:var pref="caml_int64_";
@@ -700,38 +715,38 @@ var
   function(p,args)
    {var exit;
     
-    if(typeof p=="number")
+    if(typeof p==="number")
      {switch(p)
-       {case 6:return 10;
-        case 7:return 11;
-        case 8:return 12;
-        case 9:return 13;
-        case 10:return 14;
-        case 11:return 15;
-        case 12:return 16;
-        case 13:return 17;
-        case 14:return 18;
-        case 15:return 19;
-        case 16:return 20;
-        case 17:return 21;
-        case 18:return [30,"caml_int_of_float",1];
-        case 19:return [30,"caml_float_of_int",1];
-        case 20:return [30,"caml_neg_float",1];
-        case 21:return [30,"caml_abs_float",1];
-        case 22:return [30,"caml_add_float",2];
-        case 23:return [30,"caml_sub_float",2];
-        case 24:return [30,"caml_mul_float",2];
-        case 25:return [30,"caml_div_float",2];
-        case 26:return [30,"caml_ml_string_length",1];
-        case 27:return 5;
-        case 28:return 6;
-        case 29:return [30,"caml_string_get",2];
-        case 30:return [30,"caml_string_set",3];
-        case 31:return 22;
-        case 32:return 23;
-        case 33:return [30,"caml_bitvect_test",2];
-        case 34:return [30,"caml_bswap16",1];
-        case 35:return [30,"caml_int_as_pointer",1];
+       {case 8:return /* Knegint */10;
+        case 9:return /* Kaddint */11;
+        case 10:return /* Ksubint */12;
+        case 11:return /* Kmulint */13;
+        case 12:return /* Kdivint */14;
+        case 13:return /* Kmodint */15;
+        case 14:return /* Kandint */16;
+        case 15:return /* Korint */17;
+        case 16:return /* Kxorint */18;
+        case 17:return /* Klslint */19;
+        case 18:return /* Klsrint */20;
+        case 19:return /* Kasrint */21;
+        case 20:return [/* Kccall */30,"caml_int_of_float",1];
+        case 21:return [/* Kccall */30,"caml_float_of_int",1];
+        case 22:return [/* Kccall */30,"caml_neg_float",1];
+        case 23:return [/* Kccall */30,"caml_abs_float",1];
+        case 24:return [/* Kccall */30,"caml_add_float",2];
+        case 25:return [/* Kccall */30,"caml_sub_float",2];
+        case 26:return [/* Kccall */30,"caml_mul_float",2];
+        case 27:return [/* Kccall */30,"caml_div_float",2];
+        case 28:return [/* Kccall */30,"caml_ml_string_length",1];
+        case 29:return /* Kgetstringchar */5;
+        case 30:return /* Ksetstringchar */6;
+        case 31:return [/* Kccall */30,"caml_string_get",2];
+        case 32:return [/* Kccall */30,"caml_string_set",3];
+        case 33:return /* Kisint */22;
+        case 34:return /* Kisout */23;
+        case 35:return [/* Kccall */30,"caml_bitvect_test",2];
+        case 36:return [/* Kccall */30,"caml_bswap16",1];
+        case 37:return [/* Kccall */30,"caml_int_as_pointer",1];
         }}
     else
      {switch(p[0])
@@ -742,93 +757,93 @@ var
         case 7:return /* Ksetfield */[19,p[1]];
         case 8:return /* Kgetfloatfield */[20,p[1]];
         case 9:return /* Ksetfloatfield */[21,p[1]];
-        case 10:return [30,"caml_obj_dup",1];
+        case 10:return [/* Kccall */30,"caml_obj_dup",1];
         case 11:var p$1=p[1];return /* Kccall */[30,p$1[1],p$1[2]];
         case 13:return /* Kintcomp */[31,p[1]];
         case 14:return /* Koffsetint */[32,p[1]];
         case 15:return /* Koffsetref */[33,p[1]];
         case 16:
-         switch(p[1][0])
-          {case 0:return [30,"caml_eq_float",2];
-           case 1:return [30,"caml_neq_float",2];
-           case 2:return [30,"caml_lt_float",2];
-           case 3:return [30,"caml_gt_float",2];
-           case 4:return [30,"caml_le_float",2];
-           case 5:return [30,"caml_ge_float",2];
+         switch(p[1])
+          {case 0:return [/* Kccall */30,"caml_eq_float",2];
+           case 1:return [/* Kccall */30,"caml_neq_float",2];
+           case 2:return [/* Kccall */30,"caml_lt_float",2];
+           case 3:return [/* Kccall */30,"caml_gt_float",2];
+           case 4:return [/* Kccall */30,"caml_le_float",2];
+           case 5:return [/* Kccall */30,"caml_ge_float",2];
            }
          
-        case 18:return 2;
+        case 18:return /* Kvectlength */2;
         case 19:
          var match=p[1];
          
-         if(match!=0)
+         if(match!==0)
           {if(match>=3)
-            {return [30,"caml_array_unsafe_get_float",2];}
+            {return [/* Kccall */30,"caml_array_unsafe_get_float",2];}
            else
-            {return 3;}
+            {return /* Kgetvectitem */3;}
            }
          else
-          {return [30,"caml_array_unsafe_get",2];}
+          {return [/* Kccall */30,"caml_array_unsafe_get",2];}
          
         case 20:
          var match$1=p[1];
          
-         if(match$1!=0)
+         if(match$1!==0)
           {if(match$1>=3)
-            {return [30,"caml_array_unsafe_set_float",3];}
+            {return [/* Kccall */30,"caml_array_unsafe_set_float",3];}
            else
-            {return 4;}
+            {return /* Ksetvectitem */4;}
            }
          else
-          {return [30,"caml_array_unsafe_set",3];}
+          {return [/* Kccall */30,"caml_array_unsafe_set",3];}
          
         case 21:
          var match$2=p[1];
          
-         if(match$2!=0)
+         if(match$2!==0)
           {if(match$2>=3)
-            {return [30,"caml_array_get_float",2];}
+            {return [/* Kccall */30,"caml_array_get_float",2];}
            else
-            {return [30,"caml_array_get_addr",2];}
+            {return [/* Kccall */30,"caml_array_get_addr",2];}
            }
          else
-          {return [30,"caml_array_get",2];}
+          {return [/* Kccall */30,"caml_array_get",2];}
          
         case 22:
          var match$3=p[1];
          
-         if(match$3!=0)
+         if(match$3!==0)
           {if(match$3>=3)
-            {return [30,"caml_array_set_float",3];}
+            {return [/* Kccall */30,"caml_array_set_float",3];}
            else
-            {return [30,"caml_array_set_addr",3];}
+            {return [/* Kccall */30,"caml_array_set_addr",3];}
            }
          else
-          {return [30,"caml_array_set",3];}
+          {return [/* Kccall */30,"caml_array_set",3];}
          
         case 23:return comp_bint_primitive(p[1],"of_int",args);
         case 24:return comp_bint_primitive(p[1],"to_int",args);
         case 25:
-         switch(p[1][0])
+         switch(p[1])
           {case 0:
-            switch(p[2][0])
-             {case 0:exit=116;
-              case 1:return [30,"caml_nativeint_to_int32",1];
-              case 2:return [30,"caml_int64_of_nativeint",1];
+            switch(p[2])
+             {case 0:exit=117;
+              case 1:return [/* Kccall */30,"caml_nativeint_to_int32",1];
+              case 2:return [/* Kccall */30,"caml_int64_of_nativeint",1];
               }
             
            case 1:
-            switch(p[2][0])
-             {case 0:return [30,"caml_nativeint_of_int32",1];
-              case 1:exit=116;
-              case 2:return [30,"caml_int64_of_int32",1];
+            switch(p[2])
+             {case 0:return [/* Kccall */30,"caml_nativeint_of_int32",1];
+              case 1:exit=117;
+              case 2:return [/* Kccall */30,"caml_int64_of_int32",1];
               }
             
            case 2:
-            switch(p[2][0])
-             {case 0:return [30,"caml_int64_to_nativeint",1];
-              case 1:return [30,"caml_int64_to_int32",1];
-              case 2:exit=116;
+            switch(p[2])
+             {case 0:return [/* Kccall */30,"caml_int64_to_nativeint",1];
+              case 1:return [/* Kccall */30,"caml_int64_to_int32",1];
+              case 2:exit=117;
               }
             
            }
@@ -846,13 +861,13 @@ var
         case 36:return comp_bint_primitive(p[1],"shift_right_unsigned",args);
         case 37:return comp_bint_primitive(p[1],"shift_right",args);
         case 38:
-         switch(p[2][0])
-          {case 0:return [30,"caml_equal",2];
-           case 1:return [30,"caml_notequal",2];
-           case 2:return [30,"caml_lessthan",2];
-           case 3:return [30,"caml_greaterthan",2];
-           case 4:return [30,"caml_lessequal",2];
-           case 5:return [30,"caml_greaterequal",2];
+         switch(p[2])
+          {case 0:return [/* Kccall */30,"caml_equal",2];
+           case 1:return [/* Kccall */30,"caml_notequal",2];
+           case 2:return [/* Kccall */30,"caml_lessthan",2];
+           case 3:return [/* Kccall */30,"caml_greaterthan",2];
+           case 4:return [/* Kccall */30,"caml_lessequal",2];
+           case 5:return [/* Kccall */30,"caml_greaterequal",2];
            }
          
         case 39:
@@ -877,20 +892,20 @@ var
                   ("caml_ba_dim_",Pervasives["string_of_int"](p[1])),
                  1];
          
-        case 42:return [30,"caml_string_get16",2];
-        case 43:return [30,"caml_string_get32",2];
-        case 44:return [30,"caml_string_get64",2];
-        case 45:return [30,"caml_string_set16",3];
-        case 46:return [30,"caml_string_set32",3];
-        case 47:return [30,"caml_string_set64",3];
-        case 48:return [30,"caml_ba_uint8_get16",2];
-        case 49:return [30,"caml_ba_uint8_get32",2];
-        case 50:return [30,"caml_ba_uint8_get64",2];
-        case 51:return [30,"caml_ba_uint8_set16",3];
-        case 52:return [30,"caml_ba_uint8_set32",3];
-        case 53:return [30,"caml_ba_uint8_set64",3];
+        case 42:return [/* Kccall */30,"caml_string_get16",2];
+        case 43:return [/* Kccall */30,"caml_string_get32",2];
+        case 44:return [/* Kccall */30,"caml_string_get64",2];
+        case 45:return [/* Kccall */30,"caml_string_set16",3];
+        case 46:return [/* Kccall */30,"caml_string_set32",3];
+        case 47:return [/* Kccall */30,"caml_string_set64",3];
+        case 48:return [/* Kccall */30,"caml_ba_uint8_get16",2];
+        case 49:return [/* Kccall */30,"caml_ba_uint8_get32",2];
+        case 50:return [/* Kccall */30,"caml_ba_uint8_get64",2];
+        case 51:return [/* Kccall */30,"caml_ba_uint8_set16",3];
+        case 52:return [/* Kccall */30,"caml_ba_uint8_set32",3];
+        case 53:return [/* Kccall */30,"caml_ba_uint8_set64",3];
         case 54:
-         switch(p[1][0])
+         switch(p[1])
           {case 0:var const_name="big_endian";
            case 1:var const_name="word_size";
            case 2:var const_name="ostype_unix";
@@ -900,15 +915,19 @@ var
          
          return /* Kccall */[30,
                  Printf["sprintf"]
-                  ([0,[11,"caml_sys_const_",[2,0,0]],"caml_sys_const_%s"],
+                  ([/* Format */0,
+                    [/* String_literal */11,
+                     "caml_sys_const_",
+                     [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                    "caml_sys_const_%s"],
                    const_name),
                  1];
          
         case 55:return comp_bint_primitive(p[1],"bswap",args);
-        default:exit=116;}}
+        default:exit=117;}}
     
     switch(exit)
-     {case 116:return Misc["fatal_error"]("Bytegen.comp_primitive");}
+     {case 117:return Misc["fatal_error"]("Bytegen.comp_primitive");}
     };
 
 var
@@ -922,11 +941,11 @@ var Storer=Switch["Store"]([0,make_key]);
 var
  comp_expr=
   function(env,exp,sz,cont)
-   {if(sz>max_stack_used[1]){max_stack_used[1]=sz,0}else{}
+   {if(sz>max_stack_used[1]){max_stack_used[1]=sz}else{}
     
     var exit;
     
-    switch(exp)
+    switch(exp[0])
      {case 0:
        var id=exp[1];
        
@@ -936,21 +955,21 @@ var
          return /* :: */[0,/* Kacc */[1,sz-pos],cont];
          }
        catch(exn)
-        {if(exn=Not_found)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
           {try
             {var pos$1=Ident["find_same"](id,env[2]);
              
              return /* :: */[0,/* Kenvacc */[2,pos$1],cont];
              }
            catch(exn$1)
-            {if(exn$1=Not_found)
+            {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
               {try
                 {var ofs=Ident["find_same"](id,env[3]);
                  
                  return /* :: */[0,/* Koffsetclosure */[12,ofs],cont];
                  }
                catch(exn$2)
-                {if(exn$2=Not_found)
+                {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
                   {return Misc["fatal_error"]
                            (Pervasives["^"]
                              ("Bytegen.comp_expr: var ",Ident["unique_name"](id)));
@@ -981,7 +1000,7 @@ var
                   args,
                   sz,
                   /* :: */[0,
-                   0,
+                   /* Kpush */0,
                    comp_expr
                     (env,
                      func,
@@ -997,7 +1016,7 @@ var
                     args,
                     sz,
                     /* :: */[0,
-                     0,
+                     /* Kpush */0,
                      comp_expr
                       (env,func,sz+nargs,/* :: */[0,/* Kapply */[6,nargs],cont])]);
            }
@@ -1011,7 +1030,7 @@ var
                      args,
                      sz+3,
                      /* :: */[0,
-                      0,
+                      /* Kpush */0,
                       comp_expr
                        (env,
                         func,
@@ -1021,11 +1040,11 @@ var
          }
        
       case 3:
-       var lbl=new_label(0);
+       var lbl=new_label(/* () */0);
        
        var fv=Lambda["IdentSet"][20](Lambda["free_variables"](exp));
        
-       var to_compile=/* record */[0,exp[2],exp[3],lbl,fv,1,0,0];
+       var to_compile=/* record */[0,exp[2],exp[3],lbl,fv,1,/* [] */0,0];
        
        Stack["push"](to_compile,functions_to_compile);
        return comp_args
@@ -1040,7 +1059,7 @@ var
                 exp[3],
                 sz,
                 /* :: */[0,
-                 0,
+                 /* Kpush */0,
                  comp_expr
                   (add_var(exp[2],sz+1,env),exp[4],sz+1,add_pop(1,cont))]);
        
@@ -1054,7 +1073,9 @@ var
        if
         (List["for_all"]
           (function(param)
-            {switch(param[2]){case 3:return 1;default:return 0;}},
+            {switch(param[2][0])
+              {case 3:return /* true */1;default:return /* false */0;}
+             },
            decl))
         {var
           fv$1=
@@ -1066,13 +1087,13 @@ var
          
          var
           comp_fun=
-           function(pos$2,param)
+           function(pos,param)
             {if(param)
               {var match$1=param[1][2];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 3:
-                  var lbl$1=new_label(0);
+                  var lbl$1=new_label(/* () */0);
                   
                   var
                    to_compile$1=
@@ -1083,16 +1104,19 @@ var
                      fv$1,
                      ndecl,
                      rec_idents,
-                     pos$2];
+                     pos];
                   
                   Stack["push"](to_compile$1,functions_to_compile);
-                  return /* :: */[0,lbl$1,comp_fun(pos$2+1,param[2])];
+                  return /* :: */[0,lbl$1,comp_fun(pos+1,param[2])];
                   
                  default:
-                  throw [0,Assert_failure,[0,"bytecomp/bytegen.ml",518,17]];}
+                  throw [0,
+                         CamlPrimitive["caml_global_data"]["Assert_failure"],
+                         [0,"bytecomp/bytegen.ml",518,17]];
+                  }
                }
              else
-              {return 0;}
+              {return /* [] */0;}
              };
          
          var lbls=comp_fun(0,decl);
@@ -1122,7 +1146,7 @@ var
          
          var
           comp_init=
-           function(new_env,sz$1,param)
+           function(new_env,sz,param)
             {if(param)
               {var match$1=param[1];
                
@@ -1130,14 +1154,14 @@ var
                
                var id$1=match$1[1];
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2)
                   {case 0:
                     return /* :: */[0,
-                            [15,[0,[0,0]]],
+                            [/* Kconst */15,[/* Const_base */0,[/* Const_int */0,0]]],
                             /* :: */[0,
-                             0,
-                             comp_init(add_var(id$1,sz$1+1,new_env),sz$1+1,param[2])]];
+                             /* Kpush */0,
+                             comp_init(add_var(id$1,sz+1,new_env),sz+1,param[2])]];
                     
                    }}
                else
@@ -1147,73 +1171,73 @@ var
                             /* Kconst */[15,
                              /* Const_base */[0,/* Const_int */[0,match$2[1]]]],
                             /* :: */[0,
-                             [30,"caml_alloc_dummy",1],
+                             [/* Kccall */30,"caml_alloc_dummy",1],
                              /* :: */[0,
-                              0,
-                              comp_init(add_var(id$1,sz$1+1,new_env),sz$1+1,param[2])]]];
+                              /* Kpush */0,
+                              comp_init(add_var(id$1,sz+1,new_env),sz+1,param[2])]]];
                     
                    case 1:
                     return /* :: */[0,
                             /* Kconst */[15,
                              /* Const_base */[0,/* Const_int */[0,match$2[1]]]],
                             /* :: */[0,
-                             [30,"caml_alloc_dummy_float",1],
+                             [/* Kccall */30,"caml_alloc_dummy_float",1],
                              /* :: */[0,
-                              0,
-                              comp_init(add_var(id$1,sz$1+1,new_env),sz$1+1,param[2])]]];
+                              /* Kpush */0,
+                              comp_init(add_var(id$1,sz+1,new_env),sz+1,param[2])]]];
                     
                    }}
                }
              else
-              {return comp_nonrec(new_env,sz$1,ndecl,decl_size);}
+              {return comp_nonrec(new_env,sz,ndecl,decl_size);}
              };
          
          var
           comp_nonrec=
-           function(new_env,sz$1,i,param)
+           function(new_env,sz,i,param)
             {if(param)
               {var match$1=param[1];
                
-               if("unknown primitive:isint")
+               if(typeof match$1[3]==="number")
                 {return comp_expr
                          (new_env,
                           match$1[2],
-                          sz$1,
+                          sz,
                           /* :: */[0,
                            /* Kassign */[4,i-1],
-                           comp_nonrec(new_env,sz$1,i-1,param[2])]);
+                           comp_nonrec(new_env,sz,i-1,param[2])]);
                  }
                else
-                {return comp_nonrec(new_env,sz$1,i-1,param[2]);}
+                {return comp_nonrec(new_env,sz,i-1,param[2]);}
                }
              else
-              {return comp_rec(new_env,sz$1,ndecl,decl_size);}
+              {return comp_rec(new_env,sz,ndecl,decl_size);}
              };
          
          var
           comp_rec=
-           function(new_env,sz$1,i,param)
+           function(new_env,sz,i,param)
             {if(param)
               {var match$1=param[1];
                
-               if("unknown primitive:isint")
-                {return comp_rec(new_env,sz$1,i-1,param[2]);}
+               if(typeof match$1[3]==="number")
+                {return comp_rec(new_env,sz,i-1,param[2]);}
                else
                 {return comp_expr
                          (new_env,
                           match$1[2],
-                          sz$1,
+                          sz,
                           /* :: */[0,
-                           0,
+                           /* Kpush */0,
                            /* :: */[0,
                             /* Kacc */[1,i],
                             /* :: */[0,
-                             [30,"caml_update_dummy",2],
-                             comp_rec(new_env,sz$1,i-1,param[2])]]]);
+                             [/* Kccall */30,"caml_update_dummy",2],
+                             comp_rec(new_env,sz,i-1,param[2])]]]);
                  }
                }
              else
-              {return comp_expr(new_env,body,sz$1,add_pop(ndecl,cont));}
+              {return comp_expr(new_env,body,sz,add_pop(ndecl,cont));}
              };
          
          return comp_init(env,sz,decl_size);
@@ -1224,69 +1248,60 @@ var
        
        var exit$1;
        
-       if(typeof p=="number")
+       if(typeof p==="number")
         {switch(p)
-          {case 0:
+          {case 0:exit$1=104;
+           case 1:exit$1=104;
+           case 2:exit$1=104;
+           case 3:
             var match$1=exp[2];
             
             if(match$1)
              {if(match$1[2])
                {exit$1=103;}
               else
-               {return comp_expr(env,match$1[1],sz,cont);}
+               {return comp_expr(env,match$1[1],sz,add_const_unit(cont));}
               }
             else
              {exit$1=103;}
             
-           case 1:
+           case 5:
             var match$2=exp[2];
             
             if(match$2)
-             {if(match$2[2])
-               {exit$1=103;}
-              else
-               {return comp_expr(env,match$2[1],sz,add_const_unit(cont));}
-              }
-            else
-             {exit$1=103;}
-            
-           case 3:
-            var match$3=exp[2];
-            
-            if(match$3)
-             {var match$4=match$3[2];
+             {var match$3=match$2[2];
               
-              if(match$4)
-               {if(match$4[2])
+              if(match$3)
+               {if(match$3[2])
                  {exit$1=103;}
                 else
-                 {var exp2=match$4[1];
+                 {var exp2=match$3[1];
                   
-                  var exp1=match$3[1];
+                  var exp1=match$2[1];
                   
                   var exit$2;
                   
                   if(cont)
-                   {var match$5=cont[1];
+                   {var match$4=cont[1];
                     
-                    if(typeof match$5=="number")
-                     {switch(match$5){}}
+                    if(typeof match$4==="number")
+                     {switch(match$4){}}
                     else
-                     {switch(match$5[0])
+                     {switch(match$4[0])
                        {case 23:
-                         var match$6=label_code(cont[2]);
+                         var match$5=label_code(cont[2]);
                          
                          return comp_expr
                                  (env,
                                   exp1,
                                   sz,
                                   /* :: */[0,
-                                   /* Kbranchifnot */[24,match$6[1]],
+                                   /* Kbranchifnot */[24,match$5[1]],
                                    comp_expr
                                     (env,
                                      exp2,
                                      sz,
-                                     /* :: */[0,/* Kbranchif */[23,match$5[1]],match$6[2]])]);
+                                     /* :: */[0,/* Kbranchif */[23,match$4[1]],match$5[2]])]);
                          
                         case 24:
                          return comp_expr
@@ -1294,7 +1309,7 @@ var
                                   exp1,
                                   sz,
                                   /* :: */[0,
-                                   /* Kbranchifnot */[24,match$5[1]],
+                                   /* Kbranchifnot */[24,match$4[1]],
                                    comp_expr(env,exp2,sz,cont)]);
                          
                         default:exit$2=49;}}
@@ -1304,15 +1319,15 @@ var
                   
                   switch(exit$2)
                    {case 49:
-                     var match$7=label_code(cont);
+                     var match$6=label_code(cont);
                      
                      return comp_expr
                              (env,
                               exp1,
                               sz,
                               /* :: */[0,
-                               /* Kstrictbranchifnot */[26,match$7[1]],
-                               comp_expr(env,exp2,sz,match$7[2])]);
+                               /* Kstrictbranchifnot */[26,match$6[1]],
+                               comp_expr(env,exp2,sz,match$6[2])]);
                      
                     }
                   }
@@ -1323,52 +1338,52 @@ var
             else
              {exit$1=103;}
             
-           case 4:
-            var match$8=exp[2];
+           case 6:
+            var match$7=exp[2];
             
-            if(match$8)
-             {var match$9=match$8[2];
+            if(match$7)
+             {var match$8=match$7[2];
               
-              if(match$9)
-               {if(match$9[2])
+              if(match$8)
+               {if(match$8[2])
                  {exit$1=103;}
                 else
-                 {var exp2$1=match$9[1];
+                 {var exp2$1=match$8[1];
                   
-                  var exp1$1=match$8[1];
+                  var exp1$1=match$7[1];
                   
                   var exit$3;
                   
                   if(cont)
-                   {var match$10=cont[1];
+                   {var match$9=cont[1];
                     
-                    if(typeof match$10=="number")
-                     {switch(match$10){}}
+                    if(typeof match$9==="number")
+                     {switch(match$9){}}
                     else
-                     {switch(match$10[0])
+                     {switch(match$9[0])
                        {case 23:
                          return comp_expr
                                  (env,
                                   exp1$1,
                                   sz,
                                   /* :: */[0,
-                                   /* Kbranchif */[23,match$10[1]],
+                                   /* Kbranchif */[23,match$9[1]],
                                    comp_expr(env,exp2$1,sz,cont)]);
                          
                         case 24:
-                         var match$11=label_code(cont[2]);
+                         var match$10=label_code(cont[2]);
                          
                          return comp_expr
                                  (env,
                                   exp1$1,
                                   sz,
                                   /* :: */[0,
-                                   /* Kbranchif */[23,match$11[1]],
+                                   /* Kbranchif */[23,match$10[1]],
                                    comp_expr
                                     (env,
                                      exp2$1,
                                      sz,
-                                     /* :: */[0,/* Kbranchifnot */[24,match$10[1]],match$11[2]])]);
+                                     /* :: */[0,/* Kbranchifnot */[24,match$9[1]],match$10[2]])]);
                          
                         default:exit$3=52;}}
                     }
@@ -1377,15 +1392,15 @@ var
                   
                   switch(exit$3)
                    {case 52:
-                     var match$12=label_code(cont);
+                     var match$11=label_code(cont);
                      
                      return comp_expr
                              (env,
                               exp1$1,
                               sz,
                               /* :: */[0,
-                               /* Kstrictbranchif */[25,match$12[1]],
-                               comp_expr(env,exp2$1,sz,match$12[2])]);
+                               /* Kstrictbranchif */[25,match$11[1]],
+                               comp_expr(env,exp2$1,sz,match$11[2])]);
                      
                     }
                   }
@@ -1396,72 +1411,73 @@ var
             else
              {exit$1=103;}
             
-           case 5:
-            var match$13=exp[2];
+           case 7:
+            var match$12=exp[2];
             
-            if(match$13)
-             {if(match$13[2])
+            if(match$12)
+             {if(match$12[2])
                {exit$1=103;}
               else
                {var exit$4;
                 
                 if(cont)
-                 {var match$14=cont[1];
+                 {var match$13=cont[1];
                   
-                  if(typeof match$14=="number")
-                   {switch(match$14){}}
+                  if(typeof match$13==="number")
+                   {switch(match$13){}}
                   else
-                   {switch(match$14[0])
+                   {switch(match$13[0])
                      {case 23:
                        var
                         newcont=
-                         /* :: */[0,/* Kbranchifnot */[24,match$14[1]],cont[2]];
+                         /* :: */[0,/* Kbranchifnot */[24,match$13[1]],cont[2]];
                        
                       case 24:
                        var
                         newcont=
-                         /* :: */[0,/* Kbranchif */[23,match$14[1]],cont[2]];
+                         /* :: */[0,/* Kbranchif */[23,match$13[1]],cont[2]];
                        
                       default:exit$4=45;}}
                   }
                 else
                  {exit$4=45;}
                 
-                switch(exit$4){case 45:var newcont=/* :: */[0,7,cont];}
+                switch(exit$4)
+                 {case 45:var newcont=/* :: */[0,/* Kboolnot */7,cont];}
                 
-                return comp_expr(env,match$13[1],sz,newcont);
+                return comp_expr(env,match$12[1],sz,newcont);
                 }
               }
             else
              {exit$1=103;}
             
-           case 7:
-            var match$15=exp[2];
+           case 9:
+            var match$14=exp[2];
             
-            if(match$15)
-             {var match$16=match$15[2];
+            if(match$14)
+             {var match$15=match$14[2];
               
-              if(match$16)
-               {var match$17=match$16[1];
+              if(match$15)
+               {var match$16=match$15[1];
                 
-                switch(match$17)
+                switch(match$16[0])
                  {case 1:
-                   var match$18=match$17[1];
+                   var match$17=match$16[1];
                    
-                   switch(match$18)
+                   switch(match$17[0])
                     {case 0:
-                      var match$19=match$18[1];
+                      var match$18=match$17[1];
                       
-                      switch(match$19)
+                      switch(match$18[0])
                        {case 0:
-                         if(match$16[2])
+                         if(match$15[2])
                           {exit$1=103;}
                          else
-                          {var n=match$19[1];
+                          {var n=match$18[1];
                            
                            if(is_immed(n))
                             {return comp_expr
-                                     (env,match$15[1],sz,/* :: */[0,/* Koffsetint */[32,n],cont]);
+                                     (env,match$14[1],sz,/* :: */[0,/* Koffsetint */[32,n],cont]);
                              }
                            else
                             {exit$1=103;}
@@ -1479,34 +1495,34 @@ var
             else
              {exit$1=103;}
             
-           case 8:
-            var match$20=exp[2];
+           case 10:
+            var match$19=exp[2];
             
-            if(match$20)
-             {var match$21=match$20[2];
+            if(match$19)
+             {var match$20=match$19[2];
               
-              if(match$21)
-               {var match$22=match$21[1];
+              if(match$20)
+               {var match$21=match$20[1];
                 
-                switch(match$22)
+                switch(match$21[0])
                  {case 1:
-                   var match$23=match$22[1];
+                   var match$22=match$21[1];
                    
-                   switch(match$23)
+                   switch(match$22[0])
                     {case 0:
-                      var match$24=match$23[1];
+                      var match$23=match$22[1];
                       
-                      switch(match$24)
+                      switch(match$23[0])
                        {case 0:
-                         if(match$21[2])
+                         if(match$20[2])
                           {exit$1=103;}
                          else
-                          {var n$1=match$24[1];
+                          {var n$1=match$23[1];
                            
                            if(is_immed(-n$1))
                             {return comp_expr
                                      (env,
-                                      match$20[1],
+                                      match$19[1],
                                       sz,
                                       /* :: */[0,/* Koffsetint */[32,-n$1],cont]);
                              }
@@ -1530,20 +1546,20 @@ var
        else
         {switch(p[0])
           {case 0:
-            var match$25=exp[2];
+            var match$24=exp[2];
             
-            if(match$25)
-             {var match$26=match$25[2];
+            if(match$24)
+             {var match$25=match$24[2];
               
-              if(match$26)
-               {if(match$26[2])
+              if(match$25)
+               {if(match$25[2])
                  {exit$1=103;}
                 else
                  {var loc=p[1];
                   
-                  var func$1=match$26[1];
+                  var func$1=match$25[1];
                   
-                  var arg=match$25[1];
+                  var arg=match$24[1];
                   
                   exit=102;
                   }
@@ -1555,20 +1571,20 @@ var
              {exit$1=103;}
             
            case 1:
-            var match$27=exp[2];
+            var match$26=exp[2];
             
-            if(match$27)
-             {var match$28=match$27[2];
+            if(match$26)
+             {var match$27=match$26[2];
               
-              if(match$28)
-               {if(match$28[2])
+              if(match$27)
+               {if(match$27[2])
                  {exit$1=103;}
                 else
                  {var loc=p[1];
                   
-                  var func$1=match$27[1];
+                  var func$1=match$26[1];
                   
-                  var arg=match$28[1];
+                  var arg=match$27[1];
                   
                   exit=102;
                   }
@@ -1580,15 +1596,15 @@ var
              {exit$1=103;}
             
            case 12:
-            var match$29=exp[2];
+            var match$28=exp[2];
             
-            if(match$29)
-             {if(match$29[2])
+            if(match$28)
+             {if(match$28[2])
                {exit$1=103;}
               else
                {return comp_expr
                         (env,
-                         match$29[1],
+                         match$28[1],
                          sz,
                          /* :: */[0,/* Kraise */[29,p[1]],discard_dead_code(cont)]);
                 }
@@ -1597,24 +1613,24 @@ var
              {exit$1=103;}
             
            case 13:
-            var match$30=exp[2];
+            var match$29=exp[2];
             
-            if(match$30)
-             {var match$31=match$30[2];
+            if(match$29)
+             {var match$30=match$29[2];
               
-              if(match$31)
-               {var k=match$31[1];
+              if(match$30)
+               {var k=match$30[1];
                 
-                switch(k)
+                switch(k[0])
                  {case 1:
-                   if(match$31[2])
+                   if(match$30[2])
                     {exit$1=103;}
                    else
                     {var
                       p$1=
                        /* Pintcomp */[13,Lambda["commute_comparison"](p[1])];
                      
-                     var args$1=/* :: */[0,k,/* :: */[0,match$30[1],0]];
+                     var args$1=/* :: */[0,k,/* :: */[0,match$29[1],/* [] */0]];
                      
                      return comp_args
                              (env,args$1,sz,/* :: */[0,comp_primitive(p$1,args$1),cont]);
@@ -1629,10 +1645,10 @@ var
              {exit$1=103;}
             
            case 14:
-            var match$32=exp[2];
+            var match$31=exp[2];
             
-            if(match$32)
-             {if(match$32[2])
+            if(match$31)
+             {if(match$31[2])
                {exit$1=103;}
               else
                {var n$2=p[1];
@@ -1640,13 +1656,13 @@ var
                 if(!is_immed(n$2))
                  {return comp_expr
                           (env,
-                           match$32[1],
+                           match$31[1],
                            sz,
                            /* :: */[0,
-                            0,
+                            /* Kpush */0,
                             /* :: */[0,
                              /* Kconst */[15,/* Const_base */[0,/* Const_int */[0,n$2]]],
-                             /* :: */[0,11,cont]]]);
+                             /* :: */[0,/* Kaddint */11,cont]]]);
                   }
                 else
                  {exit$1=103;}
@@ -1660,7 +1676,7 @@ var
             
             var kind=p[1];
             
-            if(kind!=0)
+            if(kind!==0)
              {if(kind>=3)
                {return comp_args
                         (env,
@@ -1681,8 +1697,8 @@ var
                 }
               }
             else
-             {if(args$2=0)
-               {return /* :: */[0,[16,0,0],cont];}
+             {if(args$2===/* [] */0)
+               {return /* :: */[0,[/* Kmakeblock */16,0,0],cont];}
               else
                {return comp_args
                         (env,
@@ -1690,14 +1706,26 @@ var
                          sz,
                          /* :: */[0,
                           /* Kmakeblock */[16,List["length"](args$2),0],
-                          /* :: */[0,[30,"caml_make_array",1],cont]]);
+                          /* :: */[0,[/* Kccall */30,"caml_make_array",1],cont]]);
                 }
               }
             
            default:exit$1=103;}}
        
        switch(exit$1)
-        {case 103:
+        {case 104:
+          var match$32=exp[2];
+          
+          if(match$32)
+           {if(match$32[2])
+             {exit$1=103;}
+            else
+             {return comp_expr(env,match$32[1],sz,cont);}
+            }
+          else
+           {exit$1=103;}
+          
+         case 103:
           var args$3=exp[2];
           
           return comp_args
@@ -1714,44 +1742,46 @@ var
        
        var c=discard_dead_code(match$33[2]);
        
-       var store=Storer[1](0);
+       var store=Storer[1](/* () */0);
        
-       var act_consts="unknown primitive:caml_make_vect";
+       var act_consts=CamlPrimitive["caml_make_vect"](sw[1],0);
        
-       var act_blocks="unknown primitive:caml_make_vect";
+       var act_blocks=CamlPrimitive["caml_make_vect"](sw[3],0);
        
        var match$34=sw[5];
        
-       if(match$34){}else{}
+       if(match$34){store[3](match$34[1])}else{}
        
        List["iter"]
-        (function(param){return act_consts[param[1]]=store[3](param[2]),0;},
+        (function(param){return act_consts[param[1]+1]=store[3](param[2]),0;},
          sw[2]);
        List["iter"]
-        (function(param){return act_blocks[param[1]]=store[3](param[2]),0;},
+        (function(param){return act_blocks[param[1]+1]=store[3](param[2]),0;},
          sw[4]);
-       var acts=store[1](0);
+       var acts=store[1](/* () */0);
        
-       var lbls$1="unknown primitive:caml_make_vect";
+       var
+        lbls$1=
+         CamlPrimitive["caml_make_vect"](/* -1 for tag */acts["length"]-1,0);
        
-       for(var i=acts["length"]-1;i>=0;i--)
+       for(var i=/* -1 for tag */acts["length"]-1-1;i>=0;i--)
         {var
           match$35=
-           label_code(comp_expr(env,acts[i],sz,/* :: */[0,branch,c]));
+           label_code(comp_expr(env,acts[i+1],sz,/* :: */[0,branch,c]));
          
-         lbls$1[i]=match$35[1],0;
+         lbls$1[i+1]=match$35[1];
          c=discard_dead_code(match$35[2]);
          }
        
-       var lbl_blocks="unknown primitive:caml_make_vect";
+       var lbl_blocks=CamlPrimitive["caml_make_vect"](sw[3],0);
        
        for(var i$1=sw[3]-1;i$1>=0;i$1--)
-        {lbl_blocks[i$1]=lbls$1[act_blocks[i$1]],0}
+        {lbl_blocks[i$1+1]=lbls$1[act_blocks[i$1+1]+1]}
        
-       var lbl_consts="unknown primitive:caml_make_vect";
+       var lbl_consts=CamlPrimitive["caml_make_vect"](sw[1],0);
        
        for(var i$2=sw[1]-1;i$2>=0;i$2--)
-        {lbl_consts[i$2]=lbls$1[act_consts[i$2]],0}
+        {lbl_consts[i$2+1]=lbls$1[act_consts[i$2+1]+1]}
        
        return comp_expr
                (env,
@@ -1781,17 +1811,22 @@ var
        
        var
         loop=
-         function(sz$1,tbb)
-          {if(tb=tbb)
-            {return add_pop(sz$1-size,cont$2);}
+         function(sz,tbb)
+          {if(tb===tbb)
+            {return add_pop(sz-size,cont$2);}
            else
             {if(tbb)
               {var try_sz=tbb[1];
                
-               return add_pop(sz$1-try_sz-4,/* :: */[0,8,loop(try_sz,tbb[2])]);
+               return add_pop
+                       (sz-try_sz-4,
+                        /* :: */[0,/* Kpoptrap */8,loop(try_sz,tbb[2])]);
                }
              else
-              {throw [0,Assert_failure,[0,"bytecomp/bytegen.ml",668,16]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"bytecomp/bytegen.ml",668,16]];
+               }
              }
            };
        
@@ -1830,7 +1865,7 @@ var
        
        var branch1=match$38[1];
        
-       if(nvars!=1)
+       if(nvars!==1)
         {var
           match$39=
            label_code
@@ -1857,59 +1892,64 @@ var
           {exit$6=57;}
          
          switch(exit$6)
-          {case 57:throw [0,Assert_failure,[0,"bytecomp/bytegen.ml",650,56]];}
+          {case 57:
+            throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/bytegen.ml",650,56]];
+            
+           }
          
          var
           match$40=
            label_code
             (/* :: */[0,
-              0,
+              /* Kpush */0,
               comp_expr(add_var($$var,sz+1,env),handler,sz+1,add_pop(1,cont1))]);
          
          push_static_raise(i$3,match$40[1],sz);
          var r=comp_expr(env,body$1,sz,/* :: */[0,branch1,match$40[2]]);
          }
        
-       sz_static_raises[1]=List["tl"](sz_static_raises[1]),0;
+       sz_static_raises[1]=List["tl"](sz_static_raises[1]);
        return r;
        
       case 11:
        var match$41=make_branch(cont);
        
-       var lbl_handler=new_label(0);
+       var lbl_handler=new_label(/* () */0);
        
        var
         body_cont=
          /* :: */[0,
-          8,
+          /* Kpoptrap */8,
           /* :: */[0,
            match$41[1],
            /* :: */[0,
             /* Klabel */[0,lbl_handler],
             /* :: */[0,
-             0,
+             /* Kpush */0,
              comp_expr
               (add_var(exp[2],sz+1,env),exp[3],sz+1,add_pop(1,match$41[2]))]]]];
        
-       try_blocks[1]=/* :: */[0,sz,try_blocks[1]],0;
+       try_blocks[1]=/* :: */[0,sz,try_blocks[1]];
        var l=comp_expr(env,exp[1],sz+4,body_cont);
        
-       try_blocks[1]=List["tl"](try_blocks[1]),0;
+       try_blocks[1]=List["tl"](try_blocks[1]);
        return /* :: */[0,/* Kpushtrap */[28,lbl_handler],l];
        
       case 12:return comp_binary_test(env,exp[1],exp[2],exp[3],sz,cont);
       case 13:return comp_expr(env,exp[1],sz,comp_expr(env,exp[2],sz,cont));
       case 14:
-       var lbl_loop=new_label(0);
+       var lbl_loop=new_label(/* () */0);
        
-       var lbl_test=new_label(0);
+       var lbl_test=new_label(/* () */0);
        
        return /* :: */[0,
                /* Kbranch */[22,lbl_test],
                /* :: */[0,
                 /* Klabel */[0,lbl_loop],
                 /* :: */[0,
-                 9,
+                 /* Kcheck_signals */9,
                  comp_expr
                   (env,
                    exp[2],
@@ -1927,30 +1967,30 @@ var
       case 15:
        var dir=exp[4];
        
-       var lbl_loop$1=new_label(0);
+       var lbl_loop$1=new_label(/* () */0);
        
-       var lbl_exit=new_label(0);
+       var lbl_exit=new_label(/* () */0);
        
-       if(dir!=0){var offset=-1;}else{var offset=1;}
+       if(dir!==0){var offset=-1;}else{var offset=1;}
        
-       if(dir!=0){var comp=2;}else{var comp=3;}
+       if(dir!==0){var comp=/* Clt */2;}else{var comp=/* Cgt */3;}
        
        return comp_expr
                (env,
                 exp[2],
                 sz,
                 /* :: */[0,
-                 0,
+                 /* Kpush */0,
                  comp_expr
                   (env,
                    exp[3],
                    sz+1,
                    /* :: */[0,
-                    0,
+                    /* Kpush */0,
                     /* :: */[0,
-                     0,
+                     /* Kpush */0,
                      /* :: */[0,
-                      [1,2],
+                      [/* Kacc */1,2],
                       /* :: */[0,
                        /* Kintcomp */[31,comp],
                        /* :: */[0,
@@ -1958,23 +1998,23 @@ var
                         /* :: */[0,
                          /* Klabel */[0,lbl_loop$1],
                          /* :: */[0,
-                          9,
+                          /* Kcheck_signals */9,
                           comp_expr
                            (add_var(exp[1],sz+1,env),
                             exp[5],
                             sz+2,
                             /* :: */[0,
-                             [1,1],
+                             [/* Kacc */1,1],
                              /* :: */[0,
-                              0,
+                              /* Kpush */0,
                               /* :: */[0,
                                /* Koffsetint */[32,offset],
                                /* :: */[0,
-                                [4,2],
+                                [/* Kassign */4,2],
                                 /* :: */[0,
-                                 [1,1],
+                                 [/* Kacc */1,1],
                                  /* :: */[0,
-                                  [31,1],
+                                  [/* Kintcomp */31,/* Cneq */1],
                                   /* :: */[0,
                                    /* Kbranchif */[23,lbl_loop$1],
                                    /* :: */[0,
@@ -1989,7 +2029,7 @@ var
                  (env,exp[2],sz,/* :: */[0,/* Kassign */[4,sz-pos$2],cont]);
          }
        catch(exn$3)
-        {if(exn$3=Not_found)
+        {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
           {return Misc["fatal_error"]("Bytegen.comp_expr: assign");}
          else
           {throw exn$3;}
@@ -2004,27 +2044,32 @@ var
        
        var kind$1=exp[1];
        
-       if(kind$1=2){var args$6=List["tl"](args$5);}else{var args$6=args$5;}
+       if(kind$1===/* Cached */2)
+        {var args$6=List["tl"](args$5);}
+       else
+        {var args$6=args$5;}
        
        var nargs$1=List["length"](args$6)+1;
        
-       if(kind$1=0)
+       if(kind$1===/* Self */0)
         {var
           match$42=
-           /* tuple */[0,24,/* :: */[0,met,/* :: */[0,obj,args$6]]];
+           /* tuple */[0,
+            /* Kgetmethod */24,
+            /* :: */[0,met,/* :: */[0,obj,args$6]]];
          }
        else
         {var exit$7;
          
-         switch(met)
+         switch(met[0])
           {case 1:
             var match$43=met[1];
             
-            switch(match$43)
+            switch(match$43[0])
              {case 0:
                var match$44=match$43[1];
                
-               switch(match$44)
+               switch(match$44[0])
                 {case 0:
                   var
                    match$42=
@@ -2042,7 +2087,9 @@ var
           {case 26:
             var
              match$42=
-              /* tuple */[0,25,/* :: */[0,met,/* :: */[0,obj,args$6]]];
+              /* tuple */[0,
+               /* Kgetdynmet */25,
+               /* :: */[0,met,/* :: */[0,obj,args$6]]];
             
            }
          }
@@ -2094,7 +2141,7 @@ var
        
        var
         $$event=
-         function(kind$2,info)
+         function(kind,info)
           {var match$46=lev[3];
            
            if(match$46)
@@ -2102,26 +2149,26 @@ var
              
              var match$47=repr[1];
              
-             if(match$47!=1)
-              {if(lev[2]=1)
+             if(match$47!==1)
+              {if(lev[2]===/* Lev_function */1)
                 {var $js=/* Event_parent */[0,repr];}
                else
                 {var $js=/* Event_child */[1,repr];}
                }
              else
-              {if(lev[2]=1)
+              {if(lev[2]===/* Lev_function */1)
                 {var $js=/* Event_child */[1,repr];}
                else
                 {var $js=/* Event_parent */[0,repr];}
                }
              }
            else
-            {var $js=0;}
+            {var $js=/* Event_none */0;}
            return /* record */[0,
                    0,
                    compunit_name[1],
                    lev[1],
-                   kind$2,
+                   kind,
                    info,
                    lev[4],
                    Subst["identity"],
@@ -2132,18 +2179,18 @@ var
        
        var match$46=lev[2];
        
-       if("unknown primitive:isint")
-        {if(match$46!=0)
+       if(typeof match$46==="number")
+        {if(match$46!==0)
           {var c$1=comp_expr(env,lam,sz,cont);
            
-           var ev=$$event(1,0);
+           var ev=$$event(/* Event_pseudo */1,/* Event_function */0);
            
            return add_event(ev,c$1);
            }
          else
           {var c$2=comp_expr(env,lam,sz,cont);
            
-           var ev$1=$$event(0,1);
+           var ev$1=$$event(/* Event_before */0,/* Event_other */1);
            
            return add_event(ev$1,c$2);
            }
@@ -2152,10 +2199,10 @@ var
         {if(is_tailcall(cont))
           {return comp_expr(env,lam,sz,cont);}
          else
-          {switch(lam)
+          {switch(lam[0])
             {case 2:var info=/* Event_return */[0,List["length"](lam[2])];
              case 17:var info=/* Event_return */[0,List["length"](lam[4])+1];
-             default:var info=1;}
+             default:var info=/* Event_other */1;}
            
            var ev$2=$$event(/* Event_after */[0,match$46[1]],info);
            
@@ -2170,7 +2217,7 @@ var
     
     switch(exit)
      {case 102:
-       var exp$1=/* Lapply */[2,func$1,/* :: */[0,arg,0],loc];
+       var exp$1=/* Lapply */[2,func$1,/* :: */[0,arg,/* [] */0],loc];
        
        return comp_expr(env,exp$1,sz,cont);
        
@@ -2192,7 +2239,10 @@ var
       
       if(rem)
        {return comp_expr
-                (env,exp,sz,/* :: */[0,0,comp_expr_list(env,rem,sz+1,cont)]);
+                (env,
+                 exp,
+                 sz,
+                 /* :: */[0,/* Kpush */0,comp_expr_list(env,rem,sz+1,cont)]);
         }
       else
        {return comp_expr(env,exp,sz,cont);}
@@ -2225,7 +2275,8 @@ var
 var
  comp_binary_test=
   function(env,cond,ifso,ifnot,sz,cont)
-   {if("unknown primitive:caml_equal")
+   {if
+     (CamlPrimitive["caml_equal"](ifnot,/* Lconst */[1,Lambda["const_unit"]]))
      {var match=label_code(cont);
       
       var
@@ -2267,19 +2318,21 @@ var
     return comp_expr(env,cond,sz,cont_cond);
     };
 
-var comp_string_switch=function(env,arg,cases,$$default,sz,cont){return 0;};
+var
+ comp_string_switch=
+  function(env,arg,cases,$$default,sz,cont){return /* () */0;};
 
 var
  comp_block=
   function(env,exp,sz,cont)
-   {max_stack_used[1]=0,0;
+   {max_stack_used[1]=0;
     var code=comp_expr(env,exp,sz,cont);
     
     if(max_stack_used[1]+1>Config["stack_threshold"])
      {return /* :: */[0,
               /* Kconst */[15,
                /* Const_base */[0,/* Const_int */[0,max_stack_used[1]+1]]],
-              /* :: */[0,[30,"caml_ensure_stack_capacity",1],code]];
+              /* :: */[0,[/* Kccall */30,"caml_ensure_stack_capacity",1],code]];
       }
     else
      {return code;}
@@ -2314,7 +2367,7 @@ var
     
     if(arity>1)
      {return /* :: */[0,
-              1,
+              /* Krestart */1,
               /* :: */[0,
                /* Klabel */[0,tc[3]],
                /* :: */[0,/* Kgrab */[9,arity-1],cont$1]]];
@@ -2329,8 +2382,10 @@ var
    {var c=cont;
     
     try
-     {while(1){c=comp_function(Stack["pop"](functions_to_compile),c);}}
-    catch(exn){if(exn=Stack["Empty"]){}else{throw exn;}}
+     {while(/* true */1)
+       {c=comp_function(Stack["pop"](functions_to_compile),c);}
+      }
+    catch(exn){if(exn===Stack["Empty"]){}else{throw exn;}}
     
     return c;
     };
@@ -2339,13 +2394,13 @@ var
  compile_implementation=
   function(modulename,expr)
    {Stack["clear"](functions_to_compile);
-    label_counter[1]=0,0;
-    sz_static_raises[1]=0,0;
-    compunit_name[1]=modulename,0;
-    var init_code=comp_block(empty_env,expr,0,0);
+    label_counter[1]=0;
+    sz_static_raises[1]=/* [] */0;
+    compunit_name[1]=modulename;
+    var init_code=comp_block(empty_env,expr,0,/* [] */0);
     
     if(Stack["length"](functions_to_compile)>0)
-     {var lbl_init=new_label(0);
+     {var lbl_init=new_label(/* () */0);
       
       return /* :: */[0,
               /* Kbranch */[22,lbl_init],
@@ -2359,11 +2414,13 @@ var
  compile_phrase=
   function(expr)
    {Stack["clear"](functions_to_compile);
-    label_counter[1]=0,0;
-    sz_static_raises[1]=0,0;
-    var init_code=comp_block(empty_env,expr,1,[0,[8,1],0]);
+    label_counter[1]=0;
+    sz_static_raises[1]=/* [] */0;
+    var
+     init_code=
+      comp_block(empty_env,expr,1,[/* :: */0,[/* Kreturn */8,1],/* [] */0]);
     
-    var fun_code=comp_remainder(0);
+    var fun_code=comp_remainder(/* [] */0);
     
     return /* tuple */[0,init_code,fun_code];
     };
@@ -2371,9 +2428,9 @@ var
 var
  reset=
   function(param)
-   {label_counter[1]=0,0;
-    sz_static_raises[1]=0,0;
-    compunit_name[1]="",0;
+   {label_counter[1]=0;
+    sz_static_raises[1]=/* [] */0;
+    compunit_name[1]="";
     Stack["clear"](functions_to_compile);
     return max_stack_used[1]=0,0;
     };

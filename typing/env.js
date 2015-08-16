@@ -1,55 +1,64 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Cmi_format=require("Cmi_format");
-var Datarepr=require("Datarepr");
-var Warnings=require("Warnings");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Btype=require("Btype");
-var Predef=require("Predef");
-var Clflags=require("Clflags");
-var Types=require("Types");
-var Format=require("Format");
-var Set=require("Set");
-var Misc=require("Misc");
-var Path=require("Path");
-var Subst=require("Subst");
-var Consistbl=require("Consistbl");
-var Longident=require("Longident");
-var Location=require("Location");
-var Tbl=require("Tbl");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var CamlinternalLazy=require("CamlinternalLazy");
-var Config=require("Config");
+var $$String=require("./string.js");
+var Cmi_format=require("./cmi_format.js");
+var Datarepr=require("./datarepr.js");
+var Warnings=require("./warnings.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Btype=require("./btype.js");
+var Predef=require("./predef.js");
+var Clflags=require("./clflags.js");
+var Types=require("./types.js");
+var Format=require("./format.js");
+var Set=require("./set.js");
+var Misc=require("./misc.js");
+var Path=require("./path.js");
+var Subst=require("./subst.js");
+var Consistbl=require("./consistbl.js");
+var Longident=require("./longident.js");
+var Location=require("./location.js");
+var Tbl=require("./tbl.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  add_delayed_check_forward=
-  [0,function(param){throw [0,Assert_failure,[0,"typing/env.ml",24,46]];}];
+  [0,
+   function(param)
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/env.ml",24,46]];
+     }];
 
-var value_declarations=Hashtbl["create"](0,16);
+var value_declarations=Hashtbl["create"](/* None */0,16);
 
-var type_declarations=Hashtbl["create"](0,16);
+var type_declarations=Hashtbl["create"](/* None */0,16);
 
 var
  add_constructor_usage=
   function(cu,param)
-   {switch(param[0])
-     {case 0:return cu[1]=1,0;
-      case 1:return cu[2]=1,0;
-      case 2:return cu[3]=1,0;
+   {switch(param)
+     {case 0:return cu[1]=/* true */1,0;
+      case 1:return cu[2]=/* true */1,0;
+      case 2:return cu[3]=/* true */1,0;
       }
     };
 
-var constructor_usages=function(param){return /* record */[0,0,0,0];};
+var
+ constructor_usages=
+  function(param)
+   {return /* record */[0,/* false */0,/* false */0,/* false */0];};
 
-var used_constructors=Hashtbl["create"](0,16);
+var used_constructors=Hashtbl["create"](/* None */0,16);
 
-var prefixed_sg=Hashtbl["create"](0,113);
+var prefixed_sg=Hashtbl["create"](/* None */0,113);
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Env.Error",0]);
 
 var error=function(err){throw [0,$$Error,err];};
 
@@ -58,13 +67,13 @@ var
   function(f,x)
    {var match=x[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:return match[1];
       case 1:throw match[1];
       case 2:
        try
-        {var y=f(match[1]);x[1]=/* Done */[0,y],0;return y;}
-       catch(e){x[1]=/* Raise */[1,e],0;throw e;}
+        {var y=f(match[1]);x[1]=/* Done */[0,y];return y;}
+       catch(e){x[1]=/* Raise */[1,e];throw e;}
        
       }
     };
@@ -76,9 +85,10 @@ var
     
     var exit;
     
-    switch(match){case 0:return 1;case 1:exit=411;case 2:exit=411;}
+    switch(match[0])
+     {case 0:return /* true */1;case 1:exit=411;case 2:exit=411;}
     
-    switch(exit){case 411:return 0;}
+    switch(exit){case 411:return /* false */0;}
     };
 
 var
@@ -88,10 +98,10 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=409;case 1:exit=409;case 2:return /* Some */[0,match[1]];}
     
-    switch(exit){case 409:return 0;}
+    switch(exit){case 409:return /* None */0;}
     };
 
 var create=function(x){return [0,/* Thunk */[2,x]];};
@@ -100,12 +110,20 @@ var EnvLazy=[0,force,create,is_val,get_arg];
 
 var empty=Ident["empty"];
 
-var nothing=function(param){return 0;};
+var nothing=function(param){return /* () */0;};
 
 var
  already_defined=
   function(s,tbl)
-   {try {return 1;}catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}};
+   {try
+     {Ident["find_name"](s,tbl);return /* true */1;}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* false */0;}
+      else
+       {throw exn;}
+      }
+    };
 
 var
  add=
@@ -138,12 +156,12 @@ var
 var
  find_same=
   function(id,tbl)
-   {var match=Ident["find_same"](id,tbl);match[2](0);return match[1];};
+   {var match=Ident["find_same"](id,tbl);match[2](/* () */0);return match[1];};
 
 var
  find_name=
   function(s,tbl)
-   {var match=Ident["find_name"](s,tbl);match[2](0);return match[1];};
+   {var match=Ident["find_name"](s,tbl);match[2](/* () */0);return match[1];};
 
 var find_all=function(s,tbl){return Ident["find_all"](s,tbl);};
 
@@ -156,7 +174,7 @@ var
  keys=
   function(tbl)
    {return Ident["fold_all"]
-            (function(k,param,accu){return /* :: */[0,k,accu];},tbl,0);
+            (function(k,param,accu){return /* :: */[0,k,accu];},tbl,/* [] */0);
     };
 
 var
@@ -195,34 +213,34 @@ var
    EnvTbl[1],
    EnvTbl[1],
    Ident["empty"],
-   0,
-   0,
-   0,
+   /* Env_empty */0,
+   /* false */0,
+   /* [] */0,
    0];
 
 var
  in_signature=
   function(env)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
-    newrecord[14]=env[14]|in_signature_flag,0;
+    newrecord[14]=env[14]|in_signature_flag;
     return newrecord;
     };
 
 var
  implicit_coercion=
   function(env)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
-    newrecord[14]=env[14]|implicit_coercion_flag,0;
+    newrecord[14]=env[14]|implicit_coercion_flag;
     return newrecord;
     };
 
-var is_in_signature=function(env){return (env[14]&in_signature_flag)!=0;};
+var is_in_signature=function(env){return (env[14]&in_signature_flag)!==0;};
 
 var
  is_implicit_coercion=
-  function(env){return (env[14]&implicit_coercion_flag)!=0;};
+  function(env){return (env[14]&implicit_coercion_flag)!==0;};
 
 var
  diff_keys=
@@ -231,9 +249,15 @@ var
     
     return List["filter"]
             (function(id)
-              {try
-                {var $js=0;}
-               catch(exn){if(exn=Not_found){var $js=1;}else{throw exn;}}
+              {var $js;
+               try
+                {EnvTbl[6](id,tbl1);$js=/* false */0;}
+               catch(exn)
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {$js=/* true */1;}
+                 else
+                  {throw exn;}
+                 }
                return is_local(EnvTbl[6](id,tbl2))&&$js;
                },
              keys2);
@@ -244,9 +268,10 @@ var
   function(param)
    {var exit;
     
-    switch(param){case 0:return 1;case 1:exit=378;case 2:exit=378;}
+    switch(param[0])
+     {case 0:return /* true */1;case 1:exit=378;case 2:exit=378;}
     
-    switch(exit){case 378:return 0;}
+    switch(exit){case 378:return /* false */0;}
     };
 
 var is_local=function(param){return is_ident(param[1]);};
@@ -258,10 +283,10 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=375;case 1:exit=375;case 2:return is_ident(match[1]);}
     
-    switch(exit){case 375:return 0;}
+    switch(exit){case 375:return /* false */0;}
     };
 
 var
@@ -280,35 +305,57 @@ var
  components_of_module$prime=
   [0,
    function(env,sub,path,mty)
-    {throw [0,Assert_failure,[0,"typing/env.ml",272,32]];}];
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/env.ml",272,32]];
+     }];
 
 var
  components_of_module_maker$prime=
-  [0,function(param){throw [0,Assert_failure,[0,"typing/env.ml",275,37]];}];
+  [0,
+   function(param)
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/env.ml",275,37]];
+     }];
 
 var
  components_of_functor_appl$prime=
-  [0,function(f,p1,p2){throw [0,Assert_failure,[0,"typing/env.ml",278,23]];}];
+  [0,
+   function(f,p1,p2)
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/env.ml",278,23]];
+     }];
 
 var
  check_modtype_inclusion=
   [0,
    function(env,mty1,path1,mty2)
-    {throw [0,Assert_failure,[0,"typing/env.ml",282,35]];}];
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/env.ml",282,35]];
+     }];
 
 var
  strengthen=
   [0,
    function(env,mty,path)
-    {throw [0,Assert_failure,[0,"typing/env.ml",286,28]];}];
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/env.ml",286,28]];
+     }];
 
-var md=function(md_type){return /* record */[0,md_type,0,Location["none"]];};
+var
+ md=
+  function(md_type)
+   {return /* record */[0,md_type,/* [] */0,Location["none"]];};
 
 var current_unit=[0,""];
 
-var persistent_structures=Hashtbl["create"](0,17);
+var persistent_structures=Hashtbl["create"](/* None */0,17);
 
-var crc_units=Consistbl["create"](0);
+var crc_units=Consistbl["create"](/* () */0);
 
 var compare=$$String["compare"];
 
@@ -341,13 +388,13 @@ var
               return Consistbl["check"](crc_units,name,crco[1],ps[6]);
               }
             else
-             {return 0;}
+             {return /* () */0;}
             },
           ps[4]);
-        return ps[5]=1,0;
+        return ps[5]=/* true */1,0;
         }
       catch(exn)
-       {if(exn[1]=Consistbl["Inconsistency"])
+       {if(exn[1]===Consistbl["Inconsistency"])
          {return error(/* Inconsistent_import */[1,exn[2],exn[4],exn[3]]);}
         else
          {throw exn;}
@@ -388,9 +435,9 @@ var
         /* Pident */[0,Ident["create_persistent"](name)],
         /* Mty_signature */[1,sign]);
     
-    var ps=/* record */[0,name,sign,comps,crcs,0,filename,flags];
+    var ps=/* record */[0,name,sign,comps,crcs,/* false */0,filename,flags];
     
-    if("unknown primitive:caml_string_notequal")
+    if(CamlPrimitive["caml_string_notequal"](ps[1],modname))
      {error(/* Illegal_renaming */[0,modname,ps[1],filename])}
     else
      {}
@@ -411,16 +458,30 @@ var
 var
  find_pers_struct=
   function($staropt$star,name)
-   {if($staropt$star){var check=$staropt$star[1];}else{var check=1;}
+   {if($staropt$star){var check=$staropt$star[1];}else{var check=/* true */1;}
     
-    if("unknown primitive:caml_string_equal"){throw Not_found;}else{}
+    if(CamlPrimitive["caml_string_equal"](name,"*predef*"))
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+    else
+     {}
     
     try
      {var r=/* Some */[0,Hashtbl["find"](persistent_structures,name)];}
-    catch(exn){if(exn=Not_found){var r=0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var r=/* None */0;}
+      else
+       {throw exn;}
+      }
     
     if(r)
-     {var match=r[1];if(match){var ps=match[1];}else{throw Not_found;}}
+     {var match=r[1];
+      
+      if(match)
+       {var ps=match[1];}
+      else
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+      }
     else
      {add_import(name);
       try
@@ -430,8 +491,10 @@ var
            (Config["load_path"][1],Pervasives["^"](name,".cmi"));
         }
       catch(exn$1)
-       {if(exn$1=Not_found)
-         {Hashtbl["add"](persistent_structures,name,0);throw Not_found;}
+       {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+         {Hashtbl["add"](persistent_structures,name,/* None */0);
+          throw CamlPrimitive["caml_global_data"]["Not_found"];
+          }
         else
          {throw exn$1;}
         }
@@ -447,9 +510,9 @@ var
 var
  reset_cache=
   function(param)
-   {current_unit[1]="",0;
+   {current_unit[1]="";
     Hashtbl["clear"](persistent_structures);
-    clear_imports(0);
+    clear_imports(/* () */0);
     Hashtbl["clear"](value_declarations);
     Hashtbl["clear"](type_declarations);
     Hashtbl["clear"](used_constructors);
@@ -463,9 +526,9 @@ var
      l=
       Hashtbl["fold"]
        (function(name,r,acc)
-         {if(r=0){return /* :: */[0,name,acc];}else{return acc;}},
+         {if(r===/* None */0){return /* :: */[0,name,acc];}else{return acc;}},
         persistent_structures,
-        0);
+        /* [] */0);
     
     List["iter"](Hashtbl["remove"](persistent_structures),l);
     Hashtbl["clear"](value_declarations);
@@ -481,18 +544,21 @@ var get_unit_name=function(param){return current_unit[1];};
 var
  find_module_descr=
   function(path,env)
-   {switch(path)
+   {switch(path[0])
      {case 0:
        var id=path[1];
        
        try
         {var match=EnvTbl[7](id,env[7]);return match[2];}
        catch(exn)
-        {if(exn=Not_found)
-          {if(Ident["persistent"](id)&&!"unknown primitive:caml_string_equal")
-            {return find_pers_struct(0,Ident["name"](id))[3];}
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {if
+            (Ident["persistent"](id)&&
+             !CamlPrimitive["caml_string_equal"]
+              (Ident["name"](id),current_unit[1]))
+            {return find_pers_struct(/* None */0,Ident["name"](id))[3];}
            else
-            {throw Not_found;}
+            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
            }
          else
           {throw exn;}
@@ -504,10 +570,10 @@ var
          EnvLazy[1]
           (components_of_module_maker$prime[1],find_module_descr(path[1],env));
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var match$2=Tbl["find"](path[2],match$1[1][7]);return match$2[1];
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
       case 2:
@@ -518,8 +584,8 @@ var
          EnvLazy[1]
           (components_of_module_maker$prime[1],find_module_descr(p1,env));
        
-       switch(match$3)
-        {case 0:throw Not_found;
+       switch(match$3[0])
+        {case 0:throw CamlPrimitive["caml_global_data"]["Not_found"];
          case 1:
           return components_of_functor_appl$prime[1](match$3[1],p1,path[2]);
          }
@@ -530,7 +596,7 @@ var
 var
  find=
   function(proj1,proj2,path,env)
-   {switch(path)
+   {switch(path[0])
      {case 0:var match=EnvTbl[7](path[1],proj1(env));return match[2];
       case 1:
        var
@@ -538,16 +604,16 @@ var
          EnvLazy[1]
           (components_of_module_maker$prime[1],find_module_descr(path[1],env));
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var match$2=Tbl["find"](path[2],proj2(match$1[1]));
           
           return match$2[1];
           
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
-      case 2:throw Not_found;
+      case 2:throw CamlPrimitive["caml_global_data"]["Not_found"];
       }
     };
 
@@ -578,21 +644,24 @@ var find_type_descrs=function(p,env){return find_type_full(p,env)[2];};
 var
  find_module=
   function(alias,path,env)
-   {switch(path)
+   {switch(path[0])
      {case 0:
        var id=path[1];
        
        try
         {var match=EnvTbl[7](id,env[5]);return match[2];}
        catch(exn)
-        {if(exn=Not_found)
-          {if(Ident["persistent"](id)&&!"unknown primitive:caml_string_equal")
-            {var ps=find_pers_struct(0,Ident["name"](id));
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {if
+            (Ident["persistent"](id)&&
+             !CamlPrimitive["caml_string_equal"]
+              (Ident["name"](id),current_unit[1]))
+            {var ps=find_pers_struct(/* None */0,Ident["name"](id));
              
              return md(/* Mty_signature */[1,ps[2]]);
              }
            else
-            {throw Not_found;}
+            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
            }
          else
           {throw exn;}
@@ -604,13 +673,13 @@ var
          EnvLazy[1]
           (components_of_module_maker$prime[1],find_module_descr(path[1],env));
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var match$2=Tbl["find"](path[2],match$1[1][5]);
           
           return md(EnvLazy[1](subst_modtype_maker,match$2[1]));
           
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
       case 2:
@@ -620,15 +689,15 @@ var
        
        var match$3=EnvLazy[1](components_of_module_maker$prime[1],desc1);
        
-       switch(match$3)
-        {case 0:throw Not_found;
+       switch(match$3[0])
+        {case 0:throw CamlPrimitive["caml_global_data"]["Not_found"];
          case 1:
           var f=match$3[1];
           
           var mty=f[3];
           
           var $js;
-          switch(mty)
+          switch(mty[0])
            {case 3:$js=/* Mty_alias */[3,Subst["module_path"](f[5],mty[1])];
             default:
              if(alias)
@@ -637,7 +706,7 @@ var
               {try
                 {$js=Hashtbl["find"](f[7],p2);}
                catch(exn$1)
-                {if(exn$1=Not_found)
+                {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                   {var
                     mty$1=
                      Subst["modtype"](Subst["add_module"](f[1],p2,f[5]),f[3]);
@@ -657,9 +726,11 @@ var
       }
     };
 
-var required_globals=[0,0];
+var required_globals=[0,/* [] */0];
 
-var reset_required_globals=function(param){return required_globals[1]=0,0;};
+var
+ reset_required_globals=
+  function(param){return required_globals[1]=/* [] */0,0;};
 
 var get_required_globals=function(param){return required_globals[1];};
 
@@ -678,7 +749,7 @@ var
 var
  normalize_path=
   function(lax,env,path)
-   {switch(path)
+   {switch(path[0])
      {case 0:var path$1=path;
       case 1:
        var
@@ -690,16 +761,16 @@ var
         path$1=
          /* Papply */[2,
           normalize_path(lax,env,path[1]),
-          normalize_path(1,env,path[2])];
+          normalize_path(/* true */1,env,path[2])];
        
       }
     
     try
-     {var match=find_module(1,path$1,env);
+     {var match=find_module(/* true */1,path$1,env);
       
       var match$1=match[1];
       
-      switch(match$1)
+      switch(match$1[0])
        {case 3:
          var path$prime=normalize_path(lax,env,match$1[1]);
          
@@ -722,18 +793,18 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=Not_found)
+      if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var exit$1;
         
         var $js;
-        switch(path$1)
+        switch(path$1[0])
          {case 0:$js=!Ident["persistent"](path$1[1]);
           case 1:exit$1=304;
           case 2:exit$1=304;
           }
         
         var $js$1;
-        switch(exit$1){case 304:$js$1=1;}
+        switch(exit$1){case 304:$js$1=/* true */1;}
         if(lax||$js$1){return path$1;}else{exit=305;}
         }
       else
@@ -747,26 +818,29 @@ var
  normalize_path$1=
   function(oloc,env,path)
    {try
-     {return normalize_path(oloc=0,env,path);}
+     {return normalize_path(oloc===/* None */0,env,path);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {if(oloc)
          {throw [0,
                  $$Error,
                  /* Missing_module */[3,
                   oloc[1],
                   path,
-                  normalize_path(1,env,path)]];
+                  normalize_path(/* true */1,env,path)]];
           }
         else
-         {throw [0,Assert_failure,[0,"typing/env.ml",579,28]];}
+         {throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"typing/env.ml",579,28]];
+          }
         }
       else
        {throw exn;}
       }
     };
 
-var find_module$1=find_module(0);
+var find_module$1=find_module(/* false */0);
 
 var
  find_type_expansion=
@@ -780,7 +854,12 @@ var
     if(match)
      {var body=match[1];
       
-      if((decl[4]=1)||decl[3]!=0||Btype["has_constr_row"](body))
+      if
+       (decl[4]===
+        /* Public */1||
+        decl[3]!==
+        /* Type_abstract */0||
+        Btype["has_constr_row"](body))
        {return /* tuple */[0,
                 decl[1],
                 body,
@@ -794,14 +873,15 @@ var
     
     switch(exit)
      {case 298:
-       var path$prime=normalize_path$1(0,env,path);
+       var path$prime=normalize_path$1(/* None */0,env,path);
        
        if(Path["same"](path,path$prime))
-        {throw Not_found;}
+        {throw CamlPrimitive["caml_global_data"]["Not_found"];}
        else
         {return /* tuple */[0,
                  decl[1],
-                 Btype["newgenty"](/* Tconstr */[3,path$prime,decl[1],[0,0]]),
+                 Btype["newgenty"]
+                  (/* Tconstr */[3,path$prime,decl[1],[0,/* Mnil */0]]),
                  Misc["may_map"](function(prim){return prim[2];},decl[7])];
          }
        
@@ -822,14 +902,15 @@ var
               Misc["may_map"](function(prim){return prim[2];},decl[7])];
       }
     else
-     {var path$prime=normalize_path$1(0,env,path);
+     {var path$prime=normalize_path$1(/* None */0,env,path);
       
       if(Path["same"](path,path$prime))
-       {throw Not_found;}
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
       else
        {return /* tuple */[0,
                 decl[1],
-                Btype["newgenty"](/* Tconstr */[3,path$prime,decl[1],[0,0]]),
+                Btype["newgenty"]
+                 (/* Tconstr */[3,path$prime,decl[1],[0,/* Mnil */0]]),
                 Misc["may_map"](function(prim){return prim[2];},decl[7])];
         }
       }
@@ -840,39 +921,50 @@ var
   function(path,env)
    {var match=find_modtype(path,env)[1];
     
-    if(match){return match[1];}else{throw Not_found;}
+    if(match)
+     {return match[1];}
+    else
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
  is_functor_arg=
   function(path,env)
-   {switch(path)
+   {switch(path[0])
      {case 0:
        try
-        {Ident["find_same"](path[1],env[10]);return 1;}
-       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+        {Ident["find_same"](path[1],env[10]);return /* true */1;}
+       catch(exn)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return /* false */0;}
+         else
+          {throw exn;}
+         }
        
       case 1:return is_functor_arg(path[1],env);
-      case 2:return 1;
+      case 2:return /* true */1;
       }
     };
 
-var Recmodule="unknown primitive:caml_set_oo_id";
+var Recmodule=CamlPrimitive["caml_set_oo_id"]([248,"Env.Recmodule",0]);
 
 var
  lookup_module_descr=
   function(lid,env)
-   {switch(lid)
+   {switch(lid[0])
      {case 0:
        var s=lid[1];
        
        try
         {return EnvTbl[8](s,env[7]);}
        catch(exn)
-        {if(exn=Not_found)
-          {if("unknown primitive:caml_string_equal"){throw Not_found;}else{}
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {if(CamlPrimitive["caml_string_equal"](s,current_unit[1]))
+            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+           else
+            {}
            
-           var ps=find_pers_struct(0,s);
+           var ps=find_pers_struct(/* None */0,s);
            
            return /* tuple */[0,
                    /* Pident */[0,Ident["create_persistent"](s)],
@@ -889,7 +981,7 @@ var
        
        var match$1=EnvLazy[1](components_of_module_maker$prime[1],match[2]);
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var match$2=Tbl["find"](s$1,match$1[1][7]);
           
@@ -897,7 +989,7 @@ var
                   /* Pdot */[1,match[1],s$1,match$2[2]],
                   match$2[1]];
           
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
       case 2:
@@ -905,14 +997,14 @@ var
        
        var p1=match$3[1];
        
-       var p2=lookup_module(1,lid[2],env);
+       var p2=lookup_module(/* true */1,lid[2],env);
        
        var match$4=find_module$1(p2,env);
        
        var match$5=EnvLazy[1](components_of_module_maker$prime[1],match$3[2]);
        
-       switch(match$5)
-        {case 0:throw Not_found;
+       switch(match$5[0])
+        {case 0:throw CamlPrimitive["caml_global_data"]["Not_found"];
          case 1:
           var f=match$5[1];
           
@@ -929,7 +1021,7 @@ var
 var
  lookup_module=
   function(load,lid,env)
-   {switch(lid)
+   {switch(lid[0])
      {case 0:
        var s=lid[1];
        
@@ -940,13 +1032,15 @@ var
          
          var exit;
          
-         switch(md_type)
+         switch(md_type[0])
           {case 0:
             var match=md_type[1];
             
-            switch(match)
+            switch(match[0])
              {case 0:
-               if("unknown primitive:caml_string_equal")
+               if
+                (CamlPrimitive["caml_string_equal"]
+                  (Ident["name"](match[1]),"#recmod#"))
                 {throw Recmodule;}
                else
                 {exit=283;}
@@ -962,14 +1056,17 @@ var
          return r[1];
          }
        catch(exn)
-        {if(exn=Not_found)
-          {if("unknown primitive:caml_string_equal"){throw Not_found;}else{}
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {if(CamlPrimitive["caml_string_equal"](s,current_unit[1]))
+            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+           else
+            {}
            
            if(Clflags["transparent_modules"][1]&&!load)
             {try
-              {}
+              {find_pers_struct([/* Some */0,/* false */0],s)}
              catch(exn$1)
-              {if(exn$1=Not_found)
+              {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                 {Location["prerr_warning"]
                   (Location["none"],/* No_cmi_file */[32,s])}
                else
@@ -977,7 +1074,7 @@ var
                }
              }
            else
-            {}
+            {find_pers_struct(/* None */0,s)}
            
            return /* Pident */[0,Ident["create_persistent"](s)];
            }
@@ -992,19 +1089,19 @@ var
        
        var match$2=EnvLazy[1](components_of_module_maker$prime[1],match$1[2]);
        
-       switch(match$2)
+       switch(match$2[0])
         {case 0:
           var match$3=Tbl["find"](s$1,match$2[1][5]);
           
           return /* Pdot */[1,match$1[1],s$1,match$3[2]];
           
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
       case 2:
        var match$4=lookup_module_descr(lid[1],env);
        
-       var p2=lookup_module(1,lid[2],env);
+       var p2=lookup_module(/* true */1,lid[2],env);
        
        var match$5=find_module$1(p2,env);
        
@@ -1012,8 +1109,8 @@ var
        
        var match$6=EnvLazy[1](components_of_module_maker$prime[1],match$4[2]);
        
-       switch(match$6)
-        {case 0:throw Not_found;
+       switch(match$6[0])
+        {case 0:throw CamlPrimitive["caml_global_data"]["Not_found"];
          case 1:
           Misc["may"]
            (check_modtype_inclusion[1](env,match$5[1],p2),match$6[1][2]);
@@ -1027,7 +1124,7 @@ var
 var
  lookup=
   function(proj1,proj2,lid,env)
-   {switch(lid)
+   {switch(lid[0])
      {case 0:return EnvTbl[8](lid[1],proj1(env));
       case 1:
        var s=lid[2];
@@ -1036,43 +1133,43 @@ var
        
        var match$1=EnvLazy[1](components_of_module_maker$prime[1],match[2]);
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var match$2=Tbl["find"](s,proj2(match$1[1]));
           
           return /* tuple */[0,/* Pdot */[1,match[1],s,match$2[2]],match$2[1]];
           
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
-      case 2:throw Not_found;
+      case 2:throw CamlPrimitive["caml_global_data"]["Not_found"];
       }
     };
 
 var
  lookup_simple=
   function(proj1,proj2,lid,env)
-   {switch(lid)
+   {switch(lid[0])
      {case 0:return EnvTbl[8](lid[1],proj1(env));
       case 1:
        var match=lookup_module_descr(lid[1],env);
        
        var match$1=EnvLazy[1](components_of_module_maker$prime[1],match[2]);
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var match$2=Tbl["find"](lid[2],proj2(match$1[1]));return match$2[1];
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
-      case 2:throw Not_found;
+      case 2:throw CamlPrimitive["caml_global_data"]["Not_found"];
       }
     };
 
 var
  lookup_all_simple=
   function(proj1,proj2,shadow,lid,env)
-   {switch(lid)
+   {switch(lid[0])
      {case 0:
        var xl=EnvTbl[9](lid[1],proj1(env));
        
@@ -1091,7 +1188,7 @@ var
                         (function(param$1){return !shadow(x,param$1[1]);},param[2]))];
              }
            else
-            {return 0;}
+            {return /* [] */0;}
            };
        
        return do_shadow(xl);
@@ -1101,22 +1198,29 @@ var
        
        var match$1=EnvLazy[1](components_of_module_maker$prime[1],match[2]);
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           try
            {var comps=Tbl["find"](lid[2],proj2(match$1[1]));}
-          catch(exn){if(exn=Not_found){var comps=0;}else{throw exn;}}
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {var comps=/* [] */0;}
+            else
+             {throw exn;}
+            }
           
           return List["map"]
                   (function(param)
-                    {return /* tuple */[0,param[1],function(param$1){return 0;}];
+                    {return /* tuple */[0,
+                             param[1],
+                             function(param$1){return /* () */0;}];
                      },
                    comps);
           
-         case 1:throw Not_found;
+         case 1:throw CamlPrimitive["caml_global_data"]["Not_found"];
          }
        
-      case 2:throw Not_found;
+      case 2:throw CamlPrimitive["caml_global_data"]["Not_found"];
       }
     };
 
@@ -1131,16 +1235,19 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=260;
       case 1:exit=260;
-      case 2:switch(match$1){case 0:exit=260;case 1:exit=260;case 2:return 1;}
+      case 2:
+       switch(match$1[0])
+        {case 0:exit=260;case 1:exit=260;case 2:return /* true */1;}
+       
       }
     
-    switch(exit){case 260:return 0;}
+    switch(exit){case 260:return /* false */0;}
     };
 
-var lbl_shadow=function(lbl1,lbl2){return 0;};
+var lbl_shadow=function(lbl1,lbl2){return /* false */0;};
 
 var
  lookup_value=
@@ -1177,9 +1284,15 @@ var
   function(env,name,vd)
    {if(!is_implicit_coercion(env))
      {try
-       {return Hashtbl["find"](value_declarations,/* tuple */[0,name,vd[3]],0);
+       {return Hashtbl["find"]
+                (value_declarations,/* tuple */[0,name,vd[3]],/* () */0);
         }
-      catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* () */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return 0;}
@@ -1190,9 +1303,15 @@ var
   function(env,name,vd)
    {if(!is_implicit_coercion(env))
      {try
-       {return Hashtbl["find"](type_declarations,/* tuple */[0,name,vd[8]],0);
+       {return Hashtbl["find"]
+                (type_declarations,/* tuple */[0,name,vd[8]],/* () */0);
         }
-      catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* () */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return 0;}
@@ -1206,7 +1325,12 @@ var
        {return Hashtbl["find"]
                 (used_constructors,/* tuple */[0,name,vd[8],constr],usage);
         }
-      catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* () */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return 0;}
@@ -1222,7 +1346,12 @@ var
        {return Hashtbl["find"]
                 (used_constructors,/* tuple */[0,ty_name,ext[6],name],usage);
         }
-      catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* () */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return 0;}
@@ -1239,10 +1368,10 @@ var
       return Hashtbl["replace"]
               (value_declarations,
                key,
-               function(param){old(0);return callback(0);});
+               function(param){old(/* () */0);return callback(/* () */0);});
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return Hashtbl["add"](value_declarations,key,callback);}
       else
        {throw exn;}
@@ -1255,15 +1384,18 @@ var
    {var loc=td[8];
     
     if(loc[3])
-     {return 0;}
+     {return /* () */0;}
     else
      {var key=/* tuple */[0,name,loc];
       
       try
        {var old=Hashtbl["find"](type_declarations,key);}
       catch(exn)
-       {if(exn=Not_found)
-         {throw [0,Assert_failure,[0,"typing/env.ml",841,22]];}
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"typing/env.ml",841,22]];
+          }
         else
          {throw exn;}
         }
@@ -1296,10 +1428,14 @@ var
 var
  path_subst_last=
   function(path,id)
-   {switch(path)
+   {switch(path[0])
      {case 0:return /* Pident */[0,id];
       case 1:return /* Pdot */[1,path[1],Ident["name"](id),path[3]];
-      case 2:throw [0,Assert_failure,[0,"typing/env.ml",860,23]];
+      case 2:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/env.ml",860,23]];
+       
       }
     };
 
@@ -1311,7 +1447,12 @@ var
       
       return mark_type_used(env,Path["last"](path),decl);
       }
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* () */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1323,12 +1464,18 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0]){case 3:return match$1[1];default:exit=224;}}
     
-    switch(exit){case 224:throw [0,Assert_failure,[0,"typing/env.ml",871,9]];}
+    switch(exit)
+     {case 224:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/env.ml",871,9]];
+       
+      }
     };
 
 var
@@ -1342,11 +1489,11 @@ var
       var desc=match$1[1];
       
       mark_type_path(env,ty_path(desc[2]));
-      match$1[2](0);
+      match$1[2](/* () */0);
       return desc;
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -1354,9 +1501,10 @@ var
   function(param)
    {var exit;
     
-    switch(param){case 0:return 1;case 1:exit=221;case 2:exit=221;}
+    switch(param[0])
+     {case 0:return /* true */1;case 1:exit=221;case 2:exit=221;}
     
-    switch(exit){case 221:return 0;}
+    switch(exit){case 221:return /* false */0;}
     };
 
 var
@@ -1368,7 +1516,7 @@ var
       var
        wrap_use=
         function(desc,use,param)
-         {mark_type_path(env,ty_path(desc[2]));return use(0);};
+         {mark_type_path(env,ty_path(desc[2]));return use(/* () */0);};
       
       return List["map"]
               (function(param)
@@ -1381,8 +1529,8 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=Not_found)
-       {if(is_lident(lid)){return 0;}else{exit=217;}}
+      if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {if(is_lident(lid)){return /* [] */0;}else{exit=217;}}
       else
        {exit=217;}
       
@@ -1398,7 +1546,7 @@ var
       
       var exit;
       
-      switch(match)
+      switch(match[0])
        {case 0:exit=215;
         case 1:exit=215;
         case 2:
@@ -1412,7 +1560,12 @@ var
                     /* tuple */[0,ty_name,desc[12],name],
                     usage);
            }
-         catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+         catch(exn)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {return /* () */0;}
+           else
+            {throw exn;}
+           }
          
         }
       
@@ -1423,8 +1576,11 @@ var
          try
           {var ty_decl=find_type(ty_path$2,env);}
          catch(exn$1)
-          {if(exn$1=Not_found)
-            {throw [0,Assert_failure,[0,"typing/env.ml",908,64]];}
+          {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+            {throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"typing/env.ml",908,64]];
+             }
            else
             {throw exn$1;}
            }
@@ -1450,11 +1606,11 @@ var
       var desc=match$1[1];
       
       mark_type_path(env,ty_path(desc[2]));
-      match$1[2](0);
+      match$1[2](/* () */0);
       return desc;
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -1466,7 +1622,7 @@ var
       var
        wrap_use=
         function(desc,use,param)
-         {mark_type_path(env,ty_path(desc[2]));return use(0);};
+         {mark_type_path(env,ty_path(desc[2]));return use(/* () */0);};
       
       return List["map"]
               (function(param)
@@ -1479,8 +1635,8 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=Not_found)
-       {if(is_lident(lid)){return 0;}else{exit=203;}}
+      if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {if(is_lident(lid)){return /* [] */0;}else{exit=203;}}
       else
        {exit=203;}
       
@@ -1495,8 +1651,9 @@ var
     
     var desc=r[2];
     
-    if("unknown primitive:caml_string_equal")
-     {}
+    if
+     (CamlPrimitive["caml_string_equal"](Path["name"](/* None */0,desc[3]),""))
+     {lookup_type$1(lid,env)}
     else
      {mark_type_path(env,desc[3])}
     
@@ -1510,8 +1667,9 @@ var
     
     var desc=r[2];
     
-    if("unknown primitive:caml_string_equal")
-     {}
+    if
+     (CamlPrimitive["caml_string_equal"](Path["name"](/* None */0,desc[3]),""))
+     {lookup_type$1(lid,env)}
     else
      {mark_type_path(env,desc[3])}
     
@@ -1519,19 +1677,24 @@ var
     return r;
     };
 
-var iter_env_cont=[0,0];
+var iter_env_cont=[0,/* [] */0];
 
 var
  scrape_alias_safe=
   function(env,mty)
-   {switch(mty)
+   {switch(mty[0])
      {case 3:
        var path=mty[1];
        
        var exit;
        
-       switch(path)
-        {case 0:if(Ident["persistent"](path[1])){return 0;}else{exit=197;}
+       switch(path[0])
+        {case 0:
+          if(Ident["persistent"](path[1]))
+           {return /* false */0;}
+          else
+           {exit=197;}
+          
          case 1:exit=197;
          case 2:exit=197;
          }
@@ -1539,7 +1702,7 @@ var
        switch(exit)
         {case 197:return scrape_alias_safe(env,find_module$1(path,env)[1]);}
        
-      default:return 1;}
+      default:return /* true */1;}
     };
 
 var
@@ -1561,19 +1724,24 @@ var
               
               try
                {var safe=scrape_alias_safe(match$1[1],match$1[4]);}
-              catch(exn){if(exn=Not_found){var safe=0;}else{throw exn;}}
+              catch(exn)
+               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                 {var safe=/* false */0;}
+                else
+                 {throw exn;}
+                }
               }
             else
-             {var safe=1;}
+             {var safe=/* true */1;}
             
             if(!safe)
-             {return 0;}
+             {return /* () */0;}
             else
              {var
                match$2=
                 EnvLazy[1](components_of_module_maker$prime[1],mcomps);
               
-              switch(match$2)
+              switch(match$2[0])
                {case 0:
                  var comps=match$2[1];
                  
@@ -1597,7 +1765,7 @@ var
                             },
                           comps[7]);
                  
-                case 1:return 0;
+                case 1:return /* () */0;
                 }
               }
             };
@@ -1615,7 +1783,7 @@ var
           return iter_components(id,id,pso[1][3]);
           }
         else
-         {return 0;}
+         {return /* () */0;}
         },
       persistent_structures);
     return Ident["iter"]
@@ -1630,11 +1798,11 @@ var
 var
  run_iter_cont=
   function(l)
-   {iter_env_cont[1]=0,0;
-    List["iter"](function(c){return c(0);},l);
+   {iter_env_cont[1]=/* [] */0;
+    List["iter"](function(c){return c(/* () */0);},l);
     var cont=List["rev"](iter_env_cont[1]);
     
-    iter_env_cont[1]=0,0;
+    iter_env_cont[1]=/* [] */0;
     return cont;
     };
 
@@ -1647,7 +1815,7 @@ var
 
 var
  same_types=
-  function(env1,env2){return (env1[4]=env2[4])&&(env1[7]=env2[7]);};
+  function(env1,env2){return env1[4]===env2[4]&&env1[7]===env2[7];};
 
 var
  used_persistent=
@@ -1656,7 +1824,11 @@ var
     
     Hashtbl["iter"]
      (function(s,pso)
-       {if(pso!=0){return r[1]=Types["Concr"][4](s,r[1]),0;}else{return 0;}},
+       {if(pso!==/* None */0)
+         {return r[1]=Types["Concr"][4](s,r[1]),0;}
+        else
+         {return 0;}
+        },
       persistent_structures);
     return r[1];
     };
@@ -1666,25 +1838,30 @@ var
   function(proj,s,param)
    {var match=EnvLazy[1](components_of_module_maker$prime[1],param[2]);
     
-    switch(match)
+    switch(match[0])
      {case 0:
        try
         {var match$1=Tbl["find"](s,proj(match[1]));
          
          return /* :: */[0,
                  /* tuple */[0,/* Pdot */[1,param[1],s,match$1[2]],match$1[1]],
-                 0];
+                 /* [] */0];
          }
-       catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+       catch(exn)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return /* [] */0;}
+         else
+          {throw exn;}
+         }
        
-      case 1:return 0;
+      case 1:return /* [] */0;
       }
     };
 
 var
  find_shadowed_comps=
   function(path,env)
-   {switch(path)
+   {switch(path[0])
      {case 0:
        return List["map"]
                (function(prim){return prim[1];},
@@ -1700,14 +1877,14 @@ var
        
        return List["flatten"](l$prime);
        
-      case 2:return 0;
+      case 2:return /* [] */0;
       }
     };
 
 var
  find_shadowed=
   function(proj1,proj2,path,env)
-   {switch(path)
+   {switch(path[0])
      {case 0:
        return List["map"]
                (function(prim){return prim[1];},
@@ -1720,7 +1897,7 @@ var
        
        return List["flatten"](l$prime);
        
-      case 2:return 0;
+      case 2:return /* [] */0;
       }
     };
 
@@ -1730,7 +1907,7 @@ var
    {var
      l=
       find_shadowed
-       (function(env$1){return env$1[4];},
+       (function(env){return env[4];},
         function(comps){return comps[4];},
         path,
         env);
@@ -1741,11 +1918,10 @@ var
 var
  add_gadt_instance_level=
   function(lv,env)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[13]=
-    /* :: */[0,/* tuple */[0,lv,[0,Btype["TypeSet"][1]]],env[13]],
-    0;
+    /* :: */[0,/* tuple */[0,lv,[0,Btype["TypeSet"][1]]],env[13]];
     return newrecord;
     };
 
@@ -1756,12 +1932,12 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
-     {switch(match[0]){case 6:return 1;default:exit=172;}}
+     {switch(match[0]){case 6:return /* true */1;default:exit=172;}}
     
-    switch(exit){case 172:return 0;}
+    switch(exit){case 172:return /* false */0;}
     };
 
 var
@@ -1780,8 +1956,7 @@ var
             Btype["TypeSet"][14]
              (function(ty){return Btype["TypeSet"][4](Btype["repr"](ty));},
               r[1],
-              Btype["TypeSet"][1]),
-            0}
+              Btype["TypeSet"][1])}
           else
            {}
           
@@ -1791,7 +1966,7 @@ var
            {return find_instance(param[2]);}
           }
         else
-         {return 0;}
+         {return /* None */0;}
         };
     
     return find_instance(env[13]);
@@ -1803,8 +1978,11 @@ var
    {try
      {var r=List["assoc"](lv,env[13]);}
     catch(exn)
-     {if(exn=Not_found)
-       {throw [0,Assert_failure,[0,"typing/env.ml",1066,59]];}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"typing/env.ml",1066,59]];
+        }
       else
        {throw exn;}
       }
@@ -1819,34 +1997,38 @@ var
    {try
      {var r=List["assoc"](lv,env[13]);}
     catch(exn)
-     {if(exn=Not_found)
-       {throw [0,Assert_failure,[0,"typing/env.ml",1075,59]];}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"typing/env.ml",1075,59]];
+        }
       else
        {throw exn;}
       }
     
     var
      add_instance=
-      function(t$1)
-       {var t$2=Btype["repr"](t$1);
+      function(t)
+       {var t$1=Btype["repr"](t);
         
-        if(!Btype["TypeSet"][3](t$2,r[1]))
-         {Btype["set_typeset"](r,Btype["TypeSet"][4](t$2,r[1]));
-          var match=t$2[1];
+        if(!Btype["TypeSet"][3](t$1,r[1]))
+         {Btype["set_typeset"](r,Btype["TypeSet"][4](t$1,r[1]));
+          var match=t$1[1];
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){}}
           else
            {switch(match[0])
              {case 3:
                return Misc["may"]
-                       (add_instance,Btype["find_expans"](0,match[1],match[3][1]));
+                       (add_instance,
+                        Btype["find_expans"](/* Private */0,match[1],match[3][1]));
                
               default:exit=163;}}
           
-          switch(exit){case 163:return 0;}
+          switch(exit){case 163:return /* () */0;}
           }
         else
          {return 0;}
@@ -1860,11 +2042,16 @@ var
   function(env,path,mty)
    {var exit;
     
-    switch(mty)
+    switch(mty[0])
      {case 0:
        try
         {return scrape_alias(env,path,find_modtype_expansion(mty[1],env));}
-       catch(exn){if(exn=Not_found){return mty;}else{throw exn;}}
+       catch(exn)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return mty;}
+         else
+          {throw exn;}
+         }
        
       case 1:exit=162;
       case 2:exit=162;
@@ -1875,7 +2062,12 @@ var
         {return scrape_alias
                  (env,/* Some */[0,path$1],find_module$1(path$1,env)[1]);
          }
-       catch(exn$1){if(exn$1=Not_found){return mty;}else{throw exn$1;}}
+       catch(exn$1)
+        {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return mty;}
+         else
+          {throw exn$1;}
+         }
        
       }
     
@@ -1885,16 +2077,19 @@ var
       }
     };
 
-var scrape_alias$1=function(env,mty){return scrape_alias(env,0,mty);};
+var
+ scrape_alias$1=
+  function(env,mty){return scrape_alias(env,/* None */0,mty);};
 
 var
  constructors_of_type=
-  function(ty_path$1,decl)
+  function(ty_path,decl)
    {var
      handle_variants=
       function(cstrs)
        {return Datarepr["constructor_descrs"]
-                (Btype["newgenty"](/* Tconstr */[3,ty_path$1,decl[1],[0,0]]),
+                (Btype["newgenty"]
+                  (/* Tconstr */[3,ty_path,decl[1],[0,/* Mnil */0]]),
                  cstrs,
                  decl[4]);
         };
@@ -1903,36 +2098,37 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 1:return handle_variants(match[1]);default:exit=155;}}
     
-    switch(exit){case 155:return 0;}
+    switch(exit){case 155:return /* [] */0;}
     };
 
 var
  labels_of_type=
-  function(ty_path$1,decl)
+  function(ty_path,decl)
    {var match=decl[3];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 0:
          return Datarepr["label_descrs"]
-                 (Btype["newgenty"](/* Tconstr */[3,ty_path$1,decl[1],[0,0]]),
+                 (Btype["newgenty"]
+                   (/* Tconstr */[3,ty_path,decl[1],[0,/* Mnil */0]]),
                   match[1],
                   match[2],
                   decl[4]);
          
         default:exit=153;}}
     
-    switch(exit){case 153:return 0;}
+    switch(exit){case 153:return /* [] */0;}
     };
 
 var
@@ -1941,7 +2137,7 @@ var
    {if(param)
      {var match=param[1];
       
-      switch(match)
+      switch(match[0])
        {case 0:
          var p=/* Pdot */[1,root,Ident["name"](match[1]),pos];
          
@@ -1949,7 +2145,7 @@ var
          
          var exit;
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0]){case 0:var nextpos=pos;default:exit=138;}}
@@ -2022,7 +2218,7 @@ var
         }
       }
     else
-     {return /* tuple */[0,0,sub];}
+     {return /* tuple */[0,/* [] */0,sub];}
     };
 
 var
@@ -2030,7 +2226,7 @@ var
   function(sub,sg)
    {return List["map"]
             (function(item)
-              {switch(item)
+              {switch(item[0])
                 {case 0:
                   return /* Sig_value */[0,
                           item[1],
@@ -2092,12 +2288,12 @@ var
 var
  prefix_idents_and_subst$1=
   function(root,sub,sg)
-   {if("unknown primitive:caml_equal")
+   {if(CamlPrimitive["caml_equal"](sub,Subst["identity"]))
      {try
        {var sgs=Hashtbl["find"](prefixed_sg,root);}
       catch(exn)
-       {if(exn=Not_found)
-         {var sgs$1=[0,0];
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {var sgs$1=[0,/* [] */0];
           
           Hashtbl["add"](prefixed_sg,root,sgs$1);
           var sgs=sgs$1;
@@ -2109,10 +2305,10 @@ var
       try
        {return List["assq"](sg,sgs[1]);}
       catch(exn$1)
-       {if(exn$1=Not_found)
+       {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
          {var r=prefix_idents_and_subst(root,sub,sg);
           
-          sgs[1]=/* :: */[0,/* tuple */[0,sg,r],sgs[1]],0;
+          sgs[1]=/* :: */[0,/* tuple */[0,sg,r],sgs[1]];
           return r;
           }
         else
@@ -2128,7 +2324,12 @@ var
   function(id,decl,tbl)
    {try
      {var decls=Tbl["find"](id,tbl);}
-    catch(exn){if(exn=Not_found){var decls=0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var decls=/* [] */0;}
+      else
+       {throw exn;}
+      }
     
     return Tbl["add"](id,/* :: */[0,decl,decls],tbl);
     };
@@ -2149,7 +2350,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=109;
       case 1:
        var sg=match[1];
@@ -2177,7 +2378,7 @@ var
        
        List["iter2"]
         (function(item,path)
-          {switch(item)
+          {switch(item[0])
             {case 0:
               var decl=item[2];
               
@@ -2185,16 +2386,15 @@ var
               
               c[1]=
               Tbl["add"]
-               (Ident["name"](item[1]),/* tuple */[0,decl$prime,pos[1]],c[1]),
-              0;
+               (Ident["name"](item[1]),/* tuple */[0,decl$prime,pos[1]],c[1]);
               var match$2=decl[2];
               
               var exit$1;
               
-              if(typeof match$2=="number")
+              if(typeof match$2==="number")
                {switch(match$2){}}
               else
-               {switch(match$2[0]){case 0:return 0;default:exit$1=92;}}
+               {switch(match$2[0]){case 0:return /* () */0;default:exit$1=92;}}
               
               switch(exit$1){case 92:return pos[0]++;}
               
@@ -2225,8 +2425,7 @@ var
                   decl$prime$1,
                   /* tuple */[0,constructors,labels]],
                  Path["nopos"]],
-                c[4]),
-              0;
+                c[4]);
               List["iter"]
                (function(descr)
                  {return c[2]=
@@ -2243,7 +2442,7 @@ var
                 labels);
               return env$1[1]=
                      store_type_infos
-                      (0,id,/* Pident */[0,id],decl$1,env$1[1],env$1[1]),
+                      (/* None */0,id,/* Pident */[0,id],decl$1,env$1[1],env$1[1]),
                      0;
               
              case 2:
@@ -2253,8 +2452,7 @@ var
               
               c[2]=
               add_to_tbl
-               (Ident["name"](item[1]),/* tuple */[0,descr,pos[1]],c[2]),
-              0;
+               (Ident["name"](item[1]),/* tuple */[0,descr,pos[1]],c[2]);
               return pos[0]++;
               
              case 3:
@@ -2268,16 +2466,14 @@ var
               
               c[5]=
               Tbl["add"]
-               (Ident["name"](id$1),/* tuple */[0,mty$prime,pos[1]],c[5]),
-              0;
+               (Ident["name"](id$1),/* tuple */[0,mty$prime,pos[1]],c[5]);
               var comps=components_of_module(env$1[1],sub$1,path,mty);
               
               c[7]=
-              Tbl["add"](Ident["name"](id$1),/* tuple */[0,comps,pos[1]],c[7]),
-              0;
+              Tbl["add"](Ident["name"](id$1),/* tuple */[0,comps,pos[1]],c[7]);
               env$1[1]=
-              store_module(0,id$1,/* Pident */[0,id$1],md$1,env$1[1],env$1[1]),
-              0;
+              store_module
+               (/* None */0,id$1,/* Pident */[0,id$1],md$1,env$1[1],env$1[1]);
               return pos[0]++;
               
              case 4:
@@ -2291,11 +2487,15 @@ var
               Tbl["add"]
                (Ident["name"](id$2),
                 /* tuple */[0,decl$prime$2,Path["nopos"]],
-                c[6]),
-              0;
+                c[6]);
               return env$1[1]=
                      store_modtype
-                      (0,id$2,/* Pident */[0,id$2],decl$2,env$1[1],env$1[1]),
+                      (/* None */0,
+                       id$2,
+                       /* Pident */[0,id$2],
+                       decl$2,
+                       env$1[1],
+                       env$1[1]),
                      0;
               
              case 5:
@@ -2305,8 +2505,7 @@ var
               Tbl["add"]
                (Ident["name"](item[1]),
                 /* tuple */[0,decl$prime$3,pos[1]],
-                c[8]),
-              0;
+                c[8]);
               return pos[0]++;
               
              case 6:
@@ -2333,8 +2532,8 @@ var
                 match[3],
                 env,
                 sub,
-                Hashtbl["create"](0,17),
-                Hashtbl["create"](0,17)]];
+                Hashtbl["create"](/* None */0,17),
+                Hashtbl["create"](/* None */0,17)]];
        
       case 3:exit=109;
       }
@@ -2365,13 +2564,17 @@ var
       var key=/* tuple */[0,name,loc];
       
       if(Hashtbl["mem"](tbl,key))
-       {return 0;}
+       {return /* () */0;}
       else
-       {var used=[0,0];
+       {var used=[0,/* false */0];
         
-        Hashtbl["add"](tbl,key,function(param){return used[1]=1,0;});
+        Hashtbl["add"](tbl,key,function(param){return used[1]=/* true */1,0;});
         if
-         (!("unknown primitive:caml_string_equal"||(name[0]=95)||(name[0]=35)))
+         (!(CamlPrimitive["caml_string_equal"](name,"")||
+           name[0]===
+           95||
+           name[0]===
+           35))
          {return add_delayed_check_forward[1]
                   (function(param)
                     {if(!used[1])
@@ -2391,13 +2594,14 @@ var
 var
  check_value_name=
   function(name,loc)
-   {if(name["length"]>0&&(name[0]=35))
+   {if(name["length"]>0&&name[0]===35)
      {for(var i=1;i<=name["length"]-1;i++)
-       {if(name[i]=35)
+       {if(name[i]===35)
          {throw [0,$$Error,/* Illegal_value_name */[4,loc,name]];}
         else
          {}
         }
+      return 0;
       }
     else
      {return 0;}
@@ -2409,12 +2613,11 @@ var
    {check_value_name(Ident["name"](id),decl[3]);
     Misc["may"]
      (function(f){return check_usage(decl[3],id,f,value_declarations);},check);
-    var newrecord="unknown primitive:duprecord regular 14";
+    var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[1]=
-    EnvTbl[4]("value",slot,id,/* tuple */[0,path,decl],env[1],renv[1]),
-    0;
-    newrecord[11]=/* Env_value */[0,env[11],id,decl],0;
+    EnvTbl[4]("value",slot,id,/* tuple */[0,path,decl],env[1],renv[1]);
+    newrecord[11]=/* Env_value */[0,env[11],id,decl];
     return newrecord;
     };
 
@@ -2442,7 +2645,11 @@ var
        List["map"](function(prim){return prim[2];},constructors),
        List["map"](function(prim){return prim[2];},labels)];
     
-    if(check&&!loc[3]&&Warnings["is_active"]([21,"",0,0]))
+    if
+     (check&&
+      !loc[3]&&
+      Warnings["is_active"]
+       ([/* Unused_constructor */21,"",/* false */0,/* false */0]))
      {var ty=Ident["name"](id);
       
       List["iter"]
@@ -2452,10 +2659,10 @@ var
           var k=/* tuple */[0,ty,loc,c];
           
           if(!Hashtbl["mem"](used_constructors,k))
-           {var used=constructor_usages(0);
+           {var used=constructor_usages(/* () */0);
             
             Hashtbl["add"](used_constructors,k,add_constructor_usage(used));
-            if(!("unknown primitive:caml_string_equal"||(ty[0]=95)))
+            if(!(CamlPrimitive["caml_string_equal"](ty,"")||ty[0]===95))
              {return add_delayed_check_forward[1]
                       (function(param$1)
                         {if(!is_in_signature(env)&&!used[1])
@@ -2476,7 +2683,7 @@ var
     else
      {}
     
-    var newrecord="unknown primitive:duprecord regular 14";
+    var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[2]=
     List["fold_right"]
@@ -2484,15 +2691,13 @@ var
        {return EnvTbl[4]("constructor",slot,param[1],param[2],constrs,renv[2]);
         },
       constructors,
-      env[2]),
-    0;
+      env[2]);
     newrecord[3]=
     List["fold_right"]
-     (function(param,labels$1)
-       {return EnvTbl[4]("label",slot,param[1],param[2],labels$1,renv[3]);},
+     (function(param,labels)
+       {return EnvTbl[4]("label",slot,param[1],param[2],labels,renv[3]);},
       labels,
-      env[3]),
-    0;
+      env[3]);
     newrecord[4]=
     EnvTbl[4]
      ("type",
@@ -2500,27 +2705,27 @@ var
       id,
       /* tuple */[0,path,/* tuple */[0,info,descrs]],
       env[4],
-      renv[4]),
-    0;
-    newrecord[11]=/* Env_type */[1,env[11],id,info],0;
+      renv[4]);
+    newrecord[11]=/* Env_type */[1,env[11],id,info];
     return newrecord;
     };
 
 var
  store_type_infos=
   function(slot,id,path,info,env,renv)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[4]=
     EnvTbl[4]
      ("type",
       slot,
       id,
-      /* tuple */[0,path,/* tuple */[0,info,[0,0,0]]],
+      /* tuple */[0,
+       path,
+       /* tuple */[0,info,[/* tuple */0,/* [] */0,/* [] */0]]],
       env[4],
-      renv[4]),
-    0;
-    newrecord[11]=/* Env_type */[1,env[11],id,info],0;
+      renv[4]);
+    newrecord[11]=/* Env_type */[1,env[11],id,info];
     return newrecord;
     };
 
@@ -2529,7 +2734,11 @@ var
   function(check,slot,id,path,ext,env,renv)
    {var loc=ext[6];
     
-    if(check&&!loc[3]&&Warnings["is_active"]([22,"",0,0]))
+    if
+     (check&&
+      !loc[3]&&
+      Warnings["is_active"]
+       ([/* Unused_extension */22,"",/* false */0,/* false */0]))
      {var ty=Path["last"](ext[1]);
       
       var n=Ident["name"](id);
@@ -2537,7 +2746,7 @@ var
       var k=/* tuple */[0,ty,loc,n];
       
       if(!Hashtbl["mem"](used_constructors,k))
-       {var used=constructor_usages(0);
+       {var used=constructor_usages(/* () */0);
         
         Hashtbl["add"](used_constructors,k,add_constructor_usage(used)),
         add_delayed_check_forward[1]
@@ -2555,7 +2764,7 @@ var
     else
      {}
     
-    var newrecord="unknown primitive:duprecord regular 14";
+    var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[2]=
     EnvTbl[4]
@@ -2564,20 +2773,18 @@ var
       id,
       Datarepr["extension_descr"](path,ext),
       env[2],
-      renv[2]),
-    0;
-    newrecord[11]=/* Env_extension */[2,env[11],id,ext],0;
+      renv[2]);
+    newrecord[11]=/* Env_extension */[2,env[11],id,ext];
     return newrecord;
     };
 
 var
  store_module=
-  function(slot,id,path,md$1,env,renv)
-   {var newrecord="unknown primitive:duprecord regular 14";
+  function(slot,id,path,md,env,renv)
+   {var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[5]=
-    EnvTbl[4]("module",slot,id,/* tuple */[0,path,md$1],env[5],renv[5]),
-    0;
+    EnvTbl[4]("module",slot,id,/* tuple */[0,path,md],env[5],renv[5]);
     newrecord[7]=
     EnvTbl[4]
      ("module",
@@ -2585,47 +2792,43 @@ var
       id,
       /* tuple */[0,
        path,
-       components_of_module(env,Subst["identity"],path,md$1[1])],
+       components_of_module(env,Subst["identity"],path,md[1])],
       env[7],
-      renv[7]),
-    0;
-    newrecord[11]=/* Env_module */[3,env[11],id,md$1],0;
+      renv[7]);
+    newrecord[11]=/* Env_module */[3,env[11],id,md];
     return newrecord;
     };
 
 var
  store_modtype=
   function(slot,id,path,info,env,renv)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[6]=
-    EnvTbl[4]("module type",slot,id,/* tuple */[0,path,info],env[6],renv[6]),
-    0;
-    newrecord[11]=/* Env_modtype */[4,env[11],id,info],0;
+    EnvTbl[4]("module type",slot,id,/* tuple */[0,path,info],env[6],renv[6]);
+    newrecord[11]=/* Env_modtype */[4,env[11],id,info];
     return newrecord;
     };
 
 var
  store_class=
   function(slot,id,path,desc,env,renv)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[8]=
-    EnvTbl[4]("class",slot,id,/* tuple */[0,path,desc],env[8],renv[8]),
-    0;
-    newrecord[11]=/* Env_class */[5,env[11],id,desc],0;
+    EnvTbl[4]("class",slot,id,/* tuple */[0,path,desc],env[8],renv[8]);
+    newrecord[11]=/* Env_class */[5,env[11],id,desc];
     return newrecord;
     };
 
 var
  store_cltype=
   function(slot,id,path,desc,env,renv)
-   {var newrecord="unknown primitive:duprecord regular 14";
+   {var newrecord=/* unknown */"duprecord regular 14";
     
     newrecord[9]=
-    EnvTbl[4]("class type",slot,id,/* tuple */[0,path,desc],env[9],renv[9]),
-    0;
-    newrecord[11]=/* Env_cltype */[6,env[11],id,desc],0;
+    EnvTbl[4]("class type",slot,id,/* tuple */[0,path,desc],env[9],renv[9]);
+    newrecord[11]=/* Env_cltype */[6,env[11],id,desc];
     return newrecord;
     };
 
@@ -2635,7 +2838,7 @@ var
    {try
      {return Hashtbl["find"](f[6],p2);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var p=/* Papply */[2,p1,p2];
         
         var
@@ -2653,21 +2856,21 @@ var
       }
     };
 
-components_of_module$prime[1]=components_of_module,0;
-components_of_functor_appl$prime[1]=components_of_functor_appl,0;
-components_of_module_maker$prime[1]=components_of_module_maker,0;
+components_of_module$prime[1]=components_of_module;
+components_of_functor_appl$prime[1]=components_of_functor_appl;
+components_of_module_maker$prime[1]=components_of_module_maker;
 var
  add_functor_arg=
   function($staropt$star,id,env)
-   {if($staropt$star){var arg=$staropt$star[1];}else{var arg=0;}
+   {if($staropt$star){var arg=$staropt$star[1];}else{var arg=/* false */0;}
     
     if(!arg)
      {return env;}
     else
-     {var newrecord="unknown primitive:duprecord regular 14";
+     {var newrecord=/* unknown */"duprecord regular 14";
       
-      newrecord[10]=Ident["add"](id,0,env[10]),0;
-      newrecord[11]=/* Env_functor_arg */[8,env[11],id],0;
+      newrecord[10]=Ident["add"](id,/* () */0,env[10]);
+      newrecord[11]=/* Env_functor_arg */[8,env[11],id];
       return newrecord;
       }
     };
@@ -2675,24 +2878,26 @@ var
 var
  add_value=
   function(check,id,desc,env)
-   {return store_value(check,0,id,/* Pident */[0,id],desc,env,env);};
+   {return store_value(check,/* None */0,id,/* Pident */[0,id],desc,env,env);};
 
 var
  add_type=
   function(check,id,info,env)
-   {return store_type(check,0,id,/* Pident */[0,id],info,env,env);};
+   {return store_type(check,/* None */0,id,/* Pident */[0,id],info,env,env);};
 
 var
  add_extension=
   function(check,id,ext,env)
-   {return store_extension(check,0,id,/* Pident */[0,id],ext,env,env);};
+   {return store_extension
+            (check,/* None */0,id,/* Pident */[0,id],ext,env,env);
+    };
 
 var
  add_module_declaration=
-  function(arg,id,md$1,env)
+  function(arg,id,md,env)
    {var path=/* Pident */[0,id];
     
-    var env$1=store_module(0,id,path,md$1,env,env);
+    var env$1=store_module(/* None */0,id,path,md,env,env);
     
     return add_functor_arg(arg,id,env$1);
     };
@@ -2700,16 +2905,17 @@ var
 var
  add_modtype=
   function(id,info,env)
-   {return store_modtype(0,id,/* Pident */[0,id],info,env,env);};
+   {return store_modtype(/* None */0,id,/* Pident */[0,id],info,env,env);};
 
 var
  add_class=
-  function(id,ty,env){return store_class(0,id,/* Pident */[0,id],ty,env,env);};
+  function(id,ty,env)
+   {return store_class(/* None */0,id,/* Pident */[0,id],ty,env,env);};
 
 var
  add_cltype=
   function(id,ty,env)
-   {return store_cltype(0,id,/* Pident */[0,id],ty,env,env);};
+   {return store_cltype(/* None */0,id,/* Pident */[0,id],ty,env,env);};
 
 var
  add_module=
@@ -2724,22 +2930,21 @@ var
      {var match=info[7];
       
       if(match)
-       {var newrecord="unknown primitive:duprecord regular 9";
+       {var newrecord=/* unknown */"duprecord regular 9";
         
         var
          env$1=
           add_type
-           (0,
+           (/* false */0,
             id,
             (newrecord[7]=
              /* Some */[0,/* tuple */[0,match[1][1],elv]],
-             0,
              newrecord),
             env);
         
-        var newrecord$1="unknown primitive:duprecord regular 14";
+        var newrecord$1=/* unknown */"duprecord regular 14";
         
-        newrecord$1[12]=1,0;
+        newrecord$1[12]=/* true */1;
         return newrecord$1;
         }
       else
@@ -2748,7 +2953,13 @@ var
     else
      {exit=73;}
     
-    switch(exit){case 73:throw [0,Assert_failure,[0,"typing/env.ml",1538,9]];}
+    switch(exit)
+     {case 73:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/env.ml",1538,9]];
+       
+      }
     };
 
 var
@@ -2756,21 +2967,23 @@ var
   function(store_fun,name,data,env)
    {var id=Ident["create"](name);
     
-    return /* tuple */[0,id,store_fun(0,id,/* Pident */[0,id],data,env,env)];
+    return /* tuple */[0,
+            id,
+            store_fun(/* None */0,id,/* Pident */[0,id],data,env,env)];
     };
 
 var enter_value=function(check){return enter(store_value(check));};
 
-var enter_type=enter(store_type(1));
+var enter_type=enter(store_type(/* true */1));
 
-var enter_extension=enter(store_extension(1));
+var enter_extension=enter(store_extension(/* true */1));
 
 var
  enter_module_declaration=
-  function(arg,name,md$1,env)
+  function(arg,name,md,env)
    {var id=Ident["create"](name);
     
-    return /* tuple */[0,id,add_module_declaration(arg,id,md$1,env)];
+    return /* tuple */[0,id,add_module_declaration(arg,id,md,env)];
     };
 
 var enter_modtype=enter(store_modtype);
@@ -2786,11 +2999,11 @@ var
 var
  add_item=
   function(comp,env)
-   {switch(comp)
-     {case 0:return add_value(0,comp[1],comp[2],env);
-      case 1:return add_type(0,comp[1],comp[2],env);
-      case 2:return add_extension(0,comp[1],comp[2],env);
-      case 3:return add_module_declaration(0,comp[1],comp[2],env);
+   {switch(comp[0])
+     {case 0:return add_value(/* None */0,comp[1],comp[2],env);
+      case 1:return add_type(/* false */0,comp[1],comp[2],env);
+      case 2:return add_extension(/* false */0,comp[1],comp[2],env);
+      case 3:return add_module_declaration(/* None */0,comp[1],comp[2],env);
       case 4:return add_modtype(comp[1],comp[2],env);
       case 5:return add_class(comp[1],comp[2],env);
       case 6:return add_cltype(comp[1],comp[2],env);
@@ -2809,12 +3022,12 @@ var
     
     var sg$1=match[3];
     
-    var tag="unknown primitive:caml_obj_tag";
+    var tag=CamlPrimitive["caml_obj_tag"](sg$1);
     
-    if(tag=250)
+    if(tag===250)
      {var sg$2=sg$1[1];}
     else
-     {if(tag=246)
+     {if(tag===246)
        {var sg$2=CamlinternalLazy["force_lazy_block"](sg$1);}
       else
        {var sg$2=sg$1;}
@@ -2824,18 +3037,30 @@ var
      newenv=
       List["fold_left2"]
        (function(env,item,p)
-         {switch(item)
+         {switch(item[0])
            {case 0:
              return store_value
-                     (0,slot,Ident["hide"](item[1]),p,item[2],env,env0);
+                     (/* None */0,slot,Ident["hide"](item[1]),p,item[2],env,env0);
              
             case 1:
              return store_type
-                     (0,slot,Ident["hide"](item[1]),p,item[2],env,env0);
+                     (/* false */0,
+                      slot,
+                      Ident["hide"](item[1]),
+                      p,
+                      item[2],
+                      env,
+                      env0);
              
             case 2:
              return store_extension
-                     (0,slot,Ident["hide"](item[1]),p,item[2],env,env0);
+                     (/* false */0,
+                      slot,
+                      Ident["hide"](item[1]),
+                      p,
+                      item[2],
+                      env,
+                      env0);
              
             case 3:
              return store_module
@@ -2859,56 +3084,63 @@ var
         sg$2,
         match[1]);
     
-    var newrecord="unknown primitive:duprecord regular 14";
+    var newrecord=/* unknown */"duprecord regular 14";
     
-    newrecord[11]=/* Env_open */[7,env0[11],root],0;
+    newrecord[11]=/* Env_open */[7,env0[11],root];
     return newrecord;
     };
 
 var
  open_pers_signature=
   function(name,env)
-   {var ps=find_pers_struct(0,name);
+   {var ps=find_pers_struct(/* None */0,name);
     
     return open_signature
-            (0,/* Pident */[0,Ident["create_persistent"](name)],ps[2],env);
+            (/* None */0,
+             /* Pident */[0,Ident["create_persistent"](name)],
+             ps[2],
+             env);
     };
 
 var
  open_signature$1=
-  function($staropt$star,$staropt$star$1,ovf,root,sg,env)
-   {if($staropt$star)
-     {var loc=$staropt$star[1];}
+  function($staropt$star,$staropt$star,ovf,root,sg,env)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
     else
      {var loc=Location["none"];}
     
-    if($staropt$star$1){var toplevel=$staropt$star$1[1];}else{var toplevel=0;}
+    if($staropt$star)
+     {var toplevel=$staropt$star[1];}
+    else
+     {var toplevel=/* false */0;}
     
     if
      (!toplevel&&
-      (ovf=1)&&
+      ovf===
+      /* Fresh */1&&
       !loc[3]&&
-      (Warnings["is_active"]([17,""])||
-       Warnings["is_active"]([27,"",""])||
-       Warnings["is_active"]([28,"",""])))
-     {var used=[0,0];
+      (Warnings["is_active"]([/* Unused_open */17,""])||
+       Warnings["is_active"]([/* Open_shadow_identifier */27,"",""])||
+       Warnings["is_active"]([/* Open_shadow_label_constructor */28,"",""])))
+     {var used=[0,/* false */0];
       
       add_delayed_check_forward[1]
        (function(param)
          {if(!used[1])
            {return Location["prerr_warning"]
-                    (loc,/* Unused_open */[17,Path["name"](0,root)]);
+                    (loc,/* Unused_open */[17,Path["name"](/* None */0,root)]);
             }
           else
            {return 0;}
           });
-      var shadowed=[0,0];
+      var shadowed=[0,/* [] */0];
       
       var
        slot=
         function(kind,s,b)
          {if(b&&!List["mem"](/* tuple */[0,kind,s],shadowed[1]))
-           {shadowed[1]=/* :: */[0,/* tuple */[0,kind,s],shadowed[1]],0;
+           {shadowed[1]=/* :: */[0,/* tuple */[0,kind,s],shadowed[1]];
             var exit;
             
             switch(kind)
@@ -2925,13 +3157,13 @@ var
           else
            {}
           
-          return used[1]=1,0;
+          return used[1]=/* true */1,0;
           };
       
       return open_signature(/* Some */[0,slot],root,sg,env);
       }
     else
-     {return open_signature(0,root,sg,env);}
+     {return open_signature(/* None */0,root,sg,env);}
     };
 
 var
@@ -2946,13 +3178,16 @@ var
 var
  crc_of_unit=
   function(name)
-   {var ps=find_pers_struct(0,name);
+   {var ps=find_pers_struct(/* None */0,name);
     
     try
      {var crco=List["assoc"](name,ps[4]);}
     catch(exn)
-     {if(exn=Not_found)
-       {throw [0,Assert_failure,[0,"typing/env.ml",1659,6]];}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"typing/env.ml",1659,6]];
+        }
       else
        {throw exn;}
       }
@@ -2960,7 +3195,10 @@ var
     if(crco)
      {return crco[1];}
     else
-     {throw [0,Assert_failure,[0,"typing/env.ml",1662,14]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/env.ml",1662,14]];
+      }
     };
 
 var
@@ -2970,9 +3208,9 @@ var
 
 var
  save_signature_with_imports=
-  function(sg,modname,filename,imports$1)
-   {Btype["cleanup_abbrev"](0);
-    Subst["reset_for_saving"](0);
+  function(sg,modname,filename,imports)
+   {Btype["cleanup_abbrev"](/* () */0);
+    Subst["reset_for_saving"](/* () */0);
     var sg$1=Subst["signature"](Subst["for_saving"](Subst["identity"]),sg);
     
     var oc=Pervasives["open_out_bin"](filename);
@@ -2983,8 +3221,10 @@ var
         /* record */[0,
          modname,
          sg$1,
-         imports$1,
-         Clflags["recursive_types"][1]?[0,0,0]:0];
+         imports,
+         Clflags["recursive_types"][1]
+          ?[/* :: */0,/* Rectypes */0,/* [] */0]
+          :/* [] */0];
       
       var crc=Cmi_format["output_cmi"](filename,oc,cmi);
       
@@ -3003,8 +3243,8 @@ var
          modname,
          sg$1,
          comps,
-         /* :: */[0,/* tuple */[0,cmi[1],/* Some */[0,crc]],imports$1],
-         0,
+         /* :: */[0,/* tuple */[0,cmi[1],/* Some */[0,crc]],imports],
+         /* false */0,
          filename,
          cmi[4]];
       
@@ -3018,7 +3258,8 @@ var
 var
  save_signature=
   function(sg,modname,filename)
-   {return save_signature_with_imports(sg,modname,filename,imports(0));};
+   {return save_signature_with_imports(sg,modname,filename,imports(/* () */0));
+    };
 
 var
  find_all$1=
@@ -3030,11 +3271,11 @@ var
       
       var match$1=EnvLazy[1](components_of_module_maker,match[2]);
       
-      switch(match$1)
+      switch(match$1[0])
        {case 0:
          return Tbl["fold"]
-                 (function(s,param,acc$1)
-                   {return f(s,/* Pdot */[1,p,s,param[2]],param[1],acc$1);},
+                 (function(s,param,acc)
+                   {return f(s,/* Pdot */[1,p,s,param[2]],param[1],acc);},
                   proj2(match$1[1]),
                   acc);
          
@@ -3043,8 +3284,8 @@ var
       }
     else
      {return EnvTbl[10]
-              (function(id,param,acc$1)
-                {return f(Ident["name"](id),param[1],param[2],acc$1);},
+              (function(id,param,acc)
+                {return f(Ident["name"](id),param[1],param[2],acc);},
                proj1(env),
                acc);
       }
@@ -3058,11 +3299,11 @@ var
       
       var match$1=EnvLazy[1](components_of_module_maker,match[2]);
       
-      switch(match$1)
+      switch(match$1[0])
        {case 0:
          return Tbl["fold"]
-                 (function(s,comps,acc$1)
-                   {if(comps){return f(comps[1][1],acc$1);}else{return acc$1;}},
+                 (function(s,comps,acc)
+                   {if(comps){return f(comps[1][1],acc);}else{return acc;}},
                   proj2(match$1[1]),
                   acc);
          
@@ -3071,7 +3312,7 @@ var
       }
     else
      {return EnvTbl[10]
-              (function(id,data,acc$1){return f(data,acc$1);},proj1(env),acc);
+              (function(id,data,acc){return f(data,acc);},proj1(env),acc);
       }
     };
 
@@ -3085,15 +3326,15 @@ var
       
       var match$1=EnvLazy[1](components_of_module_maker,match[2]);
       
-      switch(match$1)
+      switch(match$1[0])
        {case 0:
          return Tbl["fold"]
-                 (function(s,param,acc$1)
+                 (function(s,param,acc)
                    {return f
                             (s,
                              /* Pdot */[1,p,s,param[2]],
                              md(EnvLazy[1](subst_modtype_maker,param[1])),
-                             acc$1);
+                             acc);
                     },
                   match$1[1][5],
                   acc);
@@ -3105,22 +3346,22 @@ var
      {var
        acc$1=
         EnvTbl[10]
-         (function(id,param,acc$2)
-           {return f(Ident["name"](id),param[1],param[2],acc$2);},
+         (function(id,param,acc)
+           {return f(Ident["name"](id),param[1],param[2],acc);},
           env[5],
           acc);
       
       return Hashtbl["fold"]
-              (function(name,ps,acc$2)
+              (function(name,ps,acc)
                 {if(ps)
                   {return f
                            (name,
                             /* Pident */[0,Ident["create_persistent"](name)],
                             md(/* Mty_signature */[1,ps[1][2]]),
-                            acc$2);
+                            acc);
                    }
                  else
-                  {return acc$2;}
+                  {return acc;}
                  },
                persistent_structures,
                acc$1);
@@ -3176,7 +3417,10 @@ var
             (function(env){return env[9];},function(sc){return sc[9];},f);
     };
 
-var match=Predef["build_initial_env"](add_type(0),add_extension(0),empty$1);
+var
+ match=
+  Predef["build_initial_env"]
+   (add_type(/* false */0),add_extension(/* false */0),empty$1);
 
 var initial_unsafe_string=match[2];
 
@@ -3191,18 +3435,18 @@ var last_reduced_env=[0,empty$1];
 var
  keep_only_summary=
   function(env)
-   {if(last_env[1]=env)
+   {if(last_env[1]===env)
      {return last_reduced_env[1];}
     else
-     {var newrecord="unknown primitive:duprecord regular 14";
+     {var newrecord=/* unknown */"duprecord regular 14";
       
-      newrecord[11]=env[11],0;
-      newrecord[12]=env[12],0;
-      newrecord[14]=env[14],0;
+      newrecord[11]=env[11];
+      newrecord[12]=env[12];
+      newrecord[14]=env[14];
       var new_env=newrecord;
       
-      last_env[1]=env,0;
-      last_reduced_env[1]=new_env,0;
+      last_env[1]=env;
+      last_reduced_env[1]=new_env;
       return new_env;
       }
     };
@@ -3212,31 +3456,39 @@ var
   function(env_from_summary,env)
    {var new_env=env_from_summary(env[11],Subst["identity"]);
     
-    var newrecord="unknown primitive:duprecord regular 14";
+    var newrecord=/* unknown */"duprecord regular 14";
     
-    newrecord[12]=env[12],0;
-    newrecord[14]=env[14],0;
+    newrecord[12]=env[12];
+    newrecord[14]=env[14];
     return newrecord;
     };
 
 var
  report_error=
   function(ppf,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "Wrong file naming: ",
-                  [15,
-                   [17,
-                    [0,"@ ",1,0],
-                    [11,
+                  [/* Alpha */15,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String_literal */11,
                      "contains the compiled interface for ",
-                     [17,
-                      [0,"@ ",1,0],
-                      [2,0,[11," when ",[2,0,[11," was expected",0]]]]]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        " when ",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          " was expected",
+                          /* End_of_format */0]]]]]]]]],
                  "Wrong file naming: %a@ contains the compiled interface for @ %s when %s was expected"],
                 Location["print_filename"],
                 param[3],
@@ -3246,22 +3498,33 @@ var
       case 1:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,[11,"<hov>",0],"<hov>"]],
-                  [11,
+                [/* Format */0,
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<hov>",/* End_of_format */0],
+                    "<hov>"]],
+                  [/* String_literal */11,
                    "The files ",
-                   [15,
-                    [17,
-                     [0,"@ ",1,0],
-                     [11,
+                   [/* Alpha */15,
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* String_literal */11,
                       "and ",
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
                          "make inconsistent assumptions",
-                         [17,[0,"@ ",1,0],[11,"over interface ",[2,0,[17,0,0]]]]]]]]]]]],
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
+                           "over interface ",
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]]]]]]],
                  "@[<hov>The files %a@ and %a@ make inconsistent assumptions@ over interface %s@]"],
                 Location["print_filename"],
                 param[2],
@@ -3272,20 +3535,29 @@ var
       case 2:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [18,
-                  [1,[0,[11,"<hov>",0],"<hov>"]],
-                  [11,
+                [/* Format */0,
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<hov>",/* End_of_format */0],
+                    "<hov>"]],
+                  [/* String_literal */11,
                    "Unit ",
-                   [2,
-                    0,
-                    [11,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* String_literal */11,
                      " imports from ",
-                     [2,
-                      0,
-                      [11,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String_literal */11,
                        ", which uses recursive types.",
-                       [17,[0,"@ ",1,0],[2,0,[17,0,0]]]]]]]]],
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]]]]]],
                  "@[<hov>Unit %s imports from %s, which uses recursive types.@ %s@]"],
                 param[2],
                 param[1],
@@ -3298,53 +3570,84 @@ var
        
        Format["fprintf"]
         (ppf,
-         [0,
-          [18,[1,[0,0,""]],[18,[1,[0,[11,"<hov>",0],"<hov>"]],0]],
+         [/* Format */0,
+          [/* Formatting_gen */18,
+           [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+           [/* Formatting_gen */18,
+            [/* Open_box */1,
+             [/* Format */0,
+              [/* String_literal */11,"<hov>",/* End_of_format */0],
+              "<hov>"]],
+            /* End_of_format */0]],
           "@[@[<hov>"]);
        if(Path["same"](path1,path2))
         {Format["fprintf"]
           (ppf,
-           [0,
-            [11,
+           [/* Format */0,
+            [/* String_literal */11,
              "Internal path",
-             [17,[0,"@ ",1,0],[2,0,[17,[0,"@ ",1,0],[11,"is dangling.",0]]]]],
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* String */2,
+               /* No_padding */0,
+               [/* Formatting_lit */17,
+                [/* Break */0,"@ ",1,0],
+                [/* String_literal */11,"is dangling.",/* End_of_format */0]]]]],
             "Internal path@ %s@ is dangling."],
-           Path["name"](0,path1))}
+           Path["name"](/* None */0,path1))}
        else
         {Format["fprintf"]
           (ppf,
-           [0,
-            [11,
+           [/* Format */0,
+            [/* String_literal */11,
              "Internal path",
-             [17,
-              [0,"@ ",1,0],
-              [2,
-               0,
-               [17,
-                [0,"@ ",1,0],
-                [11,
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* String */2,
+               /* No_padding */0,
+               [/* Formatting_lit */17,
+                [/* Break */0,"@ ",1,0],
+                [/* String_literal */11,
                  "expands to",
-                 [17,
-                  [0,"@ ",1,0],
-                  [2,0,[17,[0,"@ ",1,0],[11,"which is dangling.",0]]]]]]]]],
+                 [/* Formatting_lit */17,
+                  [/* Break */0,"@ ",1,0],
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String_literal */11,
+                     "which is dangling.",
+                     /* End_of_format */0]]]]]]]]],
             "Internal path@ %s@ expands to@ %s@ which is dangling."],
-           Path["name"](0,path1),
-           Path["name"](0,path2))}
+           Path["name"](/* None */0,path1),
+           Path["name"](/* None */0,path2))}
        
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [17,
-                  0,
-                  [17,
-                   [0,"@ ",1,0],
-                   [18,
-                    [1,[0,0,""]],
-                    [2,
-                     0,
-                     [17,
-                      [0,"@ ",1,0],
-                      [2,0,[17,[0,"@ ",1,0],[2,0,[12,46,[17,0,[17,0,0]]]]]]]]]]],
+                [/* Format */0,
+                 [/* Formatting_lit */17,
+                  /* Close_box */0,
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          46,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]]]],
                  "@]@ @[%s@ %s@ %s.@]@]"],
                 "The compiled interface for module",
                 Ident["name"](Path["head"](path2)),
@@ -3353,8 +3656,14 @@ var
       case 4:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [12,39,[2,0,[11,"' is not a valid value identifier.",0]]],
+                [/* Format */0,
+                 [/* Char_literal */12,
+                  39,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11,
+                    "' is not a valid value identifier.",
+                    /* End_of_format */0]]],
                  "'%s' is not a valid value identifier."],
                 param[2]);
        
@@ -3365,23 +3674,23 @@ var
  match$1=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {var err=param[2];
         
         var exit;
         
-        switch(err){case 3:exit=4;case 4:exit=4;default:exit=2;}
+        switch(err[0]){case 3:exit=4;case 4:exit=4;default:exit=2;}
         
         switch(exit)
          {case 4:
            var loc=err[1];
            
-           if("unknown primitive:caml_notequal")
+           if(CamlPrimitive["caml_notequal"](loc,Location["none"]))
             {return /* Some */[0,
                      Location["error_of_printer"](loc,report_error,err)];
              }
            else
-            {"unknown block:(exit 2)";}
+            {exit=2;}
            
           case 2:
            return /* Some */[0,
@@ -3390,7 +3699,7 @@ var
           }
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 module["exports"]=

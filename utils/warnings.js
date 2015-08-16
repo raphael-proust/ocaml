@@ -1,19 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Format=require("Format");
-var $$Array=require("Array");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  number=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:return 1;
         case 1:return 2;
@@ -81,84 +82,111 @@ var
     var switcher=-97+param;
     
     if(25<switcher>>>0)
-     {throw [0,Assert_failure,[0,"utils/warnings.ml",164,9]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"utils/warnings.ml",164,9]];
+      }
     else
-     {switch(switcher[0])
+     {switch(switcher)
        {case 0:
          var
           loop=
            function(i)
-            {if(i=0){return 0;}else{return /* :: */[0,i,loop(i-1)];}};
+            {if(i===0){return /* [] */0;}else{return /* :: */[0,i,loop(i-1)];}
+             };
          
          return loop(last_warning_number);
          
         case 1:exit=51;
-        case 2:return [0,1,[0,2,0]];
-        case 3:return [0,3,0];
-        case 4:return [0,4,0];
-        case 5:return [0,5,0];
+        case 2:return [/* :: */0,1,[/* :: */0,2,/* [] */0]];
+        case 3:return [/* :: */0,3,/* [] */0];
+        case 4:return [/* :: */0,4,/* [] */0];
+        case 5:return [/* :: */0,5,/* [] */0];
         case 6:exit=51;
         case 7:exit=51;
         case 8:exit=51;
         case 9:exit=51;
         case 10:
-         return [0,32,[0,33,[0,34,[0,35,[0,36,[0,37,[0,38,[0,39,0]]]]]]]];
-        case 11:return [0,6,0];
-        case 12:return [0,7,0];
+         return [/* :: */0,
+                 32,
+                 [/* :: */0,
+                  33,
+                  [/* :: */0,
+                   34,
+                   [/* :: */0,
+                    35,
+                    [/* :: */0,
+                     36,
+                     [/* :: */0,37,[/* :: */0,38,[/* :: */0,39,/* [] */0]]]]]]]];
+         
+        case 11:return [/* :: */0,6,/* [] */0];
+        case 12:return [/* :: */0,7,/* [] */0];
         case 13:exit=51;
         case 14:exit=51;
-        case 15:return [0,8,0];
+        case 15:return [/* :: */0,8,/* [] */0];
         case 16:exit=51;
-        case 17:return [0,9,0];
-        case 18:return [0,10,0];
+        case 17:return [/* :: */0,9,/* [] */0];
+        case 18:return [/* :: */0,10,/* [] */0];
         case 19:exit=51;
-        case 20:return [0,11,[0,12,0]];
-        case 21:return [0,13,0];
+        case 20:return [/* :: */0,11,[/* :: */0,12,/* [] */0]];
+        case 21:return [/* :: */0,13,/* [] */0];
         case 22:exit=51;
         case 23:
-         return [0,
+         return [/* :: */0,
                  14,
-                 [0,
+                 [/* :: */0,
                   15,
-                  [0,
+                  [/* :: */0,
                    16,
-                   [0,
+                   [/* :: */0,
                     17,
-                    [0,
+                    [/* :: */0,
                      18,
-                     [0,19,[0,20,[0,21,[0,22,[0,23,[0,24,[0,25,[0,30,0]]]]]]]]]]]]];
+                     [/* :: */0,
+                      19,
+                      [/* :: */0,
+                       20,
+                       [/* :: */0,
+                        21,
+                        [/* :: */0,
+                         22,
+                         [/* :: */0,
+                          23,
+                          [/* :: */0,24,[/* :: */0,25,[/* :: */0,30,/* [] */0]]]]]]]]]]]]];
          
-        case 24:return [0,26,0];
-        case 25:return [0,27,0];
+        case 24:return [/* :: */0,26,/* [] */0];
+        case 25:return [/* :: */0,27,/* [] */0];
         }
       }
     
-    switch(exit){case 51:return 0;}
+    switch(exit){case 51:return /* [] */0;}
     };
 
 var
  current=
   [0,
    /* record */[0,
-    "unknown primitive:caml_make_vect",
-    "unknown primitive:caml_make_vect"]];
+    CamlPrimitive["caml_make_vect"](last_warning_number+1,/* true */1),
+    CamlPrimitive["caml_make_vect"](last_warning_number+1,/* false */0)]];
 
 var backup=function(param){return current[1];};
 
 var restore=function(x){return current[1]=x,0;};
 
-var is_active=function(x){return current[1][1][number(x)];};
+var is_active=function(x){return current[1][1][number(x)+1];};
 
-var is_error=function(x){return current[1][2][number(x)];};
+var is_error=function(x){return current[1][2][number(x)+1];};
 
 var
  parse_opt=
   function(error,active,flags,s)
-   {var set=function(i){return flags[i]=1,0;};
+   {var set=function(i){return flags[i+1]=/* true */1,0;};
     
-    var clear=function(i){return flags[i]=0,0;};
+    var clear=function(i){return flags[i+1]=/* false */0,0;};
     
-    var set_all=function(i){active[i]=1,0;return error[i]=1,0;};
+    var
+     set_all=
+      function(i){active[i+1]=/* true */1;return error[i+1]=/* true */1,0;};
     
     var
      error$1=
@@ -188,12 +216,12 @@ var
         
         var i$1=match[1];
         
-        if(i$1+2<s["length"]&&(s[i$1]=46)&&(s[i$1+1]=46))
+        if(i$1+2<s["length"]&&s[i$1]===46&&s[i$1+1]===46)
          {var match$1=get_num(0,i$1+2);
           
           var n2=match$1[2];
           
-          if(n2<n1){error$1(0)}else{}
+          if(n2<n1){error$1(/* () */0)}else{}
           
           return /* tuple */[0,match$1[1],n1,n2];
           }
@@ -205,7 +233,7 @@ var
      loop=
       function(i)
        {if(i>=s["length"])
-         {return 0;}
+         {return /* () */0;}
         else
          {var c=s[i];
           
@@ -232,7 +260,7 @@ var
              {if(c>=64){return loop_letter_num(set_all,i+1);}else{exit=29;}}
             else
              {if(c>=43)
-               {switch((-43+c)[0])
+               {switch(-43+c)
                  {case 0:return loop_letter_num(set,i+1);
                   case 1:exit=29;
                   case 2:return loop_letter_num(clear,i+1);
@@ -243,7 +271,7 @@ var
               }
             }
           
-          switch(exit){case 29:return error$1(0);}
+          switch(exit){case 29:return error$1(/* () */0);}
           }
         };
     
@@ -251,7 +279,7 @@ var
      loop_letter_num=
       function(myset,i)
        {if(i>=s["length"])
-         {return error$1(0);}
+         {return error$1(/* () */0);}
         else
          {var match=s[i];
           
@@ -290,7 +318,7 @@ var
               }
             }
           
-          switch(exit){case 34:return error$1(0);}
+          switch(exit){case 34:return error$1(/* () */0);}
           }
         };
     
@@ -312,16 +340,16 @@ var defaults_w="+a-4-6-7-9-27-29-32..39-41..42-44-45-48-50";
 
 var defaults_warn_error="-a";
 
-var match=parse_options(0,defaults_w);
+var match=parse_options(/* false */0,defaults_w);
 
-var match$1=parse_options(1,defaults_warn_error);
+var match$1=parse_options(/* true */1,defaults_warn_error);
 
 var
  message=
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param)
        {case 0:return "this is the start of a comment.";
         case 1:return "this is not the end of a comment.";
@@ -387,7 +415,10 @@ var
              }
            }
          else
-          {throw [0,Assert_failure,[0,"utils/warnings.ml",271,26]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"utils/warnings.ml",271,26]];
+           }
          
         case 3:
          var s$1=param[1];
@@ -435,7 +466,10 @@ var
              }
            }
          else
-          {throw [0,Assert_failure,[0,"utils/warnings.ml",291,37]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"utils/warnings.ml",291,37]];
+           }
          
         case 6:
          return Pervasives["^"]
@@ -459,18 +493,24 @@ var
         case 13:exit=18;
         case 14:
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "the ",
-                    [2,
-                     0,
-                     [12,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,
                       32,
-                      [2,
-                       0,
-                       [11,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
                         " is defined in both types ",
-                        [2,0,[11," and ",[2,0,[12,46,0]]]]]]]]],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          " and ",
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Char_literal */12,46,/* End_of_format */0]]]]]]]]],
                    "the %s %s is defined in both types %s and %s."],
                   param[1],
                   param[2],
@@ -479,14 +519,18 @@ var
          
         case 15:
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "files ",
-                    [2,
-                     0,
-                     [11,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* String_literal */11,
                       " and ",
-                      [2,0,[11," both define a module named ",[2,0,0]]]]]],
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        " both define a module named ",
+                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                    "files %s and %s both define a module named %s"],
                   param[2],
                   param[3],
@@ -510,7 +554,7 @@ var
         case 21:
          var s$2=param[1];
          
-         if(param[2]!=0)
+         if(param[2]!==0)
           {return Pervasives["^"]
                    ("constructor ",
                     Pervasives["^"]
@@ -518,7 +562,7 @@ var
                       " is never used to build values.\n(However, this constructor appears in patterns.)"));
            }
          else
-          {if(param[3]!=0)
+          {if(param[3]!==0)
             {return Pervasives["^"]
                      ("constructor ",
                       Pervasives["^"]
@@ -534,7 +578,7 @@ var
         case 22:
          var s$3=param[1];
          
-         if(param[2]!=0)
+         if(param[2]!==0)
           {return Pervasives["^"]
                    ("extension constructor ",
                     Pervasives["^"]
@@ -542,7 +586,7 @@ var
                       " is never used to build values.\n(However, this constructor appears in patterns.)"));
            }
          else
-          {if(param[3]!=0)
+          {if(param[3]!==0)
             {return Pervasives["^"]
                      ("extension constructor ",
                       Pervasives["^"]
@@ -566,7 +610,7 @@ var
           {if(slist$2[2])
             {exit$1=16;}
            else
-            {if(param[3]!=0)
+            {if(param[3]!==0)
               {exit$1=16;}
              else
               {return Pervasives["^"]
@@ -584,7 +628,7 @@ var
          
          switch(exit$1)
           {case 16:
-            if(param[3]!=0)
+            if(param[3]!==0)
              {return Pervasives["^"]
                       ("this record of type ",
                        Pervasives["^"]
@@ -596,7 +640,10 @@ var
                              ".\nThey will not be selected if the type becomes unknown."))));
               }
             else
-             {throw [0,Assert_failure,[0,"utils/warnings.ml",353,39]];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"utils/warnings.ml",353,39]];
+              }
             
            }
          
@@ -609,7 +656,7 @@ var
           {if(slist$3[2])
             {exit$2=17;}
            else
-            {if(param[3]!=0)
+            {if(param[3]!==0)
               {exit$2=17;}
              else
               {return Pervasives["^"]
@@ -627,7 +674,7 @@ var
          
          switch(exit$2)
           {case 17:
-            if(param[3]!=0)
+            if(param[3]!==0)
              {return Pervasives["^"]
                       ("these field labels belong to several types: ",
                        Pervasives["^"]
@@ -635,7 +682,10 @@ var
                          "\nThe first one was selected. Please disambiguate if this is wrong."));
               }
             else
-             {throw [0,Assert_failure,[0,"utils/warnings.ml",362,36]];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"utils/warnings.ml",362,36]];
+              }
             
            }
          
@@ -650,42 +700,64 @@ var
          
         case 27:
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "this open statement shadows the ",
-                    [2,
-                     0,
-                     [11," identifier ",[2,0,[11," (which is later used)",0]]]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      " identifier ",
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        " (which is later used)",
+                        /* End_of_format */0]]]]],
                    "this open statement shadows the %s identifier %s (which is later used)"],
                   param[1],
                   param[2]);
          
         case 28:
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "this open statement shadows the ",
-                    [2,0,[12,32,[2,0,[11," (which is later used)",0]]]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,
+                      32,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        " (which is later used)",
+                        /* End_of_format */0]]]]],
                    "this open statement shadows the %s %s (which is later used)"],
                   param[1],
                   param[2]);
          
         case 29:
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "illegal environment variable ",
-                    [2,0,[11," : ",[2,0,0]]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      " : ",
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                    "illegal environment variable %s : %s"],
                   param[1],
                   param[2]);
          
         case 30:
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "illegal payload for attribute '",
-                    [2,0,[11,"'.\n",[2,0,0]]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      "'.\n",
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                    "illegal payload for attribute '%s'.\n%s"],
                   param[1],
                   param[2]);
@@ -694,12 +766,16 @@ var
          var sl=param[1];
          
          return Printf["sprintf"]
-                 ([0,
-                   [11,
+                 ([/* Format */0,
+                   [/* String_literal */11,
                     "implicit elimination of optional argument",
-                    [2,0,[12,32,[2,0,0]]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,
+                      32,
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                    "implicit elimination of optional argument%s %s"],
-                  (List["length"](sl)=1)?"":"s",
+                  List["length"](sl)===1?"":"s",
                   $$String["concat"](", ",sl));
          
         case 32:
@@ -731,149 +807,173 @@ var
     
     var num=number(w);
     
-    Format["fprintf"](ppf,[0,[4,0,0,0,[11,": ",[2,0,0]]],"%d: %s"],num,msg);
-    Format["pp_print_flush"](ppf,0);
-    if(current[1][2][num]){return nerrors[0]++;}else{return 0;}
+    Format["fprintf"]
+     (ppf,
+      [/* Format */0,
+       [/* Int */4,
+        /* Int_d */0,
+        /* No_padding */0,
+        /* No_precision */0,
+        [/* String_literal */11,
+         ": ",
+         [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+       "%d: %s"],
+      num,
+      msg);
+    Format["pp_print_flush"](ppf,/* () */0);
+    if(current[1][2][num+1]){return nerrors[0]++;}else{return 0;}
     };
 
-var Errors="unknown primitive:caml_set_oo_id";
+var Errors=CamlPrimitive["caml_set_oo_id"]([248,"Warnings.Errors",0]);
 
 var
  check_fatal=
   function(param)
    {if(nerrors[1]>0)
-     {var e=[0,Errors,nerrors[1]];nerrors[1]=0,0;throw e;}
+     {var e=[0,Errors,nerrors[1]];nerrors[1]=0;throw e;}
     else
      {return 0;}
     };
 
 var
  descriptions=
-  [0,
-   [0,1,"Suspicious-looking start-of-comment mark."],
-   [0,
-    [0,2,"Suspicious-looking end-of-comment mark."],
-    [0,
-     [0,3,"Deprecated feature."],
-     [0,
-      [0,
+  [/* :: */0,
+   [/* tuple */0,1,"Suspicious-looking start-of-comment mark."],
+   [/* :: */0,
+    [/* tuple */0,2,"Suspicious-looking end-of-comment mark."],
+    [/* :: */0,
+     [/* tuple */0,3,"Deprecated feature."],
+     [/* :: */0,
+      [/* tuple */0,
        4,
        "Fragile pattern matching: matching that will remain complete even\n    if additional constructors are added to one of the variant types\n    matched."],
-      [0,
-       [0,
+      [/* :: */0,
+       [/* tuple */0,
         5,
         "Partially applied function: expression whose result has function\n    type and is ignored."],
-       [0,
-        [0,6,"Label omitted in function application."],
-        [0,
-         [0,7,"Method overridden."],
-         [0,
-          [0,8,"Partial match: missing cases in pattern-matching."],
-          [0,
-           [0,9,"Missing fields in a record pattern."],
-           [0,
-            [0,
+       [/* :: */0,
+        [/* tuple */0,6,"Label omitted in function application."],
+        [/* :: */0,
+         [/* tuple */0,7,"Method overridden."],
+         [/* :: */0,
+          [/* tuple */0,8,"Partial match: missing cases in pattern-matching."],
+          [/* :: */0,
+           [/* tuple */0,9,"Missing fields in a record pattern."],
+           [/* :: */0,
+            [/* tuple */0,
              10,
              'Expression on the left-hand side of a sequence that doesn\'t have type\n    "unit" (and that is not a function, see warning number 5).'],
-            [0,
-             [0,
+            [/* :: */0,
+             [/* tuple */0,
               11,
               "Redundant case in a pattern matching (unused match case)."],
-             [0,
-              [0,12,"Redundant sub-pattern in a pattern-matching."],
-              [0,
-               [0,13,"Instance variable overridden."],
-               [0,
-                [0,14,"Illegal backslash escape in a string constant."],
-                [0,
-                 [0,15,"Private method made public implicitly."],
-                 [0,
-                  [0,16,"Unerasable optional argument."],
-                  [0,
-                   [0,17,"Undeclared virtual method."],
-                   [0,
-                    [0,18,"Non-principal type."],
-                    [0,
-                     [0,19,"Type without principality."],
-                     [0,
-                      [0,20,"Unused function argument."],
-                      [0,
-                       [0,21,"Non-returning statement."],
-                       [0,
-                        [0,22,"Proprocessor warning."],
-                        [0,
-                         [0,23,'Useless record "with" clause.'],
-                         [0,
-                          [0,
+             [/* :: */0,
+              [/* tuple */0,12,"Redundant sub-pattern in a pattern-matching."],
+              [/* :: */0,
+               [/* tuple */0,13,"Instance variable overridden."],
+               [/* :: */0,
+                [/* tuple */0,
+                 14,
+                 "Illegal backslash escape in a string constant."],
+                [/* :: */0,
+                 [/* tuple */0,15,"Private method made public implicitly."],
+                 [/* :: */0,
+                  [/* tuple */0,16,"Unerasable optional argument."],
+                  [/* :: */0,
+                   [/* tuple */0,17,"Undeclared virtual method."],
+                   [/* :: */0,
+                    [/* tuple */0,18,"Non-principal type."],
+                    [/* :: */0,
+                     [/* tuple */0,19,"Type without principality."],
+                     [/* :: */0,
+                      [/* tuple */0,20,"Unused function argument."],
+                      [/* :: */0,
+                       [/* tuple */0,21,"Non-returning statement."],
+                       [/* :: */0,
+                        [/* tuple */0,22,"Proprocessor warning."],
+                        [/* :: */0,
+                         [/* tuple */0,23,'Useless record "with" clause.'],
+                         [/* :: */0,
+                          [/* tuple */0,
                            24,
                            "Bad module name: the source file name is not a valid OCaml module name."],
-                          [0,
-                           [0,
+                          [/* :: */0,
+                           [/* tuple */0,
                             25,
                             "Pattern-matching with all clauses guarded.  Exhaustiveness cannot be\n    checked."],
-                           [0,
-                            [0,
+                           [/* :: */0,
+                            [/* tuple */0,
                              26,
                              'Suspicious unused variable: unused variable that is bound\n    with "let" or "as", and doesn\'t start with an underscore ("_")\n    character.'],
-                            [0,
-                             [0,
+                            [/* :: */0,
+                             [/* tuple */0,
                               27,
                               'Innocuous unused variable: unused variable that is not bound with\n    "let" nor "as", and doesn\'t start with an underscore ("_")\n    character.'],
-                             [0,
-                              [0,
+                             [/* :: */0,
+                              [/* tuple */0,
                                28,
                                "Wildcard pattern given as argument to a constant constructor."],
-                              [0,
-                               [0,
+                              [/* :: */0,
+                               [/* tuple */0,
                                 29,
                                 "Unescaped end-of-line in a string constant (non-portable code)."],
-                               [0,
-                                [0,
+                               [/* :: */0,
+                                [/* tuple */0,
                                  30,
                                  "Two labels or constructors of the same name are defined in two\n    mutually recursive types."],
-                                [0,
-                                 [0,31,"A module is linked twice in the same executable."],
-                                 [0,
-                                  [0,32,"Unused value declaration."],
-                                  [0,
-                                   [0,33,"Unused open statement."],
-                                   [0,
-                                    [0,34,"Unused type declaration."],
-                                    [0,
-                                     [0,35,"Unused for-loop index."],
-                                     [0,
-                                      [0,36,"Unused ancestor variable."],
-                                      [0,
-                                       [0,37,"Unused constructor."],
-                                       [0,
-                                        [0,38,"Unused extension constructor."],
-                                        [0,
-                                         [0,39,"Unused rec flag."],
-                                         [0,
-                                          [0,40,"Constructor or label name used out of scope."],
-                                          [0,
-                                           [0,41,"Ambiguous constructor or label name."],
-                                           [0,
-                                            [0,42,"Disambiguated constructor or label name."],
-                                            [0,
-                                             [0,43,"Nonoptional label applied as optional."],
-                                             [0,
-                                              [0,
+                                [/* :: */0,
+                                 [/* tuple */0,
+                                  31,
+                                  "A module is linked twice in the same executable."],
+                                 [/* :: */0,
+                                  [/* tuple */0,32,"Unused value declaration."],
+                                  [/* :: */0,
+                                   [/* tuple */0,33,"Unused open statement."],
+                                   [/* :: */0,
+                                    [/* tuple */0,34,"Unused type declaration."],
+                                    [/* :: */0,
+                                     [/* tuple */0,35,"Unused for-loop index."],
+                                     [/* :: */0,
+                                      [/* tuple */0,36,"Unused ancestor variable."],
+                                      [/* :: */0,
+                                       [/* tuple */0,37,"Unused constructor."],
+                                       [/* :: */0,
+                                        [/* tuple */0,38,"Unused extension constructor."],
+                                        [/* :: */0,
+                                         [/* tuple */0,39,"Unused rec flag."],
+                                         [/* :: */0,
+                                          [/* tuple */0,
+                                           40,
+                                           "Constructor or label name used out of scope."],
+                                          [/* :: */0,
+                                           [/* tuple */0,41,"Ambiguous constructor or label name."],
+                                           [/* :: */0,
+                                            [/* tuple */0,42,"Disambiguated constructor or label name."],
+                                            [/* :: */0,
+                                             [/* tuple */0,43,"Nonoptional label applied as optional."],
+                                             [/* :: */0,
+                                              [/* tuple */0,
                                                44,
                                                "Open statement shadows an already defined identifier."],
-                                              [0,
-                                               [0,
+                                              [/* :: */0,
+                                               [/* tuple */0,
                                                 45,
                                                 "Open statement shadows an already defined label or constructor."],
-                                               [0,
-                                                [0,46,"Error in environment variable."],
-                                                [0,
-                                                 [0,47,"Illegal attribute payload."],
-                                                 [0,
-                                                  [0,48,"Implicit elimination of optional arguments."],
-                                                  [0,
-                                                   [0,49,"Missing cmi file when looking up module alias."],
-                                                   [0,[0,50,"Unexpected documentation comment."],0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                               [/* :: */0,
+                                                [/* tuple */0,46,"Error in environment variable."],
+                                                [/* :: */0,
+                                                 [/* tuple */0,47,"Illegal attribute payload."],
+                                                 [/* :: */0,
+                                                  [/* tuple */0,
+                                                   48,
+                                                   "Implicit elimination of optional arguments."],
+                                                  [/* :: */0,
+                                                   [/* tuple */0,
+                                                    49,
+                                                    "Missing cmi file when looking up module alias."],
+                                                   [/* :: */0,
+                                                    [/* tuple */0,50,"Unexpected documentation comment."],
+                                                    /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
 
 var
  help_warnings=
@@ -881,7 +981,17 @@ var
    {List["iter"]
      (function(param$1)
        {return Printf["printf"]
-                ([0,[4,3,[0,1,3],0,[12,32,[2,0,[12,10,0]]]],"%3i %s\n"],
+                ([/* Format */0,
+                  [/* Int */4,
+                   /* Int_i */3,
+                   [/* Lit_padding */0,/* Right */1,3],
+                   /* No_precision */0,
+                   [/* Char_literal */12,
+                    32,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,10,/* End_of_format */0]]]],
+                  "%3i %s\n"],
                  param$1[1],
                  param$1[2]);
         },
@@ -895,16 +1005,32 @@ var
       if(l)
        {if(l[2])
          {Printf["printf"]
-           ([0,
-             [11,"  ",[0,[11," warnings ",[2,0,[11,".\n",0]]]]],
+           ([/* Format */0,
+             [/* String_literal */11,
+              "  ",
+              [/* Char */0,
+               [/* String_literal */11,
+                " warnings ",
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* String_literal */11,".\n",/* End_of_format */0]]]]],
              "  %c warnings %s.\n"],
             Char["uppercase"](c),
             $$String["concat"]
              (", ",List["map"](Pervasives["string_of_int"],l)))}
         else
          {Printf["printf"]
-           ([0,
-             [11,"  ",[0,[11," warning ",[4,3,0,0,[12,10,0]]]]],
+           ([/* Format */0,
+             [/* String_literal */11,
+              "  ",
+              [/* Char */0,
+               [/* String_literal */11,
+                " warning ",
+                [/* Int */4,
+                 /* Int_i */3,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 [/* Char_literal */12,10,/* End_of_format */0]]]]],
              "  %c warning %i\n"],
             Char["uppercase"](c),
             l[1])}

@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Location=require("Location");
+var Location=require("./location.js");
 
 
 var report_error=Location["report_exception"];

@@ -1,21 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Translmod=require("Translmod");
-var Opcodes=require("Opcodes");
-var Instruct=require("Instruct");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Btype=require("Btype");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Set=require("Set");
-var Misc=require("Misc");
-var Lambda=require("Lambda");
-var Filename=require("Filename");
-var Location=require("Location");
-var Primitive=require("Primitive");
-var $$Array=require("Array");
-var Config=require("Config");
+var Translmod=require("./translmod.js");
+var Opcodes=require("./opcodes.js");
+var Instruct=require("./instruct.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Btype=require("./btype.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Set=require("./set.js");
+var Misc=require("./misc.js");
+var Lambda=require("./lambda.js");
+var Filename=require("./filename.js");
+var Location=require("./location.js");
+var Primitive=require("./primitive.js");
+var $$Array=require("./array.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var $$let=$$String;
@@ -38,8 +39,7 @@ var
       
       Misc["LongString"][5](out_buffer[1],0,new_buffer,0,len),
       out_buffer[1]=
-      new_buffer,
-      0}
+      new_buffer}
     else
      {}
     
@@ -52,18 +52,18 @@ var
 
 var out=function(opcode){return out_word(opcode,0,0,0);};
 
-var AsInt="unknown primitive:caml_set_oo_id";
+var AsInt=CamlPrimitive["caml_set_oo_id"]([248,"Emitcode.AsInt",0]);
 
 var
  const_as_int=
   function(param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:
        var match=param[1];
        
-       switch(match)
+       switch(match[0])
         {case 0:return match[1];case 1:return match[1];default:exit=57;}
        
       case 1:return param[1];
@@ -81,7 +81,7 @@ var
   function(k)
    {try
      {return is_immed(const_as_int(k));}
-    catch(exn){if(exn=AsInt){return 0;}else{throw exn;}}
+    catch(exn){if(exn===AsInt){return /* false */0;}else{throw exn;}}
     };
 
 var out_int=function(n){return out_word(n,n>>8,n>>16,n>>24);};
@@ -92,25 +92,29 @@ var
    {try
      {return out_int(const_as_int(c));}
     catch(exn)
-     {if(exn=AsInt)
+     {if(exn===AsInt)
        {return Misc["fatal_error"]("Emitcode.const_as_int");}
       else
        {throw exn;}
       }
     };
 
-var label_table=[0,[]];
+var label_table=[0,[/* array */0]];
 
 var
  extend_label_table=
   function(needed)
-   {var new_size=label_table[1]["length"];
+   {var new_size=/* -1 for tag */label_table[1]["length"]-1;
     
     while(needed>=new_size){new_size=2*new_size;}
     
-    var new_table="unknown primitive:caml_make_vect";
+    var
+     new_table=
+      CamlPrimitive["caml_make_vect"]
+       (new_size,[/* Label_undefined */1,/* [] */0]);
     
-    $$Array["blit"](label_table[1],0,new_table,0,label_table[1]["length"]);
+    $$Array["blit"]
+     (label_table[1],0,new_table,0,/* -1 for tag */label_table[1]["length"]-1);
     return label_table[1]=new_table,0;
     };
 
@@ -130,15 +134,18 @@ var
 var
  define_label=
   function(lbl)
-   {if(lbl>=label_table[1]["length"]){extend_label_table(lbl)}else{}
+   {if(lbl>=/* -1 for tag */label_table[1]["length"]-1)
+     {extend_label_table(lbl)}
+    else
+     {}
     
-    var match=label_table[1][lbl];
+    var match=label_table[1][lbl+1];
     
-    switch(match)
+    switch(match[0])
      {case 0:return Misc["fatal_error"]("Emitcode.define_label");
       case 1:
        List["iter"](backpatch,match[1]);
-       return label_table[1][lbl]=/* Label_defined */[0,out_position[1]],0;
+       return label_table[1][lbl+1]=/* Label_defined */[0,out_position[1]],0;
        
       }
     };
@@ -146,17 +153,19 @@ var
 var
  out_label_with_orig=
   function(orig,lbl)
-   {if(lbl>=label_table[1]["length"]){extend_label_table(lbl)}else{}
+   {if(lbl>=/* -1 for tag */label_table[1]["length"]-1)
+     {extend_label_table(lbl)}
+    else
+     {}
     
-    var match=label_table[1][lbl];
+    var match=label_table[1][lbl+1];
     
-    switch(match)
+    switch(match[0])
      {case 0:return out_int(match[1]-orig>>2);
       case 1:
-       label_table[1][lbl]=
+       label_table[1][lbl+1]=
        /* Label_undefined */[1,
-        /* :: */[0,/* tuple */[0,out_position[1],orig],match[1]]],
-       0;
+        /* :: */[0,/* tuple */[0,out_position[1],orig],match[1]]];
        return out_int(0);
        
       }
@@ -164,7 +173,7 @@ var
 
 var out_label=function(l){return out_label_with_orig(out_position[1],l);};
 
-var reloc_info=[0,0];
+var reloc_info=[0,/* [] */0];
 
 var
  enter=
@@ -190,7 +199,7 @@ var
  slot_for_c_prim=
   function(name){enter(/* Reloc_primitive */[3,name]);return out_int(0);};
 
-var events=[0,0];
+var events=[0,/* [] */0];
 
 var debug_dirs=[0,StringSet[1]];
 
@@ -201,32 +210,32 @@ var
     
     var abspath=Location["absolute_path"](path);
     
-    debug_dirs[1]=StringSet[4](Filename["dirname"](abspath),debug_dirs[1]),0;
+    debug_dirs[1]=StringSet[4](Filename["dirname"](abspath),debug_dirs[1]);
     if(Filename["is_relative"](path))
      {debug_dirs[1]=
-      StringSet[4]("unknown primitive:caml_sys_getcwd",debug_dirs[1]),
-      0}
+      StringSet[4](CamlPrimitive["caml_sys_getcwd"](/* () */0),debug_dirs[1])}
     else
      {}
     
-    ev[1]=out_position[1],0;
+    ev[1]=out_position[1];
     return events[1]=/* :: */[0,ev,events[1]],0;
     };
 
 var
  init=
   function(param)
-   {out_position[1]=0,0;
-    label_table[1]="unknown primitive:caml_make_vect",0;
-    reloc_info[1]=0,0;
-    debug_dirs[1]=StringSet[1],0;
-    return events[1]=0,0;
+   {out_position[1]=0;
+    label_table[1]=
+    CamlPrimitive["caml_make_vect"](16,[/* Label_undefined */1,/* [] */0]);
+    reloc_info[1]=/* [] */0;
+    debug_dirs[1]=StringSet[1];
+    return events[1]=/* [] */0,0;
     };
 
 var
  emit_comp=
   function(param)
-   {switch(param[0])
+   {switch(param)
      {case 0:return out(Opcodes["opEQ"]);
       case 1:return out(Opcodes["opNEQ"]);
       case 2:return out(Opcodes["opLTINT"]);
@@ -239,7 +248,7 @@ var
 var
  emit_branch_comp=
   function(param)
-   {switch(param[0])
+   {switch(param)
      {case 0:return out(Opcodes["opBEQ"]);
       case 1:return out(Opcodes["opBNEQ"]);
       case 2:return out(Opcodes["opBLTINT"]);
@@ -254,7 +263,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param)
        {case 0:return out(Opcodes["opPUSH"]);
         case 1:return out(Opcodes["opRESTART"]);
@@ -344,7 +353,7 @@ var
         case 12:
          var ofs=param[1];
          
-         if((ofs=-2)||(ofs=0)||(ofs=2))
+         if(ofs===-2||ofs===0||ofs===2)
           {return out(Opcodes["opOFFSETCLOSURE0"]+ofs/2);}
          else
           {out(Opcodes["opOFFSETCLOSURE"]);return out_int(ofs);}
@@ -358,11 +367,11 @@ var
          
          var exit$1;
          
-         switch(sc)
+         switch(sc[0])
           {case 0:
             var match=sc[1];
             
-            switch(match)
+            switch(match[0])
              {case 0:
                var i=match[1];
                
@@ -392,7 +401,7 @@ var
             else
              {var t=sc[1];
               
-              if(t=0)
+              if(t===0)
                {return out(Opcodes["opATOM0"]);}
               else
                {out(Opcodes["opATOM"]);return out_int(t);}
@@ -410,8 +419,8 @@ var
          
          var n$4=param[1];
          
-         if(n$4=0)
-          {if(t$1=0)
+         if(n$4===0)
+          {if(t$1===0)
             {return out(Opcodes["opATOM0"]);}
            else
             {out(Opcodes["opATOM"]);return out_int(t$1);}
@@ -426,7 +435,7 @@ var
         case 17:
          var n$5=param[1];
          
-         if(n$5=0)
+         if(n$5===0)
           {return out(Opcodes["opATOM0"]);}
          else
           {out(Opcodes["opMAKEFLOATBLOCK"]);return out_int(n$5);}
@@ -460,7 +469,10 @@ var
          var tbl_const=param[1];
          
          out(Opcodes["opSWITCH"]);
-         out_int(tbl_const["length"]+(tbl_block["length"]<<16));
+         out_int
+          (/* -1 for tag */tbl_const["length"]-
+           1+
+           (/* -1 for tag */tbl_block["length"]-1<<16));
          var org$1=out_position[1];
          
          $$Array["iter"](out_label_with_orig(org$1),tbl_const);
@@ -468,7 +480,7 @@ var
          
         case 28:out(Opcodes["opPUSHTRAP"]);return out_label(param[1]);
         case 29:
-         switch(param[1][0])
+         switch(param[1])
           {case 0:return out(Opcodes["opRAISE"]);
            case 1:return out(Opcodes["opRERAISE"]);
            case 2:return out(Opcodes["opRAISE_NOTRACE"]);
@@ -509,7 +521,7 @@ var
       
       var exit;
       
-      if(typeof instr=="number")
+      if(typeof instr==="number")
        {switch(instr)
          {case 0:
            var match=param[2];
@@ -517,7 +529,7 @@ var
            if(match)
             {var ev=match[1];
              
-             if(typeof ev=="number")
+             if(typeof ev==="number")
               {switch(ev){}}
              else
               {switch(ev[0])
@@ -526,7 +538,7 @@ var
                   
                   var exit$1;
                   
-                  if(n!=0)
+                  if(n!==0)
                    {exit$1=17;}
                   else
                    {var match$1=match[2];
@@ -534,7 +546,7 @@ var
                     if(match$1)
                      {var match$2=match$1[1];
                       
-                      if(typeof match$2=="number")
+                      if(typeof match$2==="number")
                        {switch(match$2){}}
                       else
                        {switch(match$2[0])
@@ -572,7 +584,7 @@ var
                  case 12:
                   var ofs=ev[1];
                   
-                  if((ofs=-2)||(ofs=0)||(ofs=2))
+                  if(ofs===-2||ofs===0||ofs===2)
                    {out(Opcodes["opPUSHOFFSETCLOSURE0"]+ofs/2)}
                   else
                    {out(Opcodes["opPUSHOFFSETCLOSURE"]),out_int(ofs)}
@@ -589,7 +601,7 @@ var
                   if(c)
                    {var match$3=c[1];
                     
-                    if(typeof match$3=="number")
+                    if(typeof match$3==="number")
                      {switch(match$3){}}
                     else
                      {switch(match$3[0])
@@ -622,7 +634,7 @@ var
                   if(c$1)
                    {var match$4=c$1[1];
                     
-                    if(typeof match$4=="number")
+                    if(typeof match$4==="number")
                      {switch(match$4)
                        {case 23:
                          var match$5=c$1[2];
@@ -630,7 +642,7 @@ var
                          if(match$5)
                           {var match$6=match$5[1];
                            
-                           if(typeof match$6=="number")
+                           if(typeof match$6==="number")
                             {switch(match$6){}}
                            else
                             {switch(match$6[0])
@@ -670,7 +682,7 @@ var
                            
                            var c$2=match$4[1];
                            
-                           if(typeof match$8=="number")
+                           if(typeof match$8==="number")
                             {switch(match$8){}}
                            else
                             {switch(match$8[0])
@@ -708,11 +720,11 @@ var
                    {case 19:
                      var exit$4;
                      
-                     switch(k)
+                     switch(k[0])
                       {case 0:
                         var match$9=k[1];
                         
-                        switch(match$9)
+                        switch(match$9[0])
                          {case 0:
                            var i=match$9[1];
                            
@@ -742,7 +754,7 @@ var
                         else
                          {var t=k[1];
                           
-                          if(t=0)
+                          if(t===0)
                            {out(Opcodes["opPUSHATOM0"])}
                           else
                            {out(Opcodes["opPUSHATOM"]),out_int(t)}
@@ -763,8 +775,8 @@ var
                  case 35:
                   var match$10=ev[1][4];
                   
-                  if("unknown primitive:isint")
-                   {if(match$10!=0)
+                  if(typeof match$10==="number")
+                   {if(match$10!==0)
                      {exit=16;}
                     else
                      {var match$11=match[2];
@@ -774,7 +786,7 @@ var
                         
                         var exit$5;
                         
-                        if(typeof instr1=="number")
+                        if(typeof instr1==="number")
                          {switch(instr1){}}
                         else
                          {switch(instr1[0])
@@ -787,14 +799,14 @@ var
                              if(match$12)
                               {var instr2=match$12[1];
                                
-                               if(typeof instr2=="number")
+                               if(typeof instr2==="number")
                                 {switch(instr2){}}
                                else
                                 {switch(instr2[0])
                                   {case 18:
                                     return emit
                                             (/* :: */[0,
-                                              0,
+                                              /* Kpush */0,
                                               /* :: */[0,
                                                instr1,
                                                /* :: */[0,instr2,/* :: */[0,ev,match$12[2]]]]]);
@@ -810,7 +822,9 @@ var
                         switch(exit$5)
                          {case 20:
                            return emit
-                                   (/* :: */[0,0,/* :: */[0,instr1,/* :: */[0,ev,match$11[2]]]]);
+                                   (/* :: */[0,
+                                     /* Kpush */0,
+                                     /* :: */[0,instr1,/* :: */[0,ev,match$11[2]]]]);
                            
                           }
                         }
@@ -835,7 +849,7 @@ var
            if(match$13)
             {var match$14=match$13[1];
              
-             if(typeof match$14=="number")
+             if(typeof match$14==="number")
               {switch(match$14){}}
              else
               {switch(match$14[0])
@@ -855,13 +869,13 @@ var
       switch(exit){case 16:emit_instr(instr);return emit(param[2]);}
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
  to_file=
   function(outchan,unit_name,objfile,code)
-   {init(0);
+   {init(/* () */0);
     Pervasives["output_string"](outchan,Config["cmo_magic_number"]);
     var pos_depl=Pervasives["pos_out"](outchan);
     
@@ -873,8 +887,7 @@ var
     if(Clflags["debug"][1])
      {debug_dirs[1]=
       StringSet[4]
-       (Filename["dirname"](Location["absolute_path"](objfile)),debug_dirs[1]),
-      0;
+       (Filename["dirname"](Location["absolute_path"](objfile)),debug_dirs[1]);
       var p=Pervasives["pos_out"](outchan);
       
       Pervasives["output_value"](outchan,events[1]);
@@ -882,7 +895,7 @@ var
       var match=/* tuple */[0,p,Pervasives["pos_out"](outchan)-p];
       }
     else
-     {var match=[0,0,0];}
+     {var match=[/* tuple */0,0,0];}
     
     var
      compunit=
@@ -891,15 +904,15 @@ var
        pos_code,
        out_position[1],
        List["rev"](reloc_info[1]),
-       Env["imports"](0),
+       Env["imports"](/* () */0),
        List["map"]
         (Primitive["byte_name"],Translmod["primitive_declarations"][1]),
-       0,
+       /* false */0,
        match[1],
        match[2]];
     
-    init(0);
-    Btype["cleanup_abbrev"](0);
+    init(/* () */0);
+    Btype["cleanup_abbrev"](/* () */0);
     var pos_compunit=Pervasives["pos_out"](outchan);
     
     Pervasives["output_value"](outchan,compunit);
@@ -910,39 +923,39 @@ var
 var
  to_memory=
   function(init_code,fun_code)
-   {init(0);
+   {init(/* () */0);
     emit(init_code);
     emit(fun_code);
-    var code="unknown primitive:caml_static_alloc";
+    var code=CamlPrimitive["caml_static_alloc"](out_position[1]);
     
     Misc["LongString"][7](out_buffer[1],0,code,0,out_position[1]);
     var reloc=List["rev"](reloc_info[1]);
     
     var code_size=out_position[1];
     
-    init(0);
+    init(/* () */0);
     return /* tuple */[0,code,code_size,reloc];
     };
 
 var
  to_packed_file=
   function(outchan,code)
-   {init(0);
+   {init(/* () */0);
     emit(code);
     Misc["LongString"][6](outchan,out_buffer[1],0,out_position[1]);
     var reloc=reloc_info[1];
     
-    init(0);
+    init(/* () */0);
     return reloc;
     };
 
 var
  reset=
   function(param)
-   {out_buffer[1]=Misc["LongString"][1](1024),0;
-    out_position[1]=0,0;
-    label_table[1]=[],0;
-    return reloc_info[1]=0,0;
+   {out_buffer[1]=Misc["LongString"][1](1024);
+    out_position[1]=0;
+    label_table[1]=[/* array */0];
+    return reloc_info[1]=/* [] */0,0;
     };
 
 module["exports"]=

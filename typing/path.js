@@ -1,7 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Ident=require("Ident");
+var Pervasives=require("./pervasives.js");
+var Ident=require("./ident.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var nopos=-1;
@@ -11,24 +12,26 @@ var
   function(p1,p2)
    {var exit;
     
-    switch(p1)
+    switch(p1[0])
      {case 0:
-       switch(p2)
+       switch(p2[0])
         {case 0:return Ident["same"](p1[1],p2[1]);
          case 1:exit=3;
          case 2:exit=3;
          }
        
       case 1:
-       switch(p2)
+       switch(p2[0])
         {case 0:exit=3;
          case 1:
-          return "unknown primitive:caml_string_equal"&&same(p1[1],p2[1]);
+          return CamlPrimitive["caml_string_equal"](p1[2],p2[2])&&
+                 same(p1[1],p2[1]);
+          
          case 2:exit=3;
          }
        
       case 2:
-       switch(p2)
+       switch(p2[0])
         {case 0:exit=3;
          case 1:exit=3;
          case 2:return same(p1[1],p2[1])&&same(p1[2],p2[2]);
@@ -36,13 +39,13 @@ var
        
       }
     
-    switch(exit){case 3:return 0;}
+    switch(exit){case 3:return /* false */0;}
     };
 
 var
  isfree=
   function(id,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return Ident["same"](id,param[1]);
       case 1:return isfree(id,param[1]);
       case 2:return isfree(id,param[1])||isfree(id,param[2]);
@@ -52,7 +55,7 @@ var
 var
  binding_time=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return Ident["binding_time"](param[1]);
       case 1:return binding_time(param[1]);
       case 2:
@@ -61,14 +64,14 @@ var
       }
     };
 
-var kfalse=function(x){return 0;};
+var kfalse=function(x){return /* false */0;};
 
 var
  name=
   function($staropt$star,param)
    {if($staropt$star){var paren=$staropt$star[1];}else{var paren=kfalse;}
     
-    switch(param)
+    switch(param[0])
      {case 0:return Ident["name"](param[1]);
       case 1:
        var s=param[2];
@@ -91,17 +94,21 @@ var
 var
  head=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return param[1];
       case 1:return head(param[1]);
-      case 2:throw [0,Assert_failure,[0,"typing/path.ml",49,22]];
+      case 2:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/path.ml",49,22]];
+       
       }
     };
 
 var
  last=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return Ident["name"](param[1]);
       case 1:return param[2];
       case 2:return last(param[2]);

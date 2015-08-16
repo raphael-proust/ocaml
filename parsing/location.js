@@ -1,25 +1,31 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Warnings=require("Warnings");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Format=require("Format");
-var Filename=require("Filename");
-var Buffer=require("Buffer");
-var Parsing=require("Parsing");
+var Warnings=require("./warnings.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Filename=require("./filename.js");
+var Buffer=require("./buffer.js");
+var Parsing=require("./parsing.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var absname=[0,0];
+var absname=[0,/* false */0];
 
 var
  in_file=
   function(name)
-   {var loc=/* record */[0,name,1,0,-1];return /* record */[0,loc,loc,1];};
+   {var loc=/* record */[0,name,1,0,-1];
+    
+    return /* record */[0,loc,loc,/* true */1];
+    };
 
 var none=in_file("_none_");
 
-var curr=function(lexbuf){return /* record */[0,lexbuf[11],lexbuf[12],0];};
+var
+ curr=
+  function(lexbuf){return /* record */[0,lexbuf[11],lexbuf[12],/* false */0];};
 
 var
  init=
@@ -29,18 +35,18 @@ var
  symbol_rloc=
   function(param)
    {return /* record */[0,
-            Parsing["symbol_start_pos"](0),
-            Parsing["symbol_end_pos"](0),
-            0];
+            Parsing["symbol_start_pos"](/* () */0),
+            Parsing["symbol_end_pos"](/* () */0),
+            /* false */0];
     };
 
 var
  symbol_gloc=
   function(param)
    {return /* record */[0,
-            Parsing["symbol_start_pos"](0),
-            Parsing["symbol_end_pos"](0),
-            1];
+            Parsing["symbol_start_pos"](/* () */0),
+            Parsing["symbol_end_pos"](/* () */0),
+            /* true */1];
     };
 
 var
@@ -49,21 +55,21 @@ var
    {return /* record */[0,
             Parsing["rhs_start_pos"](n),
             Parsing["rhs_end_pos"](n),
-            0];
+            /* false */0];
     };
 
 var input_name=[0,"_none_"];
 
-var input_lexbuf=[0,0];
+var input_lexbuf=[0,/* None */0];
 
-var status=[0,0];
+var status=[0,/* Uninitialised */0];
 
 var num_loc_lines=[0,0];
 
 var
  print_updating_num_loc_lines=
   function(ppf,f,arg)
-   {var out_functions=Format["pp_get_formatter_out_functions"](ppf,0);
+   {var out_functions=Format["pp_get_formatter_out_functions"](ppf,/* () */0);
     
     var
      out_string=
@@ -71,13 +77,17 @@ var
        {var
          count=
           function(i,c)
-           {if(i=start+len)
+           {if(i===start+len)
              {return c;}
             else
-             {if(str[i]=10){return count(1+i,1+c);}else{return count(1+i,c);}}
+             {if(str[i]===10)
+               {return count(1+i,1+c);}
+              else
+               {return count(1+i,c);}
+              }
             };
         
-        num_loc_lines[1]=num_loc_lines[1]+count(start,0),0;
+        num_loc_lines[1]=num_loc_lines[1]+count(start,0);
         return out_functions[1](str,start,len);
         };
     
@@ -89,50 +99,50 @@ var
        out_functions[3],
        out_functions[4]]);
     f(ppf,arg);
-    Format["pp_print_flush"](ppf,0);
+    Format["pp_print_flush"](ppf,/* () */0);
     return Format["pp_set_formatter_out_functions"](ppf,out_functions);
     };
 
 var
  highlight_terminfo=
   function(ppf,num_lines,lb,locs)
-   {Format["pp_print_flush"](ppf,0);
+   {Format["pp_print_flush"](ppf,/* () */0);
     var pos0=-lb[4];
     
     if(pos0<0){throw Pervasives["Exit"];}else{}
     
     var lines=num_loc_lines[1];
     
-    for(var i=pos0;i<=lb[3]-1;i++){if(lb[2][i]=10){lines=1+lines;}else{}}
+    for(var i=pos0;i<=lb[3]-1;i++){if(lb[2][i]===10){lines=1+lines;}else{}}
     
     if(lines>=num_lines-2){throw Pervasives["Exit"];}else{}
     
     Pervasives["flush"](Pervasives["stdout"]);
-    "unknown primitive:caml_terminfo_backup";
-    var bol=0;
+    CamlPrimitive["caml_terminfo_backup"](lines);
+    var bol=/* false */0;
     
     Pervasives["print_string"]("# ");
     for(var pos=0;pos<=lb[3]-pos0-1;pos++)
-     {if(bol){Pervasives["print_string"]("  ");bol=0;}else{}
+     {if(bol){Pervasives["print_string"]("  ");bol=/* false */0;}else{}
       
-      if(List["exists"](function(loc){return pos=loc[1][4];},locs))
-       {"unknown primitive:caml_terminfo_standout"}
+      if(List["exists"](function(loc){return pos===loc[1][4];},locs))
+       {CamlPrimitive["caml_terminfo_standout"](/* true */1)}
       else
        {}
       
-      if(List["exists"](function(loc){return pos=loc[2][4];},locs))
-       {"unknown primitive:caml_terminfo_standout"}
+      if(List["exists"](function(loc){return pos===loc[2][4];},locs))
+       {CamlPrimitive["caml_terminfo_standout"](/* false */0)}
       else
        {}
       
       var c=lb[2][pos+pos0];
       
       Pervasives["print_char"](c);
-      bol=c=10;
+      bol=c===10;
       }
     
-    "unknown primitive:caml_terminfo_standout";
-    "unknown primitive:caml_terminfo_resume";
+    CamlPrimitive["caml_terminfo_standout"](/* false */0);
+    CamlPrimitive["caml_terminfo_resume"](num_loc_lines[1]);
     return Pervasives["flush"](Pervasives["stdout"]);
     };
 
@@ -150,7 +160,7 @@ var
     var line_end=0;
     
     for(var pos=0;pos<=end_pos;pos++)
-     {if(lb[2][pos+pos0]=10)
+     {if(lb[2][pos+pos0]===10)
        {if(loc[1][4]>pos){line_start=1+line_start;}else{}
         
         if(loc[2][4]>pos){line_end=1+line_end;}else{}
@@ -161,8 +171,22 @@ var
     
     Format["fprintf"]
      (ppf,
-      [0,
-       [11,"Characters ",[4,3,0,0,[12,45,[4,3,0,0,[12,58,[17,4,0]]]]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "Characters ",
+        [/* Int */4,
+         /* Int_i */3,
+         /* No_padding */0,
+         /* No_precision */0,
+         [/* Char_literal */12,
+          45,
+          [/* Int */4,
+           /* Int_i */3,
+           /* No_padding */0,
+           /* No_precision */0,
+           [/* Char_literal */12,
+            58,
+            [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]]]]],
        "Characters %i-%i:@."],
       loc[1][4],
       loc[2][4]);
@@ -174,19 +198,19 @@ var
     for(var pos$1=0;pos$1<=end_pos;pos$1++)
      {var c=lb[2][pos$1+pos0];
       
-      if(c!=10)
-       {if(c!=13)
-         {if((line=line_start)&&(line=line_end))
+      if(c!==10)
+       {if(c!==13)
+         {if(line===line_start&&line===line_end)
            {Format["pp_print_char"](ppf,c)}
           else
-           {if(line=line_start)
+           {if(line===line_start)
              {if(pos$1<loc[1][4])
                {Format["pp_print_char"](ppf,46)}
               else
                {Format["pp_print_char"](ppf,c)}
               }
             else
-             {if(line=line_end)
+             {if(line===line_end)
                {if(pos$1<loc[2][4])
                  {Format["pp_print_char"](ppf,c)}
                 else
@@ -205,8 +229,14 @@ var
          {}
         }
       else
-       {if((line=line_start)&&(line=line_end))
-         {Format["fprintf"](ppf,[0,[17,4,[11,"  ",0]],"@.  "]);
+       {if(line===line_start&&line===line_end)
+         {Format["fprintf"]
+           (ppf,
+            [/* Format */0,
+             [/* Formatting_lit */17,
+              /* Flush_newline */4,
+              [/* String_literal */11,"  ",/* End_of_format */0]],
+             "@.  "]);
           for(var _i=pos_at_bol;_i<=loc[1][4]-1;_i++)
            {Format["pp_print_char"](ppf,32)}
           
@@ -217,7 +247,13 @@ var
          {}
         
         if(line>=line_start&&line<=line_end)
-         {Format["fprintf"](ppf,[0,[17,4,0],"@."]);
+         {Format["fprintf"]
+           (ppf,
+            [/* Format */0,
+             [/* Formatting_lit */17,
+              /* Flush_newline */4,
+              /* End_of_format */0],
+             "@."]);
           if(pos$1<loc[2][4]){Format["pp_print_string"](ppf,"  ")}else{}
           }
         else
@@ -228,6 +264,7 @@ var
         pos_at_bol=pos$1+1;
         }
       }
+    return 0;
     };
 
 var
@@ -235,31 +272,44 @@ var
   function(ppf,locs)
    {var match=status[1];
     
-    if("unknown primitive:isint")
-     {if(match!=0)
+    if(typeof match==="number")
+     {if(match!==0)
        {var match$1=input_lexbuf[1];
         
         if(match$1)
          {try
-           {var norepeat="unknown primitive:caml_string_equal";}
-          catch(exn){if(exn=Not_found){var norepeat=0;}else{throw exn;}}
+           {var
+             norepeat=
+              CamlPrimitive["caml_string_equal"]
+               (CamlPrimitive["caml_sys_getenv"]("TERM"),"norepeat");
+            }
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {var norepeat=/* false */0;}
+            else
+             {throw exn;}
+            }
           
           if(norepeat)
-           {return 0;}
+           {return /* false */0;}
           else
            {var loc1=List["hd"](locs);
             
             try
-             {highlight_dumb(ppf,match$1[1],loc1);return 1;}
+             {highlight_dumb(ppf,match$1[1],loc1);return /* true */1;}
             catch(exn$1)
-             {if(exn$1=Pervasives["Exit"]){return 0;}else{throw exn$1;}}
+             {if(exn$1===Pervasives["Exit"])
+               {return /* false */0;}
+              else
+               {throw exn$1;}
+              }
             }
           }
         else
-         {return 0;}
+         {return /* false */0;}
         }
       else
-       {status[1]="unknown primitive:caml_terminfo_setup",0;
+       {status[1]=CamlPrimitive["caml_terminfo_setup"](Pervasives["stdout"]);
         return highlight_locations(ppf,locs);
         }
       }
@@ -268,12 +318,18 @@ var
       
       if(match$2)
        {try
-         {highlight_terminfo(ppf,match[1],match$2[1],locs);return 1;}
+         {highlight_terminfo(ppf,match[1],match$2[1],locs);
+          return /* true */1;
+          }
         catch(exn$2)
-         {if(exn$2=Pervasives["Exit"]){return 0;}else{throw exn$2;}}
+         {if(exn$2===Pervasives["Exit"])
+           {return /* false */0;}
+          else
+           {throw exn$2;}
+          }
         }
       else
-       {return 0;}
+       {return /* false */0;}
       }
     };
 
@@ -281,24 +337,31 @@ var
  absolute_path=
   function(s)
    {if(Filename["is_relative"](s))
-     {var s$1=Filename["concat"]("unknown primitive:caml_sys_getcwd",s);}
+     {var
+       s$1=
+        Filename["concat"](CamlPrimitive["caml_sys_getcwd"](/* () */0),s);
+      }
     else
      {var s$1=s;}
     
     var
      aux=
-      function(s$2)
-       {var base=Filename["basename"](s$2);
+      function(s)
+       {var base=Filename["basename"](s);
         
-        var dir=Filename["dirname"](s$2);
+        var dir=Filename["dirname"](s);
         
-        if("unknown primitive:caml_string_equal")
+        if(CamlPrimitive["caml_string_equal"](dir,s))
          {return dir;}
         else
-         {if("unknown primitive:caml_string_equal")
+         {if
+           (CamlPrimitive["caml_string_equal"]
+             (base,Filename["current_dir_name"]))
            {return aux(dir);}
           else
-           {if("unknown primitive:caml_string_equal")
+           {if
+             (CamlPrimitive["caml_string_equal"]
+               (base,Filename["parent_dir_name"]))
              {return Filename["dirname"](aux(dir));}
             else
              {return Filename["concat"](aux(dir),base);}
@@ -317,11 +380,17 @@ var
 var
  print_filename=
   function(ppf,file)
-   {return Format["fprintf"](ppf,[0,[2,0,0],"%s"],show_filename(file));};
+   {return Format["fprintf"]
+            (ppf,
+             [/* Format */0,
+              [/* String */2,/* No_padding */0,/* End_of_format */0],
+              "%s"],
+             show_filename(file));
+    };
 
 var reset=function(param){return num_loc_lines[1]=0,0;};
 
-var match=[0,'File "','", line ',", characters ","-",":"];
+var match=[/* tuple */0,'File "','", line ',", characters ","-",":"];
 
 var msg_colon=match[5];
 
@@ -348,14 +417,26 @@ var
     
     var endchar=loc[2][4]-loc[1][4]+startchar;
     
-    if("unknown primitive:caml_string_equal")
-     {if(highlight_locations(ppf,/* :: */[0,loc,0]))
-       {return 0;}
+    if(CamlPrimitive["caml_string_equal"](file,"//toplevel//"))
+     {if(highlight_locations(ppf,/* :: */[0,loc,/* [] */0]))
+       {return /* () */0;}
       else
        {return Format["fprintf"]
                 (ppf,
-                 [0,
-                  [11,"Characters ",[4,3,0,0,[12,45,[4,3,0,0,0]]]],
+                 [/* Format */0,
+                  [/* String_literal */11,
+                   "Characters ",
+                   [/* Int */4,
+                    /* Int_i */3,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    [/* Char_literal */12,
+                     45,
+                     [/* Int */4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* End_of_format */0]]]],
                   "Characters %i-%i"],
                  loc[1][4],
                  loc[2][4]);
@@ -364,7 +445,18 @@ var
     else
      {Format["fprintf"]
        (ppf,
-        [0,[2,0,[15,[2,0,[4,3,0,0,0]]]],"%s%a%s%i"],
+        [/* Format */0,
+         [/* String */2,
+          /* No_padding */0,
+          [/* Alpha */15,
+           [/* String */2,
+            /* No_padding */0,
+            [/* Int */4,
+             /* Int_i */3,
+             /* No_padding */0,
+             /* No_precision */0,
+             /* End_of_format */0]]]],
+         "%s%a%s%i"],
         msg_file,
         print_filename,
         file,
@@ -373,7 +465,21 @@ var
       if(startchar>=0)
        {return Format["fprintf"]
                 (ppf,
-                 [0,[2,0,[4,3,0,0,[2,0,[4,3,0,0,0]]]],"%s%i%s%i"],
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Int */4,
+                    /* Int_i */3,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Int */4,
+                      /* Int_i */3,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      /* End_of_format */0]]]],
+                  "%s%i%s%i"],
                  msg_chars,
                  startchar,
                  msg_to,
@@ -388,12 +494,23 @@ var
  print=
   function(ppf,loc)
    {if
-     ("unknown primitive:caml_string_equal"&&
-      highlight_locations(ppf,/* :: */[0,loc,0]))
-     {return 0;}
+     (CamlPrimitive["caml_string_equal"](loc[1][1],"//toplevel//")&&
+      highlight_locations(ppf,/* :: */[0,loc,/* [] */0]))
+     {return /* () */0;}
     else
      {return Format["fprintf"]
-              (ppf,[0,[15,[2,0,[17,4,0]]],"%a%s@."],print_loc,loc,msg_colon);
+              (ppf,
+               [/* Format */0,
+                [/* Alpha */15,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* Formatting_lit */17,
+                   /* Flush_newline */4,
+                   /* End_of_format */0]]],
+                "%a%s@."],
+               print_loc,
+               loc,
+               msg_colon);
       }
     };
 
@@ -401,7 +518,11 @@ var
  print_error=
   function(ppf,loc)
    {print(ppf,loc);
-    return Format["fprintf"](ppf,[0,[11,"Error: ",0],"Error: "]);
+    return Format["fprintf"]
+            (ppf,
+             [/* Format */0,
+              [/* String_literal */11,"Error: ",/* End_of_format */0],
+              "Error: "]);
     };
 
 var
@@ -415,7 +536,14 @@ var
      {print(ppf,loc);
       return Format["fprintf"]
               (ppf,
-               [0,[11,"Warning ",[15,[17,4,0]]],"Warning %a@."],
+               [/* Format */0,
+                [/* String_literal */11,
+                 "Warning ",
+                 [/* Alpha */15,
+                  [/* Formatting_lit */17,
+                   /* Flush_newline */4,
+                   /* End_of_format */0]]],
+                "Warning %a@."],
                Warnings["print"],
                w);
       }
@@ -438,7 +566,8 @@ var
 
 var
  echo_eof=
-  function(param){Format["print_newline"](0);return num_loc_lines[0]++;};
+  function(param)
+   {Format["print_newline"](/* () */0);return num_loc_lines[0]++;};
 
 var mkloc=function(txt,loc){return /* record */[0,txt,loc];};
 
@@ -446,13 +575,13 @@ var mknoloc=function(txt){return mkloc(txt,none);};
 
 var
  errorf=
-  function($staropt$star,$staropt$star$1,$staropt$star$2)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=none;}
+  function($staropt$star,$staropt$star,$staropt$star)
+   {if($staropt$star$1){var loc=$staropt$star$1[1];}else{var loc=none;}
     
-    if($staropt$star$1){var sub=$staropt$star$1[1];}else{var sub=0;}
+    if($staropt$star$2){var sub=$staropt$star$2[1];}else{var sub=/* [] */0;}
     
-    if($staropt$star$2)
-     {var if_highlight=$staropt$star$2[1];}
+    if($staropt$star)
+     {var if_highlight=$staropt$star[1];}
     else
      {var if_highlight="";}
     
@@ -462,20 +591,20 @@ var
 
 var
  error=
-  function($staropt$star,$staropt$star$1,$staropt$star$2,msg)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=none;}
+  function($staropt$star,$staropt$star,$staropt$star,msg)
+   {if($staropt$star$1){var loc=$staropt$star$1[1];}else{var loc=none;}
     
-    if($staropt$star$1){var sub=$staropt$star$1[1];}else{var sub=0;}
+    if($staropt$star$2){var sub=$staropt$star$2[1];}else{var sub=/* [] */0;}
     
-    if($staropt$star$2)
-     {var if_highlight=$staropt$star$2[1];}
+    if($staropt$star)
+     {var if_highlight=$staropt$star[1];}
     else
      {var if_highlight="";}
     
     return /* record */[0,loc,msg,sub,if_highlight];
     };
 
-var error_of_exn=[0,0];
+var error_of_exn=[0,/* [] */0];
 
 var
  register_error_of_exn=
@@ -490,7 +619,7 @@ var
        {if(param)
          {var r=param[1](exn);if(r){return r;}else{return loop(param[2]);}}
         else
-         {return 0;}
+         {return /* None */0;}
         };
     
     return loop(error_of_exn[1]);
@@ -501,7 +630,7 @@ var
   function(ppf,err)
    {var if_highlight=err[4];
     
-    if("unknown primitive:caml_string_notequal")
+    if(CamlPrimitive["caml_string_notequal"](if_highlight,""))
      {var
        collect_locs=
         function(locs,param)
@@ -509,12 +638,12 @@ var
                   (collect_locs,/* :: */[0,param[1],locs],param[3]);
           };
       
-      var locs=collect_locs(0,err);
+      var locs=collect_locs(/* [] */0,err);
       
       var highlighted=highlight_locations(ppf,locs);
       }
     else
-     {var highlighted=0;}
+     {var highlighted=/* false */0;}
     
     if(highlighted)
      {return Format["pp_print_string"](ppf,if_highlight);}
@@ -522,14 +651,24 @@ var
      {print(ppf,err[1]);
       Format["pp_print_string"](ppf,err[2]);
       return List["iter"]
-              (function(err$1)
+              (function(err)
                 {return Format["fprintf"]
                          (ppf,
-                          [0,
-                           [17,3,[18,[1,[0,[11,"<2>",0],"<2>"]],[15,[17,0,0]]]],
+                          [/* Format */0,
+                           [/* Formatting_lit */17,
+                            /* Force_newline */3,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<2>",/* End_of_format */0],
+                               "<2>"]],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]],
                            "@\n@[<2>%a@]"],
                           default_error_reporter,
-                          err$1);
+                          err);
                  },
                err[3]);
       }
@@ -544,53 +683,69 @@ var
 
 var
  error_of_printer=
-  function(loc,print$1,x)
+  function(loc,print,x)
    {var buf=Buffer["create"](64);
     
     var ppf=Format["formatter_of_buffer"](buf);
     
     Format["pp_print_string"](ppf,"Error: ");
-    print$1(ppf,x);
-    Format["pp_print_flush"](ppf,0);
+    print(ppf,x);
+    Format["pp_print_flush"](ppf,/* () */0);
     var msg=Buffer["contents"](buf);
     
-    return errorf(/* Some */[0,loc],0,0,[0,[2,0,0],"%s"],msg);
+    return errorf
+            (/* Some */[0,loc],
+             /* None */0,
+             /* None */0,
+             [/* Format */0,
+              [/* String */2,/* No_padding */0,/* End_of_format */0],
+              "%s"],
+             msg);
     };
 
 var
  error_of_printer_file=
-  function(print$1,x)
-   {return error_of_printer(in_file(input_name[1]),print$1,x);};
+  function(print,x){return error_of_printer(in_file(input_name[1]),print,x);};
 
 var
  match$1=
   register_error_of_exn
    (function(param)
-     {if(param[1]=Sys_error)
+     {if(param[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {return /* Some */[0,
                 errorf
                  (/* Some */[0,in_file(input_name[1])],
-                  0,
-                  0,
-                  [0,[11,"Error: I/O error: ",[2,0,0]],"Error: I/O error: %s"],
+                  /* None */0,
+                  /* None */0,
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "Error: I/O error: ",
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                   "Error: I/O error: %s"],
                   param[2])];
         }
       else
-       {if(param[1]=Warnings["Errors"])
+       {if(param[1]===Warnings["Errors"])
          {return /* Some */[0,
                   errorf
                    (/* Some */[0,in_file(input_name[1])],
-                    0,
-                    0,
-                    [0,
-                     [11,
+                    /* None */0,
+                    /* None */0,
+                    [/* Format */0,
+                     [/* String_literal */11,
                       "Error: Some fatal warnings were triggered (",
-                      [4,0,0,0,[11," occurrences)",0]]],
+                      [/* Int */4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       [/* String_literal */11,
+                        " occurrences)",
+                        /* End_of_format */0]]],
                      "Error: Some fatal warnings were triggered (%d occurrences)"],
                     param[2])];
           }
         else
-         {return 0;}
+         {return /* None */0;}
         }
       });
 
@@ -603,7 +758,16 @@ var
       if(match$2)
        {return Format["fprintf"]
                 (ppf,
-                 [0,[18,[1,[0,0,""]],[15,[17,0,[17,4,0]]]],"@[%a@]@."],
+                 [/* Format */0,
+                  [/* Formatting_gen */18,
+                   [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                   [/* Alpha */15,
+                    [/* Formatting_lit */17,
+                     /* Close_box */0,
+                     [/* Formatting_lit */17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]],
+                  "@[%a@]@."],
                  report_error,
                  match$2[1]);
         }
@@ -618,23 +782,27 @@ var
  report_exception=
   function(ppf,exn){return report_exception_rec(5,ppf,exn);};
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Location.Error",0]);
 
 var
  match$2=
   register_error_of_exn
    (function(param)
-     {if(param[1]=$$Error){return /* Some */[0,param[2]];}else{return 0;}});
+     {if(param[1]===$$Error)
+       {return /* Some */[0,param[2]];}
+      else
+       {return /* None */0;}
+      });
 
 var
  raise_errorf=
-  function($staropt$star,$staropt$star$1,$staropt$star$2)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=none;}
+  function($staropt$star,$staropt$star,$staropt$star)
+   {if($staropt$star$1){var loc=$staropt$star$1[1];}else{var loc=none;}
     
-    if($staropt$star$1){var sub=$staropt$star$1[1];}else{var sub=0;}
+    if($staropt$star$2){var sub=$staropt$star$2[1];}else{var sub=/* [] */0;}
     
-    if($staropt$star$2)
-     {var if_highlight=$staropt$star$2[1];}
+    if($staropt$star)
+     {var if_highlight=$staropt$star[1];}
     else
      {var if_highlight="";}
     

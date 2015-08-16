@@ -1,37 +1,48 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Parse=require("Parse");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Clflags=require("Clflags");
-var Format=require("Format");
-var Misc=require("Misc");
-var Ccomp=require("Ccomp");
-var Filename=require("Filename");
-var Lexing=require("Lexing");
-var Location=require("Location");
-var Ast_mapper=require("Ast_mapper");
-var Config=require("Config");
+var $$String=require("./string.js");
+var Parse=require("./parse.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Clflags=require("./clflags.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Ccomp=require("./ccomp.js");
+var Filename=require("./filename.js");
+var Lexing=require("./lexing.js");
+var Location=require("./location.js");
+var Ast_mapper=require("./ast_mapper.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Pparse.Error",0]);
 
 var
  call_external_preprocessor=
   function(sourcefile,pp)
-   {var tmpfile=Filename["temp_file"](0,"ocamlpp","");
+   {var tmpfile=Filename["temp_file"](/* None */0,"ocamlpp","");
     
     var
      comm=
       Printf["sprintf"]
-       ([0,[2,0,[12,32,[2,0,[11," > ",[2,0,0]]]]],"%s %s > %s"],
+       ([/* Format */0,
+         [/* String */2,
+          /* No_padding */0,
+          [/* Char_literal */12,
+           32,
+           [/* String */2,
+            /* No_padding */0,
+            [/* String_literal */11,
+             " > ",
+             [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
+         "%s %s > %s"],
         pp,
         Filename["quote"](sourcefile),
         tmpfile);
     
-    if(Ccomp["command"](comm)!=0)
+    if(Ccomp["command"](comm)!==0)
      {Misc["remove_file"](tmpfile);throw [0,$$Error,/* CannotRun */[0,comm]];}
     else
      {}
@@ -55,13 +66,13 @@ var
   function(inputfile)
    {var match=Clflags["preprocessor"][1];
     
-    if(match){return Misc["remove_file"](inputfile);}else{return 0;}
+    if(match){return Misc["remove_file"](inputfile);}else{return /* () */0;}
     };
 
 var
  write_ast=
   function(magic,ast)
-   {var fn=Filename["temp_file"](0,"camlppx","");
+   {var fn=Filename["temp_file"](/* None */0,"camlppx","");
     
     var oc=Pervasives["open_out_bin"](fn);
     
@@ -75,17 +86,27 @@ var
 var
  apply_rewriter=
   function(magic,fn_in,ppx)
-   {var fn_out=Filename["temp_file"](0,"camlppx","");
+   {var fn_out=Filename["temp_file"](/* None */0,"camlppx","");
     
     var
      comm=
       Printf["sprintf"]
-       ([0,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]],"%s %s %s"],
+       ([/* Format */0,
+         [/* String */2,
+          /* No_padding */0,
+          [/* Char_literal */12,
+           32,
+           [/* String */2,
+            /* No_padding */0,
+            [/* Char_literal */12,
+             32,
+             [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
+         "%s %s %s"],
         ppx,
         Filename["quote"](fn_in),
         Filename["quote"](fn_out));
     
-    var ok=Ccomp["command"](comm)=0;
+    var ok=Ccomp["command"](comm)===0;
     
     Misc["remove_file"](fn_in);
     if(!ok)
@@ -93,7 +114,7 @@ var
     else
      {}
     
-    if(!"unknown primitive:caml_sys_file_exists")
+    if(!CamlPrimitive["caml_sys_file_exists"](fn_out))
      {throw [0,$$Error,/* WrongMagic */[1,comm]];}
     else
      {}
@@ -102,10 +123,15 @@ var
     
     try
      {var buffer=Pervasives["really_input_string"](ic,magic["length"]);}
-    catch(exn){if(exn=End_of_file){var buffer="";}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
+       {var buffer="";}
+      else
+       {throw exn;}
+      }
     
     Pervasives["close_in"](ic);
-    if("unknown primitive:caml_string_notequal")
+    if(CamlPrimitive["caml_string_notequal"](buffer,magic))
      {Misc["remove_file"](fn_out);throw [0,$$Error,/* WrongMagic */[1,comm]];}
     else
      {}
@@ -121,12 +147,15 @@ var
     try
      {var buffer=Pervasives["really_input_string"](ic,magic["length"]);
       
-      if("unknown primitive:caml_string_equal")
+      if(CamlPrimitive["caml_string_equal"](buffer,magic))
        {}
       else
-       {throw [0,Assert_failure,[0,"driver/pparse.ml",86,4]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"driver/pparse.ml",86,4]];
+        }
       
-      Location["input_name"][1]=Pervasives["input_value"](ic),0;
+      Location["input_name"][1]=Pervasives["input_value"](ic);
       var ast=Pervasives["input_value"](ic);
       
       Pervasives["close_in"](ic);
@@ -148,7 +177,10 @@ var
 var
  apply_rewriters_str=
   function($staropt$star,tool_name,ast)
-   {if($staropt$star){var restore=$staropt$star[1];}else{var restore=1;}
+   {if($staropt$star)
+     {var restore=$staropt$star[1];}
+    else
+     {var restore=/* true */1;}
     
     var ppxs=Clflags["all_ppx"][1];
     
@@ -166,7 +198,10 @@ var
 var
  apply_rewriters_sig=
   function($staropt$star,tool_name,ast)
-   {if($staropt$star){var restore=$staropt$star[1];}else{var restore=1;}
+   {if($staropt$star)
+     {var restore=$staropt$star[1];}
+    else
+     {var restore=/* true */1;}
     
     var ppxs=Clflags["all_ppx"][1];
     
@@ -184,17 +219,26 @@ var
 var
  apply_rewriters=
   function(restore,tool_name,magic,ast)
-   {if("unknown primitive:caml_string_equal")
+   {if
+     (CamlPrimitive["caml_string_equal"]
+       (magic,Config["ast_impl_magic_number"]))
      {return apply_rewriters_str(restore,tool_name,ast);}
     else
-     {if("unknown primitive:caml_string_equal")
+     {if
+       (CamlPrimitive["caml_string_equal"]
+         (magic,Config["ast_intf_magic_number"]))
        {return apply_rewriters_sig(restore,tool_name,ast);}
       else
-       {throw [0,Assert_failure,[0,"driver/pparse.ml",124,4]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"driver/pparse.ml",124,4]];
+        }
       }
     };
 
-var Outdated_version="unknown primitive:caml_set_oo_id";
+var
+ Outdated_version=
+  CamlPrimitive["caml_set_oo_id"]([248,"Pparse.Outdated_version",0]);
 
 var
  open_and_check_magic=
@@ -204,24 +248,26 @@ var
     try
      {var buffer=Pervasives["really_input_string"](ic,ast_magic["length"]);
       
-      if("unknown primitive:caml_string_equal")
-       {var is_ast_file=1;}
+      if(CamlPrimitive["caml_string_equal"](buffer,ast_magic))
+       {var is_ast_file=/* true */1;}
       else
-       {if("unknown primitive:caml_string_equal")
+       {if
+         (CamlPrimitive["caml_string_equal"]
+           ($$String["sub"](buffer,0,9),$$String["sub"](ast_magic,0,9)))
          {throw Outdated_version;}
         else
-         {var is_ast_file=0;}
+         {var is_ast_file=/* false */0;}
         }
       }
     catch(exn)
-     {if(exn=Outdated_version)
+     {if(exn===Outdated_version)
        {var
          is_ast_file=
           Misc["fatal_error"]
            ("OCaml and preprocessor have incompatible versions");
         }
       else
-       {var is_ast_file=0;}
+       {var is_ast_file=/* false */0;}
       }
     
     return /* tuple */[0,ic,is_ast_file];
@@ -239,19 +285,29 @@ var
        {if(Clflags["fast"][1])
          {Format["fprintf"]
            (ppf,
-            [0,
-             [18,[1,[0,0,""]],[11,"Warning: ",[2,0,[17,0,[17,4,0]]]]],
+            [/* Format */0,
+             [/* Formatting_gen */18,
+              [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+              [/* String_literal */11,
+               "Warning: ",
+               [/* String */2,
+                /* No_padding */0,
+                [/* Formatting_lit */17,
+                 /* Close_box */0,
+                 [/* Formatting_lit */17,
+                  /* Flush_newline */4,
+                  /* End_of_format */0]]]]],
              "@[Warning: %s@]@."],
             "option -unsafe used with a preprocessor returning a syntax tree")}
         else
          {}
         
-        Location["input_name"][1]=Pervasives["input_value"](ic),0;
+        Location["input_name"][1]=Pervasives["input_value"](ic);
         var ast=Pervasives["input_value"](ic);
         }
       else
        {Pervasives["seek_in"](ic,0);
-        Location["input_name"][1]=inputfile,0;
+        Location["input_name"][1]=inputfile;
         var lexbuf=Lexing["from_channel"](ic);
         
         Location["init"](lexbuf,inputfile);
@@ -261,30 +317,46 @@ var
     catch(x){Pervasives["close_in"](ic);throw x;}
     
     Pervasives["close_in"](ic);
-    return apply_rewriters([0,0],tool_name,ast_magic,ast);
+    return apply_rewriters([/* Some */0,/* false */0],tool_name,ast_magic,ast);
     };
 
 var
  report_error=
   function(ppf,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "Error while running external preprocessor",
-                  [17,4,[11,"Command line: ",[2,0,[17,4,0]]]]],
+                  [/* Formatting_lit */17,
+                   /* Flush_newline */4,
+                   [/* String_literal */11,
+                    "Command line: ",
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Formatting_lit */17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]],
                  "Error while running external preprocessor@.Command line: %s@."],
                 param[1]);
        
       case 1:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "External preprocessor does not produce a valid file",
-                  [17,4,[11,"Command line: ",[2,0,[17,4,0]]]]],
+                  [/* Formatting_lit */17,
+                   /* Flush_newline */4,
+                   [/* String_literal */11,
+                    "Command line: ",
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Formatting_lit */17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]],
                  "External preprocessor does not produce a valid file@.Command line: %s@."],
                 param[1]);
        
@@ -295,18 +367,18 @@ var
  match=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer_file"](report_error,param[2])];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 var
  parse_all=
   function(tool_name,parse_fun,magic,ppf,sourcefile)
-   {Location["input_name"][1]=sourcefile,0;
+   {Location["input_name"][1]=sourcefile;
     var inputfile=preprocess(sourcefile);
     
     try

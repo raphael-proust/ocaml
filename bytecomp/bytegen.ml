@@ -555,7 +555,7 @@ let rec comp_expr env exp sz cont =
         in
         comp_init env sz decl_size
       end
-  | Lprim(Pidentity, [arg]) ->
+  | Lprim((Pidentity | Pbytes_to_string | Pbytes_of_string), [arg]) ->
       comp_expr env arg sz cont
   | Lprim(Pignore, [arg]) ->
       comp_expr env arg sz (add_const_unit cont)

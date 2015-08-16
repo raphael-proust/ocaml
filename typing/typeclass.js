@@ -1,39 +1,43 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ctype=require("Ctype");
-var Includeclass=require("Includeclass");
-var Typecore=require("Typecore");
-var Printtyp=require("Printtyp");
-var Typedtree=require("Typedtree");
-var Btype=require("Btype");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Predef=require("Predef");
-var Cmt_format=require("Cmt_format");
-var Clflags=require("Clflags");
-var Types=require("Types");
-var Typetexp=require("Typetexp");
-var Syntaxerr=require("Syntaxerr");
-var Format=require("Format");
-var Misc=require("Misc");
-var Typedecl=require("Typedecl");
-var Path=require("Path");
-var Subst=require("Subst");
-var Location=require("Location");
-var Ident=require("Ident");
-var CamlinternalLazy=require("CamlinternalLazy");
-var Stypes=require("Stypes");
-var Ast_helper=require("Ast_helper");
+var Ctype=require("./ctype.js");
+var Includeclass=require("./includeclass.js");
+var Typecore=require("./typecore.js");
+var Printtyp=require("./printtyp.js");
+var Typedtree=require("./typedtree.js");
+var Btype=require("./btype.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Predef=require("./predef.js");
+var Cmt_format=require("./cmt_format.js");
+var Clflags=require("./clflags.js");
+var Types=require("./types.js");
+var Typetexp=require("./typetexp.js");
+var Syntaxerr=require("./syntaxerr.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Typedecl=require("./typedecl.js");
+var Path=require("./path.js");
+var Subst=require("./subst.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var Stypes=require("./stypes.js");
+var Ast_helper=require("./ast_helper.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Typeclass.Error",0]);
 
-var Error_forward="unknown primitive:caml_set_oo_id";
+var
+ Error_forward=
+  CamlPrimitive["caml_set_oo_id"]([248,"Typeclass.Error_forward",0]);
 
 var
  ctyp=
-  function(desc,typ,env,loc){return /* record */[0,desc,typ,env,loc,0];};
+  function(desc,typ,env,loc)
+   {return /* record */[0,desc,typ,env,loc,/* [] */0];};
 
 var dummy_method=Btype["dummy_method"];
 
@@ -44,7 +48,7 @@ var
   function(cty)
    {var exit;
     
-    switch(cty)
+    switch(cty[0])
      {case 0:return scrape_class_type(cty[3]);
       case 1:exit=349;
       case 2:exit=349;
@@ -56,7 +60,7 @@ var
 var
  generalize_class_type=
   function(gen,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        List["iter"](gen,param[2]);return generalize_class_type(gen,param[3]);
       case 1:
@@ -93,7 +97,7 @@ var
             (function(virt,param)
               {var lab=param[1];
                
-               if("unknown primitive:caml_string_equal")
+               if(CamlPrimitive["caml_string_equal"](lab,dummy_method))
                 {return virt;}
                else
                 {if(Types["Concr"][3](lab,sign[3]))
@@ -102,14 +106,14 @@ var
                   {return /* :: */[0,lab,virt];}
                  }
                },
-             0,
+             /* [] */0,
              match[1]);
     };
 
 var
  constructor_type=
   function(constr,cty)
-   {switch(cty)
+   {switch(cty[0])
      {case 0:return constructor_type(constr,cty[3]);
       case 1:return constr;
       case 2:
@@ -118,7 +122,7 @@ var
                  cty[1],
                  cty[2],
                  constructor_type(constr,cty[3]),
-                 0]);
+                 /* Cok */0]);
        
       }
     };
@@ -128,7 +132,7 @@ var
   function(cty)
    {var exit;
     
-    switch(cty)
+    switch(cty[0])
      {case 0:exit=344;case 1:exit=344;case 2:return class_body(cty[3]);}
     
     switch(exit){case 344:return cty;}
@@ -145,17 +149,17 @@ var
             Types["Vars"][11]
              (function(lab,param,vars){return /* :: */[0,lab,vars];},
               sign[2],
-              0),
+              /* [] */0),
             List["fold_left"]
              (function(meths,param)
                {var lab=param[1];
                 
-                if("unknown primitive:caml_string_equal")
+                if(CamlPrimitive["caml_string_equal"](lab,dummy_method))
                  {return meths;}
                 else
                  {return /* :: */[0,lab,meths];}
                 },
-              0,
+              /* [] */0,
               match[1]),
             sign[3]];
     };
@@ -165,7 +169,7 @@ var
   function(path,params,cty)
    {var exit;
     
-    switch(cty)
+    switch(cty[0])
      {case 0:exit=340;
       case 1:exit=340;
       case 2:
@@ -182,7 +186,7 @@ var
 var
  closed_class_type=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return List["for_all"](Ctype["closed_schema"],param[2]);
       case 1:
        var sign=param[1];
@@ -192,7 +196,7 @@ var
                (function(param$1,param$2,cc)
                  {return Ctype["closed_schema"](param$2[3])&&cc;},
                 sign[2],
-                1);
+                /* true */1);
        
       case 2:
        return Ctype["closed_schema"](param[2])&&closed_class_type(param[3]);
@@ -209,7 +213,7 @@ var
 var
  limited_generalize=
   function(rv,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        List["iter"](Ctype["limited_generalize"](rv),param[2]);
        return limited_generalize(rv,param[3]);
@@ -247,28 +251,39 @@ var
 var
  enter_met_env=
   function(check,loc,lab,kind,ty,val_env,met_env,par_env)
-   {var match=Env["enter_value"](0,lab,/* record */[0,ty,1,loc,0],val_env);
+   {var
+     match=
+      Env["enter_value"]
+       (/* None */0,
+        lab,
+        /* record */[0,ty,/* Val_unbound */1,loc,/* [] */0],
+        val_env);
     
     var id=match[1];
     
     return /* tuple */[0,
             id,
             match[2],
-            Env["add_value"](check,id,/* record */[0,ty,kind,loc,0],met_env),
-            Env["add_value"](0,id,/* record */[0,ty,1,loc,0],par_env)];
+            Env["add_value"]
+             (check,id,/* record */[0,ty,kind,loc,/* [] */0],met_env),
+            Env["add_value"]
+             (/* None */0,
+              id,
+              /* record */[0,ty,/* Val_unbound */1,loc,/* [] */0],
+              par_env)];
     };
 
 var
  enter_val=
   function(cl_num,vars,inh,lab,mut,virt,ty,val_env,met_env,par_env,loc)
-   {var instance=Ctype["instance"](0,val_env);
+   {var instance=Ctype["instance"](/* None */0,val_env);
     
     try
      {var match=Types["Vars"][22](lab,vars[1]);
       
       var virt$prime=match[3];
       
-      if("unknown primitive:caml_notequal")
+      if(CamlPrimitive["caml_notequal"](match[2],mut))
        {throw [0,$$Error,loc,val_env,/* Mutability_mismatch */[22,lab,mut]];}
       else
        {}
@@ -277,11 +292,11 @@ var
       var
        match$1=
         /* tuple */[0,
-         !inh?/* Some */[0,match[1]]:0,
-         (virt$prime=1)?virt$prime:virt];
+         !inh?/* Some */[0,match[1]]:/* None */0,
+         virt$prime===/* Concrete */1?virt$prime:virt];
       }
     catch(exn)
-     {if(exn[1]=Ctype["Unify"])
+     {if(exn[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                loc,
@@ -289,7 +304,11 @@ var
                /* Field_type_mismatch */[1,"instance variable",lab,exn[2]]];
         }
       else
-       {if(exn=Not_found){var match$1=/* tuple */[0,0,virt];}else{throw exn;}}
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {var match$1=/* tuple */[0,/* None */0,virt];}
+        else
+         {throw exn;}
+        }
       }
     
     var id=match$1[1];
@@ -300,7 +319,7 @@ var
      {var
        result=
         enter_met_env
-         (0,
+         (/* None */0,
           Location["none"],
           lab,
           /* Val_ivar */[1,mut,cl_num],
@@ -311,8 +330,7 @@ var
       }
     
     vars[1]=
-    Types["Vars"][4](lab,/* tuple */[0,result[1],mut,match$1[2],ty],vars[1]),
-    0;
+    Types["Vars"][4](lab,/* tuple */[0,result[1],mut,match$1[2],ty],vars[1]);
     return result;
     };
 
@@ -321,7 +339,11 @@ var
   function(vars)
    {return Types["Vars"][11]
             (function(id,param,s)
-              {if(param[2]=0){return s;}else{return Types["Concr"][4](id,s);}},
+              {if(param[2]===/* Virtual */0)
+                {return s;}
+               else
+                {return Types["Concr"][4](id,s);}
+               },
              vars,
              Types["Concr"][1]);
     };
@@ -333,7 +355,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=326;
       case 1:
        var cl_sig=match[1];
@@ -341,7 +363,7 @@ var
        try
         {Ctype["unify"](env,self_type,cl_sig[1])}
        catch(exn)
-        {if(exn[1]=Ctype["Unify"])
+        {if(exn[1]===Ctype["Unify"])
           {var trace=exn[2];
            
            var exit$1;
@@ -358,7 +380,7 @@ var
                  if(match$3)
                   {var match$4=match$3[1][1][1];
                    
-                   if(typeof match$4=="number")
+                   if(typeof match$4==="number")
                     {switch(match$4){}}
                    else
                     {switch(match$4[0])
@@ -385,7 +407,10 @@ var
            
            switch(exit$1)
             {case 324:
-              throw [0,Assert_failure,[0,"typing/typeclass.ml",261,12]];
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"typing/typeclass.ml",261,12]];
+              
              }
            }
          else
@@ -401,11 +426,11 @@ var
        var exit$2;
        
        if(ovf)
-        {if(ovf[1]!=0)
+        {if(ovf[1]!==0)
           {var exit$3;
            
-           switch(parent)
-            {case 0:var cname=Path["name"](0,parent[1]);
+           switch(parent[0])
+            {case 0:var cname=Path["name"](/* None */0,parent[1]);
              case 1:exit$3=318;
              case 2:exit$3=318;
              }
@@ -430,7 +455,7 @@ var
            }
          else
           {if(Types["Concr"][2](over_meths)&&Types["Concr"][2](over_vals))
-            {throw [0,$$Error,loc,env,[23,"",""]];}
+            {throw [0,$$Error,loc,env,[/* No_overriding */23,"",""]];}
            else
             {exit$2=320;}
            }
@@ -460,14 +485,14 @@ var
     
     var sty$1=Ast_helper["Typ"][15](sty);
     
-    var cty=Typetexp["transl_simple_type"](val_env,0,sty$1);
+    var cty=Typetexp["transl_simple_type"](val_env,/* false */0,sty$1);
     
     var ty=cty[2];
     
     try
      {Ctype["unify"](val_env,ty,match[2])}
     catch(exn)
-     {if(exn[1]=Ctype["Unify"])
+     {if(exn[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                loc,
@@ -481,7 +506,7 @@ var
     return cty;
     };
 
-var delayed_meth_specs=[0,0];
+var delayed_meth_specs=[0,/* [] */0];
 
 var
  declare_method=
@@ -496,7 +521,7 @@ var
        {try
          {return Ctype["unify"](val_env,ty,ty$prime);}
         catch(exn)
-         {if(exn[1]=Ctype["Unify"])
+         {if(exn[1]===Ctype["Unify"])
            {throw [0,
                    $$Error,
                    loc,
@@ -514,7 +539,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -522,10 +547,12 @@ var
          if(match$1[1])
           {exit=303;}
          else
-          {if(priv!=0)
+          {if(priv!==0)
             {var sty$prime=match$1[2];
              
-             var returned_cty=ctyp(0,Ctype["newty"](0),val_env,loc);
+             var
+              returned_cty=
+               ctyp(/* Ttyp_any */0,Ctype["newty"](/* Tnil */0),val_env,loc);
              
              delayed_meth_specs[1]=
              /* :: */[0,
@@ -538,11 +565,10 @@ var
                  var ty=cty[2];
                  
                  unif(ty);
-                 returned_cty[1]=/* Ttyp_poly */[8,0,cty],0;
+                 returned_cty[1]=/* Ttyp_poly */[8,/* [] */0,cty];
                  return returned_cty[2]=ty,0;
                  }],
-              delayed_meth_specs[1]],
-             0;
+              delayed_meth_specs[1]];
              return returned_cty;
              }
            else
@@ -553,7 +579,7 @@ var
     
     switch(exit)
      {case 303:
-       var cty=Typetexp["transl_simple_type"](val_env,0,sty$1);
+       var cty=Typetexp["transl_simple_type"](val_env,/* false */0,sty$1);
        
        var ty=cty[2];
        
@@ -566,18 +592,20 @@ var
 var
  type_constraint=
   function(val_env,sty,sty$prime,loc)
-   {var cty=Typetexp["transl_simple_type"](val_env,0,sty);
+   {var cty=Typetexp["transl_simple_type"](val_env,/* false */0,sty);
     
     var ty=cty[2];
     
-    var cty$prime=Typetexp["transl_simple_type"](val_env,0,sty$prime);
+    var
+     cty$prime=
+      Typetexp["transl_simple_type"](val_env,/* false */0,sty$prime);
     
     var ty$prime=cty$prime[2];
     
     try
      {Ctype["unify"](val_env,ty,ty$prime)}
     catch(exn)
-     {if(exn[1]=Ctype["Unify"])
+     {if(exn[1]===Ctype["Unify"])
        {throw [0,$$Error,loc,val_env,/* Unconsistent_constraint */[0,exn[2]]];
         }
       else
@@ -594,13 +622,14 @@ var
     
     return Ast_helper["Exp"][6]
             (/* Some */[0,expr[2]],
-             0,
+             /* None */0,
              "",
-             0,
+             /* None */0,
              Ast_helper["Pat"][5]
               (/* Some */[0,loc],
-               0,
-               Ast_helper["Pat"][4](/* Some */[0,loc],0,mkid("self-*")),
+               /* None */0,
+               Ast_helper["Pat"][4]
+                (/* Some */[0,loc],/* None */0,mkid("self-*")),
                mkid(Pervasives["^"]("self-",cl_num))),
              expr);
     };
@@ -615,9 +644,17 @@ var
       
       var virt$prime=match[2];
       
-      if(virt$prime=1){var virt$1=virt$prime;}else{var virt$1=virt;}
+      if(virt$prime===/* Concrete */1)
+       {var virt$1=virt$prime;}
+      else
+       {var virt$1=virt;}
       }
-    catch(exn){if(exn=Not_found){var virt$1=virt;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var virt$1=virt;}
+      else
+       {throw exn;}
+      }
     
     return Types["Vars"][4]
             (lab,/* tuple */[0,param[1],virt$1,param[3]],val_sig);
@@ -640,7 +677,7 @@ var
     
     var match=ctf[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var sparent=match[1];
        
@@ -650,7 +687,7 @@ var
        
        var exit;
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var inher$1=/* :: */[0,/* tuple */[0,match$1[1],match$1[2]],inher];
          case 1:exit=254;
@@ -662,7 +699,13 @@ var
        var
         match$2=
          inheritance
-          (self_type,env,0,concr_meths,Types["Concr"][1],sparent[2],parent[2]);
+          (self_type,
+           env,
+           /* None */0,
+           concr_meths,
+           Types["Concr"][1],
+           sparent[2],
+           parent[2]);
        
        var
         val_sig$1=
@@ -683,7 +726,7 @@ var
        
        var lab=match$3[1];
        
-       var cty=Typetexp["transl_simple_type"](env,0,match$3[4]);
+       var cty=Typetexp["transl_simple_type"](env,/* false */0,match$3[4]);
        
        var ty=cty[2];
        
@@ -708,7 +751,7 @@ var
         cty$1=
          declare_method(env,meths,self_type,lab$1,priv,match$4[4],ctf[2]);
        
-       if(virt$1!=0)
+       if(virt$1!==0)
         {var concr_meths$1=Types["Concr"][4](lab$1,concr_meths);}
        else
         {var concr_meths$1=concr_meths;}
@@ -740,7 +783,7 @@ var
       case 4:
        var x=match[1];
        
-       Typetexp["warning_attribute"](/* :: */[0,x,0]);
+       Typetexp["warning_attribute"](/* :: */[0,x,/* [] */0]);
        return /* tuple */[0,
                /* :: */[0,mkctf(/* Tctf_attribute */[4,x]),fields],
                val_sig,
@@ -758,7 +801,7 @@ var
     
     var meths=[0,Types["Meths"][1]];
     
-    var self_cty=Typetexp["transl_simple_type"](env,0,sty);
+    var self_cty=Typetexp["transl_simple_type"](env,/* false */0,sty);
     
     var
      self_cty$1=
@@ -771,30 +814,30 @@ var
     
     var self_type=self_cty$1[2];
     
-    var dummy_obj=Ctype["newvar"](0,0);
+    var dummy_obj=Ctype["newvar"](/* None */0,/* () */0);
     
     Ctype["unify"]
      (env,
-      Ctype["filter_method"](env,dummy_method,0,dummy_obj),
-      Ctype["newty"]([2,0]));
+      Ctype["filter_method"](env,dummy_method,/* Private */0,dummy_obj),
+      Ctype["newty"]([/* Ttuple */2,/* [] */0]));
     try
      {Ctype["unify"](env,self_type,dummy_obj)}
     catch(exn)
-     {if(exn[1]=Ctype["Unify"])
+     {if(exn[1]===Ctype["Unify"])
        {throw [0,$$Error,sty[2],env,/* Pattern_type_clash */[5,self_type]];}
       else
        {throw exn;}
       }
     
-    Typetexp["warning_enter_scope"](0);
+    Typetexp["warning_enter_scope"](/* () */0);
     var
      match=
       List["fold_left"]
        (class_type_field(env,self_type,meths),
-        /* tuple */[0,0,Types["Vars"][1],Types["Concr"][1],0],
+        /* tuple */[0,/* [] */0,Types["Vars"][1],Types["Concr"][1],/* [] */0],
         param[2]);
     
-    Typetexp["warning_leave_scope"](0);
+    Typetexp["warning_leave_scope"](/* () */0);
     var cty=/* record */[0,self_type,match[2],match[3],match[4]];
     
     return /* record */[0,self_cty$1,List["rev"](match[1]),cty];
@@ -809,7 +852,7 @@ var
     
     var match=scty[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var styl=match[2];
        
@@ -830,7 +873,7 @@ var
        
        var params=match$2[1];
        
-       if(List["length"](params)!=List["length"](styl))
+       if(List["length"](params)!==List["length"](styl))
         {throw [0,
                 $$Error,
                 scty[2],
@@ -847,14 +890,16 @@ var
         ctys=
          List["map2"]
           (function(sty,ty)
-            {var cty$prime=Typetexp["transl_simple_type"](env,0,sty);
+            {var
+              cty$prime=
+               Typetexp["transl_simple_type"](env,/* false */0,sty);
              
              var ty$prime=cty$prime[2];
              
              try
               {Ctype["unify"](env,ty$prime,ty)}
              catch(exn)
-              {if(exn[1]=Ctype["Unify"])
+              {if(exn[1]===Ctype["Unify"])
                 {throw [0,
                         $$Error,
                         sty[2],
@@ -884,7 +929,7 @@ var
       case 2:
        var l=match[1];
        
-       var cty=Typetexp["transl_simple_type"](env,0,match[2]);
+       var cty=Typetexp["transl_simple_type"](env,/* false */0,match[2]);
        
        var ty=cty[2];
        
@@ -901,24 +946,24 @@ var
 var
  class_type$1=
   function(env,scty)
-   {delayed_meth_specs[1]=0,0;
+   {delayed_meth_specs[1]=/* [] */0;
     var cty=class_type(env,scty);
     
     List["iter"]
      (function(prim)
-       {var tag="unknown primitive:caml_obj_tag";
+       {var tag=CamlPrimitive["caml_obj_tag"](prim);
         
-        if(tag=250)
+        if(tag===250)
          {return prim[1];}
         else
-         {if(tag=246)
+         {if(tag===246)
            {return CamlinternalLazy["force_lazy_block"](prim);}
           else
            {return prim;}
           }
         },
       List["rev"](delayed_meth_specs[1]));
-    delayed_meth_specs[1]=0,0;
+    delayed_meth_specs[1]=/* [] */0;
     return cty;
     };
 
@@ -949,7 +994,7 @@ var
     
     var match=cf[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var $$super=match[3];
        
@@ -963,7 +1008,7 @@ var
        
        var exit;
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var inher$1=/* :: */[0,/* tuple */[0,match$1[1],match$1[2]],inher];
          case 1:exit=130;
@@ -994,7 +1039,7 @@ var
                enter_val
                 (cl_num,
                  vars,
-                 1,
+                 /* true */1,
                  lab,
                  info[1],
                  info[2],
@@ -1011,7 +1056,7 @@ var
                      /* :: */[0,/* tuple */[0,lab,match$4[1]],param$1[4]]];
              },
            cl_sig[2],
-           /* tuple */[0,val_env,met_env,par_env,0]);
+           /* tuple */[0,val_env,met_env,par_env,/* [] */0]);
        
        var inh_vars=match$3[4];
        
@@ -1027,7 +1072,7 @@ var
           (function(lab,rem)
             {return /* :: */[0,/* tuple */[0,lab,Ident["create"](lab)],rem];},
            cl_sig[3],
-           0);
+           /* [] */0);
        
        if($$super)
         {var
@@ -1073,23 +1118,35 @@ var
        
        var lab=match$6[1];
        
-       switch(match$7)
+       switch(match$7[0])
         {case 0:
-          if(Clflags["principal"][1]){Ctype["begin_def"](0)}else{}
+          if(Clflags["principal"][1]){Ctype["begin_def"](/* () */0)}else{}
           
-          var cty=Typetexp["transl_simple_type"](val_env,0,match$7[1]);
+          var
+           cty=
+            Typetexp["transl_simple_type"](val_env,/* false */0,match$7[1]);
           
           var ty=cty[2];
           
           if(Clflags["principal"][1])
-           {Ctype["end_def"](0),Ctype["generalize_structure"](ty)}
+           {Ctype["end_def"](/* () */0),Ctype["generalize_structure"](ty)}
           else
            {}
           
           var
            match$8=
             enter_val
-             (cl_num,vars,0,lab[1],mut,0,ty,val_env,met_env,par_env,loc);
+             (cl_num,
+              vars,
+              /* false */0,
+              lab[1],
+              mut,
+              /* Virtual */0,
+              ty,
+              val_env,
+              met_env,
+              par_env,
+              loc);
           
           var met_env$prime=match$8[3];
           
@@ -1108,7 +1165,7 @@ var
                                 mut,
                                 id,
                                 /* Tcfk_virtual */[0,cty],
-                                met_env=met_env$prime]);
+                                met_env===met_env$prime]);
                       }],
                    fields],
                   concr_meths,
@@ -1131,15 +1188,16 @@ var
            {}
           
           if(Types["Concr"][3](lab[1],warn_vals))
-           {if(ovf$1=1)
+           {if(ovf$1===/* Fresh */1)
              {Location["prerr_warning"]
                (lab[2],
-                /* Instance_variable_override */[5,/* :: */[0,lab[1],0]])}
+                /* Instance_variable_override */[5,
+                 /* :: */[0,lab[1],/* [] */0]])}
             else
              {}
             }
           else
-           {if(ovf$1=0)
+           {if(ovf$1===/* Override */0)
              {throw [0,
                      $$Error,
                      loc,
@@ -1150,14 +1208,14 @@ var
              {}
             }
           
-          if(Clflags["principal"][1]){Ctype["begin_def"](0)}else{}
+          if(Clflags["principal"][1]){Ctype["begin_def"](/* () */0)}else{}
           
           try
            {var exp=Typecore["type_exp"](val_env,match$7[2]);}
           catch(exn)
            {var exit$1;
             
-            if(exn[1]=Ctype["Unify"])
+            if(exn[1]===Ctype["Unify"])
              {var match$9=exn[2];
               
               if(match$9)
@@ -1181,14 +1239,24 @@ var
             }
           
           if(Clflags["principal"][1])
-           {Ctype["end_def"](0),Ctype["generalize_structure"](exp[4])}
+           {Ctype["end_def"](/* () */0),Ctype["generalize_structure"](exp[4])}
           else
            {}
           
           var
            match$10=
             enter_val
-             (cl_num,vars,0,lab[1],mut,1,exp[4],val_env,met_env,par_env,loc);
+             (cl_num,
+              vars,
+              /* false */0,
+              lab[1],
+              mut,
+              /* Concrete */1,
+              exp[4],
+              val_env,
+              met_env,
+              par_env,
+              loc);
           
           var met_env$prime$1=match$10[3];
           
@@ -1207,7 +1275,7 @@ var
                                 mut,
                                 id$1,
                                 /* Tcfk_concrete */[1,ovf$1,exp],
-                                met_env=met_env$prime$1]);
+                                met_env===met_env$prime$1]);
                       }],
                    fields],
                   concr_meths,
@@ -1227,7 +1295,7 @@ var
        
        var lab$1=match$11[1];
        
-       switch(match$12)
+       switch(match$12[0])
         {case 0:
           var
            cty$1=
@@ -1258,10 +1326,14 @@ var
           
           var match$13=expr[1];
           
-          switch(match$13)
+          switch(match$13[0])
            {case 28:var expr$1=expr;
             default:
-             var expr$1=Ast_helper["Exp"][31](/* Some */[0,expr[2]],0,expr,0);}
+             var
+              expr$1=
+               Ast_helper["Exp"][31]
+                (/* Some */[0,expr[2]],/* None */0,expr,/* None */0);
+             }
           
           if(Types["Concr"][3](lab$1[1],local_meths))
            {throw [0,
@@ -1274,14 +1346,14 @@ var
            {}
           
           if(Types["Concr"][3](lab$1[1],concr_meths))
-           {if(ovf$2=1)
+           {if(ovf$2===/* Fresh */1)
              {Location["prerr_warning"]
-               (loc,/* Method_override */[2,/* :: */[0,lab$1[1],0]])}
+               (loc,/* Method_override */[2,/* :: */[0,lab$1[1],/* [] */0]])}
             else
              {}
             }
           else
-           {if(ovf$2=0)
+           {if(ovf$2===/* Override */0)
              {throw [0,
                      $$Error,
                      loc,
@@ -1301,7 +1373,7 @@ var
           try
            {var match$15=expr$1[1];
             
-            switch(match$15)
+            switch(match$15[0])
              {case 28:
                var sty=match$15[2];
                
@@ -1312,7 +1384,7 @@ var
                  
                  var
                   cty$prime=
-                   Typetexp["transl_simple_type"](val_env,0,sty$1);
+                   Typetexp["transl_simple_type"](val_env,/* false */0,sty$1);
                  
                  var ty$prime=cty$prime[2];
                  
@@ -1324,21 +1396,24 @@ var
                
                var exit$2;
                
-               if(typeof match$16=="number")
+               if(typeof match$16==="number")
                 {switch(match$16){}}
                else
                 {switch(match$16[0])
                   {case 0:
-                    var ty$prime$1=Ctype["newvar"](0,0);
+                    var ty$prime$1=Ctype["newvar"](/* None */0,/* () */0);
                     
                     Ctype["unify"]
-                     (val_env,Ctype["newty"](/* Tpoly */[10,ty$prime$1,0]),ty$1),
+                     (val_env,
+                      Ctype["newty"](/* Tpoly */[10,ty$prime$1,/* [] */0]),
+                      ty$1),
                     Ctype["unify"]
                      (val_env,Typecore["type_approx"](val_env,sbody),ty$prime$1);
                    case 10:
                     var
                      match$17=
-                      Ctype["instance_poly"](0,0,match$16[2],match$16[1]);
+                      Ctype["instance_poly"]
+                       (/* None */0,/* false */0,match$16[2],match$16[1]);
                     
                     var ty2=Typecore["type_approx"](val_env,sbody);
                     
@@ -1347,14 +1422,20 @@ var
                
                switch(exit$2)
                 {case 149:
-                  throw [0,Assert_failure,[0,"typing/typeclass.ml",662,17]];
+                  throw [0,
+                         CamlPrimitive["caml_global_data"]["Assert_failure"],
+                         [0,"typing/typeclass.ml",662,17]];
+                  
                  }
                
               default:
-               throw [0,Assert_failure,[0,"typing/typeclass.ml",664,13]];}
+               throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"typing/typeclass.ml",664,13]];
+               }
             }
           catch(exn$1)
-           {if(exn$1[1]=Ctype["Unify"])
+           {if(exn$1[1]===Ctype["Unify"])
              {throw [0,
                      $$Error,
                      loc,
@@ -1375,15 +1456,17 @@ var
              function(param$1)
               {var
                 meth_type=
-                 Btype["newgenty"](/* Tarrow */[1,"",self_type,ty$1,0]);
+                 Btype["newgenty"]
+                  (/* Tarrow */[1,"",self_type,ty$1,/* Cok */0]);
                
-               Ctype["raise_nongen_level"](0);
-               vars[1]=vars_local,0;
+               Ctype["raise_nongen_level"](/* () */0);
+               vars[1]=vars_local;
                var
                 texp=
-                 Typecore["type_expect"](0,met_env,meth_expr,meth_type);
+                 Typecore["type_expect"]
+                  (/* None */0,met_env,meth_expr,meth_type);
                
-               Ctype["end_def"](0);
+               Ctype["end_def"](/* () */0);
                return mkcf
                        (/* Tcf_method */[2,
                          lab$1,
@@ -1437,7 +1520,7 @@ var
         field$1=
          [246,
           function(param$1)
-           {Ctype["raise_nongen_level"](0);
+           {Ctype["raise_nongen_level"](/* () */0);
             var
              meth_type=
               Ctype["newty"]
@@ -1445,12 +1528,14 @@ var
                  "",
                  self_type,
                  Ctype["instance_def"](Predef["type_unit"]),
-                 0]);
+                 /* Cok */0]);
             
-            vars[1]=vars_local$1,0;
-            var texp=Typecore["type_expect"](0,met_env,expr$2,meth_type);
+            vars[1]=vars_local$1;
+            var
+             texp=
+              Typecore["type_expect"](/* None */0,met_env,expr$2,meth_type);
             
-            Ctype["end_def"](0);
+            Ctype["end_def"](/* () */0);
             return mkcf(/* Tcf_initializer */[4,texp]);
             }];
        
@@ -1468,7 +1553,7 @@ var
       case 5:
        var x=match[1];
        
-       Typetexp["warning_attribute"](/* :: */[0,x,0]);
+       Typetexp["warning_attribute"](/* :: */[0,x,/* [] */0]);
        return /* tuple */[0,
                val_env,
                met_env,
@@ -1494,16 +1579,16 @@ var
     
     var init=spat[2];
     
-    var self_loc=/* record */[0,init[1],init[2],1];
+    var self_loc=/* record */[0,init[1],init[2],/* true */1];
     
-    var self_type=Ctype["newvar"](0,0);
+    var self_type=Ctype["newvar"](/* None */0,/* () */0);
     
     Ctype["unify"]
      (val_env,
-      Ctype["filter_method"](val_env,dummy_method,0,self_type),
-      Ctype["newty"]([2,0]));
+      Ctype["filter_method"](val_env,dummy_method,/* Private */0,self_type),
+      Ctype["newty"]([/* Ttuple */2,/* [] */0]));
     if($$final)
-     {var private_self=Ctype["newvar"](0,0);}
+     {var private_self=Ctype["newvar"](/* None */0,/* () */0);}
     else
      {var private_self=self_type;}
     
@@ -1523,14 +1608,20 @@ var
     var public_self=pat[4];
     
     if($$final)
-     {var ty=Ctype["newty"](/* Tobject */[4,Ctype["newvar"](0,0),[0,0]]);}
+     {var
+       ty=
+        Ctype["newty"]
+         (/* Tobject */[4,
+           Ctype["newvar"](/* None */0,/* () */0),
+           [0,/* None */0]]);
+      }
     else
      {var ty=self_type;}
     
     try
      {Ctype["unify"](val_env$1,public_self,ty)}
     catch(exn)
-     {if(exn[1]=Ctype["Unify"])
+     {if(exn[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                spat[2],
@@ -1543,16 +1634,19 @@ var
     
     var
      get_methods=
-      function(ty$1)
+      function(ty)
        {return Ctype["flatten_fields"]
-                 (Ctype["object_fields"](Ctype["expand_head"](val_env$1,ty$1)))
+                 (Ctype["object_fields"](Ctype["expand_head"](val_env$1,ty)))
                 [1];
         };
     
     if($$final)
      {List["iter"]
        (function(param$1)
-         {if(Btype["field_kind_repr"](param$1[2])=0){var k=1;}else{var k=0;}
+         {if(Btype["field_kind_repr"](param$1[2])===/* Fpresent */0)
+           {var k=/* Public */1;}
+          else
+           {var k=/* Private */0;}
           
           try
            {return Ctype["unify"]
@@ -1561,13 +1655,16 @@ var
                      Ctype["filter_method"](val_env$1,param$1[1],k,self_type));
             }
           catch(exn$1)
-           {throw [0,Assert_failure,[0,"typing/typeclass.ml",760,18]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"typing/typeclass.ml",760,18]];
+            }
           },
         get_methods(public_self))}
     else
      {}
     
-    Typetexp["warning_enter_scope"](0);
+    Typetexp["warning_enter_scope"](/* () */0);
     var
      match$1=
       List["fold_left"]
@@ -1576,16 +1673,16 @@ var
          val_env$1,
          match[5],
          match[6],
-         0,
+         /* [] */0,
          Types["Concr"][1],
          Types["Concr"][1],
-         0,
+         /* [] */0,
          Types["Concr"][1],
          Types["Concr"][1]],
         param[2]);
     
-    Typetexp["warning_leave_scope"](0);
-    Ctype["unify"](val_env$1,self_type,Ctype["newvar"](0,0));
+    Typetexp["warning_leave_scope"](/* () */0);
+    Ctype["unify"](val_env$1,self_type,Ctype["newvar"](/* None */0,/* () */0));
     var
      sign=
       /* record */[0,
@@ -1602,7 +1699,8 @@ var
     var
      priv_meths=
       List["filter"]
-       (function(param$1){return Btype["field_kind_repr"](param$1[2])!=0;},
+       (function(param$1)
+         {return Btype["field_kind_repr"](param$1[2])!==/* Fpresent */0;},
         methods);
     
     if($$final)
@@ -1615,16 +1713,20 @@ var
        vals=
         Types["Vars"][11]
          (function(name,param$1,l)
-           {if(param$1[2]=0){return /* :: */[0,name,l];}else{return l;}},
+           {if(param$1[2]===/* Virtual */0)
+             {return /* :: */[0,name,l];}
+            else
+             {return l;}
+            },
           sign[2],
-          0);
+          /* [] */0);
       
-      if(mets!=0||vals!=0)
+      if(mets!==/* [] */0||vals!==/* [] */0)
        {throw [0,
                $$Error,
                loc,
                val_env$1,
-               /* Virtual_class */[10,1,$$final,mets,vals]];
+               /* Virtual_class */[10,/* true */1,$$final,mets,vals]];
         }
       else
        {}
@@ -1637,13 +1739,13 @@ var
             
             var lab=param$1[1];
             
-            if("unknown primitive:caml_string_equal")
+            if(CamlPrimitive["caml_string_equal"](lab,dummy_method))
              {var match$2=Btype["field_kind_repr"](kind);
               
-              if("unknown primitive:isint")
+              if(typeof match$2==="number")
                {return rem;}
               else
-               {Btype["set_kind"](match$2[1],1);return rem;}
+               {Btype["set_kind"](match$2[1],/* Fabsent */1);return rem;}
               }
             else
              {return Ctype["newty"]
@@ -1651,16 +1753,16 @@ var
               }
             },
           methods,
-          Ctype["newty"](0));
+          Ctype["newty"](/* Tnil */0));
       
       try
        {Ctype["unify"]
          (val_env$1,
           private_self,
-          Ctype["newty"](/* Tobject */[4,self_methods,[0,0]])),
+          Ctype["newty"](/* Tobject */[4,self_methods,[0,/* None */0]])),
         Ctype["unify"](val_env$1,public_self,self_type)}
       catch(exn$1)
-       {if(exn$1[1]=Ctype["Unify"])
+       {if(exn$1[1]===Ctype["Unify"])
          {throw [0,$$Error,loc,val_env$1,/* Final_self_clash */[21,exn$1[2]]];
           }
         else
@@ -1681,12 +1783,12 @@ var
      fields=
       List["map"]
        (function(prim)
-         {var tag="unknown primitive:caml_obj_tag";
+         {var tag=CamlPrimitive["caml_obj_tag"](prim);
           
-          if(tag=250)
+          if(tag===250)
            {return prim[1];}
           else
-           {if(tag=246)
+           {if(tag===246)
              {return CamlinternalLazy["force_lazy_block"](prim);}
             else
              {return prim;}
@@ -1697,7 +1799,11 @@ var
     if(Clflags["principal"][1])
      {List["iter"]
        (function(param$1)
-         {return Ctype["unify"](val_env$1,param$1[3],Ctype["newvar"](0,0));},
+         {return Ctype["unify"]
+                  (val_env$1,
+                   param$1[3],
+                   Ctype["newvar"](/* None */0,/* () */0));
+          },
         methods)}
     else
      {}
@@ -1709,7 +1815,8 @@ var
     var
      pub_meths$prime=
       List["filter"]
-       (function(param$1){return Btype["field_kind_repr"](param$1[2])=0;},
+       (function(param$1)
+         {return Btype["field_kind_repr"](param$1[2])===/* Fpresent */0;},
         get_methods(public_self));
     
     var names=List["map"](function(param$1){return param$1[1];});
@@ -1720,7 +1827,7 @@ var
     
     var added=List["filter"](function(x){return List["mem"](x,l1);},l2);
     
-    if(added!=0)
+    if(added!==/* [] */0)
      {Location["prerr_warning"](loc,/* Implicit_public_methods */[6,added])}
     else
      {}
@@ -1745,7 +1852,7 @@ var
   function(cl_num,val_env,met_env,scl)
    {var match=scl[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var lid=match[1];
        
@@ -1764,7 +1871,7 @@ var
         tyl=
          List["map"]
           (function(sty)
-            {return Typetexp["transl_simple_type"](val_env,0,sty);},
+            {return Typetexp["transl_simple_type"](val_env,/* false */0,sty);},
            match[2]);
        
        var match$2=Ctype["instance_class"](decl[1],decl[2]);
@@ -1775,7 +1882,7 @@ var
        
        var clty$prime=abbreviate_class_type(path,params,clty);
        
-       if(List["length"](params)!=List["length"](tyl))
+       if(List["length"](params)!==List["length"](tyl))
         {throw [0,
                 $$Error,
                 scl[2],
@@ -1795,7 +1902,7 @@ var
            try
             {return Ctype["unify"](val_env,ty$prime,ty);}
            catch(exn)
-            {if(exn[1]=Ctype["Unify"])
+            {if(exn[1]===Ctype["Unify"])
               {throw [0,
                       $$Error,
                       cty$prime[4],
@@ -1822,14 +1929,21 @@ var
        
        return rc
                (/* record */[0,
-                 /* Tcl_constraint */[5,cl,0,match$3[1],match$3[2],match$3[3]],
+                 /* Tcl_constraint */[5,
+                  cl,
+                  /* None */0,
+                  match$3[1],
+                  match$3[2],
+                  match$3[3]],
                  scl[2],
                  clty$prime,
                  val_env,
-                 0]);
+                 /* [] */0]);
        
       case 1:
-       var match$4=class_structure(cl_num,0,val_env,met_env,scl[2],match[1]);
+       var
+        match$4=
+         class_structure(cl_num,/* false */0,val_env,met_env,scl[2],match[1]);
        
        return rc
                (/* record */[0,
@@ -1855,54 +1969,70 @@ var
             Ast_helper["Exp"][37]
              (Ast_helper["Pat"][9]
                (/* Some */[0,loc],
-                0,
-                Typedtree["mknoloc"]([1,[0,"*predef*"],"Some"]),
+                /* None */0,
+                Typedtree["mknoloc"]
+                 ([/* Ldot */1,[/* Lident */0,"*predef*"],"Some"]),
                 /* Some */[0,
                  Ast_helper["Pat"][4]
-                  (/* Some */[0,loc],0,Typedtree["mknoloc"]("*sth*"))]),
-              0,
+                  (/* Some */[0,loc],
+                   /* None */0,
+                   Typedtree["mknoloc"]("*sth*"))]),
+              /* None */0,
               Ast_helper["Exp"][3]
-               (/* Some */[0,loc],0,Typedtree["mknoloc"]([0,"*sth*"]))),
+               (/* Some */[0,loc],
+                /* None */0,
+                Typedtree["mknoloc"]([/* Lident */0,"*sth*"]))),
             /* :: */[0,
              Ast_helper["Exp"][37]
               (Ast_helper["Pat"][9]
                 (/* Some */[0,loc],
-                 0,
-                 Typedtree["mknoloc"]([1,[0,"*predef*"],"None"]),
-                 0),
-               0,
+                 /* None */0,
+                 Typedtree["mknoloc"]
+                  ([/* Ldot */1,[/* Lident */0,"*predef*"],"None"]),
+                 /* None */0),
+               /* None */0,
                $$default),
-             0]];
+             /* [] */0]];
          
          var
           smatch=
            Ast_helper["Exp"][9]
             (/* Some */[0,loc],
-             0,
+             /* None */0,
              Ast_helper["Exp"][3]
-              (/* Some */[0,loc],0,Typedtree["mknoloc"]([0,"*opt*"])),
+              (/* Some */[0,loc],
+               /* None */0,
+               Typedtree["mknoloc"]([/* Lident */0,"*opt*"])),
              scases);
          
          var
           sfun=
            Ast_helper["Cl"][5]
             (/* Some */[0,scl[2]],
-             0,
+             /* None */0,
              l,
-             0,
+             /* None */0,
              Ast_helper["Pat"][4]
-              (/* Some */[0,loc],0,Typedtree["mknoloc"]("*opt*")),
+              (/* Some */[0,loc],/* None */0,Typedtree["mknoloc"]("*opt*")),
              Ast_helper["Cl"][7]
               (/* Some */[0,scl[2]],
-               0,
-               0,
-               /* :: */[0,Ast_helper["Vb"][1](0,0,0,0,match[3],smatch),0],
+               /* None */0,
+               /* Nonrecursive */0,
+               /* :: */[0,
+                Ast_helper["Vb"][1]
+                 (/* None */0,
+                  /* None */0,
+                  /* None */0,
+                  /* None */0,
+                  match[3],
+                  smatch),
+                /* [] */0],
                match[4]));
          
          return class_expr(cl_num,val_env,met_env,sfun);
          }
        else
-        {if(Clflags["principal"][1]){Ctype["begin_def"](0)}else{}
+        {if(Clflags["principal"][1]){Ctype["begin_def"](/* () */0)}else{}
          
          var
           match$6=
@@ -1914,7 +2044,7 @@ var
          var pat=match$6[1];
          
          if(Clflags["principal"][1])
-          {Ctype["end_def"](0),
+          {Ctype["end_def"](/* () */0),
            Typecore["iter_pattern"]
             (function(param){return Ctype["generalize_structure"](param[4]);},
              pat)}
@@ -1940,10 +2070,10 @@ var
                          Typedtree["mknoloc"](/* Lident */[0,Ident["name"](id)]),
                          vd],
                         Location["none"],
-                        0,
-                        Ctype["instance"](0,val_env$prime,vd[1]),
+                        /* [] */0,
+                        Ctype["instance"](/* None */0,val_env$prime,vd[1]),
                         val_env$prime,
-                        0]];
+                        /* [] */0]];
                },
              match$6[2]);
          
@@ -1952,37 +2082,39 @@ var
            function(param)
             {var exit;
              
-             switch(param){case 0:exit=208;case 1:exit=208;case 2:return 0;}
+             switch(param[0])
+              {case 0:exit=208;case 1:exit=208;case 2:return /* false */0;}
              
-             switch(exit){case 208:return 1;}
+             switch(exit){case 208:return /* true */1;}
              };
          
          var
           partial=
            Typecore["check_partial"]
-            (0,
+            (/* None */0,
              val_env,
              pat[4],
              pat[2],
              /* :: */[0,
               /* record */[0,
                pat,
-               0,
+               /* None */0,
                /* record */[0,
-                [1,[0,1]],
+                [/* Texp_constant */1,[/* Const_int */0,1]],
                 Location["none"],
-                0,
+                /* [] */0,
                 Ctype["none"],
                 Env["empty"],
-                0]],
-              0]);
+                /* [] */0]],
+              /* [] */0]);
          
-         Ctype["raise_nongen_level"](0);
+         Ctype["raise_nongen_level"](/* () */0);
          var cl$1=class_expr(cl_num,val_env$prime,match$6[4],match[4]);
          
-         Ctype["end_def"](0);
+         Ctype["end_def"](/* () */0);
          if(Btype["is_optional"](l)&&not_function(cl$1[3]))
-          {Location["prerr_warning"](pat[2],8)}
+          {Location["prerr_warning"]
+            (pat[2],/* Unerasable_optional_argument */8)}
          else
           {}
          
@@ -1998,18 +2130,19 @@ var
       case 3:
        var sargs=match[2];
        
-       if(sargs=0)
+       if(sargs===/* [] */0)
         {Syntaxerr["ill_formed_ast"]
           (scl[2],"Function application with no argument.")}
        else
         {}
        
-       if(Clflags["principal"][1]){Ctype["begin_def"](0)}else{}
+       if(Clflags["principal"][1]){Ctype["begin_def"](/* () */0)}else{}
        
        var cl$2=class_expr(cl_num,val_env,met_env,match[1]);
        
        if(Clflags["principal"][1])
-        {Ctype["end_def"](0),generalize_class_type$1(0,cl$2[3])}
+        {Ctype["end_def"](/* () */0),
+         generalize_class_type$1(/* false */0,cl$2[3])}
        else
         {}
        
@@ -2018,7 +2151,7 @@ var
          function(ls,ty_fun)
           {var exit;
            
-           switch(ty_fun)
+           switch(ty_fun[0])
             {case 0:exit=233;
              case 1:exit=233;
              case 2:
@@ -2036,26 +2169,29 @@ var
            switch(exit){case 233:return ls;}
            };
        
-       var labels=nonopt_labels(0,cl$2[3]);
+       var labels=nonopt_labels(/* [] */0,cl$2[3]);
        
        var
         ignore_labels=
          Clflags["classic"][1]||
-         (List["length"](labels)=List["length"](sargs))&&
+         List["length"](labels)===
+         List["length"](sargs)&&
          List["for_all"]
-          (function(param){return "unknown primitive:caml_string_equal";},
+          (function(param)
+            {return CamlPrimitive["caml_string_equal"](param[1],"");},
            sargs)&&
          List["exists"]
-          (function(l$1){return "unknown primitive:caml_string_notequal";},
+          (function(l){return CamlPrimitive["caml_string_notequal"](l,"");},
            labels)&&
-         (Location["prerr_warning"](cl$2[2],3),1);
+         (Location["prerr_warning"](cl$2[2],/* Labels_omitted */3),
+          /* true */1);
        
        var
         type_args=
-         function(args,omitted,ty_fun,ty_fun0,sargs$1,more_sargs)
+         function(args,omitted,ty_fun,ty_fun0,sargs,more_sargs)
           {var exit;
            
-           switch(ty_fun)
+           switch(ty_fun[0])
             {case 0:exit=230;
              case 1:exit=230;
              case 2:
@@ -2063,23 +2199,23 @@ var
               
               var l$1=ty_fun[1];
               
-              switch(ty_fun0)
+              switch(ty_fun0[0])
                {case 0:exit=230;
                 case 1:exit=230;
                 case 2:
-                 if(sargs$1!=0||more_sargs!=0)
+                 if(sargs!==/* [] */0||more_sargs!==/* [] */0)
                   {var ty0=ty_fun0[2];
                    
                    var name=Btype["label_name"](l$1);
                    
                    if(Btype["is_optional"](l$1))
-                    {var optional=1;}
+                    {var optional=/* Optional */1;}
                    else
-                    {var optional=0;}
+                    {var optional=/* Required */0;}
                    
                    if(ignore_labels&&!Btype["is_optional"](l$1))
-                    {if(sargs$1)
-                      {var match$7=sargs$1[1];
+                    {if(sargs)
+                      {var match$7=sargs[1];
                        
                        throw [0,
                               $$Error,
@@ -2096,8 +2232,8 @@ var
                          var l$prime=match$8[1];
                          
                          if
-                          ("unknown primitive:caml_string_notequal"&&
-                           "unknown primitive:caml_string_notequal")
+                          (CamlPrimitive["caml_string_notequal"](l$1,l$prime)&&
+                           CamlPrimitive["caml_string_notequal"](l$prime,""))
                           {throw [0,
                                   $$Error,
                                   sarg0[2],
@@ -2108,21 +2244,23 @@ var
                           {var
                             match$9=
                              /* tuple */[0,
-                              0,
+                              /* [] */0,
                               more_sargs[2],
                               /* Some */[0,
                                Typecore["type_argument"](val_env,sarg0,ty,ty0)]];
                            }
                          }
                        else
-                        {throw [0,Assert_failure,[0,"typing/typeclass.ml",1017,20]];
+                        {throw [0,
+                                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                [0,"typing/typeclass.ml",1017,20]];
                          }
                        }
                      }
                    else
                     {try
                       {try
-                        {var match$10=Btype["extract_label"](name,sargs$1);
+                        {var match$10=Btype["extract_label"](name,sargs);
                          
                          var
                           match$11=
@@ -2133,7 +2271,7 @@ var
                             more_sargs];
                          }
                        catch(exn)
-                        {if(exn=Not_found)
+                        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                           {var match$12=Btype["extract_label"](name,more_sargs);
                            
                            var
@@ -2141,7 +2279,7 @@ var
                              /* tuple */[0,
                               match$12[1],
                               match$12[2],
-                              Pervasives["@"](sargs$1,match$12[3]),
+                              Pervasives["@"](sargs,match$12[3]),
                               match$12[4]];
                            }
                          else
@@ -2152,13 +2290,19 @@ var
                        
                        var l$prime$1=match$11[1];
                        
-                       if((optional=0)&&Btype["is_optional"](l$prime$1))
+                       if
+                        (optional===
+                         /* Required */0&&
+                         Btype["is_optional"](l$prime$1))
                         {Location["prerr_warning"]
                           (sarg0$1[2],/* Nonoptional_label */[26,l$1])}
                        else
                         {}
                        
-                       if((optional=0)||Btype["is_optional"](l$prime$1))
+                       if
+                        (optional===
+                         /* Required */0||
+                         Btype["is_optional"](l$prime$1))
                         {var
                           $js=
                            /* Some */[0,
@@ -2179,17 +2323,17 @@ var
                        var match$9=/* tuple */[0,match$11[3],match$11[4],$js];
                        }
                      catch(exn$1)
-                      {if(exn$1=Not_found)
+                      {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                         {var
                           match$9=
                            /* tuple */[0,
-                            sargs$1,
+                            sargs,
                             more_sargs,
                             Btype["is_optional"](l$1)&&
-                             (List["mem_assoc"]("",sargs$1)||
+                             (List["mem_assoc"]("",sargs)||
                               List["mem_assoc"]("",more_sargs))
                              ?/* Some */[0,Typecore["option_none"](ty0,Location["none"])]
-                             :0];
+                             :/* None */0];
                          }
                        else
                         {throw exn$1;}
@@ -2198,7 +2342,7 @@ var
                    
                    var arg$1=match$9[3];
                    
-                   if(arg$1=0)
+                   if(arg$1===/* None */0)
                     {var omitted$1=/* :: */[0,/* tuple */[0,l$1,ty0],omitted];}
                    else
                     {var omitted$1=omitted;}
@@ -2220,10 +2364,10 @@ var
            
            switch(exit)
             {case 230:
-              var match$13=Pervasives["@"](sargs$1,more_sargs);
+              var match$13=Pervasives["@"](sargs,more_sargs);
               
               if(match$13)
-               {if(omitted!=0)
+               {if(omitted!==/* [] */0)
                  {var match$14=match$13[1];
                   
                   throw [0,
@@ -2244,8 +2388,8 @@ var
                {return /* tuple */[0,
                         List["rev"](args),
                         List["fold_left"]
-                         (function(ty_fun$1,param)
-                           {return /* Cty_arrow */[2,param[1],param[2],ty_fun$1];},
+                         (function(ty_fun,param)
+                           {return /* Cty_arrow */[2,param[1],param[2],ty_fun];},
                           ty_fun0,
                           omitted)];
                 }
@@ -2253,14 +2397,20 @@ var
              }
            };
        
-       var match$7=Ctype["instance_class"](0,cl$2[3]);
+       var match$7=Ctype["instance_class"](/* [] */0,cl$2[3]);
        
        var ty_fun0=match$7[2];
        
        if(ignore_labels)
-        {var match$8=type_args(0,0,cl$2[3],ty_fun0,0,sargs);}
+        {var
+          match$8=
+           type_args(/* [] */0,/* [] */0,cl$2[3],ty_fun0,/* [] */0,sargs);
+         }
        else
-        {var match$8=type_args(0,0,cl$2[3],ty_fun0,sargs,0);}
+        {var
+          match$8=
+           type_args(/* [] */0,/* [] */0,cl$2[3],ty_fun0,sargs,/* [] */0);
+         }
        
        return rc
                (/* record */[0,
@@ -2274,11 +2424,14 @@ var
        var rec_flag=match[1];
        
        try
-        {var match$9=Typecore["type_let"](val_env,rec_flag,match[2],0);}
+        {var
+          match$9=
+           Typecore["type_let"](val_env,rec_flag,match[2],/* None */0);
+         }
        catch(exn)
         {var exit;
          
-         if(exn[1]=Ctype["Unify"])
+         if(exn[1]===Ctype["Unify"])
           {var match$10=exn[2];
            
            if(match$10)
@@ -2315,7 +2468,7 @@ var
              
              var vd=Env["find_value"](path$1,val_env$1);
              
-             Ctype["begin_def"](0);
+             Ctype["begin_def"](/* () */0);
              var
               expr=
                /* record */[0,
@@ -2324,25 +2477,29 @@ var
                  Typedtree["mknoloc"](/* Lident */[0,Ident["name"](id)]),
                  vd],
                 Location["none"],
-                0,
-                Ctype["instance"](0,val_env$1,vd[1]),
+                /* [] */0,
+                Ctype["instance"](/* None */0,val_env$1,vd[1]),
                 val_env$1,
-                0];
+                /* [] */0];
              
-             Ctype["end_def"](0);
+             Ctype["end_def"](/* () */0);
              Ctype["generalize"](expr[4]);
              var
               desc=
-               /* record */[0,expr[4],/* Val_ivar */[1,0,cl_num],vd[3],0];
+               /* record */[0,
+                expr[4],
+                /* Val_ivar */[1,/* Immutable */0,cl_num],
+                vd[3],
+                /* [] */0];
              
              var id$prime=Ident["create"](Ident["name"](id));
              
              return /* tuple */[0,
                      /* :: */[0,/* tuple */[0,id$prime,param[2],expr],param$1[1]],
-                     Env["add_value"](0,id$prime,desc,param$1[2])];
+                     Env["add_value"](/* None */0,id$prime,desc,param$1[2])];
              },
            Typedtree["let_bound_idents_with_loc"](defs),
-           /* tuple */[0,0,met_env]);
+           /* tuple */[0,/* [] */0,met_env]);
        
        var cl$3=class_expr(cl_num,val_env$1,match$11[2],match[3]);
        
@@ -2355,18 +2512,18 @@ var
                  scl[3]]);
        
       case 5:
-       Ctype["begin_class_def"](0);
-       var context=Typetexp["narrow"](0);
+       Ctype["begin_class_def"](/* () */0);
+       var context=Typetexp["narrow"](/* () */0);
        
        var cl$4=class_expr(cl_num,val_env,met_env,match[1]);
        
        Typetexp["widen"](context);
-       var context$1=Typetexp["narrow"](0);
+       var context$1=Typetexp["narrow"](/* () */0);
        
        var clty$1=class_type$1(val_env,match[2]);
        
        Typetexp["widen"](context$1);
-       Ctype["end_def"](0);
+       Ctype["end_def"](/* () */0);
        limited_generalize
         (Ctype["row_variable"](Ctype["self_type"](cl$4[3])),cl$4[3]);
        limited_generalize
@@ -2390,7 +2547,7 @@ var
                   match$12[2],
                   match$12[3]],
                  scl[2],
-                 Ctype["instance_class"](0,clty$1[2])[2],
+                 Ctype["instance_class"](/* [] */0,clty$1[2])[2],
                  val_env,
                  scl[3]]);
        
@@ -2398,28 +2555,30 @@ var
       }
     };
 
-var var_option=Predef["type_option"](Btype["newgenvar"](0,0));
+var
+ var_option=
+  Predef["type_option"](Btype["newgenvar"](/* None */0,/* () */0));
 
 var
  approx_declaration=
   function(cl)
    {var match=cl[1];
     
-    switch(match)
+    switch(match[0])
      {case 2:
        var l=match[1];
        
        if(Btype["is_optional"](l))
         {var arg=Ctype["instance_def"](var_option);}
        else
-        {var arg=Ctype["newvar"](0,0);}
+        {var arg=Ctype["newvar"](/* None */0,/* () */0);}
        
        return Ctype["newty"]
-               (/* Tarrow */[1,l,arg,approx_declaration(match[4]),0]);
+               (/* Tarrow */[1,l,arg,approx_declaration(match[4]),/* Cok */0]);
        
       case 4:return approx_declaration(match[3]);
       case 5:return approx_declaration(match[1]);
-      default:return Ctype["newvar"](0,0);}
+      default:return Ctype["newvar"](/* None */0,/* () */0);}
     };
 
 var
@@ -2427,46 +2586,46 @@ var
   function(ct)
    {var match=ct[1];
     
-    switch(match)
+    switch(match[0])
      {case 2:
        var l=match[1];
        
        if(Btype["is_optional"](l))
         {var arg=Ctype["instance_def"](var_option);}
        else
-        {var arg=Ctype["newvar"](0,0);}
+        {var arg=Ctype["newvar"](/* None */0,/* () */0);}
        
        return Ctype["newty"]
-               (/* Tarrow */[1,l,arg,approx_description(match[3]),0]);
+               (/* Tarrow */[1,l,arg,approx_description(match[3]),/* Cok */0]);
        
-      default:return Ctype["newvar"](0,0);}
+      default:return Ctype["newvar"](/* None */0,/* () */0);}
     };
 
 var
  temp_abbrev=
   function(loc,env,id,arity)
-   {var params=0;
+   {var params=/* [] */0;
     
     for(var _i=1;_i<=arity;_i++)
-     {params=/* :: */[0,Ctype["newvar"](0,0),params];}
+     {params=/* :: */[0,Ctype["newvar"](/* None */0,/* () */0),params];}
     
-    var ty=Ctype["newobj"](Ctype["newvar"](0,0));
+    var ty=Ctype["newobj"](Ctype["newvar"](/* None */0,/* () */0));
     
     var
      env$1=
       Env["add_type"]
-       (1,
+       (/* true */1,
         id,
         /* record */[0,
          params,
          arity,
-         0,
-         1,
+         /* Type_abstract */0,
+         /* Public */1,
          /* Some */[0,ty],
          Misc["replicate_list"](Types["Variance"][2],arity),
-         0,
+         /* None */0,
          loc,
-         0],
+         /* [] */0],
         env);
     
     return /* tuple */[0,params,ty,env$1];
@@ -2501,29 +2660,35 @@ var
      dummy_cty=
       /* Cty_signature */[1,
        /* record */[0,
-        Ctype["newvar"](0,0),
+        Ctype["newvar"](/* None */0,/* () */0),
         Types["Vars"][1],
         Types["Concr"][1],
-        0]];
+        /* [] */0]];
     
     var match$2=cl[1];
     
     var
      dummy_class=
       /* record */[0,
-       0,
+       /* [] */0,
        dummy_cty,
        unbound_class,
-       match$2!=0?/* Some */[0,constr_type]:0,
-       0,
+       match$2!==0?/* Some */[0,constr_type]:/* None */0,
+       /* [] */0,
        Location["none"],
-       0];
+       /* [] */0];
     
     var
      env$1=
       Env["add_cltype"]
        (ty_id,
-        /* record */[0,0,dummy_cty,unbound_class,0,Location["none"],0],
+        /* record */[0,
+         /* [] */0,
+         dummy_cty,
+         unbound_class,
+         /* [] */0,
+         Location["none"],
+         /* [] */0],
         define_class?Env["add_class"](id,dummy_class,env):env);
     
     return /* tuple */[0,
@@ -2569,8 +2734,8 @@ var
     
     var cl=param[1];
     
-    Typetexp["reset_type_variables"](0);
-    Ctype["begin_class_def"](0);
+    Typetexp["reset_type_variables"](/* () */0);
+    Ctype["begin_class_def"](/* () */0);
     var
      make_param=
       function(param$2)
@@ -2582,8 +2747,8 @@ var
                   param$2[2]];
           }
         catch(exn)
-         {if(exn=Typetexp["Already_bound"])
-           {throw [0,$$Error,sty[2],env,0];}
+         {if(exn===Typetexp["Already_bound"])
+           {throw [0,$$Error,sty[2],env,/* Repeated_parameter */0];}
           else
            {throw exn;}
           }
@@ -2595,31 +2760,30 @@ var
      params=
       List["map"](function(param$2){return param$2[1][2];},ci_params);
     
-    var coercion_locs=[0,0];
+    var coercion_locs=[0,/* [] */0];
     
     try
      {Typecore["self_coercion"][1]=
       /* :: */[0,
        /* tuple */[0,/* Pident */[0,obj_id],coercion_locs],
-       Typecore["self_coercion"][1]],
-      0;
+       Typecore["self_coercion"][1]];
       var res=kind(env,cl[4]);
       
-      Typecore["self_coercion"][1]=List["tl"](Typecore["self_coercion"][1]),0;
+      Typecore["self_coercion"][1]=List["tl"](Typecore["self_coercion"][1]);
       var match=res;
       }
-    catch(exn){Typecore["self_coercion"][1]=0,0;throw exn;}
+    catch(exn){Typecore["self_coercion"][1]=/* [] */0;throw exn;}
     
     var typ=match[2];
     
-    Ctype["end_def"](0);
+    Ctype["end_def"](/* () */0);
     var sty=Ctype["self_type"](typ);
     
     var match$1=Ctype["flatten_fields"](Ctype["object_fields"](sty));
     
     List["iter"]
      (function(param$2)
-       {if("unknown primitive:caml_string_equal")
+       {if(CamlPrimitive["caml_string_equal"](param$2[1],dummy_method))
          {return Ctype["generalize"](param$2[3]);}
         else
          {return 0;}
@@ -2644,7 +2808,7 @@ var
     try
      {List["iter2"](Ctype["unify"](env),obj_params,obj_params$prime)}
     catch(exn$1)
-     {if(exn$1[1]=Ctype["Unify"])
+     {if(exn$1[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                cl[5],
@@ -2661,7 +2825,7 @@ var
     try
      {Ctype["unify"](env,ty,constr)}
     catch(exn$2)
-     {if(exn$2[1]=Ctype["Unify"])
+     {if(exn$2[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                cl[5],
@@ -2687,7 +2851,7 @@ var
     try
      {List["iter2"](Ctype["unify"](env),cl_params,cl_params$prime)}
     catch(exn$3)
-     {if(exn$3[1]=Ctype["Unify"])
+     {if(exn$3[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                cl[5],
@@ -2704,7 +2868,7 @@ var
     try
      {Ctype["unify"](env,ty$1,cl_ty)}
     catch(exn$4)
-     {if(exn$4[1]=Ctype["Unify"])
+     {if(exn$4[1]===Ctype["Unify"])
        {var constr$1=Ctype["newconstr"](/* Pident */[0,cl_id],params);
         
         throw [0,
@@ -2721,9 +2885,9 @@ var
      {Ctype["unify"]
        (env,
         constructor_type(constr,obj_type),
-        Ctype["instance"](0,env,constr_type))}
+        Ctype["instance"](/* None */0,env,constr_type))}
     catch(exn$5)
-     {if(exn$5[1]=Ctype["Unify"])
+     {if(exn$5[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                cl[5],
@@ -2756,18 +2920,18 @@ var
        params,
        typ,
        /* Pident */[0,obj_id],
-       match$4!=0?/* Some */[0,constr_type]:0,
+       match$4!==0?/* Some */[0,constr_type]:/* None */0,
        cty_variance,
        cl[5],
        cl[6]];
     
-    param[11][2]=typ,0;
+    param[11][2]=typ;
     var
      env$1=
       Env["add_cltype"]
        (ty_id,cltydef,define_class?Env["add_class"](id,clty,env):env);
     
-    if(cl[1]=1)
+    if(cl[1]===/* Concrete */1)
      {var sign=Ctype["signature_of_class_type"](typ);
       
       var mets=virtual_methods(sign);
@@ -2776,16 +2940,20 @@ var
        vals=
         Types["Vars"][11]
          (function(name,param$2,l)
-           {if(param$2[2]=0){return /* :: */[0,name,l];}else{return l;}},
+           {if(param$2[2]===/* Virtual */0)
+             {return /* :: */[0,name,l];}
+            else
+             {return l;}
+            },
           sign[2],
-          0);
+          /* [] */0);
       
-      if(mets!=0||vals!=0)
+      if(mets!==/* [] */0||vals!==/* [] */0)
        {throw [0,
                $$Error,
                cl[5],
                env$1,
-               /* Virtual_class */[10,define_class,0,mets,vals]];
+               /* Virtual_class */[10,define_class,/* false */0,mets,vals]];
         }
       else
        {}
@@ -2828,7 +2996,9 @@ var
        params$prime,
        typ$prime,
        /* Pident */[0,obj_id],
-       match$7!=0?/* Some */[0,Ctype["instance"](0,env$1,constr_type)]:0,
+       match$7!==0
+        ?/* Some */[0,Ctype["instance"](/* None */0,env$1,constr_type)]
+        :/* None */0,
        cty_variance,
        cl[5],
        cl[6]];
@@ -2838,17 +3008,18 @@ var
       /* record */[0,
        obj_params,
        List["length"](obj_params),
-       0,
-       1,
+       /* Type_abstract */0,
+       /* Public */1,
        /* Some */[0,obj_ty],
        List["map"](function(param$2){return Types["Variance"][2];},obj_params),
-       0,
+       /* None */0,
        cl[5],
-       0];
+       /* [] */0];
     
     var
      match$8=
-      Ctype["instance_parameterized_type"](0,params,Ctype["self_type"](typ));
+      Ctype["instance_parameterized_type"]
+       (/* None */0,params,Ctype["self_type"](typ));
     
     var cl_ty$1=match$8[2];
     
@@ -2862,14 +3033,14 @@ var
       /* record */[0,
        cl_params$1,
        List["length"](cl_params$1),
-       0,
-       1,
+       /* Type_abstract */0,
+       /* Public */1,
        /* Some */[0,cl_ty$1],
        List["map"]
         (function(param$2){return Types["Variance"][2];},cl_params$1),
-       0,
+       /* None */0,
        cl[5],
-       0];
+       /* [] */0];
     
     return /* tuple */[0,
             /* :: */[0,
@@ -2918,7 +3089,7 @@ var
     try
      {Ctype["collapse_conj_params"](env,clty[1])}
     catch(exn)
-     {if(exn[1]=Ctype["Unify"])
+     {if(exn[1]===Ctype["Unify"])
        {throw [0,
                $$Error,
                cl[5],
@@ -2930,7 +3101,7 @@ var
       }
     
     List["iter"](Ctype["generalize"],clty[1]);
-    generalize_class_type$1(1,clty[2]);
+    generalize_class_type$1(/* true */1,clty[2]);
     Misc["may"](Ctype["generalize"],clty[4]);
     List["iter"](Ctype["generalize"],obj_abbr[1]);
     Misc["may"](Ctype["generalize"],obj_abbr[5]);
@@ -3030,11 +3201,11 @@ var
  final_env=
   function(define_class,env,param)
    {return Env["add_type"]
-            (1,
+            (/* true */1,
              param[6],
              Subst["type_declaration"](Subst["identity"],param[7]),
              Env["add_type"]
-              (1,
+              (/* true */1,
                param[8],
                Subst["type_declaration"](Subst["identity"],param[9]),
                Env["add_cltype"]
@@ -3070,11 +3241,13 @@ var
        {if(match$1)
          {var
            match$2=
-            Ctype["instance_parameterized_type"](0,cl_abbr[1],match[1]);
+            Ctype["instance_parameterized_type"]
+             (/* None */0,cl_abbr[1],match[1]);
           
           var
            match$3=
-            Ctype["instance_parameterized_type"](0,obj_abbr[1],match$1[1]);
+            Ctype["instance_parameterized_type"]
+             (/* None */0,obj_abbr[1],match$1[1]);
           
           List["iter2"](Ctype["unify"](env),match$2[1],match$3[1]);
           var match$4=/* tuple */[0,match$2[2],match$3[2]];
@@ -3086,16 +3259,21 @@ var
        {exit=58;}
       
       switch(exit)
-       {case 58:throw [0,Assert_failure,[0,"typing/typeclass.ml",1562,15]];}
+       {case 58:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"typing/typeclass.ml",1562,15]];
+         
+        }
       
       var obj_ty=match$4[2];
       
       var cl_ty=match$4[1];
       
       try
-       {Ctype["subtype"](env,cl_ty,obj_ty,0)}
+       {Ctype["subtype"](env,cl_ty,obj_ty,/* () */0)}
       catch(exn)
-       {if(exn[1]=Ctype["Subtype"])
+       {if(exn[1]===Ctype["Subtype"])
          {throw [0,
                  Typecore["Error"],
                  loc,
@@ -3145,24 +3323,26 @@ var
           },
         cls);
     
-    Ctype["init_def"](Ident["current_time"](0));
-    Ctype["begin_class_def"](0);
+    Ctype["init_def"](Ident["current_time"](/* () */0));
+    Ctype["begin_class_def"](/* () */0);
     var
      match=
       List["fold_left"]
-       (initial_env(define_class,approx),/* tuple */[0,0,env],cls$1);
+       (initial_env(define_class,approx),/* tuple */[0,/* [] */0,env],cls$1);
     
     var
      match$1=
       List["fold_right"]
-       (class_infos(define_class,kind),match[1],/* tuple */[0,0,match[2]]);
+       (class_infos(define_class,kind),
+        match[1],
+        /* tuple */[0,/* [] */0,match[2]]);
     
     var env$1=match$1[2];
     
-    Ctype["end_def"](0);
+    Ctype["end_def"](/* () */0);
     var res=List["rev_map"](final_decl(env$1,define_class),match$1[1]);
     
-    var decls=List["fold_right"](extract_type_decls,res,0);
+    var decls=List["fold_right"](extract_type_decls,res,/* [] */0);
     
     var decls$1=Typedecl["compute_variance_decls"](env$1,decls);
     
@@ -3196,17 +3376,23 @@ var
 var
  class_declarations=
   function(env,cls)
-   {return type_classes(1,approx_declaration,class_declaration,env,cls);};
+   {return type_classes
+            (/* true */1,approx_declaration,class_declaration,env,cls);
+    };
 
 var
  class_descriptions=
   function(env,cls)
-   {return type_classes(1,approx_description,class_description,env,cls);};
+   {return type_classes
+            (/* true */1,approx_description,class_description,env,cls);
+    };
 
 var
  class_type_declarations=
   function(env,cls)
-   {var match=type_classes(0,approx_description,class_description,env,cls);
+   {var
+     match=
+      type_classes(/* false */0,approx_description,class_description,env,cls);
     
     return /* tuple */[0,
             List["map"]
@@ -3232,20 +3418,24 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        try
         {var decl=Env["find_class"](match[1],env);
          
          var match$1=Ctype["find_cltype_for_path"](env,decl[3]);
          
-         return Ctype["unify"](env,ty,Ctype["instance"](0,env,match$1[2]));
+         return Ctype["unify"]
+                 (env,ty,Ctype["instance"](/* None */0,env,match$1[2]));
          }
        catch(exn)
-        {if(exn=Not_found)
-          {return 0;}
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return /* () */0;}
          else
-          {throw [0,Assert_failure,[0,"typing/typeclass.ml",1639,15]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/typeclass.ml",1639,15]];
+           }
          }
        
       case 1:return unify_parents_struct(env,ty,match[1]);
@@ -3256,8 +3446,8 @@ var
       }
     
     switch(exit)
-     {case 33:"unknown block:(exit 32 (field 3 match/2425))";
-      case 34:"unknown block:(exit 32 (field 0 match/2425))";
+     {case 33:var cl$1=match[4];exit=32;
+      case 34:var cl$1=match[1];exit=32;
       case 32:return unify_parents(env,ty,cl$1);
       }
     };
@@ -3269,9 +3459,9 @@ var
             (function(param)
               {var match=param[1];
                
-               switch(match)
+               switch(match[0])
                 {case 0:return unify_parents(env,ty,match[2]);
-                 default:return 0;}
+                 default:return /* () */0;}
                },
              st[2]);
     };
@@ -3283,7 +3473,7 @@ var
     var
      match=
       class_structure
-       (Pervasives["string_of_int"](class_num[1]),1,env,env,loc,s);
+       (Pervasives["string_of_int"](class_num[1]),/* true */1,env,env,loc,s);
     
     var sign=match[2];
     
@@ -3305,16 +3495,18 @@ var match=(Typecore["type_object"][1]=type_object,0);
 var
  approx_class=
   function(sdecl)
-   {var self$prime=Ast_helper["Typ"][3](0,0,0);
+   {var self$prime=Ast_helper["Typ"][3](/* None */0,/* None */0,/* () */0);
     
     var
      clty$prime=
       Ast_helper["Cty"][4]
-       (/* Some */[0,sdecl[4][2]],0,Ast_helper["Csig"][1](self$prime,0));
+       (/* Some */[0,sdecl[4][2]],
+        /* None */0,
+        Ast_helper["Csig"][1](self$prime,/* [] */0));
     
-    var newrecord="unknown primitive:duprecord regular 6";
+    var newrecord=/* unknown */"duprecord regular 6";
     
-    newrecord[4]=clty$prime,0;
+    newrecord[4]=clty$prime;
     return newrecord;
     };
 
@@ -3326,13 +3518,15 @@ var
 var
  report_error=
   function(env,ppf,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"A type parameter occurs several times",0],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "A type parameter occurs several times",
+                    /* End_of_format */0],
                    "A type parameter occurs several times"]);
          
         }}
@@ -3341,21 +3535,32 @@ var
        {case 0:
          Format["fprintf"]
           (ppf,
-           [0,
-            [11,"The class constraints are not consistent.",[17,4,0]],
+           [/* Format */0,
+            [/* String_literal */11,
+             "The class constraints are not consistent.",
+             [/* Formatting_lit */17,
+              /* Flush_newline */4,
+              /* End_of_format */0]],
             "The class constraints are not consistent.@."]);
          return Printtyp["report_unification_error"]
                  (ppf,
                   env,
-                  0,
+                  /* None */0,
                   param[1],
-                  function(ppf$1)
-                   {return Format["fprintf"](ppf$1,[0,[11,"Type",0],"Type"]);},
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,"is not compatible with type",0],
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,"Type",/* End_of_format */0],
+                              "Type"]);
+                    },
+                  function(ppf)
+                   {return Format["fprintf"]
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "is not compatible with type",
+                               /* End_of_format */0],
                               "is not compatible with type"]);
                     });
          
@@ -3367,36 +3572,51 @@ var
          return Printtyp["report_unification_error"]
                  (ppf,
                   env,
-                  0,
+                  /* None */0,
                   param[3],
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
                                "The ",
-                               [2,0,[12,32,[2,0,[17,[0,"@ ",1,0],[11,"has type",0]]]]]],
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Char_literal */12,
+                                 32,
+                                 [/* String */2,
+                                  /* No_padding */0,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* String_literal */11,"has type",/* End_of_format */0]]]]]],
                               "The %s %s@ has type"],
                              k,
                              m);
                     },
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,"but is expected to have type",0],
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "but is expected to have type",
+                               /* End_of_format */0],
                               "but is expected to have type"]);
                     });
          
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "This class expression is not a class structure; it has type",
-                     [17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]],
                    "@[This class expression is not a class structure; it has type@ %a@]"],
                   Printtyp["class_type"],
                   param[1]);
@@ -3404,10 +3624,10 @@ var
         case 3:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "This class expression is not a class function, it cannot be applied",
-                    0],
+                    /* End_of_format */0],
                    "This class expression is not a class function, it cannot be applied"]);
          
         case 4:
@@ -3418,14 +3638,21 @@ var
               {case "":return "out label";
                default:
                 return Format["sprintf"]
-                        ([0,[11," label ~",[2,0,0]]," label ~%s"],l);
+                        ([/* Format */0,
+                          [/* String_literal */11,
+                           " label ~",
+                           [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                          " label ~%s"],
+                         l);
                 }
              };
          
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"This argument cannot be applied with",[2,0,0]],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "This argument cannot be applied with",
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
                    "This argument cannot be applied with%s"],
                   mark_label(param[1]));
          
@@ -3435,8 +3662,17 @@ var
          Printtyp["reset_and_mark_loops"](ty);
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,[1,[0,0,""]],[2,0,[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]],
                    "@[%s@ %a@]"],
                   "This pattern cannot match self: it only matches values of type",
                   Printtyp["type_expr"],
@@ -3445,17 +3681,21 @@ var
         case 6:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The class",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,"is not yet completely defined",[17,0,0]]]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
+                         "is not yet completely defined",
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]]]],
                    "@[The class@ %a@ is not yet completely defined@]"],
                   Printtyp["longident"],
                   param[1]);
@@ -3463,17 +3703,21 @@ var
         case 7:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The class type",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,"is not yet completely defined",[17,0,0]]]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
+                         "is not yet completely defined",
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]]]],
                    "@[The class type@ %a@ is not yet completely defined@]"],
                   Printtyp["longident"],
                   param[1]);
@@ -3486,27 +3730,36 @@ var
          var abbrev=param[1];
          
          Printtyp["reset_and_mark_loops_list"]
-          (/* :: */[0,abbrev,/* :: */[0,actual,/* :: */[0,expected,0]]]);
+          (/* :: */[0,
+            abbrev,
+            /* :: */[0,actual,/* :: */[0,expected,/* [] */0]]]);
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The abbreviation",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
                          "expands to type",
-                         [17,
-                          [0,"@ ",1,0],
-                          [15,
-                           [17,
-                            [0,"@ ",1,0],
-                            [11,"but is used with type",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]]],
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String_literal */11,
+                             "but is used with type",
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                /* End_of_format */0]]]]]]]]]]]]],
                    "@[The abbreviation@ %a@ expands to type@ %a@ but is used with type@ %a@]"],
                   Printtyp["type_expr"],
                   abbrev,
@@ -3521,20 +3774,28 @@ var
          return Printtyp["report_unification_error"]
                  (ppf,
                   env,
-                  0,
+                  /* None */0,
                   param[2],
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,'The expression "new ',[2,0,[11,'" has type',0]]],
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               'The expression "new ',
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* String_literal */11,'" has type',/* End_of_format */0]]],
                               'The expression "new %s" has type'],
                              c);
                     },
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,[11,"but is used with type",0],"but is used with type"]);
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "but is used with type",
+                               /* End_of_format */0],
+                              "but is used with type"]);
                     });
          
         case 10:
@@ -3548,13 +3809,19 @@ var
          
          var
           print_mets=
-           function(ppf$1,mets$1)
+           function(ppf,mets)
             {return List["iter"]
                      (function(met)
                        {return Format["fprintf"]
-                                (ppf$1,[0,[17,[0,"@ ",1,0],[2,0,0]],"@ %s"],met);
+                                (ppf,
+                                 [/* Format */0,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                                  "@ %s"],
+                                 met);
                         },
-                      mets$1);
+                      mets);
              };
          
          if(mets)
@@ -3568,28 +3835,34 @@ var
          
          var
           print_msg=
-           function(ppf$1)
+           function(ppf)
             {if(imm)
               {return Format["fprintf"]
-                       (ppf$1,
-                        [0,
-                         [11,"This object has virtual ",[2,0,0]],
+                       (ppf,
+                        [/* Format */0,
+                         [/* String_literal */11,
+                          "This object has virtual ",
+                          [/* String */2,/* No_padding */0,/* End_of_format */0]],
                          "This object has virtual %s"],
                         missings);
                }
              else
               {if(cl)
                 {return Format["fprintf"]
-                         (ppf$1,
-                          [0,
-                           [11,"This class should be virtual",0],
+                         (ppf,
+                          [/* Format */0,
+                           [/* String_literal */11,
+                            "This class should be virtual",
+                            /* End_of_format */0],
                            "This class should be virtual"]);
                  }
                else
                 {return Format["fprintf"]
-                         (ppf$1,
-                          [0,
-                           [11,"This class type should be virtual",0],
+                         (ppf,
+                          [/* Format */0,
+                           [/* String_literal */11,
+                            "This class type should be virtual",
+                            /* End_of_format */0],
                            "This class type should be virtual"]);
                  }
                }
@@ -3597,19 +3870,31 @@ var
          
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [16,
-                     [12,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* Theta */16,
+                     [/* Char_literal */12,
                       46,
-                      [17,
-                       [0,"@ ",1,0],
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [11,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        [/* String_literal */11,
                          "The following ",
-                         [2,0,[11," are undefined :",[15,[17,0,[17,0,0]]]]]]]]]]],
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* String_literal */11,
+                           " are undefined :",
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              /* End_of_format */0]]]]]]]]]]],
                    "@[%t.@ @[<2>The following %s are undefined :%a@]@]"],
                   print_msg,
                   missings,
@@ -3619,27 +3904,35 @@ var
         case 11:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The class constructor ",
-                     [15,
-                      [17,
-                       [0,"@ ",1,0],
-                       [11,
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* String_literal */11,
                         "expects ",
-                        [4,
-                         3,
-                         0,
-                         0,
-                         [11,
+                        [/* Int */4,
+                         /* Int_i */3,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         [/* String_literal */11,
                           " type argument(s),",
-                          [17,
-                           [0,"@ ",1,0],
-                           [11,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String_literal */11,
                             "but is here applied to ",
-                            [4,3,0,0,[11," type argument(s)",[17,0,0]]]]]]]]]]]],
+                            [/* Int */4,
+                             /* Int_i */3,
+                             /* No_padding */0,
+                             /* No_precision */0,
+                             [/* String_literal */11,
+                              " type argument(s)",
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]]]]]]],
                    "@[The class constructor %a@ expects %i type argument(s),@ but is here applied to %i type argument(s)@]"],
                   Printtyp["longident"],
                   param[1],
@@ -3650,17 +3943,24 @@ var
          return Printtyp["report_unification_error"]
                  (ppf,
                   env,
-                  0,
+                  /* None */0,
                   param[1],
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,[0,[11,"The type parameter",0],"The type parameter"]);
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "The type parameter",
+                               /* End_of_format */0],
+                              "The type parameter"]);
                     },
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,"does not meet its constraint: it should be",0],
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "does not meet its constraint: it should be",
+                               /* End_of_format */0],
                               "does not meet its constraint: it should be"]);
                     });
          
@@ -3670,27 +3970,32 @@ var
          var params=param[2];
          
          Printtyp["reset_and_mark_loops_list"]
-          (/* :: */[0,params,/* :: */[0,cstrs,0]]);
+          (/* :: */[0,params,/* :: */[0,cstrs,/* [] */0]]);
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The abbreviation ",
-                     [15,
-                      [17,
-                       [0,"@ ",1,0],
-                       [11,
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* String_literal */11,
                         "is used with parameters",
-                        [17,
-                         [0,"@ ",1,0],
-                         [15,
-                          [17,
-                           [0,"@ ",1,0],
-                           [11,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String_literal */11,
                             "wich are incompatible with constraints",
-                            [17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]]]]]]],
                    "@[The abbreviation %a@ is used with parameters@ %a@ wich are incompatible with constraints@ %a@]"],
                   Printtyp["ident"],
                   param[1],
@@ -3703,64 +4008,74 @@ var
         case 15:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"Unbound instance variable ",[2,0,0]],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "Unbound instance variable ",
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
                    "Unbound instance variable %s"],
                   param[1]);
          
         case 16:
          var
           print_common=
-           function(ppf$1,kind,ty0,real,lab,ty$1)
+           function(ppf,kind,ty0,real,lab,ty)
             {if(real)
               {var ty1=ty0;}
              else
-              {var ty1=Btype["newgenty"](/* Tobject */[4,ty0,[0,0]]);}
+              {var
+                ty1=
+                 Btype["newgenty"](/* Tobject */[4,ty0,[0,/* None */0]]);
+               }
              
              Printtyp["mark_loops"](ty1);
              return Format["fprintf"]
-                     (ppf$1,
-                      [0,
-                       [11,
+                     (ppf,
+                      [/* Format */0,
+                       [/* String_literal */11,
                         "The ",
-                        [2,
-                         0,
-                         [12,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
                           32,
-                          [2,
-                           0,
-                           [17,
-                            [0,"@ ",1,0],
-                            [11,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String_literal */11,
                              "has type",
-                             [17,
-                              [0,"@;<1 2>",1,2],
-                              [15,
-                               [17,
-                                [0,"@ ",1,0],
-                                [11,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;<1 2>",1,2],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* String_literal */11,
                                  "where",
-                                 [17,[0,"@ ",1,0],[15,[17,[0,"@ ",1,0],[11,"is unbound",0]]]]]]]]]]]]]],
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@ ",1,0],
+                                  [/* Alpha */15,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@ ",1,0],
+                                    [/* String_literal */11,"is unbound",/* End_of_format */0]]]]]]]]]]]]]],
                        "The %s %s@ has type@;<1 2>%a@ where@ %a@ is unbound"],
                       kind,
                       lab,
                       Printtyp["type_expr"],
-                      ty$1,
+                      ty,
                       Printtyp["type_expr"],
                       ty0);
              };
          
          var
           print_reason=
-           function(ppf$1,param$1)
-            {switch(param$1)
+           function(ppf,param$1)
+            {switch(param$1[0])
               {case 0:
                 return print_common
-                        (ppf$1,"method",param$1[1],param$1[2],param$1[3],param$1[4]);
+                        (ppf,"method",param$1[1],param$1[2],param$1[3],param$1[4]);
                 
                case 1:
                 return print_common
-                        (ppf$1,
+                        (ppf,
                          "instance variable",
                          param$1[1],
                          param$1[2],
@@ -3770,22 +4085,34 @@ var
                }
              };
          
-         Printtyp["reset"](0);
+         Printtyp["reset"](/* () */0);
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<v>",0],"<v>"]],
-                    [18,
-                     [1,[0,0,""]],
-                     [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<v>",/* End_of_format */0],
+                      "<v>"]],
+                    [/* Formatting_gen */18,
+                     [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                     [/* String_literal */11,
                       "Some type variables are unbound in this type:",
-                      [17,
-                       [0,"@;<1 2>",1,2],
-                       [16,
-                        [17,
-                         0,
-                         [17,[0,"@ ",1,0],[18,[1,[0,0,""]],[15,[17,0,[17,0,0]]]]]]]]]]],
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@;<1 2>",1,2],
+                       [/* Theta */16,
+                        [/* Formatting_lit */17,
+                         /* Close_box */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              /* End_of_format */0]]]]]]]]]]],
                    "@[<v>@[Some type variables are unbound in this type:@;<1 2>%t@]@ @[%a@]@]"],
                   param[1],
                   print_reason,
@@ -3794,21 +4121,28 @@ var
         case 17:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<v>",0],"<v>"]],
-                    [18,
-                     [1,[0,0,""]],
-                     [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<v>",/* End_of_format */0],
+                      "<v>"]],
+                    [/* Formatting_gen */18,
+                     [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                     [/* String_literal */11,
                       "Self type should not occur in the non-generic type",
-                      [17,
-                       [0,"@;<1 2>",1,2],
-                       [15,
-                        [17,
-                         0,
-                         [17,
-                          [0,"@,",0,0],
-                          [11,"It would escape the scope of its class",[17,0,0]]]]]]]]],
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@;<1 2>",1,2],
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         /* Close_box */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@,",0,0],
+                          [/* String_literal */11,
+                           "It would escape the scope of its class",
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]],
                    "@[<v>@[Self type should not occur in the non-generic type@;<1 2>%a@]@,It would escape the scope of its class@]"],
                   Printtyp["type_scheme"],
                   param[1]);
@@ -3816,21 +4150,23 @@ var
         case 18:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The type of this class,",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [12,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
                         44,
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
                           "contains type variables that cannot be generalized",
-                          [17,0,0]]]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[The type of this class,@ %a,@ contains type variables that cannot be generalized@]"],
                   Printtyp["class_declaration"](param[1]),
                   param[2]);
@@ -3838,21 +4174,27 @@ var
         case 19:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The type of self cannot be coerced to",
-                     [17,
-                      [0,"@ ",1,0],
-                      [11,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* String_literal */11,
                        "the type of the current class:",
-                       [17,
-                        [0,"@ ",1,0],
-                        [15,
-                         [12,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Alpha */15,
+                         [/* Char_literal */12,
                           46,
-                          [17,4,[11,"Some occurrences are contravariant",[17,0,0]]]]]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Flush_newline */4,
+                           [/* String_literal */11,
+                            "Some occurrences are contravariant",
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]]]]],
                    "@[The type of self cannot be coerced to@ the type of the current class:@ %a.@.Some occurrences are contravariant@]"],
                   Printtyp["type_scheme"],
                   param[1]);
@@ -3860,36 +4202,45 @@ var
         case 20:
          Format["fprintf"]
           (ppf,
-           [0,
-            [18,
-             [1,[0,0,""]],
-             [11,
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+             [/* String_literal */11,
               "The type of this class,",
-              [17,
-               [0,"@ ",1,0],
-               [15,
-                [12,
+              [/* Formatting_lit */17,
+               [/* Break */0,"@ ",1,0],
+               [/* Alpha */15,
+                [/* Char_literal */12,
                  44,
-                 [17,
-                  [0,"@ ",1,0],
-                  [11,
+                 [/* Formatting_lit */17,
+                  [/* Break */0,"@ ",1,0],
+                  [/* String_literal */11,
                    "contains non-collapsible conjunctive types in constraints",
-                   [17,0,0]]]]]]]],
+                   [/* Formatting_lit */17,
+                    /* Close_box */0,
+                    /* End_of_format */0]]]]]]]],
             "@[The type of this class,@ %a,@ contains non-collapsible conjunctive types in constraints@]"],
            Printtyp["class_declaration"](param[1]),
            param[2]);
          return Printtyp["report_unification_error"]
                  (ppf,
                   env,
-                  0,
+                  /* None */0,
                   param[3],
-                  function(ppf$1)
-                   {return Format["fprintf"](ppf$1,[0,[11,"Type",0],"Type"]);},
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,"is not compatible with type",0],
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,"Type",/* End_of_format */0],
+                              "Type"]);
+                    },
+                  function(ppf)
+                   {return Format["fprintf"]
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "is not compatible with type",
+                               /* End_of_format */0],
                               "is not compatible with type"]);
                     });
          
@@ -3897,41 +4248,53 @@ var
          return Printtyp["report_unification_error"]
                  (ppf,
                   env,
-                  0,
+                  /* None */0,
                   param[1],
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,
-                              [11,"This object is expected to have type",0],
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "This object is expected to have type",
+                               /* End_of_format */0],
                               "This object is expected to have type"]);
                     },
-                  function(ppf$1)
+                  function(ppf)
                    {return Format["fprintf"]
-                            (ppf$1,
-                             [0,[11,"but actually has type",0],"but actually has type"]);
+                            (ppf,
+                             [/* Format */0,
+                              [/* String_literal */11,
+                               "but actually has type",
+                               /* End_of_format */0],
+                              "but actually has type"]);
                     });
          
         case 22:
-         if(param[2]=0)
-          {var match$1=[0,"mutable","immutable"];}
+         if(param[2]===/* Immutable */0)
+          {var match$1=[/* tuple */0,"mutable","immutable"];}
          else
-          {var match$1=[0,"immutable","mutable"];}
+          {var match$1=[/* tuple */0,"immutable","mutable"];}
          
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The instance variable is ",
-                     [2,
-                      0,
-                      [12,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* Char_literal */12,
                        59,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,"it cannot be redefined as ",[2,0,[17,0,0]]]]]]]],
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
+                         "it cannot be redefined as ",
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[The instance variable is %s;@ it cannot be redefined as %s@]"],
                   match$1[1],
                   match$1[2]);
@@ -3943,32 +4306,44 @@ var
           {case "":
             return Format["fprintf"]
                     (ppf,
-                     [0,
-                      [18,
-                       [1,[0,0,""]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                       [/* String_literal */11,
                         "This inheritance does not override any method",
-                        [17,[0,"@ ",1,0],[2,0,[17,0,0]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]],
                       "@[This inheritance does not override any method@ %s@]"],
                      "instance variable");
             
            default:
             return Format["fprintf"]
                     (ppf,
-                     [0,
-                      [18,
-                       [1,[0,0,""]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                       [/* String_literal */11,
                         "The ",
-                        [2,
-                         0,
-                         [11,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
                           " `",
-                          [2,
-                           0,
-                           [12,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Char_literal */12,
                             39,
-                            [17,[0,"@ ",1,0],[11,"has no previous definition",[17,0,0]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String_literal */11,
+                              "has no previous definition",
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]]]],
                       "@[The %s `%s'@ has no previous definition@]"],
                      param[1],
                      name);
@@ -3977,22 +4352,26 @@ var
         case 24:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The ",
-                     [2,
-                      0,
-                      [11,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String_literal */11,
                        " `",
-                       [2,
-                        0,
-                        [12,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Char_literal */12,
                          39,
-                         [17,
-                          [0,"@ ",1,0],
-                          [11,"has multiple definitions in this object",[17,0,0]]]]]]]]],
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
+                           "has multiple definitions in this object",
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]],
                    "@[The %s `%s'@ has multiple definitions in this object@]"],
                   param[1],
                   param[2]);
@@ -4011,16 +4390,16 @@ var
  match$1=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer"]
                  (param[2],report_error$1(param[3]),param[4])];
         }
       else
-       {if(param[1]=Error_forward)
+       {if(param[1]===Error_forward)
          {return /* Some */[0,param[2]];}
         else
-         {return 0;}
+         {return /* None */0;}
         }
       });
 

@@ -1,135 +1,140 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Docstrings=require("Docstrings");
-var Format=require("Format");
-var Misc=require("Misc");
-var Lexing=require("Lexing");
-var Bytes=require("Bytes");
-var Location=require("Location");
-var Hashtbl=require("Hashtbl");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Docstrings=require("./docstrings.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Lexing=require("./lexing.js");
+var Bytes=require("./bytes.js");
+var Location=require("./location.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Lexer.Error",0]);
 
 var
  keyword_table=
   Misc["create_hashtable"]
    (149,
-    [0,
-     [0,"and",2],
-     [0,
-      [0,"as",3],
-      [0,
-       [0,"assert",4],
-       [0,
-        [0,"begin",10],
-        [0,
-         [0,"class",11],
-         [0,
-          [0,"constraint",17],
-          [0,
-           [0,"do",18],
-           [0,
-            [0,"done",19],
-            [0,
-             [0,"downto",22],
-             [0,
-              [0,"else",23],
-              [0,
-               [0,"end",24],
-               [0,
-                [0,"exception",27],
-                [0,
-                 [0,"external",28],
-                 [0,
-                  [0,"false",29],
-                  [0,
-                   [0,"for",30],
-                   [0,
-                    [0,"fun",31],
-                    [0,
-                     [0,"function",32],
-                     [0,
-                      [0,"functor",33],
-                      [0,
-                       [0,"if",37],
-                       [0,
-                        [0,"in",38],
-                        [0,
-                         [0,"include",39],
-                         [0,
-                          [0,"inherit",40],
-                          [0,
-                           [0,"initializer",41],
-                           [0,
-                            [0,"lazy",42],
-                            [0,
-                             [0,"let",53],
-                             [0,
-                              [0,"match",58],
-                              [0,
-                               [0,"method",59],
-                               [0,
-                                [0,"module",63],
-                                [0,
-                                 [0,"mutable",64],
-                                 [0,
-                                  [0,"new",65],
-                                  [0,
-                                   [0,"nonrec",66],
-                                   [0,
-                                    [0,"object",67],
-                                    [0,
-                                     [0,"of",68],
-                                     [0,
-                                      [0,"open",69],
-                                      [0,
-                                       [0,"or",70],
-                                       [0,
-                                        [0,"private",75],
-                                        [0,
-                                         [0,"rec",80],
-                                         [0,
-                                          [0,"sig",85],
-                                          [0,
-                                           [0,"struct",87],
-                                           [0,
-                                            [0,"then",88],
-                                            [0,
-                                             [0,"to",90],
-                                             [0,
-                                              [0,"true",91],
-                                              [0,
-                                               [0,"try",92],
-                                               [0,
-                                                [0,"type",93],
-                                                [0,
-                                                 [0,"val",95],
-                                                 [0,
-                                                  [0,"virtual",96],
-                                                  [0,
-                                                   [0,"when",97],
-                                                   [0,
-                                                    [0,"while",98],
-                                                    [0,
-                                                     [0,"with",99],
-                                                     [0,
-                                                      [0,"mod",[5,"mod"]],
-                                                      [0,
-                                                       [0,"land",[5,"land"]],
-                                                       [0,
-                                                        [0,"lor",[5,"lor"]],
-                                                        [0,
-                                                         [0,"lxor",[5,"lxor"]],
-                                                         [0,
-                                                          [0,"lsl",[6,"lsl"]],
-                                                          [0,[0,"lsr",[6,"lsr"]],[0,[0,"asr",[6,"asr"]],0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
+    [/* :: */0,
+     [/* tuple */0,"and",/* AND */2],
+     [/* :: */0,
+      [/* tuple */0,"as",/* AS */3],
+      [/* :: */0,
+       [/* tuple */0,"assert",/* ASSERT */4],
+       [/* :: */0,
+        [/* tuple */0,"begin",/* BEGIN */10],
+        [/* :: */0,
+         [/* tuple */0,"class",/* CLASS */11],
+         [/* :: */0,
+          [/* tuple */0,"constraint",/* CONSTRAINT */17],
+          [/* :: */0,
+           [/* tuple */0,"do",/* DO */18],
+           [/* :: */0,
+            [/* tuple */0,"done",/* DONE */19],
+            [/* :: */0,
+             [/* tuple */0,"downto",/* DOWNTO */22],
+             [/* :: */0,
+              [/* tuple */0,"else",/* ELSE */23],
+              [/* :: */0,
+               [/* tuple */0,"end",/* END */24],
+               [/* :: */0,
+                [/* tuple */0,"exception",/* EXCEPTION */27],
+                [/* :: */0,
+                 [/* tuple */0,"external",/* EXTERNAL */28],
+                 [/* :: */0,
+                  [/* tuple */0,"false",/* FALSE */29],
+                  [/* :: */0,
+                   [/* tuple */0,"for",/* FOR */30],
+                   [/* :: */0,
+                    [/* tuple */0,"fun",/* FUN */31],
+                    [/* :: */0,
+                     [/* tuple */0,"function",/* FUNCTION */32],
+                     [/* :: */0,
+                      [/* tuple */0,"functor",/* FUNCTOR */33],
+                      [/* :: */0,
+                       [/* tuple */0,"if",/* IF */37],
+                       [/* :: */0,
+                        [/* tuple */0,"in",/* IN */38],
+                        [/* :: */0,
+                         [/* tuple */0,"include",/* INCLUDE */39],
+                         [/* :: */0,
+                          [/* tuple */0,"inherit",/* INHERIT */40],
+                          [/* :: */0,
+                           [/* tuple */0,"initializer",/* INITIALIZER */41],
+                           [/* :: */0,
+                            [/* tuple */0,"lazy",/* LAZY */42],
+                            [/* :: */0,
+                             [/* tuple */0,"let",/* LET */53],
+                             [/* :: */0,
+                              [/* tuple */0,"match",/* MATCH */58],
+                              [/* :: */0,
+                               [/* tuple */0,"method",/* METHOD */59],
+                               [/* :: */0,
+                                [/* tuple */0,"module",/* MODULE */63],
+                                [/* :: */0,
+                                 [/* tuple */0,"mutable",/* MUTABLE */64],
+                                 [/* :: */0,
+                                  [/* tuple */0,"new",/* NEW */65],
+                                  [/* :: */0,
+                                   [/* tuple */0,"nonrec",/* NONREC */66],
+                                   [/* :: */0,
+                                    [/* tuple */0,"object",/* OBJECT */67],
+                                    [/* :: */0,
+                                     [/* tuple */0,"of",/* OF */68],
+                                     [/* :: */0,
+                                      [/* tuple */0,"open",/* OPEN */69],
+                                      [/* :: */0,
+                                       [/* tuple */0,"or",/* OR */70],
+                                       [/* :: */0,
+                                        [/* tuple */0,"private",/* PRIVATE */75],
+                                        [/* :: */0,
+                                         [/* tuple */0,"rec",/* REC */80],
+                                         [/* :: */0,
+                                          [/* tuple */0,"sig",/* SIG */85],
+                                          [/* :: */0,
+                                           [/* tuple */0,"struct",/* STRUCT */87],
+                                           [/* :: */0,
+                                            [/* tuple */0,"then",/* THEN */88],
+                                            [/* :: */0,
+                                             [/* tuple */0,"to",/* TO */90],
+                                             [/* :: */0,
+                                              [/* tuple */0,"true",/* TRUE */91],
+                                              [/* :: */0,
+                                               [/* tuple */0,"try",/* TRY */92],
+                                               [/* :: */0,
+                                                [/* tuple */0,"type",/* TYPE */93],
+                                                [/* :: */0,
+                                                 [/* tuple */0,"val",/* VAL */95],
+                                                 [/* :: */0,
+                                                  [/* tuple */0,"virtual",/* VIRTUAL */96],
+                                                  [/* :: */0,
+                                                   [/* tuple */0,"when",/* WHEN */97],
+                                                   [/* :: */0,
+                                                    [/* tuple */0,"while",/* WHILE */98],
+                                                    [/* :: */0,
+                                                     [/* tuple */0,"with",/* WITH */99],
+                                                     [/* :: */0,
+                                                      [/* tuple */0,"mod",[/* INFIXOP3 */5,"mod"]],
+                                                      [/* :: */0,
+                                                       [/* tuple */0,"land",[/* INFIXOP3 */5,"land"]],
+                                                       [/* :: */0,
+                                                        [/* tuple */0,"lor",[/* INFIXOP3 */5,"lor"]],
+                                                        [/* :: */0,
+                                                         [/* tuple */0,"lxor",[/* INFIXOP3 */5,"lxor"]],
+                                                         [/* :: */0,
+                                                          [/* tuple */0,"lsl",[/* INFIXOP4 */6,"lsl"]],
+                                                          [/* :: */0,
+                                                           [/* tuple */0,"lsr",[/* INFIXOP4 */6,"lsr"]],
+                                                           [/* :: */0,
+                                                            [/* tuple */0,"asr",[/* INFIXOP4 */6,"asr"]],
+                                                            /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
 
-var initial_string_buffer="unknown primitive:caml_create_string";
+var initial_string_buffer=CamlPrimitive["caml_create_string"](256);
 
 var string_buff=[0,initial_string_buffer];
 
@@ -138,28 +143,30 @@ var string_index=[0,0];
 var
  reset_string_buffer=
   function(param)
-   {string_buff[1]=initial_string_buffer,0;return string_index[1]=0,0;};
+   {string_buff[1]=initial_string_buffer;return string_index[1]=0,0;};
 
 var
  store_string_char=
   function(c)
    {if(string_index[1]>=string_buff[1]["length"])
-     {var new_buff="unknown primitive:caml_create_string";
+     {var
+       new_buff=
+        CamlPrimitive["caml_create_string"](string_buff[1]["length"]*2);
       
       Bytes["blit"](string_buff[1],0,new_buff,0,string_buff[1]["length"]),
       string_buff[1]=
-      new_buff,
-      0}
+      new_buff}
     else
      {}
     
-    string_buff[1][string_index[1]]=c,0;
+    string_buff[1][string_index[1]]=c;
     return string_index[0]++;
     };
 
 var
  store_string=
-  function(s){for(var i=0;i<=s["length"]-1;i++){store_string_char(s[i])}};
+  function(s)
+   {for(var i=0;i<=s["length"]-1;i++){store_string_char(s[i])}return 0;};
 
 var
  store_lexeme=
@@ -170,34 +177,34 @@ var
   function(param)
    {var s=Bytes["sub_string"](string_buff[1],0,string_index[1]);
     
-    string_buff[1]=initial_string_buffer,0;
+    string_buff[1]=initial_string_buffer;
     return s;
     };
 
 var string_start_loc=[0,Location["none"]];
 
-var comment_start_loc=[0,0];
+var comment_start_loc=[0,/* [] */0];
 
-var in_comment=function(param){return comment_start_loc[1]!=0;};
+var in_comment=function(param){return comment_start_loc[1]!==/* [] */0;};
 
-var is_in_string=[0,0];
+var is_in_string=[0,/* false */0];
 
 var in_string=function(param){return is_in_string[1];};
 
-var print_warnings=[0,1];
+var print_warnings=[0,/* true */1];
 
 var
  with_comment_buffer=
   function(comment,lexbuf)
    {var start_loc=Location["curr"](lexbuf);
     
-    comment_start_loc[1]=/* :: */[0,start_loc,0],0;
-    reset_string_buffer(0);
+    comment_start_loc[1]=/* :: */[0,start_loc,/* [] */0];
+    reset_string_buffer(/* () */0);
     var end_loc=comment(lexbuf);
     
-    var s=get_stored_string(0);
+    var s=get_stored_string(/* () */0);
     
-    reset_string_buffer(0);
+    reset_string_buffer(/* () */0);
     var loc=/* record */[0,start_loc[1],end_loc[2],start_loc[3]];
     
     return /* tuple */[0,s,loc];
@@ -212,7 +219,7 @@ var
      {if(c>=117)
        {exit=96;}
       else
-       {switch((-110+c)[0])
+       {switch(-110+c)
          {case 0:return 10;
           case 1:exit=96;
           case 2:exit=96;
@@ -224,7 +231,7 @@ var
         }
       }
     else
-     {if(c!=98){exit=96;}else{return 8;}}
+     {if(c!==98){exit=96;}else{return 8;}}
     
     switch(exit){case 96:return c;}
     };
@@ -241,7 +248,7 @@ var
       (Lexing["lexeme_char"](lexbuf,i+2)-48);
     
     if(c<0||c>255)
-     {if(in_comment(0))
+     {if(in_comment(/* () */0))
        {return 120;}
       else
        {throw [0,
@@ -276,26 +283,36 @@ var
 
 var
  cvt_int_literal=
-  function(s){return -"unknown primitive:caml_int_of_string";};
+  function(s)
+   {return -CamlPrimitive["caml_int_of_string"](Pervasives["^"]("-",s));};
 
 var
  cvt_int32_literal=
-  function(s){return -"unknown primitive:caml_int32_of_string";};
+  function(s)
+   {return -CamlPrimitive["caml_int32_of_string"]
+            (Pervasives["^"]("-",$$String["sub"](s,0,s["length"]-1)));
+    };
 
 var
  cvt_int64_literal=
-  function(s){return -"unknown primitive:caml_int64_of_string";};
+  function(s)
+   {return -CamlPrimitive["caml_int64_of_string"]
+            (Pervasives["^"]("-",$$String["sub"](s,0,s["length"]-1)));
+    };
 
 var
  cvt_nativeint_literal=
-  function(s){return -"unknown primitive:caml_nativeint_of_string";};
+  function(s)
+   {return -CamlPrimitive["caml_nativeint_of_string"]
+            (Pervasives["^"]("-",$$String["sub"](s,0,s["length"]-1)));
+    };
 
 var
  remove_underscores=
   function(s)
    {var l=s["length"];
     
-    var b="unknown primitive:caml_create_string";
+    var b=CamlPrimitive["caml_create_string"](l);
     
     var
      remove=
@@ -305,8 +322,8 @@ var
         else
          {var c=s[src];
           
-          if(c!=95)
-           {b[dst]=c,0;return remove(src+1,dst+1);}
+          if(c!==95)
+           {b[dst]=c;return remove(src+1,dst+1);}
           else
            {return remove(src+1,dst);}
           }
@@ -350,19 +367,19 @@ var
            0;
     };
 
-var preprocessor=[0,0];
+var preprocessor=[0,/* None */0];
 
-var escaped_newlines=[0,0];
+var escaped_newlines=[0,/* false */0];
 
 var
  warn_latin1=
   function(lexbuf)
    {return Location["prerr_warning"]
             (Location["curr"](lexbuf),
-             [0,"ISO-Latin1 characters in identifiers"]);
+             [/* Deprecated */0,"ISO-Latin1 characters in identifiers"]);
     };
 
-var comment_list=[0,0];
+var comment_list=[0,/* [] */0];
 
 var
  add_comment=
@@ -385,13 +402,15 @@ var comments=function(param){return List["rev"](comment_list[1]);};
 var
  report_error=
   function(ppf,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"String literal not terminated",0],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "String literal not terminated",
+                    /* End_of_format */0],
                    "String literal not terminated"]);
          
         }}
@@ -400,33 +419,48 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"Illegal character (",[2,0,[12,41,0]]],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "Illegal character (",
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,41,/* End_of_format */0]]],
                    "Illegal character (%s)"],
                   Char["escaped"](param[1]));
          
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "Illegal backslash escape in string or character (",
-                    [2,0,[12,41,0]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,41,/* End_of_format */0]]],
                    "Illegal backslash escape in string or character (%s)"],
                   param[1]);
          
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  [0,[11,"Comment not terminated",0],"Comment not terminated"]);
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "Comment not terminated",
+                    /* End_of_format */0],
+                   "Comment not terminated"]);
          
         case 3:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "This comment contains an unterminated string literal",
-                    [17,4,[15,[11,"String literal begins here",0]]]],
+                    [/* Formatting_lit */17,
+                     /* Flush_newline */4,
+                     [/* Alpha */15,
+                      [/* String_literal */11,
+                       "String literal begins here",
+                       /* End_of_format */0]]]],
                    "This comment contains an unterminated string literal@.%aString literal begins here"],
                   Location["print_error"],
                   param[2]);
@@ -434,22 +468,24 @@ var
         case 4:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [12,
+                  [/* Format */0,
+                   [/* Char_literal */12,
                     96,
-                    [2,
-                     0,
-                     [11,"' is a keyword, it cannot be used as label name",0]]],
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      "' is a keyword, it cannot be used as label name",
+                      /* End_of_format */0]]],
                    "`%s' is a keyword, it cannot be used as label name"],
                   param[1]);
          
         case 5:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "Integer literal exceeds the range of representable integers of type ",
-                    [2,0,0]],
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
                    "Integer literal exceeds the range of representable integers of type %s"],
                   param[1]);
          
@@ -460,17 +496,17 @@ var
  match=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer"](param[3],report_error,param[2])];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 var
  __ocaml_lex_tables=
-  [0,
+  [/* record */0,
    "\0\0¤ÿ¥ÿà\0\x03\x01&\x01I\x01l\x01\x01¼ÿ²\x01×\x01Äÿ[\0ü\x01\x1f\x02D\0G\0T\0B\x02Õÿ×ÿÚÿe\x02Ä\x02ç\x02Y\0ÿ\0\x05\x03ìÿR\x03s\x03¼\x03Œ\x04\\x05,\x06\x0b\x07g\x077\b}\0þÿ\x01\0\x05\0ÿÿ\x06\0\x07\0\x16\t4\t\x04\núÿùÿÔ\n¤\x0b÷ÿöÿíÿîÿïÿ]\0v\x02[\0n\0ç\x02\x07\x04×\x04e\x02þ\x02v\0Âÿëÿx\x05„\f`\0q\0\x0b\0êÿéÿåÿå\x04€\0s\0èÿà\0u\0çÿw\x06“\0æÿ’\0áÿ”\0àÿÙ\0„\fßÿ«\f¯\b®\x06Þÿ\f\0\x18\x01,\x01P\x01-\x01Þÿ\r\0Ù\f\0\r#\rI\rÒÿÎÿÏÿÐÿÌÿl\rš\0·\0ÅÿÆÿÇÿÇ\0¶ÿ¸ÿ¿ÿ\r»ÿ½ÿ²\rÕ\rø\r\x1b\x0eë\x05óÿôÿ\x11\0õÿ>\x02¬\x07ýÿß\0ñ\0ÿÿþÿüÿÈ\x07-\x0eú\0ü\0\x12\0ûÿúÿùÿ€\t\x1e\x03\x03\x01øÿ\\x03\x04\x01÷ÿO\n\x05\x01öÿ+\x01Ç\x01÷ÿøÿùÿ;\x01v\x0eÿÿúÿ\x1f\x0b$\x04ýÿ&\x01E\x01^\x01ü\x04üÿï\x0bûÿ_\x01µ\x01üÿî\x06þÿÿÿo\x01p\x01ýÿJ\x07\x10\x01\x13\x012\x01?\x01\x1a\x01k\x01!\x01\x13\0ÿÿ",
    "ÿÿÿÿÿÿX\0W\0T\0S\0L\0J\0ÿÿA\0>\0ÿÿ7\x006\x004\x002\0.\0,\0O\0ÿÿÿÿÿÿ#\0\"\0)\0'\0&\0<\0ÿÿ\x0e\0\x0e\0\r\0\f\0\x0b\0\n\0\x07\0\x04\0\x03\0\x02\0ÿÿ[\0[\0ÿÿÿÿÿÿR\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x0f\0ÿÿÿÿÿÿ\x0e\0\x0e\0\x0e\0\x0f\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1a\0\x1a\0\x1a\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1b\0ÿÿ\x1c\0ÿÿ\x1d\0V\0ÿÿY\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ$\0U\0P\0+\0ÿÿÿÿÿÿÿÿÿÿ5\0F\0E\0ÿÿÿÿÿÿH\0ÿÿÿÿÿÿ?\0ÿÿÿÿQ\0K\0N\0M\0ÿÿÿÿÿÿ\f\0ÿÿ\f\0\f\0ÿÿ\f\0\f\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\b\0\b\0ÿÿÿÿ\x05\0\x05\0ÿÿ\x01\0\x05\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x03\0ÿÿÿÿ\x03\0ÿÿÿÿÿÿ\x02\0ÿÿÿÿ\x01\0ÿÿÿÿÿÿÿÿÿÿ",
    "\x01\0\0\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿÿÿÿÿÿÿH\0ÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿ\0\0\0\0ÿÿÿÿ\0\0\0\0\0\0\0\0\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0\0ÿÿM\0ÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿ\0\0ÿÿ\0\0ÿÿÿÿ\0\0ÿÿd\0ÿÿ\0\0ÿÿd\0e\0d\0g\0\0\0ÿÿÿÿÿÿÿÿÿÿ\0\0\0\0\0\0\0\0\0\0ÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿ\0\0\0\0\0\0ÿÿ\0\0\0\0ÿÿÿÿÿÿÿÿ…\0\0\0\0\0ÿÿ\0\0“\0ÿÿ\0\0ÿÿÿÿ\0\0\0\0\0\0ÿÿÿÿÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿ¥\0\0\0\0\0\0\0ÿÿ«\0\0\0\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿ\0\0ÿÿ\0\0ÿÿ¸\0\0\0ÿÿ\0\0\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÂ\0Å\0ÿÿÅ\0ÿÿÿÿ\0\0",
@@ -486,7 +522,7 @@ var
 var
  token=
   function(lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=CamlPrimitive["caml_make_vect"](8,-1);
     return __ocaml_lex_token_rec(lexbuf,0);
     };
 
@@ -504,7 +540,7 @@ var
       return __ocaml_lex_token_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          if(!escaped_newlines[1])
           {throw [0,
@@ -515,17 +551,18 @@ var
          else
           {}
          
-         update_loc(lexbuf,0,1,0,0);
+         update_loc(lexbuf,/* None */0,1,/* false */0,0);
          return token(lexbuf);
          
-        case 1:update_loc(lexbuf,0,1,0,0);return 100;
+        case 1:
+         update_loc(lexbuf,/* None */0,1,/* false */0,0);return /* EOL */100;
         case 2:return token(lexbuf);
-        case 3:return 94;
-        case 4:return 89;
+        case 3:return /* UNDERSCORE */94;
+        case 4:return /* TILDE */89;
         case 5:return /* LABEL */[10,get_label_name(lexbuf)];
         case 6:
          warn_latin1(lexbuf);return /* LABEL */[10,get_label_name(lexbuf)];
-        case 7:return 76;
+        case 7:return /* QUESTION */76;
         case 8:return /* OPTLABEL */[13,get_label_name(lexbuf)];
         case 9:
          warn_latin1(lexbuf);return /* OPTLABEL */[13,get_label_name(lexbuf)];
@@ -535,7 +572,11 @@ var
          try
           {return Hashtbl["find"](keyword_table,s);}
          catch(exn)
-          {if(exn=Not_found){return /* LIDENT */[11,s];}else{throw exn;}}
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {return /* LIDENT */[11,s];}
+           else
+            {throw exn;}
+           }
          
         case 11:
          warn_latin1(lexbuf);return /* LIDENT */[11,Lexing["lexeme"](lexbuf)];
@@ -546,8 +587,12 @@ var
          try
           {return /* INT */[7,cvt_int_literal(Lexing["lexeme"](lexbuf))];}
          catch(exn$1)
-          {if(exn$1[1]=Failure)
-            {throw [0,$$Error,[5,"int"],Location["curr"](lexbuf)];}
+          {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {throw [0,
+                    $$Error,
+                    [/* Literal_overflow */5,"int"],
+                    Location["curr"](lexbuf)];
+             }
            else
             {throw exn$1;}
            }
@@ -558,8 +603,12 @@ var
          try
           {return /* INT32 */[8,cvt_int32_literal(Lexing["lexeme"](lexbuf))];}
          catch(exn$2)
-          {if(exn$2[1]=Failure)
-            {throw [0,$$Error,[5,"int32"],Location["curr"](lexbuf)];}
+          {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {throw [0,
+                    $$Error,
+                    [/* Literal_overflow */5,"int32"],
+                    Location["curr"](lexbuf)];
+             }
            else
             {throw exn$2;}
            }
@@ -568,8 +617,12 @@ var
          try
           {return /* INT64 */[9,cvt_int64_literal(Lexing["lexeme"](lexbuf))];}
          catch(exn$3)
-          {if(exn$3[1]=Failure)
-            {throw [0,$$Error,[5,"int64"],Location["curr"](lexbuf)];}
+          {if(exn$3[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {throw [0,
+                    $$Error,
+                    [/* Literal_overflow */5,"int64"],
+                    Location["curr"](lexbuf)];
+             }
            else
             {throw exn$3;}
            }
@@ -580,41 +633,48 @@ var
                    cvt_nativeint_literal(Lexing["lexeme"](lexbuf))];
            }
          catch(exn$4)
-          {if(exn$4[1]=Failure)
-            {throw [0,$$Error,[5,"nativeint"],Location["curr"](lexbuf)];}
+          {if(exn$4[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {throw [0,
+                    $$Error,
+                    [/* Literal_overflow */5,"nativeint"],
+                    Location["curr"](lexbuf)];
+             }
            else
             {throw exn$4;}
            }
          
         case 19:
-         reset_string_buffer(0);
-         is_in_string[1]=1,0;
+         reset_string_buffer(/* () */0);
+         is_in_string[1]=/* true */1;
          var string_start=lexbuf[11];
          
-         string_start_loc[1]=Location["curr"](lexbuf),0;
+         string_start_loc[1]=Location["curr"](lexbuf);
          string(lexbuf);
-         is_in_string[1]=0,0;
-         lexbuf[11]=string_start,0;
-         return /* STRING */[16,/* tuple */[0,get_stored_string(0),0]];
+         is_in_string[1]=/* false */0;
+         lexbuf[11]=string_start;
+         return /* STRING */[16,
+                 /* tuple */[0,get_stored_string(/* () */0),/* None */0]];
          
         case 20:
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          var delim=Lexing["lexeme"](lexbuf);
          
          var delim$1=$$String["sub"](delim,1,delim["length"]-2);
          
-         is_in_string[1]=1,0;
+         is_in_string[1]=/* true */1;
          var string_start$1=lexbuf[11];
          
-         string_start_loc[1]=Location["curr"](lexbuf),0;
+         string_start_loc[1]=Location["curr"](lexbuf);
          quoted_string(delim$1,lexbuf);
-         is_in_string[1]=0,0;
-         lexbuf[11]=string_start$1,0;
+         is_in_string[1]=/* false */0;
+         lexbuf[11]=string_start$1;
          return /* STRING */[16,
-                 /* tuple */[0,get_stored_string(0),/* Some */[0,delim$1]]];
+                 /* tuple */[0,
+                  get_stored_string(/* () */0),
+                  /* Some */[0,delim$1]]];
          
         case 21:
-         update_loc(lexbuf,0,1,0,1);
+         update_loc(lexbuf,/* None */0,1,/* false */0,1);
          return /* CHAR */[0,Lexing["lexeme_char"](lexbuf,1)];
          
         case 22:return /* CHAR */[0,Lexing["lexeme_char"](lexbuf,1)];
@@ -651,9 +711,9 @@ var
          var
           match$3=
            with_comment_buffer
-            (function(lexbuf$1)
+            (function(lexbuf)
               {store_string(Pervasives["^"]("*",stars));
-               return comment(lexbuf$1);
+               return comment(lexbuf);
                },
              lexbuf);
          
@@ -661,7 +721,8 @@ var
          
         case 30:
          if(print_warnings[1])
-          {Location["prerr_warning"](Location["curr"](lexbuf),0)}
+          {Location["prerr_warning"]
+            (Location["curr"](lexbuf),/* Comment_start */0)}
          else
           {}
          
@@ -678,82 +739,81 @@ var
         case 32:
          var loc=Location["curr"](lexbuf);
          
-         Location["prerr_warning"](loc,1);
-         lexbuf[6]=lexbuf[6]-1,0;
+         Location["prerr_warning"](loc,/* Comment_not_end */1);
+         lexbuf[6]=lexbuf[6]-1;
          var curpos=lexbuf[12];
          
-         lexbuf[12]=
-         /* record */[0,curpos[1],curpos[2],curpos[3],curpos[4]-1],
-         0;
-         return 86;
+         lexbuf[12]=/* record */[0,curpos[1],curpos[2],curpos[3],curpos[4]-1];
+         return /* STAR */86;
          
         case 33:
-         var num=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
+         var num=Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[10][2]);
          
          var
           name=
-           Lexing["sub_lexeme_opt"](lexbuf,lexbuf[10][3],lexbuf[10][2]);
+           Lexing["sub_lexeme_opt"](lexbuf,lexbuf[10][4],lexbuf[10][3]);
          
-         update_loc(lexbuf,name,"unknown primitive:caml_int_of_string",1,0);
+         update_loc
+          (lexbuf,name,CamlPrimitive["caml_int_of_string"](num),/* true */1,0);
          return token(lexbuf);
          
-        case 34:return 84;
-        case 35:return 1;
-        case 36:return 0;
-        case 37:return 5;
-        case 38:return 77;
-        case 39:return 54;
-        case 40:return 81;
-        case 41:return 86;
-        case 42:return 16;
-        case 43:return 62;
-        case 44:return 20;
-        case 45:return 21;
-        case 46:return 12;
-        case 47:return 13;
-        case 48:return 14;
-        case 49:return 15;
-        case 50:return 82;
-        case 51:return 83;
-        case 52:return 51;
-        case 53:return 52;
-        case 54:return 26;
-        case 55:return 45;
-        case 56:return 46;
-        case 57:return 47;
-        case 58:return 48;
-        case 59:return 79;
-        case 60:return 43;
-        case 61:return 44;
-        case 62:return 7;
-        case 63:return 8;
-        case 64:return 9;
-        case 65:return 34;
-        case 66:return 36;
-        case 67:return 78;
-        case 68:return 35;
-        case 69:return 55;
-        case 70:return 49;
-        case 71:return 50;
-        case 72:return 56;
-        case 73:return 57;
-        case 74:return 6;
-        case 75:return [2,"!="];
-        case 76:return 72;
-        case 77:return 73;
-        case 78:return 74;
-        case 79:return 60;
-        case 80:return 61;
+        case 34:return /* SHARP */84;
+        case 35:return /* AMPERSAND */1;
+        case 36:return /* AMPERAMPER */0;
+        case 37:return /* BACKQUOTE */5;
+        case 38:return /* QUOTE */77;
+        case 39:return /* LPAREN */54;
+        case 40:return /* RPAREN */81;
+        case 41:return /* STAR */86;
+        case 42:return /* COMMA */16;
+        case 43:return /* MINUSGREATER */62;
+        case 44:return /* DOT */20;
+        case 45:return /* DOTDOT */21;
+        case 46:return /* COLON */12;
+        case 47:return /* COLONCOLON */13;
+        case 48:return /* COLONEQUAL */14;
+        case 49:return /* COLONGREATER */15;
+        case 50:return /* SEMI */82;
+        case 51:return /* SEMISEMI */83;
+        case 52:return /* LESS */51;
+        case 53:return /* LESSMINUS */52;
+        case 54:return /* EQUAL */26;
+        case 55:return /* LBRACKET */45;
+        case 56:return /* LBRACKETBAR */46;
+        case 57:return /* LBRACKETLESS */47;
+        case 58:return /* LBRACKETGREATER */48;
+        case 59:return /* RBRACKET */79;
+        case 60:return /* LBRACE */43;
+        case 61:return /* LBRACELESS */44;
+        case 62:return /* BAR */7;
+        case 63:return /* BARBAR */8;
+        case 64:return /* BARRBRACKET */9;
+        case 65:return /* GREATER */34;
+        case 66:return /* GREATERRBRACKET */36;
+        case 67:return /* RBRACE */78;
+        case 68:return /* GREATERRBRACE */35;
+        case 69:return /* LBRACKETAT */55;
+        case 70:return /* LBRACKETPERCENT */49;
+        case 71:return /* LBRACKETPERCENTPERCENT */50;
+        case 72:return /* LBRACKETATAT */56;
+        case 73:return /* LBRACKETATATAT */57;
+        case 74:return /* BANG */6;
+        case 75:return [/* INFIXOP0 */2,"!="];
+        case 76:return /* PLUS */72;
+        case 77:return /* PLUSDOT */73;
+        case 78:return /* PLUSEQ */74;
+        case 79:return /* MINUS */60;
+        case 80:return /* MINUSDOT */61;
         case 81:exit=45;
         case 82:exit=45;
         case 83:return /* INFIXOP0 */[2,Lexing["lexeme"](lexbuf)];
         case 84:return /* INFIXOP1 */[3,Lexing["lexeme"](lexbuf)];
         case 85:return /* INFIXOP2 */[4,Lexing["lexeme"](lexbuf)];
         case 86:return /* INFIXOP4 */[6,Lexing["lexeme"](lexbuf)];
-        case 87:return 71;
+        case 87:return /* PERCENT */71;
         case 88:return /* INFIXOP3 */[5,Lexing["lexeme"](lexbuf)];
         case 89:return /* SHARPOP */[15,Lexing["lexeme"](lexbuf)];
-        case 90:return 25;
+        case 90:return /* EOF */25;
         case 91:
          throw [0,
                 $$Error,
@@ -782,11 +842,10 @@ var
       return __ocaml_lex_comment_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
          comment_start_loc[1]=
-         /* :: */[0,Location["curr"](lexbuf),comment_start_loc[1]],
-         0;
+         /* :: */[0,Location["curr"](lexbuf),comment_start_loc[1]];
          store_lexeme(lexbuf);
          return comment(lexbuf);
          
@@ -797,40 +856,46 @@ var
           {var l=match$1[2];
            
            if(l)
-            {comment_start_loc[1]=l,0;
+            {comment_start_loc[1]=l;
              store_lexeme(lexbuf);
              return comment(lexbuf);
              }
            else
-            {comment_start_loc[1]=0,0;return Location["curr"](lexbuf);}
+            {comment_start_loc[1]=/* [] */0;return Location["curr"](lexbuf);}
            }
          else
-          {throw [0,Assert_failure,[0,"parsing/lexer.mll",522,16]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"parsing/lexer.mll",522,16]];
+           }
          
         case 2:
-         string_start_loc[1]=Location["curr"](lexbuf),0;
+         string_start_loc[1]=Location["curr"](lexbuf);
          store_string_char(34);
-         is_in_string[1]=1,0;
+         is_in_string[1]=/* true */1;
          try
           {string(lexbuf)}
          catch(exn)
           {var exit$1;
            
-           if(exn[1]=$$Error)
-            {if("unknown primitive:isint")
+           if(exn[1]===$$Error)
+            {if(typeof exn[2]==="number")
               {var match$2=comment_start_loc[1];
                
                if(match$2)
                 {var start=List["hd"](List["rev"](comment_start_loc[1]));
                  
-                 comment_start_loc[1]=0,0;
+                 comment_start_loc[1]=/* [] */0;
                  throw [0,
                         $$Error,
                         /* Unterminated_string_in_comment */[3,start,exn[3]],
                         match$2[1]];
                  }
                else
-                {throw [0,Assert_failure,[0,"parsing/lexer.mll",536,18]];}
+                {throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"parsing/lexer.mll",536,18]];
+                 }
                }
              else
               {exit$1=48;}
@@ -841,7 +906,7 @@ var
            switch(exit$1){case 48:throw exn;}
            }
          
-         is_in_string[1]=0,0;
+         is_in_string[1]=/* false */0;
          store_string_char(34);
          return comment(lexbuf);
          
@@ -850,29 +915,32 @@ var
          
          var delim$1=$$String["sub"](delim,1,delim["length"]-2);
          
-         string_start_loc[1]=Location["curr"](lexbuf),0;
+         string_start_loc[1]=Location["curr"](lexbuf);
          store_lexeme(lexbuf);
-         is_in_string[1]=1,0;
+         is_in_string[1]=/* true */1;
          try
           {quoted_string(delim$1,lexbuf)}
          catch(exn$1)
           {var exit$2;
            
-           if(exn$1[1]=$$Error)
-            {if("unknown primitive:isint")
+           if(exn$1[1]===$$Error)
+            {if(typeof exn$1[2]==="number")
               {var match$3=comment_start_loc[1];
                
                if(match$3)
                 {var start$1=List["hd"](List["rev"](comment_start_loc[1]));
                  
-                 comment_start_loc[1]=0,0;
+                 comment_start_loc[1]=/* [] */0;
                  throw [0,
                         $$Error,
                         /* Unterminated_string_in_comment */[3,start$1,exn$1[3]],
                         match$3[1]];
                  }
                else
-                {throw [0,Assert_failure,[0,"parsing/lexer.mll",556,18]];}
+                {throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"parsing/lexer.mll",556,18]];
+                 }
                }
              else
               {exit$2=50;}
@@ -883,7 +951,7 @@ var
            switch(exit$2){case 50:throw exn$1;}
            }
          
-         is_in_string[1]=0,0;
+         is_in_string[1]=/* false */0;
          store_string_char(124);
          store_string(delim$1);
          store_string_char(125);
@@ -891,7 +959,7 @@ var
          
         case 4:exit=55;
         case 5:
-         update_loc(lexbuf,0,1,0,1);
+         update_loc(lexbuf,/* None */0,1,/* false */0,1);
          store_lexeme(lexbuf);
          return comment(lexbuf);
          
@@ -905,14 +973,17 @@ var
          if(match$4)
           {var start$2=List["hd"](List["rev"](comment_start_loc[1]));
            
-           comment_start_loc[1]=0,0;
+           comment_start_loc[1]=/* [] */0;
            throw [0,$$Error,/* Unterminated_comment */[2,start$2],match$4[1]];
            }
          else
-          {throw [0,Assert_failure,[0,"parsing/lexer.mll",586,16]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"parsing/lexer.mll",586,16]];
+           }
          
         case 11:
-         update_loc(lexbuf,0,1,0,0);
+         update_loc(lexbuf,/* None */0,1,/* false */0,0);
          store_lexeme(lexbuf);
          return comment(lexbuf);
          
@@ -926,7 +997,7 @@ var
 var
  string=
   function(lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=CamlPrimitive["caml_make_vect"](2,-1);
     return __ocaml_lex_string_rec(lexbuf,164);
     };
 
@@ -942,12 +1013,12 @@ var
       return __ocaml_lex_string_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
-       {case 0:return 0;
+     {switch(__ocaml_lex_state$1)
+       {case 0:return /* () */0;
         case 1:
-         var space=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
+         var space=Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[6]);
          
-         update_loc(lexbuf,0,1,0,space["length"]);
+         update_loc(lexbuf,/* None */0,1,/* false */0,space["length"]);
          return string(lexbuf);
          
         case 2:
@@ -964,28 +1035,32 @@ var
          return string(lexbuf);
          
         case 5:
-         if(in_comment(0))
+         if(in_comment(/* () */0))
           {return string(lexbuf);}
          else
           {var loc=Location["curr"](lexbuf);
            
-           Location["prerr_warning"](loc,7);
+           Location["prerr_warning"](loc,/* Illegal_backslash */7);
            store_string_char(Lexing["lexeme_char"](lexbuf,0));
            store_string_char(Lexing["lexeme_char"](lexbuf,1));
            return string(lexbuf);
            }
          
         case 6:
-         if(!in_comment(0))
-          {Location["prerr_warning"](Location["curr"](lexbuf),14)}
+         if(!in_comment(/* () */0))
+          {Location["prerr_warning"]
+            (Location["curr"](lexbuf),/* Eol_in_string */14)}
          else
           {}
          
-         update_loc(lexbuf,0,1,0,0);
+         update_loc(lexbuf,/* None */0,1,/* false */0,0);
          store_lexeme(lexbuf);
          return string(lexbuf);
          
-        case 7:is_in_string[1]=0,0;throw [0,$$Error,0,string_start_loc[1]];
+        case 7:
+         is_in_string[1]=/* false */0;
+         throw [0,$$Error,/* Unterminated_string */0,string_start_loc[1]];
+         
         case 8:
          store_string_char(Lexing["lexeme_char"](lexbuf,0));
          return string(lexbuf);
@@ -1011,20 +1086,23 @@ var
       return __ocaml_lex_quoted_string_rec(delim,lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:
-         update_loc(lexbuf,0,1,0,0);
+         update_loc(lexbuf,/* None */0,1,/* false */0,0);
          store_lexeme(lexbuf);
          return quoted_string(delim,lexbuf);
          
-        case 1:is_in_string[1]=0,0;throw [0,$$Error,0,string_start_loc[1]];
+        case 1:
+         is_in_string[1]=/* false */0;
+         throw [0,$$Error,/* Unterminated_string */0,string_start_loc[1]];
+         
         case 2:
          var edelim=Lexing["lexeme"](lexbuf);
          
          var edelim$1=$$String["sub"](edelim,1,edelim["length"]-2);
          
-         if("unknown primitive:caml_string_equal")
-          {return 0;}
+         if(CamlPrimitive["caml_string_equal"](delim,edelim$1))
+          {return /* () */0;}
          else
           {store_lexeme(lexbuf);return quoted_string(delim,lexbuf);}
          
@@ -1052,10 +1130,10 @@ var
       return __ocaml_lex_skip_sharp_bang_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
-       {case 0:return update_loc(lexbuf,0,3,0,0);
-        case 1:return update_loc(lexbuf,0,1,0,0);
-        case 2:return 0;
+     {switch(__ocaml_lex_state$1)
+       {case 0:return update_loc(lexbuf,/* None */0,3,/* false */0,0);
+        case 1:return update_loc(lexbuf,/* None */0,1,/* false */0,0);
+        case 2:return /* () */0;
         }
       }
     };
@@ -1079,8 +1157,8 @@ var
     var
      attach=
       function(lines,docs,pre_pos)
-       {if(typeof docs=="number")
-         {switch(docs){case 0:return 0;}}
+       {if(typeof docs==="number")
+         {switch(docs){case 0:return /* () */0;}}
         else
          {switch(docs[0])
            {case 0:
@@ -1127,17 +1205,20 @@ var
     
     var
      loop=
-      function(lines,docs,lexbuf$1)
-       {var tok=token_with_comments(lexbuf$1);
+      function(lines,docs,lexbuf)
+       {var tok=token_with_comments(lexbuf);
         
         var exit;
         
-        if(typeof tok=="number")
+        if(typeof tok==="number")
          {switch(tok)
            {case 100:
-             if(lines!=0){var lines$prime=2;}else{var lines$prime=1;}
+             if(lines!==0)
+              {var lines$prime=/* BlankLine */2;}
+             else
+              {var lines$prime=/* NewLine */1;}
              
-             return loop(lines$prime,docs,lexbuf$1);
+             return loop(lines$prime,docs,lexbuf);
              
             }}
         else
@@ -1146,21 +1227,30 @@ var
              var match$1=tok[1];
              
              add_comment(/* tuple */[0,match$1[1],match$1[2]]);
-             if(lines>=2){var lines$prime$1=2;}else{var lines$prime$1=0;}
+             if(lines>=2)
+              {var lines$prime$1=/* BlankLine */2;}
+             else
+              {var lines$prime$1=/* NoLine */0;}
              
-             return loop(lines$prime$1,docs,lexbuf$1);
+             return loop(lines$prime$1,docs,lexbuf);
              
             case 19:
              var doc=tok[1];
              
              add_docstring_comment(doc);
-             if(typeof docs=="number")
+             if(typeof docs==="number")
               {switch(docs)
                 {case 0:
                   if(lines>=2)
-                   {var docs$prime=/* Before */[1,0,0,/* :: */[0,doc,0]];}
+                   {var
+                     docs$prime=
+                      /* Before */[1,
+                       /* [] */0,
+                       /* [] */0,
+                       /* :: */[0,doc,/* [] */0]];
+                    }
                   else
-                   {var docs$prime=/* After */[0,/* :: */[0,doc,0]];}
+                   {var docs$prime=/* After */[0,/* :: */[0,doc,/* [] */0]];}
                   
                  }}
              else
@@ -1169,7 +1259,10 @@ var
                   var a=docs[1];
                   
                   if(lines>=2)
-                   {var docs$prime=/* Before */[1,a,0,/* :: */[0,doc,0]];}
+                   {var
+                     docs$prime=
+                      /* Before */[1,a,/* [] */0,/* :: */[0,doc,/* [] */0]];
+                    }
                   else
                    {var docs$prime=/* After */[0,/* :: */[0,doc,a]];}
                   
@@ -1183,42 +1276,45 @@ var
                   if(lines>=2)
                    {var
                      docs$prime=
-                      /* Before */[1,a$1,Pervasives["@"](b,f),/* :: */[0,doc,0]];
+                      /* Before */[1,
+                       a$1,
+                       Pervasives["@"](b,f),
+                       /* :: */[0,doc,/* [] */0]];
                     }
                   else
                    {var docs$prime=/* Before */[1,a$1,f,/* :: */[0,doc,b]];}
                   
                  }}
              
-             return loop(0,docs$prime,lexbuf$1);
+             return loop(/* NoLine */0,docs$prime,lexbuf);
              
             default:exit=13;}}
         
         switch(exit)
          {case 13:
-           attach(lines,docs,Lexing["lexeme_start_p"](lexbuf$1));return tok;
+           attach(lines,docs,Lexing["lexeme_start_p"](lexbuf));return tok;
           }
         };
     
-    return loop(0,0,lexbuf);
+    return loop(/* NoLine */0,/* Initial */0,lexbuf);
     };
 
 var
  init=
   function(param)
-   {is_in_string[1]=0,0;
-    comment_start_loc[1]=0,0;
-    comment_list[1]=0,0;
+   {is_in_string[1]=/* false */0;
+    comment_start_loc[1]=/* [] */0;
+    comment_list[1]=/* [] */0;
     var match$1=preprocessor[1];
     
-    if(match$1){return match$1[1][1](0);}else{return 0;}
+    if(match$1){return match$1[1][1](/* () */0);}else{return /* () */0;}
     };
 
 var
  set_preprocessor=
-  function(init$1,preprocess)
-   {escaped_newlines[1]=1,0;
-    return preprocessor[1]=/* Some */[0,/* tuple */[0,init$1,preprocess]],0;
+  function(init,preprocess)
+   {escaped_newlines[1]=/* true */1;
+    return preprocessor[1]=/* Some */[0,/* tuple */[0,init,preprocess]],0;
     };
 
 module["exports"]=

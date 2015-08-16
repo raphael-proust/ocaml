@@ -1,15 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Misc=require("Misc");
-var Typemod=require("Typemod");
-var Compenv=require("Compenv");
-var Location=require("Location");
-var Ident=require("Ident");
-var Config=require("Config");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Misc=require("./misc.js");
+var Typemod=require("./typemod.js");
+var Compenv=require("./compenv.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
+var Config=require("./config.js");
 
 
 var
@@ -35,9 +35,10 @@ var
       List["map"](Misc["expand_directory"](Config["standard_library"]),dirs);
     
     Config["load_path"][1]=
-    /* :: */[0,"",List["rev_append"](exp_dirs,Clflags["std_include_dir"](0))],
-    0;
-    return Env["reset_cache"](0);
+    /* :: */[0,
+     "",
+     List["rev_append"](exp_dirs,Clflags["std_include_dir"](/* () */0))];
+    return Env["reset_cache"](/* () */0);
     };
 
 var
@@ -47,13 +48,14 @@ var
      lid=
       /* record */[0,/* Lident */[0,m],Location["in_file"]("command line")];
     
-    return Typemod["type_open_"](0,0,env,lid[2],lid)[2];
+    return Typemod["type_open_"](/* None */0,/* Override */0,env,lid[2],lid)
+            [2];
     };
 
 var
  initial_env=
   function(param)
-   {Ident["reinit"](0);
+   {Ident["reinit"](/* () */0);
     if(Clflags["unsafe_string"][1])
      {var initial=Env["initial_unsafe_string"];}
     else
@@ -65,7 +67,7 @@ var
      {var env=open_implicit_module("Pervasives",initial);}
     
     return List["fold_left"]
-            (function(env$1,m){return open_implicit_module(m,env$1);},
+            (function(env,m){return open_implicit_module(m,env);},
              env,
              Pervasives["@"]
               (Compenv["implicit_modules"][1],

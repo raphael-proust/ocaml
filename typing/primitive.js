@@ -1,7 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Misc=require("Misc");
+var List=require("./list.js");
+var Misc=require("./misc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -30,14 +31,29 @@ var
              
              if(match$2)
               {switch(match$2[1])
-                {case "float":return /* record */[0,name,arity,0,name2$1,1];
+                {case "float":
+                  return /* record */[0,
+                          name,
+                          arity,
+                          /* false */0,
+                          name2$1,
+                          /* true */1];
+                  
                  default:exit$1=12;}
                }
              else
               {exit$1=12;}
              
              switch(exit$1)
-              {case 12:return /* record */[0,name,arity,0,name2$1,0];}
+              {case 12:
+                return /* record */[0,
+                        name,
+                        arity,
+                        /* false */0,
+                        name2$1,
+                        /* false */0];
+                
+               }
              }
            else
             {exit=10;}
@@ -47,7 +63,14 @@ var
            
            if(match$3)
             {switch(match$3[1])
-              {case "float":return /* record */[0,name,arity,1,name2,1];
+              {case "float":
+                return /* record */[0,
+                        name,
+                        arity,
+                        /* true */1,
+                        name2,
+                        /* true */1];
+                
                default:exit=10;}
              }
            else
@@ -57,13 +80,16 @@ var
         switch(exit)
          {case 10:
            switch(name2)
-            {case "noalloc":return /* record */[0,name,arity,0,"",0];
-             default:return /* record */[0,name,arity,1,name2,0];}
+            {case "noalloc":
+              return /* record */[0,name,arity,/* false */0,"",/* false */0];
+             default:
+              return /* record */[0,name,arity,/* true */1,name2,/* false */0];
+              }
            
           }
         }
       else
-       {return /* record */[0,name,arity,1,"",0];}
+       {return /* record */[0,name,arity,/* true */1,"",/* false */0];}
       }
     else
      {return Misc["fatal_error"]("Primitive.parse_declaration");}
@@ -72,11 +98,11 @@ var
 var
  description_list=
   function(p)
-   {var list=/* :: */[0,p[1],0];
+   {var list=/* :: */[0,p[1],/* [] */0];
     
     if(!p[3]){var list$1=/* :: */[0,"noalloc",list];}else{var list$1=list;}
     
-    if("unknown primitive:caml_string_notequal")
+    if(CamlPrimitive["caml_string_notequal"](p[4],""))
      {var list$2=/* :: */[0,p[4],list$1];}
     else
      {var list$2=list$1;}
@@ -89,7 +115,7 @@ var
 var
  native_name=
   function(p)
-   {if("unknown primitive:caml_string_notequal")
+   {if(CamlPrimitive["caml_string_notequal"](p[4],""))
      {return p[4];}
     else
      {return p[1];}

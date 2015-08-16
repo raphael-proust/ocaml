@@ -38,7 +38,9 @@ type tag_info =
 let default_tag_info : tag_info = NA
 
 type primitive =
-    Pidentity
+  | Pidentity
+  | Pbytes_to_string
+  | Pbytes_of_string
   | Pignore
   | Prevapply of Location.t
   | Pdirapply of Location.t

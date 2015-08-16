@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Clflags=require("Clflags");
-var Printf=require("Printf");
-var Misc=require("Misc");
-var Filename=require("Filename");
-var Config=require("Config");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Clflags=require("./clflags.js");
+var Printf=require("./printf.js");
+var Misc=require("./misc.js");
+var Filename=require("./filename.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
@@ -17,26 +18,37 @@ var
    {if(Clflags["verbose"][1])
      {Pervasives["prerr_string"]("+ "),
       Pervasives["prerr_string"](cmdline),
-      Pervasives["prerr_newline"](0)}
+      Pervasives["prerr_newline"](/* () */0)}
     else
      {}
     
-    return "unknown primitive:caml_sys_system_command";
+    return CamlPrimitive["caml_sys_system_command"](cmdline);
     };
 
-var run_command=function(cmdline){return 0;};
+var run_command=function(cmdline){return command(cmdline);};
 
 var
  build_diversion=
   function(lst)
-   {var match=Filename["open_temp_file"](0,0,"camlresp","");
+   {var
+     match=
+      Filename["open_temp_file"](/* None */0,/* None */0,"camlresp","");
     
     var oc=match[2];
     
     var responsefile=match[1];
     
     List["iter"]
-     (function(f){return Printf["fprintf"](oc,[0,[2,0,[12,10,0]],"%s\n"],f);},
+     (function(f)
+       {return Printf["fprintf"]
+                (oc,
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,10,/* End_of_format */0]],
+                  "%s\n"],
+                 f);
+        },
       lst);
     Pervasives["close_out"](oc);
     Pervasives["at_exit"]
@@ -50,13 +62,16 @@ var
    {var
      lst$1=
       List["filter"]
-       (function(f){return "unknown primitive:caml_string_notequal";},lst);
+       (function(f){return CamlPrimitive["caml_string_notequal"](f,"");},lst);
     
     var quoted=List["map"](Filename["quote"],lst$1);
     
     var s=$$String["concat"](" ",quoted);
     
-    if(s["length"]>=4096&&"unknown primitive:caml_string_equal")
+    if
+     (s["length"]>=
+      4096&&
+      CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
      {return build_diversion(quoted);}
     else
      {return s;}
@@ -68,7 +83,7 @@ var
    {var
      lst$1=
       List["filter"]
-       (function(f){return "unknown primitive:caml_string_notequal";},lst);
+       (function(f){return CamlPrimitive["caml_string_notequal"](f,"");},lst);
     
     var lst$2=List["map"](function(f){return Pervasives["^"](pr,f);},lst$1);
     
@@ -87,14 +102,28 @@ var
     
     return command
             (Printf["sprintf"]
-              ([0,
-                [2,
-                 0,
-                 [11,
+              ([/* Format */0,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* String_literal */11,
                   " -c ",
-                  [2,
-                   0,
-                   [12,32,[2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]]]],
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,
+                    32,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,
+                      32,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* Char_literal */12,
+                        32,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          32,
+                          [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]],
                 "%s -c %s %s %s %s %s"],
                match
                 ?match[1]
@@ -120,8 +149,14 @@ var
      {case "msvc":
        return command
                (Printf["sprintf"]
-                 ([0,
-                   [11,"link /lib /nologo /out:",[2,0,[12,32,[2,0,0]]]],
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "link /lib /nologo /out:",
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,
+                      32,
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                    "link /lib /nologo /out:%s %s"],
                   quoted_archive,
                   quote_files(file_list)));
@@ -130,18 +165,31 @@ var
        if(Config["ar"]["length"]>0)
         {}
        else
-        {throw [0,Assert_failure,[0,"utils/ccomp.ml",75,6]];}
+        {throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"utils/ccomp.ml",75,6]];
+         }
        
        var
         r1=
          command
           (Printf["sprintf"]
-            ([0,[2,0,[11," rc ",[2,0,[12,32,[2,0,0]]]]],"%s rc %s %s"],
+            ([/* Format */0,
+              [/* String */2,
+               /* No_padding */0,
+               [/* String_literal */11,
+                " rc ",
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* Char_literal */12,
+                  32,
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
+              "%s rc %s %s"],
              Config["ar"],
              quoted_archive,
              quote_files(file_list)));
        
-       if(r1!=0||(Config["ranlib"]["length"]=0))
+       if(r1!==0||Config["ranlib"]["length"]===0)
         {return r1;}
        else
         {return command
@@ -154,7 +202,10 @@ var
 var
  expand_libname=
   function(name)
-   {if(name["length"]<2||"unknown primitive:caml_string_notequal")
+   {if
+     (name["length"]<
+      2||
+      CamlPrimitive["caml_string_notequal"]($$String["sub"](name,0,2),"-l"))
      {return name;}
     else
      {var
@@ -166,7 +217,12 @@ var
       
       try
        {return Misc["find_in_path"](Config["load_path"][1],libname);}
-      catch(exn){if(exn=Not_found){return libname;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return libname;}
+        else
+         {throw exn;}
+        }
       }
     };
 
@@ -175,9 +231,13 @@ var
   function(cclibs)
    {return List["map"]
             (function(cclib)
-              {if(cclib["length"]>=4&&"unknown primitive:caml_string_equal")
+              {if
+                (cclib["length"]>=
+                 4&&
+                 CamlPrimitive["caml_string_equal"]
+                  ("-Wl,",$$String["sub"](cclib,0,4)))
                 {return $$String["map"]
-                         (function(c){if(c!=44){return c;}else{return 32;}},
+                         (function(c){if(c!==44){return c;}else{return 32;}},
                           $$String["sub"](cclib,4,cclib["length"]-4));
                  }
                else
@@ -189,12 +249,26 @@ var
 var
  call_linker=
   function(mode,output_name,files,extra)
-   {if(mode=3)
+   {if(mode===/* Partial */3)
      {var
        cmd=
         Printf["sprintf"]
-         ([0,
-           [2,0,[2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]],
+         ([/* Format */0,
+           [/* String */2,
+            /* No_padding */0,
+            [/* String */2,
+             /* No_padding */0,
+             [/* Char_literal */12,
+              32,
+              [/* String */2,
+               /* No_padding */0,
+               [/* Char_literal */12,
+                32,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* Char_literal */12,
+                  32,
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
            "%s%s %s %s %s"],
           Config["native_pack_linker"],
           Filename["quote"](output_name),
@@ -208,32 +282,50 @@ var
       if(match)
        {var $js=match[1];}
       else
-       {switch(mode[0])
+       {switch(mode)
          {case 0:var $js=Config["mkexe"];
           case 1:var $js=Config["mkdll"];
           case 2:var $js=Config["mkmaindll"];
-          case 3:throw [0,Assert_failure,[0,"utils/ccomp.ml",125,27]];
+          case 3:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"utils/ccomp.ml",125,27]];
+           
           }
         }
       var
        cmd=
         Printf["sprintf"]
-         ([0,
-           [2,
-            0,
-            [11,
+         ([/* Format */0,
+           [/* String */2,
+            /* No_padding */0,
+            [/* String_literal */11,
              " -o ",
-             [2,
-              0,
-              [12,
+             [/* String */2,
+              /* No_padding */0,
+              [/* Char_literal */12,
                32,
-               [2,
-                0,
-                [12,
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,
                  32,
-                 [2,
-                  0,
-                  [12,32,[2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]]]]]]]],
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* Char_literal */12,
+                   32,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Char_literal */12,
+                     32,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* Char_literal */12,
+                       32,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Char_literal */12,
+                         32,
+                         [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]]]]]],
            "%s -o %s %s %s %s %s %s %s"],
           $js,
           Filename["quote"](output_name),
@@ -245,7 +337,7 @@ var
           extra);
       }
     
-    return command(cmd)=0;
+    return command(cmd)===0;
     };
 
 module["exports"]=

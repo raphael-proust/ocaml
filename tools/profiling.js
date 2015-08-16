@@ -1,22 +1,29 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var counters=[0,0];
+var counters=[0,/* [] */0];
 
-var incr=function(a,i){return a[i]=a[i]+1,0;};
+var incr=function(a,i){return a[i+1]=a[i+1]+1,0;};
 
-var Bad_profile="unknown primitive:caml_set_oo_id";
+var
+ Bad_profile=
+  CamlPrimitive["caml_set_oo_id"]([248,"Profiling.Bad_profile",0]);
 
 var
  dump_counters=
   function(param)
    {try
-     {var dumpfile="unknown primitive:caml_sys_getenv";}
+     {var dumpfile=CamlPrimitive["caml_sys_getenv"]("OCAMLPROF_DUMP");}
     catch(exn)
-     {if(exn=Not_found){var dumpfile="ocamlprof.dump";}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var dumpfile="ocamlprof.dump";}
+      else
+       {throw exn;}
+      }
     
     try
      {var ic=Pervasives["open_in_bin"](dumpfile);
@@ -31,10 +38,12 @@ var
           var match$1=param$1[2];
           
           if
-           ("unknown primitive:caml_string_notequal"||
-            "unknown primitive:caml_string_notequal"||
-            match$1[2]["length"]!=
-            match[2]["length"])
+           (CamlPrimitive["caml_string_notequal"](param$1[1],param$2[1])||
+            CamlPrimitive["caml_string_notequal"](match$1[1],match[1])||
+            /* -1 for tag */match$1[2]["length"]-
+            1!==
+            /* -1 for tag */match[2]["length"]-
+            1)
            {throw Bad_profile;}
           else
            {return 0;}
@@ -47,8 +56,9 @@ var
           
           var curcount=param$1[2][2];
           
-          for(var i=0;i<=curcount["length"]-1;i++)
-           {curcount[i]=curcount[i]+prevcount[i],0}
+          for(var i=0;i<=/* -1 for tag */curcount["length"]-1-1;i++)
+           {curcount[i+1]=curcount[i+1]+prevcount[i+1]}
+          return 0;
           },
         counters[1],
         prevl)}
@@ -60,7 +70,7 @@ var
       Pervasives["output_value"](oc,counters[1]);
       return Pervasives["close_out"](oc);
       }
-    catch(exn$2){return 0;}
+    catch(exn$2){return /* () */0;}
     };
 
 Pervasives["at_exit"](dump_counters);

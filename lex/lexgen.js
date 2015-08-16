@@ -1,21 +1,24 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Stack=require("Stack");
-var Table=require("Table");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Cset=require("Cset");
-var Printf=require("Printf");
-var Set=require("Set");
-var Hashtbl=require("Hashtbl");
-var Map=require("Map");
-var $$Array=require("Array");
+var $$String=require("./string.js");
+var Stack=require("./stack.js");
+var Table=require("./table.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Cset=require("./cset.js");
+var Printf=require("./printf.js");
+var Set=require("./set.js");
+var Hashtbl=require("./hashtbl.js");
+var Map=require("./map.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var Memory_overflow="unknown primitive:caml_set_oo_id";
+var
+ Memory_overflow=
+  CamlPrimitive["caml_set_oo_id"]([248,"Lexgen.Memory_overflow",0]);
 
-var compare=function(x,y){return "unknown primitive:caml_int_compare";};
+var compare=function(x,y){return CamlPrimitive["caml_int_compare"](x,y);};
 
 var Ints=Set["Make"]([0,compare]);
 
@@ -23,7 +26,7 @@ var
  id_compare=
   function(param,param$1){return $$String["compare"](param[1],param$1[1]);};
 
-var tag_compare=function(t1,t2){return "unknown primitive:caml_compare";};
+var tag_compare=function(t1,t2){return CamlPrimitive["caml_compare"](t1,t2);};
 
 var Tags=Set["Make"]([0,tag_compare]);
 
@@ -38,7 +41,7 @@ var
   function(to_remove,e)
    {var exit;
     
-    if(typeof e=="number")
+    if(typeof e==="number")
      {switch(e){}}
     else
      {switch(e[0])
@@ -80,7 +83,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
      {switch(param[0])
@@ -102,7 +105,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
      {switch(param[0])
@@ -147,7 +150,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
      {switch(param[0])
@@ -197,7 +200,7 @@ var find_double=function(e){return do_find_double(e);};
 var
  add_some=
   function(x,param)
-   {if(param){return /* Some */[0,x+param[1]];}else{return 0;}};
+   {if(param){return /* Some */[0,x+param[1]];}else{return /* None */0;}};
 
 var
  add_some_some=
@@ -209,7 +212,7 @@ var
     else
      {exit=230;}
     
-    switch(exit){case 230:return 0;}
+    switch(exit){case 230:return /* None */0;}
     };
 
 var
@@ -217,7 +220,7 @@ var
   function(sz,param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){case 0:exit=229;case 1:exit=229;}}
     else
      {switch(param[0])
@@ -242,13 +245,13 @@ var
          return /* tuple */[0,
                  IdSet[7](match$2[1],match$3[1]),
                  IdSet[7](match$2[2],match$3[2]),
-                 "unknown primitive:caml_equal"?sz1:0];
+                 CamlPrimitive["caml_equal"](sz1,match$3[3])?sz1:/* None */0];
          
-        case 3:return do_find_chars(0,param[1]);
+        case 3:return do_find_chars(/* None */0,param[1]);
         case 4:
          var x=param[2];
          
-         var match$4=do_find_chars([0,0],param[1]);
+         var match$4=do_find_chars([/* Some */0,0],param[1]);
          
          var e_sz=match$4[3];
          
@@ -259,7 +262,7 @@ var
          var exit$1;
          
          if(e_sz)
-          {if(e_sz[1]!=1)
+          {if(e_sz[1]!==1)
             {exit$1=223;}
            else
             {return /* tuple */[0,IdSet[4](x,c),s,add_some(1,sz)];}
@@ -280,24 +283,27 @@ var
 var
  find_chars=
   function(e)
-   {var match=do_find_chars([0,0],e);return IdSet[9](match[1],match[2]);};
+   {var match=do_find_chars([/* Some */0,0],e);
+    
+    return IdSet[9](match[1],match[2]);
+    };
 
-var chars=[0,0];
+var chars=[0,/* [] */0];
 
 var chars_count=[0,0];
 
 var
  encode_regexp=
   function(char_vars,act,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
-       {case 0:return 0;
+       {case 0:return /* Empty */0;
         case 1:
          var n=chars_count[1];
          
-         chars[1]=/* :: */[0,Cset["eof"],chars[1]],0;
+         chars[1]=/* :: */[0,Cset["eof"],chars[1]];
          chars_count[0]++;
-         return /* Chars */[0,n,1];
+         return /* Chars */[0,n,/* true */1];
          
         }}
     else
@@ -305,9 +311,9 @@ var
        {case 0:
          var n$1=chars_count[1];
          
-         chars[1]=/* :: */[0,param[1],chars[1]],0;
+         chars[1]=/* :: */[0,param[1],chars[1]];
          chars_count[0]++;
-         return /* Chars */[0,n$1,0];
+         return /* Chars */[0,n$1,/* false */0];
          
         case 1:
          var r1=encode_regexp(char_vars,act,param[1]);
@@ -333,11 +339,16 @@ var
          var r$1=encode_regexp(char_vars,act,param[1]);
          
          if(IdSet[3](x,char_vars))
-          {return /* Seq */[3,/* Tag */[2,/* record */[0,name,1,act]],r$1];}
+          {return /* Seq */[3,
+                   /* Tag */[2,/* record */[0,name,/* true */1,act]],
+                   r$1];
+           }
          else
           {return /* Seq */[3,
-                   /* Tag */[2,/* record */[0,name,1,act]],
-                   /* Seq */[3,r$1,/* Tag */[2,/* record */[0,name,0,act]]]];
+                   /* Tag */[2,/* record */[0,name,/* true */1,act]],
+                   /* Seq */[3,
+                    r$1,
+                    /* Tag */[2,/* record */[0,name,/* false */0,act]]]];
            }
          
         }}
@@ -345,25 +356,23 @@ var
 
 var
  incr_pos=
-  function(param){if(param){return /* Some */[0,param[1]+1];}else{return 0;}};
+  function(param)
+   {if(param){return /* Some */[0,param[1]+1];}else{return /* None */0;}};
 
 var
  decr_pos=
-  function(param){if(param){return /* Some */[0,param[1]-1];}else{return 0;}};
+  function(param)
+   {if(param){return /* Some */[0,param[1]-1];}else{return /* None */0;}};
 
-var opt=1;
+var opt=/* true */1;
 
 var
  mk_seq=
   function(r1,r2)
-   {if("unknown primitive:isint")
+   {if(typeof r1==="number")
      {return r2;}
     else
-     {if("unknown primitive:isint")
-       {return r1;}
-      else
-       {return /* Seq */[3,r1,r2];}
-      }
+     {if(typeof r2==="number"){return r1;}else{return /* Seq */[3,r1,r2];}}
     };
 
 var
@@ -375,47 +384,59 @@ var
       return /* Some */[0,/* Sum */[0,/* tuple */[0,match[1],match[2]+i]]];
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
  mem_name=
   function(name,id_set)
    {return IdSet[16]
-            (function(param){return "unknown primitive:caml_string_equal";},
+            (function(param)
+              {return CamlPrimitive["caml_string_equal"](name,param[1]);},
              id_set);
     };
 
 var
  opt_regexp=
   function(all_vars,char_vars,optional_vars,double_vars,r)
-   {var env=Hashtbl["create"](0,17);
+   {var env=Hashtbl["create"](/* None */0,17);
     
     var
      size_forward=
       function(pos,param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){case 0:exit=200;}}
         else
          {switch(param[0])
-           {case 0:if(param[2]!=0){exit=200;}else{return /* Some */[0,pos+1];}
-            case 1:throw [0,Assert_failure,[0,"lexgen.ml",348,18]];
+           {case 0:
+             if(param[2]!==0){exit=200;}else{return /* Some */[0,pos+1];}
+            case 1:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"lexgen.ml",348,18]];
+             
             case 2:exit=200;
             case 3:
              var match=size_forward(pos,param[1]);
              
-             if(match){return size_forward(match[1],param[2]);}else{return 0;}
+             if(match)
+              {return size_forward(match[1],param[2]);}
+             else
+              {return /* None */0;}
              
             case 4:
              var pos1=size_forward(pos,param[1]);
              
              var pos2=size_forward(pos,param[2]);
              
-             if("unknown primitive:caml_equal"){return pos1;}else{return 0;}
+             if(CamlPrimitive["caml_equal"](pos1,pos2))
+              {return pos1;}
+             else
+              {return /* None */0;}
              
-            case 5:return 0;
+            case 5:return /* None */0;
             }}
         
         switch(exit){case 200:return /* Some */[0,pos];}
@@ -423,30 +444,34 @@ var
     
     var
      simple_forward=
-      function(pos,r$1)
-       {if(typeof r$1=="number")
-         {switch(r$1){case 0:return /* tuple */[0,r$1,/* Some */[0,pos]];}}
+      function(pos,r)
+       {if(typeof r==="number")
+         {switch(r){case 0:return /* tuple */[0,r,/* Some */[0,pos]];}}
         else
-         {switch(r$1[0])
-           {case 0:return /* tuple */[0,r$1,/* Some */[0,r$1[2]?pos:pos+1]];
-            case 1:throw [0,Assert_failure,[0,"lexgen.ml",374,18]];
+         {switch(r[0])
+           {case 0:return /* tuple */[0,r,/* Some */[0,r[2]?pos:pos+1]];
+            case 1:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"lexgen.ml",374,18]];
+             
             case 2:
-             var n=r$1[1];
+             var n=r[1];
              
              if(mem_name(n[1],double_vars))
-              {return /* tuple */[0,r$1,/* Some */[0,pos]];}
+              {return /* tuple */[0,r,/* Some */[0,pos]];}
              else
               {Hashtbl["add"]
                 (env,
                  /* tuple */[0,n[1],n[2]],
-                 /* Sum */[0,/* tuple */[0,0,pos]]);
-               return /* tuple */[0,0,/* Some */[0,pos]];
+                 /* Sum */[0,/* tuple */[0,/* Start */0,pos]]);
+               return /* tuple */[0,/* Empty */0,/* Some */[0,pos]];
                }
              
             case 3:
-             var r2=r$1[2];
+             var r2=r[2];
              
-             var match=simple_forward(pos,r$1[1]);
+             var match=simple_forward(pos,r[1]);
              
              var pos$1=match[2];
              
@@ -458,16 +483,18 @@ var
                return /* tuple */[0,mk_seq(r1,match$1[1]),match$1[2]];
                }
              else
-              {return /* tuple */[0,mk_seq(r1,r2),0];}
+              {return /* tuple */[0,mk_seq(r1,r2),/* None */0];}
              
             case 4:
-             var pos1=size_forward(pos,r$1[1]);
+             var pos1=size_forward(pos,r[1]);
              
-             var pos2=size_forward(pos,r$1[2]);
+             var pos2=size_forward(pos,r[2]);
              
-             return /* tuple */[0,r$1,"unknown primitive:caml_equal"?pos1:0];
+             return /* tuple */[0,
+                     r,
+                     CamlPrimitive["caml_equal"](pos1,pos2)?pos1:/* None */0];
              
-            case 5:return /* tuple */[0,r$1,0];
+            case 5:return /* tuple */[0,r,/* None */0];
             }}
         };
     
@@ -476,12 +503,17 @@ var
       function(pos,param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){case 0:exit=193;}}
         else
          {switch(param[0])
-           {case 0:if(param[2]!=0){exit=193;}else{return /* Some */[0,pos-1];}
-            case 1:throw [0,Assert_failure,[0,"lexgen.ml",390,18]];
+           {case 0:
+             if(param[2]!==0){exit=193;}else{return /* Some */[0,pos-1];}
+            case 1:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"lexgen.ml",390,18]];
+             
             case 2:exit=193;
             case 3:
              var match=size_backward(pos,param[2]);
@@ -489,16 +521,19 @@ var
              if(match)
               {return size_backward(match[1],param[1]);}
              else
-              {return 0;}
+              {return /* None */0;}
              
             case 4:
              var pos1=size_backward(pos,param[1]);
              
              var pos2=size_backward(pos,param[2]);
              
-             if("unknown primitive:caml_equal"){return pos1;}else{return 0;}
+             if(CamlPrimitive["caml_equal"](pos1,pos2))
+              {return pos1;}
+             else
+              {return /* None */0;}
              
-            case 5:return 0;
+            case 5:return /* None */0;
             }}
         
         switch(exit){case 193:return /* Some */[0,pos];}
@@ -506,30 +541,34 @@ var
     
     var
      simple_backward=
-      function(pos,r$1)
-       {if(typeof r$1=="number")
-         {switch(r$1){case 0:return /* tuple */[0,r$1,/* Some */[0,pos]];}}
+      function(pos,r)
+       {if(typeof r==="number")
+         {switch(r){case 0:return /* tuple */[0,r,/* Some */[0,pos]];}}
         else
-         {switch(r$1[0])
-           {case 0:return /* tuple */[0,r$1,/* Some */[0,r$1[2]?pos:pos-1]];
-            case 1:throw [0,Assert_failure,[0,"lexgen.ml",417,18]];
+         {switch(r[0])
+           {case 0:return /* tuple */[0,r,/* Some */[0,r[2]?pos:pos-1]];
+            case 1:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"lexgen.ml",417,18]];
+             
             case 2:
-             var n=r$1[1];
+             var n=r[1];
              
              if(mem_name(n[1],double_vars))
-              {return /* tuple */[0,r$1,/* Some */[0,pos]];}
+              {return /* tuple */[0,r,/* Some */[0,pos]];}
              else
               {Hashtbl["add"]
                 (env,
                  /* tuple */[0,n[1],n[2]],
-                 /* Sum */[0,/* tuple */[0,1,pos]]);
-               return /* tuple */[0,0,/* Some */[0,pos]];
+                 /* Sum */[0,/* tuple */[0,/* End */1,pos]]);
+               return /* tuple */[0,/* Empty */0,/* Some */[0,pos]];
                }
              
             case 3:
-             var r1=r$1[1];
+             var r1=r[1];
              
-             var match=simple_backward(pos,r$1[2]);
+             var match=simple_backward(pos,r[2]);
              
              var pos$1=match[2];
              
@@ -541,16 +580,18 @@ var
                return /* tuple */[0,mk_seq(match$1[1],r2),match$1[2]];
                }
              else
-              {return /* tuple */[0,mk_seq(r1,r2),0];}
+              {return /* tuple */[0,mk_seq(r1,r2),/* None */0];}
              
             case 4:
-             var pos1=size_backward(pos,r$1[1]);
+             var pos1=size_backward(pos,r[1]);
              
-             var pos2=size_backward(pos,r$1[2]);
+             var pos2=size_backward(pos,r[2]);
              
-             return /* tuple */[0,r$1,"unknown primitive:caml_equal"?pos1:0];
+             return /* tuple */[0,
+                     r,
+                     CamlPrimitive["caml_equal"](pos1,pos2)?pos1:/* None */0];
              
-            case 5:return /* tuple */[0,r$1,0];
+            case 5:return /* tuple */[0,r,/* None */0];
             }}
         };
     
@@ -572,7 +613,7 @@ var
        {try
          {return Hashtbl["find"](env,t);}
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {var n=loc_count[1];
             
             loc_count[0]++;
@@ -586,55 +627,59 @@ var
     
     var
      alloc_exp=
-      function(pos,r$2)
-       {if(typeof r$2=="number")
-         {switch(r$2){case 0:return /* tuple */[0,r$2,pos];}}
+      function(pos,r)
+       {if(typeof r==="number")
+         {switch(r){case 0:return /* tuple */[0,r,pos];}}
         else
-         {switch(r$2[0])
-           {case 0:return /* tuple */[0,r$2,r$2[2]?pos:add_pos(pos,1)];
-            case 1:throw [0,Assert_failure,[0,"lexgen.ml",464,18]];
+         {switch(r[0])
+           {case 0:return /* tuple */[0,r,r[2]?pos:add_pos(pos,1)];
+            case 1:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"lexgen.ml",464,18]];
+             
             case 2:
-             var n=r$2[1];
+             var n=r[1];
              
              if(mem_name(n[1],double_vars))
-              {return /* tuple */[0,r$2,pos];}
+              {return /* tuple */[0,r,pos];}
              else
               {if(pos)
                 {Hashtbl["add"](env,/* tuple */[0,n[1],n[2]],pos[1]);
-                 return /* tuple */[0,0,pos];
+                 return /* tuple */[0,/* Empty */0,pos];
                  }
                else
                 {var a=get_tag_addr(/* tuple */[0,n[1],n[2]]);
                  
-                 return /* tuple */[0,r$2,/* Some */[0,a]];
+                 return /* tuple */[0,r,/* Some */[0,a]];
                  }
                }
              
             case 3:
-             var match$2=alloc_exp(pos,r$2[1]);
+             var match$2=alloc_exp(pos,r[1]);
              
-             var match$3=alloc_exp(match$2[2],r$2[2]);
+             var match$3=alloc_exp(match$2[2],r[2]);
              
              return /* tuple */[0,mk_seq(match$2[1],match$3[1]),match$3[2]];
              
             case 4:
-             var off=size_forward(0,r$2);
+             var off=size_forward(0,r);
              
              if(off)
-              {return /* tuple */[0,r$2,add_pos(pos,off[1])];}
+              {return /* tuple */[0,r,add_pos(pos,off[1])];}
              else
-              {return /* tuple */[0,r$2,0];}
+              {return /* tuple */[0,r,/* None */0];}
              
-            case 5:return /* tuple */[0,r$2,0];
+            case 5:return /* tuple */[0,r,/* None */0];
             }}
         };
     
-    var match$2=alloc_exp(0,r$1);
+    var match$2=alloc_exp(/* None */0,r$1);
     
     var
      m=
       IdSet[14]
-       (function(x,r$2)
+       (function(x,r)
          {var name=x[1];
           
           if(IdSet[3](x,char_vars))
@@ -642,21 +687,21 @@ var
              v=
               /* Ident_char */[1,
                IdSet[3](x,optional_vars),
-               get_tag_addr(/* tuple */[0,name,1])];
+               get_tag_addr(/* tuple */[0,name,/* true */1])];
             }
           else
            {var
              v=
               /* Ident_string */[0,
                IdSet[3](x,optional_vars),
-               get_tag_addr(/* tuple */[0,name,1]),
-               get_tag_addr(/* tuple */[0,name,0])];
+               get_tag_addr(/* tuple */[0,name,/* true */1]),
+               get_tag_addr(/* tuple */[0,name,/* false */0])];
             }
           
-          return /* :: */[0,/* tuple */[0,x,v],r$2];
+          return /* :: */[0,/* tuple */[0,x,v],r];
           },
         all_vars,
-        0);
+        /* [] */0);
     
     return /* tuple */[0,m,match$2[1],loc_count[1]];
     };
@@ -690,15 +735,15 @@ var
                        1+count,
                        Pervasives["max"](match$1[3],param[4])];
                },
-             [0,0,0,0,0],
+             [/* tuple */0,/* Empty */0,/* [] */0,0,0],
              casedef);
     };
 
 var
  encode_lexdef=
   function(def)
-   {chars[1]=0,0;
-    chars_count[1]=0,0;
+   {chars[1]=/* [] */0;
+    chars_count[1]=0;
     var
      entry_list=
       List["map"]
@@ -718,16 +763,16 @@ var
     
     var chr=$$Array["of_list"](List["rev"](chars[1]));
     
-    chars[1]=0,0;
+    chars[1]=/* [] */0;
     return /* tuple */[0,chr,entry_list];
     };
 
 var
  trans_compare=
   function(param,param$1)
-   {var r="unknown primitive:caml_compare";
+   {var r=CamlPrimitive["caml_compare"](param[1],param$1[1]);
     
-    if(r!=0){return r;}else{return Tags[10](param[2],param$1[2]);}
+    if(r!==0){return r;}else{return Tags[10](param[2],param$1[2]);}
     };
 
 var TransSet=Set["Make"]([0,trans_compare]);
@@ -737,7 +782,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){case 0:exit=156;}}
     else
      {switch(param[0])
@@ -746,10 +791,10 @@ var
         case 2:exit=156;
         case 3:return nullable(param[1])&&nullable(param[2]);
         case 4:return nullable(param[1])||nullable(param[2]);
-        case 5:return 1;
+        case 5:return /* true */1;
         }}
     
-    switch(exit){case 156:return 1;case 157:return 0;}
+    switch(exit){case 156:return /* true */1;case 157:return /* false */0;}
     };
 
 var
@@ -757,7 +802,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
      {switch(param[0])
@@ -798,7 +843,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){case 0:exit=153;}}
     else
      {switch(param[0])
@@ -833,18 +878,18 @@ var
 var
  followpos=
   function(size,entry_list)
-   {var v="unknown primitive:caml_make_vect";
+   {var v=CamlPrimitive["caml_make_vect"](size,TransSet[1]);
     
     var
      fill=
       function(s,param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){}}
         else
          {switch(param[0])
-           {case 0:return v[param[1]]=s,0;
+           {case 0:return v[param[1]+1]=s,0;
             case 3:
              var r2=param[2];
              
@@ -859,7 +904,7 @@ var
             case 5:var r=param[1];return fill(TransSet[7](firstpos(r),s),r);
             default:exit=150;}}
         
-        switch(exit){case 150:return 0;}
+        switch(exit){case 150:return /* () */0;}
         };
     
     List["iter"]
@@ -869,11 +914,13 @@ var
 
 var no_action=Pervasives["max_int"];
 
-var compare$1=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var
+ compare$1=
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var StateSet=Set["Make"]([0,compare$1]);
 
-var compare$2=function(x,y){return "unknown primitive:caml_int_compare";};
+var compare$2=function(x,y){return CamlPrimitive["caml_int_compare"](x,y);};
 
 var MemMap=Map["Make"]([0,compare$2]);
 
@@ -881,7 +928,18 @@ var
  dtag=
   function(oc,t)
    {return Printf["fprintf"]
-            (oc,[0,[2,0,[12,60,[2,0,[12,62,0]]]],"%s<%s>"],t[1],t[2]?"s":"e");
+            (oc,
+             [/* Format */0,
+              [/* String */2,
+               /* No_padding */0,
+               [/* Char_literal */12,
+                60,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* Char_literal */12,62,/* End_of_format */0]]]],
+              "%s<%s>"],
+             t[1],
+             t[2]?"s":"e");
     };
 
 var
@@ -889,9 +947,17 @@ var
   function(dp,ds,m)
    {return MemMap[10]
             (function(k,x)
-              {Printf["eprintf"]([0,[4,0,0,0,[11," -> ",0]],"%d -> "],k);
+              {Printf["eprintf"]
+                ([/* Format */0,
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* String_literal */11," -> ",/* End_of_format */0]],
+                  "%d -> "],
+                 k);
                dp(x);
-               return ds(0);
+               return ds(/* () */0);
                },
              m);
     };
@@ -902,9 +968,12 @@ var
    {return TagMap[10]
             (function(t,x)
               {dtag(Pervasives["stderr"],t);
-               Printf["eprintf"]([0,[11," -> ",0]," -> "]);
+               Printf["eprintf"]
+                ([/* Format */0,
+                  [/* String_literal */11," -> ",/* End_of_format */0],
+                  " -> "]);
                dp(x);
-               return ds(0);
+               return ds(/* () */0);
                },
              m);
     };
@@ -916,10 +985,30 @@ var
     
     var act=match[1];
     
-    if(act!=no_action)
-     {Printf["eprintf"]([0,[11,"final=",[4,0,0,0,[12,32,0]]],"final=%d "],act),
+    if(act!==no_action)
+     {Printf["eprintf"]
+       ([/* Format */0,
+         [/* String_literal */11,
+          "final=",
+          [/* Int */4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           [/* Char_literal */12,32,/* End_of_format */0]]],
+         "final=%d "],
+        act),
       dtag_map
-       (function(x){return Printf["eprintf"]([0,[4,0,0,0,0],"%d"],x);},
+       (function(x)
+         {return Printf["eprintf"]
+                  ([/* Format */0,
+                    [/* Int */4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     /* End_of_format */0],
+                    "%d"],
+                   x);
+          },
         function(param$1){return Pervasives["prerr_string"](" ,");},
         match[2][2]),
       Pervasives["prerr_endline"]("")}
@@ -930,7 +1019,16 @@ var
             (function(param$1)
               {return dtag_map
                        (function(x)
-                         {return Printf["eprintf"]([0,[4,0,0,0,0],"%d"],x);},
+                         {return Printf["eprintf"]
+                                  ([/* Format */0,
+                                    [/* Int */4,
+                                     /* Int_d */0,
+                                     /* No_padding */0,
+                                     /* No_precision */0,
+                                     /* End_of_format */0],
+                                    "%d"],
+                                   x);
+                          },
                         function(param$2){return Pervasives["prerr_string"](" ,");},
                         param$1[2]);
                },
@@ -947,7 +1045,10 @@ var
 var
  dfa_state_is_empty=
   function(param)
-   {return (param[1][1]=no_action)&&"unknown primitive:caml_equal";};
+   {return param[1][1]===
+           no_action&&
+           CamlPrimitive["caml_equal"](param[2],MemMap[1]);
+    };
 
 var compare$3=StateSet[10];
 
@@ -956,9 +1057,9 @@ var StateSetSet=Set["Make"]([0,compare$3]);
 var
  compare$4=
   function(e1,e2)
-   {var r="unknown primitive:caml_compare";
+   {var r=CamlPrimitive["caml_compare"](e1[1],e2[1]);
     
-    if(r!=0){return r;}else{return StateSetSet[10](e1[2],e2[2]);}
+    if(r!==0){return r;}else{return StateSetSet[10](e1[2],e2[2]);}
     };
 
 var MemKey=Set["Make"]([0,compare$4]);
@@ -982,7 +1083,7 @@ var
             return TagMap[4](tag,StateSetSet[4](s,ss),r$1);
             }
           catch(exn)
-           {if(exn=Not_found)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {return TagMap[4](tag,StateSetSet[4](s,StateSetSet[1]),r);}
             else
              {throw exn;}
@@ -1001,24 +1102,27 @@ var
  inverse_mem_map=
   function(trans,m,r)
    {return TagMap[11]
-            (function(tag,addr,r$1)
+            (function(tag,addr,r)
               {try
-                {var match=MemMap[22](addr,r$1);
+                {var match=MemMap[22](addr,r);
                  
-                 if("unknown primitive:caml_equal")
+                 if(CamlPrimitive["caml_equal"](tag,match[1]))
                   {}
                  else
-                  {throw [0,Assert_failure,[0,"lexgen.ml",714,8]];}
+                  {throw [0,
+                          CamlPrimitive["caml_global_data"]["Assert_failure"],
+                          [0,"lexgen.ml",714,8]];
+                   }
                  
-                 var r$2=MemMap[6](addr,r$1);
+                 var r$1=MemMap[6](addr,r);
                  
                  return MemMap[4]
-                         (addr,/* tuple */[0,tag,StateSet[4](trans,match[2])],r$2);
+                         (addr,/* tuple */[0,tag,StateSet[4](trans,match[2])],r$1);
                  }
                catch(exn)
-                {if(exn=Not_found)
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                   {return MemMap[4]
-                           (addr,/* tuple */[0,tag,StateSet[4](trans,StateSet[1])],r$1);
+                           (addr,/* tuple */[0,tag,StateSet[4](trans,StateSet[1])],r);
                    }
                  else
                   {throw exn;}
@@ -1046,7 +1150,7 @@ var
       MemMap[11]
        (inverse_mem_map_other,
         o,
-        (act=no_action)
+        act===no_action
          ?MemMap[1]
          :inverse_mem_map(/* ToAction */[1,act],match[2][2],MemMap[1]));
     
@@ -1055,7 +1159,7 @@ var
       MemMap[11]
        (function(n,param$1,r){return StateSet[4](/* OnChars */[0,n],r);},
         o,
-        (act=no_action)
+        act===no_action
          ?StateSet[1]
          :StateSet[4](/* ToAction */[1,act],StateSet[1]));
     
@@ -1069,22 +1173,22 @@ var
   function(k1,k2)
    {var r=StateSet[10](k1[1],k2[1]);
     
-    if(r!=0){return r;}else{return MemKey[10](k1[2],k2[2]);}
+    if(r!==0){return r;}else{return MemKey[10](k1[2],k2[2]);}
     };
 
 var StateMap=Map["Make"]([0,key_compare]);
 
 var state_map=[0,StateMap[1]];
 
-var todo=Stack["create"](0);
+var todo=Stack["create"](/* () */0);
 
 var next_state_num=[0,0];
 
 var next_mem_cell=[0,0];
 
-var temp_pending=[0,0];
+var temp_pending=[0,/* false */0];
 
-var tag_cells=Hashtbl["create"](0,17);
+var tag_cells=Hashtbl["create"](/* None */0,17);
 
 var state_table=Table["create"](dfa_state_empty);
 
@@ -1092,37 +1196,42 @@ var
  reset_state=
   function(param)
    {Stack["clear"](todo);
-    next_state_num[1]=0,0;
+    next_state_num[1]=0;
     var match=Table["trim"](state_table);
     
-    return 0;
+    return /* () */0;
     };
 
 var
  reset_state_partial=
   function(ntags)
-   {next_mem_cell[1]=ntags,0;
+   {next_mem_cell[1]=ntags;
     Hashtbl["clear"](tag_cells);
-    temp_pending[1]=0,0;
+    temp_pending[1]=/* false */0;
     return state_map[1]=StateMap[1],0;
     };
 
 var
  do_alloc_temp=
-  function(param){temp_pending[1]=1,0;return next_mem_cell[1];};
+  function(param){temp_pending[1]=/* true */1;return next_mem_cell[1];};
 
 var
  do_alloc_cell=
   function(used,t)
    {try
      {var available=Hashtbl["find"](tag_cells,t);}
-    catch(exn){if(exn=Not_found){var available=Ints[1];}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var available=Ints[1];}
+      else
+       {throw exn;}
+      }
     
     try
      {return Ints[23](Ints[9](available,used));}
     catch(exn$1)
-     {if(exn$1=Not_found)
-       {temp_pending[1]=0,0;
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+       {temp_pending[1]=/* false */0;
         var n=next_mem_cell[1];
         
         if(n>=255){throw Memory_overflow;}else{}
@@ -1144,12 +1253,8 @@ var
  old_in_map=
   function(m,r)
    {return TagMap[11]
-            (function(param,addr,r$1)
-              {if(is_old_addr(addr))
-                {return Ints[4](addr,r$1);}
-               else
-                {return r$1;}
-               },
+            (function(param,addr,r)
+              {if(is_old_addr(addr)){return Ints[4](addr,r);}else{return r;}},
              m,
              r);
     };
@@ -1213,7 +1318,7 @@ var
             Ints[14]
              (function(x,r){return /* :: */[0,/* Set */[1,x],r];},
               match$2[2],
-              0)];
+              /* [] */0)];
     };
 
 var create_new_addr_gen=function(param){return /* record */[0,-1,TagMap[1]];};
@@ -1224,8 +1329,8 @@ var
    {try
      {return TagMap[22](tag,r[2]);}
     catch(exn)
-     {if(exn=Not_found)
-       {var a=r[1];r[1]=a-1,0;r[2]=TagMap[4](tag,a,r[2]),0;return a;}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var a=r[1];r[1]=a-1;r[2]=TagMap[4](tag,a,r[2]);return a;}
       else
        {throw exn;}
       }
@@ -1243,7 +1348,7 @@ var
 var
  create_init_state=
   function(pos)
-   {var gen=create_new_addr_gen(0);
+   {var gen=create_new_addr_gen(/* () */0);
     
     return TransSet[14]
             (function(param,st)
@@ -1251,17 +1356,19 @@ var
                
                var t=param[1];
                
-               switch(t)
+               switch(t[0])
                 {case 0:
                   var n=t[1];
                   
                   try
                    {var match=MemMap[22](n,st[2]);
                     
-                    throw [0,Assert_failure,[0,"lexgen.ml",866,49]];
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"lexgen.ml",866,49]];
                     }
                   catch(exn)
-                   {if(exn=Not_found)
+                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                      {return /* record */[0,
                               st[1],
                               MemMap[4](n,/* tuple */[0,0,create_mem_map(tags,gen)],st[2])];
@@ -1292,7 +1399,7 @@ var
 var
  get_map=
   function(t,st)
-   {switch(t)
+   {switch(t[0])
      {case 0:var match=MemMap[22](t[1],st[2]);return match[2];
       case 1:var match$1=st[1];return match$1[2][2];
       }
@@ -1302,14 +1409,26 @@ var dest=function(param){return param[1];};
 
 var
  orig=
-  function(param){switch(param){case 0:return param[2];case 1:return -1;}};
+  function(param){switch(param[0]){case 0:return param[2];case 1:return -1;}};
 
 var
  pmv=
   function(oc,mv)
    {return Printf["fprintf"]
             (oc,
-             [0,[4,0,0,0,[11," <- ",[4,0,0,0,0]]],"%d <- %d"],
+             [/* Format */0,
+              [/* Int */4,
+               /* Int_d */0,
+               /* No_padding */0,
+               /* No_precision */0,
+               [/* String_literal */11,
+                " <- ",
+                [/* Int */4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 /* End_of_format */0]]],
+              "%d <- %d"],
              dest(mv),
              orig(mv));
     };
@@ -1319,7 +1438,15 @@ var
   function(oc,mvs)
    {List["iter"]
      (function(mv)
-       {return Printf["fprintf"](oc,[0,[15,[12,32,0]],"%a "],pmv,mv);},
+       {return Printf["fprintf"]
+                (oc,
+                 [/* Format */0,
+                  [/* Alpha */15,
+                   [/* Char_literal */12,32,/* End_of_format */0]],
+                  "%a "],
+                 pmv,
+                 mv);
+        },
       mvs);
     Pervasives["output_char"](oc,10);
     return Pervasives["flush"](oc);
@@ -1330,17 +1457,17 @@ var
   function(mvs)
    {var
      do_rec=
-      function(r,mvs$1)
-       {if(mvs$1)
+      function(r,mvs)
+       {if(mvs)
          {var
            dests=
             List["fold_left"]
-             (function(r$1,mv){return Ints[4](dest(mv),r$1);},Ints[1],mvs$1);
+             (function(r,mv){return Ints[4](dest(mv),r);},Ints[1],mvs);
           
           var
            match=
             List["partition"]
-             (function(mv){return Ints[3](orig(mv),dests);},mvs$1);
+             (function(mv){return Ints[3](orig(mv),dests);},mvs);
           
           var here=match[2];
           
@@ -1354,11 +1481,11 @@ var
             if(rem)
              {var match$1=rem[1];
               
-              switch(match$1)
+              switch(match$1[0])
                {case 0:
                  var d=match$1[1];
                  
-                 var d$prime=do_alloc_temp(0);
+                 var d$prime=do_alloc_temp(/* () */0);
                  
                  return /* :: */[0,
                          /* Copy */[0,d$prime,d],
@@ -1366,7 +1493,7 @@ var
                           (r,
                            List["map"]
                             (function(mv)
-                              {if(orig(mv)=d)
+                              {if(orig(mv)===d)
                                 {return /* Copy */[0,dest(mv),d$prime];}
                                else
                                 {return mv;}
@@ -1380,14 +1507,19 @@ var
              {exit=68;}
             
             switch(exit)
-             {case 68:throw [0,Assert_failure,[0,"lexgen.ml",917,17]];}
+             {case 68:
+               throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"lexgen.ml",917,17]];
+               
+              }
             }
           }
         else
          {return r;}
         };
     
-    return do_rec(0,mvs);
+    return do_rec(/* [] */0,mvs);
     };
 
 var
@@ -1400,7 +1532,7 @@ var
          {var tag=param[1];
           
           return StateSetSet[14]
-                  (function(s,r$1)
+                  (function(s,r)
                     {try
                       {var t=StateSet[23](s);
                        
@@ -1408,18 +1540,21 @@ var
                        
                        var tgt$1=TagMap[22](tag,get_map(t,tgt));
                        
-                       if(src$1!=tgt$1)
+                       if(src$1!==tgt$1)
                         {if(is_new_addr(src$1))
-                          {return /* :: */[0,/* Set */[1,tgt$1],r$1];}
+                          {return /* :: */[0,/* Set */[1,tgt$1],r];}
                          else
-                          {return /* :: */[0,/* Copy */[0,tgt$1,src$1],r$1];}
+                          {return /* :: */[0,/* Copy */[0,tgt$1,src$1],r];}
                          }
                        else
-                        {return r$1;}
+                        {return r;}
                        }
                      catch(exn)
-                      {if(exn=Not_found)
-                        {throw [0,Assert_failure,[0,"lexgen.ml",940,27]];}
+                      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                        {throw [0,
+                                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                [0,"lexgen.ml",940,27]];
+                         }
                        else
                         {throw exn;}
                        }
@@ -1428,7 +1563,7 @@ var
                    r);
           },
         mem_key,
-        0);
+        /* [] */0);
     
     return sort_mvs(mvs);
     };
@@ -1446,7 +1581,7 @@ var
               move_to(key[2],st,Table["get"](state_table,num))];
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var num$1=next_state_num[1];
         
         next_state_num[0]++;
@@ -1455,7 +1590,7 @@ var
         var st$1=match[1];
         
         Table["emit"](state_table,st$1);
-        state_map[1]=StateMap[4](key,num$1,state_map[1]),0;
+        state_map[1]=StateMap[4](key,num$1,state_map[1]);
         Stack["push"](/* tuple */[0,st$1,num$1],todo);
         return /* tuple */[0,num$1,match[2]];
         }
@@ -1470,7 +1605,7 @@ var
    {var res=old_res;
     
     try
-     {while(1)
+     {while(/* true */1)
        {var match=Stack["pop"](todo);
         
         var r=f(match[1]);
@@ -1478,7 +1613,7 @@ var
         res=/* :: */[0,/* tuple */[0,r,match[2]],res];
         }
       }
-    catch(exn){if(exn=Stack["Empty"]){}else{throw exn;}}
+    catch(exn){if(exn===Stack["Empty"]){}else{throw exn;}}
     
     return res;
     };
@@ -1487,7 +1622,7 @@ var
  goto_state=
   function(st)
    {if(dfa_state_is_empty(st))
-     {return [0,0,0];}
+     {return [/* tuple */0,/* Backtrack */0,/* [] */0];}
     else
      {var match=get_state(st);
       
@@ -1499,10 +1634,10 @@ var
  add_tags_to_map=
   function(gen,tags,m)
    {return Tags[14]
-            (function(tag,m$1)
-              {var m$2=TagMap[6](tag,m$1);
+            (function(tag,m)
+              {var m$1=TagMap[6](tag,m);
                
-               return TagMap[4](tag,alloc_new_addr(tag,gen),m$2);
+               return TagMap[4](tag,alloc_new_addr(tag,gen),m$1);
                },
              tags,
              m);
@@ -1513,7 +1648,7 @@ var
   function(gen,r,pri,m,param)
    {var match=param[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var tags=param[2];
        
@@ -1522,7 +1657,7 @@ var
        try
         {var match$1=MemMap[22](n,r[2]);
          
-         if("unknown primitive:caml_lessthan")
+         if(CamlPrimitive["caml_lessthan"](pri,match$1[1]))
           {var m$1=add_tags_to_map(gen,tags,m);
            
            return /* record */[0,
@@ -1533,7 +1668,7 @@ var
           {return r;}
          }
        catch(exn)
-        {if(exn=Not_found)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
           {var m$2=add_tags_to_map(gen,tags,m);
            
            return /* record */[0,
@@ -1551,7 +1686,7 @@ var
        
        var on=match$2[1];
        
-       if(n$1<on||(on=n$1)&&"unknown primitive:caml_lessthan")
+       if(n$1<on||on===n$1&&CamlPrimitive["caml_lessthan"](pri,match$2[2][1]))
         {var m$3=add_tags_to_map(gen,param[2],m);
          
          return /* record */[0,/* tuple */[0,n$1,/* tuple */[0,pri,m$3]],r[2]];
@@ -1566,7 +1701,7 @@ var
  apply_transitions=
   function(gen,r,pri,m,ts)
    {return TransSet[14]
-            (function(t,r$1){return apply_transition(gen,r$1,pri,m,t);},ts,r);
+            (function(t,r){return apply_transition(gen,r,pri,m,t);},ts,r);
     };
 
 var
@@ -1607,28 +1742,29 @@ var
         }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
  comp_shift=
-  function(gen,chars$1,follow,st)
+  function(gen,chars,follow,st)
    {return MemMap[11]
             (function(pos,param,env)
-              {return split_env(gen,follow[pos],pos,param[2],chars$1[pos],env);
+              {return split_env
+                       (gen,follow[pos+1],pos,param[2],chars[pos+1],env);
                },
              st,
              /* :: */[0,
               /* tuple */[0,Cset["all_chars_eof"],dfa_state_empty],
-              0]);
+              /* [] */0]);
     };
 
 var
  reachs=
-  function(chars$1,follow,st)
-   {var gen=create_new_addr_gen(0);
+  function(chars,follow,st)
+   {var gen=create_new_addr_gen(/* () */0);
     
-    var env=comp_shift(gen,chars$1,follow,st);
+    var env=comp_shift(gen,chars,follow,st);
     
     var
      env$1=
@@ -1643,10 +1779,13 @@ var
  get_tag_mem=
   function(n,env,t)
    {try
-     {return TagMap[22](t,env[n]);}
+     {return TagMap[22](t,env[n+1]);}
     catch(exn)
-     {if(exn=Not_found)
-       {throw [0,Assert_failure,[0,"lexgen.ml",1069,17]];}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"lexgen.ml",1069,17]];
+        }
       else
        {throw exn;}
       }
@@ -1658,33 +1797,33 @@ var
    {var
      match=
       TagMap[11]
-       (function(t,m$1,param)
+       (function(t,m,param)
          {var a=get_tag_mem(n,env,t);
           
           return /* tuple */[0,
                   Ints[4](a,param[1]),
-                  /* :: */[0,/* SetTag */[0,a,m$1],param[2]]];
+                  /* :: */[0,/* SetTag */[0,a,m],param[2]]];
           },
         m,
-        /* tuple */[0,Ints[1],0]);
+        /* tuple */[0,Ints[1],/* [] */0]);
     
     var
      match$1=
       TagMap[11]
-       (function(tag,m$1,param)
+       (function(tag,m,param)
          {var r=param[2];
           
           var used=param[1];
           
-          if(!Ints[3](m$1,used)&&tag[2])
+          if(!Ints[3](m,used)&&tag[2])
            {return /* tuple */[0,
-                    Ints[4](m$1,used),
-                    /* :: */[0,/* EraseTag */[1,m$1],r]];
+                    Ints[4](m,used),
+                    /* :: */[0,/* EraseTag */[1,m],r]];
             }
           else
            {return /* tuple */[0,used,r];}
           },
-        env[n],
+        env[n+1],
         /* tuple */[0,match[1],match[2]]);
     
     return match$1[2];
@@ -1692,26 +1831,29 @@ var
 
 var
  translate_state=
-  function(shortest_match,tags,chars$1,follow,st)
+  function(shortest_match,tags,chars,follow,st)
    {var match=st[1];
     
     var m=match[2][2];
     
     var n=match[1];
     
-    if("unknown primitive:caml_equal")
+    if(CamlPrimitive["caml_equal"](MemMap[1],st[2]))
      {return /* Perform */[0,n,do_tag_actions(n,tags,m)];}
     else
      {if(shortest_match)
-       {if(n=no_action)
-         {return /* Shift */[1,0,reachs(chars$1,follow,st[2])];}
+       {if(n===no_action)
+         {return /* Shift */[1,/* No_remember */0,reachs(chars,follow,st[2])];
+          }
         else
          {return /* Perform */[0,n,do_tag_actions(n,tags,m)];}
         }
       else
        {return /* Shift */[1,
-                (n=no_action)?0:/* Remember */[0,n,do_tag_actions(n,tags,m)],
-                reachs(chars$1,follow,st[2])];
+                n===no_action
+                 ?/* No_remember */0
+                 :/* Remember */[0,n,do_tag_actions(n,tags,m)],
+                reachs(chars,follow,st[2])];
         }
       }
     };
@@ -1721,7 +1863,15 @@ var
   function(chan,tags)
    {return Tags[13]
             (function(t)
-              {return Printf["fprintf"](chan,[0,[12,32,[15,0]]," %a"],dtag,t);
+              {return Printf["fprintf"]
+                       (chan,
+                        [/* Format */0,
+                         [/* Char_literal */12,
+                          32,
+                          [/* Alpha */15,/* End_of_format */0]],
+                         " %a"],
+                        dtag,
+                        t);
                },
              tags);
     };
@@ -1733,11 +1883,20 @@ var
             (function(trans)
               {var match=trans[1];
                
-               switch(match)
+               switch(match[0])
                 {case 0:
                   return Printf["eprintf"]
-                          ([0,
-                            [11," (-> ",[4,0,0,0,[12,44,[15,[12,41,0]]]]],
+                          ([/* Format */0,
+                            [/* String_literal */11,
+                             " (-> ",
+                             [/* Int */4,
+                              /* Int_d */0,
+                              /* No_padding */0,
+                              /* No_precision */0,
+                              [/* Char_literal */12,
+                               44,
+                               [/* Alpha */15,
+                                [/* Char_literal */12,41,/* End_of_format */0]]]]],
                             " (-> %d,%a)"],
                            match[1],
                            dtags,
@@ -1745,8 +1904,17 @@ var
                   
                  case 1:
                   return Printf["eprintf"]
-                          ([0,
-                            [11," ([",[4,0,0,0,[11,"],",[15,[12,41,0]]]]],
+                          ([/* Format */0,
+                            [/* String_literal */11,
+                             " ([",
+                             [/* Int */4,
+                              /* Int_d */0,
+                              /* No_padding */0,
+                              /* No_precision */0,
+                              [/* String_literal */11,
+                               "],",
+                               [/* Alpha */15,
+                                [/* Char_literal */12,41,/* End_of_format */0]]]]],
                             " ([%d],%a)"],
                            match[1],
                            dtags,
@@ -1760,9 +1928,21 @@ var
 var
  dfollow=
   function(t)
-   {Printf["eprintf"]([0,[11,"follow=[",0],"follow=["]);
-    for(var i=0;i<=t["length"]-1;i++)
-     {Printf["eprintf"]([0,[4,0,0,0,[12,58,0]],"%d:"],i),dtransset(t[i])}
+   {Printf["eprintf"]
+     ([/* Format */0,
+       [/* String_literal */11,"follow=[",/* End_of_format */0],
+       "follow=["]);
+    for(var i=0;i<=/* -1 for tag */t["length"]-1-1;i++)
+     {Printf["eprintf"]
+       ([/* Format */0,
+         [/* Int */4,
+          /* Int_d */0,
+          /* No_padding */0,
+          /* No_precision */0,
+          [/* Char_literal */12,58,/* End_of_format */0]],
+         "%d:"],
+        i),
+      dtransset(t[i+1])}
     
     return Pervasives["prerr_endline"]("]");
     };
@@ -1776,10 +1956,10 @@ var
     
     var match$1=match[1];
     
-    if("unknown primitive:isint")
+    if(typeof match$1==="number")
      {exit=14;}
     else
-     {if(match[2]!=0)
+     {if(match[2]!==0)
        {exit=14;}
       else
        {return TagMap[4](/* record */[0,id,start,act],match$1[1],r);}
@@ -1791,25 +1971,29 @@ var
 var
  extract_tags=
   function(l)
-   {var envs="unknown primitive:caml_make_vect";
+   {var envs=CamlPrimitive["caml_make_vect"](List["length"](l),TagMap[1]);
     
     List["iter"]
      (function(param)
        {var act=param[1];
         
-        return envs[act]=
+        return envs[act+1]=
                List["fold_right"]
                 (function(param$1,r)
                   {var v=param$1[2];
                    
                    var name=param$1[1][1];
                    
-                   switch(v)
+                   switch(v[0])
                     {case 0:
                       return make_tag_entry
-                              (name,1,act,v[2],make_tag_entry(name,0,act,v[3],r));
+                              (name,
+                               /* true */1,
+                               act,
+                               v[2],
+                               make_tag_entry(name,/* false */0,act,v[3],r));
                       
-                     case 1:return make_tag_entry(name,1,act,v[2],r);
+                     case 1:return make_tag_entry(name,/* true */1,act,v[2],r);
                      }
                    },
                  param[2],
@@ -1829,10 +2013,10 @@ var
     
     var chars$1=match[1];
     
-    var follow=followpos(chars$1["length"],entry_list);
+    var follow=followpos(/* -1 for tag */chars$1["length"]-1,entry_list);
     
-    reset_state(0);
-    var r_states=[0,0];
+    reset_state(/* () */0);
+    var r_states=[0,/* [] */0];
     
     var
      initial_states=
@@ -1851,8 +2035,7 @@ var
           
           r_states[1]=
           map_on_all_states
-           (translate_state(param[3],tags,chars$1,follow),r_states[1]),
-          0;
+           (translate_state(param[3],tags,chars$1,follow),r_states[1]);
           return /* record */[0,
                   le[1],
                   param[2],
@@ -1864,10 +2047,14 @@ var
     
     var states=r_states[1];
     
-    var actions="unknown primitive:caml_make_vect";
+    var
+     actions=
+      CamlPrimitive["caml_make_vect"]
+       (next_state_num[1],[/* Perform */0,0,/* [] */0]);
     
-    List["iter"](function(param){return actions[param[2]]=param[1],0;},states);
-    reset_state(0);
+    List["iter"]
+     (function(param){return actions[param[2]+1]=param[1],0;},states);
+    reset_state(/* () */0);
     reset_state_partial(0);
     return /* tuple */[0,initial_states,actions];
     };

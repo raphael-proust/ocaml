@@ -1,19 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Config=require("Config");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var section_table=[0,0];
+var section_table=[0,/* [] */0];
 
 var section_beginning=[0,0];
 
 var
  init_record=
   function(outchan)
-   {section_beginning[1]=Pervasives["pos_out"](outchan),0;
-    return section_table[1]=0,0;
+   {section_beginning[1]=Pervasives["pos_out"](outchan);
+    return section_table[1]=/* [] */0,0;
     };
 
 var
@@ -22,8 +23,7 @@ var
    {var pos=Pervasives["pos_out"](outchan);
     
     section_table[1]=
-    /* :: */[0,/* tuple */[0,name,pos-section_beginning[1]],section_table[1]],
-    0;
+    /* :: */[0,/* tuple */[0,name,pos-section_beginning[1]],section_table[1]];
     return section_beginning[1]=pos,0;
     };
 
@@ -38,10 +38,12 @@ var
       List["rev"](section_table[1]));
     Pervasives["output_binary_int"](outchan,List["length"](section_table[1]));
     Pervasives["output_string"](outchan,Config["exec_magic_number"]);
-    return section_table[1]=0,0;
+    return section_table[1]=/* [] */0,0;
     };
 
-var Bad_magic_number="unknown primitive:caml_set_oo_id";
+var
+ Bad_magic_number=
+  CamlPrimitive["caml_set_oo_id"]([248,"Bytesections.Bad_magic_number",0]);
 
 var
  read_toc=
@@ -56,19 +58,22 @@ var
       Pervasives["really_input_string"]
        (ic,Config["exec_magic_number"]["length"]);
     
-    if("unknown primitive:caml_string_notequal")
+    if
+     (CamlPrimitive["caml_string_notequal"]
+       (header,Config["exec_magic_number"]))
      {throw Bad_magic_number;}
     else
      {}
     
     Pervasives["seek_in"](ic,pos_trailer-8*num_sections);
-    section_table[1]=0,0;
+    section_table[1]=/* [] */0;
     for(var _i=1;_i<=num_sections;_i++)
      {var name=Pervasives["really_input_string"](ic,4);
       
       var len=Pervasives["input_binary_int"](ic);
       
-      section_table[1]=/* :: */[0,/* tuple */[0,name,len],section_table[1]],0}
+      section_table[1]=/* :: */[0,/* tuple */[0,name,len],section_table[1]]}
+    return 0;
     };
 
 var toc=function(param){return List["rev"](section_table[1]);};
@@ -84,13 +89,13 @@ var
           
           var len=match[2];
           
-          if("unknown primitive:caml_string_equal")
+          if(CamlPrimitive["caml_string_equal"](match[1],name))
            {Pervasives["seek_in"](ic,curr_ofs-len);return len;}
           else
            {return seek_sec(curr_ofs-len,param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return seek_sec
@@ -108,7 +113,8 @@ var
 
 var
  read_section_struct=
-  function(ic,name){return Pervasives["input_value"](ic);};
+  function(ic,name)
+   {seek_section(ic,name);return Pervasives["input_value"](ic);};
 
 var
  pos_first_section=
@@ -123,7 +129,7 @@ var
 
 var
  reset=
-  function(param){section_table[1]=0,0;return section_beginning[1]=0,0;};
+  function(param){section_table[1]=/* [] */0;return section_beginning[1]=0,0;};
 
 module["exports"]=
 {"init_record":init_record,

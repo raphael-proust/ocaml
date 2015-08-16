@@ -1,42 +1,43 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Bytegen=require("Bytegen");
-var Printlambda=require("Printlambda");
-var Translmod=require("Translmod");
-var Bytelink=require("Bytelink");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Format=require("Format");
-var Set=require("Set");
-var Misc=require("Misc");
-var Typemod=require("Typemod");
-var Path=require("Path");
-var Filename=require("Filename");
-var Subst=require("Subst");
-var Emitcode=require("Emitcode");
-var Location=require("Location");
-var Ident=require("Ident");
-var Config=require("Config");
+var $$String=require("./string.js");
+var Bytegen=require("./bytegen.js");
+var Printlambda=require("./printlambda.js");
+var Translmod=require("./translmod.js");
+var Bytelink=require("./bytelink.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Format=require("./format.js");
+var Set=require("./set.js");
+var Misc=require("./misc.js");
+var Typemod=require("./typemod.js");
+var Path=require("./path.js");
+var Filename=require("./filename.js");
+var Subst=require("./subst.js");
+var Emitcode=require("./emitcode.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var $$let=$$String;
 
 var StringSet=Set["Make"]([0,$$let[25]]);
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Bytepackager.Error",0]);
 
-var relocs=[0,0];
+var relocs=[0,/* [] */0];
 
-var events=[0,0];
+var events=[0,/* [] */0];
 
 var debug_dirs=[0,StringSet[1]];
 
-var primitives=[0,0];
+var primitives=[0,/* [] */0];
 
-var force_link=[0,0];
+var force_link=[0,/* false */0];
 
 var
  rename_relocation=
@@ -45,7 +46,7 @@ var
     
     var exit;
     
-    switch(rel)
+    switch(rel[0])
      {case 0:exit=54;
       case 1:
        var id=rel[1];
@@ -59,7 +60,7 @@ var
           {throw [0,$$Error,/* Forward_reference */[0,objfile,id]];}
          }
        catch(exn)
-        {if(exn=Not_found)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
           {var name=Ident["name"](id);
            
            if($$String["contains"](name,46))
@@ -88,7 +89,7 @@ var
           {var rel$prime=/* Reloc_setglobal */[2,id$prime$1];}
          }
        catch(exn$1)
-        {if(exn$1=Not_found)
+        {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
           {var name$1=Ident["name"](id$1);
            
            if($$String["contains"](name$1,46))
@@ -118,11 +119,11 @@ var
 var
  relocate_debug=
   function(base,prefix,subst,ev)
-   {var newrecord="unknown primitive:duprecord regular 10";
+   {var newrecord=/* unknown */"duprecord regular 10";
     
-    newrecord[1]=base+ev[1],0;
-    newrecord[2]=Pervasives["^"](prefix,Pervasives["^"](".",ev[2])),0;
-    newrecord[7]=Subst["compose"](ev[7],subst),0;
+    newrecord[1]=base+ev[1];
+    newrecord[2]=Pervasives["^"](prefix,Pervasives["^"](".",ev[2]));
+    newrecord[7]=Subst["compose"](ev[7],subst);
     var ev$prime=newrecord;
     
     return events[1]=/* :: */[0,ev$prime,events[1]],0;
@@ -145,7 +146,9 @@ var
           Pervasives["really_input_string"]
            (ic,Config["cmo_magic_number"]["length"]);
         
-        if("unknown primitive:caml_string_notequal")
+        if
+         (CamlPrimitive["caml_string_notequal"]
+           (buffer,Config["cmo_magic_number"]))
          {throw [0,$$Error,/* Not_an_object_file */[2,file]];}
         else
          {}
@@ -155,7 +158,7 @@ var
         Pervasives["seek_in"](ic,compunit_pos);
         var compunit=Pervasives["input_value"](ic);
         
-        if("unknown primitive:caml_string_notequal")
+        if(CamlPrimitive["caml_string_notequal"](compunit[1],name))
          {throw [0,$$Error,/* Illegal_renaming */[3,name,file,compunit[1]]];}
         else
          {}
@@ -166,7 +169,7 @@ var
       catch(x){Pervasives["close_in"](ic);throw x;}
       }
     else
-     {var kind=0;}
+     {var kind=/* PM_intf */0;}
     
     return /* record */[0,file,name,kind];
     };
@@ -182,8 +185,8 @@ var
       List["iter"]
        (rename_relocation(packagename,objfile,mapping,defined,ofs),
         compunit[4]);
-      primitives[1]=Pervasives["@"](compunit[6],primitives[1]),0;
-      if(compunit[7]){force_link[1]=1,0}else{}
+      primitives[1]=Pervasives["@"](compunit[6],primitives[1]);
+      if(compunit[7]){force_link[1]=/* true */1}else{}
       
       Pervasives["seek_in"](ic,compunit[2]);
       Misc["copy_file_chunk"](ic,oc,compunit[3]);
@@ -195,8 +198,7 @@ var
         List["fold_left"]
          (function(s,e){return StringSet[4](e,s);},
           debug_dirs[1],
-          Pervasives["input_value"](ic)),
-        0}
+          Pervasives["input_value"](ic))}
       else
        {}
       
@@ -258,7 +260,7 @@ var
        (function(m,param)
          {var match=m[3];
           
-          if(match){return /* Some */[0,param[2]];}else{return 0;}
+          if(match){return /* Some */[0,param[2]];}else{return /* None */0;}
           },
         members,
         mapping);
@@ -269,7 +271,13 @@ var
        (components,Ident["create_persistent"](target_name),coercion);
     
     if(Clflags["dump_lambda"][1])
-     {Format["printf"]([0,[15,[17,4,0]],"%a@."],Printlambda["lambda"],lam)}
+     {Format["printf"]
+       ([/* Format */0,
+         [/* Alpha */15,
+          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+         "%a@."],
+        Printlambda["lambda"],
+        lam)}
     else
      {}
     
@@ -316,12 +324,20 @@ var
       var
        ofs=
         rename_append_bytecode_list
-         (ppf,targetname,oc,mapping,0,0,targetname,Subst["identity"],members);
+         (ppf,
+          targetname,
+          oc,
+          mapping,
+          /* [] */0,
+          0,
+          targetname,
+          Subst["identity"],
+          members);
       
       build_global_target(oc,targetname,members,mapping,ofs,coercion);
       var pos_debug=Pervasives["pos_out"](oc);
       
-      if(Clflags["debug"][1]&&events[1]!=0)
+      if(Clflags["debug"][1]&&events[1]!==/* [] */0)
        {Pervasives["output_value"](oc,List["rev"](events[1])),
         Pervasives["output_value"](oc,StringSet[20](debug_dirs[1]))}
       else
@@ -333,7 +349,7 @@ var
        imports=
         List["filter"]
          (function(param){return !List["mem"](param[1],unit_names);},
-          Bytelink["extract_crc_interfaces"](0));
+          Bytelink["extract_crc_interfaces"](/* () */0));
       
       var
        compunit=
@@ -370,7 +386,7 @@ var
          {try
            {return Misc["find_in_path"](Config["load_path"][1],f);}
           catch(exn)
-           {if(exn=Not_found)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {throw [0,$$Error,/* File_not_found */[4,f]];}
             else
              {throw exn;}
@@ -397,12 +413,18 @@ var
 var
  report_error=
   function(ppf,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,"Forward reference to ",[2,0,[11," in file ",[15,0]]]],
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "Forward reference to ",
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11,
+                    " in file ",
+                    [/* Alpha */15,/* End_of_format */0]]]],
                  "Forward reference to %s in file %a"],
                 Ident["name"](param[2]),
                 Location["print_filename"],
@@ -411,8 +433,13 @@ var
       case 1:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,"File ",[15,[11," redefines ",[2,0,0]]]],
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "File ",
+                  [/* Alpha */15,
+                   [/* String_literal */11,
+                    " redefines ",
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                  "File %a redefines %s"],
                 Location["print_filename"],
                 param[1],
@@ -421,8 +448,11 @@ var
       case 2:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [15,[11," is not a bytecode object file",0]],
+                [/* Format */0,
+                 [/* Alpha */15,
+                  [/* String_literal */11,
+                   " is not a bytecode object file",
+                   /* End_of_format */0]],
                  "%a is not a bytecode object file"],
                 Location["print_filename"],
                 param[1]);
@@ -430,17 +460,25 @@ var
       case 3:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "Wrong file naming: ",
-                  [15,
-                   [17,
-                    [0,"@ ",1,0],
-                    [11,
+                  [/* Alpha */15,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String_literal */11,
                      "contains the code for",
-                     [17,
-                      [0,"@ ",1,0],
-                      [2,0,[11," when ",[2,0,[11," was expected",0]]]]]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        " when ",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          " was expected",
+                          /* End_of_format */0]]]]]]]]],
                  "Wrong file naming: %a@ contains the code for@ %s when %s was expected"],
                 Location["print_filename"],
                 param[2],
@@ -450,7 +488,13 @@ var
       case 4:
        return Format["fprintf"]
                (ppf,
-                [0,[11,"File ",[2,0,[11," not found",0]]],"File %s not found"],
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "File ",
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11," not found",/* End_of_format */0]]],
+                 "File %s not found"],
                 param[1]);
        
       }
@@ -460,18 +504,22 @@ var
  match=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer_file"](report_error,param[2])];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 var
  reset=
   function(param)
-   {relocs[1]=0,0;events[1]=0,0;primitives[1]=0,0;return force_link[1]=0,0;};
+   {relocs[1]=/* [] */0;
+    events[1]=/* [] */0;
+    primitives[1]=/* [] */0;
+    return force_link[1]=/* false */0,0;
+    };
 
 module["exports"]=
 {"package_files":package_files,

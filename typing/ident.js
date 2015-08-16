@@ -1,7 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Format=require("Format");
+var Pervasives=require("./pervasives.js");
+var Format=require("./format.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var global_flag=1;
@@ -46,11 +47,13 @@ var
             (i[2],Pervasives["^"]("/",Pervasives["string_of_int"](i[1])));
     };
 
-var persistent=function(i){return i[1]=0;};
+var persistent=function(i){return i[1]===0;};
 
-var equal=function(i1,i2){return "unknown primitive:caml_string_equal";};
+var
+ equal=
+  function(i1,i2){return CamlPrimitive["caml_string_equal"](i1[2],i2[2]);};
 
-var same=function(i1,i2){return "unknown primitive:caml_equal";};
+var same=function(i1,i2){return CamlPrimitive["caml_equal"](i1,i2);};
 
 var binding_time=function(i){return i[1];};
 
@@ -75,32 +78,58 @@ var hide=function(i){return /* record */[0,-1,i[2],i[3]];};
 
 var make_global=function(i){return i[3]=i[3]|global_flag,0;};
 
-var global=function(i){return (i[3]&global_flag)!=0;};
+var global=function(i){return (i[3]&global_flag)!==0;};
 
-var is_predef_exn=function(i){return (i[3]&predef_exn_flag)!=0;};
+var is_predef_exn=function(i){return (i[3]&predef_exn_flag)!==0;};
 
 var
  print=
   function(ppf,i)
    {var n=i[1];
     
-    if(n!=-1)
-     {if(n!=0)
+    if(n!==-1)
+     {if(n!==0)
        {return Format["fprintf"]
                 (ppf,
-                 [0,[2,0,[12,47,[4,3,0,0,[2,0,0]]]],"%s/%i%s"],
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,
+                    47,
+                    [/* Int */4,
+                     /* Int_i */3,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
+                  "%s/%i%s"],
                  i[2],
                  n,
                  global(i)?"g":"");
         }
       else
-       {return Format["fprintf"](ppf,[0,[2,0,[12,33,0]],"%s!"],i[2]);}
+       {return Format["fprintf"]
+                (ppf,
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,33,/* End_of_format */0]],
+                  "%s!"],
+                 i[2]);
+        }
       }
     else
-     {return Format["fprintf"](ppf,[0,[2,0,[12,35,0]],"%s#"],i[2]);}
+     {return Format["fprintf"]
+              (ppf,
+               [/* Format */0,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* Char_literal */12,35,/* End_of_format */0]],
+                "%s#"],
+               i[2]);
+      }
     };
 
-var empty=0;
+var empty=/* Empty */0;
 
 var
  mknode=
@@ -142,7 +171,12 @@ var
        {exit=13;}
       
       switch(exit)
-       {case 13:throw [0,Assert_failure,[0,"typing/ident.ml",120,11]];}
+       {case 13:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"typing/ident.ml",120,11]];
+         
+        }
       }
     else
      {if(hr>hl+1)
@@ -166,7 +200,12 @@ var
          {exit$1=11;}
         
         switch(exit$1)
-         {case 11:throw [0,Assert_failure,[0,"typing/ident.ml",129,11]];}
+         {case 11:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/ident.ml",129,11]];
+           
+          }
         }
       else
        {return mknode(l,d,r);}
@@ -183,9 +222,9 @@ var
       
       var l=param[1];
       
-      var c="unknown primitive:caml_string_compare";
+      var c=CamlPrimitive["caml_string_compare"](id[2],k[1][2]);
       
-      if(c=0)
+      if(c===0)
        {return /* Node */[0,
                 l,
                 /* record */[0,id,data,/* Some */[0,k]],
@@ -200,7 +239,12 @@ var
         }
       }
     else
-     {return /* Node */[0,0,/* record */[0,id,data,0],0,1];}
+     {return /* Node */[0,
+              /* Empty */0,
+              /* record */[0,id,data,/* None */0],
+              /* Empty */0,
+              1];
+      }
     };
 
 var
@@ -209,10 +253,10 @@ var
    {if(param)
      {var k=param[1];
       
-      if(k[1][1]=s){return k[2];}else{return find_stamp(s,k[3]);}
+      if(k[1][1]===s){return k[2];}else{return find_stamp(s,k[3]);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -221,32 +265,32 @@ var
    {if(param)
      {var k=param[2];
       
-      var c="unknown primitive:caml_string_compare";
+      var c=CamlPrimitive["caml_string_compare"](id[2],k[1][2]);
       
-      if(c=0)
-       {if(id[1]=k[1][1]){return k[2];}else{return find_stamp(id[1],k[3]);}}
+      if(c===0)
+       {if(id[1]===k[1][1]){return k[2];}else{return find_stamp(id[1],k[3]);}}
       else
        {return find_same(id,c<0?param[1]:param[3]);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
  find_name=
-  function(name$1,param)
+  function(name,param)
    {if(param)
      {var k=param[2];
       
-      var c="unknown primitive:caml_string_compare";
+      var c=CamlPrimitive["caml_string_compare"](name,k[1][2]);
       
-      if(c=0)
+      if(c===0)
        {return k[2];}
       else
-       {return find_name(name$1,c<0?param[1]:param[3]);}
+       {return find_name(name,c<0?param[1]:param[3]);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -255,24 +299,24 @@ var
    {if(param)
      {var k=param[1];return /* :: */[0,k[2],get_all(k[3])];}
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
  find_all=
-  function(name$1,param)
+  function(name,param)
    {if(param)
      {var k=param[2];
       
-      var c="unknown primitive:caml_string_compare";
+      var c=CamlPrimitive["caml_string_compare"](name,k[1][2]);
       
-      if(c=0)
+      if(c===0)
        {return /* :: */[0,k[2],get_all(k[3])];}
       else
-       {return find_all(name$1,c<0?param[1]:param[3]);}
+       {return find_all(name,c<0?param[1]:param[3]);}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -288,7 +332,7 @@ var
 var
  fold_name=
   function(f,tbl,accu)
-   {return fold_aux(function(k){return f(k[1],k[2]);},0,accu,tbl);};
+   {return fold_aux(function(k){return f(k[1],k[2]);},/* [] */0,accu,tbl);};
 
 var
  fold_data=
@@ -303,7 +347,10 @@ var
  fold_all=
   function(f,tbl,accu)
    {return fold_aux
-            (function(k){return fold_data(f,/* Some */[0,k]);},0,accu,tbl);
+            (function(k){return fold_data(f,/* Some */[0,k]);},
+             /* [] */0,
+             accu,
+             tbl);
     };
 
 var
@@ -312,7 +359,7 @@ var
    {if(param)
      {var k=param[2];iter(f,param[1]);f(k[1],k[2]);return iter(f,param[3]);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var key_name="";

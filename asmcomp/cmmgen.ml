@@ -1555,7 +1555,7 @@ let rec transl = function
 and transl_prim_1 p arg dbg =
   match p with
   (* Generic operations *)
-    Pidentity ->
+  | (Pidentity | Pbytes_to_string | Pbytes_of_string) ->
       transl arg
   | Pignore ->
       return_unit(remove_unit (transl arg))

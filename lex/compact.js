@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Table=require("Table");
-var List=require("List");
-var Hashtbl=require("Hashtbl");
-var $$Array=require("Array");
+var Table=require("./table.js");
+var List=require("./list.js");
+var Hashtbl=require("./hashtbl.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var code=Table["create"](0);
@@ -13,7 +14,7 @@ var emit_int=function(i){return Table["emit"](code,i);};
 var
  ins_mem=
   function(i,c)
-   {switch(i)
+   {switch(i[0])
      {case 0:return /* :: */[0,i[1],/* :: */[0,i[2],c]];
       case 1:return /* :: */[0,i[1],/* :: */[0,255,c]];
       }
@@ -22,7 +23,7 @@ var
 var
  ins_tag=
   function(i,c)
-   {switch(i)
+   {switch(i[0])
      {case 0:return /* :: */[0,i[1],/* :: */[0,i[2],c]];
       case 1:return /* :: */[0,i[1],/* :: */[0,255,c]];
       }
@@ -38,7 +39,7 @@ var
     return r;
     };
 
-var memory=Hashtbl["create"](0,101);
+var memory=Hashtbl["create"](/* None */0,101);
 
 var
  mem_emit_code=
@@ -46,38 +47,38 @@ var
    {try
      {return Hashtbl["find"](memory,c);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var r=do_emit_code(c);Hashtbl["add"](memory,c,r);return r;}
       else
        {throw exn;}
       }
     };
 
-mem_emit_code(0);
+mem_emit_code(/* [] */0);
 var
  emit_tag_code=
-  function(c){return mem_emit_code(List["fold_right"](ins_tag,c,0));};
+  function(c){return mem_emit_code(List["fold_right"](ins_tag,c,/* [] */0));};
 
 var
  emit_mem_code=
-  function(c){return mem_emit_code(List["fold_right"](ins_mem,c,0));};
+  function(c){return mem_emit_code(List["fold_right"](ins_mem,c,/* [] */0));};
 
 var
  most_frequent_elt=
   function(v)
-   {var frequencies=Hashtbl["create"](0,17);
+   {var frequencies=Hashtbl["create"](/* None */0,17);
     
     var max_freq=0;
     
-    var most_freq=v[0];
+    var most_freq=v[1];
     
-    for(var i=0;i<=v["length"]-1;i++)
-     {var e=v[i];
+    for(var i=0;i<=/* -1 for tag */v["length"]-1-1;i++)
+     {var e=v[i+1];
       
       try
        {var r=Hashtbl["find"](frequencies,e);}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {var r$1=[0,1];Hashtbl["add"](frequencies,e,r$1);var r=r$1;}
         else
          {throw exn;}
@@ -96,12 +97,12 @@ var
    {var
      nondef=
       function(i)
-       {if(i>=v["length"])
-         {return 0;}
+       {if(i>=/* -1 for tag */v["length"]-1)
+         {return /* [] */0;}
         else
-         {var e=v[i];
+         {var e=v[i+1];
           
-          if("unknown primitive:caml_equal")
+          if(CamlPrimitive["caml_equal"](e,def))
            {return nondef(i+1);}
           else
            {return /* :: */[0,/* tuple */[0,i,e],nondef(i+1)];}
@@ -115,22 +116,22 @@ var
  create_compact=
   function(param)
    {return /* record */[0,
-            "unknown primitive:caml_make_vect",
-            "unknown primitive:caml_make_vect",
+            CamlPrimitive["caml_make_vect"](1024,0),
+            CamlPrimitive["caml_make_vect"](1024,-1),
             0];
     };
 
 var
  reset_compact=
   function(c)
-   {c[1]="unknown primitive:caml_make_vect",0;
-    c[2]="unknown primitive:caml_make_vect",0;
+   {c[1]=CamlPrimitive["caml_make_vect"](1024,0);
+    c[2]=CamlPrimitive["caml_make_vect"](1024,-1);
     return c[3]=0,0;
     };
 
-var trans=create_compact(0);
+var trans=create_compact(/* () */0);
 
-var moves=create_compact(0);
+var moves=create_compact(/* () */0);
 
 var
  grow_compact=
@@ -139,11 +140,11 @@ var
     
     var old_check=c[2];
     
-    var n=old_trans["length"];
+    var n=/* -1 for tag */old_trans["length"]-1;
     
-    c[1]="unknown primitive:caml_make_vect",0;
+    c[1]=CamlPrimitive["caml_make_vect"](2*n,0);
     $$Array["blit"](old_trans,0,c[1],0,c[3]);
-    c[2]="unknown primitive:caml_make_vect",0;
+    c[2]=CamlPrimitive["caml_make_vect"](2*n,-1);
     return $$Array["blit"](old_check,0,c[2],0,c[3]);
     };
 
@@ -157,13 +158,14 @@ var
     var
      pack_from=
       function(b)
-       {while(b+257>compact[1]["length"]){grow_compact(compact)}
+       {while(b+257>/* -1 for tag */compact[1]["length"]-1)
+         {grow_compact(compact)}
         
         var
          try_pack=
           function(param)
            {if(param)
-             {if(compact[2][b+param[1][1]]=-1)
+             {if(compact[2][b+param[1][1]+1]===-1)
                {return try_pack(param[2]);}
               else
                {return pack_from(b+1);}
@@ -181,11 +183,11 @@ var
      (function(param)
        {var pos=param[1];
         
-        compact[1][base+pos]=param[2],0;
-        return compact[2][base+pos]=state_num,0;
+        compact[1][base+pos+1]=param[2];
+        return compact[2][base+pos+1]=state_num,0;
         },
       nondef);
-    if(base+257>compact[3]){compact[3]=base+257,0}else{}
+    if(base+257>compact[3]){compact[3]=base+257}else{}
     
     return /* tuple */[0,base,$$default];
     };
@@ -193,16 +195,16 @@ var
 var
  pack_moves=
   function(state_num,move_t)
-   {var move_v="unknown primitive:caml_make_vect";
+   {var move_v=CamlPrimitive["caml_make_vect"](257,0);
     
-    var move_m="unknown primitive:caml_make_vect";
+    var move_m=CamlPrimitive["caml_make_vect"](257,0);
     
     for(var i=0;i<=256;i++)
-     {var match=move_t[i];
+     {var match=move_t[i+1];
       
       var act=match[1];
       
-      move_v[i]=act?act[1]:-1,0,move_m[i]=emit_mem_code(match[2]),0}
+      move_v[i+1]=act?act[1]:-1,move_m[i+1]=emit_mem_code(match[2])}
     
     var pk_trans=do_pack(state_num,move_v,trans);
     
@@ -214,30 +216,30 @@ var
 var
  compact_tables=
   function(state_v)
-   {var n=state_v["length"];
+   {var n=/* -1 for tag */state_v["length"]-1;
     
-    var base="unknown primitive:caml_make_vect";
+    var base=CamlPrimitive["caml_make_vect"](n,0);
     
-    var backtrk="unknown primitive:caml_make_vect";
+    var backtrk=CamlPrimitive["caml_make_vect"](n,-1);
     
-    var $$default="unknown primitive:caml_make_vect";
+    var $$default=CamlPrimitive["caml_make_vect"](n,0);
     
-    var base_code="unknown primitive:caml_make_vect";
+    var base_code=CamlPrimitive["caml_make_vect"](n,0);
     
-    var backtrk_code="unknown primitive:caml_make_vect";
+    var backtrk_code=CamlPrimitive["caml_make_vect"](n,0);
     
-    var default_code="unknown primitive:caml_make_vect";
+    var default_code=CamlPrimitive["caml_make_vect"](n,0);
     
     for(var i=0;i<=n-1;i++)
-     {var match=state_v[i];
+     {var match=state_v[i+1];
       
-      switch(match)
-       {case 0:base[i]=-(match[1]+1),0,base_code[i]=emit_tag_code(match[2]),0;
+      switch(match[0])
+       {case 0:base[i+1]=-(match[1]+1),base_code[i+1]=emit_tag_code(match[2]);
         case 1:
          var trans$1=match[1];
          
          if(trans$1)
-          {backtrk[i]=trans$1[1],0,backtrk_code[i]=emit_tag_code(trans$1[2]),0}
+          {backtrk[i+1]=trans$1[1],backtrk_code[i+1]=emit_tag_code(trans$1[2])}
          else
           {}
          
@@ -247,24 +249,20 @@ var
          
          var match$3=match$1[1];
          
-         base[i]=
+         base[i+1]=
          match$3[1],
-         0,
-         $$default[i]=
+         $$default[i+1]=
          match$3[2],
-         0,
-         base_code[i]=
+         base_code[i+1]=
          match$2[1],
-         0,
-         default_code[i]=
-         match$2[2],
-         0
+         default_code[i+1]=
+         match$2[2]
         }
       }
     
     var code$1=Table["trim"](code);
     
-    if(code$1["length"]>1)
+    if(/* -1 for tag */code$1["length"]-1>1)
      {var
        tables=
         /* record */[0,
@@ -289,12 +287,12 @@ var
          $$default,
          $$Array["sub"](trans[1],0,trans[3]),
          $$Array["sub"](trans[2],0,trans[3]),
-         [],
-         [],
-         [],
-         [],
-         [],
-         []];
+         [/* array */0],
+         [/* array */0],
+         [/* array */0],
+         [/* array */0],
+         [/* array */0],
+         [/* array */0]];
       }
     
     reset_compact(trans);

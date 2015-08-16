@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
@@ -16,31 +17,43 @@ var close_tracker=function(tr){return Pervasives["close_in_noerr"](tr[3]);};
 var
  update_tracker=
   function(tr)
-   {Printf["fprintf"](tr[2],[0,[12,10,0],"\n"]);
+   {Printf["fprintf"]
+     (tr[2],
+      [/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
     Pervasives["flush"](tr[2]);
-    var cr_seen=0;
+    var cr_seen=/* false */0;
     
     try
-     {while(1)
+     {while(/* true */1)
        {var match=Pervasives["input_char"](tr[3]);
         
         var exit;
         
-        if(match!=10)
-         {if(match!=13){exit=25;}else{cr_seen=1;tr[4]=tr[4]+1,0}}
+        if(match!==10)
+         {if(match!==13){exit=25;}else{cr_seen=/* true */1;tr[4]=tr[4]+1}}
         else
-         {if(!cr_seen){tr[4]=tr[4]+1,0}else{exit=25;}}
+         {if(!cr_seen){tr[4]=tr[4]+1}else{exit=25;}}
         
-        switch(exit){case 25:cr_seen=0;}
+        switch(exit){case 25:cr_seen=/* false */0;}
         }
       return 0;
       }
     catch(exn)
-     {if(exn=End_of_file)
+     {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
        {return Printf["fprintf"]
                 (tr[2],
-                 [0,
-                  [11,"# ",[4,0,0,0,[11,' "',[2,0,[11,'"\n',0]]]]],
+                 [/* Format */0,
+                  [/* String_literal */11,
+                   "# ",
+                   [/* Int */4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    [/* String_literal */11,
+                     ' "',
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String_literal */11,'"\n',/* End_of_format */0]]]]],
                   '# %d "%s"\n'],
                  tr[4]+1,
                  tr[1]);
@@ -50,7 +63,7 @@ var
       }
     };
 
-var copy_buffer="unknown primitive:caml_create_string";
+var copy_buffer=CamlPrimitive["caml_create_string"](1024);
 
 var
  copy_chars_unix=
@@ -72,8 +85,9 @@ var
    {for(var _i=start;_i<=stop-1;_i++)
      {var c=Pervasives["input_char"](ic);
       
-      if(c!=13){Pervasives["output_char"](oc,c)}else{}
+      if(c!==13){Pervasives["output_char"](oc,c)}else{}
       }
+    return 0;
     };
 
 var match=Sys["os_type"];
@@ -93,7 +107,19 @@ var
    {if(loc[2]<loc[3]||add_parens)
      {Printf["fprintf"]
        (oc,
-        [0,[11,"# ",[4,0,0,0,[11,' "',[2,0,[11,'"\n',0]]]]],'# %d "%s"\n'],
+        [/* Format */0,
+         [/* String_literal */11,
+          "# ",
+          [/* Int */4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           [/* String_literal */11,
+            ' "',
+            [/* String */2,
+             /* No_padding */0,
+             [/* String_literal */11,'"\n',/* End_of_format */0]]]]],
+         '# %d "%s"\n'],
         loc[4],
         loc[1]);
       if(add_parens)
@@ -118,8 +144,14 @@ var
   function(oc,i)
    {return Printf["fprintf"]
             (oc,
-             [0,
-              [11,"lexbuf.Lexing.lex_mem.(",[4,0,0,0,[12,41,0]]],
+             [/* Format */0,
+              [/* String_literal */11,
+               "lexbuf.Lexing.lex_mem.(",
+               [/* Int */4,
+                /* Int_d */0,
+                /* No_padding */0,
+                /* No_precision */0,
+                [/* Char_literal */12,41,/* End_of_format */0]]],
               "lexbuf.Lexing.lex_mem.(%d)"],
              i);
     };
@@ -130,15 +162,37 @@ var
    {if(mvs)
      {Pervasives["output_string"](oc,"(* ");
       Printf["fprintf"]
-       (oc,[0,[11,"L=",[4,0,0,0,[12,32,0]]],"L=%d "],List["length"](mvs));
+       (oc,
+        [/* Format */0,
+         [/* String_literal */11,
+          "L=",
+          [/* Int */4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           [/* Char_literal */12,32,/* End_of_format */0]]],
+         "L=%d "],
+        List["length"](mvs));
       List["iter"]
        (function(mv)
-         {switch(mv)
+         {switch(mv[0])
            {case 0:
              return Printf["fprintf"]
                      (oc,
-                      [0,
-                       [12,91,[4,0,0,0,[11,"] <- [",[4,0,0,0,[11,"] ;",0]]]]],
+                      [/* Format */0,
+                       [/* Char_literal */12,
+                        91,
+                        [/* Int */4,
+                         /* Int_d */0,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         [/* String_literal */11,
+                          "] <- [",
+                          [/* Int */4,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           [/* String_literal */11,"] ;",/* End_of_format */0]]]]],
                        "[%d] <- [%d] ;"],
                       mv[1],
                       mv[2]);
@@ -146,7 +200,15 @@ var
             case 1:
              return Printf["fprintf"]
                      (oc,
-                      [0,[12,91,[4,0,0,0,[11,"] <- p ; ",0]]],"[%d] <- p ; "],
+                      [/* Format */0,
+                       [/* Char_literal */12,
+                        91,
+                        [/* Int */4,
+                         /* Int_d */0,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         [/* String_literal */11,"] <- p ; ",/* End_of_format */0]]],
+                       "[%d] <- p ; "],
                       mv[1]);
              
             }
@@ -155,12 +217,18 @@ var
       Pervasives["output_string"](oc," *)\n");
       return List["iter"]
               (function(mv)
-                {switch(mv)
+                {switch(mv[0])
                   {case 0:
                     return Printf["fprintf"]
                             (oc,
-                             [0,
-                              [2,0,[15,[11," <- ",[15,[11," ;\n",0]]]]],
+                             [/* Format */0,
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* Alpha */15,
+                                [/* String_literal */11,
+                                 " <- ",
+                                 [/* Alpha */15,
+                                  [/* String_literal */11," ;\n",/* End_of_format */0]]]]],
                               "%s%a <- %a ;\n"],
                              pref,
                              output_mem_access,
@@ -171,8 +239,13 @@ var
                    case 1:
                     return Printf["fprintf"]
                             (oc,
-                             [0,
-                              [2,0,[15,[11," <- lexbuf.Lexing.lex_curr_pos ;\n",0]]],
+                             [/* Format */0,
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* Alpha */15,
+                                [/* String_literal */11,
+                                 " <- lexbuf.Lexing.lex_curr_pos ;\n",
+                                 /* End_of_format */0]]],
                               "%s%a <- lexbuf.Lexing.lex_curr_pos ;\n"],
                              pref,
                              output_mem_access,
@@ -183,25 +256,29 @@ var
                mvs);
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
  output_base_mem=
   function(oc,param)
-   {if("unknown primitive:isint")
-     {if(param!=0)
+   {if(typeof param==="number")
+     {if(param!==0)
        {return Printf["fprintf"]
                 (oc,
-                 [0,
-                  [11,"lexbuf.Lexing.lex_curr_pos",0],
+                 [/* Format */0,
+                  [/* String_literal */11,
+                   "lexbuf.Lexing.lex_curr_pos",
+                   /* End_of_format */0],
                   "lexbuf.Lexing.lex_curr_pos"]);
         }
       else
        {return Printf["fprintf"]
                 (oc,
-                 [0,
-                  [11,"lexbuf.Lexing.lex_start_pos",0],
+                 [/* Format */0,
+                  [/* String_literal */11,
+                   "lexbuf.Lexing.lex_start_pos",
+                   /* End_of_format */0],
                   "lexbuf.Lexing.lex_start_pos"]);
         }
       }
@@ -218,10 +295,21 @@ var
     
     var a=match$1[1];
     
-    if(i!=0)
+    if(i!==0)
      {return Printf["fprintf"]
               (oc,
-               [0,[12,40,[15,[11," + ",[4,0,0,0,[12,41,0]]]]],"(%a + %d)"],
+               [/* Format */0,
+                [/* Char_literal */12,
+                 40,
+                 [/* Alpha */15,
+                  [/* String_literal */11,
+                   " + ",
+                   [/* Int */4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                "(%a + %d)"],
                output_base_mem,
                a,
                i);
@@ -240,23 +328,39 @@ var
        env$1=
         List["sort"]
          (function(param,param$1)
-           {return "unknown primitive:caml_int_compare";},
+           {return CamlPrimitive["caml_int_compare"]
+                    (param[1][2][2],param$1[1][2][2]);
+            },
           env);
       
       List["iter"]
        (function(param)
          {var v=param[2];
           
-          Printf["fprintf"](oc,[0,[2,0,[12,10,0]],"%s\n"],pref[1]);
-          copy_chunk(ic,oc,tr,param[1][2],0);
-          switch(v)
+          Printf["fprintf"]
+           (oc,
+            [/* Format */0,
+             [/* String */2,
+              /* No_padding */0,
+              [/* Char_literal */12,10,/* End_of_format */0]],
+             "%s\n"],
+            pref[1]);
+          copy_chunk(ic,oc,tr,param[1][2],/* false */0);
+          switch(v[0])
            {case 0:
              Printf["fprintf"]
               (oc,
-               [0,
-                [11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "= Lexing.sub_lexeme",
-                 [2,0,[11," lexbuf ",[15,[12,32,[15,0]]]]]],
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
+                   " lexbuf ",
+                   [/* Alpha */15,
+                    [/* Char_literal */12,
+                     32,
+                     [/* Alpha */15,/* End_of_format */0]]]]]],
                 "= Lexing.sub_lexeme%s lexbuf %a %a"],
                v[1]?"_opt":"",
                output_tag_access,
@@ -266,8 +370,14 @@ var
             case 1:
              Printf["fprintf"]
               (oc,
-               [0,
-                [11,"= Lexing.sub_lexeme_char",[2,0,[11," lexbuf ",[15,0]]]],
+               [/* Format */0,
+                [/* String_literal */11,
+                 "= Lexing.sub_lexeme_char",
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
+                   " lexbuf ",
+                   [/* Alpha */15,/* End_of_format */0]]]],
                 "= Lexing.sub_lexeme_char%s lexbuf %a"],
                v[1]?"_opt":"",
                output_tag_access,
@@ -277,10 +387,14 @@ var
           return pref[1]="\nand",0;
           },
         env$1);
-      return Printf["fprintf"](oc,[0,[11," in\n",0]," in\n"]);
+      return Printf["fprintf"]
+              (oc,
+               [/* Format */0,
+                [/* String_literal */11," in\n",/* End_of_format */0],
+                " in\n"]);
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -301,14 +415,14 @@ var
      {Pervasives["output_string"]
        (oc,
         "let __ocaml_lex_refill : (Lexing.lexbuf -> 'a) -> (Lexing.lexbuf -> 'a) =\n");
-      copy_chunk(ic,oc,oci,param[1],1);
-      return 1;
+      copy_chunk(ic,oc,oci,param[1],/* true */1);
+      return /* true */1;
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
-var quiet_mode=[0,0];
+var quiet_mode=[0,/* false */0];
 
 module["exports"]=
 {"open_tracker":open_tracker,

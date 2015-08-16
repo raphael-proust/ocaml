@@ -1,19 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Set=require("Set");
-var Map=require("Map");
+var Pervasives=require("./pervasives.js");
+var Set=require("./set.js");
+var Map=require("./map.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var compare=function(t1,t2){return t1[3]-t2[3];};
 
 var hash=function(t){return t[3];};
 
-var equal=function(t1,t2){return t1=t2;};
+var equal=function(t1,t2){return t1===t2;};
 
 var TypeOps=[0,compare,hash,equal];
 
-var compare$1=function(x,y){return "unknown primitive:caml_string_compare";};
+var
+ compare$1=
+  function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var OrderedString=[0,compare$1];
 
@@ -22,7 +25,7 @@ var Meths=Map["Make"](OrderedString);
 var
  single=
   function(param)
-   {switch(param[0])
+   {switch(param)
      {case 0:return 1;
       case 1:return 2;
       case 2:return 4;
@@ -37,7 +40,7 @@ var union=function(v1,v2){return v1|v2;};
 
 var inter=function(v1,v2){return v1&v2;};
 
-var subset=function(v1,v2){return (v1&v2)=v1;};
+var subset=function(v1,v2){return (v1&v2)===v1;};
 
 var
  set=
@@ -52,20 +55,32 @@ var may_inv=7;
 
 var full=127;
 
-var covariant=single(0)|single(4)|single(3);
+var covariant=single(/* May_pos */0)|single(/* Pos */4)|single(/* Inj */3);
 
 var
  swap=
   function(f1,f2,v)
    {var v$prime=set(f1,mem(f2,v),v);return set(f2,mem(f1,v),v$prime);};
 
-var conjugate=function(v){return swap(0,1,swap(4,5,v));};
+var
+ conjugate=
+  function(v)
+   {return swap(/* May_pos */0,/* May_neg */1,swap(/* Pos */4,/* Neg */5,v));};
 
-var get_upper=function(v){return /* tuple */[0,mem(0,v),mem(1,v)];};
+var
+ get_upper=
+  function(v)
+   {return /* tuple */[0,mem(/* May_pos */0,v),mem(/* May_neg */1,v)];};
 
 var
  get_lower=
-  function(v){return /* tuple */[0,mem(4,v),mem(5,v),mem(6,v),mem(3,v)];};
+  function(v)
+   {return /* tuple */[0,
+            mem(/* Pos */4,v),
+            mem(/* Neg */5,v),
+            mem(/* Inv */6,v),
+            mem(/* Inj */3,v)];
+    };
 
 var
  Variance=

@@ -47,7 +47,9 @@ type pointer_info =
 val default_pointer_info : pointer_info
 
 type primitive =
-    Pidentity
+  | Pidentity
+  | Pbytes_to_string
+  | Pbytes_of_string
   | Pignore
   | Prevapply of Location.t
   | Pdirapply of Location.t

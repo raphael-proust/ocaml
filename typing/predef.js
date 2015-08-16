@@ -1,20 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Btype=require("Btype");
-var List=require("List");
-var Types=require("Types");
-var Location=require("Location");
-var Ident=require("Ident");
+var Btype=require("./btype.js");
+var List=require("./list.js");
+var Types=require("./types.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
 
 
-var builtin_idents=[0,0];
+var builtin_idents=[0,/* [] */0];
 
 var
  wrap=
   function(create,s)
    {var id=create(s);
     
-    builtin_idents[1]=/* :: */[0,/* tuple */[0,s,id],builtin_idents[1]],0;
+    builtin_idents[1]=/* :: */[0,/* tuple */[0,s,id],builtin_idents[1]];
     return id;
     };
 
@@ -82,54 +82,89 @@ var path_lazy_t=/* Pident */[0,ident_lazy_t];
 
 var path_bytes=/* Pident */[0,ident_bytes];
 
-var type_int=Btype["newgenty"](/* Tconstr */[3,path_int,0,[0,0]]);
+var
+ type_int=
+  Btype["newgenty"](/* Tconstr */[3,path_int,/* [] */0,[0,/* Mnil */0]]);
 
-var type_char=Btype["newgenty"](/* Tconstr */[3,path_char,0,[0,0]]);
+var
+ type_char=
+  Btype["newgenty"](/* Tconstr */[3,path_char,/* [] */0,[0,/* Mnil */0]]);
 
-var type_string=Btype["newgenty"](/* Tconstr */[3,path_string,0,[0,0]]);
+var
+ type_string=
+  Btype["newgenty"](/* Tconstr */[3,path_string,/* [] */0,[0,/* Mnil */0]]);
 
-var type_float=Btype["newgenty"](/* Tconstr */[3,path_float,0,[0,0]]);
+var
+ type_float=
+  Btype["newgenty"](/* Tconstr */[3,path_float,/* [] */0,[0,/* Mnil */0]]);
 
-var type_bool=Btype["newgenty"](/* Tconstr */[3,path_bool,0,[0,0]]);
+var
+ type_bool=
+  Btype["newgenty"](/* Tconstr */[3,path_bool,/* [] */0,[0,/* Mnil */0]]);
 
-var type_unit=Btype["newgenty"](/* Tconstr */[3,path_unit,0,[0,0]]);
+var
+ type_unit=
+  Btype["newgenty"](/* Tconstr */[3,path_unit,/* [] */0,[0,/* Mnil */0]]);
 
-var type_exn=Btype["newgenty"](/* Tconstr */[3,path_exn,0,[0,0]]);
+var
+ type_exn=
+  Btype["newgenty"](/* Tconstr */[3,path_exn,/* [] */0,[0,/* Mnil */0]]);
 
 var
  type_array=
   function(t)
    {return Btype["newgenty"]
-            (/* Tconstr */[3,path_array,/* :: */[0,t,0],[0,0]]);
+            (/* Tconstr */[3,
+              path_array,
+              /* :: */[0,t,/* [] */0],
+              [0,/* Mnil */0]]);
     };
 
 var
  type_list=
   function(t)
-   {return Btype["newgenty"](/* Tconstr */[3,path_list,/* :: */[0,t,0],[0,0]]);
+   {return Btype["newgenty"]
+            (/* Tconstr */[3,
+              path_list,
+              /* :: */[0,t,/* [] */0],
+              [0,/* Mnil */0]]);
     };
 
 var
  type_option=
   function(t)
    {return Btype["newgenty"]
-            (/* Tconstr */[3,path_option,/* :: */[0,t,0],[0,0]]);
+            (/* Tconstr */[3,
+              path_option,
+              /* :: */[0,t,/* [] */0],
+              [0,/* Mnil */0]]);
     };
 
-var type_nativeint=Btype["newgenty"](/* Tconstr */[3,path_nativeint,0,[0,0]]);
+var
+ type_nativeint=
+  Btype["newgenty"](/* Tconstr */[3,path_nativeint,/* [] */0,[0,/* Mnil */0]]);
 
-var type_int32=Btype["newgenty"](/* Tconstr */[3,path_int32,0,[0,0]]);
+var
+ type_int32=
+  Btype["newgenty"](/* Tconstr */[3,path_int32,/* [] */0,[0,/* Mnil */0]]);
 
-var type_int64=Btype["newgenty"](/* Tconstr */[3,path_int64,0,[0,0]]);
+var
+ type_int64=
+  Btype["newgenty"](/* Tconstr */[3,path_int64,/* [] */0,[0,/* Mnil */0]]);
 
 var
  type_lazy_t=
   function(t)
    {return Btype["newgenty"]
-            (/* Tconstr */[3,path_lazy_t,/* :: */[0,t,0],[0,0]]);
+            (/* Tconstr */[3,
+              path_lazy_t,
+              /* :: */[0,t,/* [] */0],
+              [0,/* Mnil */0]]);
     };
 
-var type_bytes=Btype["newgenty"](/* Tconstr */[3,path_bytes,0,[0,0]]);
+var
+ type_bytes=
+  Btype["newgenty"](/* Tconstr */[3,path_bytes,/* [] */0,[0,/* Mnil */0]]);
 
 var ident_match_failure=ident_create_predef_exn("Match_failure");
 
@@ -165,11 +200,23 @@ var
  path_undefined_recursive_module=
   /* Pident */[0,ident_undefined_recursive_module];
 
-var decl_abstr=/* record */[0,0,0,0,1,0,0,0,Location["none"],0];
+var
+ decl_abstr=
+  /* record */[0,
+   /* [] */0,
+   0,
+   /* Type_abstract */0,
+   /* Public */1,
+   /* None */0,
+   /* [] */0,
+   /* None */0,
+   Location["none"],
+   /* [] */0];
 
 var
  cstr=
-  function(id,args){return /* record */[0,id,args,0,Location["none"],0];};
+  function(id,args)
+   {return /* record */[0,id,args,/* None */0,Location["none"],/* [] */0];};
 
 var ident_false=ident_create("false");
 
@@ -188,88 +235,92 @@ var ident_some=ident_create("Some");
 var
  common_initial_env=
   function(add_type,add_extension,empty_env)
-   {var newrecord="unknown primitive:duprecord regular 9";
+   {var newrecord=/* unknown */"duprecord regular 9";
     
     newrecord[3]=
     /* Type_variant */[1,
-     /* :: */[0,cstr(ident_false,0),/* :: */[0,cstr(ident_true,0),0]]],
-    0;
+     /* :: */[0,
+      cstr(ident_false,/* [] */0),
+      /* :: */[0,cstr(ident_true,/* [] */0),/* [] */0]]];
     var decl_bool=newrecord;
     
-    var newrecord$1="unknown primitive:duprecord regular 9";
+    var newrecord$1=/* unknown */"duprecord regular 9";
     
-    newrecord$1[3]=/* Type_variant */[1,/* :: */[0,cstr(ident_void,0),0]],0;
+    newrecord$1[3]=
+    /* Type_variant */[1,/* :: */[0,cstr(ident_void,/* [] */0),/* [] */0]];
     var decl_unit=newrecord$1;
     
-    var newrecord$2="unknown primitive:duprecord regular 9";
+    var newrecord$2=/* unknown */"duprecord regular 9";
     
-    newrecord$2[3]=1,0;
+    newrecord$2[3]=/* Type_open */1;
     var decl_exn=newrecord$2;
     
-    var tvar=Btype["newgenvar"](0,0);
+    var tvar=Btype["newgenvar"](/* None */0,/* () */0);
     
     var
      decl_array=
       /* record */[0,
-       /* :: */[0,tvar,0],
+       /* :: */[0,tvar,/* [] */0],
        1,
        decl_abstr[3],
        decl_abstr[4],
        decl_abstr[5],
-       /* :: */[0,Types["Variance"][2],0],
+       /* :: */[0,Types["Variance"][2],/* [] */0],
        decl_abstr[7],
        decl_abstr[8],
        decl_abstr[9]];
     
-    var tvar$1=Btype["newgenvar"](0,0);
+    var tvar$1=Btype["newgenvar"](/* None */0,/* () */0);
     
     var
      decl_list=
       /* record */[0,
-       /* :: */[0,tvar$1,0],
+       /* :: */[0,tvar$1,/* [] */0],
        1,
        /* Type_variant */[1,
         /* :: */[0,
-         cstr(ident_nil,0),
+         cstr(ident_nil,/* [] */0),
          /* :: */[0,
-          cstr(ident_cons,/* :: */[0,tvar$1,/* :: */[0,type_list(tvar$1),0]]),
-          0]]],
+          cstr
+           (ident_cons,
+            /* :: */[0,tvar$1,/* :: */[0,type_list(tvar$1),/* [] */0]]),
+          /* [] */0]]],
        decl_abstr[4],
        decl_abstr[5],
-       /* :: */[0,Types["Variance"][3],0],
+       /* :: */[0,Types["Variance"][3],/* [] */0],
        decl_abstr[7],
        decl_abstr[8],
        decl_abstr[9]];
     
-    var tvar$2=Btype["newgenvar"](0,0);
+    var tvar$2=Btype["newgenvar"](/* None */0,/* () */0);
     
     var
      decl_option=
       /* record */[0,
-       /* :: */[0,tvar$2,0],
+       /* :: */[0,tvar$2,/* [] */0],
        1,
        /* Type_variant */[1,
         /* :: */[0,
-         cstr(ident_none,0),
-         /* :: */[0,cstr(ident_some,/* :: */[0,tvar$2,0]),0]]],
+         cstr(ident_none,/* [] */0),
+         /* :: */[0,cstr(ident_some,/* :: */[0,tvar$2,/* [] */0]),/* [] */0]]],
        decl_abstr[4],
        decl_abstr[5],
-       /* :: */[0,Types["Variance"][3],0],
+       /* :: */[0,Types["Variance"][3],/* [] */0],
        decl_abstr[7],
        decl_abstr[8],
        decl_abstr[9]];
     
-    var tvar$3=Btype["newgenvar"](0,0);
+    var tvar$3=Btype["newgenvar"](/* None */0,/* () */0);
     
     var
      decl_lazy_t=
       /* record */[0,
-       /* :: */[0,tvar$3,0],
+       /* :: */[0,tvar$3,/* [] */0],
        1,
        decl_abstr[3],
        decl_abstr[4],
        decl_abstr[5],
-       /* :: */[0,Types["Variance"][3],0],
+       /* :: */[0,Types["Variance"][3],/* [] */0],
        decl_abstr[7],
        decl_abstr[8],
        decl_abstr[9]];
@@ -278,7 +329,15 @@ var
      add_extension$1=
       function(id,l)
        {return add_extension
-                (id,/* record */[0,path_exn,0,l,0,1,Location["none"],0]);
+                (id,
+                 /* record */[0,
+                  path_exn,
+                  /* [] */0,
+                  l,
+                  /* None */0,
+                  /* Public */1,
+                  Location["none"],
+                  /* [] */0]);
         };
     
     return add_extension$1
@@ -288,35 +347,35 @@ var
                (/* Ttuple */[2,
                  /* :: */[0,
                   type_string,
-                  /* :: */[0,type_int,/* :: */[0,type_int,0]]]]),
-              0],
+                  /* :: */[0,type_int,/* :: */[0,type_int,/* [] */0]]]]),
+              /* [] */0],
              add_extension$1
               (ident_out_of_memory,
-               0,
+               /* [] */0,
                add_extension$1
                 (ident_stack_overflow,
-                 0,
+                 /* [] */0,
                  add_extension$1
                   (ident_invalid_argument,
-                   /* :: */[0,type_string,0],
+                   /* :: */[0,type_string,/* [] */0],
                    add_extension$1
                     (ident_failure,
-                     /* :: */[0,type_string,0],
+                     /* :: */[0,type_string,/* [] */0],
                      add_extension$1
                       (ident_not_found,
-                       0,
+                       /* [] */0,
                        add_extension$1
                         (ident_sys_blocked_io,
-                         0,
+                         /* [] */0,
                          add_extension$1
                           (ident_sys_error,
-                           /* :: */[0,type_string,0],
+                           /* :: */[0,type_string,/* [] */0],
                            add_extension$1
                             (ident_end_of_file,
-                             0,
+                             /* [] */0,
                              add_extension$1
                               (ident_division_by_zero,
-                               0,
+                               /* [] */0,
                                add_extension$1
                                 (ident_assert_failure,
                                  /* :: */[0,
@@ -324,8 +383,8 @@ var
                                    (/* Ttuple */[2,
                                      /* :: */[0,
                                       type_string,
-                                      /* :: */[0,type_int,/* :: */[0,type_int,0]]]]),
-                                  0],
+                                      /* :: */[0,type_int,/* :: */[0,type_int,/* [] */0]]]]),
+                                  /* [] */0],
                                  add_extension$1
                                   (ident_undefined_recursive_module,
                                    /* :: */[0,
@@ -333,8 +392,8 @@ var
                                      (/* Ttuple */[2,
                                        /* :: */[0,
                                         type_string,
-                                        /* :: */[0,type_int,/* :: */[0,type_int,0]]]]),
-                                    0],
+                                        /* :: */[0,type_int,/* :: */[0,type_int,/* [] */0]]]]),
+                                    /* [] */0],
                                    add_type
                                     (ident_int64,
                                      decl_abstr,
@@ -384,9 +443,9 @@ var
     
     var safe_string=add_type(ident_bytes,decl_abstr,common);
     
-    var newrecord="unknown primitive:duprecord regular 9";
+    var newrecord=/* unknown */"duprecord regular 9";
     
-    newrecord[5]=/* Some */[0,type_string],0;
+    newrecord[5]=/* Some */[0,type_string];
     var decl_bytes_unsafe=newrecord;
     
     var unsafe_string=add_type(ident_bytes,decl_bytes_unsafe,common);
@@ -421,7 +480,7 @@ var
               ident_sys_blocked_io,
               /* :: */[0,
                ident_assert_failure,
-               /* :: */[0,ident_undefined_recursive_module,0]]]]]]]]]]]]);
+               /* :: */[0,ident_undefined_recursive_module,/* [] */0]]]]]]]]]]]]);
 
 Ident["set_current_time"](999);
 var builtin_idents$1=List["rev"](builtin_idents[1]);

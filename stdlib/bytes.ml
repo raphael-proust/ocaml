@@ -22,8 +22,8 @@ external unsafe_get : bytes -> int -> char = "%string_unsafe_get"
 external unsafe_set : bytes -> int -> char -> unit = "%string_unsafe_set"
 external unsafe_fill : bytes -> int -> int -> char -> unit
                      = "caml_fill_string" "noalloc"
-external unsafe_to_string : bytes -> string = "%identity"
-external unsafe_of_string : string -> bytes = "%identity"
+external unsafe_to_string : bytes -> string = "%bytes_to_string"
+external unsafe_of_string : string -> bytes = "%bytes_of_string"
 
 external unsafe_blit : bytes -> int -> bytes -> int -> int -> unit
                      = "caml_blit_string" "noalloc"

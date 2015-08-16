@@ -1,30 +1,31 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Compmisc=require("Compmisc");
-var Printlambda=require("Printlambda");
-var Bytegen=require("Bytegen");
-var Translmod=require("Translmod");
-var Pprintast=require("Pprintast");
-var Printast=require("Printast");
-var Typecore=require("Typecore");
-var Printinstr=require("Printinstr");
-var Printtyp=require("Printtyp");
-var Printtyped=require("Printtyped");
-var Simplif=require("Simplif");
-var Warnings=require("Warnings");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Format=require("Format");
-var Typemod=require("Typemod");
-var Misc=require("Misc");
-var Ccomp=require("Ccomp");
-var Compenv=require("Compenv");
-var Emitcode=require("Emitcode");
-var Includemod=require("Includemod");
-var Location=require("Location");
-var Pparse=require("Pparse");
-var Stypes=require("Stypes");
+var Compmisc=require("./compmisc.js");
+var Printlambda=require("./printlambda.js");
+var Bytegen=require("./bytegen.js");
+var Translmod=require("./translmod.js");
+var Pprintast=require("./pprintast.js");
+var Printast=require("./printast.js");
+var Typecore=require("./typecore.js");
+var Printinstr=require("./printinstr.js");
+var Printtyp=require("./printtyp.js");
+var Printtyped=require("./printtyped.js");
+var Simplif=require("./simplif.js");
+var Warnings=require("./warnings.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Format=require("./format.js");
+var Typemod=require("./typemod.js");
+var Misc=require("./misc.js");
+var Ccomp=require("./ccomp.js");
+var Compenv=require("./compenv.js");
+var Emitcode=require("./emitcode.js");
+var Includemod=require("./includemod.js");
+var Location=require("./location.js");
+var Pparse=require("./pparse.js");
+var Stypes=require("./stypes.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var tool_name="ocamlc";
@@ -32,23 +33,35 @@ var tool_name="ocamlc";
 var
  $$interface=
   function(ppf,sourcefile,outputprefix)
-   {Compmisc["init_path"](0);
+   {Compmisc["init_path"](/* false */0);
     var modulename=Compenv["module_of_filename"](ppf,sourcefile,outputprefix);
     
     Env["set_unit_name"](modulename);
-    var initial_env=Compmisc["initial_env"](0);
+    var initial_env=Compmisc["initial_env"](/* () */0);
     
     var ast=Pparse["parse_interface"](ppf,tool_name,sourcefile);
     
     if(Clflags["dump_parsetree"][1])
      {Format["fprintf"]
-       (ppf,[0,[15,[17,4,0]],"%a@."],Printast["interface"],ast)}
+       (ppf,
+        [/* Format */0,
+         [/* Alpha */15,
+          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+         "%a@."],
+        Printast["interface"],
+        ast)}
     else
      {}
     
     if(Clflags["dump_source"][1])
      {Format["fprintf"]
-       (ppf,[0,[15,[17,4,0]],"%a@."],Pprintast["signature"],ast)}
+       (ppf,
+        [/* Format */0,
+         [/* Alpha */15,
+          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+         "%a@."],
+        Pprintast["signature"],
+        ast)}
     else
      {}
     
@@ -56,7 +69,13 @@ var
     
     if(Clflags["dump_typedtree"][1])
      {Format["fprintf"]
-       (ppf,[0,[15,[17,4,0]],"%a@."],Printtyped["interface"],tsg)}
+       (ppf,
+        [/* Format */0,
+         [/* Alpha */15,
+          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+         "%a@."],
+        Printtyped["interface"],
+        tsg)}
     else
      {}
     
@@ -68,16 +87,21 @@ var
         function(param)
          {return Format["fprintf"]
                   (Format["std_formatter"],
-                   [0,[15,[17,4,0]],"%a@."],
+                   [/* Format */0,
+                    [/* Alpha */15,
+                     [/* Formatting_lit */17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]],
+                    "%a@."],
                    Printtyp["signature"],
                    Typemod["simplify_signature"](sg));
           })}
     else
      {}
     
-    
-    Typecore["force_delayed_checks"](0);
-    Warnings["check_fatal"](0);
+    Includemod["signatures"](initial_env,sg,sg);
+    Typecore["force_delayed_checks"](/* () */0);
+    Warnings["check_fatal"](/* () */0);
     if(!Clflags["print_types"][1])
      {var
        sg$1=
@@ -95,7 +119,14 @@ var
  print_if=
   function(ppf,flag,printer,arg)
    {if(flag[1])
-     {Format["fprintf"](ppf,[0,[15,[17,4,0]],"%a@."],printer,arg)}
+     {Format["fprintf"]
+       (ppf,
+        [/* Format */0,
+         [/* Alpha */15,
+          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+         "%a@."],
+        printer,
+        arg)}
     else
      {}
     
@@ -105,29 +136,65 @@ var
 var $plus$plus=function(x,f){return f(x);};
 
 try
- {var prim="unknown primitive:caml_sys_getenv";var serialize_raw_lambda=1;}
-catch(exn){if(exn=Not_found){var serialize_raw_lambda=0;}else{throw exn;}}
+ {var prim=CamlPrimitive["caml_sys_getenv"]("OCAML_RAW_LAMBDA");
+  
+  
+  var serialize_raw_lambda=/* true */1;
+  }
+catch(exn)
+ {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var serialize_raw_lambda=/* false */0;}
+  else
+   {throw exn;}
+  }
 
 try
- {var prim$1="unknown primitive:caml_sys_getenv";var serialize_lambda=1;}
-catch(exn$1){if(exn$1=Not_found){var serialize_lambda=1;}else{throw exn$1;}}
+ {var prim$1=CamlPrimitive["caml_sys_getenv"]("OCAML_LAMBDA");
+  
+  
+  var serialize_lambda=/* true */1;
+  }
+catch(exn$1)
+ {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var serialize_lambda=/* true */1;}
+  else
+   {throw exn$1;}
+  }
 
 try
- {var prim$2="unknown primitive:caml_sys_getenv";var serialize_raw_js=1;}
-catch(exn$2){if(exn$2=Not_found){var serialize_raw_js=0;}else{throw exn$2;}}
+ {var prim$2=CamlPrimitive["caml_sys_getenv"]("OCAML_RAW_JS");
+  
+  
+  var serialize_raw_js=/* true */1;
+  }
+catch(exn$2)
+ {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var serialize_raw_js=/* false */0;}
+  else
+   {throw exn$2;}
+  }
 
 try
- {var prim$3="unknown primitive:caml_sys_getenv";var serialize_js=1;}
-catch(exn$3){if(exn$3=Not_found){var serialize_js=0;}else{throw exn$3;}}
+ {var prim$3=CamlPrimitive["caml_sys_getenv"]("OCAML_JS");
+  
+  
+  var serialize_js=/* true */1;
+  }
+catch(exn$3)
+ {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var serialize_js=/* false */0;}
+  else
+   {throw exn$3;}
+  }
 
 var
  implementation=
   function(ppf,sourcefile,outputprefix)
-   {Compmisc["init_path"](0);
+   {Compmisc["init_path"](/* false */0);
     var modulename=Compenv["module_of_filename"](ppf,sourcefile,outputprefix);
     
     Env["set_unit_name"](modulename);
-    var env=Compmisc["initial_env"](0);
+    var env=Compmisc["initial_env"](/* () */0);
     
     var finalenv=[0,Env["empty"]];
     
@@ -148,7 +215,7 @@ var
                 Typemod["type_implementation_more"]
                  (sourcefile,outputprefix,modulename,env,x);
               
-              finalenv[1]=match$1[3],0;
+              finalenv[1]=match$1[3];
               return /* tuple */[0,match$1[1],match$1[2]];
               }),
           print_if
@@ -157,7 +224,7 @@ var
             Printtyped["implementation_with_coercion"]));
       
       if(Clflags["print_types"][1])
-       {Warnings["check_fatal"](0);
+       {Warnings["check_fatal"](/* () */0);
         return Stypes["dump"]
                 (/* Some */[0,Pervasives["^"](outputprefix,".annot")]);
         }
@@ -219,7 +286,7 @@ var
         
         try
          {$plus$plus(bytecode,Emitcode["to_file"](oc,modulename,objfile));
-          Warnings["check_fatal"](0);
+          Warnings["check_fatal"](/* () */0);
           Pervasives["close_out"](oc);
           return Stypes["dump"]
                   (/* Some */[0,Pervasives["^"](outputprefix,".annot")]);
@@ -237,8 +304,8 @@ var
 var
  c_file=
   function(name)
-   {Location["input_name"][1]=name,0;
-    if(Ccomp["compile_file"](name)!=0)
+   {Location["input_name"][1]=name;
+    if(Ccomp["compile_file"](name)!==0)
      {return Pervasives["exit"](2);}
     else
      {return 0;}

@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Misc=require("Misc");
-var Longident=require("Longident");
-var Ident=require("Ident");
-var Ast_helper=require("Ast_helper");
+var $$String=require("./string.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Misc=require("./misc.js");
+var Longident=require("./longident.js");
+var Ident=require("./ident.js");
+var Ast_helper=require("./ast_helper.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -14,18 +15,21 @@ var
   function(sub,str)
    {var sublen=sub["length"];
     
-    return str["length"]>=sublen&&"unknown primitive:caml_string_equal";
+    return str["length"]>=
+           sublen&&
+           CamlPrimitive["caml_string_equal"]
+            ($$String["sub"](str,0,sublen),sub);
     };
 
 var
  option=
   function(f,param)
-   {if(param){return /* Some */[0,f(param[1])];}else{return 0;}};
+   {if(param){return /* Some */[0,f(param[1])];}else{return /* None */0;}};
 
 var
  lident_of_path=
   function(path)
-   {switch(path)
+   {switch(path[0])
      {case 0:return /* Lident */[0,Ident["name"](path[1])];
       case 1:return /* Ldot */[1,lident_of_path(path[1]),path[2]];
       case 2:
@@ -42,7 +46,7 @@ var
   function(item)
    {var match=item[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:var desc=/* Pstr_eval */[0,untype_expression(match[1]),match[2]];
       case 1:
        var
@@ -131,8 +135,9 @@ var
    {var match=decl[6];
     
     var $js;
-    if(typeof match=="number")
-     {switch(match){case 0:$js=0;case 1:$js=1;}}
+    if(typeof match==="number")
+     {switch(match)
+       {case 0:$js=/* Ptype_abstract */0;case 1:$js=/* Ptype_open */1;}}
     else
      {switch(match[0])
        {case 0:
@@ -200,7 +205,7 @@ var
    {var match=ext[4];
     
     var $js;
-    switch(match)
+    switch(match[0])
      {case 0:
        $js=
        /* Pext_decl */[0,
@@ -219,7 +224,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -227,7 +232,7 @@ var
          var match$1=pat[3];
          
          if(match$1)
-          {if("unknown primitive:isint")
+          {if(typeof match$1[1][1]==="number")
             {if(match$1[2])
               {exit=5;}
              else
@@ -248,35 +253,35 @@ var
        if(match$2)
         {var match$3=match$2[1][1];
          
-         if(typeof match$3=="number")
-          {switch(match$3){case 0:"unknown block:(exit 5)";}}
+         if(typeof match$3==="number")
+          {switch(match$3){case 0:exit=5;}}
          else
           {switch(match$3[0])
             {case 0:
-              var newrecord="unknown primitive:duprecord regular 6";
+              var newrecord=/* unknown */"duprecord regular 6";
               
               var
                desc=
                 /* Ppat_constraint */[10,
-                 untype_pattern((newrecord[3]=match$2[2],0,newrecord)),
+                 untype_pattern((newrecord[3]=match$2[2],newrecord)),
                  untype_core_type(match$3[1])];
               
              case 1:
               if(match$2[2])
-               {"unknown block:(exit 5)";}
+               {exit=5;}
               else
                {var desc=/* Ppat_type */[11,match$3[2]];}
               
              }}
          }
        else
-        {"unknown block:(exit 5)";}
+        {exit=5;}
        
       case 5:
        var match$4=pat[1];
        
-       if(typeof match$4=="number")
-        {switch(match$4){case 0:var desc=0;}}
+       if(typeof match$4==="number")
+        {switch(match$4){case 0:var desc=/* Ppat_any */0;}}
        else
         {switch(match$4[0])
           {case 0:
@@ -311,9 +316,11 @@ var
                 ?args[2]
                   ?/* Some */[0,
                     Ast_helper["Pat"][8]
-                     (/* Some */[0,pat[2]],0,List["map"](untype_pattern,args))]
+                     (/* Some */[0,pat[2]],
+                      /* None */0,
+                      List["map"](untype_pattern,args))]
                   :/* Some */[0,untype_pattern(args[1])]
-                :0];
+                :/* None */0];
             
            case 5:
             var
@@ -358,7 +365,7 @@ var
   function(param,sexp)
    {var extra=param[1];
     
-    switch(extra)
+    switch(extra[0])
      {case 0:
        var desc=/* Pexp_constraint */[19,sexp,untype_core_type(extra[1])];
       case 1:
@@ -405,7 +412,7 @@ var
   function(exp)
    {var match=exp[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:var desc=/* Pexp_ident */[0,match[2]];
       case 1:var desc=/* Pexp_constant */[1,match[1]];
       case 2:
@@ -436,7 +443,7 @@ var
               desc=
                /* Pexp_fun */[4,
                 label,
-                0,
+                /* None */0,
                 untype_pattern(match$2[1]),
                 untype_expression(match$2[3])];
              }
@@ -449,7 +456,11 @@ var
         {case 14:
           switch(label)
            {case "":var desc=/* Pexp_function */[3,untype_cases(match[2])];
-            default:throw [0,Assert_failure,[0,"untypeast.ml",272,8]];}
+            default:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"untypeast.ml",272,8]];
+             }
           
          }
        
@@ -471,7 +482,7 @@ var
                {return list;}
               },
             match[2],
-            0)];
+            /* [] */0)];
        
       case 5:
        var
@@ -515,9 +526,11 @@ var
            ?args[2]
              ?/* Some */[0,
                Ast_helper["Exp"][11]
-                (/* Some */[0,exp[2]],0,List["map"](untype_expression,args))]
+                (/* Some */[0,exp[2]],
+                 /* None */0,
+                 List["map"](untype_expression,args))]
              :/* Some */[0,untype_expression(args[1])]
-           :0];
+           :/* None */0];
        
       case 9:
        var
@@ -582,7 +595,7 @@ var
        var meth=match[2];
        
        var $js;
-       switch(meth){case 0:$js=meth[1];case 1:$js=Ident["name"](meth[1]);}
+       switch(meth[0]){case 0:$js=meth[1];case 1:$js=Ident["name"](meth[1]);}
        var desc=/* Pexp_send */[21,untype_expression(match[1]),$js];
        
       case 19:var desc=/* Pexp_new */[22,match[2]];
@@ -647,7 +660,7 @@ var
   function(item)
    {var match=item[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:var desc=/* Psig_value */[0,untype_value_description(match[1])];
       case 1:
        var
@@ -673,12 +686,12 @@ var
         desc=
          /* Psig_recmodule */[5,
           List["map"]
-           (function(md$1)
+           (function(md)
              {return /* record */[0,
-                      md$1[2],
-                      untype_module_type(md$1[3]),
-                      md$1[4],
-                      md$1[5]];
+                      md[2],
+                      untype_module_type(md[3]),
+                      md[4],
+                      md[5]];
               },
             match[1])];
        
@@ -765,7 +778,7 @@ var
   function(mty)
    {var match=mty[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:var desc=/* Pmty_ident */[0,match[2]];
       case 1:var desc=/* Pmty_signature */[1,untype_signature(match[1])];
       case 2:
@@ -789,13 +802,13 @@ var
       case 5:var desc=/* Pmty_alias */[6,match[2]];
       }
     
-    return Ast_helper["Mty"][1](/* Some */[0,mty[4]],0,desc);
+    return Ast_helper["Mty"][1](/* Some */[0,mty[4]],/* None */0,desc);
     };
 
 var
  untype_with_constraint=
   function(lid,cstr)
-   {switch(cstr)
+   {switch(cstr[0])
      {case 0:return /* Pwith_type */[0,lid,untype_type_declaration(cstr[1])];
       case 1:return /* Pwith_module */[1,lid,cstr[2]];
       case 2:return /* Pwith_typesubst */[2,untype_type_declaration(cstr[1])];
@@ -814,7 +827,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 4:if(match[3]){exit=19;}else{return untype_module_expr(match[1]);}
       default:exit=19;}
     
@@ -822,7 +835,7 @@ var
      {case 19:
        var match$1=mexpr[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:var desc=/* Pmod_ident */[0,match$1[2]];
          case 1:var desc=/* Pmod_structure */[1,untype_structure(match$1[1])];
          case 2:
@@ -851,12 +864,15 @@ var
                untype_module_type(match$2[1])];
             }
           else
-           {throw [0,Assert_failure,[0,"untypeast.ml",484,12]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"untypeast.ml",484,12]];
+            }
           
          case 5:var desc=/* Pmod_unpack */[5,untype_expression(match$1[1])];
          }
        
-       return Ast_helper["Mod"][1](/* Some */[0,mexpr[2]],0,desc);
+       return Ast_helper["Mod"][1](/* Some */[0,mexpr[2]],/* None */0,desc);
        
       }
     };
@@ -866,15 +882,19 @@ var
   function(cexpr)
    {var match=cexpr[1];
     
-    switch(match)
-     {case 0:throw [0,Assert_failure,[0,"untypeast.ml",519,21]];
+    switch(match[0])
+     {case 0:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"untypeast.ml",519,21]];
+       
       case 1:var desc=/* Pcl_structure */[1,untype_class_structure(match[1])];
       case 2:
        var
         desc=
          /* Pcl_fun */[2,
           match[1],
-          0,
+          /* None */0,
           untype_pattern(match[2]),
           untype_class_expr(match[4])];
        
@@ -896,7 +916,7 @@ var
                {return list;}
               },
             match[2],
-            0)];
+            /* [] */0)];
        
       case 4:
        var
@@ -913,7 +933,7 @@ var
        
        var exit;
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           if(match[2])
            {exit=20;}
@@ -939,7 +959,10 @@ var
                untype_class_type(match$2[1])];
             }
           else
-           {throw [0,Assert_failure,[0,"untypeast.ml",520,43]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"untypeast.ml",520,43]];
+            }
           
          }
        
@@ -953,7 +976,7 @@ var
   function(ct)
    {var match=ct[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var
         desc=
@@ -987,7 +1010,7 @@ var
   function(ctf)
    {var match=ctf[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:var desc=/* Pctf_inherit */[0,untype_class_type(match[1])];
       case 1:
        var match$1=match[1];
@@ -1034,8 +1057,8 @@ var
   function(ct)
    {var match=ct[1];
     
-    if(typeof match=="number")
-     {switch(match){case 0:var desc=0;}}
+    if(typeof match==="number")
+     {switch(match){case 0:var desc=/* Ptyp_any */0;}}
     else
      {switch(match[0])
        {case 0:var desc=/* Ptyp_var */[0,match[1]];
@@ -1090,7 +1113,7 @@ var
         case 9:var desc=/* Ptyp_package */[9,untype_package_type(match[1])];
         }}
     
-    return Ast_helper["Typ"][1](/* Some */[0,ct[4]],0,desc);
+    return Ast_helper["Typ"][1](/* Some */[0,ct[4]],/* None */0,desc);
     };
 
 var
@@ -1103,7 +1126,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -1126,7 +1149,7 @@ var
 var
  untype_row_field=
   function(rf)
-   {switch(rf)
+   {switch(rf[0])
      {case 0:
        return /* Rtag */[0,
                rf[1],
@@ -1145,14 +1168,14 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 1:return string_is_prefix("self-",Ident["name"](match[2]));
         default:exit=26;}}
     
-    switch(exit){case 26:return 0;}
+    switch(exit){case 26:return /* false */0;}
     };
 
 var
@@ -1160,7 +1183,7 @@ var
   function(cf)
    {var match=cf[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var
         desc=
@@ -1173,7 +1196,7 @@ var
        
        var lab=match[1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           var
            desc=
@@ -1201,7 +1224,7 @@ var
        
        var lab$1=match[1];
        
-       switch(match$2)
+       switch(match$2[0])
         {case 0:
           var
            desc=
@@ -1219,7 +1242,7 @@ var
               
               var exit;
               
-              switch(match$3)
+              switch(match$3[0])
                {case 3:
                  switch(match$3[1])
                   {case "":
@@ -1231,7 +1254,7 @@ var
                       else
                        {var $$case=match$4[1];
                         
-                        if(is_self_pat($$case[1])&&($$case[2]=0))
+                        if(is_self_pat($$case[1])&&$$case[2]===/* None */0)
                          {return $$case[3];}
                         else
                          {exit=28;}
@@ -1273,7 +1296,7 @@ var
            
            var exit;
            
-           switch(match$3)
+           switch(match$3[0])
             {case 3:
               switch(match$3[1])
                {case "":
@@ -1285,7 +1308,7 @@ var
                    else
                     {var $$case=match$4[1];
                      
-                     if(is_self_pat($$case[1])&&($$case[2]=0))
+                     if(is_self_pat($$case[1])&&$$case[2]===/* None */0)
                       {return $$case[3];}
                      else
                       {exit=31;}

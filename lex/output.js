@@ -1,10 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Common=require("Common");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
+var Common=require("./common.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -20,10 +21,10 @@ var
  output_array=
   function(oc,v)
    {Pervasives["output_string"](oc,'   "');
-    for(var i=0;i<=v["length"]-1;i++)
-     {output_byte(oc,v[i]&255);
-      output_byte(oc,v[i]>>8&255);
-      if((i&7)=7){Pervasives["output_string"](oc,"\\n    ")}else{}
+    for(var i=0;i<=/* -1 for tag */v["length"]-1-1;i++)
+     {output_byte(oc,v[i+1]&255);
+      output_byte(oc,v[i+1]>>8&255);
+      if((i&7)===7){Pervasives["output_string"](oc,"\\n    ")}else{}
       }
     
     return Pervasives["output_string"](oc,'"');
@@ -33,9 +34,9 @@ var
  output_byte_array=
   function(oc,v)
    {Pervasives["output_string"](oc,'   "');
-    for(var i=0;i<=v["length"]-1;i++)
-     {output_byte(oc,v[i]&255);
-      if((i&15)=15){Pervasives["output_string"](oc,"\\n    ")}else{}
+    for(var i=0;i<=/* -1 for tag */v["length"]-1-1;i++)
+     {output_byte(oc,v[i+1]&255);
+      if((i&15)===15){Pervasives["output_string"](oc,"\\n    ")}else{}
       }
     
     return Pervasives["output_string"](oc,'"');
@@ -47,78 +48,100 @@ var
    {Pervasives["output_string"](oc,"let __ocaml_lex_tables = {\n");
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_base = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_base = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_base = \n%a;\n"],
       output_array,
       tbl[1]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_backtrk = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_backtrk = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_backtrk = \n%a;\n"],
       output_array,
       tbl[2]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_default = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_default = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_default = \n%a;\n"],
       output_array,
       tbl[3]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_trans = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_trans = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_trans = \n%a;\n"],
       output_array,
       tbl[4]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_check = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_check = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_check = \n%a;\n"],
       output_array,
       tbl[5]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_base_code = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_base_code = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_base_code = \n%a;\n"],
       output_array,
       tbl[6]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_backtrk_code = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_backtrk_code = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_backtrk_code = \n%a;\n"],
       output_array,
       tbl[7]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_default_code = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_default_code = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_default_code = \n%a;\n"],
       output_array,
       tbl[8]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_trans_code = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_trans_code = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_trans_code = \n%a;\n"],
       output_array,
       tbl[9]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_check_code = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_check_code = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_check_code = \n%a;\n"],
       output_array,
       tbl[10]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  Lexing.lex_code = \n",[15,[11,";\n",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  Lexing.lex_code = \n",
+        [/* Alpha */15,[/* String_literal */11,";\n",/* End_of_format */0]]],
        "  Lexing.lex_code = \n%a;\n"],
       output_byte_array,
       tbl[11]);
@@ -132,31 +155,46 @@ var
     
     Printf["fprintf"]
      (oc,
-      [0,
-       [2,
-        0,
-        [12,
+      [/* Format */0,
+       [/* String */2,
+        /* No_padding */0,
+        [/* Char_literal */12,
          32,
-         [15,
-          [11,
+         [/* Alpha */15,
+          [/* String_literal */11,
            "lexbuf =\n  ",
-           [15,
-            [15,
-             [11,
+           [/* Alpha */15,
+            [/* Alpha */15,
+             [/* String_literal */11,
               "  __ocaml_lex_",
-              [2,0,[11,"_rec ",[15,[11,"lexbuf ",[4,0,0,0,[12,10,0]]]]]]]]]]]]],
+              [/* String */2,
+               /* No_padding */0,
+               [/* String_literal */11,
+                "_rec ",
+                [/* Alpha */15,
+                 [/* String_literal */11,
+                  "lexbuf ",
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* Char_literal */12,10,/* End_of_format */0]]]]]]]]]]]]],
        "%s %alexbuf =\n  %a%a  __ocaml_lex_%s_rec %alexbuf %d\n"],
       e[1],
       Common["output_args"],
       e[2],
-      function(oc$1,x)
+      function(oc,x)
        {if(x>0)
          {return Printf["fprintf"]
-                  (oc$1,
-                   [0,
-                    [11,
+                  (oc,
+                   [/* Format */0,
+                    [/* String_literal */11,
                      "lexbuf.Lexing.lex_mem <- Array.make ",
-                     [4,0,0,0,[11," (-1) ; ",0]]],
+                     [/* Int */4,
+                      /* Int_d */0,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      [/* String_literal */11," (-1) ; ",/* End_of_format */0]]],
                     "lexbuf.Lexing.lex_mem <- Array.make %d (-1) ; "],
                    x);
           }
@@ -172,45 +210,78 @@ var
       match[1]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,
+      [/* Format */0,
+       [/* String_literal */11,
         "and __ocaml_lex_",
-        [2,0,[11,"_rec ",[15,[11,"lexbuf __ocaml_lex_state =\n",0]]]]],
+        [/* String */2,
+         /* No_padding */0,
+         [/* String_literal */11,
+          "_rec ",
+          [/* Alpha */15,
+           [/* String_literal */11,
+            "lexbuf __ocaml_lex_state =\n",
+            /* End_of_format */0]]]]],
        "and __ocaml_lex_%s_rec %alexbuf __ocaml_lex_state =\n"],
       e[1],
       Common["output_args"],
       e[2]);
     Printf["fprintf"]
      (oc,
-      [0,
-       [11,"  match Lexing.",[2,0,[11,"engine",0]]],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  match Lexing.",
+        [/* String */2,
+         /* No_padding */0,
+         [/* String_literal */11,"engine",/* End_of_format */0]]],
        "  match Lexing.%sengine"],
-      (e[3]=0)?"":"new_");
+      e[3]===0?"":"new_");
     Printf["fprintf"]
      (oc,
-      [0,
-       [11," __ocaml_lex_tables __ocaml_lex_state lexbuf with\n    ",0],
+      [/* Format */0,
+       [/* String_literal */11,
+        " __ocaml_lex_tables __ocaml_lex_state lexbuf with\n    ",
+        /* End_of_format */0],
        " __ocaml_lex_tables __ocaml_lex_state lexbuf with\n    "]);
     List["iter"]
      (function(param)
-       {Printf["fprintf"](oc,[0,[11,"  | ",0],"  | "]);
-        Printf["fprintf"](oc,[0,[4,0,0,0,[11," ->\n",0]],"%d ->\n"],param[1]);
+       {Printf["fprintf"]
+         (oc,
+          [/* Format */0,
+           [/* String_literal */11,"  | ",/* End_of_format */0],
+           "  | "]);
+        Printf["fprintf"]
+         (oc,
+          [/* Format */0,
+           [/* Int */4,
+            /* Int_d */0,
+            /* No_padding */0,
+            /* No_precision */0,
+            [/* String_literal */11," ->\n",/* End_of_format */0]],
+           "%d ->\n"],
+          param[1]);
         Common["output_env"](ic,oc,oci,param[2]);
-        Common["copy_chunk"](ic,oc,oci,param[3],1);
-        return Printf["fprintf"](oc,[0,[12,10,0],"\n"]);
+        Common["copy_chunk"](ic,oc,oci,param[3],/* true */1);
+        return Printf["fprintf"]
+                (oc,
+                 [/* Format */0,
+                  [/* Char_literal */12,10,/* End_of_format */0],
+                  "\n"]);
         },
       e[5]);
     if(has_refill)
      {return Printf["fprintf"]
               (oc,
-               [0,
-                [11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "  | __ocaml_lex_state -> __ocaml_lex_refill \n      (fun lexbuf -> lexbuf.Lexing.refill_buff lexbuf; \n         __ocaml_lex_",
-                 [2,
-                  0,
-                  [11,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
                    "_rec ",
-                   [15,[11,"lexbuf __ocaml_lex_state) lexbuf\n\n",0]]]]],
+                   [/* Alpha */15,
+                    [/* String_literal */11,
+                     "lexbuf __ocaml_lex_state) lexbuf\n\n",
+                     /* End_of_format */0]]]]],
                 "  | __ocaml_lex_state -> __ocaml_lex_refill \n      (fun lexbuf -> lexbuf.Lexing.refill_buff lexbuf; \n         __ocaml_lex_%s_rec %alexbuf __ocaml_lex_state) lexbuf\n\n"],
                e[1],
                Common["output_args"],
@@ -219,10 +290,17 @@ var
     else
      {return Printf["fprintf"]
               (oc,
-               [0,
-                [11,
+               [/* Format */0,
+                [/* String_literal */11,
                  "  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; \n      __ocaml_lex_",
-                 [2,0,[11,"_rec ",[15,[11,"lexbuf __ocaml_lex_state\n\n",0]]]]],
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
+                   "_rec ",
+                   [/* Alpha */15,
+                    [/* String_literal */11,
+                     "lexbuf __ocaml_lex_state\n\n",
+                     /* End_of_format */0]]]]],
                 "  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; \n      __ocaml_lex_%s_rec %alexbuf __ocaml_lex_state\n\n"],
                e[1],
                Common["output_args"],
@@ -230,60 +308,79 @@ var
       }
     };
 
-var Table_overflow="unknown primitive:caml_set_oo_id";
+var
+ Table_overflow=
+  CamlPrimitive["caml_set_oo_id"]([248,"Output.Table_overflow",0]);
 
 var
  output_lexdef=
   function(sourcefile,ic,oc,oci,header,rh,tables,entry_points,trailer)
    {if(!Common["quiet_mode"][1])
      {Printf["printf"]
-       ([0,
-         [4,
-          0,
-          0,
-          0,
-          [11,
+       ([/* Format */0,
+         [/* Int */4,
+          /* Int_d */0,
+          /* No_padding */0,
+          /* No_precision */0,
+          [/* String_literal */11,
            " states, ",
-           [4,
-            0,
-            0,
-            0,
-            [11," transitions, table size ",[4,0,0,0,[11," bytes\n",0]]]]]],
+           [/* Int */4,
+            /* Int_d */0,
+            /* No_padding */0,
+            /* No_precision */0,
+            [/* String_literal */11,
+             " transitions, table size ",
+             [/* Int */4,
+              /* Int_d */0,
+              /* No_padding */0,
+              /* No_precision */0,
+              [/* String_literal */11," bytes\n",/* End_of_format */0]]]]]],
          "%d states, %d transitions, table size %d bytes\n"],
-        tables[1]["length"],
-        tables[4]["length"],
+        /* -1 for tag */tables[1]["length"]-1,
+        /* -1 for tag */tables[4]["length"]-1,
         2*
-        (tables[1]["length"]+
-         tables[2]["length"]+
-         tables[3]["length"]+
-         tables[4]["length"]+
-         tables[5]["length"]))}
+        (/* -1 for tag */tables[1]["length"]-
+         1+
+         /* -1 for tag */(tables[2]["length"]-1)+
+         /* -1 for tag */(tables[3]["length"]-1)+
+         /* -1 for tag */(tables[4]["length"]-1)+
+         /* -1 for tag */(tables[5]["length"]-1)))}
     else
      {}
     
     var
      size_groups=
       2*
-      (tables[6]["length"]+
-       tables[7]["length"]+
-       tables[8]["length"]+
-       tables[9]["length"]+
-       tables[10]["length"])+
-      tables[11]["length"];
+      (/* -1 for tag */tables[6]["length"]-
+       1+
+       /* -1 for tag */(tables[7]["length"]-1)+
+       /* -1 for tag */(tables[8]["length"]-1)+
+       /* -1 for tag */(tables[9]["length"]-1)+
+       /* -1 for tag */(tables[10]["length"]-1))+
+      /* -1 for tag */(tables[11]["length"]-1);
     
     if(size_groups>0&&!Common["quiet_mode"][1])
      {Printf["printf"]
-       ([0,
-         [4,0,0,0,[11," additional bytes used for bindings\n",0]],
+       ([/* Format */0,
+         [/* Int */4,
+          /* Int_d */0,
+          /* No_padding */0,
+          /* No_precision */0,
+          [/* String_literal */11,
+           " additional bytes used for bindings\n",
+           /* End_of_format */0]],
          "%d additional bytes used for bindings\n"],
         size_groups)}
     else
      {}
     
     Pervasives["flush"](Pervasives["stdout"]);
-    if(tables[4]["length"]>32768){throw Table_overflow;}else{}
+    if(/* -1 for tag */tables[4]["length"]-1>32768)
+     {throw Table_overflow;}
+    else
+     {}
     
-    Common["copy_chunk"](ic,oc,oci,header,0);
+    Common["copy_chunk"](ic,oc,oci,header,/* false */0);
     var has_refill=Common["output_refill_handler"](ic,oc,oci,rh);
     
     output_tables(oc,tables);
@@ -300,7 +397,7 @@ var
     else
      {}
     
-    return Common["copy_chunk"](ic,oc,oci,trailer,0);
+    return Common["copy_chunk"](ic,oc,oci,trailer,/* false */0);
     };
 
 module["exports"]=

@@ -1,55 +1,56 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Parse=require("Parse");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Arg=require("Arg");
-var Clflags=require("Clflags");
-var Printf=require("Printf");
-var Format=require("Format");
-var Misc=require("Misc");
-var Filename=require("Filename");
-var Depend=require("Depend");
-var Compenv=require("Compenv");
-var Location=require("Location");
-var Hashtbl=require("Hashtbl");
-var Pparse=require("Pparse");
-var Map=require("Map");
-var Config=require("Config");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Parse=require("./parse.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Arg=require("./arg.js");
+var Clflags=require("./clflags.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Filename=require("./filename.js");
+var Depend=require("./depend.js");
+var Compenv=require("./compenv.js");
+var Location=require("./location.js");
+var Hashtbl=require("./hashtbl.js");
+var Pparse=require("./pparse.js");
+var Map=require("./map.js");
+var Config=require("./config.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var ppf=Format["err_formatter"];
 
-var load_path=[0,0];
+var load_path=[0,/* [] */0];
 
-var ml_synonyms=[0,[0,".ml",0]];
+var ml_synonyms=[0,[/* :: */0,".ml",/* [] */0]];
 
-var mli_synonyms=[0,[0,".mli",0]];
+var mli_synonyms=[0,[/* :: */0,".mli",/* [] */0]];
 
-var native_only=[0,0];
+var native_only=[0,/* false */0];
 
-var error_occurred=[0,0];
+var error_occurred=[0,/* false */0];
 
-var raw_dependencies=[0,0];
+var raw_dependencies=[0,/* false */0];
 
-var sort_files=[0,0];
+var sort_files=[0,/* false */0];
 
-var all_dependencies=[0,0];
+var all_dependencies=[0,/* false */0];
 
-var one_line=[0,0];
+var one_line=[0,/* false */0];
 
-var files=[0,0];
+var files=[0,/* [] */0];
 
 var
  fix_slash=
   function(s)
-   {if("unknown primitive:caml_string_equal")
+   {if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Unix"))
      {return s;}
     else
      {return $$String["map"]
-              (function(c){if(c!=92){return c;}else{return 47;}},s);
+              (function(c){if(c!==92){return c;}else{return 47;}},s);
       }
     };
 
@@ -65,25 +66,35 @@ var
    {try
      {return StringMap[22](dir,dirs[1]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {try
-         {var contents="unknown primitive:caml_sys_read_directory";}
+         {var contents=CamlPrimitive["caml_sys_read_directory"](dir);}
         catch(exn$1)
-         {if(exn$1[1]=Sys_error)
+         {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {Format["fprintf"]
              (Format["err_formatter"],
-              [0,
-               [18,[1,[0,0,""]],[11,"Bad -I option: ",[2,0,[17,0,[17,4,0]]]]],
+              [/* Format */0,
+               [/* Formatting_gen */18,
+                [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                [/* String_literal */11,
+                 "Bad -I option: ",
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* Formatting_lit */17,
+                   /* Close_box */0,
+                   [/* Formatting_lit */17,
+                    /* Flush_newline */4,
+                    /* End_of_format */0]]]]],
                "@[Bad -I option: %s@]@."],
               exn$1[2]);
-            error_occurred[1]=1,0;
-            var contents=[];
+            error_occurred[1]=/* true */1;
+            var contents=[/* array */0];
             }
           else
            {throw exn$1;}
           }
         
-        dirs[1]=StringMap[4](dir,contents,dirs[1]),0;
+        dirs[1]=StringMap[4](dir,contents,dirs[1]);
         return contents;
         }
       else
@@ -104,14 +115,24 @@ var
       return add_to_list(load_path,/* tuple */[0,dir$1,contents]);
       }
     catch(exn)
-     {if(exn[1]=Sys_error)
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {Format["fprintf"]
          (Format["err_formatter"],
-          [0,
-           [18,[1,[0,0,""]],[11,"Bad -I option: ",[2,0,[17,0,[17,4,0]]]]],
+          [/* Format */0,
+           [/* Formatting_gen */18,
+            [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+            [/* String_literal */11,
+             "Bad -I option: ",
+             [/* String */2,
+              /* No_padding */0,
+              [/* Formatting_lit */17,
+               /* Close_box */0,
+               [/* Formatting_lit */17,
+                /* Flush_newline */4,
+                /* End_of_format */0]]]]],
            "@[Bad -I option: %s@]@."],
           exn[2]);
-        return error_occurred[1]=1,0;
+        return error_occurred[1]=/* true */1,0;
         }
       else
        {throw exn;}
@@ -121,16 +142,28 @@ var
 var
  add_to_synonym_list=
   function(synonyms,suffix)
-   {if(suffix["length"]>1&&(suffix[0]=46))
+   {if(suffix["length"]>1&&suffix[0]===46)
      {return add_to_list(synonyms,suffix);}
     else
      {Format["fprintf"]
        (Format["err_formatter"],
-        [0,
-         [18,[1,[0,0,""]],[11,"Bad suffix: '",[2,0,[12,39,[17,0,[17,4,0]]]]]],
+        [/* Format */0,
+         [/* Formatting_gen */18,
+          [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+          [/* String_literal */11,
+           "Bad suffix: '",
+           [/* String */2,
+            /* No_padding */0,
+            [/* Char_literal */12,
+             39,
+             [/* Formatting_lit */17,
+              /* Close_box */0,
+              [/* Formatting_lit */17,
+               /* Flush_newline */4,
+               /* End_of_format */0]]]]]],
          "@[Bad suffix: '%s'@]@."],
         suffix);
-      return error_occurred[1]=1,0;
+      return error_occurred[1]=/* true */1,0;
       }
     };
 
@@ -142,14 +175,14 @@ var
     var
      find_in_array=
       function(a,pos)
-       {if(pos>=a["length"])
-         {return 0;}
+       {if(pos>=/* -1 for tag */a["length"]-1)
+         {return /* None */0;}
         else
-         {var s=a[pos];
+         {var s=a[pos+1];
           
           if
-           ("unknown primitive:caml_string_equal"||
-            "unknown primitive:caml_string_equal")
+           (CamlPrimitive["caml_string_equal"](s,name)||
+            CamlPrimitive["caml_string_equal"](s,uname))
            {return /* Some */[0,s];}
           else
            {return find_in_array(a,pos+1);}
@@ -169,7 +202,7 @@ var
           if(match$1)
            {var truename=match$1[1];
             
-            if("unknown primitive:caml_string_equal")
+            if(CamlPrimitive["caml_string_equal"](dir,"."))
              {return truename;}
             else
              {return Filename["concat"](dir,truename);}
@@ -178,7 +211,7 @@ var
            {return find_in_path(param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return find_in_path(load_path[1]);
@@ -191,11 +224,14 @@ var
      {try
        {return find_file(param[1]);}
       catch(exn)
-       {if(exn=Not_found){return find_file_in_list(param[2]);}else{throw exn;}
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return find_file_in_list(param[2]);}
+        else
+         {throw exn;}
         }
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -217,25 +253,33 @@ var
       var
        ml_exists=
         List["exists"]
-         (function(ext){return "unknown primitive:caml_sys_file_exists";},
+         (function(ext)
+           {return CamlPrimitive["caml_sys_file_exists"]
+                    (Pervasives["^"](basename,ext));
+            },
           ml_synonyms[1]);
       
       if(all_dependencies[1])
-       {if(target_kind!=0)
-         {var new_opt_dep=/* :: */[0,cmi_file,0];}
+       {if(target_kind!==0)
+         {var new_opt_dep=/* :: */[0,cmi_file,/* [] */0];}
         else
          {var
            new_opt_dep=
             /* :: */[0,
              cmi_file,
-             ml_exists?/* :: */[0,Pervasives["^"](basename,".cmx"),0]:0];
+             ml_exists
+              ?/* :: */[0,Pervasives["^"](basename,".cmx"),/* [] */0]
+              :/* [] */0];
           }
         }
       else
        {if(ml_exists)
-         {var new_opt_dep=/* :: */[0,Pervasives["^"](basename,".cmx"),0];}
+         {var
+           new_opt_dep=
+            /* :: */[0,Pervasives["^"](basename,".cmx"),/* [] */0];
+          }
         else
-         {var new_opt_dep=/* :: */[0,cmi_file,0];}
+         {var new_opt_dep=/* :: */[0,cmi_file,/* [] */0];}
         }
       
       return /* tuple */[0,
@@ -243,7 +287,7 @@ var
               Pervasives["@"](new_opt_dep,opt_deps)];
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {try
          {var
            candidates$1=
@@ -254,39 +298,51 @@ var
           var basename$1=Filename["chop_extension"](filename$1);
           
           if(all_dependencies[1])
-           {if(target_kind!=0)
-             {var bytenames=/* :: */[0,Pervasives["^"](basename$1,".cmi"),0];}
+           {if(target_kind!==0)
+             {var
+               bytenames=
+                /* :: */[0,Pervasives["^"](basename$1,".cmi"),/* [] */0];
+              }
             else
-             {var bytenames=/* :: */[0,Pervasives["^"](basename$1,".cmi"),0];}
+             {var
+               bytenames=
+                /* :: */[0,Pervasives["^"](basename$1,".cmi"),/* [] */0];
+              }
             }
           else
            {var
              bytenames=
               /* :: */[0,
                Pervasives["^"](basename$1,native_only[1]?".cmx":".cmo"),
-               0];
+               /* [] */0];
             }
           
           if(all_dependencies[1])
-           {if(target_kind!=0)
-             {var optnames=/* :: */[0,Pervasives["^"](basename$1,".cmi"),0];}
+           {if(target_kind!==0)
+             {var
+               optnames=
+                /* :: */[0,Pervasives["^"](basename$1,".cmi"),/* [] */0];
+              }
             else
              {var
                optnames=
                 /* :: */[0,
                  Pervasives["^"](basename$1,".cmi"),
-                 /* :: */[0,Pervasives["^"](basename$1,".cmx"),0]];
+                 /* :: */[0,Pervasives["^"](basename$1,".cmx"),/* [] */0]];
               }
             }
           else
-           {var optnames=/* :: */[0,Pervasives["^"](basename$1,".cmx"),0];}
+           {var
+             optnames=
+              /* :: */[0,Pervasives["^"](basename$1,".cmx"),/* [] */0];
+            }
           
           return /* tuple */[0,
                   Pervasives["@"](bytenames,byt_deps),
                   Pervasives["@"](optnames,opt_deps)];
           }
         catch(exn$1)
-         {if(exn$1=Not_found)
+         {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
            {return /* tuple */[0,byt_deps,opt_deps];}
           else
            {throw exn$1;}
@@ -297,7 +353,7 @@ var
       }
     };
 
-var match=[0,":"," \\n    "];
+var match=[/* tuple */0,":"," \\n    "];
 
 var escaped_eol=match[2];
 
@@ -317,23 +373,23 @@ var
          {if(i>=s$1["length"])
            {return n;}
           else
-           {if(s$1[i]=32){return count(n+1,i+1);}else{return count(n,i+1);}}
+           {if(s$1[i]===32){return count(n+1,i+1);}else{return count(n,i+1);}}
           };
       
       var spaces=count(0,0);
       
-      var result="unknown primitive:caml_create_string";
+      var result=CamlPrimitive["caml_create_string"](s$1["length"]+spaces);
       
       var
        loop=
         function(i,j)
          {if(i>=s$1["length"])
-           {return 0;}
+           {return /* () */0;}
           else
-           {if(s$1[i]=32)
-             {result[j]=92,0;result[j+1]=32,0;return loop(i+1,j+2);}
+           {if(s$1[i]===32)
+             {result[j]=92;result[j+1]=32;return loop(i+1,j+2);}
             else
-             {result[j]=s$1[i],0;return loop(i+1,j+1);}
+             {result[j]=s$1[i];return loop(i+1,j+1);}
             }
           };
       
@@ -354,7 +410,7 @@ var
           var dep=param[1];
           
           if(one_line[1]||pos+1+dep["length"]<=77)
-           {if(pos!=0){Pervasives["print_string"](" ")}else{}
+           {if(pos!==0){Pervasives["print_string"](" ")}else{}
             
             print_filename(dep);
             return print_items(pos+dep["length"]+1,rem);
@@ -372,7 +428,8 @@ var
     return print_items
             (0,
              Pervasives["@"]
-              (target_files,Pervasives["@"](/* :: */[0,depends_on,0],deps)));
+              (target_files,
+               Pervasives["@"](/* :: */[0,depends_on,/* [] */0],deps)));
     };
 
 var
@@ -384,7 +441,7 @@ var
      (function(dep)
        {var match$1=dep[0];
         
-        if(dep["length"]>0&&(25<-65+match$1>>>0?0:1))
+        if(dep["length"]>0&&(25<-65+match$1>>>0?/* false */0:/* true */1))
          {Pervasives["print_char"](32);
           return Pervasives["print_string"](dep);
           }
@@ -398,14 +455,24 @@ var
 var
  report_err=
   function(exn)
-   {error_occurred[1]=1,0;
-    if(exn[1]=Sys_error)
+   {error_occurred[1]=/* true */1;
+    if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
      {return Format["fprintf"]
               (Format["err_formatter"],
-               [0,
-                [18,
-                 [1,[0,0,""]],
-                 [11,"I/O error:",[17,[0,"@ ",1,0],[2,0,[17,0,[17,4,0]]]]]],
+               [/* Format */0,
+                [/* Formatting_gen */18,
+                 [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                 [/* String_literal */11,
+                  "I/O error:",
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Formatting_lit */17,
+                     /* Close_box */0,
+                     [/* Formatting_lit */17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]]]],
                 "@[I/O error:@ %s@]@."],
                exn[2]);
       }
@@ -415,7 +482,16 @@ var
       if(match$1)
        {return Format["fprintf"]
                 (Format["err_formatter"],
-                 [0,[18,[1,[0,0,""]],[15,[17,0,[17,4,0]]]],"@[%a@]@."],
+                 [/* Format */0,
+                  [/* Formatting_gen */18,
+                   [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                   [/* Alpha */15,
+                    [/* Formatting_lit */17,
+                     /* Close_box */0,
+                     [/* Formatting_lit */17,
+                      /* Flush_newline */4,
+                      /* End_of_format */0]]]],
+                  "@[%a@]@."],
                  Location["report_error"],
                  match$1[1]);
         }
@@ -429,7 +505,7 @@ var tool_name="ocamldep";
 var
  read_parse_and_extract=
   function(parse_function,extract_function,magic,source_file)
-   {Depend["free_structure_names"][1]=Depend["StringSet"][1],0;
+   {Depend["free_structure_names"][1]=Depend["StringSet"][1];
     try
      {var input_file=Pparse["preprocess"](source_file);
       
@@ -460,7 +536,10 @@ var
    {var
      parse_use_file_as_impl=
       function(lexbuf)
-       {var f=function(x){switch(x){case 0:return x[1];case 1:return 0;}};
+       {var
+         f=
+          function(x)
+           {switch(x[0]){case 0:return x[1];case 1:return /* [] */0;}};
         
         return List["flatten"](List["map"](f,Parse["use_file"](lexbuf)));
         };
@@ -476,7 +555,10 @@ var
     if(sort_files[1])
      {return files[1]=
              /* :: */[0,
-              /* tuple */[0,source_file,0,Depend["free_structure_names"][1]],
+              /* tuple */[0,
+               source_file,
+               /* ML */0,
+               Depend["free_structure_names"][1]],
               files[1]],
              0;
       }
@@ -486,28 +568,36 @@ var
       else
        {var basename=Filename["chop_extension"](source_file);
         
-        var byte_targets=/* :: */[0,Pervasives["^"](basename,".cmo"),0];
+        var
+         byte_targets=
+          /* :: */[0,Pervasives["^"](basename,".cmo"),/* [] */0];
         
         if(all_dependencies[1])
          {var
            native_targets=
             /* :: */[0,
              Pervasives["^"](basename,".cmx"),
-             /* :: */[0,Pervasives["^"](basename,".o"),0]];
+             /* :: */[0,Pervasives["^"](basename,".o"),/* [] */0]];
           }
         else
-         {var native_targets=/* :: */[0,Pervasives["^"](basename,".cmx"),0];}
+         {var
+           native_targets=
+            /* :: */[0,Pervasives["^"](basename,".cmx"),/* [] */0];
+          }
         
         if(all_dependencies[1])
-         {var init_deps=/* :: */[0,source_file,0];}
+         {var init_deps=/* :: */[0,source_file,/* [] */0];}
         else
-         {var init_deps=0;}
+         {var init_deps=/* [] */0;}
         
         var cmi_name=Pervasives["^"](basename,".cmi");
         
         if
          (List["exists"]
-           (function(ext){return "unknown primitive:caml_sys_file_exists";},
+           (function(ext)
+             {return CamlPrimitive["caml_sys_file_exists"]
+                      (Pervasives["^"](basename,ext));
+              },
             mli_synonyms[1]))
          {var
            match$1=
@@ -515,14 +605,14 @@ var
              /* tuple */[0,
               /* :: */[0,cmi_name,init_deps],
               /* :: */[0,cmi_name,init_deps]],
-             0];
+             /* [] */0];
           }
         else
          {var
            match$1=
             /* tuple */[0,
              /* tuple */[0,init_deps,init_deps],
-             all_dependencies[1]?/* :: */[0,cmi_name,0]:0];
+             all_dependencies[1]?/* :: */[0,cmi_name,/* [] */0]:/* [] */0];
           }
         
         var extra_targets=match$1[2];
@@ -530,7 +620,7 @@ var
         var
          match$2=
           Depend["StringSet"][14]
-           (find_dependency(0),extracted_deps,match$1[1]);
+           (find_dependency(/* ML */0),extracted_deps,match$1[1]);
         
         print_dependencies
          (Pervasives["@"](byte_targets,extra_targets),match$2[1]);
@@ -553,7 +643,9 @@ var
     
     if(sort_files[1])
      {return files[1]=
-             /* :: */[0,/* tuple */[0,source_file,1,extracted_deps],files[1]],
+             /* :: */[0,
+              /* tuple */[0,source_file,/* MLI */1,extracted_deps],
+              files[1]],
              0;
       }
     else
@@ -564,10 +656,14 @@ var
         
         var
          match$1=
-          Depend["StringSet"][14](find_dependency(1),extracted_deps,[0,0,0]);
+          Depend["StringSet"][14]
+           (find_dependency(/* MLI */1),
+            extracted_deps,
+            [/* tuple */0,/* [] */0,/* [] */0]);
         
         return print_dependencies
-                (/* :: */[0,Pervasives["^"](basename,".cmi"),0],match$1[1]);
+                (/* :: */[0,Pervasives["^"](basename,".cmi"),/* [] */0],
+                 match$1[1]);
         }
       }
     };
@@ -575,18 +671,18 @@ var
 var
  file_dependencies_as=
   function(kind,source_file)
-   {Compenv["readenv"](ppf,1);
-    load_path[1]=0,0;
+   {Compenv["readenv"](ppf,/* Before_compile */1);
+    load_path[1]=/* [] */0;
     List["iter"]
      (add_to_load_path,
       Pervasives["@"]
        (Compenv["last_include_dirs"][1],
         Pervasives["@"]
          (Clflags["include_dirs"][1],Compenv["first_include_dirs"][1])));
-    Location["input_name"][1]=source_file,0;
+    Location["input_name"][1]=source_file;
     try
-     {if("unknown primitive:caml_sys_file_exists")
-       {if(kind!=0)
+     {if(CamlPrimitive["caml_sys_file_exists"](source_file))
+       {if(kind!==0)
          {return mli_file_dependencies(source_file);}
         else
          {return ml_file_dependencies(source_file);}
@@ -601,25 +697,25 @@ var
  file_dependencies=
   function(source_file)
    {if(List["exists"](Filename["check_suffix"](source_file),ml_synonyms[1]))
-     {return file_dependencies_as(0,source_file);}
+     {return file_dependencies_as(/* ML */0,source_file);}
     else
      {if
        (List["exists"](Filename["check_suffix"](source_file),mli_synonyms[1]))
-       {return file_dependencies_as(1,source_file);}
+       {return file_dependencies_as(/* MLI */1,source_file);}
       else
-       {return 0;}
+       {return /* () */0;}
       }
     };
 
 var
  sort_files_by_dependencies=
-  function(files$1)
-   {var h=Hashtbl["create"](0,31);
+  function(files)
+   {var h=Hashtbl["create"](/* None */0,31);
     
-    var worklist=[0,0];
+    var worklist=[0,/* [] */0];
     
     var
-     files$2=
+     files$1=
       List["map"]
        (function(param)
          {var file_kind=param[2];
@@ -633,13 +729,13 @@ var
           
           var key=/* tuple */[0,modname,file_kind];
           
-          var new_deps=[0,0];
+          var new_deps=[0,/* [] */0];
           
           Hashtbl["add"](h,key,/* tuple */[0,file,new_deps]);
-          worklist[1]=/* :: */[0,key,worklist[1]],0;
+          worklist[1]=/* :: */[0,key,worklist[1]];
           return /* tuple */[0,modname,file_kind,param[3],new_deps];
           },
-        files$1);
+        files);
     
     List["iter"]
      (function(param)
@@ -651,58 +747,56 @@ var
         
         var
          add_dep=
-          function(modname$1,kind)
+          function(modname,kind)
            {return new_deps[1]=
-                   /* :: */[0,/* tuple */[0,modname$1,kind],new_deps[1]],
+                   /* :: */[0,/* tuple */[0,modname,kind],new_deps[1]],
                    0;
             };
         
         Depend["StringSet"][13]
-         (function(modname$1)
-           {if(file_kind!=0)
-             {if(Hashtbl["mem"](h,/* tuple */[0,modname$1,1]))
-               {return add_dep(modname$1,1);}
+         (function(modname)
+           {if(file_kind!==0)
+             {if(Hashtbl["mem"](h,/* tuple */[0,modname,/* MLI */1]))
+               {return add_dep(modname,/* MLI */1);}
               else
-               {if(Hashtbl["mem"](h,/* tuple */[0,modname$1,0]))
-                 {return add_dep(modname$1,0);}
+               {if(Hashtbl["mem"](h,/* tuple */[0,modname,/* ML */0]))
+                 {return add_dep(modname,/* ML */0);}
                 else
                  {return 0;}
                 }
               }
             else
-             {if(Hashtbl["mem"](h,/* tuple */[0,modname$1,1]))
-               {add_dep(modname$1,1)}
+             {if(Hashtbl["mem"](h,/* tuple */[0,modname,/* MLI */1]))
+               {add_dep(modname,/* MLI */1)}
               else
                {}
               
-              if(Hashtbl["mem"](h,/* tuple */[0,modname$1,0]))
-               {return add_dep(modname$1,0);}
+              if(Hashtbl["mem"](h,/* tuple */[0,modname,/* ML */0]))
+               {return add_dep(modname,/* ML */0);}
               else
                {return 0;}
               }
             },
           param[3]);
-        if(file_kind=0)
-         {if(Hashtbl["mem"](h,/* tuple */[0,modname,1]))
-           {return add_dep(modname,1);}
+        if(file_kind===/* ML */0)
+         {if(Hashtbl["mem"](h,/* tuple */[0,modname,/* MLI */1]))
+           {return add_dep(modname,/* MLI */1);}
           else
            {return 0;}
           }
         else
          {return 0;}
         },
-      files$2);
-    var printed=[0,1];
+      files$1);
+    var printed=[0,/* true */1];
     
-    while(printed[1]&&worklist[1]!=0)
-     {var files$3=worklist[1];
+    while(printed[1]&&worklist[1]!==/* [] */0)
+     {var files$2=worklist[1];
       
       worklist[1]=
-      0,
-      0,
+      /* [] */0,
       printed[1]=
-      0,
-      0,
+      /* false */0,
       List["iter"]
        (function(key)
          {var match$1=Hashtbl["find"](h,key);
@@ -711,34 +805,42 @@ var
           
           var set=deps[1];
           
-          deps[1]=0,0;
+          deps[1]=/* [] */0;
           List["iter"]
-           (function(key$1)
-             {if(Hashtbl["mem"](h,key$1))
-               {return deps[1]=/* :: */[0,key$1,deps[1]],0;}
+           (function(key)
+             {if(Hashtbl["mem"](h,key))
+               {return deps[1]=/* :: */[0,key,deps[1]],0;}
               else
                {return 0;}
               },
             set);
-          if(deps[1]=0)
-           {printed[1]=1,0;
-            Printf["printf"]([0,[2,0,[12,32,0]],"%s "],match$1[1]);
+          if(deps[1]===/* [] */0)
+           {printed[1]=/* true */1;
+            Printf["printf"]
+             ([/* Format */0,
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,32,/* End_of_format */0]],
+               "%s "],
+              match$1[1]);
             return Hashtbl["remove"](h,key);
             }
           else
            {return worklist[1]=/* :: */[0,key,worklist[1]],0;}
           },
-        files$3)}
+        files$2)}
     
-    if(worklist[1]!=0)
+    if(worklist[1]!==/* [] */0)
      {Format["fprintf"]
        (Format["err_formatter"],
-        [0,
-         [18,
-          [1,[0,0,""]],
-          [11,
+        [/* Format */0,
+         [/* Formatting_gen */18,
+          [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+          [/* String_literal */11,
            "Warning: cycle in dependencies. End of list is not sorted.",
-           [17,0,[17,4,0]]]],
+           [/* Formatting_lit */17,
+            /* Close_box */0,
+            [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]]],
          "@[Warning: cycle in dependencies. End of list is not sorted.@]@."]),
       Hashtbl["iter"]
        (function(param,param$1)
@@ -746,27 +848,59 @@ var
           
           Format["fprintf"]
            (Format["err_formatter"],
-            [0,[12,9,[18,[1,[0,0,""]],[2,0,[11,": ",0]]]],"\t@[%s: "],
+            [/* Format */0,
+             [/* Char_literal */12,
+              9,
+              [/* Formatting_gen */18,
+               [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+               [/* String */2,
+                /* No_padding */0,
+                [/* String_literal */11,": ",/* End_of_format */0]]]],
+             "\t@[%s: "],
             file);
           List["iter"]
            (function(param$2)
              {return Format["fprintf"]
                       (Format["err_formatter"],
-                       [0,[2,0,[12,46,[2,0,[12,32,0]]]],"%s.%s "],
+                       [/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          46,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Char_literal */12,32,/* End_of_format */0]]]],
+                        "%s.%s "],
                        param$2[1],
-                       (param$2[2]=0)?"ml":"mli");
+                       param$2[2]===/* ML */0?"ml":"mli");
               },
             param$1[2][1]);
           Format["fprintf"]
-           (Format["err_formatter"],[0,[17,0,[17,4,0]],"@]@."]);
-          return Printf["printf"]([0,[2,0,[12,32,0]],"%s "],file);
+           (Format["err_formatter"],
+            [/* Format */0,
+             [/* Formatting_lit */17,
+              /* Close_box */0,
+              [/* Formatting_lit */17,
+               /* Flush_newline */4,
+               /* End_of_format */0]],
+             "@]@."]);
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,32,/* End_of_format */0]],
+                    "%s "],
+                   file);
           },
         h)}
     else
      {}
     
-    Printf["printf"]([0,[12,10,[10,0]],"\n%!"]);
-    return 0;
+    Printf["printf"]
+     ([/* Format */0,
+       [/* Char_literal */12,10,[/* Flush */10,/* End_of_format */0]],
+       "\n%!"]);
+    return /* () */0;
     };
 
 var usage="Usage: ocamldep [options] <source files>\nOptions are:";
@@ -775,7 +909,13 @@ var
  print_version=
   function(param)
    {Format["printf"]
-     ([0,[11,"ocamldep, version ",[2,0,[17,4,0]]],"ocamldep, version %s@."],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "ocamldep, version ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
+       "ocamldep, version %s@."],
       Sys["ocaml_version"]);
     return Pervasives["exit"](0);
     };
@@ -783,13 +923,19 @@ var
 var
  print_version_num=
   function(param)
-   {Format["printf"]([0,[2,0,[17,4,0]],"%s@."],Sys["ocaml_version"]);
+   {Format["printf"]
+     ([/* Format */0,
+       [/* String */2,
+        /* No_padding */0,
+        [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+       "%s@."],
+      Sys["ocaml_version"]);
     return Pervasives["exit"](0);
     };
 
-Clflags["classic"][1]=0,0;
+Clflags["classic"][1]=/* false */0;
 add_to_list(Compenv["first_include_dirs"],Filename["current_dir_name"]);
-Compenv["readenv"](ppf,0);
+Compenv["readenv"](ppf,/* Before_args */0);
 Arg["parse"]
  (/* :: */[0,
    /* tuple */[0,
@@ -809,12 +955,12 @@ Arg["parse"]
      /* :: */[0,
       /* tuple */[0,
        "-impl",
-       /* String */[4,file_dependencies_as(0)],
+       /* String */[4,file_dependencies_as(/* ML */0)],
        "<f>  Process <f> as a .ml file"],
       /* :: */[0,
        /* tuple */[0,
         "-intf",
-        /* String */[4,file_dependencies_as(1)],
+        /* String */[4,file_dependencies_as(/* MLI */1)],
         "<f>  Process <f> as a .mli file"],
        /* :: */[0,
         /* tuple */[0,
@@ -878,10 +1024,10 @@ Arg["parse"]
                     "-vnum",
                     /* Unit */[0,print_version_num],
                     " Print version number and exit"],
-                   0]]]]]]]]]]]]]]]]],
+                   /* [] */0]]]]]]]]]]]]]]]]],
   file_dependencies,
   usage);
-Compenv["readenv"](ppf,2);
+Compenv["readenv"](ppf,/* Before_link */2);
 if(sort_files[1]){sort_files_by_dependencies(files[1])}else{}
 
 Pervasives["exit"](error_occurred[1]?2:0);

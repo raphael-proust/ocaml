@@ -144,7 +144,7 @@ let split_default_wrapper fun_id kind params body =
 
 let prim_size prim args =
   match prim with
-    Pidentity -> 0
+  | (Pidentity | Pbytes_to_string | Pbytes_of_string) -> 0
   | Pgetglobal id -> 1
   | Psetglobal id -> 1
   | Pmakeblock(tag, _, mut) -> 5 + List.length args
@@ -478,7 +478,7 @@ let simplif_prim_pure fpc p (args, approxs) dbg =
   | Pstringlength, _, [ Value_const(Uconst_ref(_, Uconst_string s)) ] ->
       make_const_int (String.length s)
   (* Identity *)
-  | Pidentity, [arg1], [app1] ->
+  | (Pidentity | Pbytes_of_string | Pbytes_to_string), [arg1], [app1] ->
       (arg1, app1)
   (* Kind test *)
   | Pisint, _, [a1] ->

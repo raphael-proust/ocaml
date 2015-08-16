@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
 
 
 var bindir="/Users/hongbozhang/.opam/4.02.3+local-git-master/bin";
@@ -10,7 +10,7 @@ var ext_lib=".a";
 
 var ext_dll=".so";
 
-var supports_shared_libraries=1;
+var supports_shared_libraries=/* true */1;
 
 var
  mkdll=
@@ -30,10 +30,22 @@ var
  mklib=
   function(out,files,opts)
    {return Printf["sprintf"]
-            ([0,
-              [11,
+            ([/* Format */0,
+              [/* String_literal */11,
                "ar rc ",
-               [2,0,[12,32,[2,0,[12,32,[2,0,[11,"; ranlib ",[2,0,0]]]]]]]],
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,
+                 32,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* Char_literal */12,
+                   32,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* String_literal */11,
+                     "; ranlib ",
+                     [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
               "ar rc %s %s %s; ranlib %s"],
              out,
              opts,

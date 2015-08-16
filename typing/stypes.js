@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Printtyp=require("Printtyp");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Clflags=require("Clflags");
-var Format=require("Format");
-var Lexing=require("Lexing");
-var Location=require("Location");
+var $$String=require("./string.js");
+var Printtyp=require("./printtyp.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Clflags=require("./clflags.js");
+var Format=require("./format.js");
+var Lexing=require("./lexing.js");
+var Location=require("./location.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -20,14 +21,14 @@ var
   function(ti)
    {var exit;
     
-    switch(ti){case 4:exit=25;case 5:exit=25;default:return ti[1][2];}
+    switch(ti[0]){case 4:exit=25;case 5:exit=25;default:return ti[1][2];}
     
     switch(exit){case 25:return ti[1];}
     };
 
-var annotations=[0,0];
+var annotations=[0,/* [] */0];
 
-var phrases=[0,0];
+var phrases=[0,/* [] */0];
 
 var
  record=
@@ -50,9 +51,12 @@ var
 var
  cmp_loc_inner_first=
   function(loc1,loc2)
-   {var x="unknown primitive:caml_int_compare";
+   {var x=CamlPrimitive["caml_int_compare"](loc1[2][4],loc2[2][4]);
     
-    if(x!=0){return x;}else{return "unknown primitive:caml_int_compare";}
+    if(x!==0)
+     {return x;}
+    else
+     {return CamlPrimitive["caml_int_compare"](loc2[1][4],loc1[1][4]);}
     };
 
 var
@@ -63,7 +67,7 @@ var
 var
  print_position=
   function(pp,pos)
-   {if("unknown primitive:caml_equal")
+   {if(CamlPrimitive["caml_equal"](pos,Lexing["dummy_pos"]))
      {return Pervasives["output_string"](pp,"--");}
     else
      {Pervasives["output_char"](pp,34);
@@ -109,7 +113,7 @@ var
          {return accu;}
         };
     
-    return phrases[1]=loop(0,Location["none"],ph),0;
+    return phrases[1]=loop(/* [] */0,Location["none"],ph),0;
     };
 
 var
@@ -121,8 +125,8 @@ var
     
     if(match)
      {if(match[1][1][4]<=loc[1][4])
-       {Printtyp["reset"](0);
-        phrases[1]=match[2],0;
+       {Printtyp["reset"](/* () */0);
+        phrases[1]=match[2];
         return printtyp_reset_maybe(loc);
         }
       else
@@ -131,20 +135,20 @@ var
     else
      {exit=12;}
     
-    switch(exit){case 12:return 0;}
+    switch(exit){case 12:return /* () */0;}
     };
 
 var
  call_kind_string=
   function(k)
-   {switch(k[0])
+   {switch(k)
      {case 0:return "tail";case 1:return "stack";case 2:return "inline";}
     };
 
 var
  print_ident_annot=
   function(pp,str,k)
-   {if(typeof k=="number")
+   {if(typeof k==="number")
      {switch(k)
        {case 0:
          Pervasives["output_string"](pp,"ext_ref ");
@@ -176,7 +180,7 @@ var
   function(pp,prev_loc,ti)
    {var exit;
     
-    switch(ti)
+    switch(ti[0])
      {case 0:
        var match=ti[1];
        
@@ -206,7 +210,7 @@ var
       case 4:
        var loc$1=ti[1];
        
-       if("unknown primitive:caml_notequal")
+       if(CamlPrimitive["caml_notequal"](loc$1,prev_loc))
         {print_location(pp,loc$1),Pervasives["output_char"](pp,10)}
        else
         {}
@@ -219,7 +223,7 @@ var
       case 5:
        var loc$2=ti[1];
        
-       if("unknown primitive:caml_notequal")
+       if(CamlPrimitive["caml_notequal"](loc$2,prev_loc))
         {print_location(pp,loc$2),Pervasives["output_char"](pp,10)}
        else
         {}
@@ -234,7 +238,7 @@ var
     switch(exit)
      {case 7:return prev_loc;
       case 8:
-       if("unknown primitive:caml_notequal")
+       if(CamlPrimitive["caml_notequal"](loc,prev_loc))
         {print_location(pp,loc),Pervasives["output_char"](pp,10)}
        else
         {}
@@ -247,8 +251,8 @@ var
         (env$1,
          function(param)
           {return Printtyp["type_sch"](Format["str_formatter"],typ);});
-       Format["pp_print_newline"](Format["str_formatter"],0);
-       var s=Format["flush_str_formatter"](0);
+       Format["pp_print_newline"](Format["str_formatter"],/* () */0);
+       var s=Format["flush_str_formatter"](/* () */0);
        
        Pervasives["output_string"](pp,s);
        Pervasives["output_string"](pp,")\n");
@@ -262,7 +266,7 @@ var
   function(param)
    {var info=List["fast_sort"](cmp_ti_inner_first,annotations[1]);
     
-    annotations[1]=0,0;
+    annotations[1]=/* [] */0;
     return info;
     };
 
@@ -270,21 +274,21 @@ var
  dump=
   function(filename)
    {if(Clflags["annotations"][1])
-     {var info=get_info(0);
+     {var info=get_info(/* () */0);
       
       if(filename)
        {var pp=Pervasives["open_out"](filename[1]);}
       else
        {var pp=Pervasives["stdout"];}
       
-      sort_filter_phrases(0);
-      
+      sort_filter_phrases(/* () */0);
+      List["fold_left"](print_info(pp),Location["none"],info);
       if(filename){Pervasives["close_out"](pp)}else{}
       
-      return phrases[1]=0,0;
+      return phrases[1]=/* [] */0,0;
       }
     else
-     {return annotations[1]=0,0;}
+     {return annotations[1]=/* [] */0,0;}
     };
 
 module["exports"]=

@@ -1,22 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Tast_iter=require("Tast_iter");
-var CamlinternalOO=require("CamlinternalOO");
-var Pprintast=require("Pprintast");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Printf=require("Printf");
-var Envaux=require("Envaux");
-var Format=require("Format");
-var Untypeast=require("Untypeast");
-var Path=require("Path");
-var Oprint=require("Oprint");
-var Location=require("Location");
-var Ident=require("Ident");
-var Stypes=require("Stypes");
-var $$Array=require("Array");
-var Config=require("Config");
+var Tast_iter=require("./tast_iter.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Pprintast=require("./pprintast.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Printf=require("./printf.js");
+var Envaux=require("./envaux.js");
+var Format=require("./format.js");
+var Untypeast=require("./untypeast.js");
+var Path=require("./path.js");
+var Oprint=require("./oprint.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
+var Stypes=require("./stypes.js");
+var $$Array=require("./array.js");
+var Config=require("./config.js");
 
 
 var
@@ -129,7 +129,7 @@ var
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){}}
           else
            {switch(match[0])
@@ -138,26 +138,26 @@ var
               default:exit=32;}}
           
           switch(exit)
-           {case 32:return 0;
+           {case 32:return /* () */0;
             case 31:
              return Stypes["record"]
                      (/* An_ident */[5,
                        pat[2],
                        Ident["name"](id),
-                       /* Idef */[1,self$neg1[env][1]]]);
+                       /* Idef */[1,self$neg1[env+1][1]]]);
              
             }
           });
       var
        env_init=
-        function(env$1)
+        function(env)
          {var $$self=CamlinternalOO["create_object_opt"](0,$$class);
           
-          obj_init(env$1[2],$$self),$$self[env]=env$1[1],0;
+          obj_init(env[2],$$self),$$self[env$1+1]=env[1];
           return CamlinternalOO["run_initializers_opt"](0,$$self,$$class);
           };
       
-      CamlinternalOO["init_class"]($$class),class_tables[1]=env_init,0}
+      CamlinternalOO["init_class"]($$class),class_tables[1]=env_init}
     
     var envs=[0,[0,scope],Tast_iter["iter"][4]];
     
@@ -171,7 +171,7 @@ var
     
     return List["iter"]
             (function(x)
-              {"unknown block:(send o/1051 293013072 (field 0 x/1052))";},
+              {/* unknown */"(send o/1051 293013072 (field 0 x/1052))";},
              bindings);
     };
 
@@ -192,7 +192,7 @@ var
                else
                 {var loc=c_rhs[2];}
                
-               "unknown block:(send (apply bind_variables/1008 loc/1058) 293013072 (field 0 param/1278))";
+               /* unknown */"(send (apply bind_variables/1008 loc/1058) 293013072 (field 0 param/1278))";
                },
              l);
     };
@@ -256,7 +256,7 @@ var
           {Stypes["record"](/* Ti_mod */[3,node]);
            var copy=CamlinternalOO["copy"](self$neg2);
            
-           return Tast_iter["module_expr"]((copy[scope]=node[2],0,copy),node);
+           return Tast_iter["module_expr"]((copy[scope+1]=node[2],copy),node);
            },
          expression,
          function(self$neg2,exp)
@@ -264,7 +264,7 @@ var
            
            var exit;
            
-           switch(match)
+           switch(match[0])
             {case 0:
               var path=match[1];
               
@@ -272,7 +272,7 @@ var
                full_name=
                 Path["name"](/* Some */[0,Oprint["parenthesized_ident"]],path);
               
-              if(self$neg2[env][1])
+              if(self$neg2[env+1][1])
                {try
                  {var
                    env$1=
@@ -280,9 +280,16 @@ var
                      (Envaux["env_from_summary"],exp[5]);
                   }
                 catch(exn)
-                 {if(exn[1]=Envaux["Error"])
+                 {if(exn[1]===Envaux["Error"])
                    {Format["eprintf"]
-                     ([0,[15,[17,4,0]],"%a@."],Envaux["report_error"],exn[2]);
+                     ([/* Format */0,
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         /* Flush_newline */4,
+                         /* End_of_format */0]],
+                       "%a@."],
+                      Envaux["report_error"],
+                      exn[2]);
                     var env$1=Pervasives["exit"](2);
                     }
                   else
@@ -298,16 +305,20 @@ var
                 var dloc=desc[3];
                 
                 if(dloc[3])
-                 {var annot=0;}
+                 {var annot=/* Iref_external */0;}
                 else
                  {var annot=/* Iref_internal */[0,dloc];}
                 }
               catch(exn$1)
-               {if(exn$1=Not_found){var annot=0;}else{throw exn$1;}}
+               {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                 {var annot=/* Iref_external */0;}
+                else
+                 {throw exn$1;}
+                }
               
               Stypes["record"](/* An_ident */[5,exp[2],full_name,annot]);
              case 2:
-              if(match[1]!=0)
+              if(match[1]!==0)
                {bind_bindings(exp[2],match[2])}
               else
                {bind_bindings(match[3][2],match[2])}
@@ -331,7 +342,7 @@ var
          function(self$neg2,s,rem)
           {var match=s[1];
            
-           switch(match)
+           switch(match[0])
             {case 1:
               var loc=s[2];
               
@@ -340,13 +351,13 @@ var
               var
                doit=
                 function(loc_start)
-                 {var init=self$neg2[scope];
+                 {var init=self$neg2[scope+1];
                   
                   return bind_bindings
                           (/* record */[0,loc_start,init[2],init[3]],bindings);
                   };
               
-              if(match[1]!=0)
+              if(match[1]!==0)
                {doit(loc[1])}
               else
                {if(rem){doit(rem[1][2][1])}else{doit(loc[2])}}
@@ -358,7 +369,7 @@ var
            },
          structure_item,
          function(self$neg2,s)
-          {"unknown block:(sendself self-2/1140 structure_item_rem/1100 s/1141 0a)";
+          {/* unknown */"(sendself self-2/1140 structure_item_rem/1100 s/1141 0a)";
            },
          structure,
          function(self$neg2,l)
@@ -368,32 +379,30 @@ var
               {if(param)
                 {var rem=param[2];
                  
-                 "unknown block:(sendself self-2/1143 structure_item_rem/1100 (field 0 param/1228) rem/1147)";
+                 /* unknown */"(sendself self-2/1143 structure_item_rem/1100 (field 0 param/1228) rem/1147)";
                  
                  return loop(rem);
                  }
                else
-                {return 0;}
+                {return /* () */0;}
                };
            
            return loop(l[1]);
            }]);
       var
        env_init=
-        function(env$1)
+        function(env)
          {var $$self=CamlinternalOO["create_object_opt"](0,$$class);
           
-          $$self[scope]=
+          $$self[scope+1]=
           Location["none"],
-          0,
-          obj_init(env$1[2],$$self),
-          $$self[env]=
-          env$1[1],
-          0;
+          obj_init(env[2],$$self),
+          $$self[env$1+1]=
+          env[1];
           return CamlinternalOO["run_initializers_opt"](0,$$self,$$class);
           };
       
-      CamlinternalOO["init_class"]($$class),class_tables$1[1]=env_init,0}
+      CamlinternalOO["init_class"]($$class),class_tables$1[1]=env_init}
     
     var envs=[0,[0,rebuild_env],Tast_iter["iter"][4]];
     
@@ -403,15 +412,15 @@ var
 var
  binary_part=
   function(iter,x)
-   {switch(x)
-     {case 0:"unknown block:(send iter/1149 -951102413 (field 0 x/1150))";
-      case 1:"unknown block:(send iter/1149 832861151 (field 0 x/1150))";
-      case 2:"unknown block:(send iter/1149 782176664 (field 0 x/1150))";
-      case 3:"unknown block:(send iter/1149 293013072 (field 0 x/1150))";
-      case 4:"unknown block:(send iter/1149 639620572 (field 0 x/1150))";
-      case 5:"unknown block:(send iter/1149 359375608 (field 0 x/1150))";
-      case 6:"unknown block:(send iter/1149 -662996230 (field 0 x/1150))";
-      case 7:"unknown block:(send iter/1149 915171949 (field 0 x/1150))";
+   {switch(x[0])
+     {case 0:/* unknown */"(send iter/1149 -951102413 (field 0 x/1150))";
+      case 1:/* unknown */"(send iter/1149 832861151 (field 0 x/1150))";
+      case 2:/* unknown */"(send iter/1149 782176664 (field 0 x/1150))";
+      case 3:/* unknown */"(send iter/1149 293013072 (field 0 x/1150))";
+      case 4:/* unknown */"(send iter/1149 639620572 (field 0 x/1150))";
+      case 5:/* unknown */"(send iter/1149 359375608 (field 0 x/1150))";
+      case 6:/* unknown */"(send iter/1149 -662996230 (field 0 x/1150))";
+      case 7:/* unknown */"(send iter/1149 915171949 (field 0 x/1150))";
       }
     };
 
@@ -420,11 +429,11 @@ var
   function(target_filename,filename,param)
    {var cmt_annots=param[2];
     
-    Envaux["reset_cache"](0);
-    Config["load_path"][1]=param[8],0;
+    Envaux["reset_cache"](/* () */0);
+    Config["load_path"][1]=param[8];
     if(target_filename)
      {switch(target_filename[1])
-       {case "-":var target_filename$1=0;
+       {case "-":var target_filename$1=/* None */0;
         default:var target_filename$1=target_filename;}
       }
     else
@@ -434,17 +443,19 @@ var
     
     var exit;
     
-    switch(cmt_annots)
+    switch(cmt_annots[0])
      {case 0:exit=8;
       case 1:
-       "unknown block:(send iterator/1166 -951102413 (field 0 cmt_annots/1162))";
+       /* unknown */"(send iterator/1166 -951102413 (field 0 cmt_annots/1162))";
        
        return Stypes["dump"](target_filename$1);
        
       case 2:
        Printf["eprintf"]
-        ([0,
-          [11,"Cannot generate annotations for interface file\n",[10,0]],
+        ([/* Format */0,
+          [/* String_literal */11,
+           "Cannot generate annotations for interface file\n",
+           [/* Flush */10,/* End_of_format */0]],
           "Cannot generate annotations for interface file\n%!"]);
        return Pervasives["exit"](2);
        
@@ -459,8 +470,10 @@ var
      {case 8:
        Printf["fprintf"]
         (Pervasives["stderr"],
-         [0,
-          [11,"File was generated with an error\n",[10,0]],
+         [/* Format */0,
+          [/* String_literal */11,
+           "File was generated with an error\n",
+           [/* Flush */10,/* End_of_format */0]],
           "File was generated with an error\n%!"]);
        return Pervasives["exit"](2);
        
@@ -472,7 +485,7 @@ var
   function(target_filename,filename,cmt)
    {var match=cmt[2];
     
-    switch(match)
+    switch(match[0])
      {case 1:
        var typedtree=match[1];
        
@@ -500,15 +513,17 @@ var
       default:
        Printf["fprintf"]
         (Pervasives["stderr"],
-         [0,
-          [11,"File was generated with an error\n",[10,0]],
+         [/* Format */0,
+          [/* String_literal */11,
+           "File was generated with an error\n",
+           [/* Flush */10,/* End_of_format */0]],
           "File was generated with an error\n%!"]);
        var match$1=Pervasives["exit"](2);
        }
     
     if(target_filename)
      {switch(target_filename[1])
-       {case "-":var target_filename$1=0;
+       {case "-":var target_filename$1=/* None */0;
         default:var target_filename$1=target_filename;}
       }
     else
@@ -520,7 +535,7 @@ var
     if(target_filename$1)
      {var oc=/* Some */[0,Pervasives["open_out"](target_filename$1[1])];}
     else
-     {var oc=0;}
+     {var oc=/* None */0;}
     
     if(oc)
      {var ppf=Format["formatter_of_out_channel"](oc[1]);}
@@ -528,7 +543,7 @@ var
      {var ppf=Format["std_formatter"];}
     
     match$1[1](ppf);
-    Format["pp_print_flush"](ppf,0);
+    Format["pp_print_flush"](ppf,/* () */0);
     if(oc)
      {return Pervasives["close_out"](oc[1]);}
     else

@@ -139,6 +139,8 @@ let comparisons_table = create_hashtable 11 [
 ]
 
 let primitives_table = create_hashtable 57 [
+  "%bytes_to_string", Pbytes_to_string;
+  "%bytes_of_string", Pbytes_of_string;
   "%identity", Pidentity;
   "%ignore", Pignore;
   "%field0", Pfield 0;

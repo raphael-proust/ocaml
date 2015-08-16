@@ -1,74 +1,88 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Btype=require("Btype");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Printf=require("Printf");
-var Types=require("Types");
-var Misc=require("Misc");
-var Path=require("Path");
-var Subst=require("Subst");
-var Location=require("Location");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var CamlinternalLazy=require("CamlinternalLazy");
+var List=require("./list.js");
+var Btype=require("./btype.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Printf=require("./printf.js");
+var Types=require("./types.js");
+var Misc=require("./misc.js");
+var Path=require("./path.js");
+var Subst=require("./subst.js");
+var Location=require("./location.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var Unify="unknown primitive:caml_set_oo_id";
+var Unify=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Unify",0]);
 
-var Tags="unknown primitive:caml_set_oo_id";
+var Tags=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Tags",0]);
 
 var
  match=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=Tags)
+     {if(param[1]===Tags)
        {return /* Some */[0,
                 Location["errorf"]
                  (/* Some */[0,Location["in_file"](Location["input_name"][1])],
-                  0,
-                  0,
-                  [0,
-                   [11,
+                  /* None */0,
+                  /* None */0,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "In this program,",
-                    [17,
-                     [0,"@ ",1,0],
-                     [11,
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* String_literal */11,
                       "variant constructors",
-                      [17,
-                       [0,"@ ",1,0],
-                       [12,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* Char_literal */12,
                         96,
-                        [2,
-                         0,
-                         [11,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
                           " and `",
-                          [2,
-                           0,
-                           [17,
-                            [0,"@ ",1,0],
-                            [11,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String_literal */11,
                              "have the same hash value.",
-                             [17,[0,"@ ",1,0],[11,"Change one of them.",0]]]]]]]]]]]],
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* String_literal */11,
+                               "Change one of them.",
+                               /* End_of_format */0]]]]]]]]]]]],
                    "In this program,@ variant constructors@ `%s and `%s@ have the same hash value.@ Change one of them."],
                   param[2],
                   param[3])];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
-var Subtype="unknown primitive:caml_set_oo_id";
+var Subtype=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Subtype",0]);
 
-var Cannot_expand="unknown primitive:caml_set_oo_id";
+var
+ Cannot_expand=
+  CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Cannot_expand",0]);
 
-var Cannot_apply="unknown primitive:caml_set_oo_id";
+var
+ Cannot_apply=
+  CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Cannot_apply",0]);
 
-var Recursive_abbrev="unknown primitive:caml_set_oo_id";
+var
+ Recursive_abbrev=
+  CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Recursive_abbrev",0]);
 
-var Unification_recursive_abbrev="unknown primitive:caml_set_oo_id";
+var
+ Unification_recursive_abbrev=
+  CamlPrimitive["caml_set_oo_id"]
+   ([248,"Ctype.Unification_recursive_abbrev",0]);
 
 var current_level=[0,0];
 
@@ -76,20 +90,19 @@ var nongen_level=[0,0];
 
 var global_level=[0,1];
 
-var saved_level=[0,0];
+var saved_level=[0,/* [] */0];
 
 var get_current_level=function(param){return current_level[1];};
 
 var
  init_def=
-  function(level){current_level[1]=level,0;return nongen_level[1]=level,0;};
+  function(level){current_level[1]=level;return nongen_level[1]=level,0;};
 
 var
  begin_def=
   function(param)
    {saved_level[1]=
-    /* :: */[0,/* tuple */[0,current_level[1],nongen_level[1]],saved_level[1]],
-    0;
+    /* :: */[0,/* tuple */[0,current_level[1],nongen_level[1]],saved_level[1]];
     current_level[0]++;
     return nongen_level[1]=current_level[1],0;
     };
@@ -98,8 +111,7 @@ var
  begin_class_def=
   function(param)
    {saved_level[1]=
-    /* :: */[0,/* tuple */[0,current_level[1],nongen_level[1]],saved_level[1]],
-    0;
+    /* :: */[0,/* tuple */[0,current_level[1],nongen_level[1]],saved_level[1]];
     return current_level[0]++;
     };
 
@@ -107,8 +119,7 @@ var
  raise_nongen_level=
   function(param)
    {saved_level[1]=
-    /* :: */[0,/* tuple */[0,current_level[1],nongen_level[1]],saved_level[1]],
-    0;
+    /* :: */[0,/* tuple */[0,current_level[1],nongen_level[1]],saved_level[1]];
     return nongen_level[1]=current_level[1],0;
     };
 
@@ -117,8 +128,8 @@ var
   function(param)
    {var match$1=List["hd"](saved_level[1]);
     
-    saved_level[1]=List["tl"](saved_level[1]),0;
-    current_level[1]=match$1[1],0;
+    saved_level[1]=List["tl"](saved_level[1]);
+    current_level[1]=match$1[1];
     return nongen_level[1]=match$1[2],0;
     };
 
@@ -129,35 +140,43 @@ var
 var
  increase_global_level=
   function(param)
-   {var gl=global_level[1];global_level[1]=current_level[1],0;return gl;};
+   {var gl=global_level[1];global_level[1]=current_level[1];return gl;};
 
 var restore_global_level=function(gl){return global_level[1]=gl,0;};
 
 var
  is_object_type=
   function(path)
-   {switch(path)
+   {switch(path[0])
      {case 0:var name=Ident["name"](path[1]);
       case 1:var name=path[2];
-      case 2:throw [0,Assert_failure,[0,"typing/ctype.ml",149,23]];
+      case 2:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",149,23]];
+       
       }
     
-    return name[0]=35;
+    return name[0]===35;
     };
 
-var trace_gadt_instances=[0,0];
+var trace_gadt_instances=[0,/* false */0];
 
 var
  check_trace_gadt_instances=
   function(env)
    {return !trace_gadt_instances[1]&&
            Env["has_local_constraints"](env)&&
-           (trace_gadt_instances[1]=1,0,Btype["cleanup_abbrev"](0),1);
+           (trace_gadt_instances[1]=
+            /* true */1,
+            Btype["cleanup_abbrev"](/* () */0),
+            /* true */1);
     };
 
 var
  reset_trace_gadt_instances=
-  function(b){if(b){return trace_gadt_instances[1]=0,0;}else{return 0;}};
+  function(b)
+   {if(b){return trace_gadt_instances[1]=/* false */0,0;}else{return 0;}};
 
 var
  wrap_trace_gadt_instances=
@@ -170,14 +189,14 @@ var
     return y;
     };
 
-var simple_abbrevs=[0,0];
+var simple_abbrevs=[0,/* Mnil */0];
 
 var
  proper_abbrevs=
   function(path,tl,abbrev)
    {if
-     (tl!=
-      0||
+     (tl!==
+      /* [] */0||
       trace_gadt_instances[1]||
       Clflags["principal"][1]||
       is_object_type(path))
@@ -202,30 +221,32 @@ var
  new_global_var=
   function(name,param){return newty2(global_level[1],/* Tvar */[0,name]);};
 
-var newobj=function(fields){return newty(/* Tobject */[4,fields,[0,0]]);};
+var
+ newobj=
+  function(fields){return newty(/* Tobject */[4,fields,[0,/* None */0]]);};
 
 var
  newconstr=
-  function(path,tyl){return newty(/* Tconstr */[3,path,tyl,[0,0]]);};
+  function(path,tyl){return newty(/* Tconstr */[3,path,tyl,[0,/* Mnil */0]]);};
 
-var none=newty([2,0]);
+var none=newty([/* Ttuple */2,/* [] */0]);
 
 var repr=Btype["repr"];
 
 var
  equal=
   function(param,param$1)
-   {return (param[1]=param$1[1])&&(param[2]=param$1[2]);};
+   {return param[1]===param$1[1]&&param[2]===param$1[2];};
 
 var hash=function(param){return param[1][3]+93*param[2][3];};
 
 var TypePairs=Hashtbl["Make"]([0,equal,hash]);
 
-var umode=[0,0];
+var umode=[0,/* Expression */0];
 
-var generate_equations=[0,0];
+var generate_equations=[0,/* false */0];
 
-var assume_injective=[0,0];
+var assume_injective=[0,/* false */0];
 
 var
  set_mode_expression=
@@ -233,8 +254,13 @@ var
    {var old_unification_mode=umode[1];
     
     try
-     {umode[1]=0,0;var ret=f(0);umode[1]=old_unification_mode,0;return ret;}
-    catch(e){umode[1]=old_unification_mode,0;throw e;}
+     {umode[1]=/* Expression */0;
+      var ret=f(/* () */0);
+      
+      umode[1]=old_unification_mode;
+      return ret;
+      }
+    catch(e){umode[1]=old_unification_mode;throw e;}
     };
 
 var
@@ -247,20 +273,20 @@ var
     var old_inj=assume_injective[1];
     
     try
-     {umode[1]=1,0;
-      generate_equations[1]=generate,0;
-      assume_injective[1]=injective,0;
-      var ret=f(0);
+     {umode[1]=/* Pattern */1;
+      generate_equations[1]=generate;
+      assume_injective[1]=injective;
+      var ret=f(/* () */0);
       
-      umode[1]=old_unification_mode,0;
-      generate_equations[1]=old_gen,0;
-      assume_injective[1]=old_inj,0;
+      umode[1]=old_unification_mode;
+      generate_equations[1]=old_gen;
+      assume_injective[1]=old_inj;
       return ret;
       }
     catch(e)
-     {umode[1]=old_unification_mode,0;
-      generate_equations[1]=old_gen,0;
-      assume_injective[1]=old_inj,0;
+     {umode[1]=old_unification_mode;
+      generate_equations[1]=old_gen;
+      assume_injective[1]=old_inj;
       throw e;
       }
     };
@@ -270,15 +296,24 @@ var
   function(param)
    {var exit;
     
-    switch(param){case 0:return 1;case 1:exit=1061;case 2:exit=1061;}
+    switch(param[0])
+     {case 0:return /* true */1;case 1:exit=1061;case 2:exit=1061;}
     
-    switch(exit){case 1061:return 0;}
+    switch(exit){case 1061:return /* false */0;}
     };
 
 var
  in_pervasives=
   function(p)
-   {try {var $js=1;}catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
+   {var $js;
+    try
+     {Env["find_type"](p,Env["initial_safe_string"]);$js=/* true */1;}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {$js=/* false */0;}
+      else
+       {throw exn;}
+      }
     return in_current_module(p)&&$js;
     };
 
@@ -289,12 +324,12 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
-     {if(match$1!=0){exit=1057;}else{return 0;}}
+    if(typeof match$1==="number")
+     {if(match$1!==0){exit=1057;}else{return /* false */0;}}
     else
      {exit=1057;}
     
-    switch(exit){case 1057:return 1;}
+    switch(exit){case 1057:return /* true */1;}
     };
 
 var
@@ -304,13 +339,18 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0]){case 4:return match$1[1];default:exit=1055;}}
     
     switch(exit)
-     {case 1055:throw [0,Assert_failure,[0,"typing/ctype.ml",284,27]];}
+     {case 1055:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",284,27]];
+       
+      }
     };
 
 var
@@ -318,14 +358,14 @@ var
   function(ty)
    {var
      flatten=
-      function(l,ty$1)
-       {var ty$2=repr(ty$1);
+      function(l,ty)
+       {var ty$1=repr(ty);
         
-        var match$1=ty$2[1];
+        var match$1=ty$1[1];
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -338,15 +378,17 @@ var
              
             default:exit=1052;}}
         
-        switch(exit){case 1052:return /* tuple */[0,l,ty$2];}
+        switch(exit){case 1052:return /* tuple */[0,l,ty$1];}
         };
     
-    var match$1=flatten(0,ty);
+    var match$1=flatten(/* [] */0,ty);
     
     return /* tuple */[0,
             List["sort"]
              (function(param,param$1)
-               {return "unknown primitive:caml_string_compare";},
+               {return CamlPrimitive["caml_string_compare"]
+                        (param[1],param$1[1]);
+                },
               match$1[1]),
             match$1[2]];
     };
@@ -393,7 +435,7 @@ var
             
             var n=match$2[1];
             
-            if("unknown primitive:caml_equal")
+            if(CamlPrimitive["caml_equal"](n,n$prime))
              {return associate
                       (/* :: */[0,/* tuple */[0,n,k,t,k$prime,t$prime],p],
                        s,
@@ -401,7 +443,7 @@ var
                        /* tuple */[0,r,r$prime]);
               }
             else
-             {if("unknown primitive:caml_lessthan")
+             {if(CamlPrimitive["caml_lessthan"](n,n$prime))
                {return associate
                         (p,
                          /* :: */[0,/* tuple */[0,n,k,t],s],
@@ -432,7 +474,8 @@ var
           }
         };
     
-    return associate(0,0,0,/* tuple */[0,fields1,fields2]);
+    return associate
+            (/* [] */0,/* [] */0,/* [] */0,/* tuple */[0,fields1,fields2]);
     };
 
 var
@@ -444,7 +487,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -462,13 +505,13 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 0:exit=1043;case 3:exit=1043;case 9:exit=1043;default:exit=1044;}}
     
-    switch(exit){case 1044:return 0;case 1043:return 1;}
+    switch(exit){case 1044:return /* false */0;case 1043:return /* true */1;}
     };
 
 var
@@ -478,12 +521,12 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
-     {switch(match$1[0]){case 0:return 0;default:exit=1041;}}
+     {switch(match$1[0]){case 0:return /* false */0;default:exit=1041;}}
     
-    switch(exit){case 1041:return 1;}
+    switch(exit){case 1041:return /* true */1;}
     };
 
 var
@@ -491,36 +534,47 @@ var
   function(ty)
    {var
      close=
-      function(ty$1)
-       {var ty$2=repr(ty$1);
+      function(ty)
+       {var ty$1=repr(ty);
         
-        var match$1=ty$2[1];
+        var match$1=ty$1[1];
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
-           {case 0:return Btype["link_type"](ty$2,newty2(ty$2[2],0));
+           {case 0:
+             return Btype["link_type"](ty$1,newty2(ty$1[2],/* Tnil */0));
             case 5:return close(match$1[4]);
             default:exit=1038;}}
         
         switch(exit)
-         {case 1038:throw [0,Assert_failure,[0,"typing/ctype.ml",347,30]];}
+         {case 1038:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/ctype.ml",347,30]];
+           
+          }
         };
     
     var match$1=repr(ty)[1];
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0]){case 4:return close(match$1[1]);default:exit=1037;}}
     
     switch(exit)
-     {case 1037:throw [0,Assert_failure,[0,"typing/ctype.ml",351,25]];}
+     {case 1037:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",351,25]];
+       
+      }
     };
 
 var
@@ -528,36 +582,46 @@ var
   function(ty)
    {var
      find=
-      function(ty$1)
-       {var ty$2=repr(ty$1);
+      function(ty)
+       {var ty$1=repr(ty);
         
-        var match$1=ty$2[1];
+        var match$1=ty$1[1];
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
-           {case 0:return ty$2;
+           {case 0:return ty$1;
             case 5:return find(match$1[4]);
             default:exit=1034;}}
         
         switch(exit)
-         {case 1034:throw [0,Assert_failure,[0,"typing/ctype.ml",361,30]];}
+         {case 1034:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/ctype.ml",361,30]];
+           
+          }
         };
     
     var match$1=repr(ty)[1];
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0]){case 4:return find(match$1[1]);default:exit=1033;}}
     
     switch(exit)
-     {case 1033:throw [0,Assert_failure,[0,"typing/ctype.ml",365,23]];}
+     {case 1033:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",365,23]];
+       
+      }
     };
 
 var
@@ -567,7 +631,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -580,7 +644,12 @@ var
         default:exit=1031;}}
     
     switch(exit)
-     {case 1031:throw [0,Assert_failure,[0,"typing/ctype.ml",375,6]];}
+     {case 1031:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",375,6]];
+       
+      }
     };
 
 var
@@ -590,12 +659,12 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
-       {case 3:return 0;
-        case 4:return Btype["set_name"](match$1[2],0);
+       {case 3:return /* () */0;
+        case 4:return Btype["set_name"](match$1[2],/* None */0);
         default:exit=1029;}}
     
     switch(exit)
@@ -609,29 +678,34 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 4:
-         match$1[2][1]=0,0;
+         match$1[2][1]=/* None */0;
          var match$2=flatten_fields(match$1[1]);
          
          return List["iter"]
                  (function(param)
                    {var match$3=Btype["field_kind_repr"](param[2]);
                     
-                    if("unknown primitive:isint")
-                     {return 0;}
+                    if(typeof match$3==="number")
+                     {return /* () */0;}
                     else
-                     {return Btype["set_kind"](match$3[1],1);}
+                     {return Btype["set_kind"](match$3[1],/* Fabsent */1);}
                     },
                   match$2[1]);
          
         default:exit=1027;}}
     
     switch(exit)
-     {case 1027:throw [0,Assert_failure,[0,"typing/ctype.ml",397,6]];}
+     {case 1027:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",397,6]];
+       
+      }
     };
 
 var
@@ -639,7 +713,8 @@ var
   function(param)
    {var exit;
     
-    switch(param){case 0:exit=1024;case 1:return param[1];case 2:exit=1024;}
+    switch(param[0])
+     {case 0:exit=1024;case 1:return param[1];case 2:exit=1024;}
     
     switch(exit){case 1024:return signature_of_class_type(param[3]);}
     };
@@ -649,7 +724,7 @@ var self_type=function(cty){return repr(signature_of_class_type(cty)[1]);};
 var
  class_type_arity=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return class_type_arity(param[3]);
       case 1:return 0;
       case 2:return 1+class_type_arity(param[3]);
@@ -659,7 +734,8 @@ var
 var
  sort_row_fields=
   List["sort"]
-   (function(param,param$1){return "unknown primitive:caml_string_compare";});
+   (function(param,param$1)
+     {return CamlPrimitive["caml_string_compare"](param[1],param$1[1]);});
 
 var
  merge_rf=
@@ -678,7 +754,7 @@ var
         
         var l1=p1[1];
         
-        if("unknown primitive:caml_equal")
+        if(CamlPrimitive["caml_equal"](l1,l2))
          {return merge_rf
                   (r1,
                    r2,
@@ -687,7 +763,7 @@ var
                    fi2$prime);
           }
         else
-         {if("unknown primitive:caml_lessthan")
+         {if(CamlPrimitive["caml_lessthan"](l1,l2))
            {return merge_rf(/* :: */[0,p1,r1],r2,pairs,fi1$prime,fi2);}
           else
            {return merge_rf(r1,/* :: */[0,p2,r2],pairs,fi1,fi2$prime);}
@@ -712,7 +788,7 @@ var
          {exit=1017;}
         else
          {if(!List["mem_assoc"](fi1[1][1],fi2))
-           {return /* tuple */[0,fi1,fi2,0];}
+           {return /* tuple */[0,fi1,fi2,/* [] */0];}
           else
            {exit=1017;}
           }
@@ -726,17 +802,23 @@ var
     switch(exit)
      {case 1017:
        if(fi2[2])
-        {"unknown block:(exit 1016)";}
+        {exit=1016;}
        else
         {if(!List["mem_assoc"](fi2[1][1],fi1))
-          {return /* tuple */[0,fi1,fi2,0];}
+          {return /* tuple */[0,fi1,fi2,/* [] */0];}
          else
-          {"unknown block:(exit 1016)";}
+          {exit=1016;}
          }
        
       case 1016:
-       return merge_rf(0,0,0,sort_row_fields(fi1),sort_row_fields(fi2));
-      case 1015:return /* tuple */[0,fi1,fi2,0];
+       return merge_rf
+               (/* [] */0,
+                /* [] */0,
+                /* [] */0,
+                sort_row_fields(fi1),
+                sort_row_fields(fi2));
+       
+      case 1015:return /* tuple */[0,fi1,fi2,/* [] */0];
       }
     };
 
@@ -752,17 +834,17 @@ var
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){case 0:return fi;}}
       else
        {switch(match$1[0])
          {case 0:exit=1013;
           case 1:
-           if(match$1[3]!=0)
+           if(match$1[3]!==0)
             {exit=1013;}
            else
             {if(erase)
-              {Btype["set_row_field"](match$1[4],0);return fi;}
+              {Btype["set_row_field"](match$1[4],/* Rabsent */0);return fi;}
              else
               {exit=1013;}
              }
@@ -772,10 +854,10 @@ var
       switch(exit){case 1013:return /* :: */[0,p,fi];}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
-var Non_closed="unknown primitive:caml_set_oo_id";
+var Non_closed=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Non_closed",0]);
 
 var
  closed_schema_rec=
@@ -785,23 +867,23 @@ var
     if(ty$1[2]>=Btype["lowest_level"])
      {var level=ty$1[2];
       
-      ty$1[2]=Btype["pivot_level"]-level,0;
+      ty$1[2]=Btype["pivot_level"]-level;
       var match$1=ty$1[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
          {case 0:
-           if(level!=Btype["generic_level"])
+           if(level!==Btype["generic_level"])
             {throw Non_closed;}
            else
             {exit=1010;}
            
           case 5:
-           if(Btype["field_kind_repr"](match$1[2])=0)
+           if(Btype["field_kind_repr"](match$1[2])===/* Fpresent */0)
             {closed_schema_rec(match$1[3])}
            else
             {}
@@ -830,16 +912,20 @@ var
  closed_schema=
   function(ty)
    {try
-     {closed_schema_rec(ty);Btype["unmark_type"](ty);return 1;}
+     {closed_schema_rec(ty);Btype["unmark_type"](ty);return /* true */1;}
     catch(exn)
-     {if(exn=Non_closed){Btype["unmark_type"](ty);return 0;}else{throw exn;}}
+     {if(exn===Non_closed)
+       {Btype["unmark_type"](ty);return /* false */0;}
+      else
+       {throw exn;}
+      }
     };
 
-var Non_closed$1="unknown primitive:caml_set_oo_id";
+var Non_closed$1=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Non_closed",0]);
 
-var free_variables=[0,0];
+var free_variables=[0,/* [] */0];
 
-var really_closed=[0,0];
+var really_closed=[0,/* None */0];
 
 var
  free_vars_rec=
@@ -847,14 +933,14 @@ var
    {var ty$1=repr(ty);
     
     if(ty$1[2]>=Btype["lowest_level"])
-     {ty$1[2]=Btype["pivot_level"]-ty$1[2],0;
+     {ty$1[2]=Btype["pivot_level"]-ty$1[2];
       var match$1=ty$1[1];
       
       var match$2=really_closed[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
@@ -868,36 +954,44 @@ var
             {try
               {var match$3=Env["find_type_expansion"](match$1[1],match$2[1]);
                
-               if(repr(match$3[2])[2]!=Btype["generic_level"])
+               if(repr(match$3[2])[2]!==Btype["generic_level"])
                 {free_variables[1]=
-                 /* :: */[0,/* tuple */[0,ty$1,real],free_variables[1]],
-                 0}
+                 /* :: */[0,/* tuple */[0,ty$1,real],free_variables[1]]}
                else
                 {}
                }
-             catch(exn){if(exn=Not_found){}else{throw exn;}}
+             catch(exn)
+              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                {}
+               else
+                {throw exn;}
+               }
              
-             return List["iter"](free_vars_rec(1),match$1[2]);
+             return List["iter"](free_vars_rec(/* true */1),match$1[2]);
              }
            else
             {exit=1003;}
            
-          case 4:return free_vars_rec(0,match$1[1]);
+          case 4:return free_vars_rec(/* false */0,match$1[1]);
           case 5:
-           free_vars_rec(1,match$1[3]);return free_vars_rec(0,match$1[4]);
+           free_vars_rec(/* true */1,match$1[3]);
+           return free_vars_rec(/* false */0,match$1[4]);
+           
           case 8:
            var row=Btype["row_repr"](match$1[1]);
            
-           Btype["iter_row"](free_vars_rec(1),row);
+           Btype["iter_row"](free_vars_rec(/* true */1),row);
            if(!Btype["static_row"](row))
-            {return free_vars_rec(0,row[2]);}
+            {return free_vars_rec(/* false */0,row[2]);}
            else
             {return 0;}
            
           default:exit=1003;}}
       
       switch(exit)
-       {case 1003:return Btype["iter_type_expr"](free_vars_rec(1),ty$1);}
+       {case 1003:
+         return Btype["iter_type_expr"](free_vars_rec(/* true */1),ty$1);
+        }
       }
     else
      {return 0;}
@@ -906,13 +1000,13 @@ var
 var
  free_vars=
   function(env,ty)
-   {free_variables[1]=0,0;
-    really_closed[1]=env,0;
-    free_vars_rec(1,ty);
+   {free_variables[1]=/* [] */0;
+    really_closed[1]=env;
+    free_vars_rec(/* true */1,ty);
     var res=free_variables[1];
     
-    free_variables[1]=0,0;
-    really_closed[1]=0,0;
+    free_variables[1]=/* [] */0;
+    really_closed[1]=/* None */0;
     return res;
     };
 
@@ -928,12 +1022,12 @@ var
 var
  closed_type=
   function(ty)
-   {var match$1=free_vars(0,ty);
+   {var match$1=free_vars(/* None */0,ty);
     
     if(match$1)
      {var match$2=match$1[1];throw [0,Non_closed$1,match$2[1],match$2[2]];}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -941,8 +1035,9 @@ var
   function(params,ty)
    {List["iter"](Btype["mark_type"],params);
     try
-     {closed_type(ty);var ok=1;}
-    catch(exn){if(exn[1]=Non_closed$1){var ok=0;}else{throw exn;}}
+     {closed_type(ty);var ok=/* true */1;}
+    catch(exn)
+     {if(exn[1]===Non_closed$1){var ok=/* false */0;}else{throw exn;}}
     
     List["iter"](Btype["unmark_type"],params);
     Btype["unmark_type"](ty);
@@ -958,7 +1053,7 @@ var
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){case 0:exit=990;case 1:exit=990;}}
       else
        {switch(match$1[0])
@@ -968,7 +1063,7 @@ var
            List["iter"]
             (function(param)
               {if(param[3])
-                {return 0;}
+                {return /* () */0;}
                else
                 {return List["iter"](closed_type,param[2]);}
                },
@@ -982,10 +1077,10 @@ var
       if(match$2){closed_type(match$2[1])}else{}
       
       Btype["unmark_type_decl"](decl);
-      return 0;
+      return /* None */0;
       }
     catch(exn)
-     {if(exn[1]=Non_closed$1)
+     {if(exn[1]===Non_closed$1)
        {Btype["unmark_type_decl"](decl);return /* Some */[0,exn[2]];}
       else
        {throw exn;}
@@ -1002,10 +1097,10 @@ var
       if(match$1){}else{List["iter"](closed_type,ext[3])}
       
       Btype["unmark_extension_constructor"](ext);
-      return 0;
+      return /* None */0;
       }
     catch(exn)
-     {if(exn[1]=Non_closed$1)
+     {if(exn[1]===Non_closed$1)
        {Btype["unmark_extension_constructor"](ext);
         return /* Some */[0,exn[2]];
         }
@@ -1014,7 +1109,7 @@ var
       }
     };
 
-var Failure="unknown primitive:caml_set_oo_id";
+var Failure=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Failure",0]);
 
 var
  closed_class=
@@ -1029,7 +1124,7 @@ var
     Btype["mark_type"](match$1[2]);
     List["iter"]
      (function(param)
-       {if("unknown primitive:caml_string_equal")
+       {if(CamlPrimitive["caml_string_equal"](param[1],Btype["dummy_method"]))
          {return Btype["mark_type"](param[3]);}
         else
          {return 0;}
@@ -1041,11 +1136,11 @@ var
        (function(param)
          {var ty$1=param[3];
           
-          if(Btype["field_kind_repr"](param[2])=0)
+          if(Btype["field_kind_repr"](param[2])===/* Fpresent */0)
            {try
              {return closed_type(ty$1);}
             catch(exn)
-             {if(exn[1]=Non_closed$1)
+             {if(exn[1]===Non_closed$1)
                {throw [0,
                        Failure,
                        /* CC_Method */[0,exn[2],exn[3],param[1],ty$1]];
@@ -1061,10 +1156,10 @@ var
       Btype["mark_type_params"](repr(sign[1]));
       List["iter"](Btype["unmark_type"],params);
       Btype["unmark_class_signature"](sign);
-      return 0;
+      return /* None */0;
       }
     catch(exn)
-     {if(exn[1]=Failure)
+     {if(exn[1]===Failure)
        {Btype["mark_type_params"](repr(sign[1]));
         List["iter"](Btype["unmark_type"],params);
         Btype["unmark_class_signature"](sign);
@@ -1088,13 +1183,13 @@ var
   function(tyl,ty)
    {var ty$1=repr(ty);
     
-    if(ty$1[2]>current_level[1]&&ty$1[2]!=Btype["generic_level"])
+    if(ty$1[2]>current_level[1]&&ty$1[2]!==Btype["generic_level"])
      {Btype["set_level"](ty$1,Btype["generic_level"]);
       var match$1=ty$1[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
@@ -1111,21 +1206,22 @@ var
 
 var
  iter_generalize$1=
-  function(tyl,ty){simple_abbrevs[1]=0,0;return iter_generalize(tyl,ty);};
+  function(tyl,ty)
+   {simple_abbrevs[1]=/* Mnil */0;return iter_generalize(tyl,ty);};
 
-var generalize=function(ty){return iter_generalize$1([0,0],ty);};
+var generalize=function(ty){return iter_generalize$1([0,/* [] */0],ty);};
 
 var
  iterative_generalization=
   function(min_level,tyl)
-   {var tyl$prime=[0,0];
+   {var tyl$prime=[0,/* [] */0];
     
     List["iter"](iter_generalize$1(tyl$prime),tyl);
     return List["fold_right"]
             (function(ty,l)
               {if(ty[2]<=min_level){return l;}else{return /* :: */[0,ty,l];}},
              tyl$prime[1],
-             0);
+             /* [] */0);
     };
 
 var
@@ -1133,7 +1229,7 @@ var
   function(var_level,ty)
    {var ty$1=repr(ty);
     
-    if(ty$1[2]!=Btype["generic_level"])
+    if(ty$1[2]!==Btype["generic_level"])
      {if(Btype["is_Tvar"](ty$1)&&ty$1[2]>var_level)
        {return Btype["set_level"](ty$1,var_level);}
       else
@@ -1142,15 +1238,19 @@ var
         var exit;
         
         var $js;
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
-           {case 3:$js=!is_object_type(match$1[1])&&(match$1[3][1]=0,0,1);
+           {case 3:
+             $js=
+             !is_object_type(match$1[1])&&
+             (match$1[3][1]=/* Mnil */0,/* true */1);
+             
             default:exit=972;}}
         
         var $js$1;
-        switch(exit){case 972:$js$1=1;}
+        switch(exit){case 972:$js$1=/* true */1;}
         if(ty$1[2]>current_level[1]&&$js$1)
          {Btype["set_level"](ty$1,Btype["generic_level"]);
           return Btype["iter_type_expr"](generalize_structure(var_level),ty$1);
@@ -1166,21 +1266,21 @@ var
 var
  generalize_structure$1=
   function(var_level,ty)
-   {simple_abbrevs[1]=0,0;return generalize_structure(var_level,ty);};
+   {simple_abbrevs[1]=/* Mnil */0;return generalize_structure(var_level,ty);};
 
 var
  generalize_spine=
   function(ty)
    {var ty$1=repr(ty);
     
-    if(ty$1[2]<current_level[1]||(ty$1[2]=Btype["generic_level"]))
-     {return 0;}
+    if(ty$1[2]<current_level[1]||ty$1[2]===Btype["generic_level"])
+     {return /* () */0;}
     else
      {var match$1=ty$1[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
@@ -1193,7 +1293,7 @@ var
           case 3:
            if(!is_object_type(match$1[1]))
             {Btype["set_level"](ty$1,Btype["generic_level"]);
-             match$1[3][1]=0,0;
+             match$1[3][1]=/* Mnil */0;
              return List["iter"](generalize_spine,match$1[2]);
              }
            else
@@ -1207,7 +1307,7 @@ var
           default:exit=969;}}
       
       switch(exit)
-       {case 969:return 0;
+       {case 969:return /* () */0;
         case 968:
          Btype["set_level"](ty$1,Btype["generic_level"]);
          return List["iter"](generalize_spine,tyl);
@@ -1227,7 +1327,11 @@ var
       if(match$1){return match$1[1][1];}else{return Path["binding_time"](p);}
       }
     catch(exn)
-     {if(exn=Not_found){return Path["binding_time"](p);}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return Path["binding_time"](p);}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1235,14 +1339,19 @@ var
   function(env,p)
    {try
      {var t=Env["find_modtype"](p,env)[1];}
-    catch(exn){if(exn=Not_found){var t=0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var t=/* None */0;}
+      else
+       {throw exn;}
+      }
     
     var exit;
     
     if(t)
      {var match$1=t[1];
       
-      switch(match$1)
+      switch(match$1[0])
        {case 0:return normalize_package_path(env,match$1[1]);
         default:exit=961;}
       }
@@ -1262,7 +1371,12 @@ var
       
       if(match$1)
        {if(level<match$1[1])
-         {throw [0,Unify,/* :: */[0,/* tuple */[0,ty$1,newvar2(0,level)],0]];}
+         {throw [0,
+                 Unify,
+                 /* :: */[0,
+                  /* tuple */[0,ty$1,newvar2(/* None */0,level)],
+                  /* [] */0]];
+          }
         else
          {}
         }
@@ -1273,7 +1387,7 @@ var
       
       var exit;
       
-      if(typeof match$2=="number")
+      if(typeof match$2==="number")
        {switch(match$2){}}
       else
        {switch(match$2[0])
@@ -1286,11 +1400,13 @@ var
                return update_level(env,level,ty$1);
                }
              catch(exn)
-              {if(exn=Cannot_expand)
+              {if(exn===Cannot_expand)
                 {if(level<get_level(env,p))
                   {throw [0,
                           Unify,
-                          /* :: */[0,/* tuple */[0,ty$1,newvar2(0,level)],0]];
+                          /* :: */[0,
+                           /* tuple */[0,ty$1,newvar2(/* None */0,level)],
+                           /* [] */0]];
                    }
                  else
                   {}
@@ -1311,7 +1427,9 @@ var
            
            if(match$3)
             {if(level<get_level(env,match$3[1][1]))
-              {Btype["set_name"](nm,0);return update_level(env,level,ty$1);}
+              {Btype["set_name"](nm,/* None */0);
+               return update_level(env,level,ty$1);
+               }
              else
               {exit=959;}
              }
@@ -1321,8 +1439,16 @@ var
           case 5:
            var ty1=match$2[3];
            
-           if("unknown primitive:caml_string_equal"&&repr(ty1)[2]>level)
-            {throw [0,Unify,/* :: */[0,/* tuple */[0,ty1,newvar2(0,level)],0]];
+           if
+            (CamlPrimitive["caml_string_equal"]
+              (match$2[1],Btype["dummy_method"])&&
+             repr(ty1)[2]>
+             level)
+            {throw [0,
+                    Unify,
+                    /* :: */[0,
+                     /* tuple */[0,ty1,newvar2(/* None */0,level)],
+                     /* [] */0]];
              }
            else
             {exit=959;}
@@ -1337,9 +1463,9 @@ var
            if(match$4)
             {if(level<get_level(env,match$4[1][1]))
               {Btype["log_type"](ty$1);
-               var newrecord="unknown primitive:duprecord regular 6";
+               var newrecord=/* unknown */"duprecord regular 6";
                
-               ty$1[1]=/* Tvariant */[8,(newrecord[6]=0,0,newrecord)],0}
+               ty$1[1]=/* Tvariant */[8,(newrecord[6]=/* None */0,newrecord)]}
              else
               {exit$1=956;}
              }
@@ -1360,13 +1486,15 @@ var
              if(Path["same"](p$1,p$prime))
               {throw [0,
                       Unify,
-                      /* :: */[0,/* tuple */[0,ty$1,newvar2(0,level)],0]];
+                      /* :: */[0,
+                       /* tuple */[0,ty$1,newvar2(/* None */0,level)],
+                       /* [] */0]];
                }
              else
               {}
              
              Btype["log_type"](ty$1);
-             ty$1[1]=/* Tpackage */[11,p$prime,match$2[2],match$2[3]],0;
+             ty$1[1]=/* Tpackage */[11,p$prime,match$2[2],match$2[3]];
              return update_level(env,level,ty$1);
              }
            else
@@ -1399,14 +1527,14 @@ var
   function(env,var_level,ty)
    {var ty$1=repr(ty);
     
-    if(ty$1[2]!=Btype["generic_level"])
+    if(ty$1[2]!==Btype["generic_level"])
      {if(ty$1[2]>var_level)
        {Btype["set_level"](ty$1,Btype["generic_level"]);
         var match$1=ty$1[1];
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -1420,7 +1548,7 @@ var
              try
               {var variance=Env["find_type"](match$1[1],env)[6];}
              catch(exn)
-              {if(exn=Not_found)
+              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {var
                   variance=
                    List["map"]
@@ -1430,10 +1558,10 @@ var
                 {throw exn;}
                }
              
-             match$1[3][1]=0,0;
+             match$1[3][1]=/* Mnil */0;
              return List["iter2"]
                      (function(v,t)
-                       {if(Types["Variance"][9](2,v))
+                       {if(Types["Variance"][9](/* May_weak */2,v))
                          {return generalize_contravariant(env,var_level,t);}
                         else
                          {return generalize_expansive(env,var_level,t);}
@@ -1464,13 +1592,13 @@ var
 var
  generalize_expansive$1=
   function(env,ty)
-   {simple_abbrevs[1]=0,0;
+   {simple_abbrevs[1]=/* Mnil */0;
     try
      {return generalize_expansive(env,nongen_level[1],ty);}
     catch(exn)
      {var exit;
       
-      if(exn[1]=Unify)
+      if(exn[1]===Unify)
        {var tr=exn[2];
         
         if(tr)
@@ -1504,31 +1632,32 @@ var
   function(ty0,ty)
    {var ty0$1=repr(ty0);
     
-    var graph=Hashtbl["create"](0,17);
+    var graph=Hashtbl["create"](/* None */0,17);
     
     var idx=[0,Btype["lowest_level"]];
     
-    var roots=[0,0];
+    var roots=[0,/* [] */0];
     
     var
      inverse=
-      function(pty,ty$1)
-       {var ty$2=repr(ty$1);
+      function(pty,ty)
+       {var ty$1=repr(ty);
         
-        if(ty$2[2]>current_level[1]||(ty$2[2]=Btype["generic_level"]))
+        if(ty$1[2]>current_level[1]||ty$1[2]===Btype["generic_level"])
          {idx[0]--;
-          Hashtbl["add"](graph,idx[1],/* tuple */[0,ty$2,[0,pty]]);
-          if((ty$2[2]=Btype["generic_level"])||(ty$2=ty0$1))
-           {roots[1]=/* :: */[0,ty$2,roots[1]],0}
+          Hashtbl["add"](graph,idx[1],/* tuple */[0,ty$1,[0,pty]]);
+          if(ty$1[2]===Btype["generic_level"]||ty$1===ty0$1)
+           {roots[1]=/* :: */[0,ty$1,roots[1]]}
           else
            {}
           
-          Btype["set_level"](ty$2,idx[1]);
-          return Btype["iter_type_expr"](inverse(/* :: */[0,ty$2,0]),ty$2);
+          Btype["set_level"](ty$1,idx[1]);
+          return Btype["iter_type_expr"]
+                  (inverse(/* :: */[0,ty$1,/* [] */0]),ty$1);
           }
         else
-         {if(ty$2[2]<Btype["lowest_level"])
-           {var match$1=Hashtbl["find"](graph,ty$2[2]);
+         {if(ty$1[2]<Btype["lowest_level"])
+           {var match$1=Hashtbl["find"](graph,ty$1[2]);
             
             var parents=match$1[2];
             
@@ -1541,17 +1670,17 @@ var
     
     var
      generalize_parents=
-      function(ty$1)
-       {var idx$1=ty$1[2];
+      function(ty)
+       {var idx$1=ty[2];
         
-        if(idx$1!=Btype["generic_level"])
-         {Btype["set_level"](ty$1,Btype["generic_level"]);
+        if(idx$1!==Btype["generic_level"])
+         {Btype["set_level"](ty,Btype["generic_level"]);
           List["iter"](generalize_parents,Hashtbl["find"](graph,idx$1)[2][1]);
-          var match$1=ty$1[1];
+          var match$1=ty[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -1562,7 +1691,7 @@ var
                
                if
                 ((lv<Btype["lowest_level"]||lv>current_level[1])&&
-                 lv!=
+                 lv!==
                  Btype["generic_level"])
                 {return Btype["set_level"](more,Btype["generic_level"]);}
                else
@@ -1570,15 +1699,15 @@ var
                
               default:exit=937;}}
           
-          switch(exit){case 937:return 0;}
+          switch(exit){case 937:return /* () */0;}
           }
         else
          {return 0;}
         };
     
-    inverse(0,ty);
+    inverse(/* [] */0,ty);
     if(ty0$1[2]<Btype["lowest_level"])
-     {Btype["iter_type_expr"](inverse(0),ty0$1)}
+     {Btype["iter_type_expr"](inverse(/* [] */0),ty0$1)}
     else
      {}
     
@@ -1587,7 +1716,7 @@ var
             (function(param,param$1)
               {var ty$1=param$1[1];
                
-               if(ty$1[2]!=Btype["generic_level"])
+               if(ty$1[2]!==Btype["generic_level"])
                 {return Btype["set_level"](ty$1,current_level[1]);}
                else
                 {return 0;}
@@ -1597,21 +1726,21 @@ var
 
 var
  inv_type=
-  function(hash$1,pty,ty)
+  function(hash,pty,ty)
    {var ty$1=repr(ty);
     
     try
-     {var inv=Btype["TypeHash"][7](hash$1,ty$1);
+     {var inv=Btype["TypeHash"][7](hash,ty$1);
       
       return inv[2]=Pervasives["@"](pty,inv[2]),0;
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var inv$1=/* record */[0,ty$1,pty];
         
-        Btype["TypeHash"][5](hash$1,ty$1,inv$1);
+        Btype["TypeHash"][5](hash,ty$1,inv$1);
         return Btype["iter_type_expr"]
-                (inv_type(hash$1,/* :: */[0,inv$1,0]),ty$1);
+                (inv_type(hash,/* :: */[0,inv$1,/* [] */0]),ty$1);
         }
       else
        {throw exn;}
@@ -1623,7 +1752,7 @@ var
   function(ty)
    {var inverted=Btype["TypeHash"][1](17);
     
-    inv_type(inverted,0,ty);
+    inv_type(inverted,/* [] */0,ty);
     var node_univars=Btype["TypeHash"][1](17);
     
     var
@@ -1633,13 +1762,13 @@ var
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
            {case 10:
              if(List["memq"](univ,List["map"](repr,match$1[2])))
-              {return 0;}
+              {return /* () */0;}
              else
               {exit=925;}
              
@@ -1651,14 +1780,14 @@ var
             {var univs=Btype["TypeHash"][7](node_univars,inv[1]);
              
              if(!Btype["TypeSet"][3](univ,univs[1]))
-              {univs[1]=Btype["TypeSet"][4](univ,univs[1]),0;
+              {univs[1]=Btype["TypeSet"][4](univ,univs[1]);
                return List["iter"](add_univar(univ),inv[2]);
                }
              else
               {return 0;}
              }
            catch(exn)
-            {if(exn=Not_found)
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
               {Btype["TypeHash"][5]
                 (node_univars,inv[1],[0,Btype["TypeSet"][5](univ)]);
                return List["iter"](add_univar(univ),inv[2]);
@@ -1671,32 +1800,33 @@ var
         };
     
     Btype["TypeHash"][11]
-     (function(ty$1,inv)
-       {if(Btype["is_Tunivar"](ty$1))
-         {return add_univar(ty$1,inv);}
-        else
-         {return 0;}
+     (function(ty,inv)
+       {if(Btype["is_Tunivar"](ty)){return add_univar(ty,inv);}else{return 0;}
         },
       inverted);
-    return function(ty$1)
+    return function(ty)
      {try
-       {return Btype["TypeHash"][7](node_univars,ty$1)[1];}
+       {return Btype["TypeHash"][7](node_univars,ty)[1];}
       catch(exn)
-       {if(exn=Not_found){return Btype["TypeSet"][1];}else{throw exn;}}
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return Btype["TypeSet"][1];}
+        else
+         {throw exn;}
+        }
       };
     };
 
 var
  find_repr=
   function(p1,param)
-   {if(typeof param=="number")
-     {switch(param){case 0:return 0;}}
+   {if(typeof param==="number")
+     {switch(param){case 0:return /* None */0;}}
     else
      {switch(param[0])
        {case 0:
          var exit;
          
-         if(param[1]!=0)
+         if(param[1]!==0)
           {if(Path["same"](p1,param[2]))
             {return /* Some */[0,param[3]];}
            else
@@ -1711,7 +1841,7 @@ var
         }}
     };
 
-var abbreviations=[0,[0,0]];
+var abbreviations=[0,[0,/* Mnil */0]];
 
 var
  copy=
@@ -1724,17 +1854,17 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0]){case 7:return match$1[1];default:exit=917;}}
     
     switch(exit)
      {case 917:
-       if(ty$1[2]!=Btype["generic_level"]&&(partial=0))
+       if(ty$1[2]!==Btype["generic_level"]&&partial===/* None */0)
         {return ty$1;}
        else
-        {if(ty$1[2]=Btype["generic_level"])
+        {if(ty$1[2]===Btype["generic_level"])
           {var forget=Btype["generic_level"];}
          else
           {if(partial)
@@ -1750,16 +1880,19 @@ var
               {var forget=Btype["generic_level"];}
              }
            else
-            {throw [0,Assert_failure,[0,"typing/ctype.ml",984,16]];}
+            {throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"typing/ctype.ml",984,16]];
+             }
            }
          
-         if(forget!=Btype["generic_level"])
-          {return newty2(forget,[0,0]);}
+         if(forget!==Btype["generic_level"])
+          {return newty2(forget,[/* Tvar */0,/* None */0]);}
          else
           {var desc=ty$1[1];
            
            Btype["save_desc"](ty$1,desc);
-           var t=newvar(0,0);
+           var t=newvar(/* None */0,/* () */0);
            
            var exit$1;
            
@@ -1770,7 +1903,8 @@ var
               {var match$3=Env["gadt_instance_level"](env$1,ty$1);
                
                if(match$3)
-                {Env["add_gadt_instances"](env$1,match$3[1],/* :: */[0,t,0])}
+                {Env["add_gadt_instances"]
+                  (env$1,match$3[1],/* :: */[0,t,/* [] */0])}
                else
                 {}
                }
@@ -1782,11 +1916,11 @@ var
            
            switch(exit$1){case 913:}
            
-           ty$1[1]=/* Tsubst */[7,t],0;
+           ty$1[1]=/* Tsubst */[7,t];
            var exit$2;
            
            var $js;
-           if(typeof desc=="number")
+           if(typeof desc==="number")
             {switch(desc){}}
            else
             {switch(desc[0])
@@ -1804,7 +1938,10 @@ var
                 if(match$4)
                  {var ty$2=match$4[1];
                   
-                  if(repr(ty$2)!=t){$js=/* Tlink */[6,ty$2];}else{exit$3=893;}
+                  if(repr(ty$2)!==t)
+                   {$js=/* Tlink */[6,ty$2];}
+                  else
+                   {exit$3=893;}
                   }
                 else
                  {exit$3=893;}
@@ -1816,7 +1953,7 @@ var
                    var exit$4;
                    
                    var $js$1;
-                   if(typeof abbrev=="number")
+                   if(typeof abbrev==="number")
                     {switch(abbrev){case 0:exit$4=892;}}
                    else
                     {switch(abbrev[0])
@@ -1831,23 +1968,23 @@ var
                   }
                 
                case 4:
-                if(partial!=0)
-                 {$js=/* Tobject */[4,copy$1(desc[1]),[0,0]];}
+                if(partial!==/* None */0)
+                 {$js=/* Tobject */[4,copy$1(desc[1]),[0,/* None */0]];}
                 else
                  {exit$2=912;}
                 
                case 5:
                 var match$5=Btype["field_kind_repr"](desc[2]);
                 
-                if("unknown primitive:isint")
-                 {if(match$5!=0)
+                if(typeof match$5==="number")
+                 {if(match$5!==0)
                    {$js=/* Tlink */[6,copy$1(desc[4])];}
                   else
-                   {$js=Btype["copy_type_desc"](0,copy$1,desc);}
+                   {$js=Btype["copy_type_desc"](/* None */0,copy$1,desc);}
                   }
                 else
                  {Btype["dup_kind"](match$5[1]);
-                  $js=Btype["copy_type_desc"](0,copy$1,desc);
+                  $js=Btype["copy_type_desc"](/* None */0,copy$1,desc);
                   }
                 
                case 8:
@@ -1859,14 +1996,14 @@ var
                 
                 var exit$5;
                 
-                if(typeof match$6=="number")
+                if(typeof match$6==="number")
                  {switch(match$6){}}
                 else
                  {switch(match$6[0])
                    {case 7:
                      var match$7=match$6[1][1];
                      
-                     if(typeof match$7=="number")
+                     if(typeof match$7==="number")
                       {switch(match$7){}}
                      else
                       {switch(match$7[0])
@@ -1882,7 +2019,7 @@ var
                               else
                                {var ty2=match$9[1];
                                 
-                                ty$1[1]=/* Tsubst */[7,ty2],0;
+                                ty$1[1]=/* Tsubst */[7,ty2];
                                 $js=/* Tlink */[6,ty2];
                                 }
                               }
@@ -1898,13 +2035,13 @@ var
                 
                 switch(exit$5)
                  {case 909:
-                   var keep=more[2]!=Btype["generic_level"];
+                   var keep=more[2]!==Btype["generic_level"];
                    
                    var match$10=more[1];
                    
                    var exit$6;
                    
-                   if(typeof match$10=="number")
+                   if(typeof match$10==="number")
                     {switch(match$10){case 0:exit$6=904;}}
                    else
                     {switch(match$10[0])
@@ -1913,7 +2050,10 @@ var
                        case 7:var more$prime=match$10[1];
                        case 9:exit$6=905;
                        default:
-                        throw [0,Assert_failure,[0,"typing/ctype.ml",1047,24]];}}
+                        throw [0,
+                               CamlPrimitive["caml_global_data"]["Assert_failure"],
+                               [0,"typing/ctype.ml",1047,24]];
+                        }}
                    
                    switch(exit$6)
                     {case 904:
@@ -1936,15 +2076,15 @@ var
                    
                    var exit$7;
                    
-                   if(typeof match$12=="number")
+                   if(typeof match$12==="number")
                     {switch(match$12){}}
                    else
                     {switch(match$12[0])
                       {case 3:
                         if(!row[5])
-                         {var newrecord="unknown primitive:duprecord regular 6";
+                         {var newrecord=/* unknown */"duprecord regular 6";
                           
-                          newrecord[5]=1,0;
+                          newrecord[5]=/* true */1;
                           var row$1=newrecord;
                           }
                         else
@@ -1959,15 +2099,15 @@ var
                    if(partial)
                     {var match$13=partial[1];
                      
-                     if(match$13[2]!=0)
+                     if(match$13[2]!==0)
                       {exit$8=899;}
                      else
-                      {if(more[3]!=more$prime[3])
+                      {if(more[3]!==more$prime[3])
                         {var more$prime$1=more$prime;}
                        else
                         {if(keep){var lv=more[2];}else{var lv=current_level[1];}
                          
-                         var more$prime$1=newty2(lv,[0,0]);
+                         var more$prime$1=newty2(lv,[/* Tvar */0,/* None */0]);
                          }
                        
                        var
@@ -1977,12 +2117,13 @@ var
                            
                            var exit$9;
                            
-                           if(typeof match$14=="number")
+                           if(typeof match$14==="number")
                             {switch(match$14){case 0:exit$9=895;}}
                            else
-                            {switch(match$14[0]){case 0:exit$9=895;case 1:return 0;}}
+                            {switch(match$14[0])
+                              {case 0:exit$9=895;case 1:return /* false */0;}}
                            
-                           switch(exit$9){case 895:return 1;}
+                           switch(exit$9){case 895:return /* true */1;}
                            };
                        
                        if
@@ -1997,10 +2138,10 @@ var
                             /* record */[0,
                              List["filter"](not_reither,row$1[1]),
                              more$prime$1,
-                             0,
-                             0,
-                             0,
-                             0]];
+                             /* () */0,
+                             /* false */0,
+                             /* false */0,
+                             /* None */0]];
                          }
                        else
                         {var match$14=/* tuple */[0,more$prime$1,row$1];}
@@ -2017,11 +2158,12 @@ var
                    more[1]=
                    /* Tsubst */[7,
                     Btype["newgenty"]
-                     (/* Ttuple */[2,/* :: */[0,more$prime$2,/* :: */[0,t,0]]])],
-                   0;
+                     (/* Ttuple */[2,
+                       /* :: */[0,more$prime$2,/* :: */[0,t,/* [] */0]]])];
                    $js=
                    /* Tvariant */[8,
-                    Btype["copy_row"](copy$1,1,match$14[2],keep,more$prime$2)];
+                    Btype["copy_row"]
+                     (copy$1,/* true */1,match$14[2],keep,more$prime$2)];
                    
                   }
                 
@@ -2030,7 +2172,7 @@ var
            var $js$3;
            switch(exit$2)
             {case 912:$js$3=Btype["copy_type_desc"](keep_names,copy$1,desc);}
-           t[1]=$js$3,0;
+           t[1]=$js$3;
            return t;
            }
          }
@@ -2038,7 +2180,9 @@ var
       }
     };
 
-var simple_copy=function(t){return copy(0,0,0,t);};
+var
+ simple_copy=
+  function(t){return copy(/* None */0,/* None */0,/* None */0,t);};
 
 var
  gadt_env=
@@ -2046,7 +2190,7 @@ var
    {if(Env["has_local_constraints"](env))
      {return /* Some */[0,env];}
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
@@ -2060,26 +2204,34 @@ var
         /* Some */[0,/* tuple */[0,compute_univars(sch),partial[1]]];
       }
     else
-     {var partial$1=0;}
+     {var partial$1=/* None */0;}
     
-    var ty=copy(env$1,partial$1,0,sch);
+    var ty=copy(env$1,partial$1,/* None */0,sch);
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return ty;
     };
 
 var
  instance_def=
-  function(sch){var ty=copy(0,0,0,sch);Btype["cleanup_types"](0);return ty;};
+  function(sch)
+   {var ty=copy(/* None */0,/* None */0,/* None */0,sch);
+    
+    Btype["cleanup_types"](/* () */0);
+    return ty;
+    };
 
 var
  instance_list=
   function(env,schl)
    {var env$1=gadt_env(env);
     
-    var tyl=List["map"](function(t){return copy(env$1,0,0,t);},schl);
+    var
+     tyl=
+      List["map"]
+       (function(t){return copy(env$1,/* None */0,/* None */0,t);},schl);
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return tyl;
     };
 
@@ -2090,16 +2242,44 @@ var
   function(s)
    {try
      {var index=Types["Vars"][22](s,reified_var_counter[1])+1;}
-    catch(exn){if(exn=Not_found){var index=0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var index=0;}
+      else
+       {throw exn;}
+      }
     
-    reified_var_counter[1]=Types["Vars"][4](s,index,reified_var_counter[1]),0;
-    return Printf["sprintf"]([0,[2,0,[12,35,[4,0,0,0,0]]],"%s#%d"],s,index);
+    reified_var_counter[1]=Types["Vars"][4](s,index,reified_var_counter[1]);
+    return Printf["sprintf"]
+            ([/* Format */0,
+              [/* String */2,
+               /* No_padding */0,
+               [/* Char_literal */12,
+                35,
+                [/* Int */4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 /* End_of_format */0]]],
+              "%s#%d"],
+             s,
+             index);
     };
 
 var
  new_declaration=
   function(newtype,manifest)
-   {return /* record */[0,0,0,0,1,manifest,0,newtype,Location["none"],0];};
+   {return /* record */[0,
+            /* [] */0,
+            0,
+            /* Type_abstract */0,
+            /* Public */1,
+            manifest,
+            /* [] */0,
+            newtype,
+            Location["none"],
+            /* [] */0];
+    };
 
 var
  instance_constructor=
@@ -2117,7 +2297,8 @@ var
          {var
            decl=
             new_declaration
-             (/* Some */[0,/* tuple */[0,newtype_lev,newtype_lev]],0);
+             (/* Some */[0,/* tuple */[0,newtype_lev,newtype_lev]],
+              /* None */0);
           
           var match$2=repr(existential);
           
@@ -2125,7 +2306,7 @@ var
           
           var exit;
           
-          if(typeof match$3=="number")
+          if(typeof match$3==="number")
            {switch(match$3){}}
           else
            {switch(match$3[0])
@@ -2142,17 +2323,24 @@ var
            match$5=
             Env["enter_type"](get_new_abstract_name(name),decl,env[1]);
           
-          env[1]=match$5[2],0;
+          env[1]=match$5[2];
           var
            to_unify=
-            newty(/* Tconstr */[3,/* Pident */[0,match$5[1]],0,[0,0]]);
+            newty
+             (/* Tconstr */[3,
+               /* Pident */[0,match$5[1]],
+               /* [] */0,
+               [0,/* Mnil */0]]);
           
-          var tv=copy(0,0,0,existential);
+          var tv=copy(/* None */0,/* None */0,/* None */0,existential);
           
           if(Btype["is_Tvar"](tv))
            {}
           else
-           {throw [0,Assert_failure,[0,"typing/ctype.ml",1170,8]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"typing/ctype.ml",1170,8]];
+            }
           
           return Btype["link_type"](tv,to_unify);
           };
@@ -2161,11 +2349,11 @@ var
     else
      {}
     
-    var ty_res=copy(0,0,0,cstr[2]);
+    var ty_res=copy(/* None */0,/* None */0,/* None */0,cstr[2]);
     
     var ty_args=List["map"](simple_copy,cstr[4]);
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return /* tuple */[0,ty_args,ty_res];
     };
 
@@ -2174,11 +2362,13 @@ var
   function(keep_names,sch_args,sch)
    {var
      ty_args=
-      List["map"](function(t){return copy(0,0,keep_names,t);},sch_args);
+      List["map"]
+       (function(t){return copy(/* None */0,/* None */0,keep_names,t);},
+        sch_args);
     
-    var ty=copy(0,0,0,sch);
+    var ty=copy(/* None */0,/* None */0,/* None */0,sch);
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return /* tuple */[0,ty_args,ty];
     };
 
@@ -2189,9 +2379,9 @@ var
     
     var ty_lst=List["map"](simple_copy,sch_lst);
     
-    var ty=copy(0,0,0,sch);
+    var ty=copy(/* None */0,/* None */0,/* None */0,sch);
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return /* tuple */[0,ty_args,ty_lst,ty];
     };
 
@@ -2201,8 +2391,9 @@ var
    {var match$1=decl[3];
     
     var $js;
-    if(typeof match$1=="number")
-     {switch(match$1){case 0:$js=0;case 1:$js=1;}}
+    if(typeof match$1==="number")
+     {switch(match$1)
+       {case 0:$js=/* Type_abstract */0;case 1:$js=/* Type_open */1;}}
     else
      {switch(match$1[0])
        {case 0:
@@ -2210,7 +2401,13 @@ var
          /* Type_record */[0,
           List["map"]
            (function(l)
-             {return /* record */[0,l[1],l[2],copy(0,0,0,l[3]),l[4],l[5]];},
+             {return /* record */[0,
+                      l[1],
+                      l[2],
+                      copy(/* None */0,/* None */0,/* None */0,l[3]),
+                      l[4],
+                      l[5]];
+              },
             match$1[1]),
           match$1[2]];
          
@@ -2242,7 +2439,7 @@ var
        decl[8],
        decl[9]];
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return decl$1;
     };
 
@@ -2252,7 +2449,7 @@ var
    {var
      copy_class_type=
       function(param)
-       {switch(param)
+       {switch(param[0])
          {case 0:
            return /* Cty_constr */[0,
                    param[1],
@@ -2264,13 +2461,13 @@ var
            
            return /* Cty_signature */[1,
                    /* record */[0,
-                    copy(0,0,0,sign[1]),
+                    copy(/* None */0,/* None */0,/* None */0,sign[1]),
                     Types["Vars"][23]
                      (function(param$1)
                        {return /* tuple */[0,
                                 param$1[1],
                                 param$1[2],
-                                copy(0,0,0,param$1[3])];
+                                copy(/* None */0,/* None */0,/* None */0,param$1[3])];
                         },
                       sign[2]),
                     sign[3],
@@ -2285,7 +2482,7 @@ var
           case 2:
            return /* Cty_arrow */[2,
                    param[1],
-                   copy(0,0,0,param[2]),
+                   copy(/* None */0,/* None */0,/* None */0,param[2]),
                    copy_class_type(param[3])];
            
           }
@@ -2295,15 +2492,15 @@ var
     
     var cty$prime=copy_class_type(cty);
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return /* tuple */[0,params$prime,cty$prime];
     };
 
 var
  diff_list=
   function(l1,l2)
-   {if(l1=l2)
-     {return 0;}
+   {if(l1===l2)
+     {return /* [] */0;}
     else
      {if(l1)
        {return /* :: */[0,l1[1],diff_list(l1[2],l2)];}
@@ -2321,7 +2518,7 @@ var
             (function(t){return List["memq"](repr(t),bound$1);},free);
     };
 
-var delayed_copy=[0,0];
+var delayed_copy=[0,/* [] */0];
 
 var
  copy_sep=
@@ -2331,16 +2528,21 @@ var
     var univars=free(ty$1);
     
     if(Btype["TypeSet"][2](univars))
-     {if(ty$1[2]!=Btype["generic_level"])
+     {if(ty$1[2]!==Btype["generic_level"])
        {return ty$1;}
       else
-       {var t=newvar(0,0);
+       {var t=newvar(/* None */0,/* () */0);
         
         delayed_copy[1]=
         /* :: */[0,
-         [246,function(param){return t[1]=/* Tlink */[6,copy(0,0,0,ty$1)],0;}],
-         delayed_copy[1]],
-        0;
+         [246,
+          function(param)
+           {return t[1]=
+                   /* Tlink */[6,
+                    copy(/* None */0,/* None */0,/* None */0,ty$1)],
+                   0;
+            }],
+         delayed_copy[1]];
         return t;
         }
       }
@@ -2349,23 +2551,26 @@ var
        {var match$1=List["assq"](ty$1,visited);
         
         if(Btype["is_Tunivar"](ty$1))
-         {var dl=0;}
+         {var dl=/* [] */0;}
         else
          {var dl=diff_list(bound,match$1[2]);}
         
-        if(dl!=0&&conflicts(univars,dl)){throw Not_found;}else{}
+        if(dl!==/* [] */0&&conflicts(univars,dl))
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+        else
+         {}
         
         return match$1[1];
         }
       catch(exn)
-       {if(exn=Not_found)
-         {var t$1=newvar(0,0);
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {var t$1=newvar(/* None */0,/* () */0);
           
           var match$2=ty$1[1];
           
           var exit;
           
-          if(typeof match$2=="number")
+          if(typeof match$2==="number")
            {switch(match$2){}}
           else
            {switch(match$2[0])
@@ -2395,7 +2600,7 @@ var
           var exit$1;
           
           var $js;
-          if(typeof match$3=="number")
+          if(typeof match$3==="number")
            {switch(match$3){}}
           else
            {switch(match$3[0])
@@ -2406,7 +2611,7 @@ var
                
                var
                 keep=
-                 Btype["is_Tvar"](more)&&more[2]!=Btype["generic_level"];
+                 Btype["is_Tvar"](more)&&more[2]!==Btype["generic_level"];
                
                var more$prime=copy_rec(more);
                
@@ -2421,9 +2626,7 @@ var
               case 10:
                var tl=List["map"](repr,match$3[2]);
                
-               var
-                tl$prime=
-                 List["map"](function(t$2){return newty(t$2[1]);},tl);
+               var tl$prime=List["map"](function(t){return newty(t[1]);},tl);
                
                var bound$1=Pervasives["@"](tl,bound);
                
@@ -2431,8 +2634,8 @@ var
                 visited$2=
                  Pervasives["@"]
                   (List["map2"]
-                    (function(ty$2,t$2)
-                      {return /* tuple */[0,ty$2,/* tuple */[0,t$2,bound$1]];},
+                    (function(ty,t)
+                      {return /* tuple */[0,ty,/* tuple */[0,t,bound$1]];},
                      tl,
                      tl$prime),
                    visited$1);
@@ -2446,8 +2649,10 @@ var
           
           var $js$1;
           switch(exit$1)
-           {case 839:$js$1=Btype["copy_type_desc"](0,copy_rec,ty$1[1]);}
-          t$1[1]=$js$1,0;
+           {case 839:
+             $js$1=Btype["copy_type_desc"](/* None */0,copy_rec,ty$1[1]);
+            }
+          t$1[1]=$js$1;
           return t$1;
           }
         else
@@ -2459,7 +2664,10 @@ var
 var
  instance_poly=
   function($staropt$star,fixed,univars,sch)
-   {if($staropt$star){var keep_names=$staropt$star[1];}else{var keep_names=0;}
+   {if($staropt$star)
+     {var keep_names=$staropt$star[1];}
+    else
+     {var keep_names=/* false */0;}
     
     var univars$1=List["map"](repr,univars);
     
@@ -2470,7 +2678,7 @@ var
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -2478,12 +2686,17 @@ var
              if(keep_names)
               {return newty(/* Tvar */[0,match$1[1]]);}
              else
-              {return newvar(0,0);}
+              {return newvar(/* None */0,/* () */0);}
              
             default:exit=824;}}
         
         switch(exit)
-         {case 824:throw [0,Assert_failure,[0,"typing/ctype.ml",1307,11]];}
+         {case 824:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/ctype.ml",1307,11]];
+           
+          }
         };
     
     var vars=List["map"](copy_var,univars$1);
@@ -2491,36 +2704,36 @@ var
     var
      pairs=
       List["map2"]
-       (function(u,v){return /* tuple */[0,u,/* tuple */[0,v,0]];},
+       (function(u,v){return /* tuple */[0,u,/* tuple */[0,v,/* [] */0]];},
         univars$1,
         vars);
     
-    delayed_copy[1]=0,0;
-    var ty=copy_sep(fixed,compute_univars(sch),0,pairs,sch);
+    delayed_copy[1]=/* [] */0;
+    var ty=copy_sep(fixed,compute_univars(sch),/* [] */0,pairs,sch);
     
     List["iter"]
      (function(prim)
-       {var tag="unknown primitive:caml_obj_tag";
+       {var tag=CamlPrimitive["caml_obj_tag"](prim);
         
-        if(tag=250)
+        if(tag===250)
          {return prim[1];}
         else
-         {if(tag=246)
+         {if(tag===246)
            {return CamlinternalLazy["force_lazy_block"](prim);}
           else
            {return prim;}
           }
         },
       delayed_copy[1]);
-    delayed_copy[1]=0,0;
-    Btype["cleanup_types"](0);
+    delayed_copy[1]=/* [] */0;
+    Btype["cleanup_types"](/* () */0);
     return /* tuple */[0,vars,ty];
     };
 
 var
  instance_label=
   function(fixed,lbl)
-   {var ty_res=copy(0,0,0,lbl[2]);
+   {var ty_res=copy(/* None */0,/* None */0,/* None */0,lbl[2]);
     
     var ty=repr(lbl[3]);
     
@@ -2528,31 +2741,43 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
-       {case 10:var match$2=instance_poly(0,fixed,match$1[2],match$1[1]);
+       {case 10:
+         var match$2=instance_poly(/* None */0,fixed,match$1[2],match$1[1]);
         default:exit=817;}}
     
-    switch(exit){case 817:var match$2=/* tuple */[0,0,copy(0,0,0,lbl[3])];}
+    switch(exit)
+     {case 817:
+       var
+        match$2=
+         /* tuple */[0,
+          /* [] */0,
+          copy(/* None */0,/* None */0,/* None */0,lbl[3])];
+       
+      }
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return /* tuple */[0,match$2[1],match$2[2],ty_res];
     };
 
-var unify$prime=[0,function(env,ty1,ty2){throw [0,Unify,0];}];
+var unify$prime=[0,function(env,ty1,ty2){throw [0,Unify,/* [] */0];}];
 
 var
  subst=
   function(env,level,priv,abbrev,ty,params,args,body)
-   {if(List["length"](params)!=List["length"](args)){throw [0,Unify,0];}else{}
+   {if(List["length"](params)!==List["length"](args))
+     {throw [0,Unify,/* [] */0];}
+    else
+     {}
     
     var old_level=current_level[1];
     
-    current_level[1]=level,0;
+    current_level[1]=level;
     try
-     {var body0=newvar(0,0);
+     {var body0=newvar(/* None */0,/* () */0);
       
       var exit;
       
@@ -2561,7 +2786,7 @@ var
         
         var match$1=ty$1[1];
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -2577,22 +2802,27 @@ var
        {}
       
       switch(exit)
-       {case 812:throw [0,Assert_failure,[0,"typing/ctype.ml",1347,8]];}
+       {case 812:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"typing/ctype.ml",1347,8]];
+         
+        }
       
-      abbreviations[1]=abbrev,0;
-      var match$2=instance_parameterized_type(0,params,body);
+      abbreviations[1]=abbrev;
+      var match$2=instance_parameterized_type(/* None */0,params,body);
       
       var body$prime=match$2[2];
       
-      abbreviations[1]=[0,0],0;
+      abbreviations[1]=[0,/* Mnil */0];
       unify$prime[1](env,body0,body$prime);
       List["iter2"](unify$prime[1](env),match$2[1],args);
-      current_level[1]=old_level,0;
+      current_level[1]=old_level;
       return body$prime;
       }
     catch(exn)
-     {if(exn[1]=Unify)
-       {current_level[1]=old_level,0;throw exn;}
+     {if(exn[1]===Unify)
+       {current_level[1]=old_level;throw exn;}
       else
        {throw exn;}
       }
@@ -2602,21 +2832,30 @@ var
  apply=
   function(env,params,body,args)
    {try
-     {return subst(env,Btype["generic_level"],1,[0,0],0,params,args,body);}
-    catch(exn){if(exn[1]=Unify){throw Cannot_apply;}else{throw exn;}}
+     {return subst
+              (env,
+               Btype["generic_level"],
+               /* Public */1,
+               [0,/* Mnil */0],
+               /* None */0,
+               params,
+               args,
+               body);
+      }
+    catch(exn){if(exn[1]===Unify){throw Cannot_apply;}else{throw exn;}}
     };
 
 var previous_env=[0,Env["empty"]];
 
 var
  string_of_kind=
-  function(param){if(param!=0){return "public";}else{return "private";}};
+  function(param){if(param!==0){return "public";}else{return "private";}};
 
 var
  check_abbrev_env=
   function(env)
-   {if(env!=previous_env[1])
-     {Btype["cleanup_abbrev"](0);return previous_env[1]=env,0;}
+   {if(env!==previous_env[1])
+     {Btype["cleanup_abbrev"](/* () */0);return previous_env[1]=env,0;}
     else
      {return 0;}
     };
@@ -2629,7 +2868,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -2649,10 +2888,10 @@ var
          if(match$2)
           {var ty$1=match$2[1];
            
-           if(level!=Btype["generic_level"])
+           if(level!==Btype["generic_level"])
             {try
               {update_level(env,level,ty$1)}
-             catch(exn){if(exn[1]=Unify){}else{throw exn;}}
+             catch(exn){if(exn[1]===Unify){}else{throw exn;}}
              }
            else
             {}
@@ -2663,7 +2902,11 @@ var
           {try
             {var match$3=find_type_expansion(path,env);}
            catch(exn$1)
-            {if(exn$1=Not_found){throw Cannot_expand;}else{throw exn$1;}}
+            {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+              {throw Cannot_expand;}
+             else
+              {throw exn$1;}
+             }
            
            var
             ty$prime=
@@ -2683,7 +2926,7 @@ var
            
            var exit$1;
            
-           if(typeof match$4=="number")
+           if(typeof match$4==="number")
             {switch(match$4){}}
            else
             {switch(match$4[0])
@@ -2691,15 +2934,13 @@ var
                 var row=match$4[1];
                 
                 if(Btype["static_row"](row))
-                 {var newrecord="unknown primitive:duprecord regular 6";
+                 {var newrecord=/* unknown */"duprecord regular 6";
                   
                   ty$2[1]=
                   /* Tvariant */[8,
                    (newrecord[6]=
                     /* Some */[0,/* tuple */[0,path,args]],
-                    0,
-                    newrecord)],
-                  0}
+                    newrecord)]}
                 else
                  {exit$1=797;}
                 
@@ -2719,13 +2960,15 @@ var
                if(level<lv)
                 {throw [0,
                         Unify,
-                        /* :: */[0,/* tuple */[0,ty,newvar2(0,level)],0]];
+                        /* :: */[0,
+                         /* tuple */[0,ty,newvar2(/* None */0,level)],
+                         /* [] */0]];
                  }
                else
                 {}
                
                Env["add_gadt_instances"]
-                (env,lv,/* :: */[0,ty,/* :: */[0,ty$prime,0]])}
+                (env,lv,/* :: */[0,ty,/* :: */[0,ty$prime,/* [] */0]])}
              else
               {}
              }
@@ -2738,12 +2981,18 @@ var
         default:exit=802;}}
     
     switch(exit)
-     {case 802:throw [0,Assert_failure,[0,"typing/ctype.ml",1456,6]];}
+     {case 802:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",1456,6]];
+       
+      }
     };
 
 var
  expand_abbrev=
-  function(ty){return expand_abbrev_gen(1,Env["find_type_expansion"],ty);};
+  function(ty)
+   {return expand_abbrev_gen(/* Public */1,Env["find_type_expansion"],ty);};
 
 var
  expand_head_once=
@@ -2751,8 +3000,11 @@ var
    {try
      {return expand_abbrev(env,repr(ty));}
     catch(exn)
-     {if(exn=Cannot_expand)
-       {throw [0,Assert_failure,[0,"typing/ctype.ml",1464,56]];}
+     {if(exn===Cannot_expand)
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"typing/ctype.ml",1464,56]];
+        }
       else
        {throw exn;}
       }
@@ -2761,19 +3013,19 @@ var
 var
  safe_abbrev=
   function(env,ty)
-   {var snap=Btype["snapshot"](0);
+   {var snap=Btype["snapshot"](/* () */0);
     
     try
-     {return 1;}
+     {expand_abbrev(env,ty);return /* true */1;}
     catch(exn)
      {var exit;
       
-      if(exn=Cannot_expand)
+      if(exn===Cannot_expand)
        {exit=788;}
       else
-       {if(exn[1]=Unify){exit=788;}else{throw exn;}}
+       {if(exn[1]===Unify){exit=788;}else{throw exn;}}
       
-      switch(exit){case 788:Btype["backtrack"](snap);return 0;}
+      switch(exit){case 788:Btype["backtrack"](snap);return /* false */0;}
       }
     };
 
@@ -2786,7 +3038,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -2798,12 +3050,12 @@ var
 var
  try_expand_safe=
   function(env,ty)
-   {var snap=Btype["snapshot"](0);
+   {var snap=Btype["snapshot"](/* () */0);
     
     try
      {return try_expand_once(env,ty);}
     catch(exn)
-     {if(exn[1]=Unify)
+     {if(exn[1]===Unify)
        {Btype["backtrack"](snap);throw Cannot_expand;}
       else
        {throw exn;}
@@ -2817,7 +3069,7 @@ var
     
     try
      {return try_expand_head(try_once,env,ty$prime);}
-    catch(exn){if(exn=Cannot_expand){return ty$prime;}else{throw exn;}}
+    catch(exn){if(exn===Cannot_expand){return ty$prime;}else{throw exn;}}
     };
 
 var
@@ -2837,7 +3089,7 @@ var
   function(env,ty)
    {try
      {return try_expand_head$1(try_expand_once,env,ty);}
-    catch(exn){if(exn=Cannot_expand){return repr(ty);}else{throw exn;}}
+    catch(exn){if(exn===Cannot_expand){return repr(ty);}else{throw exn;}}
     };
 
 var
@@ -2845,10 +3097,10 @@ var
   function(env,ty)
    {try
      {return try_expand_head$1(try_expand_safe,env,ty);}
-    catch(exn){if(exn=Cannot_expand){return repr(ty);}else{throw exn;}}
+    catch(exn){if(exn===Cannot_expand){return repr(ty);}else{throw exn;}}
     };
 
-forward_try_expand_once[1]=try_expand_safe,0;
+forward_try_expand_once[1]=try_expand_safe;
 var
  extract_concrete_typedecl=
   function(env,ty)
@@ -2858,7 +3110,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -2867,12 +3119,17 @@ var
          
          var decl=Env["find_type"](p,env);
          
-         if(decl[3]!=0)
+         if(decl[3]!==/* Type_abstract */0)
           {return /* tuple */[0,p,p,decl];}
          else
           {try
             {var ty$2=try_expand_once(env,ty$1);}
-           catch(exn){if(exn=Cannot_expand){throw Not_found;}else{throw exn;}}
+           catch(exn)
+            {if(exn===Cannot_expand)
+              {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+             else
+              {throw exn;}
+             }
            
            var match$2=extract_concrete_typedecl(env,ty$2);
            
@@ -2881,10 +3138,13 @@ var
          
         default:exit=771;}}
     
-    switch(exit){case 771:throw Not_found;}
+    switch(exit)
+     {case 771:throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
-var expand_abbrev_opt=expand_abbrev_gen(0,Env["find_type_expansion_opt"]);
+var
+ expand_abbrev_opt=
+  expand_abbrev_gen(/* Private */0,Env["find_type_expansion_opt"]);
 
 var
  try_expand_once_opt=
@@ -2895,7 +3155,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -2911,23 +3171,23 @@ var
     
     try
      {return try_expand_head_opt(env,ty$prime);}
-    catch(exn){if(exn=Cannot_expand){return ty$prime;}else{throw exn;}}
+    catch(exn){if(exn===Cannot_expand){return ty$prime;}else{throw exn;}}
     };
 
 var
  expand_head_opt=
   function(env,ty)
-   {var snap=Btype["snapshot"](0);
+   {var snap=Btype["snapshot"](/* () */0);
     
     try
      {return try_expand_head_opt(env,ty);}
     catch(exn)
      {var exit;
       
-      if(exn=Cannot_expand)
+      if(exn===Cannot_expand)
        {exit=757;}
       else
-       {if(exn[1]=Unify){exit=757;}else{throw exn;}}
+       {if(exn[1]===Unify){exit=757;}else{throw exn;}}
       
       switch(exit){case 757:Btype["backtrack"](snap);return repr(ty);}
       }
@@ -2940,7 +3200,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -2948,13 +3208,34 @@ var
          var level=ty[2];
          
          try
-          {var decl=Env["find_type"](match$1[1],env);return 0;}
-         catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+          {var decl=Env["find_type"](match$1[1],env);
+           
+           return subst
+                   (env,
+                    level,
+                    /* Public */1,
+                    [0,/* Mnil */0],
+                    /* None */0,
+                    decl[1],
+                    match$1[2],
+                    newvar2(/* None */0,level));
+           }
+         catch(exn)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {return /* () */0;}
+           else
+            {throw exn;}
+           }
          
         default:exit=754;}}
     
     switch(exit)
-     {case 754:throw [0,Assert_failure,[0,"typing/ctype.ml",1574,6]];}
+     {case 754:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",1574,6]];
+       
+      }
     };
 
 var
@@ -2966,7 +3247,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -2978,7 +3259,9 @@ var
            
            if(match$3)
             {if(Btype["is_Tvar"](repr(match$3[1])))
-              {return newty2(ty$1[2],/* Tobject */[4,match$1[1],[0,0]]);}
+              {return newty2
+                       (ty$1[2],/* Tobject */[4,match$1[1],[0,/* None */0]]);
+               }
              else
               {exit=749;}
              }
@@ -2999,9 +3282,14 @@ var
    {try
      {var match$1=Env["find_type_expansion"](path,env);
       
-      return repr(match$1[2])[2]=Btype["generic_level"];
+      return repr(match$1[2])[2]===Btype["generic_level"];
       }
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* false */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -3014,17 +3302,17 @@ var
       
       var exit;
       
-      if("unknown primitive:isint")
-       {if(match$2!=0)
+      if(typeof match$2==="number")
+       {if(match$2!==0)
          {exit=743;}
         else
-         {if(match$1[4]!=0)
+         {if(match$1[4]!==0)
            {exit=743;}
           else
            {var match$3=match$1[5];
             
             if(match$3)
-             {return repr(match$3[1])[2]=Btype["generic_level"];}
+             {return repr(match$3[1])[2]===Btype["generic_level"];}
             else
              {exit=743;}
             }
@@ -3033,9 +3321,14 @@ var
       else
        {exit=743;}
       
-      switch(exit){case 743:return 0;}
+      switch(exit){case 743:return /* false */0;}
       }
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* false */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -3045,29 +3338,35 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 3:
          var p=match$1[1];
          
+         var $js;
          try
-          {var $js=is_datatype(Env["find_type"](p,env));}
-         catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
+          {$js=is_datatype(Env["find_type"](p,env));}
+         catch(exn)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {$js=/* false */0;}
+           else
+            {throw exn;}
+           }
          return in_pervasives(p)||$js;
          
         default:exit=740;}}
     
-    switch(exit){case 740:return 1;}
+    switch(exit){case 740:return /* true */1;}
     };
 
-var Occur="unknown primitive:caml_set_oo_id";
+var Occur=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Occur",0]);
 
 var
  occur_rec=
   function(env,visited,ty0,ty)
-   {if(ty=ty0){throw Occur;}else{}
+   {if(ty===ty0){throw Occur;}else{}
     
     var occur_ok=Clflags["recursive_types"][1]&&is_contractive(env,ty);
     
@@ -3075,7 +3374,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -3087,11 +3386,11 @@ var
                    (occur_rec(env,/* :: */[0,ty,visited],ty0),ty);
            }
          catch(exn)
-          {if(exn=Occur)
+          {if(exn===Occur)
             {try
               {var ty$prime=try_expand_head$1(try_expand_once,env,ty);
                
-               if((ty$prime=ty0)||List["memq"](ty$prime,visited))
+               if(ty$prime===ty0||List["memq"](ty$prime,visited))
                 {throw Occur;}
                else
                 {}
@@ -3100,7 +3399,7 @@ var
                
                var exit$1;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -3117,11 +3416,11 @@ var
                   else
                    {return 0;}
                   
-                 case 732:return 0;
+                 case 732:return /* () */0;
                  }
                }
              catch(exn$1)
-              {if(exn$1=Cannot_expand)
+              {if(exn$1===Cannot_expand)
                 {if(!occur_ok){throw Occur;}else{return 0;}}
                else
                 {throw exn$1;}
@@ -3142,13 +3441,13 @@ var
        else
         {return 0;}
        
-      case 736:return 0;
+      case 736:return /* () */0;
       }
     };
 
-var type_changed=[0,0];
+var type_changed=[0,/* false */0];
 
-var merge=function(r,b){if(b){return r[1]=1,0;}else{return 0;}};
+var merge=function(r,b){if(b){return r[1]=/* true */1,0;}else{return 0;}};
 
 var
  occur=
@@ -3156,19 +3455,25 @@ var
    {var old=type_changed[1];
     
     try
-     {while(type_changed[1]=0,0,occur_rec(env,0,ty0,ty),type_changed[1]){}
+     {while
+       (type_changed[1]=
+        /* false */0,
+        occur_rec(env,/* [] */0,ty0,ty),
+        type_changed[1])
+       {}
       
       return merge(type_changed,old);
       }
-    catch(exn){merge(type_changed,old);throw (exn=Occur)?[0,Unify,0]:exn;}
+    catch(exn)
+     {merge(type_changed,old);throw exn===Occur?[0,Unify,/* [] */0]:exn;}
     };
 
 var
  occur_in=
   function(env,ty0,t)
    {try
-     {occur(env,ty0,t);return 0;}
-    catch(exn){if(exn[1]=Unify){return 1;}else{throw exn;}}
+     {occur(env,ty0,t);return /* false */0;}
+    catch(exn){if(exn[1]===Unify){return /* true */1;}else{throw exn;}}
     };
 
 var
@@ -3183,11 +3488,16 @@ var
          {try
            {var
              match$2=
-              List["find"](function(param$1){return t=repr(param$1[1]);},cl);
+              List["find"](function(param$1){return t===repr(param$1[1]);},cl);
             
             return /* Some */[0,match$2[2]];
             }
-          catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {return /* None */0;}
+            else
+             {throw exn;}
+            }
           };
       
       var match$2=find_univ(t1,match$1[1]);
@@ -3203,7 +3513,7 @@ var
         
         if(match$4)
          {if(match$3)
-           {if(t2=repr(match$4[1])){return 0;}else{exit=719;}}
+           {if(t2===repr(match$4[1])){return /* () */0;}else{exit=719;}}
           else
            {exit=719;}
           }
@@ -3225,10 +3535,10 @@ var
       else
        {if(match$3){exit=719;}else{return unify_univar(t1,t2,param[2]);}}
       
-      switch(exit){case 719:throw [0,Unify,0];}
+      switch(exit){case 719:throw [0,Unify,/* [] */0];}
       }
     else
-     {throw [0,Unify,0];}
+     {throw [0,Unify,/* [] */0];}
     };
 
 var
@@ -3238,14 +3548,14 @@ var
     
     var
      occur_rec$1=
-      function(bound,ty$1)
-       {var ty$2=repr(ty$1);
+      function(bound,ty)
+       {var ty$1=repr(ty);
         
         if(Btype["TypeSet"][2](bound))
-         {ty$2[2]=Btype["pivot_level"]-ty$2[2],0;var $js=1;}
+         {ty$1[2]=Btype["pivot_level"]-ty$1[2];var $js=/* true */1;}
         else
          {try
-           {var bound$prime=Btype["TypeMap"][22](ty$2,visited[1]);
+           {var bound$prime=Btype["TypeMap"][22](ty$1,visited[1]);
             
             if
              (Btype["TypeSet"][16]
@@ -3253,28 +3563,27 @@ var
                 bound$prime))
              {visited[1]=
               Btype["TypeMap"][4]
-               (ty$2,Btype["TypeSet"][8](bound,bound$prime),visited[1]),
-              0;
-              var $js=1;
+               (ty$1,Btype["TypeSet"][8](bound,bound$prime),visited[1]);
+              var $js=/* true */1;
               }
             else
-             {var $js=0;}
+             {var $js=/* false */0;}
             }
           catch(exn)
-           {if(exn=Not_found)
-             {visited[1]=Btype["TypeMap"][4](ty$2,bound,visited[1]),0;
-              var $js=1;
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {visited[1]=Btype["TypeMap"][4](ty$1,bound,visited[1]);
+              var $js=/* true */1;
               }
             else
              {throw exn;}
             }
           }
-        if(ty$2[2]>=Btype["lowest_level"]&&$js)
-         {var match$1=ty$2[1];
+        if(ty$1[2]>=Btype["lowest_level"]&&$js)
+         {var match$1=ty$1[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -3287,7 +3596,9 @@ var
                    
                    return List["iter2"]
                            (function(t,v)
-                             {if(Types["Variance"][9](0,v)||Types["Variance"][9](1,v))
+                             {if
+                               (Types["Variance"][9](/* May_pos */0,v)||
+                                Types["Variance"][9](/* May_neg */1,v))
                                {return occur_rec$1(bound,t);}
                               else
                                {return 0;}
@@ -3296,20 +3607,24 @@ var
                             td[6]);
                    }
                  catch(exn$1)
-                  {if(exn$1=Not_found)
+                  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                     {return List["iter"](occur_rec$1(bound),tl);}
                    else
                     {throw exn$1;}
                    }
                  }
                else
-                {return 0;}
+                {return /* () */0;}
                
               case 9:
-               if(!Btype["TypeSet"][3](ty$2,bound))
+               if(!Btype["TypeSet"][3](ty$1,bound))
                 {throw [0,
                         Unify,
-                        /* :: */[0,/* tuple */[0,ty$2,Btype["newgenvar"](0,0)],0]];
+                        /* :: */[0,
+                         /* tuple */[0,
+                          ty$1,
+                          Btype["newgenvar"](/* None */0,/* () */0)],
+                         /* [] */0]];
                  }
                else
                 {return 0;}
@@ -3325,7 +3640,7 @@ var
               default:exit=711;}}
           
           switch(exit)
-           {case 711:return Btype["iter_type_expr"](occur_rec$1(bound),ty$2);}
+           {case 711:return Btype["iter_type_expr"](occur_rec$1(bound),ty$1);}
           }
         else
          {return 0;}
@@ -3344,7 +3659,7 @@ var
 var
  get_univar_family=
   function(univar_pairs,univars)
-   {if(univars=0)
+   {if(univars===/* [] */0)
      {return Btype["TypeSet"][1];}
     else
      {var
@@ -3387,14 +3702,14 @@ var
        {var t$1=repr(t);
         
         if(Btype["TypeSet"][3](t$1,visited[1]))
-         {return 0;}
+         {return /* () */0;}
         else
-         {visited[1]=Btype["TypeSet"][4](t$1,visited[1]),0;
+         {visited[1]=Btype["TypeSet"][4](t$1,visited[1]);
           var match$1=t$1[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -3406,9 +3721,11 @@ var
                   {var td=Env["find_type"](match$1[1],env);
                    
                    return List["iter2"]
-                           (function(t$2,v)
-                             {if(Types["Variance"][9](0,v)||Types["Variance"][9](1,v))
-                               {return occur$1(t$2);}
+                           (function(t,v)
+                             {if
+                               (Types["Variance"][9](/* May_pos */0,v)||
+                                Types["Variance"][9](/* May_neg */1,v))
+                               {return occur$1(t);}
                               else
                                {return 0;}
                               },
@@ -3416,14 +3733,14 @@ var
                             td[6]);
                    }
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {return List["iter"](occur$1,tl);}
                    else
                     {throw exn;}
                    }
                  }
                else
-                {return 0;}
+                {return /* () */0;}
                
               case 9:
                if(Btype["TypeSet"][3](t$1,family))
@@ -3434,10 +3751,9 @@ var
               case 10:
                if
                 (List["exists"]
-                  (function(t$2)
-                    {return Btype["TypeSet"][3](repr(t$2),family);},
+                  (function(t){return Btype["TypeSet"][3](repr(t),family);},
                    match$1[2]))
-                {return 0;}
+                {return /* () */0;}
                else
                 {return occur$1(match$1[1]);}
                
@@ -3448,8 +3764,8 @@ var
         };
     
     try
-     {occur$1(ty);return 0;}
-    catch(exn){if(exn=Occur){return 1;}else{throw exn;}}
+     {occur$1(ty);return /* false */0;}
+    catch(exn){if(exn===Occur){return /* true */1;}else{throw exn;}}
     };
 
 var
@@ -3475,31 +3791,34 @@ var
       List["exists"]
        (function(t){return Btype["TypeSet"][3](t,known_univars);},tl2$1)&&
       univars_escape(env,old_univars,tl2$1,newty(/* Tpoly */[10,t1,tl1$1])))
-     {throw [0,Unify,0];}
+     {throw [0,Unify,/* [] */0];}
     else
      {}
     
-    var cl1=List["map"](function(t){return /* tuple */[0,t,[0,0]];},tl1$1);
+    var
+     cl1=
+      List["map"](function(t){return /* tuple */[0,t,[0,/* None */0]];},tl1$1);
     
-    var cl2=List["map"](function(t){return /* tuple */[0,t,[0,0]];},tl2$1);
+    var
+     cl2=
+      List["map"](function(t){return /* tuple */[0,t,[0,/* None */0]];},tl2$1);
     
     univar_pairs[1]=
     /* :: */[0,
      /* tuple */[0,cl1,cl2],
-     /* :: */[0,/* tuple */[0,cl2,cl1],old_univars]],
-    0;
+     /* :: */[0,/* tuple */[0,cl2,cl1],old_univars]];
     try
-     {var res=f(t1,t2);univar_pairs[1]=old_univars,0;return res;}
-    catch(exn){univar_pairs[1]=old_univars,0;throw exn;}
+     {var res=f(t1,t2);univar_pairs[1]=old_univars;return res;}
+    catch(exn){univar_pairs[1]=old_univars;throw exn;}
     };
 
-var univar_pairs=[0,0];
+var univar_pairs=[0,/* [] */0];
 
 var
  has_cached_expansion=
   function(p,abbrev)
-   {if(typeof abbrev=="number")
-     {switch(abbrev){case 0:return 0;}}
+   {if(typeof abbrev==="number")
+     {switch(abbrev){case 0:return /* false */0;}}
     else
      {switch(abbrev[0])
        {case 0:
@@ -3522,43 +3841,54 @@ var
                        /* :: */[0,/* tuple */[0,repr(t2),full_expand(env,t2)],rem]];
                },
              trace,
-             0);
+             /* [] */0);
     };
 
 var
  mkvariant=
   function(fields,closed)
    {return Btype["newgenty"]
-            (/* Tvariant */[8,/* record */[0,fields,newvar(0,0),0,closed,0,0]]);
+            (/* Tvariant */[8,
+              /* record */[0,
+               fields,
+               newvar(/* None */0,/* () */0),
+               /* () */0,
+               closed,
+               /* false */0,
+               /* None */0]]);
     };
 
-var rigid_variants=[0,0];
+var rigid_variants=[0,/* false */0];
 
 var
  deep_occur=
   function(t0,ty)
    {var
      occur_rec$1=
-      function(ty$1)
-       {var ty$2=repr(ty$1);
+      function(ty)
+       {var ty$1=repr(ty);
         
-        if(ty$2[2]>=Btype["lowest_level"])
-         {if(ty$2=t0){throw Occur;}else{}
+        if(ty$1[2]>=Btype["lowest_level"])
+         {if(ty$1===t0){throw Occur;}else{}
           
-          ty$2[2]=Btype["pivot_level"]-ty$2[2],0;
-          return Btype["iter_type_expr"](occur_rec$1,ty$2);
+          ty$1[2]=Btype["pivot_level"]-ty$1[2];
+          return Btype["iter_type_expr"](occur_rec$1,ty$1);
           }
         else
          {return 0;}
         };
     
     try
-     {occur_rec$1(ty);Btype["unmark_type"](ty);return 0;}
+     {occur_rec$1(ty);Btype["unmark_type"](ty);return /* false */0;}
     catch(exn)
-     {if(exn=Occur){Btype["unmark_type"](ty);return 1;}else{throw exn;}}
+     {if(exn===Occur)
+       {Btype["unmark_type"](ty);return /* true */1;}
+      else
+       {throw exn;}
+      }
     };
 
-var newtype_level=[0,0];
+var newtype_level=[0,/* None */0];
 
 var
  get_newtype_level=
@@ -3568,13 +3898,16 @@ var
     if(match$1)
      {return match$1[1];}
     else
-     {throw [0,Assert_failure,[0,"typing/ctype.ml",1949,12]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/ctype.ml",1949,12]];
+      }
     };
 
 var
  reify=
   function(env,t)
-   {var newtype_level$1=get_newtype_level(0);
+   {var newtype_level$1=get_newtype_level(/* () */0);
     
     var
      create_fresh_constr=
@@ -3582,7 +3915,8 @@ var
        {var
          decl=
           new_declaration
-           (/* Some */[0,/* tuple */[0,newtype_level$1,newtype_level$1]],0);
+           (/* Some */[0,/* tuple */[0,newtype_level$1,newtype_level$1]],
+            /* None */0);
         
         var name$1=get_new_abstract_name(name);
         
@@ -3590,9 +3924,14 @@ var
         
         var
          t$1=
-          newty2(lev,/* Tconstr */[3,/* Pident */[0,match$1[1]],0,[0,0]]);
+          newty2
+           (lev,
+            /* Tconstr */[3,
+             /* Pident */[0,match$1[1]],
+             /* [] */0,
+             [0,/* Mnil */0]]);
         
-        env[1]=match$1[2],0;
+        env[1]=match$1[2];
         return t$1;
         };
     
@@ -3604,14 +3943,14 @@ var
        {var ty$1=repr(ty);
         
         if(Btype["TypeSet"][3](ty$1,visited[1]))
-         {return 0;}
+         {return /* () */0;}
         else
-         {visited[1]=Btype["TypeSet"][4](ty$1,visited[1]),0;
+         {visited[1]=Btype["TypeSet"][4](ty$1,visited[1]);
           var match$1=ty$1[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -3645,7 +3984,7 @@ var
                    
                    var exit$1;
                    
-                   if(typeof match$2=="number")
+                   if(typeof match$2==="number")
                     {switch(match$2){}}
                    else
                     {switch(match$2[0])
@@ -3656,14 +3995,19 @@ var
                         
                         var t$2=create_fresh_constr(m[2],name$1);
                         
-                        var row=/* record */[0,0,t$2,r[3],r[4],1,r[6]];
+                        var
+                         row=
+                          /* record */[0,/* [] */0,t$2,r[3],r[4],/* true */1,r[6]];
                         
                         Btype["link_type"](m,newty2(m[2],/* Tvariant */[8,row]));
                        default:exit$1=662;}}
                    
                    switch(exit$1)
                     {case 662:
-                      throw [0,Assert_failure,[0,"typing/ctype.ml",1987,19]];
+                      throw [0,
+                             CamlPrimitive["caml_global_data"]["Assert_failure"],
+                             [0,"typing/ctype.ml",1987,19]];
+                      
                      }
                    }
                  }
@@ -3688,12 +4032,24 @@ var
    {try
      {var decl=Env["find_type"](p,env);
       
-      return decl[7]!=0&&(decl[3]=0)&&(decl[4]=1);
+      return decl[7]!==
+             /* None */0&&
+             decl[3]===
+             /* Type_abstract */0&&
+             decl[4]===
+             /* Public */1;
       }
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* false */0;}
+      else
+       {throw exn;}
+      }
     };
 
-var non_aliasable=function(p,decl){return in_current_module(p)&&(decl[7]=0);};
+var
+ non_aliasable=
+  function(p,decl){return in_current_module(p)&&decl[7]===/* None */0;};
 
 var
  expands_to_datatype=
@@ -3704,7 +4060,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -3716,31 +4072,31 @@ var
          catch(exn)
           {var exit$1;
            
-           if(exn=Not_found)
+           if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
             {exit$1=647;}
            else
-            {if(exn=Cannot_expand){exit$1=647;}else{throw exn;}}
+            {if(exn===Cannot_expand){exit$1=647;}else{throw exn;}}
            
-           switch(exit$1){case 647:return 0;}
+           switch(exit$1){case 647:return /* false */0;}
            }
          
         default:exit=649;}}
     
-    switch(exit){case 649:return 0;}
+    switch(exit){case 649:return /* false */0;}
     };
 
 var
  mcomp=
   function(type_pairs,env,t1,t2)
-   {if(t1=t2)
-     {return 0;}
+   {if(t1===t2)
+     {return /* () */0;}
     else
      {var t1$1=repr(t1);
       
       var t2$1=repr(t2);
       
-      if(t1$1=t2$1)
-       {return 0;}
+      if(t1$1===t2$1)
+       {return /* () */0;}
       else
        {var match$1=t1$1[1];
         
@@ -3748,7 +4104,7 @@ var
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -3757,7 +4113,7 @@ var
              if(match$1[2])
               {exit=611;}
              else
-              {if(typeof match$2=="number")
+              {if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -3767,7 +4123,7 @@ var
                      {exit=610;}
                     else
                      {if(Path["same"](match$1[1],match$2[1]))
-                       {return 0;}
+                       {return /* () */0;}
                       else
                        {exit=610;}
                       }
@@ -3779,12 +4135,10 @@ var
         
         switch(exit)
          {case 611:
-           if(typeof match$2=="number")
+           if(typeof match$2==="number")
             {switch(match$2){}}
            else
-            {switch(match$2[0])
-              {case 0:"unknown block:(exit 609)";
-               default:"unknown block:(exit 610)";}}
+            {switch(match$2[0]){case 0:exit=609;default:exit=610;}}
            
           case 610:
            var t1$prime=expand_head_opt(env,t1$1);
@@ -3795,28 +4149,28 @@ var
            
            var t2$prime$1=repr(t2$prime);
            
-           if(t1$prime$1=t2$prime$1)
-            {return 0;}
+           if(t1$prime$1===t2$prime$1)
+            {return /* () */0;}
            else
             {try
               {return TypePairs[7]
                        (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1]);
                }
              catch(exn)
-              {if(exn=Not_found)
+              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {TypePairs[5]
-                  (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1],0);
+                  (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1],/* () */0);
                  var match$3=t1$prime$1[1];
                  
                  var match$4=t2$prime$1[1];
                  
                  var exit$1;
                  
-                 if(typeof match$3=="number")
+                 if(typeof match$3==="number")
                   {switch(match$3)
                     {case 0:
-                      if(typeof match$4=="number")
-                       {switch(match$4){case 0:return 0;}}
+                      if(typeof match$4==="number")
+                       {switch(match$4){case 0:return /* () */0;}}
                       else
                        {switch(match$4[0]){case 3:exit$1=601;default:exit$1=600;}}
                       
@@ -3824,19 +4178,22 @@ var
                  else
                   {switch(match$3[0])
                     {case 0:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
                          {case 0:
-                           throw [0,Assert_failure,[0,"typing/ctype.ml",2051,30]];
+                           throw [0,
+                                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                  [0,"typing/ctype.ml",2051,30]];
+                           
                           case 3:exit$1=601;
                           default:exit$1=600;}}
                       
                      case 1:
                       var l1=match$3[1];
                       
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3844,7 +4201,7 @@ var
                            var l2=match$4[1];
                            
                            if
-                            ("unknown primitive:caml_string_equal"||
+                            (CamlPrimitive["caml_string_equal"](l1,l2)||
                              !(Btype["is_optional"](l1)||Btype["is_optional"](l2)))
                             {mcomp(type_pairs,env,match$3[2],match$4[2]);
                              return mcomp(type_pairs,env,match$3[3],match$4[3]);
@@ -3856,7 +4213,7 @@ var
                           default:exit$1=600;}}
                       
                      case 2:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3870,7 +4227,7 @@ var
                       
                       var exit$2;
                       
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3883,7 +4240,7 @@ var
                       switch(exit$2){case 603:var p=p1;exit$1=599;}
                       
                      case 4:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3893,7 +4250,7 @@ var
                           default:exit$1=600;}}
                       
                      case 5:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3905,7 +4262,7 @@ var
                      case 6:exit$1=601;
                      case 7:exit$1=601;
                      case 8:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3915,7 +4272,7 @@ var
                           default:exit$1=600;}}
                       
                      case 9:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
@@ -3934,7 +4291,7 @@ var
                       if(tl1)
                        {exit$3=602;}
                       else
-                       {if(typeof match$4=="number")
+                       {if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -3950,7 +4307,7 @@ var
                       
                       switch(exit$3)
                        {case 602:
-                         if(typeof match$4=="number")
+                         if(typeof match$4==="number")
                           {switch(match$4){}}
                          else
                           {switch(match$4[0])
@@ -3970,35 +4327,40 @@ var
                         }
                       
                      case 11:
-                      if(typeof match$4=="number")
+                      if(typeof match$4==="number")
                        {switch(match$4){}}
                       else
                        {switch(match$4[0])
-                         {case 3:exit$1=601;case 11:return 0;default:exit$1=600;}}
+                         {case 3:exit$1=601;
+                          case 11:return /* () */0;
+                          default:exit$1=600;}}
                       
                      }}
                  
                  switch(exit$1)
                   {case 601:
-                    if(typeof match$4=="number")
+                    if(typeof match$4==="number")
                      {switch(match$4){}}
                     else
                      {switch(match$4[0])
-                       {case 3:"unknown block:(exit 599 (field 0 match/4804))";
-                        default:"unknown block:(exit 600)";}}
+                       {case 3:var p=match$4[1];exit$1=599;default:exit$1=600;}}
                     
-                   case 600:throw [0,Unify,0];
+                   case 600:throw [0,Unify,/* [] */0];
                    case 599:
                     try
                      {var decl=Env["find_type"](p,env);
                       
                       if(non_aliasable(p,decl)||is_datatype(decl))
-                       {throw [0,Unify,0];}
+                       {throw [0,Unify,/* [] */0];}
                       else
                        {return 0;}
                       }
                     catch(exn$1)
-                     {if(exn$1=Not_found){return 0;}else{throw exn$1;}}
+                     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                       {return /* () */0;}
+                      else
+                       {throw exn$1;}
+                      }
                     
                    }
                  }
@@ -4007,7 +4369,7 @@ var
                }
              }
            
-          case 609:return 0;
+          case 609:return /* () */0;
           }
         }
       }
@@ -4016,7 +4378,10 @@ var
 var
  mcomp_list=
   function(type_pairs,env,tl1,tl2)
-   {if(List["length"](tl1)!=List["length"](tl2)){throw [0,Unify,0];}else{}
+   {if(List["length"](tl1)!==List["length"](tl2))
+     {throw [0,Unify,/* [] */0];}
+    else
+     {}
     
     return List["iter2"](mcomp(type_pairs,env),tl1,tl2);
     };
@@ -4025,7 +4390,10 @@ var
  mcomp_fields=
   function(type_pairs,env,ty1,ty2)
    {if(!(concrete_object(ty1)&&concrete_object(ty2)))
-     {throw [0,Assert_failure,[0,"typing/ctype.ml",2096,59]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/ctype.ml",2096,59]];
+      }
     else
      {}
     
@@ -4037,13 +4405,15 @@ var
     
     mcomp(type_pairs,env,match$2[2],match$1[2]);
     if
-     (match$3[2]!=
-      0&&
-      (object_row(ty1)[1]=0)||
-      match$3[3]!=
-      0&&
-      (object_row(ty2)[1]=0))
-     {throw [0,Unify,0];}
+     (match$3[2]!==
+      /* [] */0&&
+      object_row(ty1)[1]===
+      /* Tnil */0||
+      match$3[3]!==
+      /* [] */0&&
+      object_row(ty2)[1]===
+      /* Tnil */0)
+     {throw [0,Unify,/* [] */0];}
     else
      {}
     
@@ -4064,20 +4434,21 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
-     {if(k1$1!=0)
+    if(typeof k1$1==="number")
+     {if(k1$1!==0)
        {exit=618;}
       else
-       {if("unknown primitive:isint")
-         {if(k2$1!=0){exit=618;}else{exit=617;}}
+       {if(typeof k2$1==="number")
+         {if(k2$1!==0){exit=618;}else{exit=617;}}
         else
          {exit=618;}
         }
       }
     else
-     {if("unknown primitive:isint"){exit=618;}else{exit=617;}}
+     {if(typeof k2$1==="number"){exit=618;}else{exit=617;}}
     
-    switch(exit){case 618:throw [0,Unify,0];case 617:return 0;}
+    switch(exit)
+     {case 618:throw [0,Unify,/* [] */0];case 617:return /* () */0;}
     };
 
 var
@@ -4096,12 +4467,12 @@ var
         
         var exit;
         
-        if(typeof match$2=="number")
+        if(typeof match$2==="number")
          {switch(match$2){case 0:exit=630;}}
         else
-         {switch(match$2[0]){case 0:return 1;case 1:exit=630;}}
+         {switch(match$2[0]){case 0:return /* true */1;case 1:exit=630;}}
         
-        switch(exit){case 630:return 0;}
+        switch(exit){case 630:return /* false */0;}
         };
     
     if
@@ -4109,7 +4480,7 @@ var
       List["exists"](cannot_erase,match$1[2])||
       row2$1[4]&&
       List["exists"](cannot_erase,match$1[1]))
-     {throw [0,Unify,0];}
+     {throw [0,Unify,/* [] */0];}
     else
      {}
     
@@ -4121,7 +4492,7 @@ var
                
                var exit;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){case 0:exit=625;}}
                else
                 {switch(match$2[0])
@@ -4131,7 +4502,7 @@ var
                     if(match$4)
                      {var t1=match$4[1];
                       
-                      if(typeof match$3=="number")
+                      if(typeof match$3==="number")
                        {switch(match$3){case 0:exit=621;}}
                       else
                        {switch(match$3[0])
@@ -4144,7 +4515,7 @@ var
                             {exit=621;}
                            
                           case 1:
-                           if(match$3[1]!=0)
+                           if(match$3[1]!==0)
                             {exit=621;}
                            else
                             {return List["iter"](mcomp(type_pairs,env,t1),match$3[2]);}
@@ -4152,7 +4523,7 @@ var
                           }}
                       }
                     else
-                     {if(typeof match$3=="number")
+                     {if(typeof match$3==="number")
                        {switch(match$3){case 0:exit=621;}}
                       else
                        {switch(match$3[0])
@@ -4164,10 +4535,10 @@ var
                    case 1:
                     var exit$1;
                     
-                    if(match$2[1]!=0)
+                    if(match$2[1]!==0)
                      {exit$1=629;}
                     else
-                     {if(typeof match$3=="number")
+                     {if(typeof match$3==="number")
                        {switch(match$3){case 0:exit$1=629;}}
                       else
                        {switch(match$3[0])
@@ -4192,50 +4563,36 @@ var
                
                switch(exit)
                 {case 625:
-                  if(typeof match$3=="number")
-                   {switch(match$3){case 0:"unknown block:(exit 622)";}}
+                  if(typeof match$3==="number")
+                   {switch(match$3){case 0:exit=622;}}
                   else
                    {switch(match$3[0])
-                     {case 0:
-                       if(match$3[1])
-                        {"unknown block:(exit 624)";}
-                       else
-                        {"unknown block:(exit 621)";}
-                       
-                      case 1:"unknown block:(exit 622)";
+                     {case 0:if(match$3[1]){exit=624;}else{exit=621;}
+                      case 1:exit=622;
                       }}
                   
                  case 624:
                   var exit$2;
                   
-                  if("unknown primitive:isint")
+                  if(typeof match$2==="number")
                    {exit$2=623;}
                   else
-                   {if(match$2[1]!=0)
-                     {exit$2=623;}
-                    else
-                     {"unknown block:(exit 622)";}
-                    }
+                   {if(match$2[1]!==0){exit$2=623;}else{exit=622;}}
                   
                   switch(exit$2)
                    {case 623:
-                     if(typeof match$3=="number")
-                      {switch(match$3){case 0:"unknown block:(exit 622)";}}
+                     if(typeof match$3==="number")
+                      {switch(match$3){case 0:exit=622;}}
                      else
                       {switch(match$3[0])
-                        {case 0:
-                          if(match$3[1])
-                           {"unknown block:(exit 621)";}
-                          else
-                           {"unknown block:(exit 622)";}
-                          
-                         case 1:"unknown block:(exit 622)";
+                        {case 0:if(match$3[1]){exit=621;}else{exit=622;}
+                         case 1:exit=622;
                          }}
                      
                     }
                   
-                 case 622:return 0;
-                 case 621:throw [0,Unify,0];
+                 case 622:return /* () */0;
+                 case 621:throw [0,Unify,/* [] */0];
                  }
                },
              match$1[3]);
@@ -4253,11 +4610,12 @@ var
        {try
          {var
            inj=
-            List["map"](Types["Variance"][9](3),Env["find_type"](p1,env)[6]);
+            List["map"]
+             (Types["Variance"][9](/* Inj */3),Env["find_type"](p1,env)[6]);
           }
         catch(exn)
-         {if(exn=Not_found)
-           {var inj=List["map"](function(param){return 0;},tl1);}
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {var inj=List["map"](function(param){return /* false */0;},tl1);}
           else
            {throw exn;}
           }
@@ -4274,7 +4632,7 @@ var
         }
       else
        {if(non_aliasable(p1,decl)&&non_aliasable(p2,decl$prime))
-         {throw [0,Unify,0];}
+         {throw [0,Unify,/* [] */0];}
         else
          {var match$1=decl[3];
           
@@ -4282,24 +4640,28 @@ var
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1)
              {case 0:
                var exit$1;
                
-               if("unknown primitive:isint")
-                {if(match$2!=0){exit$1=638;}else{return 0;}}
+               if(typeof match$2==="number")
+                {if(match$2!==0){exit$1=638;}else{return /* () */0;}}
                else
                 {exit$1=638;}
                
                switch(exit$1)
                 {case 638:
-                  if(!non_aliasable(p1,decl)){return 0;}else{exit=637;}
+                  if(!non_aliasable(p1,decl))
+                   {return /* () */0;}
+                  else
+                   {exit=637;}
+                  
                  }
                
               case 1:
-               if("unknown primitive:isint")
-                {if(match$2!=0)
+               if(typeof match$2==="number")
+                {if(match$2!==0)
                   {return mcomp_list(type_pairs,env,tl1,tl2);}
                  else
                   {exit=637;}
@@ -4311,12 +4673,12 @@ var
           else
            {switch(match$1[0])
              {case 0:
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){case 0:exit=637;case 1:exit=636;}}
                else
                 {switch(match$2[0])
                   {case 0:
-                    if("unknown primitive:caml_equal")
+                    if(CamlPrimitive["caml_equal"](match$1[2],match$2[2]))
                      {mcomp_list(type_pairs,env,tl1,tl2);
                       return mcomp_record_description
                               (type_pairs,env,match$1[1],match$2[1]);
@@ -4328,7 +4690,7 @@ var
                    }}
                
               case 1:
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){case 0:exit=637;case 1:exit=636;}}
                else
                 {switch(match$2[0])
@@ -4344,25 +4706,30 @@ var
           
           switch(exit)
            {case 637:
-             if("unknown primitive:isint")
-              {if(match$2!=0)
-                {"unknown block:(exit 636)";}
+             if(typeof match$2==="number")
+              {if(match$2!==0)
+                {exit=636;}
                else
                 {if(!non_aliasable(p2,decl$prime))
-                  {return 0;}
+                  {return /* () */0;}
                  else
-                  {"unknown block:(exit 636)";}
+                  {exit=636;}
                  }
                }
              else
-              {"unknown block:(exit 636)";}
+              {exit=636;}
              
-            case 636:throw [0,Unify,0];
+            case 636:throw [0,Unify,/* [] */0];
             }
           }
         }
       }
-    catch(exn$1){if(exn$1=Not_found){return 0;}else{throw exn$1;}}
+    catch(exn$1)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* () */0;}
+      else
+       {throw exn$1;}
+      }
     };
 
 var
@@ -4377,9 +4744,9 @@ var
        {exit=643;}
       }
     else
-     {if(t$prime){exit=643;}else{return 0;}}
+     {if(t$prime){exit=643;}else{return /* () */0;}}
     
-    switch(exit){case 643:throw [0,Unify,0];}
+    switch(exit){case 643:throw [0,Unify,/* [] */0];}
     };
 
 var
@@ -4398,18 +4765,20 @@ var
             
             mcomp_type_option(type_pairs,env,c1[3],c2[3]);
             mcomp_list(type_pairs,env,c1[2],c2[2]);
-            if("unknown primitive:caml_string_equal")
+            if
+             (CamlPrimitive["caml_string_equal"]
+               (Ident["name"](c1[1]),Ident["name"](c2[1])))
              {return iter(x[2],y[2]);}
             else
-             {throw [0,Unify,0];}
+             {throw [0,Unify,/* [] */0];}
             }
           else
            {exit=644;}
           }
         else
-         {if(y){exit=644;}else{return 0;}}
+         {if(y){exit=644;}else{return /* () */0;}}
         
-        switch(exit){case 644:throw [0,Unify,0];}
+        switch(exit){case 644:throw [0,Unify,/* [] */0];}
         };
     
     return iter(xs,ys);
@@ -4431,19 +4800,20 @@ var
             
             mcomp(type_pairs,env,l1[3],l2[3]);
             if
-             ("unknown primitive:caml_string_equal"&&
-              "unknown primitive:caml_equal")
+             (CamlPrimitive["caml_string_equal"]
+               (Ident["name"](l1[1]),Ident["name"](l2[1]))&&
+              CamlPrimitive["caml_equal"](l1[2],l2[2]))
              {return iter(x[2],y[2]);}
             else
-             {throw [0,Unify,0];}
+             {throw [0,Unify,/* [] */0];}
             }
           else
            {exit=645;}
           }
         else
-         {if(y){exit=645;}else{return 0;}}
+         {if(y){exit=645;}else{return /* () */0;}}
         
-        switch(exit){case 645:throw [0,Unify,0];}
+        switch(exit){case 645:throw [0,Unify,/* [] */0];}
         };
     
     return iter;
@@ -4458,14 +4828,14 @@ var
     
     var
      find=
-      function(ty$1)
-       {var ty$2=repr(ty$1);
+      function(ty)
+       {var ty$1=repr(ty);
         
-        if(ty$2[2]>=Btype["lowest_level"])
-         {if(ty$2[2]<lowest[1]){lowest[1]=ty$2[2],0}else{}
+        if(ty$1[2]>=Btype["lowest_level"])
+         {if(ty$1[2]<lowest[1]){lowest[1]=ty$1[2]}else{}
           
-          ty$2[2]=Btype["pivot_level"]-ty$2[2],0;
-          return Btype["iter_type_expr"](find,ty$2);
+          ty$1[2]=Btype["pivot_level"]-ty$1[2];
+          return Btype["iter_type_expr"](find,ty$1);
           }
         else
          {return 0;}
@@ -4485,11 +4855,17 @@ var
       if(match$1)
        {return match$1[1];}
       else
-       {throw [0,Assert_failure,[0,"typing/ctype.ml",2227,12]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"typing/ctype.ml",2227,12]];
+        }
       }
     catch(exn)
-     {if(exn=Not_found)
-       {throw [0,Assert_failure,[0,"typing/ctype.ml",2228,20]];}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"typing/ctype.ml",2228,20]];
+        }
       else
        {throw exn;}
       }
@@ -4506,10 +4882,10 @@ var
      decl=
       new_declaration(/* Some */[0,source_lev],/* Some */[0,destination$1]);
     
-    var newtype_level$1=get_newtype_level(0);
+    var newtype_level$1=get_newtype_level(/* () */0);
     
-    env[1]=Env["add_local_constraint"](source,decl,newtype_level$1,env[1]),0;
-    return Btype["cleanup_abbrev"](0);
+    env[1]=Env["add_local_constraint"](source,decl,newtype_level$1,env[1]);
+    return Btype["cleanup_abbrev"](/* () */0);
     };
 
 var unify_eq_set=TypePairs[1](11);
@@ -4525,7 +4901,8 @@ var
 
 var
  add_type_equality=
-  function(t1,t2){return TypePairs[5](unify_eq_set,order_type_pair(t1,t2),0);};
+  function(t1,t2)
+   {return TypePairs[5](unify_eq_set,order_type_pair(t1,t2),/* () */0);};
 
 var
  eq_package_path=
@@ -4539,18 +4916,24 @@ var
  nondep_type$prime=
   [0,
    function(param,param$1,param$2)
-    {throw [0,Assert_failure,[0,"typing/ctype.ml",2250,37]];}];
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/ctype.ml",2250,37]];
+     }];
 
 var
  package_subtype=
   [0,
    function(param,param$1,param$2,param$3,param$4,param$5,param$6)
-    {throw [0,Assert_failure,[0,"typing/ctype.ml",2251,48]];}];
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/ctype.ml",2251,48]];
+     }];
 
 var
  concat_longident=
   function(lid1,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return /* Ldot */[1,lid1,param[1]];
       case 1:return /* Ldot */[1,concat_longident(lid1,param[1]),param[2]];
       case 2:return /* Lapply */[2,concat_longident(lid1,param[1]),param[2]];
@@ -4562,15 +4945,15 @@ var
   function(env,level,id,ty)
    {var ty$1=nondep_type$prime[1](env,id,ty);
     
-    if(level=Btype["generic_level"])
+    if(level===Btype["generic_level"])
      {return duplicate_type(ty$1);}
     else
      {var old=current_level[1];
       
-      current_level[1]=level,0;
-      var ty$2=instance(0,env,ty$1);
+      current_level[1]=level;
+      var ty$2=instance(/* None */0,env,ty$1);
       
-      current_level[1]=old,0;
+      current_level[1]=old;
       return ty$2;
       }
     };
@@ -4581,19 +4964,19 @@ var
    {if($staropt$star)
      {var allow_absent=$staropt$star[1];}
     else
-     {var allow_absent=0;}
+     {var allow_absent=/* false */0;}
     
     var id2=Ident["create"]("Pkg");
     
-    var env$prime=Env["add_module"](0,id2,mty2,env);
+    var env$prime=Env["add_module"](/* None */0,id2,mty2,env);
     
     var
      complete=
-      function(nl1$1,ntl2)
-       {if(nl1$1)
-         {var nl=nl1$1[2];
+      function(nl1,ntl2)
+       {if(nl1)
+         {var nl=nl1[2];
           
-          var n=nl1$1[1];
+          var n=nl1[1];
           
           var exit;
           
@@ -4602,10 +4985,10 @@ var
             
             var n2=nt2[1];
             
-            if("unknown primitive:caml_greaterequal")
+            if(CamlPrimitive["caml_greaterequal"](n,n2))
              {return /* :: */[0,
                       nt2,
-                      complete("unknown primitive:caml_equal"?nl:nl1$1,ntl2[2])];
+                      complete(CamlPrimitive["caml_equal"](n,n2)?nl:nl1,ntl2[2])];
               }
             else
              {exit=571;}
@@ -4618,22 +5001,23 @@ var
              try
               {var
                 match$1=
-                 Env["lookup_type"](concat_longident([0,"Pkg"],n),env$prime);
+                 Env["lookup_type"]
+                  (concat_longident([/* Lident */0,"Pkg"],n),env$prime);
                
                var decl=match$1[2];
                
                var exit$1;
                
-               if(decl[2]!=0)
+               if(decl[2]!==0)
                 {exit$1=569;}
                else
                 {var match$2=decl[3];
                  
-                 if("unknown primitive:isint")
-                  {if(match$2!=0)
+                 if(typeof match$2==="number")
+                  {if(match$2!==0)
                     {exit$1=569;}
                    else
-                    {if(decl[4]!=0)
+                    {if(decl[4]!==0)
                       {var match$3=decl[5];
                        
                        if(match$3)
@@ -4663,14 +5047,18 @@ var
              catch(exn)
               {var exit$2;
                
-               if(exn=Not_found)
+               if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {if(allow_absent){return complete(nl,ntl2);}else{exit$2=568;}}
                else
                 {exit$2=568;}
                
                switch(exit$2)
                 {case 568:
-                  if(exn=Pervasives["Exit"]){throw Not_found;}else{throw exn;}
+                  if(exn===Pervasives["Exit"])
+                   {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+                  else
+                   {throw exn;}
+                  
                  }
                }
              
@@ -4686,9 +5074,13 @@ var
 var
  unify_package=
   function(env,unify_list,lv1,p1,n1,tl1,lv2,p2,n2,tl2)
-   {var ntl2=complete_type_list(0,env,n1,lv2,/* Mty_ident */[0,p2],n2,tl2);
+   {var
+     ntl2=
+      complete_type_list(/* None */0,env,n1,lv2,/* Mty_ident */[0,p2],n2,tl2);
     
-    var ntl1=complete_type_list(0,env,n2,lv2,/* Mty_ident */[0,p1],n1,tl1);
+    var
+     ntl1=
+      complete_type_list(/* None */0,env,n2,lv2,/* Mty_ident */[0,p1],n1,tl1);
     
     unify_list
      (List["map"](function(prim){return prim[2];},ntl1),
@@ -4697,9 +5089,9 @@ var
      (eq_package_path(env,p1,p2)||
       package_subtype[1](env,p1,n1,tl1,p2,n2,tl2)&&
       package_subtype[1](env,p2,n2,tl2,p1,n1,tl1))
-     {return 0;}
+     {return /* () */0;}
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -4707,47 +5099,54 @@ var
   function(env,t1,t2)
    {var match$1=umode[1];
     
-    if(match$1!=0)
+    if(match$1!==0)
      {try
-       {TypePairs[7](unify_eq_set,order_type_pair(t1,t2));var $js=1;}
-      catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
+       {TypePairs[7](unify_eq_set,order_type_pair(t1,t2));
+        var $js=/* true */1;
+        }
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {var $js=/* false */0;}
+        else
+         {throw exn;}
+        }
       }
     else
-     {var $js=0;}
-    return (t1=t2)||$js;
+     {var $js=/* false */0;}
+    return t1===t2||$js;
     };
 
 var
  unify=
   function(env,t1,t2)
-   {if(t1=t2)
-     {return 0;}
+   {if(t1===t2)
+     {return /* () */0;}
     else
      {var t1$1=repr(t1);
       
       var t2$1=repr(t2);
       
       if(unify_eq(env[1],t1$1,t2$1))
-       {return 0;}
+       {return /* () */0;}
       else
        {var reset_tracing=check_trace_gadt_instances(env[1]);
         
         try
-         {type_changed[1]=1,0;
+         {type_changed[1]=/* true */1;
           var match$1=t1$1[1];
           
           var match$2=t2$1[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
              {case 0:
                var exit$1;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -4770,7 +5169,7 @@ var
               case 3:
                var p1=match$1[1];
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -4801,13 +5200,16 @@ var
                             is_newtype(env[1],p1)&&
                             is_newtype(env[1],p2))
                            {try
-                             {if("unknown primitive:caml_lessthan")
+                             {if
+                               (CamlPrimitive["caml_lessthan"]
+                                 (find_newtype_level(env[1],p1),
+                                  find_newtype_level(env[1],p2)))
                                {unify(env,t1$1,try_expand_once(env[1],t2$1))}
                               else
                                {unify(env,try_expand_once(env[1],t1$1),t2$1)}
                               }
                             catch(exn)
-                             {if(exn=Cannot_expand)
+                             {if(exn===Cannot_expand)
                                {unify2(env,t1$1,t2$1)}
                               else
                                {throw exn;}
@@ -4822,7 +5224,7 @@ var
                    default:exit=447;}}
                
               case 9:
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -4837,7 +5239,7 @@ var
           
           switch(exit)
            {case 448:
-             if(typeof match$2=="number")
+             if(typeof match$2==="number")
               {switch(match$2){}}
              else
               {switch(match$2[0])
@@ -4846,7 +5248,7 @@ var
                   occur_univar(env[1],t1$1),
                   Btype["link_type"](t2$1,t1$1),
                   update_level(env[1],t2$1[2],t1$1);
-                 default:"unknown block:(exit 447)";}}
+                 default:exit=447;}}
              
             case 447:unify2(env,t1$1,t2$1)
             }
@@ -4854,7 +5256,7 @@ var
           return reset_trace_gadt_instances(reset_tracing);
           }
         catch(exn$1)
-         {if(exn$1[1]=Unify)
+         {if(exn$1[1]===Unify)
            {reset_trace_gadt_instances(reset_tracing);
             throw [0,Unify,/* :: */[0,/* tuple */[0,t1$1,t2$1],exn$1[2]]];
             }
@@ -4894,7 +5296,7 @@ var
     update_level(env[1],lv,t2);
     update_level(env[1],lv,t1);
     if(unify_eq(env[1],t1$prime,t2$prime))
-     {return 0;}
+     {return /* () */0;}
     else
      {var t1$1=repr(t1);
       
@@ -4929,7 +5331,7 @@ var
         var exit;
         
         var $js;
-        if(typeof match$2=="number")
+        if(typeof match$2==="number")
          {switch(match$2){}}
         else
          {switch(match$2[0])
@@ -4943,7 +5345,7 @@ var
         var exit$1;
         
         var $js$2;
-        if(typeof match$3=="number")
+        if(typeof match$3==="number")
          {switch(match$3){}}
         else
          {switch(match$3[0])
@@ -4967,7 +5369,7 @@ var
        {try
          {return unify3(env,t2$2,t2$prime,t1$2,t1$prime);}
         catch(exn)
-         {if(exn[1]=Unify)
+         {if(exn[1]===Unify)
            {throw [0,
                    Unify,
                    List["map"]
@@ -4988,11 +5390,11 @@ var
     
     var d2=t2$prime[1];
     
-    var create_recursion=t2!=t2$prime&&deep_occur(t1$prime,t2);
+    var create_recursion=t2!==t2$prime&&deep_occur(t1$prime,t2);
     
     var exit;
     
-    if(typeof d1=="number")
+    if(typeof d1==="number")
      {switch(d1){}}
     else
      {switch(d1[0])
@@ -5002,7 +5404,7 @@ var
          return Btype["link_type"](t1$prime,t2);
          
         case 5:
-         if(typeof d2=="number")
+         if(typeof d2==="number")
           {switch(d2){}}
          else
           {switch(d2[0])
@@ -5011,7 +5413,7 @@ var
              default:exit=495;}}
          
         case 9:
-         if(typeof d2=="number")
+         if(typeof d2==="number")
           {switch(d2){}}
          else
           {switch(d2[0])
@@ -5026,7 +5428,7 @@ var
     
     switch(exit)
      {case 496:
-       if(typeof d2=="number")
+       if(typeof d2==="number")
         {switch(d2){}}
        else
         {switch(d2[0])
@@ -5035,12 +5437,12 @@ var
             occur_univar(env[1],t1);
             return Btype["link_type"](t2$prime,t1);
             
-           default:"unknown block:(exit 495)";}}
+           default:exit=495;}}
        
       case 495:
        var match$1=umode[1];
        
-       if(match$1!=0)
+       if(match$1!==0)
         {add_type_equality(t1$prime,t2$prime)}
        else
         {occur(env[1],t1$prime,t2$prime),Btype["link_type"](t1$prime,t2)}
@@ -5048,10 +5450,10 @@ var
        try
         {var exit$1;
          
-         if(typeof d1=="number")
+         if(typeof d1==="number")
           {switch(d1)
             {case 0:
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){case 0:}}
               else
                {switch(d2[0])
@@ -5065,7 +5467,7 @@ var
             {case 1:
               var l1=d1[1];
               
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){}}
               else
                {switch(d2[0])
@@ -5073,7 +5475,7 @@ var
                    var l2=d2[1];
                    
                    if
-                    ("unknown primitive:caml_string_equal"||
+                    (CamlPrimitive["caml_string_equal"](l1,l2)||
                      Clflags["classic"][1]&&
                      !(Btype["is_optional"](l1)||Btype["is_optional"](l2)))
                     {unify(env,d1[2],d2[2]);
@@ -5082,8 +5484,8 @@ var
                      
                      var match$3=Btype["commu_repr"](d2[4]);
                      
-                     if("unknown primitive:isint")
-                      {if("unknown primitive:isint")
+                     if(typeof match$2==="number")
+                      {if(typeof match$3==="number")
                         {}
                        else
                         {Btype["set_commu"](match$3[1],match$2)}
@@ -5098,7 +5500,7 @@ var
                   default:exit$1=486;}}
               
              case 2:
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){}}
               else
                {switch(d2[0])
@@ -5111,7 +5513,7 @@ var
               
               var exit$2;
               
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){}}
               else
                {switch(d2[0])
@@ -5121,29 +5523,35 @@ var
                    var tl1=d1[2];
                    
                    if(Path["same"](p1,d2[1]))
-                    {if((umode[1]=0)||!generate_equations[1])
+                    {if(umode[1]===/* Expression */0||!generate_equations[1])
                       {unify_list(env,tl1,tl2)}
                      else
                       {if(assume_injective[1])
                         {set_mode_pattern
-                          (1,0,function(param){return unify_list(env,tl1,tl2);})}
+                          (/* true */1,
+                           /* false */0,
+                           function(param){return unify_list(env,tl1,tl2);})}
                        else
                         {if
                           (in_current_module(p1)||
                            List["exists"]
                             (expands_to_datatype(env[1]),
-                             /* :: */[0,t1$prime,/* :: */[0,t1,/* :: */[0,t2,0]]]))
+                             /* :: */[0,t1$prime,/* :: */[0,t1,/* :: */[0,t2,/* [] */0]]]))
                           {unify_list(env,tl1,tl2)}
                          else
                           {try
                             {var
                               inj=
                                List["map"]
-                                (Types["Variance"][9](3),Env["find_type"](p1,env[1])[6]);
+                                (Types["Variance"][9](/* Inj */3),
+                                 Env["find_type"](p1,env[1])[6]);
                              }
                            catch(exn)
-                            {if(exn=Not_found)
-                              {var inj=List["map"](function(param){return 0;},tl1);}
+                            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                              {var
+                                inj=
+                                 List["map"](function(param){return /* false */0;},tl1);
+                               }
                              else
                               {throw exn;}
                              }
@@ -5158,15 +5566,15 @@ var
                                 {return unify(env,t1$1,t2$1);}
                                else
                                 {return set_mode_pattern
-                                         (0,
-                                          0,
+                                         (/* false */0,
+                                          /* false */0,
                                           function(param$1)
-                                           {var snap=Btype["snapshot"](0);
+                                           {var snap=Btype["snapshot"](/* () */0);
                                             
                                             try
                                              {return unify(env,t1$1,t2$1);}
                                             catch(exn$1)
-                                             {if(exn$1[1]=Unify)
+                                             {if(exn$1[1]===Unify)
                                                {Btype["backtrack"](snap);
                                                 reify(env,t1$1);
                                                 return reify(env,t2$1);
@@ -5189,7 +5597,7 @@ var
               
               switch(exit$2)
                {case 491:
-                 switch(p1)
+                 switch(p1[0])
                   {case 0:
                     if(d1[2])
                      {exit$1=490;}
@@ -5198,14 +5606,14 @@ var
                       
                       var exit$3;
                       
-                      if(typeof d2=="number")
+                      if(typeof d2==="number")
                        {switch(d2){}}
                       else
                        {switch(d2[0])
                          {case 3:
                            var path$prime=d2[1];
                            
-                           switch(path$prime)
+                           switch(path$prime[0])
                             {case 0:
                               if(d2[2])
                                {exit$3=492;}
@@ -5214,7 +5622,10 @@ var
                                  (is_newtype(env[1],p1)&&
                                   is_newtype(env[1],path$prime)&&
                                   generate_equations[1])
-                                 {if("unknown primitive:caml_greaterthan")
+                                 {if
+                                   (CamlPrimitive["caml_greaterthan"]
+                                     (find_newtype_level(env[1],p1),
+                                      find_newtype_level(env[1],path$prime)))
                                    {var match$4=/* tuple */[0,p,t2$prime];}
                                   else
                                    {var match$4=/* tuple */[0,path$prime[1],t1$prime];}
@@ -5247,7 +5658,7 @@ var
                 }
               
              case 4:
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){}}
               else
                {switch(d2[0])
@@ -5258,7 +5669,7 @@ var
                    
                    var exit$4;
                    
-                   if(typeof match$5=="number")
+                   if(typeof match$5==="number")
                     {switch(match$5){}}
                    else
                     {switch(match$5[0])
@@ -5278,14 +5689,16 @@ var
                             var exit$6;
                             
                             var $js;
-                            if(typeof match$8=="number")
+                            if(typeof match$8==="number")
                              {switch(match$8){case 0:exit$6=477;}}
                             else
                              {switch(match$8[0])
-                               {case 0:exit$6=477;case 9:exit$6=477;default:$js=0;}}
+                               {case 0:exit$6=477;
+                                case 9:exit$6=477;
+                                default:$js=/* false */0;}}
                             
                             var $js$1;
-                            switch(exit$6){case 477:$js$1=1;}
+                            switch(exit$6){case 477:$js$1=/* true */1;}
                             if($js$1){}else{exit$5=481;}
                             }
                           else
@@ -5303,7 +5716,7 @@ var
                   default:exit$1=486;}}
               
              case 5:
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2)
                  {case 0:var f=d1[1];var kind=d1[2];var rem=d1[4];exit$1=488;}}
               else
@@ -5312,7 +5725,7 @@ var
              case 8:
               var row1=d1[1];
               
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){}}
               else
                {switch(d2[0])
@@ -5320,15 +5733,15 @@ var
                   case 8:
                    var row2=d2[1];
                    
-                   if(umode[1]=0)
+                   if(umode[1]===/* Expression */0)
                     {unify_row(env,row1,row2)}
                    else
-                    {var snap=Btype["snapshot"](0);
+                    {var snap=Btype["snapshot"](/* () */0);
                      
                      try
                       {unify_row(env,row1,row2)}
                      catch(exn$1)
-                      {if(exn$1[1]=Unify)
+                      {if(exn$1[1]===Unify)
                         {Btype["backtrack"](snap);
                          reify(env,t1$prime);
                          reify(env,t2$prime);
@@ -5354,7 +5767,7 @@ var
               if(tl1$1)
                {exit$7=493;}
               else
-               {if(typeof d2=="number")
+               {if(typeof d2==="number")
                  {switch(d2){}}
                 else
                  {switch(d2[0])
@@ -5365,7 +5778,7 @@ var
               
               switch(exit$7)
                {case 493:
-                 if(typeof d2=="number")
+                 if(typeof d2==="number")
                   {switch(d2){}}
                  else
                   {switch(d2[0])
@@ -5380,7 +5793,7 @@ var
              case 11:
               var tl1$2=d1[3];
               
-              if(typeof d2=="number")
+              if(typeof d2==="number")
                {switch(d2){}}
               else
                {switch(d2[0])
@@ -5401,8 +5814,11 @@ var
                        d2[2],
                        tl2$1)}
                    catch(exn$2)
-                    {if(exn$2=Not_found)
-                      {if(umode[1]=0){throw [0,Unify,0];}else{}
+                    {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
+                      {if(umode[1]===/* Expression */0)
+                        {throw [0,Unify,/* [] */0];}
+                       else
+                        {}
                        
                        List["iter"](reify(env),Pervasives["@"](tl1$2,tl2$1))}
                      else
@@ -5415,7 +5831,7 @@ var
          
          switch(exit$1)
           {case 490:
-            if(typeof d2=="number")
+            if(typeof d2==="number")
              {switch(d2){}}
             else
              {switch(d2[0])
@@ -5424,7 +5840,7 @@ var
                  
                  var exit$8;
                  
-                 switch(path)
+                 switch(path[0])
                   {case 0:
                     if(d2[2])
                      {exit$8=494;}
@@ -5439,20 +5855,18 @@ var
                    case 2:exit$8=494;
                    }
                  
-                 switch(exit$8){case 494:"unknown block:(exit 487)";}
+                 switch(exit$8){case 494:exit$1=487;}
                  
-                default:"unknown block:(exit 489)";}}
+                default:exit$1=489;}}
             
            case 489:
-            if(typeof d1=="number")
+            if(typeof d1==="number")
              {switch(d1){}}
             else
-             {switch(d1[0])
-               {case 3:"unknown block:(exit 487)";
-                default:"unknown block:(exit 486)";}}
+             {switch(d1[0]){case 3:exit$1=487;default:exit$1=486;}}
             
            case 487:
-            if(umode[1]=1)
+            if(umode[1]===/* Pattern */1)
              {reify(env,t1$prime);
               reify(env,t2$prime);
               if(generate_equations[1])
@@ -5461,30 +5875,31 @@ var
                {}
               }
             else
-             {"unknown block:(exit 486)";}
+             {exit$1=486;}
             
            case 488:
             var match$9=Btype["field_kind_repr"](kind);
             
             var exit$9;
             
-            if("unknown primitive:isint")
+            if(typeof match$9==="number")
              {exit$9=484;}
             else
-             {if("unknown primitive:caml_string_notequal")
-               {Btype["set_kind"](match$9[1],1);
-                if(d2=0)
+             {if
+               (CamlPrimitive["caml_string_notequal"](f,Btype["dummy_method"]))
+               {Btype["set_kind"](match$9[1],/* Fabsent */1);
+                if(d2===/* Tnil */0)
                  {unify(env,rem,t2$prime)}
                 else
-                 {unify(env,newty2(rem[2],0),rem)}
+                 {unify(env,newty2(rem[2],/* Tnil */0),rem)}
                 }
               else
                {exit$9=484;}
               }
             
-            switch(exit$9){case 484:throw [0,Unify,0];}
+            switch(exit$9){case 484:throw [0,Unify,/* [] */0];}
             
-           case 486:throw [0,Unify,0];
+           case 486:throw [0,Unify,/* [] */0];
            }
          
          if(create_recursion)
@@ -5492,7 +5907,7 @@ var
            
            var exit$10;
            
-           if(typeof match$10=="number")
+           if(typeof match$10==="number")
             {switch(match$10){}}
            else
             {switch(match$10[0])
@@ -5507,14 +5922,14 @@ var
                 
                default:exit$10=469;}}
            
-           switch(exit$10){case 469:return 0;}
+           switch(exit$10){case 469:return /* () */0;}
            }
          else
           {return 0;}
          }
        catch(exn$3)
-        {if(exn$3[1]=Unify)
-          {t1$prime[1]=d1,0;throw [0,Unify,exn$3[2]];}
+        {if(exn$3[1]===Unify)
+          {t1$prime[1]=d1;throw [0,Unify,exn$3[2]];}
          else
           {throw exn$3;}
          }
@@ -5525,7 +5940,10 @@ var
 var
  unify_list=
   function(env,tl1,tl2)
-   {if(List["length"](tl1)!=List["length"](tl2)){throw [0,Unify,0];}else{}
+   {if(List["length"](tl1)!==List["length"](tl2))
+     {throw [0,Unify,/* [] */0];}
+    else
+     {}
     
     return List["iter2"](unify(env),tl1,tl2);
     };
@@ -5540,7 +5958,7 @@ var
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -5552,7 +5970,7 @@ var
              
             default:exit=504;}}
         
-        switch(exit){case 504:return 0;}
+        switch(exit){case 504:return /* () */0;}
         };
     
     var match$1=rest1[1];
@@ -5561,7 +5979,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -5571,7 +5989,7 @@ var
          if(name1)
           {var exit$1;
            
-           if(typeof match$2=="number")
+           if(typeof match$2==="number")
             {switch(match$2){}}
            else
             {switch(match$2[0])
@@ -5596,7 +6014,7 @@ var
     
     switch(exit)
      {case 501:
-       if(typeof match$2=="number")
+       if(typeof match$2==="number")
         {switch(match$2){}}
        else
         {switch(match$2[0])
@@ -5606,11 +6024,11 @@ var
             if(name$1)
              {if(use1){set_name(rest2,name$1)}else{}var name=name$1;}
             else
-             {"unknown block:(exit 500)";}
+             {exit=500;}
             
-           default:"unknown block:(exit 500)";}}
+           default:exit=500;}}
        
-      case 500:var name=0;
+      case 500:var name=/* None */0;
       }
     
     if(use1)
@@ -5640,7 +6058,14 @@ var
     
     var l2=repr(ty2)[2];
     
-    var va=make_rowvar(Pervasives["min"](l1,l2),miss2=0,rest1,miss1=0,rest2);
+    var
+     va=
+      make_rowvar
+       (Pervasives["min"](l1,l2),
+        miss2===/* [] */0,
+        rest1,
+        miss1===/* [] */0,
+        rest2);
     
     var d1=rest1[1];
     
@@ -5671,13 +6096,13 @@ var
                    return unify(env,t1,t2);
                    }
                  catch(exn)
-                  {if(exn[1]=Unify)
+                  {if(exn[1]===Unify)
                     {throw [0,
                             Unify,
                             /* :: */[0,
                              /* tuple */[0,
-                              newty(/* Tfield */[5,n,k1,t1,newty(0)]),
-                              newty(/* Tfield */[5,n,k2,t2,newty(0)])],
+                              newty(/* Tfield */[5,n,k1,t1,newty(/* Tnil */0)]),
+                              newty(/* Tfield */[5,n,k2,t2,newty(/* Tnil */0)])],
                              exn[2]]];
                      }
                    else
@@ -5688,9 +6113,9 @@ var
       }
     catch(exn)
      {Btype["log_type"](rest1);
-      rest1[1]=d1,0;
+      rest1[1]=d1;
       Btype["log_type"](rest2);
-      rest2[1]=d2,0;
+      rest2[1]=d2;
       throw exn;
       }
     };
@@ -5702,17 +6127,17 @@ var
     
     var k2$1=Btype["field_kind_repr"](k2);
     
-    if(k1$1=k2$1)
-     {return 0;}
+    if(k1$1===k2$1)
+     {return /* () */0;}
     else
      {var exit;
       
-      if("unknown primitive:isint")
-       {if(k1$1!=0)
+      if(typeof k1$1==="number")
+       {if(k1$1!==0)
          {exit=516;}
         else
-         {if("unknown primitive:isint")
-           {if(k2$1!=0){exit=516;}else{return 0;}}
+         {if(typeof k2$1==="number")
+           {if(k2$1!==0){exit=516;}else{return /* () */0;}}
           else
            {return Btype["set_kind"](k2$1[1],k1$1);}
           }
@@ -5720,8 +6145,8 @@ var
       else
        {var exit$1;
         
-        if("unknown primitive:isint")
-         {if(k2$1!=0){exit=516;}else{exit$1=517;}}
+        if(typeof k2$1==="number")
+         {if(k2$1!==0){exit=516;}else{exit$1=517;}}
         else
          {exit$1=517;}
         
@@ -5729,7 +6154,12 @@ var
         }
       
       switch(exit)
-       {case 516:throw [0,Assert_failure,[0,"typing/ctype.ml",2624,37]];}
+       {case 516:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"typing/ctype.ml",2624,37]];
+         
+        }
       }
     };
 
@@ -5752,7 +6182,7 @@ var
     var rm2=Btype["row_more"](row2$1);
     
     if(unify_eq(env[1],rm1,rm2))
-     {return 0;}
+     {return /* () */0;}
     else
      {var match$1=merge_row_fields(row1$1[1],row2$1[1]);
       
@@ -5762,8 +6192,8 @@ var
       
       var r1=match$1[1];
       
-      if(r1!=0&&r2!=0)
-       {var ht=Hashtbl["create"](0,List["length"](r1));
+      if(r1!==/* [] */0&&r2!==/* [] */0)
+       {var ht=Hashtbl["create"](/* None */0,List["length"](r1));
         
         List["iter"]
          (function(param)
@@ -5778,7 +6208,12 @@ var
             
             try
              {throw [0,Tags,l,Hashtbl["find"](ht,Btype["hash_variant"](l))];}
-            catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+            catch(exn)
+             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+               {return /* () */0;}
+              else
+               {throw exn;}
+              }
             },
           r2)}
       else
@@ -5794,7 +6229,10 @@ var
        {if(fixed2)
          {var more=rm2;}
         else
-         {var more=newty2(Pervasives["min"](rm1[2],rm2[2]),[0,0]);}
+         {var
+           more=
+            newty2(Pervasives["min"](rm1[2],rm2[2]),[/* Tvar */0,/* None */0]);
+          }
         }
       
       var fixed=fixed1||fixed2;
@@ -5808,9 +6246,10 @@ var
                   (function(param)
                     {var match$2=$$switch(param[2],param[3]);
                      
-                     return (Btype["row_field_repr"](match$2[1])=0)||
-                            Btype["row_field_repr"](match$2[2])!=
-                            0;
+                     return Btype["row_field_repr"](match$2[1])===
+                            /* Rabsent */0||
+                            Btype["row_field_repr"](match$2[2])!==
+                            /* Rabsent */0;
                      },
                    pairs);
           };
@@ -5820,7 +6259,7 @@ var
         function(fields)
          {return List["for_all"]
                   (function(param)
-                    {return Btype["row_field_repr"](param[2])=0;},
+                    {return Btype["row_field_repr"](param[2])===/* Rabsent */0;},
                    fields);
           };
       
@@ -5830,20 +6269,26 @@ var
         (empty(r2)||row1$1[4])&&
         List["for_all"]
          (function(param)
-           {return (Btype["row_field_repr"](param[2])=0)||
-                   (Btype["row_field_repr"](param[3])=0);
+           {return Btype["row_field_repr"](param[2])===
+                   /* Rabsent */0||
+                   Btype["row_field_repr"](param[3])===
+                   /* Rabsent */0;
             },
           pairs))
        {throw [0,
                Unify,
-               /* :: */[0,/* tuple */[0,mkvariant(0,1),mkvariant(0,1)],0]];
+               /* :: */[0,
+                /* tuple */[0,
+                 mkvariant(/* [] */0,/* true */1),
+                 mkvariant(/* [] */0,/* true */1)],
+                /* [] */0]];
         }
       else
        {}
       
       if
-       (row1$1[6]!=
-        0&&
+       (row1$1[6]!==
+        /* None */0&&
         (row1$1[4]||empty(r2))&&
         (!row2$1[4]||
          keep(function(f1,f2){return /* tuple */[0,f1,f2];})&&
@@ -5851,18 +6296,18 @@ var
        {var name=row1$1[6];}
       else
        {if
-         (row2$1[6]!=
-          0&&
+         (row2$1[6]!==
+          /* None */0&&
           (row2$1[4]||empty(r1))&&
           (!row1$1[4]||
            keep(function(f1,f2){return /* tuple */[0,f2,f1];})&&
            empty(r2)))
          {var name=row2$1[6];}
         else
-         {var name=0;}
+         {var name=/* None */0;}
         }
       
-      var row0=/* record */[0,0,more,0,closed,fixed,name];
+      var row0=/* record */[0,/* [] */0,more,/* () */0,closed,fixed,name];
       
       var
        set_more=
@@ -5873,28 +6318,28 @@ var
            {var rest$1=rest;}
           
           if
-           (rest$1!=
-            0&&
+           (rest$1!==
+            /* [] */0&&
             (row[4]||Btype["row_fixed"](row))||
             closed&&
             Btype["row_fixed"](row)&&
             !row[4])
-           {var t1=mkvariant(0,1);
+           {var t1=mkvariant(/* [] */0,/* true */1);
             
-            var t2=mkvariant(rest$1,0);
+            var t2=mkvariant(rest$1,/* false */0);
             
             throw [0,
                    Unify,
                    /* :: */[0,
-                    (row=row1$1)?/* tuple */[0,t1,t2]:/* tuple */[0,t2,t1],
-                    0]];
+                    row===row1$1?/* tuple */[0,t1,t2]:/* tuple */[0,t2,t1],
+                    /* [] */0]];
             }
           else
            {}
           
           var rm=Btype["row_more"](row);
           
-          if(trace_gadt_instances[1]&&(rm[1]=0))
+          if(trace_gadt_instances[1]&&rm[1]===/* Tnil */0)
            {}
           else
            {if(trace_gadt_instances[1])
@@ -5905,8 +6350,8 @@ var
             }
           
           if(Btype["row_fixed"](row))
-           {if(more=rm)
-             {return 0;}
+           {if(more===rm)
+             {return /* () */0;}
             else
              {if(Btype["is_Tvar"](rm))
                {return Btype["link_type"](rm,more);}
@@ -5915,12 +6360,12 @@ var
               }
             }
           else
-           {var newrecord="unknown primitive:duprecord regular 6";
+           {var newrecord=/* unknown */"duprecord regular 6";
             
             var
              ty=
               Btype["newgenty"]
-               (/* Tvariant */[8,(newrecord[1]=rest$1,0,newrecord)]);
+               (/* Tvariant */[8,(newrecord[1]=rest$1,newrecord)]);
             
             update_level(env[1],rm[2],ty);
             return Btype["link_type"](rm,ty);
@@ -5945,13 +6390,15 @@ var
                    try
                     {return unify_row_field(env,fixed1,fixed2,more,l,f1,f2);}
                    catch(exn)
-                    {if(exn[1]=Unify)
+                    {if(exn[1]===Unify)
                       {throw [0,
                               Unify,
                               /* :: */[0,
                                /* tuple */[0,
-                                mkvariant(/* :: */[0,/* tuple */[0,l,f1],0],1),
-                                mkvariant(/* :: */[0,/* tuple */[0,l,f2],0],1)],
+                                mkvariant
+                                 (/* :: */[0,/* tuple */[0,l,f1],/* [] */0],/* true */1),
+                                mkvariant
+                                 (/* :: */[0,/* tuple */[0,l,f2],/* [] */0],/* true */1)],
                                exn[2]]];
                        }
                      else
@@ -5962,9 +6409,9 @@ var
         }
       catch(exn)
        {Btype["log_type"](rm1);
-        rm1[1]=md1,0;
+        rm1[1]=md1;
         Btype["log_type"](rm2);
-        rm2[1]=md2,0;
+        rm2[1]=md2;
         throw exn;
         }
       }
@@ -5977,21 +6424,21 @@ var
     
     var f2$1=Btype["row_field_repr"](f2);
     
-    if(f1$1=f2$1)
-     {return 0;}
+    if(f1$1===f2$1)
+     {return /* () */0;}
     else
      {var exit;
       
-      if(typeof f1$1=="number")
+      if(typeof f1$1==="number")
        {switch(f1$1)
          {case 0:
-           if(typeof f2$1=="number")
-            {switch(f2$1){case 0:return 0;}}
+           if(typeof f2$1==="number")
+            {switch(f2$1){case 0:return /* () */0;}}
            else
             {switch(f2$1[0])
               {case 0:exit=557;
                case 1:
-                if(f2$1[3]!=0)
+                if(f2$1[3]!==0)
                  {exit=557;}
                 else
                  {if(!fixed2)
@@ -6011,7 +6458,7 @@ var
            if(match$1)
             {var t1=match$1[1];
              
-             if(typeof f2$1=="number")
+             if(typeof f2$1==="number")
               {switch(f2$1){case 0:exit=557;}}
              else
               {switch(f2$1[0])
@@ -6021,7 +6468,7 @@ var
                   if(match$2){return unify(env,t1,match$2[1]);}else{exit=557;}
                   
                  case 1:
-                  if(f2$1[1]!=0)
+                  if(f2$1[1]!==0)
                    {exit=557;}
                   else
                    {if(!fixed2)
@@ -6031,7 +6478,7 @@ var
                       update_level(env[1],repr(more)[2],t1);
                       try
                        {return List["iter"](unify(env,t1),f2$1[2]);}
-                      catch(exn){e2[1]=0,0;throw exn;}
+                      catch(exn){e2[1]=/* None */0;throw exn;}
                       }
                     else
                      {exit=557;}
@@ -6040,13 +6487,13 @@ var
                  }}
              }
            else
-            {if(typeof f2$1=="number")
+            {if(typeof f2$1==="number")
               {switch(f2$1){case 0:exit=557;}}
              else
               {switch(f2$1[0])
-                {case 0:if(f2$1[1]){exit=557;}else{return 0;}
+                {case 0:if(f2$1[1]){exit=557;}else{return /* () */0;}
                  case 1:
-                  if(f2$1[1]!=0)
+                  if(f2$1[1]!==0)
                    {if(f2$1[2])
                      {exit=557;}
                     else
@@ -6071,10 +6518,10 @@ var
            
            var e1=f1$1[4];
            
-           if(typeof f2$1=="number")
+           if(typeof f2$1==="number")
             {switch(f2$1)
               {case 0:
-                if(m1!=0)
+                if(m1!==0)
                  {exit=557;}
                 else
                  {if(!fixed1)
@@ -6087,7 +6534,7 @@ var
            else
             {switch(f2$1[0])
               {case 0:
-                if(c1!=0)
+                if(c1!==0)
                  {if(f1$1[2])
                    {exit=557;}
                   else
@@ -6114,9 +6561,9 @@ var
                       update_level(env[1],repr(more)[2],t2);
                       try
                        {return List["iter"]
-                                (function(t1$1){return unify(env,t1$1,t2);},f1$1[2]);
+                                (function(t1){return unify(env,t1,t2);},f1$1[2]);
                         }
-                      catch(exn$1){e1$1[1]=0,0;throw exn$1;}
+                      catch(exn$1){e1$1[1]=/* None */0;throw exn$1;}
                       }
                     else
                      {exit=557;}
@@ -6128,8 +6575,8 @@ var
                case 1:
                 var e2$1=f2$1[4];
                 
-                if(e1=e2$1)
-                 {return 0;}
+                if(e1===e2$1)
+                 {return /* () */0;}
                 else
                  {var m2=f2$1[3];
                   
@@ -6140,13 +6587,13 @@ var
                   var match$4=Pervasives["@"](tl1,tl2);
                   
                   if(match$4)
-                   {if(c1||c2){throw [0,Unify,0];}else{}
+                   {if(c1||c2){throw [0,Unify,/* [] */0];}else{}
                     
                     List["iter"](unify(env,match$4[1]),match$4[2]);
-                    var $js=e1[1]!=0||e2$1[1]!=0;
+                    var $js=e1[1]!==/* None */0||e2$1[1]!==/* None */0;
                     }
                   else
-                   {var $js=0;}
+                   {var $js=/* false */0;}
                   var
                    redo=
                     (m1||
@@ -6154,7 +6601,7 @@ var
                      fixed1||
                      fixed2||
                      rigid_variants[1]&&
-                     ((List["length"](tl1)=1)||(List["length"](tl2)=1)))&&
+                     (List["length"](tl1)===1||List["length"](tl2)===1))&&
                     $js;
                   
                   if(redo)
@@ -6179,7 +6626,7 @@ var
                            {return /* :: */[0,ty,remq(tl,tl$prime)];}
                           }
                         else
-                         {return 0;}
+                         {return /* [] */0;}
                         };
                     
                     var tl2$prime=remq(tl2$1,tl1$1);
@@ -6189,7 +6636,7 @@ var
                     List["iter"]
                      (update_level(env[1],repr(more)[2]),
                       Pervasives["@"](tl1$prime,tl2$prime));
-                    var e=[0,0];
+                    var e=[0,/* None */0];
                     
                     var f1$prime=/* Reither */[1,c1||c2,tl1$prime,m1||m2,e];
                     
@@ -6204,7 +6651,7 @@ var
            
           }}
       
-      switch(exit){case 557:throw [0,Unify,0];}
+      switch(exit){case 557:throw [0,Unify,/* [] */0];}
       }
     };
 
@@ -6214,13 +6661,14 @@ var
    {try
      {return unify(env,ty1,ty2);}
     catch(exn)
-     {if(exn[1]=Unify)
+     {if(exn[1]===Unify)
        {throw [0,Unify,expand_trace(env[1],exn[2])];}
       else
-       {if(exn=Recursive_abbrev)
+       {if(exn===Recursive_abbrev)
          {throw [0,
                  Unification_recursive_abbrev,
-                 expand_trace(env[1],/* :: */[0,/* tuple */[0,ty1,ty2],0])];
+                 expand_trace
+                  (env[1],/* :: */[0,/* tuple */[0,ty1,ty2],/* [] */0])];
           }
         else
          {throw exn;}
@@ -6232,15 +6680,19 @@ var
  unify_gadt=
   function(lev,env,ty1,ty2)
    {try
-     {univar_pairs[1]=0,0;
-      newtype_level[1]=/* Some */[0,lev],0;
-      set_mode_pattern(1,1,function(param){return unify$1(env,ty1,ty2);});
-      newtype_level[1]=0,0;
+     {univar_pairs[1]=/* [] */0;
+      newtype_level[1]=/* Some */[0,lev];
+      set_mode_pattern
+       (/* true */1,/* true */1,function(param){return unify$1(env,ty1,ty2);});
+      newtype_level[1]=/* None */0;
       return TypePairs[2](unify_eq_set);
       }
     catch(e)
      {TypePairs[2](unify_eq_set);
-      if(e[1]=Unify){throw [0,Unify,e[2]];}else{newtype_level[1]=0,0;throw e;}
+      if(e[1]===Unify)
+       {throw [0,Unify,e[2]];}
+      else
+       {newtype_level[1]=/* None */0;throw e;}
       }
     };
 
@@ -6251,14 +6703,14 @@ var
     
     var t2$1=repr(t2);
     
-    if(t1$1=t2$1)
-     {return 0;}
+    if(t1$1===t2$1)
+     {return /* () */0;}
     else
      {var match$1=t1$1[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
@@ -6272,7 +6724,7 @@ var
              return reset_trace_gadt_instances(reset_tracing);
              }
            catch(exn)
-            {if(exn[1]=Unify)
+            {if(exn[1]===Unify)
               {reset_trace_gadt_instances(reset_tracing);
                var
                 expanded_trace=
@@ -6290,13 +6742,15 @@ var
       }
     };
 
-unify$prime[1]=unify_var,0;
+unify$prime[1]=unify_var;
 var
  unify_pairs$1=
   function(env,ty1,ty2,pairs)
-   {univar_pairs[1]=pairs,0;return unify$1(env,ty1,ty2);};
+   {univar_pairs[1]=pairs;return unify$1(env,ty1,ty2);};
 
-var unify$2=function(env,ty1,ty2){return unify_pairs$1([0,env],ty1,ty2,0);};
+var
+ unify$2=
+  function(env,ty1,ty2){return unify_pairs$1([0,env],ty1,ty2,/* [] */0);};
 
 var
  expand_head_trace=
@@ -6318,18 +6772,18 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 0:
          var lv=t$1[2];
          
-         var t1=newvar2(0,lv);
+         var t1=newvar2(/* None */0,lv);
          
-         var t2=newvar2(0,lv);
+         var t2=newvar2(/* None */0,lv);
          
-         var t$prime=newty2(lv,/* Tarrow */[1,l,t1,t2,0]);
+         var t$prime=newty2(lv,/* Tarrow */[1,l,t1,t2,/* Cok */0]);
          
          Btype["link_type"](t$1,t$prime);
          return /* tuple */[0,t1,t2];
@@ -6338,9 +6792,9 @@ var
          var l$prime=match$1[1];
          
          if
-          ("unknown primitive:caml_string_equal"||
+          (CamlPrimitive["caml_string_equal"](l,l$prime)||
            Clflags["classic"][1]&&
-           "unknown primitive:caml_string_equal"&&
+           CamlPrimitive["caml_string_equal"](l,"")&&
            !Btype["is_optional"](l$prime))
           {return /* tuple */[0,match$1[2],match$1[3]];}
          else
@@ -6348,7 +6802,7 @@ var
          
         default:exit=424;}}
     
-    switch(exit){case 424:throw [0,Unify,0];}
+    switch(exit){case 424:throw [0,Unify,/* [] */0];}
     };
 
 var
@@ -6360,21 +6814,26 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 0:
          var level=ty$1[2];
          
-         var ty1=newvar2(0,level);
+         var ty1=newvar2(/* None */0,level);
          
-         var ty2=newvar2(0,level);
+         var ty2=newvar2(/* None */0,level);
          
          var
           ty$prime=
            newty2
-            (level,/* Tfield */[5,name,priv!=0?0:/* Fvar */[0,[0,0]],ty1,ty2]);
+            (level,
+             /* Tfield */[5,
+              name,
+              priv!==0?/* Fpresent */0:/* Fvar */[0,[0,/* None */0]],
+              ty1,
+              ty2]);
          
          Btype["link_type"](ty$1,ty$prime);
          return ty1;
@@ -6382,14 +6841,20 @@ var
         case 5:
          var kind=Btype["field_kind_repr"](match$1[2]);
          
-         if("unknown primitive:caml_string_equal"&&kind!=1)
-          {if(priv=1){unify_kind(kind,0)}else{}return match$1[3];}
+         if
+          (CamlPrimitive["caml_string_equal"](match$1[1],name)&&
+           kind!==
+           /* Fabsent */1)
+          {if(priv===/* Public */1){unify_kind(kind,/* Fpresent */0)}else{}
+           
+           return match$1[3];
+           }
          else
           {return filter_method_field(env,name,priv,match$1[4]);}
          
         default:exit=418;}}
     
-    switch(exit){case 418:throw [0,Unify,0];}
+    switch(exit){case 418:throw [0,Unify,/* [] */0];}
     };
 
 var
@@ -6401,12 +6866,12 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 0:
-         var ty1=newvar(0,0);
+         var ty1=newvar(/* None */0,/* () */0);
          
          var ty$prime=newobj(ty1);
          
@@ -6417,10 +6882,12 @@ var
         case 4:return filter_method_field(env,name,priv,match$1[1]);
         default:exit=410;}}
     
-    switch(exit){case 410:throw [0,Unify,0];}
+    switch(exit){case 410:throw [0,Unify,/* [] */0];}
     };
 
-var check_filter_method=function(env,name,priv,ty){return 0;};
+var
+ check_filter_method=
+  function(env,name,priv,ty){return filter_method(env,name,priv,ty);};
 
 var
  filter_self_method=
@@ -6430,10 +6897,10 @@ var
     try
      {return Types["Meths"][22](lab,meths[1]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var pair=/* tuple */[0,Ident["create"](lab),ty$prime];
         
-        meths[1]=Types["Meths"][4](lab,pair,meths[1]),0;
+        meths[1]=Types["Meths"][4](lab,pair,meths[1]);
         return pair;
         }
       else
@@ -6446,21 +6913,21 @@ var
   function(env,level,ty)
    {var
      occur$1=
-      function(ty$1)
-       {var ty$2=repr(ty$1);
+      function(ty)
+       {var ty$1=repr(ty);
         
-        if(ty$2[2]>level)
-         {if(Btype["is_Tvar"](ty$2)&&ty$2[2]>=Btype["generic_level"]-1)
+        if(ty$1[2]>level)
+         {if(Btype["is_Tvar"](ty$1)&&ty$1[2]>=Btype["generic_level"]-1)
            {throw Occur;}
           else
            {}
           
-          ty$2[2]=Btype["pivot_level"]-ty$2[2],0;
-          var match$1=ty$2[1];
+          ty$1[2]=Btype["pivot_level"]-ty$1[2];
+          var match$1=ty$1[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -6474,7 +6941,7 @@ var
                
               default:exit=400;}}
           
-          switch(exit){case 400:return Btype["iter_type_expr"](occur$1,ty$2);}
+          switch(exit){case 400:return Btype["iter_type_expr"](occur$1,ty$1);}
           }
         else
          {return 0;}
@@ -6483,8 +6950,8 @@ var
     try
      {occur$1(ty),Btype["unmark_type"](ty)}
     catch(exn)
-     {if(exn=Occur)
-       {Btype["unmark_type"](ty);throw [0,Unify,0];}
+     {if(exn===Occur)
+       {Btype["unmark_type"](ty);throw [0,Unify,/* [] */0];}
       else
        {throw exn;}
       }
@@ -6497,23 +6964,23 @@ var
  may_instantiate=
   function(inst_nongen,t1)
    {if(inst_nongen)
-     {return t1[2]!=Btype["generic_level"]-1;}
+     {return t1[2]!==Btype["generic_level"]-1;}
     else
-     {return t1[2]=Btype["generic_level"];}
+     {return t1[2]===Btype["generic_level"];}
     };
 
 var
  moregen=
   function(inst_nongen,type_pairs,env,t1,t2)
-   {if(t1=t2)
-     {return 0;}
+   {if(t1===t2)
+     {return /* () */0;}
     else
      {var t1$1=repr(t1);
       
       var t2$1=repr(t2);
       
-      if(t1$1=t2$1)
-       {return 0;}
+      if(t1$1===t2$1)
+       {return /* () */0;}
       else
        {try
          {var match$1=t1$1[1];
@@ -6522,7 +6989,7 @@ var
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -6539,7 +7006,7 @@ var
                if(match$1[2])
                 {exit=368;}
                else
-                {if(typeof match$2=="number")
+                {if(typeof match$2==="number")
                   {switch(match$2){}}
                  else
                   {switch(match$2[0])
@@ -6548,7 +7015,7 @@ var
                        {exit=368;}
                       else
                        {if(Path["same"](match$1[1],match$2[1]))
-                         {return 0;}
+                         {return /* () */0;}
                         else
                          {exit=368;}
                         }
@@ -6568,27 +7035,31 @@ var
              
              var t2$prime$1=repr(t2$prime);
              
-             if(t1$prime$1=t2$prime$1)
-              {return 0;}
+             if(t1$prime$1===t2$prime$1)
+              {return /* () */0;}
              else
               {try
                 {return TypePairs[7]
                          (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1]);
                  }
                catch(exn)
-                {if(exn=Not_found)
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                   {TypePairs[5]
-                    (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1],0);
+                    (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1],/* () */0);
                    var match$3=t1$prime$1[1];
                    
                    var match$4=t2$prime$1[1];
                    
                    var exit$1;
                    
-                   if(typeof match$3=="number")
+                   if(typeof match$3==="number")
                     {switch(match$3)
                       {case 0:
-                        if("unknown primitive:isint"){return 0;}else{exit$1=361;}
+                        if(typeof match$4==="number")
+                         {return /* () */0;}
+                        else
+                         {exit$1=361;}
+                        
                        }}
                    else
                     {switch(match$3[0])
@@ -6601,7 +7072,7 @@ var
                          {exit$1=361;}
                         
                        case 1:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6611,7 +7082,7 @@ var
                              var l1=match$3[1];
                              
                              if
-                              ("unknown primitive:caml_string_equal"||
+                              (CamlPrimitive["caml_string_equal"](l1,l2)||
                                Clflags["classic"][1]&&
                                !(Btype["is_optional"](l1)||Btype["is_optional"](l2)))
                               {moregen(inst_nongen,type_pairs,env,match$3[2],match$4[2]);
@@ -6624,7 +7095,7 @@ var
                             default:exit$1=361;}}
                         
                        case 2:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6635,7 +7106,7 @@ var
                             default:exit$1=361;}}
                         
                        case 3:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6650,7 +7121,7 @@ var
                             default:exit$1=361;}}
                         
                        case 4:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6661,7 +7132,7 @@ var
                             default:exit$1=361;}}
                         
                        case 5:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6674,7 +7145,7 @@ var
                        case 6:exit$1=361;
                        case 7:exit$1=361;
                        case 8:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6685,7 +7156,7 @@ var
                             default:exit$1=361;}}
                         
                        case 9:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6703,7 +7174,7 @@ var
                         if(tl1)
                          {exit$2=362;}
                         else
-                         {if(typeof match$4=="number")
+                         {if(typeof match$4==="number")
                            {switch(match$4){}}
                           else
                            {switch(match$4[0])
@@ -6719,7 +7190,7 @@ var
                         
                         switch(exit$2)
                          {case 362:
-                           if(typeof match$4=="number")
+                           if(typeof match$4==="number")
                             {switch(match$4){}}
                            else
                             {switch(match$4[0])
@@ -6738,7 +7209,7 @@ var
                           }
                         
                        case 11:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -6757,13 +7228,17 @@ var
                                         match$4[3]);
                                }
                              catch(exn$1)
-                              {if(exn$1=Not_found){throw [0,Unify,0];}else{throw exn$1;}}
+                              {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                                {throw [0,Unify,/* [] */0];}
+                               else
+                                {throw exn$1;}
+                               }
                              
                             default:exit$1=361;}}
                         
                        }}
                    
-                   switch(exit$1){case 361:throw [0,Unify,0];}
+                   switch(exit$1){case 361:throw [0,Unify,/* [] */0];}
                    }
                  else
                   {throw exn;}
@@ -6773,7 +7248,7 @@ var
             }
           }
         catch(exn$2)
-         {if(exn$2[1]=Unify)
+         {if(exn$2[1]===Unify)
            {throw [0,Unify,/* :: */[0,/* tuple */[0,t1$1,t2$1],exn$2[2]]];}
           else
            {throw exn$2;}
@@ -6785,7 +7260,10 @@ var
 var
  moregen_list=
   function(inst_nongen,type_pairs,env,tl1,tl2)
-   {if(List["length"](tl1)!=List["length"](tl2)){throw [0,Unify,0];}else{}
+   {if(List["length"](tl1)!==List["length"](tl2))
+     {throw [0,Unify,/* [] */0];}
+    else
+     {}
     
     return List["iter2"](moregen(inst_nongen,type_pairs,env),tl1,tl2);
     };
@@ -6801,7 +7279,7 @@ var
     
     var match$3=associate_fields(match$1[1],match$2[1]);
     
-    if(match$3[2]!=0){throw [0,Unify,0];}else{}
+    if(match$3[2]!==/* [] */0){throw [0,Unify,/* [] */0];}else{}
     
     moregen
      (inst_nongen,
@@ -6825,7 +7303,7 @@ var
                try
                 {return moregen(inst_nongen,type_pairs,env,t1,t2);}
                catch(exn)
-                {if(exn[1]=Unify)
+                {if(exn[1]===Unify)
                   {throw [0,
                           Unify,
                           /* :: */[0,
@@ -6848,17 +7326,17 @@ var
     
     var k2$1=Btype["field_kind_repr"](k2);
     
-    if(k1$1=k2$1)
-     {return 0;}
+    if(k1$1===k2$1)
+     {return /* () */0;}
     else
      {var exit;
       
-      if("unknown primitive:isint")
-       {if(k1$1!=0)
+      if(typeof k1$1==="number")
+       {if(k1$1!==0)
          {exit=375;}
         else
-         {if("unknown primitive:isint")
-           {if(k2$1!=0){exit=375;}else{return 0;}}
+         {if(typeof k2$1==="number")
+           {if(k2$1!==0){exit=375;}else{return /* () */0;}}
           else
            {exit=375;}
           }
@@ -6866,15 +7344,15 @@ var
       else
        {var exit$1;
         
-        if("unknown primitive:isint")
-         {if(k2$1!=0){exit=375;}else{exit$1=376;}}
+        if(typeof k2$1==="number")
+         {if(k2$1!==0){exit=375;}else{exit$1=376;}}
         else
          {exit$1=376;}
         
         switch(exit$1){case 376:return Btype["set_kind"](k1$1[1],k2$1);}
         }
       
-      switch(exit){case 375:throw [0,Unify,0];}
+      switch(exit){case 375:throw [0,Unify,/* [] */0];}
       }
     };
 
@@ -6889,12 +7367,15 @@ var
     
     var rm2=repr(row2$1[2]);
     
-    if(rm1=rm2)
-     {return 0;}
+    if(rm1===rm2)
+     {return /* () */0;}
     else
      {var
        may_inst=
-        Btype["is_Tvar"](rm1)&&may_instantiate(inst_nongen,rm1)||(rm1[1]=0);
+        Btype["is_Tvar"](rm1)&&
+        may_instantiate(inst_nongen,rm1)||
+        rm1[1]===
+        /* Tnil */0;
       
       var match$1=merge_row_fields(row1$1[1],row2$1[1]);
       
@@ -6907,15 +7388,15 @@ var
          match$2=
           /* tuple */[0,
            filter_row_fields(may_inst,r1),
-           filter_row_fields(0,r2)];
+           filter_row_fields(/* false */0,r2)];
         }
       else
        {var match$2=/* tuple */[0,r1,r2];}
       
       var r2$1=match$2[2];
       
-      if(match$2[1]!=0||row1$1[4]&&(!row2$1[4]||r2$1!=0))
-       {throw [0,Unify,0];}
+      if(match$2[1]!==/* [] */0||row1$1[4]&&(!row2$1[4]||r2$1!==/* [] */0))
+       {throw [0,Unify,/* [] */0];}
       else
        {}
       
@@ -6925,12 +7406,12 @@ var
       
       var exit;
       
-      if(typeof match$3=="number")
+      if(typeof match$3==="number")
        {switch(match$3){}}
       else
        {switch(match$3[0])
          {case 9:
-           if(typeof match$4=="number")
+           if(typeof match$4==="number")
             {switch(match$4){}}
            else
             {switch(match$4[0])
@@ -6940,45 +7421,43 @@ var
       
       switch(exit)
        {case 389:
-         if(typeof match$4=="number")
+         if(typeof match$4==="number")
           {switch(match$4){}}
          else
-          {switch(match$4[0])
-            {case 9:"unknown block:(exit 384)";
-             default:"unknown block:(exit 388)";}}
+          {switch(match$4[0]){case 9:exit=384;default:exit=388;}}
          
         case 388:
          if(Btype["static_row"](row1$1))
           {}
          else
           {if(may_inst)
-            {var newrecord="unknown primitive:duprecord regular 6";
+            {var newrecord=/* unknown */"duprecord regular 6";
              
              var
               ext=
                Btype["newgenty"]
-                (/* Tvariant */[8,(newrecord[1]=r2$1,0,newrecord)]);
+                (/* Tvariant */[8,(newrecord[1]=r2$1,newrecord)]);
              
              moregen_occur(env,rm1[2],ext),Btype["link_type"](rm1,ext)}
            else
-            {if(typeof match$3=="number")
+            {if(typeof match$3==="number")
               {switch(match$3){}}
              else
               {switch(match$3[0])
                 {case 3:
-                  if(typeof match$4=="number")
+                  if(typeof match$4==="number")
                    {switch(match$4){}}
                   else
                    {switch(match$4[0])
                      {case 3:moregen(inst_nongen,type_pairs,env,rm1,rm2);
-                      default:"unknown block:(exit 385)";}}
+                      default:exit=385;}}
                   
-                 default:"unknown block:(exit 385)";}}
+                 default:exit=385;}}
              }
            }
          
-        case 385:throw [0,Unify,0];
-        case 384:throw [0,Unify,0];
+        case 385:throw [0,Unify,/* [] */0];
+        case 384:throw [0,Unify,/* [] */0];
         }
       
       return List["iter"]
@@ -6987,15 +7466,15 @@ var
                  
                  var f2=Btype["row_field_repr"](param[3]);
                  
-                 if(f1=f2)
-                  {return 0;}
+                 if(f1===f2)
+                  {return /* () */0;}
                  else
                   {var exit$1;
                    
-                   if(typeof f1=="number")
+                   if(typeof f1==="number")
                     {switch(f1)
                       {case 0:
-                        if("unknown primitive:isint"){return 0;}else{exit$1=379;}
+                        if(typeof f2==="number"){return /* () */0;}else{exit$1=379;}
                        }}
                    else
                     {switch(f1[0])
@@ -7003,7 +7482,7 @@ var
                         var match$5=f1[1];
                         
                         if(match$5)
-                         {if(typeof f2=="number")
+                         {if(typeof f2==="number")
                            {switch(f2){case 0:exit$1=379;}}
                           else
                            {switch(f2[0])
@@ -7021,11 +7500,11 @@ var
                               }}
                           }
                         else
-                         {if(typeof f2=="number")
+                         {if(typeof f2==="number")
                            {switch(f2){case 0:exit$1=379;}}
                           else
                            {switch(f2[0])
-                             {case 0:if(f2[1]){exit$1=379;}else{return 0;}
+                             {case 0:if(f2[1]){exit$1=379;}else{return /* () */0;}
                               case 1:exit$1=379;
                               }}
                           }
@@ -7035,11 +7514,11 @@ var
                         
                         var exit$2;
                         
-                        if(c1!=0)
+                        if(c1!==0)
                          {if(f1[2])
                            {exit$2=380;}
                           else
-                           {if(typeof f2=="number")
+                           {if(typeof f2==="number")
                              {switch(f2){case 0:exit$2=380;}}
                             else
                              {switch(f2[0])
@@ -7058,7 +7537,7 @@ var
                             }
                           }
                         else
-                         {if(typeof f2=="number")
+                         {if(typeof f2==="number")
                            {switch(f2){case 0:exit$2=380;}}
                           else
                            {switch(f2[0])
@@ -7091,7 +7570,7 @@ var
                            
                            var tl1=f1[2];
                            
-                           if(typeof f2=="number")
+                           if(typeof f2==="number")
                             {switch(f2)
                               {case 0:
                                 if(may_inst)
@@ -7106,15 +7585,16 @@ var
                                case 1:
                                 var e2=f2[4];
                                 
-                                if(e1!=e2)
+                                if(e1!==e2)
                                  {var tl2=f2[2];
                                   
                                   var c2=f2[1];
                                   
-                                  if(c1&&!c2){throw [0,Unify,0];}else{}
+                                  if(c1&&!c2){throw [0,Unify,/* [] */0];}else{}
                                   
-                                  Btype["set_row_field"](e1,/* Reither */[1,c2,0,f2[3],e2]);
-                                  if(List["length"](tl1)=List["length"](tl2))
+                                  Btype["set_row_field"]
+                                   (e1,/* Reither */[1,c2,/* [] */0,f2[3],e2]);
+                                  if(List["length"](tl1)===List["length"](tl2))
                                    {return List["iter2"]
                                             (moregen(inst_nongen,type_pairs,env),tl1,tl2);
                                     }
@@ -7128,7 +7608,11 @@ var
                                                tl1);
                                       }
                                     else
-                                     {if(tl1!=0){throw [0,Unify,0];}else{return 0;}}
+                                     {if(tl1!==/* [] */0)
+                                       {throw [0,Unify,/* [] */0];}
+                                      else
+                                       {return 0;}
+                                      }
                                     }
                                   }
                                 else
@@ -7140,7 +7624,7 @@ var
                         
                        }}
                    
-                   switch(exit$1){case 379:throw [0,Unify,0];}
+                   switch(exit$1){case 379:throw [0,Unify,/* [] */0];}
                    }
                  },
                match$1[3]);
@@ -7150,24 +7634,28 @@ var
 var
  moregen$1=
   function(inst_nongen,type_pairs,env,patt,subj)
-   {univar_pairs[1]=0,0;return moregen(inst_nongen,type_pairs,env,patt,subj);};
+   {univar_pairs[1]=/* [] */0;
+    return moregen(inst_nongen,type_pairs,env,patt,subj);
+    };
 
 var
  moregeneral=
   function(env,inst_nongen,pat_sch,subj_sch)
    {var old_level=current_level[1];
     
-    current_level[1]=Btype["generic_level"]-1,0;
-    var subj=duplicate_type(instance(0,env,subj_sch));
+    current_level[1]=Btype["generic_level"]-1;
+    var subj=duplicate_type(instance(/* None */0,env,subj_sch));
     
-    current_level[1]=Btype["generic_level"],0;
-    var patt=instance(0,env,pat_sch);
+    current_level[1]=Btype["generic_level"];
+    var patt=instance(/* None */0,env,pat_sch);
     
     try
-     {moregen$1(inst_nongen,TypePairs[1](13),env,patt,subj);var res=1;}
-    catch(exn){if(exn[1]=Unify){var res=0;}else{throw exn;}}
+     {moregen$1(inst_nongen,TypePairs[1](13),env,patt,subj);
+      var res=/* true */1;
+      }
+    catch(exn){if(exn[1]===Unify){var res=/* false */0;}else{throw exn;}}
     
-    current_level[1]=old_level,0;
+    current_level[1]=old_level;
     return res;
     };
 
@@ -7177,12 +7665,12 @@ var
    {var ty$1=repr(ty);
     
     if(ty$1[2]>=Btype["lowest_level"])
-     {ty$1[2]=Btype["pivot_level"]-ty$1[2],0;
+     {ty$1[2]=Btype["pivot_level"]-ty$1[2];
       var match$1=ty$1[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
@@ -7202,7 +7690,13 @@ var
              
              var
               row$prime=
-               /* record */[0,0,more$prime,row[3],row[4],1,row[6]];
+               /* record */[0,
+                /* [] */0,
+                more$prime,
+                row[3],
+                row[4],
+                /* true */1,
+                row[6]];
              
              Btype["link_type"]
               (more,newty2(ty$1[2],/* Tvariant */[8,row$prime]))}
@@ -7227,7 +7721,7 @@ var
 var
  rigidify=
   function(ty)
-   {var vars=[0,0];
+   {var vars=[0,/* [] */0];
     
     rigidify_rec(vars,ty);
     Btype["unmark_type"](ty);
@@ -7237,16 +7731,16 @@ var
 var
  all_distinct_vars=
   function(env,vars)
-   {var tyl=[0,0];
+   {var tyl=[0,/* [] */0];
     
     return List["for_all"]
             (function(ty)
               {var ty$1=expand_head(env,ty);
                
                if(List["memq"](ty$1,tyl[1]))
-                {return 0;}
+                {return /* false */0;}
                else
-                {tyl[1]=/* :: */[0,ty$1,tyl[1]],0;
+                {tyl[1]=/* :: */[0,ty$1,tyl[1]];
                  return Btype["is_Tvar"](ty$1);
                  }
                },
@@ -7256,14 +7750,14 @@ var
 var
  matches=
   function(env,ty,ty$prime)
-   {var snap=Btype["snapshot"](0);
+   {var snap=Btype["snapshot"](/* () */0);
     
     var vars=rigidify(ty);
     
-    Btype["cleanup_abbrev"](0);
+    Btype["cleanup_abbrev"](/* () */0);
     try
      {unify$2(env,ty,ty$prime);var ok=all_distinct_vars(env,vars);}
-    catch(exn){if(exn[1]=Unify){var ok=0;}else{throw exn;}}
+    catch(exn){if(exn[1]===Unify){var ok=/* false */0;}else{throw exn;}}
     
     Btype["backtrack"](snap);
     return ok;
@@ -7278,7 +7772,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -7292,16 +7786,16 @@ var
   function(env,ty)
    {var old=rigid_variants[1];
     
-    rigid_variants[1]=1,0;
+    rigid_variants[1]=/* true */1;
     var ty$prime=expand_head(env,ty);
     
-    rigid_variants[1]=old,0;
+    rigid_variants[1]=old;
     return ty$prime;
     };
 
 var
  normalize_subst=
-  function(subst$1)
+  function(subst)
    {if
      (List["exists"]
        (function(param)
@@ -7311,7 +7805,7 @@ var
           
           var exit$1;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0]){case 6:exit=328;default:exit$1=330;}}
@@ -7320,23 +7814,22 @@ var
            {case 330:
              var match$2=param[2][1];
              
-             if(typeof match$2=="number")
+             if(typeof match$2==="number")
               {switch(match$2){}}
              else
-              {switch(match$2[0])
-                {case 6:exit=328;default:"unknown block:(exit 329)";}}
+              {switch(match$2[0]){case 6:exit=328;default:exit$1=329;}}
              
-            case 329:return 0;
+            case 329:return /* false */0;
             }
           
-          switch(exit){case 328:return 1;}
+          switch(exit){case 328:return /* true */1;}
           },
-        subst$1[1]))
-     {return subst$1[1]=
+        subst[1]))
+     {return subst[1]=
              List["map"]
               (function(param)
                 {return /* tuple */[0,repr(param[1]),repr(param[2])];},
-               subst$1[1]),
+               subst[1]),
              0;
       }
     else
@@ -7345,16 +7838,16 @@ var
 
 var
  eqtype=
-  function(rename,type_pairs,subst$1,env,t1,t2)
-   {if(t1=t2)
-     {return 0;}
+  function(rename,type_pairs,subst,env,t1,t2)
+   {if(t1===t2)
+     {return /* () */0;}
     else
      {var t1$1=repr(t1);
       
       var t2$1=repr(t2);
       
-      if(t1$1=t2$1)
-       {return 0;}
+      if(t1$1===t2$1)
+       {return /* () */0;}
       else
        {try
          {var match$1=t1$1[1];
@@ -7363,35 +7856,35 @@ var
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
              {case 0:
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
                   {case 0:
                     if(rename)
                      {try
-                       {normalize_subst(subst$1);
-                        if(List["assq"](t1$1,subst$1[1])!=t2$1)
-                         {throw [0,Unify,0];}
+                       {normalize_subst(subst);
+                        if(List["assq"](t1$1,subst[1])!==t2$1)
+                         {throw [0,Unify,/* [] */0];}
                         else
                          {return 0;}
                         }
                       catch(exn)
-                       {if(exn=Not_found)
+                       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                          {if
                            (List["exists"]
-                             (function(param){return param[2]=t2$1;},subst$1[1]))
-                           {throw [0,Unify,0];}
+                             (function(param){return param[2]===t2$1;},subst[1]))
+                           {throw [0,Unify,/* [] */0];}
                           else
                            {}
                           
-                          return subst$1[1]=
-                                 /* :: */[0,/* tuple */[0,t1$1,t2$1],subst$1[1]],
+                          return subst[1]=
+                                 /* :: */[0,/* tuple */[0,t1$1,t2$1],subst[1]],
                                  0;
                           }
                         else
@@ -7407,7 +7900,7 @@ var
                if(match$1[2])
                 {exit=310;}
                else
-                {if(typeof match$2=="number")
+                {if(typeof match$2==="number")
                   {switch(match$2){}}
                  else
                   {switch(match$2[0])
@@ -7416,7 +7909,7 @@ var
                        {exit=310;}
                       else
                        {if(Path["same"](match$1[1],match$2[1]))
-                         {return 0;}
+                         {return /* () */0;}
                         else
                          {exit=310;}
                         }
@@ -7436,55 +7929,59 @@ var
              
              var t2$prime$1=repr(t2$prime);
              
-             if(t1$prime$1=t2$prime$1)
-              {return 0;}
+             if(t1$prime$1===t2$prime$1)
+              {return /* () */0;}
              else
               {try
                 {return TypePairs[7]
                          (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1]);
                  }
                catch(exn$1)
-                {if(exn$1=Not_found)
+                {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                   {TypePairs[5]
-                    (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1],0);
+                    (type_pairs,/* tuple */[0,t1$prime$1,t2$prime$1],/* () */0);
                    var match$3=t1$prime$1[1];
                    
                    var match$4=t2$prime$1[1];
                    
                    var exit$1;
                    
-                   if(typeof match$3=="number")
+                   if(typeof match$3==="number")
                     {switch(match$3)
                       {case 0:
-                        if("unknown primitive:isint"){return 0;}else{exit$1=303;}
+                        if(typeof match$4==="number")
+                         {return /* () */0;}
+                        else
+                         {exit$1=303;}
+                        
                        }}
                    else
                     {switch(match$3[0])
                       {case 0:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
                            {case 0:
                              if(rename)
                               {try
-                                {normalize_subst(subst$1);
-                                 if(List["assq"](t1$prime$1,subst$1[1])!=t2$prime$1)
-                                  {throw [0,Unify,0];}
+                                {normalize_subst(subst);
+                                 if(List["assq"](t1$prime$1,subst[1])!==t2$prime$1)
+                                  {throw [0,Unify,/* [] */0];}
                                  else
                                   {return 0;}
                                  }
                                catch(exn$2)
-                                {if(exn$2=Not_found)
+                                {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
                                   {if
                                     (List["exists"]
-                                      (function(param){return param[2]=t2$prime$1;},subst$1[1]))
-                                    {throw [0,Unify,0];}
+                                      (function(param){return param[2]===t2$prime$1;},subst[1]))
+                                    {throw [0,Unify,/* [] */0];}
                                    else
                                     {}
                                    
-                                   return subst$1[1]=
-                                          /* :: */[0,/* tuple */[0,t1$prime$1,t2$prime$1],subst$1[1]],
+                                   return subst[1]=
+                                          /* :: */[0,/* tuple */[0,t1$prime$1,t2$prime$1],subst[1]],
                                           0;
                                    }
                                  else
@@ -7497,7 +7994,7 @@ var
                             default:exit$1=303;}}
                         
                        case 1:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -7507,12 +8004,12 @@ var
                              var l1=match$3[1];
                              
                              if
-                              ("unknown primitive:caml_string_equal"||
+                              (CamlPrimitive["caml_string_equal"](l1,l2)||
                                Clflags["classic"][1]&&
                                !(Btype["is_optional"](l1)||Btype["is_optional"](l2)))
-                              {eqtype(rename,type_pairs,subst$1,env,match$3[2],match$4[2]);
+                              {eqtype(rename,type_pairs,subst,env,match$3[2],match$4[2]);
                                return eqtype
-                                       (rename,type_pairs,subst$1,env,match$3[3],match$4[3]);
+                                       (rename,type_pairs,subst,env,match$3[3],match$4[3]);
                                }
                              else
                               {exit$1=303;}
@@ -7520,25 +8017,25 @@ var
                             default:exit$1=303;}}
                         
                        case 2:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
                            {case 2:
                              return eqtype_list
-                                     (rename,type_pairs,subst$1,env,match$3[1],match$4[1]);
+                                     (rename,type_pairs,subst,env,match$3[1],match$4[1]);
                              
                             default:exit$1=303;}}
                         
                        case 3:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
                            {case 3:
                              if(Path["same"](match$3[1],match$4[1]))
                               {return eqtype_list
-                                       (rename,type_pairs,subst$1,env,match$3[2],match$4[2]);
+                                       (rename,type_pairs,subst,env,match$3[2],match$4[2]);
                                }
                              else
                               {exit$1=303;}
@@ -7546,42 +8043,42 @@ var
                             default:exit$1=303;}}
                         
                        case 4:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
                            {case 4:
                              return eqtype_fields
-                                     (rename,type_pairs,subst$1,env,match$3[1],match$4[1]);
+                                     (rename,type_pairs,subst,env,match$3[1],match$4[1]);
                              
                             default:exit$1=303;}}
                         
                        case 5:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
                            {case 5:
                              return eqtype_fields
-                                     (rename,type_pairs,subst$1,env,t1$prime$1,t2$prime$1);
+                                     (rename,type_pairs,subst,env,t1$prime$1,t2$prime$1);
                              
                             default:exit$1=303;}}
                         
                        case 6:exit$1=303;
                        case 7:exit$1=303;
                        case 8:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
                            {case 8:
                              return eqtype_row
-                                     (rename,type_pairs,subst$1,env,match$3[1],match$4[1]);
+                                     (rename,type_pairs,subst,env,match$3[1],match$4[1]);
                              
                             default:exit$1=303;}}
                         
                        case 9:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -7599,7 +8096,7 @@ var
                         if(tl1)
                          {exit$2=304;}
                         else
-                         {if(typeof match$4=="number")
+                         {if(typeof match$4==="number")
                            {switch(match$4){}}
                           else
                            {switch(match$4[0])
@@ -7607,8 +8104,7 @@ var
                                if(match$4[2])
                                 {exit$2=304;}
                                else
-                                {return eqtype
-                                         (rename,type_pairs,subst$1,env,t1$2,match$4[1]);
+                                {return eqtype(rename,type_pairs,subst,env,t1$2,match$4[1]);
                                  }
                                
                               default:exit$1=303;}}
@@ -7616,7 +8112,7 @@ var
                         
                         switch(exit$2)
                          {case 304:
-                           if(typeof match$4=="number")
+                           if(typeof match$4==="number")
                             {switch(match$4){}}
                            else
                             {switch(match$4[0])
@@ -7628,14 +8124,14 @@ var
                                          tl1,
                                          match$4[1],
                                          match$4[2],
-                                         eqtype(rename,type_pairs,subst$1,env));
+                                         eqtype(rename,type_pairs,subst,env));
                                 
                                default:exit$1=303;}}
                            
                           }
                         
                        case 11:
-                        if(typeof match$4=="number")
+                        if(typeof match$4==="number")
                          {switch(match$4){}}
                         else
                          {switch(match$4[0])
@@ -7643,7 +8139,7 @@ var
                              try
                               {return unify_package
                                        (env,
-                                        eqtype_list(rename,type_pairs,subst$1,env),
+                                        eqtype_list(rename,type_pairs,subst,env),
                                         t1$prime$1[2],
                                         match$3[1],
                                         match$3[2],
@@ -7654,13 +8150,17 @@ var
                                         match$4[3]);
                                }
                              catch(exn$3)
-                              {if(exn$3=Not_found){throw [0,Unify,0];}else{throw exn$3;}}
+                              {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
+                                {throw [0,Unify,/* [] */0];}
+                               else
+                                {throw exn$3;}
+                               }
                              
                             default:exit$1=303;}}
                         
                        }}
                    
-                   switch(exit$1){case 303:throw [0,Unify,0];}
+                   switch(exit$1){case 303:throw [0,Unify,/* [] */0];}
                    }
                  else
                   {throw exn$1;}
@@ -7670,7 +8170,7 @@ var
             }
           }
         catch(exn$4)
-         {if(exn$4[1]=Unify)
+         {if(exn$4[1]===Unify)
            {throw [0,Unify,/* :: */[0,/* tuple */[0,t1$1,t2$1],exn$4[2]]];}
           else
            {throw exn$4;}
@@ -7681,15 +8181,18 @@ var
 
 var
  eqtype_list=
-  function(rename,type_pairs,subst$1,env,tl1,tl2)
-   {if(List["length"](tl1)!=List["length"](tl2)){throw [0,Unify,0];}else{}
+  function(rename,type_pairs,subst,env,tl1,tl2)
+   {if(List["length"](tl1)!==List["length"](tl2))
+     {throw [0,Unify,/* [] */0];}
+    else
+     {}
     
-    return List["iter2"](eqtype(rename,type_pairs,subst$1,env),tl1,tl2);
+    return List["iter2"](eqtype(rename,type_pairs,subst,env),tl1,tl2);
     };
 
 var
  eqtype_fields=
-  function(rename,type_pairs,subst$1,env,ty1,ty2)
+  function(rename,type_pairs,subst,env,ty1,ty2)
    {var match$1=flatten_fields(ty1);
     
     var rest1=match$1[2];
@@ -7700,13 +8203,14 @@ var
     
     var
      same_row=
-      (rest1=rest2)||
+      rest1===
+      rest2||
       TypePairs[10](type_pairs,/* tuple */[0,rest1,rest2])||
       rename&&
-      List["mem"](/* tuple */[0,rest1,rest2],subst$1[1]);
+      List["mem"](/* tuple */[0,rest1,rest2],subst[1]);
     
     if(same_row)
-     {return 0;}
+     {return /* () */0;}
     else
      {var match$3=expand_head_rigid(env,rest2);
       
@@ -7714,20 +8218,23 @@ var
       
       var exit;
       
-      if(typeof match$4=="number")
+      if(typeof match$4==="number")
        {switch(match$4){}}
       else
        {switch(match$4[0])
          {case 4:
-           return eqtype_fields(rename,type_pairs,subst$1,env,ty1,match$4[1]);
+           return eqtype_fields(rename,type_pairs,subst,env,ty1,match$4[1]);
           default:exit=315;}}
       
       switch(exit)
        {case 315:
          var match$5=associate_fields(match$1[1],match$2[1]);
          
-         eqtype(rename,type_pairs,subst$1,env,rest1,rest2);
-         if(match$5[2]!=0||match$5[3]!=0){throw [0,Unify,0];}else{}
+         eqtype(rename,type_pairs,subst,env,rest1,rest2);
+         if(match$5[2]!==/* [] */0||match$5[3]!==/* [] */0)
+          {throw [0,Unify,/* [] */0];}
+         else
+          {}
          
          return List["iter"]
                  (function(param)
@@ -7743,9 +8250,9 @@ var
                     
                     eqtype_kind(k1,k2);
                     try
-                     {return eqtype(rename,type_pairs,subst$1,env,t1,t2);}
+                     {return eqtype(rename,type_pairs,subst,env,t1,t2);}
                     catch(exn)
-                     {if(exn[1]=Unify)
+                     {if(exn[1]===Unify)
                        {throw [0,
                                Unify,
                                /* :: */[0,
@@ -7773,37 +8280,37 @@ var
     
     var exit;
     
-    if("unknown primitive:isint")
-     {if(k1$1!=0)
+    if(typeof k1$1==="number")
+     {if(k1$1!==0)
        {exit=320;}
       else
-       {if("unknown primitive:isint")
-         {if(k2$1!=0){exit=320;}else{exit=319;}}
+       {if(typeof k2$1==="number")
+         {if(k2$1!==0){exit=320;}else{exit=319;}}
         else
          {exit=320;}
         }
       }
     else
-     {if("unknown primitive:isint"){exit=320;}else{exit=319;}}
+     {if(typeof k2$1==="number"){exit=320;}else{exit=319;}}
     
-    switch(exit){case 320:throw [0,Unify,0];case 319:return 0;}
+    switch(exit)
+     {case 320:throw [0,Unify,/* [] */0];case 319:return /* () */0;}
     };
 
 var
  eqtype_row=
-  function(rename,type_pairs,subst$1,env,row1,row2)
+  function(rename,type_pairs,subst,env,row1,row2)
    {var match$1=expand_head_rigid(env,Btype["row_more"](row2));
     
     var match$2=match$1[1];
     
     var exit;
     
-    if(typeof match$2=="number")
+    if(typeof match$2==="number")
      {switch(match$2){}}
     else
      {switch(match$2[0])
-       {case 8:
-         return eqtype_row(rename,type_pairs,subst$1,env,row1,match$2[1]);
+       {case 8:return eqtype_row(rename,type_pairs,subst,env,row1,match$2[1]);
         default:exit=327;}}
     
     switch(exit)
@@ -7819,17 +8326,17 @@ var
        var r1=match$3[1];
        
        if
-        ("unknown primitive:caml_notequal"||
+        (CamlPrimitive["caml_notequal"](row1$1[4],row2$1[4])||
          !row1$1[4]&&
-         (r1!=0||r2!=0)||
-         filter_row_fields(0,Pervasives["@"](r1,r2))!=
-         0)
-        {throw [0,Unify,0];}
+         (r1!==/* [] */0||r2!==/* [] */0)||
+         filter_row_fields(/* false */0,Pervasives["@"](r1,r2))!==
+         /* [] */0)
+        {throw [0,Unify,/* [] */0];}
        else
         {}
        
        if(!Btype["static_row"](row1$1))
-        {eqtype(rename,type_pairs,subst$1,env,row1$1[2],row2$1[2])}
+        {eqtype(rename,type_pairs,subst,env,row1$1[2],row2$1[2])}
        else
         {}
        
@@ -7841,10 +8348,14 @@ var
                   
                   var exit$1;
                   
-                  if(typeof match$4=="number")
+                  if(typeof match$4==="number")
                    {switch(match$4)
                      {case 0:
-                       if("unknown primitive:isint"){return 0;}else{exit$1=323;}
+                       if(typeof match$5==="number")
+                        {return /* () */0;}
+                       else
+                        {exit$1=323;}
+                       
                       }}
                   else
                    {switch(match$4[0])
@@ -7852,7 +8363,7 @@ var
                        var match$6=match$4[1];
                        
                        if(match$6)
-                        {if(typeof match$5=="number")
+                        {if(typeof match$5==="number")
                           {switch(match$5){case 0:exit$1=323;}}
                          else
                           {switch(match$5[0])
@@ -7861,7 +8372,7 @@ var
                               
                               if(match$7)
                                {return eqtype
-                                        (rename,type_pairs,subst$1,env,match$6[1],match$7[1]);
+                                        (rename,type_pairs,subst,env,match$6[1],match$7[1]);
                                 }
                               else
                                {exit$1=323;}
@@ -7870,28 +8381,28 @@ var
                              }}
                          }
                        else
-                        {if(typeof match$5=="number")
+                        {if(typeof match$5==="number")
                           {switch(match$5){case 0:exit$1=323;}}
                          else
                           {switch(match$5[0])
-                            {case 0:if(match$5[1]){exit$1=323;}else{return 0;}
+                            {case 0:if(match$5[1]){exit$1=323;}else{return /* () */0;}
                              case 1:exit$1=323;
                              }}
                          }
                        
                       case 1:
-                       if(match$4[1]!=0)
+                       if(match$4[1]!==0)
                         {if(match$4[2])
                           {exit$1=323;}
                          else
-                          {if(typeof match$5=="number")
+                          {if(typeof match$5==="number")
                             {switch(match$5){case 0:exit$1=323;}}
                            else
                             {switch(match$5[0])
                               {case 0:exit$1=323;
                                case 1:
-                                if(match$5[1]!=0)
-                                 {if(match$5[2]){exit$1=323;}else{return 0;}}
+                                if(match$5[1]!==0)
+                                 {if(match$5[2]){exit$1=323;}else{return /* () */0;}}
                                 else
                                  {exit$1=323;}
                                 
@@ -7906,13 +8417,13 @@ var
                            
                            var t1=match$8[1];
                            
-                           if(typeof match$5=="number")
+                           if(typeof match$5==="number")
                             {switch(match$5){case 0:exit$1=323;}}
                            else
                             {switch(match$5[0])
                               {case 0:exit$1=323;
                                case 1:
-                                if(match$5[1]!=0)
+                                if(match$5[1]!==0)
                                  {exit$1=323;}
                                 else
                                  {var match$9=match$5[2];
@@ -7922,16 +8433,16 @@ var
                                     
                                     var t2=match$9[1];
                                     
-                                    eqtype(rename,type_pairs,subst$1,env,t1,t2);
-                                    if(List["length"](tl1)=List["length"](tl2))
+                                    eqtype(rename,type_pairs,subst,env,t1,t2);
+                                    if(List["length"](tl1)===List["length"](tl2))
                                      {return List["iter2"]
-                                              (eqtype(rename,type_pairs,subst$1,env),tl1,tl2);
+                                              (eqtype(rename,type_pairs,subst,env),tl1,tl2);
                                       }
                                     else
-                                     {List["iter"](eqtype(rename,type_pairs,subst$1,env,t1),tl2);
+                                     {List["iter"](eqtype(rename,type_pairs,subst,env,t1),tl2);
                                       return List["iter"]
-                                              (function(t1$1)
-                                                {return eqtype(rename,type_pairs,subst$1,env,t1$1,t2);},
+                                              (function(t1)
+                                                {return eqtype(rename,type_pairs,subst,env,t1,t2);},
                                                tl1);
                                       }
                                     }
@@ -7947,7 +8458,7 @@ var
                        
                       }}
                   
-                  switch(exit$1){case 323:throw [0,Unify,0];}
+                  switch(exit$1){case 323:throw [0,Unify,/* [] */0];}
                   },
                 match$3[3]);
        
@@ -7958,19 +8469,21 @@ var
  equal$1=
   function(env,rename,tyl1,tyl2)
    {try
-     {univar_pairs[1]=0,0;
-      eqtype_list(rename,TypePairs[1](11),[0,0],env,tyl1,tyl2);
-      return 1;
+     {univar_pairs[1]=/* [] */0;
+      eqtype_list(rename,TypePairs[1](11),[0,/* [] */0],env,tyl1,tyl2);
+      return /* true */1;
       }
-    catch(exn){if(exn[1]=Unify){return 0;}else{throw exn;}}
+    catch(exn){if(exn[1]===Unify){return /* false */0;}else{throw exn;}}
     };
 
 var
  eqtype$1=
-  function(rename,type_pairs,subst$1,env,t1,t2)
-   {univar_pairs[1]=0,0;return eqtype(rename,type_pairs,subst$1,env,t1,t2);};
+  function(rename,type_pairs,subst,env,t1,t2)
+   {univar_pairs[1]=/* [] */0;
+    return eqtype(rename,type_pairs,subst,env,t1,t2);
+    };
 
-var Failure$1="unknown primitive:caml_set_oo_id";
+var Failure$1=CamlPrimitive["caml_set_oo_id"]([248,"Ctype.Failure",0]);
 
 var
  moregen_clty=
@@ -7978,12 +8491,12 @@ var
    {try
      {var exit;
       
-      switch(cty1)
-       {case 0:return moregen_clty(1,type_pairs,env,cty1[3],cty2);
+      switch(cty1[0])
+       {case 0:return moregen_clty(/* true */1,type_pairs,env,cty1[3],cty2);
         case 1:
          var sign1=cty1[1];
          
-         switch(cty2)
+         switch(cty2[0])
           {case 0:exit=295;
            case 1:
             var sign2=cty2[1];
@@ -8001,9 +8514,11 @@ var
             List["iter"]
              (function(param)
                {try
-                 {return moregen$1(1,type_pairs,env,param[3],param[5]);}
+                 {return moregen$1
+                          (/* true */1,type_pairs,env,param[3],param[5]);
+                  }
                 catch(exn)
-                 {if(exn[1]=Unify)
+                 {if(exn[1]===Unify)
                    {throw [0,
                            Failure$1,
                            /* :: */[0,
@@ -8011,7 +8526,7 @@ var
                              param[1],
                              env,
                              expand_trace(env,exn[2])],
-                            0]];
+                            /* [] */0]];
                     }
                   else
                    {throw exn;}
@@ -8023,9 +8538,11 @@ var
                       {var match$4=Types["Vars"][22](lab,sign1[2]);
                        
                        try
-                        {return moregen$1(1,type_pairs,env,match$4[3],param[3]);}
+                        {return moregen$1
+                                 (/* true */1,type_pairs,env,match$4[3],param[3]);
+                         }
                        catch(exn)
-                        {if(exn[1]=Unify)
+                        {if(exn[1]===Unify)
                           {throw [0,
                                   Failure$1,
                                   /* :: */[0,
@@ -8033,7 +8550,7 @@ var
                                     lab,
                                     env,
                                     expand_trace(env,exn[2])],
-                                   0]];
+                                   /* [] */0]];
                            }
                          else
                           {throw exn;}
@@ -8045,26 +8562,26 @@ var
            }
          
         case 2:
-         switch(cty2)
+         switch(cty2[0])
           {case 0:exit=295;
            case 1:exit=294;
            case 2:
-            if("unknown primitive:caml_string_equal")
+            if(CamlPrimitive["caml_string_equal"](cty1[1],cty2[1]))
              {try
-               {moregen$1(1,type_pairs,env,cty1[2],cty2[2])}
+               {moregen$1(/* true */1,type_pairs,env,cty1[2],cty2[2])}
               catch(exn)
-               {if(exn[1]=Unify)
+               {if(exn[1]===Unify)
                  {throw [0,
                          Failure$1,
                          /* :: */[0,
                           /* CM_Parameter_mismatch */[3,env,expand_trace(env,exn[2])],
-                          0]];
+                          /* [] */0]];
                   }
                 else
                  {throw exn;}
                 }
               
-              return moregen_clty(0,type_pairs,env,cty1[3],cty2[3]);
+              return moregen_clty(/* false */0,type_pairs,env,cty1[3],cty2[3]);
               }
             else
              {exit=294;}
@@ -8074,17 +8591,17 @@ var
         }
       
       switch(exit)
-       {case 295:return moregen_clty(1,type_pairs,env,cty1,cty2[3]);
-        case 294:throw [0,Failure$1,0];
+       {case 295:return moregen_clty(/* true */1,type_pairs,env,cty1,cty2[3]);
+        case 294:throw [0,Failure$1,/* [] */0];
         }
       }
     catch(exn$1)
      {var exit$1;
       
-      if(exn$1[1]=Failure$1)
+      if(exn$1[1]===Failure$1)
        {var error=exn$1[2];
         
-        if(trace||(error=0))
+        if(trace||error===/* [] */0)
          {throw [0,
                  Failure$1,
                  /* :: */[0,
@@ -8104,19 +8621,19 @@ var
 var
  match_class_types=
   function($staropt$star,env,pat_sch,subj_sch)
-   {if($staropt$star){var trace=$staropt$star[1];}else{var trace=1;}
+   {if($staropt$star){var trace=$staropt$star[1];}else{var trace=/* true */1;}
     
     var type_pairs=TypePairs[1](53);
     
     var old_level=current_level[1];
     
-    current_level[1]=Btype["generic_level"]-1,0;
-    var match$1=instance_class(0,subj_sch);
+    current_level[1]=Btype["generic_level"]-1;
+    var match$1=instance_class(/* [] */0,subj_sch);
     
     var subj=duplicate_class_type(match$1[2]);
     
-    current_level[1]=Btype["generic_level"],0;
-    var match$2=instance_class(0,pat_sch);
+    current_level[1]=Btype["generic_level"];
+    var match$2=instance_class(/* [] */0,pat_sch);
     
     var patt=match$2[2];
     
@@ -8128,7 +8645,7 @@ var
     
     var t2=repr(sign2[1]);
     
-    TypePairs[5](type_pairs,/* tuple */[0,t1,t2],0);
+    TypePairs[5](type_pairs,/* tuple */[0,t1,t2],/* () */0);
     var match$3=flatten_fields(object_fields(t1));
     
     var match$4=flatten_fields(object_fields(t2));
@@ -8143,10 +8660,10 @@ var
           
           var k=Btype["field_kind_repr"](param[2]);
           
-          if("unknown primitive:isint")
+          if(typeof k==="number")
            {var err$1=/* :: */[0,/* CM_Hide_public */[10,lab],err];}
           else
-           {Btype["set_kind"](k[1],1);var err$1=err;}
+           {Btype["set_kind"](k[1],/* Fabsent */1);var err$1=err;}
           
           if(Types["Concr"][3](lab,sign1[3]))
            {return err$1;}
@@ -8154,7 +8671,7 @@ var
            {return /* :: */[0,/* CM_Hide_virtual */[11,"method",lab],err$1];}
           },
         match$5[2],
-        0);
+        /* [] */0);
     
     var
      missing_method=
@@ -8167,7 +8684,7 @@ var
          (function(m){return /* CM_Missing_method */[9,m];},missing_method),
         error);
     
-    moregen$1(1,type_pairs,env,match$3[2],match$4[2]);
+    moregen$1(/* true */1,type_pairs,env,match$3[2],match$4[2]);
     var
      error$2=
       List["fold_right"]
@@ -8175,7 +8692,7 @@ var
          {try
            {moregen_kind(param[2],param[4]);return err;}
           catch(exn)
-           {if(exn[1]=Unify)
+           {if(exn[1]===Unify)
              {return /* :: */[0,/* CM_Public_method */[12,param[1]],err];}
             else
              {throw exn;}
@@ -8191,17 +8708,17 @@ var
          {try
            {var match$6=Types["Vars"][22](lab,sign1[2]);
             
-            if((param[1]=1)&&match$6[1]!=1)
+            if(param[1]===/* Mutable */1&&match$6[1]!==/* Mutable */1)
              {return /* :: */[0,/* CM_Non_mutable_value */[6,lab],err];}
             else
-             {if((param[2]=1)&&match$6[2]!=1)
+             {if(param[2]===/* Concrete */1&&match$6[2]!==/* Concrete */1)
                {return /* :: */[0,/* CM_Non_concrete_value */[7,lab],err];}
               else
                {return err;}
               }
             }
           catch(exn)
-           {if(exn=Not_found)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {return /* :: */[0,/* CM_Missing_value */[8,lab],err];}
             else
              {throw exn;}
@@ -8214,7 +8731,7 @@ var
      error$4=
       Types["Vars"][11]
        (function(lab,param,err)
-         {if((param[2]=0)&&!Types["Vars"][3](lab,sign2[2]))
+         {if(param[2]===/* Virtual */0&&!Types["Vars"][3](lab,sign2[2]))
            {return /* :: */[0,
                     /* CM_Hide_virtual */[11,"instance variable",lab],
                     err];
@@ -8244,39 +8761,43 @@ var
       }
     else
      {try
-       {moregen_clty(trace,type_pairs,env,patt,subj);var res=0;}
-      catch(exn){if(exn[1]=Failure$1){var res=exn[2];}else{throw exn;}}
+       {moregen_clty(trace,type_pairs,env,patt,subj);var res=/* [] */0;}
+      catch(exn){if(exn[1]===Failure$1){var res=exn[2];}else{throw exn;}}
       }
     
-    current_level[1]=old_level,0;
+    current_level[1]=old_level;
     return res;
     };
 
 var
  equal_clty=
-  function(trace,type_pairs,subst$1,env,cty1,cty2)
+  function(trace,type_pairs,subst,env,cty1,cty2)
    {try
      {var exit;
       
-      switch(cty1)
+      switch(cty1[0])
        {case 0:
          var cty1$1=cty1[3];
          
          var exit$1;
          
-         switch(cty2)
-          {case 0:return equal_clty(1,type_pairs,subst$1,env,cty1$1,cty2[3]);
+         switch(cty2[0])
+          {case 0:
+            return equal_clty(/* true */1,type_pairs,subst,env,cty1$1,cty2[3]);
+            
            case 1:exit$1=253;
            case 2:exit$1=253;
            }
          
          switch(exit$1)
-          {case 253:return equal_clty(1,type_pairs,subst$1,env,cty1$1,cty2);}
+          {case 253:
+            return equal_clty(/* true */1,type_pairs,subst,env,cty1$1,cty2);
+           }
          
         case 1:
          var sign1=cty1[1];
          
-         switch(cty2)
+         switch(cty2[0])
           {case 0:exit=252;
            case 1:
             var sign2=cty2[1];
@@ -8294,10 +8815,11 @@ var
             List["iter"]
              (function(param)
                {try
-                 {return eqtype$1(1,type_pairs,subst$1,env,param[3],param[5]);
+                 {return eqtype$1
+                          (/* true */1,type_pairs,subst,env,param[3],param[5]);
                   }
                 catch(exn)
-                 {if(exn[1]=Unify)
+                 {if(exn[1]===Unify)
                    {throw [0,
                            Failure$1,
                            /* :: */[0,
@@ -8305,7 +8827,7 @@ var
                              param[1],
                              env,
                              expand_trace(env,exn[2])],
-                            0]];
+                            /* [] */0]];
                     }
                   else
                    {throw exn;}
@@ -8318,10 +8840,10 @@ var
                        
                        try
                         {return eqtype$1
-                                 (1,type_pairs,subst$1,env,match$4[3],param[3]);
+                                 (/* true */1,type_pairs,subst,env,match$4[3],param[3]);
                          }
                        catch(exn)
-                        {if(exn[1]=Unify)
+                        {if(exn[1]===Unify)
                           {throw [0,
                                   Failure$1,
                                   /* :: */[0,
@@ -8329,7 +8851,7 @@ var
                                     lab,
                                     env,
                                     expand_trace(env,exn[2])],
-                                   0]];
+                                   /* [] */0]];
                            }
                          else
                           {throw exn;}
@@ -8341,26 +8863,27 @@ var
            }
          
         case 2:
-         switch(cty2)
+         switch(cty2[0])
           {case 0:exit=252;
            case 1:exit=251;
            case 2:
-            if("unknown primitive:caml_string_equal")
+            if(CamlPrimitive["caml_string_equal"](cty1[1],cty2[1]))
              {try
-               {eqtype$1(1,type_pairs,subst$1,env,cty1[2],cty2[2])}
+               {eqtype$1(/* true */1,type_pairs,subst,env,cty1[2],cty2[2])}
               catch(exn)
-               {if(exn[1]=Unify)
+               {if(exn[1]===Unify)
                  {throw [0,
                          Failure$1,
                          /* :: */[0,
                           /* CM_Parameter_mismatch */[3,env,expand_trace(env,exn[2])],
-                          0]];
+                          /* [] */0]];
                   }
                 else
                  {throw exn;}
                 }
               
-              return equal_clty(0,type_pairs,subst$1,env,cty1[3],cty2[3]);
+              return equal_clty
+                      (/* false */0,type_pairs,subst,env,cty1[3],cty2[3]);
               }
             else
              {exit=251;}
@@ -8370,20 +8893,23 @@ var
         }
       
       switch(exit)
-       {case 252:return equal_clty(1,type_pairs,subst$1,env,cty1,cty2[3]);
+       {case 252:
+         return equal_clty(/* true */1,type_pairs,subst,env,cty1,cty2[3]);
         case 251:
          throw [0,
                 Failure$1,
                 trace
-                 ?0
-                 :/* :: */[0,/* CM_Class_type_mismatch */[2,env,cty1,cty2],0]];
+                 ?/* [] */0
+                 :/* :: */[0,
+                   /* CM_Class_type_mismatch */[2,env,cty1,cty2],
+                   /* [] */0]];
          
         }
       }
     catch(exn$1)
      {var exit$2;
       
-      if(exn$1[1]=Failure$1)
+      if(exn$1[1]===Failure$1)
        {if(trace)
          {throw [0,
                  Failure$1,
@@ -8406,7 +8932,7 @@ var
   function(env,patt_params,patt_type,subj_params,subj_type)
    {var type_pairs=TypePairs[1](53);
     
-    var subst$1=[0,0];
+    var subst$1=[0,/* [] */0];
     
     var sign1=signature_of_class_type(patt_type);
     
@@ -8416,7 +8942,7 @@ var
     
     var t2=repr(sign2[1]);
     
-    TypePairs[5](type_pairs,/* tuple */[0,t1,t2],0);
+    TypePairs[5](type_pairs,/* tuple */[0,t1,t2],/* () */0);
     var match$1=flatten_fields(object_fields(t1));
     
     var match$2=flatten_fields(object_fields(t2));
@@ -8431,7 +8957,7 @@ var
           
           var k=Btype["field_kind_repr"](param[2]);
           
-          if("unknown primitive:isint")
+          if(typeof k==="number")
            {var err$1=/* :: */[0,/* CM_Hide_public */[10,lab],err];}
           else
            {var err$1=err;}
@@ -8442,7 +8968,7 @@ var
            {return /* :: */[0,/* CM_Hide_virtual */[11,"method",lab],err$1];}
           },
         match$3[2],
-        0);
+        /* [] */0);
     
     var
      missing_method=
@@ -8455,7 +8981,7 @@ var
          (function(m){return /* CM_Missing_method */[9,m];},missing_method),
         error);
     
-    eqtype$1(1,type_pairs,subst$1,env,match$1[2],match$2[2]);
+    eqtype$1(/* true */1,type_pairs,subst$1,env,match$1[2],match$2[2]);
     var
      error$2=
       List["fold_right"]
@@ -8468,19 +8994,19 @@ var
           
           var exit;
           
-          if("unknown primitive:isint")
-           {if(k1!=0)
+          if(typeof k1==="number")
+           {if(k1!==0)
              {exit=221;}
             else
-             {if("unknown primitive:isint")
-               {if(k2!=0){exit=221;}else{exit=220;}}
+             {if(typeof k2==="number")
+               {if(k2!==0){exit=221;}else{exit=220;}}
               else
                {return /* :: */[0,/* CM_Public_method */[12,lab],err];}
               }
             }
           else
-           {if("unknown primitive:isint")
-             {if(k2!=0)
+           {if(typeof k2==="number")
+             {if(k2!==0)
                {exit=221;}
               else
                {return /* :: */[0,/* CM_Private_method */[13,lab],err];}
@@ -8490,7 +9016,11 @@ var
             }
           
           switch(exit)
-           {case 221:throw [0,Assert_failure,[0,"typing/ctype.ml",3600,34]];
+           {case 221:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"typing/ctype.ml",3600,34]];
+             
             case 220:return err;
             }
           },
@@ -8504,17 +9034,17 @@ var
          {try
            {var match$4=Types["Vars"][22](lab,sign1[2]);
             
-            if((param[1]=1)&&match$4[1]!=1)
+            if(param[1]===/* Mutable */1&&match$4[1]!==/* Mutable */1)
              {return /* :: */[0,/* CM_Non_mutable_value */[6,lab],err];}
             else
-             {if((param[2]=1)&&match$4[2]!=1)
+             {if(param[2]===/* Concrete */1&&match$4[2]!==/* Concrete */1)
                {return /* :: */[0,/* CM_Non_concrete_value */[7,lab],err];}
               else
                {return err;}
               }
             }
           catch(exn)
-           {if(exn=Not_found)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {return /* :: */[0,/* CM_Missing_value */[8,lab],err];}
             else
              {throw exn;}
@@ -8527,7 +9057,7 @@ var
      error$4=
       Types["Vars"][11]
        (function(lab,param,err)
-         {if((param[2]=0)&&!Types["Vars"][3](lab,sign2[2]))
+         {if(param[2]===/* Virtual */0&&!Types["Vars"][3](lab,sign2[2]))
            {return /* :: */[0,
                     /* CM_Hide_virtual */[11,"instance variable",lab],
                     err];
@@ -8558,10 +9088,12 @@ var
         
         var ls=List["length"](subj_params);
         
-        if(lp!=ls)
+        if(lp!==ls)
          {throw [0,
                  Failure$1,
-                 /* :: */[0,/* CM_Parameter_arity_mismatch */[0,lp,ls],0]];
+                 /* :: */[0,
+                  /* CM_Parameter_arity_mismatch */[0,lp,ls],
+                  /* [] */0]];
           }
         else
          {}
@@ -8569,16 +9101,16 @@ var
         List["iter2"]
          (function(p,s)
            {try
-             {return eqtype$1(1,type_pairs,subst$1,env,p,s);}
+             {return eqtype$1(/* true */1,type_pairs,subst$1,env,p,s);}
             catch(exn)
-             {if(exn[1]=Unify)
+             {if(exn[1]===Unify)
                {throw [0,
                        Failure$1,
                        /* :: */[0,
                         /* CM_Type_parameter_mismatch */[1,
                          env,
                          expand_trace(env,exn[2])],
-                        0]];
+                        /* [] */0]];
                 }
               else
                {throw exn;}
@@ -8587,7 +9119,7 @@ var
           patt_params,
           subj_params);
         equal_clty
-         (0,
+         (/* false */0,
           type_pairs,
           subst$1,
           env,
@@ -8599,26 +9131,28 @@ var
            (function(ty,cty){return /* Cty_arrow */[2,"*",ty,cty];});
         
         return match_class_types
-                ([0,0],
+                ([/* Some */0,/* false */0],
                  env,
                  clty_params(patt_params,patt_type),
                  clty_params(subj_params,subj_type));
         }
-      catch(exn){if(exn[1]=Failure$1){return exn[2];}else{throw exn;}}
+      catch(exn){if(exn[1]===Failure$1){return exn[2];}else{throw exn;}}
       }
     };
 
-var warn=[0,0];
+var warn=[0,/* false */0];
 
-var pred_expand=function(n){if(((n%2)=0)&&n>0){return -1+n;}else{return n;}};
+var pred_expand=function(n){if(n%2===0&&n>0){return -1+n;}else{return n;}};
 
-var pred_enlarge=function(n){if((n%2)=1){return -1+n;}else{return n;}};
+var pred_enlarge=function(n){if(n%2===1){return -1+n;}else{return n;}};
 
 var
  collect=
   function(l)
    {return List["fold_left"]
-            (function(c1,param){return Pervasives["max"](c1,param[2]);},0,l);
+            (function(c1,param){return Pervasives["max"](c1,param[2]);},
+             /* Unchanged */0,
+             l);
     };
 
 var
@@ -8629,7 +9163,7 @@ var
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0]){case 4:exit=204;case 8:exit=204;default:exit=203;}}
@@ -8637,31 +9171,35 @@ var
       switch(exit){case 204:return l;case 203:return filter_visited(l[2]);}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
  memq_warn=
   function(t,visited)
-   {if(List["memq"](t,visited)){warn[1]=1,0;return 1;}else{return 0;}};
+   {if(List["memq"](t,visited))
+     {warn[1]=/* true */1;return /* true */1;}
+    else
+     {return /* false */0;}
+    };
 
 var
  lid_of_path=
   function($staropt$star,param)
    {if($staropt$star){var sharp=$staropt$star[1];}else{var sharp="";}
     
-    switch(param)
+    switch(param[0])
      {case 0:
        return /* Lident */[0,Pervasives["^"](sharp,Ident["name"](param[1]))];
       case 1:
        return /* Ldot */[1,
-               lid_of_path(0,param[1]),
+               lid_of_path(/* None */0,param[1]),
                Pervasives["^"](sharp,param[2])];
        
       case 2:
        return /* Lapply */[2,
                lid_of_path(/* Some */[0,sharp],param[1]),
-               lid_of_path(0,param[2])];
+               lid_of_path(/* None */0,param[2])];
        
       }
     };
@@ -8669,7 +9207,7 @@ var
 var
  find_cltype_for_path=
   function(env,p)
-   {var match$1=Env["lookup_type"](lid_of_path([0,"#"],p),env);
+   {var match$1=Env["lookup_type"](lid_of_path([/* Some */0,"#"],p),env);
     
     var cl_abbr=match$1[2];
     
@@ -8682,7 +9220,7 @@ var
       
       var exit;
       
-      if(typeof match$3=="number")
+      if(typeof match$3==="number")
        {switch(match$3){}}
       else
        {switch(match$3[0])
@@ -8700,10 +9238,14 @@ var
            
           default:exit=197;}}
       
-      switch(exit){case 197:throw Not_found;}
+      switch(exit)
+       {case 197:throw CamlPrimitive["caml_global_data"]["Not_found"];}
       }
     else
-     {throw [0,Assert_failure,[0,"typing/ctype.ml",3707,12]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/ctype.ml",3707,12]];
+      }
     };
 
 var
@@ -8719,13 +9261,16 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1)
        {case 0:
          if(posi)
-          {var v=newvar(0,0);return /* tuple */[0,v,2];}
+          {var v=newvar(/* None */0,/* () */0);
+           
+           return /* tuple */[0,v,/* Changed */2];
+           }
          else
-          {warn[1]=1,0;return /* tuple */[0,t$1,0];}
+          {warn[1]=/* true */1;return /* tuple */[0,t$1,/* Unchanged */0];}
          
         }}
     else
@@ -8735,18 +9280,22 @@ var
           {try
             {var t$prime=List["assq"](t$1,loops);
              
-             warn[1]=1,0;
-             return /* tuple */[0,t$prime,1];
+             warn[1]=/* true */1;
+             return /* tuple */[0,t$prime,/* Equiv */1];
              }
            catch(exn)
-            {if(exn=Not_found){return /* tuple */[0,t$1,0];}else{throw exn;}}
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+              {return /* tuple */[0,t$1,/* Unchanged */0];}
+             else
+              {throw exn;}
+             }
            }
          else
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          
         case 1:
          if(memq_warn(t$1,visited))
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          else
           {var visited$1=/* :: */[0,t$1,visited];
            
@@ -8760,18 +9309,19 @@ var
            
            var c=Pervasives["max"](match$2[2],match$3[2]);
            
-           if("unknown primitive:caml_greaterthan")
+           if(CamlPrimitive["caml_greaterthan"](c,/* Unchanged */0))
             {return /* tuple */[0,
-                     newty(/* Tarrow */[1,match$1[1],match$2[1],match$3[1],0]),
+                     newty
+                      (/* Tarrow */[1,match$1[1],match$2[1],match$3[1],/* Cok */0]),
                      c];
              }
            else
-            {return /* tuple */[0,t$1,0];}
+            {return /* tuple */[0,t$1,/* Unchanged */0];}
            }
          
         case 2:
          if(memq_warn(t$1,visited))
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          else
           {var visited$2=/* :: */[0,t$1,visited];
            
@@ -8782,7 +9332,7 @@ var
            
            var c$1=collect(tlist$prime);
            
-           if("unknown primitive:caml_greaterthan")
+           if(CamlPrimitive["caml_greaterthan"](c$1,/* Unchanged */0))
             {return /* tuple */[0,
                      newty
                       (/* Ttuple */[2,
@@ -8790,7 +9340,7 @@ var
                      c$1];
              }
            else
-            {return /* tuple */[0,t$1,0];}
+            {return /* tuple */[0,t$1,/* Unchanged */0];}
            }
          
         case 3:
@@ -8813,7 +9363,7 @@ var
              
              var exit$1;
              
-             if(typeof match$4=="number")
+             if(typeof match$4==="number")
               {switch(match$4){}}
              else
               {switch(match$4[0])
@@ -8826,9 +9376,9 @@ var
                       subst
                        (env,
                         current_level[1],
-                        1,
+                        /* Public */1,
                         match$1[3],
-                        0,
+                        /* None */0,
                         match$5[1][1],
                         tl,
                         match$5[2]);
@@ -8839,7 +9389,7 @@ var
                     
                     var exit$2;
                     
-                    if(typeof match$6=="number")
+                    if(typeof match$6==="number")
                      {switch(match$6){}}
                     else
                      {switch(match$6[0])
@@ -8859,17 +9409,20 @@ var
                          
                         default:exit$2=160;}}
                     
-                    switch(exit$2){case 160:throw Not_found;}
+                    switch(exit$2)
+                     {case 160:
+                       throw CamlPrimitive["caml_global_data"]["Not_found"];
+                      }
                     
                     var tl1=match$9[2];
                     
                     if(List["exists"](deep_occur(ty$1),tl1))
-                     {throw Not_found;}
+                     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
                     else
                      {}
                     
-                    ty$1[1]=[0,0],0;
-                    var t$prime$prime=newvar(0,0);
+                    ty$1[1]=[/* Tvar */0,/* None */0];
+                    var t$prime$prime=newvar(/* None */0,/* () */0);
                     
                     var
                      loops$1=
@@ -8879,7 +9432,7 @@ var
                      match$10=
                       build_subtype
                        (env,
-                        /* :: */[0,t$prime$1,0],
+                        /* :: */[0,t$prime$1,/* [] */0],
                         loops$1,
                         posi,
                         pred_enlarge(level$prime),
@@ -8890,46 +9443,53 @@ var
                     if(Btype["is_Tvar"](t$prime$prime))
                      {}
                     else
-                     {throw [0,Assert_failure,[0,"typing/ctype.ml",3770,10]];}
+                     {throw [0,
+                             CamlPrimitive["caml_global_data"]["Assert_failure"],
+                             [0,"typing/ctype.ml",3770,10]];
+                      }
                     
                     if
-                     ("unknown primitive:caml_greaterthan"||
+                     (CamlPrimitive["caml_greaterthan"](match$10[2],/* Equiv */1)||
                       deep_occur(ty$1,ty1$prime))
-                     {var nm=0;}
+                     {var nm=/* None */0;}
                     else
                      {var nm=/* Some */[0,/* tuple */[0,p,tl1]];}
                     
-                    t$prime$prime[1]=/* Tobject */[4,ty1$prime,[0,nm]],0;
+                    t$prime$prime[1]=/* Tobject */[4,ty1$prime,[0,nm]];
                     try
                      {unify_var(env,ty$1,t$1)}
                     catch(exn$1)
-                     {if(exn$1[1]=Unify)
-                       {throw [0,Assert_failure,[0,"typing/ctype.ml",3774,50]];}
+                     {if(exn$1[1]===Unify)
+                       {throw [0,
+                               CamlPrimitive["caml_global_data"]["Assert_failure"],
+                               [0,"typing/ctype.ml",3774,50]];
+                        }
                       else
                        {throw exn$1;}
                       }
                     
-                    return /* tuple */[0,t$prime$prime,2];
+                    return /* tuple */[0,t$prime$prime,/* Changed */2];
                     }
                   else
                    {exit$1=165;}
                   
                  default:exit$1=165;}}
              
-             switch(exit$1){case 165:throw Not_found;}
+             switch(exit$1)
+              {case 165:throw CamlPrimitive["caml_global_data"]["Not_found"];}
              }
            catch(exn$2)
-            {if(exn$2=Not_found)
+            {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
               {var
                 match$11=
                  build_subtype(env,visited,loops,posi,level$prime,t$prime$1);
                
                var c$2=match$11[2];
                
-               if("unknown primitive:caml_greaterthan")
+               if(CamlPrimitive["caml_greaterthan"](c$2,/* Unchanged */0))
                 {return /* tuple */[0,match$11[1],c$2];}
                else
-                {return /* tuple */[0,t$1,0];}
+                {return /* tuple */[0,t$1,/* Unchanged */0];}
                }
              else
               {throw exn$2;}
@@ -8937,7 +9497,7 @@ var
            }
          else
           {if(memq_warn(t$1,visited))
-            {return /* tuple */[0,t$1,0];}
+            {return /* tuple */[0,t$1,/* Unchanged */0];}
            else
             {var visited$3=/* :: */[0,t$1,visited];
              
@@ -8945,33 +9505,37 @@ var
               {var decl=Env["find_type"](p,env);
                
                if
-                ((level=0)&&
+                (level===
+                 0&&
                  generic_abbrev(env,p)&&
                  safe_abbrev(env,t$1)&&
                  !has_constr_row$prime(env,t$1))
-                {warn[1]=1,0}
+                {warn[1]=/* true */1}
                else
                 {}
                
                var
                 tl$prime=
                  List["map2"]
-                  (function(v$1,t$2)
-                    {var match$12=Types["Variance"][11](v$1);
+                  (function(v,t)
+                    {var match$12=Types["Variance"][11](v);
                      
                      var co=match$12[1];
                      
                      if(match$12[2])
                       {if(co)
-                        {return /* tuple */[0,t$2,0];}
+                        {return /* tuple */[0,t,/* Unchanged */0];}
                        else
-                        {return build_subtype(env,visited$3,loops,!posi,level,t$2);}
+                        {return build_subtype(env,visited$3,loops,!posi,level,t);}
                        }
                      else
                       {if(co)
-                        {return build_subtype(env,visited$3,loops,posi,level,t$2);}
+                        {return build_subtype(env,visited$3,loops,posi,level,t);}
                        else
-                        {return /* tuple */[0,newvar(0,0),2];}
+                        {return /* tuple */[0,
+                                 newvar(/* None */0,/* () */0),
+                                 /* Changed */2];
+                         }
                        }
                      },
                    decl[6],
@@ -8979,18 +9543,18 @@ var
                
                var c$3=collect(tl$prime);
                
-               if("unknown primitive:caml_greaterthan")
+               if(CamlPrimitive["caml_greaterthan"](c$3,/* Unchanged */0))
                 {return /* tuple */[0,
                          newconstr
                           (p,List["map"](function(prim){return prim[1];},tl$prime)),
                          c$3];
                  }
                else
-                {return /* tuple */[0,t$1,0];}
+                {return /* tuple */[0,t$1,/* Unchanged */0];}
                }
              catch(exn$3)
-              {if(exn$3=Not_found)
-                {return /* tuple */[0,t$1,0];}
+              {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
+                {return /* tuple */[0,t$1,/* Unchanged */0];}
                else
                 {throw exn$3;}
                }
@@ -9001,13 +9565,15 @@ var
          var t1=match$1[1];
          
          if(memq_warn(t$1,visited)||opened_object(t1))
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          else
           {var level$prime$1=pred_enlarge(level);
            
            var
             visited$4=
-             /* :: */[0,t$1,level$prime$1<level?0:filter_visited(visited)];
+             /* :: */[0,
+              t$1,
+              level$prime$1<level?/* [] */0:filter_visited(visited)];
            
            var
             match$12=
@@ -9015,13 +9581,13 @@ var
            
            var c$4=match$12[2];
            
-           if("unknown primitive:caml_greaterthan")
+           if(CamlPrimitive["caml_greaterthan"](c$4,/* Unchanged */0))
             {return /* tuple */[0,
-                     newty(/* Tobject */[4,match$12[1],[0,0]]),
+                     newty(/* Tobject */[4,match$12[1],[0,/* None */0]]),
                      c$4];
              }
            else
-            {return /* tuple */[0,t$1,0];}
+            {return /* tuple */[0,t$1,/* Unchanged */0];}
            }
          
         case 5:
@@ -9031,13 +9597,18 @@ var
          
          var c$5=Pervasives["max"](match$13[2],match$14[2]);
          
-         if("unknown primitive:caml_greaterthan")
+         if(CamlPrimitive["caml_greaterthan"](c$5,/* Unchanged */0))
           {return /* tuple */[0,
-                   newty(/* Tfield */[5,match$1[1],0,match$13[1],match$14[1]]),
+                   newty
+                    (/* Tfield */[5,
+                      match$1[1],
+                      /* Fpresent */0,
+                      match$13[1],
+                      match$14[1]]),
                    c$5];
            }
          else
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          
         case 6:exit=192;
         case 7:exit=192;
@@ -9045,15 +9616,17 @@ var
          var row=Btype["row_repr"](match$1[1]);
          
          if(memq_warn(t$1,visited)||!Btype["static_row"](row))
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          else
           {var level$prime$2=pred_enlarge(level);
            
            var
             visited$5=
-             /* :: */[0,t$1,level$prime$2<level?0:filter_visited(visited)];
+             /* :: */[0,
+              t$1,
+              level$prime$2<level?/* [] */0:filter_visited(visited)];
            
-           var fields=filter_row_fields(0,row[1]);
+           var fields=filter_row_fields(/* false */0,row[1]);
            
            var
             fields$1=
@@ -9065,7 +9638,7 @@ var
                  
                  var exit$3;
                  
-                 if(typeof match$15=="number")
+                 if(typeof match$15==="number")
                   {switch(match$15){case 0:exit$3=178;}}
                  else
                   {switch(match$15[0])
@@ -9081,7 +9654,14 @@ var
                         var t$prime$2=match$17[1];
                         
                         if(posi&&level>0)
-                         {var f=/* Reither */[1,0,/* :: */[0,t$prime$2,0],0,[0,0]];}
+                         {var
+                           f=
+                            /* Reither */[1,
+                             /* false */0,
+                             /* :: */[0,t$prime$2,/* [] */0],
+                             /* false */0,
+                             [0,/* None */0]];
+                          }
                         else
                          {var f=/* Rpresent */[0,/* Some */[0,t$prime$2]];}
                         
@@ -9090,11 +9670,17 @@ var
                       else
                        {if(posi)
                          {return /* tuple */[0,
-                                  /* tuple */[0,l,/* Reither */[1,1,0,0,[0,0]]],
-                                  0];
+                                  /* tuple */[0,
+                                   l,
+                                   /* Reither */[1,
+                                    /* true */1,
+                                    /* [] */0,
+                                    /* false */0,
+                                    [0,/* None */0]]],
+                                  /* Unchanged */0];
                           }
                         else
-                         {return /* tuple */[0,orig,0];}
+                         {return /* tuple */[0,orig,/* Unchanged */0];}
                         }
                       
                      case 1:exit$3=178;
@@ -9102,7 +9688,10 @@ var
                  
                  switch(exit$3)
                   {case 178:
-                    throw [0,Assert_failure,[0,"typing/ctype.ml",3832,17]];
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"typing/ctype.ml",3832,17]];
+                    
                    }
                  },
                fields);
@@ -9113,13 +9702,15 @@ var
             row$1=
              /* record */[0,
               List["map"](function(prim){return prim[1];},fields$1),
-              newvar(0,0),
-              0,
+              newvar(/* None */0,/* () */0),
+              /* () */0,
               posi,
-              0,
-              "unknown primitive:caml_greaterthan"?0:row[6]];
+              /* false */0,
+              CamlPrimitive["caml_greaterthan"](c$6,/* Unchanged */0)
+               ?/* None */0
+               :row[6]];
            
-           return /* tuple */[0,newty(/* Tvariant */[8,row$1]),2];
+           return /* tuple */[0,newty(/* Tvariant */[8,row$1]),/* Changed */2];
            }
          
         case 9:exit=193;
@@ -9128,28 +9719,32 @@ var
          
          var c$7=match$15[2];
          
-         if("unknown primitive:caml_greaterthan")
+         if(CamlPrimitive["caml_greaterthan"](c$7,/* Unchanged */0))
           {return /* tuple */[0,
                    newty(/* Tpoly */[10,match$15[1],match$1[2]]),
                    c$7];
            }
          else
-          {return /* tuple */[0,t$1,0];}
+          {return /* tuple */[0,t$1,/* Unchanged */0];}
          
         case 11:exit=193;
         }}
     
     switch(exit)
-     {case 192:throw [0,Assert_failure,[0,"typing/ctype.ml",3865,6]];
-      case 193:return /* tuple */[0,t$1,0];
+     {case 192:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",3865,6]];
+       
+      case 193:return /* tuple */[0,t$1,/* Unchanged */0];
       }
     };
 
 var
  enlarge_type=
   function(env,ty)
-   {warn[1]=0,0;
-    var match$1=build_subtype(env,0,0,1,4,ty);
+   {warn[1]=/* false */0;
+    var match$1=build_subtype(env,/* [] */0,/* [] */0,/* true */1,4,ty);
     
     return /* tuple */[0,match$1[1],warn[1]];
     };
@@ -9159,7 +9754,7 @@ var subtypes=TypePairs[1](17);
 var
  subtype_error=
   function(env,trace)
-   {throw [0,Subtype,expand_trace(env,List["rev"](trace)),0];};
+   {throw [0,Subtype,expand_trace(env,List["rev"](trace)),/* [] */0];};
 
 var
  included=
@@ -9172,18 +9767,18 @@ var
         
         var a=nl1[1];
         
-        if("unknown primitive:caml_equal")
+        if(CamlPrimitive["caml_equal"](a,b))
          {return included(nl1[2],nl2$prime);}
         else
-         {return "unknown primitive:caml_greaterthan"&&
+         {return CamlPrimitive["caml_greaterthan"](a,b)&&
                  included(nl1,nl2$prime);
           }
         }
       else
-       {return 0;}
+       {return /* false */0;}
       }
     else
-     {return 1;}
+     {return /* true */1;}
     };
 
 var
@@ -9198,7 +9793,7 @@ var
           
           var nl2$1=nl2[2];
           
-          if("unknown primitive:caml_equal")
+          if(CamlPrimitive["caml_equal"](nl1[1],nl2[1]))
            {return /* :: */[0,tl2[1],extract_assoc(nl1[2],nl2$1,tl2$1)];}
           else
            {return extract_assoc(nl1,nl2$1,tl2$1);}
@@ -9210,10 +9805,15 @@ var
        {exit=137;}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     
     switch(exit)
-     {case 137:throw [0,Assert_failure,[0,"typing/ctype.ml",3915,9]];}
+     {case 137:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/ctype.ml",3915,9]];
+       
+      }
     };
 
 var
@@ -9223,21 +9823,21 @@ var
     
     var t2$1=repr(t2);
     
-    if(t1$1=t2$1)
+    if(t1$1===t2$1)
      {return cstrs;}
     else
      {try
        {TypePairs[7](subtypes,/* tuple */[0,t1$1,t2$1]);return cstrs;}
       catch(exn)
-       {if(exn=Not_found)
-         {TypePairs[5](subtypes,/* tuple */[0,t1$1,t2$1],0);
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {TypePairs[5](subtypes,/* tuple */[0,t1$1,t2$1],/* () */0);
           var match$1=t1$1[1];
           
           var match$2=t2$1[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){}}
           else
            {switch(match$1[0])
@@ -9249,7 +9849,7 @@ var
                
                var l1=match$1[1];
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -9262,7 +9862,7 @@ var
                     var l2=match$2[1];
                     
                     if
-                     ("unknown primitive:caml_string_equal"||
+                     (CamlPrimitive["caml_string_equal"](l1,l2)||
                       Clflags["classic"][1]&&
                       !(Btype["is_optional"](l1)||Btype["is_optional"](l2)))
                      {var
@@ -9284,7 +9884,7 @@ var
                    default:exit=106;}}
                
               case 2:
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -9298,7 +9898,7 @@ var
                if(match$1[2])
                 {exit=110;}
                else
-                {if(typeof match$2=="number")
+                {if(typeof match$2==="number")
                   {switch(match$2){}}
                  else
                   {switch(match$2[0])
@@ -9319,7 +9919,7 @@ var
               case 4:
                var f1=match$1[1];
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -9341,7 +9941,7 @@ var
                    default:exit=106;}}
                
               case 8:
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -9351,7 +9951,7 @@ var
                     try
                      {return subtype_row(env,trace,match$1[1],match$2[1],cstrs);}
                     catch(exn$1)
-                     {if(exn$1=Pervasives["Exit"])
+                     {if(exn$1===Pervasives["Exit"])
                        {return /* :: */[0,
                                 /* tuple */[0,trace,t1$1,t2$1,univar_pairs[1]],
                                 cstrs];
@@ -9372,7 +9972,7 @@ var
                if(tl1)
                 {exit$1=111;}
                else
-                {if(typeof match$2=="number")
+                {if(typeof match$2==="number")
                   {switch(match$2){}}
                  else
                   {switch(match$2[0])
@@ -9389,7 +9989,7 @@ var
                
                switch(exit$1)
                 {case 111:
-                  if(typeof match$2=="number")
+                  if(typeof match$2==="number")
                    {switch(match$2){}}
                   else
                    {switch(match$2[0])
@@ -9409,11 +10009,10 @@ var
                                     tl1,
                                     u2$1,
                                     tl2,
-                                    function(t1$3,t2$3)
-                                     {return subtype_rec(env,trace,t1$3,t2$3,cstrs);});
+                                    function(t1,t2){return subtype_rec(env,trace,t1,t2,cstrs);});
                            }
                          catch(exn$2)
-                          {if(exn$2[1]=Unify)
+                          {if(exn$2[1]===Unify)
                             {return /* :: */[0,
                                      /* tuple */[0,trace,t1$1,t2$1,univar_pairs[1]],
                                      cstrs];
@@ -9423,7 +10022,9 @@ var
                            }
                          }
                        else
-                        {var match$3=instance_poly(0,0,tl1,u1$1);
+                        {var
+                          match$3=
+                           instance_poly(/* None */0,/* false */0,tl1,u1$1);
                          
                          return subtype_rec(env,trace,match$3[2],u2$1,cstrs);
                          }
@@ -9439,7 +10040,7 @@ var
                
                var p1=match$1[1];
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -9456,12 +10057,24 @@ var
                      {var
                        ntl1=
                         complete_type_list
-                         (0,env,nl2,t1$1[2],/* Mty_ident */[0,p1],nl1,tl1$1);
+                         (/* None */0,
+                          env,
+                          nl2,
+                          t1$1[2],
+                          /* Mty_ident */[0,p1],
+                          nl1,
+                          tl1$1);
                       
                       var
                        ntl2=
                         complete_type_list
-                         ([0,1],env,nl1,t2$1[2],/* Mty_ident */[0,p2],nl2,tl2$1);
+                         ([/* Some */0,/* true */1],
+                          env,
+                          nl1,
+                          t2$1[2],
+                          /* Mty_ident */[0,p2],
+                          nl2,
+                          tl2$1);
                       
                       var
                        cstrs$prime=
@@ -9478,7 +10091,7 @@ var
                       if(eq_package_path(env,p1,p2))
                        {return Pervasives["@"](cstrs$prime,cstrs);}
                       else
-                       {var snap=Btype["snapshot"](0);
+                       {var snap=Btype["snapshot"](/* () */0);
                         
                         try
                          {List["iter"]
@@ -9489,18 +10102,20 @@ var
                             return Pervasives["@"](cstrs$prime,cstrs);
                             }
                           else
-                           {throw [0,Unify,0];}
+                           {throw [0,Unify,/* [] */0];}
                           }
                         catch(exn$3)
-                         {if(exn$3[1]=Unify)
-                           {Btype["backtrack"](snap);throw Not_found;}
+                         {if(exn$3[1]===Unify)
+                           {Btype["backtrack"](snap);
+                            throw CamlPrimitive["caml_global_data"]["Not_found"];
+                            }
                           else
                            {throw exn$3;}
                           }
                         }
                       }
                     catch(exn$4)
-                     {if(exn$4=Not_found)
+                     {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                        {return /* :: */[0,
                                 /* tuple */[0,trace,t1$1,t2$1,univar_pairs[1]],
                                 cstrs];
@@ -9515,15 +10130,13 @@ var
           
           switch(exit)
            {case 110:
-             if(typeof match$2=="number")
+             if(typeof match$2==="number")
               {switch(match$2){}}
              else
-              {switch(match$2[0])
-                {case 0:"unknown block:(exit 105)";
-                 default:"unknown block:(exit 109)";}}
+              {switch(match$2[0]){case 0:exit=105;default:exit=109;}}
              
             case 109:
-             if(typeof match$1=="number")
+             if(typeof match$1==="number")
               {switch(match$1){}}
              else
               {switch(match$1[0])
@@ -9533,12 +10146,12 @@ var
                             (env,trace,expand_abbrev(env,t1$1),t2$1,cstrs);
                     }
                   else
-                   {"unknown block:(exit 108)";}
+                   {exit=108;}
                   
-                 default:"unknown block:(exit 108)";}}
+                 default:exit=108;}}
              
             case 108:
-             if(typeof match$2=="number")
+             if(typeof match$2==="number")
               {switch(match$2){}}
              else
               {switch(match$2[0])
@@ -9548,12 +10161,12 @@ var
                             (env,trace,t1$1,expand_abbrev(env,t2$1),cstrs);
                     }
                   else
-                   {"unknown block:(exit 107)";}
+                   {exit=107;}
                   
-                 default:"unknown block:(exit 107)";}}
+                 default:exit=107;}}
              
             case 107:
-             if(typeof match$1=="number")
+             if(typeof match$1==="number")
               {switch(match$1){}}
              else
               {switch(match$1[0])
@@ -9562,7 +10175,7 @@ var
                   
                   var exit$2;
                   
-                  if(typeof match$2=="number")
+                  if(typeof match$2==="number")
                    {switch(match$2){}}
                   else
                    {switch(match$2[0])
@@ -9572,7 +10185,7 @@ var
                           {var decl=Env["find_type"](p1$1,env);
                            
                            return List["fold_left2"]
-                                   (function(cstrs$2,v,param)
+                                   (function(cstrs,v,param)
                                      {var t2$3=param[2];
                                       
                                       var t1$3=param[1];
@@ -9586,10 +10199,10 @@ var
                                          {return /* :: */[0,
                                                   /* tuple */[0,
                                                    trace,
-                                                   newty2(t1$3[2],/* Ttuple */[2,/* :: */[0,t1$3,0]]),
-                                                   newty2(t2$3[2],/* Ttuple */[2,/* :: */[0,t2$3,0]]),
+                                                   newty2(t1$3[2],/* Ttuple */[2,/* :: */[0,t1$3,/* [] */0]]),
+                                                   newty2(t2$3[2],/* Ttuple */[2,/* :: */[0,t2$3,/* [] */0]]),
                                                    univar_pairs[1]],
-                                                  cstrs$2];
+                                                  cstrs];
                                           }
                                         else
                                          {return subtype_rec
@@ -9597,7 +10210,7 @@ var
                                                    /* :: */[0,/* tuple */[0,t1$3,t2$3],trace],
                                                    t1$3,
                                                    t2$3,
-                                                   cstrs$2);
+                                                   cstrs);
                                           }
                                         }
                                       else
@@ -9607,10 +10220,10 @@ var
                                                    /* :: */[0,/* tuple */[0,t2$3,t1$3],trace],
                                                    t2$3,
                                                    t1$3,
-                                                   cstrs$2);
+                                                   cstrs);
                                           }
                                         else
-                                         {return cstrs$2;}
+                                         {return cstrs;}
                                         }
                                       },
                                     cstrs,
@@ -9618,7 +10231,7 @@ var
                                     List["combine"](match$1[2],match$2[2]));
                            }
                          catch(exn$5)
-                          {if(exn$5=Not_found)
+                          {if(exn$5===CamlPrimitive["caml_global_data"]["Not_found"])
                             {return /* :: */[0,
                                      /* tuple */[0,trace,t1$1,t2$1,univar_pairs[1]],
                                      cstrs];
@@ -9639,11 +10252,11 @@ var
                                (env,trace,expand_abbrev_opt(env,t1$1),t2$1,cstrs);
                        }
                      else
-                      {"unknown block:(exit 106)";}
+                      {exit=106;}
                      
                     }
                   
-                 default:"unknown block:(exit 106)";}}
+                 default:exit=106;}}
              
             case 106:
              return /* :: */[0,
@@ -9666,15 +10279,15 @@ var
 var
  subtype_list=
   function(env,trace,tl1,tl2,cstrs)
-   {if(List["length"](tl1)!=List["length"](tl2))
+   {if(List["length"](tl1)!==List["length"](tl2))
      {subtype_error(env,trace)}
     else
      {}
     
     return List["fold_left2"]
-            (function(cstrs$1,t1,t2)
+            (function(cstrs,t1,t2)
               {return subtype_rec
-                       (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs$1);
+                       (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs);
                },
              cstrs,
              tl1,
@@ -9698,10 +10311,10 @@ var
     
     var miss1=match$3[2];
     
-    if(rest2[1]=0)
+    if(rest2[1]===/* Tnil */0)
      {var cstrs$1=cstrs;}
     else
-     {if(miss1=0)
+     {if(miss1===/* [] */0)
        {var
          cstrs$1=
           subtype_rec
@@ -9724,7 +10337,7 @@ var
         }
       }
     
-    if(miss2=0)
+    if(miss2===/* [] */0)
      {var cstrs$2=cstrs$1;}
     else
      {var
@@ -9733,19 +10346,19 @@ var
          /* tuple */[0,
           trace,
           rest1,
-          build_fields(repr(ty2)[2],miss2,newvar(0,0)),
+          build_fields(repr(ty2)[2],miss2,newvar(/* None */0,/* () */0)),
           univar_pairs[1]],
          cstrs$1];
       }
     
     return List["fold_left"]
-            (function(cstrs$3,param)
+            (function(cstrs,param)
               {var t2=param[5];
                
                var t1=param[3];
                
                return subtype_rec
-                       (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs$3);
+                       (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs);
                },
              cstrs$2,
              match$3[1]);
@@ -9774,13 +10387,13 @@ var
     
     var exit;
     
-    if(typeof match$2=="number")
+    if(typeof match$2==="number")
      {switch(match$2){case 0:exit=129;}}
     else
      {switch(match$2[0])
        {case 0:exit=129;
         case 3:
-         if(typeof match$3=="number")
+         if(typeof match$3==="number")
           {switch(match$3){}}
          else
           {switch(match$3[0])
@@ -9799,12 +10412,17 @@ var
              default:exit=129;}}
          
         case 9:
-         if(typeof match$3=="number")
+         if(typeof match$3==="number")
           {switch(match$3){}}
          else
           {switch(match$3[0])
             {case 9:
-              if("unknown primitive:caml_equal"&&(r1=0)&&(match$1[2]=0))
+              if
+               (CamlPrimitive["caml_equal"](row1$1[4],row2$1[4])&&
+                r1===
+                /* [] */0&&
+                match$1[2]===
+                /* [] */0)
                {var
                  cstrs$1=
                   subtype_rec
@@ -9815,17 +10433,17 @@ var
                     cstrs);
                 
                 return List["fold_left"]
-                        (function(cstrs$2,param)
+                        (function(cstrs,param)
                           {var match$4=Btype["row_field_repr"](param[2]);
                            
                            var match$5=Btype["row_field_repr"](param[3]);
                            
                            var exit$1;
                            
-                           if(typeof match$4=="number")
+                           if(typeof match$4==="number")
                             {switch(match$4)
                               {case 0:
-                                if("unknown primitive:isint"){exit$1=124;}else{exit$1=126;}
+                                if(typeof match$5==="number"){exit$1=124;}else{exit$1=126;}
                                }}
                            else
                             {switch(match$4[0])
@@ -9833,7 +10451,7 @@ var
                                 var match$6=match$4[1];
                                 
                                 if(match$6)
-                                 {if(typeof match$5=="number")
+                                 {if(typeof match$5==="number")
                                    {switch(match$5){case 0:exit$1=126;}}
                                   else
                                    {switch(match$5[0])
@@ -9849,7 +10467,7 @@ var
                                       }}
                                   }
                                 else
-                                 {if(typeof match$5=="number")
+                                 {if(typeof match$5==="number")
                                    {switch(match$5){case 0:exit$1=126;}}
                                   else
                                    {switch(match$5[0])
@@ -9859,17 +10477,17 @@ var
                                   }
                                 
                                case 1:
-                                if(match$4[1]!=0)
+                                if(match$4[1]!==0)
                                  {if(match$4[2])
                                    {exit$1=126;}
                                   else
-                                   {if(typeof match$5=="number")
+                                   {if(typeof match$5==="number")
                                      {switch(match$5){case 0:exit$1=126;}}
                                     else
                                      {switch(match$5[0])
                                        {case 0:exit$1=126;
                                         case 1:
-                                         if(match$5[1]!=0)
+                                         if(match$5[1]!==0)
                                           {if(match$5[2]){exit$1=126;}else{exit$1=124;}}
                                          else
                                           {exit$1=126;}
@@ -9884,13 +10502,13 @@ var
                                    {if(match$8[2])
                                      {exit$1=126;}
                                     else
-                                     {if(typeof match$5=="number")
+                                     {if(typeof match$5==="number")
                                        {switch(match$5){case 0:exit$1=126;}}
                                       else
                                        {switch(match$5[0])
                                          {case 0:exit$1=126;
                                           case 1:
-                                           if(match$5[1]!=0)
+                                           if(match$5[1]!==0)
                                             {exit$1=126;}
                                            else
                                             {var match$9=match$5[2];
@@ -9916,10 +10534,10 @@ var
                            
                            switch(exit$1)
                             {case 126:throw Pervasives["Exit"];
-                             case 124:return cstrs$2;
+                             case 124:return cstrs;
                              case 125:
                               return subtype_rec
-                                      (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs$2);
+                                      (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs);
                               
                              }
                            },
@@ -9937,27 +10555,25 @@ var
      {case 129:
        var exit$1;
        
-       if(typeof match$3=="number")
+       if(typeof match$3==="number")
         {switch(match$3){case 0:exit$1=131;}}
        else
         {switch(match$3[0])
-          {case 0:exit$1=131;
-           case 3:exit$1=131;
-           default:"unknown block:(exit 128)";}}
+          {case 0:exit$1=131;case 3:exit$1=131;default:exit=128;}}
        
        switch(exit$1)
         {case 131:
-          if(row1$1[4]&&(r1=0))
+          if(row1$1[4]&&r1===/* [] */0)
            {return List["fold_left"]
-                    (function(cstrs$2,param)
+                    (function(cstrs,param)
                       {var match$4=Btype["row_field_repr"](param[2]);
                        
                        var match$5=Btype["row_field_repr"](param[3]);
                        
                        var exit$2;
                        
-                       if(typeof match$4=="number")
-                        {switch(match$4){case 0:return cstrs$2;}}
+                       if(typeof match$4==="number")
+                        {switch(match$4){case 0:return cstrs;}}
                        else
                         {switch(match$4[0])
                           {case 0:
@@ -9966,7 +10582,7 @@ var
                             if(match$6)
                              {var t1=match$6[1];
                               
-                              if(typeof match$5=="number")
+                              if(typeof match$5==="number")
                                {switch(match$5){case 0:exit$2=122;}}
                               else
                                {switch(match$5[0])
@@ -9977,7 +10593,7 @@ var
                                     {var t2=match$7[1];
                                      
                                      return subtype_rec
-                                             (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs$2);
+                                             (env,/* :: */[0,/* tuple */[0,t1,t2],trace],t1,t2,cstrs);
                                      }
                                    else
                                     {exit$2=122;}
@@ -9989,7 +10605,7 @@ var
                              {exit$2=123;}
                             
                            case 1:
-                            if(match$4[1]!=0)
+                            if(match$4[1]!==0)
                              {exit$2=123;}
                             else
                              {var match$8=match$4[2];
@@ -9997,7 +10613,7 @@ var
                               if(match$8)
                                {var t1$1=match$8[1];
                                 
-                                if(typeof match$5=="number")
+                                if(typeof match$5==="number")
                                  {switch(match$5){case 0:exit$2=122;}}
                                 else
                                  {switch(match$5[0])
@@ -10012,7 +10628,7 @@ var
                                                 /* :: */[0,/* tuple */[0,t1$1,t2$1],trace],
                                                 t1$1,
                                                 t2$1,
-                                                cstrs$2);
+                                                cstrs);
                                        }
                                      else
                                       {exit$2=122;}
@@ -10028,17 +10644,12 @@ var
                        
                        switch(exit$2)
                         {case 123:
-                          if(typeof match$5=="number")
-                           {switch(match$5){case 0:"unknown block:(exit 122)";}}
+                          if(typeof match$5==="number")
+                           {switch(match$5){case 0:exit$2=122;}}
                           else
                            {switch(match$5[0])
-                             {case 0:
-                               if(match$5[1])
-                                {"unknown block:(exit 122)";}
-                               else
-                                {return cstrs$2;}
-                               
-                              case 1:"unknown block:(exit 122)";
+                             {case 0:if(match$5[1]){exit$2=122;}else{return cstrs;}
+                              case 1:exit$2=122;
                               }}
                           
                          case 122:throw Pervasives["Exit"];
@@ -10048,7 +10659,7 @@ var
                      pairs);
             }
           else
-           {"unknown block:(exit 128)";}
+           {exit=128;}
           
          }
        
@@ -10060,8 +10671,11 @@ var
  subtype=
   function(env,ty1,ty2)
    {TypePairs[2](subtypes);
-    univar_pairs[1]=0,0;
-    var cstrs=subtype_rec(env,/* :: */[0,/* tuple */[0,ty1,ty2],0],ty1,ty2,0);
+    univar_pairs[1]=/* [] */0;
+    var
+     cstrs=
+      subtype_rec
+       (env,/* :: */[0,/* tuple */[0,ty1,ty2],/* [] */0],ty1,ty2,/* [] */0);
     
     TypePairs[2](subtypes);
     return function(param)
@@ -10072,7 +10686,7 @@ var
                            ([0,env],param$1[2],param$1[3],param$1[4]);
                    }
                  catch(exn)
-                  {if(exn[1]=Unify)
+                  {if(exn[1]===Unify)
                     {throw [0,
                             Subtype,
                             expand_trace(env,List["rev"](param$1[1])),
@@ -10095,12 +10709,12 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){case 0:exit=86;}}
     else
      {switch(match$1[0])
        {case 0:exit=86;
-        case 3:return newvar2(0,ty$1[2]);
+        case 3:return newvar2(/* None */0,ty$1[2]);
         case 5:
          return newty2
                  (ty$1[2],
@@ -10111,7 +10725,11 @@ var
                    unalias_object(match$1[4])]);
          
         case 9:return ty$1;
-        default:throw [0,Assert_failure,[0,"typing/ctype.ml",4129,6]];}}
+        default:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"typing/ctype.ml",4129,6]];
+         }}
     
     switch(exit){case 86:return newty2(ty$1[2],ty$1[1]);}
     };
@@ -10125,7 +10743,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -10141,12 +10759,12 @@ var
          
          var more=row[2];
          
-         var newrecord="unknown primitive:duprecord regular 6";
+         var newrecord=/* unknown */"duprecord regular 6";
          
          return newty2
                  (ty$1[2],
                   /* Tvariant */[8,
-                   (newrecord[2]=newty2(more[2],more[1]),0,newrecord)]);
+                   (newrecord[2]=newty2(more[2],more[1]),newrecord)]);
          
         case 9:exit=82;
         default:exit=83;}}
@@ -10161,7 +10779,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0]){case 1:return 1+arity(match$1[3]);default:exit=79;}}
@@ -10174,40 +10792,39 @@ var
   function(env,id,ty)
    {var
      check_cycle=
-      function(seen,ty$1)
-       {var ty$2=repr(ty$1);
+      function(seen,ty)
+       {var ty$1=repr(ty);
         
-        var match$1=ty$2[1];
+        var match$1=ty$1[1];
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
            {case 3:
+             var $js;
              try
-              {var
-                $js=
-                 check_cycle
-                  (/* :: */[0,ty$2,seen],expand_abbrev_opt(env,ty$2));
+              {$js=
+               check_cycle(/* :: */[0,ty$1,seen],expand_abbrev_opt(env,ty$1));
                }
              catch(exn)
-              {if(exn=Cannot_expand)
-                {var $js=0;}
+              {if(exn===Cannot_expand)
+                {$js=/* false */0;}
                else
-                {if(exn[1]=Unify){var $js=1;}else{throw exn;}}
+                {if(exn[1]===Unify){$js=/* true */1;}else{throw exn;}}
                }
-             return "unknown primitive:caml_equal"||
-                    List["memq"](ty$2,seen)||
+             return CamlPrimitive["caml_equal"](match$1[1],/* Pident */[0,id])||
+                    List["memq"](ty$1,seen)||
                     $js;
              
             default:exit=76;}}
         
-        switch(exit){case 76:return 0;}
+        switch(exit){case 76:return /* false */0;}
         };
     
-    return check_cycle(0,ty);
+    return check_cycle(/* [] */0,ty);
     };
 
 var
@@ -10216,12 +10833,12 @@ var
    {var ty$1=repr(ty);
     
     if(!Btype["TypeSet"][3](ty$1,visited[1]))
-     {visited[1]=Btype["TypeSet"][4](ty$1,visited[1]),0;
+     {visited[1]=Btype["TypeSet"][4](ty$1,visited[1]);
       var match$1=ty$1[1];
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){}}
       else
        {switch(match$1[0])
@@ -10243,7 +10860,7 @@ var
                var n=match$3[1];
                
                if(deep_occur(ty$1,Btype["newgenty"](/* Ttuple */[2,l])))
-                {Btype["set_name"](nm,0)}
+                {Btype["set_name"](nm,/* None */0)}
                else
                 {var v$prime=repr(v);
                  
@@ -10251,20 +10868,22 @@ var
                  
                  var exit$1;
                  
-                 if(typeof match$5=="number")
+                 if(typeof match$5==="number")
                   {switch(match$5)
                     {case 0:
-                      Btype["log_type"](ty$1),ty$1[1]=/* Tconstr */[3,n,l,[0,0]],0
+                      Btype["log_type"](ty$1),
+                      ty$1[1]=
+                      /* Tconstr */[3,n,l,[0,/* Mnil */0]]
                      }}
                  else
                   {switch(match$5[0])
                     {case 0:exit$1=68;
                      case 9:exit$1=68;
-                     default:Btype["set_name"](nm,0)}}
+                     default:Btype["set_name"](nm,/* None */0)}}
                  
                  switch(exit$1)
                   {case 68:
-                    if(v$prime!=v)
+                    if(v$prime!==v)
                      {Btype["set_name"]
                        (nm,/* Some */[0,/* tuple */[0,n,/* :: */[0,v$prime,l]]])}
                     else
@@ -10288,7 +10907,7 @@ var
              
              var fi$prime=build_fields(fi[2],match$6[1],match$6[2]);
              
-             Btype["log_type"](ty$1),fi[1]=fi$prime[1],0}
+             Btype["log_type"](ty$1),fi[1]=fi$prime[1]}
            
           case 8:
            var row=Btype["row_repr"](match$1[1]);
@@ -10304,7 +10923,7 @@ var
                  var exit$2;
                  
                  var $js;
-                 if(typeof f=="number")
+                 if(typeof f==="number")
                   {switch(f){case 0:exit$2=61;}}
                  else
                   {switch(f[0])
@@ -10319,22 +10938,25 @@ var
                          {var
                            tyl$prime=
                             List["fold_left"]
-                             (function(tyl$1,ty$2)
+                             (function(tyl,ty)
                                {if
                                  (List["exists"]
                                    (function(ty$prime)
                                      {return equal$1
-                                              (env,0,/* :: */[0,ty$2,0],/* :: */[0,ty$prime,0]);
+                                              (env,
+                                               /* false */0,
+                                               /* :: */[0,ty,/* [] */0],
+                                               /* :: */[0,ty$prime,/* [] */0]);
                                       },
-                                    tyl$1))
-                                 {return tyl$1;}
+                                    tyl))
+                                 {return tyl;}
                                 else
-                                 {return /* :: */[0,ty$2,tyl$1];}
+                                 {return /* :: */[0,ty,tyl];}
                                 },
-                              /* :: */[0,match$7[1],0],
+                              /* :: */[0,match$7[1],/* [] */0],
                               tyl);
                           
-                          if(f!=f0||List["length"](tyl$prime)<List["length"](tyl))
+                          if(f!==f0||List["length"](tyl$prime)<List["length"](tyl))
                            {$js=/* Reither */[1,f[1],List["rev"](tyl$prime),f[3],f[4]];
                             }
                           else
@@ -10358,13 +10980,16 @@ var
             fields$1=
              List["sort"]
               (function(param,param$1)
-                {return "unknown primitive:caml_string_compare";},
-               List["filter"](function(param){return param[2]!=0;},fields));
+                {return CamlPrimitive["caml_string_compare"]
+                         (param[1],param$1[1]);
+                 },
+               List["filter"]
+                (function(param){return param[2]!==/* Rabsent */0;},fields));
            
            Btype["log_type"](ty$1);
-           var newrecord="unknown primitive:duprecord regular 6";
+           var newrecord=/* unknown */"duprecord regular 6";
            
-           ty$1[1]=/* Tvariant */[8,(newrecord[1]=fields$1,0,newrecord)],0;
+           ty$1[1]=/* Tvariant */[8,(newrecord[1]=fields$1,newrecord)];
           default:exit=72;}}
       
       switch(exit){case 72:}
@@ -10397,7 +11022,7 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
@@ -10411,8 +11036,8 @@ var
        try
         {return Btype["TypeHash"][7](nondep_hash,ty);}
        catch(exn)
-        {if(exn=Not_found)
-          {var ty$prime=Btype["newgenvar"](0,0);
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {var ty$prime=Btype["newgenvar"](/* None */0,/* () */0);
            
            Btype["TypeHash"][5](nondep_hash,ty,ty$prime);
            var match$2=ty[1];
@@ -10420,7 +11045,7 @@ var
            var exit$1;
            
            var $js;
-           if(typeof match$2=="number")
+           if(typeof match$2==="number")
             {switch(match$2){}}
            else
             {switch(match$2[0])
@@ -10437,12 +11062,15 @@ var
                   catch(exn$1)
                    {var exit$2;
                     
-                    if(exn$1=Cannot_expand)
+                    if(exn$1===Cannot_expand)
                      {exit$2=39;}
                     else
-                     {if(exn$1[1]=Unify){exit$2=39;}else{throw exn$1;}}
+                     {if(exn$1[1]===Unify){exit$2=39;}else{throw exn$1;}}
                     
-                    switch(exit$2){case 39:throw Not_found;}
+                    switch(exit$2)
+                     {case 39:
+                       throw CamlPrimitive["caml_global_data"]["Not_found"];
+                      }
                     }
                   }
                 else
@@ -10450,7 +11078,7 @@ var
                   /* Tconstr */[3,
                    p,
                    List["map"](nondep_type_rec(env,id),match$2[2]),
-                   [0,0]];
+                   [0,/* Mnil */0]];
                   }
                 
                case 4:
@@ -10462,7 +11090,7 @@ var
                   var p$1=match$4[1];
                   
                   if(Path["isfree"](id,p$1))
-                   {var $js$1=0;}
+                   {var $js$1=/* None */0;}
                   else
                    {var
                      $js$1=
@@ -10473,7 +11101,7 @@ var
                     }
                   }
                 else
-                 {var $js$1=0;}
+                 {var $js$1=/* None */0;}
                 $js=
                 /* Tobject */[4,nondep_type_rec(env,id,match$2[1]),[0,$js$1]];
                 
@@ -10489,19 +11117,23 @@ var
                   $js=/* Tlink */[6,ty2];
                   }
                 catch(exn$2)
-                 {if(exn$2=Not_found)
+                 {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
                    {Btype["TypeHash"][5](nondep_variants,more,ty$prime);
                     var $$static=Btype["static_row"](row);
                     
                     if($$static)
-                     {var more$prime=Btype["newgenty"](0);}
+                     {var more$prime=Btype["newgenty"](/* Tnil */0);}
                     else
                      {var more$prime=more;}
                     
                     var
                      row$1=
                       Btype["copy_row"]
-                       (nondep_type_rec(env,id),1,row,1,more$prime);
+                       (nondep_type_rec(env,id),
+                        /* true */1,
+                        row,
+                        /* true */1,
+                        more$prime);
                     
                     var match$5=row$1[6];
                     
@@ -10509,9 +11141,9 @@ var
                     
                     if(match$5)
                      {if(Path["isfree"](id,match$5[1][1]))
-                       {var newrecord="unknown primitive:duprecord regular 6";
+                       {var newrecord=/* unknown */"duprecord regular 6";
                         
-                        $js=/* Tvariant */[8,(newrecord[6]=0,0,newrecord)];
+                        $js=/* Tvariant */[8,(newrecord[6]=/* None */0,newrecord)];
                         }
                       else
                        {exit$3=42;}
@@ -10531,7 +11163,10 @@ var
                 if(Path["isfree"](id,p$2))
                  {var p$prime=normalize_package_path(env,p$2);
                   
-                  if(Path["isfree"](id,p$prime)){throw Not_found;}else{}
+                  if(Path["isfree"](id,p$prime))
+                   {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+                  else
+                   {}
                   
                   $js=
                   /* Tpackage */[11,
@@ -10547,9 +11182,12 @@ var
            var $js$2;
            switch(exit$1)
             {case 50:
-              $js$2=Btype["copy_type_desc"](0,nondep_type_rec(env,id),ty[1]);
+              $js$2=
+              Btype["copy_type_desc"]
+               (/* None */0,nondep_type_rec(env,id),ty[1]);
+              
              }
-           ty$prime[1]=$js$2,0;
+           ty$prime[1]=$js$2;
            return ty$prime;
            }
          else
@@ -10564,9 +11202,19 @@ var
  nondep_type=
   function(env,id,ty)
    {try
-     {var ty$prime=nondep_type_rec(env,id,ty);clear_hash(0);return ty$prime;}
+     {var ty$prime=nondep_type_rec(env,id,ty);
+      
+      clear_hash(/* () */0);
+      return ty$prime;
+      }
     catch(exn)
-     {if(exn=Not_found){clear_hash(0);throw Not_found;}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {clear_hash(/* () */0);
+        throw CamlPrimitive["caml_global_data"]["Not_found"];
+        }
+      else
+       {throw exn;}
+      }
     };
 
 var match$1=(nondep_type$prime[1]=nondep_type,0);
@@ -10586,7 +11234,8 @@ var
     else
      {var ty$prime=newty2(ty$1[2],ty$1[1]);
       
-      Btype["link_type"](ty$1,newty2(ty$1[2],/* Tconstr */[3,path,tl,[0,0]]));
+      Btype["link_type"]
+       (ty$1,newty2(ty$1[2],/* Tconstr */[3,path,tl,[0,/* Mnil */0]]));
       return ty$prime;
       }
     };
@@ -10600,8 +11249,11 @@ var
       try
        {var match$2=decl[3];
         
-        if(typeof match$2=="number")
-         {switch(match$2){case 0:var tk=0;case 1:var tk=1;}}
+        if(typeof match$2==="number")
+         {switch(match$2)
+           {case 0:var tk=/* Type_abstract */0;
+            case 1:var tk=/* Type_open */1;
+            }}
         else
          {switch(match$2[0])
            {case 0:
@@ -10640,8 +11292,8 @@ var
       catch(exn)
        {var exit;
         
-        if(exn=Not_found)
-         {if(is_covariant){var tk=0;}else{exit=26;}}
+        if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {if(is_covariant){var tk=/* Type_abstract */0;}else{exit=26;}}
         else
          {exit=26;}
         
@@ -10658,24 +11310,28 @@ var
              unroll_abbrev(id,params,nondep_type_rec(env,mid,match$3[1]))];
           }
         else
-         {var tm=0;}
+         {var tm=/* None */0;}
         }
       catch(exn$1)
        {var exit$1;
         
-        if(exn$1=Not_found)
-         {if(is_covariant){var tm=0;}else{exit$1=24;}}
+        if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+         {if(is_covariant){var tm=/* None */0;}else{exit$1=24;}}
         else
          {exit$1=24;}
         
         switch(exit$1){case 24:throw exn$1;}
         }
       
-      clear_hash(0);
+      clear_hash(/* () */0);
       var exit$2;
       
       if(tm)
-       {if(Btype["has_constr_row"](tm[1])){var priv=0;}else{exit$2=22;}}
+       {if(Btype["has_constr_row"](tm[1]))
+         {var priv=/* Private */0;}
+        else
+         {exit$2=22;}
+        }
       else
        {exit$2=22;}
       
@@ -10688,12 +11344,18 @@ var
               priv,
               tm,
               decl[6],
-              0,
+              /* None */0,
               decl[8],
               decl[9]];
       }
     catch(exn$2)
-     {if(exn$2=Not_found){clear_hash(0);throw Not_found;}else{throw exn$2;}}
+     {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
+       {clear_hash(/* () */0);
+        throw CamlPrimitive["caml_global_data"]["Not_found"];
+        }
+      else
+       {throw exn$2;}
+      }
     };
 
 var
@@ -10701,7 +11363,9 @@ var
   function(env,mid,ext)
    {try
      {if(Path["isfree"](mid,ext[1]))
-       {var ty=Btype["newgenty"](/* Tconstr */[3,ext[1],ext[2],[0,0]]);
+       {var
+         ty=
+          Btype["newgenty"](/* Tconstr */[3,ext[1],ext[2],[0,/* Mnil */0]]);
         
         var ty$prime=nondep_type_rec(env,mid,ty);
         
@@ -10709,14 +11373,15 @@ var
         
         var exit;
         
-        if(typeof match$2=="number")
+        if(typeof match$2==="number")
          {switch(match$2){}}
         else
          {switch(match$2[0])
            {case 3:var match$3=/* tuple */[0,match$2[1],match$2[2]];
             default:exit=16;}}
         
-        switch(exit){case 16:throw Not_found;}
+        switch(exit)
+         {case 16:throw CamlPrimitive["caml_global_data"]["Not_found"];}
         }
       else
        {var type_params=List["map"](nondep_type_rec(env,mid),ext[2]);
@@ -10728,7 +11393,7 @@ var
       
       var ret_type=Misc["may_map"](nondep_type_rec(env,mid),ext[4]);
       
-      clear_hash(0);
+      clear_hash(/* () */0);
       return /* record */[0,
               match$3[1],
               match$3[2],
@@ -10739,7 +11404,13 @@ var
               ext[7]];
       }
     catch(exn)
-     {if(exn=Not_found){clear_hash(0);throw Not_found;}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {clear_hash(/* () */0);
+        throw CamlPrimitive["caml_global_data"]["Not_found"];
+        }
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -10768,7 +11439,7 @@ var
 var
  nondep_class_type=
   function(env,id,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var cty=param[3];
        
@@ -10800,7 +11471,10 @@ var
    {if(!Path["isfree"](id,decl[3]))
      {}
     else
-     {throw [0,Assert_failure,[0,"typing/ctype.ml",4449,2]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/ctype.ml",4449,2]];
+      }
     
     var match$2=decl[4];
     
@@ -10810,12 +11484,12 @@ var
        List["map"](nondep_type_rec(env,id),decl[1]),
        nondep_class_type(env,id,decl[2]),
        decl[3],
-       match$2?/* Some */[0,nondep_type_rec(env,id,match$2[1])]:0,
+       match$2?/* Some */[0,nondep_type_rec(env,id,match$2[1])]:/* None */0,
        decl[5],
        decl[6],
        decl[7]];
     
-    clear_hash(0);
+    clear_hash(/* () */0);
     return decl$1;
     };
 
@@ -10825,7 +11499,10 @@ var
    {if(!Path["isfree"](id,decl[3]))
      {}
     else
-     {throw [0,Assert_failure,[0,"typing/ctype.ml",4468,2]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/ctype.ml",4468,2]];
+      }
     
     var
      decl$1=
@@ -10837,7 +11514,7 @@ var
        decl[5],
        decl[6]];
     
-    clear_hash(0);
+    clear_hash(/* () */0);
     return decl$1;
     };
 
@@ -10847,7 +11524,7 @@ var
    {var ty$1=repr(ty);
     
     if(List["memq"](ty$1,visited))
-     {return 0;}
+     {return /* () */0;}
     else
      {var visited$1=/* :: */[0,ty$1,visited];
       
@@ -10855,7 +11532,7 @@ var
       
       var exit;
       
-      if(typeof match$2=="number")
+      if(typeof match$2==="number")
        {switch(match$2){}}
       else
        {switch(match$2[0])
@@ -10868,7 +11545,7 @@ var
                
                var exit$1;
                
-               if(typeof match$3=="number")
+               if(typeof match$3==="number")
                 {switch(match$3){case 0:exit$1=2;}}
                else
                 {switch(match$3[0])
@@ -10887,9 +11564,9 @@ var
                                 (match$3[4],
                                  /* Reither */[1,
                                   match$3[1],
-                                  /* :: */[0,t1,0],
+                                  /* :: */[0,t1,/* [] */0],
                                   match$3[3],
-                                  [0,0]]);
+                                  [0,/* None */0]]);
                         }
                       else
                        {exit$1=2;}
@@ -10899,7 +11576,7 @@ var
                     
                    }}
                
-               switch(exit$1){case 2:return 0;}
+               switch(exit$1){case 2:return /* () */0;}
                },
              row[1]);
            return Btype["iter_row"](collapse_conj(env,visited$1),row);
@@ -10915,7 +11592,8 @@ var
 
 var
  collapse_conj_params=
-  function(env,params){return List["iter"](collapse_conj(env,0),params);};
+  function(env,params)
+   {return List["iter"](collapse_conj(env,/* [] */0),params);};
 
 module["exports"]=
 {"Unify":Unify,

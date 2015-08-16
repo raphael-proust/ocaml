@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Cset=require("Cset");
-var Printf=require("Printf");
-var Parsing=require("Parsing");
-var Hashtbl=require("Hashtbl");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Cset=require("./cset.js");
+var Printf=require("./printf.js");
+var Parsing=require("./parsing.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var named_regexps=Hashtbl["create"](0,13);
+var named_regexps=Hashtbl["create"](/* None */0,13);
 
 var
  regexp_for_string=
@@ -17,9 +18,9 @@ var
      re_string=
       function(n)
        {if(n>=s["length"])
-         {return 0;}
+         {return /* Epsilon */0;}
         else
-         {if((1+n)=s["length"])
+         {if(1+n===s["length"])
            {return /* Characters */[0,Cset["singleton"](s[n])];}
           else
            {return /* Sequence */[1,
@@ -37,7 +38,7 @@ var
   function(e)
    {var exit;
     
-    if(typeof e=="number")
+    if(typeof e==="number")
      {switch(e){}}
     else
      {switch(e[0])
@@ -55,7 +56,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
      {switch(param[0]){case 0:return param[1];default:exit=78;}}
@@ -63,9 +64,35 @@ var
     switch(exit){case 78:throw Cset["Bad"];}
     };
 
-var yytransl_const="unknown primitive:caml_obj_dup";
+var
+ yytransl_const=
+  CamlPrimitive["caml_obj_dup"]
+   ([0,
+     261,
+     262,
+     263,
+     264,
+     265,
+     266,
+     267,
+     268,
+     269,
+     270,
+     271,
+     272,
+     273,
+     274,
+     275,
+     276,
+     277,
+     278,
+     279,
+     280,
+     281,
+     282,
+     0]);
 
-var yytransl_block="unknown primitive:caml_obj_dup";
+var yytransl_block=CamlPrimitive["caml_obj_dup"]([0,257,258,259,260,0]);
 
 var
  yylhs=
@@ -111,7 +138,8 @@ var yynames_block="Tident\0Tchar\0Tstring\0Taction\0";
 
 var
  yyact=
-  [function(param){return Pervasives["failwith"]("parser");},
+  [/* array */0,
+   function(param){return Pervasives["failwith"]("parser");},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,7);
      
@@ -129,7 +157,7 @@ var
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
-   function(__caml_parser_env){return [0,"",0,0,1,0];},
+   function(__caml_parser_env){return [/* record */0,"",0,0,1,0];},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
      
@@ -139,7 +167,7 @@ var
      
      return Hashtbl["add"](named_regexps,_3,_5);
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* () */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -147,10 +175,10 @@ var
      
      return /* :: */[0,_3,_1];
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_2];},
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* None */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
      
@@ -158,7 +186,7 @@ var
      
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* record */[0,_1,0,_2,_5];
+     return /* record */[0,_1,/* false */0,_2,_5];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
@@ -167,7 +195,7 @@ var
      
      var _5=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* record */[0,_1,1,_2,_5];
+     return /* record */[0,_1,/* true */1,_2,_5];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
@@ -176,7 +204,7 @@ var
      
      return /* :: */[0,_1,_2];
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -198,7 +226,7 @@ var
      
      return /* :: */[0,_3,_1];
      },
-   function(__caml_parser_env){return 0;},
+   function(__caml_parser_env){return /* [] */0;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -207,7 +235,7 @@ var
      return /* tuple */[0,_1,_2];
      },
    function(__caml_parser_env){return /* Characters */[0,Cset["all_chars"]];},
-   function(__caml_parser_env){return 1;},
+   function(__caml_parser_env){return /* Eof */1;},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -231,7 +259,7 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* Alternative */[2,0,_1];
+     return /* Alternative */[2,/* Epsilon */0,_1];
      },
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
@@ -268,39 +296,42 @@ var
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
+     var $js;
      try
-      {var $js=Hashtbl["find"](named_regexps,_1);}
+      {$js=Hashtbl["find"](named_regexps,_1);}
      catch(exn)
-      {if(exn=Not_found)
-        {var p=Parsing["symbol_start_pos"](0);
+      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+        {var p=Parsing["symbol_start_pos"](/* () */0);
          
          Printf["eprintf"]
-          ([0,
-            [11,
+          ([/* Format */0,
+            [/* String_literal */11,
              'File "',
-             [2,
-              0,
-              [11,
+             [/* String */2,
+              /* No_padding */0,
+              [/* String_literal */11,
                '", line ',
-               [4,
-                0,
-                0,
-                0,
-                [11,
+               [/* Int */4,
+                /* Int_d */0,
+                /* No_padding */0,
+                /* No_precision */0,
+                [/* String_literal */11,
                  ", character ",
-                 [4,
-                  0,
-                  0,
-                  0,
-                  [11,
+                 [/* Int */4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* String_literal */11,
                    ":\nReference to unbound regexp name `",
-                   [2,0,[11,"'.\n",0]]]]]]]]],
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* String_literal */11,"'.\n",/* End_of_format */0]]]]]]]]],
             'File "%s", line %d, character %d:\nReference to unbound regexp name `%s\'.\n'],
            p[1],
            p[2],
            p[4]-p[3],
            _1);
-         var $js=Pervasives["exit"](2);
+         $js=Pervasives["exit"](2);
          }
        else
         {throw exn;}

@@ -1,47 +1,48 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Bytelink=require("Bytelink");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Clflags=require("Clflags");
-var Format=require("Format");
-var Misc=require("Misc");
-var Location=require("Location");
-var Config=require("Config");
+var Bytelink=require("./bytelink.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Clflags=require("./clflags.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Location=require("./location.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Bytelibrarian.Error",0]);
 
 var
  copy_compunit=
   function(ic,oc,compunit)
    {Pervasives["seek_in"](ic,compunit[2]);
-    compunit[2]=Pervasives["pos_out"](oc),0;
-    compunit[7]=Clflags["link_everything"][1],0;
+    compunit[2]=Pervasives["pos_out"](oc);
+    compunit[7]=Clflags["link_everything"][1];
     Misc["copy_file_chunk"](ic,oc,compunit[3]);
     if(compunit[8]>0)
      {Pervasives["seek_in"](ic,compunit[8]);
-      compunit[8]=Pervasives["pos_out"](oc),0;
+      compunit[8]=Pervasives["pos_out"](oc);
       return Misc["copy_file_chunk"](ic,oc,compunit[9]);
       }
     else
      {return 0;}
     };
 
-var lib_ccobjs=[0,0];
+var lib_ccobjs=[0,/* [] */0];
 
-var lib_ccopts=[0,0];
+var lib_ccopts=[0,/* [] */0];
 
-var lib_dllibs=[0,0];
+var lib_dllibs=[0,/* [] */0];
 
 var
  add_ccobjs=
   function(l)
    {if(!Clflags["no_auto_link"][1])
-     {if(l[2]){Clflags["custom_runtime"][1]=1,0}else{}
+     {if(l[2]){Clflags["custom_runtime"][1]=/* true */1}else{}
       
-      lib_ccobjs[1]=Pervasives["@"](lib_ccobjs[1],l[3]),0;
-      lib_ccopts[1]=Pervasives["@"](lib_ccopts[1],l[4]),0;
+      lib_ccobjs[1]=Pervasives["@"](lib_ccobjs[1],l[3]);
+      lib_ccopts[1]=Pervasives["@"](lib_ccopts[1],l[4]);
       return lib_dllibs[1]=Pervasives["@"](lib_dllibs[1],l[5]),0;
       }
     else
@@ -54,7 +55,7 @@ var
    {try
      {var file_name=Misc["find_in_path"](Config["load_path"][1],name);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {throw [0,$$Error,/* File_not_found */[0,name]];}
       else
        {throw exn;}
@@ -68,7 +69,8 @@ var
         Pervasives["really_input_string"]
          (ic,Config["cmo_magic_number"]["length"]);
       
-      if("unknown primitive:caml_string_equal")
+      if
+       (CamlPrimitive["caml_string_equal"](buffer,Config["cmo_magic_number"]))
        {var compunit_pos=Pervasives["input_binary_int"](ic);
         
         Pervasives["seek_in"](ic,compunit_pos);
@@ -77,10 +79,12 @@ var
         Bytelink["check_consistency"](ppf,file_name,compunit);
         copy_compunit(ic,oc,compunit);
         Pervasives["close_in"](ic);
-        return /* :: */[0,compunit,0];
+        return /* :: */[0,compunit,/* [] */0];
         }
       else
-       {if("unknown primitive:caml_string_equal")
+       {if
+         (CamlPrimitive["caml_string_equal"]
+           (buffer,Config["cma_magic_number"]))
          {var toc_pos=Pervasives["input_binary_int"](ic);
           
           Pervasives["seek_in"](ic,toc_pos);
@@ -97,7 +101,7 @@ var
         }
       }
     catch(x)
-     {if(x=End_of_file)
+     {if(x===CamlPrimitive["caml_global_data"]["End_of_file"])
        {Pervasives["close_in"](ic);
         throw [0,$$Error,/* Not_an_object_file */[1,file_name]];
         }
@@ -143,18 +147,27 @@ var
 var
  report_error=
   function(ppf,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (ppf,
-                [0,[11,"Cannot find file ",[2,0,0]],"Cannot find file %s"],
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "Cannot find file ",
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                 "Cannot find file %s"],
                 param[1]);
        
       case 1:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,"The file ",[15,[11," is not a bytecode object file",0]]],
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "The file ",
+                  [/* Alpha */15,
+                   [/* String_literal */11,
+                    " is not a bytecode object file",
+                    /* End_of_format */0]]],
                  "The file %a is not a bytecode object file"],
                 Location["print_filename"],
                 param[1]);
@@ -166,18 +179,21 @@ var
  match=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer_file"](report_error,param[2])];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 var
  reset=
   function(param)
-   {lib_ccobjs[1]=0,0;lib_ccopts[1]=0,0;return lib_dllibs[1]=0,0;};
+   {lib_ccobjs[1]=/* [] */0;
+    lib_ccopts[1]=/* [] */0;
+    return lib_dllibs[1]=/* [] */0,0;
+    };
 
 module["exports"]=
 {"create_archive":create_archive,

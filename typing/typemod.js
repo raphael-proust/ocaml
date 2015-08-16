@@ -1,49 +1,56 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ctype=require("Ctype");
-var $$String=require("String");
-var Mtype=require("Mtype");
-var Typecore=require("Typecore");
-var Typeclass=require("Typeclass");
-var Printtyp=require("Printtyp");
-var Typedtree=require("Typedtree");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Btype=require("Btype");
-var Env=require("Env");
-var Cmt_format=require("Cmt_format");
-var Clflags=require("Clflags");
-var Types=require("Types");
-var Typetexp=require("Typetexp");
-var Format=require("Format");
-var Set=require("Set");
-var Misc=require("Misc");
-var Typedecl=require("Typedecl");
-var Path=require("Path");
-var Filename=require("Filename");
-var Subst=require("Subst");
-var Longident=require("Longident");
-var Includemod=require("Includemod");
-var Location=require("Location");
-var Ident=require("Ident");
-var Stypes=require("Stypes");
-var Config=require("Config");
-var $$Array=require("Array");
+var Ctype=require("./ctype.js");
+var $$String=require("./string.js");
+var Mtype=require("./mtype.js");
+var Typecore=require("./typecore.js");
+var Typeclass=require("./typeclass.js");
+var Printtyp=require("./printtyp.js");
+var Typedtree=require("./typedtree.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Btype=require("./btype.js");
+var Env=require("./env.js");
+var Cmt_format=require("./cmt_format.js");
+var Clflags=require("./clflags.js");
+var Types=require("./types.js");
+var Typetexp=require("./typetexp.js");
+var Format=require("./format.js");
+var Set=require("./set.js");
+var Misc=require("./misc.js");
+var Typedecl=require("./typedecl.js");
+var Path=require("./path.js");
+var Filename=require("./filename.js");
+var Subst=require("./subst.js");
+var Longident=require("./longident.js");
+var Includemod=require("./includemod.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
+var Stypes=require("./stypes.js");
+var Config=require("./config.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Typemod.Error",0]);
 
-var Error_forward="unknown primitive:caml_set_oo_id";
+var
+ Error_forward=
+  CamlPrimitive["caml_set_oo_id"]([248,"Typemod.Error_forward",0]);
 
 var fst3=function(param){return param[1];};
 
 var
  path_concat=
   function(head,p)
-   {switch(p)
+   {switch(p[0])
      {case 0:return /* Pdot */[1,/* Pident */[0,head],Ident["name"](p[1]),0];
       case 1:return /* Pdot */[1,path_concat(head,p[1]),p[2],p[3]];
-      case 2:throw [0,Assert_failure,[0,"typing/typemod.ml",54,16]];
+      case 2:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/typemod.ml",54,16]];
+       
       }
     };
 
@@ -52,7 +59,9 @@ var
   function(env,loc,mty)
    {var match=Env["scrape_alias"](env,mty);
     
-    switch(match){case 1:return match[1];default:throw [0,$$Error,loc,env,0];}
+    switch(match[0])
+     {case 1:return match[1];
+      default:throw [0,$$Error,loc,env,/* Signature_expected */0];}
     };
 
 var
@@ -60,7 +69,7 @@ var
   function(env,loc,mty)
    {var match=Env["scrape_alias"](env,mty);
     
-    switch(match)
+    switch(match[0])
      {case 1:return match[1];
       default:throw [0,$$Error,loc,env,/* Structure_expected */[3,mty]];}
     };
@@ -95,7 +104,12 @@ var rm=function(node){Stypes["record"](/* Ti_mod */[3,node]);return node;};
 
 var
  type_module_type_of_fwd=
-  [0,function(env,m){throw [0,Assert_failure,[0,"typing/typemod.ml",99,22]];}];
+  [0,
+   function(env,m)
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"typing/typemod.ml",99,22]];
+     }];
 
 var
  add_rec_types=
@@ -105,11 +119,12 @@ var
     if(param)
      {var match=param[1];
       
-      switch(match)
+      switch(match[0])
        {case 1:
          if(match[3]>=2)
           {return add_rec_types
-                   (Env["add_type"](1,match[1],match[2],env),param[2]);
+                   (Env["add_type"](/* true */1,match[1],match[2],env),
+                    param[2]);
            }
          else
           {exit=376;}
@@ -125,14 +140,17 @@ var
 var
  check_type_decl=
   function(env,loc,id,row_id,newdecl,decl,rs,rem)
-   {var env$1=Env["add_type"](1,id,newdecl,env);
+   {var env$1=Env["add_type"](/* true */1,id,newdecl,env);
     
     if(row_id)
-     {var env$2=Env["add_type"](1,row_id[1],newdecl,env$1);}
+     {var env$2=Env["add_type"](/* true */1,row_id[1],newdecl,env$1);}
     else
      {var env$2=env$1;}
     
-    if(rs=0){var env$3=env$2;}else{var env$3=add_rec_types(env$2,rem);}
+    if(rs===/* Trec_not */0)
+     {var env$3=env$2;}
+    else
+     {var env$3=add_rec_types(env$2,rem);}
     
     Includemod["type_declarations"](env$3,id,newdecl,decl);
     return Typedecl["check_coherence"](env$3,loc,id,newdecl);
@@ -147,7 +165,7 @@ var
               make_params(n+1,param[2])];
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -161,7 +179,7 @@ var
       if(rem)
        {var match=rem[1];
         
-        switch(match)
+        switch(match[0])
          {case 1:
            if(match[3]>=2)
             {return /* :: */[0,/* Sig_type */[1,match[1],match[2],rs],rem[2]];
@@ -193,13 +211,15 @@ var
  make=
   function(p,n,i)
    {return Types["Variance"][8]
-            (0,
+            (/* May_pos */0,
              p,
              Types["Variance"][8]
-              (1,
+              (/* May_neg */1,
                n,
                Types["Variance"][8]
-                (2,n,Types["Variance"][8](3,i,Types["Variance"][1]))));
+                (/* May_weak */2,
+                 n,
+                 Types["Variance"][8](/* Inj */3,i,Types["Variance"][1]))));
     };
 
 var
@@ -207,7 +227,7 @@ var
   function(initial_env,loc,sg,constr)
    {var exit;
     
-    switch(constr)
+    switch(constr[0])
      {case 0:exit=364;
       case 1:exit=364;
       case 2:var s=constr[1][1];exit=363;
@@ -219,17 +239,17 @@ var
       case 363:var lid=/* record */[0,/* Lident */[0,s[1]],s[2]];
       }
     
-    var real_id=[0,0];
+    var real_id=[0,/* None */0];
     
     var
      merge=
-      function(env,sg$1,namelist,row_id)
-       {if(sg$1)
-         {var item=sg$1[1];
+      function(env,sg,namelist,row_id)
+       {if(sg)
+         {var item=sg[1];
           
           var exit$1;
           
-          switch(item)
+          switch(item[0])
            {case 1:
              if(namelist)
               {if(namelist[2])
@@ -237,7 +257,7 @@ var
                else
                 {var s$1=namelist[1];
                  
-                 var rem=sg$1[2];
+                 var rem=sg[2];
                  
                  var rs=item[3];
                  
@@ -247,7 +267,7 @@ var
                  
                  var exit$2;
                  
-                 switch(constr)
+                 switch(constr[0])
                   {case 0:
                     var sdecl=constr[2];
                     
@@ -255,42 +275,44 @@ var
                     
                     var exit$3;
                     
-                    if("unknown primitive:isint")
-                     {if(match!=0)
+                    if(typeof match==="number")
+                     {if(match!==0)
                        {exit$3=359;}
                       else
                        {if
-                         ("unknown primitive:caml_string_equal"&&
+                         (CamlPrimitive["caml_string_equal"](Ident["name"](id),s$1)&&
                           Typedecl["is_fixed_type"](sdecl))
                          {var
                            decl_row=
                             /* record */[0,
                              List["map"]
-                              (function(param){return Btype["newgenvar"](0,0);},sdecl[2]),
+                              (function(param)
+                                {return Btype["newgenvar"](/* None */0,/* () */0);},
+                               sdecl[2]),
                              List["length"](sdecl[2]),
-                             0,
-                             0,
-                             0,
+                             /* Type_abstract */0,
+                             /* Private */0,
+                             /* None */0,
                              List["map"]
                               (function(param)
-                                {switch(param[2][0])
-                                  {case 0:var match$1=[0,1,0];
-                                   case 1:var match$1=[0,0,1];
-                                   case 2:var match$1=[0,0,0];
+                                {switch(param[2])
+                                  {case 0:var match$1=[/* tuple */0,/* true */1,/* false */0];
+                                   case 1:var match$1=[/* tuple */0,/* false */0,/* true */1];
+                                   case 2:var match$1=[/* tuple */0,/* false */0,/* false */0];
                                    }
                                  
-                                 return make(!match$1[2],!match$1[1],0);
+                                 return make(!match$1[2],!match$1[1],/* false */0);
                                  },
                                sdecl[2]),
-                             0,
+                             /* None */0,
                              sdecl[8],
-                             0];
+                             /* [] */0];
                           
                           var id_row=Ident["create"](Pervasives["^"](s$1,"#row"));
                           
                           var
                            initial_env$1=
-                            Env["add_type"](1,id_row,decl_row,initial_env);
+                            Env["add_type"](/* true */1,id_row,decl_row,initial_env);
                           
                           var
                            tdecl=
@@ -304,12 +326,15 @@ var
                           var newdecl=tdecl[4];
                           
                           check_type_decl(env,sdecl[8],id,row_id,newdecl,decl,rs,rem);
-                          var newrecord="unknown primitive:duprecord regular 9";
+                          var newrecord=/* unknown */"duprecord regular 9";
                           
-                          newrecord[1]=newdecl[1],0;
+                          newrecord[1]=newdecl[1];
                           var decl_row$1=newrecord;
                           
-                          if(rs=1){var rs$prime=0;}else{var rs$prime=rs;}
+                          if(rs===/* Trec_first */1)
+                           {var rs$prime=/* Trec_not */0;}
+                          else
+                           {var rs$prime=rs;}
                           
                           return /* tuple */[0,
                                   /* tuple */[0,
@@ -329,11 +354,12 @@ var
                     
                     switch(exit$3)
                      {case 359:
-                       if("unknown primitive:caml_string_equal")
+                       if
+                        (CamlPrimitive["caml_string_equal"](Ident["name"](id),s$1))
                         {var
                           tdecl$1=
                            Typedecl["transl_with_constraint"]
-                            (initial_env,id,0,decl,sdecl);
+                            (initial_env,id,/* None */0,decl,sdecl);
                          
                          var newdecl$1=tdecl$1[4];
                          
@@ -358,25 +384,28 @@ var
                  
                  switch(exit$2)
                   {case 357:
-                    if("unknown primitive:caml_string_equal")
+                    if
+                     (CamlPrimitive["caml_string_equal"]
+                       (Ident["name"](id),Pervasives["^"](s$1,"#row")))
                      {return merge(env,rem,namelist,/* Some */[0,id]);}
                     else
-                     {switch(constr)
+                     {switch(constr[0])
                        {case 0:exit$1=355;
                         case 2:
                          var sdecl$1=constr[1];
                          
-                         if("unknown primitive:caml_string_equal")
+                         if
+                          (CamlPrimitive["caml_string_equal"](Ident["name"](id),s$1))
                           {var
                             tdecl$2=
                              Typedecl["transl_with_constraint"]
-                              (initial_env,id,0,decl,sdecl$1);
+                              (initial_env,id,/* None */0,decl,sdecl$1);
                            
                            var newdecl$2=tdecl$2[4];
                            
                            check_type_decl
                             (env,sdecl$1[8],id,row_id,newdecl$2,decl,rs,rem);
-                           real_id[1]=/* Some */[0,id],0;
+                           real_id[1]=/* Some */[0,id];
                            return /* tuple */[0,
                                    /* tuple */[0,
                                     /* Pident */[0,id],
@@ -402,7 +431,7 @@ var
                
                var s$2=namelist[1];
                
-               var rem$1=sg$1[2];
+               var rem$1=sg[2];
                
                var rs$1=item[3];
                
@@ -415,12 +444,13 @@ var
                if(namelist$1)
                 {exit$4=360;}
                else
-                {switch(constr)
+                {switch(constr[0])
                   {case 0:exit$4=360;
                    case 1:
                     var lid$prime=constr[2];
                     
-                    if("unknown primitive:caml_string_equal")
+                    if
+                     (CamlPrimitive["caml_string_equal"](Ident["name"](id$1),s$2))
                      {var
                        match$1=
                         Typetexp["find_module"](initial_env,loc,lid$prime[1]);
@@ -438,7 +468,7 @@ var
                       
                       var newmd=Mtype["strengthen_decl"](env,md$prime$prime,path);
                       
-                      
+                      Includemod["modtypes"](env,newmd[1],md[1]);
                       return /* tuple */[0,
                               /* tuple */[0,
                                /* Pident */[0,id$1],
@@ -453,7 +483,8 @@ var
                    case 3:
                     var lid$prime$1=constr[2];
                     
-                    if("unknown primitive:caml_string_equal")
+                    if
+                     (CamlPrimitive["caml_string_equal"](Ident["name"](id$1),s$2))
                      {var
                        match$2=
                         Typetexp["find_module"](initial_env,loc,lid$prime$1[1]);
@@ -462,8 +493,8 @@ var
                       
                       var newmd$1=Mtype["strengthen_decl"](env,match$2[2],path$1);
                       
-                      
-                      real_id[1]=/* Some */[0,id$1],0;
+                      Includemod["modtypes"](env,newmd$1[1],md[1]);
+                      real_id[1]=/* Some */[0,id$1];
                       return /* tuple */[0,
                               /* tuple */[0,
                                /* Pident */[0,id$1],
@@ -479,10 +510,11 @@ var
                
                switch(exit$4)
                 {case 360:
-                  if("unknown primitive:caml_string_equal")
+                  if
+                   (CamlPrimitive["caml_string_equal"](Ident["name"](id$1),s$2))
                    {var
                      match$3=
-                      merge(env,extract_sig(env,loc,md[1]),namelist$1,0);
+                      merge(env,extract_sig(env,loc,md[1]),namelist$1,/* None */0);
                     
                     var match$4=match$3[1];
                     
@@ -512,7 +544,7 @@ var
            {case 355:
              var
               match$5=
-               merge(Env["add_item"](item,env),sg$1[2],namelist,row_id);
+               merge(Env["add_item"](item,env),sg[2],namelist,row_id);
              
              return /* tuple */[0,match$5[1],/* :: */[0,item,match$5[2]]];
              
@@ -525,7 +557,7 @@ var
     try
      {var names=Longident["flatten"](lid[1]);
       
-      var match=merge(initial_env,sg,names,0);
+      var match=merge(initial_env,sg,names,/* None */0);
       
       var sg$1=match[2];
       
@@ -535,7 +567,7 @@ var
        {if(names[2])
          {exit$1=332;}
         else
-         {switch(constr)
+         {switch(constr[0])
            {case 0:exit$1=332;
             case 1:exit$1=332;
             case 2:
@@ -546,7 +578,10 @@ var
              if(match$1)
               {var id=match$1[1];}
              else
-              {throw [0,Assert_failure,[0,"typing/typemod.ml",246,38]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"typing/typemod.ml",246,38]];
+               }
              
              try
               {var match$2=sdecl[6];
@@ -556,34 +591,35 @@ var
                if(match$2)
                 {var match$3=match$2[1][1];
                  
-                 if(typeof match$3=="number")
+                 if(typeof match$3==="number")
                   {switch(match$3){}}
                  else
                   {switch(match$3[0])
                     {case 3:
                       var stl=match$3[2];
                       
-                      if(List["length"](stl)=List["length"](sdecl[2]))
+                      if(List["length"](stl)===List["length"](sdecl[2]))
                        {List["iter2"]
                          (function(x,param)
                            {var match$4=x[1];
                             
                             var exit$3;
                             
-                            if(typeof match$4=="number")
+                            if(typeof match$4==="number")
                              {switch(match$4){}}
                             else
                              {switch(match$4[0])
                                {case 0:
                                  var match$5=param[1][1];
                                  
-                                 if(typeof match$5=="number")
+                                 if(typeof match$5==="number")
                                   {switch(match$5){}}
                                  else
                                   {switch(match$5[0])
                                     {case 0:
-                                      if("unknown primitive:caml_string_equal")
-                                       {return 0;}
+                                      if
+                                       (CamlPrimitive["caml_string_equal"](match$4[1],match$5[1]))
+                                       {return /* () */0;}
                                       else
                                        {exit$3=325;}
                                       
@@ -608,8 +644,13 @@ var
                switch(exit$2){case 326:throw Pervasives["Exit"];}
                }
              catch(exn)
-              {if(exn=Pervasives["Exit"])
-                {throw [0,$$Error,sdecl[8],initial_env,2];}
+              {if(exn===Pervasives["Exit"])
+                {throw [0,
+                        $$Error,
+                        sdecl[8],
+                        initial_env,
+                        /* With_need_typeconstr */2];
+                 }
                else
                 {throw exn;}
                }
@@ -617,8 +658,11 @@ var
              try
               {var match$4=Env["lookup_type"](lid$1[1],initial_env);}
              catch(exn$1)
-              {if(exn$1=Not_found)
-                {throw [0,Assert_failure,[0,"typing/typemod.ml",263,68]];}
+              {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                {throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"typing/typemod.ml",263,68]];
+                 }
                else
                 {throw exn$1;}
                }
@@ -633,11 +677,15 @@ var
              if(match$5)
               {var id$1=match$5[1];}
              else
-              {throw [0,Assert_failure,[0,"typing/typemod.ml",269,38]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"typing/typemod.ml",269,38]];
+               }
              
              var
               path=
-               Typetexp["lookup_module"](0,initial_env,loc,constr[2][1]);
+               Typetexp["lookup_module"]
+                (/* None */0,initial_env,loc,constr[2][1]);
              
              var sub$1=Subst["add_module"](id$1,path,Subst["identity"]);
              
@@ -654,7 +702,7 @@ var
       return /* tuple */[0,match[1],sg$2];
       }
     catch(exn$2)
-     {if(exn$2[1]=Includemod["Error"])
+     {if(exn$2[1]===Includemod["Error"])
        {throw [0,
                $$Error,
                loc,
@@ -670,7 +718,10 @@ var
  map_rec=
   function(fn,decls,rem)
    {if(decls)
-     {return /* :: */[0,fn(1,decls[1]),Misc["map_end"](fn(2),decls[2],rem)];}
+     {return /* :: */[0,
+              fn(/* Trec_first */1,decls[1]),
+              Misc["map_end"](fn(/* Trec_next */2),decls[2],rem)];
+      }
     else
      {return rem;}
     };
@@ -679,11 +730,14 @@ var
  map_rec_type=
   function(rec_flag,fn,decls,rem)
    {if(decls)
-     {if(rec_flag!=0){var first=1;}else{var first=0;}
+     {if(rec_flag!==0)
+       {var first=/* Trec_first */1;}
+      else
+       {var first=/* Trec_not */0;}
       
       return /* :: */[0,
               fn(first,decls[1]),
-              Misc["map_end"](fn(2),decls[2],rem)];
+              Misc["map_end"](fn(/* Trec_next */2),decls[2],rem)];
       }
     else
      {return rem;}
@@ -697,7 +751,7 @@ var
       
       if(Btype["is_row_name"](Ident["name"](d1[1])))
        {return /* :: */[0,
-                fn(0,d1),
+                fn(/* Trec_not */0,d1),
                 map_rec_type_with_row_types(rec_flag,fn,decls[2],rem)];
         }
       else
@@ -716,19 +770,24 @@ var
        (function(td)
          {return List["exists"]
                   (function(param)
-                    {return "unknown primitive:caml_string_equal";},
+                    {return CamlPrimitive["caml_string_equal"]
+                             (param[1][1],"nonrec");
+                     },
                    td[7]);
           },
         tds);
     
-    if(is_nonrec){return 0;}else{return 1;}
+    if(is_nonrec){return /* Nonrecursive */0;}else{return /* Recursive */1;}
     };
 
 var
  map_ext=
   function(fn,exts,rem)
    {if(exts)
-     {return /* :: */[0,fn(0,exts[1]),Misc["map_end"](fn(1),exts[2],rem)];}
+     {return /* :: */[0,
+              fn(/* Text_first */0,exts[1]),
+              Misc["map_end"](fn(/* Text_next */1),exts[2],rem)];
+      }
     else
      {return rem;}
     };
@@ -738,7 +797,7 @@ var
   function(env,smty)
    {var match=smty[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var match$1=Typetexp["find_modtype"](env,smty[2],match[1][1]);
        
@@ -750,7 +809,11 @@ var
        
        var
         match$2=
-         Env["enter_module"]([0,1],match[1][1],Btype["default_mty"](arg),env);
+         Env["enter_module"]
+          ([/* Some */0,/* true */1],
+           match[1][1],
+           Btype["default_mty"](arg),
+           env);
        
        var res=approx_modtype(match$2[2],match[3]);
        
@@ -761,7 +824,9 @@ var
        var match$3=type_module_type_of_fwd[1](env,match[1]);return match$3[2];
       case 5:throw [0,Error_forward,Typetexp["error_of_extension"](match[1])];
       case 6:
-       var path=Typetexp["lookup_module"](0,env,smty[2],match[1][1]);
+       var
+        path=
+         Typetexp["lookup_module"](/* None */0,env,smty[2],match[1][1]);
        
        return /* Mty_alias */[3,path];
        
@@ -783,7 +848,7 @@ var
       
       var exit;
       
-      switch(match)
+      switch(match[0])
        {case 1:
          var sdecls=match[1];
          
@@ -805,28 +870,31 @@ var
          
          var md=approx_module_declaration(env,pmd);
          
-         var match$1=Env["enter_module_declaration"](0,pmd[1][1],md,env);
+         var
+          match$1=
+           Env["enter_module_declaration"](/* None */0,pmd[1][1],md,env);
          
          return /* :: */[0,
-                 /* Sig_module */[3,match$1[1],md,0],
+                 /* Sig_module */[3,match$1[1],md,/* Trec_not */0],
                  approx_sig(match$1[2],srem)];
          
         case 5:
          var
           decls$1=
            List["map"]
-            (function(pmd$1)
+            (function(pmd)
               {return /* tuple */[0,
-                       Ident["create"](pmd$1[1][1]),
-                       approx_module_declaration(env,pmd$1)];
+                       Ident["create"](pmd[1][1]),
+                       approx_module_declaration(env,pmd)];
                },
              match[1]);
          
          var
           newenv=
            List["fold_left"]
-            (function(env$1,param)
-              {return Env["add_module_declaration"](0,param[1],param[2],env$1);
+            (function(env,param)
+              {return Env["add_module_declaration"]
+                       (/* None */0,param[1],param[2],env);
                },
              env,
              decls$1);
@@ -849,7 +917,7 @@ var
                  approx_sig(match$2[2],srem)];
          
         case 7:
-         var match$3=type_open(0,env,match[1]);
+         var match$3=type_open(/* None */0,env,match[1]);
          
          return approx_sig(match$3[2],srem);
          
@@ -883,15 +951,15 @@ var
                               /* Sig_class_type */[6,param[1],param[3],rs],
                               /* :: */[0,
                                /* Sig_type */[1,param[4],param[5],rs],
-                               /* :: */[0,/* Sig_type */[1,param[6],param[7],rs],0]]];
+                               /* :: */[0,/* Sig_type */[1,param[6],param[7],rs],/* [] */0]]];
                       },
                     decls$2,
-                    /* :: */[0,rem$1,0]));
+                    /* :: */[0,rem$1,/* [] */0]));
          
         }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -923,7 +991,7 @@ var
              decls);
     };
 
-var compare=function(x,y){return "unknown primitive:caml_string_compare";};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var StringSet=Set["Make"]([0,compare]);
 
@@ -943,12 +1011,12 @@ var
 var
  check_sig_item=
   function(type_names,module_names,modtype_names,loc,param)
-   {switch(param)
+   {switch(param[0])
      {case 1:return check("type",loc,type_names,Ident["name"](param[1]));
       case 3:return check("module",loc,module_names,Ident["name"](param[1]));
       case 4:
        return check("module type",loc,modtype_names,Ident["name"](param[1]));
-      default:return 0;}
+      default:return /* () */0;}
     };
 
 var
@@ -959,7 +1027,7 @@ var
       
       var exit;
       
-      switch(f)
+      switch(f[0])
        {case 0:
          if(List["exists"](Ident["equal"](f[1]),val_ids))
           {return remove_duplicates(val_ids,ext_ids,param[2]);}
@@ -971,7 +1039,7 @@ var
          
          var exit$1;
          
-         if(f[3]!=0)
+         if(f[3]!==0)
           {exit$1=280;}
          else
           {var match=param[2];
@@ -979,9 +1047,9 @@ var
            if(match)
             {var match$1=match[1];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 2:
-                if(match$1[3]!=1)
+                if(match$1[3]!==1)
                  {exit$1=280;}
                 else
                  {if(List["exists"](Ident["equal"](id),ext_ids))
@@ -989,7 +1057,7 @@ var
                             (val_ids,
                              ext_ids,
                              /* :: */[0,
-                              /* Sig_typext */[2,match$1[1],match$1[2],0],
+                              /* Sig_typext */[2,match$1[1],match$1[2],/* Text_first */0],
                               match[2]]);
                     }
                   else
@@ -1019,7 +1087,7 @@ var
         }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -1028,12 +1096,12 @@ var
    {if(param)
      {var f=param[1];
       
-      switch(f)
+      switch(f[0])
        {case 0:return /* :: */[0,f[1],get_values(param[2])];
         default:return get_values(param[2]);}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -1042,12 +1110,12 @@ var
    {if(param)
      {var f=param[1];
       
-      switch(f)
+      switch(f[0])
        {case 2:return /* :: */[0,f[1],get_extension_constructors(param[2])];
         default:return get_extension_constructors(param[2]);}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -1057,7 +1125,8 @@ var
 
 var
  transl_module_alias=
-  function(loc,env,lid){return Typetexp["lookup_module"](0,env,loc,lid);};
+  function(loc,env,lid)
+   {return Typetexp["lookup_module"](/* None */0,env,loc,lid);};
 
 var
  mkmty=
@@ -1084,7 +1153,7 @@ var
     
     var match=smty[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var lid=match[1];
        
@@ -1116,11 +1185,15 @@ var
        
        var
         match$1=
-         Env["enter_module"]([0,1],param[1],Btype["default_mty"](ty_arg),env);
+         Env["enter_module"]
+          ([/* Some */0,/* true */1],
+           param[1],
+           Btype["default_mty"](ty_arg),
+           env);
        
        var id=match$1[1];
        
-       Ctype["init_def"](Ident["current_time"](0));
+       Ctype["init_def"](Ident["current_time"](/* () */0));
        var res=transl_modtype(match$1[2],match[3]);
        
        return mkmty
@@ -1147,7 +1220,7 @@ var
                      /* :: */[0,match$3[1],param$1[1]],
                      match$3[2]];
              },
-           /* tuple */[0,0,init_sg],
+           /* tuple */[0,/* [] */0,init_sg],
            match[2]);
        
        return mkmty
@@ -1190,22 +1263,20 @@ var
     
     var
      transl_sig=
-      function(env$1,sg$1)
-       {Ctype["init_def"](Ident["current_time"](0));
-        if(sg$1)
-         {var srem=sg$1[2];
+      function(env,sg)
+       {Ctype["init_def"](Ident["current_time"](/* () */0));
+        if(sg)
+         {var srem=sg[2];
           
-          var item=sg$1[1];
+          var item=sg[1];
           
           var loc=item[2];
           
           var match=item[1];
           
-          switch(match)
+          switch(match[0])
            {case 0:
-             var
-              match$1=
-               Typedecl["transl_value_decl"](env$1,item[2],match[1]);
+             var match$1=Typedecl["transl_value_decl"](env,item[2],match[1]);
              
              var tdesc=match$1[1];
              
@@ -1215,7 +1286,7 @@ var
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_value */[0,tdesc],env$1,loc),
+                      mksig(/* Tsig_value */[0,tdesc],env,loc),
                       match$2[1]],
                      List["exists"](Ident["equal"](tdesc[1]),get_values(rem))
                       ?rem
@@ -1230,7 +1301,7 @@ var
              List["iter"]
               (function(decl){return check_name("type",type_names,decl[1]);},
                sdecls);
-             var match$3=Typedecl["transl_type_decl"](env$1,rec_flag,sdecls);
+             var match$3=Typedecl["transl_type_decl"](env,rec_flag,sdecls);
              
              var decls=match$3[1];
              
@@ -1238,7 +1309,7 @@ var
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_type */[1,decls],env$1,loc),
+                      mksig(/* Tsig_type */[1,decls],env,loc),
                       match$4[1]],
                      map_rec_type_with_row_types
                       (rec_flag,
@@ -1250,7 +1321,8 @@ var
             case 2:
              var
               match$5=
-               Typedecl["transl_type_extension"](0,env$1,item[2],match[1]);
+               Typedecl["transl_type_extension"]
+                (/* false */0,env,item[2],match[1]);
              
              var tyext=match$5[1];
              
@@ -1269,7 +1341,7 @@ var
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_typext */[2,tyext],env$1,loc),
+                      mksig(/* Tsig_typext */[2,tyext],env,loc),
                       match$6[1]],
                      map_ext
                       (function(es,ext)
@@ -1279,7 +1351,7 @@ var
                      match$6[3]];
              
             case 3:
-             var match$7=Typedecl["transl_exception"](env$1,match[1]);
+             var match$7=Typedecl["transl_exception"](env,match[1]);
              
              var ext=match$7[1];
              
@@ -1294,24 +1366,26 @@ var
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_exception */[3,ext],env$1,loc),
+                      mksig(/* Tsig_exception */[3,ext],env,loc),
                       match$8[1]],
                      shadowed
                       ?rem$2
-                      :/* :: */[0,/* Sig_typext */[2,ext[1],ext[3],2],rem$2],
+                      :/* :: */[0,
+                        /* Sig_typext */[2,ext[1],ext[3],/* Text_exception */2],
+                        rem$2],
                      match$8[3]];
              
             case 4:
              var pmd=match[1];
              
              check_name("module",module_names,pmd[1]);
-             var tmty=transl_modtype(env$1,pmd[2]);
+             var tmty=transl_modtype(env,pmd[2]);
              
              var md=/* record */[0,tmty[2],pmd[3],pmd[4]];
              
              var
               match$9=
-               Env["enter_module_declaration"](0,pmd[1][1],md,env$1);
+               Env["enter_module_declaration"](/* None */0,pmd[1][1],md,env);
              
              var id=match$9[1];
              
@@ -1322,20 +1396,21 @@ var
                       mksig
                        (/* Tsig_module */[4,
                          /* record */[0,id,pmd[1],tmty,pmd[3],pmd[4]]],
-                        env$1,
+                        env,
                         loc),
                       match$10[1]],
-                     /* :: */[0,/* Sig_module */[3,id,md,0],match$10[2]],
+                     /* :: */[0,
+                      /* Sig_module */[3,id,md,/* Trec_not */0],
+                      match$10[2]],
                      match$10[3]];
              
             case 5:
              var sdecls$1=match[1];
              
              List["iter"]
-              (function(pmd$1)
-                {return check_name("module",module_names,pmd$1[1]);},
+              (function(pmd){return check_name("module",module_names,pmd[1]);},
                sdecls$1);
-             var match$11=transl_recmodule_modtypes(item[2],env$1,sdecls$1);
+             var match$11=transl_recmodule_modtypes(item[2],env,sdecls$1);
              
              var decls$1=match$11[1];
              
@@ -1343,13 +1418,13 @@ var
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_recmodule */[5,decls$1],env$1,loc),
+                      mksig(/* Tsig_recmodule */[5,decls$1],env,loc),
                       match$12[1]],
                      map_rec
-                      (function(rs,md$1)
-                        {var d=/* record */[0,md$1[3][2],md$1[4],md$1[5]];
+                      (function(rs,md)
+                        {var d=/* record */[0,md[3][2],md[4],md[5]];
                          
-                         return /* Sig_module */[3,md$1[1],d,rs];
+                         return /* Sig_module */[3,md[1],d,rs];
                          },
                        decls$1,
                        match$12[2]),
@@ -1358,25 +1433,25 @@ var
             case 6:
              var
               match$13=
-               transl_modtype_decl(modtype_names,env$1,item[2],match[1]);
+               transl_modtype_decl(modtype_names,env,item[2],match[1]);
              
              var match$14=transl_sig(match$13[1],srem);
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_modtype */[6,match$13[2]],env$1,loc),
+                      mksig(/* Tsig_modtype */[6,match$13[2]],env,loc),
                       match$14[1]],
                      /* :: */[0,match$13[3],match$14[2]],
                      match$14[3]];
              
             case 7:
-             var match$15=type_open(0,env$1,match[1]);
+             var match$15=type_open(/* None */0,env,match[1]);
              
              var match$16=transl_sig(match$15[2],srem);
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_open */[7,match$15[3]],env$1,loc),
+                      mksig(/* Tsig_open */[7,match$15[3]],env,loc),
                       match$16[1]],
                      match$16[2],
                      match$16[3]];
@@ -1386,21 +1461,21 @@ var
              
              var smty=sincl[1];
              
-             var tmty$1=transl_modtype(env$1,smty);
+             var tmty$1=transl_modtype(env,smty);
              
              var mty=tmty$1[2];
              
              var
-              sg$2=
+              sg$1=
                Subst["signature"]
-                (Subst["identity"],extract_sig(env$1,smty[2],mty));
+                (Subst["identity"],extract_sig(env,smty[2],mty));
              
              List["iter"]
               (check_sig_item(type_names,module_names,modtype_names,item[2]),
-               sg$2);
-             var newenv=Env["add_signature"](sg$2,env$1);
+               sg$1);
+             var newenv=Env["add_signature"](sg$1,env);
              
-             var incl=/* record */[0,tmty$1,sg$2,sincl[2],sincl[3]];
+             var incl=/* record */[0,tmty$1,sg$1,sincl[2],sincl[3]];
              
              var match$17=transl_sig(newenv,srem);
              
@@ -1408,11 +1483,11 @@ var
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_include */[8,incl],env$1,loc),
+                      mksig(/* Tsig_include */[8,incl],env,loc),
                       match$17[1]],
                      Pervasives["@"]
                       (remove_duplicates
-                        (get_values(rem$3),get_extension_constructors(rem$3),sg$2),
+                        (get_values(rem$3),get_extension_constructors(rem$3),sg$1),
                        rem$3),
                      match$17[3]];
              
@@ -1422,7 +1497,7 @@ var
              List["iter"]
               (function(param){return check_name("type",type_names,param[3]);},
                cl);
-             var match$18=Typeclass["class_descriptions"](env$1,cl);
+             var match$18=Typeclass["class_descriptions"](env,cl);
              
              var classes=match$18[1];
              
@@ -1433,7 +1508,7 @@ var
                       mksig
                        (/* Tsig_class */[9,
                          List["map2"](function(pcl,tcl){return tcl[12];},cl,classes)],
-                        env$1,
+                        env,
                         loc),
                       match$19[1]],
                      List["flatten"]
@@ -1445,10 +1520,10 @@ var
                                     /* Sig_class_type */[6,param[4],param[5],rs],
                                     /* :: */[0,
                                      /* Sig_type */[1,param[6],param[7],rs],
-                                     /* :: */[0,/* Sig_type */[1,param[8],param[9],rs],0]]]];
+                                     /* :: */[0,/* Sig_type */[1,param[8],param[9],rs],/* [] */0]]]];
                            },
                          classes,
-                         /* :: */[0,match$19[2],0])),
+                         /* :: */[0,match$19[2],/* [] */0])),
                      match$19[3]];
              
             case 10:
@@ -1457,7 +1532,7 @@ var
              List["iter"]
               (function(param){return check_name("type",type_names,param[3]);},
                cl$1);
-             var match$20=Typeclass["class_type_declarations"](env$1,cl$1);
+             var match$20=Typeclass["class_type_declarations"](env,cl$1);
              
              var classes$1=match$20[1];
              
@@ -1469,7 +1544,7 @@ var
                        (/* Tsig_class_type */[10,
                          List["map2"]
                           (function(pcl,tcl){return tcl[8];},cl$1,classes$1)],
-                        env$1,
+                        env,
                         loc),
                       match$21[1]],
                      List["flatten"]
@@ -1479,21 +1554,21 @@ var
                                    /* Sig_class_type */[6,param[1],param[3],rs],
                                    /* :: */[0,
                                     /* Sig_type */[1,param[4],param[5],rs],
-                                    /* :: */[0,/* Sig_type */[1,param[6],param[7],rs],0]]];
+                                    /* :: */[0,/* Sig_type */[1,param[6],param[7],rs],/* [] */0]]];
                            },
                          classes$1,
-                         /* :: */[0,match$21[2],0])),
+                         /* :: */[0,match$21[2],/* [] */0])),
                      match$21[3]];
              
             case 11:
              var x=match[1];
              
-             Typetexp["warning_attribute"](/* :: */[0,x,0]);
-             var match$22=transl_sig(env$1,srem);
+             Typetexp["warning_attribute"](/* :: */[0,x,/* [] */0]);
+             var match$22=transl_sig(env,srem);
              
              return /* tuple */[0,
                      /* :: */[0,
-                      mksig(/* Tsig_attribute */[11,x],env$1,loc),
+                      mksig(/* Tsig_attribute */[11,x],env,loc),
                       match$22[1]],
                      match$22[2],
                      match$22[3]];
@@ -1503,17 +1578,17 @@ var
             }
           }
         else
-         {return /* tuple */[0,0,0,env$1];}
+         {return /* tuple */[0,/* [] */0,/* [] */0,env];}
         };
     
-    var previous_saved_types=Cmt_format["get_saved_types"](0);
+    var previous_saved_types=Cmt_format["get_saved_types"](/* () */0);
     
-    Typetexp["warning_enter_scope"](0);
+    Typetexp["warning_enter_scope"](/* () */0);
     var match=transl_sig(Env["in_signature"](env),sg);
     
     var sg$1=/* record */[0,match[1],match[2],match[3]];
     
-    Typetexp["warning_leave_scope"](0);
+    Typetexp["warning_leave_scope"](/* () */0);
     Cmt_format["set_saved_types"]
      (/* :: */[0,/* Partial_signature */[5,sg$1],previous_saved_types]);
     return sg$1;
@@ -1554,8 +1629,10 @@ var
      make_env=
       function(curr)
        {return List["fold_left"]
-                (function(env$1,param)
-                  {return Env["add_module"]([0,1],param[1],param[3],env$1);},
+                (function(env,param)
+                  {return Env["add_module"]
+                           ([/* Some */0,/* true */1],param[1],param[3],env);
+                   },
                  env,
                  curr);
         };
@@ -1564,8 +1641,9 @@ var
      make_env2=
       function(curr)
        {return List["fold_left"]
-                (function(env$1,param)
-                  {return Env["add_module"]([0,1],param[1],param[3][2],env$1);
+                (function(env,param)
+                  {return Env["add_module"]
+                           ([/* Some */0,/* true */1],param[1],param[3][2],env);
                    },
                  env,
                  curr);
@@ -1590,12 +1668,12 @@ var
     var
      approx_env=
       List["fold_left"]
-       (function(env$1,id)
+       (function(env,id)
          {var
            dummy=
             /* Mty_ident */[0,/* Pident */[0,Ident["create"]("#recmod#")]];
           
-          return Env["add_module"]([0,1],id,dummy,env$1);
+          return Env["add_module"]([/* Some */0,/* true */1],id,dummy,env);
           },
         env,
         ids);
@@ -1640,7 +1718,7 @@ var
        {if(param)
          {var component=param[1];
           
-          switch(component)
+          switch(component[0])
            {case 0:
              var k=aux(param[2]);
              
@@ -1671,19 +1749,21 @@ var
              if(StringSet[3](name$1,ext_names))
               {var exit;
                
-               if(component[3]!=0)
+               if(component[3]!==0)
                 {exit=191;}
                else
                 {if(sg$1)
                   {var match=sg$1[1];
                    
-                   switch(match)
+                   switch(match[0])
                     {case 2:
-                      if(match[3]!=1)
+                      if(match[3]!==1)
                        {exit=191;}
                       else
                        {return /* tuple */[0,
-                                /* :: */[0,/* Sig_typext */[2,match[1],match[2],0],sg$1[2]],
+                                /* :: */[0,
+                                 /* Sig_typext */[2,match[1],match[2],/* Text_first */0],
+                                 sg$1[2]],
                                 val_names$1,
                                 ext_names];
                         }
@@ -1713,7 +1793,7 @@ var
              }
           }
         else
-         {return /* tuple */[0,0,StringSet[1],StringSet[1]];}
+         {return /* tuple */[0,/* [] */0,StringSet[1],StringSet[1]];}
         };
     
     var match=aux(sg);
@@ -1721,7 +1801,7 @@ var
     return match[1];
     };
 
-var Not_a_path="unknown primitive:caml_set_oo_id";
+var Not_a_path=CamlPrimitive["caml_set_oo_id"]([248,"Typemod.Not_a_path",0]);
 
 var
  path_of_module=
@@ -1730,7 +1810,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:return match[1];
       case 3:
        if(Clflags["applicative_functors"][1])
@@ -1752,7 +1832,7 @@ var
   function(mexp)
    {try
      {return /* Some */[0,path_of_module(mexp)];}
-    catch(exn){if(exn=Not_a_path){return 0;}else{throw exn;}}
+    catch(exn){if(exn===Not_a_path){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -1760,23 +1840,23 @@ var
   function(param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:exit=183;
       case 1:return List["for_all"](closed_signature_item,param[1]);
       case 2:return closed_modtype(param[3]);
       case 3:exit=183;
       }
     
-    switch(exit){case 183:return 1;}
+    switch(exit){case 183:return /* true */1;}
     };
 
 var
  closed_signature_item=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return Ctype["closed_schema"](param[2][1]);
       case 3:return closed_modtype(param[2][1]);
-      default:return 1;}
+      default:return /* true */1;}
     };
 
 var
@@ -1784,7 +1864,7 @@ var
   function(env,str)
    {var match=str[1];
     
-    switch(match)
+    switch(match[0])
      {case 1:
        return List["iter"]
                (function(param)
@@ -1810,7 +1890,7 @@ var
        else
         {return 0;}
        
-      default:return 0;}
+      default:return /* () */0;}
     };
 
 var
@@ -1823,7 +1903,7 @@ var
    {if(anchor)
      {return /* Some */[0,/* Pdot */[1,anchor[1],name,Path["nopos"]]];}
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
@@ -1847,7 +1927,7 @@ var
                      /* Pdot */[1,p,Ident["name"](id),Path["nopos"]],
                      info[4]);
                  
-                 return Env["add_type"](1,id,info$prime,e);
+                 return Env["add_type"](/* true */1,id,info$prime,e);
                  },
                oldenv,
                decls);
@@ -1872,16 +1952,16 @@ var
   function(env,bindings)
    {var
      subst_and_strengthen=
-      function(env$1,s,id,mty)
+      function(env,s,id,mty)
        {return Mtype["strengthen"]
-                (env$1,
+                (env,
                  Subst["modtype"](s,mty),
                  Subst["module_path"](s,/* Pident */[0,id]));
         };
     
     var
      check_incl=
-      function(first_time,n,env$1,s)
+      function(first_time,n,env,s)
        {if(n>0)
          {var
            bindings1=
@@ -1896,7 +1976,7 @@ var
           var
            env$prime=
             List["fold_left"]
-             (function(env$2,param)
+             (function(env,param)
                {var mty_actual=param[3];
                 
                 if(first_time)
@@ -1904,26 +1984,26 @@ var
                 else
                  {var
                    mty_actual$prime=
-                    subst_and_strengthen(env$2,s,param[1],mty_actual);
+                    subst_and_strengthen(env,s,param[1],mty_actual);
                   }
                 
                 return Env["add_module"]
-                        ([0,0],param[2],mty_actual$prime,env$2);
+                        ([/* Some */0,/* false */0],param[2],mty_actual$prime,env);
                 },
-              env$1,
+              env,
               bindings1);
           
           var
            s$prime=
             List["fold_left"]
-             (function(s$1,param)
+             (function(s,param)
                {return Subst["add_module"]
-                        (param[1],/* Pident */[0,param[2]],s$1);
+                        (param[1],/* Pident */[0,param[2]],s);
                 },
               Subst["identity"],
               bindings1);
           
-          return check_incl(0,n-1,env$prime,s$prime);
+          return check_incl(/* false */0,n-1,env$prime,s$prime);
           }
         else
          {var
@@ -1937,18 +2017,16 @@ var
               
               var mty_decl$prime=Subst["modtype"](s,mty_decl[2]);
               
-              var mty_actual$prime=subst_and_strengthen(env$1,s,id,param[5]);
+              var mty_actual$prime=subst_and_strengthen(env,s,id,param[5]);
               
               try
                {var
                  coercion=
-                  Includemod["modtypes"]
-                   (env$1,mty_actual$prime,mty_decl$prime);
+                  Includemod["modtypes"](env,mty_actual$prime,mty_decl$prime);
                 }
               catch(exn)
-               {if(exn[1]=Includemod["Error"])
-                 {throw [0,$$Error,modl[2],env$1,/* Not_included */[1,exn[2]]];
-                  }
+               {if(exn[1]===Includemod["Error"])
+                 {throw [0,$$Error,modl[2],env,/* Not_included */[1,exn[2]]];}
                 else
                  {throw exn;}
                 }
@@ -1963,8 +2041,8 @@ var
                   coercion],
                  modl[2],
                  mty_decl[2],
-                 env$1,
-                 0];
+                 env,
+                 /* [] */0];
               
               return /* record */[0,id,param[2],modl$prime,param[6],param[7]];
               };
@@ -1973,13 +2051,14 @@ var
           }
         };
     
-    return check_incl(1,List["length"](bindings),env,Subst["identity"]);
+    return check_incl
+            (/* true */1,List["length"](bindings),env,Subst["identity"]);
     };
 
 var
  package_constraints=
   function(env,loc,mty,constrs)
-   {if(constrs=0)
+   {if(constrs===/* [] */0)
      {return mty;}
     else
      {var sg=extract_sig(env,loc,mty);
@@ -1990,7 +2069,7 @@ var
          (function(item)
            {var exit;
             
-            switch(item)
+            switch(item[0])
              {case 1:
                var td=item[2];
                
@@ -2000,16 +2079,18 @@ var
                 {var id=item[1];
                  
                  if
-                  (List["mem_assoc"](/* :: */[0,Ident["name"](id),0],constrs))
+                  (List["mem_assoc"]
+                    (/* :: */[0,Ident["name"](id),/* [] */0],constrs))
                   {var
                     ty=
-                     List["assoc"](/* :: */[0,Ident["name"](id),0],constrs);
+                     List["assoc"]
+                      (/* :: */[0,Ident["name"](id),/* [] */0],constrs);
                    
-                   var newrecord="unknown primitive:duprecord regular 9";
+                   var newrecord=/* unknown */"duprecord regular 9";
                    
                    return /* Sig_type */[1,
                            id,
-                           (newrecord[5]=/* Some */[0,ty],0,newrecord),
+                           (newrecord[5]=/* Some */[0,ty],newrecord),
                            item[3]];
                    }
                  else
@@ -2035,7 +2116,9 @@ var
                       {var l=match$1[2];
                        
                        if(l)
-                        {if("unknown primitive:caml_string_equal")
+                        {if
+                          (CamlPrimitive["caml_string_equal"]
+                            (match$1[1],Ident["name"](id$1)))
                           {return /* :: */[0,/* tuple */[0,l,match[2]],aux(param[2])];
                            }
                          else
@@ -2050,7 +2133,7 @@ var
                      switch(exit$1){case 158:return aux(param[2]);}
                      }
                    else
-                    {return 0;}
+                    {return /* [] */0;}
                    };
                
                var
@@ -2081,7 +2164,7 @@ var
       var exit;
       
       if(match)
-       {if(nl!=0)
+       {if(nl!==/* [] */0)
          {return package_constraints
                   (env,
                    loc,
@@ -2096,16 +2179,18 @@ var
       
       switch(exit)
        {case 154:
-         if(nl=0)
+         if(nl===/* [] */0)
           {return /* Mty_ident */[0,p];}
          else
-          {throw [0,$$Error,loc,env,0];}
+          {throw [0,$$Error,loc,env,/* Signature_expected */0];}
          
         }
       }
     catch(exn)
-     {if(exn=Not_found)
-       {var error=/* Unbound_modtype */[22,Ctype["lid_of_path"](0,p)];
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var
+         error=
+          /* Unbound_modtype */[22,Ctype["lid_of_path"](/* None */0,p)];
         
         throw [0,Typetexp["Error"],loc,env,error];
         }
@@ -2123,7 +2208,10 @@ var
        {var
          ntl=
           List["filter"]
-           (function(param){return Ctype["free_variables"](0,param[2])=0;},
+           (function(param)
+             {return Ctype["free_variables"](/* None */0,param[2])===
+                     /* [] */0;
+              },
             List["combine"](nl,tl));
         
         var match=List["split"](ntl);
@@ -2136,8 +2224,9 @@ var
     var mty2=mkmty$1(p2,nl2,tl2);
     
     try
-     {return Includemod["modtypes"](env,mty1,mty2)=0;}
-    catch(exn){if(exn[1]=Includemod["Error"]){return 0;}else{throw exn;}}
+     {return Includemod["modtypes"](env,mty1,mty2)===/* Tcoerce_none */0;}
+    catch(exn)
+     {if(exn[1]===Includemod["Error"]){return /* false */0;}else{throw exn;}}
     };
 
 var match=(Ctype["package_subtype"][1]=package_subtype,0);
@@ -2148,7 +2237,7 @@ var
    {try
      {var coercion=Includemod["modtypes"](env,arg[3],mty);}
     catch(exn)
-     {if(exn[1]=Includemod["Error"])
+     {if(exn[1]===Includemod["Error"])
        {throw [0,$$Error,arg[2],env,/* Not_included */[1,exn[2]]];}
       else
        {throw exn;}
@@ -2159,17 +2248,20 @@ var
             arg[2],
             mty,
             env,
-            0];
+            /* [] */0];
     };
 
 var
  type_module=
   function($staropt$star,sttn,funct_body,anchor,env,smod)
-   {if($staropt$star){var alias=$staropt$star[1];}else{var alias=0;}
+   {if($staropt$star)
+     {var alias=$staropt$star[1];}
+    else
+     {var alias=/* false */0;}
     
     var match$1=smod[1];
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:
        var lid=match$1[1];
        
@@ -2193,12 +2285,12 @@ var
          
          var exit;
          
-         switch(mty)
+         switch(mty[0])
           {case 3:
             if(!alias)
              {var p1=Env["normalize_path"](/* Some */[0,smod[2]],env,mty[1]);
               
-              var mty$1=Includemod["expand_module_alias"](env,0,p1);
+              var mty$1=Includemod["expand_module_alias"](env,/* [] */0,p1);
               
               var
                md$1=
@@ -2206,8 +2298,8 @@ var
                  /* Tmod_constraint */[4,
                   md,
                   mty$1,
-                  0,
-                  /* Tcoerce_alias */[3,p1,0]],
+                  /* Tmodtype_implicit */0,
+                  /* Tcoerce_alias */[3,p1,/* Tcoerce_none */0]],
                  md[2],
                  sttn?Mtype["strengthen"](env,mty$1,p1):mty$1,
                  md[4],
@@ -2233,7 +2325,9 @@ var
        return rm(md$1);
        
       case 1:
-       var match$2=type_structure(0,funct_body,anchor,env,match$1[1],smod[2]);
+       var
+        match$2=
+         type_structure(/* None */0,funct_body,anchor,env,match$1[1],smod[2]);
        
        var sg=match$2[2];
        
@@ -2249,14 +2343,14 @@ var
        
        var sg$prime=simplify_signature(sg);
        
-       if(List["length"](sg$prime)=List["length"](sg))
+       if(List["length"](sg$prime)===List["length"](sg))
         {return md$2;}
        else
         {return wrap_constraint
                  (Env["implicit_coercion"](env),
                   md$2,
                   /* Mty_signature */[1,sg$prime],
-                  0);
+                  /* Tmodtype_implicit */0);
          }
        
       case 2:
@@ -2269,17 +2363,25 @@ var
        if(ty_arg)
         {var
           match$3=
-           /* tuple */[0,Env["enter_module"]([0,1],name[1],ty_arg[1],env),1];
+           /* tuple */[0,
+            Env["enter_module"]
+             ([/* Some */0,/* true */1],name[1],ty_arg[1],env),
+            /* true */1];
          }
        else
-        {var match$3=/* tuple */[0,/* tuple */[0,Ident["create"]("*"),env],0];
+        {var
+          match$3=
+           /* tuple */[0,/* tuple */[0,Ident["create"]("*"),env],/* false */0];
          }
        
        var match$4=match$3[1];
        
        var id=match$4[1];
        
-       var body=type_module(0,sttn,match$3[2],0,match$4[2],match$1[3]);
+       var
+        body=
+         type_module
+          (/* None */0,sttn,match$3[2],/* None */0,match$4[2],match$1[3]);
        
        return rm
                (/* record */[0,
@@ -2294,15 +2396,25 @@ var
        
        var sfunct=match$1[1];
        
-       var arg=type_module(0,1,funct_body,0,env,sarg);
+       var
+        arg=
+         type_module(/* None */0,/* true */1,funct_body,/* None */0,env,sarg);
        
        var path$1=path_of_module$1(arg);
        
-       var funct=type_module(0,sttn&&path$1!=0,funct_body,0,env,sfunct);
+       var
+        funct=
+         type_module
+          (/* None */0,
+           sttn&&path$1!==/* None */0,
+           funct_body,
+           /* None */0,
+           env,
+           sfunct);
        
        var mty_functor=Env["scrape_alias"](env,funct[3]);
        
-       switch(mty_functor)
+       switch(mty_functor[0])
         {case 2:
           var mty_res=mty_functor[3];
           
@@ -2312,18 +2424,23 @@ var
           
           var
            match$5=
-            /* tuple */[0,mty_param=0,Btype["default_mty"](mty_param)];
+            /* tuple */[0,
+             mty_param===/* None */0,
+             Btype["default_mty"](mty_param)];
           
           var generative=match$5[1];
           
           if(generative)
-           {if("unknown primitive:caml_notequal")
-             {throw [0,$$Error,sfunct[2],env,4];}
+           {if
+             (CamlPrimitive["caml_notequal"]
+               (sarg[1],[/* Pmod_structure */1,/* [] */0]))
+             {throw [0,$$Error,sfunct[2],env,/* Apply_generative */4];}
             else
              {}
             
             if(funct_body&&Mtype["contains_type"](env,funct[3]))
-             {throw [0,$$Error,smod[2],env,1];}
+             {throw [0,$$Error,smod[2],env,/* Not_allowed_in_functor_body */1];
+              }
             else
              {}
             }
@@ -2333,7 +2450,7 @@ var
           try
            {var coercion=Includemod["modtypes"](env,arg[3],match$5[2]);}
           catch(exn)
-           {if(exn[1]=Includemod["Error"])
+           {if(exn[1]===Includemod["Error"])
              {throw [0,$$Error,sarg[2],env,/* Not_included */[1,exn[2]]];}
             else
              {throw exn;}
@@ -2354,10 +2471,13 @@ var
                {var
                  mty_appl=
                   Mtype["nondep_supertype"]
-                   (Env["add_module"]([0,1],param,arg[3],env),param,mty_res);
+                   (Env["add_module"]
+                     ([/* Some */0,/* true */1],param,arg[3],env),
+                    param,
+                    mty_res);
                 }
               catch(exn$1)
-               {if(exn$1=Not_found)
+               {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                  {throw [0,
                          $$Error,
                          smod[2],
@@ -2384,7 +2504,8 @@ var
       case 4:
        var
         arg$1=
-         type_module(/* Some */[0,alias],1,funct_body,anchor,env,match$1[1]);
+         type_module
+          (/* Some */[0,alias],/* true */1,funct_body,anchor,env,match$1[1]);
        
        var mty$4=transl_modtype(env,match$1[2]);
        
@@ -2395,12 +2516,12 @@ var
        return rm(/* record */[0,init[1],smod[2],init[3],init[4],smod[3]]);
        
       case 5:
-       if(Clflags["principal"][1]){Ctype["begin_def"](0)}else{}
+       if(Clflags["principal"][1]){Ctype["begin_def"](/* () */0)}else{}
        
        var exp=Typecore["type_exp"](env,match$1[1]);
        
        if(Clflags["principal"][1])
-        {Ctype["end_def"](0),Ctype["generalize_structure"](exp[4])}
+        {Ctype["end_def"](/* () */0),Ctype["generalize_structure"](exp[4])}
        else
         {}
        
@@ -2410,17 +2531,25 @@ var
        
        var exit$1;
        
-       if(typeof match$7=="number")
+       if(typeof match$7==="number")
         {switch(match$7){}}
        else
         {switch(match$7[0])
-          {case 0:throw [0,Typecore["Error"],smod[2],env,3];
+          {case 0:
+            throw [0,
+                   Typecore["Error"],
+                   smod[2],
+                   env,
+                   /* Cannot_infer_signature */3];
+            
            case 11:
             var tl=match$7[3];
             
             if
              (List["exists"]
-               (function(t){return Ctype["free_variables"](0,t)!=0;},tl))
+               (function(t)
+                 {return Ctype["free_variables"](/* None */0,t)!==/* [] */0;},
+                tl))
              {throw [0,
                      $$Error,
                      smod[2],
@@ -2433,7 +2562,8 @@ var
             if
              (Clflags["principal"][1]&&
               !Typecore["generalizable"](Btype["generic_level"]-1,exp[4]))
-             {Location["prerr_warning"](smod[2],[8,"this module unpacking"])}
+             {Location["prerr_warning"]
+               (smod[2],[/* Not_principal */8,"this module unpacking"])}
             else
              {}
             
@@ -2449,7 +2579,7 @@ var
          }
        
        if(funct_body&&Mtype["contains_type"](env,mty$5))
-        {throw [0,$$Error,smod[2],env,1];}
+        {throw [0,$$Error,smod[2],env,/* Not_allowed_in_functor_body */1];}
        else
         {}
        
@@ -2469,7 +2599,10 @@ var
 var
  type_structure=
   function($staropt$star,funct_body,anchor,env,sstr,scope)
-   {if($staropt$star){var toplevel=$staropt$star[1];}else{var toplevel=0;}
+   {if($staropt$star)
+     {var toplevel=$staropt$star[1];}
+    else
+     {var toplevel=/* false */0;}
     
     var type_names=[0,StringSet[1]];
     
@@ -2479,21 +2612,21 @@ var
     
     var
      type_str_item=
-      function(env$1,srem,param)
+      function(env,srem,param)
        {var loc=param[2];
         
         var desc=param[1];
         
-        switch(desc)
+        switch(desc[0])
          {case 0:
-           var expr=Typecore["type_expression"](env$1,desc[1]);
+           var expr=Typecore["type_expression"](env,desc[1]);
            
-           return /* tuple */[0,/* Tstr_eval */[0,expr,desc[2]],0,env$1];
+           return /* tuple */[0,/* Tstr_eval */[0,expr,desc[2]],/* [] */0,env];
            
           case 1:
            var rec_flag=desc[1];
            
-           if(rec_flag!=0)
+           if(rec_flag!==0)
             {var
               scope$1=
                /* Some */[0,
@@ -2508,9 +2641,7 @@ var
                 /* Idef */[1,/* record */[0,start,scope[2],scope[3]]]];
              }
            
-           var
-            match$1=
-             Typecore["type_binding"](env$1,rec_flag,desc[2],scope$1);
+           var match$1=Typecore["type_binding"](env,rec_flag,desc[2],scope$1);
            
            var newenv=match$1[2];
            
@@ -2528,13 +2659,13 @@ var
                    newenv];
            
           case 2:
-           var match$2=Typedecl["transl_value_decl"](env$1,loc,desc[1]);
+           var match$2=Typedecl["transl_value_decl"](env,loc,desc[1]);
            
            var desc$1=match$2[1];
            
            return /* tuple */[0,
                    /* Tstr_primitive */[2,desc$1],
-                   /* :: */[0,/* Sig_value */[0,desc$1[1],desc$1[4]],0],
+                   /* :: */[0,/* Sig_value */[0,desc$1[1],desc$1[4]],/* [] */0],
                    match$2[2]];
            
           case 3:
@@ -2545,7 +2676,7 @@ var
            List["iter"]
             (function(decl){return check_name("type",type_names,decl[1]);},
              sdecls);
-           var match$3=Typedecl["transl_type_decl"](env$1,rec_flag$1,sdecls);
+           var match$3=Typedecl["transl_type_decl"](env,rec_flag$1,sdecls);
            
            var decls=match$3[1];
            
@@ -2556,11 +2687,13 @@ var
                      function(rs,info)
                       {return /* Sig_type */[1,info[1],info[4],rs];},
                      decls,
-                     0),
-                   enrich_type_decls(anchor,decls,env$1,match$3[2])];
+                     /* [] */0),
+                   enrich_type_decls(anchor,decls,env,match$3[2])];
            
           case 4:
-           var match$4=Typedecl["transl_type_extension"](1,env$1,loc,desc[1]);
+           var
+            match$4=
+             Typedecl["transl_type_extension"](/* true */1,env,loc,desc[1]);
            
            var tyext=match$4[1];
            
@@ -2570,17 +2703,19 @@ var
                     (function(es,ext)
                       {return /* Sig_typext */[2,ext[1],ext[3],es];},
                      tyext[4],
-                     0),
+                     /* [] */0),
                    match$4[2]];
            
           case 5:
-           var match$5=Typedecl["transl_exception"](env$1,desc[1]);
+           var match$5=Typedecl["transl_exception"](env,desc[1]);
            
            var ext=match$5[1];
            
            return /* tuple */[0,
                    /* Tstr_exception */[5,ext],
-                   /* :: */[0,/* Sig_typext */[2,ext[1],ext[3],2],0],
+                   /* :: */[0,
+                    /* Sig_typext */[2,ext[1],ext[3],/* Text_exception */2],
+                    /* [] */0],
                    match$5[2]];
            
           case 6:
@@ -2596,21 +2731,23 @@ var
            var
             modl=
              type_module
-              ([0,1],
-               1,
+              ([/* Some */0,/* true */1],
+               /* true */1,
                funct_body,
                anchor_submodule(name[1],anchor),
-               env$1,
+               env,
                match$6[2]);
            
            var
             md=
              /* record */[0,
-              enrich_module_type(anchor,name[1],modl[3],env$1),
+              enrich_module_type(anchor,name[1],modl[3],env),
               attrs,
               pmb_loc];
            
-           var match$7=Env["enter_module_declaration"](0,name[1],md,env$1);
+           var
+            match$7=
+             Env["enter_module_declaration"](/* None */0,name[1],md,env);
            
            var id=match$7[1];
            
@@ -2621,8 +2758,8 @@ var
                     /* Sig_module */[3,
                      id,
                      /* record */[0,modl[3],attrs,pmb_loc],
-                     0],
-                    0],
+                     /* Trec_not */0],
+                    /* [] */0],
                    match$7[2]];
            
           case 7:
@@ -2632,7 +2769,7 @@ var
               (function(mb)
                 {var match$8=mb[2][1];
                  
-                 switch(match$8)
+                 switch(match$8[0])
                   {case 4:
                     return /* tuple */[0,
                             mb[1],
@@ -2641,7 +2778,13 @@ var
                             mb[3],
                             mb[4]];
                     
-                   default:throw [0,$$Error,mb[2][2],env$1,3];}
+                   default:
+                    throw [0,
+                           $$Error,
+                           mb[2][2],
+                           env,
+                           /* Recursive_module_require_explicit_type */3];
+                    }
                  },
                desc[1]);
            
@@ -2653,7 +2796,7 @@ var
             match$8=
              transl_recmodule_modtypes
               (loc,
-               env$1,
+               env,
                List["map"]
                 (function(param$1)
                   {return /* record */[0,
@@ -2677,8 +2820,8 @@ var
                  var
                   modl$1=
                    type_module
-                    (0,
-                     1,
+                    (/* None */0,
+                     /* true */1,
                      funct_body,
                      anchor_recmodule(id$1,anchor),
                      newenv$1,
@@ -2704,12 +2847,13 @@ var
            var
             newenv$2=
              List["fold_left"]
-              (function(env$2,md$1)
-                {var mdecl=/* record */[0,md$1[3][2],md$1[4],md$1[5]];
+              (function(env,md)
+                {var mdecl=/* record */[0,md[3][2],md[4],md[5]];
                  
-                 return Env["add_module_declaration"](0,md$1[1],mdecl,env$2);
+                 return Env["add_module_declaration"]
+                         (/* None */0,md[1],mdecl,env);
                  },
-               env$1,
+               env,
                decls$1);
            
            var bindings2=check_recmodule_inclusion(newenv$2,bindings1);
@@ -2724,21 +2868,24 @@ var
                                rs];
                        },
                      bindings2,
-                     0),
+                     /* [] */0),
                    newenv$2];
            
           case 8:
-           var match$9=transl_modtype_decl(modtype_names,env$1,loc,desc[1]);
+           var match$9=transl_modtype_decl(modtype_names,env,loc,desc[1]);
            
            return /* tuple */[0,
                    /* Tstr_modtype */[8,match$9[2]],
-                   /* :: */[0,match$9[3],0],
+                   /* :: */[0,match$9[3],/* [] */0],
                    match$9[1]];
            
           case 9:
-           var match$10=type_open(/* Some */[0,toplevel],env$1,desc[1]);
+           var match$10=type_open(/* Some */[0,toplevel],env,desc[1]);
            
-           return /* tuple */[0,/* Tstr_open */[9,match$10[3]],0,match$10[2]];
+           return /* tuple */[0,
+                   /* Tstr_open */[9,match$10[3]],
+                   /* [] */0,
+                   match$10[2]];
            
           case 10:
            var cl=desc[1];
@@ -2747,7 +2894,7 @@ var
             (function(param$1)
               {return check_name("type",type_names,param$1[3]);},
              cl);
-           var match$11=Typeclass["class_declarations"](env$1,cl);
+           var match$11=Typeclass["class_declarations"](env,cl);
            
            var classes=match$11[1];
            
@@ -2755,7 +2902,10 @@ var
                    /* Tstr_class */[10,
                     List["map"]
                      (function(param$1)
-                       {if(param$1[3][4]=0){var vf=0;}else{var vf=1;}
+                       {if(param$1[3][4]===/* None */0)
+                         {var vf=/* Virtual */0;}
+                        else
+                         {var vf=/* Concrete */1;}
                         
                         return /* tuple */[0,param$1[12],param$1[11],vf];
                         },
@@ -2769,10 +2919,12 @@ var
                                   /* Sig_class_type */[6,param$1[4],param$1[5],rs],
                                   /* :: */[0,
                                    /* Sig_type */[1,param$1[6],param$1[7],rs],
-                                   /* :: */[0,/* Sig_type */[1,param$1[8],param$1[9],rs],0]]]];
+                                   /* :: */[0,
+                                    /* Sig_type */[1,param$1[8],param$1[9],rs],
+                                    /* [] */0]]]];
                          },
                        classes,
-                       0)),
+                       /* [] */0)),
                    match$11[2]];
            
           case 11:
@@ -2782,7 +2934,7 @@ var
             (function(param$1)
               {return check_name("type",type_names,param$1[3]);},
              cl$1);
-           var match$12=Typeclass["class_type_declarations"](env$1,cl$1);
+           var match$12=Typeclass["class_type_declarations"](env,cl$1);
            
            var classes$1=match$12[1];
            
@@ -2799,10 +2951,12 @@ var
                                  /* Sig_class_type */[6,param$1[1],param$1[3],rs],
                                  /* :: */[0,
                                   /* Sig_type */[1,param$1[4],param$1[5],rs],
-                                  /* :: */[0,/* Sig_type */[1,param$1[6],param$1[7],rs],0]]];
+                                  /* :: */[0,
+                                   /* Sig_type */[1,param$1[6],param$1[7],rs],
+                                   /* [] */0]]];
                          },
                        classes$1,
-                       0)),
+                       /* [] */0)),
                    match$12[2]];
            
           case 12:
@@ -2810,22 +2964,25 @@ var
            
            var smodl=sincl[1];
            
-           var modl$1=type_module(0,1,funct_body,0,env$1,smodl);
+           var
+            modl$1=
+             type_module
+              (/* None */0,/* true */1,funct_body,/* None */0,env,smodl);
            
            var
             sg=
              Subst["signature"]
-              (Subst["identity"],extract_sig_open(env$1,smodl[2],modl$1[3]));
+              (Subst["identity"],extract_sig_open(env,smodl[2],modl$1[3]));
            
            var match$13=modl$1[1];
            
            var exit;
            
-           switch(match$13)
+           switch(match$13[0])
             {case 0:
               var p=match$13[1];
               
-              if(!Env["is_functor_arg"](p,env$1))
+              if(!Env["is_functor_arg"](p,env))
                {Env["add_required_global"](Path["head"](p));
                 var pos=[0,0];
                 
@@ -2835,14 +2992,14 @@ var
                    (function(it)
                      {var exit$1;
                       
-                      switch(it)
+                      switch(it[0])
                        {case 0:
                          var match$14=it[2][2];
                          
                          var exit$2;
                          
-                         if("unknown primitive:isint")
-                          {if(match$14!=0){exit$2=129;}else{exit$1=127;}}
+                         if(typeof match$14==="number")
+                          {if(match$14!==0){exit$2=129;}else{exit$1=127;}}
                          else
                           {exit$2=129;}
                          
@@ -2882,7 +3039,7 @@ var
            
            List["iter"]
             (check_sig_item(type_names,module_names,modtype_names,loc),sg$1);
-           var new_env=Env["add_signature"](sg$1,env$1);
+           var new_env=Env["add_signature"](sg$1,env);
            
            var incl=/* record */[0,modl$1,sg$1,sincl[2],sincl[3]];
            
@@ -2891,8 +3048,8 @@ var
           case 13:
            var x=desc[1];
            
-           Typetexp["warning_attribute"](/* :: */[0,x,0]);
-           return /* tuple */[0,/* Tstr_attribute */[13,x],0,env$1];
+           Typetexp["warning_attribute"](/* :: */[0,x,/* [] */0]);
+           return /* tuple */[0,/* Tstr_attribute */[13,x],/* [] */0,env];
            
           case 14:
            throw [0,Error_forward,Typetexp["error_of_extension"](desc[1])];
@@ -2901,18 +3058,18 @@ var
     
     var
      type_struct=
-      function(env$1,sstr$1)
-       {Ctype["init_def"](Ident["current_time"](0));
-        if(sstr$1)
-         {var srem=sstr$1[2];
+      function(env,sstr)
+       {Ctype["init_def"](Ident["current_time"](/* () */0));
+        if(sstr)
+         {var srem=sstr[2];
           
-          var pstr=sstr$1[1];
+          var pstr=sstr[1];
           
-          var previous_saved_types=Cmt_format["get_saved_types"](0);
+          var previous_saved_types=Cmt_format["get_saved_types"](/* () */0);
           
-          var match$1=type_str_item(env$1,srem,pstr);
+          var match$1=type_str_item(env,srem,pstr);
           
-          var str=/* record */[0,match$1[1],pstr[2],env$1];
+          var str=/* record */[0,match$1[1],pstr[2],env];
           
           Cmt_format["set_saved_types"]
            (/* :: */[0,
@@ -2926,7 +3083,7 @@ var
                   match$2[3]];
           }
         else
-         {return /* tuple */[0,0,0,env$1];}
+         {return /* tuple */[0,/* [] */0,/* [] */0,env];}
         };
     
     if(Clflags["annotations"][1])
@@ -2935,9 +3092,9 @@ var
     else
      {}
     
-    var previous_saved_types=Cmt_format["get_saved_types"](0);
+    var previous_saved_types=Cmt_format["get_saved_types"](/* () */0);
     
-    Typetexp["warning_enter_scope"](0);
+    Typetexp["warning_enter_scope"](/* () */0);
     var match$1=type_struct(env,sstr);
     
     var final_env=match$1[3];
@@ -2946,7 +3103,7 @@ var
     
     var str=/* record */[0,match$1[1],sg,final_env];
     
-    Typetexp["warning_leave_scope"](0);
+    Typetexp["warning_leave_scope"](/* () */0);
     Cmt_format["set_saved_types"]
      (/* :: */[0,/* Partial_structure */[0,str],previous_saved_types]);
     return /* tuple */[0,str,sg,final_env];
@@ -2955,27 +3112,35 @@ var
 var
  type_toplevel_phrase=
   function(env,s)
-   {Env["reset_required_globals"](0);
-    return type_structure([0,1],0,0,env,s,Location["none"]);
+   {Env["reset_required_globals"](/* () */0);
+    return type_structure
+            ([/* Some */0,/* true */1],
+             /* false */0,
+             /* None */0,
+             env,
+             s,
+             Location["none"]);
     };
 
-var type_module$1=type_module(0,1,0,0);
+var
+ type_module$1=
+  type_module(/* None */0,/* true */1,/* false */0,/* None */0);
 
-var type_structure$1=type_structure(0,0,0);
+var type_structure$1=type_structure(/* None */0,/* false */0,/* None */0);
 
 var
  normalize_modtype=
   function(env,param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:exit=57;
       case 1:return normalize_signature(env,param[1]);
       case 2:return normalize_modtype(env,param[3]);
       case 3:exit=57;
       }
     
-    switch(exit){case 57:return 0;}
+    switch(exit){case 57:return /* () */0;}
     };
 
 var
@@ -2985,10 +3150,10 @@ var
 var
  normalize_signature_item=
   function(env,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return Ctype["normalize_type"](env,param[2][1]);
       case 3:return normalize_modtype(env,param[2][1]);
-      default:return 0;}
+      default:return /* () */0;}
     };
 
 var
@@ -2996,7 +3161,7 @@ var
   function(env,smod)
    {var match$1=smod[1];
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:
        var lid=match$1[1];
        
@@ -3034,7 +3199,7 @@ var
       
       var exit;
       
-      switch(match$1)
+      switch(match$1[0])
        {case 1:
          var match$2=match$1[2];
          
@@ -3057,28 +3222,30 @@ var
       switch(exit){case 50:return get_manifest_types(param[2]);}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
  type_package=
   function(env,m,p,nl,tl)
-   {var lv=Ctype["get_current_level"](0);
+   {var lv=Ctype["get_current_level"](/* () */0);
     
-    Ctype["begin_def"](0);
+    Ctype["begin_def"](/* () */0);
     Ident["set_current_time"](lv);
-    var context=Typetexp["narrow"](0);
+    var context=Typetexp["narrow"](/* () */0);
     
     var modl=type_module$1(env,m);
     
-    Ctype["init_def"](Ident["current_time"](0));
+    Ctype["init_def"](Ident["current_time"](/* () */0));
     Typetexp["widen"](context);
     var match$1=modl[1];
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:var match$2=/* tuple */[0,match$1[1],env];
       default:
-       var match$3=Env["enter_module"]([0,1],"%M",modl[3],env);
+       var
+        match$3=
+         Env["enter_module"]([/* Some */0,/* true */1],"%M",modl[3],env);
        
        var match$2=/* tuple */[0,/* Pident */[0,match$3[1]],match$3[2]];
        }
@@ -3089,12 +3256,16 @@ var
     
     var
      mkpath=
-      function(mp$1,param)
-       {switch(param)
-         {case 0:return /* Pdot */[1,mp$1,param[1],Path["nopos"]];
+      function(mp,param)
+       {switch(param[0])
+         {case 0:return /* Pdot */[1,mp,param[1],Path["nopos"]];
           case 1:
-           return /* Pdot */[1,mkpath(mp$1,param[1]),param[2],Path["nopos"]];
-          case 2:throw [0,Assert_failure,[0,"typing/typemod.ml",1565,11]];
+           return /* Pdot */[1,mkpath(mp,param[1]),param[2],Path["nopos"]];
+          case 2:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/typemod.ml",1565,11]];
+           
           }
         };
     
@@ -3102,14 +3273,17 @@ var
      tl$prime=
       List["map"]
        (function(name)
-         {return Btype["newgenty"](/* Tconstr */[3,mkpath(mp,name),0,[0,0]]);},
+         {return Btype["newgenty"]
+                  (/* Tconstr */[3,mkpath(mp,name),/* [] */0,[0,/* Mnil */0]]);
+          },
         nl);
     
-    Ctype["end_def"](0);
-    if(nl=0)
+    Ctype["end_def"](/* () */0);
+    if(nl===/* [] */0)
      {return /* tuple */[0,
-              wrap_constraint(env$1,modl,/* Mty_ident */[0,p],0),
-              0];
+              wrap_constraint
+               (env$1,modl,/* Mty_ident */[0,p],/* Tmodtype_implicit */0),
+              /* [] */0];
       }
     else
      {var mty=modtype_of_package(env$1,modl[2],p,nl,tl$prime);
@@ -3117,9 +3291,11 @@ var
       List["iter2"]
        (function(n,ty)
          {try
-           {return Ctype["unify"](env$1,ty,Ctype["newvar"](0,0));}
+           {return Ctype["unify"]
+                    (env$1,ty,Ctype["newvar"](/* None */0,/* () */0));
+            }
           catch(exn)
-           {if(exn[1]=Ctype["Unify"])
+           {if(exn[1]===Ctype["Unify"])
              {throw [0,$$Error,m[2],env$1,/* Scoping_pack */[14,n,ty]];}
             else
              {throw exn;}
@@ -3127,27 +3303,29 @@ var
           },
         nl,
         tl$prime);
-      return /* tuple */[0,wrap_constraint(env$1,modl,mty,0),tl$prime];
+      return /* tuple */[0,
+              wrap_constraint(env$1,modl,mty,/* Tmodtype_implicit */0),
+              tl$prime];
       }
     };
 
-Typecore["type_module"][1]=type_module$1,0;
-Typetexp["transl_modtype_longident"][1]=transl_modtype_longident,0;
-Typetexp["transl_modtype"][1]=transl_modtype,0;
-Typecore["type_open"][1]=type_open_(0),0;
-Typecore["type_package"][1]=type_package,0;
+Typecore["type_module"][1]=type_module$1;
+Typetexp["transl_modtype_longident"][1]=transl_modtype_longident;
+Typetexp["transl_modtype"][1]=transl_modtype;
+Typecore["type_open"][1]=type_open_(/* None */0);
+Typecore["type_package"][1]=type_package;
 var match$1=(type_module_type_of_fwd[1]=type_module_type_of,0);
 
 var
  type_implementation_more=
   function(sourcefile,outputprefix,modulename,initial_env,ast)
-   {Cmt_format["clear"](0);
+   {Cmt_format["clear"](/* () */0);
     try
-     {Typecore["reset_delayed_checks"](0);
-      Env["reset_required_globals"](0);
+     {Typecore["reset_delayed_checks"](/* () */0);
+      Env["reset_required_globals"](/* () */0);
       var map=Typetexp["emit_external_warnings"];
       
-      
+      map[32](map,ast);
       var
        match$2=
         type_structure$1(initial_env,ast,Location["in_file"](sourcefile));
@@ -3166,11 +3344,16 @@ var
           function(param)
            {return Format["fprintf"]
                     (Format["std_formatter"],
-                     [0,[15,[17,4,0]],"%a@."],
+                     [/* Format */0,
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        /* Flush_newline */4,
+                        /* End_of_format */0]],
+                      "%a@."],
                      Printtyp["signature"],
                      simple_sg);
             });
-        return /* tuple */[0,str,0,finalenv];
+        return /* tuple */[0,str,/* Tcoerce_none */0,finalenv];
         }
       else
        {var
@@ -3179,7 +3362,7 @@ var
            (Misc["chop_extension_if_any"](sourcefile),
             Config["interface_suffix"][1]);
         
-        if("unknown primitive:caml_sys_file_exists")
+        if(CamlPrimitive["caml_sys_file_exists"](sourceintf))
          {try
            {var
              intf_file=
@@ -3187,7 +3370,7 @@ var
                (Config["load_path"][1],Pervasives["^"](modulename,".cmi"));
             }
           catch(exn)
-           {if(exn=Not_found)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {throw [0,
                      $$Error,
                      Location["in_file"](sourcefile),
@@ -3204,14 +3387,14 @@ var
            coercion=
             Includemod["compunit"](initial_env,sourcefile,sg,intf_file,dclsig);
           
-          Typecore["force_delayed_checks"](0);
+          Typecore["force_delayed_checks"](/* () */0);
           Cmt_format["save_cmt"]
            (Pervasives["^"](outputprefix,".cmt"),
             modulename,
             /* Implementation */[1,str],
             /* Some */[0,sourcefile],
             initial_env,
-            0);
+            /* None */0);
           return /* tuple */[0,str,coercion,finalenv];
           }
         else
@@ -3222,7 +3405,7 @@ var
             Includemod["compunit"]
              (initial_env,sourcefile,sg,"(inferred signature)",simple_sg);
           
-          Typecore["force_delayed_checks"](0);
+          Typecore["force_delayed_checks"](/* () */0);
           if(!Clflags["dont_write_files"][1])
            {var
              sg$1=
@@ -3248,10 +3431,10 @@ var
        (Pervasives["^"](outputprefix,".cmt"),
         modulename,
         /* Partial_implementation */[3,
-         $$Array["of_list"](Cmt_format["get_saved_types"](0))],
+         $$Array["of_list"](Cmt_format["get_saved_types"](/* () */0))],
         /* Some */[0,sourcefile],
         initial_env,
-        0);
+        /* None */0);
       throw e;
       }
     };
@@ -3284,7 +3467,7 @@ var
   function(env,ast)
    {var map=Typetexp["emit_external_warnings"];
     
-    
+    map[30](map,ast);
     return transl_signature(env,ast);
     };
 
@@ -3307,15 +3490,15 @@ var
                newid,
                /* record */[0,
                 /* Mty_signature */[1,sg$prime],
-                0,
+                /* [] */0,
                 Location["none"]],
-               0],
+               /* Trec_not */0],
               package_signatures
                (Subst["add_module"](oldid,/* Pident */[0,newid],subst),
                 param[2])];
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -3349,15 +3532,15 @@ var
           },
         objfiles);
     
-    Ident["reinit"](0);
+    Ident["reinit"](/* () */0);
     var sg=package_signatures(Subst["identity"],units);
     
     var prefix=Misc["chop_extension_if_any"](cmifile);
     
     var mlifile=Pervasives["^"](prefix,Config["interface_suffix"][1]);
     
-    if("unknown primitive:caml_sys_file_exists")
-     {if(!"unknown primitive:caml_sys_file_exists")
+    if(CamlPrimitive["caml_sys_file_exists"](mlifile))
+     {if(!CamlPrimitive["caml_sys_file_exists"](cmifile))
        {throw [0,
                $$Error,
                Location["in_file"](mlifile),
@@ -3373,9 +3556,9 @@ var
        (Pervasives["^"](prefix,".cmt"),
         modulename,
         /* Packed */[0,sg,objfiles],
-        0,
+        /* None */0,
         initial_env,
-        0);
+        /* None */0);
       return Includemod["compunit"]
               (initial_env,"(obtained by packing)",sg,mlifile,dclsig);
       }
@@ -3386,7 +3569,7 @@ var
        imports=
         List["filter"]
          (function(param){return !List["mem"](param[1],unit_names);},
-          Env["imports"](0));
+          Env["imports"](/* () */0));
       
       if(!Clflags["dont_write_files"][1])
        {var
@@ -3398,63 +3581,73 @@ var
          (Pervasives["^"](prefix,".cmt"),
           modulename,
           /* Packed */[0,sg$1,objfiles],
-          0,
+          /* None */0,
           initial_env,
           /* Some */[0,sg$1])}
       else
        {}
       
-      return 0;
+      return /* Tcoerce_none */0;
       }
     };
 
 var
  report_error=
   function(ppf,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"This module type is not a signature",0],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "This module type is not a signature",
+                    /* End_of_format */0],
                    "This module type is not a signature"]);
          
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "This expression creates fresh types.",
-                     [17,[0,"@ ",1,0],[2,0,[17,0,0]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* Formatting_lit */17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]],
                    "@[This expression creates fresh types.@ %s@]"],
                   "It is not allowed inside applicative functors.");
          
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "Only type constructors with identical parameters can be substituted.",
-                    0],
+                    /* End_of_format */0],
                    "Only type constructors with identical parameters can be substituted."]);
          
         case 3:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,"Recursive modules require an explicit module type.",0],
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "Recursive modules require an explicit module type.",
+                    /* End_of_format */0],
                    "Recursive modules require an explicit module type."]);
          
         case 4:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "This is a generative functor. It can only be applied to ()",
-                    0],
+                    /* End_of_format */0],
                    "This is a generative functor. It can only be applied to ()"]);
          
         }}
@@ -3463,12 +3656,17 @@ var
        {case 0:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "This module is not a functor; it has type",
-                     [17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]],
                    "@[This module is not a functor; it has type@ %a@]"],
                   Printtyp["modtype"],
                   param[1]);
@@ -3476,10 +3674,20 @@ var
         case 1:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<v>",0],"<v>"]],
-                    [11,"Signature mismatch:",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<v>",/* End_of_format */0],
+                      "<v>"]],
+                    [/* String_literal */11,
+                     "Signature mismatch:",
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]],
                    "@[<v>Signature mismatch:@ %a@]"],
                   Includemod["report_error"],
                   param[1]);
@@ -3487,23 +3695,25 @@ var
         case 2:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "This functor has type",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
                          "The parameter cannot be eliminated in the result type.",
-                         [17,
-                          [0,"@ ",1,0],
-                          [11,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
                            " Please bind the argument to a module identifier.",
-                           [17,0,0]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]],
                    "@[This functor has type@ %a@ The parameter cannot be eliminated in the result type.@  Please bind the argument to a module identifier.@]"],
                   Printtyp["modtype"],
                   param[1]);
@@ -3511,12 +3721,14 @@ var
         case 3:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "This module is not a structure; it has type",
-                     [17,[0,"@ ",1,0],[15,0]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,/* End_of_format */0]]]],
                    "@[This module is not a structure; it has type@ %a"],
                   Printtyp["modtype"],
                   param[1]);
@@ -3524,12 +3736,15 @@ var
         case 4:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The signature constrained by `with' has no component named ",
-                     [15,[17,0,0]]]],
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       /* Close_box */0,
+                       /* End_of_format */0]]]],
                    "@[The signature constrained by `with' has no component named %a@]"],
                   Printtyp["longident"],
                   param[1]);
@@ -3537,23 +3752,33 @@ var
         case 5:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<v>",0],"<v>"]],
-                    [18,
-                     [1,[0,0,""]],
-                     [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<v>",/* End_of_format */0],
+                      "<v>"]],
+                    [/* Formatting_gen */18,
+                     [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                     [/* String_literal */11,
                       "In this `with' constraint, the new definition of ",
-                      [15,
-                       [17,
-                        [0,"@ ",1,0],
-                        [11,
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* String_literal */11,
                          "does not match its original definition",
-                         [17,
-                          [0,"@ ",1,0],
-                          [11,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
                            "in the constrained signature:",
-                           [17,0,[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]]]]]]],
                    "@[<v>@[In this `with' constraint, the new definition of %a@ does not match its original definition@ in the constrained signature:@]@ %a@]"],
                   Printtyp["longident"],
                   param[1],
@@ -3563,24 +3788,26 @@ var
         case 6:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "Multiple definition of the ",
-                     [2,
-                      0,
-                      [11,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String_literal */11,
                        " name ",
-                       [2,
-                        0,
-                        [12,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Char_literal */12,
                          46,
-                         [17,
-                          [0,"@ ",1,0],
-                          [11,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
                            "Names must be unique in a given structure or signature.",
-                           [17,0,0]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]],
                    "@[Multiple definition of the %s name %s.@ Names must be unique in a given structure or signature.@]"],
                   param[1],
                   param[2]);
@@ -3588,21 +3815,23 @@ var
         case 7:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The type of this expression,",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [12,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
                         44,
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
                           "contains type variables that cannot be generalized",
-                          [17,0,0]]]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[The type of this expression,@ %a,@ contains type variables that cannot be generalized@]"],
                   Printtyp["type_scheme"],
                   param[1]);
@@ -3610,21 +3839,23 @@ var
         case 8:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The type of this class,",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [12,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
                         44,
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
                           "contains type variables that cannot be generalized",
-                          [17,0,0]]]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[The type of this class,@ %a,@ contains type variables that cannot be generalized@]"],
                   Printtyp["class_declaration"](param[1]),
                   param[2]);
@@ -3632,21 +3863,23 @@ var
         case 9:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The type of this module,",
-                     [17,
-                      [0,"@ ",1,0],
-                      [15,
-                       [12,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
                         44,
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
                           "contains type variables that cannot be generalized",
-                          [17,0,0]]]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[The type of this module,@ %a,@ contains type variables that cannot be generalized@]"],
                   Printtyp["modtype"],
                   param[1]);
@@ -3654,19 +3887,23 @@ var
         case 10:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "The interface ",
-                     [15,
-                      [17,
-                       [0,"@ ",1,0],
-                       [11,
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* String_literal */11,
                         "declares values, not just types.",
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,"An implementation must be provided.",[17,0,0]]]]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
+                          "An implementation must be provided.",
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[The interface %a@ declares values, not just types.@ An implementation must be provided.@]"],
                   Location["print_filename"],
                   param[1]);
@@ -3674,12 +3911,19 @@ var
         case 11:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [18,
-                    [1,[0,0,""]],
-                    [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                    [/* String_literal */11,
                      "Could not find the .cmi file for interface",
-                     [17,[0,"@ ",1,0],[15,[12,46,[17,0,0]]]]]],
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        46,
+                        [/* Formatting_lit */17,
+                         /* Close_box */0,
+                         /* End_of_format */0]]]]]],
                    "@[Could not find the .cmi file for interface@ %a.@]"],
                   Location["print_filename"],
                   param[1]);
@@ -3687,10 +3931,12 @@ var
         case 12:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "This expression is not a packed module. It has type",
-                    [17,[0,"@ ",1,0],[15,0]]],
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* Alpha */15,/* End_of_format */0]]],
                    "This expression is not a packed module. It has type@ %a"],
                   Printtyp["type_expr"],
                   param[1]);
@@ -3698,10 +3944,12 @@ var
         case 13:
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "The type of this packed module contains variables:",
-                    [17,[0,"@ ",1,0],[15,0]]],
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* Alpha */15,/* End_of_format */0]]],
                    "The type of this packed module contains variables:@ %a"],
                   Printtyp["type_expr"],
                   param[1]);
@@ -3709,20 +3957,26 @@ var
         case 14:
          Format["fprintf"]
           (ppf,
-           [0,
-            [11,
+           [/* Format */0,
+            [/* String_literal */11,
              "The type ",
-             [15,
-              [11," in this module cannot be exported.",[17,[0,"@ ",1,0],0]]]],
+             [/* Alpha */15,
+              [/* String_literal */11,
+               " in this module cannot be exported.",
+               [/* Formatting_lit */17,
+                [/* Break */0,"@ ",1,0],
+                /* End_of_format */0]]]],
             "The type %a in this module cannot be exported.@ "],
            Printtyp["longident"],
            param[1]);
          return Format["fprintf"]
                  (ppf,
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     "Its type contains local dependencies:",
-                    [17,[0,"@ ",1,0],[15,0]]],
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* Alpha */15,/* End_of_format */0]]],
                    "Its type contains local dependencies:@ %a"],
                   Printtyp["type_expr"],
                   param[2]);
@@ -3741,16 +3995,16 @@ var
  match$2=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer"]
                  (param[2],report_error$1(param[3]),param[4])];
         }
       else
-       {if(param[1]=Error_forward)
+       {if(param[1]===Error_forward)
          {return /* Some */[0,param[2]];}
         else
-         {return 0;}
+         {return /* None */0;}
         }
       });
 

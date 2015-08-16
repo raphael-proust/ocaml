@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Docstrings=require("Docstrings");
-var Location=require("Location");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Docstrings=require("./docstrings.js");
+var Location=require("./location.js");
 
 
 var default_loc=[0,Location["none"]];
@@ -13,18 +13,21 @@ var
   function(l,f)
    {var old=default_loc[1];
     
-    default_loc[1]=l,0;
+    default_loc[1]=l;
     try
-     {var r=f(0);default_loc[1]=old,0;return r;}
-    catch(exn){default_loc[1]=old,0;throw exn;}
+     {var r=f(/* () */0);default_loc[1]=old;return r;}
+    catch(exn){default_loc[1]=old;throw exn;}
     };
 
 var
  mk=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -32,9 +35,13 @@ var
 var
  attr=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
-var any=function(loc,attrs,param){return mk(loc,attrs,0);};
+var any=function(loc,attrs,param){return mk(loc,attrs,/* Ptyp_any */0);};
 
 var $$var=function(loc,attrs,a){return mk(loc,attrs,/* Ptyp_var */[0,a]);};
 
@@ -84,12 +91,13 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 8:return t;default:exit=249;}}
     
-    switch(exit){case 249:return poly(/* Some */[0,t[2]],0,0,t);}
+    switch(exit)
+     {case 249:return poly(/* Some */[0,t[2]],/* None */0,/* [] */0,t);}
     };
 
 var
@@ -113,10 +121,13 @@ var
 
 var
  mk$1=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -124,9 +135,13 @@ var
 var
  attr$1=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
-var any$1=function(loc,attrs,param){return mk$1(loc,attrs,0);};
+var any$1=function(loc,attrs,param){return mk$1(loc,attrs,/* Ppat_any */0);};
 
 var
  $$var$1=
@@ -216,10 +231,13 @@ var
 
 var
  mk$2=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -227,7 +245,11 @@ var
 var
  attr$2=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  ident=
@@ -414,10 +436,13 @@ var
 
 var
  mk$3=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -425,7 +450,11 @@ var
 var
  attr$3=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  ident$1=
@@ -462,10 +491,13 @@ var
 
 var
  mk$4=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -473,7 +505,11 @@ var
 var
  attr$4=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  ident$2=
@@ -551,7 +587,7 @@ var class_type=function(loc,a){return mk$5(loc,/* Psig_class_type */[10,a]);};
 var
  extension$5=
   function(loc,$staropt$star,a)
-   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=0;}
+   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return mk$5(loc,/* Psig_extension */[12,a,attrs]);
     };
@@ -600,7 +636,7 @@ var
 var
  $$eval=
   function(loc,$staropt$star,a)
-   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=0;}
+   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return mk$6(loc,/* Pstr_eval */[0,a,attrs]);
     };
@@ -636,7 +672,7 @@ var include_$1=function(loc,a){return mk$6(loc,/* Pstr_include */[12,a]);};
 var
  extension$6=
   function(loc,$staropt$star,a)
-   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=0;}
+   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return mk$6(loc,/* Pstr_extension */[14,a,attrs]);
     };
@@ -678,10 +714,13 @@ var
 
 var
  mk$7=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -689,7 +728,11 @@ var
 var
  attr$5=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  constr$1=
@@ -735,10 +778,13 @@ var
 
 var
  mk$8=
-  function($staropt$star,$staropt$star$1,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
+  function($staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+    if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=/* [] */0;}
     
     return /* record */[0,d,loc,attrs];
     };
@@ -746,7 +792,11 @@ var
 var
  attr$6=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  constr$2=
@@ -768,13 +818,19 @@ var Cty=[0,mk$8,attr$6,constr$2,signature$1,arrow$1,extension$8];
 
 var
  mk$9=
-  function($staropt$star,$staropt$star$1,$staropt$star$2,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star)
+     {var docs=$staropt$star[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
@@ -783,30 +839,45 @@ var
 
 var
  inherit_=
-  function(loc,attrs,a){return mk$9(loc,attrs,0,/* Pctf_inherit */[0,a]);};
+  function(loc,attrs,a)
+   {return mk$9(loc,attrs,/* None */0,/* Pctf_inherit */[0,a]);};
 
 var
  val_=
   function(loc,attrs,a,b,c,d)
-   {return mk$9(loc,attrs,0,/* Pctf_val */[1,/* tuple */[0,a,b,c,d]]);};
+   {return mk$9
+            (loc,attrs,/* None */0,/* Pctf_val */[1,/* tuple */[0,a,b,c,d]]);
+    };
 
 var
  method_=
   function(loc,attrs,a,b,c,d)
-   {return mk$9(loc,attrs,0,/* Pctf_method */[2,/* tuple */[0,a,b,c,d]]);};
+   {return mk$9
+            (loc,
+             attrs,
+             /* None */0,
+             /* Pctf_method */[2,/* tuple */[0,a,b,c,d]]);
+    };
 
 var
  constraint_$4=
   function(loc,attrs,a,b)
-   {return mk$9(loc,attrs,0,/* Pctf_constraint */[3,/* tuple */[0,a,b]]);};
+   {return mk$9
+            (loc,
+             attrs,
+             /* None */0,
+             /* Pctf_constraint */[3,/* tuple */[0,a,b]]);
+    };
 
 var
  extension$9=
-  function(loc,attrs,a){return mk$9(loc,attrs,0,/* Pctf_extension */[5,a]);};
+  function(loc,attrs,a)
+   {return mk$9(loc,attrs,/* None */0,/* Pctf_extension */[5,a]);};
 
 var
  attribute$2=
-  function(loc,a){return mk$9(loc,0,0,/* Pctf_attribute */[4,a]);};
+  function(loc,a)
+   {return mk$9(loc,/* None */0,/* None */0,/* Pctf_attribute */[4,a]);};
 
 var
  text$2=
@@ -823,7 +894,11 @@ var
 var
  attr$7=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  Ctf=
@@ -840,13 +915,19 @@ var
 
 var
  mk$10=
-  function($staropt$star,$staropt$star$1,$staropt$star$2,d)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,d)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star)
+     {var docs=$staropt$star[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
@@ -856,34 +937,42 @@ var
 var
  inherit_$1=
   function(loc,attrs,a,b,c)
-   {return mk$10(loc,attrs,0,/* Pcf_inherit */[0,a,b,c]);};
+   {return mk$10(loc,attrs,/* None */0,/* Pcf_inherit */[0,a,b,c]);};
 
 var
  val_$1=
   function(loc,attrs,a,b,c)
-   {return mk$10(loc,attrs,0,/* Pcf_val */[1,/* tuple */[0,a,b,c]]);};
+   {return mk$10(loc,attrs,/* None */0,/* Pcf_val */[1,/* tuple */[0,a,b,c]]);
+    };
 
 var
  method_$1=
   function(loc,attrs,a,b,c)
-   {return mk$10(loc,attrs,0,/* Pcf_method */[2,/* tuple */[0,a,b,c]]);};
+   {return mk$10
+            (loc,attrs,/* None */0,/* Pcf_method */[2,/* tuple */[0,a,b,c]]);
+    };
 
 var
  constraint_$5=
   function(loc,attrs,a,b)
-   {return mk$10(loc,attrs,0,/* Pcf_constraint */[3,/* tuple */[0,a,b]]);};
+   {return mk$10
+            (loc,attrs,/* None */0,/* Pcf_constraint */[3,/* tuple */[0,a,b]]);
+    };
 
 var
  initializer_=
-  function(loc,attrs,a){return mk$10(loc,attrs,0,/* Pcf_initializer */[4,a]);};
+  function(loc,attrs,a)
+   {return mk$10(loc,attrs,/* None */0,/* Pcf_initializer */[4,a]);};
 
 var
  extension$10=
-  function(loc,attrs,a){return mk$10(loc,attrs,0,/* Pcf_extension */[6,a]);};
+  function(loc,attrs,a)
+   {return mk$10(loc,attrs,/* None */0,/* Pcf_extension */[6,a]);};
 
 var
  attribute$3=
-  function(loc,a){return mk$10(loc,0,0,/* Pcf_attribute */[5,a]);};
+  function(loc,a)
+   {return mk$10(loc,/* None */0,/* None */0,/* Pcf_attribute */[5,a]);};
 
 var
  text$3=
@@ -904,7 +993,11 @@ var concrete=function(o,e){return /* Cfk_concrete */[1,o,e];};
 var
  attr$8=
   function(d,a)
-   {return /* record */[0,d[1],d[2],Pervasives["@"](d[3],/* :: */[0,a,0])];};
+   {return /* record */[0,
+            d[1],
+            d[2],
+            Pervasives["@"](d[3],/* :: */[0,a,/* [] */0])];
+    };
 
 var
  Cf=
@@ -924,18 +1017,23 @@ var
 
 var
  mk$11=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,name,typ)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,name,typ)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var prim=$staropt$star$3[1];}else{var prim=0;}
+    if($staropt$star){var prim=$staropt$star[1];}else{var prim=/* [] */0;}
     
     return /* record */[0,
             name,
@@ -949,18 +1047,23 @@ var Val=[0,mk$11];
 
 var
  mk$12=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,name,typ)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,name,typ)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var text$4=$staropt$star$3[1];}else{var text$4=0;}
+    if($staropt$star){var text$4=$staropt$star[1];}else{var text$4=/* [] */0;}
     
     return /* record */[0,
             name,
@@ -974,18 +1077,23 @@ var Md=[0,mk$12];
 
 var
  mk$13=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,typ,name)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,typ,name)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var text$4=$staropt$star$3[1];}else{var text$4=0;}
+    if($staropt$star){var text$4=$staropt$star[1];}else{var text$4=/* [] */0;}
     
     return /* record */[0,
             name,
@@ -999,18 +1107,23 @@ var Mtd=[0,mk$13];
 
 var
  mk$14=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,name,expr)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,name,expr)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var text$4=$staropt$star$3[1];}else{var text$4=0;}
+    if($staropt$star){var text$4=$staropt$star[1];}else{var text$4=/* [] */0;}
     
     return /* record */[0,
             name,
@@ -1024,20 +1137,26 @@ var Mb=[0,mk$14];
 
 var
  mk$15=
-  function($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,lid)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,lid)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3)
-     {var override$1=$staropt$star$3[1];}
+    if($staropt$star)
+     {var override$1=$staropt$star[1];}
     else
-     {var override$1=1;}
+     {var override$1=/* Fresh */1;}
     
     return /* record */[0,
             lid,
@@ -1050,13 +1169,19 @@ var Opn=[0,mk$15];
 
 var
  mk$16=
-  function($staropt$star,$staropt$star$1,$staropt$star$2,mexpr)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,mexpr)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star)
+     {var docs=$staropt$star[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
@@ -1067,18 +1192,23 @@ var Incl=[0,mk$16];
 
 var
  mk$17=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,pat,expr)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,pat,expr)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var text$4=$staropt$star$3[1];}else{var text$4=0;}
+    if($staropt$star){var text$4=$staropt$star[1];}else{var text$4=/* [] */0;}
     
     return /* record */[0,
             pat,
@@ -1094,27 +1224,39 @@ var
  mk$18=
   function
    ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
-    $staropt$star$4,
-    $staropt$star$5,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
     name,
     expr)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var text$4=$staropt$star$3[1];}else{var text$4=0;}
+    if($staropt$star$4)
+     {var text$4=$staropt$star$4[1];}
+    else
+     {var text$4=/* [] */0;}
     
-    if($staropt$star$4){var virt=$staropt$star$4[1];}else{var virt=1;}
+    if($staropt$star$5)
+     {var virt=$staropt$star$5[1];}
+    else
+     {var virt=/* Concrete */1;}
     
-    if($staropt$star$5){var params=$staropt$star$5[1];}else{var params=0;}
+    if($staropt$star){var params=$staropt$star[1];}else{var params=/* [] */0;}
     
     return /* record */[0,
             virt,
@@ -1132,33 +1274,51 @@ var
  mk$19=
   function
    ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
-    $staropt$star$4,
-    $staropt$star$5,
-    $staropt$star$6,
-    $staropt$star$7,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
     manifest,
     name)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3){var text$4=$staropt$star$3[1];}else{var text$4=0;}
+    if($staropt$star$4)
+     {var text$4=$staropt$star$4[1];}
+    else
+     {var text$4=/* [] */0;}
     
-    if($staropt$star$4){var params=$staropt$star$4[1];}else{var params=0;}
+    if($staropt$star$5)
+     {var params=$staropt$star$5[1];}
+    else
+     {var params=/* [] */0;}
     
-    if($staropt$star$5){var cstrs=$staropt$star$5[1];}else{var cstrs=0;}
+    if($staropt$star$6)
+     {var cstrs=$staropt$star$6[1];}
+    else
+     {var cstrs=/* [] */0;}
     
-    if($staropt$star$6){var kind=$staropt$star$6[1];}else{var kind=0;}
+    if($staropt$star$7)
+     {var kind=$staropt$star$7[1];}
+    else
+     {var kind=/* Ptype_abstract */0;}
     
-    if($staropt$star$7){var priv=$staropt$star$7[1];}else{var priv=1;}
+    if($staropt$star){var priv=$staropt$star[1];}else{var priv=/* Public */1;}
     
     return /* record */[0,
             name,
@@ -1174,18 +1334,23 @@ var
 
 var
  constructor=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,res,name)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,res,name)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var info=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var info=$staropt$star$3[1];}
     else
      {var info=Docstrings["empty_info"];}
     
-    if($staropt$star$3){var args=$staropt$star$3[1];}else{var args=0;}
+    if($staropt$star){var args=$staropt$star[1];}else{var args=/* [] */0;}
     
     return /* record */[0,
             name,
@@ -1197,18 +1362,26 @@ var
 
 var
  field$1=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,name,typ)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,name,typ)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var info=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var info=$staropt$star$3[1];}
     else
      {var info=Docstrings["empty_info"];}
     
-    if($staropt$star$3){var mut=$staropt$star$3[1];}else{var mut=0;}
+    if($staropt$star)
+     {var mut=$staropt$star[1];}
+    else
+     {var mut=/* Immutable */0;}
     
     return /* record */[0,
             name,
@@ -1223,22 +1396,23 @@ var Type=[0,mk$19,constructor,field$1];
 var
  mk$20=
   function
-   ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
-    path,
-    constructors)
-   {if($staropt$star){var attrs=$staropt$star[1];}else{var attrs=0;}
+   ($staropt$star,$staropt$star,$staropt$star,$staropt$star,path,constructors)
+   {if($staropt$star$1)
+     {var attrs=$staropt$star$1[1];}
+    else
+     {var attrs=/* [] */0;}
     
-    if($staropt$star$1)
-     {var docs=$staropt$star$1[1];}
+    if($staropt$star$2)
+     {var docs=$staropt$star$2[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$2){var params=$staropt$star$2[1];}else{var params=0;}
+    if($staropt$star$3)
+     {var params=$staropt$star$3[1];}
+    else
+     {var params=/* [] */0;}
     
-    if($staropt$star$3){var priv=$staropt$star$3[1];}else{var priv=1;}
+    if($staropt$star){var priv=$staropt$star[1];}else{var priv=/* Public */1;}
     
     return /* record */[0,
             path,
@@ -1250,19 +1424,24 @@ var
 
 var
  constructor$1=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,name,kind)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,name,kind)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3)
-     {var info=$staropt$star$3[1];}
+    if($staropt$star)
+     {var info=$staropt$star[1];}
     else
      {var info=Docstrings["empty_info"];}
     
@@ -1278,27 +1457,33 @@ var
  decl=
   function
    ($staropt$star,
-    $staropt$star$1,
-    $staropt$star$2,
-    $staropt$star$3,
-    $staropt$star$4,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
+    $staropt$star,
     res,
     name)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3)
-     {var info=$staropt$star$3[1];}
+    if($staropt$star$4)
+     {var info=$staropt$star$4[1];}
     else
      {var info=Docstrings["empty_info"];}
     
-    if($staropt$star$4){var args=$staropt$star$4[1];}else{var args=0;}
+    if($staropt$star){var args=$staropt$star[1];}else{var args=/* [] */0;}
     
     return /* record */[0,
             name,
@@ -1310,19 +1495,24 @@ var
 
 var
  rebind=
-  function
-   ($staropt$star,$staropt$star$1,$staropt$star$2,$staropt$star$3,name,lid)
-   {if($staropt$star){var loc=$staropt$star[1];}else{var loc=default_loc[1];}
-    
-    if($staropt$star$1){var attrs=$staropt$star$1[1];}else{var attrs=0;}
+  function($staropt$star,$staropt$star,$staropt$star,$staropt$star,name,lid)
+   {if($staropt$star$1)
+     {var loc=$staropt$star$1[1];}
+    else
+     {var loc=default_loc[1];}
     
     if($staropt$star$2)
-     {var docs=$staropt$star$2[1];}
+     {var attrs=$staropt$star$2[1];}
+    else
+     {var attrs=/* [] */0;}
+    
+    if($staropt$star$3)
+     {var docs=$staropt$star$3[1];}
     else
      {var docs=Docstrings["empty_docs"];}
     
-    if($staropt$star$3)
-     {var info=$staropt$star$3[1];}
+    if($staropt$star)
+     {var info=$staropt$star[1];}
     else
      {var info=Docstrings["empty_info"];}
     

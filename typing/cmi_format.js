@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Digest=require("Digest");
-var Format=require("Format");
-var Location=require("Location");
-var Config=require("Config");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Digest=require("./digest.js");
+var Format=require("./format.js");
+var Location=require("./location.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Cmi_format.Error",0]);
 
 var
  input_cmi=
@@ -33,12 +34,19 @@ var
         Pervasives["really_input_string"]
          (ic,Config["cmi_magic_number"]["length"]);
       
-      if("unknown primitive:caml_string_notequal")
+      if
+       (CamlPrimitive["caml_string_notequal"]
+         (buffer,Config["cmi_magic_number"]))
        {Pervasives["close_in"](ic);
         var pre_len=Config["cmi_magic_number"]["length"]-3;
         
-        if("unknown primitive:caml_string_equal")
-         {if("unknown primitive:caml_string_lessthan")
+        if
+         (CamlPrimitive["caml_string_equal"]
+           ($$String["sub"](buffer,0,pre_len),
+            $$String["sub"](Config["cmi_magic_number"],0,pre_len)))
+         {if
+           (CamlPrimitive["caml_string_lessthan"]
+             (buffer,Config["cmi_magic_number"]))
            {var msg="an older";}
           else
            {var msg="a newer";}
@@ -59,13 +67,13 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=End_of_file)
+      if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
        {exit=8;}
       else
-       {if(exn[1]=Failure)
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {exit=8;}
         else
-         {if(exn[1]=$$Error)
+         {if(exn[1]===$$Error)
            {Pervasives["close_in"](ic);throw [0,$$Error,exn[2]];}
           else
            {throw exn;}
@@ -99,12 +107,17 @@ var
 var
  report_error=
   function(ppf,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [15,[17,[0,"@ ",1,0],[11,"is not a compiled interface",0]]],
+                [/* Format */0,
+                 [/* Alpha */15,
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* String_literal */11,
+                    "is not a compiled interface",
+                    /* End_of_format */0]]],
                  "%a@ is not a compiled interface"],
                 Location["print_filename"],
                 param[1]);
@@ -112,15 +125,21 @@ var
       case 1:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [15,
-                  [17,
-                   [0,"@ ",1,0],
-                   [11,
+                [/* Format */0,
+                 [/* Alpha */15,
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* String_literal */11,
                     "is not a compiled interface for this version of OCaml.",
-                    [17,
-                     4,
-                     [11,"It seems to be for ",[2,0,[11," version of OCaml.",0]]]]]]],
+                    [/* Formatting_lit */17,
+                     /* Flush_newline */4,
+                     [/* String_literal */11,
+                      "It seems to be for ",
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        " version of OCaml.",
+                        /* End_of_format */0]]]]]]],
                  "%a@ is not a compiled interface for this version of OCaml.@.It seems to be for %s version of OCaml."],
                 Location["print_filename"],
                 param[1],
@@ -129,8 +148,12 @@ var
       case 2:
        return Format["fprintf"]
                (ppf,
-                [0,
-                 [11,"Corrupted compiled interface",[17,[0,"@ ",1,0],[15,0]]],
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "Corrupted compiled interface",
+                  [/* Formatting_lit */17,
+                   [/* Break */0,"@ ",1,0],
+                   [/* Alpha */15,/* End_of_format */0]]],
                  "Corrupted compiled interface@ %a"],
                 Location["print_filename"],
                 param[1]);
@@ -142,12 +165,12 @@ var
  match=
   Location["register_error_of_exn"]
    (function(param)
-     {if(param[1]=$$Error)
+     {if(param[1]===$$Error)
        {return /* Some */[0,
                 Location["error_of_printer_file"](report_error,param[2])];
         }
       else
-       {return 0;}
+       {return /* None */0;}
       });
 
 module["exports"]=

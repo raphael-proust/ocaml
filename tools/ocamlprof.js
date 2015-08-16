@@ -1,33 +1,34 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Parse=require("Parse");
-var Warnings=require("Warnings");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Format=require("Format");
-var Lexing=require("Lexing");
-var Filename=require("Filename");
-var Location=require("Location");
-var Sys=require("Sys");
+var Parse=require("./parse.js");
+var Warnings=require("./warnings.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Lexing=require("./lexing.js");
+var Filename=require("./filename.js");
+var Location=require("./location.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var idprefix="__ocaml_prof_";
 
 var modprefix="OCAML__prof_";
 
-var Profiler="unknown primitive:caml_set_oo_id";
+var Profiler=CamlPrimitive["caml_set_oo_id"]([248,"Ocamlprof.Profiler",0]);
 
-var instr_fun=[0,0];
+var instr_fun=[0,/* false */0];
 
-var instr_match=[0,0];
+var instr_match=[0,/* false */0];
 
-var instr_if=[0,0];
+var instr_if=[0,/* false */0];
 
-var instr_loops=[0,0];
+var instr_loops=[0,/* false */0];
 
-var instr_try=[0,0];
+var instr_try=[0,/* false */0];
 
 var cur_point=[0,0];
 
@@ -35,7 +36,7 @@ var inchan=[0,Pervasives["stdin"]];
 
 var outchan=[0,Pervasives["stdout"]];
 
-var copy_buffer="unknown primitive:caml_create_string";
+var copy_buffer=CamlPrimitive["caml_create_string"](256);
 
 var
  copy_chars_unix=
@@ -47,7 +48,7 @@ var
        m=
         Pervasives["input"](inchan[1],copy_buffer,0,Pervasives["min"](n,256));
       
-      if(m=0){throw End_of_file;}else{}
+      if(m===0){throw CamlPrimitive["caml_global_data"]["End_of_file"];}else{}
       
       Pervasives["output"](outchan[1],copy_buffer,0,m);
       n=n-m;
@@ -61,8 +62,9 @@ var
    {for(var _i=1;_i<=nchars;_i++)
      {var c=Pervasives["input_char"](inchan[1]);
       
-      if(c!=13){Pervasives["output_char"](outchan[1],c)}else{}
+      if(c!==13){Pervasives["output_char"](outchan[1],c)}else{}
       }
+    return 0;
     };
 
 var match=Sys["os_type"];
@@ -82,7 +84,10 @@ var
    {if(next>=cur_point[1])
      {}
     else
-     {throw [0,Assert_failure,[0,"ocamlprof.ml",61,2]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"ocamlprof.ml",61,2]];
+      }
     
     Pervasives["seek_in"](inchan[1],cur_point[1]);
     copy_chars(next-cur_point[1]);
@@ -91,17 +96,17 @@ var
 
 var prof_counter=[0,0];
 
-var instr_mode=[0,0];
+var instr_mode=[0,/* false */0];
 
-var to_insert=[0,0];
+var to_insert=[0,/* [] */0];
 
 var
  insert_action=
   function(st,en)
    {return to_insert[1]=
            /* :: */[0,
-            /* tuple */[0,0,st],
-            /* :: */[0,/* tuple */[0,1,en],to_insert[1]]],
+            /* tuple */[0,/* Open */0,st],
+            /* :: */[0,/* tuple */[0,/* Close */1,en],to_insert[1]]],
            0;
     };
 
@@ -109,19 +114,34 @@ var
  add_incr_counter=
   function(modul,param)
    {copy(param[2]);
-    if(param[1]!=0)
-     {return Printf["fprintf"](outchan[1],[0,[12,41,0],")"]);}
+    if(param[1]!==0)
+     {return Printf["fprintf"]
+              (outchan[1],
+               [/* Format */0,
+                [/* Char_literal */12,41,/* End_of_format */0],
+                ")"]);
+      }
     else
      {Printf["fprintf"]
        (outchan[1],
-        [0,
-         [12,
+        [/* Format */0,
+         [/* Char_literal */12,
           40,
-          [2,
-           0,
-           [11,
+          [/* String */2,
+           /* No_padding */0,
+           [/* String_literal */11,
             "Profiling.incr ",
-            [2,0,[2,0,[11,"_cnt ",[4,0,0,0,[11,"; ",0]]]]]]]],
+            [/* String */2,
+             /* No_padding */0,
+             [/* String */2,
+              /* No_padding */0,
+              [/* String_literal */11,
+               "_cnt ",
+               [/* Int */4,
+                /* Int_d */0,
+                /* No_padding */0,
+                /* No_precision */0,
+                [/* String_literal */11,"; ",/* End_of_format */0]]]]]]]],
          "(%sProfiling.incr %s%s_cnt %d; "],
         modprefix,
         idprefix,
@@ -131,20 +151,30 @@ var
       }
     };
 
-var counters=[0,"unknown primitive:caml_make_vect"];
+var counters=[0,CamlPrimitive["caml_make_vect"](0,0)];
 
 var special_id=[0,""];
 
 var
  add_val_counter=
   function(param)
-   {if(param[1]=0)
+   {if(param[1]===/* Open */0)
      {copy(param[2]);
       Printf["fprintf"]
        (outchan[1],
-        [0,[11,"(* ",[2,0,[4,0,0,0,[11," *) ",0]]]],"(* %s%d *) "],
+        [/* Format */0,
+         [/* String_literal */11,
+          "(* ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* Int */4,
+            /* Int_d */0,
+            /* No_padding */0,
+            /* No_precision */0,
+            [/* String_literal */11," *) ",/* End_of_format */0]]]],
+         "(* %s%d *) "],
         special_id[1],
-        counters[1][prof_counter[1]]);
+        counters[1][prof_counter[1]+1]);
       return prof_counter[0]++;
       }
     else
@@ -160,10 +190,10 @@ var
     
     var gh=ex[2][3];
     
-    if(gh||(st=en))
-     {return rw_exp(1,ex);}
+    if(gh||st===en)
+     {return rw_exp(/* true */1,ex);}
     else
-     {insert_action(st,en);return rw_exp(0,ex);}
+     {insert_action(st,en);return rw_exp(/* false */0,ex);}
     };
 
 var pos_len=[0,0];
@@ -171,36 +201,56 @@ var pos_len=[0,0];
 var
  init_rewrite=
   function(modes,mod_name)
-   {cur_point[1]=0,0;
+   {cur_point[1]=0;
     if(instr_mode[1])
      {Printf["fprintf"]
        (outchan[1],
-        [0,
-         [11,"module ",[2,0,[11,"Profiling = Profiling;; ",0]]],
+        [/* Format */0,
+         [/* String_literal */11,
+          "module ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* String_literal */11,
+            "Profiling = Profiling;; ",
+            /* End_of_format */0]]],
          "module %sProfiling = Profiling;; "],
         modprefix);
       Printf["fprintf"]
        (outchan[1],
-        [0,
-         [11,"let ",[2,0,[2,0,[11,"_cnt = Array.make 000000000",0]]]],
+        [/* Format */0,
+         [/* String_literal */11,
+          "let ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* String */2,
+            /* No_padding */0,
+            [/* String_literal */11,
+             "_cnt = Array.make 000000000",
+             /* End_of_format */0]]]],
          "let %s%s_cnt = Array.make 000000000"],
         idprefix,
         mod_name);
-      pos_len[1]=Pervasives["pos_out"](outchan[1]),0;
+      pos_len[1]=Pervasives["pos_out"](outchan[1]);
       return Printf["fprintf"]
               (outchan[1],
-               [0,
-                [11,
+               [/* Format */0,
+                [/* String_literal */11,
                  ' 0;; Profiling.counters := ("',
-                 [2,
-                  0,
-                  [11,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
                    '", ("',
-                   [2,
-                    0,
-                    [11,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* String_literal */11,
                      '", ',
-                     [2,0,[2,0,[11,"_cnt)) :: !Profiling.counters;; ",0]]]]]]]],
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
+                        "_cnt)) :: !Profiling.counters;; ",
+                        /* End_of_format */0]]]]]]]],
                 ' 0;; Profiling.counters := ("%s", ("%s", %s%s_cnt)) :: !Profiling.counters;; '],
                mod_name,
                modes,
@@ -216,10 +266,9 @@ var
   function(add_function)
    {to_insert[1]=
     List["sort"]
-     (function(x,y){return "unknown primitive:caml_int_compare";},
-      to_insert[1]),
-    0;
-    prof_counter[1]=0,0;
+     (function(x,y){return CamlPrimitive["caml_int_compare"](x[2],y[2]);},
+      to_insert[1]);
+    prof_counter[1]=0;
     List["iter"](add_function,to_insert[1]);
     copy(Pervasives["in_channel_length"](inchan[1]));
     if(instr_mode[1])
@@ -267,7 +316,10 @@ var
 var
  rewrite_exp=
   function(iflag,sexp)
-   {if(iflag){return insert_profile(rw_exp,sexp);}else{return rw_exp(0,sexp);}
+   {if(iflag)
+     {return insert_profile(rw_exp,sexp);}
+    else
+     {return rw_exp(/* false */0,sexp);}
     };
 
 var
@@ -277,7 +329,7 @@ var
     
     var exit$1;
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:exit$1=24;
       case 1:exit$1=24;
       case 2:
@@ -293,7 +345,11 @@ var
         {return rewrite_cases(iflag,caselist);}
        
       case 4:
-       var l=/* :: */[0,/* record */[0,match$1[3],0,match$1[4]],0];
+       var
+        l=
+         /* :: */[0,
+          /* record */[0,match$1[3],/* None */0,match$1[4]],
+          /* [] */0];
        
        if(instr_fun[1])
         {return rewrite_function(iflag,l);}
@@ -398,12 +454,15 @@ var
       default:return rewrite_exp(iflag,match$1[1]);}
     
     switch(exit$1)
-     {case 24:return 0;
+     {case 24:return /* () */0;
       case 25:return rewrite_exp_list(iflag,match$1[1]);
       case 26:
        var match$4=match$1[2];
        
-       if(match$4){return rewrite_exp(iflag,match$4[1]);}else{return 0;}
+       if(match$4)
+        {return rewrite_exp(iflag,match$4[1]);}
+       else
+        {return /* () */0;}
        
       case 28:return rewrite_exp(iflag,match$1[1]);
       case 29:return rewrite_exp(iflag,match$1[2]);
@@ -435,7 +494,7 @@ var
                  
                  var match$2=sexp[1];
                  
-                 switch(match$2)
+                 switch(match$2[0])
                   {case 19:return insert_profile(rw_exp,match$2[1]);
                    default:return insert_profile(rw_exp,sexp);}
                  }
@@ -458,7 +517,8 @@ var
         
         var exit$2;
         
-        switch(sexp[1]){case 3:exit$2=33;case 4:exit$2=33;default:exit$1=32;}
+        switch(sexp[1][0])
+         {case 3:exit$2=33;case 4:exit$2=33;default:exit$1=32;}
         
         switch(exit$2)
          {case 33:if(l[2]){exit$1=32;}else{return rewrite_exp(iflag,sexp);}}
@@ -481,25 +541,25 @@ var
     
     var exit$1;
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:return rewrite_class_expr(iflag,match$1[2]);
       case 1:
        var match$2=match$1[1][3];
        
-       switch(match$2)
+       switch(match$2[0])
         {case 0:exit$1=35;case 1:return rewrite_exp(iflag,match$2[2]);}
        
       case 2:
        var match$3=match$1[1][3];
        
-       switch(match$3)
+       switch(match$3[0])
         {case 0:exit$1=35;
          case 1:
           var sexp=match$3[2];
           
           var exit$2;
           
-          switch(sexp[1])
+          switch(sexp[1][0])
            {case 3:exit$2=36;
             case 4:exit$2=36;
             default:
@@ -521,7 +581,7 @@ var
       case 6:exit$1=38;
       }
     
-    switch(exit$1){case 38:return 0;case 35:return 0;}
+    switch(exit$1){case 38:return /* () */0;case 35:return /* () */0;}
     };
 
 var
@@ -531,7 +591,7 @@ var
     
     var exit$1;
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:exit$1=39;
       case 1:return List["iter"](rewrite_class_field(iflag),match$1[1][2]);
       case 2:return rewrite_class_expr(iflag,match$1[4]);
@@ -549,7 +609,7 @@ var
       case 6:exit$1=39;
       }
     
-    switch(exit$1){case 39:return 0;}
+    switch(exit$1){case 39:return /* () */0;}
     };
 
 var
@@ -563,7 +623,7 @@ var
     
     var exit$1;
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:exit$1=40;
       case 1:return List["iter"](rewrite_str_item(iflag),match$1[1]);
       case 2:return rewrite_mod(iflag,match$1[3]);
@@ -574,7 +634,7 @@ var
       case 6:exit$1=40;
       }
     
-    switch(exit$1){case 40:return 0;}
+    switch(exit$1){case 40:return /* () */0;}
     };
 
 var
@@ -582,7 +642,7 @@ var
   function(iflag,item)
    {var match$1=item[1];
     
-    switch(match$1)
+    switch(match$1[0])
      {case 0:return rewrite_exp(iflag,match$1[1]);
       case 1:
        return List["iter"]
@@ -591,18 +651,18 @@ var
       case 6:return rewrite_mod(iflag,match$1[1][2]);
       case 10:
        return List["iter"](rewrite_class_declaration(iflag),match$1[1]);
-      default:return 0;}
+      default:return /* () */0;}
     };
 
 var
  rewrite_file=
   function(srcfile,add_function)
-   {inchan[1]=Pervasives["open_in_bin"](srcfile),0;
+   {inchan[1]=Pervasives["open_in_bin"](srcfile);
     var lb=Lexing["from_channel"](inchan[1]);
     
-    Location["input_name"][1]=srcfile,0;
+    Location["input_name"][1]=srcfile;
     Location["init"](lb,srcfile);
-    List["iter"](rewrite_str_item(0),Parse["implementation"](lb));
+    List["iter"](rewrite_str_item(/* false */0),Parse["implementation"](lb));
     final_rewrite(add_function);
     return Pervasives["close_in"](inchan[1]);
     };
@@ -610,7 +670,7 @@ var
 var
  null_rewrite=
   function(srcfile)
-   {inchan[1]=Pervasives["open_in_bin"](srcfile),0;
+   {inchan[1]=Pervasives["open_in_bin"](srcfile);
     copy(Pervasives["in_channel_length"](inchan[1]));
     return Pervasives["close_in"](inchan[1]);
     };
@@ -628,47 +688,43 @@ var
       if(19<switcher>>>0)
        {exit$1=17;}
       else
-       {switch(switcher[0])
+       {switch(switcher)
          {case 0:
            instr_fun[1]=
-           1,
-           0,
+           /* true */1,
            instr_match[1]=
-           1,
-           0,
+           /* true */1,
            instr_if[1]=
-           1,
-           0,
+           /* true */1,
            instr_loops[1]=
-           1,
-           0,
+           /* true */1,
            instr_try[1]=
-           1,
-           0;
+           /* true */1;
           case 1:exit$1=17;
           case 2:exit$1=17;
           case 3:exit$1=17;
           case 4:exit$1=17;
-          case 5:instr_fun[1]=1,0;
+          case 5:instr_fun[1]=/* true */1;
           case 6:exit$1=17;
           case 7:exit$1=17;
-          case 8:instr_if[1]=1,0;
+          case 8:instr_if[1]=/* true */1;
           case 9:exit$1=17;
           case 10:exit$1=17;
-          case 11:instr_loops[1]=1,0;
-          case 12:instr_match[1]=1,0;
+          case 11:instr_loops[1]=/* true */1;
+          case 12:instr_match[1]=/* true */1;
           case 13:exit$1=17;
           case 14:exit$1=17;
           case 15:exit$1=17;
           case 16:exit$1=17;
           case 17:exit$1=17;
           case 18:exit$1=17;
-          case 19:instr_try[1]=1,0
+          case 19:instr_try[1]=/* true */1
           }
         }
       
       switch(exit$1){case 17:}
       }
+    return 0;
     };
 
 var modes=[0,"fm"];
@@ -696,7 +752,7 @@ var
       try
        {var match$1=List["assoc"](modname,allcounters);}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {throw [0,
                  Profiler,
                  Pervasives["^"]
@@ -709,7 +765,7 @@ var
       
       var modes$1=match$1[1];
       
-      counters[1]=match$1[2],0;
+      counters[1]=match$1[2];
       set_flags(modes$1);
       init_rewrite(modes$1,modname);
       return rewrite_file(filename,add_val_counter);
@@ -731,7 +787,13 @@ var
  print_version=
   function(param)
    {Format["printf"]
-     ([0,[11,"ocamlprof, version ",[2,0,[17,4,0]]],"ocamlprof, version %s@."],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "ocamlprof, version ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
+       "ocamlprof, version %s@."],
       Sys["ocaml_version"]);
     return Pervasives["exit"](0);
     };
@@ -739,7 +801,13 @@ var
 var
  print_version_num=
   function(param)
-   {Format["printf"]([0,[2,0,[17,4,0]],"%s@."],Sys["ocaml_version"]);
+   {Format["printf"]
+     ([/* Format */0,
+       [/* String */2,
+        /* No_padding */0,
+        [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
+       "%s@."],
+      Sys["ocaml_version"]);
     return Pervasives["exit"](0);
     };
 
@@ -747,7 +815,7 @@ var
  main=
   function(param)
    {try
-     {Warnings["parse_options"](0,"a");
+     {Warnings["parse_options"](/* false */0,"a");
       Arg["parse"]
        (/* :: */[0,
          /* tuple */[0,
@@ -789,16 +857,26 @@ var
                  "-vnum",
                  /* Unit */[0,print_version_num],
                  "        Print version number and exit"],
-                0]]]]]]]],
+                /* [] */0]]]]]]]],
         process_anon_file,
         usage);
       return Pervasives["exit"](0);
       }
     catch(exn)
-     {if(exn[1]=Profiler)
+     {if(exn[1]===Profiler)
        {Format["fprintf"]
          (Format["err_formatter"],
-          [0,[18,[1,[0,0,""]],[2,0,[17,0,[17,4,0]]]],"@[%s@]@."],
+          [/* Format */0,
+           [/* Formatting_gen */18,
+            [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+            [/* String */2,
+             /* No_padding */0,
+             [/* Formatting_lit */17,
+              /* Close_box */0,
+              [/* Formatting_lit */17,
+               /* Flush_newline */4,
+               /* End_of_format */0]]]],
+           "@[%s@]@."],
           exn[2]);
         return Pervasives["exit"](2);
         }
@@ -807,7 +885,7 @@ var
       }
     };
 
-main(0);
+main(/* () */0);
 module["exports"]=
 {"idprefix":idprefix,
  "modprefix":modprefix,

@@ -1,27 +1,28 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Common=require("Common");
-var Parser=require("Parser");
-var Output=require("Output");
-var Outputbis=require("Outputbis");
-var Lexgen=require("Lexgen");
-var Pervasives=require("Pervasives");
-var Arg=require("Arg");
-var Cset=require("Cset");
-var Printf=require("Printf");
-var Lexer=require("Lexer");
-var Lexing=require("Lexing");
-var Filename=require("Filename");
-var Parsing=require("Parsing");
-var Compact=require("Compact");
-var Sys=require("Sys");
+var Common=require("./common.js");
+var Parser=require("./parser.js");
+var Output=require("./output.js");
+var Outputbis=require("./outputbis.js");
+var Lexgen=require("./lexgen.js");
+var Pervasives=require("./pervasives.js");
+var Arg=require("./arg.js");
+var Cset=require("./cset.js");
+var Printf=require("./printf.js");
+var Lexer=require("./lexer.js");
+var Lexing=require("./lexing.js");
+var Filename=require("./filename.js");
+var Parsing=require("./parsing.js");
+var Compact=require("./compact.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var ml_automata=[0,0];
+var ml_automata=[0,/* false */0];
 
-var source_name=[0,0];
+var source_name=[0,/* None */0];
 
-var output_name=[0,0];
+var output_name=[0,/* None */0];
 
 var usage="usage: ocamllex [options] sourcefile";
 
@@ -30,7 +31,7 @@ var
   function(param)
    {Pervasives["print_string"]("The OCaml lexer generator, version ");
     Pervasives["print_string"](Sys["ocaml_version"]);
-    Pervasives["print_newline"](0);
+    Pervasives["print_newline"](/* () */0);
     return Pervasives["exit"](0);
     };
 
@@ -73,7 +74,7 @@ var
          "-vnum",
          /* Unit */[0,print_version_num],
          " Print version number and exit"],
-        0]]]]]];
+        /* [] */0]]]]]];
 
 Arg["parse"]
  (specs,function(name){return source_name[1]=/* Some */[0,name],0;},usage);
@@ -109,7 +110,7 @@ var
     
     var lexbuf=Lexing["from_channel"](ic);
     
-    lexbuf[12]=/* record */[0,source_name$1,1,0,0],0;
+    lexbuf[12]=/* record */[0,source_name$1,1,0,0];
     try
      {var def=Parser["lexer_definition"](Lexer["main"],lexbuf);
       
@@ -136,97 +137,123 @@ var
      {Pervasives["close_in"](ic);
       Pervasives["close_out"](oc);
       Common["close_tracker"](tr);
-      "unknown primitive:caml_sys_remove";
-      if(exn=Cset["Bad"])
+      CamlPrimitive["caml_sys_remove"](dest_name);
+      if(exn===Cset["Bad"])
        {var p=Lexing["lexeme_start_p"](lexbuf);
         
         Printf["fprintf"]
          (Pervasives["stderr"],
-          [0,
-           [11,
+          [/* Format */0,
+           [/* String_literal */11,
             'File "',
-            [2,
-             0,
-             [11,
+            [/* String */2,
+             /* No_padding */0,
+             [/* String_literal */11,
               '", line ',
-              [4,
-               0,
-               0,
-               0,
-               [11,
+              [/* Int */4,
+               /* Int_d */0,
+               /* No_padding */0,
+               /* No_precision */0,
+               [/* String_literal */11,
                 ", character ",
-                [4,0,0,0,[11,": character set expected.\n",0]]]]]]],
+                [/* Int */4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 [/* String_literal */11,
+                  ": character set expected.\n",
+                  /* End_of_format */0]]]]]]],
            'File "%s", line %d, character %d: character set expected.\n'],
           p[1],
           p[2],
           p[4]-p[3])}
       else
-       {if(exn=Parsing["Parse_error"])
+       {if(exn===Parsing["Parse_error"])
          {var p$1=Lexing["lexeme_start_p"](lexbuf);
           
           Printf["fprintf"]
            (Pervasives["stderr"],
-            [0,
-             [11,
+            [/* Format */0,
+             [/* String_literal */11,
               'File "',
-              [2,
-               0,
-               [11,
+              [/* String */2,
+               /* No_padding */0,
+               [/* String_literal */11,
                 '", line ',
-                [4,
-                 0,
-                 0,
-                 0,
-                 [11,", character ",[4,0,0,0,[11,": syntax error.\n",0]]]]]]],
+                [/* Int */4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 [/* String_literal */11,
+                  ", character ",
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* String_literal */11,
+                    ": syntax error.\n",
+                    /* End_of_format */0]]]]]]],
              'File "%s", line %d, character %d: syntax error.\n'],
             p$1[1],
             p$1[2],
             p$1[4]-p$1[3])}
         else
-         {if(exn[1]=Lexer["Lexical_error"])
+         {if(exn[1]===Lexer["Lexical_error"])
            {Printf["fprintf"]
              (Pervasives["stderr"],
-              [0,
-               [11,
+              [/* Format */0,
+               [/* String_literal */11,
                 'File "',
-                [2,
-                 0,
-                 [11,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* String_literal */11,
                   '", line ',
-                  [4,
-                   0,
-                   0,
-                   0,
-                   [11,", character ",[4,0,0,0,[11,": ",[2,0,[11,".\n",0]]]]]]]]],
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* String_literal */11,
+                    ", character ",
+                    [/* Int */4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     [/* String_literal */11,
+                      ": ",
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,".\n",/* End_of_format */0]]]]]]]]],
                'File "%s", line %d, character %d: %s.\n'],
               exn[3],
               exn[4],
               exn[5],
               exn[2])}
           else
-           {if(exn=Lexgen["Memory_overflow"])
+           {if(exn===Lexgen["Memory_overflow"])
              {Printf["fprintf"]
                (Pervasives["stderr"],
-                [0,
-                 [11,
+                [/* Format */0,
+                 [/* String_literal */11,
                   'File "',
-                  [2,
-                   0,
-                   [11,'":\n Position memory overflow, too many bindings\n',0]]],
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11,
+                    '":\n Position memory overflow, too many bindings\n',
+                    /* End_of_format */0]]],
                  'File "%s":\n Position memory overflow, too many bindings\n'],
                 source_name$1)}
             else
-             {if(exn=Output["Table_overflow"])
+             {if(exn===Output["Table_overflow"])
                {Printf["fprintf"]
                  (Pervasives["stderr"],
-                  [0,
-                   [11,
+                  [/* Format */0,
+                   [/* String_literal */11,
                     'File "',
-                    [2,
-                     0,
-                     [11,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* String_literal */11,
                       '":\ntransition table overflow, automaton is too big\n',
-                      0]]],
+                      /* End_of_format */0]]],
                    'File "%s":\ntransition table overflow, automaton is too big\n'],
                   source_name$1)}
               else
@@ -240,7 +267,7 @@ var
       }
     };
 
-main(0);
+main(/* () */0);
 Pervasives["exit"](0);
 module["exports"]=
 {"ml_automata":ml_automata,

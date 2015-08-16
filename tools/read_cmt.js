@@ -1,25 +1,26 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Cmt2annot=require("Cmt2annot");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Clflags=require("Clflags");
-var Cmt_format=require("Cmt_format");
-var Digest=require("Digest");
-var Filename=require("Filename");
-var $$Array=require("Array");
+var $$String=require("./string.js");
+var Cmt2annot=require("./cmt2annot.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Clflags=require("./clflags.js");
+var Cmt_format=require("./cmt_format.js");
+var Digest=require("./digest.js");
+var Filename=require("./filename.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var gen_annot=[0,0];
+var gen_annot=[0,/* false */0];
 
-var gen_ml=[0,0];
+var gen_ml=[0,/* false */0];
 
-var print_info_arg=[0,0];
+var print_info_arg=[0,/* false */0];
 
-var target_filename=[0,0];
+var target_filename=[0,/* None */0];
 
 var
  arg_list=
@@ -43,7 +44,7 @@ var
        "-info",
        /* Set */[2,print_info_arg],
        " : print information on the file"],
-      0]]]];
+      /* [] */0]]]];
 
 var
  arg_usage=
@@ -55,54 +56,109 @@ var
  print_info=
   function(cmt)
    {Printf["printf"]
-     ([0,[11,"module name: ",[2,0,[12,10,0]]],"module name: %s\n"],cmt[1]);
+     ([/* Format */0,
+       [/* String_literal */11,
+        "module name: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "module name: %s\n"],
+      cmt[1]);
     var match=cmt[2];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        Printf["printf"]
-        ([0,[11,"pack: ",[2,0,[12,10,0]]],"pack: %s\n"],
+        ([/* Format */0,
+          [/* String_literal */11,
+           "pack: ",
+           [/* String */2,
+            /* No_padding */0,
+            [/* Char_literal */12,10,/* End_of_format */0]]],
+          "pack: %s\n"],
          $$String["concat"](" ",match[2]));
       case 1:
        Printf["printf"]
-        ([0,[11,"kind: implementation\n",0],"kind: implementation\n"]);
+        ([/* Format */0,
+          [/* String_literal */11,
+           "kind: implementation\n",
+           /* End_of_format */0],
+          "kind: implementation\n"]);
       case 2:
-       Printf["printf"]([0,[11,"kind: interface\n",0],"kind: interface\n"]);
+       Printf["printf"]
+        ([/* Format */0,
+          [/* String_literal */11,"kind: interface\n",/* End_of_format */0],
+          "kind: interface\n"]);
       case 3:
        Printf["printf"]
-        ([0,
-          [11,"kind: implementation with errors\n",0],
+        ([/* Format */0,
+          [/* String_literal */11,
+           "kind: implementation with errors\n",
+           /* End_of_format */0],
           "kind: implementation with errors\n"]);
       case 4:
        Printf["printf"]
-        ([0,
-          [11,"kind: interface with errors\n",0],
+        ([/* Format */0,
+          [/* String_literal */11,
+           "kind: interface with errors\n",
+           /* End_of_format */0],
           "kind: interface with errors\n"])
       }
     
     Printf["printf"]
-     ([0,[11,"command: ",[2,0,[12,10,0]]],"command: %s\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "command: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "command: %s\n"],
       $$String["concat"](" ",$$Array["to_list"](cmt[5])));
     var match$1=cmt[6];
     
     if(match$1)
      {Printf["printf"]
-       ([0,[11,"sourcefile: ",[2,0,[12,10,0]]],"sourcefile: %s\n"],match$1[1])}
+       ([/* Format */0,
+         [/* String_literal */11,
+          "sourcefile: ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* Char_literal */12,10,/* End_of_format */0]]],
+         "sourcefile: %s\n"],
+        match$1[1])}
     else
      {}
     
     Printf["printf"]
-     ([0,[11,"build directory: ",[2,0,[12,10,0]]],"build directory: %s\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "build directory: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "build directory: %s\n"],
       cmt[7]);
     List["iter"]
      (Printf["printf"]
-       ([0,[11,"load path: ",[2,0,[12,10,[10,0]]]],"load path: %s\n%!"]),
+       ([/* Format */0,
+         [/* String_literal */11,
+          "load path: ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* Char_literal */12,10,[/* Flush */10,/* End_of_format */0]]]],
+         "load path: %s\n%!"]),
       cmt[8]);
     var match$2=cmt[9];
     
     if(match$2)
      {Printf["printf"]
-       ([0,[11,"source digest: ",[2,0,[12,10,0]]],"source digest: %s\n"],
+       ([/* Format */0,
+         [/* String_literal */11,
+          "source digest: ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* Char_literal */12,10,/* End_of_format */0]]],
+         "source digest: %s\n"],
         Digest["to_hex"](match$2[1]))}
     else
      {}
@@ -111,7 +167,13 @@ var
     
     if(match$3)
      {Printf["printf"]
-       ([0,[11,"interface digest: ",[2,0,[12,10,0]]],"interface digest: %s\n"],
+       ([/* Format */0,
+         [/* String_literal */11,
+          "interface digest: ",
+          [/* String */2,
+           /* No_padding */0,
+           [/* Char_literal */12,10,/* End_of_format */0]]],
+         "interface digest: %s\n"],
         Digest["to_hex"](match$3[1]))}
     else
      {}
@@ -123,20 +185,30 @@ var
         if(crco){var crc=Digest["to_hex"](crco[1]);}else{var crc=dummy_crc;}
         
         return Printf["printf"]
-                ([0,
-                  [11,"import: ",[2,0,[12,32,[2,0,[12,10,0]]]]],
+                ([/* Format */0,
+                  [/* String_literal */11,
+                   "import: ",
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Char_literal */12,
+                     32,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* Char_literal */12,10,/* End_of_format */0]]]]],
                   "import: %s %s\n"],
                  param[1],
                  crc);
         },
       List["sort"]
-       (function(prim,prim$1){return "unknown primitive:caml_compare";},
+       (function(prim,prim$1)
+         {return CamlPrimitive["caml_compare"](prim,prim$1);},
         cmt[11]));
-    Printf["printf"]([0,[10,0],"%!"]);
-    return 0;
+    Printf["printf"]
+     ([/* Format */0,[/* Flush */10,/* End_of_format */0],"%!"]);
+    return /* () */0;
     };
 
-Clflags["annotations"][1]=1,0;
+Clflags["annotations"][1]=/* true */1;
 Arg["parse"]
  (arg_list,
   function(filename)
@@ -163,8 +235,10 @@ Arg["parse"]
     else
      {Printf["fprintf"]
        (Pervasives["stderr"],
-        [0,
-         [11,"Error: the file's extension must be .cmt or .cmti.\n",[10,0]],
+        [/* Format */0,
+         [/* String_literal */11,
+          "Error: the file's extension must be .cmt or .cmti.\n",
+          [/* Flush */10,/* End_of_format */0]],
          "Error: the file's extension must be .cmt or .cmti.\n%!"]);
       return Arg["usage"](arg_list,arg_usage);
       }

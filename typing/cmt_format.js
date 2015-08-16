@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Cmi_format=require("Cmi_format");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Digest=require("Digest");
-var Misc=require("Misc");
-var Lexer=require("Lexer");
-var TypedtreeMap=require("TypedtreeMap");
-var Config=require("Config");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var Cmi_format=require("./cmi_format.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Digest=require("./digest.js");
+var Misc=require("./misc.js");
+var Lexer=require("./lexer.js");
+var TypedtreeMap=require("./typedtreeMap.js");
+var Config=require("./config.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 
@@ -24,8 +25,15 @@ var
     };
 
 try
- {var need_to_clear_env=0;}
-catch(exn){if(exn=Not_found){var need_to_clear_env=1;}else{throw exn;}}
+ {CamlPrimitive["caml_sys_getenv"]("OCAML_BINANNOT_WITHENV");
+  var need_to_clear_env=/* false */0;
+  }
+catch(exn)
+ {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var need_to_clear_env=/* true */1;}
+  else
+   {throw exn;}
+  }
 
 var keep_only_summary=Env["keep_only_summary"];
 
@@ -34,9 +42,9 @@ var include=TypedtreeMap["DefaultMapArgument"];
 var
  leave_pattern=
   function(p)
-   {var newrecord="unknown primitive:duprecord regular 6";
+   {var newrecord=/* unknown */"duprecord regular 6";
     
-    newrecord[5]=keep_only_summary(p[5]),0;
+    newrecord[5]=keep_only_summary(p[5]);
     return newrecord;
     };
 
@@ -46,10 +54,10 @@ var
    {var
      exp_extra=
       List["map"]
-       (function(exp_extra$1)
-         {var match=exp_extra$1[1];
+       (function(exp_extra)
+         {var match=exp_extra[1];
           
-          switch(match)
+          switch(match[0])
            {case 2:
              return /* tuple */[0,
                      /* Texp_open */[2,
@@ -57,10 +65,10 @@ var
                       match[2],
                       match[3],
                       keep_only_summary(match[4])],
-                     exp_extra$1[2],
-                     exp_extra$1[3]];
+                     exp_extra[2],
+                     exp_extra[3]];
              
-            default:return exp_extra$1;}
+            default:return exp_extra;}
           },
         e[3]);
     
@@ -173,7 +181,7 @@ var
 var
  clear_part=
   function(p)
-   {switch(p)
+   {switch(p[0])
      {case 0:return /* Partial_structure */[0,ClearEnv[1](p[1])];
       case 1:return /* Partial_structure_item */[1,ClearEnv[3](p[1])];
       case 2:return /* Partial_expression */[2,ClearEnv[4](p[1])];
@@ -189,7 +197,7 @@ var
  clear_env=
   function(binary_annots)
    {if(need_to_clear_env)
-     {switch(binary_annots)
+     {switch(binary_annots[0])
        {case 0:return binary_annots;
         case 1:return /* Implementation */[1,ClearEnv[1](binary_annots[1])];
         case 2:return /* Interface */[2,ClearEnv[6](binary_annots[1])];
@@ -207,7 +215,7 @@ var
      {return binary_annots;}
     };
 
-var $$Error="unknown primitive:caml_set_oo_id";
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Cmt_format.Error",0]);
 
 var input_cmt=function(ic){return Pervasives["input_value"](ic);};
 
@@ -226,21 +234,27 @@ var
     try
      {var magic_number=read_magic_number(ic);
       
-      if("unknown primitive:caml_string_equal")
-       {var match=/* tuple */[0,0,/* Some */[0,input_cmt(ic)]];}
+      if
+       (CamlPrimitive["caml_string_equal"]
+         (magic_number,Config["cmt_magic_number"]))
+       {var match=/* tuple */[0,/* None */0,/* Some */[0,input_cmt(ic)]];}
       else
-       {if("unknown primitive:caml_string_equal")
+       {if
+         (CamlPrimitive["caml_string_equal"]
+           (magic_number,Config["cmi_magic_number"]))
          {var cmi=Cmi_format["input_cmi"](ic);
           
           try
            {var magic_number$1=read_magic_number(ic);
             
-            if("unknown primitive:caml_string_equal")
+            if
+             (CamlPrimitive["caml_string_equal"]
+               (magic_number$1,Config["cmt_magic_number"]))
              {var cmt=input_cmt(ic);var cmt$1=/* Some */[0,cmt];}
             else
-             {var cmt$1=0;}
+             {var cmt$1=/* None */0;}
             }
-          catch(exn$1){var cmt$1=0;}
+          catch(exn$1){var cmt$1=/* None */0;}
           
           var match=/* tuple */[0,/* Some */[0,cmi],cmt$1];
           }
@@ -291,11 +305,13 @@ var
      {throw [0,Cmi_format["Error"],/* Not_an_interface */[0,filename]];}
     };
 
-var saved_types=[0,0];
+var saved_types=[0,/* [] */0];
 
-var value_deps=[0,0];
+var value_deps=[0,/* [] */0];
 
-var clear=function(param){saved_types[1]=0,0;return value_deps[1]=0,0;};
+var
+ clear=
+  function(param){saved_types[1]=/* [] */0;return value_deps[1]=/* [] */0,0;};
 
 var
  add_saved_type=
@@ -308,7 +324,7 @@ var set_saved_types=function(l){return saved_types[1]=l,0;};
 var
  record_value_dependency=
   function(vd1,vd2)
-   {if("unknown primitive:caml_notequal")
+   {if(CamlPrimitive["caml_notequal"](vd1[3],vd2[3]))
      {return value_deps[1]=/* :: */[0,/* tuple */[0,vd1,vd2],value_deps[1]],0;
       }
     else
@@ -319,7 +335,7 @@ var
  save_cmt=
   function(filename,modname,binary_annots,sourcefile,initial_env,sg)
    {if(Clflags["binary_annotations"][1]&&!Clflags["print_types"][1])
-     {var imports=Env["imports"](0);
+     {var imports=Env["imports"](/* () */0);
       
       var oc=Pervasives["open_out_bin"](filename);
       
@@ -330,12 +346,14 @@ var
            modname,
            sg[1],
            imports,
-           Clflags["recursive_types"][1]?[0,0,0]:0];
+           Clflags["recursive_types"][1]
+            ?[/* :: */0,/* Rectypes */0,/* [] */0]
+            :/* [] */0];
         
         var this_crc=/* Some */[0,Cmi_format["output_cmi"](filename,oc,cmi)];
         }
       else
-       {var this_crc=0;}
+       {var this_crc=/* None */0;}
       
       var source_digest=Misc["may_map"](Digest["file"],sourcefile);
       
@@ -345,15 +363,16 @@ var
          modname,
          clear_env(binary_annots),
          value_deps[1],
-         Lexer["comments"](0),
+         Lexer["comments"](/* () */0),
          Sys["argv"],
          sourcefile,
-         "unknown primitive:caml_sys_getcwd",
+         CamlPrimitive["caml_sys_getcwd"](/* () */0),
          Config["load_path"][1],
          source_digest,
          need_to_clear_env?keep_only_summary(initial_env):initial_env,
          List["sort"]
-          (function(prim,prim$1){return "unknown primitive:caml_compare";},
+          (function(prim,prim$1)
+            {return CamlPrimitive["caml_compare"](prim,prim$1);},
            imports),
          this_crc,
          need_to_clear_env];
@@ -362,7 +381,7 @@ var
     else
      {}
     
-    return clear(0);
+    return clear(/* () */0);
     };
 
 module["exports"]=

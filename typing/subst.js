@@ -1,17 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Btype=require("Btype");
-var Clflags=require("Clflags");
-var Types=require("Types");
-var Misc=require("Misc");
-var Tbl=require("Tbl");
-var Location=require("Location");
-var Ast_mapper=require("Ast_mapper");
-var Ident=require("Ident");
+var List=require("./list.js");
+var Btype=require("./btype.js");
+var Clflags=require("./clflags.js");
+var Types=require("./types.js");
+var Misc=require("./misc.js");
+var Tbl=require("./tbl.js");
+var Location=require("./location.js");
+var Ast_mapper=require("./ast_mapper.js");
+var Ident=require("./ident.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var identity=/* record */[0,Tbl["empty"],Tbl["empty"],Tbl["empty"],0];
+var
+ identity=
+  /* record */[0,Tbl["empty"],Tbl["empty"],Tbl["empty"],/* false */0];
 
 var
  add_type=
@@ -28,7 +31,9 @@ var
   function(id,ty,s)
    {return /* record */[0,s[1],s[2],Tbl["add"](id,ty,s[3]),s[4]];};
 
-var for_saving=function(s){return /* record */[0,s[1],s[2],s[3],1];};
+var
+ for_saving=
+  function(s){return /* record */[0,s[1],s[2],s[3],/* true */1];};
 
 var
  loc=
@@ -39,9 +44,9 @@ var
      {return x;}
     };
 
-var newrecord="unknown primitive:duprecord regular 40";
+var newrecord=/* unknown */"duprecord regular 40";
 
-newrecord[21]=function(_this,_loc){return Location["none"];},0;
+newrecord[21]=function(_this,_loc){return Location["none"];};
 var remove_loc=newrecord;
 
 var
@@ -56,7 +61,7 @@ var
       case "text":exit=59;
       default:exit=58;}
     
-    switch(exit){case 59:return 0;case 58:return 1;}
+    switch(exit){case 59:return /* false */0;case 58:return /* true */1;}
     };
 
 var
@@ -76,11 +81,16 @@ var
 var
  module_path=
   function(s,p)
-   {switch(p)
+   {switch(p[0])
      {case 0:
        try
         {return Tbl["find"](p[1],s[2]);}
-       catch(exn){if(exn=Not_found){return p;}else{throw exn;}}
+       catch(exn)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return p;}
+         else
+          {throw exn;}
+         }
        
       case 1:return /* Pdot */[1,module_path(s,p[1]),p[2],p[3]];
       case 2:return /* Papply */[2,module_path(s,p[1]),module_path(s,p[2])];
@@ -90,16 +100,21 @@ var
 var
  modtype_path=
   function(s,p)
-   {switch(p)
+   {switch(p[0])
      {case 0:
        try
         {var match=Tbl["find"](p[1],s[3]);
          
-         switch(match)
+         switch(match[0])
           {case 0:return match[1];
            default:return Misc["fatal_error"]("Subst.modtype_path");}
          }
-       catch(exn){if(exn=Not_found){return p;}else{throw exn;}}
+       catch(exn)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return p;}
+         else
+          {throw exn;}
+         }
        
       case 1:return /* Pdot */[1,module_path(s,p[1]),p[2],p[3]];
       case 2:return Misc["fatal_error"]("Subst.modtype_path");
@@ -109,11 +124,16 @@ var
 var
  type_path=
   function(s,p)
-   {switch(p)
+   {switch(p[0])
      {case 0:
        try
         {return Tbl["find"](p[1],s[1]);}
-       catch(exn){if(exn=Not_found){return p;}else{throw exn;}}
+       catch(exn)
+        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+          {return p;}
+         else
+          {throw exn;}
+         }
        
       case 1:return /* Pdot */[1,module_path(s,p[1]),p[2],p[3]];
       case 2:return Misc["fatal_error"]("Subst.type_path");
@@ -129,16 +149,16 @@ var
   function(desc)
    {new_id[0]--;return /* record */[0,desc,Btype["generic_level"],new_id[1]];};
 
-var tvar_none=[0,0];
+var tvar_none=[/* Tvar */0,/* None */0];
 
-var tunivar_none=[9,0];
+var tunivar_none=[/* Tunivar */9,/* None */0];
 
 var
  norm=
   function(d)
    {var exit;
     
-    if(typeof d=="number")
+    if(typeof d==="number")
      {switch(d){}}
     else
      {switch(d[0])
@@ -158,7 +178,7 @@ var
     
     var exit;
     
-    if(typeof desc=="number")
+    if(typeof desc==="number")
      {switch(desc){}}
     else
      {switch(desc[0])
@@ -170,15 +190,15 @@ var
        
        Btype["save_desc"](ty$1,desc$1);
        if(s[4])
-        {var ty$prime=newpersty([0,0]);}
+        {var ty$prime=newpersty([/* Tvar */0,/* None */0]);}
        else
-        {var ty$prime=Btype["newgenvar"](0,0);}
+        {var ty$prime=Btype["newgenvar"](/* None */0,/* () */0);}
        
-       ty$1[1]=/* Tsubst */[7,ty$prime],0;
+       ty$1[1]=/* Tsubst */[7,ty$prime];
        var exit$1;
        
        var $js;
-       if(typeof desc$1=="number")
+       if(typeof desc$1==="number")
         {switch(desc$1){}}
        else
         {switch(desc$1[0])
@@ -187,7 +207,7 @@ var
             /* Tconstr */[3,
              type_path(s,desc$1[1]),
              List["map"](typexp(s),desc$1[2]),
-             [0,0]];
+             [0,/* Mnil */0]];
             
            case 4:
             var match=desc$1[2][1];
@@ -203,7 +223,7 @@ var
                   List["map"](typexp(s),match$1[2])]];
               }
             else
-             {var $js$1=0;}
+             {var $js$1=/* None */0;}
             $js=/* Tobject */[4,typexp(s,desc$1[1]),[0,$js$1]];
             
            case 5:
@@ -214,13 +234,14 @@ var
             var m=desc$1[1];
             
             if
-             ((s=identity)&&
+             (s===
+              identity&&
               ty$1[2]<
               Btype["generic_level"]&&
-              "unknown primitive:caml_string_equal")
+              CamlPrimitive["caml_string_equal"](m,Btype["dummy_method"]))
              {$js=/* Tfield */[5,m,k,desc$1[3],typexp(s,t2)];}
             else
-             {if(Btype["field_kind_repr"](k)=1)
+             {if(Btype["field_kind_repr"](k)===/* Fabsent */1)
                {$js=/* Tlink */[6,typexp(s,t2)];}
               else
                {exit$1=37;}
@@ -235,14 +256,14 @@ var
             
             var exit$2;
             
-            if(typeof match$2=="number")
+            if(typeof match$2==="number")
              {switch(match$2){}}
             else
              {switch(match$2[0])
                {case 7:
                  var match$3=match$2[1][1];
                  
-                 if(typeof match$3=="number")
+                 if(typeof match$3==="number")
                   {switch(match$3){}}
                  else
                   {switch(match$3[0])
@@ -258,7 +279,7 @@ var
                           else
                            {var ty2=match$5[1];
                             
-                            ty$1[1]=/* Tsubst */[7,ty2],0;
+                            ty$1[1]=/* Tsubst */[7,ty2];
                             $js=/* Tlink */[6,ty2];
                             }
                           }
@@ -279,17 +300,19 @@ var
                var exit$3;
                
                var $js$2;
-               if(typeof match$6=="number")
+               if(typeof match$6==="number")
                 {switch(match$6){}}
                else
-                {switch(match$6[0]){case 3:$js$2=1;default:exit$3=32;}}
+                {switch(match$6[0])
+                  {case 3:$js$2=/* true */1;default:exit$3=32;}}
                
                var $js$3;
-               switch(exit$3){case 32:$js$3=0;}
+               switch(exit$3){case 32:$js$3=/* false */0;}
                var
                 dup=
                  s[4]||
-                 (more[2]=Btype["generic_level"])||
+                 more[2]===
+                 Btype["generic_level"]||
                  Btype["static_row"](row)||
                  $js$3;
                
@@ -297,7 +320,7 @@ var
                
                var exit$4;
                
-               if(typeof match$7=="number")
+               if(typeof match$7==="number")
                 {switch(match$7){case 0:exit$4=28;}}
                else
                 {switch(match$7[0])
@@ -306,7 +329,10 @@ var
                    case 7:var more$prime=match$7[1];
                    case 9:exit$4=29;
                    default:
-                    throw [0,Assert_failure,[0,"typing/subst.ml",170,23]];}}
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"typing/subst.ml",170,23]];
+                    }}
                
                switch(exit$4)
                 {case 28:var more$prime=typexp(s,more);
@@ -327,23 +353,23 @@ var
                /* Tsubst */[7,
                 Btype["newgenty"]
                  (/* Ttuple */[2,
-                   /* :: */[0,more$prime,/* :: */[0,ty$prime,0]]])],
-               0;
-               var row$1=Btype["copy_row"](typexp(s),1,row,!dup,more$prime);
+                   /* :: */[0,more$prime,/* :: */[0,ty$prime,/* [] */0]]])];
+               var
+                row$1=
+                 Btype["copy_row"](typexp(s),/* true */1,row,!dup,more$prime);
                
                var match$8=row$1[6];
                
                if(match$8)
                 {var match$9=match$8[1];
                  
-                 var newrecord$1="unknown primitive:duprecord regular 6";
+                 var newrecord$1=/* unknown */"duprecord regular 6";
                  
                  $js=
                  /* Tvariant */[8,
                   (newrecord$1[6]=
                    /* Some */[0,
                     /* tuple */[0,type_path(s,match$9[1]),match$9[2]]],
-                   0,
                    newrecord$1)];
                  }
                else
@@ -362,8 +388,8 @@ var
        
        var $js$4;
        switch(exit$1)
-        {case 37:$js$4=Btype["copy_type_desc"](0,typexp(s),desc$1);}
-       ty$prime[1]=$js$4,0;
+        {case 37:$js$4=Btype["copy_type_desc"](/* None */0,typexp(s),desc$1);}
+       ty$prime[1]=$js$4;
        return ty$prime;
        
       case 40:
@@ -374,7 +400,7 @@ var
           {var ty$prime$1=Btype["newty2"](ty$1[2],desc);}
          
          Btype["save_desc"](ty$1,desc);
-         ty$1[1]=/* Tsubst */[7,ty$prime$1],0;
+         ty$1[1]=/* Tsubst */[7,ty$prime$1];
          return ty$prime$1;
          }
        else
@@ -386,7 +412,11 @@ var
 var
  type_expr=
   function(s,ty)
-   {var ty$prime=typexp(s,ty);Btype["cleanup_types"](0);return ty$prime;};
+   {var ty$prime=typexp(s,ty);
+    
+    Btype["cleanup_types"](/* () */0);
+    return ty$prime;
+    };
 
 var
  type_declaration=
@@ -394,8 +424,9 @@ var
    {var match=decl[3];
     
     var $js;
-    if(typeof match=="number")
-     {switch(match){case 0:$js=0;case 1:$js=1;}}
+    if(typeof match==="number")
+     {switch(match)
+       {case 0:$js=/* Type_abstract */0;case 1:$js=/* Type_open */1;}}
     else
      {switch(match[0])
        {case 0:
@@ -437,13 +468,13 @@ var
        decl[2],
        $js,
        decl[4],
-       match$1?/* Some */[0,typexp(s,match$1[1])]:0,
+       match$1?/* Some */[0,typexp(s,match$1[1])]:/* None */0,
        decl[6],
-       0,
+       /* None */0,
        loc(s,decl[8]),
        attrs(s,decl[9])];
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return decl$1;
     };
 
@@ -469,7 +500,7 @@ var
 var
  class_type=
   function(s,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return /* Cty_constr */[0,
                type_path(s,param[1]),
@@ -497,12 +528,12 @@ var
        List["map"](typexp(s),decl[1]),
        class_type(s,decl[2]),
        type_path(s,decl[3]),
-       match?/* Some */[0,typexp(s,match[1])]:0,
+       match?/* Some */[0,typexp(s,match[1])]:/* None */0,
        decl[5],
        loc(s,decl[6]),
        attrs(s,decl[7])];
     
-    if(!s[4]){Btype["cleanup_types"](0)}else{}
+    if(!s[4]){Btype["cleanup_types"](/* () */0)}else{}
     
     return decl$1;
     };
@@ -520,14 +551,18 @@ var
        loc(s,decl[5]),
        attrs(s,decl[6])];
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return decl$1;
     };
 
 var
  class_type$1=
   function(s,cty)
-   {var cty$1=class_type(s,cty);Btype["cleanup_types"](0);return cty$1;};
+   {var cty$1=class_type(s,cty);
+    
+    Btype["cleanup_types"](/* () */0);
+    return cty$1;
+    };
 
 var
  value_description=
@@ -553,7 +588,7 @@ var
        s[4]?Location["none"]:ext[6],
        attrs(s,ext[7])];
     
-    Btype["cleanup_types"](0);
+    Btype["cleanup_types"](/* () */0);
     return ext$1;
     };
 
@@ -563,7 +598,7 @@ var
    {if(param)
      {var match=param[1];
       
-      switch(match)
+      switch(match[0])
        {case 1:
          var id=match[1];
          
@@ -608,15 +643,20 @@ var
 var
  modtype=
   function(s,mty)
-   {switch(mty)
+   {switch(mty[0])
      {case 0:
        var p=mty[1];
        
-       switch(p)
+       switch(p[0])
         {case 0:
           try
            {return Tbl["find"](p[1],s[3]);}
-          catch(exn){if(exn=Not_found){return mty;}else{throw exn;}}
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {return mty;}
+            else
+             {throw exn;}
+            }
           
          case 1:
           return /* Mty_ident */[0,
@@ -643,7 +683,7 @@ var
 var
  signature=
   function(s,sg)
-   {var match=rename_bound_idents(s,0,sg);
+   {var match=rename_bound_idents(s,/* [] */0,sg);
     
     return List["map2"](signature_component(match[2]),sg,match[1]);
     };
@@ -651,7 +691,7 @@ var
 var
  signature_component=
   function(s,comp,newid)
-   {switch(comp)
+   {switch(comp[0])
      {case 0:return /* Sig_value */[0,newid,value_description(s,comp[2])];
       case 1:
        return /* Sig_type */[1,newid,type_declaration(s,comp[2]),comp[3]];
@@ -704,7 +744,7 @@ var
             merge_tbls(type_path(s2),s1[1],s2[1]),
             merge_tbls(module_path(s2),s1[2],s2[2]),
             merge_tbls(modtype(s2),s1[3],s2[3]),
-            0];
+            /* false */0];
     };
 
 module["exports"]=

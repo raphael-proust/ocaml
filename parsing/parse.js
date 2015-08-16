@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Parser=require("Parser");
-var Docstrings=require("Docstrings");
-var Syntaxerr=require("Syntaxerr");
-var Lexer=require("Lexer");
-var Parsing=require("Parsing");
-var Location=require("Location");
+var Parser=require("./parser.js");
+var Docstrings=require("./docstrings.js");
+var Syntaxerr=require("./syntaxerr.js");
+var Lexer=require("./lexer.js");
+var Parsing=require("./parsing.js");
+var Location=require("./location.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -16,19 +17,20 @@ var
       
       var exit;
       
-      if("unknown primitive:isint")
-       {if(match!=25){if(match!=83){exit=20;}else{exit=19;}}else{exit=19;}}
+      if(typeof match==="number")
+       {if(match!==25){if(match!==83){exit=20;}else{exit=19;}}else{exit=19;}}
       else
        {exit=20;}
       
-      switch(exit){case 20:return skip_phrase(lexbuf);case 19:return 0;}
+      switch(exit)
+       {case 20:return skip_phrase(lexbuf);case 19:return /* () */0;}
       }
     catch(exn)
      {var exit$1;
       
-      if(exn[1]=Lexer["Error"])
+      if(exn[1]===Lexer["Error"])
        {var $js=exn[2];
-        if(typeof $js=="number")
+        if(typeof $js==="number")
          {switch($js){}}
         else
          {switch($js[0])
@@ -48,9 +50,9 @@ var
  maybe_skip_phrase=
   function(lexbuf)
    {if
-     (Parsing["is_current_lookahead"](83)||
-      Parsing["is_current_lookahead"](25))
-     {return 0;}
+     (Parsing["is_current_lookahead"](/* SEMISEMI */83)||
+      Parsing["is_current_lookahead"](/* EOF */25))
+     {return /* () */0;}
     else
      {return skip_phrase(lexbuf);}
     };
@@ -59,25 +61,27 @@ var
  wrap=
   function(parsing_fun,lexbuf)
    {try
-     {Docstrings["init"](0);
-      Lexer["init"](0);
+     {Docstrings["init"](/* () */0);
+      Lexer["init"](/* () */0);
       var ast=parsing_fun(Lexer["token"],lexbuf);
       
-      Parsing["clear_parser"](0);
-      Docstrings["warn_bad_docstrings"](0);
+      Parsing["clear_parser"](/* () */0);
+      Docstrings["warn_bad_docstrings"](/* () */0);
       return ast;
       }
     catch(err)
      {var exit;
       
-      if(err[1]=Lexer["Error"])
+      if(err[1]===Lexer["Error"])
        {var $js=err[2];
-        if(typeof $js=="number")
+        if(typeof $js==="number")
          {switch($js){}}
         else
          {switch($js[0])
            {case 0:
-             if("unknown primitive:caml_string_equal")
+             if
+              (CamlPrimitive["caml_string_equal"]
+                (Location["input_name"][1],"//toplevel//"))
               {skip_phrase(lexbuf);throw err;}
              else
               {exit=13;}
@@ -89,29 +93,29 @@ var
       
       switch(exit)
        {case 13:
-         if(err[1]=Syntaxerr["Error"])
-          {if("unknown primitive:caml_string_equal")
+         if(err[1]===Syntaxerr["Error"])
+          {if
+            (CamlPrimitive["caml_string_equal"]
+              (Location["input_name"][1],"//toplevel//"))
             {maybe_skip_phrase(lexbuf);throw err;}
            else
-            {"unknown block:(exit 12)";}
+            {exit=12;}
            }
          else
-          {"unknown block:(exit 12)";}
+          {exit=12;}
          
         case 12:
-         if(err=Parsing["Parse_error"])
-          {"unknown block:(exit 10)";}
+         if(err===Parsing["Parse_error"])
+          {exit=10;}
          else
-          {if(err=Syntaxerr["Escape_error"])
-            {"unknown block:(exit 10)";}
-           else
-            {throw err;}
-           }
+          {if(err===Syntaxerr["Escape_error"]){exit=10;}else{throw err;}}
          
         case 10:
          var loc=Location["curr"](lexbuf);
          
-         if("unknown primitive:caml_string_equal")
+         if
+          (CamlPrimitive["caml_string_equal"]
+            (Location["input_name"][1],"//toplevel//"))
           {maybe_skip_phrase(lexbuf)}
          else
           {}

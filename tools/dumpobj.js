@@ -1,23 +1,24 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Opcodes=require("Opcodes");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Obj=require("Obj");
-var Bytesections=require("Bytesections");
-var Opnames=require("Opnames");
-var Tbl=require("Tbl");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var Config=require("Config");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Opcodes=require("./opcodes.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Obj=require("./obj.js");
+var Bytesections=require("./bytesections.js");
+var Opnames=require("./opnames.js");
+var Tbl=require("./tbl.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var Config=require("./config.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
-var print_locations=[0,1];
+var print_locations=[0,/* true */1];
 
 var
  inputu=
@@ -51,30 +52,30 @@ var
 
 var start=[0,0];
 
-var reloc=[0,0];
+var reloc=[0,/* [] */0];
 
-var globals=[0,[]];
+var globals=[0,[/* array */0]];
 
-var primitives=[0,[]];
+var primitives=[0,[/* array */0]];
 
-var objfile=[0,0];
+var objfile=[0,/* false */0];
 
-var event_table=Hashtbl["create"](0,253);
+var event_table=Hashtbl["create"](/* None */0,253);
 
 var
  relocate_event=
   function(orig,ev)
-   {ev[1]=orig+ev[1],0;
+   {ev[1]=orig+ev[1];
     var match=ev[10];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=69;}}
     else
      {switch(match[0]){case 0:return match[1][1]=ev[1],0;case 1:exit=69;}}
     
-    switch(exit){case 69:return 0;}
+    switch(exit){case 69:return /* () */0;}
     };
 
 var
@@ -92,135 +93,342 @@ var
  print_float=
   function(f)
    {if($$String["contains"](f,46))
-     {return Printf["printf"]([0,[2,0,0],"%s"],f);}
+     {return Printf["printf"]
+              ([/* Format */0,
+                [/* String */2,/* No_padding */0,/* End_of_format */0],
+                "%s"],
+               f);
+      }
     else
-     {return Printf["printf"]([0,[2,0,[12,46,0]],"%s."],f);}
+     {return Printf["printf"]
+              ([/* Format */0,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* Char_literal */12,46,/* End_of_format */0]],
+                "%s."],
+               f);
+      }
     };
 
 var
  print_struct_const=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var match=param[1];
        
-       switch(match)
-        {case 0:return Printf["printf"]([0,[4,0,0,0,0],"%d"],match[1]);
-         case 1:return Printf["printf"]([0,[1,0],"%C"],match[1]);
-         case 2:return Printf["printf"]([0,[3,0,0],"%S"],match[1]);
+       switch(match[0])
+        {case 0:
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Int */4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     /* End_of_format */0],
+                    "%d"],
+                   match[1]);
+          
+         case 1:
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Caml_char */1,/* End_of_format */0],
+                    "%C"],
+                   match[1]);
+          
+         case 2:
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
+                    "%S"],
+                   match[1]);
+          
          case 3:return print_float(match[1]);
          case 4:
-          return Printf["printf"]([0,[5,0,0,0,[12,108,0]],"%ldl"],match[1]);
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Int32 */5,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     [/* Char_literal */12,108,/* End_of_format */0]],
+                    "%ldl"],
+                   match[1]);
+          
          case 5:
-          return Printf["printf"]([0,[7,0,0,0,[12,76,0]],"%LdL"],match[1]);
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Int64 */7,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     [/* Char_literal */12,76,/* End_of_format */0]],
+                    "%LdL"],
+                   match[1]);
+          
          case 6:
-          return Printf["printf"]([0,[6,0,0,0,[12,110,0]],"%ndn"],match[1]);
+          return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Nativeint */6,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     [/* Char_literal */12,110,/* End_of_format */0]],
+                    "%ndn"],
+                   match[1]);
+          
          }
        
-      case 1:return Printf["printf"]([0,[4,0,0,0,[12,97,0]],"%da"],param[1]);
+      case 1:
+       return Printf["printf"]
+               ([/* Format */0,
+                 [/* Int */4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,97,/* End_of_format */0]],
+                 "%da"],
+                param[1]);
+       
       case 2:
        var args=param[3];
        
-       Printf["printf"]([0,[12,60,[4,0,0,0,[12,62,0]]],"<%d>"],param[1]);
+       Printf["printf"]
+        ([/* Format */0,
+          [/* Char_literal */12,
+           60,
+           [/* Int */4,
+            /* Int_d */0,
+            /* No_padding */0,
+            /* No_precision */0,
+            [/* Char_literal */12,62,/* End_of_format */0]]],
+          "<%d>"],
+         param[1]);
        if(args)
         {var al=args[2];
          
          var a1=args[1];
          
          if(al)
-          {Printf["printf"]([0,[12,40,0],"("]);
+          {Printf["printf"]
+            ([/* Format */0,
+              [/* Char_literal */12,40,/* End_of_format */0],
+              "("]);
            print_struct_const(a1);
            List["iter"]
             (function(a)
-              {Printf["printf"]([0,[11,", ",0],", "]);
+              {Printf["printf"]
+                ([/* Format */0,
+                  [/* String_literal */11,", ",/* End_of_format */0],
+                  ", "]);
                return print_struct_const(a);
                },
              al);
-           return Printf["printf"]([0,[12,41,0],")"]);
+           return Printf["printf"]
+                   ([/* Format */0,
+                     [/* Char_literal */12,41,/* End_of_format */0],
+                     ")"]);
            }
          else
-          {Printf["printf"]([0,[12,40,0],"("]);
+          {Printf["printf"]
+            ([/* Format */0,
+              [/* Char_literal */12,40,/* End_of_format */0],
+              "("]);
            print_struct_const(a1);
-           return Printf["printf"]([0,[12,41,0],")"]);
+           return Printf["printf"]
+                   ([/* Format */0,
+                     [/* Char_literal */12,41,/* End_of_format */0],
+                     ")"]);
            }
          }
        else
-        {return 0;}
+        {return /* () */0;}
        
       case 3:
-       Printf["printf"]([0,[11,"[|",0],"[|"]);
+       Printf["printf"]
+        ([/* Format */0,
+          [/* String_literal */11,"[|",/* End_of_format */0],
+          "[|"]);
        List["iter"]
         (function(f)
-          {print_float(f);return Printf["printf"]([0,[11,"; ",0],"; "]);},
+          {print_float(f);
+           return Printf["printf"]
+                   ([/* Format */0,
+                     [/* String_literal */11,"; ",/* End_of_format */0],
+                     "; "]);
+           },
          param[1]);
-       return Printf["printf"]([0,[11,"|]",0],"|]"]);
+       return Printf["printf"]
+               ([/* Format */0,
+                 [/* String_literal */11,"|]",/* End_of_format */0],
+                 "|]"]);
        
-      case 4:return Printf["printf"]([0,[3,0,0],"%S"],param[1]);
+      case 4:
+       return Printf["printf"]
+               ([/* Format */0,
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
+                 "%S"],
+                param[1]);
+       
       }
     };
 
-var same_custom=function(x,y){return "unknown primitive:caml_equal";};
+var same_custom=function(x,y){return CamlPrimitive["caml_equal"](x[1],y[1]);};
 
 var
  print_obj=
   function(x)
-   {if("unknown primitive:caml_obj_is_block")
-     {var tag="unknown primitive:caml_obj_tag";
+   {if(CamlPrimitive["caml_obj_is_block"](x))
+     {var tag=CamlPrimitive["caml_obj_tag"](x);
       
-      if(tag=Obj["string_tag"])
-       {return Printf["printf"]([0,[3,0,0],"%S"],x);}
+      if(tag===Obj["string_tag"])
+       {return Printf["printf"]
+                ([/* Format */0,
+                  [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
+                  "%S"],
+                 x);
+        }
       else
-       {if(tag=Obj["double_tag"])
-         {return Printf["printf"]([0,[8,9,0,[0,12],0],"%.12g"],x);}
+       {if(tag===Obj["double_tag"])
+         {return Printf["printf"]
+                  ([/* Format */0,
+                    [/* Float */8,
+                     /* Float_g */9,
+                     /* No_padding */0,
+                     [/* Lit_precision */0,12],
+                     /* End_of_format */0],
+                    "%.12g"],
+                   x);
+          }
         else
-         {if(tag=Obj["double_array_tag"])
+         {if(tag===Obj["double_array_tag"])
            {var a=x;
             
-            Printf["printf"]([0,[11,"[|",0],"[|"]);
-            for(var i=0;i<=a["length"]-1;i++)
-             {if(i>0){Printf["printf"]([0,[11,", ",0],", "])}else{}
+            Printf["printf"]
+             ([/* Format */0,
+               [/* String_literal */11,"[|",/* End_of_format */0],
+               "[|"]);
+            for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
+             {if(i>0)
+               {Printf["printf"]
+                 ([/* Format */0,
+                   [/* String_literal */11,", ",/* End_of_format */0],
+                   ", "])}
+              else
+               {}
               
-              Printf["printf"]([0,[8,9,0,[0,12],0],"%.12g"],a[i])}
+              Printf["printf"]
+               ([/* Format */0,
+                 [/* Float */8,
+                  /* Float_g */9,
+                  /* No_padding */0,
+                  [/* Lit_precision */0,12],
+                  /* End_of_format */0],
+                 "%.12g"],
+                a[i+1])}
             
-            return Printf["printf"]([0,[11,"|]",0],"|]"]);
+            return Printf["printf"]
+                    ([/* Format */0,
+                      [/* String_literal */11,"|]",/* End_of_format */0],
+                      "|]"]);
             }
           else
-           {if((tag=Obj["custom_tag"])&&same_custom(x,0))
-             {return Printf["printf"]([0,[5,0,0,0,[12,108,0]],"%ldl"],x);}
+           {if(tag===Obj["custom_tag"]&&same_custom(x,0))
+             {return Printf["printf"]
+                      ([/* Format */0,
+                        [/* Int32 */5,
+                         /* Int_d */0,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         [/* Char_literal */12,108,/* End_of_format */0]],
+                        "%ldl"],
+                       x);
+              }
             else
-             {if((tag=Obj["custom_tag"])&&same_custom(x,0))
-               {return Printf["printf"]([0,[6,0,0,0,[12,110,0]],"%ndn"],x);}
+             {if(tag===Obj["custom_tag"]&&same_custom(x,0))
+               {return Printf["printf"]
+                        ([/* Format */0,
+                          [/* Nativeint */6,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           [/* Char_literal */12,110,/* End_of_format */0]],
+                          "%ndn"],
+                         x);
+                }
               else
-               {if((tag=Obj["custom_tag"])&&same_custom(x,0))
-                 {return Printf["printf"]([0,[7,0,0,0,[12,76,0]],"%LdL"],x);}
+               {if(tag===Obj["custom_tag"]&&same_custom(x,0))
+                 {return Printf["printf"]
+                          ([/* Format */0,
+                            [/* Int64 */7,
+                             /* Int_d */0,
+                             /* No_padding */0,
+                             /* No_precision */0,
+                             [/* Char_literal */12,76,/* End_of_format */0]],
+                            "%LdL"],
+                           x);
+                  }
                 else
                  {if(tag<Obj["no_scan_tag"])
                    {Printf["printf"]
-                     ([0,[12,60,[4,0,0,0,[12,62,0]]],"<%d>"],
-                      "unknown primitive:caml_obj_tag");
-                    var n=x["length"];
+                     ([/* Format */0,
+                       [/* Char_literal */12,
+                        60,
+                        [/* Int */4,
+                         /* Int_d */0,
+                         /* No_padding */0,
+                         /* No_precision */0,
+                         [/* Char_literal */12,62,/* End_of_format */0]]],
+                       "<%d>"],
+                      CamlPrimitive["caml_obj_tag"](x));
+                    var n=/* -1 for tag */x["length"]-1;
                     
-                    if(n!=0)
-                     {if(n!=1)
-                       {Printf["printf"]([0,[12,40,0],"("]);
-                        print_obj(x[0]);
+                    if(n!==0)
+                     {if(n!==1)
+                       {Printf["printf"]
+                         ([/* Format */0,
+                           [/* Char_literal */12,40,/* End_of_format */0],
+                           "("]);
+                        print_obj(x[1]);
                         for(var i$1=1;i$1<=n-1;i$1++)
-                         {Printf["printf"]([0,[11,", ",0],", "]),print_obj(x[i$1])}
+                         {Printf["printf"]
+                           ([/* Format */0,
+                             [/* String_literal */11,", ",/* End_of_format */0],
+                             ", "]),
+                          print_obj(x[i$1+1])}
                         
-                        return Printf["printf"]([0,[12,41,0],")"]);
+                        return Printf["printf"]
+                                ([/* Format */0,
+                                  [/* Char_literal */12,41,/* End_of_format */0],
+                                  ")"]);
                         }
                       else
-                       {Printf["printf"]([0,[12,40,0],"("]);
-                        print_obj(x[0]);
-                        return Printf["printf"]([0,[12,41,0],")"]);
+                       {Printf["printf"]
+                         ([/* Format */0,
+                           [/* Char_literal */12,40,/* End_of_format */0],
+                           "("]);
+                        print_obj(x[1]);
+                        return Printf["printf"]
+                                ([/* Format */0,
+                                  [/* Char_literal */12,41,/* End_of_format */0],
+                                  ")"]);
                         }
                       }
                     else
-                     {return 0;}
+                     {return /* () */0;}
                     }
                   else
                    {return Printf["printf"]
-                            ([0,[11,"<tag ",[4,0,0,0,[12,62,0]]],"<tag %d>"],tag);
+                            ([/* Format */0,
+                              [/* String_literal */11,
+                               "<tag ",
+                               [/* Int */4,
+                                /* Int_d */0,
+                                /* No_padding */0,
+                                /* No_precision */0,
+                                [/* Char_literal */12,62,/* End_of_format */0]]],
+                              "<tag %d>"],
+                             tag);
                     }
                   }
                 }
@@ -230,7 +438,16 @@ var
         }
       }
     else
-     {return Printf["printf"]([0,[4,0,0,0,0],"%d"],x);}
+     {return Printf["printf"]
+              ([/* Format */0,
+                [/* Int */4,
+                 /* Int_d */0,
+                 /* No_padding */0,
+                 /* No_precision */0,
+                 /* End_of_format */0],
+                "%d"],
+               x);
+      }
     };
 
 var currpos=function(ic){return Pervasives["pos_in"](ic)-start[1];};
@@ -241,13 +458,13 @@ var
    {if(param)
      {var match=param[1];
       
-      if("unknown primitive:caml_equal")
+      if(CamlPrimitive["caml_equal"](match[2],key))
        {return match[1];}
       else
        {return rassoc(key,param[2]);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -263,7 +480,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:print_struct_const(match[1]);
           case 1:Pervasives["print_string"](Ident["name"](match[1]));
           case 2:exit=58;
@@ -273,23 +490,23 @@ var
         switch(exit){case 58:Pervasives["print_string"]("<wrong reloc>")}
         }
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["print_string"]("<no reloc>")}
         else
          {throw exn;}
         }
       
-      return 0;
+      return inputu(ic);
       }
     else
      {var n=inputu(ic);
       
-      if(n>=globals[1]["length"]||n<0)
+      if(n>=/* -1 for tag */globals[1]["length"]-1||n<0)
        {return Pervasives["print_string"]("<global table overflow>");}
       else
-       {var match$1=globals[1][n];
+       {var match$1=globals[1][n+1];
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){case 0:return Pervasives["print_string"]("???");}}
         else
          {switch(match$1[0])
@@ -308,30 +525,30 @@ var
      {try
        {var match=find_reloc(ic);
         
-        switch(match)
+        switch(match[0])
          {case 2:Pervasives["print_string"](Ident["name"](match[1]));
           default:Pervasives["print_string"]("<wrong reloc>")}
         }
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["print_string"]("<no reloc>")}
         else
          {throw exn;}
         }
       
-      return 0;
+      return inputu(ic);
       }
     else
      {var n=inputu(ic);
       
-      if(n>=globals[1]["length"]||n<0)
+      if(n>=/* -1 for tag */globals[1]["length"]-1||n<0)
        {return Pervasives["print_string"]("<global table overflow>");}
       else
-       {var match$1=globals[1][n];
+       {var match$1=globals[1][n+1];
         
         var exit;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){case 0:exit=50;}}
         else
          {switch(match$1[0])
@@ -352,26 +569,26 @@ var
      {try
        {var match=find_reloc(ic);
         
-        switch(match)
+        switch(match[0])
          {case 3:Pervasives["print_string"](match[1]);
           default:Pervasives["print_string"]("<wrong reloc>")}
         }
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["print_string"]("<no reloc>")}
         else
          {throw exn;}
         }
       
-      return 0;
+      return inputu(ic);
       }
     else
      {var n=inputu(ic);
       
-      if(n>=primitives[1]["length"]||n<0)
+      if(n>=/* -1 for tag */primitives[1]["length"]-1||n<0)
        {return Pervasives["print_int"](n);}
       else
-       {return Pervasives["print_string"](primitives[1][n]);}
+       {return Pervasives["print_string"](primitives[1][n+1]);}
       }
     };
 
@@ -380,296 +597,308 @@ var currpc=function(ic){return currpos(ic)/4;};
 var
  op_shapes=
   /* :: */[0,
-   /* tuple */[0,Opcodes["opACC0"],0],
+   /* tuple */[0,Opcodes["opACC0"],/* Nothing */0],
    /* :: */[0,
-    /* tuple */[0,Opcodes["opACC1"],0],
+    /* tuple */[0,Opcodes["opACC1"],/* Nothing */0],
     /* :: */[0,
-     /* tuple */[0,Opcodes["opACC2"],0],
+     /* tuple */[0,Opcodes["opACC2"],/* Nothing */0],
      /* :: */[0,
-      /* tuple */[0,Opcodes["opACC3"],0],
+      /* tuple */[0,Opcodes["opACC3"],/* Nothing */0],
       /* :: */[0,
-       /* tuple */[0,Opcodes["opACC4"],0],
+       /* tuple */[0,Opcodes["opACC4"],/* Nothing */0],
        /* :: */[0,
-        /* tuple */[0,Opcodes["opACC5"],0],
+        /* tuple */[0,Opcodes["opACC5"],/* Nothing */0],
         /* :: */[0,
-         /* tuple */[0,Opcodes["opACC6"],0],
+         /* tuple */[0,Opcodes["opACC6"],/* Nothing */0],
          /* :: */[0,
-          /* tuple */[0,Opcodes["opACC7"],0],
+          /* tuple */[0,Opcodes["opACC7"],/* Nothing */0],
           /* :: */[0,
-           /* tuple */[0,Opcodes["opACC"],1],
+           /* tuple */[0,Opcodes["opACC"],/* Uint */1],
            /* :: */[0,
-            /* tuple */[0,Opcodes["opPUSH"],0],
+            /* tuple */[0,Opcodes["opPUSH"],/* Nothing */0],
             /* :: */[0,
-             /* tuple */[0,Opcodes["opPUSHACC0"],0],
+             /* tuple */[0,Opcodes["opPUSHACC0"],/* Nothing */0],
              /* :: */[0,
-              /* tuple */[0,Opcodes["opPUSHACC1"],0],
+              /* tuple */[0,Opcodes["opPUSHACC1"],/* Nothing */0],
               /* :: */[0,
-               /* tuple */[0,Opcodes["opPUSHACC2"],0],
+               /* tuple */[0,Opcodes["opPUSHACC2"],/* Nothing */0],
                /* :: */[0,
-                /* tuple */[0,Opcodes["opPUSHACC3"],0],
+                /* tuple */[0,Opcodes["opPUSHACC3"],/* Nothing */0],
                 /* :: */[0,
-                 /* tuple */[0,Opcodes["opPUSHACC4"],0],
+                 /* tuple */[0,Opcodes["opPUSHACC4"],/* Nothing */0],
                  /* :: */[0,
-                  /* tuple */[0,Opcodes["opPUSHACC5"],0],
+                  /* tuple */[0,Opcodes["opPUSHACC5"],/* Nothing */0],
                   /* :: */[0,
-                   /* tuple */[0,Opcodes["opPUSHACC6"],0],
+                   /* tuple */[0,Opcodes["opPUSHACC6"],/* Nothing */0],
                    /* :: */[0,
-                    /* tuple */[0,Opcodes["opPUSHACC7"],0],
+                    /* tuple */[0,Opcodes["opPUSHACC7"],/* Nothing */0],
                     /* :: */[0,
-                     /* tuple */[0,Opcodes["opPUSHACC"],1],
+                     /* tuple */[0,Opcodes["opPUSHACC"],/* Uint */1],
                      /* :: */[0,
-                      /* tuple */[0,Opcodes["opPOP"],1],
+                      /* tuple */[0,Opcodes["opPOP"],/* Uint */1],
                       /* :: */[0,
-                       /* tuple */[0,Opcodes["opASSIGN"],1],
+                       /* tuple */[0,Opcodes["opASSIGN"],/* Uint */1],
                        /* :: */[0,
-                        /* tuple */[0,Opcodes["opENVACC1"],0],
+                        /* tuple */[0,Opcodes["opENVACC1"],/* Nothing */0],
                         /* :: */[0,
-                         /* tuple */[0,Opcodes["opENVACC2"],0],
+                         /* tuple */[0,Opcodes["opENVACC2"],/* Nothing */0],
                          /* :: */[0,
-                          /* tuple */[0,Opcodes["opENVACC3"],0],
+                          /* tuple */[0,Opcodes["opENVACC3"],/* Nothing */0],
                           /* :: */[0,
-                           /* tuple */[0,Opcodes["opENVACC4"],0],
+                           /* tuple */[0,Opcodes["opENVACC4"],/* Nothing */0],
                            /* :: */[0,
-                            /* tuple */[0,Opcodes["opENVACC"],1],
+                            /* tuple */[0,Opcodes["opENVACC"],/* Uint */1],
                             /* :: */[0,
-                             /* tuple */[0,Opcodes["opPUSHENVACC1"],0],
+                             /* tuple */[0,Opcodes["opPUSHENVACC1"],/* Nothing */0],
                              /* :: */[0,
-                              /* tuple */[0,Opcodes["opPUSHENVACC2"],0],
+                              /* tuple */[0,Opcodes["opPUSHENVACC2"],/* Nothing */0],
                               /* :: */[0,
-                               /* tuple */[0,Opcodes["opPUSHENVACC3"],0],
+                               /* tuple */[0,Opcodes["opPUSHENVACC3"],/* Nothing */0],
                                /* :: */[0,
-                                /* tuple */[0,Opcodes["opPUSHENVACC4"],0],
+                                /* tuple */[0,Opcodes["opPUSHENVACC4"],/* Nothing */0],
                                 /* :: */[0,
-                                 /* tuple */[0,Opcodes["opPUSHENVACC"],1],
+                                 /* tuple */[0,Opcodes["opPUSHENVACC"],/* Uint */1],
                                  /* :: */[0,
-                                  /* tuple */[0,Opcodes["opPUSH_RETADDR"],4],
+                                  /* tuple */[0,Opcodes["opPUSH_RETADDR"],/* Disp */4],
                                   /* :: */[0,
-                                   /* tuple */[0,Opcodes["opAPPLY"],1],
+                                   /* tuple */[0,Opcodes["opAPPLY"],/* Uint */1],
                                    /* :: */[0,
-                                    /* tuple */[0,Opcodes["opAPPLY1"],0],
+                                    /* tuple */[0,Opcodes["opAPPLY1"],/* Nothing */0],
                                     /* :: */[0,
-                                     /* tuple */[0,Opcodes["opAPPLY2"],0],
+                                     /* tuple */[0,Opcodes["opAPPLY2"],/* Nothing */0],
                                      /* :: */[0,
-                                      /* tuple */[0,Opcodes["opAPPLY3"],0],
+                                      /* tuple */[0,Opcodes["opAPPLY3"],/* Nothing */0],
                                       /* :: */[0,
-                                       /* tuple */[0,Opcodes["opAPPTERM"],3],
+                                       /* tuple */[0,Opcodes["opAPPTERM"],/* Uint_Uint */3],
                                        /* :: */[0,
-                                        /* tuple */[0,Opcodes["opAPPTERM1"],1],
+                                        /* tuple */[0,Opcodes["opAPPTERM1"],/* Uint */1],
                                         /* :: */[0,
-                                         /* tuple */[0,Opcodes["opAPPTERM2"],1],
+                                         /* tuple */[0,Opcodes["opAPPTERM2"],/* Uint */1],
                                          /* :: */[0,
-                                          /* tuple */[0,Opcodes["opAPPTERM3"],1],
+                                          /* tuple */[0,Opcodes["opAPPTERM3"],/* Uint */1],
                                           /* :: */[0,
-                                           /* tuple */[0,Opcodes["opRETURN"],1],
+                                           /* tuple */[0,Opcodes["opRETURN"],/* Uint */1],
                                            /* :: */[0,
-                                            /* tuple */[0,Opcodes["opRESTART"],0],
+                                            /* tuple */[0,Opcodes["opRESTART"],/* Nothing */0],
                                             /* :: */[0,
-                                             /* tuple */[0,Opcodes["opGRAB"],1],
+                                             /* tuple */[0,Opcodes["opGRAB"],/* Uint */1],
                                              /* :: */[0,
-                                              /* tuple */[0,Opcodes["opCLOSURE"],5],
+                                              /* tuple */[0,Opcodes["opCLOSURE"],/* Uint_Disp */5],
                                               /* :: */[0,
-                                               /* tuple */[0,Opcodes["opCLOSUREREC"],13],
+                                               /* tuple */[0,Opcodes["opCLOSUREREC"],/* Closurerec */13],
                                                /* :: */[0,
-                                                /* tuple */[0,Opcodes["opOFFSETCLOSUREM2"],0],
+                                                /* tuple */[0,Opcodes["opOFFSETCLOSUREM2"],/* Nothing */0],
                                                 /* :: */[0,
-                                                 /* tuple */[0,Opcodes["opOFFSETCLOSURE0"],0],
+                                                 /* tuple */[0,Opcodes["opOFFSETCLOSURE0"],/* Nothing */0],
                                                  /* :: */[0,
-                                                  /* tuple */[0,Opcodes["opOFFSETCLOSURE2"],0],
+                                                  /* tuple */[0,Opcodes["opOFFSETCLOSURE2"],/* Nothing */0],
                                                   /* :: */[0,
-                                                   /* tuple */[0,Opcodes["opOFFSETCLOSURE"],2],
+                                                   /* tuple */[0,Opcodes["opOFFSETCLOSURE"],/* Sint */2],
                                                    /* :: */[0,
-                                                    /* tuple */[0,Opcodes["opPUSHOFFSETCLOSUREM2"],0],
+                                                    /* tuple */[0,
+                                                     Opcodes["opPUSHOFFSETCLOSUREM2"],
+                                                     /* Nothing */0],
                                                     /* :: */[0,
-                                                     /* tuple */[0,Opcodes["opPUSHOFFSETCLOSURE0"],0],
+                                                     /* tuple */[0,
+                                                      Opcodes["opPUSHOFFSETCLOSURE0"],
+                                                      /* Nothing */0],
                                                      /* :: */[0,
-                                                      /* tuple */[0,Opcodes["opPUSHOFFSETCLOSURE2"],0],
+                                                      /* tuple */[0,
+                                                       Opcodes["opPUSHOFFSETCLOSURE2"],
+                                                       /* Nothing */0],
                                                       /* :: */[0,
-                                                       /* tuple */[0,Opcodes["opPUSHOFFSETCLOSURE"],2],
+                                                       /* tuple */[0,Opcodes["opPUSHOFFSETCLOSURE"],/* Sint */2],
                                                        /* :: */[0,
-                                                        /* tuple */[0,Opcodes["opGETGLOBAL"],7],
+                                                        /* tuple */[0,Opcodes["opGETGLOBAL"],/* Getglobal */7],
                                                         /* :: */[0,
-                                                         /* tuple */[0,Opcodes["opPUSHGETGLOBAL"],7],
+                                                         /* tuple */[0,Opcodes["opPUSHGETGLOBAL"],/* Getglobal */7],
                                                          /* :: */[0,
-                                                          /* tuple */[0,Opcodes["opGETGLOBALFIELD"],8],
+                                                          /* tuple */[0,
+                                                           Opcodes["opGETGLOBALFIELD"],
+                                                           /* Getglobal_Uint */8],
                                                           /* :: */[0,
-                                                           /* tuple */[0,Opcodes["opPUSHGETGLOBALFIELD"],8],
+                                                           /* tuple */[0,
+                                                            Opcodes["opPUSHGETGLOBALFIELD"],
+                                                            /* Getglobal_Uint */8],
                                                            /* :: */[0,
-                                                            /* tuple */[0,Opcodes["opSETGLOBAL"],9],
+                                                            /* tuple */[0,Opcodes["opSETGLOBAL"],/* Setglobal */9],
                                                             /* :: */[0,
-                                                             /* tuple */[0,Opcodes["opATOM0"],0],
+                                                             /* tuple */[0,Opcodes["opATOM0"],/* Nothing */0],
                                                              /* :: */[0,
-                                                              /* tuple */[0,Opcodes["opATOM"],1],
+                                                              /* tuple */[0,Opcodes["opATOM"],/* Uint */1],
                                                               /* :: */[0,
-                                                               /* tuple */[0,Opcodes["opPUSHATOM0"],0],
+                                                               /* tuple */[0,Opcodes["opPUSHATOM0"],/* Nothing */0],
                                                                /* :: */[0,
-                                                                /* tuple */[0,Opcodes["opPUSHATOM"],1],
+                                                                /* tuple */[0,Opcodes["opPUSHATOM"],/* Uint */1],
                                                                 /* :: */[0,
-                                                                 /* tuple */[0,Opcodes["opMAKEBLOCK"],3],
+                                                                 /* tuple */[0,Opcodes["opMAKEBLOCK"],/* Uint_Uint */3],
                                                                  /* :: */[0,
-                                                                  /* tuple */[0,Opcodes["opMAKEBLOCK1"],1],
+                                                                  /* tuple */[0,Opcodes["opMAKEBLOCK1"],/* Uint */1],
                                                                   /* :: */[0,
-                                                                   /* tuple */[0,Opcodes["opMAKEBLOCK2"],1],
+                                                                   /* tuple */[0,Opcodes["opMAKEBLOCK2"],/* Uint */1],
                                                                    /* :: */[0,
-                                                                    /* tuple */[0,Opcodes["opMAKEBLOCK3"],1],
+                                                                    /* tuple */[0,Opcodes["opMAKEBLOCK3"],/* Uint */1],
                                                                     /* :: */[0,
-                                                                     /* tuple */[0,Opcodes["opMAKEFLOATBLOCK"],1],
+                                                                     /* tuple */[0,Opcodes["opMAKEFLOATBLOCK"],/* Uint */1],
                                                                      /* :: */[0,
-                                                                      /* tuple */[0,Opcodes["opGETFIELD0"],0],
+                                                                      /* tuple */[0,Opcodes["opGETFIELD0"],/* Nothing */0],
                                                                       /* :: */[0,
-                                                                       /* tuple */[0,Opcodes["opGETFIELD1"],0],
+                                                                       /* tuple */[0,Opcodes["opGETFIELD1"],/* Nothing */0],
                                                                        /* :: */[0,
-                                                                        /* tuple */[0,Opcodes["opGETFIELD2"],0],
+                                                                        /* tuple */[0,Opcodes["opGETFIELD2"],/* Nothing */0],
                                                                         /* :: */[0,
-                                                                         /* tuple */[0,Opcodes["opGETFIELD3"],0],
+                                                                         /* tuple */[0,Opcodes["opGETFIELD3"],/* Nothing */0],
                                                                          /* :: */[0,
-                                                                          /* tuple */[0,Opcodes["opGETFIELD"],1],
+                                                                          /* tuple */[0,Opcodes["opGETFIELD"],/* Uint */1],
                                                                           /* :: */[0,
-                                                                           /* tuple */[0,Opcodes["opGETFLOATFIELD"],1],
+                                                                           /* tuple */[0,Opcodes["opGETFLOATFIELD"],/* Uint */1],
                                                                            /* :: */[0,
-                                                                            /* tuple */[0,Opcodes["opSETFIELD0"],0],
+                                                                            /* tuple */[0,Opcodes["opSETFIELD0"],/* Nothing */0],
                                                                             /* :: */[0,
-                                                                             /* tuple */[0,Opcodes["opSETFIELD1"],0],
+                                                                             /* tuple */[0,Opcodes["opSETFIELD1"],/* Nothing */0],
                                                                              /* :: */[0,
-                                                                              /* tuple */[0,Opcodes["opSETFIELD2"],0],
+                                                                              /* tuple */[0,Opcodes["opSETFIELD2"],/* Nothing */0],
                                                                               /* :: */[0,
-                                                                               /* tuple */[0,Opcodes["opSETFIELD3"],0],
+                                                                               /* tuple */[0,Opcodes["opSETFIELD3"],/* Nothing */0],
                                                                                /* :: */[0,
-                                                                                /* tuple */[0,Opcodes["opSETFIELD"],1],
+                                                                                /* tuple */[0,Opcodes["opSETFIELD"],/* Uint */1],
                                                                                 /* :: */[0,
-                                                                                 /* tuple */[0,Opcodes["opSETFLOATFIELD"],1],
+                                                                                 /* tuple */[0,Opcodes["opSETFLOATFIELD"],/* Uint */1],
                                                                                  /* :: */[0,
-                                                                                  /* tuple */[0,Opcodes["opVECTLENGTH"],0],
+                                                                                  /* tuple */[0,Opcodes["opVECTLENGTH"],/* Nothing */0],
                                                                                   /* :: */[0,
-                                                                                   /* tuple */[0,Opcodes["opGETVECTITEM"],0],
+                                                                                   /* tuple */[0,Opcodes["opGETVECTITEM"],/* Nothing */0],
                                                                                    /* :: */[0,
-                                                                                    /* tuple */[0,Opcodes["opSETVECTITEM"],0],
+                                                                                    /* tuple */[0,Opcodes["opSETVECTITEM"],/* Nothing */0],
                                                                                     /* :: */[0,
-                                                                                     /* tuple */[0,Opcodes["opGETSTRINGCHAR"],0],
+                                                                                     /* tuple */[0,Opcodes["opGETSTRINGCHAR"],/* Nothing */0],
                                                                                      /* :: */[0,
-                                                                                      /* tuple */[0,Opcodes["opSETSTRINGCHAR"],0],
+                                                                                      /* tuple */[0,Opcodes["opSETSTRINGCHAR"],/* Nothing */0],
                                                                                       /* :: */[0,
-                                                                                       /* tuple */[0,Opcodes["opBRANCH"],4],
+                                                                                       /* tuple */[0,Opcodes["opBRANCH"],/* Disp */4],
                                                                                        /* :: */[0,
-                                                                                        /* tuple */[0,Opcodes["opBRANCHIF"],4],
+                                                                                        /* tuple */[0,Opcodes["opBRANCHIF"],/* Disp */4],
                                                                                         /* :: */[0,
-                                                                                         /* tuple */[0,Opcodes["opBRANCHIFNOT"],4],
+                                                                                         /* tuple */[0,Opcodes["opBRANCHIFNOT"],/* Disp */4],
                                                                                          /* :: */[0,
-                                                                                          /* tuple */[0,Opcodes["opSWITCH"],12],
+                                                                                          /* tuple */[0,Opcodes["opSWITCH"],/* Switch */12],
                                                                                           /* :: */[0,
-                                                                                           /* tuple */[0,Opcodes["opBOOLNOT"],0],
+                                                                                           /* tuple */[0,Opcodes["opBOOLNOT"],/* Nothing */0],
                                                                                            /* :: */[0,
-                                                                                            /* tuple */[0,Opcodes["opPUSHTRAP"],4],
+                                                                                            /* tuple */[0,Opcodes["opPUSHTRAP"],/* Disp */4],
                                                                                             /* :: */[0,
-                                                                                             /* tuple */[0,Opcodes["opPOPTRAP"],0],
+                                                                                             /* tuple */[0,Opcodes["opPOPTRAP"],/* Nothing */0],
                                                                                              /* :: */[0,
-                                                                                              /* tuple */[0,Opcodes["opRAISE"],0],
+                                                                                              /* tuple */[0,Opcodes["opRAISE"],/* Nothing */0],
                                                                                               /* :: */[0,
-                                                                                               /* tuple */[0,Opcodes["opCHECK_SIGNALS"],0],
+                                                                                               /* tuple */[0,Opcodes["opCHECK_SIGNALS"],/* Nothing */0],
                                                                                                /* :: */[0,
-                                                                                                /* tuple */[0,Opcodes["opC_CALL1"],10],
+                                                                                                /* tuple */[0,Opcodes["opC_CALL1"],/* Primitive */10],
                                                                                                 /* :: */[0,
-                                                                                                 /* tuple */[0,Opcodes["opC_CALL2"],10],
+                                                                                                 /* tuple */[0,Opcodes["opC_CALL2"],/* Primitive */10],
                                                                                                  /* :: */[0,
-                                                                                                  /* tuple */[0,Opcodes["opC_CALL3"],10],
+                                                                                                  /* tuple */[0,Opcodes["opC_CALL3"],/* Primitive */10],
                                                                                                   /* :: */[0,
-                                                                                                   /* tuple */[0,Opcodes["opC_CALL4"],10],
+                                                                                                   /* tuple */[0,Opcodes["opC_CALL4"],/* Primitive */10],
                                                                                                    /* :: */[0,
-                                                                                                    /* tuple */[0,Opcodes["opC_CALL5"],10],
+                                                                                                    /* tuple */[0,Opcodes["opC_CALL5"],/* Primitive */10],
                                                                                                     /* :: */[0,
-                                                                                                     /* tuple */[0,Opcodes["opC_CALLN"],11],
+                                                                                                     /* tuple */[0,Opcodes["opC_CALLN"],/* Uint_Primitive */11],
                                                                                                      /* :: */[0,
-                                                                                                      /* tuple */[0,Opcodes["opCONST0"],0],
+                                                                                                      /* tuple */[0,Opcodes["opCONST0"],/* Nothing */0],
                                                                                                       /* :: */[0,
-                                                                                                       /* tuple */[0,Opcodes["opCONST1"],0],
+                                                                                                       /* tuple */[0,Opcodes["opCONST1"],/* Nothing */0],
                                                                                                        /* :: */[0,
-                                                                                                        /* tuple */[0,Opcodes["opCONST2"],0],
+                                                                                                        /* tuple */[0,Opcodes["opCONST2"],/* Nothing */0],
                                                                                                         /* :: */[0,
-                                                                                                         /* tuple */[0,Opcodes["opCONST3"],0],
+                                                                                                         /* tuple */[0,Opcodes["opCONST3"],/* Nothing */0],
                                                                                                          /* :: */[0,
-                                                                                                          /* tuple */[0,Opcodes["opCONSTINT"],2],
+                                                                                                          /* tuple */[0,Opcodes["opCONSTINT"],/* Sint */2],
                                                                                                           /* :: */[0,
-                                                                                                           /* tuple */[0,Opcodes["opPUSHCONST0"],0],
+                                                                                                           /* tuple */[0,Opcodes["opPUSHCONST0"],/* Nothing */0],
                                                                                                            /* :: */[0,
-                                                                                                            /* tuple */[0,Opcodes["opPUSHCONST1"],0],
+                                                                                                            /* tuple */[0,Opcodes["opPUSHCONST1"],/* Nothing */0],
                                                                                                             /* :: */[0,
-                                                                                                             /* tuple */[0,Opcodes["opPUSHCONST2"],0],
+                                                                                                             /* tuple */[0,Opcodes["opPUSHCONST2"],/* Nothing */0],
                                                                                                              /* :: */[0,
-                                                                                                              /* tuple */[0,Opcodes["opPUSHCONST3"],0],
+                                                                                                              /* tuple */[0,Opcodes["opPUSHCONST3"],/* Nothing */0],
                                                                                                               /* :: */[0,
-                                                                                                               /* tuple */[0,Opcodes["opPUSHCONSTINT"],2],
+                                                                                                               /* tuple */[0,Opcodes["opPUSHCONSTINT"],/* Sint */2],
                                                                                                                /* :: */[0,
-                                                                                                                /* tuple */[0,Opcodes["opNEGINT"],0],
+                                                                                                                /* tuple */[0,Opcodes["opNEGINT"],/* Nothing */0],
                                                                                                                 /* :: */[0,
-                                                                                                                 /* tuple */[0,Opcodes["opADDINT"],0],
+                                                                                                                 /* tuple */[0,Opcodes["opADDINT"],/* Nothing */0],
                                                                                                                  /* :: */[0,
-                                                                                                                  /* tuple */[0,Opcodes["opSUBINT"],0],
+                                                                                                                  /* tuple */[0,Opcodes["opSUBINT"],/* Nothing */0],
                                                                                                                   /* :: */[0,
-                                                                                                                   /* tuple */[0,Opcodes["opMULINT"],0],
+                                                                                                                   /* tuple */[0,Opcodes["opMULINT"],/* Nothing */0],
                                                                                                                    /* :: */[0,
-                                                                                                                    /* tuple */[0,Opcodes["opDIVINT"],0],
+                                                                                                                    /* tuple */[0,Opcodes["opDIVINT"],/* Nothing */0],
                                                                                                                     /* :: */[0,
-                                                                                                                     /* tuple */[0,Opcodes["opMODINT"],0],
+                                                                                                                     /* tuple */[0,Opcodes["opMODINT"],/* Nothing */0],
                                                                                                                      /* :: */[0,
-                                                                                                                      /* tuple */[0,Opcodes["opANDINT"],0],
+                                                                                                                      /* tuple */[0,Opcodes["opANDINT"],/* Nothing */0],
                                                                                                                       /* :: */[0,
-                                                                                                                       /* tuple */[0,Opcodes["opORINT"],0],
+                                                                                                                       /* tuple */[0,Opcodes["opORINT"],/* Nothing */0],
                                                                                                                        /* :: */[0,
-                                                                                                                        /* tuple */[0,Opcodes["opXORINT"],0],
+                                                                                                                        /* tuple */[0,Opcodes["opXORINT"],/* Nothing */0],
                                                                                                                         /* :: */[0,
-                                                                                                                         /* tuple */[0,Opcodes["opLSLINT"],0],
+                                                                                                                         /* tuple */[0,Opcodes["opLSLINT"],/* Nothing */0],
                                                                                                                          /* :: */[0,
-                                                                                                                          /* tuple */[0,Opcodes["opLSRINT"],0],
+                                                                                                                          /* tuple */[0,Opcodes["opLSRINT"],/* Nothing */0],
                                                                                                                           /* :: */[0,
-                                                                                                                           /* tuple */[0,Opcodes["opASRINT"],0],
+                                                                                                                           /* tuple */[0,Opcodes["opASRINT"],/* Nothing */0],
                                                                                                                            /* :: */[0,
-                                                                                                                            /* tuple */[0,Opcodes["opEQ"],0],
+                                                                                                                            /* tuple */[0,Opcodes["opEQ"],/* Nothing */0],
                                                                                                                             /* :: */[0,
-                                                                                                                             /* tuple */[0,Opcodes["opNEQ"],0],
+                                                                                                                             /* tuple */[0,Opcodes["opNEQ"],/* Nothing */0],
                                                                                                                              /* :: */[0,
-                                                                                                                              /* tuple */[0,Opcodes["opLTINT"],0],
+                                                                                                                              /* tuple */[0,Opcodes["opLTINT"],/* Nothing */0],
                                                                                                                               /* :: */[0,
-                                                                                                                               /* tuple */[0,Opcodes["opLEINT"],0],
+                                                                                                                               /* tuple */[0,Opcodes["opLEINT"],/* Nothing */0],
                                                                                                                                /* :: */[0,
-                                                                                                                                /* tuple */[0,Opcodes["opGTINT"],0],
+                                                                                                                                /* tuple */[0,Opcodes["opGTINT"],/* Nothing */0],
                                                                                                                                 /* :: */[0,
-                                                                                                                                 /* tuple */[0,Opcodes["opGEINT"],0],
+                                                                                                                                 /* tuple */[0,Opcodes["opGEINT"],/* Nothing */0],
                                                                                                                                  /* :: */[0,
-                                                                                                                                  /* tuple */[0,Opcodes["opOFFSETINT"],2],
+                                                                                                                                  /* tuple */[0,Opcodes["opOFFSETINT"],/* Sint */2],
                                                                                                                                   /* :: */[0,
-                                                                                                                                   /* tuple */[0,Opcodes["opOFFSETREF"],2],
+                                                                                                                                   /* tuple */[0,Opcodes["opOFFSETREF"],/* Sint */2],
                                                                                                                                    /* :: */[0,
-                                                                                                                                    /* tuple */[0,Opcodes["opISINT"],0],
+                                                                                                                                    /* tuple */[0,Opcodes["opISINT"],/* Nothing */0],
                                                                                                                                     /* :: */[0,
-                                                                                                                                     /* tuple */[0,Opcodes["opGETMETHOD"],0],
+                                                                                                                                     /* tuple */[0,Opcodes["opGETMETHOD"],/* Nothing */0],
                                                                                                                                      /* :: */[0,
-                                                                                                                                      /* tuple */[0,Opcodes["opGETDYNMET"],0],
+                                                                                                                                      /* tuple */[0,Opcodes["opGETDYNMET"],/* Nothing */0],
                                                                                                                                       /* :: */[0,
-                                                                                                                                       /* tuple */[0,Opcodes["opGETPUBMET"],14],
+                                                                                                                                       /* tuple */[0,Opcodes["opGETPUBMET"],/* Pubmet */14],
                                                                                                                                        /* :: */[0,
-                                                                                                                                        /* tuple */[0,Opcodes["opBEQ"],6],
+                                                                                                                                        /* tuple */[0,Opcodes["opBEQ"],/* Sint_Disp */6],
                                                                                                                                         /* :: */[0,
-                                                                                                                                         /* tuple */[0,Opcodes["opBNEQ"],6],
+                                                                                                                                         /* tuple */[0,Opcodes["opBNEQ"],/* Sint_Disp */6],
                                                                                                                                          /* :: */[0,
-                                                                                                                                          /* tuple */[0,Opcodes["opBLTINT"],6],
+                                                                                                                                          /* tuple */[0,Opcodes["opBLTINT"],/* Sint_Disp */6],
                                                                                                                                           /* :: */[0,
-                                                                                                                                           /* tuple */[0,Opcodes["opBLEINT"],6],
+                                                                                                                                           /* tuple */[0,Opcodes["opBLEINT"],/* Sint_Disp */6],
                                                                                                                                            /* :: */[0,
-                                                                                                                                            /* tuple */[0,Opcodes["opBGTINT"],6],
+                                                                                                                                            /* tuple */[0,Opcodes["opBGTINT"],/* Sint_Disp */6],
                                                                                                                                             /* :: */[0,
-                                                                                                                                             /* tuple */[0,Opcodes["opBGEINT"],6],
+                                                                                                                                             /* tuple */[0,Opcodes["opBGEINT"],/* Sint_Disp */6],
                                                                                                                                              /* :: */[0,
-                                                                                                                                              /* tuple */[0,Opcodes["opULTINT"],0],
+                                                                                                                                              /* tuple */[0,Opcodes["opULTINT"],/* Nothing */0],
                                                                                                                                               /* :: */[0,
-                                                                                                                                               /* tuple */[0,Opcodes["opUGEINT"],0],
+                                                                                                                                               /* tuple */[0,Opcodes["opUGEINT"],/* Nothing */0],
                                                                                                                                                /* :: */[0,
-                                                                                                                                                /* tuple */[0,Opcodes["opBULTINT"],5],
+                                                                                                                                                /* tuple */[0,Opcodes["opBULTINT"],/* Uint_Disp */5],
                                                                                                                                                 /* :: */[0,
-                                                                                                                                                 /* tuple */[0,Opcodes["opBUGEINT"],5],
+                                                                                                                                                 /* tuple */[0,Opcodes["opBUGEINT"],/* Uint_Disp */5],
                                                                                                                                                  /* :: */[0,
-                                                                                                                                                  /* tuple */[0,Opcodes["opSTOP"],0],
+                                                                                                                                                  /* tuple */[0,Opcodes["opSTOP"],/* Nothing */0],
                                                                                                                                                   /* :: */[0,
-                                                                                                                                                   /* tuple */[0,Opcodes["opEVENT"],0],
-                                                                                                                                                   /* :: */[0,/* tuple */[0,Opcodes["opBREAK"],0],0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                                                                                                                                   /* tuple */[0,Opcodes["opEVENT"],/* Nothing */0],
+                                                                                                                                                   /* :: */[0,
+                                                                                                                                                    /* tuple */[0,Opcodes["opBREAK"],/* Nothing */0],
+                                                                                                                                                    /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
 
 var
  print_event=
@@ -680,20 +909,30 @@ var
       var le=ev[3][2];
       
       return Printf["printf"]
-              ([0,
-                [11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  'File "',
-                 [2,
-                  0,
-                  [11,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
                    '", line ',
-                   [4,
-                    0,
-                    0,
-                    0,
-                    [11,
+                   [/* Int */4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    [/* String_literal */11,
                      ", characters ",
-                     [4,0,0,0,[12,45,[4,0,0,0,[11,":\n",0]]]]]]]]],
+                     [/* Int */4,
+                      /* Int_d */0,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      [/* Char_literal */12,
+                       45,
+                       [/* Int */4,
+                        /* Int_d */0,
+                        /* No_padding */0,
+                        /* No_precision */0,
+                        [/* String_literal */11,":\n",/* End_of_format */0]]]]]]]]],
                 'File "%s", line %d, characters %d-%d:\n'],
                ls[1],
                ls[2],
@@ -710,20 +949,28 @@ var
    {var pos=currpos(ic);
     
     List["iter"](print_event,Hashtbl["find_all"](event_table,pos));
-    Printf["printf"]([0,[4,0,[0,1,8],0,[11,"  ",0]],"%8d  "],pos/4);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* Int */4,
+        /* Int_d */0,
+        [/* Lit_padding */0,/* Right */1,8],
+        /* No_precision */0,
+        [/* String_literal */11,"  ",/* End_of_format */0]],
+       "%8d  "],
+      pos/4);
     var op=inputu(ic);
     
-    if(op>=Opnames["names_of_instructions"]["length"]||op<0)
+    if(op>=/* -1 for tag */Opnames["names_of_instructions"]["length"]-1||op<0)
      {Pervasives["print_string"]("*** unknown opcode : "),
       Pervasives["print_int"](op)}
     else
-     {Pervasives["print_string"](Opnames["names_of_instructions"][op])}
+     {Pervasives["print_string"](Opnames["names_of_instructions"][op+1])}
     
     Pervasives["print_string"](" ");
     try
      {var match=List["assoc"](op,op_shapes);
       
-      switch(match[0])
+      switch(match)
        {case 0:
         case 1:Pervasives["print_int"](inputu(ic));
         case 2:Pervasives["print_int"](inputs(ic));
@@ -789,7 +1036,7 @@ var
         }
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {Pervasives["print_string"]("(unknown arguments)")}
       else
        {throw exn;}
@@ -801,7 +1048,7 @@ var
 var
  print_code=
   function(ic,len)
-   {start[1]=Pervasives["pos_in"](ic),0;
+   {start[1]=Pervasives["pos_in"](ic);
     var stop=start[1]+len;
     
     while(Pervasives["pos_in"](ic)<stop){print_instr(ic)}
@@ -816,29 +1063,63 @@ var
     var info=param[1];
     
     Printf["printf"]
-     ([0,
-       [11,"    ",[4,0,0,0,[11,"    (",[4,0,0,0,[11,")    ",0]]]]],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "    ",
+        [/* Int */4,
+         /* Int_d */0,
+         /* No_padding */0,
+         /* No_precision */0,
+         [/* String_literal */11,
+          "    (",
+          [/* Int */4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           [/* String_literal */11,")    ",/* End_of_format */0]]]]],
        "    %d    (%d)    "],
       pos,
       pos/4);
-    switch(info)
+    switch(info[0])
      {case 0:
        print_struct_const(info[1]);
-       return Printf["printf"]([0,[12,10,0],"\n"]);
+       return Printf["printf"]
+               ([/* Format */0,
+                 [/* Char_literal */12,10,/* End_of_format */0],
+                 "\n"]);
        
       case 1:
        return Printf["printf"]
-               ([0,[11,"require    ",[2,0,[12,10,0]]],"require    %s\n"],
+               ([/* Format */0,
+                 [/* String_literal */11,
+                  "require    ",
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,10,/* End_of_format */0]]],
+                 "require    %s\n"],
                 Ident["name"](info[1]));
        
       case 2:
        return Printf["printf"]
-               ([0,[11,"provide    ",[2,0,[12,10,0]]],"provide    %s\n"],
+               ([/* Format */0,
+                 [/* String_literal */11,
+                  "provide    ",
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,10,/* End_of_format */0]]],
+                 "provide    %s\n"],
                 Ident["name"](info[1]));
        
       case 3:
        return Printf["printf"]
-               ([0,[11,"prim    ",[2,0,[12,10,0]]],"prim    %s\n"],info[1]);
+               ([/* Format */0,
+                 [/* String_literal */11,
+                  "prim    ",
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,10,/* End_of_format */0]]],
+                 "prim    %s\n"],
+                info[1]);
        
       }
     };
@@ -851,7 +1132,8 @@ var
       Pervasives["really_input_string"]
        (ic,Config["cmo_magic_number"]["length"]);
     
-    if("unknown primitive:caml_string_notequal")
+    if
+     (CamlPrimitive["caml_string_notequal"](buffer,Config["cmo_magic_number"]))
      {Pervasives["prerr_endline"]("Not an object file"),Pervasives["exit"](2)}
     else
      {}
@@ -861,12 +1143,12 @@ var
     Pervasives["seek_in"](ic,cu_pos);
     var cu=Pervasives["input_value"](ic);
     
-    reloc[1]=cu[4],0;
+    reloc[1]=cu[4];
     if(cu[8]>0)
      {Pervasives["seek_in"](ic,cu[8]);
       var evl=Pervasives["input_value"](ic);
       
-      0,record_events(0,evl)}
+      Pervasives["input_value"](ic),record_events(0,evl)}
     else
      {}
     
@@ -883,9 +1165,9 @@ var
      split=
       function(beg,cur)
        {if(cur>=len)
-         {return 0;}
+         {return /* [] */0;}
         else
-         {if(p[cur]=0)
+         {if(p[cur]===0)
            {return /* :: */[0,
                     $$String["sub"](p,beg,cur-beg),
                     split(cur+1,cur+1)];
@@ -904,21 +1186,24 @@ var
    {Bytesections["read_toc"](ic);
     var prim_size=Bytesections["seek_section"](ic,"PRIM");
     
-    primitives[1]=read_primitive_table(ic,prim_size),0;
-    
+    primitives[1]=read_primitive_table(ic,prim_size);
+    Bytesections["seek_section"](ic,"DATA");
     var init_data=Pervasives["input_value"](ic);
     
-    globals[1]="unknown primitive:caml_make_vect",0;
-    for(var i=0;i<=init_data["length"]-1;i++)
-     {globals[1][i]=/* Constant */[1,init_data[i]],0}
+    globals[1]=
+    CamlPrimitive["caml_make_vect"]
+     (/* -1 for tag */init_data["length"]-1,/* Empty */0);
+    for(var i=0;i<=/* -1 for tag */init_data["length"]-1-1;i++)
+     {globals[1][i+1]=/* Constant */[1,init_data[i+1]]}
     
-    
+    Bytesections["seek_section"](ic,"SYMB");
     var match=Pervasives["input_value"](ic);
     
     Tbl["iter"]
-     (function(id,pos){return globals[1][pos]=/* Global */[0,id],0;},match[2]);
+     (function(id,pos){return globals[1][pos+1]=/* Global */[0,id],0;},
+      match[2]);
     try
-     {
+     {Bytesections["seek_section"](ic,"DBUG");
       var num_eventlists=Pervasives["input_binary_int"](ic);
       
       for(var _i=1;_i<=num_eventlists;_i++)
@@ -926,9 +1211,14 @@ var
         
         var evl=Pervasives["input_value"](ic);
         
-        0,record_events(orig,evl)}
+        Pervasives["input_value"](ic),record_events(orig,evl)}
       }
-    catch(exn){if(exn=Not_found){}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {}
+      else
+       {throw exn;}
+      }
     
     var code_size=Bytesections["seek_section"](ic,"CODE");
     
@@ -942,44 +1232,56 @@ var
     "-noloc",
     /* Clear */[3,print_locations],
     " : don't print source information"],
-   0];
+   /* [] */0];
 
 var
  arg_usage=
   Printf["sprintf"]
-   ([0,
-     [2,0,[11," [OPTIONS] FILES : dump content of bytecode files",0]],
+   ([/* Format */0,
+     [/* String */2,
+      /* No_padding */0,
+      [/* String_literal */11,
+       " [OPTIONS] FILES : dump content of bytecode files",
+       /* End_of_format */0]],
      "%s [OPTIONS] FILES : dump content of bytecode files"],
-    Sys["argv"][0]);
+    Sys["argv"][1]);
 
-var first_file=[0,1];
+var first_file=[0,/* true */1];
 
 var
  arg_fun=
   function(filename)
    {var ic=Pervasives["open_in_bin"](filename);
     
-    if(!first_file[1]){Pervasives["print_newline"](0)}else{}
+    if(!first_file[1]){Pervasives["print_newline"](/* () */0)}else{}
     
-    first_file[1]=0,0;
+    first_file[1]=/* false */0;
     Printf["printf"]
-     ([0,
-       [11,"## start of ocaml dump of ",[3,0,[12,10,[10,0]]]],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "## start of ocaml dump of ",
+        [/* Caml_string */3,
+         /* No_padding */0,
+         [/* Char_literal */12,10,[/* Flush */10,/* End_of_format */0]]]],
        "## start of ocaml dump of %S\n%!"],
       filename);
     try
-     {objfile[1]=0,0,dump_exe(ic)}
+     {objfile[1]=/* false */0,dump_exe(ic)}
     catch(exn)
-     {if(exn=Bytesections["Bad_magic_number"])
-       {objfile[1]=1,0,Pervasives["seek_in"](ic,0),dump_obj(ic)}
+     {if(exn===Bytesections["Bad_magic_number"])
+       {objfile[1]=/* true */1,Pervasives["seek_in"](ic,0),dump_obj(ic)}
       else
        {throw exn;}
       }
     
     Pervasives["close_in"](ic);
     return Printf["printf"]
-            ([0,
-              [11,"## end of ocaml dump of ",[3,0,[12,10,[10,0]]]],
+            ([/* Format */0,
+              [/* String_literal */11,
+               "## end of ocaml dump of ",
+               [/* Caml_string */3,
+                /* No_padding */0,
+                [/* Char_literal */12,10,[/* Flush */10,/* End_of_format */0]]]],
               "## end of ocaml dump of %S\n%!"],
              filename);
     };
@@ -989,7 +1291,7 @@ var
   function(param)
    {Arg["parse"](arg_list,arg_fun,arg_usage);return Pervasives["exit"](0);};
 
-main(0);
+main(/* () */0);
 module["exports"]=
 {"print_locations":print_locations,
  "inputu":inputu,

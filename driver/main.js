@@ -1,23 +1,23 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Compmisc=require("Compmisc");
-var Compile=require("Compile");
-var Main_args=require("Main_args");
-var Warnings=require("Warnings");
-var Bytelink=require("Bytelink");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Arg=require("Arg");
-var Clflags=require("Clflags");
-var Printf=require("Printf");
-var Format=require("Format");
-var Misc=require("Misc");
-var Filename=require("Filename");
-var Bytelibrarian=require("Bytelibrarian");
-var Compenv=require("Compenv");
-var Location=require("Location");
-var Bytepackager=require("Bytepackager");
-var Config=require("Config");
+var Compmisc=require("./compmisc.js");
+var Compile=require("./compile.js");
+var Main_args=require("./main_args.js");
+var Warnings=require("./warnings.js");
+var Bytelink=require("./bytelink.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Arg=require("./arg.js");
+var Clflags=require("./clflags.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Filename=require("./filename.js");
+var Bytelibrarian=require("./bytelibrarian.js");
+var Compenv=require("./compenv.js");
+var Location=require("./location.js");
+var Bytepackager=require("./bytepackager.js");
+var Config=require("./config.js");
 
 
 var
@@ -124,19 +124,23 @@ var ppf=Format["err_formatter"];
 var
  anonymous=
   function(filename)
-   {Compenv["readenv"](ppf,1);return process_file(ppf,filename);};
+   {Compenv["readenv"](ppf,/* Before_compile */1);
+    return process_file(ppf,filename);
+    };
 
 var
  impl=
   function(filename)
-   {Compenv["readenv"](ppf,1);
+   {Compenv["readenv"](ppf,/* Before_compile */1);
     return process_implementation_file(ppf,filename);
     };
 
 var
  intf=
   function(filename)
-   {Compenv["readenv"](ppf,1);return process_interface_file(ppf,filename);};
+   {Compenv["readenv"](ppf,/* Before_compile */1);
+    return process_interface_file(ppf,filename);
+    };
 
 var
  show_config=
@@ -145,9 +149,9 @@ var
     return Pervasives["exit"](0);
     };
 
-var set=function(r,param){return r[1]=1,0;};
+var set=function(r,param){return r[1]=/* true */1,0;};
 
-var unset=function(r,param){return r[1]=0,0;};
+var unset=function(r,param){return r[1]=/* false */0,0;};
 
 var _a=set(Clflags["make_archive"]);
 
@@ -195,7 +199,7 @@ var
  _dllpath=
   function(s)
    {return Clflags["dllpaths"][1]=
-           Pervasives["@"](Clflags["dllpaths"][1],/* :: */[0,s,0]),
+           Pervasives["@"](Clflags["dllpaths"][1],/* :: */[0,s,/* [] */0]),
            0;
     };
 
@@ -208,7 +212,9 @@ var _g=set(Clflags["debug"]);
 var
  _i=
   function(param)
-   {Clflags["print_types"][1]=1,0;return Clflags["compile_only"][1]=1,0;};
+   {Clflags["print_types"][1]=/* true */1;
+    return Clflags["compile_only"][1]=/* true */1,0;
+    };
 
 var
  _I=
@@ -231,9 +237,9 @@ var _linkall=set(Clflags["link_everything"]);
 var
  _make_runtime=
   function(param)
-   {Clflags["custom_runtime"][1]=1,0;
-    Clflags["make_runtime"][1]=1,0;
-    return Clflags["link_everything"][1]=1,0;
+   {Clflags["custom_runtime"][1]=/* true */1;
+    Clflags["make_runtime"][1]=/* true */1;
+    return Clflags["link_everything"][1]=/* true */1,0;
     };
 
 var _no_alias_deps=set(Clflags["transparent_modules"]);
@@ -261,16 +267,16 @@ var
 var
  _output_obj=
   function(param)
-   {Clflags["output_c_object"][1]=1,0;
-    return Clflags["custom_runtime"][1]=1,0;
+   {Clflags["output_c_object"][1]=/* true */1;
+    return Clflags["custom_runtime"][1]=/* true */1,0;
     };
 
 var
  _output_complete_obj=
   function(param)
-   {Clflags["output_c_object"][1]=1,0;
-    Clflags["output_complete_object"][1]=1,0;
-    return Clflags["custom_runtime"][1]=1,0;
+   {Clflags["output_c_object"][1]=/* true */1;
+    Clflags["output_complete_object"][1]=/* true */1;
+    return Clflags["custom_runtime"][1]=/* true */1,0;
     };
 
 var _pack=set(Clflags["make_package"]);
@@ -316,9 +322,9 @@ var _version=Compenv["print_version_string"];
 
 var _vnum=Compenv["print_version_string"];
 
-var _w=Warnings["parse_options"](0);
+var _w=Warnings["parse_options"](/* false */0);
 
-var _warn_error=Warnings["parse_options"](1);
+var _warn_error=Warnings["parse_options"](/* true */1);
 
 var _warn_help=Warnings["help_warnings"];
 
@@ -417,9 +423,9 @@ var
  main=
   function(param)
    {try
-     {Compenv["readenv"](ppf,0);
+     {Compenv["readenv"](ppf,/* Before_args */0);
       Arg["parse"](Options[1],anonymous,usage);
-      Compenv["readenv"](ppf,2);
+      Compenv["readenv"](ppf,/* Before_link */2);
       if
        (List["length"]
          (List["filter"]
@@ -430,7 +436,7 @@ var
               Clflags["make_package"],
               /* :: */[0,
                Clflags["compile_only"],
-               /* :: */[0,Clflags["output_c_object"],0]]]]))>
+               /* :: */[0,Clflags["output_c_object"],/* [] */0]]]]))>
         1)
        {if(Clflags["print_types"][1])
          {Compenv["fatal"]
@@ -443,26 +449,26 @@ var
        {}
       
       if(Clflags["make_archive"][1])
-       {Compmisc["init_path"](0),
+       {Compmisc["init_path"](/* false */0),
         Bytelibrarian["create_archive"]
          (ppf,
-          Compenv["get_objfiles"](0),
+          Compenv["get_objfiles"](/* () */0),
           Compenv["extract_output"](Clflags["output_name"][1])),
-        Warnings["check_fatal"](0)}
+        Warnings["check_fatal"](/* () */0)}
       else
        {if(Clflags["make_package"][1])
-         {Compmisc["init_path"](0);
+         {Compmisc["init_path"](/* false */0);
           var
            extracted_output=
             Compenv["extract_output"](Clflags["output_name"][1]);
           
-          var revd=Compenv["get_objfiles"](0);
+          var revd=Compenv["get_objfiles"](/* () */0);
           
           Bytepackager["package_files"]
-           (ppf,Compmisc["initial_env"](0),revd,extracted_output),
-          Warnings["check_fatal"](0)}
+           (ppf,Compmisc["initial_env"](/* () */0),revd,extracted_output),
+          Warnings["check_fatal"](/* () */0)}
         else
-         {if(!Clflags["compile_only"][1]&&Clflags["objfiles"][1]!=0)
+         {if(!Clflags["compile_only"][1]&&Clflags["objfiles"][1]!==/* [] */0)
            {if(Clflags["output_c_object"][1])
              {var s=Compenv["extract_output"](Clflags["output_name"][1]);
               
@@ -476,10 +482,14 @@ var
                  target=
                   Compenv["fatal"]
                    (Printf["sprintf"]
-                     ([0,
-                       [11,
+                     ([/* Format */0,
+                       [/* String_literal */11,
                         "The extension of the output file must be .c, ",
-                        [2,0,[11," or ",[2,0,0]]]],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          " or ",
+                          [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                        "The extension of the output file must be .c, %s or %s"],
                       Config["ext_obj"],
                       Config["ext_dll"]));
@@ -489,9 +499,9 @@ var
              {var target=Compenv["default_output"](Clflags["output_name"][1]);
               }
             
-            Compmisc["init_path"](0),
-            Bytelink["link"](ppf,Compenv["get_objfiles"](0),target),
-            Warnings["check_fatal"](0)}
+            Compmisc["init_path"](/* false */0),
+            Bytelink["link"](ppf,Compenv["get_objfiles"](/* () */0),target),
+            Warnings["check_fatal"](/* () */0)}
           else
            {}
           }
@@ -503,6 +513,6 @@ var
      {Location["report_exception"](ppf,x);return Pervasives["exit"](2);}
     };
 
-main(0);
+main(/* () */0);
 module["exports"]={};
 

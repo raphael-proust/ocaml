@@ -1,19 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Main_args=require("Main_args");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Filename=require("Filename");
+var $$String=require("./string.js");
+var Main_args=require("./main_args.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Filename=require("./filename.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var compargs=[0,0];
+var compargs=[0,/* [] */0];
 
-var profargs=[0,0];
+var profargs=[0,/* [] */0];
 
-var toremove=[0,0];
+var toremove=[0,/* [] */0];
 
 var
  option=
@@ -27,22 +28,25 @@ var
            0;
     };
 
-var make_archive=[0,0];
+var make_archive=[0,/* false */0];
 
-var with_impl=[0,0];
+var with_impl=[0,/* false */0];
 
-var with_intf=[0,0];
+var with_intf=[0,/* false */0];
 
-var with_mli=[0,0];
+var with_mli=[0,/* false */0];
 
-var with_ml=[0,0];
+var with_ml=[0,/* false */0];
 
 var
  process_file=
   function(filename)
-   {if(Filename["check_suffix"](filename,".ml")){with_ml[1]=1,0}else{}
+   {if(Filename["check_suffix"](filename,".ml")){with_ml[1]=/* true */1}else{}
     
-    if(Filename["check_suffix"](filename,".mli")){with_mli[1]=1,0}else{}
+    if(Filename["check_suffix"](filename,".mli"))
+     {with_mli[1]=/* true */1}
+    else
+     {}
     
     return compargs[1]=/* :: */[0,Filename["quote"](filename),compargs[1]],0;
     };
@@ -54,16 +58,20 @@ var
   function(o)
    {Printf["fprintf"]
      (Pervasives["stderr"],
-      [0,
-       [11,
+      [/* Format */0,
+       [/* String_literal */11,
         "ocamlcp: profiling is incompatible with the ",
-        [2,0,[11," option\n",0]]],
+        [/* String */2,
+         /* No_padding */0,
+         [/* String_literal */11," option\n",/* End_of_format */0]]],
        "ocamlcp: profiling is incompatible with the %s option\n"],
       o);
     return Pervasives["exit"](2);
     };
 
-var _a=function(param){make_archive[1]=1,0;return option("-a",0);};
+var
+ _a=
+  function(param){make_archive[1]=/* true */1;return option("-a",/* () */0);};
 
 var _absname=option("-absname");
 
@@ -99,9 +107,13 @@ var _i=option("-i");
 
 var _I=function(s){return option_with_arg("-I",s);};
 
-var _impl=function(s){with_impl[1]=1,0;return option_with_arg("-impl",s);};
+var
+ _impl=
+  function(s){with_impl[1]=/* true */1;return option_with_arg("-impl",s);};
 
-var _intf=function(s){with_intf[1]=1,0;return option_with_arg("-intf",s);};
+var
+ _intf=
+  function(s){with_intf[1]=/* true */1;return option_with_arg("-intf",s);};
 
 var _intf_suffix=function(s){return option_with_arg("-intf-suffix",s);};
 
@@ -159,9 +171,9 @@ var _strict_sequence=option("-strict-sequence");
 
 var _strict_formats=option("-strict-formats");
 
-var _thread=function(param){return option("-thread",0);};
+var _thread=function(param){return option("-thread",/* () */0);};
 
-var _vmthread=function(param){return option("-vmthread",0);};
+var _vmthread=function(param){return option("-vmthread",/* () */0);};
 
 var _unsafe=option("-unsafe");
 
@@ -300,39 +312,51 @@ Arg["parse"](optlist,process_file,usage);
 if(with_impl[1]&&with_intf[1])
  {Printf["fprintf"]
    (Pervasives["stderr"],
-    [0,
-     [11,'ocamlcp cannot deal with both "-impl" and "-intf"\n',0],
+    [/* Format */0,
+     [/* String_literal */11,
+      'ocamlcp cannot deal with both "-impl" and "-intf"\n',
+      /* End_of_format */0],
      'ocamlcp cannot deal with both "-impl" and "-intf"\n']),
   Printf["fprintf"]
    (Pervasives["stderr"],
-    [0,
-     [11,"please compile interfaces and implementations separately\n",0],
+    [/* Format */0,
+     [/* String_literal */11,
+      "please compile interfaces and implementations separately\n",
+      /* End_of_format */0],
      "please compile interfaces and implementations separately\n"]),
   Pervasives["exit"](2)}
 else
  {if(with_impl[1]&&with_mli[1])
    {Printf["fprintf"]
      (Pervasives["stderr"],
-      [0,
-       [11,'ocamlcp cannot deal with both "-impl" and .mli files\n',0],
+      [/* Format */0,
+       [/* String_literal */11,
+        'ocamlcp cannot deal with both "-impl" and .mli files\n',
+        /* End_of_format */0],
        'ocamlcp cannot deal with both "-impl" and .mli files\n']),
     Printf["fprintf"]
      (Pervasives["stderr"],
-      [0,
-       [11,"please compile interfaces and implementations separately\n",0],
+      [/* Format */0,
+       [/* String_literal */11,
+        "please compile interfaces and implementations separately\n",
+        /* End_of_format */0],
        "please compile interfaces and implementations separately\n"]),
     Pervasives["exit"](2)}
   else
    {if(with_intf[1]&&with_ml[1])
      {Printf["fprintf"]
        (Pervasives["stderr"],
-        [0,
-         [11,'ocamlcp cannot deal with both "-intf" and .ml files\n',0],
+        [/* Format */0,
+         [/* String_literal */11,
+          'ocamlcp cannot deal with both "-intf" and .ml files\n',
+          /* End_of_format */0],
          'ocamlcp cannot deal with both "-intf" and .ml files\n']),
       Printf["fprintf"]
        (Pervasives["stderr"],
-        [0,
-         [11,"please compile interfaces and implementations separately\n",0],
+        [/* Format */0,
+         [/* String_literal */11,
+          "please compile interfaces and implementations separately\n",
+          /* End_of_format */0],
          "please compile interfaces and implementations separately\n"]),
       Pervasives["exit"](2)}
     else
@@ -340,11 +364,30 @@ else
     }
   }
 
-if(with_impl[1]){profargs[1]=/* :: */[0,"-impl",profargs[1]],0}else{}
+if(with_impl[1]){profargs[1]=/* :: */[0,"-impl",profargs[1]]}else{}
 
-if(with_intf[1]){profargs[1]=/* :: */[0,"-intf",profargs[1]],0}else{}
+if(with_intf[1]){profargs[1]=/* :: */[0,"-intf",profargs[1]]}else{}
 
-var status="unknown primitive:caml_sys_system_command";
+var
+ status=
+  CamlPrimitive["caml_sys_system_command"]
+   (Printf["sprintf"]
+     ([/* Format */0,
+       [/* String_literal */11,
+        'ocamlc -pp "ocamlprof -instrument ',
+        [/* String */2,
+         /* No_padding */0,
+         [/* String_literal */11,
+          '" ',
+          [/* String */2,
+           /* No_padding */0,
+           [/* Char_literal */12,
+            32,
+            [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
+       'ocamlc -pp "ocamlprof -instrument %s" %s %s'],
+      $$String["concat"](" ",List["rev"](profargs[1])),
+      make_archive[1]?"":"profiling.cmo",
+      $$String["concat"](" ",List["rev"](compargs[1]))));
 
 Pervasives["exit"](status);
 module["exports"]=

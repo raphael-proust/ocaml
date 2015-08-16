@@ -1,21 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Scanf=require("Scanf");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Cmt_format=require("Cmt_format");
-var Digest=require("Digest");
-var Format=require("Format");
-var Misc=require("Misc");
-var Printclambda=require("Printclambda");
-var Bytesections=require("Bytesections");
-var Filename=require("Filename");
-var $$Array=require("Array");
-var Config=require("Config");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Scanf=require("./scanf.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Cmt_format=require("./cmt_format.js");
+var Digest=require("./digest.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Printclambda=require("./printclambda.js");
+var Bytesections=require("./bytesections.js");
+var Filename=require("./filename.js");
+var $$Array=require("./array.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
@@ -23,12 +24,12 @@ var
   function(ic,len)
    {var
      get_string_list=
-      function(sect,len$1)
+      function(sect,len)
        {var
          fold=
           function(s,e,acc)
-           {if(e!=len$1)
-             {if(sect[e]=0)
+           {if(e!==len)
+             {if(sect[e]===0)
                {return fold
                         (e+1,e+1,/* :: */[0,$$String["sub"](sect,s,e-s),acc]);
                 }
@@ -39,7 +40,7 @@ var
              {return acc;}
             };
         
-        return fold(0,0,0);
+        return fold(0,0,/* [] */0);
         };
     
     var sect=Pervasives["really_input_string"](ic,len);
@@ -57,7 +58,17 @@ var
     if(crco){var crc=Digest["to_hex"](crco[1]);}else{var crc=dummy_crc;}
     
     return Printf["printf"]
-            ([0,[12,9,[2,0,[12,9,[2,0,[12,10,0]]]]],"\t%s\t%s\n"],
+            ([/* Format */0,
+              [/* Char_literal */12,
+               9,
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,
+                 9,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* Char_literal */12,10,/* End_of_format */0]]]]],
+              "\t%s\t%s\n"],
              crc,
              param[1]);
     };
@@ -65,53 +76,106 @@ var
 var
  print_line=
   function(name)
-   {return Printf["printf"]([0,[12,9,[2,0,[12,10,0]]],"\t%s\n"],name);};
+   {return Printf["printf"]
+            ([/* Format */0,
+              [/* Char_literal */12,
+               9,
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,10,/* End_of_format */0]]],
+              "\t%s\n"],
+             name);
+    };
 
 var
  print_cmo_infos=
   function(cu)
    {Printf["printf"]
-     ([0,[11,"Unit name: ",[2,0,[12,10,0]]],"Unit name: %s\n"],cu[1]);
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Unit name: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "Unit name: %s\n"],
+      cu[1]);
     Pervasives["print_string"]("Interfaces imported:\n");
     List["iter"](print_name_crc,cu[5]);
     Printf["printf"]
-     ([0,[11,"Uses unsafe features: ",0],"Uses unsafe features: "]);
+     ([/* Format */0,
+       [/* String_literal */11,"Uses unsafe features: ",/* End_of_format */0],
+       "Uses unsafe features: "]);
     var l=cu[6];
     
     if(l)
-     {Printf["printf"]([0,[11,"YES\n",0],"YES\n"]),
+     {Printf["printf"]
+       ([/* Format */0,
+         [/* String_literal */11,"YES\n",/* End_of_format */0],
+         "YES\n"]),
       Printf["printf"]
-       ([0,
-         [11,"Primitives declared in this module:\n",0],
+       ([/* Format */0,
+         [/* String_literal */11,
+          "Primitives declared in this module:\n",
+          /* End_of_format */0],
          "Primitives declared in this module:\n"]),
       List["iter"](print_line,l)}
     else
-     {Printf["printf"]([0,[11,"no\n",0],"no\n"])}
+     {Printf["printf"]
+       ([/* Format */0,
+         [/* String_literal */11,"no\n",/* End_of_format */0],
+         "no\n"])}
     
     return Printf["printf"]
-            ([0,[11,"Force link: ",[2,0,[12,10,0]]],"Force link: %s\n"],
+            ([/* Format */0,
+              [/* String_literal */11,
+               "Force link: ",
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,10,/* End_of_format */0]]],
+              "Force link: %s\n"],
              cu[7]?"YES":"no");
     };
 
 var
  print_spaced_string=
-  function(s){return Printf["printf"]([0,[12,32,[2,0,0]]," %s"],s);};
+  function(s)
+   {return Printf["printf"]
+            ([/* Format */0,
+              [/* Char_literal */12,
+               32,
+               [/* String */2,/* No_padding */0,/* End_of_format */0]],
+              " %s"],
+             s);
+    };
 
 var
  print_cma_infos=
   function(lib)
    {Printf["printf"]
-     ([0,[11,"Force custom: ",[2,0,[12,10,0]]],"Force custom: %s\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Force custom: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "Force custom: %s\n"],
       lib[2]?"YES":"no");
     Printf["printf"]
-     ([0,[11,"Extra C object files:",0],"Extra C object files:"]);
+     ([/* Format */0,
+       [/* String_literal */11,"Extra C object files:",/* End_of_format */0],
+       "Extra C object files:"]);
     List["iter"](print_spaced_string,List["rev"](lib[3]));
-    Printf["printf"]([0,[11,"\nExtra C options:",0],"\nExtra C options:"]);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,"\nExtra C options:",/* End_of_format */0],
+       "\nExtra C options:"]);
     List["iter"](print_spaced_string,lib[4]);
-    Printf["printf"]([0,[12,10,0],"\n"]);
+    Printf["printf"]
+     ([/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
     Pervasives["print_string"]("Extra dynamically-loaded libraries:");
     List["iter"](print_spaced_string,lib[5]);
-    Printf["printf"]([0,[12,10,0],"\n"]);
+    Printf["printf"]
+     ([/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
     return List["iter"](print_cmo_infos,lib[1]);
     };
 
@@ -119,9 +183,18 @@ var
  print_cmi_infos=
   function(name,crcs)
    {Printf["printf"]
-     ([0,[11,"Unit name: ",[2,0,[12,10,0]]],"Unit name: %s\n"],name);
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Unit name: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "Unit name: %s\n"],
+      name);
     Printf["printf"]
-     ([0,[11,"Interfaces imported:\n",0],"Interfaces imported:\n"]);
+     ([/* Format */0,
+       [/* String_literal */11,"Interfaces imported:\n",/* End_of_format */0],
+       "Interfaces imported:\n"]);
     return List["iter"](print_name_crc,crcs);
     };
 
@@ -129,24 +202,48 @@ var
  print_cmt_infos=
   function(cmt)
    {Printf["printf"]
-     ([0,[11,"Cmt unit name: ",[2,0,[12,10,0]]],"Cmt unit name: %s\n"],cmt[1]);
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Cmt unit name: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "Cmt unit name: %s\n"],
+      cmt[1]);
     Pervasives["print_string"]("Cmt interfaces imported:\n");
     List["iter"](print_name_crc,cmt[11]);
     var match=cmt[6];
     
     Printf["printf"]
-     ([0,[11,"Source file: ",[2,0,[12,10,0]]],"Source file: %s\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Source file: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "Source file: %s\n"],
       match?match[1]:"(none)");
-    Printf["printf"]([0,[11,"Compilation flags:",0],"Compilation flags:"]);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,"Compilation flags:",/* End_of_format */0],
+       "Compilation flags:"]);
     $$Array["iter"](print_spaced_string,cmt[5]);
-    Printf["printf"]([0,[11,"\nLoad path:",0],"\nLoad path:"]);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,"\nLoad path:",/* End_of_format */0],
+       "\nLoad path:"]);
     List["iter"](print_spaced_string,cmt[8]);
-    Printf["printf"]([0,[12,10,0],"\n"]);
+    Printf["printf"]
+     ([/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
     var match$1=cmt[12];
     
     return Printf["printf"]
-            ([0,
-              [11,"cmt interface digest: ",[2,0,[12,10,0]]],
+            ([/* Format */0,
+              [/* String_literal */11,
+               "cmt interface digest: ",
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,10,/* End_of_format */0]]],
               "cmt interface digest: %s\n"],
              match$1?Digest["to_hex"](match$1[1]):"");
     };
@@ -154,19 +251,40 @@ var
 var
  print_general_infos=
   function(name,crc,defines,cmi,cmx)
-   {Printf["printf"]([0,[11,"Name: ",[2,0,[12,10,0]]],"Name: %s\n"],name);
+   {Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Name: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "Name: %s\n"],
+      name);
     Printf["printf"]
-     ([0,
-       [11,"CRC of implementation: ",[2,0,[12,10,0]]],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "CRC of implementation: ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
        "CRC of implementation: %s\n"],
       Digest["to_hex"](crc));
-    Printf["printf"]([0,[11,"Globals defined:\n",0],"Globals defined:\n"]);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,"Globals defined:\n",/* End_of_format */0],
+       "Globals defined:\n"]);
     List["iter"](print_line,defines);
     Printf["printf"]
-     ([0,[11,"Interfaces imported:\n",0],"Interfaces imported:\n"]);
+     ([/* Format */0,
+       [/* String_literal */11,"Interfaces imported:\n",/* End_of_format */0],
+       "Interfaces imported:\n"]);
     List["iter"](print_name_crc,cmi);
     Printf["printf"]
-     ([0,[11,"Implementations imported:\n",0],"Implementations imported:\n"]);
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Implementations imported:\n",
+        /* End_of_format */0],
+       "Implementations imported:\n"]);
     return List["iter"](print_name_crc,cmx);
     };
 
@@ -176,10 +294,18 @@ var
    {var ui=param[1];
     
     print_general_infos(ui[1],param[2],ui[3],ui[4],ui[5]);
-    Printf["printf"]([0,[11,"Approximation:\n",0],"Approximation:\n"]);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,"Approximation:\n",/* End_of_format */0],
+       "Approximation:\n"]);
     Format["fprintf"]
      (Format["std_formatter"],
-      [0,[11,"  ",[15,[17,4,0]]],"  %a@."],
+      [/* Format */0,
+       [/* String_literal */11,
+        "  ",
+        [/* Alpha */15,
+         [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
+       "  %a@."],
       Printclambda["approx"],
       ui[6]);
     var
@@ -188,25 +314,52 @@ var
        {return List["iter"]
                 (function(arity)
                   {return Printf["printf"]
-                           ([0,[12,32,[4,0,0,0,0]]," %d"],arity);
+                           ([/* Format */0,
+                             [/* Char_literal */12,
+                              32,
+                              [/* Int */4,
+                               /* Int_d */0,
+                               /* No_padding */0,
+                               /* No_precision */0,
+                               /* End_of_format */0]],
+                             " %d"],
+                            arity);
                    },
                  fns);
         };
     
     Printf["printf"]
-     ([0,[11,"Currying functions:",[15,[12,10,0]]],"Currying functions:%a\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Currying functions:",
+        [/* Alpha */15,[/* Char_literal */12,10,/* End_of_format */0]]],
+       "Currying functions:%a\n"],
       pr_funs,
       ui[7]);
     Printf["printf"]
-     ([0,[11,"Apply functions:",[15,[12,10,0]]],"Apply functions:%a\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Apply functions:",
+        [/* Alpha */15,[/* Char_literal */12,10,/* End_of_format */0]]],
+       "Apply functions:%a\n"],
       pr_funs,
       ui[8]);
     Printf["printf"]
-     ([0,[11,"Send functions:",[15,[12,10,0]]],"Send functions:%a\n"],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "Send functions:",
+        [/* Alpha */15,[/* Char_literal */12,10,/* End_of_format */0]]],
+       "Send functions:%a\n"],
       pr_funs,
       ui[9]);
     return Printf["printf"]
-            ([0,[11,"Force link: ",[2,0,[12,10,0]]],"Force link: %s\n"],
+            ([/* Format */0,
+              [/* String_literal */11,
+               "Force link: ",
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,10,/* End_of_format */0]]],
+              "Force link: %s\n"],
              ui[10]?"YES":"no");
     };
 
@@ -214,11 +367,17 @@ var
  print_cmxa_infos=
   function(lib)
    {Printf["printf"]
-     ([0,[11,"Extra C object files:",0],"Extra C object files:"]);
+     ([/* Format */0,
+       [/* String_literal */11,"Extra C object files:",/* End_of_format */0],
+       "Extra C object files:"]);
     List["iter"](print_spaced_string,List["rev"](lib[2]));
-    Printf["printf"]([0,[11,"\nExtra C options:",0],"\nExtra C options:"]);
+    Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,"\nExtra C options:",/* End_of_format */0],
+       "\nExtra C options:"]);
     List["iter"](print_spaced_string,lib[3]);
-    Printf["printf"]([0,[12,10,0],"\n"]);
+    Printf["printf"]
+     ([/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
     return List["iter"](print_cmx_infos,lib[1]);
     };
 
@@ -234,7 +393,14 @@ var
 var
  p_title=
   function(title)
-   {return Printf["printf"]([0,[2,0,[11,":\n",0]],"%s:\n"],title);};
+   {return Printf["printf"]
+            ([/* Format */0,
+              [/* String */2,
+               /* No_padding */0,
+               [/* String_literal */11,":\n",/* End_of_format */0]],
+              "%s:\n"],
+             title);
+    };
 
 var
  p_section=
@@ -242,24 +408,27 @@ var
    {if(l)
      {p_title(title);return List["iter"](print_name_crc,l);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
  p_list=
   function(title,print,l)
-   {if(l){p_title(title);return List["iter"](print,l);}else{return 0;}};
+   {if(l){p_title(title);return List["iter"](print,l);}else{return /* () */0;}
+    };
 
 var
  dump_byte=
   function(ic)
    {Bytesections["read_toc"](ic);
-    var toc=Bytesections["toc"](0);
+    var toc=Bytesections["toc"](/* () */0);
     
     var
      toc$1=
       List["sort"]
-       (function(prim,prim$1){return "unknown primitive:caml_compare";},toc);
+       (function(prim,prim$1)
+         {return CamlPrimitive["caml_compare"](prim,prim$1);},
+        toc);
     
     return List["iter"]
             (function(param)
@@ -290,12 +459,12 @@ var
                       
                      default:exit=29;}
                    
-                   switch(exit){case 29:return 0;}
+                   switch(exit){case 29:return /* () */0;}
                    }
                  else
                   {return 0;}
                  }
-               catch(exn){return 0;}
+               catch(exn){return /* () */0;}
                },
              toc$1);
     };
@@ -303,7 +472,7 @@ var
 var
  read_dyn_header=
   function(filename,ic)
-   {var tempfile=Filename["temp_file"](0,"objinfo",".out");
+   {var tempfile=Filename["temp_file"](/* None */0,"objinfo",".out");
     
     var
      helper=
@@ -312,9 +481,26 @@ var
     try
      {return Misc["try_finally"]
               (function(param)
-                {var rc="unknown primitive:caml_sys_system_command";
+                {var
+                  rc=
+                   CamlPrimitive["caml_sys_system_command"]
+                    (Printf["sprintf"]
+                      ([/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          32,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* String_literal */11,
+                            " > ",
+                            [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
+                        "%s %s > %s"],
+                       Filename["quote"](helper),
+                       Filename["quote"](filename),
+                       tempfile));
                  
-                 if(rc!=0){Pervasives["failwith"]("cannot read")}else{}
+                 if(rc!==0){Pervasives["failwith"]("cannot read")}else{}
                  
                  var tc=Pervasives["open_in"](tempfile);
                  
@@ -323,7 +509,15 @@ var
                            {var
                              ofs=
                               Scanf["fscanf"]
-                               (tc,[0,[7,0,0,0,0],"%Ld"],function(x){return x;});
+                               (tc,
+                                [/* Format */0,
+                                 [/* Int64 */7,
+                                  /* Int_d */0,
+                                  /* No_padding */0,
+                                  /* No_precision */0,
+                                  /* End_of_format */0],
+                                 "%Ld"],
+                                function(x){return x;});
                             
                             Pervasives["LargeFile"][4](ic,ofs);
                             return /* Some */[0,Pervasives["input_value"](ic)];
@@ -335,26 +529,40 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Failure)
+      if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
        {exit=20;}
       else
-       {if(exn[1]=Sys_error){exit=20;}else{throw exn;}}
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+         {exit=20;}
+        else
+         {throw exn;}
+        }
       
-      switch(exit){case 20:return 0;}
+      switch(exit){case 20:return /* None */0;}
       }
     };
 
 var
  dump_obj=
   function(filename)
-   {Printf["printf"]([0,[11,"File ",[2,0,[12,10,0]]],"File %s\n"],filename);
+   {Printf["printf"]
+     ([/* Format */0,
+       [/* String_literal */11,
+        "File ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
+       "File %s\n"],
+      filename);
     var ic=Pervasives["open_in_bin"](filename);
     
     var len_magic_number=Config["cmo_magic_number"]["length"];
     
     var magic_number=Pervasives["really_input_string"](ic,len_magic_number);
     
-    if("unknown primitive:caml_string_equal")
+    if
+     (CamlPrimitive["caml_string_equal"]
+       (magic_number,Config["cmo_magic_number"]))
      {var cu_pos=Pervasives["input_binary_int"](ic);
       
       Pervasives["seek_in"](ic,cu_pos);
@@ -364,7 +572,9 @@ var
       return print_cmo_infos(cu);
       }
     else
-     {if("unknown primitive:caml_string_equal")
+     {if
+       (CamlPrimitive["caml_string_equal"]
+         (magic_number,Config["cma_magic_number"]))
        {var toc_pos=Pervasives["input_binary_int"](ic);
         
         Pervasives["seek_in"](ic,toc_pos);
@@ -375,8 +585,10 @@ var
         }
       else
        {if
-         ("unknown primitive:caml_string_equal"||
-          "unknown primitive:caml_string_equal")
+         (CamlPrimitive["caml_string_equal"]
+           (magic_number,Config["cmi_magic_number"])||
+          CamlPrimitive["caml_string_equal"]
+           (magic_number,Config["cmt_magic_number"]))
          {Pervasives["close_in"](ic);
           var match=Cmt_format["read"](filename);
           
@@ -386,10 +598,12 @@ var
           
           if(cmi){var cmi$1=cmi[1];print_cmi_infos(cmi$1[1],cmi$1[3])}else{}
           
-          if(cmt){return print_cmt_infos(cmt[1]);}else{return 0;}
+          if(cmt){return print_cmt_infos(cmt[1]);}else{return /* () */0;}
           }
         else
-         {if("unknown primitive:caml_string_equal")
+         {if
+           (CamlPrimitive["caml_string_equal"]
+             (magic_number,Config["cmx_magic_number"]))
            {var ui=Pervasives["input_value"](ic);
             
             var crc=Digest["input"](ic);
@@ -398,7 +612,9 @@ var
             return print_cmx_infos(/* tuple */[0,ui,crc]);
             }
           else
-           {if("unknown primitive:caml_string_equal")
+           {if
+             (CamlPrimitive["caml_string_equal"]
+               (magic_number,Config["cmxa_magic_number"]))
              {var li=Pervasives["input_value"](ic);
               
               Pervasives["close_in"](ic);
@@ -415,7 +631,9 @@ var
                magic_number$1=
                 Pervasives["really_input_string"](ic,len_magic_number);
               
-              if("unknown primitive:caml_string_equal")
+              if
+               (CamlPrimitive["caml_string_equal"]
+                 (magic_number$1,Config["exec_magic_number"]))
                {dump_byte(ic);return Pervasives["close_in"](ic);}
               else
                {if(Filename["check_suffix"](filename,".cmxs"))
@@ -425,19 +643,29 @@ var
                   if(match$2)
                    {var header=match$2[1];
                     
-                    if("unknown primitive:caml_string_equal")
+                    if
+                     (CamlPrimitive["caml_string_equal"]
+                       (header[1],Config["cmxs_magic_number"]))
                      {print_cmxs_infos(header)}
                     else
                      {Printf["printf"]
-                       ([0,[11,"Wrong magic number\n",0],"Wrong magic number\n"]),
+                       ([/* Format */0,
+                         [/* String_literal */11,
+                          "Wrong magic number\n",
+                          /* End_of_format */0],
+                         "Wrong magic number\n"]),
                       Pervasives["exit"](2)}
                     
                     return Pervasives["close_in"](ic);
                     }
                   else
                    {Printf["printf"]
-                     ([0,
-                       [11,"Unable to read info on file ",[2,0,[12,10,0]]],
+                     ([/* Format */0,
+                       [/* String_literal */11,
+                        "Unable to read info on file ",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,10,/* End_of_format */0]]],
                        "Unable to read info on file %s\n"],
                       filename);
                     return Pervasives["exit"](2);
@@ -445,8 +673,10 @@ var
                   }
                 else
                  {Printf["printf"]
-                   ([0,
-                     [11,"Not an OCaml object file\n",0],
+                   ([/* Format */0,
+                     [/* String_literal */11,
+                      "Not an OCaml object file\n",
+                      /* End_of_format */0],
                      "Not an OCaml object file\n"]);
                   return Pervasives["exit"](2);
                   }
@@ -458,22 +688,26 @@ var
       }
     };
 
-var arg_list=0;
+var arg_list=/* [] */0;
 
 var
  arg_usage=
   Printf["sprintf"]
-   ([0,
-     [2,0,[11," [OPTIONS] FILES : give information on files",0]],
+   ([/* Format */0,
+     [/* String */2,
+      /* No_padding */0,
+      [/* String_literal */11,
+       " [OPTIONS] FILES : give information on files",
+       /* End_of_format */0]],
      "%s [OPTIONS] FILES : give information on files"],
-    Sys["argv"][0]);
+    Sys["argv"][1]);
 
 var
  main=
   function(param)
    {Arg["parse"](arg_list,dump_obj,arg_usage);return Pervasives["exit"](0);};
 
-main(0);
+main(/* () */0);
 module["exports"]=
 {"input_stringlist":input_stringlist,
  "dummy_crc":dummy_crc,

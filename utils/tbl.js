@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Format=require("Format");
+var Format=require("./format.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var empty=0;
+var empty=/* Empty */0;
 
 var height=function(param){if(param){return param[5];}else{return 0;}};
 
@@ -50,7 +51,13 @@ var
       else
        {exit=10;}
       
-      switch(exit){case 10:throw [0,Assert_failure,[0,"utils/tbl.ml",35,11]];}
+      switch(exit)
+       {case 10:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"utils/tbl.ml",35,11]];
+         
+        }
       }
     else
      {if(hr>hl+1)
@@ -79,7 +86,12 @@ var
          {exit$1=8;}
         
         switch(exit$1)
-         {case 8:throw [0,Assert_failure,[0,"utils/tbl.ml",42,11]];}
+         {case 8:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"utils/tbl.ml",42,11]];
+           
+          }
         }
       else
        {return create(l,x,d,r);}
@@ -98,9 +110,9 @@ var
       
       var l=param[1];
       
-      var c="unknown primitive:caml_compare";
+      var c=CamlPrimitive["caml_compare"](x,v);
       
-      if(c=0)
+      if(c===0)
        {return /* Node */[0,l,x,data,r,param[5]];}
       else
        {if(c<0)
@@ -110,31 +122,31 @@ var
         }
       }
     else
-     {return /* Node */[0,0,x,data,0,1];}
+     {return /* Node */[0,/* Empty */0,x,data,/* Empty */0,1];}
     };
 
 var
  find=
   function(x,param)
    {if(param)
-     {var c="unknown primitive:caml_compare";
+     {var c=CamlPrimitive["caml_compare"](x,param[2]);
       
-      if(c=0){return param[3];}else{return find(x,c<0?param[1]:param[4]);}
+      if(c===0){return param[3];}else{return find(x,c<0?param[1]:param[4]);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
  mem=
   function(x,param)
    {if(param)
-     {var c="unknown primitive:caml_compare";
+     {var c=CamlPrimitive["caml_compare"](x,param[2]);
       
-      return (c=0)||mem(x,c<0?param[1]:param[4]);
+      return c===0||mem(x,c<0?param[1]:param[4]);
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -164,9 +176,9 @@ var
       
       var l=param[1];
       
-      var c="unknown primitive:caml_compare";
+      var c=CamlPrimitive["caml_compare"](x,v);
       
-      if(c=0)
+      if(c===0)
        {return merge(l,r);}
       else
        {if(c<0)
@@ -176,7 +188,7 @@ var
         }
       }
     else
-     {return 0;}
+     {return /* Empty */0;}
     };
 
 var
@@ -185,7 +197,7 @@ var
    {if(param)
      {iter(f,param[1]);f(param[2],param[3]);return iter(f,param[4]);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -202,7 +214,7 @@ var
               param[5]];
       }
     else
-     {return 0;}
+     {return /* Empty */0;}
     };
 
 var
@@ -219,33 +231,55 @@ var
   function(print_key,print_data,ppf,tbl)
    {var
      print_tbl=
-      function(ppf$1,tbl$1)
+      function(ppf,tbl)
        {return iter
                 (function(k,d)
                   {return Format["fprintf"]
-                           (ppf$1,
-                            [0,
-                             [18,
-                              [1,[0,[11,"<2>",0],"<2>"]],
-                              [15,
-                               [11,
+                           (ppf,
+                            [/* Format */0,
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<2>",/* End_of_format */0],
+                                "<2>"]],
+                              [/* Alpha */15,
+                               [/* String_literal */11,
                                 " ->",
-                                [17,[0,"@ ",1,0],[15,[12,59,[17,0,[17,[0,"@ ",1,0],0]]]]]]]],
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,
+                                   59,
+                                   [/* Formatting_lit */17,
+                                    /* Close_box */0,
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@ ",1,0],
+                                     /* End_of_format */0]]]]]]]],
                              "@[<2>%a ->@ %a;@]@ "],
                             print_key,
                             k,
                             print_data,
                             d);
                    },
-                 tbl$1);
+                 tbl);
         };
     
     return Format["fprintf"]
             (ppf,
-             [0,
-              [18,
-               [1,[0,[11,"<hv 2>",0],"<hv 2>"]],
-               [11,"[[",[15,[11,"]]",[17,0,0]]]]],
+             [/* Format */0,
+              [/* Formatting_gen */18,
+               [/* Open_box */1,
+                [/* Format */0,
+                 [/* String_literal */11,"<hv 2>",/* End_of_format */0],
+                 "<hv 2>"]],
+               [/* String_literal */11,
+                "[[",
+                [/* Alpha */15,
+                 [/* String_literal */11,
+                  "]]",
+                  [/* Formatting_lit */17,
+                   /* Close_box */0,
+                   /* End_of_format */0]]]]],
               "@[<hv 2>[[%a]]@]"],
              print_tbl,
              tbl);

@@ -1,25 +1,26 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Printf=require("Printf");
-var Set=require("Set");
-var Misc=require("Misc");
-var Filename=require("Filename");
-var Location=require("Location");
-var Ident=require("Ident");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Printf=require("./printf.js");
+var Set=require("./set.js");
+var Misc=require("./misc.js");
+var Filename=require("./filename.js");
+var Location=require("./location.js");
+var Ident=require("./ident.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var default_tag_info=2;
+var default_tag_info=/* NA */2;
 
-var default_pointer_info=0;
+var default_pointer_info=/* NAPointer */0;
 
 var const_unit=/* Const_pointer */[1,0,default_pointer_info];
 
 var lambda_unit=/* Lconst */[1,const_unit];
 
-var Not_simple="unknown primitive:caml_set_oo_id";
+var Not_simple=CamlPrimitive["caml_set_oo_id"]([248,"Lambda.Not_simple",0]);
 
 var max_raw=32;
 
@@ -28,45 +29,50 @@ var
   function(e)
    {var count=[0,0];
     
-    var make_key$1=Ident["make_key_generator"](0);
+    var make_key$1=Ident["make_key_generator"](/* () */0);
     
     var
      tr_rec=
-      function(env,e$1)
+      function(env,e)
        {count[0]++;
         if(count[1]>max_raw){throw Not_simple;}else{}
         
-        switch(e$1)
+        switch(e[0])
          {case 0:
            try
-            {return Ident["find_same"](e$1[1],env);}
-           catch(exn){if(exn=Not_found){return e$1;}else{throw exn;}}
+            {return Ident["find_same"](e[1],env);}
+           catch(exn)
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+              {return e;}
+             else
+              {throw exn;}
+             }
            
           case 1:
-           var match=e$1[1];
+           var match=e[1];
            
            var exit;
            
-           switch(match)
-            {case 0:switch(match[1]){case 2:exit=56;default:exit=57;}
+           switch(match[0])
+            {case 0:switch(match[1][0]){case 2:exit=56;default:exit=57;}
              case 3:exit=56;
              default:exit=57;}
            
-           switch(exit){case 57:return e$1;case 56:throw Not_simple;}
+           switch(exit){case 57:return e;case 56:throw Not_simple;}
            
           case 2:
            return /* Lapply */[2,
-                   tr_rec(env,e$1[1]),
-                   tr_recs(env,e$1[2]),
+                   tr_rec(env,e[1]),
+                   tr_recs(env,e[2]),
                    Location["none"]];
            
           case 4:
-           var str=e$1[1];
+           var str=e[1];
            
-           if(str!=1)
-            {var x=e$1[2];
+           if(str!==1)
+            {var x=e[2];
              
-             var ex=tr_rec(env,e$1[3]);
+             var ex=tr_rec(env,e[3]);
              
              var y=make_key$1(x);
              
@@ -74,56 +80,52 @@ var
                      str,
                      y,
                      ex,
-                     tr_rec(Ident["add"](x,/* Lvar */[0,y],env),e$1[4])];
+                     tr_rec(Ident["add"](x,/* Lvar */[0,y],env),e[4])];
              }
            else
-            {var ex$1=tr_rec(env,e$1[3]);
+            {var ex$1=tr_rec(env,e[3]);
              
-             return tr_rec(Ident["add"](e$1[2],ex$1,env),e$1[4]);
+             return tr_rec(Ident["add"](e[2],ex$1,env),e[4]);
              }
            
-          case 6:return /* Lprim */[6,e$1[1],tr_recs(env,e$1[2])];
-          case 7:return /* Lswitch */[7,tr_rec(env,e$1[1]),tr_sw(env,e$1[2])];
+          case 6:return /* Lprim */[6,e[1],tr_recs(env,e[2])];
+          case 7:return /* Lswitch */[7,tr_rec(env,e[1]),tr_sw(env,e[2])];
           case 8:
            return /* Lstringswitch */[8,
-                   tr_rec(env,e$1[1]),
+                   tr_rec(env,e[1]),
                    List["map"]
                     (function(param)
                       {return /* tuple */[0,param[1],tr_rec(env,param[2])];},
-                     e$1[2]),
-                   tr_opt(env,e$1[3])];
+                     e[2]),
+                   tr_opt(env,e[3])];
            
-          case 9:return /* Lstaticraise */[9,e$1[1],tr_recs(env,e$1[2])];
+          case 9:return /* Lstaticraise */[9,e[1],tr_recs(env,e[2])];
           case 10:
            return /* Lstaticcatch */[10,
-                   tr_rec(env,e$1[1]),
-                   e$1[2],
-                   tr_rec(env,e$1[3])];
+                   tr_rec(env,e[1]),
+                   e[2],
+                   tr_rec(env,e[3])];
            
           case 11:
-           return /* Ltrywith */[11,
-                   tr_rec(env,e$1[1]),
-                   e$1[2],
-                   tr_rec(env,e$1[3])];
-           
+           return /* Ltrywith */[11,tr_rec(env,e[1]),e[2],tr_rec(env,e[3])];
           case 12:
            return /* Lifthenelse */[12,
-                   tr_rec(env,e$1[1]),
-                   tr_rec(env,e$1[2]),
-                   tr_rec(env,e$1[3])];
+                   tr_rec(env,e[1]),
+                   tr_rec(env,e[2]),
+                   tr_rec(env,e[3])];
            
           case 13:
-           return /* Lsequence */[13,tr_rec(env,e$1[1]),tr_rec(env,e$1[2])];
-          case 16:return /* Lassign */[16,e$1[1],tr_rec(env,e$1[2])];
+           return /* Lsequence */[13,tr_rec(env,e[1]),tr_rec(env,e[2])];
+          case 16:return /* Lassign */[16,e[1],tr_rec(env,e[2])];
           case 17:
            return /* Lsend */[17,
-                   e$1[1],
-                   tr_rec(env,e$1[2]),
-                   tr_rec(env,e$1[3]),
-                   tr_recs(env,e$1[4]),
+                   e[1],
+                   tr_rec(env,e[2]),
+                   tr_rec(env,e[3]),
+                   tr_recs(env,e[4]),
                    Location["none"]];
            
-          case 19:return /* Lifused */[19,e$1[1],tr_rec(env,e$1[2])];
+          case 19:return /* Lifused */[19,e[1],tr_rec(env,e[2])];
           default:throw Not_simple;}
         };
     
@@ -149,17 +151,21 @@ var
     var
      tr_opt=
       function(env,param)
-       {if(param){return /* Some */[0,tr_rec(env,param[1])];}else{return 0;}};
+       {if(param)
+         {return /* Some */[0,tr_rec(env,param[1])];}
+        else
+         {return /* None */0;}
+        };
     
     try
      {return /* Some */[0,tr_rec(Ident["empty"],e)];}
-    catch(exn){if(exn=Not_simple){return 0;}else{throw exn;}}
+    catch(exn){if(exn===Not_simple){return /* None */0;}else{throw exn;}}
     };
 
 var
  name_lambda=
   function(strict,arg,fn)
-   {switch(arg)
+   {switch(arg[0])
      {case 0:return fn(arg[1]);
       default:
        var id=Ident["create"]("let");
@@ -177,13 +183,13 @@ var
        {if(param)
          {var arg=param[1];
           
-          switch(arg)
+          switch(arg[0])
            {case 0:return name_list(/* :: */[0,arg,names],param[2]);
             default:
              var id=Ident["create"]("let");
              
              return /* Llet */[4,
-                     0,
+                     /* Strict */0,
                      id,
                      arg,
                      name_list(/* :: */[0,/* Lvar */[0,id],names],param[2])];
@@ -193,17 +199,19 @@ var
          {return fn(List["rev"](names));}
         };
     
-    return name_list(0,args);
+    return name_list(/* [] */0,args);
     };
 
-var iter_opt=function(f,param){if(param){return f(param[1]);}else{return 0;}};
+var
+ iter_opt=
+  function(f,param){if(param){return f(param[1]);}else{return /* () */0;}};
 
 var
  iter=
   function(f,param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:exit=37;
       case 1:exit=37;
       case 2:f(param[1]);return List["iter"](f,param[2]);
@@ -248,11 +256,13 @@ var
       case 39:f(param[1]);return f(param[3]);
       case 40:f(param[1]);return f(param[2]);
       case 41:return f(param[2]);
-      case 37:return 0;
+      case 37:return /* () */0;
       }
     };
 
-var compare=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var
+ compare=
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var IdentSet=Set["Make"]([0,compare]);
 
@@ -263,35 +273,35 @@ var
     
     var
      free=
-      function(l$1)
-       {iter(free,l$1);
-        fv[1]=List["fold_right"](IdentSet[4],get(l$1),fv[1]),0;
+      function(l)
+       {iter(free,l);
+        fv[1]=List["fold_right"](IdentSet[4],get(l),fv[1]);
         var exit;
         
-        switch(l$1)
+        switch(l[0])
          {case 3:
            return List["iter"]
                    (function(param){return fv[1]=IdentSet[6](param,fv[1]),0;},
-                    l$1[2]);
+                    l[2]);
            
           case 4:exit=33;
           case 5:
            return List["iter"]
                    (function(param)
                      {return fv[1]=IdentSet[6](param[1],fv[1]),0;},
-                    l$1[1]);
+                    l[1]);
            
           case 10:
            return List["iter"]
                    (function(id){return fv[1]=IdentSet[6](id,fv[1]),0;},
-                    l$1[2][2]);
+                    l[2][2]);
            
           case 11:exit=33;
-          case 15:return fv[1]=IdentSet[6](l$1[1],fv[1]),0;
-          case 16:return fv[1]=IdentSet[4](l$1[1],fv[1]),0;
-          default:return 0;}
+          case 15:return fv[1]=IdentSet[6](l[1],fv[1]),0;
+          case 16:return fv[1]=IdentSet[4](l[1],fv[1]),0;
+          default:return /* () */0;}
         
-        switch(exit){case 33:return fv[1]=IdentSet[6](l$1[2],fv[1]),0;}
+        switch(exit){case 33:return fv[1]=IdentSet[6](l[2],fv[1]),0;}
         };
     
     free(l);
@@ -303,8 +313,9 @@ var
   function(l)
    {return free_ids
             (function(param)
-              {switch(param)
-                {case 0:return /* :: */[0,param[1],0];default:return 0;}
+              {switch(param[0])
+                {case 0:return /* :: */[0,param[1],/* [] */0];
+                 default:return /* [] */0;}
                },
              l);
     };
@@ -316,20 +327,21 @@ var
             (function(param)
               {var exit;
                
-               switch(param)
+               switch(param[0])
                 {case 17:
-                  if(param[1]!=0)
+                  if(param[1]!==0)
                    {exit=28;}
                   else
                    {var match=param[2];
                     
-                    switch(match)
-                     {case 0:return /* :: */[0,match[1],0];default:exit=28;}
+                    switch(match[0])
+                     {case 0:return /* :: */[0,match[1],/* [] */0];
+                      default:exit=28;}
                     }
                   
                  default:exit=28;}
                
-               switch(exit){case 28:return 0;}
+               switch(exit){case 28:return /* [] */0;}
                },
              l);
     };
@@ -344,27 +356,31 @@ var
  next_negative_raise_count=
   function(param){negative_raise_count[0]--;return negative_raise_count[1];};
 
-var staticfail=[9,0,0];
+var staticfail=[/* Lstaticraise */9,0,/* [] */0];
 
 var
  is_guarded=
   function(param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 4:return is_guarded(param[4]);
       case 12:
        var match=param[3];
        
-       switch(match)
+       switch(match[0])
         {case 9:
-          if(match[1]!=0){exit=22;}else{if(match[2]){exit=22;}else{return 1;}}
+          if(match[1]!==0)
+           {exit=22;}
+          else
+           {if(match[2]){exit=22;}else{return /* true */1;}}
+          
          default:exit=22;}
        
       case 18:return is_guarded(param[1]);
       default:exit=22;}
     
-    switch(exit){case 22:return 0;}
+    switch(exit){case 22:return /* false */0;}
     };
 
 var
@@ -372,7 +388,7 @@ var
   function(patch,param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 4:
        return /* Llet */[4,
                param[1],
@@ -383,9 +399,9 @@ var
       case 12:
        var match=param[3];
        
-       switch(match)
+       switch(match[0])
         {case 9:
-          if(match[1]!=0)
+          if(match[1]!==0)
            {exit=21;}
           else
            {if(match[2])
@@ -405,19 +421,19 @@ var
 var
  transl_normal_path=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var id=param[1];
        
        if(Ident["global"](id))
-        {return /* Lprim */[6,/* Pgetglobal */[3,id],0];}
+        {return /* Lprim */[6,/* Pgetglobal */[3,id],/* [] */0];}
        else
         {return /* Lvar */[0,id];}
        
       case 1:
        return /* Lprim */[6,
                /* Pfield */[6,param[3]],
-               /* :: */[0,transl_normal_path(param[1]),0]];
+               /* :: */[0,transl_normal_path(param[1]),/* [] */0]];
        
       case 2:return Misc["fatal_error"]("Lambda.transl_path");
       }
@@ -458,11 +474,16 @@ var
    {var
      subst=
       function(l)
-       {switch(l)
+       {switch(l[0])
          {case 0:
            try
             {return Ident["find_same"](l[1],s);}
-           catch(exn){if(exn=Not_found){return l;}else{throw exn;}}
+           catch(exn)
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+              {return l;}
+             else
+              {throw exn;}
+             }
            
           case 1:return l;
           case 2:
@@ -529,7 +550,11 @@ var
     var
      subst_opt=
       function(param)
-       {if(param){return /* Some */[0,subst(param[1])];}else{return 0;}};
+       {if(param)
+         {return /* Some */[0,subst(param[1])];}
+        else
+         {return /* None */0;}
+        };
     
     return subst(lam);
     };
@@ -539,7 +564,7 @@ var
   function(str,$$var,exp,body)
    {var exit;
     
-    switch(exp)
+    switch(exp[0])
      {case 0:if(Ident["same"]($$var,exp[1])){return body;}else{exit=13;}
       default:exit=13;}
     
@@ -549,33 +574,33 @@ var
 var
  commute_comparison=
   function(param)
-   {switch(param[0])
-     {case 0:return 0;
-      case 1:return 1;
-      case 2:return 3;
-      case 3:return 2;
-      case 4:return 5;
-      case 5:return 4;
+   {switch(param)
+     {case 0:return /* Ceq */0;
+      case 1:return /* Cneq */1;
+      case 2:return /* Cgt */3;
+      case 3:return /* Clt */2;
+      case 4:return /* Cge */5;
+      case 5:return /* Cle */4;
       }
     };
 
 var
  negate_comparison=
   function(param)
-   {switch(param[0])
-     {case 0:return 1;
-      case 1:return 0;
-      case 2:return 5;
-      case 3:return 4;
-      case 4:return 3;
-      case 5:return 2;
+   {switch(param)
+     {case 0:return /* Cneq */1;
+      case 1:return /* Ceq */0;
+      case 2:return /* Cge */5;
+      case 3:return /* Cle */4;
+      case 4:return /* Cgt */3;
+      case 5:return /* Clt */2;
       }
     };
 
 var
  raise_kind=
   function(param)
-   {switch(param[0])
+   {switch(param)
      {case 0:return "raise";
       case 1:return "reraise";
       case 2:return "raise_notrace";
@@ -597,16 +622,16 @@ var
     
     var $$enum=loc[2][4]-loc_start[4]+cnum;
     
-    switch(kind[0])
+    switch(kind)
      {case 0:return /* Lconst */[1,/* Const_immstring */[4,file]];
       case 1:
        return /* Lconst */[1,/* Const_base */[0,/* Const_int */[0,lnum]]];
       case 2:
        var filename=Filename["basename"](file);
        
-       var name=Env["get_unit_name"](0);
+       var name=Env["get_unit_name"](/* () */0);
        
-       if("unknown primitive:caml_string_equal")
+       if(CamlPrimitive["caml_string_equal"](name,""))
         {var module_name=Pervasives["^"]("//",Pervasives["^"](filename,"//"));
          }
        else
@@ -618,14 +643,30 @@ var
        var
         loc$1=
          Printf["sprintf"]
-          ([0,
-            [11,
+          ([/* Format */0,
+            [/* String_literal */11,
              "File ",
-             [3,
-              0,
-              [11,
+             [/* Caml_string */3,
+              /* No_padding */0,
+              [/* String_literal */11,
                ", line ",
-               [4,0,0,0,[11,", characters ",[4,0,0,0,[12,45,[4,0,0,0,0]]]]]]]],
+               [/* Int */4,
+                /* Int_d */0,
+                /* No_padding */0,
+                /* No_precision */0,
+                [/* String_literal */11,
+                 ", characters ",
+                 [/* Int */4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,
+                   45,
+                   [/* Int */4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    /* End_of_format */0]]]]]]]],
             "File %S, line %d, characters %d-%d"],
            file,
            lnum,
@@ -645,7 +686,9 @@ var
                   /* Const_base */[0,/* Const_int */[0,lnum]],
                   /* :: */[0,
                    /* Const_base */[0,/* Const_int */[0,cnum]],
-                   /* :: */[0,/* Const_base */[0,/* Const_int */[0,$$enum]],0]]]]]];
+                   /* :: */[0,
+                    /* Const_base */[0,/* Const_int */[0,$$enum]],
+                    /* [] */0]]]]]];
        
       }
     };

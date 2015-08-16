@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Clflags=require("Clflags");
-var Printf=require("Printf");
-var Misc=require("Misc");
-var Printexc=require("Printexc");
-var Location=require("Location");
-var Ast_helper=require("Ast_helper");
-var Map=require("Map");
-var Config=require("Config");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Clflags=require("./clflags.js");
+var Printf=require("./printf.js");
+var Misc=require("./misc.js");
+var Printexc=require("./printexc.js");
+var Location=require("./location.js");
+var Ast_helper=require("./ast_helper.js");
+var Map=require("./map.js");
+var Config=require("./config.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var map_fst=function(f,param){return /* tuple */[0,f(param[1]),param[2]];};
@@ -30,7 +31,7 @@ var
 var
  map_opt=
   function(f,param)
-   {if(param){return /* Some */[0,f(param[1])];}else{return 0;}};
+   {if(param){return /* Some */[0,f(param[1])];}else{return /* None */0;}};
 
 var
  map_loc=
@@ -39,7 +40,7 @@ var
 var
  row_field=
   function(sub,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return /* Rtag */[0,
                param[1],
@@ -60,10 +61,12 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    if(typeof desc=="number")
+    if(typeof desc==="number")
      {switch(desc)
        {case 0:
-         return Ast_helper["Typ"][3](/* Some */[0,loc],/* Some */[0,attrs],0);
+         return Ast_helper["Typ"][3]
+                 (/* Some */[0,loc],/* Some */[0,attrs],/* () */0);
+         
         }}
     else
      {switch(desc[0])
@@ -159,8 +162,8 @@ var
    {return Ast_helper["Type"][1]
             (/* Some */[0,sub[21](sub,param[8])],
              /* Some */[0,sub[2](sub,param[7])],
-             0,
-             0,
+             /* None */0,
+             /* None */0,
              /* Some */[0,List["map"](map_fst(sub[34](sub)),param[2])],
              /* Some */[0,
               List["map"]
@@ -174,8 +177,9 @@ var
 var
  map_type_kind=
   function(sub,param)
-   {if(typeof param=="number")
-     {switch(param){case 0:return 0;case 1:return 1;}}
+   {if(typeof param==="number")
+     {switch(param)
+       {case 0:return /* Ptype_abstract */0;case 1:return /* Ptype_open */1;}}
     else
      {switch(param[0])
        {case 0:
@@ -190,7 +194,7 @@ var
   function(sub,param)
    {return Ast_helper["Te"][1]
             (/* Some */[0,sub[2](sub,param[5])],
-             0,
+             /* None */0,
              /* Some */[0,List["map"](map_fst(sub[34](sub)),param[2])],
              /* Some */[0,param[4]],
              map_loc(sub,param[1]),
@@ -200,7 +204,7 @@ var
 var
  map_extension_constructor_kind=
   function(sub,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return /* Pext_decl */[0,
                List["map"](sub[34](sub),param[1]),
@@ -216,8 +220,8 @@ var
    {return Ast_helper["Te"][2]
             (/* Some */[0,sub[21](sub,param[3])],
              /* Some */[0,sub[2](sub,param[4])],
-             0,
-             0,
+             /* None */0,
+             /* None */0,
              map_loc(sub,param[1]),
              map_extension_constructor_kind(sub,param[2]));
     };
@@ -242,7 +246,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Cty"][3]
                (/* Some */[0,loc],
@@ -278,7 +282,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Ctf"][3]
                (/* Some */[0,loc],/* Some */[0,attrs],sub[11](sub,desc[1]));
@@ -341,7 +345,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Mty"][3]
                (/* Some */[0,loc],/* Some */[0,attrs],map_loc(sub,desc[1]));
@@ -383,7 +387,7 @@ var
 var
  map_with_constraint=
   function(sub,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        return /* Pwith_type */[0,map_loc(sub,param[1]),sub[35](sub,param[2])];
       case 1:
@@ -407,7 +411,7 @@ var
     
     var loc=sub[21](sub,param[2]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Sig"][2](/* Some */[0,loc],sub[39](sub,desc[1]));
       case 1:
@@ -460,7 +464,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Mod"][3]
                (/* Some */[0,loc],/* Some */[0,attrs],map_loc(sub,desc[1]));
@@ -509,7 +513,7 @@ var
     
     var loc=sub[21](sub,param[2]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Str"][2]
                (/* Some */[0,loc],
@@ -572,7 +576,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Exp"][3]
                (/* Some */[0,loc],/* Some */[0,attrs],map_loc(sub,desc[1]));
@@ -806,10 +810,12 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    if(typeof desc=="number")
+    if(typeof desc==="number")
      {switch(desc)
        {case 0:
-         return Ast_helper["Pat"][3](/* Some */[0,loc],/* Some */[0,attrs],0);
+         return Ast_helper["Pat"][3]
+                 (/* Some */[0,loc],/* Some */[0,attrs],/* () */0);
+         
         }}
     else
      {switch(desc[0])
@@ -913,7 +919,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Cl"][3]
                (/* Some */[0,loc],
@@ -966,7 +972,7 @@ var
 var
  map_kind=
   function(sub,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:return /* Cfk_virtual */[0,sub[34](sub,param[1])];
       case 1:return /* Cfk_concrete */[1,param[1],sub[15](sub,param[2])];
       }
@@ -981,7 +987,7 @@ var
     
     var attrs=sub[2](sub,param[3]);
     
-    switch(desc)
+    switch(desc[0])
      {case 0:
        return Ast_helper["Cf"][3]
                (/* Some */[0,loc],
@@ -1046,8 +1052,8 @@ var
    {return Ast_helper["Ci"][1]
             (/* Some */[0,sub[21](sub,param[5])],
              /* Some */[0,sub[2](sub,param[6])],
-             0,
-             0,
+             /* None */0,
+             /* None */0,
              /* Some */[0,param[1]],
              /* Some */[0,List["map"](map_fst(sub[34](sub)),param[2])],
              map_loc(sub,param[3]),
@@ -1085,7 +1091,7 @@ var
     {return Ast_helper["Type"][2]
              (/* Some */[0,$$this[21]($$this,param[4])],
               /* Some */[0,$$this[2]($$this,param[5])],
-              0,
+              /* None */0,
               /* Some */[0,List["map"]($$this[34]($$this),param[2])],
               map_opt($$this[34]($$this),param[3]),
               map_loc($$this,param[1]));
@@ -1101,21 +1107,21 @@ var
     {return Ast_helper["Incl"][1]
              (/* Some */[0,$$this[21]($$this,param[2])],
               /* Some */[0,$$this[2]($$this,param[3])],
-              0,
+              /* None */0,
               $$this[24]($$this,param[1]));
      },
    function($$this,param)
     {return Ast_helper["Incl"][1]
              (/* Some */[0,$$this[21]($$this,param[2])],
               /* Some */[0,$$this[2]($$this,param[3])],
-              0,
+              /* None */0,
               $$this[25]($$this,param[1]));
      },
    function($$this,param)
     {return Ast_helper["Type"][3]
              (/* Some */[0,$$this[21]($$this,param[4])],
               /* Some */[0,$$this[2]($$this,param[5])],
-              0,
+              /* None */0,
               /* Some */[0,param[2]],
               map_loc($$this,param[1]),
               $$this[34]($$this,param[3]));
@@ -1125,8 +1131,8 @@ var
     {return Ast_helper["Mb"][1]
              (/* Some */[0,$$this[21]($$this,param[4])],
               /* Some */[0,$$this[2]($$this,param[3])],
-              0,
-              0,
+              /* None */0,
+              /* None */0,
               map_loc($$this,param[1]),
               $$this[24]($$this,param[2]));
      },
@@ -1134,8 +1140,8 @@ var
     {return Ast_helper["Md"][1]
              (/* Some */[0,$$this[21]($$this,param[4])],
               /* Some */[0,$$this[2]($$this,param[3])],
-              0,
-              0,
+              /* None */0,
+              /* None */0,
               map_loc($$this,param[1]),
               $$this[25]($$this,param[2]));
      },
@@ -1145,8 +1151,8 @@ var
     {return Ast_helper["Mtd"][1]
              (/* Some */[0,$$this[21]($$this,param[4])],
               /* Some */[0,$$this[2]($$this,param[3])],
-              0,
-              0,
+              /* None */0,
+              /* None */0,
               map_opt($$this[25]($$this),param[2]),
               map_loc($$this,param[1]));
      },
@@ -1154,13 +1160,13 @@ var
     {return Ast_helper["Opn"][1]
              (/* Some */[0,$$this[21]($$this,param[3])],
               /* Some */[0,$$this[2]($$this,param[4])],
-              0,
+              /* None */0,
               /* Some */[0,param[2]],
               map_loc($$this,param[1]));
      },
    P[1],
    function($$this,param)
-    {switch(param)
+    {switch(param[0])
       {case 0:return /* PStr */[0,$$this[32]($$this,param[1])];
        case 1:return /* PTyp */[1,$$this[34]($$this,param[1])];
        case 2:
@@ -1182,8 +1188,8 @@ var
     {return Ast_helper["Vb"][1]
              (/* Some */[0,$$this[21]($$this,param[4])],
               /* Some */[0,$$this[2]($$this,param[3])],
-              0,
-              0,
+              /* None */0,
+              /* None */0,
               $$this[28]($$this,param[1]),
               $$this[15]($$this,param[2]));
      },
@@ -1191,7 +1197,7 @@ var
     {return Ast_helper["Val"][1]
              (/* Some */[0,$$this[21]($$this,param[5])],
               /* Some */[0,$$this[2]($$this,param[4])],
-              0,
+              /* None */0,
               /* Some */[0,param[3]],
               map_loc($$this,param[1]),
               $$this[34]($$this,param[2]));
@@ -1207,18 +1213,26 @@ var
              Pervasives["@"]
               (/* :: */[0,
                 Ast_helper["Str"][2]
-                 (0,
-                  0,
-                  Ast_helper["Exp"][4](0,0,/* Const_string */[2,param[2],0])),
+                 (/* None */0,
+                  /* None */0,
+                  Ast_helper["Exp"][4]
+                   (/* None */0,
+                    /* None */0,
+                    /* Const_string */[2,param[2],/* None */0])),
                 /* :: */[0,
                  Ast_helper["Str"][2]
-                  (0,
-                   0,
-                   Ast_helper["Exp"][4](0,0,/* Const_string */[2,param[4],0])),
-                 0]],
+                  (/* None */0,
+                   /* None */0,
+                   Ast_helper["Exp"][4]
+                    (/* None */0,
+                     /* None */0,
+                     /* Const_string */[2,param[4],/* None */0])),
+                 /* [] */0]],
                List["map"]
                 (function(ext)
-                  {return Ast_helper["Str"][15](0,0,extension_of_error(ext));},
+                  {return Ast_helper["Str"][15]
+                           (/* None */0,/* None */0,extension_of_error(ext));
+                   },
                  param[3]))]];
     };
 
@@ -1231,12 +1245,15 @@ var
              /* :: */[0,
               Ast_helper["Str"][2]
                (/* Some */[0,loc],
-                0,
-                Ast_helper["Exp"][4](0,0,/* Const_string */[2,s,0])),
-              0]]];
+                /* None */0,
+                Ast_helper["Exp"][4]
+                 (/* None */0,/* None */0,/* Const_string */[2,s,/* None */0])),
+              /* [] */0]]];
     };
 
-var compare=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var
+ compare=
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var StringMap=Map["Make"]([0,compare]);
 
@@ -1247,7 +1264,12 @@ var
   function(k)
    {try
      {return /* Some */[0,StringMap[22](k,cookies[1])];}
-    catch(exn){if(exn=Not_found){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1265,15 +1287,22 @@ var
 
 var
  make_string=
-  function(x){return Ast_helper["Exp"][4](0,0,/* Const_string */[2,x,0]);};
+  function(x)
+   {return Ast_helper["Exp"][4]
+            (/* None */0,/* None */0,/* Const_string */[2,x,/* None */0]);
+    };
 
 var
  make_bool=
   function(x)
    {if(x)
-     {return Ast_helper["Exp"][12](0,0,lid("true"),0);}
+     {return Ast_helper["Exp"][12]
+              (/* None */0,/* None */0,lid("true"),/* None */0);
+      }
     else
-     {return Ast_helper["Exp"][12](0,0,lid("false"),0);}
+     {return Ast_helper["Exp"][12]
+              (/* None */0,/* None */0,lid("false"),/* None */0);
+      }
     };
 
 var
@@ -1281,31 +1310,43 @@ var
   function(f,lst)
    {if(lst)
      {return Ast_helper["Exp"][12]
-              (0,
-               0,
+              (/* None */0,
+               /* None */0,
                lid("::"),
                /* Some */[0,
                 Ast_helper["Exp"][11]
-                 (0,0,/* :: */[0,f(lst[1]),/* :: */[0,make_list(f,lst[2]),0]])]);
+                 (/* None */0,
+                  /* None */0,
+                  /* :: */[0,
+                   f(lst[1]),
+                   /* :: */[0,make_list(f,lst[2]),/* [] */0]])]);
       }
     else
-     {return Ast_helper["Exp"][12](0,0,lid("[]"),0);}
+     {return Ast_helper["Exp"][12]
+              (/* None */0,/* None */0,lid("[]"),/* None */0);
+      }
     };
 
 var
  make_pair=
   function(f1,f2,param)
    {return Ast_helper["Exp"][11]
-            (0,0,/* :: */[0,f1(param[1]),/* :: */[0,f2(param[2]),0]]);
+            (/* None */0,
+             /* None */0,
+             /* :: */[0,f1(param[1]),/* :: */[0,f2(param[2]),/* [] */0]]);
     };
 
 var
  make_option=
   function(f,opt)
    {if(opt)
-     {return Ast_helper["Exp"][12](0,0,lid("Some"),/* Some */[0,f(opt[1])]);}
+     {return Ast_helper["Exp"][12]
+              (/* None */0,/* None */0,lid("Some"),/* Some */[0,f(opt[1])]);
+      }
     else
-     {return Ast_helper["Exp"][12](0,0,lid("None"),0);}
+     {return Ast_helper["Exp"][12]
+              (/* None */0,/* None */0,lid("None"),/* None */0);
+      }
     };
 
 var
@@ -1325,17 +1366,21 @@ var
             /* record */[0,"ocaml.ppx.context",Location["none"]],
             /* PStr */[0,
              /* :: */[0,
-              Ast_helper["Str"][2](0,0,Ast_helper["Exp"][14](0,0,fields,0)),
-              0]]];
+              Ast_helper["Str"][2]
+               (/* None */0,
+                /* None */0,
+                Ast_helper["Exp"][14]
+                 (/* None */0,/* None */0,fields,/* None */0)),
+              /* [] */0]]];
     };
 
 var
  make=
-  function(tool_name$1,param)
+  function(tool_name,param)
    {var
      fields=
       /* :: */[0,
-       /* tuple */[0,lid("tool_name"),make_string(tool_name$1)],
+       /* tuple */[0,lid("tool_name"),make_string(tool_name)],
        /* :: */[0,
         /* tuple */[0,
          lid("include_dirs"),
@@ -1354,7 +1399,7 @@ var
             make_option(make_string,Clflags["for_package"][1])],
            /* :: */[0,
             /* tuple */[0,lid("debug"),make_bool(Clflags["debug"][1])],
-            /* :: */[0,get_cookies(0),0]]]]]]];
+            /* :: */[0,get_cookies(/* () */0),/* [] */0]]]]]]];
     
     return mk(fields);
     };
@@ -1364,18 +1409,18 @@ var
   function(param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:
        var match=param[1];
        
        if(match)
         {var match$1=match[1][1];
          
-         switch(match$1)
+         switch(match$1[0])
           {case 0:
             var match$2=match$1[1][1];
             
-            switch(match$2)
+            switch(match$2[0])
              {case 11:
                if(match$2[2])
                 {exit=51;}
@@ -1400,13 +1445,19 @@ var
     switch(exit)
      {case 51:
        return Location["raise_errorf"]
-               (0,
-                0,
-                0,
-                [0,
-                 [11,
+               (/* None */0,
+                /* None */0,
+                /* None */0,
+                [/* Format */0,
+                 [/* String_literal */11,
                   "Internal error: invalid [",
-                  [17,5,[17,[2,111],[11,"caml.ppx.context] syntax",0]]]],
+                  [/* Formatting_lit */17,
+                   /* Escaped_at */5,
+                   [/* Formatting_lit */17,
+                    [/* Scan_indic */2,111],
+                    [/* String_literal */11,
+                     "caml.ppx.context] syntax",
+                     /* End_of_format */0]]]],
                  "Internal error: invalid [@@@ocaml.ppx.context] syntax"]);
        
       }
@@ -1425,11 +1476,11 @@ var
             
             var exit;
             
-            switch(match)
+            switch(match[0])
              {case 1:
                var match$1=match[1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 2:if(match$1[2]){exit=44;}else{return match$1[1];}
                  default:exit=44;}
                
@@ -1438,17 +1489,23 @@ var
             switch(exit)
              {case 44:
                return Location["raise_errorf"]
-                       (0,
-                        0,
-                        0,
-                        [0,
-                         [11,
+                       (/* None */0,
+                        /* None */0,
+                        /* None */0,
+                        [/* Format */0,
+                         [/* String_literal */11,
                           "Internal error: invalid [",
-                          [17,
-                           5,
-                           [17,
-                            [2,111],
-                            [11,"caml.ppx.context { ",[2,0,[11," }] string syntax",0]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Escaped_at */5,
+                           [/* Formatting_lit */17,
+                            [/* Scan_indic */2,111],
+                            [/* String_literal */11,
+                             "caml.ppx.context { ",
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " }] string syntax",
+                               /* End_of_format */0]]]]]],
                          "Internal error: invalid [@@@ocaml.ppx.context { %s }] string syntax"],
                         name);
                
@@ -1462,15 +1519,16 @@ var
             
             var exit;
             
-            switch(match)
+            switch(match[0])
              {case 9:
                var match$1=match[1][1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:
                   switch(match$1[1])
-                   {case "false":if(match[2]){exit=45;}else{return 0;}
-                    case "true":if(match[2]){exit=45;}else{return 1;}
+                   {case "false":
+                     if(match[2]){exit=45;}else{return /* false */0;}
+                    case "true":if(match[2]){exit=45;}else{return /* true */1;}
                     default:exit=45;}
                   
                  case 1:exit=45;
@@ -1482,17 +1540,23 @@ var
             switch(exit)
              {case 45:
                return Location["raise_errorf"]
-                       (0,
-                        0,
-                        0,
-                        [0,
-                         [11,
+                       (/* None */0,
+                        /* None */0,
+                        /* None */0,
+                        [/* Format */0,
+                         [/* String_literal */11,
                           "Internal error: invalid [",
-                          [17,
-                           5,
-                           [17,
-                            [2,111],
-                            [11,"caml.ppx.context { ",[2,0,[11," }] bool syntax",0]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Escaped_at */5,
+                           [/* Formatting_lit */17,
+                            [/* Scan_indic */2,111],
+                            [/* String_literal */11,
+                             "caml.ppx.context { ",
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " }] bool syntax",
+                               /* End_of_format */0]]]]]],
                          "Internal error: invalid [@@@ocaml.ppx.context { %s }] bool syntax"],
                         name);
                
@@ -1506,11 +1570,11 @@ var
             
             var exit;
             
-            switch(match)
+            switch(match[0])
              {case 9:
                var match$1=match[1][1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:
                   switch(match$1[1])
                    {case "::":
@@ -1519,7 +1583,7 @@ var
                      if(match$2)
                       {var match$3=match$2[1][1];
                        
-                       switch(match$3)
+                       switch(match$3[0])
                         {case 8:
                           var match$4=match$3[1];
                           
@@ -1546,7 +1610,7 @@ var
                      else
                       {exit=46;}
                      
-                    case "[]":if(match[2]){exit=46;}else{return 0;}
+                    case "[]":if(match[2]){exit=46;}else{return /* [] */0;}
                     default:exit=46;}
                   
                  case 1:exit=46;
@@ -1558,17 +1622,23 @@ var
             switch(exit)
              {case 46:
                return Location["raise_errorf"]
-                       (0,
-                        0,
-                        0,
-                        [0,
-                         [11,
+                       (/* None */0,
+                        /* None */0,
+                        /* None */0,
+                        [/* Format */0,
+                         [/* String_literal */11,
                           "Internal error: invalid [",
-                          [17,
-                           5,
-                           [17,
-                            [2,111],
-                            [11,"caml.ppx.context { ",[2,0,[11," }] list syntax",0]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Escaped_at */5,
+                           [/* Formatting_lit */17,
+                            [/* Scan_indic */2,111],
+                            [/* String_literal */11,
+                             "caml.ppx.context { ",
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " }] list syntax",
+                               /* End_of_format */0]]]]]],
                          "Internal error: invalid [@@@ocaml.ppx.context { %s }] list syntax"],
                         name);
                
@@ -1582,7 +1652,7 @@ var
             
             var exit;
             
-            switch(match)
+            switch(match[0])
              {case 8:
                var match$1=match[1];
                
@@ -1606,17 +1676,23 @@ var
             switch(exit)
              {case 47:
                return Location["raise_errorf"]
-                       (0,
-                        0,
-                        0,
-                        [0,
-                         [11,
+                       (/* None */0,
+                        /* None */0,
+                        /* None */0,
+                        [/* Format */0,
+                         [/* String_literal */11,
                           "Internal error: invalid [",
-                          [17,
-                           5,
-                           [17,
-                            [2,111],
-                            [11,"caml.ppx.context { ",[2,0,[11," }] pair syntax",0]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Escaped_at */5,
+                           [/* Formatting_lit */17,
+                            [/* Scan_indic */2,111],
+                            [/* String_literal */11,
+                             "caml.ppx.context { ",
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " }] pair syntax",
+                               /* End_of_format */0]]]]]],
                          "Internal error: invalid [@@@ocaml.ppx.context { %s }] pair syntax"],
                         name);
                
@@ -1630,14 +1706,14 @@ var
             
             var exit;
             
-            switch(match)
+            switch(match[0])
              {case 9:
                var match$1=match[1][1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:
                   switch(match$1[1])
-                   {case "None":if(match[2]){exit=48;}else{return 0;}
+                   {case "None":if(match[2]){exit=48;}else{return /* None */0;}
                     case "Some":
                      var match$2=match[2];
                      
@@ -1657,17 +1733,23 @@ var
             switch(exit)
              {case 48:
                return Location["raise_errorf"]
-                       (0,
-                        0,
-                        0,
-                        [0,
-                         [11,
+                       (/* None */0,
+                        /* None */0,
+                        /* None */0,
+                        [/* Format */0,
+                         [/* String_literal */11,
                           "Internal error: invalid [",
-                          [17,
-                           5,
-                           [17,
-                            [2,111],
-                            [11,"caml.ppx.context { ",[2,0,[11," }] option syntax",0]]]]]],
+                          [/* Formatting_lit */17,
+                           /* Escaped_at */5,
+                           [/* Formatting_lit */17,
+                            [/* Scan_indic */2,111],
+                            [/* String_literal */11,
+                             "caml.ppx.context { ",
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " }] option syntax",
+                               /* End_of_format */0]]]]]],
                          "Internal error: invalid [@@@ocaml.ppx.context { %s }] option syntax"],
                         name);
                
@@ -1702,7 +1784,7 @@ var
           case "tool_name":return tool_name_ref[1]=get_string(payload),0;
           default:exit=43;}
         
-        switch(exit){case 43:return 0;}
+        switch(exit){case 43:return /* () */0;}
         };
     
     return List["iter"]
@@ -1711,13 +1793,13 @@ var
                
                var exit;
                
-               switch(match)
+               switch(match[0])
                 {case 0:return field(match[1],param[2]);
                  case 1:exit=41;
                  case 2:exit=41;
                  }
                
-               switch(exit){case 41:return 0;}
+               switch(exit){case 41:return /* () */0;}
                },
              fields);
     };
@@ -1733,17 +1815,21 @@ var
           
           var exit;
           
-          switch(match)
-           {case 0:switch(match[1]){case "cookies":return 0;default:exit=38;}
+          switch(match[0])
+           {case 0:
+             switch(match[1])
+              {case "cookies":return /* false */0;default:exit=38;}
+             
             case 1:exit=38;
             case 2:exit=38;
             }
           
-          switch(exit){case 38:return 1;}
+          switch(exit){case 38:return /* true */1;}
           },
         fields);
     
-    return Pervasives["@"](fields$1,/* :: */[0,get_cookies(0),0]);
+    return Pervasives["@"]
+            (fields$1,/* :: */[0,get_cookies(/* () */0),/* [] */0]);
     };
 
 var
@@ -1775,27 +1861,29 @@ var
        (ic,Config["ast_impl_magic_number"]["length"]);
     
     if
-     ("unknown primitive:caml_string_notequal"&&
-      "unknown primitive:caml_string_notequal")
+     (CamlPrimitive["caml_string_notequal"]
+       (magic,Config["ast_impl_magic_number"])&&
+      CamlPrimitive["caml_string_notequal"]
+       (magic,Config["ast_intf_magic_number"]))
      {Pervasives["failwith"]
        ("Ast_mapper: OCaml version mismatch or malformed input")}
     else
      {}
     
-    Location["input_name"][1]=Pervasives["input_value"](ic),0;
+    Location["input_name"][1]=Pervasives["input_value"](ic);
     var ast=Pervasives["input_value"](ic);
     
     Pervasives["close_in"](ic);
     var
      implem=
-      function(ast$1)
+      function(ast)
        {try
          {var exit;
           
-          if(ast$1)
-           {var match=ast$1[1][1];
+          if(ast)
+           {var match=ast[1][1];
             
-            switch(match)
+            switch(match[0])
              {case 13:
                var match$1=match[1];
                
@@ -1803,7 +1891,7 @@ var
                 {case "ocaml.ppx.context":
                   var
                    match$2=
-                    /* tuple */[0,PpxContext[10](match$1[2]),ast$1[2]];
+                    /* tuple */[0,PpxContext[10](match$1[2]),ast[2]];
                   
                  default:exit=30;}
                
@@ -1812,20 +1900,20 @@ var
           else
            {exit=30;}
           
-          switch(exit){case 30:var match$2=/* tuple */[0,0,ast$1];}
+          switch(exit){case 30:var match$2=/* tuple */[0,/* [] */0,ast];}
           
           var fields=match$2[1];
           
           PpxContext[11](fields);
-          var mapper$1=mapper(0);
+          var mapper$1=mapper(/* () */0);
           
-          var ast$2=mapper$1[32](mapper$1,match$2[2]);
+          var ast$1=mapper$1[32](mapper$1,match$2[2]);
           
           var fields$1=PpxContext[12](fields);
           
           return /* :: */[0,
-                  Ast_helper["Str"][16](0,PpxContext[8](fields$1)),
-                  ast$2];
+                  Ast_helper["Str"][16](/* None */0,PpxContext[8](fields$1)),
+                  ast$1];
           }
         catch(exn)
          {var match$3=Location["error_of_exn"](exn);
@@ -1833,9 +1921,11 @@ var
           if(match$3)
            {return /* :: */[0,
                     /* record */[0,
-                     /* Pstr_extension */[14,extension_of_error(match$3[1]),0],
+                     /* Pstr_extension */[14,
+                      extension_of_error(match$3[1]),
+                      /* [] */0],
                      Location["none"]],
-                    0];
+                    /* [] */0];
             }
           else
            {throw exn;}
@@ -1844,14 +1934,14 @@ var
     
     var
      iface=
-      function(ast$1)
+      function(ast)
        {try
          {var exit;
           
-          if(ast$1)
-           {var match=ast$1[1][1];
+          if(ast)
+           {var match=ast[1][1];
             
-            switch(match)
+            switch(match[0])
              {case 11:
                var match$1=match[1];
                
@@ -1859,7 +1949,7 @@ var
                 {case "ocaml.ppx.context":
                   var
                    match$2=
-                    /* tuple */[0,PpxContext[10](match$1[2]),ast$1[2]];
+                    /* tuple */[0,PpxContext[10](match$1[2]),ast[2]];
                   
                  default:exit=23;}
                
@@ -1868,20 +1958,20 @@ var
           else
            {exit=23;}
           
-          switch(exit){case 23:var match$2=/* tuple */[0,0,ast$1];}
+          switch(exit){case 23:var match$2=/* tuple */[0,/* [] */0,ast];}
           
           var fields=match$2[1];
           
           PpxContext[11](fields);
-          var mapper$1=mapper(0);
+          var mapper$1=mapper(/* () */0);
           
-          var ast$2=mapper$1[30](mapper$1,match$2[2]);
+          var ast$1=mapper$1[30](mapper$1,match$2[2]);
           
           var fields$1=PpxContext[12](fields);
           
           return /* :: */[0,
-                  Ast_helper["Sig"][14](0,PpxContext[8](fields$1)),
-                  ast$2];
+                  Ast_helper["Sig"][14](/* None */0,PpxContext[8](fields$1)),
+                  ast$1];
           }
         catch(exn)
          {var match$3=Location["error_of_exn"](exn);
@@ -1889,16 +1979,20 @@ var
           if(match$3)
            {return /* :: */[0,
                     /* record */[0,
-                     /* Psig_extension */[12,extension_of_error(match$3[1]),0],
+                     /* Psig_extension */[12,
+                      extension_of_error(match$3[1]),
+                      /* [] */0],
                      Location["none"]],
-                    0];
+                    /* [] */0];
             }
           else
            {throw exn;}
           }
         };
     
-    if("unknown primitive:caml_string_equal")
+    if
+     (CamlPrimitive["caml_string_equal"]
+       (magic,Config["ast_impl_magic_number"]))
      {var ast$1=implem(ast);}
     else
      {var ast$1=iface(ast);}
@@ -1913,19 +2007,19 @@ var
 
 var
  drop_ppx_context_str=
-  function(restore$1,items)
+  function(restore,items)
    {var exit;
     
     if(items)
      {var match=items[1][1];
       
-      switch(match)
+      switch(match[0])
        {case 13:
          var match$1=match[1];
          
          switch(match$1[1][1])
           {case "ocaml.ppx.context":
-            if(restore$1){PpxContext[11](PpxContext[10](match$1[2]))}else{}
+            if(restore){PpxContext[11](PpxContext[10](match$1[2]))}else{}
             
             return items[2];
             
@@ -1941,19 +2035,19 @@ var
 
 var
  drop_ppx_context_sig=
-  function(restore$1,items)
+  function(restore,items)
    {var exit;
     
     if(items)
      {var match=items[1][1];
       
-      switch(match)
+      switch(match[0])
        {case 11:
          var match$1=match[1];
          
          switch(match$1[1][1])
           {case "ocaml.ppx.context":
-            if(restore$1){PpxContext[11](PpxContext[10](match$1[2]))}else{}
+            if(restore){PpxContext[11](PpxContext[10](match$1[2]))}else{}
             
             return items[2];
             
@@ -1969,14 +2063,20 @@ var
 
 var
  add_ppx_context_str=
-  function(tool_name$1,ast)
-   {return /* :: */[0,Ast_helper["Str"][16](0,ppx_context(tool_name$1,0)),ast];
+  function(tool_name,ast)
+   {return /* :: */[0,
+            Ast_helper["Str"][16]
+             (/* None */0,ppx_context(tool_name,/* () */0)),
+            ast];
     };
 
 var
  add_ppx_context_sig=
-  function(tool_name$1,ast)
-   {return /* :: */[0,Ast_helper["Sig"][14](0,ppx_context(tool_name$1,0)),ast];
+  function(tool_name,ast)
+   {return /* :: */[0,
+            Ast_helper["Sig"][14]
+             (/* None */0,ppx_context(tool_name,/* () */0)),
+            ast];
     };
 
 var
@@ -1990,7 +2090,7 @@ var
    {try
      {var a=Sys["argv"];
       
-      var n=a["length"];
+      var n=/* -1 for tag */a["length"]-1;
       
       if(n>2)
        {var
@@ -2001,22 +2101,26 @@ var
             catch(exn)
              {var f=function(param$1,param$2){throw exn;};
               
-              var newrecord="unknown primitive:duprecord regular 40";
+              var newrecord=/* unknown */"duprecord regular 40";
               
-              newrecord[30]=f,0;
-              newrecord[32]=f,0;
+              newrecord[30]=f;
+              newrecord[32]=f;
               return newrecord;
               }
             };
         
-        return apply_lazy(a[n-2],a[n-1],mapper$1);
+        return apply_lazy(a[n-2+1],a[n-1+1],mapper$1);
         }
       else
        {Printf["eprintf"]
-         ([0,
-           [11,
+         ([/* Format */0,
+           [/* String_literal */11,
             "Usage: ",
-            [2,0,[11," [extra_args] <infile> <outfile>\n",[10,0]]]],
+            [/* String */2,
+             /* No_padding */0,
+             [/* String_literal */11,
+              " [extra_args] <infile> <outfile>\n",
+              [/* Flush */10,/* End_of_format */0]]]],
            "Usage: %s [extra_args] <infile> <outfile>\n%!"],
           Sys["executable_name"]);
         return Pervasives["exit"](2);

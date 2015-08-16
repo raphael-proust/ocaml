@@ -1,17 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var List=require("List");
-var Hashtbl=require("Hashtbl");
+var $$String=require("./string.js");
+var List=require("./list.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var create=function(param){return Hashtbl["create"](0,13);};
+var create=function(param){return Hashtbl["create"](/* None */0,13);};
 
 var clear=Hashtbl["clear"];
 
-var Inconsistency="unknown primitive:caml_set_oo_id";
+var
+ Inconsistency=
+  CamlPrimitive["caml_set_oo_id"]([248,"Consistbl.Inconsistency",0]);
 
-var Not_available="unknown primitive:caml_set_oo_id";
+var
+ Not_available=
+  CamlPrimitive["caml_set_oo_id"]([248,"Consistbl.Not_available",0]);
 
 var
  check=
@@ -19,13 +24,13 @@ var
    {try
      {var match=Hashtbl["find"](tbl,name);
       
-      if("unknown primitive:caml_notequal")
+      if(CamlPrimitive["caml_notequal"](crc,match[1]))
        {throw [0,Inconsistency,name,source,match[2]];}
       else
        {return 0;}
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return Hashtbl["add"](tbl,name,/* tuple */[0,crc,source]);}
       else
        {throw exn;}
@@ -38,13 +43,17 @@ var
    {try
      {var match=Hashtbl["find"](tbl,name);
       
-      if("unknown primitive:caml_notequal")
+      if(CamlPrimitive["caml_notequal"](crc,match[1]))
        {throw [0,Inconsistency,name,source,match[2]];}
       else
        {return 0;}
       }
     catch(exn)
-     {if(exn=Not_found){throw [0,Not_available,name];}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,Not_available,name];}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -69,20 +78,20 @@ var
                          assc];
                  }
                catch(exn)
-                {if(exn=Not_found)
-                  {return /* :: */[0,/* tuple */[0,name,0],assc];}
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {return /* :: */[0,/* tuple */[0,name,/* None */0],assc];}
                  else
                   {throw exn;}
                  }
                },
-             0,
+             /* [] */0,
              l$1);
     };
 
 var
  filter=
   function(p,tbl)
-   {var to_remove=[0,0];
+   {var to_remove=[0,/* [] */0];
     
     Hashtbl["iter"]
      (function(name,param)

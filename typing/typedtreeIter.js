@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Misc=require("Misc");
+var List=require("./list.js");
+var Misc=require("./misc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  MakeIterator=
   function(Iter)
-   {var may_iter=function(f,v){if(v){return f(v[1]);}else{return 0;}};
+   {var may_iter=function(f,v){if(v){return f(v[1]);}else{return /* () */0;}};
     
     var
      iter_structure=
@@ -52,7 +53,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:iter_expression(match[1]);
           case 1:iter_bindings(match[1],match[2]);
           case 2:iter_value_description(match[1]);
@@ -108,7 +109,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=60;case 1:exit=60;}}
         else
          {switch(match[0])
@@ -133,12 +134,17 @@ var
            (function(td)
              {return List["exists"]
                       (function(param)
-                        {return "unknown primitive:caml_string_equal";},
+                        {return CamlPrimitive["caml_string_equal"]
+                                 (param[1][1],"nonrec");
+                         },
                        td[10]);
               },
             decls);
         
-        if(is_nonrec){var rec_flag=0;}else{var rec_flag=1;}
+        if(is_nonrec)
+         {var rec_flag=/* Nonrecursive */0;}
+        else
+         {var rec_flag=/* Recursive */1;}
         
         Iter[53](rec_flag);
         List["iter"](iter_type_declaration,decls);
@@ -151,7 +157,7 @@ var
        {Iter[4](ext);
         var match=ext[4];
         
-        switch(match)
+        switch(match[0])
          {case 0:
            List["iter"](iter_core_type,match[1]),
            option(iter_core_type,match[2]);
@@ -180,20 +186,20 @@ var
             
             var exit;
             
-            if(typeof cstr=="number")
+            if(typeof cstr==="number")
              {switch(cstr){case 0:exit=66;}}
             else
              {switch(cstr[0])
                {case 0:return iter_core_type(cstr[1]);case 1:exit=66;}}
             
-            switch(exit){case 66:return 0;}
+            switch(exit){case 66:return /* () */0;}
             },
           pat[3]);
         var match=pat[1];
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -218,7 +224,7 @@ var
         return Iter[29](pat);
         };
     
-    var option=function(f,x){if(x){return f(x[1]);}else{return 0;}};
+    var option=function(f,x){if(x){return f(x[1]);}else{return /* () */0;}};
     
     var
      iter_expression=
@@ -230,7 +236,7 @@ var
             
             var exit;
             
-            switch(cstr)
+            switch(cstr[0])
              {case 0:return iter_core_type(cstr[1]);
               case 1:
                option(iter_core_type,cstr[1]);return iter_core_type(cstr[2]);
@@ -239,14 +245,14 @@ var
               case 4:exit=71;
               }
             
-            switch(exit){case 71:return 0;}
+            switch(exit){case 71:return /* () */0;}
             },
           exp[3]);
         var match=exp[1];
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 2:iter_bindings(match[1],match[2]),iter_expression(match[3]);
           case 3:iter_cases(match[2]);
           case 4:
@@ -255,7 +261,10 @@ var
             (function(param)
               {var expo=param[2];
                
-               if(expo){return iter_expression(expo[1]);}else{return 0;}
+               if(expo)
+                {return iter_expression(expo[1]);}
+               else
+                {return /* () */0;}
                },
              match[2]);
           case 5:
@@ -340,7 +349,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:iter_value_description(match[1]);
           case 1:iter_type_declarations(match[1]);
           case 2:iter_type_extension(match[1]);
@@ -408,7 +417,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:exit=73;
           case 1:iter_signature(match[1]);
           case 2:
@@ -432,7 +441,7 @@ var
        {Iter[13](cstr);
         var exit;
         
-        switch(cstr)
+        switch(cstr[0])
          {case 0:exit=74;case 1:exit=75;case 2:exit=74;case 3:exit=75;}
         
         switch(exit){case 74:iter_type_declaration(cstr[1]);case 75:}
@@ -446,7 +455,7 @@ var
        {Iter[12](mexpr);
         var match=mexpr[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:
           case 1:iter_structure(match[1]);
           case 2:
@@ -474,7 +483,7 @@ var
        {Iter[14](cexpr);
         var match=cexpr[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:List["iter"](iter_core_type,match[3]);
           case 1:iter_class_structure(match[1]);
           case 2:
@@ -488,7 +497,10 @@ var
             (function(param)
               {var expo=param[2];
                
-               if(expo){return iter_expression(expo[1]);}else{return 0;}
+               if(expo)
+                {return iter_expression(expo[1]);}
+               else
+                {return /* () */0;}
                },
              match[2]);
           case 4:
@@ -517,7 +529,7 @@ var
        {Iter[19](ct);
         var match=ct[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:List["iter"](iter_core_type,match[3]);
           case 1:iter_class_signature(match[1]);
           case 2:iter_core_type(match[2]),iter_class_type(match[3])
@@ -543,7 +555,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:iter_class_type(match[1]);
           case 1:exit=76;
           case 2:exit=76;
@@ -567,7 +579,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=77;}}
         else
          {switch(match[0])
@@ -602,7 +614,7 @@ var
     var
      iter_row_field=
       function(rf)
-       {switch(rf)
+       {switch(rf[0])
          {case 0:return List["iter"](iter_core_type,rf[4]);
           case 1:return iter_core_type(rf[1]);
           }
@@ -614,12 +626,12 @@ var
        {Iter[23](cf);
         var match=cf[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:iter_class_expr(match[2]);
           case 1:
            var match$1=match[4];
            
-           switch(match$1)
+           switch(match$1[0])
             {case 0:iter_core_type(match$1[1]);
              case 1:iter_expression(match$1[2])
              }
@@ -627,7 +639,7 @@ var
           case 2:
            var match$2=match[3];
            
-           switch(match$2)
+           switch(match$2[0])
             {case 0:iter_core_type(match$2[1]);
              case 1:iter_expression(match$2[2])
              }
@@ -651,121 +663,121 @@ var
             iter_class_expr];
     };
 
-var enter_structure=function(param){return 0;};
+var enter_structure=function(param){return /* () */0;};
 
-var enter_value_description=function(param){return 0;};
+var enter_value_description=function(param){return /* () */0;};
 
-var enter_type_extension=function(param){return 0;};
+var enter_type_extension=function(param){return /* () */0;};
 
-var enter_extension_constructor=function(param){return 0;};
+var enter_extension_constructor=function(param){return /* () */0;};
 
-var enter_pattern=function(param){return 0;};
+var enter_pattern=function(param){return /* () */0;};
 
-var enter_expression=function(param){return 0;};
+var enter_expression=function(param){return /* () */0;};
 
-var enter_package_type=function(param){return 0;};
+var enter_package_type=function(param){return /* () */0;};
 
-var enter_signature=function(param){return 0;};
+var enter_signature=function(param){return /* () */0;};
 
-var enter_signature_item=function(param){return 0;};
+var enter_signature_item=function(param){return /* () */0;};
 
-var enter_module_type_declaration=function(param){return 0;};
+var enter_module_type_declaration=function(param){return /* () */0;};
 
-var enter_module_type=function(param){return 0;};
+var enter_module_type=function(param){return /* () */0;};
 
-var enter_module_expr=function(param){return 0;};
+var enter_module_expr=function(param){return /* () */0;};
 
-var enter_with_constraint=function(param){return 0;};
+var enter_with_constraint=function(param){return /* () */0;};
 
-var enter_class_expr=function(param){return 0;};
+var enter_class_expr=function(param){return /* () */0;};
 
-var enter_class_signature=function(param){return 0;};
+var enter_class_signature=function(param){return /* () */0;};
 
-var enter_class_declaration=function(param){return 0;};
+var enter_class_declaration=function(param){return /* () */0;};
 
-var enter_class_description=function(param){return 0;};
+var enter_class_description=function(param){return /* () */0;};
 
-var enter_class_type_declaration=function(param){return 0;};
+var enter_class_type_declaration=function(param){return /* () */0;};
 
-var enter_class_type=function(param){return 0;};
+var enter_class_type=function(param){return /* () */0;};
 
-var enter_class_type_field=function(param){return 0;};
+var enter_class_type_field=function(param){return /* () */0;};
 
-var enter_core_type=function(param){return 0;};
+var enter_core_type=function(param){return /* () */0;};
 
-var enter_core_field_type=function(param){return 0;};
+var enter_core_field_type=function(param){return /* () */0;};
 
-var enter_class_structure=function(param){return 0;};
+var enter_class_structure=function(param){return /* () */0;};
 
-var enter_class_field=function(param){return 0;};
+var enter_class_field=function(param){return /* () */0;};
 
-var enter_structure_item=function(param){return 0;};
+var enter_structure_item=function(param){return /* () */0;};
 
-var leave_structure=function(param){return 0;};
+var leave_structure=function(param){return /* () */0;};
 
-var leave_value_description=function(param){return 0;};
+var leave_value_description=function(param){return /* () */0;};
 
-var leave_type_extension=function(param){return 0;};
+var leave_type_extension=function(param){return /* () */0;};
 
-var leave_extension_constructor=function(param){return 0;};
+var leave_extension_constructor=function(param){return /* () */0;};
 
-var leave_pattern=function(param){return 0;};
+var leave_pattern=function(param){return /* () */0;};
 
-var leave_expression=function(param){return 0;};
+var leave_expression=function(param){return /* () */0;};
 
-var leave_package_type=function(param){return 0;};
+var leave_package_type=function(param){return /* () */0;};
 
-var leave_signature=function(param){return 0;};
+var leave_signature=function(param){return /* () */0;};
 
-var leave_signature_item=function(param){return 0;};
+var leave_signature_item=function(param){return /* () */0;};
 
-var leave_module_type_declaration=function(param){return 0;};
+var leave_module_type_declaration=function(param){return /* () */0;};
 
-var leave_module_type=function(param){return 0;};
+var leave_module_type=function(param){return /* () */0;};
 
-var leave_module_expr=function(param){return 0;};
+var leave_module_expr=function(param){return /* () */0;};
 
-var leave_with_constraint=function(param){return 0;};
+var leave_with_constraint=function(param){return /* () */0;};
 
-var leave_class_expr=function(param){return 0;};
+var leave_class_expr=function(param){return /* () */0;};
 
-var leave_class_signature=function(param){return 0;};
+var leave_class_signature=function(param){return /* () */0;};
 
-var leave_class_declaration=function(param){return 0;};
+var leave_class_declaration=function(param){return /* () */0;};
 
-var leave_class_description=function(param){return 0;};
+var leave_class_description=function(param){return /* () */0;};
 
-var leave_class_type_declaration=function(param){return 0;};
+var leave_class_type_declaration=function(param){return /* () */0;};
 
-var leave_class_type=function(param){return 0;};
+var leave_class_type=function(param){return /* () */0;};
 
-var leave_class_type_field=function(param){return 0;};
+var leave_class_type_field=function(param){return /* () */0;};
 
-var leave_core_type=function(param){return 0;};
+var leave_core_type=function(param){return /* () */0;};
 
-var leave_core_field_type=function(param){return 0;};
+var leave_core_field_type=function(param){return /* () */0;};
 
-var leave_class_structure=function(param){return 0;};
+var leave_class_structure=function(param){return /* () */0;};
 
-var leave_class_field=function(param){return 0;};
+var leave_class_field=function(param){return /* () */0;};
 
-var leave_structure_item=function(param){return 0;};
+var leave_structure_item=function(param){return /* () */0;};
 
-var enter_binding=function(param){return 0;};
+var enter_binding=function(param){return /* () */0;};
 
-var leave_binding=function(param){return 0;};
+var leave_binding=function(param){return /* () */0;};
 
-var enter_bindings=function(param){return 0;};
+var enter_bindings=function(param){return /* () */0;};
 
-var leave_bindings=function(param){return 0;};
+var leave_bindings=function(param){return /* () */0;};
 
-var enter_type_declaration=function(param){return 0;};
+var enter_type_declaration=function(param){return /* () */0;};
 
-var leave_type_declaration=function(param){return 0;};
+var leave_type_declaration=function(param){return /* () */0;};
 
-var enter_type_declarations=function(param){return 0;};
+var enter_type_declarations=function(param){return /* () */0;};
 
-var leave_type_declarations=function(param){return 0;};
+var leave_type_declarations=function(param){return /* () */0;};
 
 var
  DefaultIteratorArgument=

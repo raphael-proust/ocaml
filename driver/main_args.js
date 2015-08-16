@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Warnings=require("Warnings");
-var Printf=require("Printf");
+var Warnings=require("./warnings.js");
+var Printf=require("./printf.js");
 
 
 var
@@ -659,14 +659,14 @@ var
             "-w",
             /* String */[4,f],
             Printf["sprintf"]
-             ([0,
-               [11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "<list>  Enable or disable warnings according to <list>:\n        +<spec>   enable warnings in <spec>\n        -<spec>   disable warnings in <spec>\n        ",
-                [17,
-                 [2,60],
-                 [11,
+                [/* Formatting_lit */17,
+                 [/* Scan_indic */2,60],
+                 [/* String_literal */11,
                   "spec>   enable warnings in <spec> and treat them as errors\n     <spec> can be:\n        <num>             a single warning number\n        <num1>..<num2>    a range of consecutive warning numbers\n        <letter>          a predefined set\n     default setting is ",
-                  [3,0,0]]]],
+                  [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
                "<list>  Enable or disable warnings according to <list>:\n        +<spec>   enable warnings in <spec>\n        -<spec>   disable warnings in <spec>\n        @<spec>   enable warnings in <spec> and treat them as errors\n     <spec> can be:\n        <num>             a single warning number\n        <num1>..<num2>    a range of consecutive warning numbers\n        <letter>          a predefined set\n     default setting is %S"],
               Warnings["defaults_w"])];
     };
@@ -678,10 +678,10 @@ var
             "-warn-error",
             /* String */[4,f],
             Printf["sprintf"]
-             ([0,
-               [11,
+             ([/* Format */0,
+               [/* String_literal */11,
                 "<list>  Enable or disable error status for warnings according\n     to <list>.  See option -w for the syntax of <list>.\n     Default setting is ",
-                [3,0,0]],
+                [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                "<list>  Enable or disable error status for warnings according\n     to <list>.  See option -w for the syntax of <list>.\n     Default setting is %S"],
               Warnings["defaults_warn_error"])];
     };
@@ -999,7 +999,9 @@ var
                                                                              mk_dtypedtree(F[22]),
                                                                              /* :: */[0,
                                                                               mk_drawlambda(F[23]),
-                                                                              /* :: */[0,mk_dlambda(F[24]),/* :: */[0,mk_dinstr(F[67]),0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                                                              /* :: */[0,
+                                                                               mk_dlambda(F[24]),
+                                                                               /* :: */[0,mk_dinstr(F[67]),/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
     
     return [0,list];
     };
@@ -1075,7 +1077,9 @@ var
                                       mk_dtypedtree(F[26]),
                                       /* :: */[0,
                                        mk_drawlambda(F[27]),
-                                       /* :: */[0,mk_dlambda(F[28]),/* :: */[0,mk_dinstr(F[35]),0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                       /* :: */[0,
+                                        mk_dlambda(F[28]),
+                                        /* :: */[0,mk_dinstr(F[35]),/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
     
     return [0,list];
     };
@@ -1247,7 +1251,7 @@ var
                                                                                       mk_dlinear(F[73]),
                                                                                       /* :: */[0,
                                                                                        mk_dstartup(F[74]),
-                                                                                       /* :: */[0,mk_opaque(F[81]),0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                                                                       /* :: */[0,mk_opaque(F[81]),/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
     
     return [0,list];
     };
@@ -1357,7 +1361,7 @@ var
                                                        mk_dscheduling(F[44]),
                                                        /* :: */[0,
                                                         mk_dlinear(F[45]),
-                                                        /* :: */[0,mk_dstartup(F[46]),0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                                        /* :: */[0,mk_dstartup(F[46]),/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
     
     return [0,list];
     };
@@ -1425,7 +1429,7 @@ var
                                   mk_vmthread(F[37]),
                                   /* :: */[0,
                                    mk_vnum(F[16]),
-                                   /* :: */[0,mk_w(F[17]),/* :: */[0,mk__(F[25]),0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
+                                   /* :: */[0,mk_w(F[17]),/* :: */[0,mk__(F[25]),/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
     
     return [0,list];
     };

@@ -1,35 +1,36 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Printlambda=require("Printlambda");
-var Typeopt=require("Typeopt");
-var Typedtree=require("Typedtree");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Btype=require("Btype");
-var Env=require("Env");
-var Predef=require("Predef");
-var Printf=require("Printf");
-var Clflags=require("Clflags");
-var Format=require("Format");
-var Switch=require("Switch");
-var Obj=require("Obj");
-var Misc=require("Misc");
-var Parmatch=require("Parmatch");
-var Lambda=require("Lambda");
-var Location=require("Location");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var CamlinternalLazy=require("CamlinternalLazy");
-var $$Array=require("Array");
+var Printlambda=require("./printlambda.js");
+var Typeopt=require("./typeopt.js");
+var Typedtree=require("./typedtree.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Btype=require("./btype.js");
+var Env=require("./env.js");
+var Predef=require("./predef.js");
+var Printf=require("./printf.js");
+var Clflags=require("./clflags.js");
+var Format=require("./format.js");
+var Switch=require("./switch.js");
+var Obj=require("./obj.js");
+var Misc=require("./misc.js");
+var Parmatch=require("./parmatch.js");
+var Lambda=require("./lambda.js");
+var Location=require("./location.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var dbg=0;
+var dbg=/* false */0;
 
 var
  string_of_lam=
   function(lam)
    {Printlambda["lambda"](Format["str_formatter"],lam);
-    return Format["flush_str_formatter"](0);
+    return Format["flush_str_formatter"](/* () */0);
     };
 
 var
@@ -67,7 +68,10 @@ var
     if(right)
      {return /* record */[0,/* :: */[0,right[1],param[1]],right[2]];}
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",70,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",70,8]];
+      }
     };
 
 var
@@ -78,16 +82,19 @@ var
     if(right)
      {return /* record */[0,/* :: */[0,Parmatch["omega"],param[1]],right[2]];}
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",74,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",74,8]];
+      }
     };
 
 var
  small_enough=
   function(n,param)
    {if(param)
-     {if(n<=0){return 0;}else{return small_enough(n-1,param[2]);}}
+     {if(n<=0){return /* false */0;}else{return small_enough(n-1,param[2]);}}
     else
-     {return 1;}
+     {return /* true */1;}
     };
 
 var
@@ -107,7 +114,10 @@ var
     if(left)
      {return /* record */[0,left[2],/* :: */[0,left[1],param[2]]];}
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",91,7]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",91,7]];
+      }
     };
 
 var ctx_rshift=function(ctx){return List["map"](rshift,ctx);};
@@ -116,7 +126,7 @@ var
  nchars=
   function(n,ps)
    {if(n<=0)
-     {return /* tuple */[0,0,ps];}
+     {return /* tuple */[0,/* [] */0,ps];}
     else
      {if(ps)
        {var match=nchars(n-1,ps[2]);
@@ -124,7 +134,10 @@ var
         return /* tuple */[0,/* :: */[0,ps[1],match[1]],match[2]];
         }
       else
-       {throw [0,Assert_failure,[0,"bytecomp/matching.ml",101,9]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"bytecomp/matching.ml",101,9]];
+        }
       }
     };
 
@@ -149,7 +162,10 @@ var
               Parmatch["set_args_erase_mutable"](left[1],param[2])];
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",115,7]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",115,7]];
+      }
     };
 
 var ctx_combine=function(ctx){return List["map"](combine,ctx);};
@@ -158,9 +174,9 @@ var
  ncols=
   function(param){if(param){return List["length"](param[1]);}else{return 0;}};
 
-var NoMatch="unknown primitive:caml_set_oo_id";
+var NoMatch=CamlPrimitive["caml_set_oo_id"]([248,"Matching.NoMatch",0]);
 
-var OrPat="unknown primitive:caml_set_oo_id";
+var OrPat=CamlPrimitive["caml_set_oo_id"]([248,"Matching.OrPat",0]);
 
 var
  filter_matrix=
@@ -182,7 +198,7 @@ var
             
             var exit;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){}}
             else
              {switch(match$1[0])
@@ -201,15 +217,15 @@ var
                try
                 {return /* :: */[0,matcher(p,ps),rem$1];}
                catch(exn)
-                {if(exn=NoMatch)
+                {if(exn===NoMatch)
                   {return rem$1;}
                  else
-                  {if(exn=OrPat)
+                  {if(exn===OrPat)
                     {var match$2=p[1];
                      
                      var exit$1;
                      
-                     if(typeof match$2=="number")
+                     if(typeof match$2==="number")
                       {switch(match$2){}}
                      else
                       {switch(match$2[0])
@@ -218,14 +234,17 @@ var
                                   (filter_rec
                                     (/* :: */[0,
                                       /* :: */[0,match$2[1],ps],
-                                      /* :: */[0,/* :: */[0,match$2[2],ps],0]]),
+                                      /* :: */[0,/* :: */[0,match$2[2],ps],/* [] */0]]),
                                    rem$1);
                           
                          default:exit$1=687;}}
                      
                      switch(exit$1)
                       {case 687:
-                        throw [0,Assert_failure,[0,"bytecomp/matching.ml",146,23]];
+                        throw [0,
+                               CamlPrimitive["caml_global_data"]["Assert_failure"],
+                               [0,"bytecomp/matching.ml",146,23]];
+                        
                        }
                      }
                    else
@@ -241,7 +260,7 @@ var
             }
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return filter_rec(pss);
@@ -267,7 +286,10 @@ var
              {if(pss[2])
                {exit=685;}
               else
-               {return /* :: */[0,/* tuple */[0,[0,0,0],match[2]],0];}
+               {return /* :: */[0,
+                        /* tuple */[0,[/* :: */0,/* [] */0,/* [] */0],match[2]],
+                        /* [] */0];
+                }
               }
             }
           else
@@ -285,7 +307,10 @@ var
               {if(pss$1[1])
                 {return /* :: */[0,/* tuple */[0,pss$1,i],rem];}
                else
-                {return /* :: */[0,/* tuple */[0,[0,0,0],i],rem];}
+                {return /* :: */[0,
+                         /* tuple */[0,[/* :: */0,/* [] */0,/* [] */0],i],
+                         rem];
+                 }
                }
              else
               {return rem;}
@@ -293,7 +318,7 @@ var
             }
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return make_rec(env);
@@ -308,7 +333,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -320,12 +345,12 @@ var
            
            var exit$1;
            
-           if(typeof match$1=="number")
+           if(typeof match$1==="number")
             {switch(match$1){case 0:return /* tuple */[0,p$1,rem];}}
            else
             {switch(match$1[0])
               {case 2:
-                if(Parmatch["const_compare"](cst,match$1[1])=0)
+                if(Parmatch["const_compare"](cst,match$1[1])===0)
                  {return /* tuple */[0,p$1,rem];}
                 else
                  {exit$1=671;}
@@ -343,7 +368,7 @@ var
            
            var exit$1;
            
-           if(typeof match$1=="number")
+           if(typeof match$1==="number")
             {switch(match$1){}}
            else
             {switch(match$1[0])
@@ -364,7 +389,7 @@ var
          
          var exit$1;
          
-         switch(match$1)
+         switch(match$1[0])
           {case 0:exit$1=670;
            case 1:exit$1=670;
            case 2:
@@ -375,7 +400,7 @@ var
               
               var exit$2;
               
-              if(typeof match$2=="number")
+              if(typeof match$2==="number")
                {switch(match$2)
                  {case 0:
                    return /* tuple */[0,p$1,Pervasives["@"](omegas$1,rem)];
@@ -385,7 +410,7 @@ var
                  {case 4:
                    var args=match$2[3];
                    
-                   if(List["length"](args)=nargs)
+                   if(List["length"](args)===nargs)
                     {return /* tuple */[0,p$1,Pervasives["@"](args,rem)];}
                    else
                     {exit$2=667;}
@@ -404,7 +429,7 @@ var
               
               var exit$2;
               
-              if(typeof match$2=="number")
+              if(typeof match$2==="number")
                {switch(match$2)
                  {case 0:
                    return /* tuple */[0,p$1,Pervasives["@"](omegas$1,rem)];
@@ -412,7 +437,7 @@ var
               else
                {switch(match$2[0])
                  {case 4:
-                   if("unknown primitive:caml_equal")
+                   if(CamlPrimitive["caml_equal"](cstr[6],match$2[2][6]))
                     {return /* tuple */[0,p$1,Pervasives["@"](match$2[3],rem)];}
                    else
                     {exit$2=669;}
@@ -437,7 +462,7 @@ var
              
              var exit$2;
              
-             if(typeof match$3=="number")
+             if(typeof match$3==="number")
               {switch(match$3)
                 {case 0:return /* tuple */[0,p$1,/* :: */[0,omega,rem]];}}
              else
@@ -446,7 +471,7 @@ var
                   var match$4=match$3[2];
                   
                   if(match$4)
-                   {if("unknown primitive:caml_string_equal")
+                   {if(CamlPrimitive["caml_string_equal"](lab,match$3[1]))
                      {return /* tuple */[0,p$1,/* :: */[0,match$4[1],rem]];}
                     else
                      {exit$2=672;}
@@ -465,7 +490,7 @@ var
              
              var exit$2;
              
-             if(typeof match$3=="number")
+             if(typeof match$3==="number")
               {switch(match$3){case 0:return /* tuple */[0,p$1,rem];}}
              else
               {switch(match$3[0])
@@ -473,7 +498,7 @@ var
                   if(match$3[2])
                    {exit$2=673;}
                   else
-                   {if("unknown primitive:caml_string_equal")
+                   {if(CamlPrimitive["caml_string_equal"](lab,match$3[1]))
                      {return /* tuple */[0,p$1,rem];}
                     else
                      {exit$2=673;}
@@ -493,7 +518,7 @@ var
            
            var exit$2;
            
-           if(typeof match$3=="number")
+           if(typeof match$3==="number")
             {switch(match$3){}}
            else
             {switch(match$3[0])
@@ -529,7 +554,7 @@ var
            
            var exit$2;
            
-           if(typeof match$3=="number")
+           if(typeof match$3==="number")
             {switch(match$3)
               {case 0:return /* tuple */[0,p$1,Pervasives["@"](omegas$2,rem)];
                }}
@@ -538,7 +563,7 @@ var
               {case 7:
                 var args=match$3[1];
                 
-                if(List["length"](args)=len)
+                if(List["length"](args)===len)
                  {return /* tuple */[0,p$1,Pervasives["@"](args,rem)];}
                 else
                  {exit$2=674;}
@@ -556,7 +581,7 @@ var
            
            var exit$2;
            
-           if(typeof match$3=="number")
+           if(typeof match$3==="number")
             {switch(match$3){}}
            else
             {switch(match$3[0])
@@ -596,7 +621,7 @@ var
             
             var exit;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){}}
             else
              {switch(match$1[0])
@@ -633,7 +658,7 @@ var
                          /* record */[0,/* :: */[0,match$2[1],l[1]],match$2[2]],
                          rem$1];
                  }
-               catch(exn){if(exn=NoMatch){return rem$1;}else{throw exn;}}
+               catch(exn){if(exn===NoMatch){return rem$1;}else{throw exn;}}
                
               }
             }
@@ -641,7 +666,7 @@ var
            {return Misc["fatal_error"]("Matching.filter_ctx");}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return filter_rec(ctx);
@@ -655,7 +680,7 @@ var
     return List["fold_right"]
             (function(ps,r)
               {return List["fold_right"]
-                       (function(param,r$1)
+                       (function(param,r)
                          {var match=nchars(n,param[2]);
                           
                           try
@@ -663,16 +688,16 @@ var
                                     /* record */[0,
                                      Pervasives["@"](Parmatch["lubs"](match[1],ps),param[1]),
                                      match[2]],
-                                    r$1];
+                                    r];
                             }
                           catch(exn)
-                           {if(exn=Parmatch["Empty"]){return r$1;}else{throw exn;}}
+                           {if(exn===Parmatch["Empty"]){return r;}else{throw exn;}}
                           },
                         ctx,
                         r);
                },
              pss,
-             0);
+             /* [] */0);
     };
 
 var
@@ -691,13 +716,13 @@ var
                            r];
                    }
                  catch(exn)
-                  {if(exn=Parmatch["Empty"]){return r;}else{throw exn;}}
+                  {if(exn===Parmatch["Empty"]){return r;}else{throw exn;}}
                  }
                else
                 {return Misc["fatal_error"]("Matching.ctx_lub");}
                },
              ctx,
-             0);
+             /* [] */0);
     };
 
 var
@@ -721,14 +746,22 @@ var
               (function(param)
                 {Printf["fprintf"]
                   (Pervasives["stderr"],
-                   [0,[11,"jump for ",[4,0,0,0,[12,10,0]]],"jump for %d\n"],
+                   [/* Format */0,
+                    [/* String_literal */11,
+                     "jump for ",
+                     [/* Int */4,
+                      /* Int_d */0,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      [/* Char_literal */12,10,/* End_of_format */0]]],
+                    "jump for %d\n"],
                    param[1]);
                  return pretty_ctx(param[2]);
                  },
                env);
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -741,11 +774,11 @@ var
       
       var j=x[1];
       
-      if("unknown primitive:caml_equal")
+      if(CamlPrimitive["caml_equal"](i,j))
        {return /* tuple */[0,x[2],rem];}
       else
-       {if("unknown primitive:caml_lessthan")
-         {return /* tuple */[0,0,all];}
+       {if(CamlPrimitive["caml_lessthan"](j,i))
+         {return /* tuple */[0,/* [] */0,all];}
         else
          {var match=jumps_extract(i,rem);
           
@@ -754,7 +787,7 @@ var
         }
       }
     else
-     {return [0,0,0];}
+     {return [/* tuple */0,/* [] */0,/* [] */0];}
     };
 
 var
@@ -765,23 +798,29 @@ var
       
       var x=param[1];
       
-      if("unknown primitive:caml_equal")
+      if(CamlPrimitive["caml_equal"](i,x[1]))
        {return rem;}
       else
        {return /* :: */[0,x,jumps_remove(i,rem)];}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
-var jumps_empty=0;
+var jumps_empty=/* [] */0;
 
-var jumps_is_empty=function(param){if(param){return 0;}else{return 1;}};
+var
+ jumps_is_empty=
+  function(param){if(param){return /* false */0;}else{return /* true */1;}};
 
 var
  jumps_singleton=
   function(i,ctx)
-   {if(ctx){return /* :: */[0,/* tuple */[0,i,ctx],0];}else{return 0;}};
+   {if(ctx)
+     {return /* :: */[0,/* tuple */[0,i,ctx],/* [] */0];}
+    else
+     {return /* [] */0;}
+    };
 
 var
  jumps_add=
@@ -797,10 +836,10 @@ var
             
             var j=x[1];
             
-            if("unknown primitive:caml_greaterthan")
+            if(CamlPrimitive["caml_greaterthan"](j,i))
              {return /* :: */[0,x,add(rem)];}
             else
-             {if("unknown primitive:caml_lessthan")
+             {if(CamlPrimitive["caml_lessthan"](j,i))
                {return /* :: */[0,/* tuple */[0,i,pss],all];}
               else
                {return /* :: */[0,
@@ -812,7 +851,7 @@ var
               }
             }
           else
-           {return /* :: */[0,/* tuple */[0,i,pss],0];}
+           {return /* :: */[0,/* tuple */[0,i,pss],/* [] */0];}
           };
       
       return add(jumps);
@@ -838,7 +877,7 @@ var
         
         var i1=x1[1];
         
-        if(i1=i2)
+        if(i1===i2)
          {return /* :: */[0,
                   /* tuple */[0,
                    i1,
@@ -884,7 +923,7 @@ var
    {if(envs)
      {if(envs[2]){return jumps_unions(merge(envs));}else{return envs[1];}}
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -904,7 +943,7 @@ var
                   {Parmatch["top_pretty"](Format["str_formatter"],p);
                    Pervasives["prerr_string"](" ");
                    return Pervasives["prerr_string"]
-                           (Format["flush_str_formatter"](0));
+                           (Format["flush_str_formatter"](/* () */0));
                    },
                  param[1]);
                return Pervasives["prerr_endline"]("");
@@ -920,7 +959,15 @@ var
      (function(param)
        {Printf["fprintf"]
          (Pervasives["stderr"],
-          [0,[11,"Matrix for ",[4,0,0,0,[12,10,0]]],"Matrix for %d\n"],
+          [/* Format */0,
+           [/* String_literal */11,
+            "Matrix for ",
+            [/* Int */4,
+             /* Int_d */0,
+             /* No_padding */0,
+             /* No_precision */0,
+             [/* Char_literal */12,10,/* End_of_format */0]]],
+           "Matrix for %d\n"],
           param[2]);
         return Parmatch["pretty_matrix"](param[1]);
         },
@@ -933,7 +980,7 @@ var pretty_pm=function(pm){return pretty_cases(pm[1]);};
 var
  pretty_precompiled=
   function(param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var x=param[1];
        
@@ -943,8 +990,14 @@ var
        return List["iter"]
                (function(param$1)
                  {Printf["eprintf"]
-                   ([0,
-                     [11,"++ Handler ",[4,0,0,0,[11," ++\n",0]]],
+                   ([/* Format */0,
+                     [/* String_literal */11,
+                      "++ Handler ",
+                      [/* Int */4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       [/* String_literal */11," ++\n",/* End_of_format */0]]],
                      "++ Handler %d ++\n"],
                     param$1[2]);
                   return pretty_pm(param$1[4]);
@@ -967,8 +1020,14 @@ var
     return List["iter"]
             (function(param)
               {Printf["eprintf"]
-                ([0,
-                  [11,"** DEFAULT ",[4,0,0,0,[11," **\n",0]]],
+                ([/* Format */0,
+                  [/* String_literal */11,
+                   "** DEFAULT ",
+                   [/* Int */4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    [/* String_literal */11," **\n",/* End_of_format */0]]],
                   "** DEFAULT %d **\n"],
                  param[1]);
                return pretty_precompiled(param[2]);
@@ -980,20 +1039,24 @@ var make_key=Lambda["make_key"];
 
 var StoreExp=Switch["Store"]([0,make_key]);
 
-var make_exit=function(i){return /* Lstaticraise */[9,i,0];};
+var make_exit=function(i){return /* Lstaticraise */[9,i,/* [] */0];};
 
 var
  make_catch=
   function(d,k)
    {var exit;
     
-    switch(d){case 9:if(d[2]){exit=630;}else{return k(d);}default:exit=630;}
+    switch(d[0])
+     {case 9:if(d[2]){exit=630;}else{return k(d);}default:exit=630;}
     
     switch(exit)
      {case 630:
-       var e=Lambda["next_raise_count"](0);
+       var e=Lambda["next_raise_count"](/* () */0);
        
-       return /* Lstaticcatch */[10,k(make_exit(e)),/* tuple */[0,e,0],d];
+       return /* Lstaticcatch */[10,
+               k(make_exit(e)),
+               /* tuple */[0,e,/* [] */0],
+               d];
        
       }
     };
@@ -1003,12 +1066,12 @@ var
   function(param)
    {var exit;
     
-    switch(param)
-     {case 4:if(param[1]!=1){exit=628;}else{return as_simple_exit(param[4]);}
+    switch(param[0])
+     {case 4:if(param[1]!==1){exit=628;}else{return as_simple_exit(param[4]);}
       case 9:if(param[2]){exit=628;}else{return /* Some */[0,param[1]];}
       default:exit=628;}
     
-    switch(exit){case 628:return 0;}
+    switch(exit){case 628:return /* None */0;}
     };
 
 var
@@ -1019,17 +1082,17 @@ var
     if(match)
      {return /* tuple */[0,match[1],function(act){return act;}];}
     else
-     {var i=Lambda["next_raise_count"](0);
+     {var i=Lambda["next_raise_count"](/* () */0);
       
       return /* tuple */[0,
               i,
               function(body)
-               {switch(body)
-                 {case 9:if(i=body[1]){return handler;}else{return body;}
+               {switch(body[0])
+                 {case 9:if(i===body[1]){return handler;}else{return body;}
                   default:
                    return /* Lstaticcatch */[10,
                            body,
-                           /* tuple */[0,i,0],
+                           /* tuple */[0,i,/* [] */0],
                            handler];
                    }
                 }];
@@ -1068,10 +1131,11 @@ var
            s_rec=
             function(param$1)
              {if(param$1)
-               {if("unknown primitive:caml_equal")
+               {if
+                 (CamlPrimitive["caml_equal"](raw_act0,tr_raw(param$1[1][2])))
                  {return s_rec(param$1[2]);}
                 else
-                 {return 0;}
+                 {return /* None */0;}
                 }
               else
                {return /* Some */[0,act];}
@@ -1079,13 +1143,14 @@ var
           
           return s_rec(rem);
           }
-        catch(exn){if(exn=Pervasives["Exit"]){return 0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===Pervasives["Exit"]){return /* None */0;}else{throw exn;}}
         }
       else
        {return /* Some */[0,act];}
       }
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
 var
@@ -1096,9 +1161,10 @@ var
       
       var raw2=tr_raw(act2);
       
-      return "unknown primitive:caml_equal";
+      return CamlPrimitive["caml_equal"](raw1,raw2);
       }
-    catch(exn){if(exn=Pervasives["Exit"]){return 0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===Pervasives["Exit"]){return /* false */0;}else{throw exn;}}
     };
 
 var
@@ -1108,7 +1174,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -1117,8 +1183,8 @@ var
         case 4:
          var exit$1;
          
-         switch(match[2][6])
-          {case 0:exit$1=611;case 1:exit$1=611;case 2:return 1;}
+         switch(match[2][6][0])
+          {case 0:exit$1=611;case 1:exit$1=611;case 2:return /* true */1;}
          
          switch(exit$1)
           {case 611:
@@ -1140,9 +1206,9 @@ var
         default:exit=608;}}
     
     switch(exit)
-     {case 613:"unknown block:(exit 610 (field 0 match/4564))";
-      case 614:"unknown block:(exit 609 (field 0 match/4564))";
-      case 608:return 0;
+     {case 613:var q=match[1];exit=610;
+      case 614:var ps$1=match[1];exit=609;
+      case 608:return /* false */0;
       case 609:return exc_insides(ps$1);
       case 610:return exc_inside(q);
       }
@@ -1158,7 +1224,7 @@ var
     var ps=param[1];
     
     if(exc_insides(ps))
-     {if(l){return 0;}else{return 1;}}
+     {if(l){return /* false */0;}else{return /* true */1;}}
     else
      {return List["for_all"]
               (function(param$1)
@@ -1169,19 +1235,19 @@ var
       }
     };
 
-var Var="unknown primitive:caml_set_oo_id";
+var Var=CamlPrimitive["caml_set_oo_id"]([248,"Matching.Var",0]);
 
 var
  simplify_or=
   function(p)
    {var
      simpl_rec=
-      function(p$1)
-       {var match=p$1[1];
+      function(p)
+       {var match=p[1];
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=605;}}
         else
          {switch(match[0])
@@ -1192,21 +1258,18 @@ var
              var id=match[2];
              
              try
-              {var newrecord="unknown primitive:duprecord regular 6";
+              {var newrecord=/* unknown */"duprecord regular 6";
                
-               newrecord[1]=/* Tpat_alias */[1,simpl_rec(match[1]),id,s],0;
+               newrecord[1]=/* Tpat_alias */[1,simpl_rec(match[1]),id,s];
                return newrecord;
                }
              catch(exn)
-              {if(exn[1]=Var)
-                {var newrecord$1="unknown primitive:duprecord regular 6";
+              {if(exn[1]===Var)
+                {var newrecord$1=/* unknown */"duprecord regular 6";
                  
                  throw [0,
                         Var,
-                        (newrecord$1[1]=
-                         /* Tpat_alias */[1,exn[2],id,s],
-                         0,
-                         newrecord$1)];
+                        (newrecord$1[1]=/* Tpat_alias */[1,exn[2],id,s],newrecord$1)];
                  }
                else
                 {throw exn;}
@@ -1215,9 +1278,9 @@ var
             case 6:
              var all_lbls=Parmatch["all_record_args"](match[1]);
              
-             var newrecord$2="unknown primitive:duprecord regular 6";
+             var newrecord$2=/* unknown */"duprecord regular 6";
              
-             newrecord$2[1]=/* Tpat_record */[6,all_lbls,match[2]],0;
+             newrecord$2[1]=/* Tpat_record */[6,all_lbls,match[2]];
              return newrecord$2;
              
             case 8:
@@ -1228,34 +1291,31 @@ var
              try
               {var q2=simpl_rec(match[2]);
                
-               var newrecord$3="unknown primitive:duprecord regular 6";
+               var newrecord$3=/* unknown */"duprecord regular 6";
                
-               newrecord$3[1]=/* Tpat_or */[8,q1,q2,o],0;
+               newrecord$3[1]=/* Tpat_or */[8,q1,q2,o];
                return newrecord$3;
                }
              catch(exn$1)
-              {if(exn$1[1]=Var)
-                {var newrecord$4="unknown primitive:duprecord regular 6";
+              {if(exn$1[1]===Var)
+                {var newrecord$4=/* unknown */"duprecord regular 6";
                  
                  throw [0,
                         Var,
-                        (newrecord$4[1]=
-                         /* Tpat_or */[8,q1,exn$1[2],o],
-                         0,
-                         newrecord$4)];
+                        (newrecord$4[1]=/* Tpat_or */[8,q1,exn$1[2],o],newrecord$4)];
                  }
                else
                 {throw exn$1;}
                }
              
-            default:return p$1;}}
+            default:return p;}}
         
-        switch(exit){case 605:throw [0,Var,p$1];}
+        switch(exit){case 605:throw [0,Var,p];}
         };
     
     try
      {return simpl_rec(p);}
-    catch(exn){if(exn[1]=Var){return exn[2];}else{throw exn;}}
+    catch(exn){if(exn[1]===Var){return exn[2];}else{throw exn;}}
     };
 
 var
@@ -1283,7 +1343,7 @@ var
               
               var match$1=pat[1];
               
-              if(typeof match$1=="number")
+              if(typeof match$1==="number")
                {switch(match$1){case 0:return /* :: */[0,cl,simplify(rem)];}}
               else
                {switch(match$1[0])
@@ -1291,7 +1351,7 @@ var
                    return /* :: */[0,
                            /* tuple */[0,
                             /* :: */[0,Parmatch["omega"],patl],
-                            Lambda["bind"](1,match$1[1],arg,action)],
+                            Lambda["bind"](/* Alias */1,match$1[1],arg,action)],
                            simplify(rem)];
                    
                   case 1:
@@ -1299,7 +1359,7 @@ var
                            (/* :: */[0,
                              /* tuple */[0,
                               /* :: */[0,match$1[1],patl],
-                              Lambda["bind"](1,match$1[2],arg,action)],
+                              Lambda["bind"](/* Alias */1,match$1[2],arg,action)],
                              rem]);
                    
                   case 6:
@@ -1308,9 +1368,9 @@ var
                    if(lbls)
                     {var all_lbls=Parmatch["all_record_args"](lbls);
                      
-                     var newrecord="unknown primitive:duprecord regular 6";
+                     var newrecord=/* unknown */"duprecord regular 6";
                      
-                     newrecord[1]=/* Tpat_record */[6,all_lbls,match$1[2]],0;
+                     newrecord[1]=/* Tpat_record */[6,all_lbls,match$1[2]];
                      var full_pat=newrecord;
                      
                      return /* :: */[0,
@@ -1330,7 +1390,7 @@ var
                    
                    var exit;
                    
-                   if(typeof match$2=="number")
+                   if(typeof match$2==="number")
                     {switch(match$2){}}
                    else
                     {switch(match$2[0])
@@ -1353,16 +1413,22 @@ var
                   default:return /* :: */[0,cl,simplify(rem)];}}
               }
             else
-             {throw [0,Assert_failure,[0,"bytecomp/matching.ml",641,13]];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"bytecomp/matching.ml",641,13]];
+              }
             }
           else
-           {return 0;}
+           {return /* [] */0;}
           };
       
       return simplify(cls);
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",608,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",608,8]];
+      }
     };
 
 var
@@ -1377,17 +1443,25 @@ var
         var exit;
         
         var $js=p[1];
-        if(typeof $js=="number")
+        if(typeof $js==="number")
          {switch($js){case 0:return what_is_cases(cases[2]);}}
         else
          {switch($js[0])
            {case 0:exit=587;case 1:exit=587;case 8:exit=587;default:return p;}}
         
         switch(exit)
-         {case 587:throw [0,Assert_failure,[0,"bytecomp/matching.ml",653,5]];}
+         {case 587:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"bytecomp/matching.ml",653,5]];
+           
+          }
         }
       else
-       {throw [0,Assert_failure,[0,"bytecomp/matching.ml",656,7]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"bytecomp/matching.ml",656,7]];
+        }
       }
     else
      {return Parmatch["omega"];}
@@ -1413,7 +1487,9 @@ var
                  if(ps)
                   {return /* :: */[0,Parmatch["omega"],ps[2]];}
                  else
-                  {throw [0,Assert_failure,[0,"bytecomp/matching.ml",669,17]];
+                  {throw [0,
+                          CamlPrimitive["caml_global_data"]["Assert_failure"],
+                          [0,"bytecomp/matching.ml",669,17]];
                    }
                  },
                cases));
@@ -1436,22 +1512,22 @@ var
               {var
                 qss=
                  List["fold_right"]
-                  (function(qs,r$1)
+                  (function(qs,r)
                     {var exit;
                      
                      if(qs)
                       {if(Parmatch["compat"](p,qs[1]))
-                        {return /* :: */[0,qs[2],r$1];}
+                        {return /* :: */[0,qs[2],r];}
                        else
                         {exit=579;}
                        }
                      else
                       {exit=579;}
                      
-                     switch(exit){case 579:return r$1;}
+                     switch(exit){case 579:return r;}
                      },
                    param[1],
-                   0);
+                   /* [] */0);
                
                if(qss)
                 {return /* :: */[0,/* tuple */[0,qss,param[2]],r];}
@@ -1459,7 +1535,7 @@ var
                 {return r;}
                },
              def,
-             0);
+             /* [] */0);
     };
 
 var
@@ -1469,7 +1545,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=575;}}
     else
      {switch(match[0])
@@ -1486,7 +1562,7 @@ var
          
         case 6:
          return List["fold_left"]
-                 (function(r$1,param){return extract_vars(r$1,param[3]);},
+                 (function(r,param){return extract_vars(r,param[3]);},
                   r,
                   match[1]);
          
@@ -1502,7 +1578,9 @@ var
       }
     };
 
-var Cannot_flatten="unknown primitive:caml_set_oo_id";
+var
+ Cannot_flatten=
+  CamlPrimitive["caml_set_oo_id"]([248,"Matching.Cannot_flatten",0]);
 
 var
  mk_alpha_env=
@@ -1525,7 +1603,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -1594,7 +1672,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 4:return match[2];default:exit=567;}}
@@ -1609,12 +1687,12 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){}}
     else
-     {switch($js[0]){case 2:return 1;default:exit=565;}}
+     {switch($js[0]){case 2:return /* true */1;default:exit=565;}}
     
-    switch(exit){case 565:return 0;}
+    switch(exit){case 565:return /* false */0;}
     };
 
 var
@@ -1623,12 +1701,12 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){}}
     else
-     {switch($js[0]){case 4:return 1;default:exit=563;}}
+     {switch($js[0]){case 4:return /* true */1;default:exit=563;}}
     
-    switch(exit){case 563:return 0;}
+    switch(exit){case 563:return /* false */0;}
     };
 
 var
@@ -1637,17 +1715,22 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){}}
     else
-     {switch($js[0]){case 5:return 1;default:exit=561;}}
+     {switch($js[0]){case 5:return /* true */1;default:exit=561;}}
     
-    switch(exit){case 561:return 0;}
+    switch(exit){case 561:return /* false */0;}
     };
 
 var
  group_var=
-  function(param){if("unknown primitive:isint"){return 1;}else{return 0;}};
+  function(param)
+   {if(typeof param[1]==="number")
+     {return /* true */1;}
+    else
+     {return /* false */0;}
+    };
 
 var
  group_tuple=
@@ -1655,12 +1738,12 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){case 0:exit=557;}}
     else
-     {switch($js[0]){case 3:exit=557;default:return 0;}}
+     {switch($js[0]){case 3:exit=557;default:return /* false */0;}}
     
-    switch(exit){case 557:return 1;}
+    switch(exit){case 557:return /* true */1;}
     };
 
 var
@@ -1669,12 +1752,12 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){case 0:exit=553;}}
     else
-     {switch($js[0]){case 6:exit=553;default:return 0;}}
+     {switch($js[0]){case 6:exit=553;default:return /* false */0;}}
     
-    switch(exit){case 553:return 1;}
+    switch(exit){case 553:return /* true */1;}
     };
 
 var
@@ -1683,12 +1766,12 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){}}
     else
-     {switch($js[0]){case 7:return 1;default:exit=549;}}
+     {switch($js[0]){case 7:return /* true */1;default:exit=549;}}
     
-    switch(exit){case 549:return 0;}
+    switch(exit){case 549:return /* false */0;}
     };
 
 var
@@ -1697,12 +1780,12 @@ var
    {var exit;
     
     var $js=param[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){}}
     else
-     {switch($js[0]){case 9:return 1;default:exit=547;}}
+     {switch($js[0]){case 9:return /* true */1;default:exit=547;}}
     
-    switch(exit){case 547:return 0;}
+    switch(exit){case 547:return /* false */0;}
     };
 
 var
@@ -1710,7 +1793,7 @@ var
   function(p)
    {var match=p[1];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return group_var;}}
     else
      {switch(match[0])
@@ -1731,12 +1814,12 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
-     {switch(match[0]){case 8:return 1;default:exit=543;}}
+     {switch(match[0]){case 8:return /* true */1;default:exit=543;}}
     
-    switch(exit){case 543:return 0;}
+    switch(exit){case 543:return /* false */0;}
     };
 
 var conda=function(p,q){return !Parmatch["compat"](p,q);};
@@ -1759,7 +1842,7 @@ var
                 {var q=match[1];
                  
                  var $js=q[1];
-                 if(typeof $js=="number")
+                 if(typeof $js==="number")
                   {switch($js){}}
                  else
                   {switch($js[0])
@@ -1769,7 +1852,7 @@ var
                else
                 {exit=539;}
                
-               switch(exit){case 539:return 1;}
+               switch(exit){case 539:return /* true */1;}
                },
              l);
     };
@@ -1795,7 +1878,7 @@ var
           return /* tuple */[0,/* :: */[0,cl,match$1[1]],match$1[2]];
           }
         else
-         {return /* tuple */[0,0,l];}
+         {return /* tuple */[0,/* [] */0,l];}
         }
       else
        {exit=537;}
@@ -1803,7 +1886,7 @@ var
     else
      {exit=537;}
     
-    switch(exit){case 537:return /* tuple */[0,0,l];}
+    switch(exit){case 537:return /* tuple */[0,/* [] */0,l];}
     };
 
 var
@@ -1835,13 +1918,15 @@ var
                   if
                    (or_ok(p,ps,match$1[2])&&
                     List["for_all"]
-                     (function(cl$1)
-                       {var match$2=cl$1[1];
+                     (function(cl)
+                       {var match$2=cl[1];
                         
                         if(match$2)
                          {return !Parmatch["compat"](p,match$2[1]);}
                         else
-                         {throw [0,Assert_failure,[0,"bytecomp/matching.ml",842,32]];
+                         {throw [0,
+                                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                 [0,"bytecomp/matching.ml",842,32]];
                           }
                         },
                       seen))
@@ -1890,13 +1975,13 @@ var
           }
         };
     
-    return attempt(0,ors);
+    return attempt(/* [] */0,ors);
     };
 
 var
  rebuild_matrix=
   function(pmh)
-   {switch(pmh)
+   {switch(pmh[0])
      {case 0:return pmh[1][3];
       case 1:return add_omega_column(rebuild_matrix(pmh[1][1]));
       case 2:return as_matrix(pmh[1][1]);
@@ -1923,12 +2008,12 @@ var
  rebuild_nexts=
   function(arg,nexts,k)
    {return List["fold_right"]
-            (function(param,k$1)
+            (function(param,k)
               {return /* :: */[0,
                        /* tuple */[0,
                         param[1],
                         /* PmVar */[1,/* record */[0,param[2],arg]]],
-                       k$1];
+                       k];
                },
              nexts,
              k);
@@ -1975,7 +2060,10 @@ var
              {return do_split(before,ors,/* :: */[0,cl,no],rem);}
             }
           else
-           {throw [0,Assert_failure,[0,"bytecomp/matching.ml",923,11]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/matching.ml",923,11]];
+            }
           }
         else
          {return cons_next
@@ -1987,11 +2075,11 @@ var
      cons_next=
       function(yes,yesor,rem)
        {if(rem)
-         {var match=do_split(0,0,0,rem);
+         {var match=do_split(/* [] */0,/* [] */0,/* [] */0,rem);
           
           var match$1=match[1];
           
-          var idef=Lambda["next_raise_count"](0);
+          var idef=Lambda["next_raise_count"](/* () */0);
           
           return precompile_or
                   (argo,
@@ -2002,10 +2090,10 @@ var
                    /* :: */[0,/* tuple */[0,idef,match$1[1]],match[2]]);
           }
         else
-         {return precompile_or(argo,yes,yesor,args,def,0);}
+         {return precompile_or(argo,yes,yesor,args,def,/* [] */0);}
         };
     
-    return do_split(0,0,0,cls$1);
+    return do_split(/* [] */0,/* [] */0,/* [] */0,cls$1);
     };
 
 var
@@ -2027,16 +2115,16 @@ var
             if(group_constructor(p))
              {var cstr=pat_as_constr(p);
               
-              if("unknown primitive:caml_equal")
+              if(CamlPrimitive["caml_equal"](cstr,cstr0))
                {return split_exc(cstr0,/* :: */[0,cl,yes],rem);}
               else
                {var yes$1=List["rev"](yes);
                 
-                var match$1=split_exc(cstr,/* :: */[0,cl,0],rem);
+                var match$1=split_exc(cstr,/* :: */[0,cl,/* [] */0],rem);
                 
                 var match$2=match$1[1];
                 
-                var idef=Lambda["next_raise_count"](0);
+                var idef=Lambda["next_raise_count"](/* () */0);
                 
                 var def$1=cons_default(match$2[2],idef,match$2[3]);
                 
@@ -2051,11 +2139,11 @@ var
             else
              {var yes$2=List["rev"](yes);
               
-              var match$3=split_noexc(/* :: */[0,cl,0],rem);
+              var match$3=split_noexc(/* :: */[0,cl,/* [] */0],rem);
               
               var match$4=match$3[1];
               
-              var idef$1=Lambda["next_raise_count"](0);
+              var idef$1=Lambda["next_raise_count"](/* () */0);
               
               var def$2=cons_default(match$4[2],idef$1,match$4[3]);
               
@@ -2068,7 +2156,10 @@ var
               }
             }
           else
-           {throw [0,Assert_failure,[0,"bytecomp/matching.ml",975,11]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/matching.ml",975,11]];
+            }
           }
         else
          {var yes$3=List["rev"](yes);
@@ -2098,11 +2189,13 @@ var
             if(group_constructor(p))
              {var yes$1=List["rev"](yes);
               
-              var match$1=split_exc(pat_as_constr(p),/* :: */[0,cl,0],rem);
+              var
+               match$1=
+                split_exc(pat_as_constr(p),/* :: */[0,cl,/* [] */0],rem);
               
               var match$2=match$1[1];
               
-              var idef=Lambda["next_raise_count"](0);
+              var idef=Lambda["next_raise_count"](/* () */0);
               
               return precompile_var
                       (args,
@@ -2114,7 +2207,10 @@ var
              {return split_noexc(/* :: */[0,cl,yes],rem);}
             }
           else
-           {throw [0,Assert_failure,[0,"bytecomp/matching.ml",990,11]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/matching.ml",990,11]];
+            }
           }
         else
          {return precompile_var(args,List["rev"](yes),def,k);}
@@ -2131,15 +2227,21 @@ var
         var p=match[1];
         
         if(group_constructor(p))
-         {return split_exc(pat_as_constr(p),/* :: */[0,cl,0],rem);}
+         {return split_exc(pat_as_constr(p),/* :: */[0,cl,/* [] */0],rem);}
         else
-         {return split_noexc(/* :: */[0,cl,0],rem);}
+         {return split_noexc(/* :: */[0,cl,/* [] */0],rem);}
         }
       else
-       {throw [0,Assert_failure,[0,"bytecomp/matching.ml",999,9]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"bytecomp/matching.ml",999,9]];
+        }
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",993,10]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",993,10]];
+      }
     };
 
 var
@@ -2151,12 +2253,12 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return precompile_var(args,cls,def,k);}}
     else
      {switch(match[0])
        {case 4:
-         switch(match[2][6])
+         switch(match[2][6][0])
           {case 0:exit=502;
            case 1:exit=502;
            case 2:return split_naive(cls,args,def,k);
@@ -2185,7 +2287,10 @@ var
                 {return split_ex(yes,/* :: */[0,cl,no],rem);}
                }
              else
-              {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1041,15]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"bytecomp/matching.ml",1041,15]];
+               }
              }
            else
             {var yes$1=List["rev"](yes);
@@ -2198,11 +2303,13 @@ var
                var cl$1=no$1[1];
                
                if(yes$1)
-                {var match$2=split_noex(/* :: */[0,cl$1,0],0,rem$1);
+                {var
+                  match$2=
+                   split_noex(/* :: */[0,cl$1,/* [] */0],/* [] */0,rem$1);
                  
                  var match$3=match$2[1];
                  
-                 var idef=Lambda["next_raise_count"](0);
+                 var idef=Lambda["next_raise_count"](/* () */0);
                  
                  var def$1=cons_default(match$3[2],idef,match$3[3]);
                  
@@ -2214,7 +2321,8 @@ var
                          /* :: */[0,/* tuple */[0,idef,match$3[1]],match$2[2]]];
                  }
                else
-                {return split_noex(/* :: */[0,cl$1,0],0,rem$1);}
+                {return split_noex(/* :: */[0,cl$1,/* [] */0],/* [] */0,rem$1);
+                 }
                }
              else
               {return /* tuple */[0,
@@ -2240,8 +2348,8 @@ var
              if(param[2])
               {exit$1=500;}
              else
-              {if(List["for_all"](group_var,ps)&&yes!=0)
-                {return split_noex(yes,/* :: */[0,cl,no],0);}
+              {if(List["for_all"](group_var,ps)&&yes!==/* [] */0)
+                {return split_noex(yes,/* :: */[0,cl,no],/* [] */0);}
                else
                 {exit$1=500;}
                }
@@ -2257,7 +2365,9 @@ var
                    {return split_noex(yes,/* :: */[0,cl,no],rem);}
                   }
                 else
-                 {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1067,15]];
+                 {throw [0,
+                         CamlPrimitive["caml_global_data"]["Assert_failure"],
+                         [0,"bytecomp/matching.ml",1067,15]];
                   }
                 
                }
@@ -2268,11 +2378,13 @@ var
              var no$1=List["rev"](no);
              
              if(no$1)
-              {var match$1=split_ex(/* :: */[0,no$1[1],0],0,no$1[2]);
+              {var
+                match$1=
+                 split_ex(/* :: */[0,no$1[1],/* [] */0],/* [] */0,no$1[2]);
                
                var match$2=match$1[1];
                
-               var idef=Lambda["next_raise_count"](0);
+               var idef=Lambda["next_raise_count"](/* () */0);
                
                return precompile_var
                        (args,
@@ -2296,9 +2408,9 @@ var
           {var rem=cls[2];
            
            if(group(match$1[1]))
-            {return split_ex(/* :: */[0,cl,0],0,rem);}
+            {return split_ex(/* :: */[0,cl,/* [] */0],/* [] */0,rem);}
            else
-            {return split_noex(/* :: */[0,cl,0],0,rem);}
+            {return split_noex(/* :: */[0,cl,/* [] */0],/* [] */0,rem);}
            }
          else
           {exit$1=487;}
@@ -2307,7 +2419,11 @@ var
         {exit$1=487;}
        
        switch(exit$1)
-        {case 487:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1073,14]];
+        {case 487:
+          throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"bytecomp/matching.ml",1073,14]];
+          
          }
        
       }
@@ -2326,7 +2442,7 @@ var
         
         var av=arg[1];
         
-        switch(av)
+        switch(av[0])
          {case 0:
            var exit$1;
            
@@ -2350,7 +2466,9 @@ var
                     if(ps)
                      {return /* tuple */[0,ps[2],param[2]];}
                     else
-                     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1086,41]];
+                     {throw [0,
+                             CamlPrimitive["caml_global_data"]["Assert_failure"],
+                             [0,"bytecomp/matching.ml",1086,41]];
                       }
                     },
                   cls);
@@ -2392,7 +2510,10 @@ var
        {exit=512;}
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1076,9]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",1076,9]];
+      }
     
     switch(exit){case 512:return dont_precompile_var(args,cls,def,k);}
     };
@@ -2415,17 +2536,19 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 1:return is_exc(match[1]);
         case 4:
-         switch(match[2][6]){case 0:exit=513;case 1:exit=513;case 2:return 1;}
+         switch(match[2][6][0])
+          {case 0:exit=513;case 1:exit=513;case 2:return /* true */1;}
+         
         case 8:return is_exc(match[1])||is_exc(match[2]);
         default:exit=513;}}
     
-    switch(exit){case 513:return 0;}
+    switch(exit){case 513:return /* false */0;}
     };
 
 var
@@ -2446,7 +2569,7 @@ var
              {var orp=match[1];
               
               var $js=orp[1];
-              if(typeof $js=="number")
+              if(typeof $js==="number")
                {switch($js){}}
               else
                {switch($js[0])
@@ -2460,12 +2583,14 @@ var
                    if(do_opt)
                     {var match$1=get_equiv(orp,rem);}
                    else
-                    {var match$1=/* tuple */[0,0,rem];}
+                    {var match$1=/* tuple */[0,/* [] */0,rem];}
                    
                    if(args)
                     {var $js$1=args[2];}
                    else
-                    {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1135,55]];
+                    {throw [0,
+                            CamlPrimitive["caml_global_data"]["Assert_failure"],
+                            [0,"bytecomp/matching.ml",1135,55]];
                      }
                    var
                     orpm=
@@ -2479,7 +2604,9 @@ var
                            if(match$2)
                             {return /* tuple */[0,match$2[2],param$1[2]];}
                            else
-                            {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1133,25]];
+                            {throw [0,
+                                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                    [0,"bytecomp/matching.ml",1133,25]];
                              }
                            },
                          match$1[1])],
@@ -2493,7 +2620,7 @@ var
                         (extract_vars(Lambda["IdentSet"][1],orp),
                          pm_free_variables(orpm)));
                    
-                   var or_num=Lambda["next_raise_count"](0);
+                   var or_num=Lambda["next_raise_count"](/* () */0);
                    
                    var new_patl=Parmatch["omega_list"](patl);
                    
@@ -2508,14 +2635,19 @@ var
                    var match$2=do_cases(match$1[2]);
                    
                    if(do_opt)
-                    {var mat=/* :: */[0,/* :: */[0,orp,0],0];}
+                    {var mat=/* :: */[0,/* :: */[0,orp,/* [] */0],/* [] */0];}
                    else
-                    {var mat=/* :: */[0,/* :: */[0,Parmatch["omega"],0],0];}
+                    {var
+                      mat=
+                       /* :: */[0,
+                        /* :: */[0,Parmatch["omega"],/* [] */0],
+                        /* [] */0];
+                     }
                    
                    return /* tuple */[0,
                            do_opt&&match$2[1],
                            explode_or_pat
-                            (argo,new_patl,mk_new_action,match$2[2],vars,0,orp),
+                            (argo,new_patl,mk_new_action,match$2[2],vars,/* [] */0,orp),
                            /* :: */[0,/* tuple */[0,mat,or_num,vars,orpm],match$2[3]]];
                    
                   default:exit=529;}}
@@ -2535,7 +2667,7 @@ var
               }
             }
           else
-           {return [0,1,0,0];}
+           {return [/* tuple */0,/* true */1,/* [] */0,/* [] */0];}
           };
       
       var match=do_cases(ors);
@@ -2569,11 +2701,11 @@ var
     var exit;
     
     var $js;
-    switch(next){case 0:$js=1;case 1:exit=462;case 2:exit=462;}
+    switch(next[0]){case 0:$js=/* true */1;case 1:exit=462;case 2:exit=462;}
     
     var $js$1;
-    switch(exit){case 462:$js$1=0;}
-    if(dbg&&(nexts!=0||$js$1))
+    switch(exit){case 462:$js$1=/* false */0;}
+    if(dbg&&(nexts!==/* [] */0||$js$1))
      {Pervasives["prerr_endline"]("** SPLIT **"),
       pretty_pm(pm),
       pretty_precompiled_res(next,nexts)}
@@ -2585,7 +2717,7 @@ var
 
 var
  add_line=
-  function(patl_action,pm){pm[1]=/* :: */[0,patl_action,pm[1]],0;return pm;};
+  function(patl_action,pm){pm[1]=/* :: */[0,patl_action,pm[1]];return pm;};
 
 var
  add=
@@ -2597,14 +2729,14 @@ var
       
       var cell=match[2];
       
-      cell[1][1]=/* :: */[0,patl_action,cell[1][1]],0;
+      cell[1][1]=/* :: */[0,patl_action,cell[1][1]];
       return division;
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var cell$1=make_matching_fun(args);
         
-        cell$1[1][1]=/* :: */[0,patl_action,0],0;
+        cell$1[1][1]=/* :: */[0,patl_action,/* [] */0];
         return /* :: */[0,/* tuple */[0,key,cell$1],division];
         }
       else
@@ -2644,7 +2776,7 @@ var
         else
          {exit=455;}
         
-        switch(exit){case 455:return 0;}
+        switch(exit){case 455:return /* [] */0;}
         };
     
     return divide_rec(pm[1]);
@@ -2689,12 +2821,12 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return rem;}}
     else
      {switch(match[0])
        {case 2:
-         if(Parmatch["const_compare"](match[1],cst)=0)
+         if(Parmatch["const_compare"](match[1],cst)===0)
           {return rem;}
          else
           {exit=450;}
@@ -2703,7 +2835,7 @@ var
          try
           {return matcher_const(cst,match[1],rem);}
          catch(exn)
-          {if(exn=NoMatch)
+          {if(exn===NoMatch)
             {return matcher_const(cst,match[2],rem);}
            else
             {throw exn;}
@@ -2721,7 +2853,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 2:return match[1];default:exit=447;}}
@@ -2730,7 +2862,9 @@ var
      {case 447:
        Pervasives["prerr_endline"](Pervasives["^"]("BAD: ",caller));
        Parmatch["pretty_pat"](p);
-       throw [0,Assert_failure,[0,"bytecomp/matching.ml",1258,6]];
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",1258,6]];
        
       }
     };
@@ -2746,7 +2880,7 @@ var
       var ctx$1=filter_ctx(p,ctx);
       
       return /* record */[0,
-              /* record */[0,0,param[2],def$1],
+              /* record */[0,/* [] */0,param[2],def$1],
               ctx$1,
               Parmatch["normalize_pat"](p)];
       }
@@ -2759,7 +2893,7 @@ var
   function(ctx,m)
    {return divide
             (make_constant_matching,
-             function(c,d){return Parmatch["const_compare"](c,d)=0;},
+             function(c,d){return Parmatch["const_compare"](c,d)===0;},
              get_key_constant("divide"),
              get_args_constant,
              ctx,
@@ -2777,7 +2911,7 @@ var
         else
          {return /* :: */[0,
                   /* tuple */[0,
-                   /* Lprim */[6,/* Pfield */[6,pos],/* :: */[0,arg,0]],
+                   /* Lprim */[6,/* Pfield */[6,pos],/* :: */[0,arg,/* [] */0]],
                    binding_kind],
                   make_args(pos+1)];
           }
@@ -2793,13 +2927,18 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 4:return match[2][6];default:exit=439;}}
     
     switch(exit)
-     {case 439:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1296,9]];}
+     {case 439:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",1296,9]];
+       
+      }
     };
 
 var
@@ -2809,14 +2948,19 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 4:return Pervasives["@"](match[3],rem);default:exit=437;}}
     
     switch(exit)
-     {case 437:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1300,7]];}
+     {case 437:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",1300,7]];
+       
+      }
     };
 
 var
@@ -2824,20 +2968,20 @@ var
   function(cstr)
    {var match=cstr[5];
     
-    if(match!=0)
-     {if(match!=1)
+    if(match!==0)
+     {if(match!==1)
        {return function(q,rem)
          {var match$1=q[1];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1)
              {case 0:return Pervasives["@"](Parmatch["omegas"](cstr[5]),rem);}}
           else
            {switch(match$1[0])
              {case 4:
-               if("unknown primitive:caml_equal")
+               if(CamlPrimitive["caml_equal"](cstr[6],match$1[2][6]))
                 {return Pervasives["@"](match$1[3],rem);}
                else
                 {exit=434;}
@@ -2856,7 +3000,7 @@ var
             
             var exit;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1)
                {case 0:return /* :: */[0,Parmatch["omega"],rem];}}
             else
@@ -2868,7 +3012,7 @@ var
                   {if(match$2[2])
                     {exit=433;}
                    else
-                    {if("unknown primitive:caml_equal")
+                    {if(CamlPrimitive["caml_equal"](cstr[6],match$1[2][6]))
                       {return /* :: */[0,match$2[1],rem];}
                      else
                       {exit=433;}
@@ -2880,11 +3024,13 @@ var
                 case 8:
                  try
                   {var r1=/* Some */[0,matcher_rec(match$1[1],rem)];}
-                 catch(exn){if(exn=NoMatch){var r1=0;}else{throw exn;}}
+                 catch(exn)
+                  {if(exn===NoMatch){var r1=/* None */0;}else{throw exn;}}
                  
                  try
                   {var r2=/* Some */[0,matcher_rec(match$1[2],rem)];}
-                 catch(exn$1){if(exn$1=NoMatch){var r2=0;}else{throw exn$1;}}
+                 catch(exn$1)
+                  {if(exn$1===NoMatch){var r2=/* None */0;}else{throw exn$1;}}
                  
                  var exit$1;
                  
@@ -2900,7 +3046,7 @@ var
                          
                          return /* :: */[0,
                                  /* record */[0,
-                                  /* Tpat_or */[8,a1,match$3[1],0],
+                                  /* Tpat_or */[8,a1,match$3[1],/* None */0],
                                   Location["none"],
                                   a1[3],
                                   a1[4],
@@ -2922,7 +3068,10 @@ var
                  
                  switch(exit$1)
                   {case 427:
-                    throw [0,Assert_failure,[0,"bytecomp/matching.ml",1331,18]];
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"bytecomp/matching.ml",1331,18]];
+                    
                    }
                  
                 default:exit=433;}}
@@ -2941,7 +3090,7 @@ var
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){case 0:return rem;}}
           else
            {switch(match$1[0])
@@ -2949,7 +3098,7 @@ var
                if(match$1[3])
                 {exit=426;}
                else
-                {if("unknown primitive:caml_equal")
+                {if(CamlPrimitive["caml_equal"](cstr[6],match$1[2][6]))
                   {return rem;}
                  else
                   {exit=426;}
@@ -2959,7 +3108,7 @@ var
                try
                 {return matcher_rec$1(match$1[1],rem);}
                catch(exn)
-                {if(exn=NoMatch)
+                {if(exn===NoMatch)
                   {return matcher_rec$1(match$1[2],rem);}
                  else
                   {throw exn;}
@@ -2988,17 +3137,22 @@ var
       
       var exit;
       
-      switch(match)
+      switch(match[0])
        {case 0:exit=421;
         case 1:exit=421;
-        case 2:var newargs=make_field_args(1,arg,1,cstr[5],argl);
+        case 2:var newargs=make_field_args(/* Alias */1,arg,1,cstr[5],argl);
         }
       
       switch(exit)
-       {case 421:var newargs=make_field_args(1,arg,0,cstr[5]-1,argl);}
+       {case 421:
+         var newargs=make_field_args(/* Alias */1,arg,0,cstr[5]-1,argl);
+        }
       
       return /* record */[0,
-              /* record */[0,0,newargs,make_default(matcher_constr(cstr),def)],
+              /* record */[0,
+               /* [] */0,
+               newargs,
+               make_default(matcher_constr(cstr),def)],
               filter_ctx(p,ctx),
               Parmatch["normalize_pat"](p)];
       }
@@ -3011,7 +3165,8 @@ var
   function(ctx,pm)
    {return divide
             (make_constr_matching,
-             function(prim,prim$1){return "unknown primitive:caml_equal";},
+             function(prim,prim$1)
+              {return CamlPrimitive["caml_equal"](prim,prim$1);},
              get_key_constr,
              get_args_constr,
              ctx,
@@ -3025,17 +3180,21 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return rem;}}
     else
      {switch(match[0])
        {case 5:
-         if("unknown primitive:caml_string_equal"){return rem;}else{exit=419;}
+         if(CamlPrimitive["caml_string_equal"](match[1],lab))
+          {return rem;}
+         else
+          {exit=419;}
+         
         case 8:
          try
           {return matcher_variant_const(lab,match[1],rem);}
          catch(exn)
-          {if(exn=NoMatch)
+          {if(exn===NoMatch)
             {return matcher_variant_const(lab,match[2],rem);}
            else
             {throw exn;}
@@ -3055,7 +3214,7 @@ var
       var ctx$1=filter_ctx(p,ctx);
       
       return /* record */[0,
-              /* record */[0,0,param[2],def$1],
+              /* record */[0,/* [] */0,param[2],def$1],
               ctx$1,
               Parmatch["normalize_pat"](p)];
       }
@@ -3070,7 +3229,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return /* :: */[0,Parmatch["omega"],rem];}}
     else
      {switch(match[0])
@@ -3078,7 +3237,7 @@ var
          var match$1=match[2];
          
          if(match$1)
-          {if("unknown primitive:caml_string_equal")
+          {if(CamlPrimitive["caml_string_equal"](match[1],lab))
             {return /* :: */[0,match$1[1],rem];}
            else
             {exit=413;}
@@ -3102,11 +3261,13 @@ var
       
       return /* record */[0,
               /* record */[0,
-               0,
+               /* [] */0,
                /* :: */[0,
                 /* tuple */[0,
-                 /* Lprim */[6,[6,1],/* :: */[0,param[1][1],0]],
-                 1],
+                 /* Lprim */[6,
+                  [/* Pfield */6,1],
+                  /* :: */[0,param[1][1],/* [] */0]],
+                 /* Alias */1],
                 param[2]],
                def$1],
               ctx$1,
@@ -3123,7 +3284,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -3138,7 +3299,12 @@ var
         default:exit=408;}}
     
     switch(exit)
-     {case 408:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1414,8]];}
+     {case 408:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",1414,8]];
+       
+      }
     };
 
 var
@@ -3154,11 +3320,11 @@ var
     
     var
      divide$1=
-      function(cl$1)
+      function(cl)
        {var exit;
         
-        if(cl$1)
-         {var match=cl$1[1];
+        if(cl)
+         {var match=cl[1];
           
           var match$1=match[1];
           
@@ -3167,7 +3333,7 @@ var
             
             var match$2=p[1];
             
-            if(typeof match$2=="number")
+            if(typeof match$2==="number")
              {switch(match$2){}}
             else
              {switch(match$2[0])
@@ -3180,14 +3346,20 @@ var
                  
                  var patl=match$1[2];
                  
-                 var variants=divide$1(cl$1[2]);
+                 var variants=divide$1(cl[2]);
                  
+                 var $js;
                  try
-                  {var
-                    $js=
-                     Btype["row_field_repr"](List["assoc"](lab,row$1[1]))=0;
+                  {$js=
+                   Btype["row_field_repr"](List["assoc"](lab,row$1[1]))===
+                   /* Rabsent */0;
                    }
-                 catch(exn){if(exn=Not_found){var $js=1;}else{throw exn;}}
+                 catch(exn)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                    {$js=/* true */1;}
+                   else
+                    {throw exn;}
+                   }
                  if($js)
                   {return variants;}
                  else
@@ -3198,7 +3370,7 @@ var
                              (make_variant_matching_nonconst(p,lab,def,ctx),
                               variants,
                               function(prim,prim$1)
-                               {return "unknown primitive:caml_equal";},
+                               {return CamlPrimitive["caml_equal"](prim,prim$1);},
                               /* Cstr_block */[1,tag],
                               /* tuple */[0,/* :: */[0,pato[1],patl],action],
                               al);
@@ -3208,7 +3380,7 @@ var
                              (make_variant_matching_constant(p,lab,def,ctx),
                               variants,
                               function(prim,prim$1)
-                               {return "unknown primitive:caml_equal";},
+                               {return CamlPrimitive["caml_equal"](prim,prim$1);},
                               /* Cstr_constant */[0,tag],
                               /* tuple */[0,patl,action],
                               al);
@@ -3223,7 +3395,7 @@ var
         else
          {exit=405;}
         
-        switch(exit){case 405:return 0;}
+        switch(exit){case 405:return /* [] */0;}
         };
     
     return divide$1(cl);
@@ -3235,7 +3407,8 @@ var
  make_var_matching=
   function(def,param)
    {if(param)
-     {return /* record */[0,0,param[2],make_default(get_args_var,def)];}
+     {return /* record */[0,/* [] */0,param[2],make_default(get_args_var,def)];
+      }
     else
      {return Misc["fatal_error"]("Matching.make_var_matching");}
     };
@@ -3257,12 +3430,16 @@ var
   function(p,rem)
    {var match=p[1];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return /* :: */[0,Parmatch["omega"],rem];}}
     else
      {switch(match[0])
        {case 9:return /* :: */[0,match[1],rem];
-        default:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1463,8]];}}
+        default:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"bytecomp/matching.ml",1463,8]];
+         }}
     };
 
 var
@@ -3272,7 +3449,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -3283,7 +3460,9 @@ var
     switch(exit){case 395:return get_arg_lazy(p,rem);}
     };
 
-var prim_obj_tag=[0,"caml_obj_tag",1,0,"",0];
+var
+ prim_obj_tag=
+  [/* record */0,"caml_obj_tag",1,/* false */0,"",/* false */0];
 
 var
  get_mod_field=
@@ -3305,7 +3484,7 @@ var
                   
                   var exit;
                   
-                  switch(match$1)
+                  switch(match$1[0])
                    {case 0:exit=389;case 1:var p=match$1[3];case 2:exit=389;}
                   
                   switch(exit)
@@ -3322,7 +3501,7 @@ var
                     }
                   }
                 catch(exn)
-                 {if(exn=Not_found)
+                 {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                    {var
                      p=
                       Misc["fatal_error"]
@@ -3338,10 +3517,12 @@ var
                 
                 return /* Lprim */[6,
                         /* Pfield */[6,p],
-                        /* :: */[0,/* Lprim */[6,/* Pgetglobal */[3,mod_ident],0],0]];
+                        /* :: */[0,
+                         /* Lprim */[6,/* Pgetglobal */[3,mod_ident],/* [] */0],
+                         /* [] */0]];
                 }
               catch(exn$1)
-               {if(exn$1=Not_found)
+               {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                  {return Misc["fatal_error"]
                           (Pervasives["^"]
                             ("Module ",Pervasives["^"](modname," unavailable.")));
@@ -3365,12 +3546,12 @@ var
     
     var tag=Ident["create"]("tag");
     
-    var tag$1="unknown primitive:caml_obj_tag";
+    var tag$1=CamlPrimitive["caml_obj_tag"](code_force_lazy_block);
     
-    if(tag$1=250)
+    if(tag$1===250)
      {var force_fun=code_force_lazy_block[1];}
     else
-     {if(tag$1=246)
+     {if(tag$1===246)
        {var
          force_fun=
           CamlinternalLazy["force_lazy_block"](code_force_lazy_block);
@@ -3380,33 +3561,35 @@ var
       }
     
     return /* Llet */[4,
-            0,
+            /* Strict */0,
             idarg,
             arg,
             /* Llet */[4,
-             1,
+             /* Alias */1,
              tag,
-             /* Lprim */[6,/* Pccall */[11,prim_obj_tag],/* :: */[0,varg,0]],
+             /* Lprim */[6,
+              /* Pccall */[11,prim_obj_tag],
+              /* :: */[0,varg,/* [] */0]],
              /* Lifthenelse */[12,
               /* Lprim */[6,
-               [13,0],
+               [/* Pintcomp */13,/* Ceq */0],
                /* :: */[0,
                 /* Lvar */[0,tag],
                 /* :: */[0,
                  /* Lconst */[1,
                   /* Const_base */[0,/* Const_int */[0,Obj["forward_tag"]]]],
-                 0]]],
-              /* Lprim */[6,[6,0],/* :: */[0,varg,0]],
+                 /* [] */0]]],
+              /* Lprim */[6,[/* Pfield */6,0],/* :: */[0,varg,/* [] */0]],
               /* Lifthenelse */[12,
                /* Lprim */[6,
-                [13,0],
+                [/* Pintcomp */13,/* Ceq */0],
                 /* :: */[0,
                  /* Lvar */[0,tag],
                  /* :: */[0,
                   /* Lconst */[1,
                    /* Const_base */[0,/* Const_int */[0,Obj["lazy_tag"]]]],
-                  0]]],
-               /* Lapply */[2,force_fun,/* :: */[0,varg,0],loc],
+                  /* [] */0]]],
+               /* Lapply */[2,force_fun,/* :: */[0,varg,/* [] */0],loc],
                varg]]]];
     };
 
@@ -3417,12 +3600,12 @@ var
     
     var varg=/* Lvar */[0,idarg];
     
-    var tag="unknown primitive:caml_obj_tag";
+    var tag=CamlPrimitive["caml_obj_tag"](code_force_lazy_block);
     
-    if(tag=250)
+    if(tag===250)
      {var force_fun=code_force_lazy_block[1];}
     else
-     {if(tag=246)
+     {if(tag===246)
        {var
          force_fun=
           CamlinternalLazy["force_lazy_block"](code_force_lazy_block);
@@ -3432,27 +3615,27 @@ var
       }
     
     return /* Llet */[4,
-            0,
+            /* Strict */0,
             idarg,
             arg,
             /* Lifthenelse */[12,
-             /* Lprim */[6,31,/* :: */[0,varg,0]],
+             /* Lprim */[6,/* Pisint */33,/* :: */[0,varg,/* [] */0]],
              varg,
              /* Lswitch */[7,
               varg,
               /* record */[0,
                0,
-               0,
+               /* [] */0,
                256,
                /* :: */[0,
                 /* tuple */[0,
                  Obj["forward_tag"],
-                 /* Lprim */[6,[6,0],/* :: */[0,varg,0]]],
+                 /* Lprim */[6,[/* Pfield */6,0],/* :: */[0,varg,/* [] */0]]],
                 /* :: */[0,
                  /* tuple */[0,
                   Obj["lazy_tag"],
-                  /* Lapply */[2,force_fun,/* :: */[0,varg,0],loc]],
-                 0]],
+                  /* Lapply */[2,force_fun,/* :: */[0,varg,/* [] */0],loc]],
+                 /* [] */0]],
                /* Some */[0,varg]]]]];
     };
 
@@ -3470,11 +3653,11 @@ var
   function(def,param)
    {if(param)
      {return /* record */[0,
-              0,
+              /* [] */0,
               /* :: */[0,
                /* tuple */[0,
                 inline_lazy_force(param[1][1],Location["none"]),
-                0],
+                /* Strict */0],
                param[2]],
               make_default(matcher_lazy,def)];
       }
@@ -3493,13 +3676,17 @@ var
   function(arity,p,rem)
    {var match=p[1];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:return Pervasives["@"](Parmatch["omegas"](arity),rem);}}
     else
      {switch(match[0])
        {case 3:return Pervasives["@"](match[1],rem);
-        default:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1579,8]];}}
+        default:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"bytecomp/matching.ml",1579,8]];
+         }}
     };
 
 var
@@ -3509,7 +3696,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -3536,14 +3723,14 @@ var
           else
            {return /* :: */[0,
                     /* tuple */[0,
-                     /* Lprim */[6,/* Pfield */[6,pos],/* :: */[0,arg,0]],
-                     1],
+                     /* Lprim */[6,/* Pfield */[6,pos],/* :: */[0,arg,/* [] */0]],
+                     /* Alias */1],
                     make_args(pos+1)];
             }
           };
       
       return /* record */[0,
-              0,
+              /* [] */0,
               make_args(0),
               make_default(matcher_tuple(arity),def)];
       }
@@ -3566,10 +3753,10 @@ var
 var
  record_matching_line=
   function(num_fields,lbl_pat_list)
-   {var patv="unknown primitive:caml_make_vect";
+   {var patv=CamlPrimitive["caml_make_vect"](num_fields,Parmatch["omega"]);
     
     List["iter"]
-     (function(param){return patv[param[2][5]]=param[3],0;},lbl_pat_list);
+     (function(param){return patv[param[2][5]+1]=param[3],0;},lbl_pat_list);
     return $$Array["to_list"](patv);
     };
 
@@ -3578,16 +3765,23 @@ var
   function(num_fields,p,rem)
    {var match=p[1];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
-       {case 0:return Pervasives["@"](record_matching_line(num_fields,0),rem);
+       {case 0:
+         return Pervasives["@"]
+                 (record_matching_line(num_fields,/* [] */0),rem);
+         
         }}
     else
      {switch(match[0])
        {case 6:
          return Pervasives["@"](record_matching_line(num_fields,match[1]),rem);
          
-        default:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1616,7]];}}
+        default:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"bytecomp/matching.ml",1616,7]];
+         }}
     };
 
 var
@@ -3597,7 +3791,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -3619,33 +3813,38 @@ var
       var
        make_args=
         function(pos)
-         {if(pos>=all_labels["length"])
+         {if(pos>=/* -1 for tag */all_labels["length"]-1)
            {return argl;}
           else
-           {var lbl=all_labels[pos];
+           {var lbl=all_labels[pos+1];
             
             var match=lbl[7];
             
-            if(match!=0)
+            if(match!==0)
              {var access=/* Pfloatfield */[8,lbl[5]];}
             else
              {var access=/* Pfield */[6,lbl[5]];}
             
             var match$1=lbl[4];
             
-            if(match$1!=0){var str=2;}else{var str=1;}
+            if(match$1!==0)
+             {var str=/* StrictOpt */2;}
+            else
+             {var str=/* Alias */1;}
             
             return /* :: */[0,
-                    /* tuple */[0,/* Lprim */[6,access,/* :: */[0,arg,0]],str],
+                    /* tuple */[0,
+                     /* Lprim */[6,access,/* :: */[0,arg,/* [] */0]],
+                     str],
                     make_args(pos+1)];
             }
           };
       
-      var nfields=all_labels["length"];
+      var nfields=/* -1 for tag */all_labels["length"]-1;
       
       var def$1=make_default(matcher_record(nfields),def);
       
-      return /* record */[0,0,make_args(0),def$1];
+      return /* record */[0,/* [] */0,make_args(0),def$1];
       }
     else
      {return Misc["fatal_error"]("Matching.make_record_matching");}
@@ -3654,7 +3853,7 @@ var
 var
  divide_record=
   function(all_labels,p,ctx,pm)
-   {var get_args=get_args_record(all_labels["length"]);
+   {var get_args=get_args_record(/* -1 for tag */all_labels["length"]-1);
     
     return divide_line
             (filter_ctx(p),make_record_matching(all_labels),get_args,p,ctx,pm);
@@ -3667,14 +3866,19 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 7:return List["length"](match[1]);default:exit=352;}}
     
     switch(exit)
-     {case 352:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1656,9]];}
+     {case 352:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",1656,9]];
+       
+      }
     };
 
 var
@@ -3684,14 +3888,19 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 7:return Pervasives["@"](match[1],rem);default:exit=350;}}
     
     switch(exit)
-     {case 350:throw [0,Assert_failure,[0,"bytecomp/matching.ml",1660,7]];}
+     {case 350:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",1660,7]];
+       
+      }
     };
 
 var
@@ -3701,7 +3910,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match)
        {case 0:return Pervasives["@"](Parmatch["omegas"](len),rem);}}
     else
@@ -3709,7 +3918,7 @@ var
        {case 7:
          var args=match[1];
          
-         if(List["length"](args)=len)
+         if(List["length"](args)===len)
           {return Pervasives["@"](args,rem);}
          else
           {exit=348;}
@@ -3744,8 +3953,8 @@ var
                        arg,
                        /* :: */[0,
                         /* Lconst */[1,/* Const_base */[0,/* Const_int */[0,pos]]],
-                        0]]],
-                     2],
+                        /* [] */0]]],
+                     /* StrictOpt */2],
                     make_args(pos+1)];
             }
           };
@@ -3755,7 +3964,7 @@ var
       var ctx$1=filter_ctx(p,ctx);
       
       return /* record */[0,
-              /* record */[0,0,make_args(0),def$1],
+              /* record */[0,/* [] */0,make_args(0),def$1],
               ctx$1,
               Parmatch["normalize_pat"](p)];
       }
@@ -3768,7 +3977,8 @@ var
   function(kind,ctx,pm)
    {return divide
             (make_array_matching(kind),
-             function(prim,prim$1){return "unknown primitive:caml_equal";},
+             function(prim,prim$1)
+              {return CamlPrimitive["caml_equal"](prim,prim$1);},
              get_key_array,
              get_args_array,
              ctx,
@@ -3777,19 +3987,25 @@ var
 
 var strings_test_threshold=8;
 
-var prim_string_notequal=[11,[0,"caml_string_notequal",2,0,"",0]];
+var
+ prim_string_notequal=
+  [/* Pccall */11,
+   [/* record */0,"caml_string_notequal",2,/* false */0,"",/* false */0]];
 
-var prim_string_compare=[11,[0,"caml_string_compare",2,0,"",0]];
+var
+ prim_string_compare=
+  [/* Pccall */11,
+   [/* record */0,"caml_string_compare",2,/* false */0,"",/* false */0]];
 
 var
  bind_sw=
   function(arg,k)
-   {switch(arg)
+   {switch(arg[0])
      {case 0:return k(arg);
       default:
        var id=Ident["create"]("switch");
        
-       return /* Llet */[4,0,id,arg,k(/* Lvar */[0,id])];
+       return /* Llet */[4,/* Strict */0,id,arg,k(/* Lvar */[0,id])];
        }
     };
 
@@ -3802,7 +4018,10 @@ var
      {if(sw)
        {var match=/* tuple */[0,sw[1][2],sw[2]];}
       else
-       {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1729,14]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"bytecomp/matching.ml",1729,14]];
+        }
       }
     
     var sw$1=match[2];
@@ -3811,17 +4030,17 @@ var
     
     return bind_sw
             (arg,
-             function(arg$1)
+             function(arg)
               {return List["fold_right"]
                        (function(param,k)
                          {return /* Lifthenelse */[12,
                                   /* Lprim */[6,
                                    prim_string_notequal,
                                    /* :: */[0,
-                                    arg$1,
+                                    arg,
                                     /* :: */[0,
                                      /* Lconst */[1,/* Const_immstring */[4,param[1]]],
-                                     0]]],
+                                     /* [] */0]]],
                                   k,
                                   param[2]];
                           },
@@ -3839,7 +4058,7 @@ var
       var x0=xs[1];
       
       if(k<=1)
-       {return /* tuple */[0,0,x0,xs$1];}
+       {return /* tuple */[0,/* [] */0,x0,xs$1];}
       else
        {var match=split(k-2,xs$1);
         
@@ -3847,19 +4066,26 @@ var
         }
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",1744,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",1744,8]];
+      }
     };
 
-var zero_lam=[1,[0,[0,0]]];
+var zero_lam=[/* Lconst */1,[/* Const_base */0,[/* Const_int */0,0]]];
 
 var
  tree_way_test=
   function(arg,lt,eq,gt)
    {return /* Lifthenelse */[12,
-            /* Lprim */[6,[13,2],/* :: */[0,arg,/* :: */[0,zero_lam,0]]],
+            /* Lprim */[6,
+             [/* Pintcomp */13,/* Clt */2],
+             /* :: */[0,arg,/* :: */[0,zero_lam,/* [] */0]]],
             lt,
             /* Lifthenelse */[12,
-             /* Lprim */[6,[13,2],/* :: */[0,zero_lam,/* :: */[0,arg,0]]],
+             /* Lprim */[6,
+              [/* Pintcomp */13,/* Clt */2],
+              /* :: */[0,zero_lam,/* :: */[0,arg,/* [] */0]]],
              gt,
              eq]];
     };
@@ -3889,7 +4115,7 @@ var
                  arg,
                  /* :: */[0,
                   /* Lconst */[1,/* Const_immstring */[4,match$1[1]]],
-                  0]]],
+                  /* [] */0]]],
                function(r)
                 {return tree_way_test
                          (r,
@@ -3908,19 +4134,18 @@ var
       
       return bind_sw
               (arg,
-               function(arg$1)
+               function(arg)
                 {return make_catch
                          (e,
-                          function(d$1)
-                           {return do_make_string_test_tree
-                                    (arg$1,sw,1,/* Some */[0,d$1]);
-                            });
+                          function(d)
+                           {return do_make_string_test_tree(arg,sw,1,/* Some */[0,d]);});
                  });
       }
     else
      {return bind_sw
               (arg,
-               function(arg$1){return do_make_string_test_tree(arg$1,sw,0,0);});
+               function(arg)
+                {return do_make_string_test_tree(arg,sw,0,/* None */0);});
       }
     };
 
@@ -3932,7 +4157,7 @@ var
     var
      handle_shared$1=
       function(act)
-       {switch(act)
+       {switch(act[0])
          {case 0:
            var match=make_catch_delayed(act[1]);
            
@@ -3940,7 +4165,7 @@ var
            
            var ohs=hs[1];
            
-           hs[1]=function(act$1){return h(ohs(act$1));},0;
+           hs[1]=function(act){return h(ohs(act));};
            return make_exit(match[1]);
            
           case 1:return act[1];
@@ -3953,9 +4178,9 @@ var
 var
  share_actions_tree=
   function(sw,d)
-   {var store=StoreExp[1](0);
+   {var store=StoreExp[1](/* () */0);
     
-    if(d){var d$1=/* Some */[0,store[4](d[1])];}else{var d$1=0;}
+    if(d){var d$1=/* Some */[0,store[4](d[1])];}else{var d$1=/* None */0;}
     
     var
      sw$1=
@@ -3963,18 +4188,18 @@ var
        (function(param){return /* tuple */[0,param[1],store[3](param[2])];},
         sw);
     
-    var acts=store[2](0);
+    var acts=store[2](/* () */0);
     
-    var match=handle_shared(0);
+    var match=handle_shared(/* () */0);
     
     var acts$1=$$Array["map"](match[2],acts);
     
-    if(d$1){var d$2=/* Some */[0,acts$1[d$1[1]]];}else{var d$2=0;}
+    if(d$1){var d$2=/* Some */[0,acts$1[d$1[1]+1]];}else{var d$2=/* None */0;}
     
     var
      sw$2=
       List["map"]
-       (function(param){return /* tuple */[0,param[1],acts$1[param[2]]];},
+       (function(param){return /* tuple */[0,param[1],acts$1[param[2]+1]];},
         sw$1);
     
     return /* tuple */[0,match[1][1],sw$2,d$2];
@@ -3991,7 +4216,7 @@ var
       if(sw1)
        {var p1=sw[1];
         
-        if(Parmatch["const_compare"](p1[1],sw1[1][1])=0)
+        if(Parmatch["const_compare"](p1[1],sw1[1][1])===0)
          {return uniq_lambda_list(/* :: */[0,p1,sw1[2]]);}
         else
          {return /* :: */[0,p1,uniq_lambda_list(sw1)];}
@@ -4021,8 +4246,8 @@ var
 var
  cut=
   function(n,l)
-   {if(n=0)
-     {return /* tuple */[0,0,l];}
+   {if(n===0)
+     {return /* tuple */[0,/* [] */0,l];}
     else
      {if(l)
        {var match=cut(n-1,l[2]);
@@ -4030,7 +4255,8 @@ var
         return /* tuple */[0,/* :: */[0,l[1],match[1]],match[2]];
         }
       else
-       {throw [0,Invalid_argument,"cut"];}
+       {throw [0,CamlPrimitive["caml_global_data"]["Invalid_argument"],"cut"];
+        }
       }
     };
 
@@ -4045,7 +4271,9 @@ var
                tst,
                /* :: */[0,
                 arg,
-                /* :: */[0,/* Lconst */[1,/* Const_base */[0,match[1]]],0]]],
+                /* :: */[0,
+                 /* Lconst */[1,/* Const_base */[0,match[1]]],
+                 /* [] */0]]],
               do_tests_fail(fail,tst,arg,param[2]),
               match[2]];
       }
@@ -4069,7 +4297,9 @@ var
                  tst,
                  /* :: */[0,
                   arg,
-                  /* :: */[0,/* Lconst */[1,/* Const_base */[0,match[1]]],0]]],
+                  /* :: */[0,
+                   /* Lconst */[1,/* Const_base */[0,match[1]]],
+                   /* [] */0]]],
                 do_tests_nofail(tst,arg,rem),
                 act];
         }
@@ -4091,23 +4321,23 @@ var
     
     var
      make_test_sequence$1=
-      function(const_lambda_list$2)
-       {if(List["length"](const_lambda_list$2)>=4&&lt_tst!=1)
-         {return split_sequence(const_lambda_list$2);}
+      function(const_lambda_list)
+       {if(List["length"](const_lambda_list)>=4&&lt_tst!==/* Pignore */3)
+         {return split_sequence(const_lambda_list);}
         else
          {if(fail$1)
-           {return do_tests_fail(fail$1[1],tst,arg,const_lambda_list$2);}
+           {return do_tests_fail(fail$1[1],tst,arg,const_lambda_list);}
           else
-           {return do_tests_nofail(tst,arg,const_lambda_list$2);}
+           {return do_tests_nofail(tst,arg,const_lambda_list);}
           }
         };
     
     var
      split_sequence=
-      function(const_lambda_list$2)
+      function(const_lambda_list)
        {var
          match$1=
-          cut(List["length"](const_lambda_list$2)/2,const_lambda_list$2);
+          cut(List["length"](const_lambda_list)/2,const_lambda_list);
         
         var list2=match$1[2];
         
@@ -4118,7 +4348,7 @@ var
                   arg,
                   /* :: */[0,
                    /* Lconst */[1,/* Const_base */[0,List["hd"](list2)[1]]],
-                   0]]],
+                   /* [] */0]]],
                 make_test_sequence$1(match$1[1]),
                 make_test_sequence$1(list2)];
         };
@@ -4140,21 +4370,23 @@ var
 var
  max_vals=
   function(cases,acts)
-   {var vals="unknown primitive:caml_make_vect";
+   {var
+     vals=
+      CamlPrimitive["caml_make_vect"](/* -1 for tag */acts["length"]-1,0);
     
-    for(var i=cases["length"]-1;i>=0;i--)
-     {var match=cases[i];
+    for(var i=/* -1 for tag */cases["length"]-1-1;i>=0;i--)
+     {var match=cases[i+1];
       
       var act=match[3];
       
-      vals[act]=match[2]-match[1]+1+vals[act],0}
+      vals[act+1]=match[2]-match[1]+1+vals[act+1]}
     
     var max=0;
     
-    for(var i$1=vals["length"]-1;i$1>=0;i$1--)
-     {if(vals[i$1]>=vals[max]){max=i$1;}else{}}
+    for(var i$1=/* -1 for tag */vals["length"]-1-1;i$1>=0;i$1--)
+     {if(vals[i$1+1]>=vals[max+1]){max=i$1;}else{}}
     
-    if(vals[max]>1){return max;}else{return -1;}
+    if(vals[max+1]>1){return max;}else{return -1;}
     };
 
 var
@@ -4162,26 +4394,26 @@ var
   function(cases,acts)
    {var $$default=max_vals(cases,acts);
     
-    var match=cases[0];
+    var match=cases[1];
     
     var min_key=match[1];
     
-    var match$1=cases[cases["length"]-1];
+    var match$1=cases[/* -1 for tag */cases["length"]-1-1+1];
     
     var
      do_rec=
       function(i,k)
        {if(i>=0)
-         {var match$2=cases[i];
+         {var match$2=cases[i+1];
           
           var act=match$2[3];
           
-          if(act=$$default)
+          if(act===$$default)
            {return do_rec(i-1,k);}
           else
            {return do_rec
                     (i-1,
-                     explode_inter(min_key,match$2[1],match$2[2],acts[act],k));
+                     explode_inter(min_key,match$2[1],match$2[2],acts[act+1],k));
             }
           }
         else
@@ -4191,29 +4423,29 @@ var
     return /* tuple */[0,
             min_key,
             match$1[2],
-            do_rec(cases["length"]-1,0),
-            $$default>=0?/* Some */[0,acts[$$default]]:0];
+            do_rec(/* -1 for tag */cases["length"]-1-1,/* [] */0),
+            $$default>=0?/* Some */[0,acts[$$default+1]]:/* None */0];
     };
 
-var eqint=[13,0];
+var eqint=[/* Pintcomp */13,/* Ceq */0];
 
-var neint=[13,1];
+var neint=[/* Pintcomp */13,/* Cneq */1];
 
-var leint=[13,4];
+var leint=[/* Pintcomp */13,/* Cle */4];
 
-var ltint=[13,2];
+var ltint=[/* Pintcomp */13,/* Clt */2];
 
-var geint=[13,5];
+var geint=[/* Pintcomp */13,/* Cge */5];
 
-var gtint=[13,3];
+var gtint=[/* Pintcomp */13,/* Cgt */3];
 
 var make_prim=function(p,args){return /* Lprim */[6,p,args];};
 
 var
  make_offset=
   function(arg,n)
-   {if(n!=0)
-     {return /* Lprim */[6,/* Poffsetint */[14,n],/* :: */[0,arg,0]];}
+   {if(n!==0)
+     {return /* Lprim */[6,/* Poffsetint */[14,n],/* :: */[0,arg,/* [] */0]];}
     else
      {return arg;}
     };
@@ -4221,7 +4453,7 @@ var
 var
  bind=
   function(arg,body)
-   {switch(arg)
+   {switch(arg[0])
      {case 0:var match=/* tuple */[0,arg[1],arg];
       default:
        var newvar=Ident["create"]("switcher");
@@ -4229,7 +4461,7 @@ var
        var match=/* tuple */[0,newvar,/* Lvar */[0,newvar]];
        }
     
-    return Lambda["bind"](1,match[1],arg,body(match[2]));
+    return Lambda["bind"](/* Alias */1,match[1],arg,body(match[2]));
     };
 
 var
@@ -4239,11 +4471,17 @@ var
 
 var
  make_isout=
-  function(h,arg){return /* Lprim */[6,32,/* :: */[0,h,/* :: */[0,arg,0]]];};
+  function(h,arg)
+   {return /* Lprim */[6,
+            /* Pisout */34,
+            /* :: */[0,h,/* :: */[0,arg,/* [] */0]]];
+    };
 
 var
  make_isin=
-  function(h,arg){return /* Lprim */[6,5,/* :: */[0,make_isout(h,arg),0]];};
+  function(h,arg)
+   {return /* Lprim */[6,/* Pnot */7,/* :: */[0,make_isout(h,arg),/* [] */0]];
+    };
 
 var
  make_if=
@@ -4252,12 +4490,19 @@ var
 var
  make_switch=
   function(arg,cases,acts)
-   {var l=0;
+   {var l=/* [] */0;
     
-    for(var i=cases["length"]-1;i>=0;i--)
-     {l=/* :: */[0,/* tuple */[0,i,acts[cases[i]]],l];}
+    for(var i=/* -1 for tag */cases["length"]-1-1;i>=0;i--)
+     {l=/* :: */[0,/* tuple */[0,i,acts[cases[i+1]+1]],l];}
     
-    return /* Lswitch */[7,arg,/* record */[0,cases["length"],l,0,0,0]];
+    return /* Lswitch */[7,
+            arg,
+            /* record */[0,
+             /* -1 for tag */cases["length"]-1,
+             l,
+             0,
+             /* [] */0,
+             /* None */0]];
     };
 
 var
@@ -4283,11 +4528,14 @@ var
 var
  share_actions_sw=
   function(sw)
-   {var store=StoreExp[1](0);
+   {var store=StoreExp[1](/* () */0);
     
     var match=sw[5];
     
-    if(match){var fail=/* Some */[0,store[4](match[1])];}else{var fail=0;}
+    if(match)
+     {var fail=/* Some */[0,store[4](match[1])];}
+    else
+     {var fail=/* None */0;}
     
     var
      consts=
@@ -4301,13 +4549,16 @@ var
        (function(param){return /* tuple */[0,param[1],store[3](param[2])];},
         sw[4]);
     
-    var acts=store[2](0);
+    var acts=store[2](/* () */0);
     
-    var match$1=handle_shared(0);
+    var match$1=handle_shared(/* () */0);
     
     var acts$1=$$Array["map"](match$1[2],acts);
     
-    if(fail){var fail$1=/* Some */[0,acts$1[fail[1]]];}else{var fail$1=0;}
+    if(fail)
+     {var fail$1=/* Some */[0,acts$1[fail[1]+1]];}
+    else
+     {var fail$1=/* None */0;}
     
     return /* tuple */[0,
             match$1[1][1],
@@ -4315,12 +4566,12 @@ var
              sw[1],
              List["map"]
               (function(param)
-                {return /* tuple */[0,param[1],acts$1[param[2]]];},
+                {return /* tuple */[0,param[1],acts$1[param[2]+1]];},
                consts),
              sw[3],
              List["map"]
               (function(param)
-                {return /* tuple */[0,param[1],acts$1[param[2]]];},
+                {return /* tuple */[0,param[1],acts$1[param[2]+1]];},
                blocks),
              fail$1]];
     };
@@ -4333,7 +4584,7 @@ var
     if(match)
      {return sw;}
     else
-     {var t=Hashtbl["create"](0,17);
+     {var t=Hashtbl["create"](/* None */0,17);
       
       var
        seen=
@@ -4345,12 +4596,17 @@ var
             
             try
              {var old=Hashtbl["find"](t,i);}
-            catch(exn){if(exn=Not_found){var old=0;}else{throw exn;}}
+            catch(exn)
+             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+               {var old=0;}
+              else
+               {throw exn;}
+              }
             
             return Hashtbl["replace"](t,i,old+1);
             }
           else
-           {return 0;}
+           {return /* () */0;}
           };
       
       List["iter"](seen,sw[2]);
@@ -4361,7 +4617,7 @@ var
       
       Hashtbl["iter"]
        (function(i,c)
-         {if(c>max[1]){i_max[1]=i,0;return max[1]=c,0;}else{return 0;}},
+         {if(c>max[1]){i_max[1]=i;return max[1]=c,0;}else{return 0;}},
         t);
       if(max[1]>=3)
        {var $$default=i_max[1];
@@ -4372,7 +4628,10 @@ var
            (function(param)
              {var match$1=as_simple_exit(param[2]);
               
-              if(match$1){return match$1[1]!=$$default;}else{return 1;}
+              if(match$1)
+               {return match$1[1]!==$$default;}
+              else
+               {return /* true */1;}
               });
         
         return /* record */[0,
@@ -4437,7 +4696,7 @@ var
 var
  as_interval_canfail=
   function(fail,low,high,l)
-   {var store=StoreExp[1](0);
+   {var store=StoreExp[1](/* () */0);
     
     var do_store=function(tag,act){return store[3](act);};
     
@@ -4453,11 +4712,11 @@ var
           
           var act_index=do_store("NO",match[2]);
           
-          if((cur_high+1)=i)
-           {if(act_index=cur_act)
+          if(cur_high+1===i)
+           {if(act_index===cur_act)
              {return nofail_rec(cur_low,i,cur_act,rem);}
             else
-             {if(act_index=0)
+             {if(act_index===0)
                {return /* :: */[0,
                         /* tuple */[0,cur_low,i-1,cur_act],
                         fail_rec(i,i,rem)];
@@ -4470,7 +4729,7 @@ var
               }
             }
           else
-           {if(act_index=0)
+           {if(act_index===0)
              {return /* :: */[0,
                       /* tuple */[0,cur_low,cur_high,cur_act],
                       fail_rec(cur_high+1,cur_high+1,all)];
@@ -4485,12 +4744,15 @@ var
             }
           }
         else
-         {if(cur_high=high)
-           {return /* :: */[0,/* tuple */[0,cur_low,cur_high,cur_act],0];}
+         {if(cur_high===high)
+           {return /* :: */[0,
+                    /* tuple */[0,cur_low,cur_high,cur_act],
+                    /* [] */0];
+            }
           else
            {return /* :: */[0,
                     /* tuple */[0,cur_low,cur_high,cur_act],
-                    /* :: */[0,/* tuple */[0,cur_high+1,high,0],0]];
+                    /* :: */[0,/* tuple */[0,cur_high+1,high,0],/* [] */0]];
             }
           }
         };
@@ -4507,7 +4769,7 @@ var
           
           var index=do_store("YES",match[2]);
           
-          if(index=0)
+          if(index===0)
            {return fail_rec(cur_low,i,rem);}
           else
            {return /* :: */[0,
@@ -4516,7 +4778,7 @@ var
             }
           }
         else
-         {return /* :: */[0,/* tuple */[0,cur_low,cur_high,0],0];}
+         {return /* :: */[0,/* tuple */[0,cur_low,cur_high,0],/* [] */0];}
         };
     
     var
@@ -4531,7 +4793,7 @@ var
           
           var index=do_store("INIT",match[2]);
           
-          if(index=0)
+          if(index===0)
            {return fail_rec(low,i,rem);}
           else
            {if(low<i)
@@ -4544,13 +4806,16 @@ var
             }
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
-    if(do_store("FAIL",fail)=0)
+    if(do_store("FAIL",fail)===0)
      {}
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2105,2]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",2105,2]];
+      }
     
     var r=init_rec(l);
     
@@ -4560,7 +4825,7 @@ var
 var
  as_interval_nofail=
   function(l)
-   {var store=StoreExp[1](0);
+   {var store=StoreExp[1](/* () */0);
     
     var
      i_rec=
@@ -4574,7 +4839,7 @@ var
           
           var act_index=store[3](match[2]);
           
-          if(act_index=cur_act)
+          if(act_index===cur_act)
            {return i_rec(cur_low,i,cur_act,rem);}
           else
            {return /* :: */[0,
@@ -4583,7 +4848,8 @@ var
             }
           }
         else
-         {return /* :: */[0,/* tuple */[0,cur_low,cur_high,cur_act],0];}
+         {return /* :: */[0,/* tuple */[0,cur_low,cur_high,cur_act],/* [] */0];
+          }
         };
     
     if(l)
@@ -4596,7 +4862,10 @@ var
       var inters=i_rec(i,i,act_index,l[2]);
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2126,9]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",2126,9]];
+      }
     
     return /* tuple */[0,$$Array["of_list"](inters),store];
     };
@@ -4610,10 +4879,10 @@ var
                
                var i1=param[1];
                
-               if("unknown primitive:caml_lessthan")
+               if(CamlPrimitive["caml_lessthan"](i1,i2))
                 {return -1;}
                else
-                {if("unknown primitive:caml_lessthan")
+                {if(CamlPrimitive["caml_lessthan"](i2,i1))
                   {return 1;}
                  else
                   {return 0;}
@@ -4654,7 +4923,10 @@ var
                if(match)
                 {return ok(match[1]);}
                else
-                {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2156,13]];}
+                {throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"bytecomp/matching.ml",2156,13]];
+                 }
                },
              ctx);
     };
@@ -4668,9 +4940,9 @@ var
       var pat=param[1];
       
       if(rem)
-       {var newrecord="unknown primitive:duprecord regular 6";
+       {var newrecord=/* unknown */"duprecord regular 6";
         
-        newrecord[1]=/* Tpat_or */[8,pat,list_as_pat(rem),0],0;
+        newrecord[1]=/* Tpat_or */[8,pat,list_as_pat(rem),/* None */0];
         return newrecord;
         }
       else
@@ -4687,7 +4959,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -4697,7 +4969,7 @@ var
     switch(exit){case 231:return /* :: */[0,p,k];}
     };
 
-var All="unknown primitive:caml_set_oo_id";
+var All=CamlPrimitive["caml_set_oo_id"]([248,"Matching.All",0]);
 
 var
  extract_pat=
@@ -4706,7 +4978,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=229;}}
     else
      {switch(match[0])
@@ -4739,9 +5011,12 @@ var
          {if(ps)
            {return extract_pat(param[2],param[1],ps[1]);}
           else
-           {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2194,13]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/matching.ml",2194,13]];
+            }
           },
-        /* tuple */[0,0,seen],
+        /* tuple */[0,/* [] */0,seen],
         pss);
     
     return match[1];
@@ -4759,7 +5034,10 @@ var
                 (p,List["map"](get_key_constr,pats)));
       }
     else
-     {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2206,9]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"bytecomp/matching.ml",2206,9]];
+      }
     };
 
 var
@@ -4776,7 +5054,7 @@ var
            match=
             /* tuple */[0,
              env,
-             /* Some */[0,/* Lstaticraise */[9,idef,0]],
+             /* Some */[0,/* Lstaticraise */[9,idef,/* [] */0]],
              jumps_singleton(idef,ctx)];
           }
         else
@@ -4784,7 +5062,7 @@ var
         }
       }
     else
-     {var match=/* tuple */[0,env,0,jumps_empty];}
+     {var match=/* tuple */[0,env,/* None */0,jumps_empty];}
     
     switch(exit)
      {case 219:
@@ -4792,7 +5070,7 @@ var
         match=
          /* tuple */[0,
           /* :: */[0,/* tuple */[0,idef,cant_fail,last_choice],env],
-          0,
+          /* None */0,
           jumps_empty];
        
       }
@@ -4805,15 +5083,15 @@ var
           
           var i=param[1];
           
-          var act=/* Lstaticraise */[9,i,0];
+          var act=/* Lstaticraise */[9,i,/* [] */0];
           
           var pat=list_as_pat(pats);
           
           var
            klist=
             List["fold_right"]
-             (function(pat$1,klist$1)
-               {return /* :: */[0,/* tuple */[0,get_key(pat$1),act],klist$1];},
+             (function(pat,klist)
+               {return /* :: */[0,/* tuple */[0,get_key(pat),act],klist];},
               pats,
               param$1[1]);
           
@@ -4822,7 +5100,7 @@ var
           return /* tuple */[0,klist,jumps_add(i,ctx$1,param$1[2])];
           },
         match[1],
-        /* tuple */[0,0,match[3]]);
+        /* tuple */[0,/* [] */0,match[3]]);
     
     return /* tuple */[0,match[2],match$1[1],match$1[2]];
     };
@@ -4830,19 +5108,19 @@ var
 var
  mk_failaction_neg=
   function(partial,ctx,def)
-   {if(partial!=0)
-     {return /* tuple */[0,0,0,jumps_empty];}
+   {if(partial!==0)
+     {return /* tuple */[0,/* None */0,/* [] */0,jumps_empty];}
     else
      {if(def)
        {var idef=def[1][2];
         
         return /* tuple */[0,
-                /* Some */[0,/* Lstaticraise */[9,idef,0]],
-                0,
+                /* Some */[0,/* Lstaticraise */[9,idef,/* [] */0]],
+                /* [] */0,
                 jumps_singleton(idef,ctx)];
         }
       else
-       {return /* tuple */[0,0,0,jumps_empty];}
+       {return /* tuple */[0,/* None */0,/* [] */0,jumps_empty];}
       }
     };
 
@@ -4853,14 +5131,14 @@ var
     
     var
      scan_def=
-      function(env,to_test,defs$1)
+      function(env,to_test,defs)
        {var exit;
         
         if(to_test)
-         {if(defs$1)
-           {var rem=defs$1[2];
+         {if(defs)
+           {var rem=defs[2];
             
-            var match=defs$1[1];
+            var match=defs[1];
             
             var pss=match[1];
             
@@ -4898,7 +5176,7 @@ var
                       
                       var pats=param$1[1];
                       
-                      var action=/* Lstaticraise */[9,i,0];
+                      var action=/* Lstaticraise */[9,i,/* [] */0];
                       
                       var
                        klist=
@@ -4917,14 +5195,14 @@ var
                       
                       return /* tuple */[0,klist,jumps];
                       },
-                    /* tuple */[0,0,jumps_empty],
+                    /* tuple */[0,/* [] */0,jumps_empty],
                     env);
            
           }
         };
     
     return scan_def
-            (0,
+            (/* [] */0,
              List["map"]
               (function(pat){return /* tuple */[0,pat,ctx_lub(pat,ctx)];},
                complete_pats_constrs(seen)),
@@ -4940,7 +5218,7 @@ var
     
     var const_lambda_list=Pervasives["@"](match[2],param[1]);
     
-    switch(cst)
+    switch(cst[0])
      {case 0:
        var
         int_lambda_list=
@@ -4948,10 +5226,13 @@ var
           (function(param$1)
             {var match$1=param$1[1];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 0:return /* tuple */[0,match$1[1],param$1[2]];
                default:
-                throw [0,Assert_failure,[0,"bytecomp/matching.ml",2302,58]];}
+                throw [0,
+                       CamlPrimitive["caml_global_data"]["Assert_failure"],
+                       [0,"bytecomp/matching.ml",2302,58]];
+                }
              },
            const_lambda_list);
        
@@ -4971,10 +5252,13 @@ var
           (function(param$1)
             {var match$1=param$1[1];
              
-             switch(match$1)
+             switch(match$1[0])
               {case 1:return /* tuple */[0,match$1[1],param$1[2]];
                default:
-                throw [0,Assert_failure,[0,"bytecomp/matching.ml",2308,19]];}
+                throw [0,
+                       CamlPrimitive["caml_global_data"]["Assert_failure"],
+                       [0,"bytecomp/matching.ml",2308,19]];
+                }
              },
            const_lambda_list);
        
@@ -4989,10 +5273,13 @@ var
           (function(param$1)
             {var c=param$1[1];
              
-             switch(c)
+             switch(c[0])
               {case 2:return /* tuple */[0,c[1],param$1[2]];
                default:
-                throw [0,Assert_failure,[0,"bytecomp/matching.ml",2321,19]];}
+                throw [0,
+                       CamlPrimitive["caml_global_data"]["Assert_failure"],
+                       [0,"bytecomp/matching.ml",2321,19]];
+                }
              },
            const_lambda_list$1);
        
@@ -5005,22 +5292,42 @@ var
       case 3:
        var
         lambda1=
-         make_test_sequence(fail,[16,1],[16,2],arg,const_lambda_list);
+         make_test_sequence
+          (fail,
+           [/* Pfloatcomp */16,/* Cneq */1],
+           [/* Pfloatcomp */16,/* Clt */2],
+           arg,
+           const_lambda_list);
        
       case 4:
        var
         lambda1=
-         make_test_sequence(fail,[38,1,1],[38,1,2],arg,const_lambda_list);
+         make_test_sequence
+          (fail,
+           [/* Pbintcomp */38,/* Pint32 */1,/* Cneq */1],
+           [/* Pbintcomp */38,/* Pint32 */1,/* Clt */2],
+           arg,
+           const_lambda_list);
        
       case 5:
        var
         lambda1=
-         make_test_sequence(fail,[38,2,1],[38,2,2],arg,const_lambda_list);
+         make_test_sequence
+          (fail,
+           [/* Pbintcomp */38,/* Pint64 */2,/* Cneq */1],
+           [/* Pbintcomp */38,/* Pint64 */2,/* Clt */2],
+           arg,
+           const_lambda_list);
        
       case 6:
        var
         lambda1=
-         make_test_sequence(fail,[38,0,1],[38,0,2],arg,const_lambda_list);
+         make_test_sequence
+          (fail,
+           [/* Pbintcomp */38,/* Pnativeint */0,/* Cneq */1],
+           [/* Pbintcomp */38,/* Pnativeint */0,/* Clt */2],
+           arg,
+           const_lambda_list);
        
       }
     
@@ -5046,7 +5353,7 @@ var
           
           var consts=match$1[1];
           
-          switch(cstr)
+          switch(cstr[0])
            {case 0:
              return /* tuple */[0,
                      /* :: */[0,/* tuple */[0,cstr[1],act],consts],
@@ -5058,11 +5365,14 @@ var
                      /* :: */[0,/* tuple */[0,cstr[1],act],nonconsts]];
              
             case 2:
-             throw [0,Assert_failure,[0,"bytecomp/matching.ml",2357,15]];
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"bytecomp/matching.ml",2357,15]];
+             
             }
           }
         else
-         {return [0,0,0];}
+         {return [/* tuple */0,/* [] */0,/* [] */0];}
         };
     
     var match=split_rec(tag_lambda_list);
@@ -5093,13 +5403,13 @@ var
           
           var exit;
           
-          switch(cstr)
+          switch(cstr[0])
            {case 0:exit=185;
             case 1:exit=185;
             case 2:
              var path=cstr[1];
              
-             if(cstr[2]!=0)
+             if(cstr[2]!==0)
               {return /* tuple */[0,
                        /* :: */[0,/* tuple */[0,path,act],consts],
                        nonconsts];
@@ -5114,11 +5424,14 @@ var
           
           switch(exit)
            {case 185:
-             throw [0,Assert_failure,[0,"bytecomp/matching.ml",2370,15]];
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"bytecomp/matching.ml",2370,15]];
+             
             }
           }
         else
-         {return [0,0,0];}
+         {return [/* tuple */0,/* [] */0,/* [] */0];}
         };
     
     return split_rec(tag_lambda_list);
@@ -5153,7 +5466,10 @@ var
          {if(consts)
            {var match$2=/* tuple */[0,consts[1][2],consts[2],nonconsts];}
           else
-           {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2389,19]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/matching.ml",2389,19]];
+            }
           }
         }
       
@@ -5170,10 +5486,12 @@ var
            (function(param$1,rem)
              {return /* Lifthenelse */[12,
                       /* Lprim */[6,
-                       [13,0],
+                       [/* Pintcomp */13,/* Ceq */0],
                        /* :: */[0,
                         /* Lvar */[0,tag],
-                        /* :: */[0,Lambda["transl_path"](0,ex_pat[5],param$1[1]),0]]],
+                        /* :: */[0,
+                         Lambda["transl_path"](/* None */0,ex_pat[5],param$1[1]),
+                         /* [] */0]]],
                       param$1[2],
                       rem];
               },
@@ -5182,7 +5500,11 @@ var
         
         var
          nonconst_lambda=
-          /* Llet */[4,1,tag,/* Lprim */[6,[6,0],/* :: */[0,arg,0]],tests];
+          /* Llet */[4,
+           /* Alias */1,
+           tag,
+           /* Lprim */[6,[/* Pfield */6,0],/* :: */[0,arg,/* [] */0]],
+           tests];
         }
       else
        {var nonconst_lambda=$$default;}
@@ -5193,10 +5515,12 @@ var
          (function(param$1,rem)
            {return /* Lifthenelse */[12,
                     /* Lprim */[6,
-                     [13,0],
+                     [/* Pintcomp */13,/* Ceq */0],
                      /* :: */[0,
                       arg,
-                      /* :: */[0,Lambda["transl_path"](0,ex_pat[5],param$1[1]),0]]],
+                      /* :: */[0,
+                       Lambda["transl_path"](/* None */0,ex_pat[5],param$1[1]),
+                       /* [] */0]]],
                     param$1[2],
                     rem];
             },
@@ -5210,10 +5534,10 @@ var
       
       var nconstrs=cstr[7]+cstr[8];
       
-      var sig_complete=ncases=nconstrs;
+      var sig_complete=ncases===nconstrs;
       
       if(sig_complete)
-       {var match$3=/* tuple */[0,0,jumps_empty];}
+       {var match$3=/* tuple */[0,/* [] */0,jumps_empty];}
       else
        {var match$3=mk_failaction_pos(partial,param[3],ctx,def);}
       
@@ -5236,16 +5560,16 @@ var
         
         var exit;
         
-        if(match$6!=1)
+        if(match$6!==1)
          {exit=164;}
         else
-         {if(match$7!=1)
+         {if(match$7!==1)
            {exit=164;}
           else
            {if(consts$1)
              {var match$8=consts$1[1];
               
-              if(match$8[1]!=0)
+              if(match$8[1]!==0)
                {exit=164;}
               else
                {if(consts$1[2])
@@ -5254,7 +5578,7 @@ var
                  {if(nonconsts$2)
                    {var match$9=nonconsts$2[1];
                     
-                    if(match$9[1]!=0)
+                    if(match$9[1]!==0)
                      {exit=163;}
                     else
                      {if(nonconsts$2[2])
@@ -5279,9 +5603,12 @@ var
         switch(exit)
          {case 164:
            if(nonconsts$2)
-            {"unknown block:(exit 163)";}
+            {exit=163;}
            else
-            {var lambda1$1=call_switcher(0,arg,0,match$6-1,consts$1);}
+            {var
+              lambda1$1=
+               call_switcher(/* None */0,arg,0,match$6-1,consts$1);
+             }
            
           case 163:
            var match$10=same_actions(nonconsts$2);
@@ -5290,12 +5617,19 @@ var
             {var
               lambda1$1=
                /* Lifthenelse */[12,
-                /* Lprim */[6,31,/* :: */[0,arg,0]],
-                call_switcher(0,arg,0,match$6-1,consts$1),
+                /* Lprim */[6,/* Pisint */33,/* :: */[0,arg,/* [] */0]],
+                call_switcher(/* None */0,arg,0,match$6-1,consts$1),
                 match$10[1]];
              }
            else
-            {var sw=/* record */[0,cstr[7],consts$1,cstr[8],nonconsts$2,0];
+            {var
+              sw=
+               /* record */[0,
+                cstr[7],
+                consts$1,
+                cstr[8],
+                nonconsts$2,
+                /* None */0];
              
              var match$11=share_actions_sw(sw);
              
@@ -5341,9 +5675,9 @@ var
    {var v=Ident["create"]("variant");
     
     return /* Llet */[4,
-            1,
+            /* Alias */1,
             v,
-            /* Lprim */[6,[6,0],/* :: */[0,arg,0]],
+            /* Lprim */[6,[/* Pfield */6,0],/* :: */[0,arg,/* [] */0]],
             call_switcher
              (fail,
               /* Lvar */[0,v],
@@ -5368,40 +5702,41 @@ var
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){case 0:exit=150;}}
           else
            {switch(match[0])
              {case 0:exit=151;
               case 1:
-               if(match[1]!=0)
+               if(match[1]!==0)
                 {if(match[2]){exit=150;}else{exit=151;}}
                else
                 {exit=151;}
                
               }}
           
-          switch(exit){case 151:return num_constr[0]++;case 150:return 0;}
+          switch(exit)
+           {case 151:return num_constr[0]++;case 150:return /* () */0;}
           },
         row$1[1])}
     else
-     {num_constr[1]=Pervasives["max_int"],0}
+     {num_constr[1]=Pervasives["max_int"]}
     
     var
      test_int_or_block=
-      function(arg$1,if_int,if_block)
+      function(arg,if_int,if_block)
        {return /* Lifthenelse */[12,
-                /* Lprim */[6,31,/* :: */[0,arg$1,0]],
+                /* Lprim */[6,/* Pisint */33,/* :: */[0,arg,/* [] */0]],
                 if_int,
                 if_block];
         };
     
-    var sig_complete=List["length"](tag_lambda_list)=num_constr[1];
+    var sig_complete=List["length"](tag_lambda_list)===num_constr[1];
     
     var one_action=same_actions(tag_lambda_list);
     
-    if(sig_complete||(partial!=0?1:0))
-     {var match=/* tuple */[0,0,0,jumps_empty];}
+    if(sig_complete||(partial!==0?/* true */1:/* false */0))
+     {var match=/* tuple */[0,/* None */0,/* [] */0,jumps_empty];}
     else
      {var match=mk_failaction_neg(partial,ctx,def);}
     
@@ -5434,7 +5769,7 @@ var
             {if(nonconsts[2])
               {exit$1=138;}
              else
-              {if(fail=0)
+              {if(fail===/* None */0)
                 {var
                   lambda1=
                    test_int_or_block(arg,consts[1][2],nonconsts[1][2]);
@@ -5454,7 +5789,7 @@ var
         {case 140:
           if(nonconsts)
            {if(consts)
-             {"unknown block:(exit 138)";}
+             {exit$1=138;}
             else
              {var lam=call_switcher_variant_constr(fail,arg,nonconsts);
               
@@ -5498,9 +5833,9 @@ var
     var
      lambda1=
       Lambda["bind"]
-       (1,
+       (/* Alias */1,
         newvar,
-        /* Lprim */[6,/* Parraylength */[18,kind],/* :: */[0,arg,0]],
+        /* Lprim */[6,/* Parraylength */[18,kind],/* :: */[0,arg,/* [] */0]],
         $$switch);
     
     return /* tuple */[0,lambda1,jumps_union(match[3],param[2])];
@@ -5510,7 +5845,7 @@ var
  event_branch=
   function(repr,lam)
    {if(repr)
-     {switch(lam)
+     {switch(lam[0])
        {case 4:
          return /* Llet */[4,lam[1],lam[2],lam[3],event_branch(repr,lam[4])];
         case 9:return lam;
@@ -5524,14 +5859,15 @@ var
          Printlambda["lambda"](Format["str_formatter"],lam);
          return Misc["fatal_error"]
                  (Pervasives["^"]
-                   ("Matching.event_branch: ",Format["flush_str_formatter"](0)));
+                   ("Matching.event_branch: ",
+                    Format["flush_str_formatter"](/* () */0)));
          }
       }
     else
      {return lam;}
     };
 
-var Unused="unknown primitive:caml_set_oo_id";
+var Unused=CamlPrimitive["caml_set_oo_id"]([248,"Matching.Unused",0]);
 
 var
  compile_list=
@@ -5563,16 +5899,16 @@ var
                       /* :: */[0,cell[3],match$3[3]]];
               }
             catch(exn)
-             {if(exn=Unused){return c_rec(totals,rem);}else{throw exn;}}
+             {if(exn===Unused){return c_rec(totals,rem);}else{throw exn;}}
             }
           else
            {return c_rec(totals,rem);}
           }
         else
-         {return /* tuple */[0,0,jumps_unions(totals),0];}
+         {return /* tuple */[0,/* [] */0,jumps_unions(totals),/* [] */0];}
         };
     
-    return c_rec(0,division);
+    return c_rec(/* [] */0,division);
     };
 
 var
@@ -5603,12 +5939,12 @@ var
             
             var match$2=raw_action(r);
             
-            switch(match$2)
+            switch(match$2[0])
              {case 9:
-               if(i=match$2[1])
+               if(i===match$2[1])
                 {return /* tuple */[0,
                          List["fold_right2"]
-                          (Lambda["bind"](1),vars,match$2[2],handler_i),
+                          (Lambda["bind"](/* Alias */1),vars,match$2[2],handler_i),
                          jumps_map(ctx_rshift_num(ncols(mat)),total_i)];
                  }
                else
@@ -5624,7 +5960,7 @@ var
                }
             }
           catch(exn)
-           {if(exn=Unused)
+           {if(exn===Unused)
              {return do_rec
                       (/* Lstaticcatch */[10,
                         r,
@@ -5646,13 +5982,13 @@ var
 
 var
  compile_test=
-  function(compile_fun,partial,divide$1,combine$1,ctx,to_match)
-   {var division=divide$1(ctx,to_match);
+  function(compile_fun,partial,divide,combine,ctx,to_match)
+   {var division=divide(ctx,to_match);
     
     var c_div=compile_list(compile_fun,division);
     
     if(c_div[1])
-     {return combine$1(ctx,to_match[3],c_div);}
+     {return combine(ctx,to_match[3],c_div);}
     else
      {var match=mk_failaction_neg(partial,ctx,to_match[3]);
       
@@ -5670,11 +6006,11 @@ var
   function(v,param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:return Ident["same"](v,param[1]);
-      case 1:return 0;
+      case 1:return /* false */0;
       case 4:
-       if(param[1]!=1)
+       if(param[1]!==1)
         {exit=112;}
        else
         {return approx_present(v,param[3])||approx_present(v,param[4]);}
@@ -5689,7 +6025,7 @@ var
        
       default:exit=112;}
     
-    switch(exit){case 112:return 1;}
+    switch(exit){case 112:return /* true */1;}
     };
 
 var
@@ -5697,17 +6033,22 @@ var
   function(v,arg,lam)
    {var exit;
     
-    switch(lam)
+    switch(lam[0])
      {case 4:
-       if(lam[1]!=1)
+       if(lam[1]!==1)
         {exit=111;}
        else
         {var lv=lam[3];
          
          if(approx_present(v,lv))
-          {return Lambda["bind"](1,v,arg,lam);}
+          {return Lambda["bind"](/* Alias */1,v,arg,lam);}
          else
-          {return /* Llet */[4,1,lam[2],lv,lower_bind(v,arg,lam[4])];}
+          {return /* Llet */[4,
+                   /* Alias */1,
+                   lam[2],
+                   lv,
+                   lower_bind(v,arg,lam[4])];
+           }
          }
        
       case 7:
@@ -5733,7 +6074,7 @@ var
                         sw[1],
                         /* :: */[0,
                          /* tuple */[0,match$1[1],lower_bind(v,arg,match$1[2])],
-                         0],
+                         /* [] */0],
                         sw[3],
                         sw[4],
                         sw[5]]];
@@ -5761,7 +6102,7 @@ var
                         sw[3],
                         /* :: */[0,
                          /* tuple */[0,match$3[1],lower_bind(v,arg,match$3[2])],
-                         0],
+                         /* [] */0],
                         sw[5]]];
                }
              else
@@ -5787,37 +6128,37 @@ var
        
        var exit$1;
        
-       if(pcond!=0)
+       if(pcond!==0)
         {exit$1=107;}
        else
-        {if(pso!=0)
-          {if(pnot!=0)
+        {if(pso!==0)
+          {if(pnot!==0)
             {exit$1=107;}
            else
             {return /* Lifthenelse */[12,cond,lower_bind(v,arg,ifso),ifnot];}
            }
          else
-          {if(pnot!=0)
+          {if(pnot!==0)
             {return /* Lifthenelse */[12,cond,ifso,lower_bind(v,arg,ifnot)];}
            else
             {return lam;}
            }
          }
        
-       switch(exit$1){case 107:return Lambda["bind"](1,v,arg,lam);}
+       switch(exit$1){case 107:return Lambda["bind"](/* Alias */1,v,arg,lam);}
        
       default:exit=111;}
     
-    switch(exit){case 111:return Lambda["bind"](1,v,arg,lam);}
+    switch(exit){case 111:return Lambda["bind"](/* Alias */1,v,arg,lam);}
     };
 
 var
  bind_check=
   function(str,v,arg,lam)
-   {switch(arg)
+   {switch(arg[0])
      {case 0:return Lambda["bind"](str,v,arg,lam);
       default:
-       if(str!=1)
+       if(str!==1)
         {return Lambda["bind"](str,v,arg,lam);}
        else
         {return lower_bind(v,arg,lam);}
@@ -5832,7 +6173,9 @@ var
     if(match)
      {var i=match[1][2];
       
-      return /* tuple */[0,/* Lstaticraise */[9,i,0],jumps_singleton(i,ctx)];
+      return /* tuple */[0,
+              /* Lstaticraise */[9,i,/* [] */0],
+              jumps_singleton(i,ctx)];
       }
     else
      {return Misc["fatal_error"]("Matching.comp_exit");}
@@ -5860,19 +6203,24 @@ var
             
             if(ctx_i)
              {try
-               {var match$2=comp_fun(rem?0:partial,ctx_i,arg,match[2]);
+               {var
+                 match$2=
+                  comp_fun(rem?/* Partial */0:partial,ctx_i,arg,match[2]);
                 
                 return c_rec
-                        (/* Lstaticcatch */[10,body,/* tuple */[0,i,0],match$2[1]],
+                        (/* Lstaticcatch */[10,
+                          body,
+                          /* tuple */[0,i,/* [] */0],
+                          match$2[1]],
                          jumps_union(match$2[2],total_rem),
                          rem);
                 }
               catch(exn)
-               {if(exn=Unused)
+               {if(exn===Unused)
                  {return c_rec
                           (/* Lstaticcatch */[10,
                             body,
-                            /* tuple */[0,i,0],
+                            /* tuple */[0,i,/* [] */0],
                             Lambda["lambda_unit"]],
                            total_rem,
                            rem);
@@ -5889,12 +6237,12 @@ var
           };
       
       try
-       {var match=comp_fun(0,ctx,arg,first_match);
+       {var match=comp_fun(/* Partial */0,ctx,arg,first_match);
         
         return c_rec(match[1],match[2],next_matchs);
         }
       catch(exn)
-       {if(exn=Unused)
+       {if(exn===Unused)
          {if(next_matchs)
            {return comp_match_handlers
                     (comp_fun,partial,ctx,arg,next_matchs[1][2],next_matchs[2]);
@@ -5923,7 +6271,7 @@ var
         
         var exit$1;
         
-        if(typeof match$1=="number")
+        if(typeof match$1==="number")
          {switch(match$1){}}
         else
          {switch(match$1[0])
@@ -5945,7 +6293,7 @@ var
 var
  arg_to_var=
   function(arg,cls)
-   {switch(arg)
+   {switch(arg[0])
      {case 0:return /* tuple */[0,arg[1],arg];
       default:
        var v=name_pattern("match",cls);
@@ -5982,7 +6330,7 @@ var
              (/* Some */[0,v],
               /* record */[0,
                m[1],
-               /* :: */[0,/* tuple */[0,newarg,1],match$2[2]],
+               /* :: */[0,/* tuple */[0,newarg,/* Alias */1],match$2[2]],
                m[3]]);
           
           var
@@ -6000,7 +6348,10 @@ var
                   match$6[2]];
           }
         else
-         {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2776,7]];}
+         {throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"bytecomp/matching.ml",2776,7]];
+          }
         }
       else
        {var action=match$1[2];
@@ -6008,7 +6359,8 @@ var
         if(Lambda["is_guarded"](action))
          {var
            match$7=
-            compile_match(0,partial,ctx,/* record */[0,match[2],m[2],m[3]]);
+            compile_match
+             (/* None */0,partial,ctx,/* record */[0,match[2],m[2],m[3]]);
           
           return /* tuple */[0,
                   event_branch
@@ -6027,7 +6379,7 @@ var
  do_compile_matching_pr=
   function(repr,partial,ctx,arg,x)
    {Pervasives["prerr_string"]("COMPILE: ");
-    Pervasives["prerr_endline"](partial!=0?"Total":"Partial");
+    Pervasives["prerr_endline"](partial!==0?"Total":"Partial");
     Pervasives["prerr_endline"]("MATCH");
     pretty_precompiled(x);
     Pervasives["prerr_endline"]("CTX");
@@ -6042,7 +6394,7 @@ var
 var
  do_compile_matching=
   function(repr,partial,ctx,arg,pmh)
-   {switch(pmh)
+   {switch(pmh[0])
      {case 0:
        var match=pmh[1];
        
@@ -6074,7 +6426,7 @@ var
        
        var exit;
        
-       if(typeof match$4=="number")
+       if(typeof match$4==="number")
         {switch(match$4)
           {case 0:
             return compile_no_test(divide_var,ctx_rshift,repr,partial,ctx,pm);
@@ -6159,15 +6511,20 @@ var
            default:exit=83;}}
        
        switch(exit)
-        {case 83:throw [0,Assert_failure,[0,"bytecomp/matching.ml",2833,9]];}
+        {case 83:
+          throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"bytecomp/matching.ml",2833,9]];
+          
+         }
        
       }
     };
 
 var
  compile_no_test=
-  function(divide$1,up_ctx,repr,partial,ctx,to_match)
-   {var match=divide$1(ctx,to_match);
+  function(divide,up_ctx,repr,partial,ctx,to_match)
+   {var match=divide(ctx,to_match);
     
     var match$1=compile_match(repr,partial,match[2],match[1]);
     
@@ -6185,7 +6542,7 @@ var
         var exit;
         
         var $js;
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -6209,11 +6566,11 @@ var
         
         var $js$1;
         switch(exit)
-         {case 72:"unknown block:(exit 69 (field 0 match/3341))";
-          case 73:"unknown block:(exit 70 (field 0 match/3341))";
+         {case 72:var p$1=match[1];exit=69;
+          case 73:var ps=match[1];exit=70;
           case 69:$js$1=find_rec(p$1);
           case 70:$js$1=List["exists"](find_rec,ps);
-          case 71:$js$1=0;
+          case 71:$js$1=/* false */0;
           }
         return pred(p[1])||$js$1;
         };
@@ -6226,12 +6583,12 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
-     {switch(param[0]){case 9:return 1;default:exit=67;}}
+     {switch(param[0]){case 9:return /* true */1;default:exit=67;}}
     
-    switch(exit){case 67:return 0;}
+    switch(exit){case 67:return /* false */0;}
     };
 
 var is_lazy=function(p){return find_in_pat(is_lazy_pat,p);};
@@ -6241,7 +6598,7 @@ var
   function(p)
    {var exit;
     
-    if(typeof p=="number")
+    if(typeof p==="number")
      {switch(p){}}
     else
      {switch(p[0])
@@ -6250,36 +6607,36 @@ var
                  (function(param)
                    {var match=param[2][4];
                     
-                    if(match!=0){return 1;}else{return 0;}
+                    if(match!==0){return /* true */1;}else{return /* false */0;}
                     },
                   p[1]);
          
         default:exit=64;}}
     
-    switch(exit){case 64:return 0;}
+    switch(exit){case 64:return /* false */0;}
     };
 
 var is_mutable=function(p){return find_in_pat(have_mutable_field,p);};
 
 var
  check_partial=
-  function(is_mutable$1,is_lazy$1,pat_act_list,param)
-   {if(param!=0)
+  function(is_mutable,is_lazy,pat_act_list,param)
+   {if(param!==0)
      {if
        (List["exists"]
          (function(param$1)
            {var pats=param$1[1];
             
-            return is_mutable$1(pats)&&
-                   (Lambda["is_guarded"](param$1[2])||is_lazy$1(pats));
+            return is_mutable(pats)&&
+                   (Lambda["is_guarded"](param$1[2])||is_lazy(pats));
             },
           pat_act_list))
-       {return 0;}
+       {return /* Partial */0;}
       else
-       {return 1;}
+       {return /* Total */1;}
       }
     else
-     {return 0;}
+     {return /* Partial */0;}
     };
 
 var
@@ -6290,7 +6647,11 @@ var check_partial$1=check_partial(is_mutable,is_lazy);
 
 var
  start_ctx=
-  function(n){return /* :: */[0,/* record */[0,0,Parmatch["omegas"](n)],0];};
+  function(n)
+   {return /* :: */[0,
+            /* record */[0,/* [] */0,Parmatch["omegas"](n)],
+            /* [] */0];
+    };
 
 var
  check_total=
@@ -6298,7 +6659,11 @@ var
    {if(jumps_is_empty(total))
      {return lambda;}
     else
-     {return /* Lstaticcatch */[10,lambda,/* tuple */[0,i,0],handler_fun(0)];}
+     {return /* Lstaticcatch */[10,
+              lambda,
+              /* tuple */[0,i,/* [] */0],
+              handler_fun(/* () */0)];
+      }
     };
 
 var
@@ -6306,42 +6671,45 @@ var
   function(loc,repr,handler_fun,arg,pat_act_list,partial)
    {var partial$1=check_partial$1(pat_act_list,partial);
     
-    if(partial$1!=0)
+    if(partial$1!==0)
      {var
        pm=
         /* record */[0,
          List["map"]
           (function(param)
-            {return /* tuple */[0,/* :: */[0,param[1],0],param[2]];},
+            {return /* tuple */[0,/* :: */[0,param[1],/* [] */0],param[2]];},
            pat_act_list),
-         /* :: */[0,/* tuple */[0,arg,0],0],
-         0];
+         /* :: */[0,/* tuple */[0,arg,/* Strict */0],/* [] */0],
+         /* [] */0];
       
       var match=compile_match(repr,partial$1,start_ctx(1),pm);
       
       if(jumps_is_empty(match[2]))
        {}
       else
-       {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2967,6]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"bytecomp/matching.ml",2967,6]];
+        }
       
       return match[1];
       }
     else
-     {var raise_num=Lambda["next_raise_count"](0);
+     {var raise_num=Lambda["next_raise_count"](/* () */0);
       
       var
        pm$1=
         /* record */[0,
          List["map"]
           (function(param)
-            {return /* tuple */[0,/* :: */[0,param[1],0],param[2]];},
+            {return /* tuple */[0,/* :: */[0,param[1],/* [] */0],param[2]];},
            pat_act_list),
-         /* :: */[0,/* tuple */[0,arg,0],0],
+         /* :: */[0,/* tuple */[0,arg,/* Strict */0],/* [] */0],
          /* :: */[0,
           /* tuple */[0,
-           /* :: */[0,/* :: */[0,Parmatch["omega"],0],0],
+           /* :: */[0,/* :: */[0,Parmatch["omega"],/* [] */0],/* [] */0],
            raise_num],
-          0]];
+          /* [] */0]];
       
       try
        {var match$1=compile_match(repr,partial$1,start_ctx(1),pm$1);
@@ -6349,8 +6717,11 @@ var
         return check_total(match$1[2],match$1[1],raise_num,handler_fun);
         }
       catch(exn)
-       {if(exn=Unused)
-         {throw [0,Assert_failure,[0,"bytecomp/matching.ml",2959,18]];}
+       {if(exn===Unused)
+         {throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"bytecomp/matching.ml",2959,18]];
+          }
         else
          {throw exn;}
         }
@@ -6363,10 +6734,13 @@ var
    {var match=Location["get_pos_info"](loc[1]);
     
     return /* Lprim */[6,
-            [12,0],
+            [/* Praise */12,/* Raise_regular */0],
             /* :: */[0,
              /* Lprim */[6,
-              /* Pmakeblock */[5,0,Lambda["default_tag_info"],0],
+              /* Pmakeblock */[5,
+               0,
+               Lambda["default_tag_info"],
+               /* Immutable */0],
               /* :: */[0,
                Lambda["transl_normal_path"](Predef["path_match_failure"]),
                /* :: */[0,
@@ -6375,14 +6749,15 @@ var
                   0,
                   Lambda["default_tag_info"],
                   /* :: */[0,
-                   /* Const_base */[0,/* Const_string */[2,match[1],0]],
+                   /* Const_base */[0,
+                    /* Const_string */[2,match[1],/* None */0]],
                    /* :: */[0,
                     /* Const_base */[0,/* Const_int */[0,match[2]]],
                     /* :: */[0,
                      /* Const_base */[0,/* Const_int */[0,match[3]]],
-                     0]]]]],
-                0]]],
-             0]];
+                     /* [] */0]]]]],
+                /* [] */0]]],
+             /* [] */0]];
     };
 
 var
@@ -6397,12 +6772,15 @@ var
   function(param,pat_act_list)
    {return compile_matching
             (Location["none"],
-             0,
+             /* None */0,
              function(param$1)
-              {return /* Lprim */[6,[12,1],/* :: */[0,param,0]];},
+              {return /* Lprim */[6,
+                       [/* Praise */12,/* Raise_reraise */1],
+                       /* :: */[0,param,/* [] */0]];
+               },
              param,
              pat_act_list,
-             0);
+             /* Partial */0);
     };
 
 var
@@ -6410,11 +6788,11 @@ var
   function(loc,param,pat,body)
    {return compile_matching
             (loc,
-             0,
+             /* None */0,
              partial_function(loc),
              param,
-             /* :: */[0,/* tuple */[0,pat,body],0],
-             0);
+             /* :: */[0,/* tuple */[0,pat,body],/* [] */0],
+             /* Partial */0);
     };
 
 var
@@ -6422,31 +6800,37 @@ var
   function(loc,paraml,pats_act_list,partial)
    {var partial$1=check_partial_list(pats_act_list,partial);
     
-    var raise_num=Lambda["next_raise_count"](0);
+    var raise_num=Lambda["next_raise_count"](/* () */0);
     
     var
      omegas=
       /* :: */[0,
        List["map"](function(param){return Parmatch["omega"];},paraml),
-       0];
+       /* [] */0];
     
     var
      pm=
       /* record */[0,
        pats_act_list,
        List["map"]
-        (function(id){return /* tuple */[0,/* Lvar */[0,id],0];},paraml),
-       /* :: */[0,/* tuple */[0,omegas,raise_num],0]];
+        (function(id){return /* tuple */[0,/* Lvar */[0,id],/* Strict */0];},
+         paraml),
+       /* :: */[0,/* tuple */[0,omegas,raise_num],/* [] */0]];
     
     try
      {var
        match=
-        compile_match(0,partial$1,start_ctx(List["length"](paraml)),pm);
+        compile_match
+         (/* None */0,partial$1,start_ctx(List["length"](paraml)),pm);
       
       return check_total(match[2],match[1],raise_num,partial_function(loc));
       }
     catch(exn)
-     {if(exn=Unused){return partial_function(loc,0);}else{throw exn;}}
+     {if(exn===Unused)
+       {return partial_function(loc,/* () */0);}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -6454,7 +6838,7 @@ var
   function(size,p)
    {var match=p[1];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return Parmatch["omegas"](size);}}
     else
      {switch(match[0]){case 3:return match[1];default:throw Cannot_flatten;}}
@@ -6465,7 +6849,7 @@ var
   function(size,p,k)
    {var match=p[1];
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:return /* :: */[0,Parmatch["omegas"](size),k];}}
     else
      {switch(match[0])
@@ -6525,7 +6909,7 @@ var
                  }
                },
              pss,
-             0);
+             /* [] */0);
     };
 
 var
@@ -6549,7 +6933,7 @@ var
 var
  flatten_precompiled=
   function(size,args,pmh)
-   {switch(pmh)
+   {switch(pmh[0])
      {case 0:
        var match=pmh[1];
        
@@ -6567,7 +6951,11 @@ var
                   match[2]),
                 flatten_matrix(size,match[3])]];
        
-      case 1:throw [0,Assert_failure,[0,"bytecomp/matching.ml",3062,13]];
+      case 1:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",3062,13]];
+       
       case 2:return /* Pm */[2,flatten_pm(size,args,pmh[1])];
       }
     };
@@ -6575,7 +6963,7 @@ var
 var
  compile_flattened=
   function(repr,partial,ctx,param,pmh)
-   {switch(pmh)
+   {switch(pmh[0])
      {case 0:
        var match=pmh[1];
        
@@ -6588,7 +6976,11 @@ var
                 ctx,
                 match[2]);
        
-      case 1:throw [0,Assert_failure,[0,"bytecomp/matching.ml",3074,13]];
+      case 1:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"bytecomp/matching.ml",3074,13]];
+       
       case 2:return compile_match(repr,partial,ctx,pmh[1]);
       }
     };
@@ -6596,11 +6988,11 @@ var
 var
  do_for_multiple_match=
   function(loc,paraml,pat_act_list,partial)
-   {var repr=0;
+   {var repr=/* None */0;
     
     var partial$1=check_partial$1(pat_act_list,partial);
     
-    if(partial$1!=0)
+    if(partial$1!==0)
      {var
        match=
         /* tuple */[0,
@@ -6608,19 +7000,19 @@ var
          /* record */[0,
           List["map"]
            (function(param)
-             {return /* tuple */[0,/* :: */[0,param[1],0],param[2]];},
+             {return /* tuple */[0,/* :: */[0,param[1],/* [] */0],param[2]];},
             pat_act_list),
           /* :: */[0,
            /* tuple */[0,
             /* Lprim */[6,
-             /* Pmakeblock */[5,0,Lambda["default_tag_info"],0],
+             /* Pmakeblock */[5,0,Lambda["default_tag_info"],/* Immutable */0],
              paraml],
-            0],
-           0],
-          0]];
+            /* Strict */0],
+           /* [] */0],
+          /* [] */0]];
       }
     else
-     {var raise_num=Lambda["next_raise_count"](0);
+     {var raise_num=Lambda["next_raise_count"](/* () */0);
       
       var
        match=
@@ -6629,20 +7021,20 @@ var
          /* record */[0,
           List["map"]
            (function(param)
-             {return /* tuple */[0,/* :: */[0,param[1],0],param[2]];},
+             {return /* tuple */[0,/* :: */[0,param[1],/* [] */0],param[2]];},
             pat_act_list),
           /* :: */[0,
            /* tuple */[0,
             /* Lprim */[6,
-             /* Pmakeblock */[5,0,Lambda["default_tag_info"],0],
+             /* Pmakeblock */[5,0,Lambda["default_tag_info"],/* Immutable */0],
              paraml],
-            0],
-           0],
+            /* Strict */0],
+           /* [] */0],
           /* :: */[0,
            /* tuple */[0,
-            /* :: */[0,/* :: */[0,Parmatch["omega"],0],0],
+            /* :: */[0,/* :: */[0,Parmatch["omega"],/* [] */0],/* [] */0],
             raise_num],
-           0]]];
+           /* [] */0]]];
       }
     
     var pm1=match[2];
@@ -6651,7 +7043,7 @@ var
     
     try
      {try
-       {var match$1=split_precompile(0,pm1);
+       {var match$1=split_precompile(/* None */0,pm1);
         
         var size=List["length"](paraml);
         
@@ -6663,7 +7055,8 @@ var
         var
          args=
           List["map"]
-           (function(id){return /* tuple */[0,/* Lvar */[0,id],1];},idl);
+           (function(id){return /* tuple */[0,/* Lvar */[0,id],/* Alias */1];},
+            idl);
         
         var flat_next=flatten_precompiled(size,args,match$1[1]);
         
@@ -6683,7 +7076,7 @@ var
            (compile_flattened(repr),
             partial$1,
             start_ctx(size),
-            0,
+            /* () */0,
             flat_next,
             flat_nexts);
         
@@ -6691,31 +7084,38 @@ var
         
         var lam=match$2[1];
         
-        if(partial$1!=0)
+        if(partial$1!==0)
          {if(jumps_is_empty(total))
            {}
           else
-           {throw [0,Assert_failure,[0,"bytecomp/matching.ml",3117,12]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"bytecomp/matching.ml",3117,12]];
+            }
           
           var $js=lam;
           }
         else
          {var $js=check_total(total,lam,raise_num$1,partial_function(loc));}
-        return List["fold_right2"](Lambda["bind"](0),idl,paraml,$js);
+        return List["fold_right2"]
+                (Lambda["bind"](/* Strict */0),idl,paraml,$js);
         }
       catch(exn)
-       {if(exn=Cannot_flatten)
-         {var match$3=compile_match(0,partial$1,start_ctx(1),pm1);
+       {if(exn===Cannot_flatten)
+         {var match$3=compile_match(/* None */0,partial$1,start_ctx(1),pm1);
           
           var total$1=match$3[2];
           
           var lambda=match$3[1];
           
-          if(partial$1!=0)
+          if(partial$1!==0)
            {if(jumps_is_empty(total$1))
              {}
             else
-             {throw [0,Assert_failure,[0,"bytecomp/matching.ml",3125,10]];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"bytecomp/matching.ml",3125,10]];
+              }
             
             return lambda;
             }
@@ -6729,8 +7129,11 @@ var
         }
       }
     catch(exn$1)
-     {if(exn$1=Unused)
-       {throw [0,Assert_failure,[0,"bytecomp/matching.ml",3129,4]];}
+     {if(exn$1===Unused)
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"bytecomp/matching.ml",3129,4]];
+        }
       else
        {throw exn$1;}
       }
@@ -6739,7 +7142,7 @@ var
 var
  arg_to_var$1=
   function(arg,cls)
-   {switch(arg)
+   {switch(arg[0])
      {case 0:return /* tuple */[0,arg[1],arg];
       default:
        var v=name_pattern("match",cls);
@@ -6751,8 +7154,8 @@ var
 var
  param_to_var=
   function(param)
-   {switch(param)
-     {case 0:return /* tuple */[0,param[1],0];
+   {switch(param[0])
+     {case 0:return /* tuple */[0,param[1],/* None */0];
       default:
        return /* tuple */[0,Ident["create"]("match"),/* Some */[0,param]];}
     };
@@ -6762,7 +7165,10 @@ var
   function(param,k)
    {var eo=param[2];
     
-    if(eo){return Lambda["bind"](0,param[1],eo[1],k);}else{return k;}
+    if(eo)
+     {return Lambda["bind"](/* Strict */0,param[1],eo[1],k);}
+    else
+     {return k;}
     };
 
 var

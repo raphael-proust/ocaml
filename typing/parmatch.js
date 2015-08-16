@@ -1,37 +1,38 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ctype=require("Ctype");
-var $$String=require("String");
-var Char=require("Char");
-var Typedtree=require("Typedtree");
-var Nativeint=require("Nativeint");
-var Warnings=require("Warnings");
-var List=require("List");
-var Btype=require("Btype");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Predef=require("Predef");
-var Printf=require("Printf");
-var Format=require("Format");
-var Misc=require("Misc");
-var Int32=require("Int32");
-var Path=require("Path");
-var Buffer=require("Buffer");
-var Subst=require("Subst");
-var Location=require("Location");
-var Int64=require("Int64");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var $$Array=require("Array");
-var Ast_helper=require("Ast_helper");
+var Ctype=require("./ctype.js");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Typedtree=require("./typedtree.js");
+var Nativeint=require("./nativeint.js");
+var Warnings=require("./warnings.js");
+var List=require("./list.js");
+var Btype=require("./btype.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Predef=require("./predef.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Int32=require("./int32.js");
+var Path=require("./path.js");
+var Buffer=require("./buffer.js");
+var Subst=require("./subst.js");
+var Location=require("./location.js");
+var Int64=require("./int64.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var $$Array=require("./array.js");
+var Ast_helper=require("./ast_helper.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  make_pat=
   function(desc,ty,tenv)
-   {return /* record */[0,desc,Location["none"],0,ty,tenv,0];};
+   {return /* record */[0,desc,Location["none"],/* [] */0,ty,tenv,/* [] */0];};
 
-var omega=make_pat(0,Ctype["none"],Env["empty"]);
+var omega=make_pat(/* Tpat_any */0,Ctype["none"],Env["empty"]);
 
 var
  extra_pat=
@@ -42,15 +43,21 @@ var
 
 var
  omegas=
-  function(i){if(i<=0){return 0;}else{return /* :: */[0,omega,omegas(i-1)];}};
+  function(i)
+   {if(i<=0){return /* [] */0;}else{return /* :: */[0,omega,omegas(i-1)];}};
 
 var
  omega_list=
   function(l){return List["map"](function(param){return omega;},l);};
 
-var zero=make_pat([2,[0,0]],Ctype["none"],Env["empty"]);
+var
+ zero=
+  make_pat
+   ([/* Tpat_constant */2,[/* Const_int */0,0]],Ctype["none"],Env["empty"]);
 
-var is_absent=function(tag,row){return Btype["row_field"](tag,row[1])=0;};
+var
+ is_absent=
+  function(tag,row){return Btype["row_field"](tag,row[1])===/* Rabsent */0;};
 
 var
  is_absent_pat=
@@ -59,13 +66,13 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 5:return is_absent(match[1],match[3]);default:exit=384;}}
     
-    switch(exit){case 384:return 0;}
+    switch(exit){case 384:return /* false */0;}
     };
 
 var
@@ -73,19 +80,23 @@ var
   function(x,y)
    {var exit;
     
-    switch(x)
+    switch(x[0])
      {case 2:
-       switch(y)
+       switch(y[0])
         {case 2:return $$String["compare"](x[1],y[1]);default:exit=382;}
        
       case 3:
-       switch(y)
-        {case 3:return "unknown primitive:caml_float_compare";
+       switch(y[0])
+        {case 3:
+          return CamlPrimitive["caml_float_compare"]
+                  (CamlPrimitive["caml_float_of_string"](x[1]),
+                   CamlPrimitive["caml_float_of_string"](y[1]));
+          
          default:exit=382;}
        
       default:exit=382;}
     
-    switch(exit){case 382:return "unknown primitive:caml_compare";}
+    switch(exit){case 382:return CamlPrimitive["caml_compare"](x,y);}
     };
 
 var
@@ -93,32 +104,30 @@ var
   function(l1,l2)
    {var
      combine=
-      function(r1,r2,l1$1,l2$1)
-       {if(l1$1)
-         {var rem1=l1$1[2];
+      function(r1,r2,l1,l2)
+       {if(l1)
+         {var rem1=l1[2];
           
-          var match=l1$1[1];
+          var match=l1[1];
           
           var p1=match[3];
           
           var lbl1=match[2];
           
-          if(l2$1)
-           {var rem2=l2$1[2];
+          if(l2)
+           {var rem2=l2[2];
             
-            var match$1=l2$1[1];
+            var match$1=l2[1];
             
             var p2=match$1[3];
             
             var lbl2=match$1[2];
             
             if(lbl1[5]<lbl2[5])
-             {return combine(/* :: */[0,p1,r1],/* :: */[0,omega,r2],rem1,l2$1);
-              }
+             {return combine(/* :: */[0,p1,r1],/* :: */[0,omega,r2],rem1,l2);}
             else
              {if(lbl1[5]>lbl2[5])
-               {return combine
-                        (/* :: */[0,omega,r1],/* :: */[0,p2,r2],l1$1,rem2);
+               {return combine(/* :: */[0,omega,r1],/* :: */[0,p2,r2],l1,rem2);
                 }
               else
                {return combine(/* :: */[0,p1,r1],/* :: */[0,p2,r2],rem1,rem2);
@@ -126,19 +135,24 @@ var
               }
             }
           else
-           {return combine(/* :: */[0,p1,r1],/* :: */[0,omega,r2],rem1,0);}
+           {return combine
+                    (/* :: */[0,p1,r1],/* :: */[0,omega,r2],rem1,/* [] */0);
+            }
           }
         else
-         {if(l2$1)
+         {if(l2)
            {return combine
-                    (/* :: */[0,omega,r1],/* :: */[0,l2$1[1][3],r2],0,l2$1[2]);
+                    (/* :: */[0,omega,r1],
+                     /* :: */[0,l2[1][3],r2],
+                     /* [] */0,
+                     l2[2]);
             }
           else
            {return /* tuple */[0,List["rev"](r1),List["rev"](r2)];}
           }
         };
     
-    return combine(0,0,l1,l2);
+    return combine(/* [] */0,/* [] */0,l1,l2);
     };
 
 var
@@ -150,24 +164,24 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 1:return compat(match[1],q);
         case 2:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=378;}}
          else
           {switch(match$1[0])
             {case 0:exit=378;
              case 1:exit=378;
-             case 2:return const_compare(match[1],match$1[1])=0;
+             case 2:return const_compare(match[1],match$1[1])===0;
              case 8:exit=375;
              default:exit=374;}}
          
         case 3:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=378;}}
          else
           {switch(match$1[0])
@@ -178,14 +192,14 @@ var
              default:exit=374;}}
          
         case 4:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=378;}}
          else
           {switch(match$1[0])
             {case 0:exit=378;
              case 1:exit=378;
              case 4:
-              return "unknown primitive:caml_equal"&&
+              return CamlPrimitive["caml_equal"](match[2][6],match$1[2][6])&&
                      compats(match[3],match$1[3]);
               
              case 8:exit=375;
@@ -197,7 +211,7 @@ var
          var l1=match[1];
          
          if(match$2)
-          {if(typeof match$1=="number")
+          {if(typeof match$1==="number")
             {switch(match$1){case 0:exit=378;}}
            else
             {switch(match$1[0])
@@ -207,17 +221,17 @@ var
                 var match$3=match$1[2];
                 
                 if(match$3)
-                 {return "unknown primitive:caml_string_equal"&&
+                 {return CamlPrimitive["caml_string_equal"](l1,match$1[1])&&
                          compat(match$2[1],match$3[1]);
                   }
                 else
-                 {return 0;}
+                 {return /* false */0;}
                 
                case 8:exit=375;
                default:exit=374;}}
            }
          else
-          {if(typeof match$1=="number")
+          {if(typeof match$1==="number")
             {switch(match$1){case 0:exit=378;}}
            else
             {switch(match$1[0])
@@ -225,16 +239,16 @@ var
                case 1:exit=378;
                case 5:
                 if(match$1[2])
-                 {return 0;}
+                 {return /* false */0;}
                 else
-                 {return "unknown primitive:caml_string_equal";}
+                 {return CamlPrimitive["caml_string_equal"](l1,match$1[1]);}
                 
                case 8:exit=375;
                default:exit=374;}}
            }
          
         case 6:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=378;}}
          else
           {switch(match$1[0])
@@ -251,7 +265,7 @@ var
         case 7:
          var ps=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=378;}}
          else
           {switch(match$1[0])
@@ -260,13 +274,13 @@ var
              case 7:
               var qs=match$1[1];
               
-              return (List["length"](ps)=List["length"](qs))&&compats(ps,qs);
+              return List["length"](ps)===List["length"](qs)&&compats(ps,qs);
               
              case 8:exit=375;
              default:exit=374;}}
          
         case 9:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=378;}}
          else
           {switch(match$1[0])
@@ -282,27 +296,31 @@ var
      {case 378:
        var exit$1;
        
-       if(typeof match$1=="number")
+       if(typeof match$1==="number")
         {switch(match$1){case 0:exit$1=379;}}
        else
         {switch(match$1[0])
           {case 0:exit$1=379;
            case 1:return compat(p,match$1[1]);
            default:
-            if(typeof match=="number")
-             {switch(match){case 0:"unknown block:(exit 373)";}}
+            if(typeof match==="number")
+             {switch(match){case 0:exit=373;}}
             else
              {switch(match[0])
-               {case 0:"unknown block:(exit 373)";
+               {case 0:exit=373;
                 case 8:return compat(match[1],q)||compat(match[2],q);
                 }}
             }}
        
-       switch(exit$1){case 379:return 1;}
+       switch(exit$1){case 379:return /* true */1;}
        
       case 375:return compat(p,match$1[1])||compat(p,match$1[2]);
-      case 374:throw [0,Assert_failure,[0,"typing/parmatch.ml",106,6]];
-      case 373:return 1;
+      case 374:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/parmatch.ml",106,6]];
+       
+      case 373:return /* true */1;
       }
     };
 
@@ -315,18 +333,23 @@ var
      {if(qs){return compat(ps[1],qs[1])&&compats(ps[2],qs[2]);}else{exit=380;}
       }
     else
-     {if(qs){exit=380;}else{return 1;}}
+     {if(qs){exit=380;}else{return /* true */1;}}
     
     switch(exit)
-     {case 380:throw [0,Assert_failure,[0,"typing/parmatch.ml",111,12]];}
+     {case 380:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/parmatch.ml",111,12]];
+       
+      }
     };
 
-var Empty="unknown primitive:caml_set_oo_id";
+var Empty=CamlPrimitive["caml_set_oo_id"]([248,"Parmatch.Empty",0]);
 
 var
  clean_copy=
   function(ty)
-   {if(ty[2]=Btype["generic_level"])
+   {if(ty[2]===Btype["generic_level"])
      {return ty;}
     else
      {return Subst["type_expr"](Subst["identity"],ty);}
@@ -341,7 +364,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 3:return match[1];default:exit=368;}}
@@ -352,19 +375,78 @@ var
 
 var
  is_cons=
-  function(param){switch(param[1]){case "::":return 1;default:return 0;}};
+  function(param)
+   {switch(param[1])
+     {case "::":return /* true */1;default:return /* false */0;}
+    };
 
 var
  pretty_const=
   function(c)
-   {switch(c)
-     {case 0:return Printf["sprintf"]([0,[4,0,0,0,0],"%d"],c[1]);
-      case 1:return Printf["sprintf"]([0,[1,0],"%C"],c[1]);
-      case 2:return Printf["sprintf"]([0,[3,0,0],"%S"],c[1]);
-      case 3:return Printf["sprintf"]([0,[2,0,0],"%s"],c[1]);
-      case 4:return Printf["sprintf"]([0,[5,0,0,0,[12,108,0]],"%ldl"],c[1]);
-      case 5:return Printf["sprintf"]([0,[7,0,0,0,[12,76,0]],"%LdL"],c[1]);
-      case 6:return Printf["sprintf"]([0,[6,0,0,0,[12,110,0]],"%ndn"],c[1]);
+   {switch(c[0])
+     {case 0:
+       return Printf["sprintf"]
+               ([/* Format */0,
+                 [/* Int */4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  /* End_of_format */0],
+                 "%d"],
+                c[1]);
+       
+      case 1:
+       return Printf["sprintf"]
+               ([/* Format */0,[/* Caml_char */1,/* End_of_format */0],"%C"],
+                c[1]);
+       
+      case 2:
+       return Printf["sprintf"]
+               ([/* Format */0,
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
+                 "%S"],
+                c[1]);
+       
+      case 3:
+       return Printf["sprintf"]
+               ([/* Format */0,
+                 [/* String */2,/* No_padding */0,/* End_of_format */0],
+                 "%s"],
+                c[1]);
+       
+      case 4:
+       return Printf["sprintf"]
+               ([/* Format */0,
+                 [/* Int32 */5,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,108,/* End_of_format */0]],
+                 "%ldl"],
+                c[1]);
+       
+      case 5:
+       return Printf["sprintf"]
+               ([/* Format */0,
+                 [/* Int64 */7,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,76,/* End_of_format */0]],
+                 "%LdL"],
+                c[1]);
+       
+      case 6:
+       return Printf["sprintf"]
+               ([/* Format */0,
+                 [/* Nativeint */6,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,110,/* End_of_format */0]],
+                 "%ndn"],
+                c[1]);
+       
       }
     };
 
@@ -377,64 +459,108 @@ var
      {var rem=match[2];
       
       var $js=match[1][1];
-      if(typeof $js=="number")
+      if(typeof $js==="number")
        {switch($js)
          {case 0:
-           var newrecord="unknown primitive:duprecord regular 6";
+           var newrecord=/* unknown */"duprecord regular 6";
            
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,[1,[0,0,""]],[11,"(module ",[15,[12,41,[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* String_literal */11,
+                       "(module ",
+                       [/* Alpha */15,
+                        [/* Char_literal */12,
+                         41,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[(module %a)@]"],
                     pretty_val,
-                    (newrecord[3]=rem,0,newrecord));
+                    (newrecord[3]=rem,newrecord));
            
           }}
       else
        {switch($js[0])
          {case 0:
-           var newrecord$1="unknown primitive:duprecord regular 6";
+           var newrecord$1=/* unknown */"duprecord regular 6";
            
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,[1,[0,0,""]],[12,40,[15,[11," : _)",[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* Char_literal */12,
+                       40,
+                       [/* Alpha */15,
+                        [/* String_literal */11,
+                         " : _)",
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[(%a : _)@]"],
                     pretty_val,
-                    (newrecord$1[3]=rem,0,newrecord$1));
+                    (newrecord$1[3]=rem,newrecord$1));
            
           case 1:
-           var newrecord$2="unknown primitive:duprecord regular 6";
+           var newrecord$2=/* unknown */"duprecord regular 6";
            
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,[1,[0,0,""]],[11,"(# ",[15,[12,41,[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* String_literal */11,
+                       "(# ",
+                       [/* Alpha */15,
+                        [/* Char_literal */12,
+                         41,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[(# %a)@]"],
                     pretty_val,
-                    (newrecord$2[3]=rem,0,newrecord$2));
+                    (newrecord$2[3]=rem,newrecord$2));
            
           }}
       }
     else
      {var match$1=v[1];
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1)
-         {case 0:return Format["fprintf"](ppf,[0,[12,95,0],"_"]);}}
+         {case 0:
+           return Format["fprintf"]
+                   (ppf,
+                    [/* Format */0,
+                     [/* Char_literal */12,95,/* End_of_format */0],
+                     "_"]);
+           
+          }}
       else
        {switch(match$1[0])
          {case 0:return Ident["print"](ppf,match$1[1]);
           case 1:
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,
-                      [1,[0,0,""]],
-                      [12,
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* Char_literal */12,
                        40,
-                       [15,[17,[0,"@ ",1,0],[11,"as ",[15,[12,41,[17,0,0]]]]]]]],
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
+                          "as ",
+                          [/* Alpha */15,
+                           [/* Char_literal */12,
+                            41,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]]],
                      "@[(%a@ as %a)@]"],
                     pretty_val,
                     match$1[1],
@@ -443,13 +569,26 @@ var
            
           case 2:
            return Format["fprintf"]
-                   (ppf,[0,[2,0,0],"%s"],pretty_const(match$1[1]));
+                   (ppf,
+                    [/* Format */0,
+                     [/* String */2,/* No_padding */0,/* End_of_format */0],
+                     "%s"],
+                    pretty_const(match$1[1]));
            
           case 3:
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,[1,[0,0,""]],[12,40,[15,[12,41,[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* Char_literal */12,
+                       40,
+                       [/* Alpha */15,
+                        [/* Char_literal */12,
+                         41,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[(%a)@]"],
                     pretty_vals(","),
                     match$1[1]);
@@ -476,10 +615,18 @@ var
                       else
                        {return Format["fprintf"]
                                 (ppf,
-                                 [0,
-                                  [18,
-                                   [1,[0,0,""]],
-                                   [15,[11,"::",[17,[0,"@,",0,0],[15,[17,0,0]]]]]],
+                                 [/* Format */0,
+                                  [/* Formatting_gen */18,
+                                   [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                   [/* Alpha */15,
+                                    [/* String_literal */11,
+                                     "::",
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@,",0,0],
+                                      [/* Alpha */15,
+                                       [/* Formatting_lit */17,
+                                        /* Close_box */0,
+                                        /* End_of_format */0]]]]]],
                                   "@[%a::@,%a@]"],
                                  pretty_car,
                                  vs[1],
@@ -499,14 +646,28 @@ var
                 {case 354:
                   return Format["fprintf"]
                           (ppf,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<2>",0],"<2>"]],
-                             [2,
-                              0,
-                              [17,
-                               [0,"@ ",1,0],
-                               [18,[1,[0,0,""]],[12,40,[15,[12,41,[17,0,[17,0,0]]]]]]]]],
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<2>",/* End_of_format */0],
+                               "<2>"]],
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Formatting_gen */18,
+                                [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                [/* Char_literal */12,
+                                 40,
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,
+                                   41,
+                                   [/* Formatting_lit */17,
+                                    /* Close_box */0,
+                                    [/* Formatting_lit */17,
+                                     /* Close_box */0,
+                                     /* End_of_format */0]]]]]]]]],
                             "@[<2>%s@ @[(%a)@]@]"],
                            name,
                            pretty_vals(","),
@@ -517,10 +678,20 @@ var
              else
               {return Format["fprintf"]
                        (ppf,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [2,0,[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              /* End_of_format */0]]]]],
                          "@[<2>%s@ %a@]"],
                         cstr[1],
                         pretty_arg,
@@ -528,7 +699,13 @@ var
                }
              }
            else
-            {return Format["fprintf"](ppf,[0,[2,0,0],"%s"],cstr[1]);}
+            {return Format["fprintf"]
+                     (ppf,
+                      [/* Format */0,
+                       [/* String */2,/* No_padding */0,/* End_of_format */0],
+                       "%s"],
+                      cstr[1]);
+             }
            
           case 5:
            var match$3=match$1[2];
@@ -538,35 +715,77 @@ var
            if(match$3)
             {return Format["fprintf"]
                      (ppf,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [12,96,[2,0,[17,[0,"@ ",1,0],[15,[17,0,0]]]]]],
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        [/* Char_literal */12,
+                         96,
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]],
                        "@[<2>`%s@ %a@]"],
                       l,
                       pretty_arg,
                       match$3[1]);
              }
            else
-            {return Format["fprintf"](ppf,[0,[12,96,[2,0,0]],"`%s"],l);}
+            {return Format["fprintf"]
+                     (ppf,
+                      [/* Format */0,
+                       [/* Char_literal */12,
+                        96,
+                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                       "`%s"],
+                      l);
+             }
            
           case 6:
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,[1,[0,0,""]],[12,123,[15,[12,125,[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* Char_literal */12,
+                       123,
+                       [/* Alpha */15,
+                        [/* Char_literal */12,
+                         125,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[{%a}@]"],
                     pretty_lvals,
                     List["filter"]
                      (function(param)
-                       {if("unknown primitive:isint"){return 0;}else{return 1;}},
+                       {if(typeof param[3][1]==="number")
+                         {return /* false */0;}
+                        else
+                         {return /* true */1;}
+                        },
                       match$1[1]));
            
           case 7:
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,[1,[0,0,""]],[11,"[| ",[15,[11," |]",[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* String_literal */11,
+                       "[| ",
+                       [/* Alpha */15,
+                        [/* String_literal */11,
+                         " |]",
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[[| %a |]@]"],
                     pretty_vals(" ;"),
                     match$1[1]);
@@ -574,12 +793,22 @@ var
           case 8:
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,
-                      [1,[0,0,""]],
-                      [12,
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                      [/* Char_literal */12,
                        40,
-                       [15,[12,124,[17,[0,"@,",0,0],[15,[12,41,[17,0,0]]]]]]]],
+                       [/* Alpha */15,
+                        [/* Char_literal */12,
+                         124,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@,",0,0],
+                          [/* Alpha */15,
+                           [/* Char_literal */12,
+                            41,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]]],
                      "@[(%a|@,%a)@]"],
                     pretty_or,
                     match$1[1],
@@ -589,10 +818,20 @@ var
           case 9:
            return Format["fprintf"]
                    (ppf,
-                    [0,
-                     [18,
-                      [1,[0,[11,"<2>",0],"<2>"]],
-                      [11,"lazy",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                    [/* Format */0,
+                     [/* Formatting_gen */18,
+                      [/* Open_box */1,
+                       [/* Format */0,
+                        [/* String_literal */11,"<2>",/* End_of_format */0],
+                        "<2>"]],
+                      [/* String_literal */11,
+                       "lazy",
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          /* End_of_format */0]]]]],
                      "@[<2>lazy@ %a@]"],
                     pretty_arg,
                     match$1[1]);
@@ -608,7 +847,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -624,7 +863,15 @@ var
              else
               {if(is_cons(match[2]))
                 {return Format["fprintf"]
-                         (ppf,[0,[12,40,[15,[12,41,0]]],"(%a)"],pretty_val,v);
+                         (ppf,
+                          [/* Format */0,
+                           [/* Char_literal */12,
+                            40,
+                            [/* Alpha */15,
+                             [/* Char_literal */12,41,/* End_of_format */0]]],
+                           "(%a)"],
+                          pretty_val,
+                          v);
                  }
                else
                 {exit=358;}
@@ -648,7 +895,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -665,7 +912,14 @@ var
               {if(is_cons(match[2]))
                 {return Format["fprintf"]
                          (ppf,
-                          [0,[15,[11,"::",[17,[0,"@,",0,0],[15,0]]]],"%a::@,%a"],
+                          [/* Format */0,
+                           [/* Alpha */15,
+                            [/* String_literal */11,
+                             "::",
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@,",0,0],
+                              [/* Alpha */15,/* End_of_format */0]]]],
+                           "%a::@,%a"],
                           pretty_car,
                           match$1[1],
                           pretty_cdr,
@@ -693,7 +947,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -705,7 +959,15 @@ var
      {case 361:return pretty_val(ppf,v);
       case 360:
        return Format["fprintf"]
-               (ppf,[0,[12,40,[15,[12,41,0]]],"(%a)"],pretty_val,v);
+               (ppf,
+                [/* Format */0,
+                 [/* Char_literal */12,
+                  40,
+                  [/* Alpha */15,
+                   [/* Char_literal */12,41,/* End_of_format */0]]],
+                 "(%a)"],
+                pretty_val,
+                v);
        
       }
     };
@@ -717,14 +979,21 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 8:
          return Format["fprintf"]
                  (ppf,
-                  [0,[15,[12,124,[17,[0,"@,",0,0],[15,0]]]],"%a|@,%a"],
+                  [/* Format */0,
+                   [/* Alpha */15,
+                    [/* Char_literal */12,
+                     124,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@,",0,0],
+                      [/* Alpha */15,/* End_of_format */0]]]],
+                   "%a|@,%a"],
                   pretty_or,
                   match[1],
                   pretty_or,
@@ -746,7 +1015,14 @@ var
       if(vs)
        {return Format["fprintf"]
                 (ppf,
-                 [0,[15,[2,0,[17,[0,"@ ",1,0],[15,0]]]],"%a%s@ %a"],
+                 [/* Format */0,
+                  [/* Alpha */15,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* Alpha */15,/* End_of_format */0]]]],
+                  "%a%s@ %a"],
                  pretty_val,
                  v,
                  sep,
@@ -757,7 +1033,7 @@ var
        {return pretty_val(ppf,v);}
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -775,8 +1051,17 @@ var
       if(rest)
        {return Format["fprintf"]
                 (ppf,
-                 [0,
-                  [2,0,[12,61,[15,[12,59,[17,[0,"@ ",1,0],[15,0]]]]]],
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,
+                    61,
+                    [/* Alpha */15,
+                     [/* Char_literal */12,
+                      59,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* Alpha */15,/* End_of_format */0]]]]]],
                   "%s=%a;@ %a"],
                  lbl[1],
                  pretty_val,
@@ -786,11 +1071,21 @@ var
         }
       else
        {return Format["fprintf"]
-                (ppf,[0,[2,0,[12,61,[15,0]]],"%s=%a"],lbl[1],pretty_val,v);
+                (ppf,
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* Char_literal */12,
+                    61,
+                    [/* Alpha */15,/* End_of_format */0]]],
+                  "%s=%a"],
+                 lbl[1],
+                 pretty_val,
+                 v);
         }
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -798,7 +1093,14 @@ var
   function(ppf,v)
    {return Format["fprintf"]
             (ppf,
-             [0,[18,[1,[0,0,""]],[15,[17,0,[17,2,0]]]],"@[%a@]@?"],
+             [/* Format */0,
+              [/* Formatting_gen */18,
+               [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+               [/* Alpha */15,
+                [/* Formatting_lit */17,
+                 /* Close_box */0,
+                 [/* Formatting_lit */17,/* FFlush */2,/* End_of_format */0]]]],
+              "@[%a@]@?"],
              pretty_val,
              v);
     };
@@ -807,7 +1109,8 @@ var
  pretty_pat=
   function(p)
    {top_pretty(Format["str_formatter"],p);
-    return Pervasives["prerr_string"](Format["flush_str_formatter"](0));
+    return Pervasives["prerr_string"]
+            (Format["flush_str_formatter"](/* () */0));
     };
 
 var
@@ -817,7 +1120,8 @@ var
             (function(p)
               {top_pretty(Format["str_formatter"],p);
                Pervasives["prerr_string"](" <");
-               Pervasives["prerr_string"](Format["flush_str_formatter"](0));
+               Pervasives["prerr_string"]
+                (Format["flush_str_formatter"](/* () */0));
                return Pervasives["prerr_string"](">");
                },
              ps);
@@ -842,67 +1146,69 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 2:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
             {case 0:exit=347;
-             case 2:return const_compare(match[1],match$1[1])=0;
+             case 2:return const_compare(match[1],match$1[1])===0;
              default:exit=346;}}
          
         case 3:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
-            {case 0:exit=347;case 3:return 1;default:exit=346;}}
+            {case 0:exit=347;case 3:return /* true */1;default:exit=346;}}
          
         case 4:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
             {case 0:exit=347;
-             case 4:return "unknown primitive:caml_equal";
+             case 4:
+              return CamlPrimitive["caml_equal"](match[2][6],match$1[2][6]);
              default:exit=346;}}
          
         case 5:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
             {case 0:exit=347;
-             case 5:return "unknown primitive:caml_string_equal";
+             case 5:
+              return CamlPrimitive["caml_string_equal"](match[1],match$1[1]);
              default:exit=346;}}
          
         case 6:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
-            {case 0:exit=347;case 6:return 1;default:exit=346;}}
+            {case 0:exit=347;case 6:return /* true */1;default:exit=346;}}
          
         case 7:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
             {case 0:exit=347;
              case 7:
-              return List["length"](match[1])=List["length"](match$1[1]);
+              return List["length"](match[1])===List["length"](match$1[1]);
              default:exit=346;}}
          
         case 9:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=347;}}
          else
           {switch(match$1[0])
-            {case 0:exit=347;case 9:return 1;default:exit=346;}}
+            {case 0:exit=347;case 9:return /* true */1;default:exit=346;}}
          
         default:exit=347;}}
     
@@ -910,15 +1216,14 @@ var
      {case 347:
        var exit$1;
        
-       if(typeof match$1=="number")
+       if(typeof match$1==="number")
         {switch(match$1){case 0:exit$1=348;}}
        else
-        {switch(match$1[0])
-          {case 0:exit$1=348;default:"unknown block:(exit 346)";}}
+        {switch(match$1[0]){case 0:exit$1=348;default:exit=346;}}
        
-       switch(exit$1){case 348:return 1;}
+       switch(exit$1){case 348:return /* true */1;}
        
-      case 346:return 0;
+      case 346:return /* false */0;
       }
     };
 
@@ -927,8 +1232,8 @@ var
   function(p)
    {var match=p[1];
     
-    if(typeof match=="number")
-     {switch(match){case 0:return 0;}}
+    if(typeof match==="number")
+     {switch(match){case 0:return /* [] */0;}}
     else
      {switch(match[0])
        {case 6:return match[1];
@@ -938,21 +1243,26 @@ var
 var
  get_field=
   function(pos,arg)
-   {var match=List["find"](function(param){return pos=param[2][5];},arg);
+   {var match=List["find"](function(param){return pos===param[2][5];},arg);
     
     return match[3];
     };
 
 var
  extract_fields=
-  function(omegas$1,arg)
+  function(omegas,arg)
    {return List["map"]
             (function(param)
               {try
                 {return get_field(param[2][5],arg);}
-               catch(exn){if(exn=Not_found){return omega;}else{throw exn;}}
+               catch(exn)
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {return omega;}
+                 else
+                  {throw exn;}
+                 }
                },
-             omegas$1);
+             omegas);
     };
 
 var
@@ -963,11 +1273,14 @@ var
        t=
         $$Array["map"]
          (function(lbl)
-           {return /* tuple */[0,Typedtree["mknoloc"]([0,"?temp?"]),lbl,omega];
+           {return /* tuple */[0,
+                    Typedtree["mknoloc"]([/* Lident */0,"?temp?"]),
+                    lbl,
+                    omega];
             },
           lbls[1][2][6]);
       
-      List["iter"](function(x){return t[x[2][5]]=x,0;},lbls);
+      List["iter"](function(x){return t[x[2][5]+1]=x,0;},lbls);
       return $$Array["to_list"](t);
       }
     else
@@ -981,7 +1294,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=334;}}
     else
      {switch(match[0])
@@ -993,36 +1306,41 @@ var
         case 5:
          var match$1=match[2];
          
-         if(match$1){return /* :: */[0,match$1[1],0];}else{exit=335;}
+         if(match$1){return /* :: */[0,match$1[1],/* [] */0];}else{exit=335;}
          
         case 6:return extract_fields(record_arg(p1),match[1]);
         case 7:exit=336;
         case 8:exit=335;
-        case 9:return /* :: */[0,match[1],0];
+        case 9:return /* :: */[0,match[1],/* [] */0];
         }}
     
     switch(exit)
      {case 336:return match[1];
-      case 335:return 0;
+      case 335:return /* [] */0;
       case 334:
        var match$2=p1[1];
        
        var exit$1;
        
-       if(typeof match$2=="number")
+       if(typeof match$2==="number")
         {switch(match$2){}}
        else
         {switch(match$2[0])
           {case 3:exit$1=333;
            case 4:return omega_list(match$2[3]);
-           case 5:if(match$2[2]){return /* :: */[0,omega,0];}else{exit$1=332;}
+           case 5:
+            if(match$2[2])
+             {return /* :: */[0,omega,/* [] */0];}
+            else
+             {exit$1=332;}
+            
            case 6:exit$1=333;
            case 7:exit$1=333;
-           case 9:return /* :: */[0,omega,0];
+           case 9:return /* :: */[0,omega,/* [] */0];
            default:exit$1=332;}}
        
        switch(exit$1)
-        {case 333:return omega_list(match$2[1]);case 332:return 0;}
+        {case 333:return omega_list(match$2[1]);case 332:return /* [] */0;}
        
       }
     };
@@ -1034,11 +1352,11 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=331;}}
     else
      {switch(match[0])
-       {case 0:return make_pat(0,q[4],q[5]);
+       {case 0:return make_pat(/* Tpat_any */0,q[4],q[5]);
         case 1:return normalize_pat(match[1]);
         case 2:exit=331;
         case 3:
@@ -1086,11 +1404,11 @@ var
   function(q,pss)
    {var
      acc_pat=
-      function(acc,pss$1)
+      function(acc,pss)
        {var exit;
         
-        if(pss$1)
-         {var match=pss$1[1];
+        if(pss)
+         {var match=pss[1];
           
           if(match)
            {var p=match[1];
@@ -1099,14 +1417,14 @@ var
             
             var exit$1;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){case 0:exit$1=328;}}
             else
              {switch(match$1[0])
                {case 0:exit$1=328;
                 case 1:
                  return acc_pat
-                         (acc,/* :: */[0,/* :: */[0,match$1[1],match[2]],pss$1[2]]);
+                         (acc,/* :: */[0,/* :: */[0,match$1[1],match[2]],pss[2]]);
                  
                 case 3:exit$1=329;
                 case 6:
@@ -1119,7 +1437,7 @@ var
                        try
                         {var match$2=get_field(lbl[5],r);return r;}
                        catch(exn)
-                        {if(exn=Not_found)
+                        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                           {return /* :: */[0,/* tuple */[0,param[1],lbl,omega],r];}
                          else
                           {throw exn;}
@@ -1131,7 +1449,7 @@ var
                  return acc_pat
                          (make_pat
                            (/* Tpat_record */[6,new_omegas,match$1[2]],p[4],p[5]),
-                          pss$1[2]);
+                          pss[2]);
                  
                 case 8:
                  var ps=match[2];
@@ -1140,13 +1458,13 @@ var
                          (acc,
                           /* :: */[0,
                            /* :: */[0,match$1[1],ps],
-                           /* :: */[0,/* :: */[0,match$1[2],ps],pss$1[2]]]);
+                           /* :: */[0,/* :: */[0,match$1[2],ps],pss[2]]]);
                  
                 case 9:exit$1=329;
                 default:exit=326;}}
             
             switch(exit$1)
-             {case 328:return acc_pat(acc,pss$1[2]);
+             {case 328:return acc_pat(acc,pss[2]);
               case 329:return normalize_pat(p);
               }
             }
@@ -1164,7 +1482,7 @@ var
     var exit;
     
     var $js=q$1[1];
-    if(typeof $js=="number")
+    if(typeof $js==="number")
      {switch($js){case 0:exit=322;}}
     else
      {switch($js[0]){case 6:exit=322;default:return q$1;}}
@@ -1185,7 +1503,7 @@ var
        {return Misc["fatal_error"]("Parmatch.read_args");}
       }
     else
-     {return /* tuple */[0,0,r];}
+     {return /* tuple */[0,/* [] */0,r];}
     };
 
 var
@@ -1195,7 +1513,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=316;}}
     else
      {switch(match[0])
@@ -1222,10 +1540,13 @@ var
           {if(r)
             {var match$3=/* tuple */[0,/* Some */[0,r[1]],r[2]];}
            else
-            {throw [0,Assert_failure,[0,"typing/parmatch.ml",450,13]];}
+            {throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"typing/parmatch.ml",450,13]];
+             }
            }
          else
-          {var match$3=/* tuple */[0,0,r];}
+          {var match$3=/* tuple */[0,/* None */0,r];}
          
          return /* :: */[0,
                  make_pat
@@ -1250,7 +1571,7 @@ var
                         
                         var match$5=lbl[4];
                         
-                        if(erase_mutable&&(match$5!=0?1:0))
+                        if(erase_mutable&&(match$5!==0?/* true */1:/* false */0))
                          {return /* tuple */[0,lid,lbl,omega];}
                         else
                          {return /* tuple */[0,lid,lbl,arg];}
@@ -1281,9 +1602,11 @@ var
     switch(exit){case 316:return /* :: */[0,q,r];}
     };
 
-var set_args=function(q,r){return do_set_args(0,q,r);};
+var set_args=function(q,r){return do_set_args(/* false */0,q,r);};
 
-var set_args_erase_mutable=function(q,r){return do_set_args(1,q,r);};
+var
+ set_args_erase_mutable=
+  function(q,r){return do_set_args(/* true */1,q,r);};
 
 var
  filter_one=
@@ -1303,7 +1626,7 @@ var
             
             var exit$1;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){}}
             else
              {switch(match$1[0])
@@ -1341,7 +1664,7 @@ var
         else
          {exit=302;}
         
-        switch(exit){case 302:return 0;}
+        switch(exit){case 302:return /* [] */0;}
         };
     
     return filter_rec(pss);
@@ -1363,7 +1686,7 @@ var
             
             var exit$1;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){case 0:exit$1=300;}}
             else
              {switch(match$1[0])
@@ -1391,7 +1714,7 @@ var
           switch(exit){case 298:return filter_rec(param[2]);}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return filter_rec(pss);
@@ -1426,8 +1749,10 @@ var
           return /* :: */[0,
                   /* tuple */[0,
                    q0$1,
-                   /* :: */[0,Pervasives["@"](simple_match_args(q0$1,q),qs),0]],
-                  0];
+                   /* :: */[0,
+                    Pervasives["@"](simple_match_args(q0$1,q),qs),
+                    /* [] */0]],
+                  /* [] */0];
           }
         };
     
@@ -1446,7 +1771,7 @@ var
             
             var exit$1;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){case 0:exit$1=292;}}
             else
              {switch(match$1[0])
@@ -1490,7 +1815,7 @@ var
             
             var exit$1;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){case 0:exit$1=295;}}
             else
              {switch(match$1[0])
@@ -1544,7 +1869,7 @@ var
     var exit;
     
     var $js;
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -1552,7 +1877,9 @@ var
     
     var $js$1;
     switch(exit)
-     {case 288:$js$1=0;case 287:$js$1=/* :: */[0,/* tuple */[0,pat0,0],0];}
+     {case 288:$js$1=/* [] */0;
+      case 287:$js$1=/* :: */[0,/* tuple */[0,pat0,/* [] */0],/* [] */0];
+      }
     return filter_omega(filter_rec($js$1,pss),pss);
     };
 
@@ -1565,10 +1892,10 @@ var
       if(l)
        {return /* :: */[0,param[1],set_last(a,l)];}
       else
-       {return /* :: */[0,a,0];}
+       {return /* :: */[0,a,/* [] */0];}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -1584,7 +1911,7 @@ var
         
         var exit$1;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit$1=285;}}
         else
          {switch(match[0])
@@ -1612,7 +1939,7 @@ var
        {case 283:return /* :: */[0,set_last(zero,ps),mark_partial(param[2])];}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -1623,40 +1950,42 @@ var
     var
      nm=
       List["fold_left"]
-       (function(nm$1,param)
+       (function(nm,param)
          {var match=Btype["row_field_repr"](param[2]);
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){case 0:exit=279;}}
           else
            {switch(match[0])
              {case 0:exit=279;
               case 1:
-               if(match[3]!=0)
+               if(match[3]!==0)
                 {exit=279;}
                else
-                {Btype["set_row_field"](match[4],0);return 0;}
+                {Btype["set_row_field"](match[4],/* Rabsent */0);
+                 return /* None */0;
+                 }
                
               }}
           
-          switch(exit){case 279:return nm$1;}
+          switch(exit){case 279:return nm;}
           },
         row$1[6],
         row$1[1]);
     
-    if(!row$1[4]||nm!=row$1[6])
+    if(!row$1[4]||nm!==row$1[6])
      {return Ctype["unify"]
               (env,
                row$1[2],
                Btype["newgenty"]
                 (/* Tvariant */[8,
                   /* record */[0,
-                   0,
-                   Btype["newgenvar"](0,0),
+                   /* [] */0,
+                   Btype["newgenvar"](/* None */0,/* () */0),
                    row$1[3],
-                   1,
+                   /* true */1,
                    row$1[5],
                    nm]]));
       }
@@ -1673,14 +2002,19 @@ var
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1){}}
     else
      {switch(match$1[0])
        {case 8:return Btype["row_repr"](match$1[1]);default:exit=277;}}
     
     switch(exit)
-     {case 277:throw [0,Assert_failure,[0,"typing/parmatch.ml",602,9]];}
+     {case 277:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/parmatch.ml",602,9]];
+       
+      }
     };
 
 var
@@ -1690,13 +2024,18 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 4:return match[2][10];default:exit=275;}}
     
     switch(exit)
-     {case 275:throw [0,Assert_failure,[0,"typing/parmatch.ml",613,9]];}
+     {case 275:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/parmatch.ml",613,9]];
+       
+      }
     };
 
 var
@@ -1716,7 +2055,7 @@ var
            {return /* :: */[0,x,loop(xs)];}
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return loop(env);
@@ -1734,25 +2073,26 @@ var
       
       var exit$1;
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
          {case 2:
-           switch(match[1])
-            {case 1:return List["length"](env)=256;default:return 0;}
+           switch(match[1][0])
+            {case 1:return List["length"](env)===256;
+             default:return /* false */0;}
            
           case 3:exit$1=272;
           case 4:
            var c=match[2];
            
            if(c[7]<0)
-            {return 0;}
+            {return /* false */0;}
            else
             {if(ignore_generalized)
-              {var env$1=clean_env(env);return List["length"](env$1)=c[9];}
+              {var env$1=clean_env(env);return List["length"](env$1)===c[9];}
              else
-              {return List["length"](env)=c[7]+c[8];}
+              {return List["length"](env)===c[7]+c[8];}
              }
            
           case 5:
@@ -1764,7 +2104,7 @@ var
                  
                  var exit$2;
                  
-                 if(typeof match$1=="number")
+                 if(typeof match$1==="number")
                   {switch(match$1){}}
                  else
                   {switch(match$1[0])
@@ -1772,7 +2112,10 @@ var
                  
                  switch(exit$2)
                   {case 268:
-                    throw [0,Assert_failure,[0,"typing/parmatch.ml",640,17]];
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"typing/parmatch.ml",640,17]];
+                    
                    }
                  },
                env);
@@ -1786,16 +2129,16 @@ var
                         
                         var exit$2;
                         
-                        if(typeof match$1=="number")
+                        if(typeof match$1==="number")
                          {switch(match$1){case 0:exit$2=265;}}
                         else
                          {switch(match$1[0])
                            {case 0:exit$2=266;
-                            case 1:if(match$1[3]!=0){exit$2=266;}else{exit$2=265;}
+                            case 1:if(match$1[3]!==0){exit$2=266;}else{exit$2=265;}
                             }}
                         
                         switch(exit$2)
-                         {case 265:return 1;
+                         {case 265:return /* true */1;
                           case 266:return List["mem"](param[1],fields);
                           }
                         },
@@ -1805,18 +2148,19 @@ var
             {return row[4]&&
                     List["for_all"]
                      (function(param)
-                       {return (Btype["row_field_repr"](param[2])=0)||
+                       {return Btype["row_field_repr"](param[2])===
+                               /* Rabsent */0||
                                List["mem"](param[1],fields);
                         },
                       row[1]);
              }
            
           case 6:exit$1=272;
-          case 7:return 0;
+          case 7:return /* false */0;
           case 9:exit$1=272;
           default:exit=270;}}
       
-      switch(exit$1){case 272:return 1;}
+      switch(exit$1){case 272:return /* true */1;}
       }
     else
      {exit=270;}
@@ -1832,17 +2176,17 @@ var
     if(env)
      {var match=env[1][1][1];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
-         {case 4:var c=match[2];return List["length"](env)=c[7]+c[8];
+         {case 4:var c=match[2];return List["length"](env)===c[7]+c[8];
           default:exit=262;}}
       }
     else
      {exit=262;}
     
-    switch(exit){case 262:return 1;}
+    switch(exit){case 262:return /* true */1;}
     };
 
 var
@@ -1855,14 +2199,14 @@ var
       
       var match=p[1];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
          {case 4:
            var exit$1;
            
-           switch(match[2][6])
+           switch(match[2][6][0])
             {case 0:exit$1=260;case 1:exit$1=260;case 2:exit=259;}
            
            switch(exit$1)
@@ -1880,7 +2224,7 @@ var
     else
      {exit=259;}
     
-    switch(exit){case 259:return 0;}
+    switch(exit){case 259:return /* false */0;}
     };
 
 var
@@ -1894,14 +2238,14 @@ var
         
         var match=p[1];
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
            {case 4:
              var exit$1;
              
-             switch(match[2][6])
+             switch(match[2][6][0])
               {case 0:exit$1=256;case 1:exit$1=256;case 2:exit=255;}
              
              switch(exit$1)
@@ -1917,35 +2261,39 @@ var
       else
        {exit=255;}
       
-      switch(exit){case 255:return 0;}
+      switch(exit){case 255:return /* false */0;}
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
  complete_tags=
   function(nconsts,nconstrs,tags)
-   {var seen_const="unknown primitive:caml_make_vect";
+   {var seen_const=CamlPrimitive["caml_make_vect"](nconsts,/* false */0);
     
-    var seen_constr="unknown primitive:caml_make_vect";
+    var seen_constr=CamlPrimitive["caml_make_vect"](nconstrs,/* false */0);
     
     List["iter"]
      (function(param)
-       {switch(param)
-         {case 0:return seen_const[param[1]]=1,0;
-          case 1:return seen_constr[param[1]]=1,0;
-          case 2:throw [0,Assert_failure,[0,"typing/parmatch.ml",703,14]];
+       {switch(param[0])
+         {case 0:return seen_const[param[1]+1]=/* true */1,0;
+          case 1:return seen_constr[param[1]+1]=/* true */1,0;
+          case 2:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"typing/parmatch.ml",703,14]];
+           
           }
         },
       tags);
-    var r=0;
+    var r=/* [] */0;
     
     for(var i=0;i<=nconsts-1;i++)
-     {if(!seen_const[i]){r=/* :: */[0,/* Cstr_constant */[0,i],r];}else{}}
+     {if(!seen_const[i+1]){r=/* :: */[0,/* Cstr_constant */[0,i],r];}else{}}
     
     for(var i$1=0;i$1<=nconstrs-1;i$1++)
-     {if(!seen_constr[i$1]){r=/* :: */[0,/* Cstr_block */[1,i$1],r];}else{}}
+     {if(!seen_constr[i$1+1]){r=/* :: */[0,/* Cstr_block */[1,i$1],r];}else{}}
     
     return r;
     };
@@ -1953,14 +2301,13 @@ var
 var
  pat_of_constr=
   function(ex_pat,cstr)
-   {var newrecord="unknown primitive:duprecord regular 6";
+   {var newrecord=/* unknown */"duprecord regular 6";
     
     newrecord[1]=
     /* Tpat_construct */[4,
-     Typedtree["mknoloc"]([0,"?pat_of_constr?"]),
+     Typedtree["mknoloc"]([/* Lident */0,"?pat_of_constr?"]),
      cstr,
-     omegas(cstr[5])],
-    0;
+     omegas(cstr[5])];
     return newrecord;
     };
 
@@ -1973,14 +2320,13 @@ var
       var cstr=param[1];
       
       if(rem)
-       {var newrecord="unknown primitive:duprecord regular 6";
+       {var newrecord=/* unknown */"duprecord regular 6";
         
         newrecord[1]=
         /* Tpat_or */[8,
          pat_of_constr(ex_pat,cstr),
          pat_of_constrs(ex_pat,rem),
-         0],
-        0;
+         /* None */0];
         return newrecord;
         }
       else
@@ -1997,7 +2343,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -2009,7 +2355,7 @@ var
          var exit$1;
          
          var $js=match$1[3];
-         if(typeof $js=="number")
+         if(typeof $js==="number")
           {switch($js){}}
          else
           {switch($js[0])
@@ -2050,7 +2396,7 @@ var
        {return map_filter(f,xs);}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -2060,7 +2406,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -2076,7 +2422,7 @@ var
                    {if(List["mem"](cnstr[6],not_tags))
                      {return /* Some */[0,cnstr];}
                     else
-                     {return 0;}
+                     {return /* None */0;}
                     },
                   constrs);
          
@@ -2113,32 +2459,35 @@ var
       
       var match=p[1];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){}}
       else
        {switch(match[0])
          {case 2:
-           switch(match[1])
+           switch(match[1][0])
             {case 0:
               return build_other_constant
                       (function(param)
                         {var exit$1;
                          
-                         if(typeof param=="number")
+                         if(typeof param==="number")
                           {switch(param){}}
                          else
                           {switch(param[0])
                             {case 2:
                               var match$1=param[1];
                               
-                              switch(match$1)
+                              switch(match$1[0])
                                {case 0:return match$1[1];default:exit$1=227;}
                               
                              default:exit$1=227;}}
                          
                          switch(exit$1)
                           {case 227:
-                            throw [0,Assert_failure,[0,"typing/parmatch.ml",857,55]];
+                            throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",857,55]];
+                            
                            }
                          },
                        function(i)
@@ -2157,21 +2506,24 @@ var
                     
                     var exit$1;
                     
-                    if(typeof match$1=="number")
+                    if(typeof match$1==="number")
                      {switch(match$1){}}
                     else
                      {switch(match$1[0])
                        {case 2:
                          var match$2=match$1[1];
                          
-                         switch(match$2)
+                         switch(match$2[0])
                           {case 1:return match$2[1];default:exit$1=225;}
                          
                         default:exit$1=225;}}
                     
                     switch(exit$1)
                      {case 225:
-                       throw [0,Assert_failure,[0,"typing/parmatch.ml",832,15]];
+                       throw [0,
+                              CamlPrimitive["caml_global_data"]["Assert_failure"],
+                              [0,"typing/parmatch.ml",832,15]];
+                       
                       }
                     },
                   env);
@@ -2180,7 +2532,7 @@ var
                find_other=
                 function(i,imax)
                  {if(i>imax)
-                   {throw Not_found;}
+                   {throw CamlPrimitive["caml_global_data"]["Not_found"];}
                   else
                    {var ci=Char["chr"](i);
                     
@@ -2202,7 +2554,7 @@ var
                     try
                      {return find_other(match$1[1],match$1[2]);}
                     catch(exn)
-                     {if(exn=Not_found)
+                     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                        {return try_chars(param[2]);}
                       else
                        {throw exn;}
@@ -2214,40 +2566,45 @@ var
               
               return try_chars
                       (/* :: */[0,
-                        [0,97,122],
+                        [/* tuple */0,97,122],
                         /* :: */[0,
-                         [0,65,90],
+                         [/* tuple */0,65,90],
                          /* :: */[0,
-                          [0,48,57],
+                          [/* tuple */0,48,57],
                           /* :: */[0,
-                           [0,32,126],
-                           /* :: */[0,/* tuple */[0,Char["chr"](0),Char["chr"](255)],0]]]]]);
+                           [/* tuple */0,32,126],
+                           /* :: */[0,
+                            /* tuple */[0,Char["chr"](0),Char["chr"](255)],
+                            /* [] */0]]]]]);
               
              case 2:
               return build_other_constant
                       (function(param)
                         {var exit$1;
                          
-                         if(typeof param=="number")
+                         if(typeof param==="number")
                           {switch(param){}}
                          else
                           {switch(param[0])
                             {case 2:
                               var match$1=param[1];
                               
-                              switch(match$1)
+                              switch(match$1[0])
                                {case 2:return match$1[1]["length"];default:exit$1=231;}
                               
                              default:exit$1=231;}}
                          
                          switch(exit$1)
                           {case 231:
-                            throw [0,Assert_failure,[0,"typing/parmatch.ml",878,21]];
+                            throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",878,21]];
+                            
                            }
                          },
                        function(i)
                         {return /* Tpat_constant */[2,
-                                 /* Const_string */[2,$$String["make"](i,42),0]];
+                                 /* Const_string */[2,$$String["make"](i,42),/* None */0]];
                          },
                        0,
                        function(prim){return 1+prim;},
@@ -2259,22 +2616,26 @@ var
                       (function(param)
                         {var exit$1;
                          
-                         if(typeof param=="number")
+                         if(typeof param==="number")
                           {switch(param){}}
                          else
                           {switch(param[0])
                             {case 2:
                               var match$1=param[1];
                               
-                              switch(match$1)
-                               {case 3:return "unknown primitive:caml_float_of_string";
+                              switch(match$1[0])
+                               {case 3:
+                                 return CamlPrimitive["caml_float_of_string"](match$1[1]);
                                 default:exit$1=232;}
                               
                              default:exit$1=232;}}
                          
                          switch(exit$1)
                           {case 232:
-                            throw [0,Assert_failure,[0,"typing/parmatch.ml",884,21]];
+                            throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",884,21]];
+                            
                            }
                          },
                        function(f)
@@ -2291,21 +2652,24 @@ var
                       (function(param)
                         {var exit$1;
                          
-                         if(typeof param=="number")
+                         if(typeof param==="number")
                           {switch(param){}}
                          else
                           {switch(param[0])
                             {case 2:
                               var match$1=param[1];
                               
-                              switch(match$1)
+                              switch(match$1[0])
                                {case 4:return match$1[1];default:exit$1=228;}
                               
                              default:exit$1=228;}}
                          
                          switch(exit$1)
                           {case 228:
-                            throw [0,Assert_failure,[0,"typing/parmatch.ml",862,57]];
+                            throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",862,57]];
+                            
                            }
                          },
                        function(i)
@@ -2320,21 +2684,24 @@ var
                       (function(param)
                         {var exit$1;
                          
-                         if(typeof param=="number")
+                         if(typeof param==="number")
                           {switch(param){}}
                          else
                           {switch(param[0])
                             {case 2:
                               var match$1=param[1];
                               
-                              switch(match$1)
+                              switch(match$1[0])
                                {case 5:return match$1[1];default:exit$1=229;}
                               
                              default:exit$1=229;}}
                          
                          switch(exit$1)
                           {case 229:
-                            throw [0,Assert_failure,[0,"typing/parmatch.ml",867,57]];
+                            throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",867,57]];
+                            
                            }
                          },
                        function(i)
@@ -2349,21 +2716,24 @@ var
                       (function(param)
                         {var exit$1;
                          
-                         if(typeof param=="number")
+                         if(typeof param==="number")
                           {switch(param){}}
                          else
                           {switch(param[0])
                             {case 2:
                               var match$1=param[1];
                               
-                              switch(match$1)
+                              switch(match$1[0])
                                {case 6:return match$1[1];default:exit$1=230;}
                               
                              default:exit$1=230;}}
                          
                          switch(exit$1)
                           {case 230:
-                            throw [0,Assert_failure,[0,"typing/parmatch.ml",872,61]];
+                            throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",872,61]];
+                            
                            }
                          },
                        function(i)
@@ -2380,17 +2750,17 @@ var
            
            var exit$1;
            
-           switch(c[6])
+           switch(c[6][0])
             {case 0:exit$1=236;
              case 1:exit$1=236;
              case 2:
-              var newrecord="unknown primitive:duprecord regular 13";
+              var newrecord=/* unknown */"duprecord regular 13";
               
-              newrecord[1]="*extension*",0;
+              newrecord[1]="*extension*";
               var c$1=newrecord;
               
               return make_pat
-                      (/* Tpat_construct */[4,match[1],c$1,0],
+                      (/* Tpat_construct */[4,match[1],c$1,/* [] */0],
                        Ctype["none"],
                        Env["empty"]);
               
@@ -2418,7 +2788,7 @@ var
                      
                      var exit$3;
                      
-                     if(typeof match$1=="number")
+                     if(typeof match$1==="number")
                       {switch(match$1){}}
                      else
                       {switch(match$1[0])
@@ -2449,7 +2819,7 @@ var
                  
                  var exit$3;
                  
-                 if(typeof match$1=="number")
+                 if(typeof match$1==="number")
                   {switch(match$1){}}
                  else
                   {switch(match$1[0])
@@ -2457,7 +2827,10 @@ var
                  
                  switch(exit$3)
                   {case 221:
-                    throw [0,Assert_failure,[0,"typing/parmatch.ml",801,23]];
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"typing/parmatch.ml",801,23]];
+                    
                    }
                  },
                env);
@@ -2467,7 +2840,10 @@ var
            var
             make_other_pat=
              function(tag,$$const)
-              {if($$const){var arg=0;}else{var arg=/* Some */[0,omega];}
+              {if($$const)
+                {var arg=/* None */0;}
+               else
+                {var arg=/* Some */[0,omega];}
                
                return make_pat(/* Tpat_variant */[5,tag,arg,r],p[4],p[5]);
                };
@@ -2483,29 +2859,34 @@ var
                  else
                   {var match$2=Btype["row_field_repr"](param[2]);
                    
-                   if(typeof match$2=="number")
+                   if(typeof match$2==="number")
                     {switch(match$2){case 0:return others;}}
                    else
                     {switch(match$2[0])
                       {case 0:
-                        return /* :: */[0,make_other_pat(tag,match$2[1]=0),others];
+                        return /* :: */[0,
+                                make_other_pat(tag,match$2[1]===/* None */0),
+                                others];
+                        
                        case 1:
                         return /* :: */[0,make_other_pat(tag,match$2[1]),others];
                        }}
                    }
                  },
-               0,
+               /* [] */0,
                row[1]);
            
            if(match$1)
             {return List["fold_left"]
                      (function(p_res,pat)
-                       {return make_pat(/* Tpat_or */[8,pat,p_res,0],p[4],p[5]);},
+                       {return make_pat
+                                (/* Tpat_or */[8,pat,p_res,/* None */0],p[4],p[5]);
+                        },
                       match$1[1],
                       match$1[2]);
              }
            else
-            {return make_other_pat("AnyExtraTag",1);}
+            {return make_other_pat("AnyExtraTag",/* true */1);}
            
           case 7:
            var
@@ -2516,7 +2897,7 @@ var
                  
                  var exit$3;
                  
-                 if(typeof match$2=="number")
+                 if(typeof match$2==="number")
                   {switch(match$2){}}
                  else
                   {switch(match$2[0])
@@ -2525,7 +2906,10 @@ var
                  
                  switch(exit$3)
                   {case 233:
-                    throw [0,Assert_failure,[0,"typing/parmatch.ml",893,15]];
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"typing/parmatch.ml",893,15]];
+                    
                    }
                  },
                env);
@@ -2558,7 +2942,7 @@ var
      {var p=env[1][1];
       
       var $js=p[1];
-      if(typeof $js=="number")
+      if(typeof $js==="number")
        {switch($js){}}
       else
        {switch($js[0])
@@ -2570,7 +2954,7 @@ var
                
                var exit$1;
                
-               if(typeof match=="number")
+               if(typeof match==="number")
                 {switch(match){}}
                else
                 {switch(match[0])
@@ -2594,7 +2978,12 @@ var
      {exit=211;}
     
     switch(exit)
-     {case 211:throw [0,Assert_failure,[0,"typing/parmatch.ml",917,11]];}
+     {case 211:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/parmatch.ml",917,11]];
+       
+      }
     };
 
 var
@@ -2604,7 +2993,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -2615,7 +3004,7 @@ var
          var match$1=match[2];
          
          if(is_absent(match[1],match[3]))
-          {return 0;}
+          {return /* false */0;}
          else
           {if(match$1){var p$1=match$1[1];exit=202;}else{exit=201;}}
          
@@ -2629,8 +3018,8 @@ var
         default:exit=201;}}
     
     switch(exit)
-     {case 205:"unknown block:(exit 203 (field 0 match/2787))";
-      case 201:return 1;
+     {case 205:var ps=match[1];exit=203;
+      case 201:return /* true */1;
       case 202:return has_instance(p$1);
       case 203:return has_instances(ps);
       }
@@ -2642,7 +3031,7 @@ var
    {if(param)
      {return has_instance(param[1])&&has_instances(param[2]);}
     else
-     {return 1;}
+     {return /* true */1;}
     };
 
 var
@@ -2656,13 +3045,18 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=199;}}
         else
          {switch(match[0])
            {case 0:exit=199;
             case 1:return satisfiable(pss,/* :: */[0,match[1],qs[2]]);
-            case 5:if(is_absent(match[1],match[3])){return 0;}else{exit=198;}
+            case 5:
+             if(is_absent(match[1],match[3]))
+              {return /* false */0;}
+             else
+              {exit=198;}
+             
             case 8:
              var qs$1=qs[2];
              
@@ -2680,7 +3074,7 @@ var
            var constrs=filter_all(q0,pss);
            
            if(constrs)
-            {if(full_match(0,0,constrs))
+            {if(full_match(/* false */0,/* false */0,constrs))
               {return List["exists"]
                        (function(param)
                          {var p=param[1];
@@ -2707,13 +3101,15 @@ var
           }
         }
       else
-       {return 0;}
+       {return /* false */0;}
       }
     else
      {return has_instances(qs);}
     };
 
-var orify=function(x,y){return make_pat(/* Tpat_or */[8,x,y,0],x[4],x[5]);};
+var
+ orify=
+  function(x,y){return make_pat(/* Tpat_or */[8,x,y,/* None */0],x[4],x[5]);};
 
 var
  orify_many=
@@ -2726,7 +3122,10 @@ var
       if(xs){return orify(x,orify_many(xs));}else{return x;}
       }
     else
-     {throw [0,Assert_failure,[0,"typing/parmatch.ml",989,12]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/parmatch.ml",989,12]];
+      }
     };
 
 var
@@ -2740,7 +3139,7 @@ var
       if(r){return r;}else{return try_many(f,param[2]);}
       }
     else
-     {return 0;}
+     {return /* Rnone */0;}
     };
 
 var
@@ -2766,7 +3165,7 @@ var
               (f(/* tuple */[0,match[1],match[2]]),try_many_gadt(f,param[2]));
       }
     else
-     {return 0;}
+     {return /* Rnone */0;}
     };
 
 var
@@ -2785,7 +3184,7 @@ var
              {var p=param[1];
               
               if(is_absent_pat(p))
-               {return 0;}
+               {return /* Rnone */0;}
               else
                {var
                  r=
@@ -2798,7 +3197,9 @@ var
                 }
               };
           
-          if(full_match(1,0,constrs)&&!should_extend(ext,constrs))
+          if
+           (full_match(/* true */1,/* false */0,constrs)&&
+            !should_extend(ext,constrs))
            {return try_many(try_non_omega,constrs);}
           else
            {var r=exhaust(ext,filter_extra(pss),n-1);
@@ -2809,14 +3210,14 @@ var
                         /* :: */[0,build_other(ext,constrs),r[1]]];
                 }
               catch(exn)
-               {if(exn=Empty)
+               {if(exn===Empty)
                  {return Misc["fatal_error"]("Parmatch.exhaust");}
                 else
                  {throw exn;}
                 }
               }
             else
-             {return 0;}
+             {return /* Rnone */0;}
             }
           }
         else
@@ -2829,7 +3230,7 @@ var
           }
         }
       else
-       {return 0;}
+       {return /* Rnone */0;}
       }
     else
      {return /* Rsome */[0,omegas(n)];}
@@ -2844,7 +3245,7 @@ var
        {if(param)
          {return /* :: */[0,f(x,param[1]),iter2(x,param[2])];}
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     var
@@ -2853,7 +3254,7 @@ var
        {if(param)
          {return Pervasives["@"](iter2(param[1],lst$prime),iter(param[2]));}
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return iter(lst);
@@ -2875,7 +3276,7 @@ var
              {var p=param[1];
               
               if(is_absent_pat(p))
-               {return 0;}
+               {return /* Rnone */0;}
               else
                {var
                  r=
@@ -2917,7 +3318,7 @@ var
                  {return /* Rsome */[0,dug];}
                 }
               catch(exn)
-               {if(exn=Empty)
+               {if(exn===Empty)
                  {return Misc["fatal_error"]("Parmatch.exhaust");}
                 else
                  {throw exn;}
@@ -2940,10 +3341,10 @@ var
           }
         }
       else
-       {return 0;}
+       {return /* Rnone */0;}
       }
     else
-     {return /* Rsome */[0,/* :: */[0,omegas(n),0]];}
+     {return /* Rsome */[0,/* :: */[0,omegas(n),/* [] */0]];}
     };
 
 var
@@ -2954,7 +3355,7 @@ var
     if(ret)
      {var lst=ret[1];
       
-      if(lst=0)
+      if(lst===/* [] */0)
        {return /* Rsome */[0,omegas(n)];}
       else
        {var
@@ -2970,16 +3371,19 @@ var
               
               switch(exit)
                {case 165:
-                 throw [0,Assert_failure,[0,"typing/parmatch.ml",1165,19]];
+                 throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"typing/parmatch.ml",1165,19]];
+                 
                 }
               },
             lst);
         
-        return /* Rsome */[0,/* :: */[0,orify_many(singletons),0]];
+        return /* Rsome */[0,/* :: */[0,orify_many(singletons),/* [] */0]];
         }
       }
     else
-     {return 0;}
+     {return /* Rnone */0;}
     };
 
 var
@@ -3001,16 +3405,16 @@ var
                 return try_non_omega(param[2])&&ok;
                 }
               else
-               {return 1;}
+               {return /* true */1;}
               };
           
-          if(full_match(1,tdefs=0,constrs))
+          if(full_match(/* true */1,tdefs===/* None */0,constrs))
            {return try_non_omega(constrs);}
           else
-           {if(tdefs=0)
-             {return pressure_variants(0,filter_extra(pss));}
+           {if(tdefs===/* None */0)
+             {return pressure_variants(/* None */0,filter_extra(pss));}
             else
-             {var full=full_match(1,1,constrs);
+             {var full=full_match(/* true */1,/* true */1,constrs);
               
               if(full)
                {var ok=try_non_omega(constrs);}
@@ -3023,7 +3427,7 @@ var
                {var p=constrs[1][1];
                 
                 var $js=p[1];
-                if(typeof $js=="number")
+                if(typeof $js==="number")
                  {switch($js){}}
                 else
                  {switch($js[0])
@@ -3033,7 +3437,7 @@ var
                        
                        if
                         (Btype["row_fixed"](row)||
-                         pressure_variants(0,filter_extra(pss)))
+                         pressure_variants(/* None */0,filter_extra(pss)))
                         {}
                        else
                         {close_variant(tdefs[1],row)}
@@ -3056,10 +3460,10 @@ var
          {return pressure_variants(tdefs,filter_extra(pss));}
         }
       else
-       {return 1;}
+       {return /* true */1;}
       }
     else
-     {return 0;}
+     {return /* false */0;}
     };
 
 var
@@ -3081,7 +3485,7 @@ var
     return Pervasives["prerr_endline"]("end matrix");
     };
 
-var make_row=function(ps){return /* record */[0,0,0,ps];};
+var make_row=function(ps){return /* record */[0,/* [] */0,/* [] */0,ps];};
 
 var make_rows=function(pss){return List["map"](make_row,pss);};
 
@@ -3092,7 +3496,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0]){case 1:return unalias(match[1]);default:exit=152;}}
@@ -3107,12 +3511,12 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=149;}}
     else
-     {switch(match[0]){case 0:exit=149;default:return 0;}}
+     {switch(match[0]){case 0:exit=149;default:return /* false */0;}}
     
-    switch(exit){case 149:return 1;}
+    switch(exit){case 149:return /* true */1;}
     };
 
 var
@@ -3125,7 +3529,10 @@ var
                if(match)
                 {return is_var(match[1]);}
                else
-                {throw [0,Assert_failure,[0,"typing/parmatch.ml",1274,14]];}
+                {throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"typing/parmatch.ml",1274,14]];
+                 }
                },
              rs);
     };
@@ -3137,7 +3544,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -3146,7 +3553,12 @@ var
         default:exit=147;}}
     
     switch(exit)
-     {case 147:throw [0,Assert_failure,[0,"typing/parmatch.ml",1281,23]];}
+     {case 147:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"typing/parmatch.ml",1281,23]];
+       
+      }
     };
 
 var
@@ -3157,7 +3569,10 @@ var
     if(match)
      {return /* record */[0,r[1],r[2],match[2]];}
     else
-     {throw [0,Assert_failure,[0,"typing/parmatch.ml",1286,12]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/parmatch.ml",1286,12]];
+      }
     };
 
 var remove_column=function(rs){return List["map"](remove,rs);};
@@ -3170,7 +3585,10 @@ var
     if(match)
      {return /* record */[0,/* :: */[0,match[1],r[1]],r[2],match[2]];}
     else
-     {throw [0,Assert_failure,[0,"typing/parmatch.ml",1293,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/parmatch.ml",1293,8]];
+      }
     };
 
 var
@@ -3181,7 +3599,10 @@ var
     if(match)
      {return /* record */[0,r[1],/* :: */[0,match[1],r[2]],match[2]];}
     else
-     {throw [0,Assert_failure,[0,"typing/parmatch.ml",1297,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/parmatch.ml",1297,8]];
+      }
     };
 
 var push_or_column=function(rs){return List["map"](push_or,rs);};
@@ -3198,11 +3619,11 @@ var
   function(q,rs)
    {var
      filter_rec=
-      function(rs$1)
-       {if(rs$1)
-         {var rem=rs$1[2];
+      function(rs)
+       {if(rs)
+         {var rem=rs[2];
           
-          var r=rs$1[1];
+          var r=rs[1];
           
           var match=r[3];
           
@@ -3213,7 +3634,7 @@ var
             
             var exit;
             
-            if(typeof match$1=="number")
+            if(typeof match$1==="number")
              {switch(match$1){}}
             else
              {switch(match$1[0])
@@ -3251,10 +3672,13 @@ var
               }
             }
           else
-           {throw [0,Assert_failure,[0,"typing/parmatch.ml",1314,14]];}
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"typing/parmatch.ml",1314,14]];
+            }
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
     return filter_rec(rs);
@@ -3269,28 +3693,24 @@ var
   function(r1,r2)
    {var exit;
     
-    if("unknown primitive:isint")
-     {if(r1!=0){exit=131;}else{exit=134;}}
+    if(typeof r1==="number")
+     {if(r1!==0){exit=131;}else{exit=134;}}
     else
-     {if("unknown primitive:isint")
-       {if(r2!=0){exit=134;}else{return r1;}}
+     {if(typeof r2==="number")
+       {if(r2!==0){exit=134;}else{return r1;}}
       else
        {return /* Upartial */[0,Pervasives["@"](r1[1],r2[1])];}
       }
     
     switch(exit)
      {case 134:
-       if("unknown primitive:isint")
-        {if(r2!=0)
-          {"unknown block:(exit 131)";}
-         else
-          {"unknown block:(exit 133)";}
-         }
+       if(typeof r2==="number")
+        {if(r2!==0){exit=131;}else{exit=133;}}
        else
-        {"unknown block:(exit 133)";}
+        {exit=133;}
        
       case 133:return r2;
-      case 131:return 1;
+      case 131:return /* Unused */1;
       }
     };
 
@@ -3308,28 +3728,31 @@ var
           return /* :: */[0,
                   /* record */[0,
                    Pervasives["@"](List["rev_append"](seen,rem),qs[1]),
-                   0,
-                   /* :: */[0,q,0]],
+                   /* [] */0,
+                   /* :: */[0,q,/* [] */0]],
                   do_rec(/* :: */[0,q,seen],rem)];
           }
         else
-         {return 0;}
+         {return /* [] */0;}
         };
     
-    return do_rec(0,qs[2]);
+    return do_rec(/* [] */0,qs[2]);
     };
 
 var
  transpose=
   function(rs)
    {if(rs)
-     {var i=List["map"](function(x){return /* :: */[0,x,0];},rs[1]);
+     {var i=List["map"](function(x){return /* :: */[0,x,/* [] */0];},rs[1]);
       
       return List["fold_left"]
               (List["map2"](function(r,x){return /* :: */[0,x,r];}),i,rs[2]);
       }
     else
-     {throw [0,Assert_failure,[0,"typing/parmatch.ml",1357,8]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"typing/parmatch.ml",1357,8]];
+      }
     };
 
 var
@@ -3338,7 +3761,7 @@ var
    {if(pss)
      {var rows=List["map"](extract_elements,pss);return transpose(rows);}
     else
-     {return List["map"](function(param){return 0;},qs[2]);}
+     {return List["map"](function(param){return /* [] */0;},qs[2]);}
     };
 
 var
@@ -3355,13 +3778,17 @@ var
       
       var exit;
       
-      if(typeof match$1=="number")
+      if(typeof match$1==="number")
        {switch(match$1){case 0:exit=117;}}
       else
        {switch(match$1[0])
          {case 0:exit=117;
           case 5:
-           if(is_absent(match$1[1],match$1[3])){return 1;}else{exit=118;}
+           if(is_absent(match$1[1],match$1[3]))
+            {return /* Unused */1;}
+           else
+            {exit=118;}
+           
           case 8:
            if(match$1[1][2][3]&&match$1[2][2][3])
             {return every_satisfiables(push_no_or_column(pss),push_no_or(qs));
@@ -3395,17 +3822,17 @@ var
       
       if(match$2)
        {return List["fold_right2"]
-                (function(pss$1,qs$1,r)
+                (function(pss,qs,r)
                   {var exit$1;
                    
-                   if("unknown primitive:isint")
-                    {if(r!=0){return 1;}else{exit$1=114;}}
+                   if(typeof r==="number")
+                    {if(r!==0){return /* Unused */1;}else{exit$1=114;}}
                    else
                     {exit$1=114;}
                    
                    switch(exit$1)
                     {case 114:
-                      var match$3=qs$1[3];
+                      var match$3=qs[3];
                       
                       var exit$2;
                       
@@ -3415,7 +3842,7 @@ var
                         else
                          {var match$4=or_args(match$3[1]);
                           
-                          var r_loc=every_both(pss$1,qs$1,match$4[1],match$4[2]);
+                          var r_loc=every_both(pss,qs,match$4[1],match$4[2]);
                           
                           return union_res(r,r_loc);
                           }
@@ -3425,20 +3852,23 @@ var
                       
                       switch(exit$2)
                        {case 113:
-                         throw [0,Assert_failure,[0,"typing/parmatch.ml",1394,23]];
+                         throw [0,
+                                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                [0,"typing/parmatch.ml",1394,23]];
+                         
                         }
                       
                      }
                    },
                  extract_columns(pss,qs),
                  extract_elements(qs),
-                 0);
+                 /* Used */0);
         }
       else
        {if(satisfiable(make_matrix(pss),make_vector(qs)))
-         {return 0;}
+         {return /* Used */0;}
         else
-         {return 1;}
+         {return /* Unused */1;}
         }
       }
     };
@@ -3446,18 +3876,21 @@ var
 var
  every_both=
   function(pss,qs,q1,q2)
-   {var qs1=/* record */[0,qs[1],qs[2],/* :: */[0,q1,0]];
+   {var qs1=/* record */[0,qs[1],qs[2],/* :: */[0,q1,/* [] */0]];
     
-    var qs2=/* record */[0,qs[1],qs[2],/* :: */[0,q2,0]];
+    var qs2=/* record */[0,qs[1],qs[2],/* :: */[0,q2,/* [] */0]];
     
     var r1=every_satisfiables(pss,qs1);
     
     var r2=every_satisfiables(compat(q1,q2)?/* :: */[0,qs1,pss]:pss,qs2);
     
-    if("unknown primitive:isint")
-     {if(r1!=0)
-       {if("unknown primitive:isint")
-         {if(r2!=0){return 1;}else{return /* Upartial */[0,/* :: */[0,q1,0]];}
+    if(typeof r1==="number")
+     {if(r1!==0)
+       {if(typeof r2==="number")
+         {if(r2!==0)
+           {return /* Unused */1;}
+          else
+           {return /* Upartial */[0,/* :: */[0,q1,/* [] */0]];}
           }
         else
          {return /* Upartial */[0,/* :: */[0,q1,r2[1]]];}
@@ -3465,8 +3898,11 @@ var
       else
        {var exit;
         
-        if("unknown primitive:isint")
-         {if(r2!=0){return /* Upartial */[0,/* :: */[0,q2,0]];}else{exit=120;}
+        if(typeof r2==="number")
+         {if(r2!==0)
+           {return /* Upartial */[0,/* :: */[0,q2,/* [] */0]];}
+          else
+           {exit=120;}
           }
         else
          {exit=120;}
@@ -3477,9 +3913,11 @@ var
     else
      {var u1=r1[1];
       
-      if("unknown primitive:isint")
-       {if(r2!=0)
-         {return /* Upartial */[0,Pervasives["@"](u1,/* :: */[0,q2,0])];}
+      if(typeof r2==="number")
+       {if(r2!==0)
+         {return /* Upartial */[0,
+                  Pervasives["@"](u1,/* :: */[0,q2,/* [] */0])];
+          }
         else
          {return r1;}
         }
@@ -3497,23 +3935,23 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=106;}}
     else
      {switch(match[0])
        {case 0:exit=106;
         case 1:return le_pat(match[1],q);
         case 2:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
             {case 1:exit=108;
-             case 2:return const_compare(match[1],match$1[1])=0;
+             case 2:return const_compare(match[1],match$1[1])===0;
              default:exit=107;}}
          
         case 3:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3522,13 +3960,13 @@ var
              default:exit=107;}}
          
         case 4:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
             {case 1:exit=108;
              case 4:
-              return "unknown primitive:caml_equal"&&
+              return CamlPrimitive["caml_equal"](match[2][6],match$1[2][6])&&
                      le_pats(match[3],match$1[3]);
               
              default:exit=107;}}
@@ -3541,7 +3979,7 @@ var
          var exit$1;
          
          if(match$2)
-          {if(typeof match$1=="number")
+          {if(typeof match$1==="number")
             {switch(match$1){}}
            else
             {switch(match$1[0])
@@ -3550,7 +3988,7 @@ var
                 var match$3=match$1[2];
                 
                 if(match$3)
-                 {return "unknown primitive:caml_string_equal"&&
+                 {return CamlPrimitive["caml_string_equal"](l1,match$1[1])&&
                          le_pat(match$2[1],match$3[1]);
                   }
                 else
@@ -3559,7 +3997,7 @@ var
                default:exit=107;}}
            }
          else
-          {if(typeof match$1=="number")
+          {if(typeof match$1==="number")
             {switch(match$1){}}
            else
             {switch(match$1[0])
@@ -3568,15 +4006,15 @@ var
                 if(match$1[2])
                  {exit$1=109;}
                 else
-                 {return "unknown primitive:caml_string_equal";}
+                 {return CamlPrimitive["caml_string_equal"](l1,match$1[1]);}
                 
                default:exit=107;}}
            }
          
-         switch(exit$1){case 109:return 0;}
+         switch(exit$1){case 109:return /* false */0;}
          
         case 6:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3591,7 +4029,7 @@ var
         case 7:
          var ps=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3599,13 +4037,13 @@ var
              case 7:
               var qs=match$1[1];
               
-              return (List["length"](ps)=List["length"](qs))&&le_pats(ps,qs);
+              return List["length"](ps)===List["length"](qs)&&le_pats(ps,qs);
               
              default:exit=107;}}
          
         case 8:exit=108;
         case 9:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){}}
          else
           {switch(match$1[0])
@@ -3617,16 +4055,18 @@ var
     
     switch(exit)
      {case 108:
-       if(typeof match$1=="number")
+       if(typeof match$1==="number")
         {switch(match$1){}}
        else
         {switch(match$1[0])
-          {case 1:return le_pat(p,match$1[1]);
-           default:"unknown block:(exit 107)";}}
+          {case 1:return le_pat(p,match$1[1]);default:exit=107;}}
        
       case 107:
-       return !satisfiable(/* :: */[0,/* :: */[0,p,0],0],/* :: */[0,q,0]);
-      case 106:return 1;
+       return !satisfiable
+               (/* :: */[0,/* :: */[0,p,/* [] */0],/* [] */0],
+                /* :: */[0,q,/* [] */0]);
+       
+      case 106:return /* true */1;
       }
     };
 
@@ -3641,7 +4081,7 @@ var
     else
      {exit=110;}
     
-    switch(exit){case 110:return 1;}
+    switch(exit){case 110:return /* true */1;}
     };
 
 var
@@ -3664,7 +4104,7 @@ var
          {return r;}
         };
     
-    return select_rec(0,select_rec(0,ps));
+    return select_rec(/* [] */0,select_rec(/* [] */0,ps));
     };
 
 var
@@ -3676,20 +4116,20 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
        {case 1:return lub(match[1],q);
         case 2:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=95;}}
          else
           {switch(match$1[0])
             {case 0:exit=95;
              case 1:exit=97;
              case 2:
-              if(const_compare(match[1],match$1[1])=0)
+              if(const_compare(match[1],match$1[1])===0)
                {return p;}
               else
                {exit=92;}
@@ -3698,7 +4138,7 @@ var
              default:exit=92;}}
          
         case 3:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=95;}}
          else
           {switch(match$1[0])
@@ -3715,14 +4155,14 @@ var
         case 4:
          var c1=match[2];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=95;}}
          else
           {switch(match$1[0])
             {case 0:exit=95;
              case 1:exit=97;
              case 4:
-              if("unknown primitive:caml_equal")
+              if(CamlPrimitive["caml_equal"](c1[6],match$1[2][6]))
                {var rs$1=lubs(match[3],match$1[3]);
                 
                 return make_pat
@@ -3740,7 +4180,7 @@ var
          var l1=match[1];
          
          if(match$2)
-          {if(typeof match$1=="number")
+          {if(typeof match$1==="number")
             {switch(match$1){case 0:exit=95;}}
            else
             {switch(match$1[0])
@@ -3750,7 +4190,7 @@ var
                 var match$3=match$1[2];
                 
                 if(match$3)
-                 {if("unknown primitive:caml_string_equal")
+                 {if(CamlPrimitive["caml_string_equal"](l1,match$1[1]))
                    {var r=lub(match$2[1],match$3[1]);
                     
                     return make_pat
@@ -3768,7 +4208,7 @@ var
                default:exit=92;}}
            }
          else
-          {if(typeof match$1=="number")
+          {if(typeof match$1==="number")
             {switch(match$1){case 0:exit=95;}}
            else
             {switch(match$1[0])
@@ -3778,7 +4218,7 @@ var
                 if(match$1[2])
                  {exit=92;}
                 else
-                 {if("unknown primitive:caml_string_equal")
+                 {if(CamlPrimitive["caml_string_equal"](l1,match$1[1]))
                    {return p;}
                   else
                    {exit=92;}
@@ -3789,7 +4229,7 @@ var
            }
          
         case 6:
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=95;}}
          else
           {switch(match$1[0])
@@ -3806,7 +4246,7 @@ var
         case 7:
          var ps=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=95;}}
          else
           {switch(match$1[0])
@@ -3815,7 +4255,7 @@ var
              case 7:
               var qs=match$1[1];
               
-              if(List["length"](ps)=List["length"](qs))
+              if(List["length"](ps)===List["length"](qs))
                {var rs$3=lubs(ps,qs);
                 
                 return make_pat(/* Tpat_array */[7,rs$3],p[4],p[5]);
@@ -3829,7 +4269,7 @@ var
         case 9:
          var p$1=match[1];
          
-         if(typeof match$1=="number")
+         if(typeof match$1==="number")
           {switch(match$1){case 0:exit=95;}}
          else
           {switch(match$1[0])
@@ -3847,23 +4287,21 @@ var
     
     switch(exit)
      {case 97:
-       if(typeof match$1=="number")
+       if(typeof match$1==="number")
         {switch(match$1){}}
        else
-        {switch(match$1[0])
-          {case 1:return lub(p,match$1[1]);default:"unknown block:(exit 96)";}}
+        {switch(match$1[0]){case 1:return lub(p,match$1[1]);default:exit=96;}}
        
       case 96:
-       if(typeof match=="number")
-        {switch(match){case 0:"unknown block:(exit 91)";}}
+       if(typeof match==="number")
+        {switch(match){case 0:exit=91;}}
        else
-        {switch(match[0])
-          {case 0:"unknown block:(exit 91)";case 8:"unknown block:(exit 95)";}}
+        {switch(match[0]){case 0:exit=91;case 8:exit=95;}}
        
       case 95:
        var exit$1;
        
-       if(typeof match$1=="number")
+       if(typeof match$1==="number")
         {switch(match$1){case 0:exit$1=98;}}
        else
         {switch(match$1[0])
@@ -3884,14 +4322,14 @@ var
      {var r1=lub(p1,q);
       
       try
-       {var newrecord="unknown primitive:duprecord regular 6";
+       {var newrecord=/* unknown */"duprecord regular 6";
         
-        newrecord[1]=/* Tpat_or */[8,r1,lub(p2,q),0],0;
+        newrecord[1]=/* Tpat_or */[8,r1,lub(p2,q),/* None */0];
         return newrecord;
         }
-      catch(exn){if(exn=Empty){return r1;}else{throw exn;}}
+      catch(exn){if(exn===Empty){return r1;}else{throw exn;}}
       }
-    catch(exn$1){if(exn$1=Empty){return lub(p2,q);}else{throw exn$1;}}
+    catch(exn$1){if(exn$1===Empty){return lub(p2,q);}else{throw exn$1;}}
     };
 
 var
@@ -3899,20 +4337,20 @@ var
   function(l1,l2)
    {var
      lub_rec=
-      function(l1$1,l2$1)
-       {if(l1$1)
-         {if(l2$1)
-           {var rem2=l2$1[2];
+      function(l1,l2)
+       {if(l1)
+         {if(l2)
+           {var rem2=l2[2];
             
-            var match=l2$1[1];
+            var match=l2[1];
             
             var p2=match[3];
             
             var lbl2=match[2];
             
-            var rem1=l1$1[2];
+            var rem1=l1[2];
             
-            var match$1=l1$1[1];
+            var match$1=l1[1];
             
             var p1=match$1[3];
             
@@ -3921,15 +4359,13 @@ var
             var lid1=match$1[1];
             
             if(lbl1[5]<lbl2[5])
-             {return /* :: */[0,
-                      /* tuple */[0,lid1,lbl1,p1],
-                      lub_rec(rem1,l2$1)];
+             {return /* :: */[0,/* tuple */[0,lid1,lbl1,p1],lub_rec(rem1,l2)];
               }
             else
              {if(lbl2[5]<lbl1[5])
                {return /* :: */[0,
                         /* tuple */[0,match[1],lbl2,p2],
-                        lub_rec(l1$1,rem2)];
+                        lub_rec(l1,rem2)];
                 }
               else
                {return /* :: */[0,
@@ -3939,10 +4375,10 @@ var
               }
             }
           else
-           {return l1$1;}
+           {return l1;}
           }
         else
-         {return l2$1;}
+         {return l2;}
         };
     
     return lub_rec(l1,l2);
@@ -3962,7 +4398,7 @@ var
     else
      {exit=103;}
     
-    switch(exit){case 103:return 0;}
+    switch(exit){case 103:return /* [] */0;}
     };
 
 var
@@ -3970,9 +4406,10 @@ var
   function(tdefs,patl)
    {var
      pss=
-      List["map"](function(p){return /* :: */[0,p,/* :: */[0,omega,0]];},patl);
+      List["map"]
+       (function(p){return /* :: */[0,p,/* :: */[0,omega,/* [] */0]];},patl);
     
-    return 0;
+    return pressure_variants(/* Some */[0,tdefs],pss);
     };
 
 var
@@ -3984,13 +4421,16 @@ var
       if(match[2])
        {return initial_matrix(param[2]);}
       else
-       {return /* :: */[0,/* :: */[0,match[1],0],initial_matrix(param[2])];}
+       {return /* :: */[0,
+                /* :: */[0,match[1],/* [] */0],
+                initial_matrix(param[2])];
+        }
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
-var NoGuard="unknown primitive:caml_set_oo_id";
+var NoGuard=CamlPrimitive["caml_set_oo_id"]([248,"Parmatch.NoGuard",0]);
 
 var
  initial_all=
@@ -4001,11 +4441,11 @@ var
       var pat=match[1];
       
       return /* :: */[0,
-              /* tuple */[0,/* :: */[0,pat,0],pat[2]],
-              initial_all(no_guard&&(match[2]=0),param[2])];
+              /* tuple */[0,/* :: */[0,pat,/* [] */0],pat[2]],
+              initial_all(no_guard&&match[2]===/* None */0,param[2])];
       }
     else
-     {if(no_guard){throw NoGuard;}else{return 0;}}
+     {if(no_guard){throw NoGuard;}else{return /* [] */0;}}
     };
 
 var
@@ -4029,7 +4469,7 @@ var
     else
      {exit=82;}
     
-    switch(exit){case 82:return 0;}
+    switch(exit){case 82:return /* [] */0;}
     };
 
 var
@@ -4052,7 +4492,7 @@ var
             
             var exit$1;
             
-            if(typeof match$2=="number")
+            if(typeof match$2==="number")
              {switch(match$2){}}
             else
              {switch(match$2[0])
@@ -4098,7 +4538,7 @@ var
         else
          {exit=79;}
         
-        switch(exit){case 79:return 0;}
+        switch(exit){case 79:return /* [] */0;}
         };
     
     return filter_rec(pss);
@@ -4114,7 +4554,7 @@ var
       
       var qs$1=qs[2];
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){case 0:return do_match(do_filter_var(pss),qs$1);}}
       else
        {switch(match[0])
@@ -4145,7 +4585,7 @@ var
       else
        {exit=75;}
       
-      switch(exit){case 75:return 0;}
+      switch(exit){case 75:return /* None */0;}
       }
     };
 
@@ -4153,8 +4593,11 @@ var
  check_partial_all=
   function(v,casel)
    {try
-     {var pss=initial_all(1,casel);return do_match(pss,/* :: */[0,v,0]);}
-    catch(exn){if(exn=NoGuard){return 0;}else{throw exn;}}
+     {var pss=initial_all(/* true */1,casel);
+      
+      return do_match(pss,/* :: */[0,v,/* [] */0]);
+      }
+    catch(exn){if(exn===NoGuard){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -4163,10 +4606,12 @@ var
    {if(param)
      {var x=f(param[1]);if(x){return x;}else{return get_first(f,param[2]);}}
     else
-     {return 0;}
+     {return /* None */0;}
     };
 
-var mkpat=function(desc){return Ast_helper["Pat"][1](0,0,desc);};
+var
+ mkpat=
+  function(desc){return Ast_helper["Pat"][1](/* None */0,/* None */0,desc);};
 
 var
  select=
@@ -4191,12 +4636,12 @@ var
          {exit=68;}
         }
       else
-       {return List["map"](function(y){return /* :: */[0,y,0];},xs);}
+       {return List["map"](function(y){return /* :: */[0,y,/* [] */0];},xs);}
       }
     else
      {exit=68;}
     
-    switch(exit){case 68:return 0;}
+    switch(exit){case 68:return /* [] */0;}
     };
 
 var name_counter=[0,0];
@@ -4206,7 +4651,7 @@ var
   function(name)
    {var current=name_counter[1];
     
-    name_counter[1]=name_counter[1]+1,0;
+    name_counter[1]=name_counter[1]+1;
     return Pervasives["^"]
             ("#$",Pervasives["^"](name,Pervasives["string_of_int"](current)));
     };
@@ -4214,9 +4659,9 @@ var
 var
  conv=
   function(typed)
-   {var constrs=Hashtbl["create"](0,0);
+   {var constrs=Hashtbl["create"](/* None */0,0);
     
-    var labels=Hashtbl["create"](0,0);
+    var labels=Hashtbl["create"](/* None */0,0);
     
     var
      loop=
@@ -4225,7 +4670,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -4251,22 +4696,28 @@ var
              
              if(lst)
               {return List["map"]
-                       (function(lst$1)
-                         {if(lst$1)
-                           {if(lst$1[2])
-                             {var arg=/* Some */[0,mkpat(/* Ppat_tuple */[4,lst$1])];}
+                       (function(lst)
+                         {if(lst)
+                           {if(lst[2])
+                             {var arg=/* Some */[0,mkpat(/* Ppat_tuple */[4,lst])];}
                             else
-                             {var arg=/* Some */[0,lst$1[1]];}
+                             {var arg=/* Some */[0,lst[1]];}
                             }
                           else
-                           {throw [0,Assert_failure,[0,"typing/parmatch.ml",1729,28]];}
+                           {throw [0,
+                                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                   [0,"typing/parmatch.ml",1729,28]];
+                            }
                           
                           return mkpat(/* Ppat_construct */[5,lid,arg]);
                           },
                         results$1);
                }
              else
-              {return /* :: */[0,mkpat(/* Ppat_construct */[5,lid,0]),0];}
+              {return /* :: */[0,
+                       mkpat(/* Ppat_construct */[5,lid,/* None */0]),
+                       /* [] */0];
+               }
              
             case 5:
              var p_opt=match[2];
@@ -4282,7 +4733,10 @@ var
                         results$2);
                }
              else
-              {return /* :: */[0,mkpat(/* Ppat_variant */[6,label,0]),0];}
+              {return /* :: */[0,
+                       mkpat(/* Ppat_variant */[6,label,/* None */0]),
+                       /* [] */0];
+               }
              
             case 6:
              var subpatterns=match[1];
@@ -4307,16 +4761,16 @@ var
                  subpatterns);
              
              return List["map"]
-                     (function(lst$1)
+                     (function(lst)
                        {var
-                         lst$2=
+                         lst$1=
                           List["map2"]
-                           (function(lid$1,pat$1)
-                             {return /* tuple */[0,Typedtree["mknoloc"](lid$1),pat$1];},
+                           (function(lid,pat)
+                             {return /* tuple */[0,Typedtree["mknoloc"](lid),pat];},
                             label_idents,
-                            lst$1);
+                            lst);
                         
-                        return mkpat(/* Ppat_record */[7,lst$2,1]);
+                        return mkpat(/* Ppat_record */[7,lst$1,/* Open */1]);
                         },
                       pats);
              
@@ -4324,7 +4778,7 @@ var
              var results$3=select(List["map"](loop,match[1]));
              
              return List["map"]
-                     (function(lst$1){return mkpat(/* Ppat_array */[8,lst$1]);},
+                     (function(lst){return mkpat(/* Ppat_array */[8,lst]);},
                       results$3);
              
             case 8:return Pervasives["@"](loop(match[1]),loop(match[2]));
@@ -4337,7 +4791,8 @@ var
              
             default:exit=61;}}
         
-        switch(exit){case 61:return /* :: */[0,mkpat(0),0];}
+        switch(exit)
+         {case 61:return /* :: */[0,mkpat(/* Ppat_any */0),/* [] */0];}
         };
     
     var ps=loop(typed);
@@ -4349,9 +4804,9 @@ var Conv=[0,mkpat,select,name_counter,fresh,conv];
 
 var
  do_check_partial=
-  function(pred,exhaust$1,loc,casel,pss)
+  function(pred,exhaust,loc,casel,pss)
    {if(pss)
-     {var match=exhaust$1(0,pss,List["length"](pss[1]));
+     {var match=exhaust(/* None */0,pss,List["length"](pss[1]));
       
       var exit;
       
@@ -4379,7 +4834,7 @@ var
               
               var exit$1;
               
-              if(typeof match$3=="number")
+              if(typeof match$3==="number")
                {switch(match$3){}}
               else
                {switch(match$3[0])
@@ -4418,28 +4873,35 @@ var
                 }
               
               Location["prerr_warning"](loc,/* Partial_match */[3,errmsg]);
-              return 0;
+              return /* Partial */0;
               }
             else
-             {return 1;}
+             {return /* Total */1;}
             }
           }
         else
          {exit=44;}
         }
       else
-       {return 1;}
+       {return /* Total */1;}
       
       switch(exit)
        {case 44:return Misc["fatal_error"]("Parmatch.check_partial");}
       }
     else
-     {if(casel){Location["prerr_warning"](loc,12)}else{}return 0;}
+     {if(casel)
+       {Location["prerr_warning"](loc,/* All_clauses_guarded */12)}
+      else
+       {}
+      
+      return /* Partial */0;
+      }
     };
 
 var
  do_check_partial_normal=
-  function(loc,casel,pss){return do_check_partial(0,exhaust,loc,casel,pss);};
+  function(loc,casel,pss)
+   {return do_check_partial(/* None */0,exhaust,loc,casel,pss);};
 
 var
  do_check_partial_gadt=
@@ -4458,7 +4920,7 @@ var
        {return /* :: */[0,x,add_path(path,paths[2])];}
       }
     else
-     {return /* :: */[0,path,0];}
+     {return /* :: */[0,path,/* [] */0];}
     };
 
 var
@@ -4477,7 +4939,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -4486,7 +4948,7 @@ var
         case 4:
          var exit$1;
          
-         switch(match[2][6])
+         switch(match[2][6][0])
           {case 0:exit$1=31;case 1:exit$1=31;case 2:var ps=match[3];exit=29;}
          
          switch(exit$1)
@@ -4507,8 +4969,8 @@ var
          
         case 6:
          return List["fold_left"]
-                 (function(r$1,param)
-                   {return collect_paths_from_pat(r$1,param[3]);},
+                 (function(r,param)
+                   {return collect_paths_from_pat(r,param[3]);},
                   r,
                   match[1]);
          
@@ -4521,7 +4983,7 @@ var
         default:exit=28;}}
     
     switch(exit)
-     {case 32:"unknown block:(exit 29 (field 0 match/2341))";
+     {case 32:var ps=match[1];exit=29;
       case 28:return r;
       case 29:return List["fold_left"](collect_paths_from_pat,r,ps);
       case 30:return collect_paths_from_pat(r,p$1);
@@ -4530,11 +4992,11 @@ var
 
 var
  do_check_fragile_param=
-  function(exhaust$1,loc,casel,pss)
+  function(exhaust,loc,casel,pss)
    {var
      exts=
       List["fold_left"]
-       (function(r,c){return collect_paths_from_pat(r,c[1]);},0,casel);
+       (function(r,c){return collect_paths_from_pat(r,c[1]);},/* [] */0,casel);
     
     if(exts)
      {if(pss)
@@ -4544,22 +5006,22 @@ var
                 (function(ext)
                   {var
                     match=
-                     exhaust$1(/* Some */[0,ext],pss,List["length"](ps));
+                     exhaust(/* Some */[0,ext],pss,List["length"](ps));
                    
                    if(match)
-                    {return 0;}
+                    {return /* () */0;}
                    else
                     {return Location["prerr_warning"]
-                             (loc,/* Fragile_match */[1,Path["name"](0,ext)]);
+                             (loc,/* Fragile_match */[1,Path["name"](/* None */0,ext)]);
                      }
                    },
                  exts);
         }
       else
-       {return 0;}
+       {return /* () */0;}
       }
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var do_check_fragile_normal=do_check_fragile_param(exhaust);
@@ -4569,7 +5031,7 @@ var do_check_fragile_gadt=do_check_fragile_param(exhaust_gadt$1);
 var
  check_unused=
   function(tdefs,casel)
-   {if(Warnings["is_active"](5))
+   {if(Warnings["is_active"](/* Unused_match */5))
      {var
        do_rec=
         function(pref,param)
@@ -4580,47 +5042,56 @@ var
             
             var q=match[1];
             
-            var qs=/* :: */[0,q,0];
+            var qs=/* :: */[0,q,/* [] */0];
             
             try
              {var pss=get_mins(le_pats,List["filter"](compats(qs),pref));
               
               var r=every_satisfiables(make_rows(pss),make_row(qs));
               
-              if("unknown primitive:isint")
-               {if(r!=0){Location["prerr_warning"](q[2],5)}else{}}
+              if(typeof r==="number")
+               {if(r!==0)
+                 {Location["prerr_warning"](q[2],/* Unused_match */5)}
+                else
+                 {}
+                }
               else
                {List["iter"]
-                 (function(p){return Location["prerr_warning"](p[2],6);},r[1])}
+                 (function(p)
+                   {return Location["prerr_warning"](p[2],/* Unused_pat */6);},
+                  r[1])}
               }
             catch(exn)
              {var exit;
               
-              if(exn=Empty)
+              if(exn===Empty)
                {exit=15;}
               else
-               {if(exn=Not_found)
+               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                  {exit=15;}
                 else
-                 {if(exn=NoGuard){exit=15;}else{throw exn;}}
+                 {if(exn===NoGuard){exit=15;}else{throw exn;}}
                 }
               
               switch(exit)
                {case 15:
-                 throw [0,Assert_failure,[0,"typing/parmatch.ml",1947,48]];
+                 throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"typing/parmatch.ml",1947,48]];
+                 
                 }
               }
             
-            if(match[2]!=0)
+            if(match[2]!==/* None */0)
              {return do_rec(pref,rem);}
             else
-             {return do_rec(/* :: */[0,/* :: */[0,q,0],pref],rem);}
+             {return do_rec(/* :: */[0,/* :: */[0,q,/* [] */0],pref],rem);}
             }
           else
-           {return 0;}
+           {return /* () */0;}
           };
       
-      return do_rec(0,casel);
+      return do_rec(/* [] */0,casel);
       }
     else
      {return 0;}
@@ -4633,7 +5104,7 @@ var
   function(pat)
    {var exit;
     
-    if(typeof pat=="number")
+    if(typeof pat==="number")
      {switch(pat){}}
     else
      {switch(pat[0])
@@ -4648,14 +5119,13 @@ var
          
         case 7:exit=12;
         case 8:return inactive(pat[1][1])&&inactive(pat[2][1]);
-        case 9:return 0;
+        case 9:return /* false */0;
         default:exit=9;}}
     
     switch(exit)
-     {case 12:"unknown block:(exit 10 (field 0 pat/2275))";
-      case 9:return 1;
-      case 10:
-       return List["for_all"](function(p$1){return inactive(p$1[1]);},ps);
+     {case 12:var ps=pat[1];exit=10;
+      case 9:return /* true */1;
+      case 10:return List["for_all"](function(p){return inactive(p[1]);},ps);
       case 11:return inactive(p[1]);
       }
     };
@@ -4664,15 +5134,18 @@ var fluid=function(pat){return irrefutable(pat)&&inactive(pat[1]);};
 
 var
  check_partial_param=
-  function(do_check_partial$1,do_check_fragile,loc,casel)
-   {if(Warnings["is_active"]([3,""]))
+  function(do_check_partial,do_check_fragile,loc,casel)
+   {if(Warnings["is_active"]([/* Partial_match */3,""]))
      {var pss=initial_matrix(casel);
       
       var pss$1=get_mins(le_pats,pss);
       
-      var total=do_check_partial$1(loc,casel,pss$1);
+      var total=do_check_partial(loc,casel,pss$1);
       
-      if((total=1)&&Warnings["is_active"]([1,""]))
+      if
+       (total===
+        /* Total */1&&
+        Warnings["is_active"]([/* Fragile_match */1,""]))
        {do_check_fragile(loc,casel,pss$1)}
       else
        {}
@@ -4680,7 +5153,7 @@ var
       return total;
       }
     else
-     {return 0;}
+     {return /* Partial */0;}
     };
 
 var
@@ -4692,12 +5165,12 @@ var
   function(pred,loc,casel)
    {var first_check=check_partial(loc,casel);
     
-    if(first_check!=0)
+    if(first_check!==0)
      {return check_partial_param
               (do_check_partial_gadt(pred),do_check_fragile_gadt,loc,casel);
       }
     else
-     {return 0;}
+     {return /* Partial */0;}
     };
 
 module["exports"]=

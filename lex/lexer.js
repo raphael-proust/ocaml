@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Buffer=require("Buffer");
-var Lexing=require("Lexing");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Buffer=require("./buffer.js");
+var Lexing=require("./lexing.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var brace_depth=[0,0];
@@ -15,9 +16,11 @@ var comment_depth=[0,0];
 
 var
  in_pattern=
-  function(param){return (brace_depth[1]=0)&&(comment_depth[1]=0);};
+  function(param){return brace_depth[1]===0&&comment_depth[1]===0;};
 
-var Lexical_error="unknown primitive:caml_set_oo_id";
+var
+ Lexical_error=
+  CamlPrimitive["caml_set_oo_id"]([248,"Lexer.Lexical_error",0]);
 
 var string_buff=Buffer["create"](256);
 
@@ -42,7 +45,7 @@ var
      {if(c>=117)
        {exit=57;}
       else
-       {switch((-110+c)[0])
+       {switch(-110+c)
          {case 0:return 10;
           case 1:exit=57;
           case 2:exit=57;
@@ -54,7 +57,7 @@ var
         }
       }
     else
-     {if(c!=98){exit=57;}else{return 8;}}
+     {if(c!==98){exit=57;}else{return 8;}}
     
     switch(exit){case 57:return c;}
     };
@@ -83,13 +86,13 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Lexical_error)
+      if(exn[1]===Lexical_error)
        {switch(exn[3])
          {case "":
-           if(exn[4]!=0)
+           if(exn[4]!==0)
             {exit=49;}
            else
-            {if(exn[5]!=0)
+            {if(exn[5]!==0)
               {exit=49;}
              else
               {throw [0,Lexical_error,exn[2],file,line,column];}
@@ -106,7 +109,8 @@ var
 
 var
  get_input_name=
-  function(param){return Sys["argv"][Sys["argv"]["length"]-1];};
+  function(param)
+   {return Sys["argv"][/* -1 for tag */Sys["argv"]["length"]-1-1+1];};
 
 var
  warning=
@@ -114,14 +118,28 @@ var
    {var p=Lexing["lexeme_start_p"](lexbuf);
     
     Printf["eprintf"]
-     ([0,
-       [11,
+     ([/* Format */0,
+       [/* String_literal */11,
         'ocamllex warning:\nFile "',
-        [2,
-         0,
-         [11,
+        [/* String */2,
+         /* No_padding */0,
+         [/* String_literal */11,
           '", line ',
-          [4,0,0,0,[11,", character ",[4,0,0,0,[11,": ",[2,0,[11,".\n",0]]]]]]]]],
+          [/* Int */4,
+           /* Int_d */0,
+           /* No_padding */0,
+           /* No_precision */0,
+           [/* String_literal */11,
+            ", character ",
+            [/* Int */4,
+             /* Int_d */0,
+             /* No_padding */0,
+             /* No_precision */0,
+             [/* String_literal */11,
+              ": ",
+              [/* String */2,
+               /* No_padding */0,
+               [/* String_literal */11,".\n",/* End_of_format */0]]]]]]]]],
        'ocamllex warning:\nFile "%s", line %d, character %d: %s.\n'],
       p[1],
       p[2],
@@ -172,7 +190,7 @@ var
 
 var
  __ocaml_lex_tables=
-  [0,
+  [/* record */0,
    "\0\0åÿæÿèÿéÿêÿìÿíÿîÿïÿðÿñÿòÿóÿ\x04\0ùÿÚ\0ª\x01\x02\0t\0þÿ\x05\0~\0O\x01ýÿ\x06\0\x14\0u\0v\0ýÿüÿŠ\x02\x07\0øÿôÿõ\x01)\x01\b\0÷ÿ3\x01\t\0öÿ¬\x02\n\0õÿ%\x02÷ÿøÿ\n\0ùÿö\x02ÿÿúÿ\x18\x03Y\x01ýÿ\x06\0\x0b\0\f\0\f\x02üÿ?\x03ûÿ\x10\0<\x02ùÿúÿûÿüÿýÿ\t\0\t\0ÿÿþÿ¦\x02øÿùÿúÿ\n\0üÿýÿþÿÿÿûÿ{\0\x0e\0\x10\0[\x03\x11\0w\x03Ÿ\x02\x12\0ÿÿ\x18\x02þÿ\x13\0®\x03\x14\0",
    "ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1a\0ÿÿ\x05\0\x04\0\x14\0\x18\0ÿÿ\0\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x0b\0\x0b\0\x0b\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\b\0ÿÿ\b\0ÿÿÿÿ\x05\0\x05\0ÿÿ\x01\0\x05\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x06\0\x06\0ÿÿÿÿÿÿÿÿÿÿÿÿ\x07\0ÿÿÿÿÿÿÿÿÿÿ\x02\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ",
    '\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0ÿÿÿÿÿÿÿÿ\0\0ÿÿ\x19\0ÿÿ\0\0\x19\0\x1a\0\x19\0\x1c\0\0\0\0\0"\0ÿÿ\0\0\0\0ÿÿÿÿÿÿ\0\0ÿÿÿÿ\0\0ÿÿÿÿ\0\0.\0\0\0\0\0ÿÿ\0\x004\0\0\0\0\0ÿÿÿÿ\0\0ÿÿÿÿÿÿÿÿ\0\0ÿÿ\0\0ÿÿA\0\0\0\0\0\0\0\0\0\0\0ÿÿÿÿ\0\0\0\0K\0\0\0\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0\0\0U\0ÿÿÿÿX\0ÿÿÿÿÿÿÿÿ\0\0ÿÿ\0\0ÿÿÿÿÿÿ',
@@ -188,7 +206,7 @@ var
 var
  main=
   function(lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=CamlPrimitive["caml_make_vect"](8,-1);
     return __ocaml_lex_main_rec(lexbuf,0);
     };
 
@@ -204,47 +222,47 @@ var
       return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:return main(lexbuf);
         case 1:incr_loc(lexbuf,0);return main(lexbuf);
         case 2:
-         var num=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[10][1]);
+         var num=Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[10][2]);
          
          var
           name=
-           Lexing["sub_lexeme_opt"](lexbuf,lexbuf[10][3],lexbuf[10][2]);
+           Lexing["sub_lexeme_opt"](lexbuf,lexbuf[10][4],lexbuf[10][3]);
          
-         update_loc(lexbuf,name,"unknown primitive:caml_int_of_string");
+         update_loc(lexbuf,name,CamlPrimitive["caml_int_of_string"](num));
          return main(lexbuf);
          
         case 3:
-         comment_depth[1]=1,0;
+         comment_depth[1]=1;
          handle_lexical_error(comment,lexbuf);
          return main(lexbuf);
          
-        case 4:return 7;
+        case 4:return /* Tunderscore */7;
         case 5:
          var s=Lexing["lexeme"](lexbuf);
          
          var exit;
          
          switch(s)
-          {case "and":return 3;
-           case "as":return 20;
-           case "eof":return 8;
-           case "let":return 19;
-           case "parse":return 1;
-           case "refill":return 11;
-           case "rule":return 0;
-           case "shortest":return 2;
+          {case "and":return /* Tand */3;
+           case "as":return /* Tas */20;
+           case "eof":return /* Teof */8;
+           case "let":return /* Tlet */19;
+           case "parse":return /* Tparse */1;
+           case "refill":return /* Trefill */11;
+           case "rule":return /* Trule */0;
+           case "shortest":return /* Tparse_shortest */2;
            default:exit=3;}
          
          switch(exit){case 3:return /* Tident */[0,s];}
          
         case 6:
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          handle_lexical_error(string,lexbuf);
-         return /* Tstring */[2,get_stored_string(0)];
+         return /* Tstring */[2,get_stored_string(/* () */0)];
          
         case 7:return /* Tchar */[1,Lexing["lexeme_char"](lexbuf,1)];
         case 8:
@@ -264,8 +282,11 @@ var
           {return raise_lexical_error
                    (lexbuf,
                     Printf["sprintf"]
-                     ([0,
-                       [11,"illegal escape sequence \",[0,[0,[0,0]]]],
+                     ([/* Format */0,
+                       [/* String_literal */11,
+                        "illegal escape sequence \",
+                        [/* Char */0,
+                         [/* Char */0,[/* Char */0,/* End_of_format */0]]]],
                        "illegal escape sequence \%c%c%c"],
                       c,
                       d,
@@ -287,8 +308,10 @@ var
          return raise_lexical_error
                  (lexbuf,
                   Printf["sprintf"]
-                   ([0,
-                     [11,"illegal escape sequence \",[0,0]],
+                   ([/* Format */0,
+                     [/* String_literal */11,
+                      "illegal escape sequence \",
+                      [/* Char */0,/* End_of_format */0]],
                      "illegal escape sequence \%c"],
                     c$1));
          
@@ -303,24 +326,24 @@ var
          
          var s1=p[3];
          
-         brace_depth[1]=1,0;
+         brace_depth[1]=1;
          var n2=handle_lexical_error(action,lexbuf);
          
          return /* Taction */[3,/* record */[0,f,n1,n2,l1,n1-s1]];
          
-        case 13:return 4;
-        case 14:return 6;
-        case 15:return 9;
-        case 16:return 10;
-        case 17:return 12;
-        case 18:return 13;
-        case 19:return 14;
-        case 20:return 15;
-        case 21:return 16;
-        case 22:return 17;
-        case 23:return 18;
-        case 24:return 21;
-        case 25:return 5;
+        case 13:return /* Tequal */4;
+        case 14:return /* Tor */6;
+        case 15:return /* Tlbracket */9;
+        case 16:return /* Trbracket */10;
+        case 17:return /* Tstar */12;
+        case 18:return /* Tmaybe */13;
+        case 19:return /* Tplus */14;
+        case 20:return /* Tlparen */15;
+        case 21:return /* Trparen */16;
+        case 22:return /* Tcaret */17;
+        case 23:return /* Tdash */18;
+        case 24:return /* Tsharp */21;
+        case 25:return /* Tend */5;
         case 26:
          return raise_lexical_error
                  (lexbuf,
@@ -335,7 +358,7 @@ var
 var
  string=
   function(lexbuf)
-   {lexbuf[10]="unknown primitive:caml_make_vect",0;
+   {lexbuf[10]=CamlPrimitive["caml_make_vect"](2,-1);
     return __ocaml_lex_string_rec(lexbuf,45);
     };
 
@@ -351,10 +374,10 @@ var
       return __ocaml_lex_string_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
-       {case 0:return 0;
+     {switch(__ocaml_lex_state$1)
+       {case 0:return /* () */0;
         case 1:
-         var spaces=Lexing["sub_lexeme"](lexbuf,lexbuf[10][0],lexbuf[6]);
+         var spaces=Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[6]);
          
          incr_loc(lexbuf,spaces["length"]);
          return string(lexbuf);
@@ -374,14 +397,16 @@ var
          
          var v=decimal_code(c$1,d,u);
          
-         if(in_pattern(0)&&v>255)
+         if(in_pattern(/* () */0)&&v>255)
           {warning
             (lexbuf,
              Printf["sprintf"]
-              ([0,
-                [11,
+              ([/* Format */0,
+                [/* String_literal */11,
                  "illegal backslash escape in string: '\",
-                 [0,[0,[0,[12,39,0]]]]],
+                 [/* Char */0,
+                  [/* Char */0,
+                   [/* Char */0,[/* Char_literal */12,39,/* End_of_format */0]]]]],
                 "illegal backslash escape in string: '\%c%c%c'"],
                c$1,
                d,
@@ -403,12 +428,14 @@ var
         case 5:
          var c$2=Lexing["sub_lexeme_char"](lexbuf,lexbuf[5]+1);
          
-         if(in_pattern(0))
+         if(in_pattern(/* () */0))
           {warning
             (lexbuf,
              Printf["sprintf"]
-              ([0,
-                [11,"illegal backslash escape in string: '\",[0,[12,39,0]]],
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "illegal backslash escape in string: '\",
+                 [/* Char */0,[/* Char_literal */12,39,/* End_of_format */0]]],
                 "illegal backslash escape in string: '\%c'"],
                c$2))}
          else
@@ -425,8 +452,10 @@ var
          warning
           (lexbuf,
            Printf["sprintf"]
-            ([0,
-              [11,"unescaped newline in string",0],
+            ([/* Format */0,
+              [/* String_literal */11,
+               "unescaped newline in string",
+               /* End_of_format */0],
               "unescaped newline in string"]));
          store_string_chars(s);
          incr_loc(lexbuf,0);
@@ -456,16 +485,19 @@ var
       return __ocaml_lex_comment_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:comment_depth[0]++;return comment(lexbuf);
         case 1:
          comment_depth[0]--;
-         if(comment_depth[1]=0){return 0;}else{return comment(lexbuf);}
+         if(comment_depth[1]===0)
+          {return /* () */0;}
+         else
+          {return comment(lexbuf);}
          
         case 2:
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          string(lexbuf);
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          return comment(lexbuf);
          
         case 3:skip_char(lexbuf);return comment(lexbuf);
@@ -490,23 +522,23 @@ var
       return __ocaml_lex_action_rec(lexbuf,__ocaml_lex_state$1);
       }
     else
-     {switch(__ocaml_lex_state$1[0])
+     {switch(__ocaml_lex_state$1)
        {case 0:brace_depth[0]++;return action(lexbuf);
         case 1:
          brace_depth[0]--;
-         if(brace_depth[1]=0)
+         if(brace_depth[1]===0)
           {return Lexing["lexeme_start"](lexbuf);}
          else
           {return action(lexbuf);}
          
         case 2:
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          handle_lexical_error(string,lexbuf);
-         reset_string_buffer(0);
+         reset_string_buffer(/* () */0);
          return action(lexbuf);
          
         case 3:skip_char(lexbuf);return action(lexbuf);
-        case 4:comment_depth[1]=1,0;comment(lexbuf);return action(lexbuf);
+        case 4:comment_depth[1]=1;comment(lexbuf);return action(lexbuf);
         case 5:throw [0,Lexical_error,"unterminated action","",0,0];
         case 6:incr_loc(lexbuf,0);return action(lexbuf);
         case 7:return action(lexbuf);
@@ -526,7 +558,7 @@ var
     var exit;
     
     if(__ocaml_lex_state$1>0)
-     {if(__ocaml_lex_state$1>=3){exit=32;}else{return 0;}}
+     {if(__ocaml_lex_state$1>=3){exit=32;}else{return /* () */0;}}
     else
      {if(__ocaml_lex_state$1>=0){return incr_loc(lexbuf,1);}else{exit=32;}}
     

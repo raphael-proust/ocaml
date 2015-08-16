@@ -1,11 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Set=require("Set");
-var Misc=require("Misc");
+var List=require("./list.js");
+var Set=require("./set.js");
+var Misc=require("./misc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var compare=function(prim,prim$1){return "unknown primitive:caml_compare";};
+var
+ compare=
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var StringSet=Set["Make"]([0,compare]);
 
@@ -14,7 +17,7 @@ var free_structure_names=[0,StringSet[1]];
 var
  add_path=
   function(bv,param)
-   {switch(param)
+   {switch(param[0])
      {case 0:
        var s=param[1];
        
@@ -40,10 +43,10 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=46;case 1:return add_path(bv,match[1]);case 2:exit=46;}
     
-    switch(exit){case 46:return 0;}
+    switch(exit){case 46:return /* () */0;}
     };
 
 var addmodule=function(bv,lid){return add_path(bv,lid[1]);};
@@ -55,7 +58,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -71,7 +74,7 @@ var
         case 7:
          return List["iter"]
                  (function(param)
-                   {switch(param)
+                   {switch(param[0])
                      {case 0:return List["iter"](add_type(bv),param[4]);
                       case 1:return add_type(bv,param[1]);
                       }
@@ -83,7 +86,7 @@ var
         default:exit=43;}}
     
     switch(exit)
-     {case 43:return 0;
+     {case 43:return /* () */0;
       case 44:add(bv,match[1]);return List["iter"](add_type(bv),match[2]);
       }
     };
@@ -100,7 +103,7 @@ var
 var
  add_opt=
   function(add_fn,bv,param)
-   {if(param){return add_fn(bv,param[1]);}else{return 0;}};
+   {if(param){return add_fn(bv,param[1]);}else{return /* () */0;}};
 
 var
  add_constructor_decl=
@@ -121,7 +124,7 @@ var
       function(param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){case 0:exit=38;case 1:exit=38;}}
         else
          {switch(param[0])
@@ -132,7 +135,7 @@ var
              
             }}
         
-        switch(exit){case 38:return 0;}
+        switch(exit){case 38:return /* () */0;}
         };
     
     return add_tkind(td[4]);
@@ -143,7 +146,7 @@ var
   function(bv,ext)
    {var match=ext[2];
     
-    switch(match)
+    switch(match[0])
      {case 0:
        List["iter"](add_type(bv),match[1]);
        return Misc["may"](add_type(bv),match[2]);
@@ -162,7 +165,7 @@ var
   function(bv,cty)
    {var match=cty[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:add(bv,match[1]);return List["iter"](add_type(bv),match[2]);
       case 1:
        var match$1=match[1];
@@ -171,7 +174,7 @@ var
        return List["iter"](add_class_type_field(bv),match$1[2]);
        
       case 2:add_type(bv,match[2]);return add_class_type(bv,match[3]);
-      case 3:return 0;
+      case 3:return /* () */0;
       }
     };
 
@@ -182,7 +185,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:return add_class_type(bv,match[1]);
       case 1:exit=34;
       case 2:exit=34;
@@ -196,7 +199,8 @@ var
       case 5:exit=35;
       }
     
-    switch(exit){case 34:return add_type(bv,match[1][4]);case 35:return 0;}
+    switch(exit)
+     {case 34:return add_type(bv,match[1][4]);case 35:return /* () */0;}
     };
 
 var
@@ -212,7 +216,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=28;}}
     else
      {switch(match[0])
@@ -238,16 +242,15 @@ var
         default:return add_pattern(bv,match[1]);}}
     
     switch(exit)
-     {case 28:return 0;
+     {case 28:return /* () */0;
       case 30:return List["iter"](add_pattern(bv),match[1]);
-      case 27:return 0;
+      case 27:return /* () */0;
       }
     };
 
 var
  add_pattern$1=
-  function(bv,pat)
-   {pattern_bv[1]=bv,0;add_pattern(bv,pat);return pattern_bv[1];};
+  function(bv,pat){pattern_bv[1]=bv;add_pattern(bv,pat);return pattern_bv[1];};
 
 var
  add_expr=
@@ -256,7 +259,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:exit=3;
       case 1:exit=4;
       case 2:
@@ -333,7 +336,7 @@ var
     
     switch(exit)
      {case 3:return add(bv,match[1]);
-      case 4:return 0;
+      case 4:return /* () */0;
       case 5:add_expr(bv,match[1]);return add_cases(bv,match[2]);
       case 6:return List["iter"](add_expr(bv),match[1]);
       case 7:add_expr(bv,match[1]);return add_expr(bv,match[2]);
@@ -357,10 +360,9 @@ var
   function(recf,bv,pel)
    {var
      bv$prime=
-      List["fold_left"]
-       (function(bv$1,x){return add_pattern$1(bv$1,x[1]);},bv,pel);
+      List["fold_left"](function(bv,x){return add_pattern$1(bv,x[1]);},bv,pel);
     
-    if(recf=1){var bv$1=bv$prime;}else{var bv$1=bv;}
+    if(recf===/* Recursive */1){var bv$1=bv$prime;}else{var bv$1=bv;}
     
     List["iter"](function(x){return add_expr(bv$1,x[2]);},pel);
     return bv$prime;
@@ -371,7 +373,7 @@ var
   function(bv,mty)
    {var match=mty[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:return add(bv,match[1]);
       case 1:return add_signature(bv,match[1]);
       case 2:
@@ -384,7 +386,7 @@ var
                (function(param)
                  {var exit;
                   
-                  switch(param)
+                  switch(param[0])
                    {case 0:return add_type_declaration(bv,param[2]);
                     case 1:exit=13;
                     case 2:return add_type_declaration(bv,param[1]);
@@ -396,7 +398,7 @@ var
                 match[2]);
        
       case 4:return add_module(bv,match[1]);
-      case 5:return 0;
+      case 5:return /* () */0;
       case 6:return addmodule(bv,match[1]);
       }
     };
@@ -407,7 +409,7 @@ var
    {if(param)
      {return add_signature(add_sig_item(bv,param[1]),param[2]);}
     else
-     {return 0;}
+     {return /* () */0;}
     };
 
 var
@@ -417,7 +419,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:add_type(bv,match[1][2]);return bv;
       case 1:List["iter"](add_type_declaration(bv),match[1]);return bv;
       case 2:add_type_extension(bv,match[1]);return bv;
@@ -435,11 +437,10 @@ var
         bv$prime=
          List["fold_right"]
           (StringSet[4],
-           List["map"](function(pmd$1){return pmd$1[1][1];},decls),
+           List["map"](function(pmd){return pmd[1][1];},decls),
            bv);
        
-       List["iter"]
-        (function(pmd$1){return add_modtype(bv$prime,pmd$1[2]);},decls);
+       List["iter"](function(pmd){return add_modtype(bv$prime,pmd[2]);},decls);
        return bv$prime;
        
       case 6:
@@ -465,9 +466,9 @@ var
   function(bv,modl)
    {var match=modl[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:return addmodule(bv,match[1]);
-      case 1:return 0;
+      case 1:return add_structure(bv,match[1]);
       case 2:
        Misc["may"](add_modtype(bv),match[2]);
        return add_module(StringSet[4](match[1][1],bv),match[3]);
@@ -475,7 +476,7 @@ var
       case 3:add_module(bv,match[1]);return add_module(bv,match[2]);
       case 4:add_module(bv,match[1]);return add_modtype(bv,match[2]);
       case 5:return add_expr(bv,match[1]);
-      case 6:return 0;
+      case 6:return /* () */0;
       }
     };
 
@@ -491,7 +492,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:add_expr(bv,match[1]);return bv;
       case 1:return add_bindings(match[1],bv,match[2]);
       case 2:add_type(bv,match[1][2]);return bv;
@@ -506,12 +507,9 @@ var
        var
         bv$prime=
          List["fold_right"]
-          (StringSet[4],
-           List["map"](function(x$1){return x$1[1][1];},bindings),
-           bv);
+          (StringSet[4],List["map"](function(x){return x[1][1];},bindings),bv);
        
-       List["iter"]
-        (function(x$1){return add_module(bv$prime,x$1[2]);},bindings);
+       List["iter"](function(x){return add_module(bv$prime,x[2]);},bindings);
        return bv$prime;
        
       case 8:
@@ -532,21 +530,25 @@ var
     switch(exit){case 18:return bv;}
     };
 
-var add_use_file=function(bv,top_phrs){return 0;};
+var
+ add_use_file=
+  function(bv,top_phrs){return List["fold_left"](add_top_phrase,bv,top_phrs);};
 
-var add_implementation=function(bv,l){return 0;};
+var add_implementation=function(bv,l){return add_structure(bv,l);};
 
 var
  add_top_phrase=
   function(bv,param)
-   {switch(param){case 0:return add_structure(bv,param[1]);case 1:return bv;}};
+   {switch(param[0])
+     {case 0:return add_structure(bv,param[1]);case 1:return bv;}
+    };
 
 var
  add_class_expr=
   function(bv,ce)
    {var match=ce[1];
     
-    switch(match)
+    switch(match[0])
      {case 0:add(bv,match[1]);return List["iter"](add_type(bv),match[2]);
       case 1:
        var match$1=match[1];
@@ -572,7 +574,7 @@ var
        return add_class_expr(bv$3,match[3]);
        
       case 5:add_class_expr(bv,match[1]);return add_class_type(bv,match[2]);
-      case 6:return 0;
+      case 6:return /* () */0;
       }
     };
 
@@ -583,7 +585,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:return add_class_expr(bv,match[2]);
       case 1:exit=25;
       case 2:exit=25;
@@ -602,12 +604,12 @@ var
      {case 25:
        var match$2=match[1][3];
        
-       switch(match$2)
+       switch(match$2[0])
         {case 0:return add_type(bv,match$2[1]);
          case 1:return add_expr(bv,match$2[2]);
          }
        
-      case 24:return 0;
+      case 24:return /* () */0;
       }
     };
 

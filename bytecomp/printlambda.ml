@@ -96,6 +96,8 @@ let string_of_loc_kind = function
 
 let primitive ppf = function
   | Pidentity -> fprintf ppf "id"
+  | Pbytes_to_string -> fprintf ppf "bytes_to_string"
+  | Pbytes_of_string -> fprintf ppf "bytes_of_string"
   | Pignore -> fprintf ppf "ignore"
   | Prevapply _ -> fprintf ppf "revapply"
   | Pdirapply _ -> fprintf ppf "dirapply"

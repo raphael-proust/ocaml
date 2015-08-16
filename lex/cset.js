@@ -1,24 +1,27 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var Bad="unknown primitive:caml_set_oo_id";
+var Bad=CamlPrimitive["caml_set_oo_id"]([248,"Cset.Bad",0]);
 
-var empty=0;
+var empty=/* [] */0;
 
-var is_empty=function(param){if(param){return 0;}else{return 1;}};
+var
+ is_empty=
+  function(param){if(param){return /* false */0;}else{return /* true */1;}};
 
-var singleton=function(c){return /* :: */[0,/* tuple */[0,c,c],0];};
+var singleton=function(c){return /* :: */[0,/* tuple */[0,c,c],/* [] */0];};
 
 var
  interval=
   function(c1,c2)
-   {if("unknown primitive:caml_lessequal")
-     {return /* :: */[0,/* tuple */[0,c1,c2],0];}
+   {if(CamlPrimitive["caml_lessequal"](c1,c2))
+     {return /* :: */[0,/* tuple */[0,c1,c2],/* [] */0];}
     else
-     {return /* :: */[0,/* tuple */[0,c2,c1],0];}
+     {return /* :: */[0,/* tuple */[0,c2,c1],/* [] */0];}
     };
 
 var
@@ -83,13 +86,13 @@ var
         
         var c1=match$1[1];
         
-        if("unknown primitive:caml_lessthan")
+        if(CamlPrimitive["caml_lessthan"](c2,c1$prime))
          {return inter(r,l$prime);}
         else
-         {if("unknown primitive:caml_lessthan")
+         {if(CamlPrimitive["caml_lessthan"](c2$prime,c1))
            {return inter(l,r$prime);}
           else
-           {if("unknown primitive:caml_lessthan")
+           {if(CamlPrimitive["caml_lessthan"](c2,c2$prime))
              {return /* :: */[0,
                       /* tuple */[0,Pervasives["max"](c1,c1$prime),c2],
                       inter(r,l$prime)];
@@ -103,10 +106,10 @@ var
           }
         }
       else
-       {return 0;}
+       {return /* [] */0;}
       }
     else
-     {return 0;}
+     {return /* [] */0;}
     };
 
 var
@@ -152,7 +155,7 @@ var
           }
         }
       else
-       {return 0;}
+       {return /* [] */0;}
       }
     else
      {return l;}
@@ -170,7 +173,7 @@ var
  env_to_array=
   function(env)
    {if(env)
-     {var res="unknown primitive:caml_make_vect";
+     {var res=CamlPrimitive["caml_make_vect"](257,env[1][2]);
       
       List["iter"]
        (function(param)
@@ -178,14 +181,19 @@ var
           
           return List["iter"]
                   (function(param$1)
-                    {for(var k=param$1[1];k<=param$1[2];k++){res[k]=y,0}},
+                    {for(var k=param$1[1];k<=param$1[2];k++){res[k+1]=y}
+                     return 0;
+                     },
                    param[1]);
           },
         env[2]);
       return res;
       }
     else
-     {throw [0,Assert_failure,[0,"cset.ml",82,16]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"cset.ml",82,16]];
+      }
     };
 
 module["exports"]=

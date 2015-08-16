@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalOO=require("CamlinternalOO");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Format=require("Format");
-var Misc=require("Misc");
+var $$String=require("./string.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -83,53 +84,99 @@ var
 
 var shared$1=[0,"pipe","semi","ifthenelse"];
 
-var prefix_symbols=[0,33,[0,63,[0,126,0]]];
+var prefix_symbols=[/* :: */0,33,[/* :: */0,63,[/* :: */0,126,/* [] */0]]];
 
 var
  infix_symbols=
-  [0,
+  [/* :: */0,
    61,
-   [0,
+   [/* :: */0,
     60,
-    [0,
+    [/* :: */0,
      62,
-     [0,64,[0,94,[0,124,[0,38,[0,43,[0,45,[0,42,[0,47,[0,36,[0,37,0]]]]]]]]]]]]];
+     [/* :: */0,
+      64,
+      [/* :: */0,
+       94,
+       [/* :: */0,
+        124,
+        [/* :: */0,
+         38,
+         [/* :: */0,
+          43,
+          [/* :: */0,
+           45,
+           [/* :: */0,
+            42,
+            [/* :: */0,47,[/* :: */0,36,[/* :: */0,37,/* [] */0]]]]]]]]]]]]];
 
 var
  operator_chars=
-  [0,
+  [/* :: */0,
    33,
-   [0,
+   [/* :: */0,
     36,
-    [0,
+    [/* :: */0,
      37,
-     [0,
+     [/* :: */0,
       38,
-      [0,
+      [/* :: */0,
        42,
-       [0,
+       [/* :: */0,
         43,
-        [0,
+        [/* :: */0,
          45,
-         [0,
+         [/* :: */0,
           46,
-          [0,
+          [/* :: */0,
            47,
-           [0,58,[0,60,[0,61,[0,62,[0,63,[0,64,[0,94,[0,124,[0,126,0]]]]]]]]]]]]]]]]]];
+           [/* :: */0,
+            58,
+            [/* :: */0,
+             60,
+             [/* :: */0,
+              61,
+              [/* :: */0,
+               62,
+               [/* :: */0,
+                63,
+                [/* :: */0,
+                 64,
+                 [/* :: */0,94,[/* :: */0,124,[/* :: */0,126,/* [] */0]]]]]]]]]]]]]]]]]];
 
 var
  numeric_chars=
-  [0,48,[0,49,[0,50,[0,51,[0,52,[0,53,[0,54,[0,55,[0,56,[0,57,0]]]]]]]]]];
+  [/* :: */0,
+   48,
+   [/* :: */0,
+    49,
+    [/* :: */0,
+     50,
+     [/* :: */0,
+      51,
+      [/* :: */0,
+       52,
+       [/* :: */0,
+        53,
+        [/* :: */0,54,[/* :: */0,55,[/* :: */0,56,[/* :: */0,57,/* [] */0]]]]]]]]]];
 
 var
  special_infix_strings=
-  [0,
+  [/* :: */0,
    "asr",
-   [0,
+   [/* :: */0,
     "land",
-    [0,
+    [/* :: */0,
      "lor",
-     [0,"lsl",[0,"lsr",[0,"lxor",[0,"mod",[0,"or",[0,":=",[0,"!=",0]]]]]]]]]];
+     [/* :: */0,
+      "lsl",
+      [/* :: */0,
+       "lsr",
+       [/* :: */0,
+        "lxor",
+        [/* :: */0,
+         "mod",
+         [/* :: */0,"or",[/* :: */0,":=",[/* :: */0,"!=",/* [] */0]]]]]]]]]];
 
 var
  fixity_of_string=
@@ -143,7 +190,7 @@ var
        {if(List["mem"](s[0],prefix_symbols))
          {return /* `Prefix */[0,-481604174,s];}
         else
-         {return -453122489;}
+         {return /* Normal */-453122489;}
         }
       }
     };
@@ -155,11 +202,11 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 0:
        var match$1=match[1][1];
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:return fixity_of_string(match$1[1]);
          case 1:exit=173;
          case 2:exit=173;
@@ -167,7 +214,7 @@ var
        
       default:exit=173;}
     
-    switch(exit){case 173:return -453122489;}
+    switch(exit){case 173:return /* Normal */-453122489;}
     };
 
 var
@@ -175,12 +222,12 @@ var
   function(param)
    {var exit;
     
-    if("unknown primitive:isint")
+    if(typeof param==="number")
      {exit=171;}
     else
-     {if(param[1]!=-784100624){exit=171;}else{return 1;}}
+     {if(param[1]!==-784100624){exit=171;}else{return /* true */1;}}
     
-    switch(exit){case 171:return 0;}
+    switch(exit){case 171:return /* false */0;}
     };
 
 var
@@ -188,16 +235,18 @@ var
   function(param)
    {var exit;
     
-    switch(param)
+    switch(param[0])
      {case 0:exit=169;
       case 1:
        var match=param[1];
        
-       switch(match)
+       switch(match[0])
         {case 0:
           switch(match[1])
            {case "*predef*":
-             switch(param[2]){case "option":return 1;default:exit=169;}
+             switch(param[2])
+              {case "option":return /* true */1;default:exit=169;}
+             
             default:exit=169;}
           
          case 1:exit=169;
@@ -207,7 +256,7 @@ var
       case 2:exit=169;
       }
     
-    switch(exit){case 169:return 0;}
+    switch(exit){case 169:return /* false */0;}
     };
 
 var
@@ -219,23 +268,45 @@ var
 
 var
  needs_spaces=
-  function(txt){return (txt[0]=42)||(txt[txt["length"]-1]=42);};
+  function(txt){return txt[0]===42||txt[txt["length"]-1]===42;};
 
 var
  protect_ident=
   function(ppf,txt)
    {if(!needs_parens(txt))
-     {var format=[0,[2,0,0],"%s"];}
+     {var
+       format=
+        [/* Format */0,
+         [/* String */2,/* No_padding */0,/* End_of_format */0],
+         "%s"];
+      }
     else
      {if(needs_spaces(txt))
        {var
          format=
-          [0,
-           [12,40,[17,[0,"@;",1,0],[2,0,[17,[0,"@;",1,0],[12,41,0]]]]],
+          [/* Format */0,
+           [/* Char_literal */12,
+            40,
+            [/* Formatting_lit */17,
+             [/* Break */0,"@;",1,0],
+             [/* String */2,
+              /* No_padding */0,
+              [/* Formatting_lit */17,
+               [/* Break */0,"@;",1,0],
+               [/* Char_literal */12,41,/* End_of_format */0]]]]],
            "(@;%s@;)"];
         }
       else
-       {var format=[0,[12,40,[2,0,[12,41,0]]],"(%s)"];}
+       {var
+         format=
+          [/* Format */0,
+           [/* Char_literal */12,
+            40,
+            [/* String */2,
+             /* No_padding */0,
+             [/* Char_literal */12,41,/* End_of_format */0]]],
+           "(%s)"];
+        }
       }
     
     return Format["fprintf"](ppf,format,txt);
@@ -245,28 +316,55 @@ var
  protect_longident=
   function(ppf,print_longident,longprefix,txt)
    {if(!needs_parens(txt))
-     {var format=[0,[15,[12,46,[2,0,0]]],"%a.%s"];}
+     {var
+       format=
+        [/* Format */0,
+         [/* Alpha */15,
+          [/* Char_literal */12,
+           46,
+           [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+         "%a.%s"];
+      }
     else
      {if(needs_spaces(txt))
        {var
          format=
-          [0,
-           [15,[11,".(",[17,[0,"@;",1,0],[2,0,[17,[0,"@;",1,0],[12,41,0]]]]]],
+          [/* Format */0,
+           [/* Alpha */15,
+            [/* String_literal */11,
+             ".(",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@;",1,0],
+              [/* String */2,
+               /* No_padding */0,
+               [/* Formatting_lit */17,
+                [/* Break */0,"@;",1,0],
+                [/* Char_literal */12,41,/* End_of_format */0]]]]]],
            "%a.(@;%s@;)"];
         }
       else
-       {var format=[0,[15,[11,".(",[2,0,[12,41,0]]]],"%a.(%s)"];}
+       {var
+         format=
+          [/* Format */0,
+           [/* Alpha */15,
+            [/* String_literal */11,
+             ".(",
+             [/* String */2,
+              /* No_padding */0,
+              [/* Char_literal */12,41,/* End_of_format */0]]]],
+           "%a.(%s)"];
+        }
       }
     
     return Format["fprintf"](ppf,format,print_longident,longprefix,txt);
     };
 
-var override=function(param){if(param!=0){return "";}else{return "!";}};
+var override=function(param){if(param!==0){return "";}else{return "!";}};
 
 var
  type_variance=
   function(param)
-   {switch(param[0]){case 0:return "+";case 1:return "-";case 2:return "";}};
+   {switch(param){case 0:return "+";case 1:return "-";case 2:return "";}};
 
 var
  view_expr=
@@ -275,7 +373,7 @@ var
     
     var exit;
     
-    switch(match)
+    switch(match[0])
      {case 9:
        var x$1=match[1];
        
@@ -283,10 +381,10 @@ var
        
        var exit$1;
        
-       switch(match$1)
+       switch(match$1[0])
         {case 0:
           switch(match$1[1])
-           {case "()":return 405183496;
+           {case "()":return /* tuple */405183496;
             case "::":
              if(match[2])
               {var
@@ -296,11 +394,11 @@ var
                    
                    var exit$2;
                    
-                   switch(match$2)
+                   switch(match$2[0])
                     {case 9:
                       var match$3=match$2[1][1];
                       
-                      switch(match$3)
+                      switch(match$3[0])
                        {case 0:
                          switch(match$3[1])
                           {case "::":
@@ -309,7 +407,7 @@ var
                             if(match$4)
                              {var match$5=match$4[1][1];
                               
-                              switch(match$5)
+                              switch(match$5[0])
                                {case 8:
                                  var match$6=match$5[1];
                                  
@@ -333,7 +431,8 @@ var
                             else
                              {exit$2=157;}
                             
-                           case "[]":return /* tuple */[0,List["rev"](acc),1];
+                           case "[]":
+                            return /* tuple */[0,List["rev"](acc),/* true */1];
                            default:exit$2=157;}
                          
                         case 1:exit$2=157;
@@ -344,11 +443,14 @@ var
                    
                    switch(exit$2)
                     {case 157:
-                      return /* tuple */[0,List["rev"](/* :: */[0,exp,acc]),0];
+                      return /* tuple */[0,
+                              List["rev"](/* :: */[0,exp,acc]),
+                              /* false */0];
+                      
                      }
                    };
                
-               var match$2=loop(x,0);
+               var match$2=loop(x,/* [] */0);
                
                var ls=match$2[1];
                
@@ -360,7 +462,7 @@ var
              else
               {exit$1=159;}
              
-            case "[]":return 5493713;
+            case "[]":return /* nil */5493713;
             default:exit$1=159;}
           
          case 1:exit$1=159;
@@ -378,7 +480,7 @@ var
        
       default:exit=158;}
     
-    switch(exit){case 158:return 812216871;}
+    switch(exit){case 158:return /* normal */812216871;}
     };
 
 var
@@ -386,12 +488,12 @@ var
   function(param)
    {var exit;
     
-    if("unknown primitive:isint")
+    if(typeof param==="number")
      {if(param>=812216871){exit=154;}else{exit=153;}}
     else
      {if(param[1]>=-944563106){exit=153;}else{exit=154;}}
     
-    switch(exit){case 153:return 1;case 154:return 0;}
+    switch(exit){case 153:return /* true */1;case 154:return /* false */0;}
     };
 
 var pp=Format["fprintf"];
@@ -552,144 +654,182 @@ var
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[pipe]=1,0;
+         copy[pipe+1]=/* true */1;
          return copy;
          },
        under_semi,
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[semi]=1,0;
+         copy[semi+1]=/* true */1;
          return copy;
          },
        under_ifthenelse,
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[ifthenelse]=1,0;
+         copy[ifthenelse+1]=/* true */1;
          return copy;
          },
        reset_semi,
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[semi]=0,0;
+         copy[semi+1]=/* false */0;
          return copy;
          },
        reset_ifthenelse,
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[ifthenelse]=0,0;
+         copy[ifthenelse+1]=/* false */0;
          return copy;
          },
        reset_pipe,
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[pipe]=0,0;
+         copy[pipe+1]=/* false */0;
          return copy;
          },
        reset,
        function(self$neg1)
         {var copy=CamlinternalOO["copy"](self$neg1);
          
-         copy[pipe]=0,0;
-         copy[semi]=0,0;
-         copy[ifthenelse]=0,0;
+         copy[pipe+1]=/* false */0;
+         copy[semi+1]=/* false */0;
+         copy[ifthenelse+1]=/* false */0;
          return copy;
          },
        list,
        function(self$neg1,sep,first,last,fu,f,xs)
-        {if(first){var first$1=first[1];}else{var first$1=[0,0,""];}
+        {if(first)
+          {var first$1=first[1];}
+         else
+          {var first$1=[/* Format */0,/* End_of_format */0,""];}
          
-         if(last){var last$1=last[1];}else{var last$1=[0,0,""];}
+         if(last)
+          {var last$1=last[1];}
+         else
+          {var last$1=[/* Format */0,/* End_of_format */0,""];}
          
          if(sep)
           {var sep$1=sep[1];}
          else
-          {var sep$1=[0,[17,[0,"@ ",1,0],0],"@ "];}
+          {var
+            sep$1=
+             [/* Format */0,
+              [/* Formatting_lit */17,
+               [/* Break */0,"@ ",1,0],
+               /* End_of_format */0],
+              "@ "];
+           }
          
          var
           aux=
-           function(f$1,xs$1)
-            {if(xs$1)
-              {if(xs$1[2])
+           function(f,xs)
+            {if(xs)
+              {if(xs[2])
                 {var
                   loop=
-                   function(f$2,param)
+                   function(f,param)
                     {if(param)
-                      {var xs$2=param[2];
+                      {var xs$1=param[2];
                        
                        var x=param[1];
                        
-                       if(xs$2)
-                        {fu(f$2,x);pp(f$2,sep$1);return loop(f$2,xs$2);}
+                       if(xs$1)
+                        {fu(f,x);pp(f,sep$1);return loop(f,xs$1);}
                        else
-                        {return fu(f$2,x);}
+                        {return fu(f,x);}
                        }
                      else
-                      {throw [0,Assert_failure,[0,"parsing/pprintast.ml",154,25]];
+                      {throw [0,
+                              CamlPrimitive["caml_global_data"]["Assert_failure"],
+                              [0,"parsing/pprintast.ml",154,25]];
                        }
                      };
                  
-                 pp(f$1,first$1);
-                 loop(f$1,xs$1);
-                 return pp(f$1,last$1);
+                 pp(f,first$1);
+                 loop(f,xs);
+                 return pp(f,last$1);
                  }
                else
-                {return fu(f$1,xs$1[1]);}
+                {return fu(f,xs[1]);}
                }
              else
-              {return 0;}
+              {return /* () */0;}
              };
          
          return aux(f,xs);
          },
        option,
        function(self$neg1,first,last,fu,f,a)
-        {if(first){var first$1=first[1];}else{var first$1=[0,0,""];}
+        {if(first)
+          {var first$1=first[1];}
+         else
+          {var first$1=[/* Format */0,/* End_of_format */0,""];}
          
-         if(last){var last$1=last[1];}else{var last$1=[0,0,""];}
+         if(last)
+          {var last$1=last[1];}
+         else
+          {var last$1=[/* Format */0,/* End_of_format */0,""];}
          
-         if(a){pp(f,first$1);fu(f,a[1]);return pp(f,last$1);}else{return 0;}
+         if(a)
+          {pp(f,first$1);fu(f,a[1]);return pp(f,last$1);}
+         else
+          {return /* () */0;}
          },
        paren,
-       function(self$neg1,$staropt$star,$staropt$star$1,b,fu,f,x)
-        {if($staropt$star)
-          {var first=$staropt$star[1];}
+       function(self$neg1,$staropt$star,$staropt$star,b,fu,f,x)
+        {if($staropt$star$1)
+          {var first=$staropt$star$1[1];}
          else
-          {var first=[0,0,""];}
+          {var first=[/* Format */0,/* End_of_format */0,""];}
          
-         if($staropt$star$1)
-          {var last=$staropt$star$1[1];}
+         if($staropt$star)
+          {var last=$staropt$star[1];}
          else
-          {var last=[0,0,""];}
+          {var last=[/* Format */0,/* End_of_format */0,""];}
          
          if(b)
-          {pp(f,[0,[12,40,0],"("]);
+          {pp
+            (f,
+             [/* Format */0,
+              [/* Char_literal */12,40,/* End_of_format */0],
+              "("]);
            pp(f,first);
            fu(f,x);
            pp(f,last);
-           return pp(f,[0,[12,41,0],")"]);
+           return pp
+                   (f,
+                    [/* Format */0,
+                     [/* Char_literal */12,41,/* End_of_format */0],
+                     ")"]);
            }
          else
           {return fu(f,x);}
          },
        longident,
        function(self$neg1,f,param)
-        {switch(param)
+        {switch(param[0])
           {case 0:return protect_ident(f,param[1]);
            case 1:
-            "unknown block:(sendself self-1/1193 longident/1072)";
+            /* unknown */"(sendself self-1/1193 longident/1072)";
             return protect_longident(f,0,param[1],param[2]);
             
            case 2:
-            "unknown block:(sendself self-1/1193 longident/1072)";
-            "unknown block:(sendself self-1/1193 longident/1072)";
+            /* unknown */"(sendself self-1/1193 longident/1072)";
+            /* unknown */"(sendself self-1/1193 longident/1072)";
             return pp
                     (f,
-                     [0,[15,[12,40,[15,[12,41,0]]]],"%a(%a)"],
+                     [/* Format */0,
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        40,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]],
+                      "%a(%a)"],
                      0,
                      param[1],
                      0,
@@ -699,18 +839,27 @@ var
          },
        longident_loc,
        function(self$neg1,f,x)
-        {"unknown block:(sendself self-1/1201 longident/1072)";
-         return pp(f,[0,[15,0],"%a"],0,x[1]);
+        {/* unknown */"(sendself self-1/1201 longident/1072)";
+         return pp
+                 (f,
+                  [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                  0,
+                  x[1]);
          },
        constant,
        function(self$neg1,f,param)
-        {switch(param)
+        {switch(param[0])
           {case 0:
             var i=param[1];
             
-            'unknown block:(sendself self-1/1205 paren/1071 0a 0a (< i/1211 0)\n  (function f/1216 (apply pp/1051 f/1216 [0: [4: 0a 0a 0a 0a] "%d"])) f/1206\n  i/1211)';
+            /* unknown */'(sendself self-1/1205 paren/1071 0a 0a (< i/1211 0)\n  (function f/1216 (apply pp/1051 f/1216 [0: [4: 0a 0a 0a 0a] "%d"])) f/1206\n  i/1211)';
             
-           case 1:return pp(f,[0,[1,0],"%C"],param[1]);
+           case 1:
+            return pp
+                    (f,
+                     [/* Format */0,[/* Caml_char */1,/* End_of_format */0],"%C"],
+                     param[1]);
+            
            case 2:
             var match=param[2];
             
@@ -721,90 +870,201 @@ var
               
               return pp
                       (f,
-                       [0,
-                        [12,123,[2,0,[12,124,[2,0,[12,124,[2,0,[12,125,0]]]]]]],
+                       [/* Format */0,
+                        [/* Char_literal */12,
+                         123,
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Char_literal */12,
+                           124,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             124,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,125,/* End_of_format */0]]]]]]],
                         "{%s|%s|%s}"],
                        delim,
                        i$1,
                        delim);
               }
             else
-             {return pp(f,[0,[3,0,0],"%S"],i$1);}
+             {return pp
+                      (f,
+                       [/* Format */0,
+                        [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
+                        "%S"],
+                       i$1);
+              }
             
            case 3:
             var i$2=param[1];
             
-            "unknown block:(sendself self-1/1205 paren/1071 0a 0a (== (string.get i/1212 0) '-')\n  (function f/1217 (apply pp/1051 f/1217 [0: [2: 0a 0a] \"%s\"])) f/1206\n  i/1212)";
+            /* unknown */"(sendself self-1/1205 paren/1071 0a 0a (== (string.get i/1212 0) '-')\n  (function f/1217 (apply pp/1051 f/1217 [0: [2: 0a 0a] \"%s\"])) f/1206\n  i/1212)";
             
            case 4:
             var i$3=param[1];
             
-            "unknown block:(sendself self-1/1205 paren/1071 0a 0a (Int32.< i/1213 0l)\n  (function f/1218\n    (apply pp/1051 f/1218 [0: [5: 0a 0a 0a [12: 'l' 0a]] \"%ldl\"]))\n  f/1206 i/1213)";
+            /* unknown */"(sendself self-1/1205 paren/1071 0a 0a (Int32.< i/1213 0l)\n  (function f/1218\n    (apply pp/1051 f/1218 [0: [5: 0a 0a 0a [12: 'l' 0a]] \"%ldl\"]))\n  f/1206 i/1213)";
             
            case 5:
             var i$4=param[1];
             
-            "unknown block:(sendself self-1/1205 paren/1071 0a 0a (Int64.< i/1214 0L)\n  (function f/1219\n    (apply pp/1051 f/1219 [0: [7: 0a 0a 0a [12: 'L' 0a]] \"%LdL\"]))\n  f/1206 i/1214)";
+            /* unknown */"(sendself self-1/1205 paren/1071 0a 0a (Int64.< i/1214 0L)\n  (function f/1219\n    (apply pp/1051 f/1219 [0: [7: 0a 0a 0a [12: 'L' 0a]] \"%LdL\"]))\n  f/1206 i/1214)";
             
            case 6:
             var i$5=param[1];
             
-            "unknown block:(sendself self-1/1205 paren/1071 0a 0a (Nativeint.< i/1215 0n)\n  (function f/1220\n    (apply pp/1051 f/1220 [0: [6: 0a 0a 0a [12: 'n' 0a]] \"%ndn\"]))\n  f/1206 i/1215)";
+            /* unknown */"(sendself self-1/1205 paren/1071 0a 0a (Nativeint.< i/1215 0n)\n  (function f/1220\n    (apply pp/1051 f/1220 [0: [6: 0a 0a 0a [12: 'n' 0a]] \"%ndn\"]))\n  f/1206 i/1215)";
             
            }
          },
        mutable_flag,
        function(self$neg1,f,param)
-        {if(param!=0)
-          {return pp(f,[0,[11,"mutable",[17,[0,"@;",1,0],0]],"mutable@;"]);}
+        {if(param!==0)
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "mutable",
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@;",1,0],
+                       /* End_of_format */0]],
+                     "mutable@;"]);
+           }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        virtual_flag,
        function(self$neg1,f,param)
-        {if(param!=0)
-          {return 0;}
+        {if(param!==0)
+          {return /* () */0;}
          else
-          {return pp(f,[0,[11,"virtual",[17,[0,"@;",1,0],0]],"virtual@;"]);}
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "virtual",
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@;",1,0],
+                       /* End_of_format */0]],
+                     "virtual@;"]);
+           }
          },
        rec_flag,
        function(self$neg1,f,rf)
-        {if(rf!=0){return pp(f,[0,[11,"rec ",0],"rec "]);}else{return 0;}},
+        {if(rf!==0)
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,"rec ",/* End_of_format */0],
+                     "rec "]);
+           }
+         else
+          {return /* () */0;}
+         },
        nonrec_flag,
        function(self$neg1,f,rf)
-        {if(rf!=0)
-          {return 0;}
+        {if(rf!==0)
+          {return /* () */0;}
          else
-          {return pp(f,[0,[11,"nonrec ",0],"nonrec "]);}
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,"nonrec ",/* End_of_format */0],
+                     "nonrec "]);
+           }
          },
        direction_flag,
        function(self$neg1,f,param)
-        {if(param!=0)
-          {return pp(f,[0,[11,"downto",[17,[0,"@ ",1,0],0]],"downto@ "]);}
+        {if(param!==0)
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "downto",
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       /* End_of_format */0]],
+                     "downto@ "]);
+           }
          else
-          {return pp(f,[0,[11,"to",[17,[0,"@ ",1,0],0]],"to@ "]);}
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "to",
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       /* End_of_format */0]],
+                     "to@ "]);
+           }
          },
        private_flag,
        function(self$neg1,f,param)
-        {if(param!=0)
-          {return 0;}
+        {if(param!==0)
+          {return /* () */0;}
          else
-          {return pp(f,[0,[11,"private",[17,[0,"@ ",1,0],0]],"private@ "]);}
+          {return pp
+                   (f,
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "private",
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       /* End_of_format */0]],
+                     "private@ "]);
+           }
          },
        constant_string,
-       function(self$neg1,f,s){return pp(f,[0,[3,0,0],"%S"],s);},
+       function(self$neg1,f,s)
+        {return pp
+                 (f,
+                  [/* Format */0,
+                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
+                   "%S"],
+                  s);
+         },
        tyvar,
-       function(self$neg1,f,str){return pp(f,[0,[12,39,[2,0,0]],"'%s"],str);},
+       function(self$neg1,f,str)
+        {return pp
+                 (f,
+                  [/* Format */0,
+                   [/* Char_literal */12,
+                    39,
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                   "'%s"],
+                  str);
+         },
        string_quot,
-       function(self$neg1,f,x){return pp(f,[0,[12,96,[2,0,0]],"`%s"],x);},
+       function(self$neg1,f,x)
+        {return pp
+                 (f,
+                  [/* Format */0,
+                   [/* Char_literal */12,
+                    96,
+                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                   "`%s"],
+                  x);
+         },
        class_params_def,
        function(self$neg1,f,l)
         {if(l)
-          {"unknown block:(sendself self-1/1254 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1254 type_param/1121))";
-           return pp(f,[0,[12,91,[15,[11,"] ",0]]],"[%a] "],0,l);
+          {/* unknown */"(sendself self-1/1254 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1254 type_param/1121))";
+           return pp
+                   (f,
+                    [/* Format */0,
+                     [/* Char_literal */12,
+                      91,
+                      [/* Alpha */15,
+                       [/* String_literal */11,"] ",/* End_of_format */0]]],
+                     "[%a] "],
+                    0,
+                    l);
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        type_with_label,
        function(self$neg1,f,param)
@@ -816,13 +1076,13 @@ var
          
          switch(label)
           {case "":
-            "unknown block:(sendself self-1/1258 core_type1/1087 f/1259 c/1262)";
+            /* unknown */"(sendself self-1/1258 core_type1/1087 f/1259 c/1262)";
             
            default:
-            if(label[0]=63)
+            if(label[0]===63)
              {var exit;
               
-              if(typeof ptyp_desc=="number")
+              if(typeof ptyp_desc==="number")
                {switch(ptyp_desc){}}
               else
                {switch(ptyp_desc[0])
@@ -830,12 +1090,24 @@ var
                    if(is_predef_option(ptyp_desc[1][1]))
                     {}
                    else
-                    {throw [0,Assert_failure,[0,"parsing/pprintast.ml",233,14]];
+                    {throw [0,
+                            CamlPrimitive["caml_global_data"]["Assert_failure"],
+                            [0,"parsing/pprintast.ml",233,14]];
                      }
                    
-                   "unknown block:(sendself self-1/1258 list/1069 0a 0a 0a\n  (sendself self-1/1258 core_type1/1087))";
+                   /* unknown */"(sendself self-1/1258 list/1069 0a 0a 0a\n  (sendself self-1/1258 core_type1/1087))";
                    return pp
-                           (f,[0,[2,0,[12,58,[15,0]]],"%s:%a"],label,0,ptyp_desc[2]);
+                           (f,
+                            [/* Format */0,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,
+                               58,
+                               [/* Alpha */15,/* End_of_format */0]]],
+                             "%s:%a"],
+                            label,
+                            0,
+                            ptyp_desc[2]);
                    
                   default:exit=138;}}
               
@@ -847,21 +1119,40 @@ var
                 }
               }
             else
-             {"unknown block:(sendself self-1/1258 core_type1/1087)";
-              return pp(f,[0,[2,0,[12,58,[15,0]]],"%s:%a"],label,0,c);
+             {/* unknown */"(sendself self-1/1258 core_type1/1087)";
+              return pp
+                      (f,
+                       [/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          58,
+                          [/* Alpha */15,/* End_of_format */0]]],
+                        "%s:%a"],
+                       label,
+                       0,
+                       c);
               }
             }
          },
        core_type,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1267 core_type/1086)";
-           "unknown block:(sendself self-1/1267 attributes/1097)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1267 core_type/1086)";
+           /* unknown */"(sendself self-1/1267 attributes/1097)";
            return pp
                    (f,
-                    [0,[11,"((",[15,[12,41,[15,[12,41,0]]]]],"((%a)%a)"],
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "((",
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        41,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                     "((%a)%a)"],
                     0,
-                    /* record */[0,x[1],x[2],0],
+                    /* record */[0,x[1],x[2],/* [] */0],
                     0,
                     x[3]);
            }
@@ -870,20 +1161,32 @@ var
            
            var exit;
            
-           if(typeof match=="number")
+           if(typeof match==="number")
             {switch(match){}}
            else
             {switch(match[0])
               {case 1:
-                "unknown block:(sendself self-1/1267 type_with_label/1085)";
-                "unknown block:(sendself self-1/1267 core_type/1086)";
+                /* unknown */"(sendself self-1/1267 type_with_label/1085)";
+                /* unknown */"(sendself self-1/1267 core_type/1086)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [15,
-                            [17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String_literal */11,
+                              "->",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]],
                           "@[<2>%a@;->@;%a@]"],
                          0,
                          /* tuple */[0,match[1],match[2]],
@@ -891,45 +1194,74 @@ var
                          match[3]);
                 
                case 6:
-                "unknown block:(sendself self-1/1267 core_type1/1087)";
+                /* unknown */"(sendself self-1/1267 core_type1/1087)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [15,
-                            [17,
-                             [0,"@;",1,0],
-                             [11,"as",[17,[0,"@;",1,0],[12,39,[2,0,[17,0,0]]]]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String_literal */11,
+                              "as",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Char_literal */12,
+                                39,
+                                [/* String */2,
+                                 /* No_padding */0,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]]]],
                           "@[<2>%a@;as@;'%s@]"],
                          0,
                          match[1],
                          match[2]);
                 
                case 8:
-                "unknown block:(sendself self-1/1267 core_type/1086)";
+                /* unknown */"(sendself self-1/1267 core_type/1086)";
                 return pp
                         (f,
-                         [0,
-                          [18,[1,[0,[11,"<2>",0],"<2>"]],[15,[15,[17,0,0]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Alpha */15,
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              /* End_of_format */0]]]],
                           "@[<2>%a%a@]"],
-                         function(f$1,l)
+                         function(f,l)
                           {return pp
-                                   (f$1,
-                                    [0,[15,0],"%a"],
-                                    function(f$2,l$1)
-                                     {if(l$1)
-                                       {'unknown block:(sendself self-1/1267 list/1069 [0: [0: [17: [0: "@;" 1 0] 0a] "@;"]] 0a 0a\n  (sendself self-1/1267 tyvar/1082))';
+                                   (f,
+                                    [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                                    function(f,l)
+                                     {if(l)
+                                       {/* unknown */'(sendself self-1/1267 list/1069 [0: [0: [17: [0: "@;" 1 0] 0a] "@;"]] 0a 0a\n  (sendself self-1/1267 tyvar/1082))';
                                         return pp
-                                                (f$2,
-                                                 [0,
-                                                  [15,[17,[0,"@;",1,0],[12,46,[17,[0,"@;",1,0],0]]]],
+                                                (f,
+                                                 [/* Format */0,
+                                                  [/* Alpha */15,
+                                                   [/* Formatting_lit */17,
+                                                    [/* Break */0,"@;",1,0],
+                                                    [/* Char_literal */12,
+                                                     46,
+                                                     [/* Formatting_lit */17,
+                                                      [/* Break */0,"@;",1,0],
+                                                      /* End_of_format */0]]]],
                                                   "%a@;.@;"],
                                                  0,
-                                                 l$1);
+                                                 l);
                                         }
                                       else
-                                       {return 0;}
+                                       {return /* () */0;}
                                       },
                                     l);
                            },
@@ -941,11 +1273,19 @@ var
            
            switch(exit)
             {case 137:
-              "unknown block:(sendself self-1/1267 core_type1/1087)";
+              /* unknown */"(sendself self-1/1267 core_type1/1087)";
               return pp
                       (f,
-                       [0,
-                        [18,[1,[0,[11,"<2>",0],"<2>"]],[15,[17,0,0]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<2>",/* End_of_format */0],
+                           "<2>"]],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]],
                         "@[<2>%a@]"],
                        0,
                        x);
@@ -955,40 +1295,68 @@ var
          },
        core_type1,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1282 core_type/1086 f/1283 x/1284)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1282 core_type/1086 f/1283 x/1284)";
            }
          else
           {var match=x[1];
            
-           if(typeof match=="number")
-            {switch(match){case 0:return pp(f,[0,[12,95,0],"_"]);}}
+           if(typeof match==="number")
+            {switch(match)
+              {case 0:
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Char_literal */12,95,/* End_of_format */0],
+                          "_"]);
+                
+               }}
            else
             {switch(match[0])
               {case 0:
-                "unknown block:(sendself self-1/1282 tyvar/1082 f/1283 (field 0 match/2621))";
+                /* unknown */"(sendself self-1/1282 tyvar/1082 f/1283 (field 0 match/2621))";
                 
                case 2:
-                'unknown block:(sendself self-1/1282 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1282 core_type1/1087))';
-                return pp(f,[0,[12,40,[15,[12,41,0]]],"(%a)"],0,match[1]);
-                
-               case 3:
-                "unknown block:(sendself self-1/1282 longident_loc/1073)";
+                /* unknown */'(sendself self-1/1282 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1282 core_type1/1087))';
                 return pp
                         (f,
-                         [0,[15,[15,0]],"%a%a"],
-                         function(f$1,l)
+                         [/* Format */0,
+                          [/* Char_literal */12,
+                           40,
+                           [/* Alpha */15,
+                            [/* Char_literal */12,41,/* End_of_format */0]]],
+                          "(%a)"],
+                         0,
+                         match[1]);
+                
+               case 3:
+                /* unknown */"(sendself self-1/1282 longident_loc/1073)";
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]],
+                          "%a%a"],
+                         function(f,l)
                           {if(l)
                             {if(l[2])
-                              {'unknown block:(sendself self-1/1282 list/1069 [0: [0: [12: \',\' 0a] ","]]\n  [0: [0: [12: \'(\' 0a] "("]] [0: [0: [12: \')\' [17: [0: "@;" 1 0] 0a]] ")@;"]]\n  (sendself self-1/1282 core_type/1086) f/1299 l/1300)';
+                              {/* unknown */'(sendself self-1/1282 list/1069 [0: [0: [12: \',\' 0a] ","]]\n  [0: [0: [12: \'(\' 0a] "("]] [0: [0: [12: \')\' [17: [0: "@;" 1 0] 0a]] ")@;"]]\n  (sendself self-1/1282 core_type/1086) f/1299 l/1300)';
                                }
                              else
-                              {"unknown block:(sendself self-1/1282 core_type1/1087)";
-                               return pp(f$1,[0,[15,[17,[0,"@;",1,0],0]],"%a@;"],0,l[1]);
+                              {/* unknown */"(sendself self-1/1282 core_type1/1087)";
+                               return pp
+                                       (f,
+                                        [/* Format */0,
+                                         [/* Alpha */15,
+                                          [/* Formatting_lit */17,
+                                           [/* Break */0,"@;",1,0],
+                                           /* End_of_format */0]],
+                                         "%a@;"],
+                                        0,
+                                        l[1]);
                                }
                              }
                            else
-                            {return 0;}
+                            {return /* () */0;}
                            },
                          match[2],
                          0,
@@ -999,18 +1367,30 @@ var
                 
                 var
                  core_field_type=
-                  function(f$1,param)
-                   {"unknown block:(sendself self-1/1282 attributes/1097)";
-                    "unknown block:(sendself self-1/1282 core_type/1086)";
+                  function(f,param)
+                   {/* unknown */"(sendself self-1/1282 attributes/1097)";
+                    /* unknown */"(sendself self-1/1282 core_type/1086)";
                     return pp
-                            (f$1,
-                             [0,
-                              [18,
-                               [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                               [2,
-                                0,
-                                [15,
-                                 [17,[0,"@ ",1,0],[12,58,[15,[17,[0,"@ ",1,0],[17,0,0]]]]]]]],
+                            (f,
+                             [/* Format */0,
+                              [/* Formatting_gen */18,
+                               [/* Open_box */1,
+                                [/* Format */0,
+                                 [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                                 "<hov2>"]],
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@ ",1,0],
+                                  [/* Char_literal */12,
+                                   58,
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@ ",1,0],
+                                     [/* Formatting_lit */17,
+                                      /* Close_box */0,
+                                      /* End_of_format */0]]]]]]]],
                               "@[<hov2>%s%a@ :%a@ @]"],
                              param[1],
                              0,
@@ -1021,28 +1401,49 @@ var
                 
                 var
                  field_var=
-                  function(f$1,param)
-                   {if(param!=0)
+                  function(f,param)
+                   {if(param!==0)
                      {if(l)
-                       {return pp(f$1,[0,[11," ;..",0]," ;.."]);}
+                       {return pp
+                                (f,
+                                 [/* Format */0,
+                                  [/* String_literal */11," ;..",/* End_of_format */0],
+                                  " ;.."]);
+                        }
                       else
-                       {return pp(f$1,[0,[11,"..",0],".."]);}
+                       {return pp
+                                (f,
+                                 [/* Format */0,
+                                  [/* String_literal */11,"..",/* End_of_format */0],
+                                  ".."]);
+                        }
                       }
                     else
-                     {return 0;}
+                     {return /* () */0;}
                     };
                 
-                "unknown block:(sendself self-1/1282 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  core_field_type/1316)";
+                /* unknown */"(sendself self-1/1282 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  core_field_type/1316)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [12,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* Char_literal */12,
                             60,
-                            [17,
-                             [0,"@ ",1,0],
-                             [15,[15,[17,[0,"@ ",1,0],[12,62,[17,0,0]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Char_literal */12,
+                                 62,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]]]],
                           "@[<hov2><@ %a%a@ >@]"],
                          0,
                          l,
@@ -1050,14 +1451,23 @@ var
                          match[2]);
                 
                case 5:
-                "unknown block:(sendself self-1/1282 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1282 core_type/1086))";
-                "unknown block:(sendself self-1/1282 longident_loc/1073)";
+                /* unknown */"(sendself self-1/1282 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1282 core_type/1086))";
+                /* unknown */"(sendself self-1/1282 longident_loc/1073)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [15,[12,35,[15,[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* Alpha */15,
+                            [/* Char_literal */12,
+                             35,
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<hov2>%a#%a@]"],
                          0,
                          match[2],
@@ -1071,77 +1481,119 @@ var
                 
                 var
                  type_variant_helper=
-                  function(f$1,x$1)
-                   {switch(x$1)
+                  function(f,x)
+                   {switch(x[0])
                      {case 0:
-                       var ctl=x$1[4];
+                       var ctl=x[4];
                        
-                       "unknown block:(sendself self-1/1282 string_quot/1083)";
-                       "unknown block:(sendself self-1/1282 attributes/1097)";
+                       /* unknown */"(sendself self-1/1282 string_quot/1083)";
+                       /* unknown */"(sendself self-1/1282 attributes/1097)";
                        return pp
-                               (f$1,
-                                [0,
-                                 [18,
-                                  [1,[0,[11,"<2>",0],"<2>"]],
-                                  [15,[15,[17,[0,"@;",1,0],[15,[17,0,0]]]]]],
+                               (f,
+                                [/* Format */0,
+                                 [/* Formatting_gen */18,
+                                  [/* Open_box */1,
+                                   [/* Format */0,
+                                    [/* String_literal */11,"<2>",/* End_of_format */0],
+                                    "<2>"]],
+                                  [/* Alpha */15,
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@;",1,0],
+                                     [/* Alpha */15,
+                                      [/* Formatting_lit */17,
+                                       /* Close_box */0,
+                                       /* End_of_format */0]]]]]],
                                  "@[<2>%a%a@;%a@]"],
                                 0,
-                                x$1[1],
-                                function(f$2,l$1)
-                                 {if(l$1)
-                                   {"unknown block:(sendself self-1/1282 list/1069 [0: [0: [12: '&' 0a] \"&\"]] 0a 0a\n  (sendself self-1/1282 core_type/1086))";
+                                x[1],
+                                function(f,l)
+                                 {if(l)
+                                   {/* unknown */"(sendself self-1/1282 list/1069 [0: [0: [12: '&' 0a] \"&\"]] 0a 0a\n  (sendself self-1/1282 core_type/1086))";
                                     return pp
-                                            (f$2,
-                                             [0,
-                                              [17,[0,"@;",1,0],[11,"of",[17,[0,"@;",1,0],[15,0]]]],
+                                            (f,
+                                             [/* Format */0,
+                                              [/* Formatting_lit */17,
+                                               [/* Break */0,"@;",1,0],
+                                               [/* String_literal */11,
+                                                "of",
+                                                [/* Formatting_lit */17,
+                                                 [/* Break */0,"@;",1,0],
+                                                 [/* Alpha */15,/* End_of_format */0]]]],
                                               "@;of@;%a"],
                                              0,
                                              ctl);
                                     }
                                   else
-                                   {return 0;}
+                                   {return /* () */0;}
                                   },
                                 ctl,
                                 0,
-                                x$1[2]);
+                                x[2]);
                        
                       case 1:
-                       "unknown block:(sendself self-1/1282 core_type/1086 f/1303 (field 0 x/1304))";
+                       /* unknown */"(sendself self-1/1282 core_type/1086 f/1303 (field 0 x/1304))";
                        
                       }
                     };
                 
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [12,91,[15,[15,[12,93,[17,0,0]]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Char_literal */12,
+                            91,
+                            [/* Alpha */15,
+                             [/* Alpha */15,
+                              [/* Char_literal */12,
+                               93,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                /* End_of_format */0]]]]]],
                           "@[<2>[%a%a]@]"],
-                         function(f$1,l$1)
-                          {if(l$1)
-                            {'unknown block:(sendself self-1/1282 list/1069\n  [0: [0: [17: [0: "@;<1 -2>" 1 -2] [11: "| " 0a]] "@;<1 -2>| "]] 0a 0a\n  type_variant_helper/1302)';
+                         function(f,l)
+                          {if(l)
+                            {/* unknown */'(sendself self-1/1282 list/1069\n  [0: [0: [17: [0: "@;<1 -2>" 1 -2] [11: "| " 0a]] "@;<1 -2>| "]] 0a 0a\n  type_variant_helper/1302)';
                              return pp
-                                     (f$1,
-                                      [0,[2,0,[17,[0,"@;",1,0],[15,0]]],"%s@;%a"],
-                                      closed!=0?">":low?"<":"",
+                                     (f,
+                                      [/* Format */0,
+                                       [/* String */2,
+                                        /* No_padding */0,
+                                        [/* Formatting_lit */17,
+                                         [/* Break */0,"@;",1,0],
+                                         [/* Alpha */15,/* End_of_format */0]]],
+                                       "%s@;%a"],
+                                      closed!==0?">":low?"<":"",
                                       0,
-                                      l$1);
+                                      l);
                              }
                            else
-                            {return 0;}
+                            {return /* () */0;}
                            },
                          match[1],
-                         function(f$1,low$1)
+                         function(f,low)
                           {var exit;
                            
-                           if(low$1)
-                            {var xs=low$1[1];
+                           if(low)
+                            {var xs=low[1];
                              
                              if(xs)
-                              {"unknown block:(sendself self-1/1282 list/1069 0a 0a 0a\n  (sendself self-1/1282 string_quot/1083))";
+                              {/* unknown */"(sendself self-1/1282 list/1069 0a 0a 0a\n  (sendself self-1/1282 string_quot/1083))";
                                return pp
-                                       (f$1,[0,[12,62,[17,[0,"@ ",1,0],[15,0]]],">@ %a"],0,xs);
+                                       (f,
+                                        [/* Format */0,
+                                         [/* Char_literal */12,
+                                          62,
+                                          [/* Formatting_lit */17,
+                                           [/* Break */0,"@ ",1,0],
+                                           [/* Alpha */15,/* End_of_format */0]]],
+                                         ">@ %a"],
+                                        0,
+                                        xs);
                                }
                              else
                               {exit=126;}
@@ -1149,7 +1601,7 @@ var
                            else
                             {exit=126;}
                            
-                           switch(exit){case 126:return 0;}
+                           switch(exit){case 126:return /* () */0;}
                            },
                          low);
                 
@@ -1162,15 +1614,22 @@ var
                 
                 var
                  aux=
-                  function(f$1,param)
-                   {"unknown block:(sendself self-1/1282 longident_loc/1073)";
-                    "unknown block:(sendself self-1/1282 core_type/1086)";
+                  function(f,param)
+                   {/* unknown */"(sendself self-1/1282 longident_loc/1073)";
+                    /* unknown */"(sendself self-1/1282 core_type/1086)";
                     return pp
-                            (f$1,
-                             [0,
-                              [11,
+                            (f,
+                             [/* Format */0,
+                              [/* String_literal */11,
                                "type ",
-                               [15,[17,[0,"@ ",1,0],[12,61,[17,[0,"@ ",1,0],[15,0]]]]]],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Char_literal */12,
+                                  61,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,/* End_of_format */0]]]]]],
                               "type %a@ =@ %a"],
                              0,
                              param[1],
@@ -1179,21 +1638,33 @@ var
                     };
                 
                 if(cstrs)
-                 {"unknown block:(sendself self-1/1282 longident_loc/1073)";
-                  'unknown block:(sendself self-1/1282 list/1069\n  [0: [0: [17: [0: "@ " 1 0] [11: "and" [17: [0: "@ " 1 0] 0a]]] "@ and@ "]]\n  0a 0a aux/1323)';
+                 {/* unknown */"(sendself self-1/1282 longident_loc/1073)";
+                  /* unknown */'(sendself self-1/1282 list/1069\n  [0: [0: [17: [0: "@ " 1 0] [11: "and" [17: [0: "@ " 1 0] 0a]]] "@ and@ "]]\n  0a 0a aux/1323)';
                   return pp
                           (f,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                             [11,
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                               "<hov2>"]],
+                             [/* String_literal */11,
                               "(module",
-                              [17,
-                               [0,"@ ",1,0],
-                               [15,
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [11,"with",[17,[0,"@ ",1,0],[15,[12,41,[17,0,0]]]]]]]]]],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* String_literal */11,
+                                  "with",
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,
+                                    [/* Char_literal */12,
+                                     41,
+                                     [/* Formatting_lit */17,
+                                      /* Close_box */0,
+                                      /* End_of_format */0]]]]]]]]]],
                             "@[<hov2>(module@ %a@ with@ %a)@]"],
                            0,
                            lid,
@@ -1201,23 +1672,35 @@ var
                            cstrs);
                   }
                 else
-                 {"unknown block:(sendself self-1/1282 longident_loc/1073)";
+                 {/* unknown */"(sendself self-1/1282 longident_loc/1073)";
                   return pp
                           (f,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                             [11,"(module",[17,[0,"@ ",1,0],[15,[12,41,[17,0,0]]]]]],
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                               "<hov2>"]],
+                             [/* String_literal */11,
+                              "(module",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Char_literal */12,
+                                 41,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]],
                             "@[<hov2>(module@ %a)@]"],
                            0,
                            lid);
                   }
                 
                case 10:
-                "unknown block:(sendself self-1/1282 extension/1103 f/1283 (field 0 match/2621))";
+                /* unknown */"(sendself self-1/1282 extension/1103 f/1283 (field 0 match/2621))";
                 
                default:
-                "unknown block:(sendself self-1/1282 paren/1071 0a 0a 1a\n  (sendself self-1/1282 core_type/1086) f/1283 x/1284)";
+                /* unknown */"(sendself self-1/1282 paren/1071 0a 0a 1a\n  (sendself self-1/1282 core_type/1086) f/1283 x/1284)";
                 }}
            }
          },
@@ -1225,12 +1708,12 @@ var
        function(self$neg1,f,x)
         {var
           list_of_pattern=
-           function(acc,x$1)
-            {var match=x$1[1];
+           function(acc,x)
+            {var match=x[1];
              
              var exit;
              
-             if(typeof match=="number")
+             if(typeof match==="number")
               {switch(match){}}
              else
               {switch(match[0])
@@ -1238,17 +1721,25 @@ var
                   return list_of_pattern(/* :: */[0,match[2],acc],match[1]);
                  default:exit=123;}}
              
-             switch(exit){case 123:return /* :: */[0,x$1,acc];}
+             switch(exit){case 123:return /* :: */[0,x,acc];}
              };
          
-         if(x[3]!=0)
-          {"unknown block:(sendself self-1/1328 pattern/1088)";
-           "unknown block:(sendself self-1/1328 attributes/1097)";
+         if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1328 pattern/1088)";
+           /* unknown */"(sendself self-1/1328 attributes/1097)";
            return pp
                    (f,
-                    [0,[11,"((",[15,[12,41,[15,[12,41,0]]]]],"((%a)%a)"],
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "((",
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        41,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                     "((%a)%a)"],
                     0,
-                    /* record */[0,x[1],x[2],0],
+                    /* record */[0,x[1],x[2],/* [] */0],
                     0,
                     x[3]);
            }
@@ -1257,19 +1748,31 @@ var
            
            var exit;
            
-           if(typeof match=="number")
+           if(typeof match==="number")
             {switch(match){}}
            else
             {switch(match[0])
               {case 1:
-                "unknown block:(sendself self-1/1328 pattern/1088)";
+                /* unknown */"(sendself self-1/1328 pattern/1088)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [15,
-                            [17,[0,"@;",1,0],[11,"as",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String_literal */11,
+                              "as",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]],
                           "@[<2>%a@;as@;%a@]"],
                          0,
                          match[1],
@@ -1277,20 +1780,28 @@ var
                          match[2][1]);
                 
                case 9:
-                'unknown block:(sendself self-1/1328 list/1069\n  [0: [0: [17: [0: "@," 0 0] [12: \'|\' 0a]] "@,|"]] 0a 0a\n  (sendself self-1/1328 pattern/1088))';
+                /* unknown */'(sendself self-1/1328 list/1069\n  [0: [0: [17: [0: "@," 0 0] [12: \'|\' 0a]] "@,|"]] 0a 0a\n  (sendself self-1/1328 pattern/1088))';
                 return pp
                         (f,
-                         [0,
-                          [18,[1,[0,[11,"<hov0>",0],"<hov0>"]],[15,[17,0,0]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov0>",/* End_of_format */0],
+                             "<hov0>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]],
                           "@[<hov0>%a@]"],
                          0,
-                         list_of_pattern(0,x));
+                         list_of_pattern(/* [] */0,x));
                 
                default:exit=122;}}
            
            switch(exit)
             {case 122:
-              "unknown block:(sendself self-1/1328 pattern1/1089 f/1329 x/1330)";
+              /* unknown */"(sendself self-1/1328 pattern1/1089 f/1329 x/1330)";
               
              }
            }
@@ -1299,19 +1810,19 @@ var
        function(self$neg1,f,x)
         {var
           pattern_list_helper=
-           function(f$1,p)
+           function(f,p)
             {var match=p[1];
              
              var exit;
              
-             if(typeof match=="number")
+             if(typeof match==="number")
               {switch(match){}}
              else
               {switch(match[0])
                 {case 5:
                   var match$1=match[1][1];
                   
-                  switch(match$1)
+                  switch(match$1[0])
                    {case 0:
                      switch(match$1[1])
                       {case "::":
@@ -1320,7 +1831,7 @@ var
                         if(match$2)
                          {var match$3=match$2[1][1];
                           
-                          if(typeof match$3=="number")
+                          if(typeof match$3==="number")
                            {switch(match$3){}}
                           else
                            {switch(match$3[0])
@@ -1334,10 +1845,15 @@ var
                                   {if(match$5[2])
                                     {exit=121;}
                                    else
-                                    {"unknown block:(sendself self-1/1341 simple_pattern/1090)";
+                                    {/* unknown */"(sendself self-1/1341 simple_pattern/1090)";
                                      return pp
-                                             (f$1,
-                                              [0,[15,[11,"::",[15,0]]],"%a::%a"],
+                                             (f,
+                                              [/* Format */0,
+                                               [/* Alpha */15,
+                                                [/* String_literal */11,
+                                                 "::",
+                                                 [/* Alpha */15,/* End_of_format */0]]],
+                                               "%a::%a"],
                                               0,
                                               match$4[1],
                                               pattern_list_helper,
@@ -1365,19 +1881,19 @@ var
              
              switch(exit)
               {case 121:
-                "unknown block:(sendself self-1/1341 pattern1/1089 f/1345 p/1348)";
+                /* unknown */"(sendself self-1/1341 pattern1/1089 f/1345 p/1348)";
                 
                }
              };
          
-         if(x[3]!=0)
-          {"unknown block:(sendself self-1/1341 pattern/1088 f/1342 x/1343)";}
+         if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1341 pattern/1088 f/1342 x/1343)";}
          else
           {var match=x[1];
            
            var exit;
            
-           if(typeof match=="number")
+           if(typeof match==="number")
             {switch(match){}}
            else
             {switch(match[0])
@@ -1388,7 +1904,7 @@ var
                 
                 var exit$1;
                 
-                switch(txt)
+                switch(txt[0])
                  {case 0:
                    var exit$2;
                    
@@ -1399,7 +1915,7 @@ var
                    
                    switch(exit$2)
                     {case 120:
-                      "unknown block:(sendself self-1/1341 simple_pattern/1090 f/1342 x/1343)";
+                      /* unknown */"(sendself self-1/1341 simple_pattern/1090 f/1342 x/1343)";
                       
                      }
                    
@@ -1411,18 +1927,42 @@ var
                  {case 119:
                    var po=match[2];
                    
-                   if("unknown primitive:caml_equal")
-                    {return pp(f,[0,[15,0],"%a"],pattern_list_helper,x);}
+                   if(CamlPrimitive["caml_equal"](txt,[/* Lident */0,"::"]))
+                    {return pp
+                             (f,
+                              [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                              pattern_list_helper,
+                              x);
+                     }
                    else
                     {if(po)
-                      {"unknown block:(sendself self-1/1341 longident_loc/1073)";
-                       "unknown block:(sendself self-1/1341 simple_pattern/1090)";
+                      {/* unknown */"(sendself self-1/1341 longident_loc/1073)";
+                       /* unknown */"(sendself self-1/1341 simple_pattern/1090)";
                        return pp
-                               (f,[0,[15,[17,[0,"@;",1,0],[15,0]]],"%a@;%a"],0,li,0,po[1]);
+                               (f,
+                                [/* Format */0,
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@;",1,0],
+                                   [/* Alpha */15,/* End_of_format */0]]],
+                                 "%a@;%a"],
+                                0,
+                                li,
+                                0,
+                                po[1]);
                        }
                      else
-                      {"unknown block:(sendself self-1/1341 longident_loc/1073)";
-                       return pp(f,[0,[15,[17,[0,"@;",1,0],0]],"%a@;"],0,li);
+                      {/* unknown */"(sendself self-1/1341 longident_loc/1073)";
+                       return pp
+                               (f,
+                                [/* Format */0,
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@;",1,0],
+                                   /* End_of_format */0]],
+                                 "%a@;"],
+                                0,
+                                li);
                        }
                      }
                    
@@ -1432,13 +1972,25 @@ var
                 var match$1=match[2];
                 
                 if(match$1)
-                 {"unknown block:(sendself self-1/1341 simple_pattern/1090)";
+                 {/* unknown */"(sendself self-1/1341 simple_pattern/1090)";
                   return pp
                           (f,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<2>",0],"<2>"]],
-                             [12,96,[2,0,[17,[0,"@;",1,0],[15,[17,0,0]]]]]],
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<2>",/* End_of_format */0],
+                               "<2>"]],
+                             [/* Char_literal */12,
+                              96,
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]],
                             "@[<2>`%s@;%a@]"],
                            match[1],
                            0,
@@ -1451,44 +2003,76 @@ var
            
            switch(exit)
             {case 118:
-              "unknown block:(sendself self-1/1341 simple_pattern/1090 f/1342 x/1343)";
+              /* unknown */"(sendself self-1/1341 simple_pattern/1090 f/1342 x/1343)";
               
              }
            }
          },
        simple_pattern,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1356 pattern/1088 f/1357 x/1358)";}
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1356 pattern/1088 f/1357 x/1358)";}
          else
           {var match=x[1];
            
            var exit;
            
-           if(typeof match=="number")
-            {switch(match){case 0:return pp(f,[0,[12,95,0],"_"]);}}
+           if(typeof match==="number")
+            {switch(match)
+              {case 0:
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Char_literal */12,95,/* End_of_format */0],
+                          "_"]);
+                
+               }}
            else
             {switch(match[0])
               {case 0:return protect_ident(f,match[1][1]);
                case 1:exit=116;
                case 2:
-                "unknown block:(sendself self-1/1356 constant/1074)";
-                return pp(f,[0,[15,0],"%a"],0,match[1]);
-                
-               case 3:
-                "unknown block:(sendself self-1/1356 constant/1074)";
-                "unknown block:(sendself self-1/1356 constant/1074)";
-                return pp
-                        (f,[0,[15,[11,"..",[15,0]]],"%a..%a"],0,match[1],0,match[2]);
-                
-               case 4:
-                "unknown block:(sendself self-1/1356 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1356 pattern1/1089))";
+                /* unknown */"(sendself self-1/1356 constant/1074)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<1>",0],"<1>"]],
-                           [12,40,[15,[12,41,[17,0,0]]]]],
+                         [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                         0,
+                         match[1]);
+                
+               case 3:
+                /* unknown */"(sendself self-1/1356 constant/1074)";
+                /* unknown */"(sendself self-1/1356 constant/1074)";
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Alpha */15,
+                           [/* String_literal */11,
+                            "..",
+                            [/* Alpha */15,/* End_of_format */0]]],
+                          "%a..%a"],
+                         0,
+                         match[1],
+                         0,
+                         match[2]);
+                
+               case 4:
+                /* unknown */"(sendself self-1/1356 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1356 pattern1/1089))";
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<1>",/* End_of_format */0],
+                             "<1>"]],
+                           [/* Char_literal */12,
+                            40,
+                            [/* Alpha */15,
+                             [/* Char_literal */12,
+                              41,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<1>(%a)@]"],
                          0,
                          match[1]);
@@ -1496,7 +2080,7 @@ var
                case 5:
                 var match$1=match[1][1];
                 
-                switch(match$1)
+                switch(match$1[0])
                  {case 0:
                    var x$1=match$1[1];
                    
@@ -1507,7 +2091,16 @@ var
                      case "[]":exit$1=117;
                      default:exit=116;}
                    
-                   switch(exit$1){case 117:return pp(f,[0,[2,0,0],"%s"],x$1);}
+                   switch(exit$1)
+                    {case 117:
+                      return pp
+                              (f,
+                               [/* Format */0,
+                                [/* String */2,/* No_padding */0,/* End_of_format */0],
+                                "%s"],
+                               x$1);
+                      
+                     }
                    
                   case 1:exit=116;
                   case 2:exit=116;
@@ -1517,14 +2110,22 @@ var
                 if(match[2])
                  {exit=116;}
                 else
-                 {return pp(f,[0,[12,96,[2,0,0]],"`%s"],match[1]);}
+                 {return pp
+                          (f,
+                           [/* Format */0,
+                            [/* Char_literal */12,
+                             96,
+                             [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                            "`%s"],
+                           match[1]);
+                  }
                 
                case 7:
                 var l=match[1];
                 
                 var
                  longident_x_pattern=
-                  function(f$1,param)
+                  function(f,param)
                    {var p=param[2];
                     
                     var li=param[1];
@@ -1535,19 +2136,29 @@ var
                     
                     var exit$2;
                     
-                    switch(match$3)
+                    switch(match$3[0])
                      {case 0:
-                       if(typeof match$2=="number")
+                       if(typeof match$2==="number")
                         {switch(match$2){}}
                        else
                         {switch(match$2[0])
                           {case 0:
-                            if("unknown primitive:caml_string_equal")
-                             {"unknown block:(sendself self-1/1356 longident_loc/1073)";
+                            if
+                             (CamlPrimitive["caml_string_equal"]
+                               (match$3[1],match$2[1][1]))
+                             {/* unknown */"(sendself self-1/1356 longident_loc/1073)";
                               return pp
-                                      (f$1,
-                                       [0,
-                                        [18,[1,[0,[11,"<2>",0],"<2>"]],[15,[17,0,0]]],
+                                      (f,
+                                       [/* Format */0,
+                                        [/* Formatting_gen */18,
+                                         [/* Open_box */1,
+                                          [/* Format */0,
+                                           [/* String_literal */11,"<2>",/* End_of_format */0],
+                                           "<2>"]],
+                                         [/* Alpha */15,
+                                          [/* Formatting_lit */17,
+                                           /* Close_box */0,
+                                           /* End_of_format */0]]],
                                         "@[<2>%a@]"],
                                        0,
                                        li);
@@ -1563,15 +2174,27 @@ var
                     
                     switch(exit$2)
                      {case 114:
-                       "unknown block:(sendself self-1/1356 longident_loc/1073)";
-                       "unknown block:(sendself self-1/1356 pattern1/1089)";
+                       /* unknown */"(sendself self-1/1356 longident_loc/1073)";
+                       /* unknown */"(sendself self-1/1356 pattern1/1089)";
                        return pp
-                               (f$1,
-                                [0,
-                                 [18,
-                                  [1,[0,[11,"<2>",0],"<2>"]],
-                                  [15,
-                                   [17,[0,"@;",1,0],[12,61,[17,[0,"@;",1,0],[15,[17,0,0]]]]]]],
+                               (f,
+                                [/* Format */0,
+                                 [/* Formatting_gen */18,
+                                  [/* Open_box */1,
+                                   [/* Format */0,
+                                    [/* String_literal */11,"<2>",/* End_of_format */0],
+                                    "<2>"]],
+                                  [/* Alpha */15,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* Char_literal */12,
+                                     61,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@;",1,0],
+                                      [/* Alpha */15,
+                                       [/* Formatting_lit */17,
+                                        /* Close_box */0,
+                                        /* End_of_format */0]]]]]]],
                                  "@[<2>%a@;=@;%a@]"],
                                 0,
                                 li,
@@ -1581,60 +2204,106 @@ var
                       }
                     };
                 
-                if(match[2]!=0)
-                 {'unknown block:(sendself self-1/1356 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  longident_x_pattern/1376)';
+                if(match[2]!==0)
+                 {/* unknown */'(sendself self-1/1356 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  longident_x_pattern/1376)';
                   return pp
                           (f,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<2>",0],"<2>"]],
-                             [12,123,[17,[0,"@;",1,0],[15,[11,";_}",[17,0,0]]]]]],
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<2>",/* End_of_format */0],
+                               "<2>"]],
+                             [/* Char_literal */12,
+                              123,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Alpha */15,
+                                [/* String_literal */11,
+                                 ";_}",
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]],
                             "@[<2>{@;%a;_}@]"],
                            0,
                            l);
                   }
                 else
-                 {'unknown block:(sendself self-1/1356 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  longident_x_pattern/1376)';
+                 {/* unknown */'(sendself self-1/1356 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  longident_x_pattern/1376)';
                   return pp
                           (f,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<2>",0],"<2>"]],
-                             [12,
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<2>",/* End_of_format */0],
+                               "<2>"]],
+                             [/* Char_literal */12,
                               123,
-                              [17,[0,"@;",1,0],[15,[17,[0,"@;",1,0],[12,125,[17,0,0]]]]]]],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 [/* Char_literal */12,
+                                  125,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]]]]]],
                             "@[<2>{@;%a@;}@]"],
                            0,
                            l);
                   }
                 
                case 8:
-                "unknown block:(sendself self-1/1356 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  (sendself self-1/1356 pattern1/1089))";
+                /* unknown */"(sendself self-1/1356 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  (sendself self-1/1356 pattern1/1089))";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,"[|",[15,[11,"|]",[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
+                            "[|",
+                            [/* Alpha */15,
+                             [/* String_literal */11,
+                              "|]",
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<2>[|%a|]@]"],
                          0,
                          match[1]);
                 
                case 9:exit=116;
                case 10:
-                "unknown block:(sendself self-1/1356 pattern1/1089)";
-                "unknown block:(sendself self-1/1356 core_type/1086)";
+                /* unknown */"(sendself self-1/1356 pattern1/1089)";
+                /* unknown */"(sendself self-1/1356 core_type/1086)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [12,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Char_literal */12,
                             40,
-                            [15,
-                             [17,
-                              [0,"@;",1,0],
-                              [12,58,[17,[0,"@;",1,0],[15,[12,41,[17,0,0]]]]]]]]],
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Char_literal */12,
+                               58,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Alpha */15,
+                                 [/* Char_literal */12,
+                                  41,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]]]]]]]],
                           "@[<2>(%a@;:@;%a)@]"],
                          0,
                          match[1],
@@ -1642,17 +2311,37 @@ var
                          match[2]);
                 
                case 11:
-                "unknown block:(sendself self-1/1356 longident_loc/1073)";
-                return pp(f,[0,[12,35,[15,0]],"#%a"],0,match[1]);
-                
-               case 12:
-                "unknown block:(sendself self-1/1356 pattern1/1089)";
+                /* unknown */"(sendself self-1/1356 longident_loc/1073)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,"(lazy",[17,[0,"@;",1,0],[15,[12,41,[17,0,0]]]]]],
+                         [/* Format */0,
+                          [/* Char_literal */12,
+                           35,
+                           [/* Alpha */15,/* End_of_format */0]],
+                          "#%a"],
+                         0,
+                         match[1]);
+                
+               case 12:
+                /* unknown */"(sendself self-1/1356 pattern1/1089)";
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
+                            "(lazy",
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* Alpha */15,
+                              [/* Char_literal */12,
+                               41,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                /* End_of_format */0]]]]]],
                           "@[<2>(lazy@;%a)@]"],
                          0,
                          match[1]);
@@ -1660,33 +2349,51 @@ var
                case 13:
                 return pp
                         (f,
-                         [0,
-                          [11,
+                         [/* Format */0,
+                          [/* String_literal */11,
                            "(module",
-                           [17,[0,"@ ",1,0],[2,0,[12,41,[17,[0,"@ ",1,0],0]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Char_literal */12,
+                              41,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               /* End_of_format */0]]]]],
                           "(module@ %s)@ "],
                          match[1][1]);
                 
                case 14:
-                "unknown block:(sendself self-1/1356 pattern1/1089)";
+                /* unknown */"(sendself self-1/1356 pattern1/1089)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,"exception",[17,[0,"@;",1,0],[15,[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
+                            "exception",
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<2>exception@;%a@]"],
                          0,
                          match[1]);
                 
                case 15:
-                "unknown block:(sendself self-1/1356 extension/1103 f/1357 (field 0 match/2552))";
+                /* unknown */"(sendself self-1/1356 extension/1103 f/1357 (field 0 match/2552))";
                 
                }}
            
            switch(exit)
             {case 116:
-              "unknown block:(sendself self-1/1356 paren/1071 0a 0a 1a (sendself self-1/1356 pattern/1088)\n  f/1357 x/1358)";
+              /* unknown */"(sendself self-1/1356 paren/1071 0a 0a 1a (sendself self-1/1356 pattern/1088)\n  f/1357 x/1358)";
               
              }
            }
@@ -1699,12 +2406,21 @@ var
          
          var l=param[1];
          
-         if("unknown primitive:caml_string_equal")
-          {"unknown block:(sendself self-1/1383 simple_pattern/1090)";
-           return pp(f,[0,[15,[17,[0,"@ ",1,0],0]],"%a@ "],0,p);
+         if(CamlPrimitive["caml_string_equal"](l,""))
+          {/* unknown */"(sendself self-1/1383 simple_pattern/1090)";
+           return pp
+                   (f,
+                    [/* Format */0,
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       /* End_of_format */0]],
+                     "%a@ "],
+                    0,
+                    p);
            }
          else
-          {if(l[0]=63)
+          {if(l[0]===63)
             {var len=l["length"]-1;
              
              var rest=$$String["sub"](l,1,len);
@@ -1713,22 +2429,31 @@ var
              
              var exit;
              
-             if(typeof match=="number")
+             if(typeof match==="number")
               {switch(match){}}
              else
               {switch(match[0])
                 {case 0:
-                  if("unknown primitive:caml_string_equal")
+                  if(CamlPrimitive["caml_string_equal"](match[1][1],rest))
                    {if(opt)
-                     {"unknown block:(sendself self-1/1383 expression/1093)";
+                     {/* unknown */"(sendself self-1/1383 expression/1093)";
                       return pp
                               (f,
-                               [0,
-                                [11,
+                               [/* Format */0,
+                                [/* String_literal */11,
                                  "?(",
-                                 [2,
-                                  0,
-                                  [12,61,[17,[0,"@;",1,0],[15,[12,41,[17,[0,"@;",1,0],0]]]]]]],
+                                 [/* String */2,
+                                  /* No_padding */0,
+                                  [/* Char_literal */12,
+                                   61,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* Alpha */15,
+                                     [/* Char_literal */12,
+                                      41,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@;",1,0],
+                                       /* End_of_format */0]]]]]]],
                                 "?(%s=@;%a)@;"],
                                rest,
                                0,
@@ -1736,7 +2461,17 @@ var
                       }
                     else
                      {return pp
-                              (f,[0,[12,63,[2,0,[17,[0,"@ ",1,0],0]]],"?%s@ "],rest);
+                              (f,
+                               [/* Format */0,
+                                [/* Char_literal */12,
+                                 63,
+                                 [/* String */2,
+                                  /* No_padding */0,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   /* End_of_format */0]]],
+                                "?%s@ "],
+                               rest);
                       }
                     }
                   else
@@ -1747,17 +2482,26 @@ var
              switch(exit)
               {case 110:
                 if(opt)
-                 {"unknown block:(sendself self-1/1383 pattern1/1089)";
-                  "unknown block:(sendself self-1/1383 expression/1093)";
+                 {/* unknown */"(sendself self-1/1383 pattern1/1089)";
+                  /* unknown */"(sendself self-1/1383 expression/1093)";
                   return pp
                           (f,
-                           [0,
-                            [2,
-                             0,
-                             [11,
+                           [/* Format */0,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* String_literal */11,
                               ":(",
-                              [15,
-                               [12,61,[17,[0,"@;",1,0],[15,[12,41,[17,[0,"@;",1,0],0]]]]]]]],
+                              [/* Alpha */15,
+                               [/* Char_literal */12,
+                                61,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,
+                                   41,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    /* End_of_format */0]]]]]]]],
                             "%s:(%a=@;%a)@;"],
                            l,
                            0,
@@ -1766,10 +2510,19 @@ var
                            opt[1]);
                   }
                 else
-                 {"unknown block:(sendself self-1/1383 simple_pattern/1090)";
+                 {/* unknown */"(sendself self-1/1383 simple_pattern/1090)";
                   return pp
                           (f,
-                           [0,[2,0,[12,58,[15,[17,[0,"@;",1,0],0]]]],"%s:%a@;"],
+                           [/* Format */0,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Char_literal */12,
+                              58,
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                /* End_of_format */0]]]],
+                            "%s:%a@;"],
                            l,
                            0,
                            p);
@@ -1782,14 +2535,24 @@ var
              
              var exit$1;
              
-             if(typeof match$1=="number")
+             if(typeof match$1==="number")
               {switch(match$1){}}
              else
               {switch(match$1[0])
                 {case 0:
-                  if("unknown primitive:caml_string_equal")
+                  if(CamlPrimitive["caml_string_equal"](match$1[1][1],l))
                    {return pp
-                            (f,[0,[12,126,[2,0,[17,[0,"@;",1,0],0]]],"~%s@;"],l);
+                            (f,
+                             [/* Format */0,
+                              [/* Char_literal */12,
+                               126,
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 /* End_of_format */0]]],
+                              "~%s@;"],
+                             l);
                     }
                   else
                    {exit$1=109;}
@@ -1798,11 +2561,20 @@ var
              
              switch(exit$1)
               {case 109:
-                "unknown block:(sendself self-1/1383 simple_pattern/1090)";
+                /* unknown */"(sendself self-1/1383 simple_pattern/1090)";
                 return pp
                         (f,
-                         [0,
-                          [12,126,[2,0,[12,58,[15,[17,[0,"@;",1,0],0]]]]],
+                         [/* Format */0,
+                          [/* Char_literal */12,
+                           126,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             58,
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               /* End_of_format */0]]]]],
                           "~%s:%a@;"],
                          l,
                          0,
@@ -1814,22 +2586,22 @@ var
          },
        sugar_expr,
        function(self$neg1,f,e)
-        {if(e[3]!=0)
-          {return 0;}
+        {if(e[3]!==/* [] */0)
+          {return /* false */0;}
          else
           {var match=e[1];
            
            var exit;
            
-           switch(match)
+           switch(match[0])
             {case 5:
               var match$1=match[1][1];
               
-              switch(match$1)
+              switch(match$1[0])
                {case 0:
                  var match$2=match$1[1][1];
                  
-                 switch(match$2)
+                 switch(match$2[0])
                   {case 0:
                     switch(match$2[1])
                      {case "!":
@@ -1839,15 +2611,25 @@ var
                         {if(match$3[2])
                           {exit=106;}
                          else
-                          {"unknown block:(sendself self-1/1395 simple_expr/1096)";
+                          {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
                            pp
                             (f,
-                             [0,
-                              [18,[1,[0,[11,"<hov>",0],"<hov>"]],[12,33,[15,[17,0,0]]]],
+                             [/* Format */0,
+                              [/* Formatting_gen */18,
+                               [/* Open_box */1,
+                                [/* Format */0,
+                                 [/* String_literal */11,"<hov>",/* End_of_format */0],
+                                 "<hov>"]],
+                               [/* Char_literal */12,
+                                33,
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]],
                               "@[<hov>!%a@]"],
                              0,
                              match$3[1][2]);
-                           return 1;
+                           return /* true */1;
                            }
                          }
                        else
@@ -1858,7 +2640,7 @@ var
                    case 1:
                     var match$4=match$2[1];
                     
-                    switch(match$4)
+                    switch(match$4[0])
                      {case 0:
                        var s=match$4[1];
                        
@@ -1882,25 +2664,45 @@ var
                                 {if(match$6[2])
                                   {exit=106;}
                                  else
-                                  {if("unknown primitive:caml_string_equal")
+                                  {if(CamlPrimitive["caml_string_equal"](s,"Array"))
                                     {var
                                       fmt=
-                                       [0,
-                                        [18,[1,[0,0,""]],[15,[11,".(",[15,[12,41,[17,0,0]]]]]],
+                                       [/* Format */0,
+                                        [/* Formatting_gen */18,
+                                         [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                         [/* Alpha */15,
+                                          [/* String_literal */11,
+                                           ".(",
+                                           [/* Alpha */15,
+                                            [/* Char_literal */12,
+                                             41,
+                                             [/* Formatting_lit */17,
+                                              /* Close_box */0,
+                                              /* End_of_format */0]]]]]],
                                         "@[%a.(%a)@]"];
                                      }
                                    else
                                     {var
                                       fmt=
-                                       [0,
-                                        [18,[1,[0,0,""]],[15,[11,".[",[15,[12,93,[17,0,0]]]]]],
+                                       [/* Format */0,
+                                        [/* Formatting_gen */18,
+                                         [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                         [/* Alpha */15,
+                                          [/* String_literal */11,
+                                           ".[",
+                                           [/* Alpha */15,
+                                            [/* Char_literal */12,
+                                             93,
+                                             [/* Formatting_lit */17,
+                                              /* Close_box */0,
+                                              /* End_of_format */0]]]]]],
                                         "@[%a.[%a]@]"];
                                      }
                                    
-                                   "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                   "unknown block:(sendself self-1/1395 expression/1093)";
+                                   /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                   /* unknown */"(sendself self-1/1395 expression/1093)";
                                    pp(f,fmt,0,match$5[1][2],0,match$6[1][2]);
-                                   return 1;
+                                   return /* true */1;
                                    }
                                  }
                                else
@@ -1922,42 +2724,60 @@ var
                                   {if(match$9[2])
                                     {exit=106;}
                                    else
-                                    {if("unknown primitive:caml_string_equal")
+                                    {if(CamlPrimitive["caml_string_equal"](s,"Array"))
                                       {var
                                         fmt$1=
-                                         [0,
-                                          [18,
-                                           [1,[0,0,""]],
-                                           [15,
-                                            [11,
+                                         [/* Format */0,
+                                          [/* Formatting_gen */18,
+                                           [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                           [/* Alpha */15,
+                                            [/* String_literal */11,
                                              ".(",
-                                             [15,
-                                              [12,
+                                             [/* Alpha */15,
+                                              [/* Char_literal */12,
                                                41,
-                                               [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]]]]],
+                                               [/* Formatting_lit */17,
+                                                [/* Break */0,"@ ",1,0],
+                                                [/* String_literal */11,
+                                                 "<-",
+                                                 [/* Formatting_lit */17,
+                                                  [/* Break */0,"@;",1,0],
+                                                  [/* Alpha */15,
+                                                   [/* Formatting_lit */17,
+                                                    /* Close_box */0,
+                                                    /* End_of_format */0]]]]]]]]]],
                                           "@[%a.(%a)@ <-@;%a@]"];
                                        }
                                      else
                                       {var
                                         fmt$1=
-                                         [0,
-                                          [18,
-                                           [1,[0,0,""]],
-                                           [15,
-                                            [11,
+                                         [/* Format */0,
+                                          [/* Formatting_gen */18,
+                                           [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                           [/* Alpha */15,
+                                            [/* String_literal */11,
                                              ".[",
-                                             [15,
-                                              [12,
+                                             [/* Alpha */15,
+                                              [/* Char_literal */12,
                                                93,
-                                               [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]]]]],
+                                               [/* Formatting_lit */17,
+                                                [/* Break */0,"@ ",1,0],
+                                                [/* String_literal */11,
+                                                 "<-",
+                                                 [/* Formatting_lit */17,
+                                                  [/* Break */0,"@;",1,0],
+                                                  [/* Alpha */15,
+                                                   [/* Formatting_lit */17,
+                                                    /* Close_box */0,
+                                                    /* End_of_format */0]]]]]]]]]],
                                           "@[%a.[%a]@ <-@;%a@]"];
                                        }
                                      
-                                     "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                     "unknown block:(sendself self-1/1395 expression/1093)";
-                                     "unknown block:(sendself self-1/1395 expression/1093)";
+                                     /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                     /* unknown */"(sendself self-1/1395 expression/1093)";
+                                     /* unknown */"(sendself self-1/1395 expression/1093)";
                                      pp(f,fmt$1,0,match$7[1][2],0,match$8[1][2],0,match$9[1][2]);
-                                     return 1;
+                                     return /* true */1;
                                      }
                                    }
                                  else
@@ -1976,7 +2796,7 @@ var
                       case 1:
                        var match$10=match$4[1];
                        
-                       switch(match$10)
+                       switch(match$10[0])
                         {case 0:
                           switch(match$10[1])
                            {case "Bigarray":
@@ -2006,18 +2826,28 @@ var
                                          {if(match$11[2])
                                            {exit$3=105;}
                                           else
-                                           {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                            "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                           {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                            /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                             pp
                                              (f,
-                                              [0,
-                                               [18,[1,[0,0,""]],[15,[11,".{",[15,[12,125,[17,0,0]]]]]],
+                                              [/* Format */0,
+                                               [/* Formatting_gen */18,
+                                                [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                [/* Alpha */15,
+                                                 [/* String_literal */11,
+                                                  ".{",
+                                                  [/* Alpha */15,
+                                                   [/* Char_literal */12,
+                                                    125,
+                                                    [/* Formatting_lit */17,
+                                                     /* Close_box */0,
+                                                     /* End_of_format */0]]]]]],
                                                "@[%a.{%a}@]"],
                                               0,
                                               label_exprs[1][2],
                                               0,
                                               match$11[1][2]);
-                                            return 1;
+                                            return /* true */1;
                                             }
                                           }
                                         else
@@ -2037,21 +2867,30 @@ var
                                            {if(match$13[2])
                                              {exit$3=105;}
                                             else
-                                             {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                              "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                              "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                             {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                              /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                              /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                               pp
                                                (f,
-                                                [0,
-                                                 [18,
-                                                  [1,[0,0,""]],
-                                                  [15,
-                                                   [11,
+                                                [/* Format */0,
+                                                 [/* Formatting_gen */18,
+                                                  [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                  [/* Alpha */15,
+                                                   [/* String_literal */11,
                                                     ".{",
-                                                    [15,
-                                                     [12,
+                                                    [/* Alpha */15,
+                                                     [/* Char_literal */12,
                                                       125,
-                                                      [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]],
+                                                      [/* Formatting_lit */17,
+                                                       [/* Break */0,"@ ",1,0],
+                                                       [/* String_literal */11,
+                                                        "<-",
+                                                        [/* Formatting_lit */17,
+                                                         [/* Break */0,"@ ",1,0],
+                                                         [/* Alpha */15,
+                                                          [/* Formatting_lit */17,
+                                                           /* Close_box */0,
+                                                           /* End_of_format */0]]]]]]]]]],
                                                  "@[%a.{%a}@ <-@ %a@]"],
                                                 0,
                                                 label_exprs[1][2],
@@ -2059,7 +2898,7 @@ var
                                                 match$12[1][2],
                                                 0,
                                                 match$13[1][2]);
-                                              return 1;
+                                              return /* true */1;
                                               }
                                             }
                                           else
@@ -2086,15 +2925,26 @@ var
                                            {if(match$15[2])
                                              {exit$3=105;}
                                             else
-                                             {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                              "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                              "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                             {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                              /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                              /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                               pp
                                                (f,
-                                                [0,
-                                                 [18,
-                                                  [1,[0,0,""]],
-                                                  [15,[11,".{",[15,[12,44,[15,[12,125,[17,0,0]]]]]]]],
+                                                [/* Format */0,
+                                                 [/* Formatting_gen */18,
+                                                  [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                  [/* Alpha */15,
+                                                   [/* String_literal */11,
+                                                    ".{",
+                                                    [/* Alpha */15,
+                                                     [/* Char_literal */12,
+                                                      44,
+                                                      [/* Alpha */15,
+                                                       [/* Char_literal */12,
+                                                        125,
+                                                        [/* Formatting_lit */17,
+                                                         /* Close_box */0,
+                                                         /* End_of_format */0]]]]]]]],
                                                  "@[%a.{%a,%a}@]"],
                                                 0,
                                                 label_exprs[1][2],
@@ -2102,7 +2952,7 @@ var
                                                 match$14[1][2],
                                                 0,
                                                 match$15[1][2]);
-                                              return 1;
+                                              return /* true */1;
                                               }
                                             }
                                           else
@@ -2128,25 +2978,34 @@ var
                                              {if(match$18[2])
                                                {exit$3=105;}
                                               else
-                                               {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                               {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                                 pp
                                                  (f,
-                                                  [0,
-                                                   [18,
-                                                    [1,[0,0,""]],
-                                                    [15,
-                                                     [11,
+                                                  [/* Format */0,
+                                                   [/* Formatting_gen */18,
+                                                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                    [/* Alpha */15,
+                                                     [/* String_literal */11,
                                                       ".{",
-                                                      [15,
-                                                       [12,
+                                                      [/* Alpha */15,
+                                                       [/* Char_literal */12,
                                                         44,
-                                                        [15,
-                                                         [12,
+                                                        [/* Alpha */15,
+                                                         [/* Char_literal */12,
                                                           125,
-                                                          [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]],
+                                                          [/* Formatting_lit */17,
+                                                           [/* Break */0,"@ ",1,0],
+                                                           [/* String_literal */11,
+                                                            "<-",
+                                                            [/* Formatting_lit */17,
+                                                             [/* Break */0,"@ ",1,0],
+                                                             [/* Alpha */15,
+                                                              [/* Formatting_lit */17,
+                                                               /* Close_box */0,
+                                                               /* End_of_format */0]]]]]]]]]]]],
                                                    "@[%a.{%a,%a}@ <-@ %a@]"],
                                                   0,
                                                   label_exprs[1][2],
@@ -2156,7 +3015,7 @@ var
                                                   match$17[1][2],
                                                   0,
                                                   match$18[1][2]);
-                                                return 1;
+                                                return /* true */1;
                                                 }
                                               }
                                             else
@@ -2189,17 +3048,30 @@ var
                                              {if(match$21[2])
                                                {exit$3=105;}
                                               else
-                                               {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                               {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                                 pp
                                                  (f,
-                                                  [0,
-                                                   [18,
-                                                    [1,[0,0,""]],
-                                                    [15,
-                                                     [11,".{",[15,[12,44,[15,[12,44,[15,[12,125,[17,0,0]]]]]]]]]],
+                                                  [/* Format */0,
+                                                   [/* Formatting_gen */18,
+                                                    [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                    [/* Alpha */15,
+                                                     [/* String_literal */11,
+                                                      ".{",
+                                                      [/* Alpha */15,
+                                                       [/* Char_literal */12,
+                                                        44,
+                                                        [/* Alpha */15,
+                                                         [/* Char_literal */12,
+                                                          44,
+                                                          [/* Alpha */15,
+                                                           [/* Char_literal */12,
+                                                            125,
+                                                            [/* Formatting_lit */17,
+                                                             /* Close_box */0,
+                                                             /* End_of_format */0]]]]]]]]]],
                                                    "@[%a.{%a,%a,%a}@]"],
                                                   0,
                                                   label_exprs[1][2],
@@ -2209,7 +3081,7 @@ var
                                                   match$20[1][2],
                                                   0,
                                                   match$21[1][2]);
-                                                return 1;
+                                                return /* true */1;
                                                 }
                                               }
                                             else
@@ -2241,29 +3113,38 @@ var
                                                {if(match$25[2])
                                                  {exit$3=105;}
                                                 else
-                                                 {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                  "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                  "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                  "unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                  "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                                 {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                  /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                  /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                  /* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                  /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                                   pp
                                                    (f,
-                                                    [0,
-                                                     [18,
-                                                      [1,[0,0,""]],
-                                                      [15,
-                                                       [11,
+                                                    [/* Format */0,
+                                                     [/* Formatting_gen */18,
+                                                      [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                      [/* Alpha */15,
+                                                       [/* String_literal */11,
                                                         ".{",
-                                                        [15,
-                                                         [12,
+                                                        [/* Alpha */15,
+                                                         [/* Char_literal */12,
                                                           44,
-                                                          [15,
-                                                           [12,
+                                                          [/* Alpha */15,
+                                                           [/* Char_literal */12,
                                                             44,
-                                                            [15,
-                                                             [12,
+                                                            [/* Alpha */15,
+                                                             [/* Char_literal */12,
                                                               125,
-                                                              [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]]]],
+                                                              [/* Formatting_lit */17,
+                                                               [/* Break */0,"@ ",1,0],
+                                                               [/* String_literal */11,
+                                                                "<-",
+                                                                [/* Formatting_lit */17,
+                                                                 [/* Break */0,"@ ",1,0],
+                                                                 [/* Alpha */15,
+                                                                  [/* Formatting_lit */17,
+                                                                   /* Close_box */0,
+                                                                   /* End_of_format */0]]]]]]]]]]]]]],
                                                      "@[%a.{%a,%a,%a}@ <-@ %a@]"],
                                                     0,
                                                     label_exprs[1][2],
@@ -2275,7 +3156,7 @@ var
                                                     match$24[1][2],
                                                     0,
                                                     match$25[1][2]);
-                                                  return 1;
+                                                  return /* true */1;
                                                   }
                                                 }
                                               else
@@ -2304,23 +3185,33 @@ var
                                         if(match$26)
                                          {var match$27=match$26[1][2][1];
                                           
-                                          switch(match$27)
+                                          switch(match$27[0])
                                            {case 14:
                                              if(match$26[2])
                                               {exit$3=105;}
                                              else
-                                              {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                               "unknown block:(sendself self-1/1395 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1395 simple_expr/1096))";
+                                              {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                               /* unknown */"(sendself self-1/1395 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1395 simple_expr/1096))";
                                                pp
                                                 (f,
-                                                 [0,
-                                                  [18,[1,[0,0,""]],[15,[11,".{",[15,[12,125,[17,0,0]]]]]],
+                                                 [/* Format */0,
+                                                  [/* Formatting_gen */18,
+                                                   [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                   [/* Alpha */15,
+                                                    [/* String_literal */11,
+                                                     ".{",
+                                                     [/* Alpha */15,
+                                                      [/* Char_literal */12,
+                                                       125,
+                                                       [/* Formatting_lit */17,
+                                                        /* Close_box */0,
+                                                        /* End_of_format */0]]]]]],
                                                   "@[%a.{%a}@]"],
                                                  0,
                                                  label_exprs[1][2],
                                                  0,
                                                  match$27[1]);
-                                               return 1;
+                                               return /* true */1;
                                                }
                                              
                                             default:exit$3=105;}
@@ -2338,7 +3229,7 @@ var
                                         if(match$28)
                                          {var match$29=match$28[1][2][1];
                                           
-                                          switch(match$29)
+                                          switch(match$29[0])
                                            {case 14:
                                              var match$30=match$28[2];
                                              
@@ -2346,21 +3237,30 @@ var
                                               {if(match$30[2])
                                                 {exit$3=105;}
                                                else
-                                                {"unknown block:(sendself self-1/1395 simple_expr/1096)";
-                                                 "unknown block:(sendself self-1/1395 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1395 simple_expr/1096))";
-                                                 "unknown block:(sendself self-1/1395 simple_expr/1096)";
+                                                {/* unknown */"(sendself self-1/1395 simple_expr/1096)";
+                                                 /* unknown */"(sendself self-1/1395 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1395 simple_expr/1096))";
+                                                 /* unknown */"(sendself self-1/1395 simple_expr/1096)";
                                                  pp
                                                   (f,
-                                                   [0,
-                                                    [18,
-                                                     [1,[0,0,""]],
-                                                     [15,
-                                                      [11,
+                                                   [/* Format */0,
+                                                    [/* Formatting_gen */18,
+                                                     [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                                                     [/* Alpha */15,
+                                                      [/* String_literal */11,
                                                        ".{",
-                                                       [15,
-                                                        [12,
+                                                       [/* Alpha */15,
+                                                        [/* Char_literal */12,
                                                          125,
-                                                         [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]],
+                                                         [/* Formatting_lit */17,
+                                                          [/* Break */0,"@ ",1,0],
+                                                          [/* String_literal */11,
+                                                           "<-",
+                                                           [/* Formatting_lit */17,
+                                                            [/* Break */0,"@ ",1,0],
+                                                            [/* Alpha */15,
+                                                             [/* Formatting_lit */17,
+                                                              /* Close_box */0,
+                                                              /* End_of_format */0]]]]]]]]]],
                                                     "@[%a.{%a}@ <-@ %a@]"],
                                                    0,
                                                    label_exprs[1][2],
@@ -2368,7 +3268,7 @@ var
                                                    match$29[1],
                                                    0,
                                                    match$30[1][2]);
-                                                 return 1;
+                                                 return /* true */1;
                                                  }
                                                }
                                              else
@@ -2386,7 +3286,7 @@ var
                                    
                                   default:exit$3=105;}
                                 
-                                switch(exit$3){case 105:return 0;}
+                                switch(exit$3){case 105:return /* false */0;}
                                 
                                }
                              
@@ -2406,19 +3306,27 @@ var
               
              default:exit=106;}
            
-           switch(exit){case 106:return 0;}
+           switch(exit){case 106:return /* false */0;}
            }
          },
        expression,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1438 expression/1093)";
-           "unknown block:(sendself self-1/1438 attributes/1097)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1438 expression/1093)";
+           /* unknown */"(sendself self-1/1438 attributes/1097)";
            return pp
                    (f,
-                    [0,[11,"((",[15,[12,41,[15,[12,41,0]]]]],"((%a)%a)"],
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "((",
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        41,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                     "((%a)%a)"],
                     0,
-                    /* record */[0,x[1],x[2],0],
+                    /* record */[0,x[1],x[2],/* [] */0],
                     0,
                     x[3]);
            }
@@ -2427,7 +3335,7 @@ var
            
            var exit;
            
-           switch(match)
+           switch(match[0])
             {case 2:exit=102;
              case 3:exit=101;
              case 4:exit=101;
@@ -2436,24 +3344,31 @@ var
               
               var e=match[1];
               
-              "unknown block:(sendself self-1/1438 sugar_expr/1092 f/1439 x/1440)";
+              /* unknown */"(sendself self-1/1438 sugar_expr/1092 f/1439 x/1440)";
               if(!0)
                {var match$1=view_fixity_of_exp(e);
                 
                 var exit$1;
                 
-                if("unknown primitive:isint")
+                if(typeof match$1==="number")
                  {exit$1=91;}
                 else
                  {var variant=match$1[1];
                   
-                  if(variant!=-784100624)
-                   {if(variant!=-481604174)
+                  if(variant!==-784100624)
+                   {if(variant!==-481604174)
                      {exit$1=91;}
                     else
                      {var s=match$1[2];
                       
-                      if(List["mem"](s,[0,"~+",[0,"~-",[0,"~+.",[0,"~-.",0]]]]))
+                      if
+                       (List["mem"]
+                         (s,
+                          [/* :: */0,
+                           "~+",
+                           [/* :: */0,
+                            "~-",
+                            [/* :: */0,"~+.",[/* :: */0,"~-.",/* [] */0]]]]))
                        {var s$1=$$String["sub"](s,1,s["length"]-1);}
                       else
                        {var s$1=s;}
@@ -2464,13 +3379,23 @@ var
                        {if(l[2])
                          {exit$2=89;}
                         else
-                         {"unknown block:(sendself self-1/1438 label_x_expression_param/1128)";
+                         {/* unknown */"(sendself self-1/1438 label_x_expression_param/1128)";
                           return pp
                                   (f,
-                                   [0,
-                                    [18,
-                                     [1,[0,[11,"<2>",0],"<2>"]],
-                                     [2,0,[17,[0,"@;",1,0],[15,[17,0,0]]]]],
+                                   [/* Format */0,
+                                    [/* Formatting_gen */18,
+                                     [/* Open_box */1,
+                                      [/* Format */0,
+                                       [/* String_literal */11,"<2>",/* End_of_format */0],
+                                       "<2>"]],
+                                     [/* String */2,
+                                      /* No_padding */0,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@;",1,0],
+                                       [/* Alpha */15,
+                                        [/* Formatting_lit */17,
+                                         /* Close_box */0,
+                                         /* End_of_format */0]]]]],
                                     "@[<2>%s@;%a@]"],
                                    s$1,
                                    0,
@@ -2482,13 +3407,23 @@ var
                       
                       switch(exit$2)
                        {case 89:
-                         "unknown block:(sendself self-1/1438 list/1069 0a 0a 0a\n  (sendself self-1/1438 label_x_expression_param/1128))";
+                         /* unknown */"(sendself self-1/1438 list/1069 0a 0a 0a\n  (sendself self-1/1438 label_x_expression_param/1128))";
                          return pp
                                  (f,
-                                  [0,
-                                   [18,
-                                    [1,[0,[11,"<2>",0],"<2>"]],
-                                    [2,0,[17,[0,"@;",1,0],[15,[17,0,0]]]]],
+                                  [/* Format */0,
+                                   [/* Formatting_gen */18,
+                                    [/* Open_box */1,
+                                     [/* Format */0,
+                                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                                      "<2>"]],
+                                    [/* String */2,
+                                     /* No_padding */0,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@;",1,0],
+                                      [/* Alpha */15,
+                                       [/* Formatting_lit */17,
+                                        /* Close_box */0,
+                                        /* End_of_format */0]]]]],
                                    "@[<2>%s@;%a@]"],
                                   s$1,
                                   0,
@@ -2507,14 +3442,27 @@ var
                        {if(match$2[2])
                          {exit$3=88;}
                         else
-                         {"unknown block:(send (sendself self-1/1438 reset/1068) 199524600)";
-                          "unknown block:(sendself self-1/1438 label_x_expression_param/1128)";
+                         {/* unknown */"(send (sendself self-1/1438 reset/1068) 199524600)";
+                          /* unknown */"(sendself self-1/1438 label_x_expression_param/1128)";
                           return pp
                                   (f,
-                                   [0,
-                                    [18,
-                                     [1,[0,[11,"<2>",0],"<2>"]],
-                                     [15,[17,[0,"@;",1,0],[2,0,[17,[0,"@;",1,0],[15,[17,0,0]]]]]]],
+                                   [/* Format */0,
+                                    [/* Formatting_gen */18,
+                                     [/* Open_box */1,
+                                      [/* Format */0,
+                                       [/* String_literal */11,"<2>",/* End_of_format */0],
+                                       "<2>"]],
+                                     [/* Alpha */15,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@;",1,0],
+                                       [/* String */2,
+                                        /* No_padding */0,
+                                        [/* Formatting_lit */17,
+                                         [/* Break */0,"@;",1,0],
+                                         [/* Alpha */15,
+                                          [/* Formatting_lit */17,
+                                           /* Close_box */0,
+                                           /* End_of_format */0]]]]]]],
                                     "@[<2>%a@;%s@;%a@]"],
                                    0,
                                    l[1],
@@ -2531,12 +3479,23 @@ var
                     
                     switch(exit$3)
                      {case 88:
-                       "unknown block:(sendself self-1/1438 simple_expr/1096)";
-                       "unknown block:(sendself self-1/1438 list/1069 0a 0a 0a\n  (sendself self-1/1438 label_x_expression_param/1128))";
+                       /* unknown */"(sendself self-1/1438 simple_expr/1096)";
+                       /* unknown */"(sendself self-1/1438 list/1069 0a 0a 0a\n  (sendself self-1/1438 label_x_expression_param/1128))";
                        return pp
                                (f,
-                                [0,
-                                 [18,[1,[0,[11,"<2>",0],"<2>"]],[15,[12,32,[15,[17,0,0]]]]],
+                                [/* Format */0,
+                                 [/* Formatting_gen */18,
+                                  [/* Open_box */1,
+                                   [/* Format */0,
+                                    [/* String_literal */11,"<2>",/* End_of_format */0],
+                                    "<2>"]],
+                                  [/* Alpha */15,
+                                   [/* Char_literal */12,
+                                    32,
+                                    [/* Alpha */15,
+                                     [/* Formatting_lit */17,
+                                      /* Close_box */0,
+                                      /* End_of_format */0]]]]],
                                  "@[<2>%a %a@]"],
                                 0,
                                 e,
@@ -2551,15 +3510,28 @@ var
                  {case 91:
                    return pp
                            (f,
-                            [0,
-                             [18,[1,[0,[11,"<hov2>",0],"<hov2>"]],[15,[17,0,0]]],
+                            [/* Format */0,
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                                "<hov2>"]],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                /* End_of_format */0]]],
                              "@[<hov2>%a@]"],
-                            function(f$1,param)
-                             {"unknown block:(sendself self-1/1438 expression2/1095)";
-                              "unknown block:(sendself self-1/1438 list/1069 0a 0a 0a\n  (send (sendself self-1/1438 reset/1068) 199524600))";
+                            function(f,param)
+                             {/* unknown */"(sendself self-1/1438 expression2/1095)";
+                              /* unknown */"(sendself self-1/1438 list/1069 0a 0a 0a\n  (send (sendself self-1/1438 reset/1068) 199524600))";
                               return pp
-                                      (f$1,
-                                       [0,[15,[17,[0,"@ ",1,0],[15,0]]],"%a@ %a"],
+                                      (f,
+                                       [/* Format */0,
+                                        [/* Alpha */15,
+                                         [/* Formatting_lit */17,
+                                          [/* Break */0,"@ ",1,0],
+                                          [/* Alpha */15,/* End_of_format */0]]],
+                                        "%a@ %a"],
                                        0,
                                        param[1],
                                        0,
@@ -2583,18 +3555,27 @@ var
                   
                   var exit$4;
                   
-                  if("unknown primitive:isint")
-                   {if(match$4!=812216871)
+                  if(typeof match$4==="number")
+                   {if(match$4!==812216871)
                      {exit$4=92;}
                     else
-                     {"unknown block:(sendself self-1/1438 longident_loc/1073)";
-                      "unknown block:(sendself self-1/1438 simple_expr/1096)";
+                     {/* unknown */"(sendself self-1/1438 longident_loc/1073)";
+                      /* unknown */"(sendself self-1/1438 simple_expr/1096)";
                       return pp
                               (f,
-                               [0,
-                                [18,
-                                 [1,[0,[11,"<2>",0],"<2>"]],
-                                 [15,[17,[0,"@;",1,0],[15,[17,0,0]]]]],
+                               [/* Format */0,
+                                [/* Formatting_gen */18,
+                                 [/* Open_box */1,
+                                  [/* Format */0,
+                                   [/* String_literal */11,"<2>",/* End_of_format */0],
+                                   "<2>"]],
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@;",1,0],
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     /* Close_box */0,
+                                     /* End_of_format */0]]]]],
                                 "@[<2>%a@;%a@]"],
                                0,
                                match[1],
@@ -2603,16 +3584,19 @@ var
                       }
                     }
                   else
-                   {if(match$4[1]!=-1044071951)
+                   {if(match$4[1]!==-1044071951)
                      {exit$4=92;}
                     else
-                     {'unknown block:(sendself self-1/1438 list/1069\n  [0: [0: [17: [0: "@;" 1 0] [11: "::" [17: [0: "@;" 1 0] 0a]]] "@;::@;"]] 0a\n  0a (sendself self-1/1438 simple_expr/1096) f/1439 (field 1 match/2336))';
+                     {/* unknown */'(sendself self-1/1438 list/1069\n  [0: [0: [17: [0: "@;" 1 0] [11: "::" [17: [0: "@;" 1 0] 0a]]] "@;::@;"]] 0a\n  0a (sendself self-1/1438 simple_expr/1096) f/1439 (field 1 match/2336))';
                       }
                     }
                   
                   switch(exit$4)
                    {case 92:
-                     throw [0,Assert_failure,[0,"parsing/pprintast.ml",584,15]];
+                     throw [0,
+                            CamlPrimitive["caml_global_data"]["Assert_failure"],
+                            [0,"parsing/pprintast.ml",584,15]];
+                     
                     }
                   }
                 else
@@ -2625,13 +3609,25 @@ var
               var match$5=match[2];
               
               if(match$5)
-               {"unknown block:(sendself self-1/1438 simple_expr/1096)";
+               {/* unknown */"(sendself self-1/1438 simple_expr/1096)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [12,96,[2,0,[17,[0,"@;",1,0],[15,[17,0,0]]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* Char_literal */12,
+                            96,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                /* End_of_format */0]]]]]],
                           "@[<2>`%s@;%a@]"],
                          match[1],
                          0,
@@ -2641,19 +3637,31 @@ var
                {exit=97;}
               
              case 13:
-              "unknown block:(sendself self-1/1438 simple_expr/1096)";
-              "unknown block:(sendself self-1/1438 longident_loc/1073)";
-              "unknown block:(sendself self-1/1438 expression/1093)";
+              /* unknown */"(sendself self-1/1438 simple_expr/1096)";
+              /* unknown */"(sendself self-1/1438 longident_loc/1073)";
+              /* unknown */"(sendself self-1/1438 expression/1093)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<2>",0],"<2>"]],
-                         [15,
-                          [12,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<2>",/* End_of_format */0],
+                           "<2>"]],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,
                            46,
-                           [15,
-                            [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String_literal */11,
+                              "<-",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]],
                         "@[<2>%a.%a@ <-@ %a@]"],
                        0,
                        match[1],
@@ -2665,27 +3673,49 @@ var
              case 15:exit=100;
              case 16:exit=101;
              case 22:
-              "unknown block:(sendself self-1/1438 longident_loc/1073)";
+              /* unknown */"(sendself self-1/1438 longident_loc/1073)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [11,"new",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String_literal */11,
+                          "new",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>new@ %a@]"],
                        0,
                        match[1]);
               
              case 23:
-              "unknown block:(sendself self-1/1438 expression/1093)";
+              /* unknown */"(sendself self-1/1438 expression/1093)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [2,
-                          0,
-                          [17,[0,"@ ",1,0],[11,"<-",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String_literal */11,
+                            "<-",
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]],
                         "@[<hov2>%s@ <-@ %a@]"],
                        match[1][1],
                        0,
@@ -2694,54 +3724,96 @@ var
              case 24:
               var
                string_x_expression=
-                function(f$1,param)
-                 {"unknown block:(sendself self-1/1438 expression/1093)";
+                function(f,param)
+                 {/* unknown */"(sendself self-1/1438 expression/1093)";
                   return pp
-                          (f$1,
-                           [0,
-                            [18,
-                             [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                             [2,
-                              0,
-                              [17,[0,"@ ",1,0],[12,61,[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]],
+                          (f,
+                           [/* Format */0,
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                               "<hov2>"]],
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Char_literal */12,
+                                61,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]]]]]],
                             "@[<hov2>%s@ =@ %a@]"],
                            param[1][1],
                            0,
                            param[2]);
                   };
               
-              "unknown block:(sendself self-1/1438 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  string_x_expression/1501)";
+              /* unknown */"(sendself self-1/1438 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  string_x_expression/1501)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [11,"{<",[15,[11,">}",[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String_literal */11,
+                          "{<",
+                          [/* Alpha */15,
+                           [/* String_literal */11,
+                            ">}",
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>{<%a>}@]"],
                        0,
                        match[1]);
               
              case 25:exit=102;
              case 26:
-              "unknown block:(sendself self-1/1438 simple_expr/1096)";
+              /* unknown */"(sendself self-1/1438 simple_expr/1096)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [11,"assert",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String_literal */11,
+                          "assert",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>assert@ %a@]"],
                        0,
                        match[1]);
               
              case 27:
-              "unknown block:(sendself self-1/1438 simple_expr/1096)";
+              /* unknown */"(sendself self-1/1438 simple_expr/1096)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [11,"lazy",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String_literal */11,
+                          "lazy",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>lazy@ %a@]"],
                        0,
                        match[1]);
@@ -2752,18 +3824,31 @@ var
               var e$1=match[1];
               
               if(match$6)
-               {"unknown block:(sendself self-1/1438 simple_expr/1096)";
-                "unknown block:(sendself self-1/1438 core_type/1086)";
+               {/* unknown */"(sendself self-1/1438 simple_expr/1096)";
+                /* unknown */"(sendself self-1/1438 core_type/1086)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [11,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* String_literal */11,
                             "(!poly!",
-                            [17,
-                             [0,"@ ",1,0],
-                             [15,[17,[0,"@ ",1,0],[11,": ",[15,[12,41,[17,0,0]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* String_literal */11,
+                                ": ",
+                                [/* Alpha */15,
+                                 [/* Char_literal */12,
+                                  41,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]]]]]]]],
                           "@[<hov2>(!poly!@ %a@ : %a)@]"],
                          0,
                          e$1,
@@ -2771,31 +3856,54 @@ var
                          match$6[1]);
                 }
               else
-               {"unknown block:(sendself self-1/1438 simple_expr/1096)";
+               {/* unknown */"(sendself self-1/1438 simple_expr/1096)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [11,"!poly!",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* String_literal */11,
+                            "!poly!",
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<hov2>!poly!@ %a@]"],
                          0,
                          e$1);
                 }
               
              case 32:
-              "unknown block:(sendself self-1/1438 longident_loc/1073)";
-              "unknown block:(sendself self-1/1438 expression/1093)";
+              /* unknown */"(sendself self-1/1438 longident_loc/1073)";
+              /* unknown */"(sendself self-1/1438 expression/1093)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<2>",0],"<2>"]],
-                         [11,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<2>",/* End_of_format */0],
+                           "<2>"]],
+                         [/* String_literal */11,
                           "let open",
-                          [2,
-                           0,
-                           [12,32,[15,[11," in",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]]]],
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Char_literal */12,
+                            32,
+                            [/* Alpha */15,
+                             [/* String_literal */11,
+                              " in",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]],
                         "@[<2>let open%s %a in@;%a@]"],
                        override(match[1]),
                        0,
@@ -2804,38 +3912,49 @@ var
                        match[3]);
               
              case 33:
-              "unknown block:(sendself self-1/1438 extension/1103 f/1439 (field 0 match/2345))";
+              /* unknown */"(sendself self-1/1438 extension/1103 f/1439 (field 0 match/2345))";
               
              default:exit=97;}
            
            switch(exit)
             {case 101:
-              if(self$neg1[pipe]||self$neg1[semi])
-               {"unknown block:(sendself self-1/1438 paren/1071 0a 0a 1a\n  (send (sendself self-1/1438 reset/1068) 782176664) f/1439 x/1440)";
+              if(self$neg1[pipe+1]||self$neg1[semi+1])
+               {/* unknown */"(sendself self-1/1438 paren/1071 0a 0a 1a\n  (send (sendself self-1/1438 reset/1068) 782176664) f/1439 x/1440)";
                 }
               else
-               {"unknown block:(exit 100)";}
+               {exit=100;}
               
              case 102:
-              if(self$neg1[semi])
-               {"unknown block:(sendself self-1/1438 paren/1071 0a 0a 1a\n  (send (sendself self-1/1438 reset/1068) 782176664) f/1439 x/1440)";
+              if(self$neg1[semi+1])
+               {/* unknown */"(sendself self-1/1438 paren/1071 0a 0a 1a\n  (send (sendself self-1/1438 reset/1068) 782176664) f/1439 x/1440)";
                 }
               else
-               {"unknown block:(exit 100)";}
+               {exit=100;}
               
              case 100:
               var exit$5;
               
-              switch(match)
+              switch(match[0])
                {case 2:
-                 "unknown block:(send (sendself self-1/1438 reset/1068) -928231026)";
-                 "unknown block:(sendself self-1/1438 expression/1093)";
+                 /* unknown */"(send (sendself self-1/1438 reset/1068) -928231026)";
+                 /* unknown */"(sendself self-1/1438 expression/1093)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<2>",0],"<2>"]],
-                            [15,[11," in",[17,[0,"@;<1 -2>",1,-2],[15,[17,0,0]]]]]],
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<2>",/* End_of_format */0],
+                              "<2>"]],
+                            [/* Alpha */15,
+                             [/* String_literal */11,
+                              " in",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;<1 -2>",1,-2],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]],
                            "@[<2>%a in@;<1 -2>%a@]"],
                           0,
                           /* tuple */[0,match[1],match[2]],
@@ -2843,31 +3962,51 @@ var
                           match[3]);
                  
                 case 3:
-                 "unknown block:(sendself self-1/1438 case_list/1127)";
+                 /* unknown */"(sendself self-1/1438 case_list/1127)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<hv>",0],"<hv>"]],
-                            [11,"function",[15,[17,0,0]]]],
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<hv>",/* End_of_format */0],
+                              "<hv>"]],
+                            [/* String_literal */11,
+                             "function",
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]],
                            "@[<hv>function%a@]"],
                           0,
                           match[1]);
                  
                 case 4:
-                 "unknown block:(sendself self-1/1438 label_exp/1091)";
-                 "unknown block:(sendself self-1/1438 expression/1093)";
+                 /* unknown */"(sendself self-1/1438 label_exp/1091)";
+                 /* unknown */"(sendself self-1/1438 expression/1093)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<2>",0],"<2>"]],
-                            [11,
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<2>",/* End_of_format */0],
+                              "<2>"]],
+                            [/* String_literal */11,
                              "fun",
-                             [17,
-                              [0,"@;",1,0],
-                              [15,
-                               [17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]]]],
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* String_literal */11,
+                                 "->",
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@;",1,0],
+                                  [/* Alpha */15,
+                                   [/* Formatting_lit */17,
+                                    /* Close_box */0,
+                                    /* End_of_format */0]]]]]]]]],
                            "@[<2>fun@;%a@;->@;%a@]"],
                           0,
                           /* tuple */[0,match[1],match[2],match[3]],
@@ -2875,21 +4014,41 @@ var
                           match[4]);
                  
                 case 6:
-                 "unknown block:(send (sendself self-1/1438 reset/1068) 782176664)";
-                 "unknown block:(sendself self-1/1438 case_list/1127)";
+                 /* unknown */"(send (sendself self-1/1438 reset/1068) 782176664)";
+                 /* unknown */"(sendself self-1/1438 case_list/1127)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                            [18,
-                             [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                             [18,
-                              [1,[0,[11,"<2>",0],"<2>"]],
-                              [11,
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                              "<hv0>"]],
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                               "<hv0>"]],
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<2>",/* End_of_format */0],
+                                "<2>"]],
+                              [/* String_literal */11,
                                "match ",
-                               [15,
-                                [17,0,[17,[0,"@ ",1,0],[11,"with",[17,0,[15,[17,0,0]]]]]]]]]]],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@ ",1,0],
+                                  [/* String_literal */11,
+                                   "with",
+                                   [/* Formatting_lit */17,
+                                    /* Close_box */0,
+                                    [/* Alpha */15,
+                                     [/* Formatting_lit */17,
+                                      /* Close_box */0,
+                                      /* End_of_format */0]]]]]]]]]]],
                            "@[<hv0>@[<hv0>@[<2>match %a@]@ with@]%a@]"],
                           0,
                           match[1],
@@ -2897,27 +4056,43 @@ var
                           match[2]);
                  
                 case 7:
-                 "unknown block:(send (sendself self-1/1438 reset/1068) 782176664)";
-                 "unknown block:(sendself self-1/1438 case_list/1127)";
+                 /* unknown */"(send (sendself self-1/1438 reset/1068) 782176664)";
+                 /* unknown */"(sendself self-1/1438 case_list/1127)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<0>",0],"<0>"]],
-                            [18,
-                             [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                             [11,
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<0>",/* End_of_format */0],
+                              "<0>"]],
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                               "<hv2>"]],
+                             [/* String_literal */11,
                               "try",
-                              [17,
-                               [0,"@ ",1,0],
-                               [15,
-                                [17,
-                                 0,
-                                 [17,
-                                  [0,"@ ",1,0],
-                                  [18,
-                                   [1,[0,[11,"<0>",0],"<0>"]],
-                                   [11,"with",[15,[17,0,[17,0,0]]]]]]]]]]]],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@ ",1,0],
+                                  [/* Formatting_gen */18,
+                                   [/* Open_box */1,
+                                    [/* Format */0,
+                                     [/* String_literal */11,"<0>",/* End_of_format */0],
+                                     "<0>"]],
+                                   [/* String_literal */11,
+                                    "with",
+                                    [/* Alpha */15,
+                                     [/* Formatting_lit */17,
+                                      /* Close_box */0,
+                                      [/* Formatting_lit */17,
+                                       /* Close_box */0,
+                                       /* End_of_format */0]]]]]]]]]]]],
                            "@[<0>@[<hv2>try@ %a@]@ @[<0>with%a@]@]"],
                           0,
                           match[1],
@@ -2927,31 +4102,43 @@ var
                 case 15:exit$5=99;
                 case 16:exit$5=99;
                 case 25:
-                 "unknown block:(send (sendself self-1/1438 reset/1068) 748778728)";
-                 "unknown block:(sendself self-1/1438 expression/1093)";
+                 /* unknown */"(send (sendself self-1/1438 reset/1068) 748778728)";
+                 /* unknown */"(sendself self-1/1438 expression/1093)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                            [11,
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                              "<hov2>"]],
+                            [/* String_literal */11,
                              "let",
-                             [17,
-                              [0,"@ ",1,0],
-                              [11,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* String_literal */11,
                                "module",
-                               [17,
-                                [0,"@ ",1,0],
-                                [2,
-                                 0,
-                                 [17,
-                                  [0,"@ ",1,0],
-                                  [12,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* String */2,
+                                 /* No_padding */0,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@ ",1,0],
+                                  [/* Char_literal */12,
                                    61,
-                                   [17,
-                                    [0,"@ ",1,0],
-                                    [15,
-                                     [17,[0,"@ ",1,0],[11,"in",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]]]]],
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@ ",1,0],
+                                    [/* Alpha */15,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@ ",1,0],
+                                      [/* String_literal */11,
+                                       "in",
+                                       [/* Formatting_lit */17,
+                                        [/* Break */0,"@ ",1,0],
+                                        [/* Alpha */15,
+                                         [/* Formatting_lit */17,
+                                          /* Close_box */0,
+                                          /* End_of_format */0]]]]]]]]]]]]]]],
                            "@[<hov2>let@ module@ %s@ =@ %a@ in@ %a@]"],
                           match[1][1],
                           0,
@@ -2963,35 +4150,54 @@ var
               
               switch(exit$5)
                {case 99:
-                 if(self$neg1[ifthenelse])
-                  {"unknown block:(sendself self-1/1438 paren/1071 0a 0a 1a\n  (send (sendself self-1/1438 reset/1068) 782176664) f/1439 x/1440)";
+                 if(self$neg1[ifthenelse+1])
+                  {/* unknown */"(sendself self-1/1438 paren/1071 0a 0a 1a\n  (send (sendself self-1/1438 reset/1068) 782176664) f/1439 x/1440)";
                    }
                  else
-                  {switch(match)
+                  {switch(match[0])
                     {case 15:
                       var
                        fmt=
-                        [0,
-                         [18,
-                          [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                            "<hv0>"]],
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
                             "if",
-                            [17,
-                             [0,"@ ",1,0],
-                             [15,
-                              [17,
-                               0,
-                               [17,
-                                [0,"@;",1,0],
-                                [18,
-                                 [1,[0,[11,"<2>",0],"<2>"]],
-                                 [11,"then",[17,[0,"@ ",1,0],[15,[17,0,[15,[17,0,0]]]]]]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Formatting_gen */18,
+                                 [/* Open_box */1,
+                                  [/* Format */0,
+                                   [/* String_literal */11,"<2>",/* End_of_format */0],
+                                   "<2>"]],
+                                 [/* String_literal */11,
+                                  "then",
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     /* Close_box */0,
+                                     [/* Alpha */15,
+                                      [/* Formatting_lit */17,
+                                       /* Close_box */0,
+                                       /* End_of_format */0]]]]]]]]]]]]]],
                          "@[<hv0>@[<2>if@ %a@]@;@[<2>then@ %a@]%a@]"];
                       
-                      "unknown block:(send (sendself self-1/1438 under_ifthenelse/1064) 782176664)";
-                      "unknown block:(send (sendself self-1/1438 under_ifthenelse/1064) 782176664)";
+                      /* unknown */"(send (sendself self-1/1438 under_ifthenelse/1064) 782176664)";
+                      /* unknown */"(send (sendself self-1/1438 under_ifthenelse/1064) 782176664)";
                       return pp
                               (f,
                                fmt,
@@ -2999,23 +4205,33 @@ var
                                match[1],
                                0,
                                match[2],
-                               function(f$1,eo)
+                               function(f,eo)
                                 {if(eo)
-                                  {"unknown block:(send (sendself self-1/1438 under_semi/1063) 782176664)";
+                                  {/* unknown */"(send (sendself self-1/1438 under_semi/1063) 782176664)";
                                    return pp
-                                           (f$1,
-                                            [0,
-                                             [17,
-                                              [0,"@;",1,0],
-                                              [18,
-                                               [1,[0,[11,"<2>",0],"<2>"]],
-                                               [11,"else",[17,[0,"@;",1,0],[15,[17,0,0]]]]]],
+                                           (f,
+                                            [/* Format */0,
+                                             [/* Formatting_lit */17,
+                                              [/* Break */0,"@;",1,0],
+                                              [/* Formatting_gen */18,
+                                               [/* Open_box */1,
+                                                [/* Format */0,
+                                                 [/* String_literal */11,"<2>",/* End_of_format */0],
+                                                 "<2>"]],
+                                               [/* String_literal */11,
+                                                "else",
+                                                [/* Formatting_lit */17,
+                                                 [/* Break */0,"@;",1,0],
+                                                 [/* Alpha */15,
+                                                  [/* Formatting_lit */17,
+                                                   /* Close_box */0,
+                                                   /* End_of_format */0]]]]]],
                                              "@;@[<2>else@;%a@]"],
                                             0,
                                             eo[1]);
                                    }
                                  else
-                                  {return 0;}
+                                  {return /* () */0;}
                                  },
                                match[3]);
                       
@@ -3025,7 +4241,7 @@ var
                         function(acc,v)
                          {var match$7=v[1];
                           
-                          switch(match$7)
+                          switch(match$7[0])
                            {case 16:
                              return sequence_helper
                                      (/* :: */[0,match$7[1],acc],match$7[2]);
@@ -3033,13 +4249,21 @@ var
                             default:return List["rev"](/* :: */[0,v,acc]);}
                           };
                       
-                      var lst=sequence_helper(0,x);
+                      var lst=sequence_helper(/* [] */0,x);
                       
-                      'unknown block:(sendself self-1/1438 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  (send (sendself self-1/1438 under_semi/1063) 782176664))';
+                      /* unknown */'(sendself self-1/1438 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  (send (sendself self-1/1438 under_semi/1063) 782176664))';
                       return pp
                               (f,
-                               [0,
-                                [18,[1,[0,[11,"<hv>",0],"<hv>"]],[15,[17,0,0]]],
+                               [/* Format */0,
+                                [/* Formatting_gen */18,
+                                 [/* Open_box */1,
+                                  [/* Format */0,
+                                   [/* String_literal */11,"<hv>",/* End_of_format */0],
+                                   "<hv>"]],
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]],
                                 "@[<hv>%a@]"],
                                0,
                                lst);
@@ -3050,47 +4274,60 @@ var
                 }
               
              case 97:
-              "unknown block:(sendself self-1/1438 expression1/1094 f/1439 x/1440)";
+              /* unknown */"(sendself self-1/1438 expression1/1094 f/1439 x/1440)";
               
              }
            }
          },
        expression1,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1506 expression/1093 f/1507 x/1508)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1506 expression/1093 f/1507 x/1508)";
            }
          else
           {var match=x[1];
            
-           switch(match)
+           switch(match[0])
             {case 29:
-              "unknown block:(sendself self-1/1506 class_structure/1110)";
-              return pp(f,[0,[15,0],"%a"],0,match[1]);
+              /* unknown */"(sendself self-1/1506 class_structure/1110)";
+              return pp
+                      (f,
+                       [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                       0,
+                       match[1]);
               
              default:
-              "unknown block:(sendself self-1/1506 expression2/1095 f/1507 x/1508)";
+              /* unknown */"(sendself self-1/1506 expression2/1095 f/1507 x/1508)";
               }
            }
          },
        expression2,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1511 expression/1093 f/1512 x/1513)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1511 expression/1093 f/1512 x/1513)";
            }
          else
           {var match=x[1];
            
-           switch(match)
+           switch(match[0])
             {case 12:
-              "unknown block:(sendself self-1/1511 simple_expr/1096)";
-              "unknown block:(sendself self-1/1511 longident_loc/1073)";
+              /* unknown */"(sendself self-1/1511 simple_expr/1096)";
+              /* unknown */"(sendself self-1/1511 longident_loc/1073)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [15,[12,46,[15,[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,
+                           46,
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>%a.%a@]"],
                        0,
                        match[1],
@@ -3098,48 +4335,68 @@ var
                        match[2]);
               
              case 21:
-              "unknown block:(sendself self-1/1511 simple_expr/1096)";
+              /* unknown */"(sendself self-1/1511 simple_expr/1096)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [15,[12,35,[2,0,[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,
+                           35,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>%a#%s@]"],
                        0,
                        match[1],
                        match[2]);
               
              default:
-              "unknown block:(sendself self-1/1511 simple_expr/1096 f/1512 x/1513)";
+              /* unknown */"(sendself self-1/1511 simple_expr/1096 f/1512 x/1513)";
               }
            }
          },
        simple_expr,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1519 expression/1093 f/1520 x/1521)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1519 expression/1093 f/1520 x/1521)";
            }
          else
           {var match=x[1];
            
            var exit;
            
-           switch(match)
+           switch(match[0])
             {case 0:
-              "unknown block:(sendself self-1/1519 longident_loc/1073 f/1520 (field 0 match/2314))";
+              /* unknown */"(sendself self-1/1519 longident_loc/1073 f/1520 (field 0 match/2314))";
               
              case 1:
-              "unknown block:(sendself self-1/1519 constant/1074 f/1520 (field 0 match/2314))";
+              /* unknown */"(sendself self-1/1519 constant/1074 f/1520 (field 0 match/2314))";
               
              case 8:
-              'unknown block:(sendself self-1/1519 list/1069\n  [0: [0: [12: \',\' [17: [0: "@;" 1 0] 0a]] ",@;"]] 0a 0a\n  (sendself self-1/1519 simple_expr/1096))';
+              /* unknown */'(sendself self-1/1519 list/1069\n  [0: [0: [12: \',\' [17: [0: "@;" 1 0] 0a]] ",@;"]] 0a 0a\n  (sendself self-1/1519 simple_expr/1096))';
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [12,40,[15,[12,41,[17,0,0]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* Char_literal */12,
+                          40,
+                          [/* Alpha */15,
+                           [/* Char_literal */12,
+                            41,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]],
                         "@[<hov2>(%a)@]"],
                        0,
                        match[1]);
@@ -3150,34 +4407,54 @@ var
                 
                 var exit$1;
                 
-                if("unknown primitive:isint")
-                 {if(match$1!=5493713)
-                   {if(match$1!=405183496)
+                if(typeof match$1==="number")
+                 {if(match$1!==5493713)
+                   {if(match$1!==405183496)
                      {exit$1=80;}
                     else
-                     {return pp(f,[0,[11,"()",0],"()"]);}
+                     {return pp
+                              (f,
+                               [/* Format */0,
+                                [/* String_literal */11,"()",/* End_of_format */0],
+                                "()"]);
+                      }
                     }
                   else
-                   {return pp(f,[0,[11,"[]",0],"[]"]);}
+                   {return pp
+                            (f,
+                             [/* Format */0,
+                              [/* String_literal */11,"[]",/* End_of_format */0],
+                              "[]"]);
+                    }
                   }
                 else
                  {var variant=match$1[1];
                   
-                  if(variant!=-944563106)
-                   {if(variant!=947848242)
+                  if(variant!==-944563106)
+                   {if(variant!==947848242)
                      {exit$1=80;}
                     else
-                     {"unknown block:(sendself self-1/1519 longident/1072 f/1520 (field 1 match/2307))";
+                     {/* unknown */"(sendself self-1/1519 longident/1072 f/1520 (field 1 match/2307))";
                       }
                     }
                   else
-                   {'unknown block:(sendself self-1/1519 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  (send (sendself self-1/1519 under_semi/1063) 782176664))';
+                   {/* unknown */'(sendself self-1/1519 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  (send (sendself self-1/1519 under_semi/1063) 782176664))';
                     return pp
                             (f,
-                             [0,
-                              [18,
-                               [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                               [12,91,[15,[12,93,[17,0,0]]]]],
+                             [/* Format */0,
+                              [/* Formatting_gen */18,
+                               [/* Open_box */1,
+                                [/* Format */0,
+                                 [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                                 "<hv0>"]],
+                               [/* Char_literal */12,
+                                91,
+                                [/* Alpha */15,
+                                 [/* Char_literal */12,
+                                  93,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]]]],
                               "@[<hv0>[%a]@]"],
                              0,
                              match$1[2]);
@@ -3186,7 +4463,10 @@ var
                 
                 switch(exit$1)
                  {case 80:
-                   throw [0,Assert_failure,[0,"parsing/pprintast.ml",652,15]];
+                   throw [0,
+                          CamlPrimitive["caml_global_data"]["Assert_failure"],
+                          [0,"parsing/pprintast.ml",652,15]];
+                   
                   }
                 }
               else
@@ -3196,12 +4476,20 @@ var
               if(match[2])
                {exit=85;}
               else
-               {return pp(f,[0,[12,96,[2,0,0]],"`%s"],match[1]);}
+               {return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Char_literal */12,
+                           96,
+                           [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                          "`%s"],
+                         match[1]);
+                }
               
              case 11:
               var
                longident_x_expression=
-                function(f$1,param)
+                function(f,param)
                  {var e=param[2];
                   
                   var li=param[1];
@@ -3210,14 +4498,22 @@ var
                   
                   var exit$2;
                   
-                  switch(match$2)
+                  switch(match$2[0])
                    {case 0:
-                     if("unknown primitive:caml_equal")
-                      {"unknown block:(sendself self-1/1519 longident_loc/1073)";
+                     if(CamlPrimitive["caml_equal"](li[1],match$2[1][1]))
+                      {/* unknown */"(sendself self-1/1519 longident_loc/1073)";
                        return pp
-                               (f$1,
-                                [0,
-                                 [18,[1,[0,[11,"<hov2>",0],"<hov2>"]],[15,[17,0,0]]],
+                               (f,
+                                [/* Format */0,
+                                 [/* Formatting_gen */18,
+                                  [/* Open_box */1,
+                                   [/* Format */0,
+                                    [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                                    "<hov2>"]],
+                                  [/* Alpha */15,
+                                   [/* Formatting_lit */17,
+                                    /* Close_box */0,
+                                    /* End_of_format */0]]],
                                  "@[<hov2>%a@]"],
                                 0,
                                 li);
@@ -3229,15 +4525,27 @@ var
                   
                   switch(exit$2)
                    {case 81:
-                     "unknown block:(sendself self-1/1519 longident_loc/1073)";
-                     "unknown block:(sendself self-1/1519 simple_expr/1096)";
+                     /* unknown */"(sendself self-1/1519 longident_loc/1073)";
+                     /* unknown */"(sendself self-1/1519 simple_expr/1096)";
                      return pp
-                             (f$1,
-                              [0,
-                               [18,
-                                [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                                [15,
-                                 [17,[0,"@;",1,0],[12,61,[17,[0,"@;",1,0],[15,[17,0,0]]]]]]],
+                             (f,
+                              [/* Format */0,
+                               [/* Formatting_gen */18,
+                                [/* Open_box */1,
+                                 [/* Format */0,
+                                  [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                                  "<hov2>"]],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@;",1,0],
+                                  [/* Char_literal */12,
+                                   61,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* Alpha */15,
+                                     [/* Formatting_lit */17,
+                                      /* Close_box */0,
+                                      /* End_of_format */0]]]]]]],
                                "@[<hov2>%a@;=@;%a@]"],
                               0,
                               li,
@@ -3247,20 +4555,36 @@ var
                     }
                   };
               
-              'unknown block:(sendself self-1/1519 option/1070 0a\n  [0: [0: [11: " with" [17: [0: "@;" 1 0] 0a]] " with@;"]]\n  (sendself self-1/1519 simple_expr/1096))';
-              'unknown block:(sendself self-1/1519 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  longident_x_expression/1546)';
+              /* unknown */'(sendself self-1/1519 option/1070 0a\n  [0: [0: [11: " with" [17: [0: "@;" 1 0] 0a]] " with@;"]]\n  (sendself self-1/1519 simple_expr/1096))';
+              /* unknown */'(sendself self-1/1519 list/1069\n  [0: [0: [12: \';\' [17: [0: "@;" 1 0] 0a]] ";@;"]] 0a 0a\n  longident_x_expression/1546)';
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                         [18,
-                          [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                          [12,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                           "<hv0>"]],
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                            "<hv2>"]],
+                          [/* Char_literal */12,
                            123,
-                           [17,
-                            [0,"@;",1,0],
-                            [15,[15,[17,0,[17,[0,"@;",1,0],[12,125,[17,0,0]]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@;",1,0],
+                            [/* Alpha */15,
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Char_literal */12,
+                                 125,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  /* End_of_format */0]]]]]]]]]],
                         "@[<hv0>@[<hv2>{@;%a%a@]@;}@]"],
                        0,
                        match[2],
@@ -3268,15 +4592,30 @@ var
                        match[1]);
               
              case 14:
-              "unknown block:(sendself self-1/1519 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  (send (sendself self-1/1519 under_semi/1063) -57040990))";
+              /* unknown */"(sendself self-1/1519 list/1069 [0: [0: [12: ';' 0a] \";\"]] 0a 0a\n  (send (sendself self-1/1519 under_semi/1063) -57040990))";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<0>",0],"<0>"]],
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [11,"[|",[15,[11,"|]",[17,0,[17,0,0]]]]]]],
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<0>",/* End_of_format */0],
+                           "<0>"]],
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* String_literal */11,
+                           "[|",
+                           [/* Alpha */15,
+                            [/* String_literal */11,
+                             "|]",
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]],
                         "@[<0>@[<2>[|%a|]@]@]"],
                        0,
                        match[1]);
@@ -3284,65 +4623,93 @@ var
              case 17:
               var
                fmt=
-                [0,
-                 [18,
-                  [1,[0,[11,"<2>",0],"<2>"]],
-                  [11,
+                [/* Format */0,
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<2>",/* End_of_format */0],
+                    "<2>"]],
+                  [/* String_literal */11,
                    "while",
-                   [17,
-                    [0,"@;",1,0],
-                    [15,
-                     [17,
-                      [0,"@;",1,0],
-                      [11,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@;",1,0],
+                    [/* Alpha */15,
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@;",1,0],
+                      [/* String_literal */11,
                        "do",
-                       [17,
-                        [0,"@;",1,0],
-                        [15,[17,[0,"@;",1,0],[11,"done",[17,0,0]]]]]]]]]]],
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@;",1,0],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* String_literal */11,
+                           "done",
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]]]],
                  "@[<2>while@;%a@;do@;%a@;done@]"];
               
-              "unknown block:(sendself self-1/1519 expression/1093)";
-              "unknown block:(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
               return pp(f,fmt,0,match[1],0,match[2]);
               
              case 18:
               var
                fmt$1=
-                [0,
-                 [18,
-                  [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                  [18,
-                   [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [11,
+                [/* Format */0,
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                    "<hv0>"]],
+                  [/* Formatting_gen */18,
+                   [/* Open_box */1,
+                    [/* Format */0,
+                     [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                     "<hv2>"]],
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* String_literal */11,
                      "for ",
-                     [15,
-                      [11,
+                     [/* Alpha */15,
+                      [/* String_literal */11,
                        " =",
-                       [17,
-                        [0,"@;",1,0],
-                        [15,
-                         [17,
-                          [0,"@;",1,0],
-                          [15,
-                           [15,
-                            [17,
-                             [0,"@;",1,0],
-                             [11,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@;",1,0],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* Alpha */15,
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String_literal */11,
                               "do",
-                              [17,
-                               0,
-                               [17,
-                                [0,"@;",1,0],
-                                [15,[17,0,[17,[0,"@;",1,0],[11,"done",[17,0,0]]]]]]]]]]]]]]]]]]]],
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@;",1,0],
+                                   [/* String_literal */11,
+                                    "done",
+                                    [/* Formatting_lit */17,
+                                     /* Close_box */0,
+                                     /* End_of_format */0]]]]]]]]]]]]]]]]]]]],
                  "@[<hv0>@[<hv2>@[<2>for %a =@;%a@;%a%a@;do@]@;%a@]@;done@]"];
               
-              "unknown block:(sendself self-1/1519 pattern/1088)";
-              "unknown block:(sendself self-1/1519 expression/1093)";
-              "unknown block:(sendself self-1/1519 direction_flag/1079)";
-              "unknown block:(sendself self-1/1519 expression/1093)";
-              "unknown block:(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 pattern/1088)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 direction_flag/1079)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
               return pp
                       (f,
                        fmt$1,
@@ -3358,24 +4725,39 @@ var
                        match[5]);
               
              case 19:
-              "unknown block:(sendself self-1/1519 expression/1093)";
-              "unknown block:(sendself self-1/1519 core_type/1086)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 core_type/1086)";
               return pp
                       (f,
-                       [0,[12,40,[15,[11," : ",[15,[12,41,0]]]]],"(%a : %a)"],
+                       [/* Format */0,
+                        [/* Char_literal */12,
+                         40,
+                         [/* Alpha */15,
+                          [/* String_literal */11,
+                           " : ",
+                           [/* Alpha */15,
+                            [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                        "(%a : %a)"],
                        0,
                        match[1],
                        0,
                        match[2]);
               
              case 20:
-              "unknown block:(sendself self-1/1519 expression/1093)";
-              'unknown block:(sendself self-1/1519 option/1070 [0: [0: [11: " : " 0a] " : "]]\n  [0: [0: [12: \' \' 0a] " "]] (sendself self-1/1519 core_type/1086))';
-              "unknown block:(sendself self-1/1519 core_type/1086)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
+              /* unknown */'(sendself self-1/1519 option/1070 [0: [0: [11: " : " 0a] " : "]]\n  [0: [0: [12: \' \' 0a] " "]] (sendself self-1/1519 core_type/1086))';
+              /* unknown */"(sendself self-1/1519 core_type/1086)";
               return pp
                       (f,
-                       [0,
-                        [12,40,[15,[15,[11," :> ",[15,[12,41,0]]]]]],
+                       [/* Format */0,
+                        [/* Char_literal */12,
+                         40,
+                         [/* Alpha */15,
+                          [/* Alpha */15,
+                           [/* String_literal */11,
+                            " :> ",
+                            [/* Alpha */15,
+                             [/* Char_literal */12,41,/* End_of_format */0]]]]]],
                         "(%a%a :> %a)"],
                        0,
                        match[1],
@@ -3385,32 +4767,45 @@ var
                        match[3]);
               
              case 30:
-              "unknown block:(sendself self-1/1519 expression/1093)";
+              /* unknown */"(sendself self-1/1519 expression/1093)";
               return pp
                       (f,
-                       [0,
-                        [11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "fun",
-                         [17,
-                          [0,"@;",1,0],
-                          [11,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* String_literal */11,
                            "(type",
-                           [17,
-                            [0,"@;",1,0],
-                            [2,
-                             0,
-                             [12,41,[17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,0]]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@;",1,0],
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Char_literal */12,
+                              41,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* String_literal */11,
+                                "->",
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                         "fun@;(type@;%s)@;->@;%a"],
                        match[1],
                        0,
                        match[2]);
               
              case 31:
-              "unknown block:(sendself self-1/1519 module_expr/1115)";
+              /* unknown */"(sendself self-1/1519 module_expr/1115)";
               return pp
                       (f,
-                       [0,
-                        [11,"(module",[17,[0,"@;",1,0],[15,[12,41,0]]]],
+                       [/* Format */0,
+                        [/* String_literal */11,
+                         "(module",
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* Alpha */15,
+                           [/* Char_literal */12,41,/* End_of_format */0]]]],
                         "(module@;%a)"],
                        0,
                        match[1]);
@@ -3419,30 +4814,46 @@ var
            
            switch(exit)
             {case 85:
-              "unknown block:(sendself self-1/1519 paren/1071 0a 0a 1a\n  (sendself self-1/1519 expression/1093) f/1520 x/1521)";
+              /* unknown */"(sendself self-1/1519 paren/1071 0a 0a 1a\n  (sendself self-1/1519 expression/1093) f/1520 x/1521)";
               
              }
            }
          },
        attributes,
        function(self$neg1,f,l)
-        {"unknown block:(sendself self-1/1554 attribute/1099 f/1555)";
+        {/* unknown */"(sendself self-1/1554 attribute/1099 f/1555)";
          return List["iter"](0,l);
          },
        item_attributes,
        function(self$neg1,f,l)
-        {"unknown block:(sendself self-1/1558 item_attribute/1100 f/1559)";
+        {/* unknown */"(sendself self-1/1558 item_attribute/1100 f/1559)";
          return List["iter"](0,l);
          },
        attribute,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1562 payload/1117)";
+        {/* unknown */"(sendself self-1/1562 payload/1117)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [12,91,[17,5,[2,0,[17,[0,"@ ",1,0],[15,[12,93,[17,0,0]]]]]]]],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* Char_literal */12,
+                     91,
+                     [/* Formatting_lit */17,
+                      /* Escaped_at */5,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Alpha */15,
+                         [/* Char_literal */12,
+                          93,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[<2>[@@%s@ %a]@]"],
                   param[1][1],
                   0,
@@ -3450,15 +4861,31 @@ var
          },
        item_attribute,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1567 payload/1117)";
+        {/* unknown */"(sendself self-1/1567 payload/1117)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [12,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* Char_literal */12,
                      91,
-                     [17,5,[17,5,[2,0,[17,[0,"@ ",1,0],[15,[12,93,[17,0,0]]]]]]]]],
+                     [/* Formatting_lit */17,
+                      /* Escaped_at */5,
+                      [/* Formatting_lit */17,
+                       /* Escaped_at */5,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,
+                           93,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]],
                    "@[<2>[@@@@%s@ %a]@]"],
                   param[1][1],
                   0,
@@ -3466,17 +4893,33 @@ var
          },
        floating_attribute,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1572 payload/1117)";
+        {/* unknown */"(sendself self-1/1572 payload/1117)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [12,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* Char_literal */12,
                      91,
-                     [17,
-                      5,
-                      [17,5,[17,5,[2,0,[17,[0,"@ ",1,0],[15,[12,93,[17,0,0]]]]]]]]]],
+                     [/* Formatting_lit */17,
+                      /* Escaped_at */5,
+                      [/* Formatting_lit */17,
+                       /* Escaped_at */5,
+                       [/* Formatting_lit */17,
+                        /* Escaped_at */5,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Char_literal */12,
+                            93,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]]]]],
                    "@[<2>[@@@@@@%s@ %a]@]"],
                   param[1][1],
                   0,
@@ -3484,24 +4927,39 @@ var
          },
        value_description,
        function(self$neg1,f,x)
-        {"unknown block:(sendself self-1/1577 core_type/1086)";
+        {/* unknown */"(sendself self-1/1577 core_type/1086)";
          return pp
                  (f,
-                  [0,
-                   [18,[1,[0,[11,"<hov2>",0],"<hov2>"]],[15,[15,[17,0,0]]]],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                      "<hov2>"]],
+                    [/* Alpha */15,
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       /* Close_box */0,
+                       /* End_of_format */0]]]],
                    "@[<hov2>%a%a@]"],
                   0,
                   x[2],
-                  function(f$1,x$1)
-                   {if(x$1[3]!=0)
-                     {"unknown block:(sendself self-1/1577 list/1069 0a 0a 0a\n  (sendself self-1/1577 constant_string/1081))";
+                  function(f,x)
+                   {if(x[3]!==/* [] */0)
+                     {/* unknown */"(sendself self-1/1577 list/1069 0a 0a 0a\n  (sendself self-1/1577 constant_string/1081))";
                       return pp
-                              (f$1,
-                               [0,
-                                [17,[0,"@ ",1,0],[12,61,[17,[0,"@ ",1,0],[15,0]]]],
+                              (f,
+                               [/* Format */0,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Char_literal */12,
+                                  61,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,/* End_of_format */0]]]],
                                 "@ =@ %a"],
                                0,
-                               x$1[3]);
+                               x[3]);
                       }
                     else
                      {return 0;}
@@ -3510,15 +4968,29 @@ var
          },
        extension,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1583 payload/1117)";
+        {/* unknown */"(sendself self-1/1583 payload/1117)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [12,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* Char_literal */12,
                      91,
-                     [12,37,[2,0,[17,[0,"@ ",1,0],[15,[12,93,[17,0,0]]]]]]]],
+                     [/* Char_literal */12,
+                      37,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Alpha */15,
+                         [/* Char_literal */12,
+                          93,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           /* End_of_format */0]]]]]]]],
                    "@[<2>[%%%s@ %a]@]"],
                   param[1][1],
                   0,
@@ -3526,17 +4998,31 @@ var
          },
        item_extension,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1588 payload/1117)";
+        {/* unknown */"(sendself self-1/1588 payload/1117)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [12,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* Char_literal */12,
                      91,
-                     [12,
+                     [/* Char_literal */12,
                       37,
-                      [12,37,[2,0,[17,[0,"@ ",1,0],[15,[12,93,[17,0,0]]]]]]]]],
+                      [/* Char_literal */12,
+                       37,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Char_literal */12,
+                           93,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]]]]],
                    "@[<2>[%%%%%s@ %a]@]"],
                   param[1][1],
                   0,
@@ -3544,13 +5030,23 @@ var
          },
        exception_declaration,
        function(self$neg1,f,ext)
-        {"unknown block:(sendself self-1/1593 extension_constructor/1126)";
+        {/* unknown */"(sendself self-1/1593 extension_constructor/1126)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                    [11,"exception",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                      "<hov2>"]],
+                    [/* String_literal */11,
+                     "exception",
+                     [/* Formatting_lit */17,
+                      [/* Break */0,"@ ",1,0],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        /* Close_box */0,
+                        /* End_of_format */0]]]]],
                    "@[<hov2>exception@ %a@]"],
                   0,
                   ext);
@@ -3559,19 +5055,29 @@ var
        function(self$neg1,f,param)
         {var
           class_type_field=
-           function(f$1,x)
+           function(f,x)
             {var match=x[1];
              
-             switch(match)
+             switch(match[0])
               {case 0:
-                "unknown block:(sendself self-1/1597 class_type/1107)";
-                "unknown block:(sendself self-1/1597 item_attributes/1098)";
+                /* unknown */"(sendself self-1/1597 class_type/1107)";
+                /* unknown */"(sendself self-1/1597 item_attributes/1098)";
                 return pp
-                        (f$1,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,"inherit",[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]],
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
+                            "inherit",
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               [/* Alpha */15,/* End_of_format */0]]]]]],
                           "@[<2>inherit@ %a@]%a"],
                          0,
                          match[1],
@@ -3581,26 +5087,36 @@ var
                case 1:
                 var match$1=match[1];
                 
-                "unknown block:(sendself self-1/1597 mutable_flag/1075)";
-                "unknown block:(sendself self-1/1597 virtual_flag/1076)";
-                "unknown block:(sendself self-1/1597 core_type/1086)";
-                "unknown block:(sendself self-1/1597 item_attributes/1098)";
+                /* unknown */"(sendself self-1/1597 mutable_flag/1075)";
+                /* unknown */"(sendself self-1/1597 virtual_flag/1076)";
+                /* unknown */"(sendself self-1/1597 core_type/1086)";
+                /* unknown */"(sendself self-1/1597 item_attributes/1098)";
                 return pp
-                        (f$1,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
                             "val ",
-                            [17,
-                             [0,"@ ",1,0],
-                             [15,
-                              [15,
-                               [2,
-                                0,
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [12,58,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Alpha */15,
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Char_literal */12,
+                                  58,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     /* Close_box */0,
+                                     [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]],
                           "@[<2>val @ %a%a%s@ :@ %a@]%a"],
                          0,
                          match$1[2],
@@ -3615,21 +5131,34 @@ var
                case 2:
                 var match$2=match[1];
                 
-                "unknown block:(sendself self-1/1597 private_flag/1080)";
-                "unknown block:(sendself self-1/1597 virtual_flag/1076)";
-                "unknown block:(sendself self-1/1597 core_type/1086)";
-                "unknown block:(sendself self-1/1597 item_attributes/1098)";
+                /* unknown */"(sendself self-1/1597 private_flag/1080)";
+                /* unknown */"(sendself self-1/1597 virtual_flag/1076)";
+                /* unknown */"(sendself self-1/1597 core_type/1086)";
+                /* unknown */"(sendself self-1/1597 item_attributes/1098)";
                 return pp
-                        (f$1,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
                             "method ",
-                            [15,
-                             [12,
+                            [/* Alpha */15,
+                             [/* Char_literal */12,
                               32,
-                              [15,[2,0,[11," :",[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]]]]]],
+                              [/* Alpha */15,
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* String_literal */11,
+                                 " :",
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@;",1,0],
+                                  [/* Alpha */15,
+                                   [/* Formatting_lit */17,
+                                    /* Close_box */0,
+                                    [/* Alpha */15,/* End_of_format */0]]]]]]]]]]],
                           "@[<2>method %a %a%s :@;%a@]%a"],
                          0,
                          match$2[2],
@@ -3644,22 +5173,32 @@ var
                case 3:
                 var match$3=match[1];
                 
-                "unknown block:(sendself self-1/1597 core_type/1086)";
-                "unknown block:(sendself self-1/1597 core_type/1086)";
-                "unknown block:(sendself self-1/1597 item_attributes/1098)";
+                /* unknown */"(sendself self-1/1597 core_type/1086)";
+                /* unknown */"(sendself self-1/1597 core_type/1086)";
+                /* unknown */"(sendself self-1/1597 item_attributes/1098)";
                 return pp
-                        (f$1,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [11,
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String_literal */11,
                             "constraint",
-                            [17,
-                             [0,"@ ",1,0],
-                             [15,
-                              [17,
-                               [0,"@ ",1,0],
-                               [12,61,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Char_literal */12,
+                                61,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                           "@[<2>constraint@ %a@ =@ %a@]%a"],
                          0,
                          match$3[1],
@@ -3669,43 +5208,70 @@ var
                          x[3]);
                 
                case 4:
-                "unknown block:(sendself self-1/1597 floating_attribute/1101 f/1602 (field 0 match/2286))";
+                /* unknown */"(sendself self-1/1597 floating_attribute/1101 f/1602 (field 0 match/2286))";
                 
                case 5:
-                "unknown block:(sendself self-1/1597 item_extension/1104 f/1602 (field 0 match/2286))";
+                /* unknown */"(sendself self-1/1597 item_extension/1104 f/1602 (field 0 match/2286))";
                 
-                "unknown block:(sendself self-1/1597 item_attributes/1098 f/1602 (field 2 x/1603))";
+                /* unknown */"(sendself self-1/1597 item_attributes/1098 f/1602 (field 2 x/1603))";
                 
                }
              };
          
-         'unknown block:(sendself self-1/1597 list/1069 [0: [0: [17: [0: "@;" 1 0] 0a] "@;"]] 0a 0a\n  class_type_field/1601)';
+         /* unknown */'(sendself self-1/1597 list/1069 [0: [0: [17: [0: "@;" 1 0] 0a] "@;"]] 0a 0a\n  class_type_field/1601)';
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                    [18,
-                     [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                     [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                      "<hv0>"]],
+                    [/* Formatting_gen */18,
+                     [/* Open_box */1,
+                      [/* Format */0,
+                       [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                       "<hv2>"]],
+                     [/* String_literal */11,
                       "object",
-                      [18,
-                       [1,[0,[11,"<1>",0],"<1>"]],
-                       [15,
-                        [17,
-                         0,
-                         [17,
-                          [0,"@ ",1,0],
-                          [15,[17,0,[17,[0,"@ ",1,0],[11,"end",[17,0,0]]]]]]]]]]]],
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<1>",/* End_of_format */0],
+                         "<1>"]],
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         /* Close_box */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String_literal */11,
+                              "end",
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]]]]]]]]],
                    "@[<hv0>@[<hv2>object@[<1>%a@]@ %a@]@ end@]"],
-                  function(f$1,ct)
+                  function(f,ct)
                    {var match=ct[1];
                     
-                    if("unknown primitive:isint")
-                     {return 0;}
+                    if(typeof match==="number")
+                     {return /* () */0;}
                     else
-                     {"unknown block:(sendself self-1/1597 core_type/1086)";
-                      return pp(f$1,[0,[11," (",[15,[12,41,0]]]," (%a)"],0,ct);
+                     {/* unknown */"(sendself self-1/1597 core_type/1086)";
+                      return pp
+                              (f,
+                               [/* Format */0,
+                                [/* String_literal */11,
+                                 " (",
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,41,/* End_of_format */0]]],
+                                " (%a)"],
+                               0,
+                               ct);
                       }
                     },
                   param[1],
@@ -3716,24 +5282,36 @@ var
        function(self$neg1,f,x)
         {var match=x[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
-            "unknown block:(sendself self-1/1620 longident_loc/1073)";
-            "unknown block:(sendself self-1/1620 attributes/1097)";
+            /* unknown */"(sendself self-1/1620 longident_loc/1073)";
+            /* unknown */"(sendself self-1/1620 attributes/1097)";
             return pp
                     (f,
-                     [0,[15,[15,[15,0]]],"%a%a%a"],
-                     function(f$1,l)
+                     [/* Format */0,
+                      [/* Alpha */15,
+                       [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]]],
+                      "%a%a%a"],
+                     function(f,l)
                       {if(l)
-                        {"unknown block:(sendself self-1/1620 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1620 core_type/1086))";
+                        {/* unknown */"(sendself self-1/1620 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1620 core_type/1086))";
                          return pp
-                                 (f$1,
-                                  [0,[12,91,[15,[12,93,[17,[0,"@ ",1,0],0]]]],"[%a]@ "],
+                                 (f,
+                                  [/* Format */0,
+                                   [/* Char_literal */12,
+                                    91,
+                                    [/* Alpha */15,
+                                     [/* Char_literal */12,
+                                      93,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@ ",1,0],
+                                       /* End_of_format */0]]]],
+                                   "[%a]@ "],
                                   0,
                                   l);
                          }
                        else
-                        {return 0;}
+                        {return /* () */0;}
                        },
                      match[2],
                      0,
@@ -3742,20 +5320,32 @@ var
                      x[3]);
             
            case 1:
-            "unknown block:(sendself self-1/1620 class_signature/1106 f/1621 (field 0 match/2280))";
+            /* unknown */"(sendself self-1/1620 class_signature/1106 f/1621 (field 0 match/2280))";
             
-            "unknown block:(sendself self-1/1620 attributes/1097 f/1621 (field 2 x/1622))";
+            /* unknown */"(sendself self-1/1620 attributes/1097 f/1621 (field 2 x/1622))";
             
            case 2:
-            "unknown block:(sendself self-1/1620 type_with_label/1085)";
-            "unknown block:(sendself self-1/1620 class_type/1107)";
+            /* unknown */"(sendself self-1/1620 type_with_label/1085)";
+            /* unknown */"(sendself self-1/1620 class_type/1107)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<2>",0],"<2>"]],
-                       [15,
-                        [17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@;",1,0],
+                         [/* String_literal */11,
+                          "->",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]],
                       "@[<2>%a@;->@;%a@]"],
                      0,
                      /* tuple */[0,match[1],match[2]],
@@ -3763,9 +5353,9 @@ var
                      match[3]);
             
            case 3:
-            "unknown block:(sendself self-1/1620 extension/1103 f/1621 (field 0 match/2280))";
+            /* unknown */"(sendself self-1/1620 extension/1103 f/1621 (field 0 match/2280))";
             
-            "unknown block:(sendself self-1/1620 attributes/1097 f/1621 (field 2 x/1622))";
+            /* unknown */"(sendself self-1/1620 attributes/1097 f/1621 (field 2 x/1622))";
             
            }
          },
@@ -3773,27 +5363,37 @@ var
        function(self$neg1,f,l)
         {var
           class_type_declaration=
-           function(kwd,f$1,x)
-            {"unknown block:(sendself self-1/1633 virtual_flag/1076)";
-             "unknown block:(sendself self-1/1633 class_params_def/1084)";
-             "unknown block:(sendself self-1/1633 class_type/1107)";
-             "unknown block:(sendself self-1/1633 item_attributes/1098)";
+           function(kwd,f,x)
+            {/* unknown */"(sendself self-1/1633 virtual_flag/1076)";
+             /* unknown */"(sendself self-1/1633 class_params_def/1084)";
+             /* unknown */"(sendself self-1/1633 class_type/1107)";
+             /* unknown */"(sendself self-1/1633 item_attributes/1098)";
              return pp
-                     (f$1,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [2,
-                         0,
-                         [12,
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
                           32,
-                          [15,
-                           [15,
-                            [2,
-                             0,
-                             [17,
-                              [0,"@ ",1,0],
-                              [12,61,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]]]],
+                          [/* Alpha */15,
+                           [/* Alpha */15,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Char_literal */12,
+                               61,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]],
                        "@[<2>%s %a%a%s@ =@ %a@]%a"],
                       kwd,
                       0,
@@ -3813,13 +5413,22 @@ var
            var x=l[1];
            
            if(xs)
-            {'unknown block:(sendself self-1/1633 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply class_type_declaration/1636 "and"))';
+            {/* unknown */'(sendself self-1/1633 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply class_type_declaration/1636 "and"))';
              return pp
                      (f,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<v>",0],"<v>"]],
-                        [15,[17,[0,"@,",0,0],[15,[17,0,0]]]]],
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<v>",/* End_of_format */0],
+                          "<v>"]],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@,",0,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]],
                        "@[<v>%a@,%a@]"],
                       class_type_declaration("class type"),
                       x,
@@ -3830,39 +5439,56 @@ var
             {return class_type_declaration("class type",f,x);}
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        class_field,
        function(self$neg1,f,x)
         {var match=x[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
-            "unknown block:(sendself self-1/1646 class_expr/1111)";
-            "unknown block:(sendself self-1/1646 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1646 class_expr/1111)";
+            /* unknown */"(sendself self-1/1646 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<2>",0],"<2>"]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* String_literal */11,
                         "inherit",
-                        [17,
-                         [0,"@ ",1,0],
-                         [2,0,[17,[0,"@ ",1,0],[15,[15,[17,0,[15,0]]]]]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Alpha */15,/* End_of_format */0]]]]]]]]],
                       "@[<2>inherit@ %s@ %a%a@]%a"],
                      override(match[1]),
                      0,
                      match[2],
-                     function(f$1,so)
+                     function(f,so)
                       {if(so)
                         {return pp
-                                 (f$1,
-                                  [0,[17,[0,"@ ",1,0],[11,"as ",[2,0,0]]],"@ as %s"],
+                                 (f,
+                                  [/* Format */0,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@ ",1,0],
+                                    [/* String_literal */11,
+                                     "as ",
+                                     [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+                                   "@ as %s"],
                                   so[1]);
                          }
                        else
-                        {return 0;}
+                        {return /* () */0;}
                        },
                      match[3],
                      0,
@@ -3877,19 +5503,32 @@ var
             
             var s=match$1[1];
             
-            switch(match$2)
+            switch(match$2[0])
              {case 0:
-               "unknown block:(sendself self-1/1646 mutable_flag/1075)";
-               "unknown block:(sendself self-1/1646 core_type/1086)";
-               "unknown block:(sendself self-1/1646 item_attributes/1098)";
+               /* unknown */"(sendself self-1/1646 mutable_flag/1075)";
+               /* unknown */"(sendself self-1/1646 core_type/1086)";
+               /* unknown */"(sendself self-1/1646 item_attributes/1098)";
                return pp
                        (f,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [11,
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* String_literal */11,
                            "val virtual ",
-                           [15,[2,0,[11," :",[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]],
+                           [/* Alpha */15,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* String_literal */11,
+                              " :",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 [/* Alpha */15,/* End_of_format */0]]]]]]]]],
                          "@[<2>val virtual %a%s :@ %a@]%a"],
                         0,
                         mf,
@@ -3900,21 +5539,34 @@ var
                         x[3]);
                
               case 1:
-               "unknown block:(sendself self-1/1646 mutable_flag/1075)";
-               "unknown block:(sendself self-1/1646 expression/1093)";
-               "unknown block:(sendself self-1/1646 item_attributes/1098)";
+               /* unknown */"(sendself self-1/1646 mutable_flag/1075)";
+               /* unknown */"(sendself self-1/1646 expression/1093)";
+               /* unknown */"(sendself self-1/1646 item_attributes/1098)";
                return pp
                        (f,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [11,
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* String_literal */11,
                            "val",
-                           [2,
-                            0,
-                            [12,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
                              32,
-                             [15,[2,0,[11," =",[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]]]]]],
+                             [/* Alpha */15,
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* String_literal */11,
+                                " =",
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 [/* Alpha */15,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   [/* Alpha */15,/* End_of_format */0]]]]]]]]]]],
                          "@[<2>val%s %a%s =@;%a@]%a"],
                         override(match$2[1]),
                         0,
@@ -3936,20 +5588,34 @@ var
             
             var s$1=match$3[1];
             
-            switch(match$4)
+            switch(match$4[0])
              {case 0:
-               "unknown block:(sendself self-1/1646 private_flag/1080)";
-               "unknown block:(sendself self-1/1646 core_type/1086)";
-               "unknown block:(sendself self-1/1646 item_attributes/1098)";
+               /* unknown */"(sendself self-1/1646 private_flag/1080)";
+               /* unknown */"(sendself self-1/1646 core_type/1086)";
+               /* unknown */"(sendself self-1/1646 item_attributes/1098)";
                return pp
                        (f,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [11,
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* String_literal */11,
                            "method virtual ",
-                           [15,
-                            [12,32,[2,0,[11," :",[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                           [/* Alpha */15,
+                            [/* Char_literal */12,
+                             32,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " :",
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                          "@[<2>method virtual %a %s :@;%a@]%a"],
                         0,
                         pf,
@@ -3963,41 +5629,61 @@ var
                var
                 bind=
                  function(e)
-                  {"unknown block:(sendself self-1/1646 binding/1118 f/1647\n  (makeblock 0\n    (makeblock 0 (makeblock 0 s/1656) (field 0 (global Location!)) 0a) e/1675\n    0a (field 0 (global Location!))))";
+                  {/* unknown */"(sendself self-1/1646 binding/1118 f/1647\n  (makeblock 0\n    (makeblock 0 (makeblock 0 s/1656) (field 0 (global Location!)) 0a) e/1675\n    0a (field 0 (global Location!))))";
                    };
                
-               "unknown block:(sendself self-1/1646 private_flag/1080)";
-               "unknown block:(sendself self-1/1646 item_attributes/1098)";
+               /* unknown */"(sendself self-1/1646 private_flag/1080)";
+               /* unknown */"(sendself self-1/1646 item_attributes/1098)";
                return pp
                        (f,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [11,"method",[2,0,[12,32,[15,[15,[17,0,[15,0]]]]]]]],
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* String_literal */11,
+                           "method",
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             32,
+                             [/* Alpha */15,
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                [/* Alpha */15,/* End_of_format */0]]]]]]]],
                          "@[<2>method%s %a%a@]%a"],
                         override(match$4[1]),
                         0,
                         pf,
-                        function(f$1,e)
+                        function(f,e)
                          {var match$5=e[1];
                           
-                          switch(match$5)
+                          switch(match$5[0])
                            {case 28:
                              var match$6=match$5[2];
                              
                              var e$1=match$5[1];
                              
                              if(match$6)
-                              {"unknown block:(sendself self-1/1646 core_type/1086)";
-                               "unknown block:(sendself self-1/1646 expression/1093)";
+                              {/* unknown */"(sendself self-1/1646 core_type/1086)";
+                               /* unknown */"(sendself self-1/1646 expression/1093)";
                                return pp
-                                       (f$1,
-                                        [0,
-                                         [2,
-                                          0,
-                                          [11,
+                                       (f,
+                                        [/* Format */0,
+                                         [/* String */2,
+                                          /* No_padding */0,
+                                          [/* String_literal */11,
                                            " :",
-                                           [17,[0,"@;",1,0],[15,[12,61,[17,[0,"@;",1,0],[15,0]]]]]]],
+                                           [/* Formatting_lit */17,
+                                            [/* Break */0,"@;",1,0],
+                                            [/* Alpha */15,
+                                             [/* Char_literal */12,
+                                              61,
+                                              [/* Formatting_lit */17,
+                                               [/* Break */0,"@;",1,0],
+                                               [/* Alpha */15,/* End_of_format */0]]]]]]],
                                          "%s :@;%a=@;%a"],
                                         s$1[1],
                                         0,
@@ -4019,17 +5705,28 @@ var
            case 3:
             var match$5=match[1];
             
-            "unknown block:(sendself self-1/1646 core_type/1086)";
-            "unknown block:(sendself self-1/1646 core_type/1086)";
-            "unknown block:(sendself self-1/1646 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1646 core_type/1086)";
+            /* unknown */"(sendself self-1/1646 core_type/1086)";
+            /* unknown */"(sendself self-1/1646 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<2>",0],"<2>"]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* String_literal */11,
                         "constraint ",
-                        [15,[11," =",[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]]],
+                        [/* Alpha */15,
+                         [/* String_literal */11,
+                          " =",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             [/* Alpha */15,/* End_of_format */0]]]]]]]],
                       "@[<2>constraint %a =@;%a@]%a"],
                      0,
                      match$5[1],
@@ -4039,14 +5736,24 @@ var
                      x[3]);
             
            case 4:
-            "unknown block:(sendself self-1/1646 expression/1093)";
-            "unknown block:(sendself self-1/1646 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1646 expression/1093)";
+            /* unknown */"(sendself self-1/1646 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<2>",0],"<2>"]],
-                       [11,"initializer",[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* String_literal */11,
+                        "initializer",
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           [/* Alpha */15,/* End_of_format */0]]]]]],
                       "@[<2>initializer@ %a@]%a"],
                      0,
                      match[1],
@@ -4054,46 +5761,78 @@ var
                      x[3]);
             
            case 5:
-            "unknown block:(sendself self-1/1646 floating_attribute/1101 f/1647 (field 0 match/2263))";
+            /* unknown */"(sendself self-1/1646 floating_attribute/1101 f/1647 (field 0 match/2263))";
             
            case 6:
-            "unknown block:(sendself self-1/1646 item_extension/1104 f/1647 (field 0 match/2263))";
+            /* unknown */"(sendself self-1/1646 item_extension/1104 f/1647 (field 0 match/2263))";
             
-            "unknown block:(sendself self-1/1646 item_attributes/1098 f/1647 (field 2 x/1648))";
+            /* unknown */"(sendself self-1/1646 item_attributes/1098 f/1647 (field 2 x/1648))";
             
            }
          },
        class_structure,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1682 list/1069 0a 0a 0a\n  (sendself self-1/1682 class_field/1109))";
+        {/* unknown */"(sendself self-1/1682 list/1069 0a 0a 0a\n  (sendself self-1/1682 class_field/1109))";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                    [18,
-                     [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                     [11,
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                      "<hv0>"]],
+                    [/* Formatting_gen */18,
+                     [/* Open_box */1,
+                      [/* Format */0,
+                       [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                       "<hv2>"]],
+                     [/* String_literal */11,
                       "object",
-                      [15,
-                       [17,
-                        [0,"@;",1,0],
-                        [15,[17,0,[17,[0,"@;",1,0],[11,"end",[17,0,0]]]]]]]]]],
+                      [/* Alpha */15,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@;",1,0],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* String_literal */11,
+                            "end",
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]]]]]]]]],
                    "@[<hv0>@[<hv2>object%a@;%a@]@;end@]"],
-                  function(f$1,p)
+                  function(f,p)
                    {var match=p[1];
                     
-                    if(typeof match=="number")
-                     {switch(match){case 0:return 0;}}
+                    if(typeof match==="number")
+                     {switch(match){case 0:return /* () */0;}}
                     else
                      {switch(match[0])
                        {case 10:
-                         "unknown block:(sendself self-1/1682 pattern/1088)";
-                         return pp(f$1,[0,[12,32,[15,0]]," %a"],0,p);
+                         /* unknown */"(sendself self-1/1682 pattern/1088)";
+                         return pp
+                                 (f,
+                                  [/* Format */0,
+                                   [/* Char_literal */12,
+                                    32,
+                                    [/* Alpha */15,/* End_of_format */0]],
+                                   " %a"],
+                                  0,
+                                  p);
                          
                         default:
-                         "unknown block:(sendself self-1/1682 pattern/1088)";
-                         return pp(f$1,[0,[11," (",[15,[12,41,0]]]," (%a)"],0,p);
+                         /* unknown */"(sendself self-1/1682 pattern/1088)";
+                         return pp
+                                 (f,
+                                  [/* Format */0,
+                                   [/* String_literal */11,
+                                    " (",
+                                    [/* Alpha */15,
+                                     [/* Char_literal */12,41,/* End_of_format */0]]],
+                                   " (%a)"],
+                                  0,
+                                  p);
                          }}
                     },
                   param[1],
@@ -4102,32 +5841,51 @@ var
          },
        class_expr,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1689 class_expr/1111)";
-           "unknown block:(sendself self-1/1689 attributes/1097)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1689 class_expr/1111)";
+           /* unknown */"(sendself self-1/1689 attributes/1097)";
            return pp
                    (f,
-                    [0,[11,"((",[15,[12,41,[15,[12,41,0]]]]],"((%a)%a)"],
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "((",
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        41,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                     "((%a)%a)"],
                     0,
-                    /* record */[0,x[1],x[2],0],
+                    /* record */[0,x[1],x[2],/* [] */0],
                     0,
                     x[3]);
            }
          else
           {var match=x[1];
            
-           switch(match)
+           switch(match[0])
             {case 0:
-              "unknown block:(sendself self-1/1689 longident_loc/1073)";
+              /* unknown */"(sendself self-1/1689 longident_loc/1073)";
               return pp
                       (f,
-                       [0,[15,[15,0]],"%a%a"],
-                       function(f$1,l)
-                        {if(l!=0)
-                          {"unknown block:(sendself self-1/1689 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1689 core_type/1086))";
+                       [/* Format */0,
+                        [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]],
+                        "%a%a"],
+                       function(f,l)
+                        {if(l!==/* [] */0)
+                          {/* unknown */"(sendself self-1/1689 list/1069 [0: [0: [12: ',' 0a] \",\"]] 0a 0a\n  (sendself self-1/1689 core_type/1086))";
                            return pp
-                                   (f$1,
-                                    [0,[12,91,[15,[12,93,[17,[0,"@ ",1,0],0]]]],"[%a]@ "],
+                                   (f,
+                                    [/* Format */0,
+                                     [/* Char_literal */12,
+                                      91,
+                                      [/* Alpha */15,
+                                       [/* Char_literal */12,
+                                        93,
+                                        [/* Formatting_lit */17,
+                                         [/* Break */0,"@ ",1,0],
+                                         /* End_of_format */0]]]],
+                                     "[%a]@ "],
                                     0,
                                     l);
                            }
@@ -4139,19 +5897,26 @@ var
                        match[1]);
               
              case 1:
-              "unknown block:(sendself self-1/1689 class_structure/1110 f/1690 (field 0 match/2247))";
+              /* unknown */"(sendself self-1/1689 class_structure/1110 f/1690 (field 0 match/2247))";
               
              case 2:
-              "unknown block:(sendself self-1/1689 label_exp/1091)";
-              "unknown block:(sendself self-1/1689 class_expr/1111)";
+              /* unknown */"(sendself self-1/1689 label_exp/1091)";
+              /* unknown */"(sendself self-1/1689 class_expr/1111)";
               return pp
                       (f,
-                       [0,
-                        [11,
+                       [/* Format */0,
+                        [/* String_literal */11,
                          "fun",
-                         [17,
-                          [0,"@ ",1,0],
-                          [15,[17,[0,"@ ",1,0],[11,"->",[17,[0,"@ ",1,0],[15,0]]]]]]],
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String_literal */11,
+                             "->",
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Alpha */15,/* End_of_format */0]]]]]]],
                         "fun@ %a@ ->@ %a"],
                        0,
                        /* tuple */[0,match[1],match[2],match[3]],
@@ -4159,23 +5924,38 @@ var
                        match[4]);
               
              case 3:
-              "unknown block:(sendself self-1/1689 class_expr/1111)";
-              "unknown block:(sendself self-1/1689 list/1069 0a 0a 0a\n  (sendself self-1/1689 label_x_expression_param/1128))";
+              /* unknown */"(sendself self-1/1689 class_expr/1111)";
+              /* unknown */"(sendself self-1/1689 list/1069 0a 0a 0a\n  (sendself self-1/1689 label_x_expression_param/1128))";
               return pp
                       (f,
-                       [0,[12,40,[15,[17,[0,"@ ",1,0],[15,[12,41,0]]]]],"(%a@ %a)"],
+                       [/* Format */0,
+                        [/* Char_literal */12,
+                         40,
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                        "(%a@ %a)"],
                        0,
                        match[1],
                        0,
                        match[2]);
               
              case 4:
-              "unknown block:(sendself self-1/1689 bindings/1119)";
-              "unknown block:(sendself self-1/1689 class_expr/1111)";
+              /* unknown */"(sendself self-1/1689 bindings/1119)";
+              /* unknown */"(sendself self-1/1689 class_expr/1111)";
               return pp
                       (f,
-                       [0,
-                        [15,[17,[0,"@ ",1,0],[11,"in",[17,[0,"@ ",1,0],[15,0]]]]],
+                       [/* Format */0,
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
+                           "in",
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* Alpha */15,/* End_of_format */0]]]]],
                         "%a@ in@ %a"],
                        0,
                        /* tuple */[0,match[1],match[2]],
@@ -4183,15 +5963,22 @@ var
                        match[3]);
               
              case 5:
-              "unknown block:(sendself self-1/1689 class_expr/1111)";
-              "unknown block:(sendself self-1/1689 class_type/1107)";
+              /* unknown */"(sendself self-1/1689 class_expr/1111)";
+              /* unknown */"(sendself self-1/1689 class_type/1107)";
               return pp
                       (f,
-                       [0,
-                        [12,
+                       [/* Format */0,
+                        [/* Char_literal */12,
                          40,
-                         [15,
-                          [17,[0,"@ ",1,0],[12,58,[17,[0,"@ ",1,0],[15,[12,41,0]]]]]]],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Char_literal */12,
+                            58,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Char_literal */12,41,/* End_of_format */0]]]]]]],
                         "(%a@ :@ %a)"],
                        0,
                        match[1],
@@ -4199,46 +5986,73 @@ var
                        match[2]);
               
              case 6:
-              "unknown block:(sendself self-1/1689 extension/1103 f/1690 (field 0 match/2247))";
+              /* unknown */"(sendself self-1/1689 extension/1103 f/1690 (field 0 match/2247))";
               
              }
            }
          },
        module_type,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1710 module_type/1112)";
-           "unknown block:(sendself self-1/1710 attributes/1097)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1710 module_type/1112)";
+           /* unknown */"(sendself self-1/1710 attributes/1097)";
            return pp
                    (f,
-                    [0,[11,"((",[15,[12,41,[15,[12,41,0]]]]],"((%a)%a)"],
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "((",
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        41,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                     "((%a)%a)"],
                     0,
-                    /* record */[0,x[1],x[2],0],
+                    /* record */[0,x[1],x[2],/* [] */0],
                     0,
                     x[3]);
            }
          else
           {var match=x[1];
            
-           switch(match)
+           switch(match[0])
             {case 0:
-              "unknown block:(sendself self-1/1710 longident_loc/1073)";
-              return pp(f,[0,[15,0],"%a"],0,match[1]);
-              
-             case 1:
-              "unknown block:(sendself self-1/1710 list/1069 0a 0a 0a\n  (sendself self-1/1710 signature_item/1114))";
+              /* unknown */"(sendself self-1/1710 longident_loc/1073)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hv0>",0],"<hv0>"]],
-                         [18,
-                          [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                          [11,
+                       [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                       0,
+                       match[1]);
+              
+             case 1:
+              /* unknown */"(sendself self-1/1710 list/1069 0a 0a 0a\n  (sendself self-1/1710 signature_item/1114))";
+              return pp
+                      (f,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hv0>",/* End_of_format */0],
+                           "<hv0>"]],
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                            "<hv2>"]],
+                          [/* String_literal */11,
                            "sig",
-                           [17,
-                            [0,"@ ",1,0],
-                            [15,[17,0,[17,[0,"@ ",1,0],[11,"end",[17,0,0]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* String_literal */11,
+                                "end",
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]],
                         "@[<hv0>@[<hv2>sig@ %a@]@ end@]"],
                        0,
                        match[1]);
@@ -4247,31 +6061,43 @@ var
               var match$1=match[2];
               
               if(match$1)
-               {"unknown block:(sendself self-1/1710 module_type/1112)";
-                "unknown block:(sendself self-1/1710 module_type/1112)";
+               {/* unknown */"(sendself self-1/1710 module_type/1112)";
+                /* unknown */"(sendself self-1/1710 module_type/1112)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [11,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* String_literal */11,
                             "functor",
-                            [17,
-                             [0,"@ ",1,0],
-                             [12,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Char_literal */12,
                               40,
-                              [2,
-                               0,
-                               [17,
-                                [0,"@ ",1,0],
-                                [12,
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Char_literal */12,
                                  58,
-                                 [17,
-                                  [0,"@ ",1,0],
-                                  [15,
-                                   [12,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@ ",1,0],
+                                  [/* Alpha */15,
+                                   [/* Char_literal */12,
                                     41,
-                                    [17,[0,"@ ",1,0],[11,"->",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]]]]],
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@ ",1,0],
+                                     [/* String_literal */11,
+                                      "->",
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@ ",1,0],
+                                       [/* Alpha */15,
+                                        [/* Formatting_lit */17,
+                                         /* Close_box */0,
+                                         /* End_of_format */0]]]]]]]]]]]]]]],
                           "@[<hov2>functor@ (%s@ :@ %a)@ ->@ %a@]"],
                          match[1][1],
                          0,
@@ -4280,13 +6106,23 @@ var
                          match[3]);
                 }
               else
-               {"unknown block:(sendself self-1/1710 module_type/1112)";
+               {/* unknown */"(sendself self-1/1710 module_type/1112)";
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [11,"functor () ->",[17,[0,"@ ",1,0],[15,[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* String_literal */11,
+                            "functor () ->",
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<hov2>functor () ->@ %a@]"],
                          0,
                          match[3]);
@@ -4299,24 +6135,32 @@ var
               
               var
                with_constraint=
-                function(f$1,param)
-                 {switch(param)
+                function(f,param)
+                 {switch(param[0])
                    {case 0:
                      var td=param[2];
                      
                      var ls=List["map"](function(prim){return prim[1];},td[2]);
                      
-                     "unknown block:(sendself self-1/1710 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1710 core_type/1086))";
-                     "unknown block:(sendself self-1/1710 longident_loc/1073)";
-                     "unknown block:(sendself self-1/1710 type_declaration/1124)";
+                     /* unknown */"(sendself self-1/1710 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1710 core_type/1086))";
+                     /* unknown */"(sendself self-1/1710 longident_loc/1073)";
+                     /* unknown */"(sendself self-1/1710 type_declaration/1124)";
                      return pp
-                             (f$1,
-                              [0,
-                               [11,
+                             (f,
+                              [/* Format */0,
+                               [/* String_literal */11,
                                 "type",
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [15,[12,32,[15,[11," =",[17,[0,"@ ",1,0],[15,0]]]]]]]],
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,
+                                   32,
+                                   [/* Alpha */15,
+                                    [/* String_literal */11,
+                                     " =",
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@ ",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]]]]]]],
                                "type@ %a %a =@ %a"],
                               0,
                               ls,
@@ -4326,12 +6170,19 @@ var
                               td);
                      
                     case 1:
-                     "unknown block:(sendself self-1/1710 longident_loc/1073)";
-                     "unknown block:(sendself self-1/1710 longident_loc/1073)";
+                     /* unknown */"(sendself self-1/1710 longident_loc/1073)";
+                     /* unknown */"(sendself self-1/1710 longident_loc/1073)";
                      return pp
-                             (f$1,
-                              [0,
-                               [11,"module ",[15,[11," =",[17,[0,"@ ",1,0],[15,0]]]]],
+                             (f,
+                              [/* Format */0,
+                               [/* String_literal */11,
+                                "module ",
+                                [/* Alpha */15,
+                                 [/* String_literal */11,
+                                  " =",
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,/* End_of_format */0]]]]],
                                "module %a =@ %a"],
                               0,
                               param[1],
@@ -4345,16 +6196,25 @@ var
                       ls$1=
                        List["map"](function(prim){return prim[1];},td$1[2]);
                      
-                     "unknown block:(sendself self-1/1710 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1710 core_type/1086))";
-                     "unknown block:(sendself self-1/1710 type_declaration/1124)";
+                     /* unknown */"(sendself self-1/1710 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1710 core_type/1086))";
+                     /* unknown */"(sendself self-1/1710 type_declaration/1124)";
                      return pp
-                             (f$1,
-                              [0,
-                               [11,
+                             (f,
+                              [/* Format */0,
+                               [/* String_literal */11,
                                 "type",
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [15,[12,32,[2,0,[11," :=",[17,[0,"@ ",1,0],[15,0]]]]]]]],
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,
+                                   32,
+                                   [/* String */2,
+                                    /* No_padding */0,
+                                    [/* String_literal */11,
+                                     " :=",
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@ ",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]]]]]]],
                                "type@ %a %s :=@ %a"],
                               0,
                               ls$1,
@@ -4363,11 +6223,19 @@ var
                               td$1);
                      
                     case 3:
-                     "unknown block:(sendself self-1/1710 longident_loc/1073)";
+                     /* unknown */"(sendself self-1/1710 longident_loc/1073)";
                      return pp
-                             (f$1,
-                              [0,
-                               [11,"module ",[2,0,[11," :=",[17,[0,"@ ",1,0],[15,0]]]]],
+                             (f,
+                              [/* Format */0,
+                               [/* String_literal */11,
+                                "module ",
+                                [/* String */2,
+                                 /* No_padding */0,
+                                 [/* String_literal */11,
+                                  " :=",
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@ ",1,0],
+                                   [/* Alpha */15,/* End_of_format */0]]]]],
                                "module %s :=@ %a"],
                               param[1][1],
                               0,
@@ -4377,19 +6245,31 @@ var
                   };
               
               if(l)
-               {"unknown block:(sendself self-1/1710 module_type/1112)";
-                'unknown block:(sendself self-1/1710 list/1069\n  [0: [0: [17: [0: "@ " 1 0] [11: "and" [17: [0: "@ " 1 0] 0a]]] "@ and@ "]]\n  0a 0a with_constraint/1724)';
+               {/* unknown */"(sendself self-1/1710 module_type/1112)";
+                /* unknown */'(sendself self-1/1710 list/1069\n  [0: [0: [17: [0: "@ " 1 0] [11: "and" [17: [0: "@ " 1 0] 0a]]] "@ and@ "]]\n  0a 0a with_constraint/1724)';
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                           [12,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* Char_literal */12,
                             40,
-                            [15,
-                             [17,
-                              [0,"@ ",1,0],
-                              [11,"with",[17,[0,"@ ",1,0],[15,[12,41,[17,0,0]]]]]]]]],
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* String_literal */11,
+                               "with",
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,
+                                 [/* Char_literal */12,
+                                  41,
+                                  [/* Formatting_lit */17,
+                                   /* Close_box */0,
+                                   /* End_of_format */0]]]]]]]]],
                           "@[<hov2>(%a@ with@ %a)@]"],
                          0,
                          mt,
@@ -4397,42 +6277,67 @@ var
                          l);
                 }
               else
-               {"unknown block:(sendself self-1/1710 module_type/1112)";
+               {/* unknown */"(sendself self-1/1710 module_type/1112)";
                 return pp
                         (f,
-                         [0,
-                          [18,[1,[0,[11,"<hov2>",0],"<hov2>"]],[15,[17,0,0]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                             "<hov2>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             /* End_of_format */0]]],
                           "@[<hov2>%a@]"],
                          0,
                          mt);
                 }
               
              case 4:
-              "unknown block:(sendself self-1/1710 module_expr/1115)";
+              /* unknown */"(sendself self-1/1710 module_expr/1115)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [11,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String_literal */11,
                           "module",
-                          [17,
-                           [0,"@ ",1,0],
-                           [11,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String_literal */11,
                             "type",
-                            [17,[0,"@ ",1,0],[11,"of",[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* String_literal */11,
+                              "of",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]],
                         "@[<hov2>module@ type@ of@ %a@]"],
                        0,
                        match[1]);
               
              case 5:
-              "unknown block:(sendself self-1/1710 extension/1103 f/1711 (field 0 match/2242))";
+              /* unknown */"(sendself self-1/1710 extension/1103 f/1711 (field 0 match/2242))";
               
              case 6:
-              "unknown block:(sendself self-1/1710 longident_loc/1073)";
+              /* unknown */"(sendself self-1/1710 longident_loc/1073)";
               return pp
                       (f,
-                       [0,[11,"(module ",[15,[12,41,0]]],"(module %a)"],
+                       [/* Format */0,
+                        [/* String_literal */11,
+                         "(module ",
+                         [/* Alpha */15,
+                          [/* Char_literal */12,41,/* End_of_format */0]]],
+                        "(module %a)"],
                        0,
                        match[1]);
               
@@ -4441,33 +6346,43 @@ var
          },
        signature,
        function(self$neg1,f,x)
-        {'unknown block:(sendself self-1/1738 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  (sendself self-1/1738 signature_item/1114) f/1739 x/1740)';
+        {/* unknown */'(sendself self-1/1738 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  (sendself self-1/1738 signature_item/1114) f/1739 x/1740)';
          },
        signature_item,
        function(self$neg1,f,x)
         {var match=x[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var vd=match[1];
             
-            if(vd[3]=0){var intro="val";}else{var intro="external";}
+            if(vd[3]===/* [] */0){var intro="val";}else{var intro="external";}
             
-            "unknown block:(sendself self-1/1742 value_description/1102)";
-            "unknown block:(sendself self-1/1742 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1742 value_description/1102)";
+            /* unknown */"(sendself self-1/1742 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<2>",0],"<2>"]],
-                       [2,
-                        0,
-                        [17,
-                         [0,"@ ",1,0],
-                         [15,
-                          [17,
-                           [0,"@ ",1,0],
-                           [12,58,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Char_literal */12,
+                            58,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                       "@[<2>%s@ %a@ :@ %a@]%a"],
                      intro,
                      protect_ident,
@@ -4478,37 +6393,47 @@ var
                      vd[4]);
             
            case 1:
-            "unknown block:(sendself self-1/1742 type_def_list/1123 f/1743 (field 0 match/2207))";
+            /* unknown */"(sendself self-1/1742 type_def_list/1123 f/1743 (field 0 match/2207))";
             
            case 2:
-            "unknown block:(sendself self-1/1742 type_extension/1125 f/1743 (field 0 match/2207))";
+            /* unknown */"(sendself self-1/1742 type_extension/1125 f/1743 (field 0 match/2207))";
             
            case 3:
-            "unknown block:(sendself self-1/1742 exception_declaration/1105 f/1743 (field 0 match/2207))";
+            /* unknown */"(sendself self-1/1742 exception_declaration/1105 f/1743 (field 0 match/2207))";
             
            case 4:
             var pmd=match[1];
             
             var match$1=pmd[2][1];
             
-            switch(match$1)
+            switch(match$1[0])
              {case 6:
-               "unknown block:(sendself self-1/1742 longident_loc/1073)";
-               "unknown block:(sendself self-1/1742 item_attributes/1098)";
+               /* unknown */"(sendself self-1/1742 longident_loc/1073)";
+               /* unknown */"(sendself self-1/1742 item_attributes/1098)";
                return pp
                        (f,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<hov>",0],"<hov>"]],
-                          [11,
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<hov>",/* End_of_format */0],
+                            "<hov>"]],
+                          [/* String_literal */11,
                            "module",
-                           [17,
-                            [0,"@ ",1,0],
-                            [2,
-                             0,
-                             [17,
-                              [0,"@ ",1,0],
-                              [12,61,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Char_literal */12,
+                               61,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                          "@[<hov>module@ %s@ =@ %a@]%a"],
                         pmd[1][1],
                         0,
@@ -4517,22 +6442,32 @@ var
                         pmd[3]);
                
               default:
-               "unknown block:(sendself self-1/1742 module_type/1112)";
-               "unknown block:(sendself self-1/1742 item_attributes/1098)";
+               /* unknown */"(sendself self-1/1742 module_type/1112)";
+               /* unknown */"(sendself self-1/1742 item_attributes/1098)";
                return pp
                        (f,
-                        [0,
-                         [18,
-                          [1,[0,[11,"<hov>",0],"<hov>"]],
-                          [11,
+                        [/* Format */0,
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<hov>",/* End_of_format */0],
+                            "<hov>"]],
+                          [/* String_literal */11,
                            "module",
-                           [17,
-                            [0,"@ ",1,0],
-                            [2,
-                             0,
-                             [17,
-                              [0,"@ ",1,0],
-                              [12,58,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Char_literal */12,
+                               58,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  /* Close_box */0,
+                                  [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                          "@[<hov>module@ %s@ :@ %a@]%a"],
                         pmd[1][1],
                         0,
@@ -4544,30 +6479,42 @@ var
            case 5:
             var
              string_x_module_type_list=
-              function(f$1,$staropt$star,l)
+              function(f,$staropt$star,l)
                {if($staropt$star)
                  {var first=$staropt$star[1];}
                 else
-                 {var first=1;}
+                 {var first=/* true */1;}
                 
                 if(l)
                  {var pmd$1=l[1];
                   
                   if(!first)
-                   {"unknown block:(sendself self-1/1742 module_type/1112)";
-                    "unknown block:(sendself self-1/1742 item_attributes/1098)";
+                   {/* unknown */"(sendself self-1/1742 module_type/1112)";
+                    /* unknown */"(sendself self-1/1742 item_attributes/1098)";
                     pp
-                     (f$1,
-                      [0,
-                       [17,
-                        [0,"@ ",1,0],
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [11,
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@ ",1,0],
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* String_literal */11,
                           "and",
-                          [17,
-                           [0,"@ ",1,0],
-                           [2,0,[12,58,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             58,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                        "@ @[<hov2>and@ %s:@ %a@]%a"],
                       pmd$1[1][1],
                       0,
@@ -4575,22 +6522,34 @@ var
                       0,
                       pmd$1[3])}
                   else
-                   {"unknown block:(sendself self-1/1742 module_type/1112)";
-                    "unknown block:(sendself self-1/1742 item_attributes/1098)";
+                   {/* unknown */"(sendself self-1/1742 module_type/1112)";
+                    /* unknown */"(sendself self-1/1742 item_attributes/1098)";
                     pp
-                     (f$1,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                        [11,
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                          "<hov2>"]],
+                        [/* String_literal */11,
                          "module",
-                         [17,
-                          [0,"@ ",1,0],
-                          [11,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* String_literal */11,
                            "rec",
-                           [17,
-                            [0,"@ ",1,0],
-                            [2,0,[12,58,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Char_literal */12,
+                              58,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 [/* Alpha */15,/* End_of_format */0]]]]]]]]]]],
                        "@[<hov2>module@ rec@ %s:@ %a@]%a"],
                       pmd$1[1][1],
                       0,
@@ -4598,44 +6557,63 @@ var
                       0,
                       pmd$1[3])}
                   
-                  return string_x_module_type_list(f$1,[0,0],l[2]);
+                  return string_x_module_type_list
+                          (f,[/* Some */0,/* false */0],l[2]);
                   }
                 else
-                 {return 0;}
+                 {return /* () */0;}
                 };
             
-            return string_x_module_type_list(f,0,match[1]);
+            return string_x_module_type_list(f,/* None */0,match[1]);
             
            case 6:
             var match$2=match[1];
             
-            "unknown block:(sendself self-1/1742 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1742 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
                         "module",
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,"type",[17,[0,"@ ",1,0],[2,0,[15,[17,0,[15,0]]]]]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
+                          "type",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Alpha */15,/* End_of_format */0]]]]]]]]],
                       "@[<hov2>module@ type@ %s%a@]%a"],
                      match$2[1][1],
-                     function(f$1,md)
+                     function(f,md)
                       {if(md)
-                        {Format["pp_print_space"](f$1,0);
-                         "unknown block:(sendself self-1/1742 module_type/1112)";
+                        {Format["pp_print_space"](f,/* () */0);
+                         /* unknown */"(sendself self-1/1742 module_type/1112)";
                          return pp
-                                 (f$1,
-                                  [0,
-                                   [17,[0,"@ ",1,0],[12,61,[17,[0,"@ ",1,0],[15,0]]]],
+                                 (f,
+                                  [/* Format */0,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@ ",1,0],
+                                    [/* Char_literal */12,
+                                     61,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@ ",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]]],
                                    "@ =@ %a"],
                                   0,
                                   md[1]);
                          }
                        else
-                        {return 0;}
+                        {return /* () */0;}
                        },
                      match$2[2],
                      0,
@@ -4644,14 +6622,26 @@ var
            case 7:
             var od=match[1];
             
-            "unknown block:(sendself self-1/1742 longident_loc/1073)";
-            "unknown block:(sendself self-1/1742 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1742 longident_loc/1073)";
+            /* unknown */"(sendself self-1/1742 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,"open",[2,0,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
+                        "open",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            [/* Alpha */15,/* End_of_format */0]]]]]]],
                       "@[<hov2>open%s@ %a@]%a"],
                      override(od[2]),
                      0,
@@ -4662,14 +6652,24 @@ var
            case 8:
             var incl=match[1];
             
-            "unknown block:(sendself self-1/1742 module_type/1112)";
-            "unknown block:(sendself self-1/1742 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1742 module_type/1112)";
+            /* unknown */"(sendself self-1/1742 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,"include",[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
+                        "include",
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           [/* Alpha */15,/* End_of_format */0]]]]]],
                       "@[<hov2>include@ %a@]%a"],
                      0,
                      incl[1],
@@ -4681,38 +6681,48 @@ var
             
             var
              class_description=
-              function(kwd,f$1,x$1)
-               {"unknown block:(sendself self-1/1742 virtual_flag/1076)";
-                "unknown block:(sendself self-1/1742 class_params_def/1084)";
-                "unknown block:(sendself self-1/1742 class_type/1107)";
-                "unknown block:(sendself self-1/1742 item_attributes/1098)";
+              function(kwd,f,x)
+               {/* unknown */"(sendself self-1/1742 virtual_flag/1076)";
+                /* unknown */"(sendself self-1/1742 class_params_def/1084)";
+                /* unknown */"(sendself self-1/1742 class_type/1107)";
+                /* unknown */"(sendself self-1/1742 item_attributes/1098)";
                 return pp
-                        (f$1,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [2,
-                            0,
-                            [12,
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
                              32,
-                             [15,
-                              [15,
-                               [2,
-                                0,
-                                [17,
-                                 [0,"@;",1,0],
-                                 [12,58,[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]]]]]]],
+                             [/* Alpha */15,
+                              [/* Alpha */15,
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 [/* Char_literal */12,
+                                  58,
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@;",1,0],
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     /* Close_box */0,
+                                     [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]],
                           "@[<2>%s %a%a%s@;:@;%a@]%a"],
                          kwd,
                          0,
-                         x$1[1],
+                         x[1],
                          0,
-                         x$1[2],
-                         x$1[3][1],
+                         x[2],
+                         x[3][1],
                          0,
-                         x$1[4],
+                         x[4],
                          0,
-                         x$1[6]);
+                         x[6]);
                 };
             
             if(l)
@@ -4721,13 +6731,22 @@ var
               var x$1=l[1];
               
               if(xs)
-               {'unknown block:(sendself self-1/1742 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply class_description/1764 "and"))';
+               {/* unknown */'(sendself self-1/1742 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply class_description/1764 "and"))';
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<v>",0],"<v>"]],
-                           [15,[17,[0,"@,",0,0],[15,[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<v>",/* End_of_format */0],
+                             "<v>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@,",0,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<v>%a@,%a@]"],
                          class_description("class"),
                          x$1,
@@ -4738,56 +6757,83 @@ var
                {return class_description("class",f,x$1);}
               }
             else
-             {return 0;}
+             {return /* () */0;}
             
            case 10:
-            "unknown block:(sendself self-1/1742 class_type_declaration_list/1108 f/1743\n  (field 0 match/2207))";
+            /* unknown */"(sendself self-1/1742 class_type_declaration_list/1108 f/1743\n  (field 0 match/2207))";
             
            case 11:
-            "unknown block:(sendself self-1/1742 floating_attribute/1101 f/1743 (field 0 match/2207))";
+            /* unknown */"(sendself self-1/1742 floating_attribute/1101 f/1743 (field 0 match/2207))";
             
            case 12:
-            "unknown block:(sendself self-1/1742 item_extension/1104 f/1743 (field 0 match/2207))";
+            /* unknown */"(sendself self-1/1742 item_extension/1104 f/1743 (field 0 match/2207))";
             
-            "unknown block:(sendself self-1/1742 item_attributes/1098 f/1743 (field 1 match/2207))";
+            /* unknown */"(sendself self-1/1742 item_attributes/1098 f/1743 (field 1 match/2207))";
             
            }
          },
        module_expr,
        function(self$neg1,f,x)
-        {if(x[3]!=0)
-          {"unknown block:(sendself self-1/1785 module_expr/1115)";
-           "unknown block:(sendself self-1/1785 attributes/1097)";
+        {if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1785 module_expr/1115)";
+           /* unknown */"(sendself self-1/1785 attributes/1097)";
            return pp
                    (f,
-                    [0,[11,"((",[15,[12,41,[15,[12,41,0]]]]],"((%a)%a)"],
+                    [/* Format */0,
+                     [/* String_literal */11,
+                      "((",
+                      [/* Alpha */15,
+                       [/* Char_literal */12,
+                        41,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                     "((%a)%a)"],
                     0,
-                    /* record */[0,x[1],x[2],0],
+                    /* record */[0,x[1],x[2],/* [] */0],
                     0,
                     x[3]);
            }
          else
           {var match=x[1];
            
-           switch(match)
+           switch(match[0])
             {case 0:
-              "unknown block:(sendself self-1/1785 longident_loc/1073)";
-              return pp(f,[0,[15,0],"%a"],0,match[1]);
-              
-             case 1:
-              'unknown block:(sendself self-1/1785 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  (sendself self-1/1785 structure_item/1120))';
+              /* unknown */"(sendself self-1/1785 longident_loc/1073)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hv2>",0],"<hv2>"]],
-                         [11,
+                       [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
+                       0,
+                       match[1]);
+              
+             case 1:
+              /* unknown */'(sendself self-1/1785 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  (sendself self-1/1785 structure_item/1120))';
+              return pp
+                      (f,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hv2>",/* End_of_format */0],
+                           "<hv2>"]],
+                         [/* String_literal */11,
                           "struct",
-                          [17,
-                           [0,"@;",1,0],
-                           [18,
-                            [1,[0,[11,"<0>",0],"<0>"]],
-                            [15,[17,0,[17,[0,"@;<1 -2>",1,-2],[11,"end",[17,0,0]]]]]]]]],
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<0>",/* End_of_format */0],
+                              "<0>"]],
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;<1 -2>",1,-2],
+                               [/* String_literal */11,
+                                "end",
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]],
                         "@[<hv2>struct@;@[<0>%a@]@;<1 -2>end@]"],
                        0,
                        match[1]);
@@ -4796,27 +6842,35 @@ var
               var match$1=match[2];
               
               if(match$1)
-               {"unknown block:(sendself self-1/1785 module_type/1112)";
-                "unknown block:(sendself self-1/1785 module_expr/1115)";
+               {/* unknown */"(sendself self-1/1785 module_type/1112)";
+                /* unknown */"(sendself self-1/1785 module_expr/1115)";
                 return pp
                         (f,
-                         [0,
-                          [11,
+                         [/* Format */0,
+                          [/* String_literal */11,
                            "functor",
-                           [17,
-                            [0,"@ ",1,0],
-                            [12,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* Char_literal */12,
                              40,
-                             [2,
-                              0,
-                              [17,
-                               [0,"@ ",1,0],
-                               [12,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Char_literal */12,
                                 58,
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [15,
-                                  [12,41,[17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,0]]]]]]]]]]]]],
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,
+                                  [/* Char_literal */12,
+                                   41,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* String_literal */11,
+                                     "->",
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@;",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]]],
                           "functor@ (%s@ :@ %a)@;->@;%a"],
                          match[1][1],
                          0,
@@ -4825,43 +6879,67 @@ var
                          match[3]);
                 }
               else
-               {"unknown block:(sendself self-1/1785 module_expr/1115)";
+               {/* unknown */"(sendself self-1/1785 module_expr/1115)";
                 return pp
                         (f,
-                         [0,
-                          [11,
+                         [/* Format */0,
+                          [/* String_literal */11,
                            "functor ()",
-                           [17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,0]]]]],
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@;",1,0],
+                            [/* String_literal */11,
+                             "->",
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Alpha */15,/* End_of_format */0]]]]],
                           "functor ()@;->@;%a"],
                          0,
                          match[3]);
                 }
               
              case 3:
-              "unknown block:(sendself self-1/1785 module_expr/1115)";
-              "unknown block:(sendself self-1/1785 module_expr/1115)";
+              /* unknown */"(sendself self-1/1785 module_expr/1115)";
+              /* unknown */"(sendself self-1/1785 module_expr/1115)";
               return pp
                       (f,
-                       [0,[15,[12,40,[15,[12,41,0]]]],"%a(%a)"],
+                       [/* Format */0,
+                        [/* Alpha */15,
+                         [/* Char_literal */12,
+                          40,
+                          [/* Alpha */15,
+                           [/* Char_literal */12,41,/* End_of_format */0]]]],
+                        "%a(%a)"],
                        0,
                        match[1],
                        0,
                        match[2]);
               
              case 4:
-              "unknown block:(sendself self-1/1785 module_expr/1115)";
-              "unknown block:(sendself self-1/1785 module_type/1112)";
+              /* unknown */"(sendself self-1/1785 module_expr/1115)";
+              /* unknown */"(sendself self-1/1785 module_type/1112)";
               return pp
                       (f,
-                       [0,
-                        [18,
-                         [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                         [12,
+                       [/* Format */0,
+                        [/* Formatting_gen */18,
+                         [/* Open_box */1,
+                          [/* Format */0,
+                           [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                           "<hov2>"]],
+                         [/* Char_literal */12,
                           40,
-                          [15,
-                           [17,
-                            [0,"@ ",1,0],
-                            [12,58,[17,[0,"@ ",1,0],[15,[12,41,[17,0,0]]]]]]]]],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@ ",1,0],
+                            [/* Char_literal */12,
+                             58,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* Alpha */15,
+                               [/* Char_literal */12,
+                                41,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]],
                         "@[<hov2>(%a@ :@ %a)@]"],
                        0,
                        match[1],
@@ -4869,26 +6947,33 @@ var
                        match[2]);
               
              case 5:
-              "unknown block:(sendself self-1/1785 expression/1093)";
+              /* unknown */"(sendself self-1/1785 expression/1093)";
               return pp
                       (f,
-                       [0,[11,"(val",[17,[0,"@ ",1,0],[15,[12,41,0]]]],"(val@ %a)"],
+                       [/* Format */0,
+                        [/* String_literal */11,
+                         "(val",
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Char_literal */12,41,/* End_of_format */0]]]],
+                        "(val@ %a)"],
                        0,
                        match[1]);
               
              case 6:
-              "unknown block:(sendself self-1/1785 extension/1103 f/1786 (field 0 match/2192))";
+              /* unknown */"(sendself self-1/1785 extension/1103 f/1786 (field 0 match/2192))";
               
              }
            }
          },
        structure,
        function(self$neg1,f,x)
-        {'unknown block:(sendself self-1/1801 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  (sendself self-1/1801 structure_item/1120) f/1802 x/1803)';
+        {/* unknown */'(sendself self-1/1801 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  (sendself self-1/1801 structure_item/1120) f/1802 x/1803)';
          },
        payload,
        function(self$neg1,f,param)
-        {switch(param)
+        {switch(param[0])
           {case 0:
             var x=param[1];
             
@@ -4897,17 +6982,25 @@ var
             if(x)
              {var match=x[1][1];
               
-              switch(match)
+              switch(match[0])
                {case 0:
                  if(x[2])
                   {exit=62;}
                  else
-                  {"unknown block:(sendself self-1/1805 expression/1093)";
-                   "unknown block:(sendself self-1/1805 item_attributes/1098)";
+                  {/* unknown */"(sendself self-1/1805 expression/1093)";
+                   /* unknown */"(sendself self-1/1805 item_attributes/1098)";
                    return pp
                            (f,
-                            [0,
-                             [18,[1,[0,[11,"<2>",0],"<2>"]],[15,[17,0,[15,0]]]],
+                            [/* Format */0,
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<2>",/* End_of_format */0],
+                                "<2>"]],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                [/* Alpha */15,/* End_of_format */0]]]],
                              "@[<2>%a@]%a"],
                             0,
                             match[1],
@@ -4922,13 +7015,17 @@ var
             
             switch(exit)
              {case 62:
-               "unknown block:(sendself self-1/1805 structure/1116 f/1806 x/1809)";
+               /* unknown */"(sendself self-1/1805 structure/1116 f/1806 x/1809)";
                
               }
             
            case 1:
-            pp(f,[0,[12,58,0],":"]);
-            "unknown block:(sendself self-1/1805 core_type/1086 f/1806 (field 0 param/2183))";
+            pp
+             (f,
+              [/* Format */0,
+               [/* Char_literal */12,58,/* End_of_format */0],
+               ":"]);
+            /* unknown */"(sendself self-1/1805 core_type/1086 f/1806 (field 0 param/2183))";
             
            case 2:
             var match$1=param[2];
@@ -4936,15 +7033,27 @@ var
             var x$1=param[1];
             
             if(match$1)
-             {pp(f,[0,[12,63,0],"?"]);
-              "unknown block:(sendself self-1/1805 pattern/1088 f/1806 x/1811)";
+             {pp
+               (f,
+                [/* Format */0,
+                 [/* Char_literal */12,63,/* End_of_format */0],
+                 "?"]);
+              /* unknown */"(sendself self-1/1805 pattern/1088 f/1806 x/1811)";
               
-              pp(f,[0,[11," when ",0]," when "]);
-              "unknown block:(sendself self-1/1805 expression/1093 f/1806 (field 0 match/2188))";
+              pp
+               (f,
+                [/* Format */0,
+                 [/* String_literal */11," when ",/* End_of_format */0],
+                 " when "]);
+              /* unknown */"(sendself self-1/1805 expression/1093 f/1806 (field 0 match/2188))";
               }
             else
-             {pp(f,[0,[12,63,0],"?"]);
-              "unknown block:(sendself self-1/1805 pattern/1088 f/1806 x/1811)";
+             {pp
+               (f,
+                [/* Format */0,
+                 [/* Char_literal */12,63,/* End_of_format */0],
+                 "?"]);
+              /* unknown */"(sendself self-1/1805 pattern/1088 f/1806 x/1811)";
               }
             
            }
@@ -4957,16 +7066,25 @@ var
          
          var
           pp_print_pexp_function=
-           function(f$1,x$1)
-            {if(x$1[3]!=0)
-              {"unknown block:(sendself self-1/1815 expression/1093)";
+           function(f,x)
+            {if(x[3]!==/* [] */0)
+              {/* unknown */"(sendself self-1/1815 expression/1093)";
                return pp
-                       (f$1,[0,[12,61,[17,[0,"@;",1,0],[15,0]]],"=@;%a"],0,x$1);
+                       (f,
+                        [/* Format */0,
+                         [/* Char_literal */12,
+                          61,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* Alpha */15,/* End_of_format */0]]],
+                         "=@;%a"],
+                        0,
+                        x);
                }
              else
-              {var match=x$1[1];
+              {var match=x[1];
                
-               switch(match)
+               switch(match[0])
                 {case 4:
                   var e=match[4];
                   
@@ -4974,21 +7092,31 @@ var
                   
                   var label=match[1];
                   
-                  if("unknown primitive:caml_string_equal")
-                   {"unknown block:(sendself self-1/1815 simple_pattern/1090)";
+                  if(CamlPrimitive["caml_string_equal"](label,""))
+                   {/* unknown */"(sendself self-1/1815 simple_pattern/1090)";
                     return pp
-                            (f$1,
-                             [0,[15,[17,[0,"@ ",1,0],[15,0]]],"%a@ %a"],
+                            (f,
+                             [/* Format */0,
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,/* End_of_format */0]]],
+                              "%a@ %a"],
                              0,
                              p$1,
                              pp_print_pexp_function,
                              e);
                     }
                   else
-                   {"unknown block:(sendself self-1/1815 label_exp/1091)";
+                   {/* unknown */"(sendself self-1/1815 label_exp/1091)";
                     return pp
-                            (f$1,
-                             [0,[15,[17,[0,"@ ",1,0],[15,0]]],"%a@ %a"],
+                            (f,
+                             [/* Format */0,
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,/* End_of_format */0]]],
+                              "%a@ %a"],
                              0,
                              /* tuple */[0,label,match[2],p$1],
                              pp_print_pexp_function,
@@ -4997,31 +7125,55 @@ var
                   
                  case 30:
                   return pp
-                          (f$1,
-                           [0,
-                            [11,
+                          (f,
+                           [/* Format */0,
+                            [/* String_literal */11,
                              "(type",
-                             [17,[0,"@ ",1,0],[2,0,[12,41,[17,[0,"@ ",1,0],[15,0]]]]]],
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@ ",1,0],
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* Char_literal */12,
+                                41,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* Alpha */15,/* End_of_format */0]]]]]],
                             "(type@ %s)@ %a"],
                            match[1],
                            pp_print_pexp_function,
                            match[2]);
                   
                  default:
-                  "unknown block:(sendself self-1/1815 expression/1093)";
+                  /* unknown */"(sendself self-1/1815 expression/1093)";
                   return pp
-                          (f$1,[0,[12,61,[17,[0,"@;",1,0],[15,0]]],"=@;%a"],0,x$1);
+                          (f,
+                           [/* Format */0,
+                            [/* Char_literal */12,
+                             61,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Alpha */15,/* End_of_format */0]]],
+                            "=@;%a"],
+                           0,
+                           x);
                   }
                }
              };
          
-         if(x[3]!=0)
-          {"unknown block:(sendself self-1/1815 pattern/1088)";
-           "unknown block:(sendself self-1/1815 expression/1093)";
+         if(x[3]!==/* [] */0)
+          {/* unknown */"(sendself self-1/1815 pattern/1088)";
+           /* unknown */"(sendself self-1/1815 expression/1093)";
            return pp
                    (f,
-                    [0,
-                     [15,[17,[0,"@;",1,0],[12,61,[17,[0,"@;",1,0],[15,0]]]]],
+                    [/* Format */0,
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@;",1,0],
+                       [/* Char_literal */12,
+                        61,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@;",1,0],
+                         [/* Alpha */15,/* End_of_format */0]]]]],
                      "%a@;=@;%a"],
                     0,
                     p,
@@ -5035,25 +7187,32 @@ var
            
            var exit;
            
-           if(typeof match$1=="number")
+           if(typeof match$1==="number")
             {switch(match$1){}}
            else
             {switch(match$1[0])
               {case 0:
-                switch(match)
+                switch(match[0])
                  {case 19:
-                   "unknown block:(sendself self-1/1815 core_type/1086)";
-                   "unknown block:(sendself self-1/1815 expression/1093)";
+                   /* unknown */"(sendself self-1/1815 core_type/1086)";
+                   /* unknown */"(sendself self-1/1815 expression/1093)";
                    return pp
                            (f,
-                            [0,
-                             [2,
-                              0,
-                              [12,
+                            [/* Format */0,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,
                                58,
-                               [17,
-                                [0,"@ ",1,0],
-                                [15,[17,[0,"@;",1,0],[12,61,[17,[0,"@;",1,0],[15,0]]]]]]]],
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@ ",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@;",1,0],
+                                  [/* Char_literal */12,
+                                   61,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* Alpha */15,/* End_of_format */0]]]]]]]],
                              "%s:@ %a@;=@;%a"],
                             match$1[1][1],
                             0,
@@ -5062,10 +7221,15 @@ var
                             match[1]);
                    
                   default:
-                   "unknown block:(sendself self-1/1815 simple_pattern/1090)";
+                   /* unknown */"(sendself self-1/1815 simple_pattern/1090)";
                    return pp
                            (f,
-                            [0,[15,[17,[0,"@ ",1,0],[15,0]]],"%a@ %a"],
+                            [/* Format */0,
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* Alpha */15,/* End_of_format */0]]],
+                             "%a@ %a"],
                             0,
                             p,
                             pp_print_pexp_function,
@@ -5081,23 +7245,30 @@ var
                 
                 var exit$1;
                 
-                if(typeof match$2=="number")
+                if(typeof match$2==="number")
                  {switch(match$2){}}
                 else
                  {switch(match$2[0])
                    {case 8:
-                     "unknown block:(sendself self-1/1815 simple_pattern/1090)";
-                     "unknown block:(sendself self-1/1815 core_type/1086)";
-                     "unknown block:(sendself self-1/1815 expression/1093)";
+                     /* unknown */"(sendself self-1/1815 simple_pattern/1090)";
+                     /* unknown */"(sendself self-1/1815 core_type/1086)";
+                     /* unknown */"(sendself self-1/1815 expression/1093)";
                      return pp
                              (f,
-                              [0,
-                               [15,
-                                [17,
-                                 [0,"@;",1,0],
-                                 [12,
+                              [/* Format */0,
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@;",1,0],
+                                 [/* Char_literal */12,
                                   58,
-                                  [17,[0,"@;",1,0],[15,[12,61,[17,[0,"@;",1,0],[15,0]]]]]]]],
+                                  [/* Formatting_lit */17,
+                                   [/* Break */0,"@;",1,0],
+                                   [/* Alpha */15,
+                                    [/* Char_literal */12,
+                                     61,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@;",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]]]]]]],
                                "%a@;:@;%a=@;%a"],
                               0,
                               p$1,
@@ -5110,18 +7281,25 @@ var
                 
                 switch(exit$1)
                  {case 57:
-                   "unknown block:(sendself self-1/1815 simple_pattern/1090)";
-                   "unknown block:(sendself self-1/1815 core_type/1086)";
-                   "unknown block:(sendself self-1/1815 expression/1093)";
+                   /* unknown */"(sendself self-1/1815 simple_pattern/1090)";
+                   /* unknown */"(sendself self-1/1815 core_type/1086)";
+                   /* unknown */"(sendself self-1/1815 expression/1093)";
                    return pp
                            (f,
-                            [0,
-                             [12,
+                            [/* Format */0,
+                             [/* Char_literal */12,
                               40,
-                              [15,
-                               [17,
-                                [0,"@;",1,0],
-                                [12,58,[15,[11,")=",[17,[0,"@;",1,0],[15,0]]]]]]]],
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Char_literal */12,
+                                 58,
+                                 [/* Alpha */15,
+                                  [/* String_literal */11,
+                                   ")=",
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* Alpha */15,/* End_of_format */0]]]]]]]],
                              "(%a@;:%a)=@;%a"],
                             0,
                             p$1,
@@ -5136,12 +7314,19 @@ var
            
            switch(exit)
             {case 58:
-              "unknown block:(sendself self-1/1815 pattern/1088)";
-              "unknown block:(sendself self-1/1815 expression/1093)";
+              /* unknown */"(sendself self-1/1815 pattern/1088)";
+              /* unknown */"(sendself self-1/1815 expression/1093)";
               return pp
                       (f,
-                       [0,
-                        [15,[17,[0,"@;",1,0],[12,61,[17,[0,"@;",1,0],[15,0]]]]],
+                       [/* Format */0,
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* Char_literal */12,
+                           61,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@;",1,0],
+                            [/* Alpha */15,/* End_of_format */0]]]]],
                         "%a@;=@;%a"],
                        0,
                        p,
@@ -5159,20 +7344,31 @@ var
          
          var
           binding$1=
-           function(kwd,rf$1,f$1,x)
-            {"unknown block:(sendself self-1/1834 rec_flag/1077)";
-             "unknown block:(sendself self-1/1834 binding/1118)";
-             "unknown block:(sendself self-1/1834 item_attributes/1098)";
+           function(kwd,rf,f,x)
+            {/* unknown */"(sendself self-1/1834 rec_flag/1077)";
+             /* unknown */"(sendself self-1/1834 binding/1118)";
+             /* unknown */"(sendself self-1/1834 item_attributes/1098)";
              return pp
-                     (f$1,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [2,0,[12,32,[15,[15,[17,0,[15,0]]]]]]],
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          32,
+                          [/* Alpha */15,
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             [/* Alpha */15,/* End_of_format */0]]]]]]],
                        "@[<2>%s %a%a@]%a"],
                       kwd,
                       0,
-                      rf$1,
+                      rf,
                       0,
                       x,
                       0,
@@ -5185,13 +7381,22 @@ var
            var x=l[1];
            
            if(xs)
-            {'unknown block:(sendself self-1/1834 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply binding/1838 "and" 0a))';
+            {/* unknown */'(sendself self-1/1834 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply binding/1838 "and" 0a))';
              return pp
                      (f,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<v>",0],"<v>"]],
-                        [15,[17,[0,"@,",0,0],[15,[17,0,0]]]]],
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<v>",/* End_of_format */0],
+                          "<v>"]],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@,",0,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]],
                        "@[<v>%a@,%a@]"],
                       binding$1("let",rf),
                       x,
@@ -5202,26 +7407,36 @@ var
             {return binding$1("let",rf,f,x);}
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        structure_item,
        function(self$neg1,f,x)
         {var match=x[1];
          
-         switch(match)
+         switch(match[0])
           {case 0:
-            "unknown block:(sendself self-1/1847 expression/1093)";
-            "unknown block:(sendself self-1/1847 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1847 expression/1093)";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
                         "let",
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,"_ =",[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
+                          "_ =",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             /* Close_box */0,
+                             [/* Alpha */15,/* End_of_format */0]]]]]]]],
                       "@[<hov2>let@ _ =@ %a@]%a"],
                      0,
                      match[1],
@@ -5229,11 +7444,19 @@ var
                      match[2]);
             
            case 1:
-            "unknown block:(sendself self-1/1847 bindings/1119)";
+            /* unknown */"(sendself self-1/1847 bindings/1119)";
             return pp
                     (f,
-                     [0,
-                      [18,[1,[0,[11,"<2>",0],"<2>"]],[15,[17,0,0]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         /* Close_box */0,
+                         /* End_of_format */0]]],
                       "@[<2>%a@]"],
                      0,
                      /* tuple */[0,match[1],match[2]]);
@@ -5241,21 +7464,31 @@ var
            case 2:
             var vd=match[1];
             
-            "unknown block:(sendself self-1/1847 value_description/1102)";
-            "unknown block:(sendself self-1/1847 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1847 value_description/1102)";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
                         "external",
-                        [17,
-                         [0,"@ ",1,0],
-                         [15,
-                          [17,
-                           [0,"@ ",1,0],
-                           [12,58,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* Char_literal */12,
+                            58,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@ ",1,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                       "@[<hov2>external@ %a@ :@ %a@]%a"],
                      protect_ident,
                      vd[1][1],
@@ -5268,16 +7501,19 @@ var
             var l=match[1];
             
             if(l)
-             {"unknown block:(sendself self-1/1847 type_def_list/1123 f/1848 l/1852)";
+             {/* unknown */"(sendself self-1/1847 type_def_list/1123 f/1848 l/1852)";
               }
             else
-             {throw [0,Assert_failure,[0,"parsing/pprintast.ml",1109,22]];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"parsing/pprintast.ml",1109,22]];
+              }
             
            case 4:
-            "unknown block:(sendself self-1/1847 type_extension/1125 f/1848 (field 0 match/2158))";
+            /* unknown */"(sendself self-1/1847 type_extension/1125 f/1848 (field 0 match/2158))";
             
            case 5:
-            "unknown block:(sendself self-1/1847 exception_declaration/1105 f/1848 (field 0 match/2158))";
+            /* unknown */"(sendself self-1/1847 exception_declaration/1105 f/1848 (field 0 match/2158))";
             
            case 6:
             var x$1=match[1];
@@ -5289,19 +7525,32 @@ var
                 
                 var exit;
                 
-                switch(match$1)
+                switch(match$1[0])
                  {case 2:
-                   if(me[3]=0)
+                   if(me[3]===/* [] */0)
                     {var mt=match$1[2];
                      
-                     if(mt=0)
-                      {pp(f,[0,[11,"()",0],"()"])}
+                     if(mt===/* None */0)
+                      {pp
+                        (f,
+                         [/* Format */0,
+                          [/* String_literal */11,"()",/* End_of_format */0],
+                          "()"])}
                      else
-                      {"unknown block:(sendself self-1/1847 module_type/1112)";
+                      {/* unknown */"(sendself self-1/1847 module_type/1112)";
                        Misc["may"]
                         (pp
                           (f,
-                           [0,[12,40,[2,0,[12,58,[15,[12,41,0]]]]],"(%s:%a)"],
+                           [/* Format */0,
+                            [/* Char_literal */12,
+                             40,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,
+                               58,
+                               [/* Alpha */15,
+                                [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                            "(%s:%a)"],
                            match$1[1][1],
                            0),
                          mt)}
@@ -5316,47 +7565,64 @@ var
                 switch(exit){case 41:return me;}
                 };
             
-            "unknown block:(sendself self-1/1847 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,"module ",[2,0,[15,[17,0,[15,0]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
+                        "module ",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           [/* Alpha */15,/* End_of_format */0]]]]]],
                       "@[<hov2>module %s%a@]%a"],
                      x$1[1][1],
-                     function(f$1,me)
+                     function(f,me)
                       {var me$1=module_helper(me);
                        
                        var match$1=me$1[1];
                        
                        var exit;
                        
-                       switch(match$1)
+                       switch(match$1[0])
                         {case 4:
                           var mt=match$1[2];
                           
                           var exit$1;
                           
-                          switch(mt[1])
+                          switch(mt[1][0])
                            {case 0:exit$1=39;case 1:exit$1=39;default:exit=38;}
                           
                           switch(exit$1)
                            {case 39:
-                             if(me$1[3]=0)
-                              {"unknown block:(sendself self-1/1847 module_type/1112)";
-                               "unknown block:(sendself self-1/1847 module_expr/1115)";
+                             if(me$1[3]===/* [] */0)
+                              {/* unknown */"(sendself self-1/1847 module_type/1112)";
+                               /* unknown */"(sendself self-1/1847 module_expr/1115)";
                                return pp
-                                       (f$1,
-                                        [0,
-                                         [11,
+                                       (f,
+                                        [/* Format */0,
+                                         [/* String_literal */11,
                                           " :",
-                                          [17,
-                                           [0,"@;",1,0],
-                                           [15,
-                                            [17,
-                                             [0,"@;",1,0],
-                                             [12,61,[17,[0,"@;",1,0],[15,[17,[0,"@;",1,0],0]]]]]]]],
+                                          [/* Formatting_lit */17,
+                                           [/* Break */0,"@;",1,0],
+                                           [/* Alpha */15,
+                                            [/* Formatting_lit */17,
+                                             [/* Break */0,"@;",1,0],
+                                             [/* Char_literal */12,
+                                              61,
+                                              [/* Formatting_lit */17,
+                                               [/* Break */0,"@;",1,0],
+                                               [/* Alpha */15,
+                                                [/* Formatting_lit */17,
+                                                 [/* Break */0,"@;",1,0],
+                                                 /* End_of_format */0]]]]]]]],
                                          " :@;%a@;=@;%a@;"],
                                         0,
                                         mt,
@@ -5372,9 +7638,18 @@ var
                        
                        switch(exit)
                         {case 38:
-                          "unknown block:(sendself self-1/1847 module_expr/1115)";
+                          /* unknown */"(sendself self-1/1847 module_expr/1115)";
                           return pp
-                                  (f$1,[0,[11," =",[17,[0,"@ ",1,0],[15,0]]]," =@ %a"],0,me$1);
+                                  (f,
+                                   [/* Format */0,
+                                    [/* String_literal */11,
+                                     " =",
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@ ",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]],
+                                    " =@ %a"],
+                                   0,
+                                   me$1);
                           
                          }
                        },
@@ -5387,33 +7662,43 @@ var
             
             var
              aux=
-              function(f$1,pmb)
+              function(f,pmb)
                {var match$1=pmb[2][1];
                 
-                switch(match$1)
+                switch(match$1[0])
                  {case 4:
-                   "unknown block:(sendself self-1/1847 module_type/1112)";
-                   "unknown block:(sendself self-1/1847 module_expr/1115)";
-                   "unknown block:(sendself self-1/1847 item_attributes/1098)";
+                   /* unknown */"(sendself self-1/1847 module_type/1112)";
+                   /* unknown */"(sendself self-1/1847 module_expr/1115)";
+                   /* unknown */"(sendself self-1/1847 item_attributes/1098)";
                    return pp
-                           (f$1,
-                            [0,
-                             [18,
-                              [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                              [17,
-                               [0,"@ ",1,0],
-                               [11,
+                           (f,
+                            [/* Format */0,
+                             [/* Formatting_gen */18,
+                              [/* Open_box */1,
+                               [/* Format */0,
+                                [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                                "<hov2>"]],
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* String_literal */11,
                                 "and",
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [2,
-                                  0,
-                                  [12,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* String */2,
+                                  /* No_padding */0,
+                                  [/* Char_literal */12,
                                    58,
-                                   [15,
-                                    [17,
-                                     [0,"@ ",1,0],
-                                     [12,61,[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]]]]]]]]],
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@ ",1,0],
+                                     [/* Char_literal */12,
+                                      61,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@ ",1,0],
+                                       [/* Alpha */15,
+                                        [/* Formatting_lit */17,
+                                         /* Close_box */0,
+                                         [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]]],
                              "@[<hov2>@ and@ %s:%a@ =@ %a@]%a"],
                             pmb[1][1],
                             0,
@@ -5424,7 +7709,10 @@ var
                             pmb[3]);
                    
                   default:
-                   throw [0,Assert_failure,[0,"parsing/pprintast.ml",1209,17]];}
+                   throw [0,
+                          CamlPrimitive["caml_global_data"]["Assert_failure"],
+                          [0,"parsing/pprintast.ml",1209,17]];
+                   }
                 };
             
             var exit;
@@ -5434,38 +7722,53 @@ var
               
               var match$1=pmb[2][1];
               
-              switch(match$1)
+              switch(match$1[0])
                {case 4:
-                 "unknown block:(sendself self-1/1847 module_type/1112)";
-                 "unknown block:(sendself self-1/1847 module_expr/1115)";
-                 "unknown block:(sendself self-1/1847 item_attributes/1098)";
+                 /* unknown */"(sendself self-1/1847 module_type/1112)";
+                 /* unknown */"(sendself self-1/1847 module_expr/1115)";
+                 /* unknown */"(sendself self-1/1847 item_attributes/1098)";
                  return pp
                          (f,
-                          [0,
-                           [18,
-                            [1,[0,[11,"<hv>",0],"<hv>"]],
-                            [18,
-                             [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                             [11,
+                          [/* Format */0,
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,
+                             [/* Format */0,
+                              [/* String_literal */11,"<hv>",/* End_of_format */0],
+                              "<hv>"]],
+                            [/* Formatting_gen */18,
+                             [/* Open_box */1,
+                              [/* Format */0,
+                               [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                               "<hov2>"]],
+                             [/* String_literal */11,
                               "module",
-                              [17,
-                               [0,"@ ",1,0],
-                               [11,
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@ ",1,0],
+                               [/* String_literal */11,
                                 "rec",
-                                [17,
-                                 [0,"@ ",1,0],
-                                 [2,
-                                  0,
-                                  [12,
+                                [/* Formatting_lit */17,
+                                 [/* Break */0,"@ ",1,0],
+                                 [/* String */2,
+                                  /* No_padding */0,
+                                  [/* Char_literal */12,
                                    58,
-                                   [15,
-                                    [17,
-                                     [0,"@ ",1,0],
-                                     [12,
+                                   [/* Alpha */15,
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@ ",1,0],
+                                     [/* Char_literal */12,
                                       61,
-                                      [17,
-                                       [0,"@ ",1,0],
-                                       [15,[17,0,[15,[17,[0,"@ ",1,0],[15,[17,0,0]]]]]]]]]]]]]]]]]],
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@ ",1,0],
+                                       [/* Alpha */15,
+                                        [/* Formatting_lit */17,
+                                         /* Close_box */0,
+                                         [/* Alpha */15,
+                                          [/* Formatting_lit */17,
+                                           [/* Break */0,"@ ",1,0],
+                                           [/* Alpha */15,
+                                            [/* Formatting_lit */17,
+                                             /* Close_box */0,
+                                             /* End_of_format */0]]]]]]]]]]]]]]]]]],
                            "@[<hv>@[<hov2>module@ rec@ %s:%a@ =@ %a@]%a@ %a@]"],
                           pmb[1][1],
                           0,
@@ -5474,7 +7777,7 @@ var
                           match$1[1],
                           0,
                           pmb[3],
-                          function(f$1,l2){return List["iter"](aux(f$1),l2);},
+                          function(f,l2){return List["iter"](aux(f),l2);},
                           decls[2]);
                  
                 default:exit=51;}
@@ -5484,39 +7787,60 @@ var
             
             switch(exit)
              {case 51:
-               throw [0,Assert_failure,[0,"parsing/pprintast.ml",1219,15]];
+               throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"parsing/pprintast.ml",1219,15]];
+               
               }
             
            case 8:
             var match$2=match[1];
             
-            "unknown block:(sendself self-1/1847 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
                         "module",
-                        [17,
-                         [0,"@ ",1,0],
-                         [11,"type",[17,[0,"@ ",1,0],[2,0,[15,[17,0,[15,0]]]]]]]]],
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String_literal */11,
+                          "type",
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@ ",1,0],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Alpha */15,/* End_of_format */0]]]]]]]]],
                       "@[<hov2>module@ type@ %s%a@]%a"],
                      match$2[1][1],
-                     function(f$1,md)
+                     function(f,md)
                       {if(md)
-                        {Format["pp_print_space"](f$1,0);
-                         "unknown block:(sendself self-1/1847 module_type/1112)";
+                        {Format["pp_print_space"](f,/* () */0);
+                         /* unknown */"(sendself self-1/1847 module_type/1112)";
                          return pp
-                                 (f$1,
-                                  [0,
-                                   [17,[0,"@ ",1,0],[12,61,[17,[0,"@ ",1,0],[15,0]]]],
+                                 (f,
+                                  [/* Format */0,
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@ ",1,0],
+                                    [/* Char_literal */12,
+                                     61,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@ ",1,0],
+                                      [/* Alpha */15,/* End_of_format */0]]]],
                                    "@ =@ %a"],
                                   0,
                                   md[1]);
                          }
                        else
-                        {return 0;}
+                        {return /* () */0;}
                        },
                      match$2[2],
                      0,
@@ -5525,14 +7849,26 @@ var
            case 9:
             var od=match[1];
             
-            "unknown block:(sendself self-1/1847 longident_loc/1073)";
-            "unknown block:(sendself self-1/1847 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1847 longident_loc/1073)";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<2>",0],"<2>"]],
-                       [11,"open",[2,0,[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<2>",/* End_of_format */0],
+                         "<2>"]],
+                       [/* String_literal */11,
+                        "open",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            [/* Alpha */15,/* End_of_format */0]]]]]]],
                       "@[<2>open%s@;%a@]%a"],
                      override(od[2]),
                      0,
@@ -5548,14 +7884,14 @@ var
               function(cl)
                {var
                  loop=
-                  function(acc,cl$1)
-                   {var match$3=cl$1[1];
+                  function(acc,cl)
+                   {var match$3=cl[1];
                     
                     var exit$1;
                     
-                    switch(match$3)
+                    switch(match$3[0])
                      {case 2:
-                       if(cl$1[3]=0)
+                       if(cl[3]===/* [] */0)
                         {return loop
                                  (/* :: */[0,
                                    /* tuple */[0,match$3[1],match$3[2],match$3[3]],
@@ -5568,10 +7904,10 @@ var
                       default:exit$1=49;}
                     
                     switch(exit$1)
-                     {case 49:return /* tuple */[0,List["rev"](acc),cl$1];}
+                     {case 49:return /* tuple */[0,List["rev"](acc),cl];}
                     };
                 
-                var match$3=loop(0,cl);
+                var match$3=loop(/* [] */0,cl);
                 
                 var cl$1=match$3[2];
                 
@@ -5579,9 +7915,9 @@ var
                 
                 var exit$1;
                 
-                switch(match$4)
+                switch(match$4[0])
                  {case 5:
-                   if(cl$1[3]=0)
+                   if(cl$1[3]===/* [] */0)
                     {var
                       match$5=
                        /* tuple */[0,/* Some */[0,match$4[2]],match$4[1]];
@@ -5591,19 +7927,27 @@ var
                    
                   default:exit$1=46;}
                 
-                switch(exit$1){case 46:var match$5=/* tuple */[0,0,cl$1];}
+                switch(exit$1)
+                 {case 46:var match$5=/* tuple */[0,/* None */0,cl$1];}
                 
                 return /* tuple */[0,match$3[1],match$5[1],match$5[2]];
                 };
             
             var
              class_constraint=
-              function(f$1,ct)
-               {"unknown block:(sendself self-1/1847 class_type/1107)";
+              function(f,ct)
+               {/* unknown */"(sendself self-1/1847 class_type/1107)";
                 return pp
-                        (f$1,
-                         [0,
-                          [11,": ",[18,[1,[0,0,""]],[15,[17,0,[12,32,0]]]]],
+                        (f,
+                         [/* Format */0,
+                          [/* String_literal */11,
+                           ": ",
+                           [/* Formatting_gen */18,
+                            [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+                            [/* Alpha */15,
+                             [/* Formatting_lit */17,
+                              /* Close_box */0,
+                              [/* Char_literal */12,32,/* End_of_format */0]]]]],
                           ": @[%a@] "],
                          0,
                          ct);
@@ -5611,38 +7955,50 @@ var
             
             var
              class_declaration=
-              function(kwd,f$1,x$2)
-               {var match$3=extract_class_args(x$2[4]);
+              function(kwd,f,x)
+               {var match$3=extract_class_args(x[4]);
                 
-                "unknown block:(sendself self-1/1847 virtual_flag/1076)";
-                "unknown block:(sendself self-1/1847 class_params_def/1084)";
-                "unknown block:(sendself self-1/1847 list/1069 0a 0a 0a\n  (sendself self-1/1847 label_exp/1091))";
-                "unknown block:(sendself self-1/1847 option/1070 0a 0a class_constraint/1898)";
-                "unknown block:(sendself self-1/1847 class_expr/1111)";
-                "unknown block:(sendself self-1/1847 item_attributes/1098)";
+                /* unknown */"(sendself self-1/1847 virtual_flag/1076)";
+                /* unknown */"(sendself self-1/1847 class_params_def/1084)";
+                /* unknown */"(sendself self-1/1847 list/1069 0a 0a 0a\n  (sendself self-1/1847 label_exp/1091))";
+                /* unknown */"(sendself self-1/1847 option/1070 0a 0a class_constraint/1898)";
+                /* unknown */"(sendself self-1/1847 class_expr/1111)";
+                /* unknown */"(sendself self-1/1847 item_attributes/1098)";
                 return pp
-                        (f$1,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<2>",0],"<2>"]],
-                           [2,
-                            0,
-                            [12,
+                        (f,
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<2>",/* End_of_format */0],
+                             "<2>"]],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
                              32,
-                             [15,
-                              [15,
-                               [2,
-                                0,
-                                [12,
+                             [/* Alpha */15,
+                              [/* Alpha */15,
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Char_literal */12,
                                  32,
-                                 [15,[15,[12,61,[17,[0,"@;",1,0],[15,[17,0,[15,0]]]]]]]]]]]]]],
+                                 [/* Alpha */15,
+                                  [/* Alpha */15,
+                                   [/* Char_literal */12,
+                                    61,
+                                    [/* Formatting_lit */17,
+                                     [/* Break */0,"@;",1,0],
+                                     [/* Alpha */15,
+                                      [/* Formatting_lit */17,
+                                       /* Close_box */0,
+                                       [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]]]],
                           "@[<2>%s %a%a%s %a%a=@;%a@]%a"],
                          kwd,
                          0,
-                         x$2[1],
+                         x[1],
                          0,
-                         x$2[2],
-                         x$2[3][1],
+                         x[2],
+                         x[3][1],
                          0,
                          match$3[1],
                          0,
@@ -5650,7 +8006,7 @@ var
                          0,
                          match$3[3],
                          0,
-                         x$2[6]);
+                         x[6]);
                 };
             
             if(l$1)
@@ -5659,13 +8015,22 @@ var
               var x$2=l$1[1];
               
               if(xs)
-               {'unknown block:(sendself self-1/1847 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply class_declaration/1901 "and"))';
+               {/* unknown */'(sendself self-1/1847 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply class_declaration/1901 "and"))';
                 return pp
                         (f,
-                         [0,
-                          [18,
-                           [1,[0,[11,"<v>",0],"<v>"]],
-                           [15,[17,[0,"@,",0,0],[15,[17,0,0]]]]],
+                         [/* Format */0,
+                          [/* Formatting_gen */18,
+                           [/* Open_box */1,
+                            [/* Format */0,
+                             [/* String_literal */11,"<v>",/* End_of_format */0],
+                             "<v>"]],
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@,",0,0],
+                             [/* Alpha */15,
+                              [/* Formatting_lit */17,
+                               /* Close_box */0,
+                               /* End_of_format */0]]]]],
                           "@[<v>%a@,%a@]"],
                          class_declaration("class"),
                          x$2,
@@ -5676,22 +8041,32 @@ var
                {return class_declaration("class",f,x$2);}
               }
             else
-             {return 0;}
+             {return /* () */0;}
             
            case 11:
-            "unknown block:(sendself self-1/1847 class_type_declaration_list/1108 f/1848\n  (field 0 match/2158))";
+            /* unknown */"(sendself self-1/1847 class_type_declaration_list/1108 f/1848\n  (field 0 match/2158))";
             
            case 12:
             var incl=match[1];
             
-            "unknown block:(sendself self-1/1847 module_expr/1115)";
-            "unknown block:(sendself self-1/1847 item_attributes/1098)";
+            /* unknown */"(sendself self-1/1847 module_expr/1115)";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [11,"include",[17,[0,"@ ",1,0],[15,[17,0,[15,0]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* String_literal */11,
+                        "include",
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,
+                          [/* Formatting_lit */17,
+                           /* Close_box */0,
+                           [/* Alpha */15,/* End_of_format */0]]]]]],
                       "@[<hov2>include@ %a@]%a"],
                      0,
                      incl[1],
@@ -5699,21 +8074,25 @@ var
                      incl[3]);
             
            case 13:
-            "unknown block:(sendself self-1/1847 floating_attribute/1101 f/1848 (field 0 match/2158))";
+            /* unknown */"(sendself self-1/1847 floating_attribute/1101 f/1848 (field 0 match/2158))";
             
            case 14:
-            "unknown block:(sendself self-1/1847 item_extension/1104 f/1848 (field 0 match/2158))";
+            /* unknown */"(sendself self-1/1847 item_extension/1104 f/1848 (field 0 match/2158))";
             
-            "unknown block:(sendself self-1/1847 item_attributes/1098 f/1848 (field 1 match/2158))";
+            /* unknown */"(sendself self-1/1847 item_attributes/1098 f/1848 (field 1 match/2158))";
             
            }
          },
        type_param,
        function(self$neg1,f,param)
-        {"unknown block:(sendself self-1/1925 core_type/1086)";
+        {/* unknown */"(sendself self-1/1925 core_type/1086)";
          return pp
                  (f,
-                  [0,[2,0,[15,0]],"%s%a"],
+                  [/* Format */0,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Alpha */15,/* End_of_format */0]],
+                   "%s%a"],
                   type_variance(param[2]),
                   0,
                   param[1]);
@@ -5721,11 +8100,18 @@ var
        type_params,
        function(self$neg1,f,l)
         {if(l)
-          {"unknown block:(sendself self-1/1930 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1930 type_param/1121))";
-           return pp(f,[0,[15,[12,32,0]],"%a "],0,l);
+          {/* unknown */"(sendself self-1/1930 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1930 type_param/1121))";
+           return pp
+                   (f,
+                    [/* Format */0,
+                     [/* Alpha */15,
+                      [/* Char_literal */12,32,/* End_of_format */0]],
+                     "%a "],
+                    0,
+                    l);
            }
          else
-          {return 0;}
+          {return /* () */0;}
          },
        type_def_list,
        function(self$neg1,f,l)
@@ -5735,32 +8121,56 @@ var
             (function(td)
               {return List["exists"]
                        (function(param)
-                         {return "unknown primitive:caml_string_equal";},
+                         {return CamlPrimitive["caml_string_equal"]
+                                  (param[1][1],"nonrec");
+                          },
                         td[7]);
                },
              l);
          
-         if(is_nonrec){var rf=0;}else{var rf=1;}
+         if(is_nonrec)
+          {var rf=/* Nonrecursive */0;}
+         else
+          {var rf=/* Recursive */1;}
          
          var
           type_decl=
-           function(kwd,rf$1,f$1,x)
-            {if((x[4]=0)&&(x[6]=0)){var eq="";}else{var eq=" =";}
+           function(kwd,rf,f,x)
+            {if(x[4]===/* Ptype_abstract */0&&x[6]===/* None */0)
+              {var eq="";}
+             else
+              {var eq=" =";}
              
-             "unknown block:(sendself self-1/1934 nonrec_flag/1078)";
-             "unknown block:(sendself self-1/1934 type_params/1122)";
-             "unknown block:(sendself self-1/1934 type_declaration/1124)";
-             "unknown block:(sendself self-1/1934 item_attributes/1098)";
+             /* unknown */"(sendself self-1/1934 nonrec_flag/1078)";
+             /* unknown */"(sendself self-1/1934 type_params/1122)";
+             /* unknown */"(sendself self-1/1934 type_declaration/1124)";
+             /* unknown */"(sendself self-1/1934 item_attributes/1098)";
              return pp
-                     (f$1,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [2,0,[12,32,[15,[15,[2,0,[2,0,[15,[17,0,[15,0]]]]]]]]]],
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          32,
+                          [/* Alpha */15,
+                           [/* Alpha */15,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Alpha */15,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                [/* Alpha */15,/* End_of_format */0]]]]]]]]]],
                        "@[<2>%s %a%a%s%s%a@]%a"],
                       kwd,
                       0,
-                      rf$1,
+                      rf,
                       0,
                       x[2],
                       x[1][1],
@@ -5777,13 +8187,22 @@ var
            var x=l[1];
            
            if(xs)
-            {'unknown block:(sendself self-1/1934 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply type_decl/1941 "and" 1a))';
+            {/* unknown */'(sendself self-1/1934 list/1069 [0: [0: [17: [0: "@," 0 0] 0a] "@,"]] 0a 0a\n  (apply type_decl/1941 "and" 1a))';
              return pp
                      (f,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<v>",0],"<v>"]],
-                        [15,[17,[0,"@,",0,0],[15,[17,0,0]]]]],
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<v>",/* End_of_format */0],
+                          "<v>"]],
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@,",0,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]],
                        "@[<v>%a@,%a@]"],
                       type_decl("type",rf),
                       x,
@@ -5794,63 +8213,85 @@ var
             {return type_decl("type",rf,f,x);}
            }
          else
-          {throw [0,Assert_failure,[0,"parsing/pprintast.ml",1256,12]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"parsing/pprintast.ml",1256,12]];
+           }
          },
        type_declaration,
        function(self$neg1,f,x)
         {var
           priv=
-           function(f$1)
+           function(f)
             {var match=x[5];
              
-             if(match!=0)
-              {return 0;}
+             if(match!==0)
+              {return /* () */0;}
              else
               {return pp
-                       (f$1,[0,[17,[0,"@;",1,0],[11,"private",0]],"@;private"]);
+                       (f,
+                        [/* Format */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* String_literal */11,"private",/* End_of_format */0]],
+                         "@;private"]);
                }
              };
          
          var
           manifest=
-           function(f$1)
+           function(f)
             {var match=x[6];
              
              if(match)
-              {"unknown block:(sendself self-1/1951 core_type/1086)";
-               return pp(f$1,[0,[17,[0,"@;",1,0],[15,0]],"@;%a"],0,match[1]);
+              {/* unknown */"(sendself self-1/1951 core_type/1086)";
+               return pp
+                       (f,
+                        [/* Format */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* Alpha */15,/* End_of_format */0]],
+                         "@;%a"],
+                        0,
+                        match[1]);
                }
              else
-              {return 0;}
+              {return /* () */0;}
              };
          
          var
           constructor_declaration=
-           function(f$1,pcd)
+           function(f,pcd)
             {var match=pcd[2];
              
              var match$1=pcd[3];
              
              if(match$1)
               {if(match)
-                {'unknown block:(sendself self-1/1951 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1951 core_type1/1087))';
-                 "unknown block:(sendself self-1/1951 core_type1/1087)";
-                 "unknown block:(sendself self-1/1951 attributes/1097)";
+                {/* unknown */'(sendself self-1/1951 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1951 core_type1/1087))';
+                 /* unknown */"(sendself self-1/1951 core_type1/1087)";
+                 /* unknown */"(sendself self-1/1951 attributes/1097)";
                  return pp
-                         (f$1,
-                          [0,
-                           [12,
+                         (f,
+                          [/* Format */0,
+                           [/* Char_literal */12,
                             124,
-                            [17,
-                             [0,"@;",1,0],
-                             [2,
-                              0,
-                              [12,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,
                                58,
-                               [17,
-                                [0,"@;",1,0],
-                                [15,
-                                 [17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,[15,0]]]]]]]]]]],
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@;",1,0],
+                                  [/* String_literal */11,
+                                   "->",
+                                   [/* Formatting_lit */17,
+                                    [/* Break */0,"@;",1,0],
+                                    [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]]]]]]]]]]],
                            "|@;%s:@;%a@;->@;%a%a"],
                           pcd[1][1],
                           0,
@@ -5861,16 +8302,22 @@ var
                           pcd[5]);
                  }
                else
-                {"unknown block:(sendself self-1/1951 core_type1/1087)";
-                 "unknown block:(sendself self-1/1951 attributes/1097)";
+                {/* unknown */"(sendself self-1/1951 core_type1/1087)";
+                 /* unknown */"(sendself self-1/1951 attributes/1097)";
                  return pp
-                         (f$1,
-                          [0,
-                           [12,
+                         (f,
+                          [/* Format */0,
+                           [/* Char_literal */12,
                             124,
-                            [17,
-                             [0,"@;",1,0],
-                             [2,0,[12,58,[17,[0,"@;",1,0],[15,[15,0]]]]]]],
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,
+                               58,
+                               [/* Formatting_lit */17,
+                                [/* Break */0,"@;",1,0],
+                                [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]]]]]]],
                            "|@;%s:@;%a%a"],
                           pcd[1][1],
                           0,
@@ -5880,24 +8327,38 @@ var
                  }
                }
              else
-              {"unknown block:(sendself self-1/1951 attributes/1097)";
+              {/* unknown */"(sendself self-1/1951 attributes/1097)";
                return pp
-                       (f$1,
-                        [0,[12,124,[17,[0,"@;",1,0],[2,0,[15,[15,0]]]]],"|@;%s%a%a"],
+                       (f,
+                        [/* Format */0,
+                         [/* Char_literal */12,
+                          124,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]]]]],
+                         "|@;%s%a%a"],
                         pcd[1][1],
-                        function(f$2,l)
+                        function(f,l)
                          {if(l)
-                           {'unknown block:(sendself self-1/1951 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1951 core_type1/1087))';
+                           {/* unknown */'(sendself self-1/1951 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1951 core_type1/1087))';
                             return pp
-                                    (f$2,
-                                     [0,
-                                      [17,[0,"@;",1,0],[11,"of",[17,[0,"@;",1,0],[15,0]]]],
+                                    (f,
+                                     [/* Format */0,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@;",1,0],
+                                       [/* String_literal */11,
+                                        "of",
+                                        [/* Formatting_lit */17,
+                                         [/* Break */0,"@;",1,0],
+                                         [/* Alpha */15,/* End_of_format */0]]]],
                                       "@;of@;%a"],
                                      0,
                                      l);
                             }
                           else
-                           {return 0;}
+                           {return /* () */0;}
                           },
                         pcd[2],
                         0,
@@ -5907,17 +8368,32 @@ var
          
          var
           label_declaration=
-           function(f$1,pld)
-            {"unknown block:(sendself self-1/1951 mutable_flag/1075)";
-             "unknown block:(sendself self-1/1951 core_type/1086)";
-             "unknown block:(sendself self-1/1951 attributes/1097)";
+           function(f,pld)
+            {/* unknown */"(sendself self-1/1951 mutable_flag/1075)";
+             /* unknown */"(sendself self-1/1951 core_type/1086)";
+             /* unknown */"(sendself self-1/1951 attributes/1097)";
              return pp
-                     (f$1,
-                      [0,
-                       [18,
-                        [1,[0,[11,"<2>",0],"<2>"]],
-                        [15,
-                         [2,0,[12,58,[17,[0,"@;",1,0],[15,[15,[12,59,[17,0,0]]]]]]]]],
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_gen */18,
+                        [/* Open_box */1,
+                         [/* Format */0,
+                          [/* String_literal */11,"<2>",/* End_of_format */0],
+                          "<2>"]],
+                        [/* Alpha */15,
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Char_literal */12,
+                           58,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@;",1,0],
+                            [/* Alpha */15,
+                             [/* Alpha */15,
+                              [/* Char_literal */12,
+                               59,
+                               [/* Formatting_lit */17,
+                                /* Close_box */0,
+                                /* End_of_format */0]]]]]]]]],
                        "@[<2>%a%s:@;%a%a;@]"],
                       0,
                       pld[2],
@@ -5930,39 +8406,70 @@ var
          
          var
           repr=
-           function(f$1)
+           function(f)
             {var
               intro=
-               function(f$2)
-                {if(x[6]=0)
-                  {return 0;}
+               function(f)
+                {if(x[6]===/* None */0)
+                  {return /* () */0;}
                  else
-                  {return pp(f$2,[0,[17,[0,"@;",1,0],[12,61,0]],"@;="]);}
+                  {return pp
+                           (f,
+                            [/* Format */0,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Char_literal */12,61,/* End_of_format */0]],
+                             "@;="]);
+                   }
                  };
              
              var match=x[4];
              
-             if(typeof match=="number")
+             if(typeof match==="number")
               {switch(match)
-                {case 0:return 0;
+                {case 0:return /* () */0;
                  case 1:
                   return pp
-                          (f$1,[0,[16,[17,[0,"@;",1,0],[11,"..",0]]],"%t@;.."],intro);
+                          (f,
+                           [/* Format */0,
+                            [/* Theta */16,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* String_literal */11,"..",/* End_of_format */0]]],
+                            "%t@;.."],
+                           intro);
                   
                  }}
              else
               {switch(match[0])
                 {case 0:
-                  'unknown block:(sendself self-1/1951 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  constructor_declaration/1959)';
+                  /* unknown */'(sendself self-1/1951 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  constructor_declaration/1959)';
                   return pp
-                          (f$1,[0,[16,[17,3,[15,0]]],"%t@\n%a"],intro,0,match[1]);
+                          (f,
+                           [/* Format */0,
+                            [/* Theta */16,
+                             [/* Formatting_lit */17,
+                              /* Force_newline */3,
+                              [/* Alpha */15,/* End_of_format */0]]],
+                            "%t@\n%a"],
+                           intro,
+                           0,
+                           match[1]);
                   
                  case 1:
-                  'unknown block:(sendself self-1/1951 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  label_declaration/1967)';
+                  /* unknown */'(sendself self-1/1951 list/1069 [0: [0: [17: 3a 0a] "@\n"]] 0a 0a\n  label_declaration/1967)';
                   return pp
-                          (f$1,
-                           [0,
-                            [16,[17,[0,"@;",1,0],[12,123,[17,3,[15,[12,125,0]]]]]],
+                          (f,
+                           [/* Format */0,
+                            [/* Theta */16,
+                             [/* Formatting_lit */17,
+                              [/* Break */0,"@;",1,0],
+                              [/* Char_literal */12,
+                               123,
+                               [/* Formatting_lit */17,
+                                /* Force_newline */3,
+                                [/* Alpha */15,
+                                 [/* Char_literal */12,125,/* End_of_format */0]]]]]],
                             "%t@;{@\n%a}"],
                            intro,
                            0,
@@ -5973,13 +8480,17 @@ var
          
          var
           constraints=
-           function(f$1)
-            {'unknown block:(sendself self-1/1951 list/1069 0a [0: [0: [17: [0: "@ " 1 0] 0a] "@ "]] 0a\n  (function f/1978 param/2089\n    (apply pp/1051 f/1978\n      [0:\n       [18:\n        [1: [0: [11: "<hov2>" 0a] "<hov2>"]]\n        [11:\n         " constraint"\n         [17:\n          [0: "@ " 1 0]\n          [15:\n           [17:\n            [0: "@ " 1 0] [12: \'=\' [17: [0: "@ " 1 0] [15: [17: 0a 0a]]]]]]]]]\n       "@[<hov2> constraint@ %a@ =@ %a@]"]\n      (sendself self-1/1951 core_type/1086) (field 0 param/2089)\n      (sendself self-1/1951 core_type/1086) (field 1 param/2089)))\n  f/1977 (field 2 x/1953))';
+           function(f)
+            {/* unknown */'(sendself self-1/1951 list/1069 0a [0: [0: [17: [0: "@ " 1 0] 0a] "@ "]] 0a\n  (function f/1978 param/2089\n    (apply pp/1051 f/1978\n      [0:\n       [18:\n        [1: [0: [11: "<hov2>" 0a] "<hov2>"]]\n        [11:\n         " constraint"\n         [17:\n          [0: "@ " 1 0]\n          [15:\n           [17:\n            [0: "@ " 1 0] [12: \'=\' [17: [0: "@ " 1 0] [15: [17: 0a 0a]]]]]]]]]\n       "@[<hov2> constraint@ %a@ =@ %a@]"]\n      (sendself self-1/1951 core_type/1086) (field 0 param/2089)\n      (sendself self-1/1951 core_type/1086) (field 1 param/2089)))\n  f/1977 (field 2 x/1953))';
              };
          
          return pp
                  (f,
-                  [0,[16,[16,[16,[16,0]]]],"%t%t%t%t"],
+                  [/* Format */0,
+                   [/* Theta */16,
+                    [/* Theta */16,
+                     [/* Theta */16,[/* Theta */16,/* End_of_format */0]]]],
+                   "%t%t%t%t"],
                   priv,
                   manifest,
                   repr,
@@ -5989,32 +8500,61 @@ var
        function(self$neg1,f,x)
         {var
           extension_constructor$1=
-           function(f$1,x$1)
-            {"unknown block:(sendself self-1/1982 extension_constructor/1126)";
+           function(f,x)
+            {/* unknown */"(sendself self-1/1982 extension_constructor/1126)";
              return pp
-                     (f$1,
-                      [0,[17,3,[12,124,[17,[0,"@;",1,0],[15,0]]]],"@\n|@;%a"],
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_lit */17,
+                        /* Force_newline */3,
+                        [/* Char_literal */12,
+                         124,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@;",1,0],
+                          [/* Alpha */15,/* End_of_format */0]]]],
+                       "@\n|@;%a"],
                       0,
-                      x$1);
+                      x);
              };
          
-         "unknown block:(sendself self-1/1982 longident_loc/1073)";
-         'unknown block:(sendself self-1/1982 list/1069 [0: [0: 0a ""]] 0a 0a\n  extension_constructor/1985)';
-         "unknown block:(sendself self-1/1982 item_attributes/1098)";
+         /* unknown */"(sendself self-1/1982 longident_loc/1073)";
+         /* unknown */'(sendself self-1/1982 list/1069 [0: [0: 0a ""]] 0a 0a\n  extension_constructor/1985)';
+         /* unknown */"(sendself self-1/1982 item_attributes/1098)";
          return pp
                  (f,
-                  [0,
-                   [18,
-                    [1,[0,[11,"<2>",0],"<2>"]],
-                    [11,"type ",[15,[15,[11," +=",[15,[17,0,[15,0]]]]]]]],
+                  [/* Format */0,
+                   [/* Formatting_gen */18,
+                    [/* Open_box */1,
+                     [/* Format */0,
+                      [/* String_literal */11,"<2>",/* End_of_format */0],
+                      "<2>"]],
+                    [/* String_literal */11,
+                     "type ",
+                     [/* Alpha */15,
+                      [/* Alpha */15,
+                       [/* String_literal */11,
+                        " +=",
+                        [/* Alpha */15,
+                         [/* Formatting_lit */17,
+                          /* Close_box */0,
+                          [/* Alpha */15,/* End_of_format */0]]]]]]]],
                    "@[<2>type %a%a +=%a@]%a"],
-                  function(f$1,l)
+                  function(f,l)
                    {if(l)
-                     {"unknown block:(sendself self-1/1982 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1982 type_param/1121))";
-                      return pp(f$1,[0,[15,[17,[0,"@;",1,0],0]],"%a@;"],0,l);
+                     {/* unknown */"(sendself self-1/1982 list/1069 [0: [0: [12: ',' 0a] \",\"]]\n  [0: [0: [12: '(' 0a] \"(\"]] [0: [0: [12: ')' 0a] \")\"]]\n  (sendself self-1/1982 type_param/1121))";
+                      return pp
+                              (f,
+                               [/* Format */0,
+                                [/* Alpha */15,
+                                 [/* Formatting_lit */17,
+                                  [/* Break */0,"@;",1,0],
+                                  /* End_of_format */0]],
+                                "%a@;"],
+                               0,
+                               l);
                       }
                     else
-                     {return 0;}
+                     {return /* () */0;}
                     },
                   x[2],
                   0,
@@ -6028,7 +8568,7 @@ var
        function(self$neg1,f,x)
         {var match=x[2];
          
-         switch(match)
+         switch(match[0])
           {case 0:
             var match$1=match[2];
             
@@ -6037,67 +8577,100 @@ var
             if(match$1)
              {var r=match$1[1];
               
-              "unknown block:(sendself self-1/1991 attributes/1097)";
+              /* unknown */"(sendself self-1/1991 attributes/1097)";
               return pp
                       (f,
-                       [0,[2,0,[15,[12,58,[17,[0,"@;",1,0],[15,0]]]]],"%s%a:@;%a"],
+                       [/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Alpha */15,
+                          [/* Char_literal */12,
+                           58,
+                           [/* Formatting_lit */17,
+                            [/* Break */0,"@;",1,0],
+                            [/* Alpha */15,/* End_of_format */0]]]]],
+                        "%s%a:@;%a"],
                        x[1][1],
                        0,
                        x[4],
-                       function(f$1,l$1)
-                        {if(l$1)
-                          {'unknown block:(sendself self-1/1991 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1991 core_type1/1087))';
-                           "unknown block:(sendself self-1/1991 core_type1/1087)";
+                       function(f,l)
+                        {if(l)
+                          {/* unknown */'(sendself self-1/1991 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1991 core_type1/1087))';
+                           /* unknown */"(sendself self-1/1991 core_type1/1087)";
                            return pp
-                                   (f$1,
-                                    [0,
-                                     [15,[17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,0]]]]],
+                                   (f,
+                                    [/* Format */0,
+                                     [/* Alpha */15,
+                                      [/* Formatting_lit */17,
+                                       [/* Break */0,"@;",1,0],
+                                       [/* String_literal */11,
+                                        "->",
+                                        [/* Formatting_lit */17,
+                                         [/* Break */0,"@;",1,0],
+                                         [/* Alpha */15,/* End_of_format */0]]]]],
                                      "%a@;->@;%a"],
                                     0,
-                                    l$1,
+                                    l,
                                     0,
                                     r);
                            }
                          else
-                          {"unknown block:(sendself self-1/1991 core_type1/1087 f/2000 r/1996)";
+                          {/* unknown */"(sendself self-1/1991 core_type1/1087 f/2000 r/1996)";
                            }
                          },
                        l);
               }
             else
-             {"unknown block:(sendself self-1/1991 attributes/1097)";
+             {/* unknown */"(sendself self-1/1991 attributes/1097)";
               return pp
                       (f,
-                       [0,[2,0,[15,[15,0]]],"%s%a%a"],
+                       [/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]]],
+                        "%s%a%a"],
                        x[1][1],
                        0,
                        x[4],
-                       function(f$1,l$1)
-                        {if(l$1)
-                          {'unknown block:(sendself self-1/1991 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1991 core_type1/1087))';
+                       function(f,l)
+                        {if(l)
+                          {/* unknown */'(sendself self-1/1991 list/1069\n  [0: [0: [12: \'*\' [17: [0: "@;" 1 0] 0a]] "*@;"]] 0a 0a\n  (sendself self-1/1991 core_type1/1087))';
                            return pp
-                                   (f$1,
-                                    [0,
-                                     [17,[0,"@;",1,0],[11,"of",[17,[0,"@;",1,0],[15,0]]]],
+                                   (f,
+                                    [/* Format */0,
+                                     [/* Formatting_lit */17,
+                                      [/* Break */0,"@;",1,0],
+                                      [/* String_literal */11,
+                                       "of",
+                                       [/* Formatting_lit */17,
+                                        [/* Break */0,"@;",1,0],
+                                        [/* Alpha */15,/* End_of_format */0]]]],
                                      "@;of@;%a"],
                                     0,
-                                    l$1);
+                                    l);
                            }
                          else
-                          {return 0;}
+                          {return /* () */0;}
                          },
                        l);
               }
             
            case 1:
-            "unknown block:(sendself self-1/1991 attributes/1097)";
-            "unknown block:(sendself self-1/1991 longident_loc/1073)";
+            /* unknown */"(sendself self-1/1991 attributes/1097)";
+            /* unknown */"(sendself self-1/1991 longident_loc/1073)";
             return pp
                     (f,
-                     [0,
-                      [2,
-                       0,
-                       [15,[17,[0,"@;",1,0],[12,61,[17,[0,"@;",1,0],[15,0]]]]]],
+                     [/* Format */0,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* Alpha */15,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@;",1,0],
+                         [/* Char_literal */12,
+                          61,
+                          [/* Formatting_lit */17,
+                           [/* Break */0,"@;",1,0],
+                           [/* Alpha */15,/* End_of_format */0]]]]]],
                       "%s%a@;=@;%a"],
                      x[1][1],
                      0,
@@ -6111,22 +8684,34 @@ var
        function(self$neg1,f,l)
         {var
           aux=
-           function(f$1,param)
-            {"unknown block:(sendself self-1/2003 pattern/1088)";
-             'unknown block:(sendself self-1/2003 option/1070\n  [0:\n   [0: [17: [0: "@;" 1 0] [11: "when" [17: [0: "@;" 1 0] 0a]]] "@;when@;"]]\n  0a (sendself self-1/2003 expression/1093))';
-             "unknown block:(send (sendself self-1/2003 under_pipe/1062) 782176664)";
+           function(f,param)
+            {/* unknown */"(sendself self-1/2003 pattern/1088)";
+             /* unknown */'(sendself self-1/2003 option/1070\n  [0:\n   [0: [17: [0: "@;" 1 0] [11: "when" [17: [0: "@;" 1 0] 0a]]] "@;when@;"]]\n  0a (sendself self-1/2003 expression/1093))';
+             /* unknown */"(send (sendself self-1/2003 under_pipe/1062) 782176664)";
              return pp
-                     (f$1,
-                      [0,
-                       [17,
-                        [0,"@;",1,0],
-                        [11,
+                     (f,
+                      [/* Format */0,
+                       [/* Formatting_lit */17,
+                        [/* Break */0,"@;",1,0],
+                        [/* String_literal */11,
                          "| ",
-                         [18,
-                          [1,[0,[11,"<2>",0],"<2>"]],
-                          [15,
-                           [15,
-                            [17,[0,"@;",1,0],[11,"->",[17,[0,"@;",1,0],[15,[17,0,0]]]]]]]]]],
+                         [/* Formatting_gen */18,
+                          [/* Open_box */1,
+                           [/* Format */0,
+                            [/* String_literal */11,"<2>",/* End_of_format */0],
+                            "<2>"]],
+                          [/* Alpha */15,
+                           [/* Alpha */15,
+                            [/* Formatting_lit */17,
+                             [/* Break */0,"@;",1,0],
+                             [/* String_literal */11,
+                              "->",
+                              [/* Formatting_lit */17,
+                               [/* Break */0,"@;",1,0],
+                               [/* Alpha */15,
+                                [/* Formatting_lit */17,
+                                 /* Close_box */0,
+                                 /* End_of_format */0]]]]]]]]]],
                        "@;| @[<2>%a%a@;->@;%a@]"],
                       0,
                       param[1],
@@ -6136,7 +8721,7 @@ var
                       param[3]);
              };
          
-         'unknown block:(sendself self-1/2003 list/1069 [0: [0: 0a ""]] 0a 0a aux/2006 f/2004 l/2005)';
+         /* unknown */'(sendself self-1/2003 list/1069 [0: [0: 0a ""]] 0a 0a aux/2006 f/2004 l/2005)';
          },
        label_x_expression_param,
        function(self$neg1,f,param)
@@ -6146,18 +8731,18 @@ var
          
          switch(l)
           {case "":
-            "unknown block:(sendself self-1/2012 expression2/1095 f/2013 e/2015)";
+            /* unknown */"(sendself self-1/2012 expression2/1095 f/2013 e/2015)";
             
            default:
             var match=e[1];
             
             var exit;
             
-            switch(match)
+            switch(match[0])
              {case 0:
                var match$1=match[1][1];
                
-               switch(match$1)
+               switch(match$1[0])
                 {case 0:var simple_name=/* Some */[0,match$1[1]];
                  case 1:exit=14;
                  case 2:exit=14;
@@ -6165,66 +8750,149 @@ var
                
               default:exit=14;}
             
-            switch(exit){case 14:var simple_name=0;}
+            switch(exit){case 14:var simple_name=/* None */0;}
             
-            if(l[0]=63)
+            if(l[0]===63)
              {var str=$$String["sub"](l,1,l["length"]-1);
               
-              if("unknown primitive:caml_equal")
-               {return pp(f,[0,[2,0,0],"%s"],l);}
+              if(CamlPrimitive["caml_equal"](/* Some */[0,str],simple_name))
+               {return pp
+                        (f,
+                         [/* Format */0,
+                          [/* String */2,/* No_padding */0,/* End_of_format */0],
+                          "%s"],
+                         l);
+                }
               else
-               {"unknown block:(sendself self-1/2012 simple_expr/1096)";
-                return pp(f,[0,[2,0,[12,58,[15,0]]],"%s:%a"],l,0,e);
+               {/* unknown */"(sendself self-1/2012 simple_expr/1096)";
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Char_literal */12,
+                            58,
+                            [/* Alpha */15,/* End_of_format */0]]],
+                          "%s:%a"],
+                         l,
+                         0,
+                         e);
                 }
               }
             else
-             {if("unknown primitive:caml_equal")
-               {return pp(f,[0,[12,126,[2,0,0]],"~%s"],l);}
+             {if(CamlPrimitive["caml_equal"](/* Some */[0,l],simple_name))
+               {return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Char_literal */12,
+                           126,
+                           [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                          "~%s"],
+                         l);
+                }
               else
-               {"unknown block:(sendself self-1/2012 simple_expr/1096)";
-                return pp(f,[0,[12,126,[2,0,[12,58,[15,0]]]],"~%s:%a"],l,0,e);
+               {/* unknown */"(sendself self-1/2012 simple_expr/1096)";
+                return pp
+                        (f,
+                         [/* Format */0,
+                          [/* Char_literal */12,
+                           126,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             58,
+                             [/* Alpha */15,/* End_of_format */0]]]],
+                          "~%s:%a"],
+                         l,
+                         0,
+                         e);
                 }
               }
             }
          },
        directive_argument,
        function(self$neg1,f,x)
-        {if(typeof x=="number")
-          {switch(x){case 0:return 0;}}
+        {if(typeof x==="number")
+          {switch(x){case 0:return /* () */0;}}
          else
           {switch(x[0])
-            {case 0:return pp(f,[0,[17,[0,"@ ",1,0],[3,0,0]],"@ %S"],x[1]);
+            {case 0:
+              return pp
+                      (f,
+                       [/* Format */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                        "@ %S"],
+                       x[1]);
+              
              case 1:
-              return pp(f,[0,[17,[0,"@ ",1,0],[4,0,0,0,0]],"@ %d"],x[1]);
+              return pp
+                      (f,
+                       [/* Format */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Int */4,
+                          /* Int_d */0,
+                          /* No_padding */0,
+                          /* No_precision */0,
+                          /* End_of_format */0]],
+                        "@ %d"],
+                       x[1]);
+              
              case 2:
-              "unknown block:(sendself self-1/2021 longident/1072)";
-              return pp(f,[0,[17,[0,"@ ",1,0],[15,0]],"@ %a"],0,x[1]);
+              /* unknown */"(sendself self-1/2021 longident/1072)";
+              return pp
+                      (f,
+                       [/* Format */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* Alpha */15,/* End_of_format */0]],
+                        "@ %a"],
+                       0,
+                       x[1]);
               
              case 3:
               return pp
                       (f,
-                       [0,[17,[0,"@ ",1,0],[2,0,0]],"@ %s"],
+                       [/* Format */0,
+                        [/* Formatting_lit */17,
+                         [/* Break */0,"@ ",1,0],
+                         [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                        "@ %s"],
                        Pervasives["string_of_bool"](x[1]));
               
              }}
          },
        toplevel_phrase,
        function(self$neg1,f,x)
-        {switch(x)
+        {switch(x[0])
           {case 0:
             Format["pp_open_hvbox"](f,0);
-            "unknown block:(sendself self-1/2029 list/1069 0a 0a 0a\n  (sendself self-1/2029 structure_item/1120) f/2030 (field 0 x/2031))";
+            /* unknown */"(sendself self-1/2029 list/1069 0a 0a 0a\n  (sendself self-1/2029 structure_item/1120) f/2030 (field 0 x/2031))";
             
-            return Format["pp_close_box"](f,0);
+            return Format["pp_close_box"](f,/* () */0);
             
            case 1:
-            "unknown block:(sendself self-1/2029 directive_argument/1129)";
+            /* unknown */"(sendself self-1/2029 directive_argument/1129)";
             return pp
                     (f,
-                     [0,
-                      [18,
-                       [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                       [12,35,[2,0,[17,[0,"@ ",1,0],[15,[17,0,0]]]]]],
+                     [/* Format */0,
+                      [/* Formatting_gen */18,
+                       [/* Open_box */1,
+                        [/* Format */0,
+                         [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                         "<hov2>"]],
+                       [/* Char_literal */12,
+                        35,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Formatting_lit */17,
+                          [/* Break */0,"@ ",1,0],
+                          [/* Alpha */15,
+                           [/* Formatting_lit */17,
+                            /* Close_box */0,
+                            /* End_of_format */0]]]]]],
                       "@[<hov2>#%s@ %a@]"],
                      x[1],
                      0,
@@ -6235,7 +8903,12 @@ var
     return function(env,$$self,param)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[pipe]=0,0,$$self$1[semi]=0,0,$$self$1[ifthenelse]=0,0;
+      $$self$1[pipe+1]=
+      /* false */0,
+      $$self$1[semi+1]=
+      /* false */0,
+      $$self$1[ifthenelse+1]=
+      /* false */0;
       return $$self$1;
       };
     };
@@ -6315,30 +8988,50 @@ var
      "class_field"],
     printer_init);
 
-var $$default=printer[1](0,0);
+var $$default=printer[1](0,/* () */0);
 
 var
  toplevel_phrase=
   function(f,x)
-   {switch(x)
+   {switch(x[0])
      {case 0:
-       "unknown block:(send default/2035 -944563106 0a 0a 0a (send default/2035 832861151))";
+       /* unknown */"(send default/2035 -944563106 0a 0a 0a (send default/2035 832861151))";
        return pp
                (f,
-                [0,
-                 [18,[1,[0,[11,"<hov0>",0],"<hov0>"]],[15,[17,0,0]]],
+                [/* Format */0,
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<hov0>",/* End_of_format */0],
+                    "<hov0>"]],
+                  [/* Alpha */15,
+                   [/* Formatting_lit */17,
+                    /* Close_box */0,
+                    /* End_of_format */0]]],
                  "@[<hov0>%a@]"],
                 0,
                 x[1]);
        
       case 1:
-       "unknown block:(send default/2035 -861078611)";
+       /* unknown */"(send default/2035 -861078611)";
        return pp
                (f,
-                [0,
-                 [18,
-                  [1,[0,[11,"<hov2>",0],"<hov2>"]],
-                  [12,35,[2,0,[17,[0,"@ ",1,0],[15,[17,0,0]]]]]],
+                [/* Format */0,
+                 [/* Formatting_gen */18,
+                  [/* Open_box */1,
+                   [/* Format */0,
+                    [/* String_literal */11,"<hov2>",/* End_of_format */0],
+                    "<hov2>"]],
+                  [/* Char_literal */12,
+                   35,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Formatting_lit */17,
+                     [/* Break */0,"@ ",1,0],
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       /* Close_box */0,
+                       /* End_of_format */0]]]]]],
                  "@[<hov2>#%s@ %a@]"],
                 x[1],
                 0,
@@ -6350,48 +9043,59 @@ var
 var
  expression=
   function(f,x)
-   {"unknown block:(send default/2035 782176664)";
-    return pp(f,[0,[18,[1,[0,0,""]],[15,[17,0,0]]],"@[%a@]"],0,x);
+   {/* unknown */"(send default/2035 782176664)";
+    return pp
+            (f,
+             [/* Format */0,
+              [/* Formatting_gen */18,
+               [/* Open_box */1,[/* Format */0,/* End_of_format */0,""]],
+               [/* Alpha */15,
+                [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0]]],
+              "@[%a@]"],
+             0,
+             x);
     };
 
 var
  string_of_expression=
   function(x)
-   {
+   {Format["flush_str_formatter"](/* () */0);
     var f=Format["str_formatter"];
     
-    "unknown block:(send default/2035 782176664 f/2047 x/2046)";
+    /* unknown */"(send default/2035 782176664 f/2047 x/2046)";
     
-    return Format["flush_str_formatter"](0);
+    return Format["flush_str_formatter"](/* () */0);
     };
 
 var
  string_of_structure=
   function(x)
-   {
+   {Format["flush_str_formatter"](/* () */0);
     var f=Format["str_formatter"];
     
-    "unknown block:(send default/2035 -951102413 f/2050 x/2049)";
+    /* unknown */"(send default/2035 -951102413 f/2050 x/2049)";
     
-    return Format["flush_str_formatter"](0);
+    return Format["flush_str_formatter"](/* () */0);
     };
 
 var
  top_phrase=
   function(f,x)
-   {Format["pp_print_newline"](f,0);
+   {Format["pp_print_newline"](f,/* () */0);
     toplevel_phrase(f,x);
-    pp(f,[0,[11,";;",0],";;"]);
-    return Format["pp_print_newline"](f,0);
+    pp
+     (f,
+      [/* Format */0,[/* String_literal */11,";;",/* End_of_format */0],";;"]);
+    return Format["pp_print_newline"](f,/* () */0);
     };
 
-"unknown block:(send default/2035 -957384486)";
+/* unknown */"(send default/2035 -957384486)";
 
-"unknown block:(send default/2035 293013072)";
+/* unknown */"(send default/2035 293013072)";
 
-"unknown block:(send default/2035 359375608)";
+/* unknown */"(send default/2035 359375608)";
 
-"unknown block:(send default/2035 -951102413)";
+/* unknown */"(send default/2035 -951102413)";
 
 module["exports"]=
 {"printer":printer,

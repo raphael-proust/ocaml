@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Misc=require("Misc");
+var List=require("./list.js");
+var Misc=require("./misc.js");
 
 
 var
@@ -53,7 +53,7 @@ var
         
         var match=item$1[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:
            var str_desc=/* Tstr_eval */[0,map_expression(match[1]),match[2]];
           case 1:
@@ -147,9 +147,9 @@ var
         
         var val_desc=map_core_type(v$1[3]);
         
-        var newrecord="unknown primitive:duprecord regular 7";
+        var newrecord=/* unknown */"duprecord regular 7";
         
-        return Map[27]((newrecord[3]=val_desc,0,newrecord));
+        return Map[27]((newrecord[3]=val_desc,newrecord));
         };
     
     var
@@ -172,8 +172,11 @@ var
         
         var match=decl$1[6];
         
-        if(typeof match=="number")
-         {switch(match){case 0:var typ_kind=0;case 1:var typ_kind=1;}}
+        if(typeof match==="number")
+         {switch(match)
+           {case 0:var typ_kind=/* Ttype_abstract */0;
+            case 1:var typ_kind=/* Ttype_open */1;
+            }}
         else
          {switch(match[0])
            {case 0:
@@ -186,9 +189,9 @@ var
               list$1=
                List["map"]
                 (function(ld)
-                  {var newrecord="unknown primitive:duprecord regular 6";
+                  {var newrecord=/* unknown */"duprecord regular 6";
                    
-                   newrecord[4]=map_core_type(ld[4]),0;
+                   newrecord[4]=map_core_type(ld[4]);
                    return newrecord;
                    },
                  match[1]);
@@ -257,7 +260,7 @@ var
         
         var match=ext$1[4];
         
-        switch(match)
+        switch(match[0])
          {case 0:
            var args=List["map"](map_core_type,match[1]);
            
@@ -268,9 +271,9 @@ var
           case 1:var ext_kind=/* Text_rebind */[1,match[1],match[2]];
           }
         
-        var newrecord="unknown primitive:duprecord regular 6";
+        var newrecord=/* unknown */"duprecord regular 6";
         
-        return Map[30]((newrecord[4]=ext_kind,0,newrecord));
+        return Map[30]((newrecord[4]=ext_kind,newrecord));
         };
     
     var
@@ -282,7 +285,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -365,7 +368,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=80;}}
         else
          {switch(match[0])
@@ -390,7 +393,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:exit=86;
           case 1:exit=86;
           case 2:
@@ -616,7 +619,7 @@ var
         
         var exit;
         
-        switch(desc)
+        switch(desc[0])
          {case 0:
            return /* tuple */[0,
                    /* Texp_constraint */[0,map_core_type(desc[1])],
@@ -636,7 +639,7 @@ var
              }
            else
             {return /* tuple */[0,
-                     /* Texp_coerce */[1,0,map_core_type(desc[2])],
+                     /* Texp_coerce */[1,/* None */0,map_core_type(desc[2])],
                      loc,
                      attrs];
              }
@@ -693,7 +696,7 @@ var
         
         var x=item$1[1];
         
-        switch(x)
+        switch(x[0])
          {case 0:var sig_desc=/* Tsig_value */[0,map_value_description(x[1])];
           case 1:
            var
@@ -719,13 +722,13 @@ var
             sig_desc=
              /* Tsig_recmodule */[5,
               List["map"]
-               (function(md$1)
+               (function(md)
                  {return /* record */[0,
-                          md$1[1],
-                          md$1[2],
-                          map_module_type(md$1[3]),
-                          md$1[4],
-                          md$1[5]];
+                          md[1],
+                          md[2],
+                          map_module_type(md[3]),
+                          md[4],
+                          md[5]];
                   },
                 x[1])];
            
@@ -786,10 +789,10 @@ var
         
         var ci_expr=map_class_expr(cd$1[8]);
         
-        var newrecord="unknown primitive:duprecord regular 12";
+        var newrecord=/* unknown */"duprecord regular 12";
         
         return Map[42]
-                ((newrecord[2]=ci_params,0,newrecord[8]=ci_expr,0,newrecord));
+                ((newrecord[2]=ci_params,newrecord[8]=ci_expr,newrecord));
         };
     
     var
@@ -801,10 +804,10 @@ var
         
         var ci_expr=map_class_type(cd$1[8]);
         
-        var newrecord="unknown primitive:duprecord regular 12";
+        var newrecord=/* unknown */"duprecord regular 12";
         
         return Map[43]
-                ((newrecord[2]=ci_params,0,newrecord[8]=ci_expr,0,newrecord));
+                ((newrecord[2]=ci_params,newrecord[8]=ci_expr,newrecord));
         };
     
     var
@@ -816,10 +819,10 @@ var
         
         var ci_expr=map_class_type(cd$1[8]);
         
-        var newrecord="unknown primitive:duprecord regular 12";
+        var newrecord=/* unknown */"duprecord regular 12";
         
         return Map[44]
-                ((newrecord[2]=ci_params,0,newrecord[8]=ci_expr,0,newrecord));
+                ((newrecord[2]=ci_params,newrecord[8]=ci_expr,newrecord));
         };
     
     var
@@ -831,7 +834,7 @@ var
         
         var exit;
         
-        switch(match)
+        switch(match[0])
          {case 0:exit=108;
           case 1:var mty_desc=/* Tmty_signature */[1,map_signature(match[1])];
           case 2:
@@ -874,7 +877,7 @@ var
         
         var exit;
         
-        switch(cstr$1)
+        switch(cstr$1[0])
          {case 0:
            var cstr$2=/* Twith_type */[0,map_type_declaration(cstr$1[1])];
           case 1:exit=111;
@@ -898,7 +901,7 @@ var
         
         var match=mexpr$1[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:var mod_desc=mexpr$1[1];
           case 1:var mod_desc=/* Tmod_structure */[1,map_structure(match[1])];
           case 2:
@@ -940,7 +943,7 @@ var
                /* Tmod_constraint */[4,
                 map_module_expr(mexpr$2),
                 mod_type,
-                0,
+                /* Tmodtype_implicit */0,
                 match[4]];
              }
            
@@ -967,7 +970,7 @@ var
         
         var match=cexpr$1[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:
            var
             cl_desc=
@@ -1047,7 +1050,7 @@ var
               cl_desc=
                /* Tcl_constraint */[5,
                 map_class_expr(cl),
-                0,
+                /* None */0,
                 match[3],
                 match[4],
                 match[5]];
@@ -1071,7 +1074,7 @@ var
         
         var match=ct$1[1];
         
-        switch(match)
+        switch(match[0])
          {case 0:
            var
             cltyp_desc=
@@ -1118,7 +1121,7 @@ var
         
         var x=ctf$1[1];
         
-        switch(x)
+        switch(x[0])
          {case 0:var ctf_desc=/* Tctf_inherit */[0,map_class_type(x[1])];
           case 1:
            var match=x[1];
@@ -1169,7 +1172,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=125;}}
         else
          {switch(match[0])
@@ -1260,7 +1263,7 @@ var
     var
      map_row_field=
       function(rf)
-       {switch(rf)
+       {switch(rf[0])
          {case 0:
            return /* Ttag */[0,
                    rf[1],
@@ -1279,7 +1282,7 @@ var
         
         var x=cf$1[1];
         
-        switch(x)
+        switch(x[0])
          {case 0:
            var
             cf_desc=
@@ -1294,7 +1297,7 @@ var
            
            var lab=x[1];
            
-           switch(match)
+           switch(match[0])
             {case 0:
               var
                cf_desc=
@@ -1324,7 +1327,7 @@ var
            
            var lab$1=x[1];
            
-           switch(match$1)
+           switch(match$1[0])
             {case 0:
               var
                cf_desc=

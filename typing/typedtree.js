@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Misc=require("Misc");
-var Location=require("Location");
+var List=require("./list.js");
+var Misc=require("./misc.js");
+var Location=require("./location.js");
 
 
 var
@@ -10,7 +10,7 @@ var
   function(f,param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){}}
     else
      {switch(param[0])
@@ -30,7 +30,7 @@ var
     switch(exit)
      {case 20:return f(param[1]);
       case 21:return List["iter"](f,param[1]);
-      case 19:return 0;
+      case 19:return /* () */0;
       }
     };
 
@@ -39,7 +39,7 @@ var
   function(f,d)
    {var exit;
     
-    if(typeof d=="number")
+    if(typeof d==="number")
      {switch(d){}}
     else
      {switch(d[0])
@@ -70,7 +70,7 @@ var
     switch(exit){case 17:return d;}
     };
 
-var idents=[0,0];
+var idents=[0,/* [] */0];
 
 var
  bound_idents=
@@ -79,7 +79,7 @@ var
     
     var exit;
     
-    if(typeof d=="number")
+    if(typeof d==="number")
      {switch(d){}}
     else
      {switch(d[0])
@@ -98,22 +98,22 @@ var
 var
  pat_bound_idents=
   function(pat)
-   {idents[1]=0,0;
+   {idents[1]=/* [] */0;
     bound_idents(pat);
     var res=idents[1];
     
-    idents[1]=0,0;
+    idents[1]=/* [] */0;
     return res;
     };
 
 var
  rev_let_bound_idents_with_loc=
   function(bindings)
-   {idents[1]=0,0;
+   {idents[1]=/* [] */0;
     List["iter"](function(vb){return bound_idents(vb[1]);},bindings);
     var res=idents[1];
     
-    idents[1]=0,0;
+    idents[1]=/* [] */0;
     return res;
     };
 
@@ -146,39 +146,48 @@ var
     
     var exit;
     
-    if(typeof d=="number")
+    if(typeof d==="number")
      {switch(d){}}
     else
      {switch(d[0])
        {case 0:
-         var newrecord="unknown primitive:duprecord regular 6";
+         var newrecord=/* unknown */"duprecord regular 6";
          
+         var $js;
          try
-          {var $js=/* Tpat_var */[0,alpha_var(env,d[1]),d[2]];}
-         catch(exn){if(exn=Not_found){var $js=0;}else{throw exn;}}
-         newrecord[1]=$js,0;
+          {$js=/* Tpat_var */[0,alpha_var(env,d[1]),d[2]];}
+         catch(exn)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {$js=/* Tpat_any */0;}
+           else
+            {throw exn;}
+           }
+         newrecord[1]=$js;
          return newrecord;
          
         case 1:
          var new_p=alpha_pat(env,d[1]);
          
          try
-          {var newrecord$1="unknown primitive:duprecord regular 6";
+          {var newrecord$1=/* unknown */"duprecord regular 6";
            
-           newrecord$1[1]=
-           /* Tpat_alias */[1,new_p,alpha_var(env,d[2]),d[3]],
-           0;
+           newrecord$1[1]=/* Tpat_alias */[1,new_p,alpha_var(env,d[2]),d[3]];
            return newrecord$1;
            }
-         catch(exn$1){if(exn$1=Not_found){return new_p;}else{throw exn$1;}}
+         catch(exn$1)
+          {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+            {return new_p;}
+           else
+            {throw exn$1;}
+           }
          
         default:exit=6;}}
     
     switch(exit)
      {case 6:
-       var newrecord$2="unknown primitive:duprecord regular 6";
+       var newrecord$2=/* unknown */"duprecord regular 6";
        
-       newrecord$2[1]=map_pattern_desc(alpha_pat(env),d),0;
+       newrecord$2[1]=map_pattern_desc(alpha_pat(env),d);
        return newrecord$2;
        
       }

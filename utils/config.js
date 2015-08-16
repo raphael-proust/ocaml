@@ -1,8 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var version=Sys["ocaml_version"];
@@ -12,13 +13,13 @@ var
   "/Users/hongbozhang/.opam/4.02.3+local-git-master/lib/ocaml";
 
 try
- {var standard_library="unknown primitive:caml_sys_getenv";}
+ {var standard_library=CamlPrimitive["caml_sys_getenv"]("OCAMLLIB");}
 catch(exn)
- {if(exn=Not_found)
+ {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
    {try
-     {var standard_library="unknown primitive:caml_sys_getenv";}
+     {var standard_library=CamlPrimitive["caml_sys_getenv"]("CAMLLIB");}
     catch(exn$1)
-     {if(exn$1=Not_found)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {var standard_library=standard_library_default;}
       else
        {throw exn$1;}
@@ -82,7 +83,7 @@ var cmxs_magic_number="Caml2007D002";
 
 var cmt_magic_number="Caml2012T004";
 
-var load_path=[0,0];
+var load_path=[0,/* [] */0];
 
 var interface_suffix=[0,".mli"];
 
@@ -102,9 +103,9 @@ var system="macosx";
 
 var asm="clang -arch x86_64 -c";
 
-var asm_cfi_supported=1;
+var asm_cfi_supported=/* true */1;
 
-var with_frame_pointers=0;
+var with_frame_pointers=/* false */0;
 
 var ext_obj=".o";
 
@@ -133,7 +134,7 @@ switch(exit)
   case 5:var default_executable_name="camlprog.exe";
   }
 
-var systhread_supported=1;
+var systhread_supported=/* true */1;
 
 var
  print_config=
@@ -142,14 +143,34 @@ var
      p=
       function(name,valu)
        {return Printf["fprintf"]
-                (oc,[0,[2,0,[11,": ",[2,0,[12,10,0]]]],"%s: %s\n"],name,valu);
+                (oc,
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11,
+                    ": ",
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,10,/* End_of_format */0]]]],
+                  "%s: %s\n"],
+                 name,
+                 valu);
         };
     
     var
      p_bool=
       function(name,valu)
        {return Printf["fprintf"]
-                (oc,[0,[2,0,[11,": ",[9,[12,10,0]]]],"%s: %B\n"],name,valu);
+                (oc,
+                 [/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11,
+                    ": ",
+                    [/* Bool */9,[/* Char_literal */12,10,/* End_of_format */0]]]],
+                  "%s: %B\n"],
+                 name,
+                 valu);
         };
     
     p("version",version);

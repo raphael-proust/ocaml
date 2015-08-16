@@ -1,68 +1,72 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Ocamlmklibconfig=require("Ocamlmklibconfig");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Filename=require("Filename");
-var Bytes=require("Bytes");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Ocamlmklibconfig=require("./ocamlmklibconfig.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Filename=require("./filename.js");
+var Bytes=require("./bytes.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  compiler_path=
   function(name)
-   {if("unknown primitive:caml_string_equal")
+   {if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
      {return name;}
     else
      {return Filename["concat"](Ocamlmklibconfig["bindir"],name);}
     };
 
-var bytecode_objs=[0,0];
+var bytecode_objs=[0,/* [] */0];
 
-var native_objs=[0,0];
+var native_objs=[0,/* [] */0];
 
-var c_objs=[0,0];
+var c_objs=[0,/* [] */0];
 
-var caml_libs=[0,0];
+var caml_libs=[0,/* [] */0];
 
-var caml_opts=[0,0];
+var caml_opts=[0,/* [] */0];
 
 var dynlink=[0,Ocamlmklibconfig["supports_shared_libraries"]];
 
-var failsafe=[0,0];
+var failsafe=[0,/* false */0];
 
-var c_libs=[0,0];
+var c_libs=[0,/* [] */0];
 
-var c_Lopts=[0,0];
+var c_Lopts=[0,/* [] */0];
 
-var c_opts=[0,0];
+var c_opts=[0,/* [] */0];
 
-var ld_opts=[0,0];
+var ld_opts=[0,/* [] */0];
 
 var ocamlc=[0,compiler_path("ocamlc")];
 
-var ocamlc_opts=[0,0];
+var ocamlc_opts=[0,/* [] */0];
 
 var ocamlopt=[0,compiler_path("ocamlopt")];
 
-var ocamlopt_opts=[0,0];
+var ocamlopt_opts=[0,/* [] */0];
 
 var output=[0,"a"];
 
 var output_c=[0,""];
 
-var rpath=[0,0];
+var rpath=[0,/* [] */0];
 
-var debug=[0,0];
+var debug=[0,/* false */0];
 
-var verbose=[0,0];
+var verbose=[0,/* false */0];
 
 var
  starts_with=
   function(s,pref)
-   {return s["length"]>=pref["length"]&&"unknown primitive:caml_string_equal";
+   {return s["length"]>=
+           pref["length"]&&
+           CamlPrimitive["caml_string_equal"]
+            ($$String["sub"](s,0,pref["length"]),pref);
     };
 
 var ends_with=Filename["check_suffix"];
@@ -74,14 +78,20 @@ var
 
 var chop_suffix=Filename["chop_suffix"];
 
-var Bad_argument="unknown primitive:caml_set_oo_id";
+var
+ Bad_argument=
+  CamlPrimitive["caml_set_oo_id"]([248,"Ocamlmklib.Bad_argument",0]);
 
 var
  print_version=
   function(param)
    {Printf["printf"]
-     ([0,
-       [11,"ocamlmklib, version ",[2,0,[12,10,0]]],
+     ([/* Format */0,
+       [/* String_literal */11,
+        "ocamlmklib, version ",
+        [/* String */2,
+         /* No_padding */0,
+         [/* Char_literal */12,10,/* End_of_format */0]]],
        "ocamlmklib, version %s\n"],
       Sys["ocaml_version"]);
     return Pervasives["exit"](0);
@@ -90,7 +100,13 @@ var
 var
  print_version_num=
   function(param)
-   {Printf["printf"]([0,[2,0,[12,10,0]],"%s\n"],Sys["ocaml_version"]);
+   {Printf["printf"]
+     ([/* Format */0,
+       [/* String */2,
+        /* No_padding */0,
+        [/* Char_literal */12,10,/* End_of_format */0]],
+       "%s\n"],
+      Sys["ocaml_version"]);
     return Pervasives["exit"](0);
     };
 
@@ -102,124 +118,133 @@ var
     var
      next_arg=
       function(param)
-       {if(i[1]+1>=argv["length"])
+       {if(i[1]+1>=/* -1 for tag */argv["length"]-1)
          {throw [0,
                  Bad_argument,
                  Pervasives["^"]
                   ("Option ",
-                   Pervasives["^"](argv[i[1]]," expects one argument"))];
+                   Pervasives["^"](argv[i[1]+1]," expects one argument"))];
           }
         else
          {}
         
         i[0]++;
-        return argv[i[1]];
+        return argv[i[1]+1];
         };
     
-    while(i[1]<argv["length"])
-     {var s=argv[i[1]];
+    while(i[1]</* -1 for tag */argv["length"]-1)
+     {var s=argv[i[1]+1];
       
       if(ends_with(s,".cmo")||ends_with(s,".cma"))
-       {bytecode_objs[1]=/* :: */[0,s,bytecode_objs[1]],0}
+       {bytecode_objs[1]=/* :: */[0,s,bytecode_objs[1]]}
       else
        {if(ends_with(s,".cmx")||ends_with(s,".cmxa"))
-         {native_objs[1]=/* :: */[0,s,native_objs[1]],0}
+         {native_objs[1]=/* :: */[0,s,native_objs[1]]}
         else
          {if(ends_with(s,".ml")||ends_with(s,".mli"))
            {bytecode_objs[1]=
             /* :: */[0,s,bytecode_objs[1]],
-            0,
             native_objs[1]=
-            /* :: */[0,s,native_objs[1]],
-            0}
+            /* :: */[0,s,native_objs[1]]}
           else
            {if
              (List["exists"]
                (ends_with(s),
-                [0,".o",[0,".a",[0,".obj",[0,".lib",[0,".dll",0]]]]]))
-             {c_objs[1]=/* :: */[0,s,c_objs[1]],0}
+                [/* :: */0,
+                 ".o",
+                 [/* :: */0,
+                  ".a",
+                  [/* :: */0,
+                   ".obj",
+                   [/* :: */0,".lib",[/* :: */0,".dll",/* [] */0]]]]]))
+             {c_objs[1]=/* :: */[0,s,c_objs[1]]}
             else
-             {if("unknown primitive:caml_string_equal")
+             {if(CamlPrimitive["caml_string_equal"](s,"-cclib"))
                {caml_libs[1]=
-                /* :: */[0,next_arg(0),/* :: */[0,"-cclib",caml_libs[1]]],
-                0}
+                /* :: */[0,
+                 next_arg(/* () */0),
+                 /* :: */[0,"-cclib",caml_libs[1]]]}
               else
-               {if("unknown primitive:caml_string_equal")
+               {if(CamlPrimitive["caml_string_equal"](s,"-ccopt"))
                  {caml_opts[1]=
-                  /* :: */[0,next_arg(0),/* :: */[0,"-ccopt",caml_opts[1]]],
-                  0}
+                  /* :: */[0,
+                   next_arg(/* () */0),
+                   /* :: */[0,"-ccopt",caml_opts[1]]]}
                 else
-                 {if("unknown primitive:caml_string_equal")
-                   {dynlink[1]=0,0}
+                 {if(CamlPrimitive["caml_string_equal"](s,"-custom"))
+                   {dynlink[1]=/* false */0}
                   else
-                   {if("unknown primitive:caml_string_equal")
+                   {if(CamlPrimitive["caml_string_equal"](s,"-I"))
                      {caml_opts[1]=
-                      /* :: */[0,next_arg(0),/* :: */[0,"-I",caml_opts[1]]],
-                      0}
+                      /* :: */[0,
+                       next_arg(/* () */0),
+                       /* :: */[0,"-I",caml_opts[1]]]}
                     else
-                     {if("unknown primitive:caml_string_equal")
-                       {failsafe[1]=1,0}
+                     {if(CamlPrimitive["caml_string_equal"](s,"-failsafe"))
+                       {failsafe[1]=/* true */1}
                       else
-                       {if("unknown primitive:caml_string_equal")
-                         {debug[1]=1,0}
+                       {if(CamlPrimitive["caml_string_equal"](s,"-g"))
+                         {debug[1]=/* true */1}
                         else
                          {if
-                           ("unknown primitive:caml_string_equal"||
-                            "unknown primitive:caml_string_equal"||
-                            "unknown primitive:caml_string_equal")
+                           (CamlPrimitive["caml_string_equal"](s,"-h")||
+                            CamlPrimitive["caml_string_equal"](s,"-help")||
+                            CamlPrimitive["caml_string_equal"](s,"--help"))
                            {throw [0,Bad_argument,""];}
                           else
-                           {if("unknown primitive:caml_string_equal")
-                             {ld_opts[1]=/* :: */[0,next_arg(0),ld_opts[1]],0}
+                           {if(CamlPrimitive["caml_string_equal"](s,"-ldopt"))
+                             {ld_opts[1]=/* :: */[0,next_arg(/* () */0),ld_opts[1]]}
                             else
-                             {if("unknown primitive:caml_string_equal")
-                               {caml_opts[1]=/* :: */[0,s,caml_opts[1]],0}
+                             {if(CamlPrimitive["caml_string_equal"](s,"-linkall"))
+                               {caml_opts[1]=/* :: */[0,s,caml_opts[1]]}
                               else
                                {if(starts_with(s,"-l"))
-                                 {c_libs[1]=/* :: */[0,s,c_libs[1]],0}
+                                 {c_libs[1]=/* :: */[0,s,c_libs[1]]}
                                 else
                                  {if(starts_with(s,"-L"))
-                                   {c_Lopts[1]=/* :: */[0,s,c_Lopts[1]],0;
+                                   {c_Lopts[1]=/* :: */[0,s,c_Lopts[1]];
                                     var l=chop_prefix(s,"-L");
                                     
                                     if(!Filename["is_relative"](l))
-                                     {rpath[1]=/* :: */[0,l,rpath[1]],0}
+                                     {rpath[1]=/* :: */[0,l,rpath[1]]}
                                     else
                                      {}
                                     }
                                   else
-                                   {if("unknown primitive:caml_string_equal")
-                                     {ocamlc_opts[1]=/* :: */[0,next_arg(0),ocamlc_opts[1]],0}
+                                   {if(CamlPrimitive["caml_string_equal"](s,"-ocamlcflags"))
+                                     {ocamlc_opts[1]=
+                                      /* :: */[0,next_arg(/* () */0),ocamlc_opts[1]]}
                                     else
-                                     {if("unknown primitive:caml_string_equal")
-                                       {ocamlc[1]=next_arg(0),0}
+                                     {if(CamlPrimitive["caml_string_equal"](s,"-ocamlc"))
+                                       {ocamlc[1]=next_arg(/* () */0)}
                                       else
-                                       {if("unknown primitive:caml_string_equal")
-                                         {ocamlopt[1]=next_arg(0),0}
+                                       {if(CamlPrimitive["caml_string_equal"](s,"-ocamlopt"))
+                                         {ocamlopt[1]=next_arg(/* () */0)}
                                         else
-                                         {if("unknown primitive:caml_string_equal")
-                                           {ocamlopt_opts[1]=/* :: */[0,next_arg(0),ocamlopt_opts[1]],0}
+                                         {if(CamlPrimitive["caml_string_equal"](s,"-ocamloptflags"))
+                                           {ocamlopt_opts[1]=
+                                            /* :: */[0,next_arg(/* () */0),ocamlopt_opts[1]]}
                                           else
-                                           {if("unknown primitive:caml_string_equal")
-                                             {output[1]=next_arg(0),0}
+                                           {if(CamlPrimitive["caml_string_equal"](s,"-o"))
+                                             {output[1]=next_arg(/* () */0)}
                                             else
-                                             {if("unknown primitive:caml_string_equal")
-                                               {output_c[1]=next_arg(0),0}
+                                             {if(CamlPrimitive["caml_string_equal"](s,"-oc"))
+                                               {output_c[1]=next_arg(/* () */0)}
                                               else
                                                {if
-                                                 ("unknown primitive:caml_string_equal"||
-                                                  "unknown primitive:caml_string_equal"||
-                                                  "unknown primitive:caml_string_equal")
-                                                 {rpath[1]=/* :: */[0,next_arg(0),rpath[1]],0}
+                                                 (CamlPrimitive["caml_string_equal"](s,"-dllpath")||
+                                                  CamlPrimitive["caml_string_equal"](s,"-R")||
+                                                  CamlPrimitive["caml_string_equal"](s,"-rpath"))
+                                                 {rpath[1]=/* :: */[0,next_arg(/* () */0),rpath[1]]}
                                                 else
                                                  {if(starts_with(s,"-R"))
-                                                   {rpath[1]=/* :: */[0,chop_prefix(s,"-R"),rpath[1]],0}
+                                                   {rpath[1]=/* :: */[0,chop_prefix(s,"-R"),rpath[1]]}
                                                   else
-                                                   {if("unknown primitive:caml_string_equal")
-                                                     {var a=next_arg(0);
+                                                   {if(CamlPrimitive["caml_string_equal"](s,"-Wl,-rpath"))
+                                                     {var a=next_arg(/* () */0);
                                                       
                                                       if(starts_with(a,"-Wl,"))
-                                                       {rpath[1]=/* :: */[0,chop_prefix(a,"-Wl,"),rpath[1]],0}
+                                                       {rpath[1]=/* :: */[0,chop_prefix(a,"-Wl,"),rpath[1]]}
                                                       else
                                                        {throw [0,
                                                                Bad_argument,
@@ -228,31 +253,29 @@ var
                                                       }
                                                     else
                                                      {if(starts_with(s,"-Wl,-rpath,"))
-                                                       {rpath[1]=
-                                                        /* :: */[0,chop_prefix(s,"-Wl,-rpath,"),rpath[1]],
-                                                        0}
+                                                       {rpath[1]=/* :: */[0,chop_prefix(s,"-Wl,-rpath,"),rpath[1]]}
                                                       else
                                                        {if(starts_with(s,"-Wl,-R"))
-                                                         {rpath[1]=/* :: */[0,chop_prefix(s,"-Wl,-R"),rpath[1]],0}
+                                                         {rpath[1]=/* :: */[0,chop_prefix(s,"-Wl,-R"),rpath[1]]}
                                                         else
                                                          {if
-                                                           ("unknown primitive:caml_string_equal"||
-                                                            "unknown primitive:caml_string_equal")
-                                                           {verbose[1]=1,0}
+                                                           (CamlPrimitive["caml_string_equal"](s,"-v")||
+                                                            CamlPrimitive["caml_string_equal"](s,"-verbose"))
+                                                           {verbose[1]=/* true */1}
                                                           else
-                                                           {if("unknown primitive:caml_string_equal")
-                                                             {print_version(0)}
+                                                           {if(CamlPrimitive["caml_string_equal"](s,"-version"))
+                                                             {print_version(/* () */0)}
                                                             else
-                                                             {if("unknown primitive:caml_string_equal")
-                                                               {print_version_num(0)}
+                                                             {if(CamlPrimitive["caml_string_equal"](s,"-vnum"))
+                                                               {print_version_num(/* () */0)}
                                                               else
                                                                {if(starts_with(s,"-F"))
-                                                                 {c_opts[1]=/* :: */[0,s,c_opts[1]],0}
+                                                                 {c_opts[1]=/* :: */[0,s,c_opts[1]]}
                                                                 else
-                                                                 {if("unknown primitive:caml_string_equal")
-                                                                   {var a$1=next_arg(0);
+                                                                 {if(CamlPrimitive["caml_string_equal"](s,"-framework"))
+                                                                   {var a$1=next_arg(/* () */0);
                                                                     
-                                                                    c_opts[1]=/* :: */[0,a$1,/* :: */[0,s,c_opts[1]]],0}
+                                                                    c_opts[1]=/* :: */[0,a$1,/* :: */[0,s,c_opts[1]]]}
                                                                   else
                                                                    {if(starts_with(s,"-"))
                                                                      {Pervasives["prerr_endline"]
@@ -310,9 +333,9 @@ var
            c_libs,
            /* :: */[0,
             c_objs,
-            /* :: */[0,c_opts,/* :: */[0,ld_opts,/* :: */[0,rpath,0]]]]]]]]]);
-    c_libs[1]=Pervasives["@"](c_Lopts[1],c_libs[1]),0;
-    if("unknown primitive:caml_string_equal")
+            /* :: */[0,c_opts,/* :: */[0,ld_opts,/* :: */[0,rpath,/* [] */0]]]]]]]]]);
+    c_libs[1]=Pervasives["@"](c_Lopts[1],c_libs[1]);
+    if(CamlPrimitive["caml_string_equal"](output_c[1],""))
      {return output_c[1]=output[1],0;}
     else
      {return 0;}
@@ -328,24 +351,29 @@ var
    {if(verbose[1])
      {Pervasives["print_string"]("+ "),
       Pervasives["print_string"](cmd),
-      Pervasives["print_newline"](0)}
+      Pervasives["print_newline"](/* () */0)}
     else
      {}
     
-    return "unknown primitive:caml_sys_system_command";
+    return CamlPrimitive["caml_sys_system_command"](cmd);
     };
 
 var
  scommand=
   function(cmd)
-   {if(command(cmd)!=0){return Pervasives["exit"](2);}else{return 0;}};
+   {if(command(cmd)!==0){return Pervasives["exit"](2);}else{return 0;}};
 
 var
  safe_remove=
   function(s)
    {try
-     {return "unknown primitive:caml_sys_remove";}
-    catch(exn){if(exn[1]=Sys_error){return 0;}else{throw exn;}}
+     {return CamlPrimitive["caml_sys_remove"](s);}
+    catch(exn)
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+       {return /* () */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -353,28 +381,28 @@ var
   function(l)
    {var
      merge=
-      function(l$1,param)
+      function(l,param)
        {if(param)
          {var r=param[2];
           
           var p=param[1];
           
-          if(List["mem"](p,l$1))
-           {return merge(l$1,r);}
+          if(List["mem"](p,l))
+           {return merge(l,r);}
           else
-           {return merge(/* :: */[0,p,l$1],r);}
+           {return merge(/* :: */[0,p,l],r);}
           }
         else
-         {return List["rev"](l$1);}
+         {return List["rev"](l);}
         };
     
-    return merge(0,l);
+    return merge(/* [] */0,l);
     };
 
 var
  make_rpath=
   function(flag)
-   {if((rpath[1]=0)||"unknown primitive:caml_string_equal")
+   {if(rpath[1]===/* [] */0||CamlPrimitive["caml_string_equal"](flag,""))
      {return "";}
     else
      {return Pervasives["^"](flag,$$String["concat"](":",make_set(rpath[1])));
@@ -384,7 +412,7 @@ var
 var
  make_rpath_ccopt=
   function(flag)
-   {if((rpath[1]=0)||"unknown primitive:caml_string_equal")
+   {if(rpath[1]===/* [] */0||CamlPrimitive["caml_string_equal"](flag,""))
      {return "";}
     else
      {return Pervasives["^"]
@@ -422,10 +450,10 @@ var
        var
         aux=
          function(i)
-          {if((i=s$1["length"])||(s$1[i]=32))
+          {if(i===s$1["length"]||s$1[i]===32)
             {return s$1;}
            else
-            {if(s$1[i]=47){s$1[i]=92,0}else{}return aux(i+1);}
+            {if(s$1[i]===47){s$1[i]=92}else{}return aux(i+1);}
            };
        
        return Bytes["to_string"](aux(0));
@@ -436,28 +464,42 @@ var
 var
  build_libs=
   function(param)
-   {if(c_objs[1]!=0)
+   {if(c_objs[1]!==/* [] */0)
      {if(dynlink[1])
        {var
          retcode=
           command
            (Printf["sprintf"]
-             ([0,
-               [2,
-                0,
-                [12,
+             ([/* Format */0,
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,
                  32,
-                 [2,
-                  0,
-                  [11,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
                    " -o ",
-                   [2,
-                    0,
-                    [12,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* Char_literal */12,
                      32,
-                     [2,
-                      0,
-                      [12,32,[2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]]]]]]]],
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* Char_literal */12,
+                       32,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* Char_literal */12,
+                         32,
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Char_literal */12,
+                           32,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             32,
+                             [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]]]]]],
                "%s %s -o %s %s %s %s %s %s"],
               Ocamlmklibconfig["mkdll"],
               debug[1]?"-g":"",
@@ -468,8 +510,8 @@ var
               make_rpath(Ocamlmklibconfig["mksharedlibrpath"]),
               $$String["concat"](" ",c_libs[1])));
         
-        if(retcode!=0)
-         {if(failsafe[1]){dynlink[1]=0,0}else{Pervasives["exit"](2)}}
+        if(retcode!==0)
+         {if(failsafe[1]){dynlink[1]=/* false */0}else{Pervasives["exit"](2)}}
         else
          {}
         }
@@ -485,45 +527,59 @@ var
     else
      {}
     
-    if(bytecode_objs[1]!=0)
+    if(bytecode_objs[1]!==/* [] */0)
      {scommand
        (Printf["sprintf"]
-         ([0,
-           [2,
-            0,
-            [11,
+         ([/* Format */0,
+           [/* String */2,
+            /* No_padding */0,
+            [/* String_literal */11,
              " -a ",
-             [2,
-              0,
-              [12,
+             [/* String */2,
+              /* No_padding */0,
+              [/* Char_literal */12,
                32,
-               [2,
-                0,
-                [12,
+               [/* String */2,
+                /* No_padding */0,
+                [/* Char_literal */12,
                  32,
-                 [2,
-                  0,
-                  [11,
+                 [/* String */2,
+                  /* No_padding */0,
+                  [/* String_literal */11,
                    " -o ",
-                   [2,
-                    0,
-                    [11,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* String_literal */11,
                      ".cma ",
-                     [2,
-                      0,
-                      [12,
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* Char_literal */12,
                        32,
-                       [2,
-                        0,
-                        [11,
+                       [/* String */2,
+                        /* No_padding */0,
+                        [/* String_literal */11,
                          " -dllib -l",
-                         [2,
-                          0,
-                          [11,
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* String_literal */11,
                            " -cclib -l",
-                           [2,
-                            0,
-                            [12,32,[2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]]]]]]]]]]]]]]]]]],
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,
+                             32,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* Char_literal */12,
+                               32,
+                               [/* String */2,
+                                /* No_padding */0,
+                                [/* Char_literal */12,
+                                 32,
+                                 [/* String */2,
+                                  /* No_padding */0,
+                                  [/* Char_literal */12,
+                                   32,
+                                   [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]],
            "%s -a %s %s %s -o %s.cma %s %s -dllib -l%s -cclib -l%s %s %s %s %s"],
           transl_path(ocamlc[1]),
           debug[1]?"-g":"",
@@ -541,37 +597,51 @@ var
     else
      {}
     
-    if(native_objs[1]!=0)
+    if(native_objs[1]!==/* [] */0)
      {return scommand
               (Printf["sprintf"]
-                ([0,
-                  [2,
-                   0,
-                   [11,
+                ([/* Format */0,
+                  [/* String */2,
+                   /* No_padding */0,
+                   [/* String_literal */11,
                     " -a ",
-                    [2,
-                     0,
-                     [12,
+                    [/* String */2,
+                     /* No_padding */0,
+                     [/* Char_literal */12,
                       32,
-                      [2,
-                       0,
-                       [11,
+                      [/* String */2,
+                       /* No_padding */0,
+                       [/* String_literal */11,
                         " -o ",
-                        [2,
-                         0,
-                         [11,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
                           ".cmxa ",
-                          [2,
-                           0,
-                           [12,
+                          [/* String */2,
+                           /* No_padding */0,
+                           [/* Char_literal */12,
                             32,
-                            [2,
-                             0,
-                             [11,
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* String_literal */11,
                               " -cclib -l",
-                              [2,
-                               0,
-                               [12,32,[2,0,[12,32,[2,0,[12,32,[2,0,[12,32,[2,0,0]]]]]]]]]]]]]]]]]]]]],
+                              [/* String */2,
+                               /* No_padding */0,
+                               [/* Char_literal */12,
+                                32,
+                                [/* String */2,
+                                 /* No_padding */0,
+                                 [/* Char_literal */12,
+                                  32,
+                                  [/* String */2,
+                                   /* No_padding */0,
+                                   [/* Char_literal */12,
+                                    32,
+                                    [/* String */2,
+                                     /* No_padding */0,
+                                     [/* Char_literal */12,
+                                      32,
+                                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]]]]]]]]]]]]]]],
                   "%s -a %s %s -o %s.cmxa %s %s -cclib -l%s %s %s %s %s"],
                  transl_path(ocamlopt[1]),
                  debug[1]?"-g":"",
@@ -590,9 +660,9 @@ var
     };
 
 try
- {parse_arguments(Sys["argv"]),build_libs(0)}
+ {parse_arguments(Sys["argv"]),build_libs(/* () */0)}
 catch(x)
- {if(x[1]=Bad_argument)
+ {if(x[1]===Bad_argument)
    {var s=x[2];
     
     switch(s)
@@ -603,7 +673,7 @@ catch(x)
        Pervasives["exit"](4)}
     }
   else
-   {if(x[1]=Sys_error)
+   {if(x[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
      {Pervasives["prerr_string"]("System error: "),
       Pervasives["prerr_endline"](x[2]),
       Pervasives["exit"](4)}
