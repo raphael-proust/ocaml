@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Format=require("Format");
+var Format=require("./format.js");
 
 
 var

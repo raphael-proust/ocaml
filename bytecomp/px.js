@@ -278,9 +278,9 @@ var
 
 var
  Source_map=
-  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",5689,52],[0,[0,0]]);
+  CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",5697,52],[0,[0,0]]);
 
-var Vlq64=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",5928,57],[0,[0,0]]);
+var Vlq64=CamlinternalMod["init_mod"]([0,"bytecomp/px.ml",5936,57],[0,[0,0]]);
 
 var compare=function(x,y){return "unknown primitive:caml_int_compare";};
 
@@ -788,35 +788,35 @@ var
         case 2:return [0,5,5,5];
         case 3:return [0,6,6,6];
         case 4:return [0,7,7,7];
-        case 5:exit=1302;
-        case 6:exit=1302;
-        case 7:exit=1302;
-        case 8:exit=1302;
-        case 9:exit=1303;
-        case 10:exit=1303;
-        case 11:exit=1303;
-        case 12:exit=1303;
-        case 13:exit=1303;
-        case 14:exit=1303;
-        case 15:exit=1304;
-        case 16:exit=1304;
-        case 17:exit=1304;
-        case 18:exit=1305;
-        case 19:exit=1305;
-        case 20:exit=1306;
-        case 21:exit=1306;
-        case 22:exit=1306;
+        case 5:exit=1303;
+        case 6:exit=1303;
+        case 7:exit=1303;
+        case 8:exit=1303;
+        case 9:exit=1304;
+        case 10:exit=1304;
+        case 11:exit=1304;
+        case 12:exit=1304;
+        case 13:exit=1304;
+        case 14:exit=1304;
+        case 15:exit=1305;
+        case 16:exit=1305;
+        case 17:exit=1305;
+        case 18:exit=1306;
+        case 19:exit=1306;
+        case 20:exit=1307;
+        case 21:exit=1307;
+        case 22:exit=1307;
         }
       }
     else
      {return [0,1,13,1];}
     
     switch(exit)
-     {case 1302:return [0,8,8,9];
-      case 1303:return [0,9,9,10];
-      case 1304:return [0,10,10,11];
-      case 1305:return [0,11,11,12];
-      case 1306:return [0,12,12,13];
+     {case 1303:return [0,8,8,9];
+      case 1304:return [0,9,9,10];
+      case 1305:return [0,10,10,11];
+      case 1306:return [0,11,11,12];
+      case 1307:return [0,12,12,13];
       }
     };
 
@@ -851,8 +851,8 @@ var
       case 22:return "<=";
       case 23:return ">";
       case 24:return ">=";
-      case 25:exit=1297;
-      case 26:exit=1297;
+      case 25:exit=1298;
+      case 26:exit=1298;
       case 27:return "<<";
       case 28:return ">>>";
       case 29:return ">>";
@@ -864,7 +864,7 @@ var
       }
     
     switch(exit)
-     {case 1297:throw [0,Assert_failure,[0,"bytecomp/px.ml",3151,55]];}
+     {case 1298:throw [0,Assert_failure,[0,"bytecomp/px.ml",3151,55]];}
     };
 
 var
@@ -876,18 +876,18 @@ var
      {case 0:return "!";
       case 1:return "-";
       case 2:return "+";
-      case 3:exit=1293;
-      case 4:exit=1293;
-      case 5:exit=1293;
+      case 3:exit=1294;
+      case 4:exit=1294;
+      case 5:exit=1294;
       case 6:return "~";
-      case 7:exit=1293;
-      case 8:exit=1293;
-      case 9:exit=1293;
-      case 10:exit=1293;
+      case 7:exit=1294;
+      case 8:exit=1294;
+      case 9:exit=1294;
+      case 10:exit=1294;
       }
     
     switch(exit)
-     {case 1293:throw [0,Assert_failure,[0,"bytecomp/px.ml",3160,65]];}
+     {case 1294:throw [0,Assert_failure,[0,"bytecomp/px.ml",3160,65]];}
     };
 
 var
@@ -1173,80 +1173,80 @@ var
             var exit;
             
             if(c$1>=97)
-             {if(c$1>=123){exit=1266;}else{exit=1265;}}
+             {if(c$1>=123){exit=1267;}else{exit=1266;}}
             else
              {if(c$1>=36)
                {switch((-36+c$1)[0])
-                 {case 0:exit=1265;
-                  case 1:exit=1266;
-                  case 2:exit=1266;
+                 {case 0:exit=1266;
+                  case 1:exit=1267;
+                  case 2:exit=1267;
                   case 3:Buffer["add_string"](buffer,"$prime");
-                  case 4:exit=1266;
-                  case 5:exit=1266;
+                  case 4:exit=1267;
+                  case 5:exit=1267;
                   case 6:Buffer["add_string"](buffer,"$star");
                   case 7:Buffer["add_string"](buffer,"$plus");
-                  case 8:exit=1266;
+                  case 8:exit=1267;
                   case 9:Buffer["add_string"](buffer,"$neg");
                   case 10:Buffer["add_string"](buffer,"$dot");
                   case 11:Buffer["add_string"](buffer,"$slash");
-                  case 12:exit=1265;
-                  case 13:exit=1265;
-                  case 14:exit=1265;
-                  case 15:exit=1265;
-                  case 16:exit=1265;
-                  case 17:exit=1265;
-                  case 18:exit=1265;
-                  case 19:exit=1265;
-                  case 20:exit=1265;
-                  case 21:exit=1265;
-                  case 22:exit=1266;
-                  case 23:exit=1266;
+                  case 12:exit=1266;
+                  case 13:exit=1266;
+                  case 14:exit=1266;
+                  case 15:exit=1266;
+                  case 16:exit=1266;
+                  case 17:exit=1266;
+                  case 18:exit=1266;
+                  case 19:exit=1266;
+                  case 20:exit=1266;
+                  case 21:exit=1266;
+                  case 22:exit=1267;
+                  case 23:exit=1267;
                   case 24:Buffer["add_string"](buffer,"$less");
                   case 25:Buffer["add_string"](buffer,"$eq");
                   case 26:Buffer["add_string"](buffer,"$great");
-                  case 27:exit=1266;
+                  case 27:exit=1267;
                   case 28:Buffer["add_string"](buffer,"$at");
-                  case 29:exit=1265;
-                  case 30:exit=1265;
-                  case 31:exit=1265;
-                  case 32:exit=1265;
-                  case 33:exit=1265;
-                  case 34:exit=1265;
-                  case 35:exit=1265;
-                  case 36:exit=1265;
-                  case 37:exit=1265;
-                  case 38:exit=1265;
-                  case 39:exit=1265;
-                  case 40:exit=1265;
-                  case 41:exit=1265;
-                  case 42:exit=1265;
-                  case 43:exit=1265;
-                  case 44:exit=1265;
-                  case 45:exit=1265;
-                  case 46:exit=1265;
-                  case 47:exit=1265;
-                  case 48:exit=1265;
-                  case 49:exit=1265;
-                  case 50:exit=1265;
-                  case 51:exit=1265;
-                  case 52:exit=1265;
-                  case 53:exit=1265;
-                  case 54:exit=1265;
-                  case 55:exit=1266;
-                  case 56:exit=1266;
-                  case 57:exit=1266;
+                  case 29:exit=1266;
+                  case 30:exit=1266;
+                  case 31:exit=1266;
+                  case 32:exit=1266;
+                  case 33:exit=1266;
+                  case 34:exit=1266;
+                  case 35:exit=1266;
+                  case 36:exit=1266;
+                  case 37:exit=1266;
+                  case 38:exit=1266;
+                  case 39:exit=1266;
+                  case 40:exit=1266;
+                  case 41:exit=1266;
+                  case 42:exit=1266;
+                  case 43:exit=1266;
+                  case 44:exit=1266;
+                  case 45:exit=1266;
+                  case 46:exit=1266;
+                  case 47:exit=1266;
+                  case 48:exit=1266;
+                  case 49:exit=1266;
+                  case 50:exit=1266;
+                  case 51:exit=1266;
+                  case 52:exit=1266;
+                  case 53:exit=1266;
+                  case 54:exit=1266;
+                  case 55:exit=1267;
+                  case 56:exit=1267;
+                  case 57:exit=1267;
                   case 58:Buffer["add_string"](buffer,"$caret");
-                  case 59:exit=1265;
-                  case 60:exit=1266;
+                  case 59:exit=1266;
+                  case 60:exit=1267;
                   }
                 }
               else
-               {exit=1266;}
+               {exit=1267;}
               }
             
             switch(exit)
-             {case 1266:Buffer["add_string"](buffer,"$unknown");
-              case 1265:Buffer["add_char"](buffer,c$1)
+             {case 1267:Buffer["add_string"](buffer,"$unknown");
+              case 1266:Buffer["add_char"](buffer,c$1)
               }
             }
           
@@ -1258,6 +1258,12 @@ var
         }
       }
     };
+
+var $$let$2=$$String;
+
+var SSet=Set["Make"]([0,$$let$2[25]]);
+
+var gen_symbs=SSet[26]([0,"param",[0,"prim",0]]);
 
 var
  string_of_id=
@@ -1289,7 +1295,7 @@ var
         {var i=IMap[22](id[1],imap);exit$1=-4;}
        catch(exn$1)
         {if(exn$1=Not_found)
-          {if(replace&&"unknown primitive:caml_string_notequal")
+          {if(replace&&!SSet[3](id[2],gen_symbs))
             {return /* tuple */[0,
                      0,
                      /* record */[0,
@@ -2155,7 +2161,7 @@ var
            {return variable_declaration(cxt,f,d);}
           }
         else
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4538,63]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",4546,63]];}
         };
     
     var
@@ -2925,7 +2931,7 @@ var
       
       if(match$1)
        {if(match$1[1])
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",5515,66]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",5523,66]];}
         else
          {var
            sources_content=
@@ -7634,7 +7640,7 @@ var
                {if(gen_line[1]<c[1])
                  {}
                 else
-                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",5790,69]];}
+                 {throw [0,Assert_failure,[0,"bytecomp/px.ml",5798,69]];}
                 
                 for(var _i=gen_line[1];_i<=c[1]-1;_i++)
                  {Buffer["add_char"](buf,59)}
@@ -7822,7 +7828,7 @@ var
      aux=
       function(pos$1,acc)
        {if(List["length"](acc)>10)
-         {throw [0,Assert_failure,[0,"bytecomp/px.ml",6047,65]];}
+         {throw [0,Assert_failure,[0,"bytecomp/px.ml",6055,65]];}
         else
          {}
         

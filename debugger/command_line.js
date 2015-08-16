@@ -1,48 +1,49 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Ctype=require("Ctype");
-var Question=require("Question");
-var Parser=require("Parser");
-var Show_information=require("Show_information");
-var Frames=require("Frames");
-var History=require("History");
-var Program_management=require("Program_management");
-var Breakpoints=require("Breakpoints");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Env=require("Env");
-var Symbols=require("Symbols");
-var Printf=require("Printf");
-var Events=require("Events");
-var Checkpoints=require("Checkpoints");
-var Envaux=require("Envaux");
-var Format=require("Format");
-var Program_loading=require("Program_loading");
-var Printval=require("Printval");
-var Primitives=require("Primitives");
-var Misc=require("Misc");
-var Lexer=require("Lexer");
-var Unix_tools=require("Unix_tools");
-var Unix=require("Unix");
-var Filename=require("Filename");
-var Lexing=require("Lexing");
-var Parsing=require("Parsing");
-var Parameters=require("Parameters");
-var Eval=require("Eval");
-var Debugger_config=require("Debugger_config");
-var Pos=require("Pos");
-var Longident=require("Longident");
-var Show_source=require("Show_source");
-var Int64ops=require("Int64ops");
-var Source=require("Source");
-var Loadprinter=require("Loadprinter");
-var Hashtbl=require("Hashtbl");
-var Input_handling=require("Input_handling");
-var Time_travel=require("Time_travel");
-var Config=require("Config");
-var Sys=require("Sys");
-var Debugcom=require("Debugcom");
+var $$String=require("./string.js");
+var Ctype=require("./ctype.js");
+var Question=require("./question.js");
+var Parser=require("./parser.js");
+var Show_information=require("./show_information.js");
+var Frames=require("./frames.js");
+var History=require("./history.js");
+var Program_management=require("./program_management.js");
+var Breakpoints=require("./breakpoints.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Env=require("./env.js");
+var Symbols=require("./symbols.js");
+var Printf=require("./printf.js");
+var Events=require("./events.js");
+var Checkpoints=require("./checkpoints.js");
+var Envaux=require("./envaux.js");
+var Format=require("./format.js");
+var Program_loading=require("./program_loading.js");
+var Printval=require("./printval.js");
+var Primitives=require("./primitives.js");
+var Misc=require("./misc.js");
+var Lexer=require("./lexer.js");
+var Unix_tools=require("./unix_tools.js");
+var Unix=require("./unix.js");
+var Filename=require("./filename.js");
+var Lexing=require("./lexing.js");
+var Parsing=require("./parsing.js");
+var Parameters=require("./parameters.js");
+var Eval=require("./eval.js");
+var Debugger_config=require("./debugger_config.js");
+var Pos=require("./pos.js");
+var Longident=require("./longident.js");
+var Show_source=require("./show_source.js");
+var Int64ops=require("./int64ops.js");
+var Source=require("./source.js");
+var Loadprinter=require("./loadprinter.js");
+var Hashtbl=require("./hashtbl.js");
+var Input_handling=require("./input_handling.js");
+var Time_travel=require("./time_travel.js");
+var Config=require("./config.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Debugcom=require("./debugcom.js");
 
 
 var instruction_list=[0,/* [] */0];
@@ -101,7 +102,7 @@ var
     
     var prio=List["filter"](function(i){return i[2];},all);
     
-    if(prio=/* [] */0){return all;}else{return prio;}
+    if(prio===/* [] */0){return all;}else{return prio;}
     };
 
 var
@@ -153,7 +154,7 @@ var
    {try
      {return Breakpoints["new_breakpoint"](Symbols["any_event_at_pc"](pc));}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {Format["eprintf"]
          ([/* Format */0,
            [/* String_literal */11,
@@ -187,7 +188,12 @@ var
            {return Breakpoints["new_breakpoint"]
                     (Symbols["any_event_at_pc"](pc+n*4));
             }
-          catch(exn){if(exn=Not_found){return try_add(n+1);}else{throw exn;}}
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {return try_add(n+1);}
+            else
+             {throw exn;}
+            }
           }
         else
          {return error
@@ -223,7 +229,11 @@ var
      {try
        {return Events["get_current_event"](/* () */0)[2];}
       catch(exn)
-       {if(exn=Not_found){return error("Not in a module.");}else{throw exn;}}
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return error("Not in a module.");}
+        else
+         {throw exn;}
+        }
       }
     };
 
@@ -232,7 +242,7 @@ var current_line=[0,""];
 var
  interprete_line=
   function(ppf,line)
-   {current_line[1]=line,0;
+   {current_line[1]=line;
     var lexbuf=Lexing["from_string"](line);
     
     try
@@ -261,10 +271,10 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=Parsing["Parse_error"])
+      if(exn===Parsing["Parse_error"])
        {return error("Syntax error.");}
       else
-       {if(exn[1]=Failure)
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {switch(exn[2])
            {case "int_of_string":return error("Integer overflow");
             default:exit=172;}
@@ -292,7 +302,7 @@ var
         
         var new_line=Primitives["string_trim"](Lexer["line"](line_buffer));
         
-        if(CamlPrimtivie["caml_string_notequal"](new_line,""))
+        if(CamlPrimitive["caml_string_notequal"](new_line,""))
          {var line=new_line;}
         else
          {var line=previous_line;}
@@ -304,7 +314,7 @@ var
       return 0;
       }
     catch(exn)
-     {if(exn=Pervasives["Exit"])
+     {if(exn===Pervasives["Exit"])
        {return Input_handling["stop_user_input"](/* () */0);}
       else
        {throw exn;}
@@ -318,9 +328,14 @@ var
     
     if(Program_management["ask_kill_program"](/* () */0))
      {try
-       {return CamlPrimtivie["caml_sys_chdir"](Unix_tools["expand_path"](dir));
+       {return CamlPrimitive["caml_sys_chdir"](Unix_tools["expand_path"](dir));
         }
-      catch(exn){if(exn[1]=Sys_error){return error(exn[2]);}else{throw exn;}}
+      catch(exn)
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+         {return error(exn[2]);}
+        else
+         {throw exn;}
+        }
       }
     else
      {return 0;}
@@ -333,9 +348,9 @@ var
     
     var cmd=$$String["concat"](" ",cmdarg);
     
-    var err=CamlPrimtivie["caml_sys_system_command"](cmd);
+    var err=CamlPrimitive["caml_sys_system_command"](cmd);
     
-    if(err!=0)
+    if(err!==0)
      {return Format["eprintf"]
               ([/* Format */0,
                 [/* String_literal */11,
@@ -366,12 +381,15 @@ var
     
     var cmdarg$1=Primitives["string_trim"]($$String["concat"](" ",cmdarg));
     
-    if(CamlPrimtivie["caml_string_notequal"](cmdarg$1,""))
+    if(CamlPrimitive["caml_string_notequal"](cmdarg$1,""))
      {if(Program_management["ask_kill_program"](/* () */0))
        {try
          {var eqpos=$$String["index"](cmdarg$1,61);
           
-          if(eqpos=0){throw Not_found;}else{}
+          if(eqpos===0)
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+          else
+           {}
           
           var name=$$String["sub"](cmdarg$1,0,eqpos);
           
@@ -386,7 +404,7 @@ var
                  0;
           }
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {return Format["eprintf"]
                     ([/* Format */0,
                       [/* String_literal */11,
@@ -436,7 +454,7 @@ var
                 /* Flush_newline */4,
                 /* End_of_format */0]],
               "%s@."],
-             CamlPrimtivie["caml_sys_getcwd"](/* () */0));
+             CamlPrimitive["caml_sys_getcwd"](/* () */0));
     };
 
 var
@@ -444,11 +462,10 @@ var
   function(ppf,lexbuf)
    {var new_directory=Parser["argument_list_eol"](Lexer["argument"],lexbuf);
     
-    if(new_directory=/* [] */0)
+    if(new_directory===/* [] */0)
      {if(Question["yes_or_no"]("Reinitialize directory list"))
        {Config["load_path"][1]=
         Parameters["default_load_path"][1],
-        0,
         Envaux["reset_cache"](/* () */0),
         Hashtbl["clear"](Debugger_config["load_path_for"]),
         Source["flush_buffer_list"](/* () */0)}
@@ -469,7 +486,7 @@ var
           var mdl=new_directory$prime[1];
           
           if
-           (CamlPrimtivie["caml_string_equal"]
+           (CamlPrimitive["caml_string_equal"]
              ($$String["lowercase"](match[1]),"for")&&
             List["length"](tl)>
             0)
@@ -812,7 +829,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(CamlPrimtivie["caml_string_equal"](x,"help"))
+                {if(CamlPrimitive["caml_string_equal"](x,"help"))
                   {return match_list(lexbuf);}
                  else
                   {return [/* :: */0,"help",/* [] */0];}
@@ -822,7 +839,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(CamlPrimtivie["caml_string_equal"](x,"info"))
+                {if(CamlPrimitive["caml_string_equal"](x,"info"))
                   {var
                     match$1=
                      Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
@@ -840,7 +857,7 @@ var
                        else
                         {var i$1=l$1[1];
                          
-                         if(CamlPrimtivie["caml_string_equal"](i$1[1],ident))
+                         if(CamlPrimitive["caml_string_equal"](i$1[1],ident))
                           {return /* [] */0;}
                          else
                           {return /* :: */[0,i$1[1],/* [] */0];}
@@ -870,7 +887,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(CamlPrimtivie["caml_string_equal"](x,i[1]))
+                {if(CamlPrimitive["caml_string_equal"](x,i[1]))
                   {return /* [] */0;}
                  else
                   {return /* :: */[0,i[1],/* [] */0];}
@@ -880,7 +897,7 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(CamlPrimtivie["caml_string_equal"](x,i_full))
+                {if(CamlPrimitive["caml_string_equal"](x,i_full))
                   {var
                     match$2=
                      Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
@@ -898,7 +915,7 @@ var
                        else
                         {var v=l$2[1];
                          
-                         if(CamlPrimtivie["caml_string_equal"](v[1],ident$1))
+                         if(CamlPrimitive["caml_string_equal"](v[1],ident$1))
                           {return /* [] */0;}
                          else
                           {return /* :: */[0,v[1],/* [] */0];}
@@ -1110,7 +1127,7 @@ var
               (depth,expr,env,match[1],ppf,match[2]);
       }
     catch(exn)
-     {if(exn[1]=Eval["Error"])
+     {if(exn[1]===Eval["Error"])
        {Eval["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"];}
       else
        {throw exn;}
@@ -1135,7 +1152,7 @@ var
     try
      {var env=env_of_event(Frames["selected_event"][1]);}
     catch(exn)
-     {if(exn[1]=Envaux["Error"])
+     {if(exn[1]===Envaux["Error"])
        {Envaux["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"];}
       else
        {throw exn;}
@@ -1157,9 +1174,9 @@ var
   function(arg)
    {var l=arg["length"];
     
-    if(l>0&&(arg[0]=34)){var pos1=1;}else{var pos1=0;}
+    if(l>0&&arg[0]===34){var pos1=1;}else{var pos1=0;}
     
-    if(l>0&&(arg[l-1]=34)){var pos2=l-1;}else{var pos2=l;}
+    if(l>0&&arg[l-1]===34){var pos2=l-1;}else{var pos2=l;}
     
     return $$String["sub"](arg,pos1,pos2-pos1);
     };
@@ -1186,10 +1203,10 @@ var
             0));
       }
     catch(x)
-     {if(x=Not_found)
+     {if(x===CamlPrimitive["caml_global_data"]["Not_found"])
        {var io_chan=error("Source file not found.");}
       else
-       {if(x[1]=Unix["Unix_error"])
+       {if(x[1]===Unix["Unix_error"])
          {Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
         else
          {throw x;}
@@ -1197,19 +1214,19 @@ var
       }
     
     try
-     {Input_handling["interactif"][1]=/* false */0,0;
-      Input_handling["user_channel"][1]=io_chan,0;
+     {Input_handling["interactif"][1]=/* false */0;
+      Input_handling["user_channel"][1]=io_chan;
       line_loop
        (ppf,Lexing["from_function"](Input_handling["read_user_input"]));
       Primitives["close_io"](io_chan);
-      Input_handling["interactif"][1]=old_state,0;
+      Input_handling["interactif"][1]=old_state;
       return Input_handling["user_channel"][1]=old_channel,0;
       }
     catch(x$1)
      {Input_handling["stop_user_input"](/* () */0);
       Primitives["close_io"](io_chan);
-      Input_handling["interactif"][1]=old_state,0;
-      Input_handling["user_channel"][1]=old_channel,0;
+      Input_handling["interactif"][1]=old_state;
+      Input_handling["user_channel"][1]=old_channel;
       throw x$1;
       }
     };
@@ -1254,7 +1271,7 @@ var
    {var argument=Parser["break_argument_eol"](Lexer["lexeme"],lexbuf);
     
     Program_management["ensure_loaded"](/* () */0);
-    if(typeof argument=="number")
+    if(typeof argument==="number")
      {switch(argument)
        {case 0:
          var match=Frames["selected_event"][1];
@@ -1272,7 +1289,7 @@ var
          try
           {var env=env_of_event(Frames["selected_event"][1]);}
          catch(exn)
-          {if(exn[1]=Envaux["Error"])
+          {if(exn[1]===Envaux["Error"])
             {Envaux["report_error"](ppf,exn[2]);
              throw Debugger_config["Toplevel"];
              }
@@ -1289,7 +1306,7 @@ var
            
            var exit;
            
-           if(typeof match$2=="number")
+           if(typeof match$2==="number")
             {switch(match$2){}}
            else
             {switch(match$2[0])
@@ -1314,7 +1331,7 @@ var
              }
            }
          catch(exn$1)
-          {if(exn$1[1]=Eval["Error"])
+          {if(exn$1[1]===Eval["Error"])
             {Eval["report_error"](ppf,exn$1[2]);
              throw Debugger_config["Toplevel"];
              }
@@ -1342,7 +1359,7 @@ var
            try
             {var buffer=Source["get_buffer"](ev_pos,module_name);}
            catch(exn$2)
-            {if(exn$2=Not_found)
+            {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
               {Format["eprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -1374,7 +1391,7 @@ var
              }
            }
          catch(exn$3)
-          {if(exn$3=Not_found)
+          {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
             {Format["eprintf"]
               ([/* Format */0,
                 [/* String_literal */11,
@@ -1386,7 +1403,7 @@ var
              throw Debugger_config["Toplevel"];
              }
            else
-            {if(exn$3=Primitives["Out_of_range"])
+            {if(exn$3===Primitives["Out_of_range"])
               {Format["eprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -1411,7 +1428,7 @@ var
                       argument[2]));
            }
          catch(exn$4)
-          {if(exn$4=Not_found)
+          {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
             {return Format["eprintf"]
                      ([/* Format */0,
                        [/* String_literal */11,
@@ -1439,13 +1456,17 @@ var
                 {try
                   {return Breakpoints["remove_breakpoint"](x);}
                  catch(exn)
-                  {if(exn=Not_found){return /* () */0;}else{throw exn;}}
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                    {return /* () */0;}
+                   else
+                    {throw exn;}
+                   }
                  },
                breakpoints);
       }
     else
      {if
-       (Breakpoints["breakpoints_count"](/* () */0)!=
+       (Breakpoints["breakpoints_count"](/* () */0)!==
         0&&
         Question["yes_or_no"]("Delete all breakpoints"))
        {return Breakpoints["remove_all_breakpoints"](/* () */0);}
@@ -1470,7 +1491,7 @@ var
       return Show_information["show_current_frame"](ppf,/* true */1);
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return error
                 (Pervasives["^"]
                   ("No frame number ",
@@ -1499,7 +1520,7 @@ var
       
       var exit$1;
       
-      if(match$2!=2)
+      if(match$2!==2)
        {if(match$2>=4)
          {exit$1=64;}
         else
@@ -1554,7 +1575,7 @@ var
                /* Flush_newline */4,
                /* End_of_format */0]],
              "Backtrace:@."]);
-          if(number=0)
+          if(number===0)
            {return Frames["do_backtrace"]
                     (print_frame(0,Pervasives["max_int"]));
             }
@@ -1607,7 +1628,11 @@ var
       return Show_information["show_current_frame"](ppf,/* true */1);
       }
     catch(exn)
-     {if(exn=Not_found){return error("No such frame.");}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return error("No such frame.");}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1623,7 +1648,11 @@ var
       return Show_information["show_current_frame"](ppf,/* true */1);
       }
     catch(exn)
-     {if(exn=Not_found){return error("No such frame.");}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return error("No such frame.");}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1653,7 +1682,11 @@ var
     try
      {var match$1=Frames["selected_point"](/* () */0);}
     catch(exn)
-     {if(exn=Not_found){var match$1=[/* tuple */0,"",-1,-1];}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var match$1=[/* tuple */0,"",-1,-1];}
+      else
+       {throw exn;}
+      }
     
     var column=match$1[3];
     
@@ -1666,7 +1699,7 @@ var
     try
      {var buffer=Source["get_buffer"](pos,mdle);}
     catch(exn$1)
-     {if(exn$1=Not_found)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {var
          buffer=
           error
@@ -1676,7 +1709,7 @@ var
        {throw exn$1;}
       }
     
-    if(column!=-1)
+    if(column!==-1)
      {var point=Source["point_of_coord"](buffer,line,1)+column;}
     else
      {var point=-1;}
@@ -1684,13 +1717,13 @@ var
     if(beg)
      {var beginning=beg[1];}
     else
-     {if(mo!=/* None */0||(line=-1))
+     {if(mo!==/* None */0||line===-1)
        {var beginning=1;}
       else
        {try
          {var beginning=Pervasives["max"](1,line-10);}
         catch(exn$2)
-         {if(exn$2=Primitives["Out_of_range"])
+         {if(exn$2===Primitives["Out_of_range"])
            {var beginning=1;}
           else
            {throw exn$2;}
@@ -1700,7 +1733,7 @@ var
     
     if(e){var en=e[1];}else{var en=beginning+20;}
     
-    if(CamlPrimtivie["caml_string_equal"](mdle,match$1[1]))
+    if(CamlPrimitive["caml_string_equal"](mdle,match$1[1]))
      {return Show_source["show_listing"]
               (pos,
                mdle,
@@ -1923,7 +1956,7 @@ var
                  {if(param)
                    {var match=param[1];
                     
-                    if(match[2]=Program_loading["launching_func"][1])
+                    if(match[2]===Program_loading["launching_func"][1])
                      {return Format["fprintf"]
                               (ppf,
                                [/* Format */0,
@@ -1964,7 +1997,7 @@ var
      
      switch(exit){case 22:var mode=error("Syntax error.");}
      
-     Debugcom["fork_mode"][1]=mode,0;
+     Debugcom["fork_mode"][1]=mode;
      if(Program_management["loaded"][1])
       {return Debugcom["update_follow_fork_mode"](/* () */0);}
      else
@@ -1982,7 +2015,7 @@ var
                  /* Flush_newline */4,
                  /* End_of_format */0]],
                "%s@."],
-              match!=0?"parent":"child");
+              match!==0?"parent":"child");
      }];
 
 var
@@ -2032,7 +2065,7 @@ var
  info_checkpoints=
   function(ppf,lexbuf)
    {eol(lexbuf);
-    if(Checkpoints["checkpoints"][1]=/* [] */0)
+    if(Checkpoints["checkpoints"][1]===/* [] */0)
      {return Format["fprintf"]
               (ppf,
                [/* Format */0,
@@ -2145,7 +2178,7 @@ var
  info_breakpoints=
   function(ppf,lexbuf)
    {eol(lexbuf);
-    if(Breakpoints["breakpoints"][1]=/* [] */0)
+    if(Breakpoints["breakpoints"][1]===/* [] */0)
      {return Format["fprintf"]
               (ppf,
                [/* Format */0,
@@ -2203,7 +2236,7 @@ var
                var match$3=ev[10];
                
                var $js;
-               if(typeof match$3=="number")
+               if(typeof match$3==="number")
                 {switch(match$3){case 0:$js="";}}
                else
                 {switch(match$3[0])
@@ -2243,9 +2276,9 @@ var
                         match[2],
                         Pervasives["^"]
                          (typeof match$1==="number"
-                           ?match$1!=0?"pseudo":"before"
+                           ?match$1!==0?"pseudo":"before"
                            :"after",
-                          typeof match$2==="number"?match$2!=0?"":"/fun":"/ret"),
+                          typeof match$2==="number"?match$2!==0?"":"/fun":"/ret"),
                         $js);
                },
              Symbols["events_in_module"](mdle));
@@ -2261,7 +2294,7 @@ var
     try
      {return Loadprinter["loadfile"](ppf,filename);}
     catch(exn)
-     {if(exn[1]=Loadprinter["Error"])
+     {if(exn[1]===Loadprinter["Error"])
        {Loadprinter["report_error"](ppf,exn[2]);
         throw Debugger_config["Toplevel"];
         }
@@ -2278,7 +2311,7 @@ var
     try
      {return Loadprinter["install_printer"](ppf,lid);}
     catch(exn)
-     {if(exn[1]=Loadprinter["Error"])
+     {if(exn[1]===Loadprinter["Error"])
        {Loadprinter["report_error"](ppf,exn[2]);
         throw Debugger_config["Toplevel"];
         }
@@ -2295,7 +2328,7 @@ var
     try
      {return Loadprinter["remove_printer"](lid);}
     catch(exn)
-     {if(exn[1]=Loadprinter["Error"])
+     {if(exn[1]===Loadprinter["Error"])
        {Loadprinter["report_error"](ppf,exn[2]);
         throw Debugger_config["Toplevel"];
         }
@@ -2560,8 +2593,7 @@ var
                                          instr_remove_printer,
                                          /* false */0,
                                          "stop using the given function for printing values of its input type."],
-                                        /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
-    0;
+                                        /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]];
     variable_list[1]=
     /* :: */[0,
      /* record */[0,
@@ -2644,8 +2676,7 @@ var
                  "follow_fork_mode",
                  follow_fork_variable,
                  "process to follow after forking.\nIt can be either :\n  child: the newly created process.\nparent: the process that called fork.\n"],
-                /* [] */0]]]]]]]]]]]],
-    0;
+                /* [] */0]]]]]]]]]]]];
     return info_list[1]=
            /* :: */[0,
             /* record */[0,"modules",info_modules(ppf),"list opened modules."],

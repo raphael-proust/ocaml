@@ -769,7 +769,7 @@ module["exports"]=
  "hash":hash,
  "seeded_hash":seeded_hash,
  "hash_param":hash_param,
- "caml_hash":
- function(prim,prim,prim,prim)
-  {return CamlPrimitive["caml_hash"](prim$1,prim$2,prim$3,prim);}};
+ "seeded_hash_param":
+ function(prim,prim$1,prim$2,prim$3)
+  {return CamlPrimitive["caml_hash"](prim,prim$1,prim$2,prim$3);}};
 

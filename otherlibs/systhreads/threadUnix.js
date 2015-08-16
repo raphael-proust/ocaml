@@ -1,8 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Thread=require("Thread");
-var Unix=require("Unix");
-var Bytes=require("Bytes");
+var Thread=require("./thread.js");
+var Unix=require("./unix.js");
+var Bytes=require("./bytes.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var wait=Unix["wait"];
@@ -69,13 +70,13 @@ var sendto_substring=Unix["sendto_substring"];
 var open_connection=Unix["open_connection"];
 
 module["exports"]=
-{"unix_execv":
- function(prim,prim){return CamlPrimtivie["unix_execv"](prim$1,prim);},
- "unix_execve":
- function(prim,prim,prim)
-  {return CamlPrimtivie["unix_execve"](prim$1,prim$2,prim);},
- "unix_execvp":
- function(prim,prim){return CamlPrimtivie["unix_execvp"](prim$1,prim);},
+{"execv":
+ function(prim,prim$1){return CamlPrimitive["unix_execv"](prim,prim$1);},
+ "execve":
+ function(prim,prim$1,prim$2)
+  {return CamlPrimitive["unix_execve"](prim,prim$1,prim$2);},
+ "execvp":
+ function(prim,prim$1){return CamlPrimitive["unix_execvp"](prim,prim$1);},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
@@ -90,11 +91,11 @@ module["exports"]=
  "open_process_in":open_process_in,
  "open_process_out":open_process_out,
  "open_process":open_process,
- "unix_sleep":function(prim){return CamlPrimtivie["unix_sleep"](prim);},
+ "sleep":function(prim){return CamlPrimitive["unix_sleep"](prim);},
  "socket":socket,
  "accept":accept,
- "unix_connect":
- function(prim,prim){return CamlPrimtivie["unix_connect"](prim$1,prim);},
+ "connect":
+ function(prim,prim$1){return CamlPrimitive["unix_connect"](prim,prim$1);},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,

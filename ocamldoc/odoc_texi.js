@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Odoc_to_text=require("Odoc_to_text");
-var Printf=require("Printf");
-var Filename=require("Filename");
-var Bytes=require("Bytes");
-var Str=require("Str");
-var Hashtbl=require("Hashtbl");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Odoc_to_text=require("./odoc_to_text.js");
+var Printf=require("./printf.js");
+var Filename=require("./filename.js");
+var Bytes=require("./bytes.js");
+var Str=require("./str.js");
+var Hashtbl=require("./hashtbl.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -223,14 +224,14 @@ var
     
     var len=-1+s["length"];
     
-    for(var i=0;i<=len;i++){if(s[i]=10){c=1+c;}else{}}
+    for(var i=0;i<=len;i++){if(s[i]===10){c=1+c;}else{}}
     
     var s$prime=Bytes["make"](1+len+(1+c)*nb_sp,32);
     
     c=nb_sp;
     
     for(var i$1=0;i$1<=len;i$1++)
-     {s$prime[c]=s[i$1],0;if(s[i$1]=10){c=c+nb_sp;}else{}c=1+c;}
+     {s$prime[c]=s[i$1];if(s[i$1]===10){c=c+nb_sp;}else{}c=1+c;}
     
     return Bytes["to_string"](s$prime);
     };
@@ -300,7 +301,7 @@ var
  indices=
   function(param)
    {if(param>=156047674)
-     {if(param!=448725581)
+     {if(param!==448725581)
        {if(param>=937565914)
          {if(param>=1039100673){return "me";}else{return "ty";}}
         else
@@ -310,7 +311,7 @@ var
        {return "mt";}
       }
     else
-     {if(param!=-611981288)
+     {if(param!==-611981288)
        {if(param>=-177755956)
          {if(param>=115569503){return "xt";}else{return "mo";}}
         else
@@ -409,13 +410,13 @@ var
 var
  generate_menu=
   function(chan,subpart_list)
-   {if(subpart_list!=/* [] */0)
+   {if(subpart_list!==/* [] */0)
      {var
        menu_line=
         function(part_qual,name)
          {var sname=Odoc_info["Name"][1](name);
           
-          if(CamlPrimtivie["caml_string_equal"](sname,name))
+          if(CamlPrimitive["caml_string_equal"](sname,name))
            {puts
              (chan,
               pad_to(35,Pervasives["^"]("* ",Pervasives["^"](sname,":: "))));
@@ -459,7 +460,7 @@ var
                 }
               }
             else
-             {if(variant!=-784200974)
+             {if(variant!==-784200974)
                {if(variant>=-611981288)
                  {return menu_line(Odoc_messages["clas"],param[2][1]);}
                 else
@@ -619,7 +620,7 @@ var
        function(self$neg1,param)
         {var exit;
          
-         if(typeof param=="number")
+         if(typeof param==="number")
           {switch(param)
             {case 0:
               /* unknown */"(sendself self-1/1344 texi_of_Newline/1326)";
@@ -700,7 +701,7 @@ var
        texi_of_Target,
        function(self$neg1,target,code)
         {if
-          (CamlPrimtivie["caml_string_equal"]
+          (CamlPrimitive["caml_string_equal"]
             ($$String["lowercase"](target),"texi"))
           {return code;}
          else
@@ -829,10 +830,10 @@ var
        texi_of_Title,
        function(self$neg1,n,t)
         {try
-          {var t_begin=List["assoc"](n,self$neg1[titles]);}
+          {var t_begin=List["assoc"](n,self$neg1[titles+1]);}
          catch(exn)
-          {if(exn=Not_found)
-            {var t_begin=self$neg1[fallback_title];}
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {var t_begin=self$neg1[fallback_title+1];}
            else
             {throw exn;}
            }
@@ -906,7 +907,7 @@ var
          
          switch(exit){case 92:var xname="";}
          
-         if(CamlPrimtivie["caml_string_equal"](xname,""))
+         if(CamlPrimitive["caml_string_equal"](xname,""))
           {/* unknown */"(sendself self-1/1434 escape/1308 name/1435)";}
          else
           {return Texi[5](/* Some */[0,xname],name);}
@@ -924,10 +925,10 @@ var
        heading,
        function(self$neg1,n,t)
         {try
-          {var f=List["assoc"](n,self$neg1[headings]);}
+          {var f=List["assoc"](n,self$neg1[headings+1]);}
          catch(exn)
-          {if(exn=Not_found)
-            {var f=self$neg1[fallback_heading];}
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {var f=self$neg1[fallback_heading+1];}
            else
             {throw exn;}
            }
@@ -945,7 +946,7 @@ var
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[titles]=
+      $$self$1[titles+1]=
       [/* :: */0,
        [/* tuple */0,1,"@chapter "],
        [/* :: */0,
@@ -953,11 +954,9 @@ var
         [/* :: */0,
          [/* tuple */0,3,"@subsection "],
          [/* :: */0,[/* tuple */0,4,"@subsubsection "],/* [] */0]]]],
-      0,
-      $$self$1[fallback_title]=
+      $$self$1[fallback_title+1]=
       "@unnumberedsubsubsec ",
-      0,
-      $$self$1[headings]=
+      $$self$1[headings+1]=
       [/* :: */0,
        [/* tuple */0,1,"@majorheading "],
        [/* :: */0,
@@ -965,10 +964,8 @@ var
         [/* :: */0,
          [/* tuple */0,3,"@subheading "],
          [/* :: */0,[/* tuple */0,4,"@subsubheading "],/* [] */0]]]],
-      0,
-      $$self$1[fallback_heading]=
-      "@subsubheading ",
-      0;
+      $$self$1[fallback_heading+1]=
+      "@subsubheading ";
       return $$self$1;
       };
     };
@@ -1008,7 +1005,7 @@ var
 
 var
  Aliased_node=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_texi.Aliased_node",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Odoc_texi.Aliased_node",0]);
 
 var
  texi_init=
@@ -1155,13 +1152,13 @@ var
       [0,
        node,
        function(self$neg2,depth,name)
-        {if(Hashtbl["mem"](self$neg2[node_tbl],name))
+        {if(Hashtbl["mem"](self$neg2[node_tbl+1],name))
           {throw Aliased_node;}
          else
           {}
          
-         Hashtbl["add"](self$neg2[node_tbl],name,/* () */0);
-         if(depth<=self$neg2[maxdepth])
+         Hashtbl["add"](self$neg2[node_tbl+1],name,/* () */0);
+         if(depth<=self$neg2[maxdepth+1])
           {return /* Verbatim */[3,
                    Pervasives["^"]
                     ("@node ",Pervasives["^"](Texi[3](name),",\n"))];
@@ -1172,10 +1169,13 @@ var
        index,
        function(self$neg2,ind,ent)
         {if(Odoc_info["Global"][9][1])
-          {if(List["mem"](ind,self$neg2[indices_to_build]))
+          {if(List["mem"](ind,self$neg2[indices_to_build+1]))
             {}
            else
-            {throw [0,Assert_failure,[0,"odoc_texi.ml",426,14]];}
+            {throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"odoc_texi.ml",426,14]];
+             }
            
            var
             $js=
@@ -1204,7 +1204,7 @@ var
                    (function(txt)
                      {var exit;
                       
-                      if(typeof txt=="number")
+                      if(typeof txt==="number")
                        {switch(txt){case 0:return [/* Raw */0,"\n"];}}
                       else
                        {switch(txt[0])
@@ -1236,7 +1236,7 @@ var
                    (function(txt)
                      {var exit;
                       
-                      if(typeof txt=="number")
+                      if(typeof txt==="number")
                        {switch(txt){}}
                       else
                        {switch(txt[0])
@@ -1259,7 +1259,7 @@ var
            if(t)
             {var match=t[1];
              
-             if(typeof match=="number")
+             if(typeof match==="number")
               {switch(match){}}
              else
               {switch(match[0])
@@ -1295,7 +1295,7 @@ var
                       switch(match[0])
                        {case 0:
                          return /* :: */[0,
-                                 self$neg2[linebreak],
+                                 self$neg2[linebreak+1],
                                  /* :: */[0,
                                   /* Bold */[4,
                                    /* :: */[0,/* Raw */[0,Odoc_messages["see_also"]],/* [] */0]],
@@ -1313,7 +1313,7 @@ var
                        {case 83:
                          return Pervasives["@"]
                                  (/* :: */[0,
-                                   self$neg2[linebreak],
+                                   self$neg2[linebreak+1],
                                    /* :: */[0,
                                     /* Bold */[4,
                                      /* :: */[0,/* Raw */[0,Odoc_messages["see_also"]],/* [] */0]],
@@ -1333,7 +1333,7 @@ var
                  (List["map"]
                    (function(x)
                      {return /* :: */[0,
-                              self$neg2[linebreak],
+                              self$neg2[linebreak+1],
                               text_of_before$1(self$neg2,/* :: */[0,x,/* [] */0])];
                       },
                     l));
@@ -1345,7 +1345,7 @@ var
                    (function(param)
                      {return Pervasives["@"]
                               (/* :: */[0,
-                                self$neg2[linebreak],
+                                self$neg2[linebreak+1],
                                 /* :: */[0,
                                  /* Bold */[4,
                                   /* :: */[0,
@@ -1366,7 +1366,7 @@ var
         {if(l)
           {if(l[2])
             {return /* :: */[0,
-                     self$neg2[linebreak],
+                     self$neg2[linebreak+1],
                      /* :: */[0,
                       /* Bold */[4,
                        /* :: */[0,/* Raw */[0,Odoc_messages["raises"]],/* [] */0]],
@@ -1388,7 +1388,7 @@ var
              
              return Pervasives["@"]
                      (/* :: */[0,
-                       self$neg2[linebreak],
+                       self$neg2[linebreak+1],
                        /* :: */[0,
                         /* Bold */[4,
                          /* :: */[0,/* Raw */[0,Odoc_messages["raises"]],/* [] */0]],
@@ -1426,16 +1426,16 @@ var
                        {var tag=param[1];
                         
                         try
-                         {var f=List["assoc"](tag,self$neg2[tag_functions]);
+                         {var f=List["assoc"](tag,self$neg2[tag_functions+1]);
                           
                           return /* :: */[0,
                                   Pervasives["@"]
-                                   (/* :: */[0,self$neg2[linebreak],f(param[2])],
+                                   (/* :: */[0,self$neg2[linebreak+1],f(param[2])],
                                     [/* :: */0,/* Newline */0,/* [] */0]),
                                   acc];
                           }
                         catch(exn)
-                         {if(exn=Not_found)
+                         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                            {Odoc_info["warning"](Odoc_messages["tag_not_handled"](tag));
                             return acc;
                             }
@@ -1474,15 +1474,15 @@ var
            else
             {var $js=/* [] */0;}
            /* unknown */"(sendself self-2/1680 text_of_desc/1577 (field 0 info/1684))";
-           if(info[2]!=/* [] */0)
+           if(info[2]!==/* [] */0)
             {/* unknown */"(sendself self-2/1680 text_of_author_list/1687 (field 1 info/1684))";
-             var $js$1=/* :: */[0,self$neg2[linebreak],0];
+             var $js$1=/* :: */[0,self$neg2[linebreak+1],0];
              }
            else
             {var $js$1=/* [] */0;}
            if(is(info[3]))
             {/* unknown */"(sendself self-2/1680 text_of_version_opt/1688 (field 2 info/1684))";
-             var $js$2=/* :: */[0,self$neg2[linebreak],0];
+             var $js$2=/* :: */[0,self$neg2[linebreak+1],0];
              }
            else
             {var $js$2=/* [] */0;}
@@ -1490,7 +1490,7 @@ var
            /* unknown */"(sendself self-2/1680 text_of_before/1579 (field 5 info/1684))";
            if(is(info[5]))
             {/* unknown */"(sendself self-2/1680 text_of_since_opt/1689 (field 4 info/1684))";
-             var $js$3=/* :: */[0,self$neg2[linebreak],0];
+             var $js$3=/* :: */[0,self$neg2[linebreak+1],0];
              }
            else
             {var $js$3=/* [] */0;}
@@ -1498,7 +1498,7 @@ var
            /* unknown */"(sendself self-2/1680 text_of_raised_exceptions/1581 (field 8 info/1684))";
            if(is(info[10]))
             {/* unknown */"(sendself self-2/1680 text_of_return_opt/1582 (field 9 info/1684))";
-             var $js$4=/* :: */[0,self$neg2[linebreak],0];
+             var $js$4=/* :: */[0,self$neg2[linebreak+1],0];
              }
            else
             {var $js$4=/* [] */0;}
@@ -2096,7 +2096,7 @@ var
                       },
                     Odoc_info["Class"][1]([/* Some */0,/* false */0],c));
            }
-         catch(exn){if(exn=Aliased_node){return /* () */0;}else{throw exn;}}
+         catch(exn){if(exn===Aliased_node){return /* () */0;}else{throw exn;}}
          },
        generate_for_class_type,
        function(self$neg2,chanout,ct)
@@ -2160,7 +2160,7 @@ var
                       },
                     Odoc_info["Class"][6]([/* Some */0,/* false */0],ct));
            }
-         catch(exn){if(exn=Aliased_node){return /* () */0;}else{throw exn;}}
+         catch(exn){if(exn===Aliased_node){return /* () */0;}else{throw exn;}}
          },
        generate_for_module_type,
        function(self$neg2,chanout,mt)
@@ -2208,7 +2208,7 @@ var
            
            var subparts=module_subparts(mt_ele);
            
-           if(depth<self$neg2[maxdepth]&&subparts!=/* [] */0)
+           if(depth<self$neg2[maxdepth+1]&&subparts!==/* [] */0)
             {/* unknown */'(sendself self-2/1862 heading/1871 (1+ depth/1865) [0: [0: "Subparts"] 0a])';
              var menu=Texi[6](0);
              
@@ -2256,7 +2256,7 @@ var
                       },
                     subparts);
            }
-         catch(exn){if(exn=Aliased_node){return /* () */0;}else{throw exn;}}
+         catch(exn){if(exn===Aliased_node){return /* () */0;}else{throw exn;}}
          },
        generate_for_module,
        function(self$neg2,chanout,m)
@@ -2306,7 +2306,7 @@ var
            
            var subparts=module_subparts(m_ele);
            
-           if(depth<self$neg2[maxdepth]&&subparts!=/* [] */0)
+           if(depth<self$neg2[maxdepth+1]&&subparts!==/* [] */0)
             {/* unknown */'(sendself self-2/1879 heading/1871 (1+ depth/1882) [0: [0: "Subparts"] 0a])';
              var menu=Texi[6](0);
              
@@ -2354,7 +2354,7 @@ var
                       },
                     subparts);
            }
-         catch(exn){if(exn=Aliased_node){return /* () */0;}else{throw exn;}}
+         catch(exn){if(exn===Aliased_node){return /* () */0;}else{throw exn;}}
          },
        generate_texi_header,
        function(self$neg2,chan,texi_filename,m_list)
@@ -2367,7 +2367,7 @@ var
           {var title="";}
          
          if
-          (CamlPrimtivie["caml_string_notequal"]
+          (CamlPrimitive["caml_string_notequal"]
             (texi_filename,"ocamldoc.texi"))
           {var fn=Filename["basename"](texi_filename);
            
@@ -2380,7 +2380,7 @@ var
                ".info");
            }
          else
-          {if(CamlPrimtivie["caml_string_notequal"](title,""))
+          {if(CamlPrimitive["caml_string_notequal"](title,""))
             {var filename=Pervasives["^"](title,".info");}
            else
             {var filename="doc.info";}
@@ -2404,13 +2404,13 @@ var
                 ?List["map"]
                   (function(ind)
                     {return Pervasives["^"]("@defcodeindex ",indices(ind));},
-                   self$neg2[indices_to_build])
+                   self$neg2[indices_to_build+1])
                 :/* [] */0,
                /* :: */[0,
                 /* :: */[0,Texi[7](info_section[1]),/* [] */0],
                 /* :: */[0,
                  Texi[8]
-                  (info_entry[1]!=/* [] */0
+                  (info_entry[1]!==/* [] */0
                     ?info_entry[1]
                     :/* :: */[0,
                       Printf["sprintf"]
@@ -2448,7 +2448,7 @@ var
            /* unknown */"(sendself self-2/1895 texi_of_info/1585\n  (makeblock 0\n    (apply (field 48 (global Odoc_info!)) m_list/1898 (field 0 match/2042))))";
            puts_nl(chan,0)}
          else
-          {if(CamlPrimtivie["caml_string_notequal"](title,""))
+          {if(CamlPrimitive["caml_string_notequal"](title,""))
             {puts_nl(chan,"@ifinfo"),
              puts_nl(chan,Pervasives["^"]("Documentation for ",title)),
              puts_nl(chan,"@end ifinfo")}
@@ -2459,7 +2459,7 @@ var
          if(Odoc_info["Global"][9][1])
           {var
             indices_names_to_build=
-             List["map"](indices,self$neg2[indices_to_build]);
+             List["map"](indices,self$neg2[indices_to_build+1]);
            
            var
             $js=
@@ -2496,7 +2496,7 @@ var
          if(Odoc_info["Global"][9][1])
           {var
             indices_names_to_build=
-             List["map"](indices,self$neg2[indices_to_build]);
+             List["map"](indices,self$neg2[indices_to_build+1]);
            
            List["iter"]
             (puts_nl(chan),
@@ -2531,9 +2531,9 @@ var
          },
        do_index,
        function(self$neg2,it)
-        {if(!List["mem"](it,self$neg2[indices_to_build]))
-          {return self$neg2[indices_to_build]=
-                  /* :: */[0,it,self$neg2[indices_to_build]],
+        {if(!List["mem"](it,self$neg2[indices_to_build+1]))
+          {return self$neg2[indices_to_build+1]=
+                  /* :: */[0,it,self$neg2[indices_to_build+1]],
                   0;
            }
          else
@@ -2631,9 +2631,9 @@ var
          },
        generate,
        function(self$neg2,module_list)
-        {Hashtbl["clear"](self$neg2[node_tbl]);
+        {Hashtbl["clear"](self$neg2[node_tbl+1]);
          if
-          (CamlPrimtivie["caml_string_equal"]
+          (CamlPrimitive["caml_string_equal"]
             (Odoc_info["Global"][3][1],Odoc_messages["default_out_file"]))
           {var filename="ocamldoc.texi";}
          else
@@ -2673,10 +2673,14 @@ var
          catch(exn)
           {var exit;
            
-           if(exn[1]=Failure)
+           if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s=exn[2];exit=2;}
            else
-            {if(exn[1]=Sys_error){var s=exn[2];exit=2;}else{throw exn;}}
+            {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+              {var s=exn[2];exit=2;}
+             else
+              {throw exn;}
+             }
            
            switch(exit)
             {case 2:
@@ -2689,24 +2693,18 @@ var
       
       obj_init($$self$1),
       obj_init$1($$self$1),
-      $$self$1[maxdepth]=
+      $$self$1[maxdepth+1]=
       4,
-      0,
-      $$self$1[bullet]=
+      $$self$1[bullet+1]=
       [/* Verbatim */3," @bullet{} "],
-      0,
-      $$self$1[minus]=
+      $$self$1[minus+1]=
       [/* Verbatim */3," @minus{} "],
-      0,
-      $$self$1[linebreak]=
+      $$self$1[linebreak+1]=
       [/* Verbatim */3,"@*\n"],
-      0,
-      $$self$1[indices_to_build]=
+      $$self$1[indices_to_build+1]=
       [/* :: */0,/* Module */-177755956,/* [] */0],
-      0,
-      $$self$1[node_tbl]=
-      Hashtbl["create"](/* None */0,37),
-      0;
+      $$self$1[node_tbl+1]=
+      Hashtbl["create"](/* None */0,37);
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
       };
     };

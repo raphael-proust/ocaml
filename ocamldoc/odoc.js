@@ -1,18 +1,19 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Dynlink=require("Dynlink");
-var Odoc_global=require("Odoc_global");
-var Odoc_info=require("Odoc_info");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_analyse=require("Odoc_analyse");
-var Odoc_args=require("Odoc_args");
-var Filename=require("Filename");
-var Odoc_config=require("Odoc_config");
-var $$Array=require("Array");
-var Odoc_gen=require("Odoc_gen");
-var Sys=require("Sys");
-var Odoc_messages=require("Odoc_messages");
+var Dynlink=require("./dynlink.js");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_info=require("./odoc_info.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_analyse=require("./odoc_analyse.js");
+var Odoc_args=require("./odoc_args.js");
+var Filename=require("./filename.js");
+var Odoc_config=require("./odoc_config.js");
+var $$Array=require("./array.js");
+var Odoc_gen=require("./odoc_gen.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 
@@ -88,7 +89,7 @@ var plugins=match[1];
 var
  get_real_filename=
   function(name)
-   {if(CamlPrimtivie["caml_string_notequal"](Filename["basename"](name),name))
+   {if(CamlPrimitive["caml_string_notequal"](Filename["basename"](name),name))
      {return name;}
     else
      {var
@@ -102,7 +103,7 @@ var
          d=
           List["find"]
            (function(d)
-             {return CamlPrimtivie["caml_sys_file_exists"]
+             {return CamlPrimitive["caml_sys_file_exists"]
                       (Filename["concat"](d,name));
               },
             paths$1);
@@ -110,7 +111,7 @@ var
         return Filename["concat"](d,name);
         }
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {return Pervasives["failwith"]
                   (Odoc_messages["file_not_found_in_paths"](paths$1,name));
           }
@@ -134,23 +135,27 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Dynlink["Error"])
+      if(exn[1]===Dynlink["Error"])
        {Pervasives["prerr_endline"]
          (Odoc_messages["load_file_error"]
            (file$1,Dynlink["error_message"](exn[2])));
         return Pervasives["exit"](1);
         }
       else
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["prerr_endline"]
            (Odoc_messages["load_file_error"](file$1,"Not_found"));
           return Pervasives["exit"](1);
           }
         else
-         {if(exn[1]=Sys_error)
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {var s=exn[2];exit=9;}
           else
-           {if(exn[1]=Failure){var s=exn[2];exit=9;}else{throw exn;}}
+           {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
+             {var s=exn[2];exit=9;}
+            else
+             {throw exn;}
+            }
           }
         }
       
@@ -180,7 +185,7 @@ var
           return l;
           }
         catch(exn)
-         {if(exn[1]=Failure)
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
            {Pervasives["prerr_endline"](exn[2]);
             Odoc_global["errors"][0]++;
             return /* [] */0;
@@ -202,7 +207,7 @@ if(match$2)
  {try
    {Odoc_analyse["dump_modules"](match$2[1],modules)}
   catch(exn)
-   {if(exn[1]=Failure)
+   {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
      {Pervasives["prerr_endline"](exn[2]),Odoc_global["errors"][0]++}
     else
      {throw exn;}

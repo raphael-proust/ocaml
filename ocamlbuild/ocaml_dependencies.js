@@ -1,15 +1,16 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Tools=require("Tools");
-var Pervasives=require("Pervasives");
-var Pathname=require("Pathname");
-var Resource=require("Resource");
-var Format=require("Format");
-var Filename=require("Filename");
-var My_std=require("My_std");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
-var Map=require("Map");
+var Tools=require("./tools.js");
+var Pervasives=require("./pervasives.js");
+var Pathname=require("./pathname.js");
+var Resource=require("./resource.js");
+var Format=require("./format.js");
+var Filename=require("./filename.js");
+var My_std=require("./my_std.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
+var Map=require("./map.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -17,7 +18,7 @@ var mydprintf=function(fmt){return Log["dprintf"](10,fmt);};
 
 var
  Circular_dependencies=
-  CamlPrimtivie["caml_set_oo_id"]
+  CamlPrimitive["caml_set_oo_id"]
    ([248,"Ocaml_dependencies.Circular_dependencies",0]);
 
 var
@@ -37,7 +38,11 @@ var
        {try
          {return SMap[22](x,acc);}
         catch(exn)
-         {if(exn=Not_found){return Resource["Resources"][1];}else{throw exn;}}
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return Resource["Resources"][1];}
+          else
+           {throw exn;}
+          }
         };
     
     var
@@ -121,7 +126,12 @@ var
       function(x,acc)
        {try
          {return SMap[22](x,acc);}
-        catch(exn){if(exn=Not_found){return /* [] */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* [] */0;}
+          else
+           {throw exn;}
+          }
         };
     
     var
@@ -135,7 +145,7 @@ var
            {try
              {Hashtbl["find"](visited,x);return acc;}
             catch(exn)
-             {if(exn=Not_found)
+             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                {Hashtbl["replace"](visited,x,/* () */0);
                 var acc$1=Resource["Resources"][4](x,acc);
                 
@@ -144,7 +154,11 @@ var
                           ($$self,SMap[22](x,map),acc$1);
                   }
                 catch(exn$1)
-                 {if(exn$1=Not_found){return acc$1;}else{throw exn$1;}}
+                 {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                   {return acc$1;}
+                  else
+                   {throw exn$1;}
+                  }
                 }
               else
                {throw exn;}
@@ -327,7 +341,7 @@ var
               var y$1=maybe_caml_obj_ext_of_cmi(y);
               
               if
-               (CamlPrimtivie["caml_string_equal"](x$1,y$1)||
+               (CamlPrimitive["caml_string_equal"](x$1,y$1)||
                 not_linkable(x$1)||
                 not_linkable(y$1))
                {return acc;}
@@ -484,7 +498,7 @@ var
             var
              add_if_diff=
               function(x,y)
-               {if(CamlPrimtivie["caml_string_equal"](x,y))
+               {if(CamlPrimitive["caml_string_equal"](x,y))
                  {return acc;}
                 else
                  {return Utils[4](x,y,acc);}
@@ -537,7 +551,7 @@ var
            {try
              {return SMap[22](x,My_std["!*"](dependencies));}
             catch(exn)
-             {if(exn=Not_found)
+             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                {return Resource["Resources"][1];}
               else
                {throw exn;}
@@ -580,7 +594,7 @@ var
                   if(cycle)
                    {return cycle;}
                   else
-                   {dead_ends[1]=Resource["Resources"][4](fn,dead_ends[1]),0;
+                   {dead_ends[1]=Resource["Resources"][4](fn,dead_ends[1]);
                     return /* None */0;
                     }
                   }
@@ -611,14 +625,14 @@ var
               else
                {}
               
-              seen[1]=Resource["Resources"][4](fn,seen[1]),0;
+              seen[1]=Resource["Resources"][4](fn,seen[1]);
               Resource["Resources"][13]
                (function(f)
                  {if(My_std["sys_file_exists"](f))
                    {if(Filename["check_suffix"](f,".cmi"))
                      {var f$prime=caml_obj_ext_of_cmi(f);
                       
-                      if(CamlPrimtivie["caml_string_notequal"](f$prime,fn))
+                      if(CamlPrimitive["caml_string_notequal"](f$prime,fn))
                        {if(My_std["sys_file_exists"](f$prime))
                          {return aux(f$prime);}
                         else
@@ -634,7 +648,7 @@ var
                    {return 0;}
                   },
                 dependencies_of(fn));
-              needed[1]=Resource["Resources"][4](fn,needed[1]),0;
+              needed[1]=Resource["Resources"][4](fn,needed[1]);
               return needed_in_order[1]=/* :: */[0,fn,needed_in_order[1]],0;
               }
             else

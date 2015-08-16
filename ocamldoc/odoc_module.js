@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_value=require("Odoc_value");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_types=require("Odoc_types");
+var Odoc_value=require("./odoc_value.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_types=require("./odoc_types.js");
 
 
 
@@ -388,7 +388,7 @@ var
                  var param=/* tuple */[0,p,/* Some */[0,d]];
                  }
                catch(exn)
-                {if(exn=Not_found)
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                   {var param=/* tuple */[0,p,/* None */0];}
                  else
                   {throw exn;}
@@ -473,7 +473,7 @@ var
                var param$1=/* tuple */[0,p,/* Some */[0,d]];
                }
              catch(exn)
-              {if(exn=Not_found)
+              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {var param$1=/* tuple */[0,p,/* None */0];}
                else
                 {throw exn;}

@@ -30,7 +30,7 @@ var
     var vd2$1=Subst["value_description"](subst,vd2);
     
     try
-     {return Includecore["value_descriptions"](env,vd1,vd2$1);}
+     {return Includecore["value_descriptions"](env,id,vd1,vd2$1);}
     catch(exn)
      {if(exn=Includecore["Dont_match"])
        {throw [0,
@@ -351,7 +351,7 @@ var
                   print_coercion,
                   c[2]);
          
-        case 2:return pr([0,[11,"prim ",[2,0,0]],"prim %s"],c[1][1]);
+        case 2:return pr([0,[11,"prim ",[2,0,0]],"prim %s"],c[2][1]);
         case 3:
          return pr
                  ([0,

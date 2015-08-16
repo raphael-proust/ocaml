@@ -163,7 +163,7 @@ var
                     });
          
         case 2:
-         return Translcore["transl_primitive"](Location["none"],restr[1]);
+         return Translcore["transl_primitive"](Location["none"],restr[2]);
         case 3:
          var cc=restr[2];
          
@@ -259,24 +259,19 @@ var
               
               return /* Tcoerce_structure */[0,
                       List["map"]
-                       (function(param)
-                         {var c1$1=param[2];
-                          
-                          var p1=param[1];
+                       (function(x)
+                         {var c1$1=x[2];
                           
                           var exit$1;
                           
                           if(typeof c1$1=="number")
                            {switch(c1$1){}}
                           else
-                           {switch(c1$1[0])
-                             {case 2:
-                               return /* tuple */[0,p1,/* Tcoerce_primitive */[2,c1$1[1]]];
-                              default:exit$1=147;}}
+                           {switch(c1$1[0]){case 2:return x;default:exit$1=147;}}
                           
                           switch(exit$1)
                            {case 147:
-                             var match=v2[p1];
+                             var match=v2[x[1]];
                              
                              return /* tuple */[0,
                                      match[1],
@@ -974,16 +969,15 @@ var
                   else
                    {switch(cc$1[0])
                      {case 2:
-                       var p=cc$1[1];
-                       
                        if(is_top(rootpath))
                         {export_identifiers[1]=
-                         /* :: */[0,/* Prim */[1,p[1]],export_identifiers[1]],
+                         /* :: */[0,/* Id */[0,cc$1[1]],export_identifiers[1]],
                          0}
                        else
                         {}
                        
-                       return Translcore["transl_primitive"](Location["none"],p);
+                       return Translcore["transl_primitive"]
+                               (Location["none"],cc$1[2]);
                        
                       default:exit=97;}}
                   
@@ -1558,7 +1552,7 @@ var
                     return export_map
                             (pos+1,
                              map,
-                             /* :: */[0,/* tuple */[0,pos,cc[1]],prims],
+                             /* :: */[0,/* tuple */[0,pos,cc[2]],prims],
                              undef,
                              param[2]);
                     

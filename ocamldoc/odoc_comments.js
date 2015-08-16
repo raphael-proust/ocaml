@@ -1,22 +1,23 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Odoc_global=require("Odoc_global");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_types=require("Odoc_types");
-var Odoc_cross=require("Odoc_cross");
-var Printf=require("Printf");
-var Odoc_merge=require("Odoc_merge");
-var Odoc_see_lexer=require("Odoc_see_lexer");
-var Lexing=require("Lexing");
-var Odoc_comments_global=require("Odoc_comments_global");
-var Str=require("Str");
-var Odoc_lexer=require("Odoc_lexer");
-var Odoc_misc=require("Odoc_misc");
-var Odoc_text=require("Odoc_text");
-var Odoc_parser=require("Odoc_parser");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var Odoc_global=require("./odoc_global.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_types=require("./odoc_types.js");
+var Odoc_cross=require("./odoc_cross.js");
+var Printf=require("./printf.js");
+var Odoc_merge=require("./odoc_merge.js");
+var Odoc_see_lexer=require("./odoc_see_lexer.js");
+var Lexing=require("./lexing.js");
+var Odoc_comments_global=require("./odoc_comments_global.js");
+var Str=require("./str.js");
+var Odoc_lexer=require("./odoc_lexer.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Odoc_text=require("./odoc_text.js");
+var Odoc_parser=require("./odoc_parser.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 var simple_blank="[ \r\t\f]";
@@ -35,14 +36,14 @@ var
           return /* tuple */[0,match[1],MyTexter[1](match[2])];
           }
         catch(exn)
-         {if(exn[1]=Odoc_text["Text_syntax"])
+         {if(exn[1]===Odoc_text["Text_syntax"])
            {throw [0,
-                   Failure,
+                   CamlPrimitive["caml_global_data"]["Failure"],
                    Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4])];
             }
           else
            {throw [0,
-                   Failure,
+                   CamlPrimitive["caml_global_data"]["Failure"],
                    Pervasives["^"]("Unknown error while parsing @see tag: ",s)];
             }
           }
@@ -54,7 +55,7 @@ var
        {try
          {var match=Odoc_comments_global["init"](/* () */0);
           
-          Odoc_lexer["comments_level"][1]=0,0;
+          Odoc_lexer["comments_level"][1]=0;
           var lexbuf=Lexing["from_string"](s);
           
           var match$1=Odoc_parser["main"](fun_lex,lexbuf);
@@ -118,7 +119,7 @@ var
            {return [/* tuple */0,0,/* None */0];}
           }
         catch(exn)
-         {if(exn[1]=Failure)
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
            {Odoc_global["errors"][0]++;
             Printf["eprintf"]
              ([/* Format */0,
@@ -146,7 +147,7 @@ var
             return [/* tuple */0,0,/* None */0];
             }
           else
-           {if(exn[1]=Odoc_text["Text_syntax"])
+           {if(exn[1]===Odoc_text["Text_syntax"])
              {Odoc_global["errors"][0]++;
               Pervasives["prerr_endline"]
                (Pervasives["^"]
@@ -195,11 +196,20 @@ var
             
             $js=/* false */0;
             }
-          catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
-          return next_char!=42&&$js;
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {$js=/* true */1;}
+            else
+             {throw exn;}
+            }
+          return next_char!==42&&$js;
           }
         catch(exn$1)
-         {if(exn$1=Not_found){return /* false */0;}else{throw exn$1;}}
+         {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* false */0;}
+          else
+           {throw exn$1;}
+          }
         };
     
     var
@@ -217,7 +227,12 @@ var
           
           return /* true */1;
           }
-        catch(exn){if(exn=Not_found){return /* false */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* false */0;}
+          else
+           {throw exn;}
+          }
         };
     
     var
@@ -229,7 +244,7 @@ var
       function(file,s)
        {var match=Odoc_comments_global["init"](/* () */0);
         
-        Odoc_lexer["comments_level"][1]=0,0;
+        Odoc_lexer["comments_level"][1]=0;
         var lexbuf=Lexing["from_string"](s);
         
         var match$1=Odoc_parser["main"](Odoc_lexer["simple"],lexbuf);
@@ -266,7 +281,11 @@ var
                 return blank_line(s_before)||iter(s_after);
                 }
               catch(exn)
-               {if(exn=Not_found){return /* false */0;}else{throw exn;}}
+               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                 {return /* false */0;}
+                else
+                 {throw exn;}
+                }
               }
             else
              {return blank_line(s2);}
@@ -398,14 +417,14 @@ var
               
               if
                (blank_line($$String["sub"](s,0,pos))||
-                CamlPrimtivie["caml_equal"]
+                CamlPrimitive["caml_equal"]
                  (d[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]]))
                {return [/* tuple */0,0,/* None */0];}
               else
                {return /* tuple */[0,len,/* Some */[0,d]];}
               }
             catch(exn)
-             {if(exn=Not_found)
+             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                {return [/* tuple */0,0,/* None */0];}
               else
                {throw exn;}
@@ -435,7 +454,7 @@ var
           if
            (blank_line_outside_simple
              (file,$$String["sub"](s,len,s["length"]-len))||
-            CamlPrimtivie["caml_equal"]
+            CamlPrimitive["caml_equal"]
              (h[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]]))
            {var match$2=/* tuple */[0,/* None */0,special_coms];}
           else
@@ -535,7 +554,7 @@ var
       return Odoc_cross["assoc_comments_info"]("",modlist,i);
       }
     catch(exn)
-     {if(exn[1]=Sys_error)
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {return Pervasives["failwith"](exn[2]);}
       else
        {throw exn;}

@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Set=require("Set");
-var Depend=require("Depend");
-var Odoc_print=require("Odoc_print");
-var Str=require("Str");
+var List=require("./list.js");
+var Set=require("./set.js");
+var Depend=require("./depend.js");
+var Odoc_print=require("./odoc_print.js");
+var Str=require("./str.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-Odoc_type,Odoc_module,Depend;
+
 var StrS=0;
 
 var Module=0;
@@ -26,7 +27,7 @@ var
 var
  impl_dependencies=
   function(ast)
-   {Depend["free_structure_names"][1]=Depend["StringSet"][1],0;
+   {Depend["free_structure_names"][1]=Depend["StringSet"][1];
     Depend["add_use_file"]
      (Depend["StringSet"][1],/* :: */[0,/* Ptop_def */[0,ast],/* [] */0]);
     return set_to_list(Depend["free_structure_names"][1]);
@@ -35,12 +36,12 @@ var
 var
  intf_dependencies=
   function(ast)
-   {Depend["free_structure_names"][1]=Depend["StringSet"][1],0;
+   {Depend["free_structure_names"][1]=Depend["StringSet"][1];
     Depend["add_signature"](Depend["StringSet"][1],ast);
     return set_to_list(Depend["free_structure_names"][1]);
     };
 
-var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var S=Set["Make"]([0,compare]);
 
@@ -66,11 +67,15 @@ var
   function(graph,s)
    {try
      {return List["find"]
-              (function(n){return CamlPrimtivie["caml_string_equal"](n[1],s);},
+              (function(n){return CamlPrimitive["caml_string_equal"](n[1],s);},
                graph);
       }
     catch(exn)
-     {if(exn=Not_found){return make_node(s,/* [] */0);}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return make_node(s,/* [] */0);}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -116,7 +121,7 @@ var
          set_reachables=
           List["fold_left"]
            (function(acc,param)
-             {if(CamlPrimtivie["caml_string_equal"](child,param[1]))
+             {if(CamlPrimitive["caml_string_equal"](child,param[1]))
                {return acc;}
               else
                {return S[7](acc,param[2]);}
@@ -127,11 +132,11 @@ var
         var set=S[6](node[1],set_reachables);
         
         if(S[16](function(n2){return S[3](child,get_node(graph,n2)[2]);},set))
-         {node[2]=S[6](child,node[2]),0;
+         {node[2]=S[6](child,node[2]);
           return node[3]=
                  List["filter"]
                   (function(param)
-                    {return CamlPrimtivie["caml_string_notequal"]
+                    {return CamlPrimitive["caml_string_notequal"]
                              (param[1],child);
                      },
                    node[3]),
@@ -182,13 +187,13 @@ var
     var
      f=
       function(s)
-       {var s2=Str["matched_string"](s);l[1]=/* :: */[0,s2,l[1]],0;return s2;};
+       {var s2=Str["matched_string"](s);l[1]=/* :: */[0,s2,l[1]];return s2;};
     
     var match=t[4];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=16;case 1:exit=16;}}
     else
      {switch(match[0])

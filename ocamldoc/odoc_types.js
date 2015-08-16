@@ -1,6 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_messages=require("Odoc_messages");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -51,10 +52,13 @@ var make_dump=function(a){return /* Dump */[0,magic,a];};
 var
  open_dump=
   function(param)
-   {if(CamlPrimtivie["caml_string_equal"](param[1],magic))
+   {if(CamlPrimitive["caml_string_equal"](param[1],magic))
      {return param[2];}
     else
-     {throw [0,Failure,Odoc_messages["bad_magic_number"]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Failure"],
+             Odoc_messages["bad_magic_number"]];
+      }
     };
 
 module["exports"]=

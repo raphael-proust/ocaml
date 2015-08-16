@@ -1,18 +1,19 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_to_text=require("Odoc_to_text");
-var Printf=require("Printf");
-var Format=require("Format");
-var Odoc_latex_style=require("Odoc_latex_style");
-var Buffer=require("Buffer");
-var Filename=require("Filename");
-var Str=require("Str");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_to_text=require("./odoc_to_text.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Odoc_latex_style=require("./odoc_latex_style.js");
+var Buffer=require("./buffer.js");
+var Filename=require("./filename.js");
+var Str=require("./str.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var shared=[0,"label"];
@@ -450,7 +451,12 @@ var
                     Pervasives["^"]
                      (sec,Pervasives["^"]("{",Pervasives["^"](s,"}\n"))));
            }
-         catch(exn){if(exn=Not_found){return s;}else{throw exn;}}
+         catch(exn)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {return s;}
+           else
+            {throw exn;}
+           }
          },
        subst,
        function(self$neg1,l,s)
@@ -660,7 +666,7 @@ var
        function(self$neg1,fmt,txt)
         {var exit;
          
-         if(typeof txt=="number")
+         if(typeof txt==="number")
           {switch(txt)
             {case 0:
               /* unknown */"(sendself self-1/1404 latex_of_Newline/1304 fmt/1405)";
@@ -742,7 +748,7 @@ var
        latex_of_Target,
        function(self$neg1,fmt,target,code)
         {if
-          (CamlPrimtivie["caml_string_equal"]
+          (CamlPrimitive["caml_string_equal"]
             ($$String["lowercase"](target),"latex"))
           {/* unknown */"(sendself self-1/1441 latex_of_Latex/1307 fmt/1442 code/1444)";
            }
@@ -922,7 +928,10 @@ var
                  }
                }
              else
-              {throw [0,Assert_failure,[0,"odoc_latex.ml",423,40]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"odoc_latex.ml",423,40]];
+               }
              
              if(text_opt)
               {var text=text_opt[1];}
@@ -961,7 +970,7 @@ var
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[subst_strings]=
+      $$self$1[subst_strings+1]=
       List["map"]
        (function(param)
          {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
@@ -1034,8 +1043,7 @@ var
                                          [/* :: */0,
                                           [/* tuple */0,"\x01b","{\\char92}"],
                                           [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]),
-      0,
-      $$self$1[subst_strings_simple]=
+      $$self$1[subst_strings_simple+1]=
       List["map"]
        (function(param)
          {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
@@ -1056,8 +1064,7 @@ var
                [/* :: */0,
                 [/* tuple */0,"\x01l","{\\char123}"],
                 [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]),
-      0,
-      $$self$1[subst_strings_code]=
+      $$self$1[subst_strings_code+1]=
       List["map"]
        (function(param)
          {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
@@ -1091,8 +1098,7 @@ var
                       [/* tuple */0,"\x01b","{\\char92}"],
                       [/* :: */0,
                        [/* tuple */0,"\x01l","{\\char123}"],
-                       [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]),
-      0;
+                       [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]);
       return $$self$1;
       };
     };
@@ -1434,7 +1440,7 @@ var
          if(match$1){ps(fmt2," ")}else{}
          
          ps(fmt2,s_name);
-         var priv=t[5]=/* Private */0;
+         var priv=t[5]===/* Private */0;
          
          var match$2=t[6];
          
@@ -1468,7 +1474,7 @@ var
          var match$4=t[4];
          
          var $js;
-         if(typeof match$4=="number")
+         if(typeof match$4==="number")
           {switch(match$4)
             {case 0:
               var match$5=t[6];
@@ -1528,7 +1534,7 @@ var
          
          var match$6=t[4];
          
-         if(typeof match$6=="number")
+         if(typeof match$6==="number")
           {switch(match$6)
             {case 0:
               var match$7=t[6];
@@ -1737,7 +1743,7 @@ var
                var exit$3;
                
                if(param[2])
-                {if(typeof e=="number")
+                {if(typeof e==="number")
                   {switch(e){}}
                  else
                   {switch(e[0])
@@ -1746,7 +1752,7 @@ var
                       
                       var match$10=match$9[1];
                       
-                      if(typeof match$10=="number")
+                      if(typeof match$10==="number")
                        {switch(match$10){}}
                       else
                        {switch(match$10[0])
@@ -1839,7 +1845,7 @@ var
              " +=",
              [/* String */2,/* No_padding */0,/* End_of_format */0]],
             " +=%s"],
-           (te[4]=/* Private */0)?" private":"");
+           te[4]===/* Private */0?" private":"");
          var s_type3=flush2(/* () */0);
          
          var
@@ -1982,7 +1988,7 @@ var
                var exit;
                
                if(param[2])
-                {if(typeof e=="number")
+                {if(typeof e==="number")
                   {switch(e){}}
                  else
                   {switch(e[0])
@@ -1991,7 +1997,7 @@ var
                       
                       var match$2=match$1[1];
                       
-                      if(typeof match$2=="number")
+                      if(typeof match$2==="number")
                        {switch(match$2){}}
                       else
                        {switch(match$2[0])
@@ -2252,13 +2258,13 @@ var
          
          var match=Odoc_info["Module"][14](m);
          
-         if(match!=0)
+         if(match!==0)
           {/* unknown */"(sendself self-3/1919 latex_of_text/1703 fmt/1920 [0: 0a 0a])";
            
            var
             l=
              List["filter"]
-              (function(param){return param[2]!=/* None */0;},
+              (function(param){return param[2]!==/* None */0;},
                Odoc_info["Module"][15]([/* Some */0,/* false */0],m));
            
            if(l)
@@ -2370,13 +2376,13 @@ var
          
          var match$2=Odoc_info["Module"][29](mt);
          
-         if(match$2!=0)
+         if(match$2!==0)
           {/* unknown */"(sendself self-3/1932 latex_of_text/1703 fmt/1933 [0: 0a 0a])";
            
            var
             l=
              List["filter"]
-              (function(param){return param[2]!=/* None */0;},
+              (function(param){return param[2]!==/* None */0;},
                Odoc_info["Module"][30]([/* Some */0,/* false */0],mt));
            
            if(l)
@@ -2596,7 +2602,7 @@ var
             
             if(t)
              {var $js=t[1];
-              if(typeof $js=="number")
+              if(typeof $js==="number")
                {switch($js){}}
               else
                {switch($js[0])
@@ -2837,7 +2843,7 @@ var
            
            var file=Filename["concat"](dir,"ocamldoc.sty");
            
-           if(CamlPrimtivie["caml_sys_file_exists"](file))
+           if(CamlPrimitive["caml_sys_file_exists"](file))
             {return Odoc_info["verbose"]
                      (Odoc_messages["file_exists_dont_generate"](file));
              }
@@ -2852,7 +2858,7 @@ var
              }
            }
          catch(exn)
-          {if(exn[1]=Sys_error)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Pervasives["prerr_endline"](exn[2]);
              return Odoc_info["errors"][0]++;
              }
@@ -2889,10 +2895,14 @@ var
                catch(exn)
                 {var exit;
                  
-                 if(exn[1]=Failure)
+                 if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
                   {var s=exn[2];exit=7;}
                  else
-                  {if(exn[1]=Sys_error){var s=exn[2];exit=7;}else{throw exn;}}
+                  {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+                    {var s=exn[2];exit=7;}
+                   else
+                    {throw exn;}
+                   }
                  
                  switch(exit)
                   {case 7:
@@ -2940,10 +2950,14 @@ var
          catch(exn)
           {var exit;
            
-           if(exn[1]=Failure)
+           if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s=exn[2];exit=2;}
            else
-            {if(exn[1]=Sys_error){var s=exn[2];exit=2;}else{throw exn;}}
+            {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+              {var s=exn[2];exit=2;}
+             else
+              {throw exn;}
+             }
            
            switch(exit)
             {case 2:

@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Odoc_global=require("Odoc_global");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Buffer=require("Buffer");
-var Lexing=require("Lexing");
-var Odoc_comments_global=require("Odoc_comments_global");
-var Str=require("Str");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var Odoc_global=require("./odoc_global.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Buffer=require("./buffer.js");
+var Lexing=require("./lexing.js");
+var Odoc_comments_global=require("./odoc_comments_global.js");
+var Str=require("./str.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 var line_number=[0,0];
@@ -49,7 +50,7 @@ var
               "",
               liste[1]);
           
-          if(CamlPrimtivie["caml_string_equal"](h2,""))
+          if(CamlPrimitive["caml_string_equal"](h2,""))
            {return iter(q);}
           else
            {return /* :: */[0,h2,q];}
@@ -71,7 +72,7 @@ var
             Str["global_replace"]
              (Str["regexp"](Pervasives["^"](blank,"+$")),"",liste[1]);
           
-          if(CamlPrimtivie["caml_string_equal"](h2,""))
+          if(CamlPrimitive["caml_string_equal"](h2,""))
            {return iter$1(q);}
           else
            {return /* :: */[0,h2,q];}
@@ -135,8 +136,7 @@ var
         case 2:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          return [/* Description */0,[/* tuple */0,"",/* None */0]];
          
         case 3:exit=2;
@@ -144,12 +144,11 @@ var
         case 5:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          comments_level[0]++;
-         if(comments_level[1]=1)
+         if(comments_level[1]===1)
           {reset_string_buffer(/* () */0);
-           description[1]="",0;
+           description[1]="";
            return special_comment(lexbuf);
            }
          else
@@ -159,8 +158,7 @@ var
         case 7:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          comments_level[0]--;
          return main(lexbuf);
          
@@ -173,15 +171,13 @@ var
      {case 2:
        Odoc_comments_global["nb_chars"][1]=
        Odoc_comments_global["nb_chars"][1]+
-       Lexing["lexeme"](lexbuf)["length"],
-       0;
+       Lexing["lexeme"](lexbuf)["length"];
        return main(lexbuf);
        
       case 3:
        Odoc_comments_global["nb_chars"][1]=
        Odoc_comments_global["nb_chars"][1]+
-       Lexing["lexeme"](lexbuf)["length"],
-       0;
+       Lexing["lexeme"](lexbuf)["length"];
        comments_level[0]++;
        return main(lexbuf);
        
@@ -210,9 +206,8 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s["length"],
-         0;
-         if(comments_level[1]=1)
+         s["length"];
+         if(comments_level[1]===1)
           {var s2=lecture_string(/* () */0);
            
            var s3=remove_blanks(s2);
@@ -235,8 +230,7 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s$1["length"],
-         0;
+         s$1["length"];
          comments_level[0]++;
          ajout_string(s$1);
          return special_comment(lexbuf);
@@ -249,30 +243,27 @@ var
          ajout_char_string(c);
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s$2["length"],
-         0;
+         s$2["length"];
          return special_comment(lexbuf);
          
         case 3:
          var s$3=lecture_string(/* () */0);
          
-         description[1]=remove_blanks(s$3),0;
+         description[1]=remove_blanks(s$3);
          reset_string_buffer(/* () */0);
          var len=Lexing["lexeme"](lexbuf)["length"];
          
-         lexbuf[6]=lexbuf[6]-len,0;
+         lexbuf[6]=lexbuf[6]-len;
          var init=lexbuf[12];
          
-         lexbuf[12]=
-         /* record */[0,init[1],init[2],init[3],lexbuf[12][4]-len],
-         0;
+         lexbuf[12]=/* record */[0,init[1],init[2],init[3],lexbuf[12][4]-len];
          return special_comment_part2(lexbuf);
          
         case 4:
          var c$1=Lexing["lexeme_char"](lexbuf,0);
          
          ajout_char_string(c$1);
-         if(c$1=10){line_number[0]++}else{}
+         if(c$1===10){line_number[0]++}else{}
          
          Odoc_comments_global["nb_chars"][0]++;
          return special_comment(lexbuf);
@@ -303,9 +294,8 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s["length"],
-         0;
-         if(comments_level[1]=1)
+         s["length"];
+         if(comments_level[1]===1)
           {if(Odoc_global["remove_stars"][1])
             {var desc=remove_stars(description[1]);}
            else
@@ -332,8 +322,7 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s$1["length"],
-         0;
+         s$1["length"];
          ajout_string(s$1);
          comments_level[0]++;
          return special_comment_part2(lexbuf);
@@ -342,7 +331,7 @@ var
          var c=Lexing["lexeme_char"](lexbuf,0);
          
          ajout_char_string(c);
-         if(c=10){line_number[0]++}else{}
+         if(c===10){line_number[0]++}else{}
          
          Odoc_comments_global["nb_chars"][0]++;
          return special_comment_part2(lexbuf);
@@ -369,8 +358,7 @@ var
        {case 0:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          return elements(lexbuf);
          
         case 1:
@@ -378,14 +366,17 @@ var
          Odoc_comments_global["nb_chars"][0]++;
          return elements(lexbuf);
          
-        case 2:throw [0,Failure,Odoc_messages["should_escape_at_sign"]];
+        case 2:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Failure"],
+                Odoc_messages["should_escape_at_sign"]];
+         
         case 3:
          var s=Lexing["lexeme"](lexbuf);
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s["length"],
-         0;
+         s["length"];
          var s2=$$String["sub"](s,1,s["length"]-1);
          
          var exit;
@@ -405,7 +396,10 @@ var
          switch(exit)
           {case 22:
             if(Odoc_global["no_custom_tags"][1])
-             {throw [0,Failure,Odoc_messages["not_a_valid_tag"](s2)];}
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Failure"],
+                     Odoc_messages["not_a_valid_tag"](s2)];
+              }
             else
              {return /* T_CUSTOM */[4,s2];}
             
@@ -414,8 +408,7 @@ var
         case 4:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          var s$1=Lexing["lexeme"](lexbuf);
          
          var s$2=Str["global_replace"](Str["regexp_string"]("\@"),"@",s$1);
@@ -454,8 +447,7 @@ var
        {case 0:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          return simple(lexbuf);
          
         case 1:
@@ -466,8 +458,7 @@ var
         case 2:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         Lexing["lexeme"](lexbuf)["length"],
-         0;
+         Lexing["lexeme"](lexbuf)["length"];
          comments_level[0]++;
          return simple(lexbuf);
          
@@ -476,8 +467,7 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s["length"],
-         0;
+         s["length"];
          return simple(lexbuf);
          
         case 4:
@@ -485,8 +475,7 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s$1["length"],
-         0;
+         s$1["length"];
          comments_level[0]++;
          return simple(lexbuf);
          
@@ -495,12 +484,11 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s$2["length"],
-         0;
+         s$2["length"];
          comments_level[0]++;
-         if(comments_level[1]=1)
+         if(comments_level[1]===1)
           {reset_string_buffer(/* () */0);
-           description[1]="",0;
+           description[1]="";
            return special_comment(lexbuf);
            }
          else
@@ -512,8 +500,7 @@ var
          
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
-         s$3["length"],
-         0;
+         s$3["length"];
          comments_level[0]--;
          return simple(lexbuf);
          

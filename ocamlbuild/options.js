@@ -1,21 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Const=require("Const");
-var Ocamlbuild_where=require("Ocamlbuild_where");
-var Pervasives=require("Pervasives");
-var Lexers=require("Lexers");
-var Arg=require("Arg");
-var Printf=require("Printf");
-var Format=require("Format");
-var Command=require("Command");
-var Shell=require("Shell");
-var Filename=require("Filename");
-var Lexing=require("Lexing");
-var My_std=require("My_std");
-var Log=require("Log");
-var Ocamlbuild_config=require("Ocamlbuild_config");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var Const=require("./const.js");
+var Ocamlbuild_where=require("./ocamlbuild_where.js");
+var Pervasives=require("./pervasives.js");
+var Lexers=require("./lexers.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Command=require("./command.js");
+var Shell=require("./shell.js");
+var Filename=require("./filename.js");
+var Lexing=require("./lexing.js");
+var My_std=require("./my_std.js");
+var Log=require("./log.js");
+var Ocamlbuild_config=require("./ocamlbuild_config.js");
+var $$Array=require("./array.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var version=Pervasives["^"]("ocamlbuild ",Sys["ocaml_version"]);
@@ -26,7 +27,7 @@ var project_root_dir=[0,/* None */0];
 
 var
  build_dir=
-  [0,Filename["concat"](CamlPrimtivie["caml_sys_getcwd"](/* () */0),"_build")];
+  [0,Filename["concat"](CamlPrimitive["caml_sys_getcwd"](/* () */0),"_build")];
 
 var include_dirs=[0,/* [] */0];
 
@@ -110,7 +111,11 @@ var
           {try
             {var match=search_in_path(opt);return /* Some */[0,opt];}
            catch(exn)
-            {if(exn=Not_found){return /* Some */[0,cmd];}else{throw exn;}}
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+              {return /* Some */[0,cmd];}
+             else
+              {throw exn;}
+             }
            },
          /* [] */0];
       
@@ -123,14 +128,17 @@ var
        {var
          match=
           My_std["List"][32]
-           (function(choice){return !(choice(/* () */0)=/* None */0);},
+           (function(choice){return !(choice(/* () */0)===/* None */0);},
             choices$1,
             /* () */0);
         
-        if(match){return match[1];}else{throw Not_found;}
+        if(match)
+         {return match[1];}
+        else
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         }
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {return Pervasives["failwith"]
                   (Printf["sprintf"]
                     ([/* Format */0,
@@ -147,7 +155,12 @@ var
     else
      {try
        {var match$1=search_in_path(opt);return opt;}
-      catch(exn$1){if(exn$1=Not_found){return cmd;}else{throw exn$1;}}
+      catch(exn$1)
+       {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return cmd;}
+        else
+         {throw exn$1;}
+        }
       }
     };
 
@@ -274,13 +287,13 @@ var dummy="*invalid-dummy-string*";
 var
  use_jocaml=
   function(param)
-   {ocamlc[1]=[/* A */1,"jocamlc"],0;
-    ocamlopt[1]=[/* A */1,"jocamlopt"],0;
-    ocamldep[1]=[/* A */1,"jocamldep"],0;
-    ocamlyacc[1]=[/* A */1,"jocamlyacc"],0;
-    ocamllex[1]=[/* A */1,"jocamllex"],0;
-    ocamlmklib[1]=[/* A */1,"jocamlmklib"],0;
-    ocamlmktop[1]=[/* A */1,"jocamlmktop"],0;
+   {ocamlc[1]=[/* A */1,"jocamlc"];
+    ocamlopt[1]=[/* A */1,"jocamlopt"];
+    ocamldep[1]=[/* A */1,"jocamldep"];
+    ocamlyacc[1]=[/* A */1,"jocamlyacc"];
+    ocamllex[1]=[/* A */1,"jocamllex"];
+    ocamlmklib[1]=[/* A */1,"jocamlmklib"];
+    ocamlmktop[1]=[/* A */1,"jocamlmktop"];
     return ocamlrun[1]=[/* A */1,"jocamlrun"],0;
     };
 
@@ -298,7 +311,7 @@ var
 var
  add_to$prime=
   function(rxs,x)
-   {if(CamlPrimtivie["caml_string_notequal"](x,dummy))
+   {if(CamlPrimitive["caml_string_notequal"](x,dummy))
      {return rxs[1]=/* :: */[0,/* :: */[0,x,/* [] */0],rxs[1]],0;}
     else
      {return /* () */0;}
@@ -312,10 +325,10 @@ var
 var
  set_build_dir=
   function(s)
-   {make_links[1]=/* false */0,0;
+   {make_links[1]=/* false */0;
     if(Filename["is_relative"](s))
      {return build_dir[1]=
-             Filename["concat"](CamlPrimtivie["caml_sys_getcwd"](/* () */0),s),
+             Filename["concat"](CamlPrimitive["caml_sys_getcwd"](/* () */0),s),
              0;
       }
     else
@@ -353,7 +366,7 @@ var
           "-verbose",
           /* Int */[6,
            function(i)
-            {Log["classic_display"][1]=/* true */1,0;
+            {Log["classic_display"][1]=/* true */1;
              return Log["level"][1]=i+2,0;
              }],
           "<level> Set the verbosity level"],
@@ -717,7 +730,7 @@ var
                                                                                 "--",
                                                                                 /* Rest */[12,
                                                                                  function(x)
-                                                                                  {program_to_execute[1]=/* true */1,0;
+                                                                                  {program_to_execute[1]=/* true */1;
                                                                                    return add_to$prime(program_args_internal,x);
                                                                                    }],
                                                                                 " Stop argument processing, remaining arguments are given to the user program"],
@@ -775,20 +788,20 @@ var
            /* No_padding */0,
            [/* String_literal */11," [options] <target>",/* End_of_format */0]]],
          "Usage %s [options] <target>"],
-        Sys["argv"][0]);
+        Sys["argv"][1]);
     
     var
      argv$prime=
-      $$Array["concat"](/* :: */[0,Sys["argv"],/* :: */[0,[dummy],/* [] */0]]);
+      $$Array["concat"]
+       (/* :: */[0,Sys["argv"],/* :: */[0,[/* array */0,dummy],/* [] */0]]);
     
     Arg["parse_argv"](/* None */0,argv$prime,spec[1],anon_fun,usage_msg);
     Shell["mkdir_p"](build_dir[1]);
     project_root_dir[1]=
-    /* Some */[0,CamlPrimtivie["caml_sys_getcwd"](/* () */0)],
-    0;
+    /* Some */[0,CamlPrimitive["caml_sys_getcwd"](/* () */0)];
     var log=log_file_internal[1];
     
-    if(CamlPrimtivie["caml_string_equal"](log,""))
+    if(CamlPrimitive["caml_string_equal"](log,""))
      {var match$1=Log["init"](/* None */0);}
     else
      {if(!Filename["is_implicit"](log))
@@ -823,7 +836,7 @@ var
      {try
        {Command["search_in_path"]("ocamlfind")}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["failwith"]
            ("ocamlfind not found on path, but -no-ocamlfind not used")}
         else
@@ -840,7 +853,7 @@ var
           var exit;
           
           var $js;
-          if(typeof match$2=="number")
+          if(typeof match$2==="number")
            {switch(match$2){}}
           else
            {switch(match$2[0])
@@ -939,12 +952,12 @@ var
     if(match$1)
      {var root_dir=match$1[1];}
     else
-     {var root_dir=CamlPrimtivie["caml_sys_getcwd"](/* () */0);}
+     {var root_dir=CamlPrimitive["caml_sys_getcwd"](/* () */0);}
     
     var at_root=function(file){return Filename["concat"](root_dir,file);};
     
-    return CamlPrimtivie["caml_sys_file_exists"](at_root("_tags"))||
-           CamlPrimtivie["caml_sys_file_exists"](at_root("myocamlbuild.ml"));
+    return CamlPrimitive["caml_sys_file_exists"](at_root("_tags"))||
+           CamlPrimitive["caml_sys_file_exists"](at_root("myocamlbuild.ml"));
     };
 
 module["exports"]=

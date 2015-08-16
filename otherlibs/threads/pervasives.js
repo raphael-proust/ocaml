@@ -685,15 +685,14 @@ module["exports"]=
  "output_binary_int":output_binary_int,
  "output_value":output_value,
  "seek_out":seek_out,
- "caml_ml_pos_out":
- function(prim){return CamlPrimitive["caml_ml_pos_out"](prim);},
- "caml_ml_channel_size":
+ "pos_out":function(prim){return CamlPrimitive["caml_ml_pos_out"](prim);},
+ "out_channel_length":
  function(prim){return CamlPrimitive["caml_ml_channel_size"](prim);},
  "close_out":close_out,
  "close_out_noerr":close_out_noerr,
- "caml_ml_set_binary_mode":
- function(prim,prim)
-  {return CamlPrimitive["caml_ml_set_binary_mode"](prim$1,prim);},
+ "set_binary_mode_out":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_set_binary_mode"](prim,prim$1);},
  "open_in":open_in,
  "open_in_bin":open_in_bin,
  "open_in_gen":open_in_gen,
@@ -705,26 +704,25 @@ module["exports"]=
  "input_byte":input_byte,
  "input_binary_int":input_binary_int,
  "input_value":input_value,
- "caml_ml_seek_in":
- function(prim,prim){return CamlPrimitive["caml_ml_seek_in"](prim$1,prim);},
- "caml_ml_pos_in":
- function(prim){return CamlPrimitive["caml_ml_pos_in"](prim);},
- "caml_ml_channel_size":
+ "seek_in":
+ function(prim,prim$1){return CamlPrimitive["caml_ml_seek_in"](prim,prim$1);},
+ "pos_in":function(prim){return CamlPrimitive["caml_ml_pos_in"](prim);},
+ "in_channel_length":
  function(prim){return CamlPrimitive["caml_ml_channel_size"](prim);},
- "caml_ml_close_channel":
+ "close_in":
  function(prim){return CamlPrimitive["caml_ml_close_channel"](prim);},
  "close_in_noerr":close_in_noerr,
- "caml_ml_set_binary_mode":
- function(prim,prim)
-  {return CamlPrimitive["caml_ml_set_binary_mode"](prim$1,prim);},
+ "set_binary_mode_in":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_set_binary_mode"](prim,prim$1);},
  "LargeFile":
  [0,
-  function(prim,prim)
-   {return CamlPrimitive["caml_ml_seek_out_64"](prim$1,prim);},
+  function(prim,prim$1)
+   {return CamlPrimitive["caml_ml_seek_out_64"](prim,prim$1);},
   function(prim){return CamlPrimitive["caml_ml_pos_out_64"](prim);},
   function(prim){return CamlPrimitive["caml_ml_channel_size_64"](prim);},
-  function(prim,prim)
-   {return CamlPrimitive["caml_ml_seek_in_64"](prim$1,prim);},
+  function(prim,prim$1)
+   {return CamlPrimitive["caml_ml_seek_in_64"](prim,prim$1);},
   function(prim){return CamlPrimitive["caml_ml_pos_in_64"](prim);},
   function(prim){return CamlPrimitive["caml_ml_channel_size_64"](prim);}],
  "string_of_format":string_of_format,

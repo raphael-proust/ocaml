@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
+var List=require("./list.js");
 
 
 var
  $$eval=
   function(f,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return /* true */1;case 1:return /* false */0;}}
     else
      {switch(param[0])
@@ -22,7 +22,7 @@ var
   function(f,param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){case 0:exit=3;case 1:exit=3;}}
     else
      {switch(param[0])
@@ -41,7 +41,7 @@ var
   function(f,b)
    {var exit;
     
-    if(typeof b=="number")
+    if(typeof b==="number")
      {switch(b){case 0:exit=1;case 1:exit=1;}}
     else
      {switch(b[0])

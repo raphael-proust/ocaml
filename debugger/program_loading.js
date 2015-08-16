@@ -1,18 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Primitives=require("Primitives");
-var Unix=require("Unix");
-var Unix_tools=require("Unix_tools");
-var Filename=require("Filename");
-var Buffer=require("Buffer");
-var Parameters=require("Parameters");
-var Debugger_config=require("Debugger_config");
-var Input_handling=require("Input_handling");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Primitives=require("./primitives.js");
+var Unix=require("./unix.js");
+var Unix_tools=require("./unix_tools.js");
+var Filename=require("./filename.js");
+var Buffer=require("./buffer.js");
+var Parameters=require("./parameters.js");
+var Debugger_config=require("./debugger_config.js");
+var Input_handling=require("./input_handling.js");
+var Sys=require("./sys.js");
 
 
 var debug_loading=[0,/* false */0];
@@ -66,7 +66,7 @@ var
         if(!(32<switcher>>>0))
          {if(30<-1+switcher>>>0){exit=24;}else{exit=25;}}
         else
-         {if(switcher!=62){exit=25;}else{exit=24;}}
+         {if(switcher!==62){exit=25;}else{exit=24;}}
         }
       else
        {var switcher$1=-35+match;
@@ -74,7 +74,7 @@ var
         if(24<switcher$1>>>0)
          {if(switcher$1>=-1){exit=24;}else{exit=25;}}
         else
-         {if(switcher$1!=3){exit=25;}else{exit=24;}}
+         {if(switcher$1!==3){exit=25;}else{exit=24;}}
         }
       
       switch(exit){case 25:case 24:Buffer["add_char"](b,94)}
@@ -122,7 +122,7 @@ var
      {var child=Unix["fork"](/* () */0);}
     catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
     
-    if(child!=0)
+    if(child!==0)
      {var match=Unix["wait"](/* () */0);
       
       var match$1=match[2];
@@ -130,7 +130,7 @@ var
       var exit;
       
       switch(match$1[0])
-       {case 0:if(match$1[1]!=0){exit=17;}else{return /* () */0;}
+       {case 0:if(match$1[1]!==0){exit=17;}else{return /* () */0;}
         case 1:exit=17;
         case 2:exit=17;
         }
@@ -141,16 +141,24 @@ var
      {try
        {var match$2=Unix["fork"](/* () */0);
         
-        if(match$2!=0)
+        if(match$2!==0)
          {return Pervasives["exit"](0);}
         else
          {try
            {Unix["setsid"](/* () */0)}
-          catch(exn){if(exn[1]=Invalid_argument){}else{throw exn;}}
+          catch(exn)
+           {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
+             {}
+            else
+             {throw exn;}
+            }
           
           return Unix["execv"]
                   (Debugger_config["shell"],
-                   [Debugger_config["shell"],"-c",cmdline(/* () */0)]);
+                   [/* array */0,
+                    Debugger_config["shell"],
+                    "-c",
+                    cmdline(/* () */0)]);
           }
         }
       catch(x$1)
@@ -169,7 +177,7 @@ var
     try
      {return Unix["create_process"]
               ("cmd.exe",
-               ["/C",cmdline(/* () */0)],
+               [/* array */0,"/C",cmdline(/* () */0)],
                Unix["stdin"],
                Unix["stdout"],
                Unix["stderr"]);

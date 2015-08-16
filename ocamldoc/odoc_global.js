@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Clflags=require("Clflags");
-var Filename=require("Filename");
-var Odoc_config=require("Odoc_config");
-var Odoc_messages=require("Odoc_messages");
+var Pervasives=require("./pervasives.js");
+var Clflags=require("./clflags.js");
+var Filename=require("./filename.js");
+var Odoc_config=require("./odoc_config.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
-Clflags["dont_write_files"][1]=/* true */1,0;
+Clflags["dont_write_files"][1]=/* true */1;
 var include_dirs=Clflags["include_dirs"];
 
 var errors=[0,0];

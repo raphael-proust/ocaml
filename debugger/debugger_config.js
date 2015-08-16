@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Int64ops=require("Int64ops");
-var Hashtbl=require("Hashtbl");
-var Sys=require("Sys");
+var Int64ops=require("./int64ops.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
  Toplevel=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Debugger_config.Toplevel",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Debugger_config.Toplevel",0]);
 
 var debugger_prompt="(ocd) ";
 

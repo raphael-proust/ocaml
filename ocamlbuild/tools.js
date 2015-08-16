@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Pathname=require("Pathname");
-var Format=require("Format");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var Configuration=require("Configuration");
+var Pervasives=require("./pervasives.js");
+var Pathname=require("./pathname.js");
+var Format=require("./format.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var Configuration=require("./configuration.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var pp_l=My_std["List"][1](My_std["String"][1]);
@@ -57,7 +58,7 @@ var
       var d=Pathname["dirname"](s);
       
       if
-       (CamlPrimtivie["caml_string_notequal"](d,Pathname["current_dir_name"]))
+       (CamlPrimitive["caml_string_notequal"](d,Pathname["current_dir_name"]))
        {var match=Pathname["define_context"](d,/* :: */[0,d,/* [] */0]);
         
         return /* :: */[0,s,/* [] */0];

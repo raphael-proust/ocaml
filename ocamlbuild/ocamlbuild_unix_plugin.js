@@ -1,20 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ocamlbuild_pack=require("Ocamlbuild_pack");
-var Pervasives=require("Pervasives");
-var Ocamlbuild_executor=require("Ocamlbuild_executor");
-var Printf=require("Printf");
-var Format=require("Format");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Unix=require("Unix");
-var Filename=require("Filename");
-var Sys=require("Sys");
+var Ocamlbuild_pack=require("./ocamlbuild_pack.js");
+var Pervasives=require("./pervasives.js");
+var Ocamlbuild_executor=require("./ocamlbuild_executor.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Unix=require("./unix.js");
+var Filename=require("./filename.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  report_error=
   function(f,exn)
-   {if(exn[1]=Unix["Unix_error"])
+   {if(exn[1]===Unix["Unix_error"])
      {var arg=exn[4];
       
       Format["fprintf"]
@@ -28,7 +28,7 @@ var
             /* No_padding */0,
             [/* String_literal */11," failed",/* End_of_format */0]]]],
          "%s: %S failed"],
-        Sys["argv"][0],
+        Sys["argv"][1],
         exn[3]);
       if(arg["length"]>0)
        {Format["fprintf"]
@@ -61,9 +61,9 @@ var
    {try
      {var st=unix_stat(x);}
     catch(e)
-     {if(e[1]=Unix["Unix_error"])
+     {if(e[1]===Unix["Unix_error"])
        {throw [0,
-               Sys_error,
+               CamlPrimitive["caml_global_data"]["Sys_error"],
                Ocamlbuild_pack["My_std"][8]
                 ([/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
                  report_error,
@@ -112,7 +112,7 @@ var
               st[2])];
     };
 
-var is_link=function(s){return Unix["lstat"](s)[3]=/* S_LNK */4;};
+var is_link=function(s){return Unix["lstat"](s)[3]===/* S_LNK */4;};
 
 var
  at_exit_once=
@@ -121,7 +121,7 @@ var
     
     return Pervasives["at_exit"]
             (function(param)
-              {if(pid=Unix["getpid"](/* () */0))
+              {if(pid===Unix["getpid"](/* () */0))
                 {return callback(/* () */0);}
                else
                 {return 0;}
@@ -141,7 +141,7 @@ var
         var exit;
         
         switch(match[0])
-         {case 0:if(match[1]!=0){exit=11;}else{return /* () */0;}
+         {case 0:if(match[1]!==0){exit=11;}else{return /* () */0;}
           case 1:exit=11;
           case 2:exit=11;
           }
@@ -172,9 +172,14 @@ var
    {var $js;
     try
      {$js=
-      CamlPrimtivie["caml_string_notequal"](Unix["getenv"]("TERM"),"dumb");
+      CamlPrimitive["caml_string_notequal"](Unix["getenv"]("TERM"),"dumb");
       }
-    catch(exn){if(exn=Not_found){$js=/* true */1;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {$js=/* true */1;}
+      else
+       {throw exn;}
+      }
     return Unix["isatty"](Unix["stdout"])&&$js;
     };
 
@@ -212,16 +217,16 @@ var
 var
  setup=
   function(param)
-   {Ocamlbuild_pack["My_unix"][13][1]=/* false */0,0;
-    Ocamlbuild_pack["My_unix"][13][9]=stdout_isatty,0;
-    Ocamlbuild_pack["My_unix"][13][8]=Unix["gettimeofday"],0;
-    Ocamlbuild_pack["My_unix"][13][6]=report_error,0;
-    Ocamlbuild_pack["My_unix"][13][5]=execute_many,0;
-    Ocamlbuild_pack["My_unix"][13][4]=myunixreadlink,0;
-    Ocamlbuild_pack["My_unix"][13][3]=run_and_open,0;
-    Ocamlbuild_pack["My_unix"][13][7]=at_exit_once,0;
-    Ocamlbuild_pack["My_unix"][13][2]=is_link,0;
-    Ocamlbuild_pack["My_unix"][13][10]=mkstat(Unix["stat"]),0;
+   {Ocamlbuild_pack["My_unix"][13][1]=/* false */0;
+    Ocamlbuild_pack["My_unix"][13][9]=stdout_isatty;
+    Ocamlbuild_pack["My_unix"][13][8]=Unix["gettimeofday"];
+    Ocamlbuild_pack["My_unix"][13][6]=report_error;
+    Ocamlbuild_pack["My_unix"][13][5]=execute_many;
+    Ocamlbuild_pack["My_unix"][13][4]=myunixreadlink;
+    Ocamlbuild_pack["My_unix"][13][3]=run_and_open;
+    Ocamlbuild_pack["My_unix"][13][7]=at_exit_once;
+    Ocamlbuild_pack["My_unix"][13][2]=is_link;
+    Ocamlbuild_pack["My_unix"][13][10]=mkstat(Unix["stat"]);
     return Ocamlbuild_pack["My_unix"][13][11]=mkstat(Unix["lstat"]),0;
     };
 

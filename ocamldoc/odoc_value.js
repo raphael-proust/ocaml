@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Printtyp=require("Printtyp");
-var List=require("List");
-var Odoc_parameter=require("Odoc_parameter");
+var $$String=require("./string.js");
+var Printtyp=require("./printtyp.js");
+var List=require("./list.js");
+var Odoc_parameter=require("./odoc_parameter.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -17,7 +18,12 @@ var
     if(match)
      {try
        {var t=List["assoc"](name,match[1][8]);return /* Some */[0,t];}
-      catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* None */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return /* None */0;}
@@ -46,7 +52,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -77,7 +83,7 @@ var
           default:
            var match=s[0];
            
-           if(match!=63)
+           if(match!==63)
             {return s;}
            else
             {return $$String["sub"](s,1,s["length"]-1);}
@@ -98,12 +104,12 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
            {case 2:
-             if(CamlPrimtivie["caml_string_equal"](label,""))
+             if(CamlPrimitive["caml_string_equal"](label,""))
               {return /* Tuple */[1,
                        List["map"]
                         (function(t2){return iter(/* tuple */[0,"",t2]);},match[1]),
@@ -140,7 +146,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])

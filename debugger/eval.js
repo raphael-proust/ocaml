@@ -1,24 +1,25 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ctype=require("Ctype");
-var Frames=require("Frames");
-var Printtyp=require("Printtyp");
-var Btype=require("Btype");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Env=require("Env");
-var Predef=require("Predef");
-var Format=require("Format");
-var Printval=require("Printval");
-var Misc=require("Misc");
-var Path=require("Path");
-var Subst=require("Subst");
-var Ident=require("Ident");
-var Symtable=require("Symtable");
-var Debugcom=require("Debugcom");
+var Ctype=require("./ctype.js");
+var Frames=require("./frames.js");
+var Printtyp=require("./printtyp.js");
+var Btype=require("./btype.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Env=require("./env.js");
+var Predef=require("./predef.js");
+var Format=require("./format.js");
+var Printval=require("./printval.js");
+var Misc=require("./misc.js");
+var Path=require("./path.js");
+var Subst=require("./subst.js");
+var Ident=require("./ident.js");
+var Symtable=require("./symtable.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Debugcom=require("./debugcom.js");
 
 
-var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Eval.Error",0]);
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Eval.Error",0]);
 
 var
  abstract_type=
@@ -41,7 +42,7 @@ var
                    (Symtable["get_global_position"](id));
            }
          catch(exn)
-          {if(exn[1]=Symtable["Error"])
+          {if(exn[1]===Symtable["Error"])
             {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
            else
             {throw exn;}
@@ -57,14 +58,14 @@ var
              return Debugcom["Remote_value"][8](ev[9]-pos);
              }
            catch(exn$1)
-            {if(exn$1=Not_found)
+            {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
               {try
                 {var pos$1=Ident["find_same"](id,ev[8][2]);
                  
                  return Debugcom["Remote_value"][9](pos$1);
                  }
                catch(exn$2)
-                {if(exn$2=Not_found)
+                {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
                   {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
                  else
                   {throw exn$2;}
@@ -97,7 +98,7 @@ var
 var
  expression=
   function($$event,env,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          var exit;
@@ -110,7 +111,7 @@ var
            if(typeof match$1==="number")
             {exit=8;}
            else
-            {if(Frames["current_frame"][1]=0)
+            {if(Frames["current_frame"][1]===0)
               {return /* tuple */[0,
                        Debugcom["Remote_value"][11](/* () */0),
                        Subst["type_expr"](match[7],match$1[1])];
@@ -142,7 +143,7 @@ var
            var exit$1;
            
            var $js;
-           if(typeof match$3=="number")
+           if(typeof match$3==="number")
             {switch(match$3){}}
            else
             {switch(match$3[0])
@@ -166,7 +167,7 @@ var
            return /* tuple */[0,$js$1,Ctype["correct_levels"](valdesc[1])];
            }
          catch(exn)
-          {if(exn=Not_found)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
             {throw [0,$$Error,/* Unbound_long_identifier */[2,lid]];}
            else
             {throw exn;}
@@ -178,7 +179,7 @@ var
          try
           {return Printval["find_named_value"](n);}
          catch(exn$1)
-          {if(exn$1=Not_found)
+          {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
             {throw [0,$$Error,/* Unknown_name */[3,n]];}
            else
             {throw exn$1;}
@@ -197,7 +198,7 @@ var
          
          var exit$2;
          
-         if(typeof match$6=="number")
+         if(typeof match$6==="number")
           {switch(match$6){}}
          else
           {switch(match$6[0])
@@ -245,7 +246,7 @@ var
                          {if(!Debugcom["Remote_value"][2](v))
                            {throw [0,$$Error,/* List_index */[6,pos,n$1]];}
                           else
-                           {if(pos=n$1)
+                           {if(pos===n$1)
                              {return /* tuple */[0,
                                       Debugcom["Remote_value"][5](v,0),
                                       ty_arg];
@@ -292,7 +293,7 @@ var
          
          var exit$3;
          
-         if(typeof match$9=="number")
+         if(typeof match$9==="number")
           {switch(match$9){}}
          else
           {switch(match$9[0])
@@ -305,7 +306,7 @@ var
               
               var exit$4;
               
-              if(typeof match$10=="number")
+              if(typeof match$10==="number")
                {switch(match$10){}}
               else
                {switch(match$10[0])
@@ -337,7 +338,7 @@ var
    {if(param)
      {var match=param[1];
       
-      if(CamlPrimtivie["caml_string_equal"](Ident["name"](match[1]),lbl))
+      if(CamlPrimitive["caml_string_equal"](Ident["name"](match[1]),lbl))
        {var
          ty_res=
           Btype["newgenty"](/* Tconstr */[3,path,tydesc[1],[0,/* Mnil */0]]);
@@ -352,7 +353,7 @@ var
             /* :: */[0,ty,/* [] */0]);
           }
         catch(exn)
-         {if(exn=Ctype["Cannot_apply"]){$js=abstract_type;}else{throw exn;}}
+         {if(exn===Ctype["Cannot_apply"]){$js=abstract_type;}else{throw exn;}}
         return /* tuple */[0,pos,$js];
         }
       else
@@ -365,7 +366,7 @@ var
 var
  report_error=
   function(ppf,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return Format["fprintf"]

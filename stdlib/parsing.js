@@ -222,7 +222,7 @@ module["exports"]=
  "rhs_end_pos":rhs_end_pos,
  "clear_parser":clear_parser,
  "Parse_error":Parse_error,
- "caml_set_parser_trace":
+ "set_trace":
  function(prim){return CamlPrimitive["caml_set_parser_trace"](prim);},
  "YYexit":YYexit,
  "yyparse":yyparse,

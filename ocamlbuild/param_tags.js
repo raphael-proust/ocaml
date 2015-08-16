@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Lexers=require("Lexers");
-var Printf=require("Printf");
-var Loc=require("Loc");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
+var Lexers=require("./lexers.js");
+var Printf=require("./printf.js");
+var Loc=require("./loc.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
 
 
 var $$let=My_std["String"];
@@ -26,7 +26,7 @@ var
      {if(StringSet[3](param,instances[1]))
        {return /* () */0;}
       else
-       {instances[1]=StringSet[4](param,instances[1]),0;return f(param);}
+       {instances[1]=StringSet[4](param,instances[1]);return f(param);}
       };
     };
 
@@ -73,7 +73,7 @@ var
       
       var actions=My_std["List"][9](Hashtbl["find_all"](declared_tags,name));
       
-      if((actions=/* [] */0)&&!quiet)
+      if(actions===/* [] */0&&!quiet)
        {Log["eprintf"]
          ([/* Format */0,
            [/* Alpha */15,

@@ -1,10 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Parsing=require("Parsing");
-var Odoc_comments_global=require("Odoc_comments_global");
-var Str=require("Str");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Parsing=require("./parsing.js");
+var Odoc_comments_global=require("./odoc_comments_global.js");
+var Str=require("./str.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var uppercase="[A-ZР-жи-о]";
@@ -15,11 +16,11 @@ var blank="[ \n\r\t\f]";
 
 var
  yytransl_const=
-  CamlPrimtivie["caml_obj_dup"]([0,261,262,263,264,265,266,267,268,269,0,0]);
+  CamlPrimitive["caml_obj_dup"]([0,261,262,263,264,265,266,267,268,269,0,0]);
 
 var
  yytransl_block=
-  CamlPrimtivie["caml_obj_dup"]([0,257,258,259,260,270,271,0]);
+  CamlPrimitive["caml_obj_dup"]([0,257,258,259,260,270,271,0]);
 
 var
  yylhs=
@@ -67,7 +68,8 @@ var yynames_block="Description\0See_url\0See_file\0See_doc\0T_CUSTOM\0Desc\0";
 
 var
  yyact=
-  [function(param){return Pervasives["failwith"]("parser");},
+  [/* array */0,
+   function(param){return Pervasives["failwith"]("parser");},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -159,7 +161,7 @@ var
            }
          else
           {throw [0,
-                  Failure,
+                  CamlPrimitive["caml_global_data"]["Failure"],
                   Pervasives["^"]
                    (id,
                     Pervasives["^"]
@@ -174,7 +176,13 @@ var
       {exit=28;}
      
      var $js$1;
-     switch(exit){case 28:throw [0,Failure,"usage: @param id description"];}
+     switch(exit)
+      {case 28:
+        throw [0,
+               CamlPrimitive["caml_global_data"]["Failure"],
+               "usage: @param id description"];
+        
+       }
      return $js$1;
      },
    function(__caml_parser_env)
@@ -241,7 +249,12 @@ var
      
      var $js$1;
      switch(exit)
-      {case 38:throw [0,Failure,"usage: @before version description"];}
+      {case 38:
+        throw [0,
+               CamlPrimitive["caml_global_data"]["Failure"],
+               "usage: @before version description"];
+        
+       }
      return $js$1;
      },
    function(__caml_parser_env)
@@ -294,7 +307,7 @@ var
            }
          else
           {throw [0,
-                  Failure,
+                  CamlPrimitive["caml_global_data"]["Failure"],
                   Pervasives["^"]
                    (id,
                     Pervasives["^"]
@@ -310,7 +323,12 @@ var
      
      var $js$1;
      switch(exit)
-      {case 46:throw [0,Failure,"usage: @raise Exception description"];}
+      {case 46:
+        throw [0,
+               CamlPrimitive["caml_global_data"]["Failure"],
+               "usage: @raise Exception description"];
+        
+       }
      return $js$1;
      },
    function(__caml_parser_env)

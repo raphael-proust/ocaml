@@ -1,27 +1,27 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var CamlPrimtivie=require("CamlPrimtivie");
-var Set=require("Set");
-var Queue=require("Queue");
-var Unix=require("Unix");
-var Buffer=require("Buffer");
-var Printexc=require("Printexc");
-var Map=require("Map");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Set=require("./set.js");
+var Queue=require("./queue.js");
+var Unix=require("./unix.js");
+var Buffer=require("./buffer.js");
+var Printexc=require("./printexc.js");
+var Map=require("./map.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  compare=
-  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var JS=Set["Make"]([0,compare]);
 
 var
  compare$1=
-  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var FDM=Map["Make"]([0,compare$1]);
 
@@ -121,7 +121,12 @@ var
        {if(i<m)
          {try
            {var j=$$String["index_from"](u,i,10);}
-          catch(exn){if(exn=Not_found){var j=m;}else{throw exn;}}
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {var j=m;}
+            else
+             {throw exn;}
+            }
           
           output_line(i,j);
           return loop(j+1);
@@ -192,10 +197,9 @@ var
     var
      compute_fds=
       function(param)
-       {if(!(prev_jobs[1]=jobs[1]))
+       {if(!(prev_jobs[1]===jobs[1]))
          {prev_jobs[1]=
           jobs[1],
-          0,
           fds[1]=
           JS[14]
            (function(job,param$1)
@@ -211,8 +215,7 @@ var
                       /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
               },
             jobs[1],
-            [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]),
-          0}
+            [/* tuple */0,/* [] */0,/* [] */0,/* [] */0])}
         else
          {}
         
@@ -245,8 +248,7 @@ var
            /* false */0];
         
         outputs[1]=
-        FDM[4](doi(stdout$prime),job,FDM[4](doi(stderr$prime),job,outputs[1])),
-        0;
+        FDM[4](doi(stdout$prime),job,FDM[4](doi(stderr$prime),job,outputs[1]));
         return jobs[1]=JS[4](job,jobs[1]),0;
         };
     
@@ -258,7 +260,7 @@ var
           
           var cmd=param[1](/* () */0);
           
-          if(CamlPrimtivie["caml_string_equal"](cmd,""))
+          if(CamlPrimitive["caml_string_equal"](cmd,""))
            {return skip_empty_tasks(tasks);}
           else
            {return /* Some */[0,/* tuple */[0,cmd,tasks]];}
@@ -297,7 +299,7 @@ var
          {var $$continue=/* true */1;}
         
         if(!job[9])
-         {job[9]=/* true */1,0;
+         {job[9]=/* true */1;
           return Queue["add"](/* tuple */[0,job,$$continue],jobs_to_terminate);
           }
         else
@@ -313,7 +315,7 @@ var
         return 0;
         };
     
-    var u=CamlPrimtivie["caml_create_string"](4096);
+    var u=CamlPrimitive["caml_create_string"](4096);
     
     var
      do_read=
@@ -330,7 +332,7 @@ var
              {try
                {var m=Unix["read"](fd,u,0,u["length"]);}
               catch(exn)
-               {if(exn[1]=Unix["Unix_error"])
+               {if(exn[1]===Unix["Unix_error"])
                  {var msg=Unix["error_message"](exn[2]);
                   
                   display
@@ -352,7 +354,7 @@ var
                  {throw exn;}
                 }
               
-              if(m=0)
+              if(m===0)
                {if(job[9])
                  {return /* () */0;}
                 else
@@ -405,8 +407,8 @@ var
           Unix["clear_nonblock"](doi(job[7]));
           do_read([/* Some */0,/* true */1],doi(job[5]),job);
           do_read([/* Some */0,/* true */1],doi(job[7]),job);
-          outputs[1]=FDM[6](doi(job[5]),FDM[6](doi(job[7]),outputs[1])),0;
-          jobs[1]=JS[6](job,jobs[1]),0;
+          outputs[1]=FDM[6](doi(job[5]),FDM[6](doi(job[7]),outputs[1]));
+          jobs[1]=JS[6](job,jobs[1]);
           var
            status=
             Unix["close_process_full"](/* tuple */[0,job[5],job[6],job[7]]);
@@ -421,7 +423,7 @@ var
               else
                {return display
                         (function(oc)
-                          {shown[1]=/* true */1,0;
+                          {shown[1]=/* true */1;
                            fp
                             (oc,
                              [/* Format */0,
@@ -445,7 +447,7 @@ var
            {case 0:
              var rc=status[1];
              
-             if(rc!=0)
+             if(rc!==0)
               {show_command(/* () */0),
                display
                 (function(oc)
@@ -464,7 +466,6 @@ var
                    }),
                all_ok[1]=
                /* false */0,
-               0,
                exit(/* Subcommand_failed */0)}
              else
               {if(match[2])
@@ -481,10 +482,10 @@ var
                      job[4],
                      /* tuple */[0,match$3[1],match$3[2]+1])}
                  else
-                  {job[4][1]=/* true */1,0}
+                  {job[4][1]=/* true */1}
                  }
                else
-                {all_ok[1]=/* false */0,0}
+                {all_ok[1]=/* false */0}
                }
              
             case 1:exit$1=11;
@@ -498,7 +499,6 @@ var
              show_command(/* () */0),
              all_ok[1]=
              /* false */0,
-             0,
              display
               (function(oc)
                 {return fp
@@ -551,7 +551,11 @@ var
                            return hook(fd,job);
                            }
                          catch(exn)
-                          {if(exn=Not_found){return /* () */0;}else{throw exn;}}
+                          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                            {return /* () */0;}
+                           else
+                            {throw exn;}
+                           }
                          },
                        param$1[1]);
               },

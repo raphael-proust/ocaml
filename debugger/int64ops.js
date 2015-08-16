@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Int64=require("Int64");
+var Pervasives=require("./pervasives.js");
+var Int64=require("./int64.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $plus$plus=function(prim,prim){return prim$1+prim;};
+var $plus$plus=function(prim,prim$1){return prim+prim$1;};
 
-var $neg$neg=function(prim,prim){return prim$1-prim;};
+var $neg$neg=function(prim,prim$1){return prim-prim$1;};
 
 var suc64=Int64["succ"];
 
@@ -20,7 +21,7 @@ var _minus1=Int64["minus_one"];
 
 var
  $unknown$unknown=
-  function(prim){return CamlPrimtivie["caml_int64_of_string"](prim);};
+  function(prim){return CamlPrimitive["caml_int64_of_string"](prim);};
 
 var max_small_int=Pervasives["max_int"];
 

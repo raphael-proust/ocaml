@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Misc=require("Misc");
-var Primitives=require("Primitives");
-var Filename=require("Filename");
-var Debugger_config=require("Debugger_config");
-var Hashtbl=require("Hashtbl");
-var Config=require("Config");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Misc=require("./misc.js");
+var Primitives=require("./primitives.js");
+var Filename=require("./filename.js");
+var Debugger_config=require("./debugger_config.js");
+var Hashtbl=require("./hashtbl.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var source_extensions=[/* :: */0,".ml",/* [] */0];
@@ -18,7 +19,7 @@ var
   function(pos,mdle)
    {var pos_fname=pos[1];
     
-    if(CamlPrimtivie["caml_sys_file_exists"](pos_fname))
+    if(CamlPrimitive["caml_sys_file_exists"](pos_fname))
      {return pos_fname;}
     else
      {var
@@ -27,12 +28,17 @@ var
          {var len$prime=m$prime["length"];
           
           try
-           {return CamlPrimtivie["caml_string_equal"]
+           {return CamlPrimitive["caml_string_equal"]
                     ($$String["sub"](m,0,len$prime),m$prime)&&
-                   (m[len$prime]=46);
+                   m[len$prime]===
+                   46;
             }
           catch(exn)
-           {if(exn[1]=Invalid_argument){return /* false */0;}else{throw exn;}}
+           {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
+             {return /* false */0;}
+            else
+             {throw exn;}
+            }
           };
       
       var
@@ -45,7 +51,7 @@ var
       
       var fname=pos[1];
       
-      if(CamlPrimtivie["caml_string_equal"](fname,""))
+      if(CamlPrimitive["caml_string_equal"](fname,""))
        {try
          {var dot_index=$$String["rindex"](mdle,46);
           
@@ -54,7 +60,11 @@ var
             $$String["sub"](mdle,1+dot_index,-1+(mdle["length"]-dot_index));
           }
         catch(exn)
-         {if(exn=Not_found){var innermost_module=mdle;}else{throw exn;}}
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {var innermost_module=mdle;}
+          else
+           {throw exn;}
+          }
         
         var
          loop=
@@ -65,10 +75,14 @@ var
                         (path,Pervasives["^"](innermost_module,param[1]));
                 }
               catch(exn$1)
-               {if(exn$1=Not_found){return loop(param[2]);}else{throw exn$1;}}
+               {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                 {return loop(param[2]);}
+                else
+                 {throw exn$1;}
+                }
               }
             else
-             {throw Not_found;}
+             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
             };
         
         return loop(source_extensions);
@@ -77,10 +91,10 @@ var
        {if(Filename["is_relative"](fname))
          {return Misc["find_in_path_rel"](path,fname);}
         else
-         {if(CamlPrimtivie["caml_sys_file_exists"](fname))
+         {if(CamlPrimitive["caml_sys_file_exists"](fname))
            {return fname;}
           else
-           {throw Not_found;}
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
           }
         }
       }
@@ -100,7 +114,7 @@ var
    {try
      {return List["assoc"](mdle,buffer_list[1]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var inchan=Pervasives["open_in_bin"](source_of_module(pos,mdle));
         
         var
@@ -113,8 +127,7 @@ var
         buffer_list[1]=
         Primitives["list_truncate"]
          (buffer_max_count[1],
-          /* :: */[0,/* tuple */[0,mdle,buffer],buffer_list[1]]),
-        0;
+          /* :: */[0,/* tuple */[0,mdle,buffer],buffer_list[1]]);
         return buffer;
         }
       else
@@ -141,10 +154,10 @@ var
           
           var lin=a[2];
           
-          if(CamlPrimtivie["caml_lessthan"](lin,line))
+          if(CamlPrimitive["caml_lessthan"](lin,line))
            {return /* :: */[0,pair,l$prime];}
           else
-           {if(CamlPrimtivie["caml_equal"](lin,line))
+           {if(CamlPrimitive["caml_equal"](lin,line))
              {return l$prime;}
             else
              {return /* :: */[0,a,new_list(l$prime[2])];}
@@ -172,7 +185,7 @@ var
      {var
        search=
         function(p)
-         {if((p=len)||(buffer[p]=10)){return p;}else{return search(1+p);}};
+         {if(p===len||buffer[p]===10){return p;}else{return search(1+p);}};
       
       return search(pos);
       }

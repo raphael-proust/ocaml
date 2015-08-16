@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Set=require("Set");
-var Path=require("Path");
-var Buffer=require("Buffer");
-var Str=require("Str");
-var Odoc_misc=require("Odoc_misc");
-var Ident=require("Ident");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Set=require("./set.js");
+var Path=require("./path.js");
+var Buffer=require("./buffer.js");
+var Str=require("./str.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Ident=require("./ident.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -63,7 +64,7 @@ var
           if(!(4<switcher>>>0))
            {if(1<-2+switcher>>>0){exit=50;}else{exit=51;}}
           else
-           {if(switcher!=23){exit=51;}else{exit=50;}}
+           {if(switcher!==23){exit=51;}else{exit=50;}}
           
           switch(exit)
            {case 51:return /* Some */[0,n];case 50:return iter_first(n+1);}
@@ -90,7 +91,7 @@ var
             if(!(4<switcher>>>0))
              {if(1<-2+switcher>>>0){exit=48;}else{exit=49;}}
             else
-             {if(switcher!=23){exit=49;}else{exit=48;}}
+             {if(switcher!==23){exit=49;}else{exit=48;}}
             
             switch(exit)
              {case 49:return /* Some */[0,n];case 48:return iter_last(n-1);}
@@ -118,7 +119,7 @@ var
     switch(s)
      {case "":return "";
       default:
-       if((s[0]=42)||(s[s["length"]-1]=42))
+       if(s[0]===42||s[s["length"]-1]===42)
         {return Pervasives["^"]("( ",Pervasives["^"](s," )"));}
        else
         {if(List["mem"](s[0],infix_chars))
@@ -154,7 +155,7 @@ var
        
        var match=name[len-1];
        
-       if(match!=41)
+       if(match!==41)
         {var
           match$1=
            List["rev"](Str["split"](Str["regexp_string"]("."),name));
@@ -170,35 +171,35 @@ var
        else
         {var j=0;
          
-         var buf=[Buffer["create"](len),Buffer["create"](len)];
+         var buf=[/* array */0,Buffer["create"](len),Buffer["create"](len)];
          
          for(var i=0;i<=len-1;i++)
           {var c=name[i];
            
            var exit;
            
-           if(c!=46)
+           if(c!==46)
             {exit=36;}
            else
-            {if(j=0)
+            {if(j===0)
               {if(i<len-1)
                 {var match$2=name[i+1];
                  
-                 if(match$2!=40){Buffer["add_char"](buf[j],46)}else{j=1;}
+                 if(match$2!==40){Buffer["add_char"](buf[j+1],46)}else{j=1;}
                  }
                else
-                {Buffer["add_char"](buf[j],name[i])}
+                {Buffer["add_char"](buf[j+1],name[i])}
                }
              else
               {exit=36;}
              }
            
-           switch(exit){case 36:Buffer["add_char"](buf[j],c)}
+           switch(exit){case 36:Buffer["add_char"](buf[j+1],c)}
            }
          
          return /* tuple */[0,
-                 Buffer["contents"](buf[0]),
-                 Buffer["contents"](buf[1])];
+                 Buffer["contents"](buf[1]),
+                 Buffer["contents"](buf[2])];
          }
        }
     };
@@ -222,7 +223,7 @@ var
     
     var len=s["length"];
     
-    if(len>=2&&(s[0]=40)&&(s[len-1]=41))
+    if(len>=2&&s[0]===40&&s[len-1]===41)
      {var s$1=parens_if_infix(strip_string($$String["sub"](s,1,len-2)));}
     else
      {var s$1=s;}
@@ -242,7 +243,7 @@ var
         try
          {$$String["index"](h,40);return /* tuple */[0,n,""];}
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {var len=n["length"];
             
             if(pos>=len-1)
@@ -258,7 +259,11 @@ var
        {return /* tuple */[0,n,""];}
       }
     catch(exn$1)
-     {if(exn$1=Not_found){return /* tuple */[0,n,""];}else{throw exn$1;}}
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* tuple */[0,n,""];}
+      else
+       {throw exn$1;}
+      }
     };
 
 var head=function(n){return head_and_tail(n)[1];};
@@ -281,11 +286,12 @@ var
      {var len1=n1["length"];
       
       $js=
-      CamlPrimtivie["caml_string_equal"]($$String["sub"](n2,0,len1),n1)&&
-      (n2[len1]=46);
+      CamlPrimitive["caml_string_equal"]($$String["sub"](n2,0,len1),n1)&&
+      n2[len1]===
+      46;
       }
     catch(exn){$js=/* false */0;}
-    return CamlPrimtivie["caml_string_notequal"](n1,n2)&&$js;
+    return CamlPrimitive["caml_string_notequal"](n1,n2)&&$js;
     };
 
 var
@@ -301,17 +307,17 @@ var
     
     var f2=match$1[1];
     
-    if(CamlPrimtivie["caml_string_equal"](f1,f2))
+    if(CamlPrimitive["caml_string_equal"](f1,f2))
      {var s2=match$1[2];
       
       if
-       (CamlPrimtivie["caml_string_equal"](f2,s2)||
-        CamlPrimtivie["caml_string_equal"](s2,""))
+       (CamlPrimitive["caml_string_equal"](f2,s2)||
+        CamlPrimitive["caml_string_equal"](s2,""))
        {return s2;}
       else
        {if
-         (CamlPrimtivie["caml_string_equal"](f1,s1)||
-          CamlPrimtivie["caml_string_equal"](s1,""))
+         (CamlPrimitive["caml_string_equal"](f1,s1)||
+          CamlPrimitive["caml_string_equal"](s1,""))
          {return s2;}
         else
          {return get_relative_raw(s1,s2);}
@@ -344,7 +350,7 @@ var
        {if(param)
          {var s2=get_relative(param[1],s);
           
-          if(CamlPrimtivie["caml_string_equal"](s,s2))
+          if(CamlPrimitive["caml_string_equal"](s,s2))
            {return iter(param[2]);}
           else
            {return s2;}
@@ -377,7 +383,10 @@ var
         /* None */0,
         Str["split"](Str["regexp"]("\."),n));
     
-    if(match){return match[1];}else{throw [0,Failure,"to_path"];}
+    if(match)
+     {return match[1];}
+    else
+     {throw [0,CamlPrimitive["caml_global_data"]["Failure"],"to_path"];}
     };
 
 var from_longident=Odoc_misc["string_of_longident"];

@@ -1,16 +1,17 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Format=require("Format");
-var Filename=require("Filename");
-var Bytes=require("Bytes");
-var My_std=require("My_std");
-var My_unix=require("My_unix");
-var Tags=require("Tags");
-var Discard_printf=require("Discard_printf");
-var Sys=require("Sys");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Filename=require("./filename.js");
+var Bytes=require("./bytes.js");
+var My_std=require("./my_std.js");
+var My_unix=require("./my_unix.js");
+var Tags=require("./tags.js");
+var Discard_printf=require("./discard_printf.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var fp=Printf["fprintf"];
@@ -55,12 +56,17 @@ var
 var
  get_columns=
   function(param)
-   {if(CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Unix"))
+   {if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Unix"))
      {try
-       {return CamlPrimtivie["caml_int_of_string"]
+       {return CamlPrimitive["caml_int_of_string"]
                 (My_std["String"][2](My_unix["run_and_read"]("tput cols")));
         }
-      catch(exn){if(exn[1]=Failure){return 80;}else{throw exn;}}
+      catch(exn)
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
+         {return 80;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return 80;}
@@ -104,7 +110,7 @@ var ticker_chars=3;
 
 var ticker_period=0.25;
 
-var ticker_animation=["\","|","/","-"];
+var ticker_animation=[/* array */0,"\","|","/","-"];
 
 var cached="*";
 
@@ -264,7 +270,13 @@ var
 var
  print_shortened_pathname=
   function(length,oc,u)
-   {if(length>=3){}else{throw [0,Assert_failure,[0,"display.ml",175,2]];}
+   {if(length>=3)
+     {}
+    else
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"display.ml",175,2]];
+      }
     
     var m=u["length"];
     
@@ -299,7 +311,7 @@ var
     
     var dt=t-ds[2];
     
-    ds[3]=t,0;
+    ds[3]=t;
     fp
      (oc,
       [/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
@@ -307,10 +319,10 @@ var
       /* () */0);
     var
      ticker_phase=
-      Pervasives["abs"](CamlPrimtivie["caml_ceil_float"](dt/ticker_period))%
-      ticker_animation["length"];
+      Pervasives["abs"](Math["ceil"](dt/ticker_period))%
+      /* -1 for tag */(ticker_animation["length"]-1);
     
-    var ticker=ticker_animation[ticker_phase];
+    var ticker=ticker_animation[ticker_phase+1];
     
     fp
      (oc,
@@ -412,11 +424,11 @@ var
                  [/* Alpha */15,
                   [/* Char_literal */12,46,/* End_of_format */0]]]]]]]]]],
          "%s %d target%s (%d cached) in %a."],
-        (how=/* Error */106380200)
+        how===/* Error */106380200
          ?"Compilation unsuccessful after building"
          :"Finished,",
         ds[10],
-        (ds[10]=1)?"":"s",
+        ds[10]===1?"":"s",
         ds[11],
         print_time,
         dt);
@@ -483,7 +495,7 @@ var
      {var how=/* Success */94326179;}
     
     if(!di[6])
-     {di[6]=/* true */1,0;
+     {di[6]=/* true */1;
       call_if
        (di[2],
         function(param)
@@ -500,7 +512,7 @@ var
                  /* Flush_newline */4,
                  /* End_of_format */0]]]],
              "# Compilation %ssuccessful.@."],
-            (how=/* Error */106380200)?"un":"");
+            how===/* Error */106380200?"un":"");
           Pervasives["close_out"](param[2]);
           return di[2]=/* None */0,0;
           });
@@ -533,18 +545,18 @@ var
           var tag=match[1];
           
           if(Tags["mem"](tag,tags))
-           {tagline[i]=Char["uppercase"](c),0}
+           {tagline[i]=Char["uppercase"](c)}
           else
            {if(Tags["mem"](tag,ds[13]))
-             {tagline[i]=Char["lowercase"](c),0}
+             {tagline[i]=Char["lowercase"](c)}
             else
-             {tagline[i]=45,0}
+             {tagline[i]=45}
             }
           
           return loop(i+1,param[2]);
           }
         else
-         {for(var j=i;j<=tagline["length"]-1;j++){tagline[j]=45,0}}
+         {for(var j=i;j<=tagline["length"]-1;j++){tagline[j]=45}return 0;}
         };
     
     return loop(0,ds[15]);
@@ -558,7 +570,7 @@ var
     var dt=t-ds[3];
     
     if(dt>ds[8])
-     {if(ds[7]){update_tagline_from_tags(ds),ds[7]=/* false */0,0}else{}
+     {if(ds[7]){update_tagline_from_tags(ds),ds[7]=/* false */0}else{}
       
       return redraw_sophisticated(ds);
       }
@@ -569,14 +581,14 @@ var
 var
  set_target_sophisticated=
   function(ds,target,tags,cached)
-   {ds[7]=/* true */1,0;
-    ds[4]=target,0;
-    ds[6]=tags,0;
-    ds[10]=1+ds[10],0;
-    if(cached){ds[11]=1+ds[11],0}else{}
+   {ds[7]=/* true */1;
+    ds[4]=target;
+    ds[6]=tags;
+    ds[10]=1+ds[10];
+    if(cached){ds[11]=1+ds[11]}else{}
     
-    ds[5]=cached,0;
-    ds[13]=Tags["union"](ds[13],ds[6]),0;
+    ds[5]=cached;
+    ds[13]=Tags["union"](ds[13],ds[6]);
     return update_sophisticated(ds);
     };
 
@@ -588,7 +600,7 @@ var
     return Tags["iter"]
             (function(tag)
               {if(first[1])
-                {first[1]=/* false */0,0;
+                {first[1]=/* false */0;
                  return Format["fprintf"]
                          (f,
                           [/* Format */0,

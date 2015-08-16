@@ -16,7 +16,7 @@ var Dont_match="unknown primitive:caml_set_oo_id";
 
 var
  value_descriptions=
-  function(env,vd1,vd2)
+  function(env,id,vd1,vd2)
    {if(Ctype["moregeneral"](env,1,vd1[1],vd2[1]))
      {var match=vd1[2];
       
@@ -45,7 +45,7 @@ var
                 
                default:exit$1=71;}}
            
-           switch(exit$1){case 71:return /* Tcoerce_primitive */[2,p1];}
+           switch(exit$1){case 71:return /* Tcoerce_primitive */[2,id,p1];}
            
           default:exit=70;}}
       

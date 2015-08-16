@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
+var Pervasives=require("./pervasives.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-CamlPrimtivie["caml_ba_init"](/* () */0);
+CamlPrimitive["caml_ba_init"](/* () */0);
 var float32=/* Float32 */0;
 
 var float64=/* Float64 */1;
@@ -37,11 +38,11 @@ var fortran_layout=/* Fortran_layout */1;
 var
  dims=
   function(a)
-   {var n=CamlPrimtivie["caml_ba_num_dims"](a);
+   {var n=CamlPrimitive["caml_ba_num_dims"](a);
     
-    var d=CamlPrimtivie["caml_make_vect"](n,0);
+    var d=CamlPrimitive["caml_make_vect"](n,0);
     
-    for(var i=0;i<=n-1;i++){d[i]=CamlPrimtivie["caml_ba_dim"](a,i),0}
+    for(var i=0;i<=n-1;i++){d[i+1]=CamlPrimitive["caml_ba_dim"](a,i)}
     
     return d;
     };
@@ -54,7 +55,7 @@ var
     else
      {var pos=0;}
     
-    return CamlPrimtivie["caml_ba_map_file_bytecode"]
+    return CamlPrimitive["caml_ba_map_file_bytecode"]
             (fd,kind,layout,shared,dims,pos);
     };
 
@@ -63,16 +64,16 @@ var Genarray=[0,dims,map_file];
 var
  create=
   function(kind,layout,dim)
-   {return CamlPrimtivie["caml_ba_create"](kind,layout,[dim]);};
+   {return CamlPrimitive["caml_ba_create"](kind,layout,[/* array */0,dim]);};
 
 var
  of_array=
   function(kind,layout,data)
-   {var ba=create(kind,layout,data["length"]);
+   {var ba=create(kind,layout,/* -1 for tag */data["length"]-1);
     
-    if(layout!=0){var ofs=1;}else{var ofs=0;}
+    if(layout!==0){var ofs=1;}else{var ofs=0;}
     
-    for(var i=0;i<=data["length"]-1;i++)
+    for(var i=0;i<=/* -1 for tag */data["length"]-1-1;i++)
      {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
     
     return ba;
@@ -81,34 +82,43 @@ var
 var
  map_file$1=
   function(fd,pos,kind,layout,shared,dim)
-   {return Genarray[2](fd,pos,kind,layout,shared,[dim]);};
+   {return Genarray[2](fd,pos,kind,layout,shared,[/* array */0,dim]);};
 
 var Array1=[0,create,of_array,map_file$1];
 
 var
  create$1=
   function(kind,layout,dim1,dim2)
-   {return CamlPrimtivie["caml_ba_create"](kind,layout,[dim1,dim2]);};
+   {return CamlPrimitive["caml_ba_create"]
+            (kind,layout,[/* array */0,dim1,dim2]);
+    };
 
-var slice_left=function(a,n){return CamlPrimtivie["caml_ba_slice"](a,[n]);};
+var
+ slice_left=
+  function(a,n){return CamlPrimitive["caml_ba_slice"](a,[/* array */0,n]);};
 
-var slice_right=function(a,n){return CamlPrimtivie["caml_ba_slice"](a,[n]);};
+var
+ slice_right=
+  function(a,n){return CamlPrimitive["caml_ba_slice"](a,[/* array */0,n]);};
 
 var
  of_array$1=
   function(kind,layout,data)
-   {var dim1=data["length"];
+   {var dim1=/* -1 for tag */data["length"]-1;
     
-    if(dim1=0){var dim2=0;}else{var dim2=data[0]["length"];}
+    if(dim1===0)
+     {var dim2=0;}
+    else
+     {var dim2=/* -1 for tag */data[1]["length"]-1;}
     
     var ba=create$1(kind,layout,dim1,dim2);
     
-    if(layout!=0){var ofs=1;}else{var ofs=0;}
+    if(layout!==0){var ofs=1;}else{var ofs=0;}
     
     for(var i=0;i<=dim1-1;i++)
-     {var row=data[i];
+     {var row=data[i+1];
       
-      if(row["length"]!=dim2)
+      if(/* -1 for tag */row["length"]-1!==dim2)
        {Pervasives["invalid_arg"]
          ("Bigarray.Array2.of_array: non-rectangular data")}
       else
@@ -124,54 +134,66 @@ var
 var
  map_file$2=
   function(fd,pos,kind,layout,shared,dim1,dim2)
-   {return Genarray[2](fd,pos,kind,layout,shared,[dim1,dim2]);};
+   {return Genarray[2](fd,pos,kind,layout,shared,[/* array */0,dim1,dim2]);};
 
 var Array2=[0,create$1,slice_left,slice_right,of_array$1,map_file$2];
 
 var
  create$2=
   function(kind,layout,dim1,dim2,dim3)
-   {return CamlPrimtivie["caml_ba_create"](kind,layout,[dim1,dim2,dim3]);};
+   {return CamlPrimitive["caml_ba_create"]
+            (kind,layout,[/* array */0,dim1,dim2,dim3]);
+    };
 
 var
  slice_left_1=
-  function(a,n,m){return CamlPrimtivie["caml_ba_slice"](a,[n,m]);};
+  function(a,n,m)
+   {return CamlPrimitive["caml_ba_slice"](a,[/* array */0,n,m]);};
 
 var
  slice_right_1=
-  function(a,n,m){return CamlPrimtivie["caml_ba_slice"](a,[n,m]);};
+  function(a,n,m)
+   {return CamlPrimitive["caml_ba_slice"](a,[/* array */0,n,m]);};
 
-var slice_left_2=function(a,n){return CamlPrimtivie["caml_ba_slice"](a,[n]);};
+var
+ slice_left_2=
+  function(a,n){return CamlPrimitive["caml_ba_slice"](a,[/* array */0,n]);};
 
 var
  slice_right_2=
-  function(a,n){return CamlPrimtivie["caml_ba_slice"](a,[n]);};
+  function(a,n){return CamlPrimitive["caml_ba_slice"](a,[/* array */0,n]);};
 
 var
  of_array$2=
   function(kind,layout,data)
-   {var dim1=data["length"];
+   {var dim1=/* -1 for tag */data["length"]-1;
     
-    if(dim1=0){var dim2=0;}else{var dim2=data[0]["length"];}
+    if(dim1===0)
+     {var dim2=0;}
+    else
+     {var dim2=/* -1 for tag */data[1]["length"]-1;}
     
-    if(dim2=0){var dim3=0;}else{var dim3=data[0][0]["length"];}
+    if(dim2===0)
+     {var dim3=0;}
+    else
+     {var dim3=/* -1 for tag */data[1][1]["length"]-1;}
     
     var ba=create$2(kind,layout,dim1,dim2,dim3);
     
-    if(layout!=0){var ofs=1;}else{var ofs=0;}
+    if(layout!==0){var ofs=1;}else{var ofs=0;}
     
     for(var i=0;i<=dim1-1;i++)
-     {var row=data[i];
+     {var row=data[i+1];
       
-      if(row["length"]!=dim2)
+      if(/* -1 for tag */row["length"]-1!==dim2)
        {Pervasives["invalid_arg"]("Bigarray.Array3.of_array: non-cubic data")}
       else
        {}
       
       for(var j=0;j<=dim2-1;j++)
-       {var col=row[j];
+       {var col=row[j+1];
         
-        if(col["length"]!=dim3)
+        if(/* -1 for tag */col["length"]-1!==dim3)
          {Pervasives["invalid_arg"]
            ("Bigarray.Array3.of_array: non-cubic data")}
         else
@@ -188,7 +210,9 @@ var
 var
  map_file$3=
   function(fd,pos,kind,layout,shared,dim1,dim2,dim3)
-   {return Genarray[2](fd,pos,kind,layout,shared,[dim1,dim2,dim3]);};
+   {return Genarray[2]
+            (fd,pos,kind,layout,shared,[/* array */0,dim1,dim2,dim3]);
+    };
 
 var
  Array3=
@@ -204,7 +228,7 @@ var
 var
  array1_of_genarray=
   function(a)
-   {if(CamlPrimtivie["caml_ba_num_dims"](a)=1)
+   {if(CamlPrimitive["caml_ba_num_dims"](a)===1)
      {return a;}
     else
      {return Pervasives["invalid_arg"]("Bigarray.array1_of_genarray");}
@@ -213,7 +237,7 @@ var
 var
  array2_of_genarray=
   function(a)
-   {if(CamlPrimtivie["caml_ba_num_dims"](a)=2)
+   {if(CamlPrimitive["caml_ba_num_dims"](a)===2)
      {return a;}
     else
      {return Pervasives["invalid_arg"]("Bigarray.array2_of_genarray");}
@@ -222,7 +246,7 @@ var
 var
  array3_of_genarray=
   function(a)
-   {if(CamlPrimtivie["caml_ba_num_dims"](a)=3)
+   {if(CamlPrimitive["caml_ba_num_dims"](a)===3)
      {return a;}
     else
      {return Pervasives["invalid_arg"]("Bigarray.array3_of_genarray");}
@@ -230,35 +254,36 @@ var
 
 var
  reshape_1=
-  function(a,dim1){return CamlPrimtivie["caml_ba_reshape"](a,[dim1]);};
+  function(a,dim1)
+   {return CamlPrimitive["caml_ba_reshape"](a,[/* array */0,dim1]);};
 
 var
  reshape_2=
   function(a,dim1,dim2)
-   {return CamlPrimtivie["caml_ba_reshape"](a,[dim1,dim2]);};
+   {return CamlPrimitive["caml_ba_reshape"](a,[/* array */0,dim1,dim2]);};
 
 var
  reshape_3=
   function(a,dim1,dim2,dim3)
-   {return CamlPrimtivie["caml_ba_reshape"](a,[dim1,dim2,dim3]);};
+   {return CamlPrimitive["caml_ba_reshape"](a,[/* array */0,dim1,dim2,dim3]);};
 
 var
  match=
-  function(prim,prim)
-   {return CamlPrimtivie["caml_ba_get_generic"](prim$1,prim);};
+  function(prim,prim$1)
+   {return CamlPrimitive["caml_ba_get_generic"](prim,prim$1);};
 
 var
  match$1=
-  function(prim,prim){return /* unknown */"Bigarray.get[generic,unknown]";};
+  function(prim,prim$1){return /* unknown */"Bigarray.get[generic,unknown]";};
 
 var
  match$2=
-  function(prim,prim,prim)
+  function(prim,prim$1,prim$2)
    {return /* unknown */"Bigarray.get[generic,unknown]";};
 
 var
  match$3=
-  function(prim,prim,prim,prim)
+  function(prim,prim$1,prim$2,prim$3)
    {return /* unknown */"Bigarray.get[generic,unknown]";};
 
 
@@ -285,8 +310,8 @@ module["exports"]=
  "array1_of_genarray":array1_of_genarray,
  "array2_of_genarray":array2_of_genarray,
  "array3_of_genarray":array3_of_genarray,
- "caml_ba_reshape":
- function(prim,prim){return CamlPrimtivie["caml_ba_reshape"](prim$1,prim);},
+ "reshape":
+ function(prim,prim$1){return CamlPrimitive["caml_ba_reshape"](prim,prim$1);},
  "reshape_1":reshape_1,
  "reshape_2":reshape_2,
  "reshape_3":reshape_3};

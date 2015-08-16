@@ -1,33 +1,34 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Question=require("Question");
-var Breakpoints=require("Breakpoints");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Trap_barrier=require("Trap_barrier");
-var Symbols=require("Symbols");
-var Printf=require("Printf");
-var Events=require("Events");
-var Checkpoints=require("Checkpoints");
-var Program_loading=require("Program_loading");
-var Primitives=require("Primitives");
-var Misc=require("Misc");
-var Debugger_config=require("Debugger_config");
-var Exec=require("Exec");
-var Int64ops=require("Int64ops");
-var Input_handling=require("Input_handling");
-var Sys=require("Sys");
-var Debugcom=require("Debugcom");
+var Question=require("./question.js");
+var Breakpoints=require("./breakpoints.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Trap_barrier=require("./trap_barrier.js");
+var Symbols=require("./symbols.js");
+var Printf=require("./printf.js");
+var Events=require("./events.js");
+var Checkpoints=require("./checkpoints.js");
+var Program_loading=require("./program_loading.js");
+var Primitives=require("./primitives.js");
+var Misc=require("./misc.js");
+var Debugger_config=require("./debugger_config.js");
+var Exec=require("./exec.js");
+var Int64ops=require("./int64ops.js");
+var Input_handling=require("./input_handling.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
+var Debugcom=require("./debugcom.js");
 
 
 var
  Current_checkpoint_lost=
-  CamlPrimtivie["caml_set_oo_id"]
+  CamlPrimitive["caml_set_oo_id"]
    ([248,"Time_travel.Current_checkpoint_lost",0]);
 
 var
  Current_checkpoint_lost_start_at=
-  CamlPrimtivie["caml_set_oo_id"]
+  CamlPrimitive["caml_set_oo_id"]
    ([248,"Time_travel.Current_checkpoint_lost_start_at",0]);
 
 var
@@ -41,7 +42,7 @@ var
           
           var a=param[1];
           
-          if(a=key){return l;}else{return /* :: */[0,a,remove(l)];}
+          if(a===key){return l;}else{return /* :: */[0,a,remove(l)];}
           }
         else
          {return /* [] */0;}
@@ -68,7 +69,7 @@ var
           if(t>time)
            {return /* :: */[0,a,traverse(l$prime[2])];}
           else
-           {if(t=time)
+           {if(t===time)
              {throw Pervasives["Exit"];}
             else
              {return /* :: */[0,checkpoint,l$prime];}
@@ -105,7 +106,7 @@ var
                  return Input_handling["execute_with_other_controller"]
                          (function(fd)
                            {old_controller(fd);
-                            if(checkpoint[4]=/* true */1)
+                            if(checkpoint[4]===/* true */1)
                              {return Input_handling["exit_main_loop"](/* () */0);}
                             else
                              {return 0;}
@@ -115,10 +116,10 @@ var
                  });
       }
     catch(exn)
-     {if(exn=Sys["Break"])
-       {checkpoint[7]=Checkpoints["root"],0;
+     {if(exn===Sys["Break"])
+       {checkpoint[7]=Checkpoints["root"];
         remove_checkpoint(checkpoint);
-        checkpoint[2]=-1,0;
+        checkpoint[2]=-1;
         throw Sys["Break"];
         }
       else
@@ -137,7 +138,7 @@ var
     
     if(!checkpoint[4]){wait_for_connection(checkpoint)}else{}
     
-    Checkpoints["current_checkpoint"][1]=checkpoint,0;
+    Checkpoints["current_checkpoint"][1]=checkpoint;
     return Debugcom["set_current_connection"](checkpoint[3]);
     };
 
@@ -158,7 +159,6 @@ var
       
       checkpoint[7]=
       Checkpoints["root"],
-      0,
       Primitives["close_io"](checkpoint[3]),
       Input_handling["remove_file"](checkpoint[3]),
       remove_checkpoint(checkpoint)}
@@ -274,7 +274,7 @@ var
                   
                   var t2=param$1[1];
                   
-                  return CamlPrimtivie["caml_int64_compare"](t2,t1);
+                  return CamlPrimitive["caml_int64_compare"](t2,t1);
                   },
                 accepted,
                 match$1[1]),
@@ -349,19 +349,18 @@ var
     
     Checkpoints["checkpoints"][1]=
     Primitives["list_replace"]
-     (checkpoint,new_checkpoint,Checkpoints["checkpoints"][1]),
-    0;
+     (checkpoint,new_checkpoint,Checkpoints["checkpoints"][1]);
     set_current_checkpoint(checkpoint);
     clean_checkpoints
      (Int64ops["++"](checkpoint[1],Int64ops["_1"]),
       Debugger_config["checkpoint_max_count"][1]-1);
-    if(new_checkpoint[2]=0)
+    if(new_checkpoint[2]===0)
      {var match=Debugcom["do_checkpoint"](/* () */0);
       
       if(match)
        {var pid=match[1];
         
-        new_checkpoint[2]=pid,0;
+        new_checkpoint[2]=pid;
         if(debug_time_travel[1])
          {return Pervasives["prerr_endline"]
                   (Pervasives["^"]
@@ -376,8 +375,7 @@ var
          ("A fork failed. Reducing maximum number of checkpoints.");
         Debugger_config["checkpoint_max_count"][1]=
         List["length"](Checkpoints["checkpoints"][1])-
-        1,
-        0;
+        1;
         return remove_checkpoint(new_checkpoint);
         }
       }
@@ -401,9 +399,7 @@ var
     else
      {switch(switcher)
        {case 0:
-         last_breakpoint[1]=
-         /* Some */[0,/* tuple */[0,report[4],report[3]]],
-         0;
+         last_breakpoint[1]=/* Some */[0,/* tuple */[0,report[4],report[3]]];
          Symbols["update_current_event"](/* () */0);
          var match=Events["current_event"][1];
          
@@ -428,7 +424,7 @@ var
     
     var report=Debugcom["do_go"](Int64ops["_1"]);
     
-    Checkpoints["current_checkpoint"][1][5]=/* Some */[0,report],0;
+    Checkpoints["current_checkpoint"][1][5]=/* Some */[0,report];
     return stop_on_event(report);
     };
 
@@ -444,7 +440,10 @@ var
       
       var exit$1;
       
-      if(match$1!=2){if(match$1>=4){exit$1=48;}else{exit=47;}}else{exit$1=48;}
+      if(match$1!==2)
+       {if(match$1>=4){exit$1=48;}else{exit=47;}}
+      else
+       {exit$1=48;}
       
       switch(exit$1){case 48:return /* () */0;}
       }
@@ -463,22 +462,18 @@ var
            Breakpoints["update_breakpoints"](/* () */0);
            Trap_barrier["update_trap_barrier"](/* () */0);
            Checkpoints["current_checkpoint"][1][6]=
-           /* C_running */[0,duration],
-           0;
+           /* C_running */[0,duration];
            var report=Debugcom["do_go"](duration);
            
-           Checkpoints["current_checkpoint"][1][5]=/* Some */[0,report],0;
-           Checkpoints["current_checkpoint"][1][6]=/* C_stopped */0,0;
-           if(report[1]=/* Event */0)
+           Checkpoints["current_checkpoint"][1][5]=/* Some */[0,report];
+           Checkpoints["current_checkpoint"][1][6]=/* C_stopped */0;
+           if(report[1]===/* Event */0)
             {Checkpoints["current_checkpoint"][1][1]=
              Int64ops["++"](Checkpoints["current_checkpoint"][1][1],duration),
-             0,
              interrupted[1]=
              /* false */0,
-             0,
              last_breakpoint[1]=
-             /* None */0,
-             0}
+             /* None */0}
            else
             {Checkpoints["current_checkpoint"][1][1]=
              Int64ops["++"]
@@ -487,19 +482,16 @@ var
                   (Checkpoints["current_checkpoint"][1][1],duration),
                  report[2]),
                Int64ops["_1"]),
-             0,
              interrupted[1]=
              /* true */1,
-             0,
              last_breakpoint[1]=
              /* None */0,
-             0,
              stop_on_event(report)}
            
            try
             {return insert_checkpoint(Checkpoints["current_checkpoint"][1]);}
            catch(exn)
-            {if(exn=Pervasives["Exit"])
+            {if(exn===Pervasives["Exit"])
               {kill_checkpoint(Checkpoints["current_checkpoint"][1]);
                return set_current_checkpoint
                        (find_checkpoint_before
@@ -582,13 +574,10 @@ var
           
           var pid$prime=checkpoint[2];
           
-          if(pid!=pid$prime)
+          if(pid!==pid$prime)
            {return find(param[2]);}
           else
-           {checkpoint[3]=fd,0;
-            checkpoint[4]=/* true */1,0;
-            return /* true */1;
-            }
+           {checkpoint[3]=fd;checkpoint[4]=/* true */1;return /* true */1;}
           }
         else
          {Pervasives["prerr_endline"]("Unexpected connection");
@@ -625,7 +614,7 @@ var
    {var
      checkpoint=
       List["find"]
-       (function(c){return c[2]=pid;},
+       (function(c){return c[2]===pid;},
         /* :: */[0,
          Checkpoints["current_checkpoint"][1],
          Checkpoints["checkpoints"][1]]);
@@ -641,7 +630,7 @@ var
          /* End_of_format */0]],
        "Lost connection with process %d"],
       pid);
-    if(checkpoint=Checkpoints["current_checkpoint"][1])
+    if(checkpoint===Checkpoints["current_checkpoint"][1])
      {Printf["eprintf"]
        ([/* Format */0,
          [/* String_literal */11," (active process)\n",/* End_of_format */0],
@@ -703,7 +692,7 @@ var
     Primitives["close_io"](checkpoint[3]);
     Input_handling["remove_file"](checkpoint[3]);
     remove_checkpoint(checkpoint);
-    checkpoint[2]=-1,0;
+    checkpoint[2]=-1;
     if(checkpoint[7][2]>0){Debugcom["wait_child"](checkpoint[7][3])}else{}
     
     return kont(/* () */0);
@@ -732,7 +721,7 @@ var
        {return 0;}
       }
     else
-     {if(duration!=Int64ops["_0"])
+     {if(duration!==Int64ops["_0"])
        {return internal_step(duration);}
       else
        {return 0;}
@@ -781,7 +770,7 @@ var
            {return find(last_breakpoint[1]);}
           else
            {if(match$1)
-             {if(match[1][1]=match$1[1])
+             {if(match[1][1]===match$1[1])
                {return /* tuple */[0,max_time,last_breakpoint[1]];}
               else
                {exit=29;}
@@ -828,9 +817,9 @@ var
     
     var new_time=match$1[1];
     
-    if($$break!=/* None */0||new_time<=time)
+    if($$break!==/* None */0||new_time<=time)
      {go_to(new_time);
-      interrupted[1]=$$break!=/* None */0,0;
+      interrupted[1]=$$break!==/* None */0;
       return last_breakpoint[1]=$$break,0;
       }
     else
@@ -901,7 +890,7 @@ var
       try
        {Symbols["any_event_at_pc"](pc)}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["prerr_endline"]
            ("Calling function has no debugging information.");
           throw Debugger_config["Toplevel"];
@@ -924,8 +913,8 @@ var
                             if(match$2)
                              {var match$3=match$2[1];
                               
-                              if(pc=match$3[1])
-                               {interrupted[1]=/* false */0,0;var $js=frame!=match$3[2];}
+                              if(pc===match$3[1])
+                               {interrupted[1]=/* false */0;var $js=frame!==match$3[2];}
                               else
                                {exit=18;}
                               }
@@ -985,7 +974,7 @@ var
 var
  next=
   function(n)
-   {if(n!=0)
+   {if(n!==0)
      {next_1(/* () */0);if(!interrupted[1]){return next(n-1);}else{return 0;}}
     else
      {return /* () */0;}
@@ -1019,7 +1008,7 @@ var
       try
        {var match$3=Symbols["any_event_at_pc"](pc);}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["prerr_endline"]
            ("Calling function has no debugging information.");
           throw Debugger_config["Toplevel"];
@@ -1047,7 +1036,7 @@ var
       if(match$5)
        {var match$6=match$5[1];
         
-        if(pc$1=match$6[1])
+        if(pc$1===match$6[1])
          {step(Int64ops["_minus1"]);
           var $js=!interrupted[1]&&match$6[2]-nargs>frame-curr_event[9];
           }
@@ -1107,7 +1096,7 @@ var
 var
  previous=
   function(n)
-   {if(n!=0)
+   {if(n!==0)
      {previous_1(/* () */0);
       if(!interrupted[1]){return previous(n-1);}else{return 0;}
       }

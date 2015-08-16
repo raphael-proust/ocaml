@@ -1,18 +1,19 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Frames=require("Frames");
-var Breakpoints=require("Breakpoints");
-var List=require("List");
-var Symbols=require("Symbols");
-var Events=require("Events");
-var Checkpoints=require("Checkpoints");
-var Format=require("Format");
-var Printval=require("Printval");
-var Misc=require("Misc");
-var Parameters=require("Parameters");
-var Show_source=require("Show_source");
-var Source=require("Source");
-var Debugcom=require("Debugcom");
+var Frames=require("./frames.js");
+var Breakpoints=require("./breakpoints.js");
+var List=require("./list.js");
+var Symbols=require("./symbols.js");
+var Events=require("./events.js");
+var Checkpoints=require("./checkpoints.js");
+var Format=require("./format.js");
+var Printval=require("./printval.js");
+var Misc=require("./misc.js");
+var Parameters=require("./parameters.js");
+var Show_source=require("./show_source.js");
+var Source=require("./source.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Debugcom=require("./debugcom.js");
 
 
 var
@@ -152,8 +153,8 @@ var
                           l);
                  },
                List["sort"]
-                (function(prim,prim)
-                  {return CamlPrimtivie["caml_compare"](prim$1,prim);},
+                (function(prim,prim$1)
+                  {return CamlPrimitive["caml_compare"](prim,prim$1);},
                  breakpoints))}
            else
             {Format["fprintf"]
@@ -321,8 +322,8 @@ var
                        l);
               },
             List["sort"]
-             (function(prim,prim)
-               {return CamlPrimtivie["caml_compare"](prim$1,prim);},
+             (function(prim,prim$1)
+               {return CamlPrimitive["caml_compare"](prim,prim$1);},
               breakpoints))}
         else
          {Format["fprintf"]

@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Odoc_info=require("Odoc_info");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Set=require("Set");
-var Buffer=require("Buffer");
-var $$Array=require("Array");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Odoc_info=require("./odoc_info.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Set=require("./set.js");
+var Buffer=require("./buffer.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var i=[0,0];
@@ -25,21 +26,21 @@ var
    {var
      phony$1=
       function(param)
-       {if(typeof param=="number")
+       {if(typeof param==="number")
          {switch(param){case 0:return /* true */1;}}
         else
          {switch(param[0])
-           {case 0:return phony(d[1][param[1]]);case 1:return /* false */0;}}
+           {case 0:return phony(d[1][param[1]+1]);case 1:return /* false */0;}}
         };
     
     var
      elem_txt=
       function(param)
-       {if(typeof param=="number")
+       {if(typeof param==="number")
          {switch(param){case 0:return "&nbsp;";}}
         else
          {switch(param[0])
-           {case 0:return indi_txt(d[1][param[1]]);case 1:return "|";}}
+           {case 0:return indi_txt(d[1][param[1]+1]);case 1:return "|";}}
         };
     
     var
@@ -53,10 +54,10 @@ var
        {var
          loop=
           function(j)
-           {if(j=t[1][i]["length"])
+           {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
              {return /* true */1;}
             else
-             {var e=t[1][i][j][1];
+             {var e=t[1][i+1][j+1][1];
               
               if(typeof e==="number")
                {return loop(j+1);}
@@ -74,18 +75,18 @@ var
        {var
          loop=
           function(les,j)
-           {if(j=t[1][i]["length"])
+           {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
              {return les;}
             else
-             {var x=t[1][i][j];
+             {var x=t[1][i+1][j+1];
               
               var
                loop$1=
                 function(j)
-                 {if(j=t[1][i]["length"])
+                 {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                    {return j;}
                   else
-                   {if(CamlPrimtivie["caml_equal"](t[1][i][j],x))
+                   {if(CamlPrimitive["caml_equal"](t[1][i+1][j+1],x))
                      {return loop$1(j+1);}
                     else
                      {return j;}
@@ -102,10 +103,10 @@ var
                  [/* tuple */0,1,/* LeftA */0,[/* TDstring */0,"&nbsp;"]],
                  les];
               
-              if(t[1][i][j][1]=/* Nothing */0)
+              if(t[1][i+1][j+1][1]===/* Nothing */0)
                {var s="&nbsp;";}
               else
-               {var s=elem_txt(t[1][i][j][1]);}
+               {var s=elem_txt(t[1][i+1][j+1][1]);}
               
               var
                les$2=
@@ -134,18 +135,18 @@ var
        {var
          loop=
           function(les,j)
-           {if(j=t[1][i]["length"])
+           {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
              {return les;}
             else
-             {var x=t[1][i][j];
+             {var x=t[1][i+1][j+1];
               
               var
                loop$1=
                 function(j)
-                 {if(j=t[1][i]["length"])
+                 {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                    {return j;}
                   else
-                   {if(CamlPrimtivie["caml_equal"](t[1][i][j],x))
+                   {if(CamlPrimitive["caml_equal"](t[1][i+1][j+1],x))
                      {return loop$1(j+1);}
                     else
                      {return j;}
@@ -165,14 +166,16 @@ var
               if
                (k>
                 0&&
-                (t[1][k-1][j][1]=/* Nothing */0)||
-                (t[1][k][j][1]=/* Nothing */0))
+                t[1][k-1+1][j+1][1]===
+                /* Nothing */0||
+                t[1][k+1][j+1][1]===
+                /* Nothing */0)
                {var s="&nbsp;";}
               else
-               {if(phony$1(t[1][i][j][1]))
+               {if(phony$1(t[1][i+1][j+1][1]))
                  {var s="&nbsp;";}
                 else
-                 {var s=bar_txt(t[1][i][j][1]);}
+                 {var s=bar_txt(t[1][i+1][j+1][1]);}
                 }
               
               var
@@ -202,18 +205,18 @@ var
        {var
          loop=
           function(les,j)
-           {if(j=t[1][i]["length"])
+           {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
              {return les;}
             else
-             {var x=t[1][i][j][2];
+             {var x=t[1][i+1][j+1][2];
               
               var
                loop$1=
                 function(j)
-                 {if(j=t[1][i]["length"])
+                 {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                    {return j;}
                   else
-                   {if(CamlPrimtivie["caml_equal"](t[1][i][j][2],x))
+                   {if(CamlPrimitive["caml_equal"](t[1][i+1][j+1][2],x))
                      {return loop$1(j+1);}
                     else
                      {return j;}
@@ -231,8 +234,10 @@ var
                  les];
               
               if
-               ((t[1][i][j][1]=/* Nothing */0)||
-                (t[1][i+1][j][1]=/* Nothing */0))
+               (t[1][i+1][j+1][1]===
+                /* Nothing */0||
+                t[1][i+1+1][j+1][1]===
+                /* Nothing */0)
                {var
                  les$2=
                   /* :: */[0,
@@ -246,10 +251,10 @@ var
                {var
                  loop$2=
                   function(j)
-                   {if(j=next_j)
+                   {if(j===next_j)
                      {return /* true */1;}
                     else
-                     {if(phony$1(t[1][i+1][j][1]))
+                     {if(phony$1(t[1][i+1+1][j+1][1]))
                        {return loop$2(j+1);}
                       else
                        {return /* false */0;}
@@ -288,26 +293,26 @@ var
        {var
          loop=
           function(j)
-           {if(j=t[1][i]["length"])
+           {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
              {return /* false */0;}
             else
-             {var x=t[1][i][j][2];
+             {var x=t[1][i+1][j+1][2];
               
-              var e=t[1][k][j][1];
+              var e=t[1][k+1][j+1][1];
               
               var
                loop1=
                 function(j)
-                 {if(j=t[1][i]["length"])
+                 {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                    {return /* false */0;}
                   else
-                   {if(t[1][i][j][1]=/* Nothing */0)
+                   {if(t[1][i+1][j+1][1]===/* Nothing */0)
                      {return loop(j);}
                     else
-                     {if(CamlPrimtivie["caml_notequal"](t[1][i][j][2],x))
+                     {if(CamlPrimitive["caml_notequal"](t[1][i+1][j+1][2],x))
                        {return loop(j);}
                       else
-                       {if(CamlPrimtivie["caml_notequal"](t[1][k][j][1],e))
+                       {if(CamlPrimitive["caml_notequal"](t[1][k+1][j+1][1],e))
                          {return /* true */1;}
                         else
                          {return loop1(j+1);}
@@ -329,23 +334,23 @@ var
        {var
          loop=
           function(les,j)
-           {if(j=t[1][i]["length"])
+           {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
              {return les;}
             else
-             {var e=t[1][i][j][1];
+             {var e=t[1][i+1][j+1][1];
               
-              var x=t[1][i][j][2];
+              var x=t[1][i+1][j+1][2];
               
               var
                loop$1=
                 function(j)
-                 {if(j=t[1][i]["length"])
+                 {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                    {return j;}
                   else
-                   {if((e=/* Nothing */0)&&(t[1][i][j][1]=/* Nothing */0))
+                   {if(e===/* Nothing */0&&t[1][i+1][j+1][1]===/* Nothing */0)
                      {return loop$1(j+1);}
                     else
-                     {if(CamlPrimtivie["caml_equal"](t[1][i][j][2],x))
+                     {if(CamlPrimitive["caml_equal"](t[1][i+1][j+1][2],x))
                        {return loop$1(j+1);}
                       else
                        {return j;}
@@ -358,10 +363,10 @@ var
               var
                loop1=
                 function(les,l)
-                 {if(l=next_j)
+                 {if(l===next_j)
                    {return loop(les,next_j);}
                   else
-                   {var y=t[1][k][l];
+                   {var y=t[1][k+1][l+1];
                     
                     var match=y[1];
                     
@@ -371,10 +376,10 @@ var
                      {var
                        loop$2=
                         function(l)
-                         {if(l=t[1][i]["length"])
+                         {if(l===/* -1 for tag */t[1][i+1]["length"]-1)
                            {return l;}
                           else
-                           {if(CamlPrimtivie["caml_equal"](t[1][k][l],y))
+                           {if(CamlPrimitive["caml_equal"](t[1][k+1][l+1],y))
                              {return loop$2(l+1);}
                             else
                              {return l;}
@@ -432,9 +437,9 @@ var
                     
                     var colspan=3*(next_l$1-l)-2;
                     
-                    var match$1=t[1][i][l][1];
+                    var match$1=t[1][i+1][l+1][1];
                     
-                    var match$2=t[1][i+1][l][1];
+                    var match$2=t[1][i+1+1][l+1][1];
                     
                     var exit;
                     
@@ -447,13 +452,13 @@ var
                        {var
                          ph=
                           function(s)
-                           {if(phony$1(t[1][k][l][1]))
+                           {if(phony$1(t[1][k+1][l+1][1]))
                              {return [/* TDstring */0,"&nbsp;"];}
                             else
                              {return s;}
                             };
                         
-                        if((l=j)&&(next_l$1=next_j))
+                        if(l===j&&next_l$1===next_j)
                          {var
                            les$1=
                             /* :: */[0,
@@ -473,7 +478,7 @@ var
                              les$2];
                           }
                         else
-                         {if(l=j)
+                         {if(l===j)
                            {var
                              les$4=
                               /* :: */[0,
@@ -493,7 +498,7 @@ var
                               /* :: */[0,/* tuple */[0,1,/* LeftA */0,s$2],les$5];
                             }
                           else
-                           {if(next_l$1=next_j)
+                           {if(next_l$1===next_j)
                              {var s$3=ph([/* TDhr */1,/* CenterA */1]);
                               
                               var les$6=/* :: */[0,/* tuple */[0,1,/* LeftA */0,s$3],les];
@@ -551,15 +556,15 @@ var
     var
      loop=
       function(hts,i)
-       {if(i=t[1]["length"])
+       {if(i===/* -1 for tag */t[1]["length"]-1)
          {return hts;}
         else
-         {if((i=t[1]["length"]-1)&&all_empty(i))
+         {if(i===/* -1 for tag */t[1]["length"]-1-1&&all_empty(i))
            {return hts;}
           else
            {var hts$1=/* :: */[0,line_elem_txt(i),hts];
             
-            if(i<t[1]["length"]-1)
+            if(i</* -1 for tag */t[1]["length"]-1-1)
              {var hts$2=/* :: */[0,vbars_txt(i+1,i),hts$1];
               
               if(exist_several_branches(i,i))
@@ -574,7 +579,7 @@ var
               
               if
                (exist_several_branches(i,i+1)&&
-                (i<t[1]["length"]-2||!all_empty(i+1)))
+                (i</* -1 for tag */t[1]["length"]-1-2||!all_empty(i+1)))
                {var
                  hts$4=
                   /* :: */[0,
@@ -603,12 +608,12 @@ var
    {var
      loop=
       function(i)
-       {if(i=d[1]["length"])
+       {if(i===/* -1 for tag */d[1]["length"]-1)
          {return /* [] */0;}
         else
-         {var n=d[1][i];
+         {var n=d[1][i+1];
           
-          if(n[1]=/* [] */0)
+          if(n[1]===/* [] */0)
            {return /* :: */[0,i,loop(i+1)];}
           else
            {return loop(i+1);}
@@ -630,12 +635,12 @@ var
                    
                    var exit;
                    
-                   if(typeof x=="number")
+                   if(typeof x==="number")
                     {switch(x){case 0:exit=308;}}
                    else
                     {switch(x[0])
                       {case 0:
-                        var e=d[1][x[1]];
+                        var e=d[1][x[1]+1];
                         
                         return List["fold_right"]
                                 (function(c,children)
@@ -662,11 +667,11 @@ var
 var
  get_block=
   function(t,i,j)
-   {if(j=t[1][i]["length"])
+   {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
      {return /* None */0;}
     else
-     {if(j=t[1][i]["length"]-1)
-       {var x=t[1][i][j];
+     {if(j===/* -1 for tag */t[1][i+1]["length"]-1-1)
+       {var x=t[1][i+1][j+1];
         
         return /* Some */[0,
                 /* tuple */[0,
@@ -675,11 +680,11 @@ var
                  x[2]]];
         }
       else
-       {var x$1=t[1][i][j];
+       {var x$1=t[1][i+1][j+1];
         
-        var y=t[1][i][j+1];
+        var y=t[1][i+1][j+1+1];
         
-        if(CamlPrimtivie["caml_equal"](y[2],x$1[2]))
+        if(CamlPrimitive["caml_equal"](y[2],x$1[2]))
          {var match=get_block(t,i,j+1);
           
           var exit;
@@ -700,7 +705,7 @@ var
               
               var x1=match$3[1];
               
-              if(CamlPrimtivie["caml_equal"](x1,x$1[1]))
+              if(CamlPrimitive["caml_equal"](x1,x$1[1]))
                {var
                  match$4=
                   /* tuple */[0,
@@ -727,7 +732,12 @@ var
            {exit=303;}
           
           switch(exit)
-           {case 303:throw [0,Assert_failure,[0,"odoc_dag2html.ml",346,13]];}
+           {case 303:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"odoc_dag2html.ml",346,13]];
+             
+            }
           }
         else
          {return /* Some */[0,
@@ -743,7 +753,7 @@ var
 var
  group_by_common_children=
   function(d,list)
-   {var compare=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
+   {var compare=function(x,y){return CamlPrimitive["caml_int_compare"](x,y);};
     
     var O=[0,compare];
     
@@ -753,7 +763,7 @@ var
      nlcsl=
       List["map"]
        (function(id)
-         {var n=d[1][id];
+         {var n=d[1][id+1];
           
           var cs=List["fold_right"](S[4],n[3],S[1]);
           
@@ -825,27 +835,33 @@ var copy_data=function(d){return /* record */[0,d[1],d[2]];};
 var
  insert_columns=
   function(t,nb,j)
-   {var t1=CamlPrimtivie["caml_make_vect"](t[1]["length"],[]);
+   {var
+     t1=
+      CamlPrimitive["caml_make_vect"]
+       (/* -1 for tag */t[1]["length"]-1,[/* array */0]);
     
-    for(var i$2=0;i$2<=t[1]["length"]-1;i$2++)
-     {var line=t[1][i$2];
+    for(var i$2=0;i$2<=/* -1 for tag */t[1]["length"]-1-1;i$2++)
+     {var line=t[1][i$2+1];
       
-      var line1=CamlPrimtivie["caml_make_vect"](line["length"]+nb,line[0]);
+      var
+       line1=
+        CamlPrimitive["caml_make_vect"]
+         (/* -1 for tag */line["length"]-1+nb,line[1]);
       
-      t1[i$2]=line1,0;
+      t1[i$2+1]=line1;
       var
        loop=
         function(k)
-         {if(k=line["length"])
+         {if(k===/* -1 for tag */line["length"]-1)
            {return /* () */0;}
           else
            {if(k<j)
-             {line1[k]=copy_data(line[k]),0}
+             {line1[k+1]=copy_data(line[k+1])}
             else
-             {if(k=j)
-               {for(var r=0;r<=nb;r++){line1[k+r]=copy_data(line[k]),0}}
+             {if(k===j)
+               {for(var r=0;r<=nb;r++){line1[k+r+1]=copy_data(line[k+1])}}
               else
-               {line1[k+nb]=copy_data(line[k]),0}
+               {line1[k+nb+1]=copy_data(line[k+1])}
               }
             
             return loop(k+1);
@@ -860,12 +876,16 @@ var
 var
  gcd=
   function(a,b)
-   {if(a<b){return gcd(b,a);}else{if(b=0){return a;}else{return gcd(b,a%b);}}};
+   {if(a<b)
+     {return gcd(b,a);}
+    else
+     {if(b===0){return a;}else{return gcd(b,a%b);}}
+    };
 
 var
  treat_new_row=
   function(d,t)
-   {var i$2=t[1]["length"]-1;
+   {var i$2=/* -1 for tag */t[1]["length"]-1-1;
     
     var
      loop=
@@ -879,7 +899,7 @@ var
           
           var children=get_children(d,parents);
           
-          if(children=/* [] */0)
+          if(children===/* [] */0)
            {var
              children$1=
               /* :: */[0,
@@ -902,7 +922,7 @@ var
            simple_parents_colspan=
             List["fold_left"](function(x,param){return x+param[2];},0,parents);
           
-          if((simple_parents_colspan%List["length"](children$1))=0)
+          if(simple_parents_colspan%List["length"](children$1)===0)
            {var j$1=j+simple_parents_colspan;
             
             var cnt=simple_parents_colspan/List["length"](children$1);
@@ -914,7 +934,7 @@ var
                  {var
                    loop$1=
                     function(cnt,list)
-                     {if(cnt=1)
+                     {if(cnt===1)
                        {return /* :: */[0,d,list];}
                       else
                        {return /* :: */[0,copy_data(d),loop$1(cnt-1,list)];}
@@ -953,7 +973,7 @@ var
                   var
                    loop$1=
                     function(cc,t,j)
-                     {if(cc=0)
+                     {if(cc===0)
                        {return t;}
                       else
                        {var t$1=insert_columns(t,to_add,j);
@@ -991,7 +1011,7 @@ var
                  {var
                    loop$1=
                     function(cc,t,j)
-                     {if(cc=0)
+                     {if(cc===0)
                        {return /* tuple */[0,t,j];}
                       else
                        {var t$1=insert_columns(t,cnt$1-1,j);
@@ -1016,7 +1036,7 @@ var
                  {var
                    loop$1=
                     function(cnt,list)
-                     {if(cnt=0)
+                     {if(cnt===0)
                        {return list;}
                       else
                        {return /* :: */[0,d,loop$1(cnt-1,list)];}
@@ -1044,35 +1064,35 @@ var
 var
  down_it=
   function(t,i,k,y)
-   {t[1][t[1]["length"]-1][k]=t[1][i][k],0;
-    for(var r=i;r<=t[1]["length"]-2;r++)
-     {t[1][r][k]=
+   {t[1][/* -1 for tag */t[1]["length"]-1-1+1][k+1]=t[1][i+1][k+1];
+    for(var r=i;r<=/* -1 for tag */t[1]["length"]-1-2;r++)
+     {t[1][r+1][k+1]=
       /* record */[0,
        /* Ghost */[1,new_ghost_id(/* () */0)],
-       new_span_id(/* () */0)],
-      0}
+       new_span_id(/* () */0)]}
+    return 0;
     };
 
 var
  equilibrate=
   function(t)
-   {var ilast=t[1]["length"]-1;
+   {var ilast=/* -1 for tag */t[1]["length"]-1-1;
     
-    var last=t[1][ilast];
+    var last=t[1][ilast+1];
     
-    var len=last["length"];
+    var len=/* -1 for tag */last["length"]-1;
     
     var
      loop=
       function(j)
-       {if(j=len)
+       {if(j===len)
          {return /* () */0;}
         else
-         {var match=last[j][1];
+         {var match=last[j+1][1];
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){case 0:exit=258;}}
           else
            {switch(match[0])
@@ -1082,27 +1102,27 @@ var
                var
                 loop1=
                  function(i)
-                  {if(i=ilast)
+                  {if(i===ilast)
                     {return loop(j+1);}
                    else
                     {var
                       loop2=
                        function(k)
-                        {if(k=len)
+                        {if(k===len)
                           {return loop1(i+1);}
                          else
-                          {var match$1=t[1][i][k][1];
+                          {var match$1=t[1][i+1][k+1][1];
                            
                            var exit$1;
                            
-                           if(typeof match$1=="number")
+                           if(typeof match$1==="number")
                             {switch(match$1){case 0:exit$1=257;}}
                            else
                             {switch(match$1[0])
                               {case 0:
                                 var y=match$1[1];
                                 
-                                if(CamlPrimtivie["caml_equal"](x,y))
+                                if(CamlPrimitive["caml_equal"](x,y))
                                  {down_it(t,i,k,y);return loop(0);}
                                 else
                                  {exit$1=257;}
@@ -1133,26 +1153,26 @@ var
 var
  group_elem=
   function(t)
-   {for(var i$2=0;i$2<=t[1]["length"]-2;i$2++)
-     {for(var j=1;j<=t[1][0]["length"]-1;j++)
-       {var match=t[1][i$2+1][j-1][1];
+   {for(var i$2=0;i$2<=/* -1 for tag */t[1]["length"]-1-2;i$2++)
+     {for(var j=1;j<=/* -1 for tag */t[1][1]["length"]-1-1;j++)
+       {var match=t[1][i$2+1+1][j-1+1][1];
         
-        var match$1=t[1][i$2+1][j][1];
+        var match$1=t[1][i$2+1+1][j+1][1];
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=255;}}
         else
          {switch(match[0])
            {case 0:
-             if(typeof match$1=="number")
+             if(typeof match$1==="number")
               {switch(match$1){case 0:exit=255;}}
              else
               {switch(match$1[0])
                 {case 0:
-                  if(CamlPrimtivie["caml_equal"](match[1],match$1[1]))
-                   {t[1][i$2][j][2]=t[1][i$2][j-1][2],0}
+                  if(CamlPrimitive["caml_equal"](match[1],match$1[1]))
+                   {t[1][i$2+1][j+1][2]=t[1][i$2+1][j-1+1][2]}
                   else
                    {exit=255;}
                   
@@ -1165,37 +1185,39 @@ var
         switch(exit){case 255:}
         }
       }
+    return 0;
     };
 
 var
  group_ghost=
   function(t)
-   {for(var i$2=0;i$2<=t[1]["length"]-2;i$2++)
-     {for(var j=1;j<=t[1][0]["length"]-1;j++)
-       {var match=t[1][i$2+1][j-1][1];
+   {for(var i$2=0;i$2<=/* -1 for tag */t[1]["length"]-1-2;i$2++)
+     {for(var j=1;j<=/* -1 for tag */t[1][1]["length"]-1-1;j++)
+       {var match=t[1][i$2+1+1][j-1+1][1];
         
-        var match$1=t[1][i$2+1][j][1];
+        var match$1=t[1][i$2+1+1][j+1][1];
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){case 0:exit=253;}}
         else
          {switch(match[0])
            {case 0:exit=253;
             case 1:
-             if(typeof match$1=="number")
+             if(typeof match$1==="number")
               {switch(match$1){case 0:exit=253;}}
              else
               {switch(match$1[0])
                 {case 0:exit=253;
                  case 1:
                   if
-                   (CamlPrimtivie["caml_equal"]
-                     (t[1][i$2][j-1][2],t[1][i$2][j][2]))
-                   {t[1][i$2+1][j]=
-                    /* record */[0,/* Ghost */[1,match[1]],t[1][i$2+1][j-1][2]],
-                    0}
+                   (CamlPrimitive["caml_equal"]
+                     (t[1][i$2+1][j-1+1][2],t[1][i$2+1][j+1][2]))
+                   {t[1][i$2+1+1][j+1]=
+                    /* record */[0,
+                     /* Ghost */[1,match[1]],
+                     t[1][i$2+1+1][j-1+1][2]]}
                   else
                    {}
                   
@@ -1205,31 +1227,35 @@ var
         
         switch(exit){case 253:}
         
-        var match$2=t[1][i$2][j-1][1];
+        var match$2=t[1][i$2+1][j-1+1][1];
         
-        var match$3=t[1][i$2][j][1];
+        var match$3=t[1][i$2+1][j+1][1];
         
         var exit$1;
         
-        if(typeof match$2=="number")
+        if(typeof match$2==="number")
          {switch(match$2){case 0:exit$1=252;}}
         else
          {switch(match$2[0])
            {case 0:exit$1=252;
             case 1:
-             if(typeof match$3=="number")
+             if(typeof match$3==="number")
               {switch(match$3){case 0:exit$1=252;}}
              else
               {switch(match$3[0])
                 {case 0:exit$1=252;
                  case 1:
                   if
-                   (CamlPrimtivie["caml_equal"]
-                     (t[1][i$2+1][j-1][1],t[1][i$2+1][j][1]))
-                   {t[1][i$2][j]=
-                    /* record */[0,/* Ghost */[1,match$2[1]],t[1][i$2][j-1][2]],
-                    0;
-                    if(i$2>0){t[1][i$2-1][j][2]=t[1][i$2-1][j-1][2],0}else{}
+                   (CamlPrimitive["caml_equal"]
+                     (t[1][i$2+1+1][j-1+1][1],t[1][i$2+1+1][j+1][1]))
+                   {t[1][i$2+1][j+1]=
+                    /* record */[0,
+                     /* Ghost */[1,match$2[1]],
+                     t[1][i$2+1][j-1+1][2]];
+                    if(i$2>0)
+                     {t[1][i$2-1+1][j+1][2]=t[1][i$2-1+1][j-1+1][2]}
+                    else
+                     {}
                     }
                   else
                    {}
@@ -1241,64 +1267,68 @@ var
         switch(exit$1){case 252:}
         }
       }
+    return 0;
     };
 
 var
  group_children=
   function(t)
-   {for(var i$2=0;i$2<=t[1]["length"]-1;i$2++)
-     {var line=t[1][i$2];
+   {for(var i$2=0;i$2<=/* -1 for tag */t[1]["length"]-1-1;i$2++)
+     {var line=t[1][i$2+1];
       
-      var len=line["length"];
+      var len=/* -1 for tag */line["length"]-1;
       
       for(var j=1;j<=len-1;j++)
        {if
-         (CamlPrimtivie["caml_equal"](line[j][1],line[j-1][1])&&
-          line[j][1]!=
+         (CamlPrimitive["caml_equal"](line[j+1][1],line[j-1+1][1])&&
+          line[j+1][1]!==
           /* Nothing */0)
-         {line[j][2]=line[j-1][2],0}
+         {line[j+1][2]=line[j-1+1][2]}
         else
          {}
         }
       }
+    return 0;
     };
 
 var
  group_span_by_common_children=
   function(d,t)
-   {var compare=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
+   {var compare=function(x,y){return CamlPrimitive["caml_int_compare"](x,y);};
     
     var O=[0,compare];
     
     var S=Set["Make"](O);
     
-    var i$2=t[1]["length"]-1;
+    var i$2=/* -1 for tag */t[1]["length"]-1-1;
     
-    var line=t[1][i$2];
+    var line=t[1][i$2+1];
     
     var
      loop=
       function(j,cs)
-       {if(j=line["length"])
+       {if(j===/* -1 for tag */line["length"]-1)
          {return /* () */0;}
         else
-         {var match=line[j][1];
+         {var match=line[j+1][1];
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){case 0:exit=244;}}
           else
            {switch(match[0])
              {case 0:
-               var n=d[1][match[1]];
+               var n=d[1][match[1]+1];
                
                var curr_cs=List["fold_right"](S[4],n[3],S[1]);
                
                if(S[2](S[8](cs,curr_cs)))
                 {return loop(j+1,curr_cs);}
                else
-                {line[j][2]=line[j-1][2],0;return loop(j+1,S[7](cs,curr_cs));}
+                {line[j+1][2]=line[j-1+1][2];
+                 return loop(j+1,S[7](cs,curr_cs));
+                 }
                
               case 1:exit=244;
               }}
@@ -1316,18 +1346,18 @@ var
    {var
      loop=
       function(i,j1,j2,j3,j4)
-       {if(i=0)
+       {if(i===0)
          {return /* tuple */[0,i,j1,j2,j3,j4];}
         else
-         {var x1=t[i-1][j1];
+         {var x1=t[i-1+1][j1+1];
           
-          var x2=t[i-1][j2];
+          var x2=t[i-1+1][j2+1];
           
-          var x3=t[i-1][j3];
+          var x3=t[i-1+1][j3+1];
           
-          var x4=t[i-1][j4];
+          var x4=t[i-1+1][j4+1];
           
-          if(CamlPrimtivie["caml_equal"](x1[2],x4[2]))
+          if(CamlPrimitive["caml_equal"](x1[2],x4[2]))
            {return /* tuple */[0,i,j1,j2,j3,j4];}
           else
            {var
@@ -1336,7 +1366,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x1[2]))
+                 {if(CamlPrimitive["caml_equal"](t[i-1+1][j+1][2],x1[2]))
                    {return loop$1(j-1);}
                   else
                    {return j+1;}
@@ -1348,10 +1378,10 @@ var
             var
              loop$2=
               function(j)
-               {if(j>=t[i]["length"])
+               {if(j>=/* -1 for tag */t[i+1]["length"]-1)
                  {return j-1;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x2[2]))
+                 {if(CamlPrimitive["caml_equal"](t[i-1+1][j+1][2],x2[2]))
                    {return loop$2(j+1);}
                   else
                    {return j-1;}
@@ -1366,7 +1396,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x3[2]))
+                 {if(CamlPrimitive["caml_equal"](t[i-1+1][j+1][2],x3[2]))
                    {return loop$3(j-1);}
                   else
                    {return j+1;}
@@ -1378,10 +1408,10 @@ var
             var
              loop$4=
               function(j)
-               {if(j>=t[i]["length"])
+               {if(j>=/* -1 for tag */t[i+1]["length"]-1)
                  {return j-1;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](t[i-1][j][2],x4[2]))
+                 {if(CamlPrimitive["caml_equal"](t[i-1+1][j+1][2],x4[2]))
                    {return loop$4(j+1);}
                   else
                    {return j-1;}
@@ -1404,16 +1434,16 @@ var
    {var
      loop=
       function(i,j1,j2,j3,j4)
-       {if(i=t["length"]-1)
+       {if(i===/* -1 for tag */t["length"]-1-1)
          {return /* tuple */[0,j1,j2,j3,j4];}
         else
-         {var x1=t[i][j1];
+         {var x1=t[i+1][j1+1];
           
-          var x2=t[i][j2];
+          var x2=t[i+1][j2+1];
           
-          var x3=t[i][j3];
+          var x3=t[i+1][j3+1];
           
-          var x4=t[i][j4];
+          var x4=t[i+1][j4+1];
           
           var
            loop$1=
@@ -1421,7 +1451,7 @@ var
              {if(j<0)
                {return 0;}
               else
-               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x1[2]))
+               {if(CamlPrimitive["caml_equal"](t[i+1][j+1][2],x1[2]))
                  {return loop$1(j-1);}
                 else
                  {return j+1;}
@@ -1433,10 +1463,10 @@ var
           var
            loop$2=
             function(j)
-             {if(j>=t[i]["length"])
+             {if(j>=/* -1 for tag */t[i+1]["length"]-1)
                {return j-1;}
               else
-               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x2[2]))
+               {if(CamlPrimitive["caml_equal"](t[i+1][j+1][2],x2[2]))
                  {return loop$2(j+1);}
                 else
                  {return j-1;}
@@ -1451,7 +1481,7 @@ var
              {if(j<0)
                {return 0;}
               else
-               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x3[2]))
+               {if(CamlPrimitive["caml_equal"](t[i+1][j+1][2],x3[2]))
                  {return loop$3(j-1);}
                 else
                  {return j+1;}
@@ -1463,10 +1493,10 @@ var
           var
            loop$4=
             function(j)
-             {if(j>=t[i]["length"])
+             {if(j>=/* -1 for tag */t[i+1]["length"]-1)
                {return j-1;}
               else
-               {if(CamlPrimtivie["caml_equal"](t[i][j][2],x4[2]))
+               {if(CamlPrimitive["caml_equal"](t[i+1][j+1][2],x4[2]))
                  {return loop$4(j+1);}
                 else
                  {return j-1;}
@@ -1486,7 +1516,7 @@ var
  mirror_block=
   function(t,i1,i2,j1,j2)
    {for(var i$2=i1;i$2<=i2;i$2++)
-     {var line=t[i$2];
+     {var line=t[i$2+1];
       
       var
        loop=
@@ -1494,29 +1524,31 @@ var
          {if(j1>=j2)
            {return /* () */0;}
           else
-           {var v=line[j1];
+           {var v=line[j1+1];
             
-            line[j1]=line[j2],0;
-            line[j2]=v,0;
+            line[j1+1]=line[j2+1];
+            line[j2+1]=v;
             return loop(j1+1,j2-1);
             }
           };
       
       loop(j1,j2)}
+    return 0;
     };
 
 var
  exch_blocks=
   function(t,i1,i2,j1,j2,j3,j4)
    {for(var i$2=i1;i$2<=i2;i$2++)
-     {var line=t[i$2];
+     {var line=t[i$2+1];
       
       var saved=$$Array["copy"](line);
       
-      for(var j=j1;j<=j2;j++){line[j4-j2+j]=saved[j],0}
+      for(var j=j1;j<=j2;j++){line[j4-j2+j+1]=saved[j+1]}
       
-      for(var j$1=j3;j$1<=j4;j$1++){line[j1-j3+j$1]=saved[j$1],0}
+      for(var j$1=j3;j$1<=j4;j$1++){line[j1-j3+j$1+1]=saved[j$1+1]}
       }
+    return 0;
     };
 
 var
@@ -1537,7 +1569,7 @@ var
         
         var nii=match[1];
         
-        if(nii!=ii||njj1!=jj1||njj2!=jj2||njj3!=jj3||njj4!=jj4)
+        if(nii!==ii||njj1!==jj1||njj2!==jj2||njj3!==jj3||njj4!==jj4)
          {var nii$1=Pervasives["min"](ii,nii);
           
           var match$1=find_linked_children(t,nii$1,njj1,njj2,njj3,njj4);
@@ -1550,7 +1582,7 @@ var
           
           var jj1$1=match$1[1];
           
-          if(njj1!=jj1$1||njj2!=jj2$1||njj3!=jj3$1||njj4!=jj4$1)
+          if(njj1!==jj1$1||njj2!==jj2$1||njj3!==jj3$1||njj4!==jj4$1)
            {return loop(nii$1,jj1$1,jj2$1,jj3$1,jj4$1);}
           else
            {return /* tuple */[0,nii$1,jj1$1,jj2$1,jj3$1,jj4$1];}
@@ -1565,15 +1597,15 @@ var
 var
  push_to_right=
   function(d,t,i,j1,j2)
-   {var line=t[i];
+   {var line=t[i+1];
     
     var
      loop=
       function(j)
-       {if(j=j2)
+       {if(j===j2)
          {return j-1;}
         else
-         {var x=line[j-1][1];
+         {var x=line[j-1+1][1];
           
           if(typeof x==="number")
            {var ini_jj1=j-1;}
@@ -1584,7 +1616,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](line[j][1],x))
+                 {if(CamlPrimitive["caml_equal"](line[j+1][1],x))
                    {return same_value(j-1);}
                   else
                    {return j+1;}
@@ -1596,7 +1628,7 @@ var
           
           var jj2=j-1;
           
-          var x$1=line[j][1];
+          var x$1=line[j+1][1];
           
           if(typeof x$1==="number")
            {var jj4=j;}
@@ -1604,10 +1636,10 @@ var
            {var
              same_value$1=
               function(j)
-               {if(j>=line["length"])
+               {if(j>=/* -1 for tag */line["length"]-1)
                  {return j-1;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](line[j][1],x$1))
+                 {if(CamlPrimitive["caml_equal"](line[j+1][1],x$1))
                    {return same_value$1(j+1);}
                   else
                    {return j-1;}
@@ -1632,7 +1664,7 @@ var
           if(jj4$1<j2&&jj2$1<jj3)
            {exch_blocks(t,ii,i,jj1,jj2$1,jj3,jj4$1);return loop(jj4$1+1);}
           else
-           {if(jj4$1<j2&&(jj1=ini_jj1)&&jj2$1<=jj4$1)
+           {if(jj4$1<j2&&jj1===ini_jj1&&jj2$1<=jj4$1)
              {mirror_block(t,ii,i,jj1,jj4$1);return loop(jj4$1+1);}
             else
              {return j-1;}
@@ -1646,15 +1678,15 @@ var
 var
  push_to_left=
   function(d,t,i,j1,j2)
-   {var line=t[i];
+   {var line=t[i+1];
     
     var
      loop=
       function(j)
-       {if(j=j1)
+       {if(j===j1)
          {return j+1;}
         else
-         {var x=line[j][1];
+         {var x=line[j+1][1];
           
           if(typeof x==="number")
            {var jj1=j;}
@@ -1665,7 +1697,7 @@ var
                {if(j<0)
                  {return 0;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](line[j][1],x))
+                 {if(CamlPrimitive["caml_equal"](line[j+1][1],x))
                    {return same_value(j-1);}
                   else
                    {return j+1;}
@@ -1677,7 +1709,7 @@ var
           
           var jj3=j+1;
           
-          var x$1=line[j+1][1];
+          var x$1=line[j+1+1][1];
           
           if(typeof x$1==="number")
            {var ini_jj4=j+1;}
@@ -1685,10 +1717,10 @@ var
            {var
              same_value$1=
               function(j)
-               {if(j>=line["length"])
+               {if(j>=/* -1 for tag */line["length"]-1)
                  {return j-1;}
                 else
-                 {if(CamlPrimtivie["caml_equal"](line[j][1],x$1))
+                 {if(CamlPrimitive["caml_equal"](line[j+1][1],x$1))
                    {return same_value$1(j+1);}
                   else
                    {return j-1;}
@@ -1713,7 +1745,7 @@ var
           if(jj1$1>j1&&jj2<jj3$1)
            {exch_blocks(t,ii,i,jj1$1,jj2,jj3$1,jj4);return loop(jj1$1-1);}
           else
-           {if(jj1$1>j1&&(jj4=ini_jj4)&&jj3$1>=jj1$1)
+           {if(jj1$1>j1&&jj4===ini_jj4&&jj3$1>=jj1$1)
              {mirror_block(t,ii,i,jj1$1,jj4);return loop(jj1$1-1);}
             else
              {return j+1;}
@@ -1729,10 +1761,10 @@ var
   function(d,t,i,j1,j2)
    {var t1=$$Array["copy"](t[1]);
     
-    for(var i$1=0;i$1<=t[1]["length"]-1;i$1++)
-     {t1[i$1]=$$Array["copy"](t[1][i$1]),0;
-      for(var j=0;j<=t1[i$1]["length"]-1;j++)
-       {t1[i$1][j]=copy_data(t[1][i$1][j]),0}
+    for(var i$1=0;i$1<=/* -1 for tag */t[1]["length"]-1-1;i$1++)
+     {t1[i$1+1]=$$Array["copy"](t[1][i$1+1]);
+      for(var j=0;j<=/* -1 for tag */t1[i$1+1]["length"]-1-1;j++)
+       {t1[i$1+1][j+1]=copy_data(t[1][i$1+1][j+1])}
       }
     
     var t1$1=t1;
@@ -1741,26 +1773,27 @@ var
     
     var j1$1=push_to_right(d,t1$1,i,j1,j2$1);
     
-    if(j1$1=j2$1-1)
-     {var line=t1$1[i-1];
+    if(j1$1===j2$1-1)
+     {var line=t1$1[i-1+1];
       
-      var x=line[j1$1][2];
+      var x=line[j1$1+1][2];
       
-      var y=line[j2$1][2];
+      var y=line[j2$1+1][2];
       
       var
        loop=
         function(y,j)
-         {if(j>=line["length"])
+         {if(j>=/* -1 for tag */line["length"]-1)
            {return /* () */0;}
           else
            {if
-             (CamlPrimtivie["caml_equal"](line[j][2],y)||
-              CamlPrimtivie["caml_equal"](t1$1[i][j][1],t1$1[i][j-1][1]))
-             {var y$1=line[j][2];
+             (CamlPrimitive["caml_equal"](line[j+1][2],y)||
+              CamlPrimitive["caml_equal"]
+               (t1$1[i+1][j+1][1],t1$1[i+1][j-1+1][1]))
+             {var y$1=line[j+1][2];
               
-              line[j][2]=x,0;
-              if(i>0){t1$1[i-1][j][2]=t1$1[i-1][j-1][2],0}else{}
+              line[j+1][2]=x;
+              if(i>0){t1$1[i-1+1][j+1][2]=t1$1[i-1+1][j-1+1][2]}else{}
               
               return loop(y$1,j+1);
               }
@@ -1779,26 +1812,26 @@ var
 var
  treat_gaps=
   function(d,t)
-   {var i$2=t[1]["length"]-1;
+   {var i$2=/* -1 for tag */t[1]["length"]-1-1;
     
     var
      loop=
       function(t,j)
-       {var line=t[1][i$2];
+       {var line=t[1][i$2+1];
         
-        if(j=line["length"])
+        if(j===/* -1 for tag */line["length"]-1)
          {return t;}
         else
-         {var y=line[j][1];
+         {var y=line[j+1][1];
           
           var exit;
           
-          if(typeof y=="number")
+          if(typeof y==="number")
            {switch(y){case 0:exit=181;}}
           else
            {switch(y[0])
              {case 0:
-               if(CamlPrimtivie["caml_equal"](y,line[j-1][1]))
+               if(CamlPrimitive["caml_equal"](y,line[j-1+1][1]))
                 {return loop(t,j+1);}
                else
                 {var
@@ -1807,7 +1840,7 @@ var
                     {if(j1<0)
                       {return loop(t,j+1);}
                      else
-                      {if(CamlPrimtivie["caml_equal"](y,line[j1][1]))
+                      {if(CamlPrimitive["caml_equal"](y,line[j1+1][1]))
                         {var match=fill_gap(d,t,i$2,j1,j);
                          
                          if(match)
@@ -1838,27 +1871,30 @@ var
           }
         };
     
-    if(t[1][i$2]["length"]=1){return t;}else{return loop(t,2);}
+    if(/* -1 for tag */t[1][i$2+1]["length"]-1===1)
+     {return t;}
+    else
+     {return loop(t,2);}
     };
 
 var
  group_span_last_row=
   function(t)
-   {var row=t[1][t[1]["length"]-1];
+   {var row=t[1][/* -1 for tag */t[1]["length"]-1-1+1];
     
     var
      loop=
       function(i)
-       {if(i>=row["length"])
+       {if(i>=/* -1 for tag */row["length"]-1)
          {return /* () */0;}
         else
-         {var x=row[i][1];
+         {var x=row[i+1][1];
           
           if(typeof x==="number")
            {}
           else
-           {if(CamlPrimtivie["caml_equal"](x,row[i-1][1]))
-             {row[i][2]=row[i-1][2],0}
+           {if(CamlPrimitive["caml_equal"](x,row[i-1+1][1]))
+             {row[i+1][2]=row[i-1+1][2]}
             else
              {}
             }
@@ -1873,24 +1909,24 @@ var
 var
  has_phony_children=
   function(phony,d,t)
-   {var line=t[1][t[1]["length"]-1];
+   {var line=t[1][/* -1 for tag */t[1]["length"]-1-1+1];
     
     var
      loop=
       function(j)
-       {if(j=line["length"])
+       {if(j===/* -1 for tag */line["length"]-1)
          {return /* false */0;}
         else
-         {var match=line[j][1];
+         {var match=line[j+1][1];
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){case 0:exit=174;}}
           else
            {switch(match[0])
              {case 0:
-               if(phony(d[1][match[1]]))
+               if(phony(d[1][match[1]+1]))
                 {return /* true */1;}
                else
                 {return loop(j+1);}
@@ -1912,7 +1948,7 @@ var
     
     var r=group_by_common_children(d,a);
     
-    var t=/* record */[0,[$$Array["of_list"](r)]];
+    var t=/* record */[0,[/* array */0,$$Array["of_list"](r)]];
     
     var
      loop=
@@ -1923,13 +1959,15 @@ var
         
         var t$1=match[1];
         
-        if(List["for_all"](function(x){return x[1]=/* Nothing */0;},new_row))
+        if
+         (List["for_all"](function(x){return x[1]===/* Nothing */0;},new_row))
          {return t$1;}
         else
          {var
            t$2=
             /* record */[0,
-             $$Array["append"](t$1[1],[$$Array["of_list"](new_row)])];
+             $$Array["append"]
+              (t$1[1],[/* array */0,$$Array["of_list"](new_row)])];
           
           if(no_group&&!has_phony_children(phony,d,t$2))
            {var t$3=t$2;}
@@ -1964,20 +2002,20 @@ var
 var
  fall=
   function(d,t)
-   {for(var i$2=1;i$2<=t[1]["length"]-1;i$2++)
-     {var line=t[1][i$2];
+   {for(var i$2=1;i$2<=/* -1 for tag */t[1]["length"]-1-1;i$2++)
+     {var line=t[1][i$2+1];
       
       var
        loop=
         function(j)
-         {if(j=line["length"])
+         {if(j===/* -1 for tag */line["length"]-1)
            {return /* () */0;}
           else
-           {var match=line[j][1];
+           {var match=line[j+1][1];
             
             var exit;
             
-            if(typeof match=="number")
+            if(typeof match==="number")
              {switch(match){case 0:exit=157;}}
             else
              {switch(match[0])
@@ -1988,20 +2026,20 @@ var
                  var
                   loop$1=
                    function(j)
-                    {if(j=line["length"])
+                    {if(j===/* -1 for tag */line["length"]-1)
                       {return j-1;}
                      else
-                      {var match$1=line[j][1];
+                      {var match$1=line[j+1][1];
                        
                        var exit$1;
                        
-                       if(typeof match$1=="number")
+                       if(typeof match$1==="number")
                         {switch(match$1){case 0:exit$1=155;}}
                        else
                         {switch(match$1[0])
                           {case 0:exit$1=155;
                            case 1:
-                            if(CamlPrimtivie["caml_equal"](match$1[1],x))
+                            if(CamlPrimitive["caml_equal"](match$1[1],x))
                              {return loop$1(j+1);}
                             else
                              {exit$1=155;}
@@ -2020,14 +2058,19 @@ var
                     {if(i<0)
                       {return i+1;}
                      else
-                      {var line$1=t[1][i];
+                      {var line$1=t[1][i+1];
                        
                        if
-                        (((j=0)||
-                          CamlPrimtivie["caml_notequal"](line$1[j-1][2],line$1[j][2]))&&
-                         ((j2=line$1["length"]-1)||
-                          CamlPrimtivie["caml_notequal"]
-                           (line$1[j2+1][2],line$1[j2][2])))
+                        ((j===
+                          0||
+                          CamlPrimitive["caml_notequal"]
+                           (line$1[j-1+1][2],line$1[j+1][2]))&&
+                         (j2===
+                          /* -1 for tag */line$1["length"]-
+                          1-
+                          1||
+                          CamlPrimitive["caml_notequal"]
+                           (line$1[j2+1+1][2],line$1[j2+1][2])))
                         {return loop$2(i-1);}
                        else
                         {return i+1;}
@@ -2036,13 +2079,13 @@ var
                  
                  var i1=loop$2(i$2-1);
                  
-                 if(i1=i$2)
+                 if(i1===i$2)
                   {var i1$1=i1;}
                  else
-                  {if(i1=0)
+                  {if(i1===0)
                     {var i1$1=i1;}
                    else
-                    {if(t[1][i1][j][1]=/* Nothing */0)
+                    {if(t[1][i1+1][j+1][1]===/* Nothing */0)
                       {var i1$1=i1;}
                      else
                       {var i1$1=i$2;}
@@ -2052,24 +2095,24 @@ var
                  if(i1$1<i$2)
                   {for(var k=i$2;k>=i1$1+1;k--)
                     {for(var j$1=j;j$1<=j2;j$1++)
-                      {t[1][k][j$1][1]=t[1][k-1][j$1][1],0;
-                       if(k<i$2){t[1][k][j$1][2]=t[1][k-1][j$1][2],0}else{}
+                      {t[1][k+1][j$1+1][1]=t[1][k-1+1][j$1+1][1];
+                       if(k<i$2){t[1][k+1][j$1+1][2]=t[1][k-1+1][j$1+1][2]}else{}
                        }
                      }
                    
                    for(var l=j;l<=j2;l++)
-                    {if((i1$1=0)||(t[1][i1$1-1][l][1]=/* Nothing */0))
-                      {t[1][i1$1][l][1]=/* Nothing */0,0}
+                    {if(i1$1===0||t[1][i1$1-1+1][l+1][1]===/* Nothing */0)
+                      {t[1][i1$1+1][l+1][1]=/* Nothing */0}
                      else
-                      {t[1][i1$1][l]=
-                       (l=j)||
-                        CamlPrimtivie["caml_notequal"]
-                         (t[1][i1$1-1][l-1][2],t[1][i1$1-1][l][2])
+                      {t[1][i1$1+1][l+1]=
+                       l===
+                        j||
+                        CamlPrimitive["caml_notequal"]
+                         (t[1][i1$1-1+1][l-1+1][2],t[1][i1$1-1+1][l+1][2])
                         ?/* record */[0,
                           /* Ghost */[1,new_ghost_id(/* () */0)],
                           new_span_id(/* () */0)]
-                        :copy_data(t[1][i1$1][l-1]),
-                       0}
+                        :copy_data(t[1][i1$1+1][l-1+1])}
                      }
                    }
                  else
@@ -2084,41 +2127,40 @@ var
           };
       
       loop(0)}
+    return 0;
     };
 
 var
  fall2_cool_right=
   function(t,i1,i2,i3,j1,j2)
-   {var span=t[1][i2-1][j1][2];
+   {var span=t[1][i2-1+1][j1+1][2];
     
     for(var i$2=i2-1;i$2>=0;i$2--)
      {for(var j=j1;j<=j2-1;j++)
-       {t[1][i$2][j]=
+       {t[1][i$2+1][j+1]=
         i$2-i2+i1>=0
-         ?t[1][i$2-i2+i1][j]
-         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
-        0}
+         ?t[1][i$2-i2+i1+1][j+1]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)]}
       }
     
-    for(var i$3=t[1]["length"]-1;i$3>=0;i$3--)
-     {for(var j$1=j2;j$1<=t[1][i$3]["length"]-1;j$1++)
-       {t[1][i$3][j$1]=
+    for(var i$3=/* -1 for tag */t[1]["length"]-1-1;i$3>=0;i$3--)
+     {for(var j$1=j2;j$1<=/* -1 for tag */t[1][i$3+1]["length"]-1-1;j$1++)
+       {t[1][i$3+1][j$1+1]=
         i$3-i2+i1>=0
-         ?t[1][i$3-i2+i1][j$1]
-         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
-        0}
+         ?t[1][i$3-i2+i1+1][j$1+1]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)]}
       }
     
-    var old_span=t[1][i2-1][j1][2];
+    var old_span=t[1][i2-1+1][j1+1][2];
     
     var
      loop=
       function(j)
-       {if(j=t[1][i2-1]["length"])
+       {if(j===/* -1 for tag */t[1][i2-1+1]["length"]-1)
          {return /* () */0;}
         else
-         {if(CamlPrimtivie["caml_equal"](t[1][i2-1][j][2],old_span))
-           {t[1][i2-1][j][2]=span,0;return loop(j+1);}
+         {if(CamlPrimitive["caml_equal"](t[1][i2-1+1][j+1][2],old_span))
+           {t[1][i2-1+1][j+1][2]=span;return loop(j+1);}
           else
            {return 0;}
           }
@@ -2130,27 +2172,25 @@ var
 var
  fall2_cool_left=
   function(t,i1,i2,i3,j1,j2)
-   {var span=t[1][i2-1][j2][2];
+   {var span=t[1][i2-1+1][j2+1][2];
     
     for(var i$2=i2-1;i$2>=0;i$2--)
      {for(var j=j1+1;j<=j2;j++)
-       {t[1][i$2][j]=
+       {t[1][i$2+1][j+1]=
         i$2-i2+i1>=0
-         ?t[1][i$2-i2+i1][j]
-         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
-        0}
+         ?t[1][i$2-i2+i1+1][j+1]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)]}
       }
     
-    for(var i$3=t[1]["length"]-1;i$3>=0;i$3--)
+    for(var i$3=/* -1 for tag */t[1]["length"]-1-1;i$3>=0;i$3--)
      {for(var j$1=j1;j$1>=0;j$1--)
-       {t[1][i$3][j$1]=
+       {t[1][i$3+1][j$1+1]=
         i$3-i2+i1>=0
-         ?t[1][i$3-i2+i1][j$1]
-         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)],
-        0}
+         ?t[1][i$3-i2+i1+1][j$1+1]
+         :/* record */[0,/* Nothing */0,new_span_id(/* () */0)]}
       }
     
-    var old_span=t[1][i2-1][j2][2];
+    var old_span=t[1][i2-1+1][j2+1][2];
     
     var
      loop=
@@ -2158,8 +2198,8 @@ var
        {if(j<0)
          {return /* () */0;}
         else
-         {if(CamlPrimtivie["caml_equal"](t[1][i2-1][j][2],old_span))
-           {t[1][i2-1][j][2]=span,0;return loop(j-1);}
+         {if(CamlPrimitive["caml_equal"](t[1][i2-1+1][j+1][2],old_span))
+           {t[1][i2-1+1][j+1][2]=span;return loop(j-1);}
           else
            {return 0;}
           }
@@ -2180,10 +2220,10 @@ var
          {var
            loop_j=
             function(j)
-             {if(j=t[1][i]["length"])
+             {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                {return loop_i(i-1);}
               else
-               {var match=t[1][i][j][1];
+               {var match=t[1][i+1][j+1][1];
                 
                 if(typeof match==="number")
                  {return loop_j(j+1);}
@@ -2196,32 +2236,34 @@ var
           }
         };
     
-    var i3=loop_i(t[1]["length"]-1);
+    var i3=loop_i(/* -1 for tag */t[1]["length"]-1-1);
     
     var new_height=i3+i2-i1;
     
-    if(new_height>t[1]["length"])
+    if(new_height>/* -1 for tag */t[1]["length"]-1)
      {var
        loop=
         function(cnt,t)
-         {if(cnt=0)
+         {if(cnt===0)
            {return t;}
           else
            {var
              new_line=
               $$Array["init"]
-               (t[1][0]["length"],
+               (/* -1 for tag */t[1][1]["length"]-1,
                 function(i)
                  {return /* record */[0,/* Nothing */0,new_span_id(/* () */0)];
                   });
             
-            var t$1=/* record */[0,$$Array["append"](t[1],[new_line])];
+            var
+             t$1=
+              /* record */[0,$$Array["append"](t[1],[/* array */0,new_line])];
             
             return loop(cnt-1,t$1);
             }
           };
       
-      var t$1=loop(new_height-t[1]["length"],t);
+      var t$1=loop(new_height-/* -1 for tag */(t[1]["length"]-1),t);
       }
     else
      {var t$1=t;}
@@ -2245,7 +2287,7 @@ var
              {if(j<0)
                {return loop_i(i-1);}
               else
-               {var match=t[1][i][j][1];
+               {var match=t[1][i+1][j+1][1];
                 
                 if(typeof match==="number")
                  {return loop_j(j-1);}
@@ -2258,32 +2300,34 @@ var
           }
         };
     
-    var i3=loop_i(t[1]["length"]-1);
+    var i3=loop_i(/* -1 for tag */t[1]["length"]-1-1);
     
     var new_height=i3+i2-i1;
     
-    if(new_height>t[1]["length"])
+    if(new_height>/* -1 for tag */t[1]["length"]-1)
      {var
        loop=
         function(cnt,t)
-         {if(cnt=0)
+         {if(cnt===0)
            {return t;}
           else
            {var
              new_line=
               $$Array["init"]
-               (t[1][0]["length"],
+               (/* -1 for tag */t[1][1]["length"]-1,
                 function(i)
                  {return /* record */[0,/* Nothing */0,new_span_id(/* () */0)];
                   });
             
-            var t$1=/* record */[0,$$Array["append"](t[1],[new_line])];
+            var
+             t$1=
+              /* record */[0,$$Array["append"](t[1],[/* array */0,new_line])];
             
             return loop(cnt-1,t$1);
             }
           };
       
-      var t$1=loop(new_height-t[1]["length"],t);
+      var t$1=loop(new_height-/* -1 for tag */(t[1]["length"]-1),t);
       }
     else
      {var t$1=t;}
@@ -2295,13 +2339,13 @@ var
 var
  do_shorten_too_long=
   function(t,i1,j1,j2)
-   {for(var i$2=i1;i$2<=t[1]["length"]-2;i$2++)
-     {for(var j=j1;j<=j2-1;j++){t[1][i$2][j]=t[1][i$2+1][j],0}}
+   {for(var i$2=i1;i$2<=/* -1 for tag */t[1]["length"]-1-2;i$2++)
+     {for(var j=j1;j<=j2-1;j++){t[1][i$2+1][j+1]=t[1][i$2+1+1][j+1]}}
     
-    var i$3=t[1]["length"]-1;
+    var i$3=/* -1 for tag */t[1]["length"]-1-1;
     
     for(var j$1=j1;j$1<=j2-1;j$1++)
-     {t[1][i$3][j$1]=/* record */[0,/* Nothing */0,new_span_id(/* () */0)],0}
+     {t[1][i$3+1][j$1+1]=/* record */[0,/* Nothing */0,new_span_id(/* () */0)]}
     
     return t;
     };
@@ -2309,11 +2353,11 @@ var
 var
  try_fall2_right=
   function(t,i,j)
-   {var match=t[1][i][j][1];
+   {var match=t[1][i+1][j+1][1];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=128;}}
     else
      {switch(match[0])
@@ -2325,11 +2369,11 @@ var
             {if(i<0)
               {return 0;}
              else
-              {var match$1=t[1][i][j][1];
+              {var match$1=t[1][i+1][j+1][1];
                
                var exit$1;
                
-               if(typeof match$1=="number")
+               if(typeof match$1==="number")
                 {switch(match$1){case 0:exit$1=126;}}
                else
                 {switch(match$1[0])
@@ -2350,7 +2394,8 @@ var
               {if
                 (j>
                  0&&
-                 CamlPrimtivie["caml_equal"](t[1][i][j-1][2],t[1][i][j][2]))
+                 CamlPrimitive["caml_equal"]
+                  (t[1][i+1][j-1+1][2],t[1][i+1][j+1][2]))
                 {return /* false */0;}
                else
                 {return loop$1(i-1);}
@@ -2359,21 +2404,21 @@ var
          
          var separated1=loop$1(i1-1);
          
-         var x=t[1][i][j][2];
+         var x=t[1][i+1][j+1][2];
          
          var
           loop$2=
            function(j2)
-            {if(j2=t[1][i]["length"])
+            {if(j2===/* -1 for tag */t[1][i+1]["length"]-1)
               {return j2;}
              else
-              {var match$1=t[1][i][j2];
+              {var match$1=t[1][i+1][j2+1];
                
                var match$2=match$1[1];
                
                var exit$1;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){case 0:exit$1=122;}}
                else
                 {switch(match$2[0])
@@ -2381,7 +2426,7 @@ var
                    case 1:
                     var y=match$1[2];
                     
-                    if(CamlPrimtivie["caml_equal"](y,x))
+                    if(CamlPrimitive["caml_equal"](y,x))
                      {return loop$2(j2+1);}
                     else
                      {exit$1=122;}
@@ -2397,15 +2442,15 @@ var
          var
           loop$3=
            function(i)
-            {if(i=t[1]["length"])
+            {if(i===/* -1 for tag */t[1]["length"]-1)
               {return /* true */1;}
              else
-              {if(j2=t[1][i]["length"])
+              {if(j2===/* -1 for tag */t[1][i+1]["length"]-1)
                 {return /* false */0;}
                else
                 {if
-                  (CamlPrimtivie["caml_equal"]
-                    (t[1][i][j2-1][2],t[1][i][j2][2]))
+                  (CamlPrimitive["caml_equal"]
+                    (t[1][i+1][j2-1+1][2],t[1][i+1][j2+1][2]))
                   {return /* false */0;}
                  else
                   {return loop$3(i+1);}
@@ -2428,11 +2473,11 @@ var
 var
  try_fall2_left=
   function(t,i,j)
-   {var match=t[1][i][j][1];
+   {var match=t[1][i+1][j+1][1];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=118;}}
     else
      {switch(match[0])
@@ -2444,11 +2489,11 @@ var
             {if(i<0)
               {return 0;}
              else
-              {var match$1=t[1][i][j][1];
+              {var match$1=t[1][i+1][j+1][1];
                
                var exit$1;
                
-               if(typeof match$1=="number")
+               if(typeof match$1==="number")
                 {switch(match$1){case 0:exit$1=116;}}
                else
                 {switch(match$1[0])
@@ -2468,9 +2513,11 @@ var
              else
               {if
                 (j<
-                 t[1][i]["length"]-
+                 /* -1 for tag */t[1][i+1]["length"]-
+                 1-
                  1&&
-                 CamlPrimtivie["caml_equal"](t[1][i][j][2],t[1][i][j+1][2]))
+                 CamlPrimitive["caml_equal"]
+                  (t[1][i+1][j+1][2],t[1][i+1][j+1+1][2]))
                 {return /* false */0;}
                else
                 {return loop$1(i-1);}
@@ -2479,7 +2526,7 @@ var
          
          var separated1=loop$1(i1-1);
          
-         var x=t[1][i][j][2];
+         var x=t[1][i+1][j+1][2];
          
          var
           loop$2=
@@ -2487,13 +2534,13 @@ var
             {if(j1<0)
               {return j1;}
              else
-              {var match$1=t[1][i][j1];
+              {var match$1=t[1][i+1][j1+1];
                
                var match$2=match$1[1];
                
                var exit$1;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){case 0:exit$1=112;}}
                else
                 {switch(match$2[0])
@@ -2501,7 +2548,7 @@ var
                    case 1:
                     var y=match$1[2];
                     
-                    if(CamlPrimtivie["caml_equal"](y,x))
+                    if(CamlPrimitive["caml_equal"](y,x))
                      {return loop$2(j1-1);}
                     else
                      {exit$1=112;}
@@ -2517,15 +2564,15 @@ var
          var
           loop$3=
            function(i)
-            {if(i=t[1]["length"])
+            {if(i===/* -1 for tag */t[1]["length"]-1)
               {return /* true */1;}
              else
               {if(j1<0)
                 {return /* false */0;}
                else
                 {if
-                  (CamlPrimtivie["caml_equal"]
-                    (t[1][i][j1][2],t[1][i][j1+1][2]))
+                  (CamlPrimitive["caml_equal"]
+                    (t[1][i+1][j1+1][2],t[1][i+1][j1+1+1][2]))
                   {return /* false */0;}
                  else
                   {return loop$3(i+1);}
@@ -2548,31 +2595,31 @@ var
 var
  try_shorten_too_long=
   function(t,i,j)
-   {var match=t[1][i][j][1];
+   {var match=t[1][i+1][j+1][1];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=108;}}
     else
      {switch(match[0])
        {case 0:exit=108;
         case 1:
-         var x=t[1][i][j][2];
+         var x=t[1][i+1][j+1][2];
          
          var
           loop=
            function(j2)
-            {if(j2=t[1][i]["length"])
+            {if(j2===/* -1 for tag */t[1][i+1]["length"]-1)
               {return j2;}
              else
-              {var match$1=t[1][i][j2];
+              {var match$1=t[1][i+1][j2+1];
                
                var match$2=match$1[1];
                
                var exit$1;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){case 0:exit$1=105;}}
                else
                 {switch(match$2[0])
@@ -2580,7 +2627,7 @@ var
                    case 1:
                     var y=match$1[2];
                     
-                    if(CamlPrimtivie["caml_equal"](y,x))
+                    if(CamlPrimitive["caml_equal"](y,x))
                      {return loop(j2+1);}
                     else
                      {exit$1=105;}
@@ -2596,14 +2643,14 @@ var
          var
           loop$1=
            function(i)
-            {if(i=t[1]["length"])
+            {if(i===/* -1 for tag */t[1]["length"]-1)
               {return i;}
              else
-              {var match$1=t[1][i][j][1];
+              {var match$1=t[1][i+1][j+1][1];
                
                var exit$1;
                
-               if(typeof match$1=="number")
+               if(typeof match$1==="number")
                 {switch(match$1){case 0:exit$1=102;}}
                else
                 {switch(match$1[0])
@@ -2618,10 +2665,10 @@ var
          var
           loop$2=
            function(i)
-            {if(i=t[1]["length"])
+            {if(i===/* -1 for tag */t[1]["length"]-1)
               {return i;}
              else
-              {var match$1=t[1][i][j][1];
+              {var match$1=t[1][i+1][j+1][1];
                
                if(typeof match$1==="number")
                 {return loop$2(i+1);}
@@ -2635,13 +2682,14 @@ var
          var
           loop$3=
            function(i)
-            {if(i=i2)
+            {if(i===i2)
               {return /* true */1;}
              else
               {if
                 (j>
                  0&&
-                 CamlPrimtivie["caml_equal"](t[1][i][j][2],t[1][i][j-1][2]))
+                 CamlPrimitive["caml_equal"]
+                  (t[1][i+1][j+1][2],t[1][i+1][j-1+1][2]))
                 {return /* false */0;}
                else
                 {return loop$3(i+1);}
@@ -2653,13 +2701,15 @@ var
          var
           loop$4=
            function(i)
-            {if(i=i2)
+            {if(i===i2)
               {return /* true */1;}
              else
               {if
                 (j2<
-                 t[1][i]["length"]&&
-                 CamlPrimtivie["caml_equal"](t[1][i][j2-1][2],t[1][i][j2][2]))
+                 /* -1 for tag */t[1][i+1]["length"]-
+                 1&&
+                 CamlPrimitive["caml_equal"]
+                  (t[1][i+1][j2-1+1][2],t[1][i+1][j2+1][2]))
                 {return /* false */0;}
                else
                 {return loop$4(i+1);}
@@ -2671,7 +2721,7 @@ var
          if(!separated_left||!separated_right)
           {return /* None */0;}
          else
-          {if(i2<t[1]["length"])
+          {if(i2</* -1 for tag */t[1]["length"]-1)
             {return /* None */0;}
            else
             {return /* Some */[0,do_shorten_too_long(t,i,j,j2)];}
@@ -2700,17 +2750,20 @@ var
                {var match=try_fall2_right(t,i,j);
                 
                 if(match)
-                 {var t$1=match[1];return loop_i(t$1[1]["length"]-1,t$1);}
+                 {var t$1=match[1];
+                  
+                  return loop_i(/* -1 for tag */t$1[1]["length"]-1-1,t$1);
+                  }
                 else
                  {return loop_j(j-1,t);}
                 }
               };
           
-          return loop_j(t[1][i]["length"]-2,t);
+          return loop_j(/* -1 for tag */t[1][i+1]["length"]-1-2,t);
           }
         };
     
-    return loop_i(t[1]["length"]-1,t);
+    return loop_i(/* -1 for tag */t[1]["length"]-1-1,t);
     };
 
 var
@@ -2725,13 +2778,16 @@ var
          {var
            loop_j=
             function(j,t)
-             {if(j>=t[1][i]["length"])
+             {if(j>=/* -1 for tag */t[1][i+1]["length"]-1)
                {return loop_i(i-1,t);}
               else
                {var match=try_fall2_left(t,i,j);
                 
                 if(match)
-                 {var t$1=match[1];return loop_i(t$1[1]["length"]-1,t$1);}
+                 {var t$1=match[1];
+                  
+                  return loop_i(/* -1 for tag */t$1[1]["length"]-1-1,t$1);
+                  }
                 else
                  {return loop_j(j+1,t);}
                 }
@@ -2741,7 +2797,7 @@ var
           }
         };
     
-    return loop_i(t[1]["length"]-1,t);
+    return loop_i(/* -1 for tag */t[1]["length"]-1-1,t);
     };
 
 var
@@ -2756,13 +2812,16 @@ var
          {var
            loop_j=
             function(j,t)
-             {if(j>=t[1][i]["length"])
+             {if(j>=/* -1 for tag */t[1][i+1]["length"]-1)
                {return loop_i(i-1,t);}
               else
                {var match=try_shorten_too_long(t,i,j);
                 
                 if(match)
-                 {var t$1=match[1];return loop_i(t$1[1]["length"]-1,t$1);}
+                 {var t$1=match[1];
+                  
+                  return loop_i(/* -1 for tag */t$1[1]["length"]-1-1,t$1);
+                  }
                 else
                  {return loop_j(j+1,t);}
                 }
@@ -2772,7 +2831,7 @@ var
           }
         };
     
-    return loop_i(t[1]["length"]-1,t);
+    return loop_i(/* -1 for tag */t[1]["length"]-1-1,t);
     };
 
 var
@@ -2781,16 +2840,16 @@ var
    {var
      loop=
       function(i)
-       {if(i=t[1]["length"])
+       {if(i===/* -1 for tag */t[1]["length"]-1)
          {return i;}
         else
          {var
            loop_j=
             function(j)
-             {if(j=t[1][i]["length"])
+             {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                {return loop(i+1);}
               else
-               {if(t[1][i][j][1]!=/* Nothing */0)
+               {if(t[1][i+1][j+1][1]!==/* Nothing */0)
                  {return i;}
                 else
                  {return loop_j(j+1);}
@@ -2804,9 +2863,11 @@ var
     var di=loop(0);
     
     if(di>0)
-     {for(var i$2=0;i$2<=t[1]["length"]-1-di;i$2++){t[1][i$2]=t[1][i$2+di],0}
+     {for(var i$2=0;i$2<=/* -1 for tag */t[1]["length"]-1-1-di;i$2++)
+       {t[1][i$2+1]=t[1][i$2+di+1]}
       
-      return /* record */[0,$$Array["sub"](t[1],0,t[1]["length"]-di)];
+      return /* record */[0,
+              $$Array["sub"](t[1],0,/* -1 for tag */t[1]["length"]-1-di)];
       }
     else
      {return t;}
@@ -2824,10 +2885,10 @@ var
          {var
            loop_j=
             function(j)
-             {if(j=t[1][i]["length"])
+             {if(j===/* -1 for tag */t[1][i+1]["length"]-1)
                {return loop(i-1);}
               else
-               {if(t[1][i][j][1]!=/* Nothing */0)
+               {if(t[1][i+1][j+1][1]!==/* Nothing */0)
                  {return i;}
                 else
                  {return loop_j(j+1);}
@@ -2838,9 +2899,9 @@ var
           }
         };
     
-    var last_i=loop(t[1]["length"]-1);
+    var last_i=loop(/* -1 for tag */t[1]["length"]-1-1);
     
-    if(last_i<t[1]["length"]-1)
+    if(last_i</* -1 for tag */t[1]["length"]-1-1)
      {return /* record */[0,$$Array["sub"](t[1],0,last_i+1)];}
     else
      {return t;}
@@ -2851,15 +2912,14 @@ var
   function(d)
    {var d$1=/* record */[0,$$Array["copy"](d[1])];
     
-    for(var i$2=0;i$2<=d$1[1]["length"]-1;i$2++)
-     {var n=d$1[1][i$2];
+    for(var i$2=0;i$2<=/* -1 for tag */d$1[1]["length"]-1-1;i$2++)
+     {var n=d$1[1][i$2+1];
       
-      d$1[1][i$2]=
+      d$1[1][i$2+1]=
       /* record */[0,
        List["map"](function(x){return x;},n[3]),
        n[2],
-       List["map"](function(x){return x;},n[1])],
-      0}
+       List["map"](function(x){return x;},n[1])]}
     
     return d$1;
     };
@@ -2869,18 +2929,17 @@ var
   function(t)
    {var t$prime=/* record */[0,$$Array["copy"](t[1])];
     
-    var len=t[1]["length"];
+    var len=/* -1 for tag */t[1]["length"]-1;
     
     for(var i$2=0;i$2<=len-1;i$2++)
-     {t$prime[1][i$2]=
+     {t$prime[1][i$2+1]=
       $$Array["init"]
-       (t[1][0]["length"],
+       (/* -1 for tag */t[1][1]["length"]-1,
         function(j)
-         {var d=t[1][len-1-i$2][j];return /* record */[0,d[1],d[2]];}),
-      0;
+         {var d=t[1][len-1-i$2+1][j+1];return /* record */[0,d[1],d[2]];});
       if(i$2<len-1)
-       {for(var j=0;j<=t$prime[1][i$2]["length"]-1;j++)
-         {t$prime[1][i$2][j][2]=t[1][len-2-i$2][j][2],0}
+       {for(var j=0;j<=/* -1 for tag */t$prime[1][i$2+1]["length"]-1-1;j++)
+         {t$prime[1][i$2+1][j+1][2]=t[1][len-2-i$2+1][j+1][2]}
         }
       else
        {}
@@ -2919,7 +2978,7 @@ var
    {var
      loop=
       function(i)
-       {if(i=str["length"])
+       {if(i===str["length"])
          {return i;}
         else
          {var match=str[i];
@@ -2931,7 +2990,7 @@ var
           if(!(4<switcher>>>0))
            {if(1<-2+switcher>>>0){exit=69;}else{exit=70;}}
           else
-           {if(switcher!=23){exit=70;}else{exit=69;}}
+           {if(switcher!==23){exit=70;}else{exit=69;}}
           
           switch(exit){case 70:return i;case 69:return loop(i+1);}
           }
@@ -2942,7 +3001,7 @@ var
     var
      loop$1=
       function(i)
-       {if(i=-1)
+       {if(i===-1)
          {return i+1;}
         else
          {var match=str[i];
@@ -2954,7 +3013,7 @@ var
           if(!(4<switcher>>>0))
            {if(1<-2+switcher>>>0){exit=66;}else{exit=67;}}
           else
-           {if(switcher!=23){exit=67;}else{exit=66;}}
+           {if(switcher!==23){exit=67;}else{exit=66;}}
           
           switch(exit){case 67:return i+1;case 66:return loop$1(i-1);}
           }
@@ -2962,7 +3021,7 @@ var
     
     var stop=loop$1(str["length"]-1);
     
-    if((start=0)&&(stop=str["length"]))
+    if(start===0&&stop===str["length"])
      {return str;}
     else
      {if(start>stop)
@@ -2978,12 +3037,17 @@ var
    {try
      {var line=Pervasives["input_line"](ic);
       
-      if(line["length"]>0&&(line[0]=35))
+      if(line["length"]>0&&line[0]===35)
        {return get_line(ic);}
       else
        {return /* Some */[0,strip_spaces(line)];}
       }
-    catch(exn){if(exn=End_of_file){return /* None */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -2995,13 +3059,13 @@ var
        {if(param)
          {var n=param[1];
           
-          if(CamlPrimtivie["caml_equal"](n[2],s))
+          if(CamlPrimitive["caml_equal"](n[2],s))
            {return /* tuple */[0,n,cnt];}
           else
            {return find(cnt-1,s,param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var
@@ -3033,7 +3097,7 @@ var
                         cnt$1];
                 }
               catch(exn)
-               {if(exn=Not_found)
+               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                  {var n=/* record */[0,/* [] */0,p,/* [] */0];
                   
                   var p$1=cnt$1;
@@ -3068,11 +3132,11 @@ var
                 
                 var n=match$2[1];
                 
-                n[1]=Pervasives["@"](n[1],pl$2),0;
+                n[1]=Pervasives["@"](n[1],pl$2);
                 return /* tuple */[0,/* :: */[0,match$2[2],cl$2],nl$1,cnt$1];
                 }
               catch(exn)
-               {if(exn=Not_found)
+               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                  {var n$1=/* record */[0,pl$2,c,/* [] */0];
                   
                   var c$1=cnt$1;
@@ -3107,13 +3171,13 @@ var
             default:
              var match=line[0];
              
-             if(match!=45)
-              {if(match!=111)
+             if(match!==45)
+              {if(match!==111)
                 {return Pervasives["failwith"](line);}
                else
                 {var p=strip_spaces($$String["sub"](line,1,line["length"]-1));
                  
-                 if(CamlPrimtivie["caml_string_equal"](p,""))
+                 if(CamlPrimitive["caml_string_equal"](p,""))
                   {return Pervasives["failwith"](line);}
                  else
                   {return input_parents(nl,/* :: */[0,p,pl],cnt,get_line(ic));
@@ -3121,7 +3185,7 @@ var
                  }
                }
              else
-              {if(pl=/* [] */0)
+              {if(pl===/* [] */0)
                 {return Pervasives["failwith"](line);}
                else
                 {return input_children(nl,pl,/* [] */0,cnt,/* Some */[0,line]);
@@ -3130,7 +3194,7 @@ var
              }
           }
         else
-         {if(pl=/* [] */0)
+         {if(pl===/* [] */0)
            {return /* tuple */[0,nl,cnt];}
           else
            {return Pervasives["failwith"]("end of file 1");}
@@ -3148,11 +3212,11 @@ var
             default:
              var match=line[0];
              
-             if(match!=45)
-              {if(match!=111)
+             if(match!==45)
+              {if(match!==111)
                 {return Pervasives["failwith"](line);}
                else
-                {if(cl=/* [] */0)
+                {if(cl===/* [] */0)
                   {return Pervasives["failwith"](line);}
                  else
                   {var match$1=add_node(pl,cl,nl,cnt);
@@ -3165,7 +3229,7 @@ var
              else
               {var c=strip_spaces($$String["sub"](line,1,line["length"]-1));
                
-               if(CamlPrimtivie["caml_string_equal"](c,""))
+               if(CamlPrimitive["caml_string_equal"](c,""))
                 {return Pervasives["failwith"](line);}
                else
                 {return input_children
@@ -3175,7 +3239,7 @@ var
              }
           }
         else
-         {if(cl=/* [] */0)
+         {if(cl===/* [] */0)
            {return Pervasives["failwith"]("end of file 2");}
           else
            {return add_node(pl,cl,nl,cnt);}
@@ -3207,7 +3271,7 @@ var
             (function(v)
               {var v$1=c[1];
                
-               c[1]=(c[1]=90)?97:(c[1]=122)?49:Char["chr"](c[1]+1),0;
+               c[1]=c[1]===90?97:c[1]===122?49:Char["chr"](c[1]+1);
                return $$String["make"](1,v$1);
                },
              d);
@@ -3241,14 +3305,14 @@ var
         " cellspacing=0 cellpadding=0>\n",
         /* End_of_format */0],
        " cellspacing=0 cellpadding=0>\n"]);
-    for(var i$2=0;i$2<=hts["length"]-1;i$2++)
+    for(var i$2=0;i$2<=/* -1 for tag */hts["length"]-1-1;i$2++)
      {Printf["bprintf"]
        (buf,
         [/* Format */0,
          [/* String_literal */11,"<tr>\n",/* End_of_format */0],
          "<tr>\n"]);
-      for(var j=0;j<=hts[i$2]["length"]-1;j++)
-       {var match=hts[i$2][j];
+      for(var j=0;j<=/* -1 for tag */hts[i$2+1]["length"]-1-1;j++)
+       {var match=hts[i$2+1][j+1];
         
         var td=match[3];
         
@@ -3260,9 +3324,10 @@ var
            [/* String_literal */11,"<td",/* End_of_format */0],
            "<td"]);
         if
-         ((colspan=1)&&
-          (CamlPrimtivie["caml_equal"](td,[/* TDstring */0,"&nbsp;"])||
-           CamlPrimtivie["caml_equal"](td,[/* TDhr */1,/* CenterA */1])))
+         (colspan===
+          1&&
+          (CamlPrimitive["caml_equal"](td,[/* TDstring */0,"&nbsp;"])||
+           CamlPrimitive["caml_equal"](td,[/* TDhr */1,/* CenterA */1])))
          {}
         else
          {Printf["bprintf"]
@@ -3285,7 +3350,7 @@ var
            switch(td[0])
             {case 0:exit=29;
              case 1:
-              if(td[1]!=0)
+              if(td[1]!==0)
                {exit=29;}
               else
                {Printf["bprintf"]
@@ -3487,7 +3552,7 @@ var
           if
            (List["exists"]
              (function(param$1)
-               {return CamlPrimtivie["caml_equal"](name,param$1[1]);},
+               {return CamlPrimitive["caml_equal"](name,param$1[1]);},
               acc))
            {return distinct(acc,q);}
           else

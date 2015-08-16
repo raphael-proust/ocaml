@@ -1,20 +1,21 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Odoc_str=require("Odoc_str");
-var Misc=require("Misc");
-var Unix=require("Unix");
-var Buffer=require("Buffer");
-var Filename=require("Filename");
-var Odoc_print=require("Odoc_print");
-var Str=require("Str");
-var Odoc_misc=require("Odoc_misc");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Odoc_str=require("./odoc_str.js");
+var Misc=require("./misc.js");
+var Unix=require("./unix.js");
+var Buffer=require("./buffer.js");
+var Filename=require("./filename.js");
+var Odoc_print=require("./odoc_print.js");
+var Str=require("./str.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -363,7 +364,7 @@ var
                     {var tag=param[1];
                      
                      try
-                      {var f=List["assoc"](tag,self$neg1[tag_functions]);
+                      {var f=List["assoc"](tag,self$neg1[tag_functions+1]);
                        
                        var buf=Buffer["create"](50);
                        
@@ -371,7 +372,7 @@ var
                        return /* :: */[0,Buffer["contents"](buf),acc];
                        }
                      catch(exn)
-                      {if(exn=Not_found)
+                      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                         {Odoc_info["warning"](Odoc_messages["tag_not_handled"](tag));
                          return acc;
                          }
@@ -412,7 +413,7 @@ var
              {var d=match$1[1];
               
               if
-               (CamlPrimtivie["caml_equal"]
+               (CamlPrimitive["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js$1=/* [] */0;}
               else
@@ -451,8 +452,8 @@ var
             var
              l$1=
               List["filter"]
-               (function(prim,prim)
-                  {return CamlPrimtivie["caml_notequal"](prim$1,prim);}
+               (function(prim,prim$1)
+                  {return CamlPrimitive["caml_notequal"](prim,prim$1);}
                  (""),
                 l);
             
@@ -464,7 +465,7 @@ var
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
-       $$self$1[tag_functions]=/* [] */0,0;
+       $$self$1[tag_functions+1]=/* [] */0;
        return $$self$1;
        };
      },
@@ -592,7 +593,7 @@ var
              name,
              man_suffix[1]);
          
-         return Str["global_replace"](self$neg2[re_slash$1],"slash",s);
+         return Str["global_replace"](self$neg2[re_slash$1+1],"slash",s);
          },
        $$escape,
        function(self$neg2,s)
@@ -606,7 +607,7 @@ var
            var exit;
            
            if(c>=47)
-            {if(c!=92){exit=98;}else{Buffer["add_string"](b,"\(rs")}}
+            {if(c!==92){exit=98;}else{Buffer["add_string"](b,"\(rs")}}
            else
             {if(c>=39)
               {switch(-39+c)
@@ -659,7 +660,7 @@ var
        function(self$neg2,b,txt)
         {var exit;
          
-         if(typeof txt=="number")
+         if(typeof txt==="number")
           {switch(txt){case 0:return bs(b,"\n.sp\n");case 1:exit=91;}}
          else
           {switch(txt[0])
@@ -751,7 +752,7 @@ var
        man_of_Target,
        function(self$neg2,b,target,code)
         {if
-          (CamlPrimtivie["caml_string_equal"]
+          (CamlPrimitive["caml_string_equal"]
             ($$String["lowercase"](target),"man"))
           {return bs(b,code);}
          else
@@ -893,7 +894,7 @@ var
          bs(b,0);
          bs(b," \n");
          bs(b,"+=");
-         if(te[4]=/* Private */0){bs(b," private")}else{}
+         if(te[4]===/* Private */0){bs(b," private")}else{}
          
          bs(b,"\n ");
          List["iter"]
@@ -1034,7 +1035,7 @@ var
          
          bs(b,Odoc_info["Name"][1](t[1]));
          bs(b," \n");
-         var priv=t[5]=/* Private */0;
+         var priv=t[5]===/* Private */0;
          
          var match$1=t[6];
          
@@ -1070,7 +1071,7 @@ var
          
          var match$3=t[4];
          
-         if(typeof match$3=="number")
+         if(typeof match$3==="number")
           {switch(match$3){case 0:case 1:bs(b,"= .."),bs(b,"\n")}}
          else
           {switch(match$3[0])
@@ -1543,7 +1544,7 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
              return Pervasives["prerr_endline"](exn[2]);
              }
@@ -1640,7 +1641,7 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
              return Pervasives["prerr_endline"](exn[2]);
              }
@@ -1780,7 +1781,7 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
              return Pervasives["prerr_endline"](exn[2]);
              }
@@ -1914,7 +1915,11 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        create_groups,
        function(self$neg2,mini,module_list)
@@ -1930,7 +1935,11 @@ var
                case 7:exit=21;
                case 8:exit=22;
                case 9:exit=22;
-               case 10:throw [0,Assert_failure,[0,"odoc_man.ml",1147,27]];
+               case 10:
+                throw [0,
+                       CamlPrimitive["caml_global_data"]["Assert_failure"],
+                       [0,"odoc_man.ml",1147,27]];
+                
                case 11:exit=23;
                case 12:exit=23;
                default:return res_ele[1][1];}
@@ -1968,7 +1977,7 @@ var
           sorted_items=
            List["sort"]
             (function(e1,e2)
-              {return CamlPrimtivie["caml_string_compare"](name(e1),name(e2));
+              {return CamlPrimitive["caml_string_compare"](name(e1),name(e2));
                },
              all_items);
          
@@ -1981,7 +1990,7 @@ var
                var h=l[1];
                
                if(acc2)
-                {if(CamlPrimtivie["caml_string_equal"](name(h),name(acc2[1])))
+                {if(CamlPrimitive["caml_string_equal"](name(h),name(acc2[1])))
                   {if(List["mem"](h,acc2))
                     {return f(acc1,acc2,q);}
                    else
@@ -2059,7 +2068,7 @@ var
                   var m=ele[1];
                   
                   if
-                   (CamlPrimtivie["caml_string_notequal"]
+                   (CamlPrimitive["caml_string_notequal"]
                      (Odoc_info["Name"][5](m[1]),""))
                    {bs
                      (b,
@@ -2249,7 +2258,7 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
              return Pervasives["prerr_endline"](exn[2]);
              }
@@ -2263,7 +2272,7 @@ var
           sorted_module_list=
            List["sort"]
             (function(m1,m2)
-              {return CamlPrimtivie["caml_string_compare"](m1[1],m2[1]);},
+              {return CamlPrimitive["caml_string_compare"](m1[1],m2[1]);},
              module_list);
          
          /* unknown */"(sendself self-2/1837 create_groups/1398 (field 0 man_mini/1235)\n  sorted_module_list/1839)";
@@ -2322,7 +2331,7 @@ var
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[re_slash$1]=re_slash,0,obj_init($$self$1);
+      $$self$1[re_slash$1+1]=re_slash,obj_init($$self$1);
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
       };
     };

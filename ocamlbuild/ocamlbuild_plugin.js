@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ocamlbuild_pack=require("Ocamlbuild_pack");
+var Ocamlbuild_pack=require("./ocamlbuild_pack.js");
 
 var $$let=Ocamlbuild_pack["My_std"][13];
 
@@ -48,9 +48,9 @@ var memo3=include[39];
 
 var include$1=Ocamlbuild_pack["Pathname"][35];
 
-var $unknown=include$1[1];
+var $slash=include$1[1];
 
-var $neg$unknown$neg=include$1[2];
+var $neg$dot$neg=include$1[2];
 
 var include$2=Ocamlbuild_pack["Tags"][29];
 
@@ -241,8 +241,8 @@ module["exports"]=
  "memo":memo,
  "memo2":memo2,
  "memo3":memo3,
- "/":$unknown,
- "-.-":$neg$unknown$neg,
+ "/":$slash,
+ "-.-":$neg$dot$neg,
  "++":$plus$plus,
  "--":$neg$neg,
  "+++":$plus$plus$plus,

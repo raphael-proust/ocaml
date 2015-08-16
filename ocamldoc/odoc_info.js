@@ -1,23 +1,24 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_name=require("Odoc_name");
-var Odoc_global=require("Odoc_global");
-var Odoc_dep=require("Odoc_dep");
-var Printtyp=require("Printtyp");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Odoc_comments=require("Odoc_comments");
-var Odoc_search=require("Odoc_search");
-var Printf=require("Printf");
-var Odoc_str=require("Odoc_str");
-var Odoc_analyse=require("Odoc_analyse");
-var Odoc_extension=require("Odoc_extension");
-var Odoc_print=require("Odoc_print");
-var Buffer=require("Buffer");
-var Odoc_config=require("Odoc_config");
-var Odoc_misc=require("Odoc_misc");
-var Odoc_text=require("Odoc_text");
-var Odoc_scan=require("Odoc_scan");
+var Odoc_name=require("./odoc_name.js");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_dep=require("./odoc_dep.js");
+var Printtyp=require("./printtyp.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Odoc_comments=require("./odoc_comments.js");
+var Odoc_search=require("./odoc_search.js");
+var Printf=require("./printf.js");
+var Odoc_str=require("./odoc_str.js");
+var Odoc_analyse=require("./odoc_analyse.js");
+var Odoc_extension=require("./odoc_extension.js");
+var Odoc_print=require("./odoc_print.js");
+var Buffer=require("./buffer.js");
+var Odoc_config=require("./odoc_config.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Odoc_text=require("./odoc_text.js");
+var Odoc_scan=require("./odoc_scan.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 var $$let=Odoc_name;
 
@@ -32,15 +33,7 @@ var $$let$4=Odoc_module;
 var $$let$5=Odoc_global;
 
 
-Odoc_global,
-Odoc_module,
-Odoc_class,
-Odoc_value,
-Odoc_type,
-Odoc_exception,
-Odoc_extension,
-Odoc_parameter,
-Odoc_name;
+
 var Text_syntax=Odoc_text["Text_syntax"];
 
 var dummy_loc=[/* record */0,/* None */0,/* None */0];
@@ -82,11 +75,11 @@ var
     
     if($staropt$star){var init=$staropt$star[1];}else{var init=/* [] */0;}
     
-    Odoc_global["merge_options"][1]=merge_options,0;
-    Odoc_global["include_dirs"][1]=include_dirs,0;
-    Odoc_global["classic"][1]=!labels,0;
-    Odoc_global["sort_modules"][1]=sort_modules,0;
-    Odoc_global["no_stop"][1]=no_stop,0;
+    Odoc_global["merge_options"][1]=merge_options;
+    Odoc_global["include_dirs"][1]=include_dirs;
+    Odoc_global["classic"][1]=!labels;
+    Odoc_global["sort_modules"][1]=sort_modules;
+    Odoc_global["no_stop"][1]=no_stop;
     return Odoc_analyse["analyse_files"](/* Some */[0,init],files);
     };
 
@@ -201,7 +194,7 @@ var apply_opt=Odoc_misc["apply_opt"];
 var
  apply_if_equal=
   function(f,v1,v2)
-   {if(CamlPrimtivie["caml_equal"](v1,v2)){return f(v1);}else{return v2;}};
+   {if(CamlPrimitive["caml_equal"](v1,v2)){return f(v1);}else{return v2;}};
 
 var text_of_string=Odoc_text["Texter"][1];
 
@@ -217,7 +210,7 @@ var
     for(var i=0;i<=len-1;i++)
      {var c=s[i];
       
-      if(c!=64){Buffer["add_char"](b,c)}else{Buffer["add_string"](b,"\@")}
+      if(c!==64){Buffer["add_char"](b,c)}else{Buffer["add_string"](b,"\@")}
       }
     
     return Buffer["contents"](b);

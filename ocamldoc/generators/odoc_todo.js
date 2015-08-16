@@ -1,15 +1,16 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_html=require("Odoc_html");
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Odoc_args=require("Odoc_args");
-var Buffer=require("Buffer");
-var Filename=require("Filename");
-var Odoc_module=require("Odoc_module");
+var Odoc_html=require("./odoc_html.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Odoc_args=require("./odoc_args.js");
+var Buffer=require("./buffer.js");
+var Filename=require("./filename.js");
+var Odoc_module=require("./odoc_module.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -336,13 +337,13 @@ var
                     if(text)
                      {var match$2=text[1];
                       
-                      if(typeof match$2=="number")
+                      if(typeof match$2==="number")
                        {switch(match$2){}}
                       else
                        {switch(match$2[0])
                          {case 1:
                            try
-                            {var n=CamlPrimtivie["caml_int_of_string"](match$2[1]);
+                            {var n=CamlPrimitive["caml_int_of_string"](match$2[1]);
                              
                              var
                               head=
@@ -392,7 +393,7 @@ var
                     {var match$3=b[1];
                      
                      if(match$3)
-                      {return CamlPrimtivie["caml_int_compare"]
+                      {return CamlPrimitive["caml_int_compare"]
                                (match$2[1],match$3[1]);
                        }
                      else
@@ -404,7 +405,7 @@ var
                  l);
              
              p
-              (self$neg1[b],
+              (self$neg1[b+1],
                [/* Format */0,
                 [/* String_literal */11,
                  '<pre><a href="',
@@ -456,7 +457,7 @@ var
              List["iter"]
               (function(param)
                 {Printf["bprintf"]
-                  (self$neg1[b],
+                  (self$neg1[b+1],
                    [/* Format */0,
                     [/* String_literal */11,
                      '<span style="color: ',
@@ -468,7 +469,7 @@ var
                  /* unknown */"(send (array.unsafe_get self-1/1301 html/1249) 34801153\n  (array.unsafe_get self-1/1301 b/1283) (field 1 param/1675))";
                  
                  return p
-                         (self$neg1[b],
+                         (self$neg1[b+1],
                           [/* Format */0,
                            [/* String_literal */11,
                             "</span><br/>\n",
@@ -477,7 +478,7 @@ var
                  },
                l$1);
              return p
-                     (self$neg1[b],
+                     (self$neg1[b+1],
                       [/* Format */0,
                        [/* String_literal */11,"</div>",/* End_of_format */0],
                        "</div>"]);
@@ -580,13 +581,11 @@ var
     return function(env,$$self,html)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[html$1]=
+      $$self$1[html$1+1]=
       html,
-      0,
       obj_init($$self$1),
-      $$self$1[b]=
-      Buffer["create"](256),
-      0;
+      $$self$1[b+1]=
+      Buffer["create"](256);
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
       };
     };
@@ -651,11 +650,10 @@ var
      ($$class,
       generate,
       function(self$neg2,modules)
-       {self$neg2[tag_functions]=
+       {self$neg2[tag_functions+1]=
         /* :: */[0,
          /* tuple */[0,"todo",function(param){return "";}],
-         self$neg2[tag_functions]],
-        0;
+         self$neg2[tag_functions+1]];
         generate$1(self$neg2,modules);
         var match$2=Odoc_info["Global"][6][1];
         
@@ -695,11 +693,11 @@ var
     CamlinternalOO["add_initializer"]
      ($$class,
       function(self$neg2)
-       {return self$neg2[scanner$1]=scanner[1](0,self$neg2),0;});
+       {return self$neg2[scanner$1+1]=scanner[1](0,self$neg2),0;});
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      obj_init($$self$1),$$self$1[scanner$1]=scanner[1](0,Html[1][1](0)),0;
+      obj_init($$self$1),$$self$1[scanner$1+1]=scanner[1](0,Html[1][1](0));
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
       };
     };

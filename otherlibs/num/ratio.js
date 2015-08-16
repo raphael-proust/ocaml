@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Int_misc=require("Int_misc");
-var Big_int=require("Big_int");
-var Nat=require("Nat");
-var Arith_flags=require("Arith_flags");
-var Bytes=require("Bytes");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Int_misc=require("./int_misc.js");
+var Big_int=require("./big_int.js");
+var Nat=require("./nat.js");
+var Arith_flags=require("./arith_flags.js");
+var Bytes=require("./bytes.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -15,19 +16,19 @@ var
    {var s="infinite or undefined rational number";
     
     return Pervasives["failwith"]
-            ((name["length"]=0)?s:Pervasives["^"](name,Pervasives["^"](" ",s)));
+            (name["length"]===0?s:Pervasives["^"](name,Pervasives["^"](" ",s)));
     };
 
 var numerator_ratio=function(r){return r[1];};
 
 var denominator_ratio=function(r){return r[2];};
 
-var null_denominator=function(r){return Big_int["sign_big_int"](r[2])=0;};
+var null_denominator=function(r){return Big_int["sign_big_int"](r[2])===0;};
 
 var
  verify_null_denominator=
   function(r)
-   {if(Big_int["sign_big_int"](r[2])=0)
+   {if(Big_int["sign_big_int"](r[2])===0)
      {if(Arith_flags["error_when_null_denominator_flag"][1])
        {return failwith_zero("");}
       else
@@ -46,19 +47,19 @@ var
      {return r;}
     else
      {if(verify_null_denominator(r))
-       {r[1]=Big_int["big_int_of_int"](Big_int["sign_big_int"](r[1])),0;
-        r[3]=/* true */1,0;
+       {r[1]=Big_int["big_int_of_int"](Big_int["sign_big_int"](r[1]));
+        r[3]=/* true */1;
         return r;
         }
       else
        {var p=Big_int["gcd_big_int"](r[1],r[2]);
         
         if(Big_int["eq_big_int"](p,Big_int["unit_big_int"]))
-         {r[3]=/* true */1,0;return r;}
+         {r[3]=/* true */1;return r;}
         else
-         {r[1]=Big_int["div_big_int"](r[1],p),0;
-          r[2]=Big_int["div_big_int"](r[2],p),0;
-          r[3]=/* true */1,0;
+         {r[1]=Big_int["div_big_int"](r[1],p);
+          r[2]=Big_int["div_big_int"](r[2],p);
+          r[3]=/* true */1;
           return r;
           }
         }
@@ -88,8 +89,8 @@ var
   function(bi1,bi2)
    {var match=Big_int["sign_big_int"](bi2);
     
-    if(match!=-1)
-     {if(match!=0)
+    if(match!==-1)
+     {if(match!==0)
        {return cautious_normalize_ratio(/* record */[0,bi1,bi2,/* false */0]);
         }
       else
@@ -115,8 +116,8 @@ var
   function(bi1,bi2)
    {var match=Big_int["sign_big_int"](bi2);
     
-    if(match!=-1)
-     {if(match!=0)
+    if(match!==-1)
+     {if(match!==0)
        {return /* record */[0,bi1,bi2,/* true */1];}
       else
        {if(Arith_flags["error_when_null_denominator_flag"][1])
@@ -138,7 +139,10 @@ var is_normalized_ratio=function(r){return r[3];};
 var
  report_sign_ratio=
   function(r,bi)
-   {if(sign_ratio(r)=-1){return Big_int["minus_big_int"](bi);}else{return bi;}
+   {if(sign_ratio(r)===-1)
+     {return Big_int["minus_big_int"](bi);}
+    else
+     {return bi;}
     };
 
 var
@@ -349,7 +353,8 @@ var
   function(r)
    {if
      (Arith_flags["error_when_null_denominator_flag"][1]&&
-      (Big_int["sign_big_int"](r[1])=0))
+      Big_int["sign_big_int"](r[1])===
+      0)
      {return failwith_zero("inverse_ratio");}
     else
      {return /* record */[0,
@@ -367,7 +372,7 @@ var
    {if(null_denominator(r))
      {return failwith_zero("integer_ratio");}
     else
-     {if(sign_ratio(r)=0)
+     {if(sign_ratio(r)===0)
        {return Big_int["zero_big_int"];}
       else
        {return report_sign_ratio
@@ -393,14 +398,14 @@ var
     
     return report_sign_ratio
             (r,
-             (Big_int["sign_big_int"]
-                (Big_int["sub_big_int"]
-                  (Big_int["mult_int_big_int"]
-                    (2,
-                     Big_int["sub_big_int"]
-                      (abs_num,Big_int["mult_big_int"](r[2],bi))),
-                   r[2]))=
-               -1)
+             Big_int["sign_big_int"]
+               (Big_int["sub_big_int"]
+                 (Big_int["mult_int_big_int"]
+                   (2,
+                    Big_int["sub_big_int"]
+                     (abs_num,Big_int["mult_big_int"](r[2],bi))),
+                  r[2]))===
+              -1
               ?bi
               :Big_int["succ_big_int"](bi));
     };
@@ -432,10 +437,10 @@ var
       if(verify_null_denominator(r2))
        {var sign_num_r2=Big_int["sign_big_int"](r2[1]);
         
-        if((sign_num_r1=1)&&(sign_num_r2=-1))
+        if(sign_num_r1===1&&sign_num_r2===-1)
          {return 1;}
         else
-         {if((sign_num_r1=-1)&&(sign_num_r2=1)){return -1;}else{return 0;}}
+         {if(sign_num_r1===-1&&sign_num_r2===1){return -1;}else{return 0;}}
         }
       else
        {return sign_num_r1;}
@@ -597,13 +602,13 @@ var
       
       var c=Int_misc["compare_int"](c1,c2);
       
-      if(c!=0){return c;}else{return compare_num_string(s1,s2,1+i,len);}
+      if(c!==0){return c;}else{return compare_num_string(s1,s2,1+i,len);}
       }
     };
 
 var
  only_zeros=
-  function(s,i,lim){return i>=lim||(s[i]=48)&&only_zeros(s,1+i,lim);};
+  function(s,i,lim){return i>=lim||s[i]===48&&only_zeros(s,1+i,lim);};
 
 var
  msd_ratio=
@@ -612,7 +617,7 @@ var
     if(null_denominator(r))
      {return failwith_zero("msd_ratio");}
     else
-     {if(Big_int["sign_big_int"](r[1])=0)
+     {if(Big_int["sign_big_int"](r[1])===0)
        {return 0;}
       else
        {var str_num=Big_int["string_of_big_int"](r[1]);
@@ -663,7 +668,7 @@ var
     else
      {var sign_r=sign_ratio(r);
       
-      if(sign_r=0)
+      if(sign_r===0)
        {return "+0";}
       else
        {if(n>=0)
@@ -688,17 +693,17 @@ var
           if(l2>n)
            {var s=Bytes["make"](l2+2,48);
             
-            s[0]=(sign_r=-1)?45:43,0;
+            s[0]=sign_r===-1?45:43;
             $$String["blit"](s2,0,s,1,l2-n);
-            s[l2-n+1]=46,0;
+            s[l2-n+1]=46;
             $$String["blit"](s2,l2-n,s,l2-n+2,n);
             return Bytes["unsafe_to_string"](s);
             }
           else
            {var s$1=Bytes["make"](n+3,48);
             
-            s$1[0]=(sign_r=-1)?45:43,0;
-            s$1[2]=46,0;
+            s$1[0]=sign_r===-1?45:43;
+            s$1[2]=46;
             $$String["blit"](s2,0,s$1,n+3-l2,l2);
             return Bytes["unsafe_to_string"](s$1);
             }
@@ -715,7 +720,7 @@ var
           
           var s$prime=Bytes["make"](len,48);
           
-          s$prime[0]=(sign_r=-1)?45:43,0;
+          s$prime[0]=sign_r===-1?45:43;
           $$String["blit"](s$2,0,s$prime,1,-1+len);
           return Bytes["unsafe_to_string"](s$prime);
           }
@@ -740,7 +745,7 @@ var
         
         var i=[0,n+3];
         
-        if(sign_r=0)
+        if(sign_r===0)
          {return $$String["concat"]
                   ("",
                    /* :: */[0,
@@ -775,11 +780,11 @@ var
             
             var str=Bytes["make"](n+m+4,48);
             
-            $$String["blit"]((sign_r=-1)?"-1.":"+1.",0,str,0,3);
-            str[i[1]]=101,0;
+            $$String["blit"](sign_r===-1?"-1.":"+1.",0,str,0,3);
+            str[i[1]]=101;
             i[0]++;
-            if(m=0)
-             {str[i[1]]=48,0}
+            if(m===0)
+             {str[i[1]]=48}
             else
              {$$String["blit"]
                (Pervasives["string_of_int"](1+msd),0,str,i[1],m)}
@@ -793,11 +798,11 @@ var
             
             var str$1=Bytes["make"](1+(m$1+p),48);
             
-            $$String["blit"]((sign_r=-1)?"-0.":"+0.",0,str$1,0,3);
+            $$String["blit"](sign_r===-1?"-0.":"+0.",0,str$1,0,3);
             $$String["blit"](s,0,str$1,3,n);
-            str$1[p]=101,0;
-            if(m$1=0)
-             {str$1[1+p]=48,0}
+            str$1[p]=101;
+            if(m$1===0)
+             {str$1[1+p]=48}
             else
              {$$String["blit"]
                (Pervasives["string_of_int"](1+msd),0,str$1,1+p,m$1)}
@@ -814,7 +819,7 @@ var
   function(r)
    {var s=approx_ratio_exp(Arith_flags["floating_precision"][1],r);
     
-    if(s[0]=43){return $$String["sub"](s,1,-1+s["length"]);}else{return s;}
+    if(s[0]===43){return $$String["sub"](s,1,-1+s["length"]);}else{return s;}
     };
 
 var
@@ -841,7 +846,7 @@ var
                Big_int["sys_big_int_of_string"](s,n+1,s["length"]-n-1));
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return /* record */[0,
                 Big_int["big_int_of_string"](s),
                 Big_int["unit_big_int"],
@@ -855,7 +860,7 @@ var
 var
  float_of_ratio=
   function(r)
-   {return CamlPrimtivie["caml_float_of_string"](float_of_rational_string(r));
+   {return CamlPrimitive["caml_float_of_string"](float_of_rational_string(r));
     };
 
 var

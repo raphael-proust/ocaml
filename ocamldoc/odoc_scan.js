@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_class=require("Odoc_class");
-var CamlinternalOO=require("CamlinternalOO");
-var List=require("List");
-var Odoc_extension=require("Odoc_extension");
-var Odoc_module=require("Odoc_module");
+var Odoc_class=require("./odoc_class.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var List=require("./list.js");
+var Odoc_extension=require("./odoc_extension.js");
+var Odoc_module=require("./odoc_module.js");
 
 
 var
@@ -125,7 +125,7 @@ var
            
            var exit;
            
-           if(typeof match=="number")
+           if(typeof match==="number")
             {switch(match){case 0:exit=1;case 1:exit=1;}}
            else
             {switch(match[0])

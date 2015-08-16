@@ -1,15 +1,16 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Callback=require("Callback");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Callback=require("./callback.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
  Graphic_failure=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Graphics.Graphic_failure",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Graphics.Graphic_failure",0]);
 
 Callback["register_exception"]
  ("Graphics.Graphic_failure",[0,Graphic_failure,""]);
@@ -17,18 +18,18 @@ var
  unix_open_graph=
   function(arg)
    {Sys["set_signal"]
-     (CamlPrimtivie["caml_gr_sigio_signal"](/* () */0),
+     (CamlPrimitive["caml_gr_sigio_signal"](/* () */0),
       /* Signal_handle */[0,
-       function(prim){return CamlPrimtivie["caml_gr_sigio_handler"](prim);}]);
-    return CamlPrimtivie["caml_gr_open_graph"](arg);
+       function(prim){return CamlPrimitive["caml_gr_sigio_handler"](prim);}]);
+    return CamlPrimitive["caml_gr_open_graph"](arg);
     };
 
 var
  unix_close_graph=
   function(param)
    {Sys["set_signal"]
-     (CamlPrimtivie["caml_gr_sigio_signal"](/* () */0),/* Signal_ignore */1);
-    return CamlPrimtivie["caml_gr_close_graph"](/* () */0);
+     (CamlPrimitive["caml_gr_sigio_signal"](/* () */0),/* Signal_ignore */1);
+    return CamlPrimitive["caml_gr_close_graph"](/* () */0);
     };
 
 var match=Sys["os_type"];
@@ -41,16 +42,16 @@ switch(match)
    var
     match$1=
      /* tuple */[0,
-      function(prim){return CamlPrimtivie["caml_gr_open_graph"](prim);},
-      function(prim){return CamlPrimtivie["caml_gr_close_graph"](prim);}];
+      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim);},
+      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim);}];
    
   case "Unix":exit=70;
   case "Win32":
    var
     match$1=
      /* tuple */[0,
-      function(prim){return CamlPrimtivie["caml_gr_open_graph"](prim);},
-      function(prim){return CamlPrimtivie["caml_gr_close_graph"](prim);}];
+      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim);},
+      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim);}];
    
   default:exit=71;}
 
@@ -71,14 +72,14 @@ var open_graph=match$1[1];
 var
  auto_synchronize=
   function(param)
-   {if(param!=0)
-     {CamlPrimtivie["caml_gr_display_mode"](/* true */1);
-      CamlPrimtivie["caml_gr_remember_mode"](/* true */1);
-      return CamlPrimtivie["caml_gr_synchronize"](/* () */0);
+   {if(param!==0)
+     {CamlPrimitive["caml_gr_display_mode"](/* true */1);
+      CamlPrimitive["caml_gr_remember_mode"](/* true */1);
+      return CamlPrimitive["caml_gr_synchronize"](/* () */0);
       }
     else
-     {CamlPrimtivie["caml_gr_display_mode"](/* false */0);
-      return CamlPrimtivie["caml_gr_remember_mode"](/* true */1);
+     {CamlPrimitive["caml_gr_display_mode"](/* false */0);
+      return CamlPrimitive["caml_gr_remember_mode"](/* true */1);
       }
     };
 
@@ -107,75 +108,79 @@ var foreground=black;
 var
  plots=
   function(points)
-   {for(var i=0;i<=points["length"]-1;i++)
-     {var match$2=points[i];
+   {for(var i=0;i<=/* -1 for tag */points["length"]-1-1;i++)
+     {var match$2=points[i+1];
       
       var y=match$2[2];
       
       var x=match$2[1];
       
-      CamlPrimtivie["caml_gr_plot"](x,y)}
+      CamlPrimitive["caml_gr_plot"](x,y)}
+    return 0;
     };
 
 var
  current_point=
   function(param)
    {return /* tuple */[0,
-            CamlPrimtivie["caml_gr_current_x"](/* () */0),
-            CamlPrimtivie["caml_gr_current_y"](/* () */0)];
+            CamlPrimitive["caml_gr_current_x"](/* () */0),
+            CamlPrimitive["caml_gr_current_y"](/* () */0)];
     };
 
 var
  rlineto=
   function(x,y)
-   {return CamlPrimtivie["caml_gr_lineto"]
-            (CamlPrimtivie["caml_gr_current_x"](/* () */0)+x,
-             CamlPrimtivie["caml_gr_current_y"](/* () */0)+y);
+   {return CamlPrimitive["caml_gr_lineto"]
+            (CamlPrimitive["caml_gr_current_x"](/* () */0)+x,
+             CamlPrimitive["caml_gr_current_y"](/* () */0)+y);
     };
 
 var
  rmoveto=
   function(x,y)
-   {return CamlPrimtivie["caml_gr_moveto"]
-            (CamlPrimtivie["caml_gr_current_x"](/* () */0)+x,
-             CamlPrimtivie["caml_gr_current_y"](/* () */0)+y);
+   {return CamlPrimitive["caml_gr_moveto"]
+            (CamlPrimitive["caml_gr_current_x"](/* () */0)+x,
+             CamlPrimitive["caml_gr_current_y"](/* () */0)+y);
     };
 
 var
  draw_rect=
   function(x,y,w,h)
    {if(w<0||h<0)
-     {throw [0,Invalid_argument,"draw_rect"];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "draw_rect"];
+      }
     else
-     {return CamlPrimtivie["caml_gr_draw_rect"](x,y,w,h);}
+     {return CamlPrimitive["caml_gr_draw_rect"](x,y,w,h);}
     };
 
 var
  dodraw=
   function(close_flag,points)
-   {if(points["length"]>0)
+   {if(/* -1 for tag */points["length"]-1>0)
      {var match$2=current_point(/* () */0);
       
       var savey=match$2[2];
       
       var savex=match$2[1];
       
-      CamlPrimtivie["caml_gr_moveto"](points[0][1],points[0][2]);
-      for(var i=1;i<=points["length"]-1;i++)
-       {var match$3=points[i];
+      CamlPrimitive["caml_gr_moveto"](points[1][1],points[1][2]);
+      for(var i=1;i<=/* -1 for tag */points["length"]-1-1;i++)
+       {var match$3=points[i+1];
         
         var y=match$3[2];
         
         var x=match$3[1];
         
-        CamlPrimtivie["caml_gr_lineto"](x,y)}
+        CamlPrimitive["caml_gr_lineto"](x,y)}
       
       if(close_flag)
-       {CamlPrimtivie["caml_gr_lineto"](points[0][1],points[0][2])}
+       {CamlPrimitive["caml_gr_lineto"](points[1][1],points[1][2])}
       else
        {}
       
-      return CamlPrimtivie["caml_gr_moveto"](savex,savey);
+      return CamlPrimitive["caml_gr_moveto"](savex,savey);
       }
     else
      {return 0;}
@@ -196,8 +201,8 @@ var
     
     var savex=match$3[1];
     
-    for(var i=0;i<=segs["length"]-1;i++)
-     {var match$4=segs[i];
+    for(var i=0;i<=/* -1 for tag */segs["length"]-1-1;i++)
+     {var match$4=segs[i+1];
       
       var y2=match$4[4];
       
@@ -207,19 +212,22 @@ var
       
       var x1=match$4[1];
       
-      CamlPrimtivie["caml_gr_moveto"](x1,y1),
-      CamlPrimtivie["caml_gr_lineto"](x2,y2)}
+      CamlPrimitive["caml_gr_moveto"](x1,y1),
+      CamlPrimitive["caml_gr_lineto"](x2,y2)}
     
-    return CamlPrimtivie["caml_gr_moveto"](savex,savey);
+    return CamlPrimitive["caml_gr_moveto"](savex,savey);
     };
 
 var
  draw_arc=
   function(x,y,rx,ry,a1,a2)
    {if(rx<0||ry<0)
-     {throw [0,Invalid_argument,"draw_arc/ellipse/circle"];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "draw_arc/ellipse/circle"];
+      }
     else
-     {return CamlPrimtivie["caml_gr_draw_arc"](x,y,rx,ry,a1,a2);}
+     {return CamlPrimitive["caml_gr_draw_arc"](x,y,rx,ry,a1,a2);}
     };
 
 var draw_ellipse=function(x,y,rx,ry){return draw_arc(x,y,rx,ry,0,360);};
@@ -230,27 +238,36 @@ var
  set_line_width=
   function(w)
    {if(w<0)
-     {throw [0,Invalid_argument,"set_line_width"];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "set_line_width"];
+      }
     else
-     {return CamlPrimtivie["caml_gr_set_line_width"](w);}
+     {return CamlPrimitive["caml_gr_set_line_width"](w);}
     };
 
 var
  fill_rect=
   function(x,y,w,h)
    {if(w<0||h<0)
-     {throw [0,Invalid_argument,"fill_rect"];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "fill_rect"];
+      }
     else
-     {return CamlPrimtivie["caml_gr_fill_rect"](x,y,w,h);}
+     {return CamlPrimitive["caml_gr_fill_rect"](x,y,w,h);}
     };
 
 var
  fill_arc=
   function(x,y,rx,ry,a1,a2)
    {if(rx<0||ry<0)
-     {throw [0,Invalid_argument,"fill_arc/ellipse/circle"];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "fill_arc/ellipse/circle"];
+      }
     else
-     {return CamlPrimtivie["caml_gr_fill_arc"](x,y,rx,ry,a1,a2);}
+     {return CamlPrimitive["caml_gr_fill_arc"](x,y,rx,ry,a1,a2);}
     };
 
 var fill_ellipse=function(x,y,rx,ry){return fill_arc(x,y,rx,ry,0,360);};
@@ -262,9 +279,9 @@ var transp=-1;
 var
  get_image=
   function(x,y,w,h)
-   {var image=CamlPrimtivie["caml_gr_create_image"](w,h);
+   {var image=CamlPrimitive["caml_gr_create_image"](w,h);
     
-    CamlPrimtivie["caml_gr_blit_image"](image,x,y);
+    CamlPrimitive["caml_gr_blit_image"](image,x,y);
     return image;
     };
 
@@ -273,7 +290,7 @@ var
   function(param)
    {var
      e=
-      CamlPrimtivie["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
+      CamlPrimitive["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
     
     return /* tuple */[0,e[1],e[2]];
     };
@@ -283,7 +300,7 @@ var
   function(param)
    {var
      e=
-      CamlPrimtivie["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
+      CamlPrimitive["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
     
     return e[3];
     };
@@ -293,7 +310,7 @@ var
   function(param)
    {var
      e=
-      CamlPrimtivie["caml_gr_wait_event"]
+      CamlPrimitive["caml_gr_wait_event"]
        ([/* :: */0,/* Key_pressed */2,/* [] */0]);
     
     return e[5];
@@ -304,7 +321,7 @@ var
   function(param)
    {var
      e=
-      CamlPrimtivie["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
+      CamlPrimitive["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
     
     return e[4];
     };
@@ -312,19 +329,19 @@ var
 var
  loop_at_exit=
   function(events,handler)
-   {var events$1=List["filter"](function(e){return e!=/* Poll */4;},events);
+   {var events$1=List["filter"](function(e){return e!==/* Poll */4;},events);
     
     return Pervasives["at_exit"]
             (function(param)
               {try
                 {while(/* true */1)
-                  {var e=CamlPrimtivie["caml_gr_wait_event"](events$1);
+                  {var e=CamlPrimitive["caml_gr_wait_event"](events$1);
                    
                    handler(e)}
                  return 0;
                  }
                catch(e$1)
-                {if(e$1=Pervasives["Exit"])
+                {if(e$1===Pervasives["Exit"])
                   {return close_graph(/* () */0);}
                  else
                   {close_graph(/* () */0);throw e$1;}
@@ -391,12 +408,7 @@ var
 var
  norm=
   function(param)
-   {var y1=param[2];
-    
-    var x1=param[1];
-    
-    return CamlPrimtivie["caml_sqrt_float"](x1*x1+y1*y1);
-    };
+   {var y1=param[2];var x1=param[1];return Math["sqrt"](x1*x1+y1*y1);};
 
 var
  test=
@@ -469,18 +481,18 @@ var
         float_point(d));
     
     draw_poly_line($$Array["of_list"](List["map"](int_point,points)));
-    return CamlPrimtivie["caml_gr_moveto"](x,y);
+    return CamlPrimitive["caml_gr_moveto"](x,y);
     };
 
 module["exports"]=
 {"Graphic_failure":Graphic_failure,
  "open_graph":open_graph,
  "close_graph":close_graph,
- "caml_gr_set_window_title":
- function(prim){return CamlPrimtivie["caml_gr_set_window_title"](prim);},
- "caml_gr_resize_window":
- function(prim,prim)
-  {return CamlPrimtivie["caml_gr_resize_window"](prim$1,prim);},
+ "set_window_title":
+ function(prim){return CamlPrimitive["caml_gr_set_window_title"](prim);},
+ "resize_window":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_gr_resize_window"](prim,prim$1);},
  "rgb":rgb,
  "background":background,
  "foreground":foreground,
@@ -505,8 +517,8 @@ module["exports"]=
  "draw_ellipse":draw_ellipse,
  "draw_circle":draw_circle,
  "set_line_width":set_line_width,
- "caml_gr_set_text_size":
- function(prim){return CamlPrimtivie["caml_gr_set_text_size"](prim);},
+ "set_text_size":
+ function(prim){return CamlPrimitive["caml_gr_set_text_size"](prim);},
  "fill_rect":fill_rect,
  "fill_arc":fill_arc,
  "fill_ellipse":fill_ellipse,

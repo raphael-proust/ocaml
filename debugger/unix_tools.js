@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Misc=require("Misc");
-var Unix=require("Unix");
-var Filename=require("Filename");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Misc=require("./misc.js");
+var Unix=require("./unix.js");
+var Filename=require("./filename.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
@@ -23,11 +24,11 @@ var
       try
        {$js=Unix["inet_addr_of_string"](host);}
       catch(exn)
-       {if(exn[1]=Failure)
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {try
-           {$js=Unix["gethostbyname"](host)[4][0];}
+           {$js=Unix["gethostbyname"](host)[4][1];}
           catch(exn$1)
-           {if(exn$1=Not_found)
+           {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
              {Pervasives["prerr_endline"]
                (Pervasives["^"]("Unknown host: ",host));
               $js=Pervasives["failwith"]("Can't convert address");
@@ -41,9 +42,9 @@ var
         }
       var $js$1;
       try
-       {$js$1=CamlPrimtivie["caml_int_of_string"](port);}
+       {$js$1=CamlPrimitive["caml_int_of_string"](port);}
       catch(exn$2)
-       {if(exn$2[1]=Failure)
+       {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {Pervasives["prerr_endline"]("The port number should be an integer");
           $js$1=Pervasives["failwith"]("Can't convert address");
           }
@@ -53,7 +54,7 @@ var
       return /* tuple */[0,/* PF_INET */1,/* ADDR_INET */[1,$js,$js$1]];
       }
     catch(exn$3)
-     {if(exn$3=Not_found)
+     {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
        {var match=Sys["os_type"];
         
         switch(match)
@@ -70,7 +71,7 @@ var
 var
  report_error=
   function(param)
-   {if(param[1]=Unix["Unix_error"])
+   {if(param[1]===Unix["Unix_error"])
      {var arg=param[4];
       
       Pervasives["prerr_string"]("Unix error: '");
@@ -109,20 +110,24 @@ var
        {try
          {Unix["access"](name,[/* :: */0,/* X_OK */2,/* [] */0]);return name;}
         catch(exn)
-         {if(exn[1]=Unix["Unix_error"]){throw Not_found;}else{throw exn;}}
+         {if(exn[1]===Unix["Unix_error"])
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+          else
+           {throw exn;}
+          }
         };
     
     if(!Filename["is_implicit"](name))
      {return check(name);}
     else
-     {var path=CamlPrimtivie["caml_sys_getenv"]("PATH");
+     {var path=CamlPrimitive["caml_sys_getenv"]("PATH");
       
       var length=path["length"];
       
       var
        traverse=
         function(pointer)
-         {if(pointer>=length||(path[pointer]=58))
+         {if(pointer>=length||path[pointer]===58)
            {return pointer;}
           else
            {return traverse(pointer+1);}
@@ -135,7 +140,7 @@ var
           
           var directory=$$String["sub"](path,pos,pos2-pos);
           
-          if(CamlPrimtivie["caml_string_equal"](directory,""))
+          if(CamlPrimitive["caml_string_equal"](directory,""))
            {var fullname=name;}
           else
            {var fullname=Pervasives["^"](directory,Pervasives["^"]("/",name));
@@ -144,8 +149,12 @@ var
           try
            {return check(fullname);}
           catch(exn)
-           {if(exn=Not_found)
-             {if(pos2<length){return find(pos2+1);}else{throw Not_found;}}
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+             {if(pos2<length)
+               {return find(pos2+1);}
+              else
+               {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+              }
             else
              {throw exn;}
             }
@@ -164,7 +173,7 @@ var
        {try
          {var pos=$$String["index"](ch,36);
           
-          if(pos+1<ch["length"]&&(ch[pos+1]=36))
+          if(pos+1<ch["length"]&&ch[pos+1]===36)
            {return Pervasives["^"]
                     ($$String["sub"](ch,0,pos+1),
                      subst_variable($$String["sub"](ch,pos+2,ch["length"]-pos-2)));
@@ -175,7 +184,12 @@ var
                      subst2($$String["sub"](ch,pos+1,ch["length"]-pos-1)));
             }
           }
-        catch(exn){if(exn=Not_found){return ch;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return ch;}
+          else
+           {throw exn;}
+          }
         };
     
     var
@@ -186,13 +200,13 @@ var
         var c=ch[i];
         
         while
-         (i<ch["length"]&&(c>=97&&c<=122||c>=65&&c<=90||c>=48&&c<=57||(c=95)))
+         (i<ch["length"]&&(c>=97&&c<=122||c>=65&&c<=90||c>=48&&c<=57||c===95))
          {i=1+i;}
         
         var suiv=i;
         
         return Pervasives["^"]
-                (CamlPrimtivie["caml_sys_getenv"]($$String["sub"](ch,0,suiv)),
+                (CamlPrimitive["caml_sys_getenv"]($$String["sub"](ch,0,suiv)),
                  subst_variable($$String["sub"](ch,suiv,ch["length"]-suiv)));
         };
     
@@ -204,14 +218,18 @@ var
        {try
          {return Filename["concat"](Unix["getpwnam"](nom)[6],ch2);}
         catch(exn)
-         {if(exn=Not_found){return Pervasives["^"]("~",nom);}else{throw exn;}}
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return Pervasives["^"]("~",nom);}
+          else
+           {throw exn;}
+          }
         };
     
-    if(ch$1[0]=126)
+    if(ch$1[0]===126)
      {try
        {var n=$$String["index"](ch$1,47);
         
-        if(n!=1)
+        if(n!==1)
          {return concat_root
                   ($$String["sub"](ch$1,1,n-1),
                    $$String["sub"](ch$1,n+1,ch$1["length"]-n-1));
@@ -221,12 +239,12 @@ var
           
           try
            {return Filename["concat"]
-                    (CamlPrimtivie["caml_sys_getenv"]("HOME"),tail);
+                    (CamlPrimitive["caml_sys_getenv"]("HOME"),tail);
             }
           catch(exn)
-           {if(exn=Not_found)
+           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {return concat_root
-                      (CamlPrimtivie["caml_sys_getenv"]("LOGNAME"),tail);
+                      (CamlPrimitive["caml_sys_getenv"]("LOGNAME"),tail);
               }
             else
              {throw exn;}
@@ -234,7 +252,7 @@ var
           }
         }
       catch(exn$1)
-       {if(exn$1=Not_found)
+       {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
          {return expand_path(Pervasives["^"](ch$1,"/"));}
         else
          {throw exn$1;}

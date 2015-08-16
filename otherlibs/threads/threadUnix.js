@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Thread=require("Thread");
-var Unix=require("Unix");
-var Bytes=require("Bytes");
+var Thread=require("./thread.js");
+var Unix=require("./unix.js");
+var Bytes=require("./bytes.js");
 
 
 var execv=Unix["execv"];
@@ -76,13 +76,16 @@ var
         
         var tag=exn[1];
         
-        if(tag=Unix["Unix_error"])
+        if(tag===Unix["Unix_error"])
          {var match=exn[2];
           
           var exit$1;
           
           if(typeof match==="number")
-           {if(match!=2){if(match!=37){exit=4;}else{exit$1=5;}}else{exit$1=5;}
+           {if(match!==2)
+             {if(match!==37){exit=4;}else{exit$1=5;}}
+            else
+             {exit$1=5;}
             }
           else
            {exit=4;}
@@ -110,13 +113,16 @@ var
         
         var tag=exn[1];
         
-        if(tag=Unix["Unix_error"])
+        if(tag===Unix["Unix_error"])
          {var match=exn[2];
           
           var exit$1;
           
           if(typeof match==="number")
-           {if(match!=2){if(match!=37){exit=2;}else{exit$1=3;}}else{exit$1=3;}
+           {if(match!==2)
+             {if(match!==37){exit=2;}else{exit$1=3;}}
+            else
+             {exit$1=3;}
             }
           else
            {exit=2;}

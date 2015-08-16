@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_html=require("Odoc_html");
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Odoc_args=require("Odoc_args");
-var Buffer=require("Buffer");
+var Odoc_html=require("./odoc_html.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Odoc_args=require("./odoc_args.js");
+var Buffer=require("./buffer.js");
 
 
 
@@ -261,7 +261,7 @@ var
          
          if(text)
           {var $js=text[1];
-           if(typeof $js=="number")
+           if(typeof $js==="number")
             {switch($js){}}
            else
             {switch($js[0])
@@ -343,7 +343,7 @@ var
          },
        code_block,
        function(self$neg1,b,code)
-        {self$neg1[code_id]=self$neg1[code_id]+1,0;
+        {self$neg1[code_id+1]=self$neg1[code_id+1]+1;
          Printf["bprintf"]
           (b,
            [/* Format */0,
@@ -369,9 +369,9 @@ var
                    '\').style.display=\'none\';}"><img src="expand_collapse.png" alt="+/-"/></span>',
                    /* End_of_format */0]]]]]]],
             "<span class=\"code_expand\" onclick=\"if(document.getElementById('code%d').style.display=='none') {document.getElementById('code%d').style.display='block';} else {document.getElementById('code%d').style.display='none';}\"><img src=\"expand_collapse.png\" alt=\"+/-\"/></span>"],
-           self$neg1[code_id],
-           self$neg1[code_id],
-           self$neg1[code_id]);
+           self$neg1[code_id+1],
+           self$neg1[code_id+1],
+           self$neg1[code_id+1]);
          Printf["bprintf"]
           (b,
            [/* Format */0,
@@ -385,7 +385,7 @@ var
                '" class="codeblock">',
                /* End_of_format */0]]],
             '<div id="code%d" class="codeblock">'],
-           self$neg1[code_id]);
+           self$neg1[code_id+1]);
          /* unknown */"(sendself self-1/1437 html_of_code/1440 b/1438 0a code/1439)";
          
          return Printf["bprintf"]
@@ -437,7 +437,7 @@ var
     CamlinternalOO["add_initializer"]
      ($$class,
       function(self$neg1)
-       {return self$neg1[default_style_options]=
+       {return self$neg1[default_style_options+1]=
                /* :: */[0,
                 "a:visited {color : #416DFF; text-decoration : none; }",
                 /* :: */[0,
@@ -575,7 +575,7 @@ var
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      obj_init($$self$1),$$self$1[code_id]=0,0;
+      obj_init($$self$1),$$self$1[code_id+1]=0;
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
       };
     };

@@ -3442,6 +3442,11 @@ module rec
                                                                   buffer)))
                                                    [@@ocaml.doc
                                                      " TODO:\n    check name conflicts with javascript conventions\n "]
+                                                 module SSet =
+                                                   Set.Make(String)
+                                                 let gen_symbs =
+                                                   SSet.of_list
+                                                     ["param"; "prim"]
                                                  let string_of_id ?(replace=
                                                    false)  (id : Ident.t)
                                                    (({ mapping } as cxt) :
@@ -3471,8 +3476,11 @@ module rec
                                                              Not_found  ->
                                                              if
                                                                replace &&
-                                                                 (id.name <>
-                                                                    "param")
+                                                                 (not
+                                                                    (
+                                                                    SSet.mem
+                                                                    id.name
+                                                                    gen_symbs))
                                                              then
                                                                (0,
                                                                  {

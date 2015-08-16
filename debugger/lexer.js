@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Lexing=require("Lexing");
-var Parsing=require("Parsing");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Lexing=require("./lexing.js");
+var Parsing=require("./parsing.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -24,8 +25,8 @@ var
 var
  line=
   function(lexbuf)
-   {lexbuf[10]=CamlPrimtivie["caml_make_vect"](2,-1),0;
-    lexbuf[10][1]=lexbuf[6],0;
+   {lexbuf[10]=CamlPrimitive["caml_make_vect"](2,-1);
+    lexbuf[10][2]=lexbuf[6];
     return __ocaml_lex_line_rec(lexbuf,0);
     };
 
@@ -42,7 +43,7 @@ var
       }
     else
      {switch(__ocaml_lex_state$1)
-       {case 0:return Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[10][0]);
+       {case 0:return Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[10][1]);
         case 1:return Lexing["lexeme"](lexbuf);
         case 2:throw Pervasives["Exit"];
         }
@@ -83,8 +84,8 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!=0)
-     {if(__ocaml_lex_state$1!=1)
+    if(__ocaml_lex_state$1!==0)
+     {if(__ocaml_lex_state$1!==1)
        {lexbuf[1](lexbuf);
         return __ocaml_lex_line_argument_rec(lexbuf,__ocaml_lex_state$1);
         }
@@ -120,7 +121,7 @@ var
          
         case 4:
          return /* INTEGER */[4,
-                 CamlPrimtivie["caml_int64_of_string"]
+                 CamlPrimitive["caml_int64_of_string"]
                   (Lexing["lexeme"](lexbuf))];
          
         case 5:return /* STAR */0;

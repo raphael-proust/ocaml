@@ -51,11 +51,11 @@ var
   function(buff,ofs){return from_bytes(Bytes["unsafe_of_string"](buff),ofs);};
 
 module["exports"]=
-{"caml_output_value":
- function(prim,prim,prim)
-  {return CamlPrimitive["caml_output_value"](prim$1,prim$2,prim);},
+{"to_channel":
+ function(prim,prim$1,prim$2)
+  {return CamlPrimitive["caml_output_value"](prim,prim$1,prim$2);},
  "to_buffer":to_buffer,
- "caml_input_value":
+ "from_channel":
  function(prim){return CamlPrimitive["caml_input_value"](prim);},
  "from_bytes":from_bytes,
  "from_string":from_string,

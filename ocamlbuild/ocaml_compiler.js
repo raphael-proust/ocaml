@@ -1,19 +1,20 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ocaml_utils=require("Ocaml_utils");
-var Tools=require("Tools");
-var Options=require("Options");
-var Ocaml_dependencies=require("Ocaml_dependencies");
-var Ocaml_arch=require("Ocaml_arch");
-var Pervasives=require("Pervasives");
-var Rule=require("Rule");
-var Pathname=require("Pathname");
-var Resource=require("Resource");
-var Command=require("Command");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
+var Ocaml_utils=require("./ocaml_utils.js");
+var Tools=require("./tools.js");
+var Options=require("./options.js");
+var Ocaml_dependencies=require("./ocaml_dependencies.js");
+var Ocaml_arch=require("./ocaml_arch.js");
+var Pervasives=require("./pervasives.js");
+var Rule=require("./rule.js");
+var Pathname=require("./pathname.js");
+var Resource=require("./resource.js");
+var Command=require("./command.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -680,7 +681,7 @@ var
          ?Ocaml_utils["path_dependencies_of"](mli)
          :/* [] */0);
     
-    if((modules=/* [] */0)&&Pathname["exists"](Pervasives["^"](ml,"pack")))
+    if(modules===/* [] */0&&Pathname["exists"](Pervasives["^"](ml,"pack")))
      {var
        modules$1=
         My_std["List"][16]
@@ -690,7 +691,7 @@ var
     else
      {var modules$1=modules;}
     
-    if(modules$1!=/* [] */0&&!Hashtbl["mem"](cache_prepare_link,key))
+    if(modules$1!==/* [] */0&&!Hashtbl["mem"](cache_prepare_link,key))
      {var match=Hashtbl["add"](cache_prepare_link,key,/* true */1);
       
       var
@@ -763,7 +764,12 @@ var
                  else
                   {return /* :: */[0,match[1],acc];}
                  }
-               catch(exn){if(exn=Not_found){return acc;}else{throw exn;}}
+               catch(exn)
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {return acc;}
+                 else
+                  {throw exn;}
+                 }
                },
              tags,
              /* [] */0);
@@ -895,11 +901,11 @@ var
     
     var
      is_not_stdlib=
-      function(x){return CamlPrimtivie["caml_string_notequal"](x,stdlib);};
+      function(x){return CamlPrimitive["caml_string_notequal"](x,stdlib);};
     
     var deps$2=My_std["List"][33](is_not_stdlib,deps$1);
     
-    if(deps$2=/* [] */0)
+    if(deps$2===/* [] */0)
      {Pervasives["failwith"]("Link list cannot be empty")}
     else
      {}
@@ -1216,7 +1222,7 @@ var
     
     var
      is_not_stdlib=
-      function(x){return CamlPrimtivie["caml_string_notequal"](x,stdlib);};
+      function(x){return CamlPrimitive["caml_string_notequal"](x,stdlib);};
     
     var deps$3=My_std["List"][33](is_not_stdlib,deps$2);
     

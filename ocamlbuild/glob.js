@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Bool=require("Bool");
-var Printf=require("Printf");
-var Glob_ast=require("Glob_ast");
-var Format=require("Format");
-var Glob_lexer=require("Glob_lexer");
-var Lexing=require("Lexing");
-var My_std=require("My_std");
-var Hashtbl=require("Hashtbl");
-var Map=require("Map");
+var Bool=require("./bool.js");
+var Printf=require("./printf.js");
+var Glob_ast=require("./glob_ast.js");
+var Format=require("./format.js");
+var Glob_lexer=require("./glob_lexer.js");
+var Lexing=require("./lexing.js");
+var My_std=require("./my_std.js");
+var Hashtbl=require("./hashtbl.js");
+var Map=require("./map.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -42,13 +43,13 @@ var
   function(cl,c)
    {return Bool["eval"]
             (function(param)
-              {return CamlPrimtivie["caml_lessequal"](param[1],c)&&
-                      CamlPrimtivie["caml_lessequal"](c,param[2]);
+              {return CamlPrimitive["caml_lessequal"](param[1],c)&&
+                      CamlPrimitive["caml_lessequal"](c,param[2]);
                },
              cl);
     };
 
-var compare=function(x,y){return CamlPrimtivie["caml_int_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_int_compare"](x,y);};
 
 var print=Format["pp_print_int"];
 
@@ -75,21 +76,17 @@ var
      $neg$neg$great=
       function(q1,t,q2)
        {if(t)
-         {transitions[1]=
-          /* :: */[0,/* tuple */[0,q1,t[1],q2],transitions[1]],
-          0;
+         {transitions[1]=/* :: */[0,/* tuple */[0,q1,t[1],q2],transitions[1]];
           return q1;
           }
         else
-         {epsilons[1]=/* :: */[0,/* tuple */[0,q1,q2],epsilons[1]],0;
-          return q1;
-          }
+         {epsilons[1]=/* :: */[0,/* tuple */[0,q1,q2],epsilons[1]];return q1;}
         };
     
     var
      loop=
       function(qf,param)
-       {if(typeof param=="number")
+       {if(typeof param==="number")
          {switch(param){case 0:return qf;}}
         else
          {switch(param[0])
@@ -146,10 +143,10 @@ var
              var
               loop$1=
                function(q,i)
-                {if(i=m)
+                {if(i===m)
                   {return q0;}
                  else
-                  {if(i=m-1)
+                  {if(i===m-1)
                     {var q$prime=qf;}
                    else
                     {var q$prime=state(/* () */0);}
@@ -176,13 +173,13 @@ var
     
     var m=count[1];
     
-    var graph=CamlPrimtivie["caml_make_vect"](m,IS[1]);
+    var graph=CamlPrimitive["caml_make_vect"](m,IS[1]);
     
     My_std["List"][14]
      (function(param)
-       {var q=param[1];return graph[q]=IS[4](param[2],graph[q]),0;},
+       {var q=param[1];return graph[q+1]=IS[4](param[2],graph[q+1]),0;},
       epsilons[1]);
-    var closure=CamlPrimtivie["caml_make_vect"](m,IS[1]);
+    var closure=CamlPrimitive["caml_make_vect"](m,IS[1]);
     
     var
      transitive=
@@ -201,7 +198,7 @@ var
                 else
                  {return /* :: */[0,q$prime,future$prime];}
                 },
-              graph[q],
+              graph[q+1],
               param[2]);
           
           return transitive(past$prime,future$prime);
@@ -211,16 +208,18 @@ var
         };
     
     for(var i=0;i<=m-1;i++)
-     {closure[i]=transitive(IS[1],/* :: */[0,i,/* [] */0]),0}
+     {closure[i+1]=transitive(IS[1],/* :: */[0,i,/* [] */0])}
     
-    var table=CamlPrimtivie["caml_make_vect"](m,/* [] */0);
+    var table=CamlPrimitive["caml_make_vect"](m,/* [] */0);
     
     My_std["List"][14]
      (function(param)
        {var q=param[1];
         
-        return table[q]=
-               /* :: */[0,/* tuple */[0,param[2],closure[param[3]]],table[q]],
+        return table[q+1]=
+               /* :: */[0,
+                /* tuple */[0,param[2],closure[param[3]+1]],
+                table[q+1]],
                0;
         },
       transitions[1]);
@@ -228,7 +227,7 @@ var
             graph,
             closure,
             /* record */[0,
-             closure[qi],
+             closure[qi+1],
              table,
              qf,
              Hashtbl["create"](/* None */0,37)]];
@@ -252,7 +251,7 @@ var
        {try
          {var t=Hashtbl["find"](machine[4],c);return ISM[22](qs,t);}
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {var
              qs$prime=
               IS[14]
@@ -265,7 +264,7 @@ var
                               {return qs$prime;}
                              },
                            qs$prime,
-                           machine[2][q]);
+                           machine[2][q+1]);
                   },
                 qs,
                 IS[1]);
@@ -273,7 +272,11 @@ var
             try
              {var t$1=Hashtbl["find"](machine[4],c);}
             catch(exn$1)
-             {if(exn$1=Not_found){var t$1=ISM[1];}else{throw exn$1;}}
+             {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+               {var t$1=ISM[1];}
+              else
+               {throw exn$1;}
+              }
             
             Hashtbl["replace"](machine[4],c,ISM[4](qs,qs$prime,t$1));
             return qs$prime;
@@ -289,7 +292,7 @@ var
        {if(IS[2](qs))
          {return /* false */0;}
         else
-         {if(i=m)
+         {if(i===m)
            {return IS[3](machine[3],qs);}
           else
            {var c=u[i];
@@ -344,11 +347,11 @@ var
 
 var NFA=[0,IS,ISM,build$prime,build,run];
 
-var Succeed=CamlPrimtivie["caml_set_oo_id"]([248,"Glob.Brute.Succeed",0]);
+var Succeed=CamlPrimitive["caml_set_oo_id"]([248,"Glob.Brute.Succeed",0]);
 
-var Fail=CamlPrimtivie["caml_set_oo_id"]([248,"Glob.Brute.Fail",0]);
+var Fail=CamlPrimitive["caml_set_oo_id"]([248,"Glob.Brute.Fail",0]);
 
-var Too_hard=CamlPrimtivie["caml_set_oo_id"]([248,"Glob.Brute.Too_hard",0]);
+var Too_hard=CamlPrimitive["caml_set_oo_id"]([248,"Glob.Brute.Too_hard",0]);
 
 var
  match_pattern=
@@ -367,13 +370,16 @@ var
         if(0<=i&&0<=n&&i+n<=m)
          {}
         else
-         {throw [0,Assert_failure,[0,"glob.ml",253,8]];}
+         {throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"glob.ml",253,8]];
+          }
         
         counter[0]++;
         if(counter[1]>=brute_limit){throw Too_hard;}else{}
         
-        if(typeof p$1=="number")
-         {switch(p$1){case 0:return n=0;}}
+        if(typeof p$1==="number")
+         {switch(p$1){case 0:return n===0;}}
         else
          {switch(p$1[0])
            {case 0:
@@ -381,7 +387,7 @@ var
              
              var exit;
              
-             if(typeof match=="number")
+             if(typeof match==="number")
               {switch(match){}}
              else
               {switch(match[0])
@@ -391,7 +397,7 @@ var
                   var exit$1;
                   
                   if(typeof cl==="number")
-                   {if(cl!=0){exit$1=27;}else{return /* true */1;}}
+                   {if(cl!==0){exit$1=27;}else{return /* true */1;}}
                   else
                    {exit$1=27;}
                   
@@ -400,7 +406,7 @@ var
                      var
                       check=
                        function(k)
-                        {if(k=n)
+                        {if(k===n)
                           {return /* true */1;}
                          else
                           {return match_character_class(cl,u[i+k])&&check(k+1);}
@@ -414,7 +420,7 @@ var
              
              switch(exit){case 26:throw Too_hard;}
              
-            case 1:return (n=1)&&match_character_class(p$1[1],u[i]);
+            case 1:return n===1&&match_character_class(p$1[1],u[i]);
             case 2:
              var p2=p$1[2];
              
@@ -442,9 +448,9 @@ var
              
              var
               check$1=
-               function(j){return (j=n)||(v[j]=u[i+j])&&check$1(j+1);};
+               function(j){return j===n||v[j]===u[i+j]&&check$1(j+1);};
              
-             return (v["length"]=n)&&check$1(0);
+             return v["length"]===n&&check$1(0);
              
             }}
         };
@@ -516,7 +522,7 @@ var
        {var match=tok[1];
         
         if(match)
-         {tok[1]=/* None */0,0;return match[1];}
+         {tok[1]=/* None */0;return match[1];}
         else
          {return Glob_lexer["token"](l);}
         };
@@ -553,7 +559,7 @@ var
       function(x)
        {var y=f(/* () */0);
         
-        if(CamlPrimtivie["caml_equal"](x,y))
+        if(CamlPrimitive["caml_equal"](x,y))
          {return /* () */0;}
         else
          {throw [0,
@@ -636,8 +642,8 @@ var
         var exit;
         
         if(typeof t==="number")
-         {if(t!=1)
-           {if(t!=0){exit=10;}else{return parse_t(x);}}
+         {if(t!==1)
+           {if(t!==0){exit=10;}else{return parse_t(x);}}
           else
            {var y=parse_s(/* () */0);
             
@@ -658,8 +664,8 @@ var
         var exit;
         
         if(typeof t==="number")
-         {if(t!=1)
-           {if(t!=0)
+         {if(t!==1)
+           {if(t!==0)
              {exit=12;}
             else
              {return parse_t
@@ -700,7 +706,7 @@ var
    {return Bool["eval"]
             (function(param)
               {switch(param[0])
-                {case 0:return CamlPrimtivie["caml_string_equal"](u,param[1]);
+                {case 0:return CamlPrimitive["caml_string_equal"](u,param[1]);
                  case 1:
                   var kind=param[1];
                   
@@ -717,7 +723,7 @@ var
                        function(param$1)
                         {var m=NFA[4](p);
                          
-                         kind[1]=/* Machine */[1,m],0;
+                         kind[1]=/* Machine */[1,m];
                          return NFA[5](/* None */0,m,u);
                          };
                      
@@ -727,7 +733,10 @@ var
                       {try
                         {return Brute[4](count,p,u);}
                        catch(exn)
-                        {if(exn=Brute[3]){return do_nfa(/* () */0);}else{throw exn;}
+                        {if(exn===Brute[3])
+                          {return do_nfa(/* () */0);}
+                         else
+                          {throw exn;}
                          }
                        }
                      

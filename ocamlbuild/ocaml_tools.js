@@ -1,15 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ocaml_utils=require("Ocaml_utils");
-var Tools=require("Tools");
-var Options=require("Options");
-var Ocaml_compiler=require("Ocaml_compiler");
-var Rule=require("Rule");
-var Pathname=require("Pathname");
-var Flags=require("Flags");
-var Command=require("Command");
-var My_std=require("My_std");
-var Tags=require("Tags");
+var Ocaml_utils=require("./ocaml_utils.js");
+var Tools=require("./tools.js");
+var Options=require("./options.js");
+var Ocaml_compiler=require("./ocaml_compiler.js");
+var Rule=require("./rule.js");
+var Pathname=require("./pathname.js");
+var Flags=require("./flags.js");
+var Command=require("./command.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
 
 
 var
@@ -40,7 +40,7 @@ var
 var
  menhir_ocamldep_command$prime=
   function(tags,menhir_spec,out)
-   {if(Options["ocamlyacc"][1]=/* N */0)
+   {if(Options["ocamlyacc"][1]===/* N */0)
      {var menhir=[/* V */6,"MENHIR"];}
     else
      {var menhir=Options["ocamlyacc"][1];}
@@ -145,7 +145,7 @@ var
 var
  menhir_modular=
   function(menhir_base,mlypack,mlypack_depends,env,build)
-   {if(Options["ocamlyacc"][1]=/* N */0)
+   {if(Options["ocamlyacc"][1]===/* N */0)
      {var menhir=[/* V */6,"MENHIR"];}
     else
      {var menhir=Options["ocamlyacc"][1];}
@@ -229,7 +229,7 @@ var
   function(mly,env,_build)
    {var mly$1=env(mly);
     
-    if(Options["ocamlyacc"][1]=/* N */0)
+    if(Options["ocamlyacc"][1]===/* N */0)
      {var ocamlyacc$1=[/* V */6,"OCAMLYACC"];}
     else
      {var ocamlyacc$1=Options["ocamlyacc"][1];}
@@ -307,7 +307,7 @@ var
     
     var ml=Pathname["update_extension"]("ml",mly$1);
     
-    if(Options["ocamlyacc"][1]=/* N */0)
+    if(Options["ocamlyacc"][1]===/* N */0)
      {var menhir$1=[/* V */6,"MENHIR"];}
     else
      {var menhir$1=Options["ocamlyacc"][1];}

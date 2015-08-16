@@ -1,14 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Options=require("Options");
-var Scanf=require("Scanf");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Pathname=require("Pathname");
-var Shell=require("Shell");
-var My_std=require("My_std");
-var My_unix=require("My_unix");
-var Hashtbl=require("Hashtbl");
+var Options=require("./options.js");
+var Scanf=require("./scanf.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Pathname=require("./pathname.js");
+var Shell=require("./shell.js");
+var My_std=require("./my_std.js");
+var My_unix=require("./my_unix.js");
+var Hashtbl=require("./hashtbl.js");
 
 
 var digests=Hashtbl["create"](/* None */0,103);
@@ -77,7 +77,12 @@ var
                 put)}
             return 0;
             }
-          catch(exn){if(exn=End_of_file){return /* () */0;}else{throw exn;}}
+          catch(exn)
+           {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
+             {return /* () */0;}
+            else
+             {throw exn;}
+            }
           })}
     else
      {}

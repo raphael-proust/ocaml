@@ -1,9 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Parsing=require("Parsing");
-var Str=require("Str");
-var Odoc_misc=require("Odoc_misc");
+var Pervasives=require("./pervasives.js");
+var Parsing=require("./parsing.js");
+var Str=require("./str.js");
+var Odoc_misc=require("./odoc_misc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var identchar="[A-Z a-z_À-ÖØ-öø-ÿ'0-9]";
@@ -28,7 +29,7 @@ var
 
 var
  yytransl_const=
-  CamlPrimtivie["caml_obj_dup"]
+  CamlPrimitive["caml_obj_dup"]
    ([0,
      257,
      259,
@@ -77,7 +78,7 @@ var
      0,
      0]);
 
-var yytransl_block=CamlPrimtivie["caml_obj_dup"]([0,258,265,277,304,0]);
+var yytransl_block=CamlPrimitive["caml_obj_dup"]([0,258,265,277,304,0]);
 
 var
  yylhs=
@@ -121,7 +122,8 @@ var yynames_block="Title\0CUSTOM\0Target\0Char\0";
 
 var
  yyact=
-  [function(param){return Pervasives["failwith"]("parser");},
+  [/* array */0,
+   function(param){return Pervasives["failwith"]("parser");},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);return _1;},
    function(__caml_parser_env){return [/* :: */0,[/* Raw */0,""],/* [] */0];},

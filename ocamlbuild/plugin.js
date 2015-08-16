@@ -1,20 +1,21 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Options=require("Options");
-var Const=require("Const");
-var Ocamlbuild_where=require("Ocamlbuild_where");
-var Pervasives=require("Pervasives");
-var Pathname=require("Pathname");
-var Format=require("Format");
-var Command=require("Command");
-var Param_tags=require("Param_tags");
-var Shell=require("Shell");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var My_unix=require("My_unix");
-var Log=require("Log");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var Options=require("./options.js");
+var Const=require("./const.js");
+var Ocamlbuild_where=require("./ocamlbuild_where.js");
+var Pervasives=require("./pervasives.js");
+var Pathname=require("./pathname.js");
+var Format=require("./format.js");
+var Command=require("./command.js");
+var Param_tags=require("./param_tags.js");
+var Shell=require("./shell.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var My_unix=require("./my_unix.js");
+var Log=require("./log.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var plugin="myocamlbuild";
@@ -96,7 +97,6 @@ var
                (Ocamlbuild_where["libdir"][1],"ocamlbuildlib.cmxa")))
            {Options["native_plugin"][1]=
             /* false */0,
-            0,
             Log["eprintf"]
              ([/* Format */0,
                [/* String_literal */11,
@@ -140,7 +140,9 @@ var
           
           var
            use_ocamlfind_pkgs=
-            Options["use_ocamlfind"][1]&&Options["plugin_tags"][1]!=/* [] */0;
+            Options["use_ocamlfind"][1]&&
+            Options["plugin_tags"][1]!==
+            /* [] */0;
           
           if(use_ocamlfind_pkgs)
            {var unix_lib=[/* `Package */0,251810662,"unix"];}
@@ -314,7 +316,7 @@ var
            passed_argv=
             My_std["List"][33]
              (function(s)
-               {return CamlPrimtivie["caml_string_notequal"]
+               {return CamlPrimitive["caml_string_notequal"]
                         (s,"-plugin-option");
                 },
               argv);
@@ -343,7 +345,7 @@ var
         else
          {if
            (!My_std["sys_file_exists"](plugin_file)&&
-            Options["plugin_tags"][1]!=
+            Options["plugin_tags"][1]!==
             /* [] */0)
            {return Log["eprintf"]
                     ([/* Format */0,

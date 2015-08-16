@@ -1,22 +1,23 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Options=require("Options");
-var Const=require("Const");
-var Slurp=require("Slurp");
-var Pervasives=require("Pervasives");
-var Lexers=require("Lexers");
-var Printf=require("Printf");
-var Pathname=require("Pathname");
-var Digest_cache=require("Digest_cache");
-var Format=require("Format");
-var Command=require("Command");
-var Shell=require("Shell");
-var Buffer=require("Buffer");
-var My_std=require("My_std");
-var My_unix=require("My_unix");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
-var Glob=require("Glob");
+var Options=require("./options.js");
+var Const=require("./const.js");
+var Slurp=require("./slurp.js");
+var Pervasives=require("./pervasives.js");
+var Lexers=require("./lexers.js");
+var Printf=require("./printf.js");
+var Pathname=require("./pathname.js");
+var Digest_cache=require("./digest_cache.js");
+var Format=require("./format.js");
+var Command=require("./command.js");
+var Shell=require("./shell.js");
+var Buffer=require("./buffer.js");
+var My_std=require("./my_std.js");
+var My_unix=require("./my_unix.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
+var Glob=require("./glob.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var $$let=Pathname;
@@ -27,11 +28,11 @@ var print=Pathname["print"];
 
 var
  equal=
-  function(prim,prim){return CamlPrimtivie["caml_equal"](prim$1,prim);};
+  function(prim,prim$1){return CamlPrimitive["caml_equal"](prim,prim$1);};
 
 var
  compare=
-  function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
 
 var
  in_source_dir=
@@ -82,7 +83,7 @@ var
                  if(Pathname["link_to_dir"](pathname,Options["build_dir"][1]))
                   {var z=Pathname["readlink"](pathname);
                    
-                   if(!CamlPrimtivie["caml_sys_file_exists"](z))
+                   if(!CamlPrimitive["caml_sys_file_exists"](z))
                     {Shell["rm"](pathname)}
                    else
                     {}
@@ -280,7 +281,7 @@ var
    {try
      {return Hashtbl["find"](cache,r);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var cache_entry=empty(/* () */0);
         
         Hashtbl["add"](cache,r,cache_entry);
@@ -444,10 +445,14 @@ var
       
       var
        is_up_to_date=
-        CamlPrimtivie["caml_string_equal"](digest,digest$prime);
+        CamlPrimitive["caml_string_equal"](digest,digest$prime);
       }
     catch(exn)
-     {if(exn=Not_found){var is_up_to_date=/* false */0;}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var is_up_to_date=/* false */0;}
+      else
+       {throw exn;}
+      }
     
     return is_up_to_date||(Digest_cache["put"](key,digest),/* false */0);
     };
@@ -463,9 +468,14 @@ var
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      $js=CamlPrimtivie["caml_string_equal"](digest,digest$prime);
+      $js=CamlPrimitive["caml_string_equal"](digest,digest$prime);
       }
-    catch(exn){if(exn=Not_found){$js=/* false */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {$js=/* false */0;}
+      else
+       {throw exn;}
+      }
     var r_is_up_to_date=Pathname["exists"](r_in_build_dir)&&$js;
     
     return r_is_up_to_date||(Digest_cache["put"](key,digest),/* false */0);
@@ -501,7 +511,10 @@ var
           {var res=/* false */0;}
          }
        else
-        {throw [0,Assert_failure,[0,"resource.ml",182,27]];}
+        {throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"resource.ml",182,27]];
+         }
        
        var match$2=(cache_entry[2]=res?/* Yes */0:/* No */1,0);
        
@@ -550,8 +563,7 @@ var
       Shell["mkdir_p"](Pathname["dirname"](r)),
       Pathname["copy"](r_in_source_dir,r_in_build_dir),
       cache_entry[2]=
-      /* Yes */0,
-      0}
+      /* Yes */0}
     
     return cache_entry[1]=/* Bbuilt */0,0;
     };
@@ -566,7 +578,11 @@ var
     if(typeof match==="number")
      {switch(match)
        {case 0:return /* () */0;
-        case 1:throw [0,Assert_failure,[0,"resource.ml",212,26]];
+        case 1:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"resource.ml",212,26]];
+         
         case 2:
          var
           kont$1=
@@ -692,7 +708,7 @@ var $$import=function(x){return Pathname["normalize"](x);};
 
 var
  No_solution=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Resource.MetaPath.No_solution",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Resource.MetaPath.No_solution",0]);
 
 var
  mk=
@@ -720,7 +736,7 @@ var
     if(match)
      {var pos$prime=match[1];
       
-      if(pos=pos$prime)
+      if(pos===pos$prime)
        {return pos$prime+prefix["length"];}
       else
        {throw No_solution;}
@@ -772,7 +788,7 @@ var
                                  0);
                         }
                       catch(exn)
-                       {if(exn=No_solution)
+                       {if(exn===No_solution)
                          {return loop(xs,pos,acc,pos$prime-pos+1);}
                         else
                          {throw exn;}
@@ -784,7 +800,11 @@ var
                   else
                    {throw No_solution;}
                   
-                 case 1:throw [0,Assert_failure,[0,"resource.ml",347,38]];
+                 case 1:
+                  throw [0,
+                         CamlPrimitive["caml_global_data"]["Assert_failure"],
+                         [0,"resource.ml",347,38]];
+                  
                  }
                }
              else
@@ -799,12 +819,12 @@ var
             }
           }
         else
-         {if(pos=sl){return acc;}else{throw No_solution;}}
+         {if(pos===sl){return acc;}else{throw No_solution;}}
         };
     
     try
      {return /* Some */[0,loop(p,0,/* [] */0,0)];}
-    catch(exn){if(exn=No_solution){return /* None */0;}else{throw exn;}}
+    catch(exn){if(exn===No_solution){return /* None */0;}else{throw exn;}}
     };
 
 var
@@ -835,7 +855,7 @@ var
                
                var k=param[1];
                
-               if(CamlPrimtivie["caml_string_equal"](k,""))
+               if(CamlPrimitive["caml_string_equal"](k,""))
                 {return Format["fprintf"]
                          (f,
                           [/* Format */0,
@@ -884,7 +904,12 @@ var
                    case 1:
                     try
                      {return My_std["List"][36](x[1],env);}
-                    catch(exn){if(exn=Not_found){return "";}else{throw exn;}}
+                    catch(exn)
+                     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                       {return "";}
+                      else
+                       {throw exn;}
+                      }
                     
                    }
                  },

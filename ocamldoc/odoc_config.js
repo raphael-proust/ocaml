@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Filename=require("Filename");
-var Config=require("Config");
+var Filename=require("./filename.js");
+var Config=require("./config.js");
 
 
 var

@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Printf=require("Printf");
+var Printf=require("./printf.js");
 
 
 var

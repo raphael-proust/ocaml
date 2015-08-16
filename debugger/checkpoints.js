@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Primitives=require("Primitives");
-var Int64ops=require("Int64ops");
+var Primitives=require("./primitives.js");
+var Int64ops=require("./int64ops.js");
 
 
 var
@@ -40,7 +40,7 @@ var
       
       var exit$1;
       
-      if(match$2!=2)
+      if(match$2!==2)
        {if(match$2>=4){exit$1=6;}else{return /* Some */[0,match$1[4]];}}
       else
        {exit$1=6;}
@@ -67,7 +67,7 @@ var
       
       var exit$1;
       
-      if(match$2!=2)
+      if(match$2!==2)
        {if(match$2>=4)
          {exit$1=2;}
         else

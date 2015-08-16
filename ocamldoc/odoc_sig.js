@@ -1,28 +1,29 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_name=require("Odoc_name");
-var $$String=require("String");
-var Ctype=require("Ctype");
-var Odoc_global=require("Odoc_global");
-var Odoc_class=require("Odoc_class");
-var Odoc_value=require("Odoc_value");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Btype=require("Btype");
-var Odoc_types=require("Odoc_types");
-var Types=require("Types");
-var Misc=require("Misc");
-var Odoc_merge=require("Odoc_merge");
-var Odoc_env=require("Odoc_env");
-var Filename=require("Filename");
-var Odoc_misc=require("Odoc_misc");
-var Location=require("Location");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var Odoc_messages=require("Odoc_messages");
+var Odoc_name=require("./odoc_name.js");
+var $$String=require("./string.js");
+var Ctype=require("./ctype.js");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_class=require("./odoc_class.js");
+var Odoc_value=require("./odoc_value.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Btype=require("./btype.js");
+var Odoc_types=require("./odoc_types.js");
+var Types=require("./types.js");
+var Misc=require("./misc.js");
+var Odoc_merge=require("./odoc_merge.js");
+var Odoc_env=require("./odoc_env.js");
+var Filename=require("./filename.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Location=require("./location.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
-Odoc_module,Odoc_name;
+
 var
  add_to_hash=
   function(table,signat)
@@ -74,7 +75,11 @@ var
     
     switch(match[0])
      {case 0:return match[2][1];
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",72,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",72,13]];
+       }
     };
 
 var
@@ -84,7 +89,11 @@ var
     
     switch(match[0])
      {case 2:return match[2];
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",77,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",77,13]];
+       }
     };
 
 var
@@ -94,7 +103,11 @@ var
     
     switch(match[0])
      {case 1:return match[2];
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",82,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",82,13]];
+       }
     };
 
 var
@@ -104,7 +117,11 @@ var
     
     switch(match[0])
      {case 5:return match[2];
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",87,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",87,13]];
+       }
     };
 
 var
@@ -114,7 +131,11 @@ var
     
     switch(match[0])
      {case 6:return match[2];
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",92,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",92,13]];
+       }
     };
 
 var
@@ -124,7 +145,11 @@ var
     
     switch(match[0])
      {case 3:return match[2][1];
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",97,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",97,13]];
+       }
     };
 
 var
@@ -138,7 +163,11 @@ var
        
        if(match$1){return /* Some */[0,match$1[1]];}else{return /* None */0;}
        
-      default:throw [0,Assert_failure,[0,"odoc_sig.ml",105,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_sig.ml",105,13]];
+       }
     };
 
 var
@@ -181,7 +210,12 @@ var
       function(the_start,the_end)
        {try
          {return $$String["sub"](file[1],the_start,the_end-the_start);}
-        catch(exn){if(exn[1]=Invalid_argument){return "";}else{throw exn;}}
+        catch(exn)
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
+           {return "";}
+          else
+           {throw exn;}
+          }
         };
     
     var
@@ -190,10 +224,10 @@ var
        {try
          {var s=Odoc_misc["input_file_as_string"](input_f);
           
-          file[1]=s,0;
+          file[1]=s;
           return file_name[1]=f,0;
           }
-        catch(e){file[1]="",0;throw e;}
+        catch(e){file[1]="";throw e;}
         };
     
     var
@@ -223,7 +257,7 @@ var
       function(pos_end,pos_limit,ty_decl)
        {var match=ty_decl[4];
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match)
            {case 0:
              var match$1=ty_decl[6];
@@ -233,7 +267,7 @@ var
                
                var exit;
                
-               if(typeof match$2=="number")
+               if(typeof match$2==="number")
                 {switch(match$2){}}
                else
                 {switch(match$2[0])
@@ -247,7 +281,11 @@ var
                           var name=match$3[1];
                           
                           switch(name)
-                           {case "":throw [0,Assert_failure,[0,"odoc_sig.ml",184,16]];
+                           {case "":
+                             throw [0,
+                                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                                    [0,"odoc_sig.ml",184,16]];
+                             
                             default:
                              var match$4=param[2];
                              
@@ -403,7 +441,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -419,7 +457,7 @@ var
                      List["assoc"](field_name,name_comment_list);
                    }
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {var comment_opt=/* None */0;}
                    else
                     {throw exn;}
@@ -446,7 +484,7 @@ var
     var
      get_type_kind=
       function(env,name_comment_list,type_kind)
-       {if(typeof type_kind=="number")
+       {if(typeof type_kind==="number")
          {switch(type_kind)
            {case 0:return /* Type_abstract */0;
             case 1:return /* Type_open */1;
@@ -465,7 +503,7 @@ var
                      List["assoc"](field_name,name_comment_list);
                    }
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {var comment_opt=/* None */0;}
                    else
                     {throw exn;}
@@ -473,7 +511,7 @@ var
                  
                  return /* record */[0,
                          field_name,
-                         param[2]=/* Mutable */1,
+                         param[2]===/* Mutable */1,
                          Odoc_env["subst_type"](env,param[3]),
                          comment_opt];
                  };
@@ -492,7 +530,7 @@ var
                      List["assoc"](constructor_name,name_comment_list);
                    }
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {var comment_opt=/* None */0;}
                    else
                     {throw exn;}
@@ -618,7 +656,11 @@ var
               
               switch(match[0])
                {case 0:return match[1][2][1][4];
-                case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",361,44]];
+                case 5:
+                 throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"odoc_sig.ml",361,44]];
+                 
                 default:return loc[1][4];}
               }
             else
@@ -633,9 +675,9 @@ var
             try
              {var typ=Signature_search[11](name,class_signature);}
             catch(exn)
-             {if(exn=Not_found)
+             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                {throw [0,
-                       Failure,
+                       CamlPrimitive["caml_global_data"]["Failure"],
                        Odoc_messages["method_type_not_found"]
                         (current_class_name,name)];
                 }
@@ -656,7 +698,7 @@ var
                 Odoc_value["dummy_parameter_list"](subst_typ),
                 /* None */0,
                 /* record */[0,/* None */0,/* Some */[0,loc]]],
-               private_flag=/* Private */0,
+               private_flag===/* Private */0,
                /* false */0];
             
             var pos_limit2=get_pos_limit2(q);
@@ -667,7 +709,7 @@ var
              match=
               My_ir[3](file_name[1],get_string_of_file(pos_end,pos_limit2));
             
-            met[1][2]=merge_infos(met[1][2],match[2]),0;
+            met[1][2]=merge_infos(met[1][2],match[2]);
             Odoc_value["update_value_parameters_text"](met[1]);
             return /* tuple */[0,met,match[1]];
             };
@@ -725,7 +767,11 @@ var
                     
                    case 1:exit=232;
                    case 2:exit=232;
-                   case 3:throw [0,Assert_failure,[0,"odoc_sig.ml",513,46]];
+                   case 3:
+                    throw [0,
+                           CamlPrimitive["caml_global_data"]["Assert_failure"],
+                           [0,"odoc_sig.ml",513,46]];
+                    
                    }
                  
                  switch(exit)
@@ -759,9 +805,9 @@ var
                  try
                   {var typ=Signature_search[10](name$1,class_signature);}
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["attribute_type_not_found"]
                              (current_class_name,name$1)];
                      }
@@ -782,8 +828,8 @@ var
                      /* [] */0,
                      /* None */0,
                      /* record */[0,/* None */0,/* Some */[0,loc]]],
-                    match$5[2]=/* Mutable */1,
-                    match$5[3]=/* Virtual */0];
+                    match$5[2]===/* Mutable */1,
+                    match$5[3]===/* Virtual */0];
                  
                  var pos_limit2$1=get_pos_limit2(q);
                  
@@ -794,7 +840,7 @@ var
                    My_ir[3]
                     (file_name[1],get_string_of_file(pos_end$1,pos_limit2$1));
                  
-                 att[1][2]=merge_infos(att[1][2],match$7[2]),0;
+                 att[1][2]=merge_infos(att[1][2],match$7[2]);
                  var match$8=f(pos_end$1+match$7[1],q);
                  
                  return /* tuple */[0,
@@ -814,7 +860,7 @@ var
                  
                  var met=match$11[1];
                  
-                 if(match$9[3]!=0)
+                 if(match$9[3]!==0)
                   {var met2=met;}
                  else
                   {var met2=/* record */[0,met[1],met[2],/* true */1];}
@@ -845,7 +891,11 @@ var
                          match$16[1],
                          Pervasives["@"](match$15[2],match$16[2])];
                  
-                case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",522,40]];
+                case 5:
+                 throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"odoc_sig.ml",522,40]];
+                 
                 }
               }
             else
@@ -967,9 +1017,9 @@ var
            try
             {var type_expr=Signature_search[3](table,name_pre[1]);}
            catch(exn)
-            {if(exn=Not_found)
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["value_not_found"]
                        (current_module_name,name_pre[1])];
                }
@@ -996,7 +1046,7 @@ var
             match=
              My_ir[3](file_name[1],get_string_of_file(pos_end_ele,pos_limit));
            
-           v[2]=merge_infos(v[2],match[2]),0;
+           v[2]=merge_infos(v[2],match[2]);
            Odoc_value["update_value_parameters_text"](v);
            var new_env=Odoc_env["add_value"](env,v[1]);
            
@@ -1027,7 +1077,7 @@ var
               (function(td)
                 {return List["exists"]
                          (function(param)
-                           {return CamlPrimtivie["caml_string_equal"]
+                           {return CamlPrimitive["caml_string_equal"]
                                     (param[1][1],"nonrec");
                             },
                           td[7]);
@@ -1077,9 +1127,9 @@ var
                  try
                   {var sig_type_decl=Signature_search[5](table,name$1[1]);}
                  catch(exn$1)
-                  {if(exn$1=Not_found)
+                  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["type_not_found"]
                              (current_module_name,name$1[1])];
                      }
@@ -1131,7 +1181,7 @@ var
                  
                  var maybe_more2=match$4[1];
                  
-                 new_type[2]=merge_infos(new_type[2],match$4[2]),0;
+                 new_type[2]=merge_infos(new_type[2],match$4[2]);
                  var
                   match$5=
                    f(/* None */0,maybe_more+maybe_more2,new_end+maybe_more2,q);
@@ -1172,9 +1222,9 @@ var
                  try
                   {var types_ext=Signature_search[4](table,name$1);}
                  catch(exn$1)
-                  {if(exn$1=Not_found)
+                  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["extension_not_found"]
                              (current_module_name,name$1)];
                      }
@@ -1200,7 +1250,10 @@ var
              var match$3=/* tuple */[0,ext[1],ext[2],ext[5]];
              }
            else
-            {throw [0,Assert_failure,[0,"odoc_sig.ml",634,22]];}
+            {throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"odoc_sig.ml",634,22]];
+             }
            
            var
             new_te=
@@ -1249,7 +1302,7 @@ var
                  
                  var match$5=My_ir[3](file_name[1],s);
                  
-                 new_x[7]=match$5[2],0;
+                 new_x[7]=match$5[2];
                  return analyse_extension_constructors
                          (match$5[1],/* :: */[0,new_x,exts_acc],q);
                  }
@@ -1261,14 +1314,14 @@ var
            
            var maybe_more=match$4[1];
            
-           new_te[5]=match$4[2],0;
+           new_te[5]=match$4[2];
            var
             match$5=
              My_ir[3]
               (file_name[1],
                get_string_of_file(pos_end_ele+maybe_more,pos_limit));
            
-           new_te[1]=merge_infos(new_te[1],match$5[2]),0;
+           new_te[1]=merge_infos(new_te[1],match$5[2]);
            return /* tuple */[0,
                    maybe_more+match$5[1],
                    new_env$1,
@@ -1280,9 +1333,9 @@ var
            try
             {var types_ext=Signature_search[4](table,name$1[1]);}
            catch(exn$1)
-            {if(exn$1=Not_found)
+            {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["exception_not_found"]
                        (current_module_name,name$1[1])];
                }
@@ -1307,7 +1360,7 @@ var
             match$6=
              My_ir[3](file_name[1],get_string_of_file(pos_end_ele,pos_limit));
            
-           e[2]=merge_infos(e[2],match$6[2]),0;
+           e[2]=merge_infos(e[2],match$6[2]);
            var new_env$2=Odoc_env["add_extension"](env,e[1]);
            
            return /* tuple */[0,
@@ -1329,9 +1382,9 @@ var
            try
             {var sig_module_type=Signature_search[8](table,name$2[1]);}
            catch(exn$2)
-            {if(exn$2=Not_found)
+            {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["module_not_found"]
                        (current_module_name,name$2[1])];
                }
@@ -1375,7 +1428,7 @@ var
             match$8=
              My_ir[3](file_name[1],get_string_of_file(pos_end_ele,pos_limit));
            
-           new_module[3]=merge_infos(new_module[3],match$8[2]),0;
+           new_module[3]=merge_infos(new_module[3],match$8[2]);
            var new_env$3=Odoc_env["add_module"](env,new_module[1]);
            
            var match$9=new_module[2];
@@ -1415,9 +1468,9 @@ var
                  try
                   {var sig_module_type$1=Signature_search[8](table,name$3);}
                  catch(exn$3)
-                  {if(exn$3=Not_found)
+                  {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["module_not_found"]
                              (current_module_name,name$3)];
                      }
@@ -1479,9 +1532,9 @@ var
                   {var sig_module_type$1=Signature_search[8](table,name$3[1]);
                    }
                  catch(exn$3)
-                  {if(exn$3=Not_found)
+                  {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["module_not_found"]
                              (current_module_name,name$3[1])];
                      }
@@ -1530,7 +1583,7 @@ var
                  
                  var maybe_more$1=match$12[1];
                  
-                 new_module$1[3]=merge_infos(new_module$1[3],match$12[2]),0;
+                 new_module$1[3]=merge_infos(new_module$1[3],match$12[2]);
                  var
                   match$13=
                    f$1(/* None */0,maybe_more$1,loc_end+maybe_more$1,q);
@@ -1565,9 +1618,9 @@ var
            try
             {var sig_mtype=Signature_search[9](table,name$3[1]);}
            catch(exn$3)
-            {if(exn$3=Not_found)
+            {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["module_type_not_found"]
                        (current_module_name,name$3[1])];
                }
@@ -1608,7 +1661,7 @@ var
             match$12=
              My_ir[3](file_name[1],get_string_of_file(pos_end_ele,pos_limit));
            
-           mt[2]=merge_infos(mt[2],match$12[2]),0;
+           mt[2]=merge_infos(mt[2],match$12[2]);
            var new_env$5=Odoc_env["add_module_type"](env,mt[1]);
            
            var exit$1;
@@ -1675,7 +1728,11 @@ var
                    {case 0:return Odoc_name["from_longident"](match$15[1][1]);
                     default:return "??";}
                   
-                 case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1037,46]];
+                 case 5:
+                  throw [0,
+                         CamlPrimitive["caml_global_data"]["Assert_failure"],
+                         [0,"odoc_sig.ml",1037,46]];
+                  
                  case 6:exit$2=115;
                  }
                
@@ -1750,9 +1807,9 @@ var
                  try
                   {var sig_class_decl=Signature_search[6](table,name$5[1]);}
                  catch(exn$4)
-                  {if(exn$4=Not_found)
+                  {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["class_not_found"]
                              (current_module_name,name$5[1])];
                      }
@@ -1778,7 +1835,7 @@ var
                     match$15[1],
                     Odoc_env["subst_class_type"](env,sig_class_type),
                     sig_class_decl[1],
-                    class_desc[1]=/* Virtual */0,
+                    class_desc[1]===/* Virtual */0,
                     match$16[2],
                     match$16[1],
                     /* record */[0,/* None */0,/* Some */[0,class_desc[5]]]];
@@ -1790,7 +1847,7 @@ var
                  
                  var maybe_more$1=match$17[1];
                  
-                 new_class[2]=merge_infos(new_class[2],match$17[2]),0;
+                 new_class[2]=merge_infos(new_class[2],match$17[2]);
                  Odoc_class["class_update_parameters_text"](new_class);
                  var
                   match$18=
@@ -1874,9 +1931,9 @@ var
                  try
                   {var sig_cltype_decl=Signature_search[7](table,name$5[1]);}
                  catch(exn$4)
-                  {if(exn$4=Not_found)
+                  {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["class_type_not_found"]
                              (current_module_name,name$5[1])];
                      }
@@ -1902,7 +1959,7 @@ var
                     match$16[1],
                     Odoc_env["subst_class_type"](env,sig_class_type),
                     sig_cltype_decl[1],
-                    ct_decl[1]=/* Virtual */0,
+                    ct_decl[1]===/* Virtual */0,
                     kind,
                     /* record */[0,/* None */0,/* Some */[0,ct_decl[5]]]];
                  
@@ -1913,7 +1970,7 @@ var
                  
                  var maybe_more$1=match$17[1];
                  
-                 ct[2]=merge_infos(ct[2],match$17[2]),0;
+                 ct[2]=merge_infos(ct[2],match$17[2]);
                  var
                   match$18=
                    f$4(/* None */0,maybe_more$1,pos_end+maybe_more$1,q);
@@ -1990,7 +2047,7 @@ var
               
              default:
               throw [0,
-                     Failure,
+                     CamlPrimitive["caml_global_data"]["Failure"],
                      "Parsetree.Pmty_signature signature but not Types.Mty_signature signat"];
               }
            
@@ -2056,7 +2113,7 @@ var
               
              default:
               throw [0,
-                     Failure,
+                     CamlPrimitive["caml_global_data"]["Failure"],
                      "Parsetree.Pmty_functor _ but not Types.Mty_functor _"];
               }
            
@@ -2093,7 +2150,11 @@ var
            
            return /* Module_type_typeof */[4,s$1];
            
-          case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1296,38]];
+          case 5:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"odoc_sig.ml",1296,38]];
+           
           case 6:
            switch(sig_module_type[0])
             {case 3:var name$1=Odoc_name["from_path"](sig_module_type[1]);
@@ -2149,7 +2210,7 @@ var
               
              default:
               throw [0,
-                     Failure,
+                     CamlPrimitive["caml_global_data"]["Failure"],
                      "Parsetree.Pmty_signature signature but not Types.Mty_signature signat"];
               }
            
@@ -2215,7 +2276,7 @@ var
               
              default:
               throw [0,
-                     Failure,
+                     CamlPrimitive["caml_global_data"]["Failure"],
                      "Parsetree.Pmty_functor _ but not Types.Mty_functor _"];
               }
            
@@ -2252,7 +2313,11 @@ var
            
            return /* Module_typeof */[6,s$1];
            
-          case 5:throw [0,Assert_failure,[0,"odoc_sig.ml",1385,38]];
+          case 5:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"odoc_sig.ml",1385,38]];
+           
           case 6:
            switch(sig_module_type[0])
             {case 3:
@@ -2267,7 +2332,7 @@ var
               
              default:
               throw [0,
-                     Failure,
+                     CamlPrimitive["caml_global_data"]["Failure"],
                      "Parsetree.Pmty_alias _ but not Types.Mty_alias _"];
               }
            
@@ -2334,7 +2399,7 @@ var
              case 2:
               var label=sig_class_type[1];
               
-              if(CamlPrimtivie["caml_string_equal"](match[1],label))
+              if(CamlPrimitive["caml_string_equal"](match[1],label))
                {var
                  new_param=
                   /* Simple_name */[0,
@@ -2354,7 +2419,7 @@ var
                 }
               else
                {throw [0,
-                       Failure,
+                       CamlPrimitive["caml_global_data"]["Failure"],
                        "Parsetree.Pcty_arrow (parse_label, _, pclass_type), labels differents"];
                 }
               
@@ -2366,7 +2431,7 @@ var
         switch(exit)
          {case 206:
            throw [0,
-                  Failure,
+                  CamlPrimitive["caml_global_data"]["Failure"],
                   "analyse_class_kind pas de correspondance dans le match"];
            
           }
@@ -2420,7 +2485,7 @@ var
              case 1:exit=209;
              case 2:
               throw [0,
-                     Failure,
+                     CamlPrimitive["caml_global_data"]["Failure"],
                      "analyse_class_type_kind : Parsetree.Pcty_arrow (...) with Types.Cty_arrow (...)"];
               
              }
@@ -2431,7 +2496,7 @@ var
         switch(exit)
          {case 209:
            throw [0,
-                  Failure,
+                  CamlPrimitive["caml_global_data"]["Failure"],
                   "analyse_class_type_kind pas de correspondance dans le match"];
            
           }
@@ -2441,7 +2506,7 @@ var
      analyse_signature=
       function(source_file,input_file,ast,signat)
        {try
-         {var curdir=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
+         {var curdir=CamlPrimitive["caml_sys_getcwd"](/* () */0);
           
           var
            match=
@@ -2449,17 +2514,17 @@ var
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
-          CamlPrimtivie["caml_sys_chdir"](match[1]);
+          CamlPrimitive["caml_sys_chdir"](match[1]);
           var
            complete=
             Filename["concat"]
-             (CamlPrimtivie["caml_sys_getcwd"](/* () */0),match[2]);
+             (CamlPrimitive["caml_sys_getcwd"](/* () */0),match[2]);
           
-          CamlPrimtivie["caml_sys_chdir"](curdir);
+          CamlPrimitive["caml_sys_chdir"](curdir);
           var complete_source_file=complete;
           }
         catch(exn)
-         {if(exn[1]=Sys_error)
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {Pervasives["prerr_endline"](exn[2]);
             Odoc_global["errors"][0]++;
             var complete_source_file=source_file;

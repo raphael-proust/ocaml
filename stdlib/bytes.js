@@ -471,6 +471,6 @@ module["exports"]=
  "capitalize":capitalize,
  "uncapitalize":uncapitalize,
  "compare":compare,
- "%identity":function(prim){return prim;},
- "%identity":function(prim){return prim;}};
+ "unsafe_to_string":function(prim){return prim;},
+ "unsafe_of_string":function(prim){return prim;}};
 

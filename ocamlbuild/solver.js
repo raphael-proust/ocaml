@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Rule=require("Rule");
-var Pathname=require("Pathname");
-var Resource=require("Resource");
-var Format=require("Format");
-var Command=require("Command");
-var My_std=require("My_std");
-var Log=require("Log");
+var Rule=require("./rule.js");
+var Pathname=require("./pathname.js");
+var Resource=require("./resource.js");
+var Format=require("./format.js");
+var Command=require("./command.js");
+var My_std=require("./my_std.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var Failed=CamlPrimtivie["caml_set_oo_id"]([248,"Solver.Failed",0]);
+var Failed=CamlPrimitive["caml_set_oo_id"]([248,"Solver.Failed",0]);
 
-var Circular=CamlPrimtivie["caml_set_oo_id"]([248,"Solver.Circular",0]);
+var Circular=CamlPrimitive["caml_set_oo_id"]([248,"Solver.Circular",0]);
 
 var
  failed=
@@ -114,17 +115,17 @@ var
                        try
                         {return Rule["call"](self_firsts(depth+1,on_the_go),r);}
                        catch(exn)
-                        {if(exn=Rule["Failed"])
+                        {if(exn===Rule["Failed"])
                           {throw [0,Failed,/* Leaf */[0,target]];}
                          else
                           {throw exn;}
                          }
                        }
                      catch(exn$1)
-                      {if(exn$1[1]=Failed)
+                      {if(exn$1[1]===Failed)
                         {var backtrace=exn$1[2];
                          
-                         if(rs$1=/* [] */0)
+                         if(rs$1===/* [] */0)
                           {return failed
                                    (target,
                                     /* Depth */[2,
@@ -144,7 +145,10 @@ var
                        }
                      }
                    else
-                    {throw [0,Assert_failure,[0,"solver.ml",66,16]];}
+                    {throw [0,
+                            CamlPrimitive["caml_global_data"]["Assert_failure"],
+                            [0,"solver.ml",66,16]];
+                     }
                    };
                
                return until_works(matching_rules,/* [] */0);
@@ -180,7 +184,7 @@ var
       try
        {$$self(depth,on_the_go,r);return /* Good */[0,r];}
       catch(exn)
-       {if(exn[1]=Failed)
+       {if(exn[1]===Failed)
          {return self_first
                   (depth,on_the_go,/* :: */[0,exn[2],already_failed],rs[2]);
           }
@@ -227,7 +231,7 @@ var
     
     var count=My_std["List"][5](cmds);
     
-    if(Command["jobs"][1]=1){var job_debug=10;}else{var job_debug=5;}
+    if(Command["jobs"][1]===1){var job_debug=10;}else{var job_debug=5;}
     
     if(count>1)
      {Log["dprintf"]
@@ -289,7 +293,7 @@ var
       case 1:
        var exn=match[1];
        
-       if(exn[1]=Failed)
+       if(exn[1]===Failed)
         {throw [0,Failed,/* Target */[3,name,exn[2]]];}
        else
         {throw exn;}

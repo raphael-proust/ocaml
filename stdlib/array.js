@@ -404,8 +404,7 @@ module["exports"]=
  "make_matrix":make_matrix,
  "create_matrix":create_matrix,
  "append":append,
- "caml_array_concat":
- function(prim){return CamlPrimitive["caml_array_concat"](prim);},
+ "concat":function(prim){return CamlPrimitive["caml_array_concat"](prim);},
  "sub":sub,
  "copy":copy,
  "fill":fill,

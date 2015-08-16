@@ -1,20 +1,21 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Format=require("Format");
-var Buffer=require("Buffer");
-var Lexing=require("Lexing");
-var Str=require("Str");
-var Printexc=require("Printexc");
-var Hashtbl=require("Hashtbl");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Format=require("./format.js");
+var Buffer=require("./buffer.js");
+var Lexing=require("./lexing.js");
+var Str=require("./str.js");
+var Printexc=require("./printexc.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Fatal_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Fatal_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Fatal_error",0]);
 
 var
  fatal_error=
@@ -24,7 +25,7 @@ var
     throw Fatal_error;
     };
 
-var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Error",0]);
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Odoc_ocamlhtml.Error",0]);
 
 var
  base_escape_strings=
@@ -281,7 +282,7 @@ var
     else
      {var match=s[0];
       
-      if(match!=42)
+      if(match!==42)
        {var
          code=
           Pervasives["^"]
@@ -368,7 +369,7 @@ var
         }
       }
     else
-     {if(c!=98){exit=44;}else{return 8;}}
+     {if(c!==98){exit=44;}else{return 8;}}
     
     switch(exit){case 44:return c;}
     };
@@ -403,12 +404,12 @@ var string_start_pos=[0,0];
 
 var comment_start_pos=[0,/* [] */0];
 
-var in_comment=function(param){return comment_start_pos[1]!=/* [] */0;};
+var in_comment=function(param){return comment_start_pos[1]!==/* [] */0;};
 
 var
  report_error=
   function(ppf,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return Format["fprintf"]
@@ -507,8 +508,8 @@ var
          var exit$1;
          
          switch(s)
-          {case "\t":margin[1]=margin[1]+8,0;
-           case "\n":margin[1]=0,0;
+          {case "\t":margin[1]=margin[1]+8;
+           case "\n":margin[1]=0;
            case " ":margin[0]++;
            default:exit$1=15;}
          
@@ -566,7 +567,7 @@ var
            return token(lexbuf);
            }
          catch(exn)
-          {if(exn=Not_found)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
             {print(/* None */0,s$3);return token(lexbuf);}
            else
             {throw exn;}
@@ -582,9 +583,9 @@ var
          reset_string_buffer(/* () */0);
          var string_start=Lexing["lexeme_start"](lexbuf);
          
-         string_start_pos[1]=string_start,0;
+         string_start_pos[1]=string_start;
          string(lexbuf);
-         lexbuf[5]=string_start-lexbuf[4],0;
+         lexbuf[5]=string_start-lexbuf[4];
          print_class
           (/* None */0,
            string_class,
@@ -598,10 +599,10 @@ var
         case 14:exit=28;
         case 15:exit=28;
         case 16:
-         lexbuf[6]=lexbuf[6]-1,0;
+         lexbuf[6]=lexbuf[6]-1;
          var init=lexbuf[12];
          
-         lexbuf[12]=/* record */[0,init[1],init[2],init[3],lexbuf[12][4]-1],0;
+         lexbuf[12]=/* record */[0,init[1],init[2],init[3],lexbuf[12][4]-1];
          print(/* None */0,Lexing["lexeme"](lexbuf));
          return token(lexbuf);
          
@@ -673,8 +674,7 @@ var
       case 28:
        reset_comment_buffer(/* () */0);
        comment_start_pos[1]=
-       /* :: */[0,Lexing["lexeme_start"](lexbuf),/* [] */0],
-       0;
+       /* :: */[0,Lexing["lexeme_start"](lexbuf),/* [] */0];
        comment(lexbuf);
        print_comment(/* () */0);
        return token(lexbuf);
@@ -703,8 +703,7 @@ var
      {switch(__ocaml_lex_state$1)
        {case 0:
          comment_start_pos[1]=
-         /* :: */[0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]],
-         0;
+         /* :: */[0,Lexing["lexeme_start"](lexbuf),comment_start_pos[1]];
          store_comment_char(40);
          store_comment_char(42);
          return comment(lexbuf);
@@ -718,14 +717,17 @@ var
            if(l)
             {store_comment_char(42);
              store_comment_char(41);
-             comment_start_pos[1]=l,0;
+             comment_start_pos[1]=l;
              return comment(lexbuf);
              }
            else
             {return comment_start_pos[1]=/* [] */0,0;}
            }
          else
-          {throw [0,Assert_failure,[0,"odoc_ocamlhtml.mll",424,16]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"odoc_ocamlhtml.mll",424,16]];
+           }
          
         case 2:
          var st=List["hd"](comment_start_pos[1]);
@@ -804,9 +806,9 @@ var
     
     var old_fmt=fmt[1];
     
-    fmt[1]=Format["formatter_of_buffer"](buf),0;
-    pre[1]=with_pre,0;
-    margin[1]=0,0;
+    fmt[1]=Format["formatter_of_buffer"](buf);
+    pre[1]=with_pre;
+    margin[1]=0;
     var
      start=
       Pervasives["^"]('<code class="',Pervasives["^"](code_class,'">'));
@@ -828,13 +830,13 @@ var
       var html=Pervasives["^"](start,Pervasives["^"](code,ending));
       }
     
-    pre[1]=old_pre,0;
-    margin[1]=old_margin,0;
+    pre[1]=old_pre;
+    margin[1]=old_margin;
     Buffer["reset"](comment_buffer);
     Buffer["add_string"](comment_buffer,old_comment_buffer);
     Buffer["reset"](string_buffer);
     Buffer["add_string"](string_buffer,old_string_buffer);
-    fmt[1]=old_fmt,0;
+    fmt[1]=old_fmt;
     return Buffer["add_string"](b,html);
     };
 

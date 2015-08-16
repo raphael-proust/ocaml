@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_name=require("Odoc_name");
-var Printtyp=require("Printtyp");
-var List=require("List");
-var Btype=require("Btype");
-var Predef=require("Predef");
-var Printf=require("Printf");
-var Misc=require("Misc");
-var Path=require("Path");
+var Odoc_name=require("./odoc_name.js");
+var Printtyp=require("./printtyp.js");
+var List=require("./list.js");
+var Btype=require("./btype.js");
+var Predef=require("./predef.js");
+var Printf=require("./printf.js");
+var Misc=require("./misc.js");
+var Path=require("./path.js");
 
 
 
@@ -48,8 +48,7 @@ var
            var newrecord=/* unknown */"duprecord regular 7";
            
            newrecord[1]=
-           /* :: */[0,/* tuple */[0,rel_name(ident),qualify(ident)],env[1]],
-           0;
+           /* :: */[0,/* tuple */[0,rel_name(ident),qualify(ident)],env[1]];
            return newrecord;
            
           case 1:
@@ -60,8 +59,7 @@ var
            newrecord$1[2]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$1),qualify(ident$1)],
-            env[2]],
-           0;
+            env[2]];
            return newrecord$1;
            
           case 2:
@@ -72,8 +70,7 @@ var
            newrecord$2[7]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$2),qualify(ident$2)],
-            env[7]],
-           0;
+            env[7]];
            return newrecord$2;
            
           case 3:
@@ -98,8 +95,7 @@ var
            newrecord$3[5]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$3),qualify(ident$3)],
-            env2[5]],
-           0;
+            env2[5]];
            return newrecord$3;
            
           case 4:
@@ -130,8 +126,7 @@ var
            newrecord$4[6]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$4),qualify(ident$4)],
-            env2$1[6]],
-           0;
+            env2$1[6]];
            return newrecord$4;
            
           case 5:
@@ -142,8 +137,7 @@ var
            newrecord$5[4]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$5),qualify(ident$5)],
-            env[4]],
-           0;
+            env[4]];
            return newrecord$5;
            
           case 6:
@@ -154,8 +148,7 @@ var
            newrecord$6[3]=
            /* :: */[0,
             /* tuple */[0,rel_name(ident$6),qualify(ident$6)],
-            env[3]],
-           0;
+            env[3]];
            return newrecord$6;
            
           }
@@ -171,7 +164,7 @@ var
     
     var newrecord=/* unknown */"duprecord regular 7";
     
-    newrecord[7]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[7]],0;
+    newrecord[7]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[7]];
     return newrecord;
     };
 
@@ -182,7 +175,7 @@ var
     
     var newrecord=/* unknown */"duprecord regular 7";
     
-    newrecord[2]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[2]],0;
+    newrecord[2]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[2]];
     return newrecord;
     };
 
@@ -193,7 +186,7 @@ var
     
     var newrecord=/* unknown */"duprecord regular 7";
     
-    newrecord[1]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[1]],0;
+    newrecord[1]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[1]];
     return newrecord;
     };
 
@@ -204,7 +197,7 @@ var
     
     var newrecord=/* unknown */"duprecord regular 7";
     
-    newrecord[5]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[5]],0;
+    newrecord[5]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[5]];
     return newrecord;
     };
 
@@ -215,7 +208,7 @@ var
     
     var newrecord=/* unknown */"duprecord regular 7";
     
-    newrecord[6]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[6]],0;
+    newrecord[6]=/* :: */[0,/* tuple */[0,simple_name,full_name],env[6]];
     return newrecord;
     };
 
@@ -254,7 +247,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[5]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -262,7 +260,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[6]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -271,7 +274,11 @@ var
    {try
      {return List["assoc"](n,env[5]);}
     catch(exn)
-     {if(exn=Not_found){return full_module_type_name(env,n);}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return full_module_type_name(env,n);}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -279,7 +286,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[2]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -287,7 +299,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[1]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -295,7 +312,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[7]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -303,7 +325,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[4]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -311,7 +338,12 @@ var
   function(env,n)
    {try
      {return List["assoc"](n,env[3]);}
-    catch(exn){if(exn=Not_found){return n;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return n;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -320,7 +352,11 @@ var
    {try
      {return List["assoc"](n,env[4]);}
     catch(exn)
-     {if(exn=Not_found){return full_class_type_name(env,n);}else{throw exn;}}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return full_class_type_name(env,n);}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -356,13 +392,13 @@ var
        {if(List["memq"](t,deja_vu[1]))
          {return /* () */0;}
         else
-         {deja_vu[1]=/* :: */[0,t,deja_vu[1]],0;
+         {deja_vu[1]=/* :: */[0,t,deja_vu[1]];
           Btype["iter_type_expr"](iter,t);
           var match=t[1];
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){}}
           else
            {switch(match[0])
@@ -436,7 +472,6 @@ var
                         /* Tvariant */[8,
                          (newrecord[6]=
                           /* Some */[0,/* tuple */[0,new_p$2,match$4[2]]],
-                          0,
                           newrecord)],
                         0;
                  }

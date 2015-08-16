@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Format=require("Format");
-var Odoc_messages=require("Odoc_messages");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Format=require("./format.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -86,27 +87,26 @@ var
          },
        get_one_color,
        function(self$neg1)
-        {var match=self$neg1[colors];
+        {var match=self$neg1[colors+1];
          
          if(match)
-          {self$neg1[colors]=match[2],0;return /* Some */[0,match[1]];}
+          {self$neg1[colors+1]=match[2];return /* Some */[0,match[1]];}
          else
           {return /* None */0;}
          },
        node_color,
        function(self$neg1,s)
         {try
-          {return /* Some */[0,List["assoc"](s,self$neg1[loc_colors])];}
+          {return /* Some */[0,List["assoc"](s,self$neg1[loc_colors+1])];}
          catch(exn)
-          {if(exn=Not_found)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
             {/* unknown */"(sendself self-1/1165 get_one_color/1148)";
              
              if(match)
               {var c=match[1];
                
-               self$neg1[loc_colors]=
-               /* :: */[0,/* tuple */[0,s,c],self$neg1[loc_colors]],
-               0;
+               self$neg1[loc_colors+1]=
+               /* :: */[0,/* tuple */[0,s,c],self$neg1[loc_colors+1]];
                return /* Some */[0,c];
                }
              else
@@ -191,8 +191,8 @@ var
               {return dot_include_all[1]||
                       List["exists"]
                        (function(m)
-                         {return CamlPrimtivie["caml_string_equal"](m[1],n);},
-                        self$neg1[modules]);
+                         {return CamlPrimitive["caml_string_equal"](m[1],n);},
+                        self$neg1[modules+1]);
                },
              m[8]);
          
@@ -237,12 +237,16 @@ var
            return Pervasives["close_out"](oc);
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_modules,
        function(self$neg1,modules_list)
         {try
-          {self$neg1[modules]=modules_list,0;
+          {self$neg1[modules+1]=modules_list;
            var oc=Pervasives["open_out"](Odoc_info["Global"][3][1]);
            
            var fmt=Format["formatter_of_out_channel"](oc);
@@ -267,11 +271,15 @@ var
            return Pervasives["close_out"](oc);
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate,
        function(self$neg1,modules_list)
-        {self$neg1[colors]=dot_colors[1],0;
+        {self$neg1[colors+1]=dot_colors[1];
          if(dot_types[1])
           {/* unknown */"(sendself self-1/1209 generate_types/1155\n  (apply (field 4 (field 50 (global Odoc_info!))) modules_list/1210))";
            }
@@ -282,15 +290,12 @@ var
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
-      $$self$1[loc_colors]=
+      $$self$1[loc_colors+1]=
       /* [] */0,
-      0,
-      $$self$1[modules]=
+      $$self$1[modules+1]=
       /* [] */0,
-      0,
-      $$self$1[colors]=
-      dot_colors[1],
-      0;
+      $$self$1[colors+1]=
+      dot_colors[1];
       return $$self$1;
       };
     };

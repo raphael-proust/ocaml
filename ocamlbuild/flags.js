@@ -1,10 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Command=require("Command");
-var Param_tags=require("Param_tags");
-var Tags=require("Tags");
-var Log=require("Log");
+var List=require("./list.js");
+var Command=require("./command.js");
+var Param_tags=require("./param_tags.js");
+var Tags=require("./tags.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var flags_of_decl=function(param){return param[2];};
@@ -68,7 +69,7 @@ var
  remove=
   function(me)
    {return List["filter"]
-            (function(x){return CamlPrimtivie["caml_notequal"](me,x);});
+            (function(x){return CamlPrimitive["caml_notequal"](me,x);});
     };
 
 var

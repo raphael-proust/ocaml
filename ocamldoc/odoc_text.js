@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_text_lexer=require("Odoc_text_lexer");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_text_parser=require("Odoc_text_parser");
-var Printf=require("Printf");
-var Buffer=require("Buffer");
-var Lexing=require("Lexing");
+var Odoc_text_lexer=require("./odoc_text_lexer.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_text_parser=require("./odoc_text_parser.js");
+var Printf=require("./printf.js");
+var Buffer=require("./buffer.js");
+var Lexing=require("./lexing.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Text_syntax=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_text.Text_syntax",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Odoc_text.Text_syntax",0]);
 
 var
  text_of_string=
@@ -36,7 +37,7 @@ var
   function(s,c)
    {var count$1=0;
     
-    for(var i=0;i<=s["length"]-1;i++){if(s[i]=c){count$1=1+count$1;}else{}}
+    for(var i=0;i<=s["length"]-1;i++){if(s[i]===c){count$1=1+count$1;}else{}}
     
     return count$1;
     };
@@ -51,7 +52,7 @@ var
     var b=Buffer["create"](len+n);
     
     for(var i=0;i<=len-1;i++)
-     {if((s[i]=c)&&remain>0)
+     {if(s[i]===c&&remain>0)
        {Printf["bprintf"]
          (b,
           [/* Format */0,
@@ -97,9 +98,9 @@ var
       var exit;
       
       if(c>=94)
-       {if(c!=123){if(c!=125){exit=6;}else{exit=5;}}else{exit=5;}}
+       {if(c!==123){if(c!==125){exit=6;}else{exit=5;}}else{exit=5;}}
       else
-       {if(c!=91){if(c>=93){exit=5;}else{exit=6;}}else{exit=5;}}
+       {if(c!==91){if(c>=93){exit=5;}else{exit=6;}}else{exit=5;}}
       
       switch(exit)
        {case 6:Buffer["add_char"](b,c);
@@ -143,7 +144,7 @@ var
 var
  p_text_element=
   function(b,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:
          return p

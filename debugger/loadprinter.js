@@ -1,22 +1,23 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Ctype=require("Ctype");
-var Dynlink=require("Dynlink");
-var Printtyp=require("Printtyp");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Env=require("Env");
-var Format=require("Format");
-var Printval=require("Printval");
-var Misc=require("Misc");
-var Filename=require("Filename");
-var Ident=require("Ident");
-var Symtable=require("Symtable");
-var Config=require("Config");
+var $$String=require("./string.js");
+var Ctype=require("./ctype.js");
+var Dynlink=require("./dynlink.js");
+var Printtyp=require("./printtyp.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Env=require("./env.js");
+var Format=require("./format.js");
+var Printval=require("./printval.js");
+var Misc=require("./misc.js");
+var Filename=require("./filename.js");
+var Ident=require("./ident.js");
+var Symtable=require("./symtable.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Loadprinter.Error",0]);
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Loadprinter.Error",0]);
 
 var debugger_symtable=[0,/* None */0];
 
@@ -33,15 +34,12 @@ var
      {Dynlink["init"](/* () */0),
       Dynlink["allow_unsafe_modules"](/* true */1),
       debugger_symtable[1]=
-      /* Some */[0,Symtable["current_state"](/* () */0)],
-      0}
+      /* Some */[0,Symtable["current_state"](/* () */0)]}
     
     try
      {var result=fn(arg);
       
-      debugger_symtable[1]=
-      /* Some */[0,Symtable["current_state"](/* () */0)],
-      0;
+      debugger_symtable[1]=/* Some */[0,Symtable["current_state"](/* () */0)];
       Symtable["restore_state"](old_symtable);
       return result;
       }
@@ -58,9 +56,9 @@ var
       var d=Filename["dirname"](name);
       
       if
-       (CamlPrimtivie["caml_string_notequal"](d,Filename["current_dir_name"]))
+       (CamlPrimitive["caml_string_notequal"](d,Filename["current_dir_name"]))
        {if(!List["mem"](d,Config["load_path"][1]))
-         {Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]],0}
+         {Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]]}
         else
          {}
         }
@@ -84,10 +82,10 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Dynlink["Error"])
+      if(exn[1]===Dynlink["Error"])
        {var match=exn[2];
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -104,7 +102,7 @@ var
       
       switch(exit)
        {case 26:
-         if(exn=Not_found)
+         if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
           {Format["fprintf"]
             (ppf,
              [/* Format */0,
@@ -120,7 +118,7 @@ var
            return /* false */0;
            }
          else
-          {if(exn[1]=Dynlink["Error"])
+          {if(exn[1]===Dynlink["Error"])
             {throw [0,$$Error,/* Load_failure */[0,exn[2]]];}
            else
             {throw exn;}
@@ -137,7 +135,7 @@ var
   function(param)
    {switch(param[0])
      {case 0:return Symtable["get_global_value"](param[1]);
-      case 1:return eval_path(param[1])[param[3]];
+      case 1:return eval_path(param[1])[param[3]+1];
       case 2:return Misc["fatal_error"]("Loadprinter.eval_path");
       }
     };
@@ -160,7 +158,7 @@ var
          (/* Ldot */[1,[/* Lident */0,"Topdirs"],typename],Env["empty"]);
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {throw [0,
                $$Error,
                /* Unbound_identifier */[1,
@@ -199,7 +197,7 @@ var
            /* false */0];
         }
       catch(exn)
-       {if(exn[1]=Ctype["Unify"])
+       {if(exn[1]===Ctype["Unify"])
          {var
            match$2=
             /* tuple */[0,
@@ -213,10 +211,10 @@ var
       return /* tuple */[0,match$2[1],match$1[1],match$2[2]];
       }
     catch(exn$1)
-     {if(exn$1=Not_found)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {throw [0,$$Error,/* Unbound_identifier */[1,lid]];}
       else
-       {if(exn$1[1]=Ctype["Unify"])
+       {if(exn$1[1]===Ctype["Unify"])
          {throw [0,$$Error,/* Wrong_type */[3,lid]];}
         else
          {throw exn$1;}
@@ -236,7 +234,7 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Symtable["Error"])
+      if(exn[1]===Symtable["Error"])
        {var match$2=exn[2];
         
         switch(match$2[0])
@@ -265,7 +263,7 @@ var
     try
      {return Printval["remove_printer"](match$1[2]);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {throw [0,$$Error,/* No_active_printer */[4,lid]];}
       else
        {throw exn;}

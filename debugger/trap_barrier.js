@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Checkpoints=require("Checkpoints");
-var Exec=require("Exec");
-var Debugcom=require("Debugcom");
+var Checkpoints=require("./checkpoints.js");
+var Exec=require("./exec.js");
+var Debugcom=require("./debugcom.js");
 
 
 var current_trap_barrier=[0,0];
@@ -14,7 +14,7 @@ var remove_trap_barrier=function(param){return current_trap_barrier[1]=0,0;};
 var
  update_trap_barrier=
   function(param)
-   {if(Checkpoints["current_checkpoint"][1][10]!=current_trap_barrier[1])
+   {if(Checkpoints["current_checkpoint"][1][10]!==current_trap_barrier[1])
      {return Exec["protect"]
               (function(param$1)
                 {Debugcom["set_trap_barrier"](current_trap_barrier[1]);

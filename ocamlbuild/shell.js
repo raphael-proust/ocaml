@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Filename=require("Filename");
-var My_std=require("My_std");
-var Printexc=require("Printexc");
-var My_unix=require("My_unix");
-var Tags=require("Tags");
-var Log=require("Log");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Filename=require("./filename.js");
+var My_std=require("./my_std.js");
+var Printexc=require("./printexc.js");
+var My_unix=require("./my_unix.js");
+var Tags=require("./tags.js");
+var Log=require("./log.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -30,7 +31,7 @@ var
            {if(match>=97)
              {if(match>=123){exit=17;}else{exit=16;}}
             else
-             {if(match!=95){exit=17;}else{exit=16;}}
+             {if(match!==95){exit=17;}else{exit=16;}}
             }
           else
            {if(match>=59)
@@ -44,7 +45,7 @@ var
           }
         };
     
-    return ls!=0&&loop(0);
+    return ls!==0&&loop(0);
     };
 
 var
@@ -53,7 +54,7 @@ var
    {if(is_simple_filename(s))
      {return s;}
     else
-     {if(CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32"))
+     {if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
        {return Printf["sprintf"]
                 ([/* Format */0,
                   [/* Char_literal */12,
@@ -73,7 +74,7 @@ var
  chdir=
   function(dir)
    {My_std["reset_filesys_cache"](/* () */0);
-    return CamlPrimtivie["caml_sys_chdir"](dir);
+    return CamlPrimitive["caml_sys_chdir"](dir);
     };
 
 var
@@ -87,11 +88,11 @@ var
     
     if
      (My_std["!*"](My_unix["is_degraded"])||
-      CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32"))
+      CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
      {Log["event"](/* None */0,cmd,target,Tags["empty"]);
       var st=My_std["sys_command"](cmd);
       
-      if(st!=0)
+      if(st!==0)
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
                   ([/* Format */0,

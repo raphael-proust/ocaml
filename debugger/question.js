@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Primitives=require("Primitives");
-var Lexer=require("Lexer");
-var Lexing=require("Lexing");
-var Input_handling=require("Input_handling");
+var Pervasives=require("./pervasives.js");
+var Primitives=require("./primitives.js");
+var Lexer=require("./lexer.js");
+var Lexing=require("./lexing.js");
+var Input_handling=require("./input_handling.js");
 
 
 var
@@ -15,8 +15,7 @@ var
       
       try
        {Input_handling["current_prompt"][1]=
-        Pervasives["^"](message," ? (y or n) "),
-        0;
+        Pervasives["^"](message," ? (y or n) ");
         var
          ask=
           function(param)
@@ -30,8 +29,8 @@ var
             Input_handling["stop_user_input"](/* () */0);
             if(line["length"]>0){var match=line[0];}else{var match=32;}
             
-            if(match!=110)
-             {if(match!=121)
+            if(match!==110)
+             {if(match!==121)
                {Pervasives["print_string"]("Please answer y or n.");
                 Pervasives["print_newline"](/* () */0);
                 return ask(/* () */0);
@@ -45,11 +44,11 @@ var
         
         var answer=ask(/* () */0);
         
-        Input_handling["current_prompt"][1]=old_prompt,0;
+        Input_handling["current_prompt"][1]=old_prompt;
         return answer;
         }
       catch(x)
-       {Input_handling["current_prompt"][1]=old_prompt,0;
+       {Input_handling["current_prompt"][1]=old_prompt;
         Input_handling["stop_user_input"](/* () */0);
         throw x;
         }

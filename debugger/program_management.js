@@ -1,32 +1,33 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Question=require("Question");
-var History=require("History");
-var Breakpoints=require("Breakpoints");
-var Pervasives=require("Pervasives");
-var Symbols=require("Symbols");
-var Printf=require("Printf");
-var Envaux=require("Envaux");
-var Program_loading=require("Program_loading");
-var Primitives=require("Primitives");
-var Unix=require("Unix");
-var Unix_tools=require("Unix_tools");
-var Parameters=require("Parameters");
-var Debugger_config=require("Debugger_config");
-var Int64ops=require("Int64ops");
-var Time_travel=require("Time_travel");
-var Input_handling=require("Input_handling");
-var Config=require("Config");
+var Question=require("./question.js");
+var History=require("./history.js");
+var Breakpoints=require("./breakpoints.js");
+var Pervasives=require("./pervasives.js");
+var Symbols=require("./symbols.js");
+var Printf=require("./printf.js");
+var Envaux=require("./envaux.js");
+var Program_loading=require("./program_loading.js");
+var Primitives=require("./primitives.js");
+var Unix=require("./unix.js");
+var Unix_tools=require("./unix_tools.js");
+var Parameters=require("./parameters.js");
+var Debugger_config=require("./debugger_config.js");
+var Int64ops=require("./int64ops.js");
+var Time_travel=require("./time_travel.js");
+var Input_handling=require("./input_handling.js");
+var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var file_name=[0,/* None */0];
 
-var buffer=CamlPrimtivie["caml_create_string"](1024);
+var buffer=CamlPrimitive["caml_create_string"](1024);
 
 var
  control_connection=
   function(pid,fd)
-   {if(Unix["read"](fd[3],buffer,0,1024)=0)
+   {if(Unix["read"](fd[3],buffer,0,1024)===0)
      {return Time_travel["forget_process"](fd,pid);}
     else
      {Pervasives["prerr_string"]("Garbage data from process ");
@@ -44,7 +45,7 @@ var
     
     var pid=Pervasives["input_binary_int"](io_chan[1]);
     
-    if(pid=-1)
+    if(pid===-1)
      {var pid$prime=Pervasives["input_binary_int"](io_chan[1]);
       
       Time_travel["new_checkpoint"](pid$prime,io_chan);
@@ -70,7 +71,7 @@ var
       var $js;
       switch(sock_address[0])
        {case 0:$js=/* Some */[0,sock_address[1]];case 1:$js=/* None */0;}
-      file_name[1]=$js,0;
+      file_name[1]=$js;
       var sock=Unix["socket"](match[1],/* SOCK_STREAM */0,0);
       
       try
@@ -78,8 +79,7 @@ var
         Unix["setsockopt"](sock,/* SO_REUSEADDR */2,/* true */1);
         Unix["listen"](sock,3);
         Program_loading["connection"][1]=
-        Primitives["io_channel_of_descr"](sock),
-        0;
+        Primitives["io_channel_of_descr"](sock);
         Input_handling["add_file"]
          (Program_loading["connection"][1],accept_connection($$continue));
         return Program_loading["connection_opened"][1]=/* true */1,0;
@@ -87,10 +87,10 @@ var
       catch(x){Unix["close"](sock);throw x;}
       }
     catch(err)
-     {if(err[1]=Failure)
+     {if(err[1]===CamlPrimitive["caml_global_data"]["Failure"])
        {throw Debugger_config["Toplevel"];}
       else
-       {if(err[1]=Unix["Unix_error"])
+       {if(err[1]===Unix["Unix_error"])
          {Unix_tools["report_error"](err);throw Debugger_config["Toplevel"];}
         else
          {throw err;}
@@ -102,7 +102,7 @@ var
  close_connection=
   function(param)
    {if(Program_loading["connection_opened"][1])
-     {Program_loading["connection_opened"][1]=/* false */0,0;
+     {Program_loading["connection_opened"][1]=/* false */0;
       Input_handling["remove_file"](Program_loading["connection"][1]);
       Primitives["close_io"](Program_loading["connection"][1]);
       var match=file_name[1];
@@ -121,7 +121,7 @@ var
    {Breakpoints["remove_all_breakpoints"](/* () */0);
     History["empty_history"](/* () */0);
     Time_travel["kill_all_checkpoints"](/* () */0);
-    loaded[1]=/* false */0,0;
+    loaded[1]=/* false */0;
     return close_connection(/* () */0);
     };
 
@@ -163,7 +163,7 @@ var
      {Unix["access"]
        (Parameters["program_name"][1],[/* :: */0,/* F_OK */3,/* [] */0])}
     catch(exn)
-     {if(exn[1]=Unix["Unix_error"])
+     {if(exn[1]===Unix["Unix_error"])
        {Pervasives["prerr_endline"]("Program not found.");
         throw Debugger_config["Toplevel"];
         }
@@ -173,8 +173,7 @@ var
     
     Symbols["read_symbols"](Parameters["program_name"][1]);
     Config["load_path"][1]=
-    Pervasives["@"](Config["load_path"][1],Symbols["program_source_dirs"][1]),
-    0;
+    Pervasives["@"](Config["load_path"][1],Symbols["program_source_dirs"][1]);
     Envaux["reset_cache"](/* () */0);
     if(Program_loading["debug_loading"][1])
      {Pervasives["prerr_endline"]("Opening a socket...")}
@@ -196,7 +195,7 @@ var
    {if(!loaded[1])
      {Pervasives["print_string"]("Loading program... ");
       Pervasives["flush"](Pervasives["stdout"]);
-      if(CamlPrimtivie["caml_string_equal"](Parameters["program_name"][1],""))
+      if(CamlPrimitive["caml_string_equal"](Parameters["program_name"][1],""))
        {Pervasives["prerr_endline"]("No program specified.");
         throw Debugger_config["Toplevel"];
         }
@@ -212,7 +211,7 @@ var
          {}
         
         Input_handling["main_loop"](/* () */0);
-        loaded[1]=/* true */1,0;
+        loaded[1]=/* true */1;
         return Pervasives["prerr_endline"]("done.");
         }
       catch(x){kill_program(/* () */0);throw x;}

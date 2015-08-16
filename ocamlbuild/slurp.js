@@ -1,21 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Format=require("Format");
-var Filename=require("Filename");
-var My_std=require("My_std");
-var My_unix=require("My_unix");
-var Hashtbl=require("Hashtbl");
-var $$Array=require("Array");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Filename=require("./filename.js");
+var My_std=require("./my_std.js");
+var My_unix=require("./my_unix.js");
+var Hashtbl=require("./hashtbl.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $unknown=My_std["filename_concat"];
+var $slash=My_std["filename_concat"];
 
 var
  filter=
   function(predicate,f)
-   {if(typeof f=="number")
+   {if(typeof f==="number")
      {switch(f){case 0:return /* Nothing */0;}}
     else
      {switch(f[0])
@@ -52,13 +53,13 @@ var
 var
  real_slurp=
   function(path)
-   {var cwd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
+   {var cwd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
     var
      abs=
       function(x)
        {if(Filename["is_implicit"](x)||Filename["is_relative"](x))
-         {return $unknown(cwd,x);}
+         {return $slash(cwd,x);}
         else
          {return x;}
         };
@@ -83,7 +84,7 @@ var
                 
                 var exit;
                 
-                if(typeof entry=="number")
+                if(typeof entry==="number")
                  {switch(entry){case 0:return acc;}}
                 else
                  {switch(entry[0])
@@ -110,7 +111,7 @@ var
     var
      do_entry=
       function(link_mode,path,name)
-       {var fn=$unknown(path,name);
+       {var fn=$slash(path,name);
         
         var absfn=abs(fn);
         
@@ -131,7 +132,12 @@ var
            var $js;
            try
             {$js=Hashtbl["find"](visited,key);}
-           catch(exn){if(exn=Not_found){$js=/* false */0;}else{throw exn;}}
+           catch(exn)
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+              {$js=/* false */0;}
+             else
+              {throw exn;}
+             }
            if($js)
             {return /* None */0;}
            else
@@ -188,7 +194,10 @@ var
     
     var match=do_entry(/* true */1,"",path);
     
-    if(match){return match[1];}else{throw Not_found;}
+    if(match)
+     {return match[1];}
+    else
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -198,7 +207,7 @@ var
      aux=
       function(path)
        {if
-         (CamlPrimtivie["caml_string_equal"]
+         (CamlPrimitive["caml_string_equal"]
            (path,Filename["current_dir_name"]))
          {return /* [] */0;}
         else
@@ -219,10 +228,13 @@ var
       
       var x=param[1];
       
-      if(xs){return $unknown(x,join(xs));}else{return x;}
+      if(xs){return $slash(x,join(xs));}else{return x;}
       }
     else
-     {throw [0,Assert_failure,[0,"slurp.ml",105,10]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"slurp.ml",105,10]];
+      }
     };
 
 var
@@ -240,7 +252,7 @@ var
       if(entries)
        {var d=entries[1];
         
-        if(typeof d=="number")
+        if(typeof d==="number")
          {switch(d){case 0:exit=14;}}
         else
          {switch(d[0])
@@ -251,7 +263,7 @@ var
              
              var dname=d[2];
              
-             if(CamlPrimtivie["caml_string_equal"](xpath,dname))
+             if(CamlPrimitive["caml_string_equal"](xpath,dname))
               {return /* :: */[0,
                        /* Dir */[0,
                         d[1],
@@ -261,7 +273,7 @@ var
                         [246,
                          function(param)
                           {return add
-                                   ($unknown(root,xpath),xspath,My_std["!*"](dentries));
+                                   ($slash(root,xpath),xspath,My_std["!*"](dentries));
                            }]],
                        entries$1];
                }
@@ -285,7 +297,7 @@ var
              
              var fname=f[2];
              
-             if(CamlPrimtivie["caml_string_equal"](xpath,fname))
+             if(CamlPrimitive["caml_string_equal"](xpath,fname))
               {return /* :: */[0,
                        /* Dir */[0,
                         f[1],
@@ -294,7 +306,7 @@ var
                         f[4],
                         [246,
                          function(param)
-                          {return add($unknown(root,xpath),xspath,/* [] */0);}]],
+                          {return add($slash(root,xpath),xspath,/* [] */0);}]],
                        entries$prime];
                }
              else
@@ -303,15 +315,15 @@ var
            else
             {return /* :: */[0,
                      /* Dir */[0,
-                      $unknown(root,join(xspath)),
+                      $slash(root,join(xspath)),
                       xpath,
                       [246,
                        function(param)
-                        {return My_unix["stat"]($unknown(root,join(path)));}],
+                        {return My_unix["stat"]($slash(root,join(path)));}],
                       /* () */0,
                       [246,
                        function(param)
-                        {return add($unknown(root,xpath),xspath,/* [] */0);}]],
+                        {return add($slash(root,xpath),xspath,/* [] */0);}]],
                      /* [] */0];
              }
            }
@@ -319,7 +331,7 @@ var
           {if(entries)
             {var f$1=entries[1];
              
-             if(CamlPrimtivie["caml_string_equal"](xpath,f$1[2]))
+             if(CamlPrimitive["caml_string_equal"](xpath,f$1[2]))
               {return entries;}
              else
               {return /* :: */[0,f$1,add(root,path,entries[2])];}
@@ -330,8 +342,7 @@ var
                       root,
                       xpath,
                       [246,
-                       function(param)
-                        {return My_unix["stat"]($unknown(root,xpath));}],
+                       function(param){return My_unix["stat"]($slash(root,xpath));}],
                       /* () */0],
                      /* [] */0];
              }
@@ -356,7 +367,7 @@ var
  slurp_with_find=
   function(path)
    {try
-     {var find_cmd=CamlPrimtivie["caml_sys_getenv"]("OCAMLBUILD_FIND");}
+     {var find_cmd=CamlPrimitive["caml_sys_getenv"]("OCAMLBUILD_FIND");}
     catch(exn){var find_cmd="find";}
     
     var
@@ -381,7 +392,12 @@ var
             
             return /* [] */0;
             }
-          catch(exn$1){if(exn$1=End_of_file){return acc;}else{throw exn$1;}}
+          catch(exn$1)
+           {if(exn$1===CamlPrimitive["caml_global_data"]["End_of_file"])
+             {return acc;}
+            else
+             {throw exn$1;}
+            }
           });
     
     var
@@ -417,7 +433,7 @@ var
 var
  print=
   function(print_attr,f,entry)
-   {if(typeof entry=="number")
+   {if(typeof entry==="number")
      {switch(entry)
        {case 0:
          return Format["fprintf"]
@@ -529,7 +545,7 @@ var
   function(f,entry,acc)
    {var exit;
     
-    if(typeof entry=="number")
+    if(typeof entry==="number")
      {switch(entry){case 0:exit=4;}}
     else
      {switch(entry[0])
@@ -553,7 +569,7 @@ var
    {var
      $$self=
       function(entry)
-       {if(typeof entry=="number")
+       {if(typeof entry==="number")
          {switch(entry){case 0:return /* Nothing */0;}}
         else
          {switch(entry[0])
@@ -596,7 +612,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){case 0:exit=2;}}
     else
      {switch(param[0])

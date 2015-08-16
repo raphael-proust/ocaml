@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Primitives=require("Primitives");
-var Unix=require("Unix");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Primitives=require("./primitives.js");
+var Unix=require("./unix.js");
 
 
 var active_files=[0,/* [] */0];
@@ -59,7 +59,7 @@ var
    {var old_state=continue_main_loop[1];
     
     try
-     {continue_main_loop[1]=/* true */1,0;
+     {continue_main_loop[1]=/* true */1;
       while(continue_main_loop[1])
        {try
          {var
@@ -80,11 +80,11 @@ var
         catch(exn)
          {var exit;
           
-          if(exn[1]=Unix["Unix_error"])
+          if(exn[1]===Unix["Unix_error"])
            {var match$1=exn[2];
             
             if(typeof match$1==="number")
-             {if(match$1!=11){exit=8;}else{}}
+             {if(match$1!==11){exit=8;}else{}}
             else
              {exit=8;}
             }
@@ -97,7 +97,7 @@ var
       
       return continue_main_loop[1]=old_state,0;
       }
-    catch(x){continue_main_loop[1]=old_state,0;throw x;}
+    catch(x){continue_main_loop[1]=old_state;throw x;}
     };
 
 var interactif=[0,/* true */1];

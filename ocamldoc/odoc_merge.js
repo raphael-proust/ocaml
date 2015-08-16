@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_global=require("Odoc_global");
-var Odoc_class=require("Odoc_class");
-var Odoc_value=require("Odoc_value");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Str=require("Str");
-var Odoc_module=require("Odoc_module");
-var Odoc_messages=require("Odoc_messages");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_class=require("./odoc_class.js");
+var Odoc_value=require("./odoc_value.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Str=require("./str.js");
+var Odoc_module=require("./odoc_module.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 
@@ -26,7 +27,7 @@ var
            match$1=
             List["partition"]
              (function(param$1)
-               {return CamlPrimtivie["caml_equal"](v,param$1[1]);},
+               {return CamlPrimitive["caml_equal"](v,param$1[1]);},
               param[2]);
           
           var
@@ -239,8 +240,8 @@ var
     var
      new_before$2=
       List["sort"]
-       (function(prim,prim)
-         {return CamlPrimtivie["caml_compare"](prim$1,prim);},
+       (function(prim,prim$1)
+         {return CamlPrimitive["caml_compare"](prim,prim$1);},
         new_before$1);
     
     var
@@ -480,25 +481,25 @@ var
 var
  merge_types=
   function(merge_options,mli,ml)
-   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
+   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]);
     var init=mli[7];
     
-    mli[7]=/* record */[0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]];
     var match=mli[8];
     
-    mli[8]=match?mli[8]:ml[8],0;
+    mli[8]=match?mli[8]:ml[8];
     var match$1=mli[4];
     
     var match$2=ml[4];
     
     var exit;
     
-    if(typeof match$1=="number")
+    if(typeof match$1==="number")
      {switch(match$1)
        {case 0:return /* () */0;
         case 1:
          if(typeof match$2==="number")
-          {if(match$2!=0){return /* () */0;}else{exit=101;}}
+          {if(match$2!==0){return /* () */0;}else{exit=101;}}
          else
           {exit=101;}
          
@@ -506,7 +507,7 @@ var
     else
      {switch(match$1[0])
        {case 0:
-         if(typeof match$2=="number")
+         if(typeof match$2==="number")
           {switch(match$2){}}
          else
           {switch(match$2[0])
@@ -521,7 +522,7 @@ var
                      cons2=
                       List["find"]
                        (function(c2)
-                         {return CamlPrimtivie["caml_string_equal"](c2[1],cons[1]);},
+                         {return CamlPrimitive["caml_string_equal"](c2[1],cons[1]);},
                         l2);
                     
                     var match$3=cons[4];
@@ -557,11 +558,13 @@ var
                     return cons[4]=new_desc,0;
                     }
                   catch(exn)
-                   {if(exn=Not_found)
+                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                      {if(Odoc_global["inverse_merge_ml_mli"][1])
                        {return /* () */0;}
                       else
-                       {throw [0,Failure,Odoc_messages["different_types"](mli[1])];
+                       {throw [0,
+                               CamlPrimitive["caml_global_data"]["Failure"],
+                               Odoc_messages["different_types"](mli[1])];
                         }
                       }
                     else
@@ -574,7 +577,7 @@ var
              default:exit=101;}}
          
         case 1:
-         if(typeof match$2=="number")
+         if(typeof match$2==="number")
           {switch(match$2){}}
          else
           {switch(match$2[0])
@@ -589,7 +592,7 @@ var
                      record2=
                       List["find"]
                        (function(r)
-                         {return CamlPrimtivie["caml_string_equal"](r[1],record[1]);},
+                         {return CamlPrimitive["caml_string_equal"](r[1],record[1]);},
                         l2$1);
                     
                     var match$3=record[4];
@@ -625,11 +628,13 @@ var
                     return record[4]=new_desc,0;
                     }
                   catch(exn)
-                   {if(exn=Not_found)
+                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                      {if(Odoc_global["inverse_merge_ml_mli"][1])
                        {return /* () */0;}
                       else
-                       {throw [0,Failure,Odoc_messages["different_types"](mli[1])];
+                       {throw [0,
+                               CamlPrimitive["caml_global_data"]["Failure"],
+                               Odoc_messages["different_types"](mli[1])];
                         }
                       }
                     else
@@ -648,7 +653,10 @@ var
        if(Odoc_global["inverse_merge_ml_mli"][1])
         {return /* () */0;}
        else
-        {throw [0,Failure,Odoc_messages["different_types"](mli[1])];}
+        {throw [0,
+                CamlPrimitive["caml_global_data"]["Failure"],
+                Odoc_messages["different_types"](mli[1])];
+         }
        
       }
     };
@@ -656,10 +664,10 @@ var
 var
  merge_type_extension=
   function(merge_options,mli,ml)
-   {mli[1]=merge_info_opt(merge_options,mli[1],ml[1]),0;
+   {mli[1]=merge_info_opt(merge_options,mli[1],ml[1]);
     var init=mli[6];
     
-    mli[6]=/* record */[0,ml[6][1],init[2]],0;
+    mli[6]=/* record */[0,ml[6][1],init[2]];
     var match=mli[7];
     
     return mli[7]=match?mli[7]:ml[7],0;
@@ -703,7 +711,7 @@ var
        
        switch(pi_ml[0])
         {case 0:
-          if(CamlPrimtivie["caml_string_equal"](sn_mli[1],""))
+          if(CamlPrimitive["caml_string_equal"](sn_mli[1],""))
            {return /* Simple_name */[0,
                     /* record */[0,pi_ml[1][1],sn_mli[2],sn_mli[3]]];
             }
@@ -727,7 +735,7 @@ var
          case 1:
           var l_ml=pi_ml[1];
           
-          if(List["length"](l_mli)!=List["length"](l_ml))
+          if(List["length"](l_mli)!==List["length"](l_ml))
            {return pi_mli;}
           else
            {var new_l=List["map2"](merge_param_info,l_mli,l_ml);
@@ -763,11 +771,11 @@ var
 var
  merge_classes=
   function(merge_options,mli,ml)
-   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
+   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]);
     var init=mli[8];
     
-    mli[8]=/* record */[0,ml[8][1],init[2]],0;
-    mli[7]=merge_parameters(mli[7],ml[7]),0;
+    mli[8]=/* record */[0,ml[8][1],init[2]];
+    mli[7]=merge_parameters(mli[7],ml[7]);
     Odoc_class["class_update_parameters_text"](mli);
     List["iter"]
      (function(a)
@@ -782,12 +790,12 @@ var
                  {case 0:
                    var a2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](a2[1][1],a[1][1]))
-                    {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]),0;
+                   if(CamlPrimitive["caml_string_equal"](a2[1][1],a[1][1]))
+                    {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]);
                      var init$1=a[1][7];
                      
-                     a[1][7]=/* record */[0,a2[1][7][1],init$1[2]],0;
-                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6],0}else{}
+                     a[1][7]=/* record */[0,a2[1][7][1],init$1[2]];
+                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6]}else{}
                      
                      return /* true */1;
                      }
@@ -804,7 +812,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_class["class_attributes"](/* None */0,mli));
     return List["iter"]
@@ -821,14 +834,14 @@ var
                          case 1:
                           var m2=ele[1];
                           
-                          if(CamlPrimtivie["caml_string_equal"](m2[1][1],m[1][1]))
-                           {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]),0;
+                          if(CamlPrimitive["caml_string_equal"](m2[1][1],m[1][1]))
+                           {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]);
                             var init$1=m[1][7];
                             
-                            m[1][7]=/* record */[0,m2[1][7][1],init$1[2]],0;
-                            m[1][5]=merge_parameters(m[1][5],m2[1][5]),0;
+                            m[1][7]=/* record */[0,m2[1][7][1],init$1[2]];
+                            m[1][5]=merge_parameters(m[1][5],m2[1][5]);
                             Odoc_value["update_value_parameters_text"](m[1]);
-                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6],0}else{}
+                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6]}else{}
                             
                             return /* true */1;
                             }
@@ -845,7 +858,11 @@ var
                  return /* () */0;
                  }
                catch(exn)
-                {if(exn=Not_found){return /* () */0;}else{throw exn;}}
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {return /* () */0;}
+                 else
+                  {throw exn;}
+                 }
                },
              Odoc_class["class_methods"](/* None */0,mli));
     };
@@ -853,10 +870,10 @@ var
 var
  merge_class_types=
   function(merge_options,mli,ml)
-   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
+   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]);
     var init=mli[7];
     
-    mli[7]=/* record */[0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]];
     List["iter"]
      (function(a)
        {try
@@ -870,12 +887,12 @@ var
                  {case 0:
                    var a2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](a2[1][1],a[1][1]))
-                    {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]),0;
+                   if(CamlPrimitive["caml_string_equal"](a2[1][1],a[1][1]))
+                    {a[1][2]=merge_info_opt(merge_options,a[1][2],a2[1][2]);
                      var init$1=a[1][7];
                      
-                     a[1][7]=/* record */[0,a2[1][7][1],init$1[2]],0;
-                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6],0}else{}
+                     a[1][7]=/* record */[0,a2[1][7][1],init$1[2]];
+                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6]}else{}
                      
                      return /* true */1;
                      }
@@ -892,7 +909,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_class["class_type_attributes"](/* None */0,mli));
     return List["iter"]
@@ -909,14 +931,14 @@ var
                          case 1:
                           var m2=ele[1];
                           
-                          if(CamlPrimtivie["caml_string_equal"](m2[1][1],m[1][1]))
-                           {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]),0;
+                          if(CamlPrimitive["caml_string_equal"](m2[1][1],m[1][1]))
+                           {m[1][2]=merge_info_opt(merge_options,m[1][2],m2[1][2]);
                             var init$1=m[1][7];
                             
-                            m[1][7]=/* record */[0,m2[1][7][1],init$1[2]],0;
-                            m[1][5]=merge_parameters(m[1][5],m2[1][5]),0;
+                            m[1][7]=/* record */[0,m2[1][7][1],init$1[2]];
+                            m[1][5]=merge_parameters(m[1][5],m2[1][5]);
                             Odoc_value["update_value_parameters_text"](m[1]);
-                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6],0}else{}
+                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6]}else{}
                             
                             return /* true */1;
                             }
@@ -934,7 +956,11 @@ var
                  return /* () */0;
                  }
                catch(exn)
-                {if(exn=Not_found){return /* () */0;}else{throw exn;}}
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {return /* () */0;}
+                 else
+                  {throw exn;}
+                 }
                },
              Odoc_class["class_type_methods"](/* None */0,mli));
     };
@@ -942,10 +968,10 @@ var
 var
  merge_module_types=
   function(merge_options,mli,ml)
-   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]),0;
+   {mli[2]=merge_info_opt(merge_options,mli[2],ml[2]);
     var init=mli[7];
     
-    mli[7]=/* record */[0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]];
     List["iter"]
      (function(te)
        {var
@@ -969,19 +995,23 @@ var
                           xt2=
                            List["find"]
                             (function(xt2)
-                              {return CamlPrimtivie["caml_string_equal"](xt[1],xt2[1]);},
+                              {return CamlPrimitive["caml_string_equal"](xt[1],xt2[1]);},
                              te2[5]);
                          
                          merge_extension_constructor(merge_options,xt,xt2);
                          return /* true */1;
                          }
                        catch(exn)
-                        {if(exn=Not_found){return /* false */0;}else{throw exn;}}
+                        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                          {return /* false */0;}
+                         else
+                          {throw exn;}
+                         }
                        };
                    
                    var match$1=List["partition"](merge_ext,exts);
                    
-                   if(match$1[1]!=/* [] */0)
+                   if(match$1[1]!==/* [] */0)
                     {merge_type_extension(merge_options,te,te2)}
                    else
                     {}
@@ -1016,14 +1046,14 @@ var
                  {case 7:
                    var ex2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](ex2[1],ex[1]))
-                    {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]),0;
+                   if(CamlPrimitive["caml_string_equal"](ex2[1],ex[1]))
+                    {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]);
                      var init$1=ex[6];
                      
-                     ex[6]=/* record */[0,ex2[6][1],init$1[2]],0;
+                     ex[6]=/* record */[0,ex2[6][1],init$1[2]];
                      var match$1=ex[7];
                      
-                     ex[7]=match$1?ex[7]:ex2[7],0;
+                     ex[7]=match$1?ex[7]:ex2[7];
                      return /* true */1;
                      }
                    else
@@ -1035,7 +1065,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_type_exceptions"](/* None */0,mli));
     List["iter"]
@@ -1049,7 +1084,7 @@ var
                  {case 8:
                    var ty2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](ty2[1],ty[1]))
+                   if(CamlPrimitive["caml_string_equal"](ty2[1],ty[1]))
                     {merge_types(merge_options,ty,ty2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1060,7 +1095,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_type_types"](/* None */0,mli));
     List["iter"]
@@ -1074,7 +1114,7 @@ var
                  {case 0:
                    var m2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](m2[1],m[1]))
+                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
                     {merge_modules(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1085,7 +1125,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_type_modules"](/* None */0,mli));
     List["iter"]
@@ -1099,7 +1144,7 @@ var
                  {case 1:
                    var m2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](m2[1],m[1]))
+                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
                     {merge_module_types(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1110,7 +1155,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_type_module_types"](/* None */0,mli));
     List["iter"]
@@ -1124,14 +1174,14 @@ var
                  {case 5:
                    var v2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](v2[1],v[1]))
-                    {v[2]=merge_info_opt(merge_options,v[2],v2[2]),0;
+                   if(CamlPrimitive["caml_string_equal"](v2[1],v[1]))
+                    {v[2]=merge_info_opt(merge_options,v[2],v2[2]);
                      var init$1=v[7];
                      
-                     v[7]=/* record */[0,v2[7][1],init$1[2]],0;
-                     v[5]=merge_parameters(v[5],v2[5]),0;
+                     v[7]=/* record */[0,v2[7][1],init$1[2]];
+                     v[5]=merge_parameters(v[5],v2[5]);
                      Odoc_value["update_value_parameters_text"](v);
-                     if(Odoc_global["keep_code"][1]){v[6]=v2[6],0}else{}
+                     if(Odoc_global["keep_code"][1]){v[6]=v2[6]}else{}
                      
                      return /* true */1;
                      }
@@ -1144,7 +1194,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_type_values"](/* None */0,mli));
     List["iter"]
@@ -1158,7 +1213,7 @@ var
                  {case 3:
                    var c2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](c2[1],c[1]))
+                   if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
                     {merge_classes(merge_options,c,c2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1169,7 +1224,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_type_classes"](/* None */0,mli));
     return List["iter"]
@@ -1183,7 +1243,7 @@ var
                         {case 4:
                           var c2=ele[1];
                           
-                          if(CamlPrimtivie["caml_string_equal"](c2[1],c[1]))
+                          if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
                            {merge_class_types(merge_options,c,c2);return /* true */1;}
                           else
                            {return /* false */0;}
@@ -1196,7 +1256,11 @@ var
                  return /* () */0;
                  }
                catch(exn)
-                {if(exn=Not_found){return /* () */0;}else{throw exn;}}
+                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {return /* () */0;}
+                 else
+                  {throw exn;}
+                 }
                },
              Odoc_module["module_type_class_types"](/* None */0,mli));
     };
@@ -1204,10 +1268,10 @@ var
 var
  merge_modules=
   function(merge_options,mli,ml)
-   {mli[3]=merge_info_opt(merge_options,mli[3],ml[3]),0;
+   {mli[3]=merge_info_opt(merge_options,mli[3],ml[3]);
     var init=mli[7];
     
-    mli[7]=/* record */[0,ml[7][1],init[2]],0;
+    mli[7]=/* record */[0,ml[7][1],init[2]];
     var
      remove_doubles=
       function(acc,param)
@@ -1225,7 +1289,7 @@ var
          {return acc;}
         };
     
-    mli[8]=remove_doubles(mli[8],ml[8]),0;
+    mli[8]=remove_doubles(mli[8],ml[8]);
     if(Odoc_global["keep_code"][1])
      {var match=mli[9];
       
@@ -1260,8 +1324,8 @@ var
     else
      {var code_intf=/* None */0;}
     
-    mli[9]=code,0;
-    mli[10]=code_intf,0;
+    mli[9]=code;
+    mli[10]=code_intf;
     List["iter"]
      (function(te)
        {var
@@ -1285,19 +1349,23 @@ var
                           xt2=
                            List["find"]
                             (function(xt2)
-                              {return CamlPrimtivie["caml_string_equal"](xt[1],xt2[1]);},
+                              {return CamlPrimitive["caml_string_equal"](xt[1],xt2[1]);},
                              te2[5]);
                          
                          merge_extension_constructor(merge_options,xt,xt2);
                          return /* true */1;
                          }
                        catch(exn)
-                        {if(exn=Not_found){return /* false */0;}else{throw exn;}}
+                        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+                          {return /* false */0;}
+                         else
+                          {throw exn;}
+                         }
                        };
                    
                    var match$5=List["partition"](merge_ext,exts);
                    
-                   if(match$5[1]!=/* [] */0)
+                   if(match$5[1]!==/* [] */0)
                     {merge_type_extension(merge_options,te,te2)}
                    else
                     {}
@@ -1331,14 +1399,14 @@ var
                  {case 7:
                    var ex2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](ex2[1],ex[1]))
-                    {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]),0;
+                   if(CamlPrimitive["caml_string_equal"](ex2[1],ex[1]))
+                    {ex[2]=merge_info_opt(merge_options,ex[2],ex2[2]);
                      var init$1=ex[6];
                      
-                     ex[6]=/* record */[0,ex[6][1],init$1[2]],0;
+                     ex[6]=/* record */[0,ex[6][1],init$1[2]];
                      var match$5=ex[7];
                      
-                     ex[7]=match$5?ex[7]:ex2[7],0;
+                     ex[7]=match$5?ex[7]:ex2[7];
                      return /* true */1;
                      }
                    else
@@ -1350,7 +1418,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_exceptions"](/* None */0,mli));
     List["iter"]
@@ -1364,7 +1437,7 @@ var
                  {case 8:
                    var ty2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](ty2[1],ty[1]))
+                   if(CamlPrimitive["caml_string_equal"](ty2[1],ty[1]))
                     {merge_types(merge_options,ty,ty2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1375,7 +1448,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_types"](/* None */0,mli));
     List["iter"]
@@ -1389,7 +1467,7 @@ var
                  {case 0:
                    var m2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](m2[1],m[1]))
+                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
                     {merge_modules(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1400,7 +1478,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_modules"](/* None */0,mli));
     List["iter"]
@@ -1414,7 +1497,7 @@ var
                  {case 1:
                    var m2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](m2[1],m[1]))
+                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
                     {merge_module_types(merge_options,m,m2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1425,7 +1508,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_module_types"](/* None */0,mli));
     List["iter"]
@@ -1435,14 +1523,14 @@ var
            match$4=
             List["find"]
              (function(v2)
-               {if(CamlPrimtivie["caml_string_equal"](v2[1],v[1]))
-                 {v[2]=merge_info_opt(merge_options,v[2],v2[2]),0;
+               {if(CamlPrimitive["caml_string_equal"](v2[1],v[1]))
+                 {v[2]=merge_info_opt(merge_options,v[2],v2[2]);
                   var init$1=v[7];
                   
-                  v[7]=/* record */[0,v2[7][1],init$1[2]],0;
-                  v[5]=merge_parameters(v[5],v2[5]),0;
+                  v[7]=/* record */[0,v2[7][1],init$1[2]];
+                  v[5]=merge_parameters(v[5],v2[5]);
                   Odoc_value["update_value_parameters_text"](v);
-                  if(Odoc_global["keep_code"][1]){v[6]=v2[6],0}else{}
+                  if(Odoc_global["keep_code"][1]){v[6]=v2[6]}else{}
                   
                   return /* true */1;
                   }
@@ -1453,7 +1541,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_values"](/* None */0,mli));
     List["iter"]
@@ -1467,7 +1560,7 @@ var
                  {case 3:
                    var c2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](c2[1],c[1]))
+                   if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
                     {merge_classes(merge_options,c,c2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1478,7 +1571,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_classes"](/* None */0,mli));
     List["iter"]
@@ -1492,7 +1590,7 @@ var
                  {case 4:
                    var c2=ele[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](c2[1],c[1]))
+                   if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
                     {merge_class_types(merge_options,c,c2);return /* true */1;}
                    else
                     {return /* false */0;}
@@ -1503,7 +1601,12 @@ var
           
           return /* () */0;
           }
-        catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         },
       Odoc_module["module_class_types"](/* None */0,mli));
     return mli;
@@ -1522,7 +1625,7 @@ var
            match=
             List["partition"]
              (function(m2)
-               {return CamlPrimtivie["caml_string_equal"](m[1],m2[1]);},
+               {return CamlPrimitive["caml_string_equal"](m[1],m2[1]);},
               param[2]);
           
           var l_others=match[2];
@@ -1531,7 +1634,9 @@ var
           
           if(l_same)
            {if(l_same[2])
-             {throw [0,Failure,Odoc_messages["too_many_module_objects"](m[1])];
+             {throw [0,
+                     CamlPrimitive["caml_global_data"]["Failure"],
+                     Odoc_messages["too_many_module_objects"](m[1])];
               }
             else
              {var m2=l_same[1];
@@ -1549,15 +1654,18 @@ var
               
               var match$2=f(m2[4]);
               
-              if(match$1!=0)
-               {if(match$2!=0)
+              if(match$1!==0)
+               {if(match$2!==0)
                  {if(Odoc_global["inverse_merge_ml_mli"][1])
                    {throw [0,
-                           Failure,
+                           CamlPrimitive["caml_global_data"]["Failure"],
                            Odoc_messages["two_implementations"](m[1])];
                     }
                   else
-                   {throw [0,Failure,Odoc_messages["two_interfaces"](m[1])];}
+                   {throw [0,
+                           CamlPrimitive["caml_global_data"]["Failure"],
+                           Odoc_messages["two_interfaces"](m[1])];
+                    }
                   }
                 else
                  {return /* :: */[0,
@@ -1566,17 +1674,20 @@ var
                   }
                 }
               else
-               {if(match$2!=0)
+               {if(match$2!==0)
                  {return /* :: */[0,
                           merge_modules(merge_options,m2,m),
                           iter(l_others)];
                   }
                 else
                  {if(Odoc_global["inverse_merge_ml_mli"][1])
-                   {throw [0,Failure,Odoc_messages["two_interfaces"](m[1])];}
+                   {throw [0,
+                           CamlPrimitive["caml_global_data"]["Failure"],
+                           Odoc_messages["two_interfaces"](m[1])];
+                    }
                   else
                    {throw [0,
-                           Failure,
+                           CamlPrimitive["caml_global_data"]["Failure"],
                            Odoc_messages["two_implementations"](m[1])];
                     }
                   }

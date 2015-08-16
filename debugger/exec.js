@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Sys=require("Sys");
+var Sys=require("./sys.js");
 
 
 var interrupted=[0,/* false */0];
@@ -24,7 +24,8 @@ switch(match)
    Sys["set_signal"](Sys["sigint"],/* Signal_handle */[0,$$break]),
    Sys["set_signal"]
     (Sys["sigpipe"],
-     /* Signal_handle */[0,function(param){throw End_of_file;}])}
+     /* Signal_handle */[0,
+      function(param){throw CamlPrimitive["caml_global_data"]["End_of_file"];}])}
 
 var
  protect=
@@ -32,12 +33,12 @@ var
    {if(is_protected[1])
      {return f(/* () */0);}
     else
-     {is_protected[1]=/* true */1,0;
+     {is_protected[1]=/* true */1;
       if(!interrupted[1]){f(/* () */0)}else{}
       
-      is_protected[1]=/* false */0,0;
+      is_protected[1]=/* false */0;
       if(interrupted[1])
-       {interrupted[1]=/* false */0,0;throw Sys["Break"];}
+       {interrupted[1]=/* false */0;throw Sys["Break"];}
       else
        {return 0;}
       }
@@ -49,9 +50,9 @@ var
    {if(!is_protected[1])
      {return f(/* () */0);}
     else
-     {is_protected[1]=/* false */0,0;
+     {is_protected[1]=/* false */0;
       if(interrupted[1])
-       {interrupted[1]=/* false */0,0;throw Sys["Break"];}
+       {interrupted[1]=/* false */0;throw Sys["Break"];}
       else
        {}
       

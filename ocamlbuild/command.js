@@ -1,21 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Const=require("Const");
-var Pervasives=require("Pervasives");
-var Lexers=require("Lexers");
-var Printf=require("Printf");
-var Format=require("Format");
-var Param_tags=require("Param_tags");
-var Shell=require("Shell");
-var Filename=require("Filename");
-var Lexing=require("Lexing");
-var Buffer=require("Buffer");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var My_unix=require("My_unix");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
-var Sys=require("Sys");
+var Const=require("./const.js");
+var Pervasives=require("./pervasives.js");
+var Lexers=require("./lexers.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Param_tags=require("./param_tags.js");
+var Shell=require("./shell.js");
+var Filename=require("./filename.js");
+var Lexing=require("./lexing.js");
+var Buffer=require("./buffer.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var My_unix=require("./my_unix.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var jobs=[0,1];
@@ -42,9 +43,9 @@ var
  env_path=
   [246,
    function(param)
-    {var path_var=CamlPrimtivie["caml_sys_getenv"]("PATH");
+    {var path_var=CamlPrimitive["caml_sys_getenv"]("PATH");
      
-     if(CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32"))
+     if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
       {var parse_path=Lexers["parse_environment_path_w"];}
      else
       {var parse_path=Lexers["parse_environment_path"];}
@@ -54,7 +55,7 @@ var
      var
       norm_current_dir_name=
        function(path)
-        {if(CamlPrimtivie["caml_string_equal"](path,""))
+        {if(CamlPrimitive["caml_string_equal"](path,""))
           {return Filename["current_dir_name"];}
          else
           {return path;}
@@ -76,7 +77,7 @@ var
    {try
      {var solver=Hashtbl["find"](virtual_solvers,virtual_command);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var
          solver=
           Pervasives["failwith"]
@@ -99,7 +100,7 @@ var
     try
      {return solver(/* () */0);}
     catch(exn$1)
-     {if(exn$1=Not_found)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {return Pervasives["failwith"]
                 (Printf["sprintf"]
                   ([/* Format */0,
@@ -133,7 +134,7 @@ var
      try_path=
       function(path)
        {if
-         (CamlPrimtivie["caml_string_equal"]
+         (CamlPrimitive["caml_string_equal"]
            (path,Filename["current_dir_name"]))
          {return file_or_exe_exists(cmd);}
         else
@@ -159,7 +160,7 @@ var
     
     var b=Buffer["create"](256);
     
-    if(CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32"))
+    if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
      {Buffer["add_string"](b,"''")}
     else
      {}
@@ -185,7 +186,7 @@ var
       function(param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){case 0:return /* () */0;}}
         else
          {switch(param[0])
@@ -262,11 +263,11 @@ var
      s=
       string_of_command_spec_with_calls
        (union_rtags,
-        function(prim,prim){return prim$1[1]=prim,0;}(rtarget),
+        function(prim,prim$1){return prim[1]=prim$1,0;}(rtarget),
         /* true */1,
         spec);
     
-    if(CamlPrimtivie["caml_string_equal"](rtarget[1],""))
+    if(CamlPrimitive["caml_string_equal"](rtarget[1],""))
      {var target=s;}
     else
      {var target=rtarget[1];}
@@ -305,7 +306,7 @@ var
 var
  print=
   function(f,param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return Format["pp_print_string"](f,"nop");}}
     else
      {switch(param[0])
@@ -367,12 +368,12 @@ var xcountall=[0,0];
 var
  add_parallel_stat=
   function(x)
-   {if(x>0){xcountall[0]++,xsumall[1]=x+xsumall[1],0}else{}
+   {if(x>0){xcountall[0]++,xsumall[1]=x+xsumall[1]}else{}
     
     if(x>1)
      {xcount[0]++;
-      xsum[1]=x+xsum[1],0;
-      xmax[1]=Pervasives["max"](xmax[1],x),0;
+      xsum[1]=x+xsum[1];
+      xmax[1]=Pervasives["max"](xmax[1],x);
       return xmin[1]=Pervasives["min"](xmin[1],x),0;
       }
     else
@@ -382,8 +383,8 @@ var
 var
  dump_parallel_stats=
   function(param)
-   {if(jobs[1]!=1)
-     {if(xcount[1]=0)
+   {if(jobs[1]!==1)
+     {if(xcount[1]===0)
        {return Log["dprintf"]
                 (1,
                  [/* Format */0,
@@ -490,7 +491,7 @@ var
        {if(param)
          {var match$1=param[1];
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){case 0:return loop(acc,param[2]);}}
           else
            {switch(match$1[0])
@@ -533,13 +534,13 @@ var
     var
      degraded=
       My_std["!*"](My_unix["is_degraded"])||
-      CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32");
+      CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32");
     
     var jobs$1=jobs[1];
     
     if(jobs$1<0){Pervasives["invalid_arg"]("jobs < 0")}else{}
     
-    if(jobs$1=0)
+    if(jobs$1===0)
      {var max_jobs=/* None */0;}
     else
      {var max_jobs=/* Some */[0,jobs$1];}
@@ -548,7 +549,7 @@ var
     
     var display=Log["display"];
     
-    if(cmds=/* [] */0)
+    if(cmds===/* [] */0)
      {return /* None */0;}
     else
      {var konts=My_std["List"][16](flatten_commands(quiet,pretend),cmds);
@@ -582,7 +583,7 @@ var
                         
                         var rc=My_std["sys_command"](cmd);
                         
-                        if(rc!=0)
+                        if(rc!==0)
                          {if(!quiet)
                            {Log["eprintf"]
                              ([/* Format */0,
@@ -660,7 +661,7 @@ var
       function(x)
        {var exit;
         
-        if(typeof x=="number")
+        if(typeof x==="number")
          {switch(x){}}
         else
          {switch(x[0])
@@ -676,7 +677,7 @@ var
       function(x)
        {var exit;
         
-        if(typeof x=="number")
+        if(typeof x==="number")
          {switch(x){case 0:exit=18;}}
         else
          {switch(x[0])
@@ -699,7 +700,7 @@ var
       function(param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){}}
         else
          {switch(param[0])
@@ -717,7 +718,7 @@ var
     var
      cmd=
       function(param)
-       {if(typeof param=="number")
+       {if(typeof param==="number")
          {switch(param){case 0:return function(acc){return acc;};}}
         else
          {switch(param[0])
@@ -736,7 +737,7 @@ var
    {var
      $$self=
       function(x,acc)
-       {if(typeof x=="number")
+       {if(typeof x==="number")
          {switch(x){case 0:return acc;}}
         else
          {switch(x[0])
@@ -761,7 +762,7 @@ var text=function(x,acc){return /* :: */[0,My_std["Digest"][1](x),acc];};
 var
  cmd=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return function(acc){return acc;};}}
     else
      {switch(param[0])

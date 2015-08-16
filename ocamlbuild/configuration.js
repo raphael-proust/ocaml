@@ -1,16 +1,16 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Const=require("Const");
-var Lexers=require("Lexers");
-var Printf=require("Printf");
-var Param_tags=require("Param_tags");
-var Loc=require("Loc");
-var Lexing=require("Lexing");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
-var Glob=require("Glob");
+var Const=require("./const.js");
+var Lexers=require("./lexers.js");
+var Printf=require("./printf.js");
+var Param_tags=require("./param_tags.js");
+var Loc=require("./loc.js");
+var Lexing=require("./lexing.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
+var Glob=require("./glob.js");
 
 
 var
@@ -38,7 +38,7 @@ var
    function(param){return configs[1];},
    function(source,config)
     {acknowledge_config(source,config);
-     configs[1]=/* :: */[0,config,configs[1]],0;
+     configs[1]=/* :: */[0,config,configs[1]];
      return Hashtbl["clear"](cache);
      }];
 
@@ -114,7 +114,7 @@ var
    {try
      {return Hashtbl["find"](cache,s);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var res=apply_configs(s);
         
         var match$1=Hashtbl["replace"](cache,s,res);
@@ -133,7 +133,7 @@ var has_tag=function(tag){return Tags["mem"](tag,global_tags(/* () */0));};
 var
  tag_file=
   function(file,tags)
-   {if(tags!=/* [] */0)
+   {if(tags!==/* [] */0)
      {return parse_string
               (/* None */0,
                Printf["sprintf"]
@@ -154,7 +154,7 @@ var
 var
  tag_any=
   function(tags)
-   {if(tags!=/* [] */0)
+   {if(tags!==/* [] */0)
      {return parse_string
               (/* None */0,
                Printf["sprintf"]

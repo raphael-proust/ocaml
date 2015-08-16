@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Obj=require("Obj");
-var Primitives=require("Primitives");
-var Misc=require("Misc");
-var Int64ops=require("Int64ops");
-var Input_handling=require("Input_handling");
-var Sys=require("Sys");
+var Pervasives=require("./pervasives.js");
+var Obj=require("./obj.js");
+var Primitives=require("./primitives.js");
+var Misc=require("./misc.js");
+var Int64ops=require("./int64ops.js");
+var Input_handling=require("./input_handling.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var conn=[0,Primitives["std_io"]];
@@ -18,7 +19,7 @@ var
   function(param)
    {var match=fork_mode[1];
     
-    if(match!=0){var a=1;}else{var a=0;}
+    if(match!==0){var a=1;}else{var a=0;}
     
     Pervasives["output_char"](conn[1][2],75);
     return Pervasives["output_binary_int"](conn[1][2],a);
@@ -27,7 +28,7 @@ var
 var
  set_current_connection=
   function(io_chan)
-   {conn[1]=io_chan,0;return update_follow_fork_mode(/* () */0);};
+   {conn[1]=io_chan;return update_follow_fork_mode(/* () */0);};
 
 var
  set_event=
@@ -116,7 +117,10 @@ var
    {if(n>=Int64ops["_0"])
      {}
     else
-     {throw [0,Assert_failure,[0,"debugcom.ml",105,2]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"debugcom.ml",105,2]];
+      }
     
     if(n>Int64ops["max_small_int"])
      {do_go_smallint(Pervasives["max_int"]);
@@ -138,7 +142,7 @@ var
        Pervasives["flush"](conn[1][2]);
        var pid=Pervasives["input_binary_int"](conn[1][1]);
        
-       if(pid=-1)
+       if(pid===-1)
         {return /* Checkpoint_failed */0;}
        else
         {return /* Checkpoint_done */[0,pid];}
@@ -155,10 +159,14 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Sys_error)
+      if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {exit=41;}
       else
-       {if(exn=End_of_file){exit=41;}else{throw exn;}}
+       {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
+         {exit=41;}
+        else
+         {throw exn;}
+        }
       
       switch(exit){case 41:return /* () */0;}
       }
@@ -172,10 +180,14 @@ var
     catch(exn)
      {var exit;
       
-      if(exn[1]=Sys_error)
+      if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {exit=37;}
       else
-       {if(exn=End_of_file){exit=37;}else{throw exn;}}
+       {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
+         {exit=37;}
+        else
+         {throw exn;}
+        }
       
       switch(exit){case 37:return /* () */0;}
       }
@@ -203,7 +215,7 @@ var
     Pervasives["flush"](conn[1][2]);
     var stack_pos=Pervasives["input_binary_int"](conn[1][1]);
     
-    if(stack_pos=-1)
+    if(stack_pos===-1)
      {var pc=0;}
     else
      {var pc=Pervasives["input_binary_int"](conn[1][1]);}
@@ -237,7 +249,7 @@ var
     return Pervasives["output_binary_int"](conn[1][2],pos);
     };
 
-if((1<<31)=0){var value_size=4;}else{var value_size=8;}
+if(1<<31===0){var value_size=4;}else{var value_size=8;}
 
 var
  input_remote_value=
@@ -249,7 +261,7 @@ var
 
 var
  Marshalling_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Debugcom.Marshalling_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Debugcom.Marshalling_error",0]);
 
 var
  obj=
@@ -264,10 +276,14 @@ var
        catch(exn)
         {var exit;
          
-         if(exn=End_of_file)
+         if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
           {exit=18;}
          else
-          {if(exn[1]=Failure){exit=18;}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {exit=18;}
+           else
+            {throw exn;}
+           }
          
          switch(exit){case 18:throw Marshalling_error;}
          }
@@ -280,8 +296,8 @@ var
  is_block=
   function(param)
    {switch(param[0])
-     {case 0:return CamlPrimtivie["caml_obj_is_block"](param[1][0]);
-      case 1:return CamlPrimtivie["caml_obj_is_block"](param[1]);
+     {case 0:return CamlPrimitive["caml_obj_is_block"](param[1][1]);
+      case 1:return CamlPrimitive["caml_obj_is_block"](param[1]);
       }
     };
 
@@ -300,7 +316,7 @@ var
          
          return header&255;
          
-        case 1:return CamlPrimtivie["caml_obj_tag"](obj[1]);
+        case 1:return CamlPrimitive["caml_obj_tag"](obj[1]);
         }
       }
     };
@@ -315,12 +331,12 @@ var
        Pervasives["flush"](conn[1][2]);
        var header=Pervasives["input_binary_int"](conn[1][1]);
        
-       if(((header&255)=Obj["double_array_tag"])&&(Sys["word_size"]=32))
+       if((header&255)===Obj["double_array_tag"]&&Sys["word_size"]===32)
         {return header>>>11;}
        else
         {return header>>>10;}
        
-      case 1:return param[1]["length"];
+      case 1:return /* -1 for tag */param[1]["length"]-1;
       }
     };
 
@@ -333,18 +349,18 @@ var
        output_remote_value(conn[1][2],v[1]);
        Pervasives["output_binary_int"](conn[1][2],n);
        Pervasives["flush"](conn[1][2]);
-       if(Pervasives["input_byte"](conn[1][1])=0)
+       if(Pervasives["input_byte"](conn[1][1])===0)
         {return /* Remote */[0,input_remote_value(conn[1][1])];}
        else
         {var buf=Pervasives["really_input_string"](conn[1][1],8);
          
          var floatbuf=n;
          
-         CamlPrimtivie["caml_blit_string"](buf,0,floatbuf,0,8);
+         CamlPrimitive["caml_blit_string"](buf,0,floatbuf,0,8);
          return /* Local */[1,floatbuf];
          }
        
-      case 1:return /* Local */[1,v[1][n]];
+      case 1:return /* Local */[1,v[1][n+1]];
       }
     };
 
@@ -395,7 +411,11 @@ var
        Pervasives["flush"](conn[1][2]);
        return Pervasives["input_binary_int"](conn[1][1]);
        
-      case 1:throw [0,Assert_failure,[0,"debugcom.ml",282,19]];
+      case 1:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"debugcom.ml",282,19]];
+       
       }
     };
 
@@ -407,11 +427,11 @@ var
     switch(rv1[0])
      {case 0:
        switch(rv2[0])
-        {case 0:return CamlPrimtivie["caml_string_equal"](rv1[1],rv2[1]);
+        {case 0:return CamlPrimitive["caml_string_equal"](rv1[1],rv2[1]);
          case 1:exit=1;
          }
        
-      case 1:switch(rv2[0]){case 0:exit=1;case 1:return rv1[1]=rv2[1];}
+      case 1:switch(rv2[0]){case 0:exit=1;case 1:return rv1[1]===rv2[1];}
       }
     
     switch(exit){case 1:return /* false */0;}

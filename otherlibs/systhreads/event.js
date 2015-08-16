@@ -1,12 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Random=require("Random");
-var Queue=require("Queue");
-var Condition=require("Condition");
-var $$Array=require("Array");
-var Mutex=require("Mutex");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Random=require("./random.js");
+var Queue=require("./queue.js");
+var Condition=require("./condition.js");
+var $$Array=require("./array.js");
+var Mutex=require("./mutex.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -22,9 +23,9 @@ var masterlock=Mutex["create"](/* () */0);
 var
  do_aborts=
   function(abort_env,genev,performed)
-   {if(abort_env!=/* [] */0)
+   {if(abort_env!==/* [] */0)
      {if(performed>=0)
-       {var ids_done=genev[performed][2];
+       {var ids_done=genev[performed+1][2];
         
         return List["iter"]
                 (function(param)
@@ -58,36 +59,37 @@ var
     
     var
      bev=
-      CamlPrimtivie["caml_make_vect"]
-       (genev["length"],genev[0][1](performed,condition,0));
+      CamlPrimitive["caml_make_vect"]
+       (/* -1 for tag */genev["length"]-1,genev[1][1](performed,condition,0));
     
-    for(var i=1;i<=genev["length"]-1;i++)
-     {bev[i]=genev[i][1](performed,condition,i),0}
+    for(var i=1;i<=/* -1 for tag */genev["length"]-1-1;i++)
+     {bev[i+1]=genev[i+1][1](performed,condition,i)}
     
     var
      poll_events=
       function(i)
-       {if(i>=bev["length"])
+       {if(i>=/* -1 for tag */bev["length"]-1)
          {return /* false */0;}
         else
-         {return bev[i][1](/* () */0)||poll_events(i+1);}
+         {return bev[i+1][1](/* () */0)||poll_events(i+1);}
         };
     
     Mutex["lock"](masterlock);
     if(!poll_events(0))
-     {for(var i$1=0;i$1<=bev["length"]-1;i$1++){bev[i$1][2](/* () */0)}
+     {for(var i$1=0;i$1<=/* -1 for tag */bev["length"]-1-1;i$1++)
+       {bev[i$1+1][2](/* () */0)}
       
       Condition["wait"](condition,masterlock)}
     else
      {}
     
     Mutex["unlock"](masterlock);
-    if(abort_env=/* [] */0)
-     {return bev[performed[1]][3](/* () */0);}
+    if(abort_env===/* [] */0)
+     {return bev[performed[1]+1][3](/* () */0);}
     else
      {var num=performed[1];
       
-      var result=bev[num][3](/* () */0);
+      var result=bev[num+1][3](/* () */0);
       
       do_aborts(abort_env,genev,num);
       return result;
@@ -97,12 +99,12 @@ var
 var
  scramble_array=
   function(a)
-   {var len=a["length"];
+   {var len=/* -1 for tag */a["length"]-1;
     
-    if(len=0){Pervasives["invalid_arg"]("Event.choose")}else{}
+    if(len===0){Pervasives["invalid_arg"]("Event.choose")}else{}
     
     for(var i=len-1;i>=1;i--)
-     {var j=Random["int"](i+1);var temp=a[i];a[i]=a[j],0,a[j]=temp,0}
+     {var j=Random["int"](i+1);var temp=a[i+1];a[i+1]=a[j+1],a[j+1]=temp}
     
     return a;
     };
@@ -191,19 +193,19 @@ var
     
     var
      bev=
-      CamlPrimtivie["caml_make_vect"]
-       (genev["length"],genev[0][1](performed,condition,0));
+      CamlPrimitive["caml_make_vect"]
+       (/* -1 for tag */genev["length"]-1,genev[1][1](performed,condition,0));
     
-    for(var i=1;i<=genev["length"]-1;i++)
-     {bev[i]=genev[i][1](performed,condition,i),0}
+    for(var i=1;i<=/* -1 for tag */genev["length"]-1-1;i++)
+     {bev[i+1]=genev[i+1][1](performed,condition,i)}
     
     var
      poll_events=
       function(i)
-       {if(i>=bev["length"])
+       {if(i>=/* -1 for tag */bev["length"]-1)
          {return /* false */0;}
         else
-         {return bev[i][1](/* () */0)||poll_events(i+1);}
+         {return bev[i+1][1](/* () */0)||poll_events(i+1);}
         };
     
     Mutex["lock"](masterlock);
@@ -211,13 +213,13 @@ var
     
     if(ready)
      {Mutex["unlock"](masterlock);
-      var result=/* Some */[0,bev[performed[1]][3](/* () */0)];
+      var result=/* Some */[0,bev[performed[1]+1][3](/* () */0)];
       
       do_aborts(abort_env,genev,performed[1]);
       return result;
       }
     else
-     {performed[1]=0,0;
+     {performed[1]=0;
       Mutex["unlock"](masterlock);
       do_aborts(abort_env,genev,-1);
       return /* None */0;
@@ -243,7 +245,7 @@ var
     
     Queue["iter"]
      (function(c)
-       {if(c[1][1]=-1){return Queue["add"](c,q$prime);}else{return 0;}},
+       {if(c[1][1]===-1){return Queue["add"](c,q$prime);}else{return 0;}},
       q);
     return q$prime;
     };
@@ -254,7 +256,7 @@ var
    {return /* Communication */[0,
             function(performed,condition,evnum)
              {return /* record */[0,
-                      function(param){performed[1]=evnum,0;return /* true */1;},
+                      function(param){performed[1]=evnum;return /* true */1;},
                       function(param){return /* () */0;},
                       function(param){return data;}];
               }];
@@ -279,9 +281,9 @@ var
                             if(rcomm[1][1]>=0)
                              {return poll$1(/* () */0);}
                             else
-                             {rcomm[3]=wcomm[3],0;
-                              performed[1]=evnum,0;
-                              rcomm[1][1]=rcomm[4],0;
+                             {rcomm[3]=wcomm[3];
+                              performed[1]=evnum;
+                              rcomm[1][1]=rcomm[4];
                               return Condition["signal"](rcomm[2]);
                               }
                             };
@@ -289,14 +291,14 @@ var
                         try
                          {poll$1(/* () */0);return /* true */1;}
                         catch(exn)
-                         {if(exn=Queue["Empty"])
+                         {if(exn===Queue["Empty"])
                            {return /* false */0;}
                           else
                            {throw exn;}
                           }
                         },
                       function(param)
-                       {channel[1]=cleanup_queue(channel[1]),0;
+                       {channel[1]=cleanup_queue(channel[1]);
                         return Queue["add"](wcomm,channel[1]);
                         },
                       function(param){return /* () */0;}];
@@ -320,9 +322,9 @@ var
                             if(wcomm[1][1]>=0)
                              {return poll$1(/* () */0);}
                             else
-                             {rcomm[3]=wcomm[3],0;
-                              performed[1]=evnum,0;
-                              wcomm[1][1]=wcomm[4],0;
+                             {rcomm[3]=wcomm[3];
+                              performed[1]=evnum;
+                              wcomm[1][1]=wcomm[4];
                               return Condition["signal"](wcomm[2]);
                               }
                             };
@@ -330,14 +332,14 @@ var
                         try
                          {poll$1(/* () */0);return /* true */1;}
                         catch(exn)
-                         {if(exn=Queue["Empty"])
+                         {if(exn===Queue["Empty"])
                            {return /* false */0;}
                           else
                            {throw exn;}
                           }
                         },
                       function(param)
-                       {channel[2]=cleanup_queue(channel[2]),0;
+                       {channel[2]=cleanup_queue(channel[2]);
                         return Queue["add"](rcomm,channel[2]);
                         },
                       function(param)

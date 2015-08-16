@@ -547,67 +547,65 @@ module["exports"]=
  "open_out":open_out,
  "open_out_bin":open_out_bin,
  "open_out_gen":open_out_gen,
- "caml_ml_flush":function(prim){return CamlPrimitive["caml_ml_flush"](prim);},
+ "flush":function(prim){return CamlPrimitive["caml_ml_flush"](prim);},
  "flush_all":flush_all,
- "caml_ml_output_char":
- function(prim,prim)
-  {return CamlPrimitive["caml_ml_output_char"](prim$1,prim);},
+ "output_char":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_output_char"](prim,prim$1);},
  "output_string":output_string,
  "output_bytes":output_bytes,
  "output":output,
  "output_substring":output_substring,
- "caml_ml_output_char":
- function(prim,prim)
-  {return CamlPrimitive["caml_ml_output_char"](prim$1,prim);},
- "caml_ml_output_int":
- function(prim,prim){return CamlPrimitive["caml_ml_output_int"](prim$1,prim);},
+ "output_byte":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_output_char"](prim,prim$1);},
+ "output_binary_int":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_output_int"](prim,prim$1);},
  "output_value":output_value,
- "caml_ml_seek_out":
- function(prim,prim){return CamlPrimitive["caml_ml_seek_out"](prim$1,prim);},
- "caml_ml_pos_out":
- function(prim){return CamlPrimitive["caml_ml_pos_out"](prim);},
- "caml_ml_channel_size":
+ "seek_out":
+ function(prim,prim$1){return CamlPrimitive["caml_ml_seek_out"](prim,prim$1);},
+ "pos_out":function(prim){return CamlPrimitive["caml_ml_pos_out"](prim);},
+ "out_channel_length":
  function(prim){return CamlPrimitive["caml_ml_channel_size"](prim);},
  "close_out":close_out,
  "close_out_noerr":close_out_noerr,
- "caml_ml_set_binary_mode":
- function(prim,prim)
-  {return CamlPrimitive["caml_ml_set_binary_mode"](prim$1,prim);},
+ "set_binary_mode_out":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_set_binary_mode"](prim,prim$1);},
  "open_in":open_in,
  "open_in_bin":open_in_bin,
  "open_in_gen":open_in_gen,
- "caml_ml_input_char":
+ "input_char":
  function(prim){return CamlPrimitive["caml_ml_input_char"](prim);},
  "input_line":input_line,
  "input":input,
  "really_input":really_input,
  "really_input_string":really_input_string,
- "caml_ml_input_char":
+ "input_byte":
  function(prim){return CamlPrimitive["caml_ml_input_char"](prim);},
- "caml_ml_input_int":
+ "input_binary_int":
  function(prim){return CamlPrimitive["caml_ml_input_int"](prim);},
- "caml_input_value":
- function(prim){return CamlPrimitive["caml_input_value"](prim);},
- "caml_ml_seek_in":
- function(prim,prim){return CamlPrimitive["caml_ml_seek_in"](prim$1,prim);},
- "caml_ml_pos_in":
- function(prim){return CamlPrimitive["caml_ml_pos_in"](prim);},
- "caml_ml_channel_size":
+ "input_value":function(prim){return CamlPrimitive["caml_input_value"](prim);},
+ "seek_in":
+ function(prim,prim$1){return CamlPrimitive["caml_ml_seek_in"](prim,prim$1);},
+ "pos_in":function(prim){return CamlPrimitive["caml_ml_pos_in"](prim);},
+ "in_channel_length":
  function(prim){return CamlPrimitive["caml_ml_channel_size"](prim);},
- "caml_ml_close_channel":
+ "close_in":
  function(prim){return CamlPrimitive["caml_ml_close_channel"](prim);},
  "close_in_noerr":close_in_noerr,
- "caml_ml_set_binary_mode":
- function(prim,prim)
-  {return CamlPrimitive["caml_ml_set_binary_mode"](prim$1,prim);},
+ "set_binary_mode_in":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_ml_set_binary_mode"](prim,prim$1);},
  "LargeFile":
  [0,
-  function(prim,prim)
-   {return CamlPrimitive["caml_ml_seek_out_64"](prim$1,prim);},
+  function(prim,prim$1)
+   {return CamlPrimitive["caml_ml_seek_out_64"](prim,prim$1);},
   function(prim){return CamlPrimitive["caml_ml_pos_out_64"](prim);},
   function(prim){return CamlPrimitive["caml_ml_channel_size_64"](prim);},
-  function(prim,prim)
-   {return CamlPrimitive["caml_ml_seek_in_64"](prim$1,prim);},
+  function(prim,prim$1)
+   {return CamlPrimitive["caml_ml_seek_in_64"](prim,prim$1);},
   function(prim){return CamlPrimitive["caml_ml_pos_in_64"](prim);},
   function(prim){return CamlPrimitive["caml_ml_channel_size_64"](prim);}],
  "string_of_format":string_of_format,

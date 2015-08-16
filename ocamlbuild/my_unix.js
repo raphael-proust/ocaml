@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Filename=require("Filename");
-var Buffer=require("Buffer");
-var My_std=require("My_std");
-var Hashtbl=require("Hashtbl");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Filename=require("./filename.js");
+var Buffer=require("./buffer.js");
+var My_std=require("./my_std.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var is_degraded=/* true */1;
@@ -14,7 +15,7 @@ var
  stat=
   function(f)
    {if(My_std["sys_file_exists"](f))
-     {if(CamlPrimtivie["caml_sys_is_directory"](f))
+     {if(CamlPrimitive["caml_sys_is_directory"](f))
        {var $js=/* FK_dir */0;}
       else
        {var $js=/* FK_file */1;}
@@ -24,7 +25,9 @@ var
        match=
         My_std["with_input_file"](/* None */0,f,Pervasives["input_char"]);
       
-      throw [0,Assert_failure,[0,"my_unix.ml",59,51]];
+      throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"my_unix.ml",59,51]];
       }
     return /* record */[0,$js,f];
     };
@@ -53,7 +56,7 @@ var
                
                var st=My_std["sys_command"](s$1);
                
-               if(st!=0)
+               if(st!==0)
                 {Pervasives["failwith"]
                   (Printf["sprintf"]
                     ([/* Format */0,
@@ -69,15 +72,15 @@ var
                });
     };
 
-var Not_a_link=CamlPrimtivie["caml_set_oo_id"]([248,"My_unix.Not_a_link",0]);
+var Not_a_link=CamlPrimitive["caml_set_oo_id"]([248,"My_unix.Not_a_link",0]);
 
 var
  No_such_file=
-  CamlPrimtivie["caml_set_oo_id"]([248,"My_unix.No_such_file",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"My_unix.No_such_file",0]);
 
 var
  Link_to_directories_not_supported=
-  CamlPrimtivie["caml_set_oo_id"]
+  CamlPrimitive["caml_set_oo_id"]
    ([248,"My_unix.Link_to_directories_not_supported",0]);
 
 var cache=Hashtbl["create"](/* None */0,32);
@@ -88,7 +91,7 @@ var
    {try
      {return Hashtbl["find"](cache,x);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return run_and_open
                 (Printf["sprintf"]
                   ([/* Format */0,
@@ -121,12 +124,17 @@ var
         else
          {var y$1=y;}
         
-        if(lstat(y$1)[1]=/* FK_dir */0)
+        if(lstat(y$1)[1]===/* FK_dir */0)
          {throw Link_to_directories_not_supported;}
         else
          {return y$1;}
         }
-      catch(exn){if(exn[1]=Failure){throw Not_a_link;}else{throw exn;}}
+      catch(exn)
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
+         {throw Not_a_link;}
+        else
+         {throw exn;}
+        }
       }
     else
      {throw No_such_file;}
@@ -140,10 +148,10 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=No_such_file)
+      if(exn===No_such_file)
        {exit=22;}
       else
-       {if(exn=Not_a_link){exit=22;}else{throw exn;}}
+       {if(exn===Not_a_link){exit=22;}else{throw exn;}}
       
       switch(exit){case 22:return /* false */0;}
       }
@@ -166,10 +174,17 @@ var
    run_and_open,
    readlink,
    function(param,param$1,param$2,param$3,param$4)
-    {throw [0,Assert_failure,[0,"my_unix.ml",119,80]];},
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"my_unix.ml",119,80]];
+     },
    function(param){return function(prim){throw prim;};},
    Pervasives["at_exit"],
-   function(param){throw [0,Assert_failure,[0,"my_unix.ml",117,30]];},
+   function(param)
+    {throw [0,
+            CamlPrimitive["caml_global_data"]["Assert_failure"],
+            [0,"my_unix.ml",117,30]];
+     },
    function(param){return /* false */0;},
    stat,
    lstat];
@@ -201,7 +216,7 @@ var
   function(cmd)
    {var bufsiz=2048;
     
-    var buf=CamlPrimtivie["caml_create_string"](bufsiz);
+    var buf=CamlPrimitive["caml_create_string"](bufsiz);
     
     var totalbuf=Buffer["create"](4096);
     

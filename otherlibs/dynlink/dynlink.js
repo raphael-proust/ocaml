@@ -1,15 +1,16 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Char=require("Char");
-var Dynlinkaux=require("Dynlinkaux");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Digest=require("Digest");
-var Printexc=require("Printexc");
+var Char=require("./char.js");
+var Dynlinkaux=require("./dynlinkaux.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Digest=require("./digest.js");
+var Printexc=require("./printexc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$Error=CamlPrimtivie["caml_set_oo_id"]([248,"Dynlink.Error",0]);
+var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Dynlink.Error",0]);
 
 var
  match=
@@ -17,10 +18,10 @@ var
    (function(param)
      {var tag=param[1];
       
-      if(tag=$$Error)
+      if(tag===$$Error)
        {var err=param[2];
         
-        if(typeof err=="number")
+        if(typeof err==="number")
          {switch(err){case 0:var msg="Unsafe_file";}}
         else
          {switch(err[0])
@@ -221,7 +222,7 @@ var
                  if(crco)
                   {var crc=crco[1];
                    
-                   if(CamlPrimtivie["caml_string_equal"](name,cu[1]))
+                   if(CamlPrimitive["caml_string_equal"](name,cu[1]))
                     {return Dynlinkaux["Consistbl"][5]
                              (crc_interfaces[1],name,crc,file_name);
                      }
@@ -244,12 +245,12 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag=Dynlinkaux["Consistbl"][9])
+      if(tag===Dynlinkaux["Consistbl"][9])
        {var name=exn[2];throw [0,$$Error,/* Inconsistent_import */[1,name]];}
       else
        {var tag$1=exn[1];
         
-        if(tag$1=Dynlinkaux["Consistbl"][10])
+        if(tag$1===Dynlinkaux["Consistbl"][10])
          {var name$1=exn[2];
           
           throw [0,$$Error,/* Unavailable_unit */[2,name$1]];
@@ -328,7 +329,7 @@ var
  init=
   function(param)
    {if(!inited[1])
-     {default_crcs[1]=Dynlinkaux["Symtable"][11](/* () */0),0;
+     {default_crcs[1]=Dynlinkaux["Symtable"][11](/* () */0);
       default_available_units(/* () */0);
       return inited[1]=/* true */1,0;
       }
@@ -360,7 +361,7 @@ var
     try
      {var filename=Dynlinkaux["Misc"][15](loadpath,shortname);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {throw [0,$$Error,/* File_not_found */[5,shortname]];}
       else
        {throw exn;}
@@ -375,7 +376,7 @@ var
          (ic,Dynlinkaux["Config"][19]["length"]);
       
       if
-       (CamlPrimtivie["caml_string_notequal"](buffer,Dynlinkaux["Config"][19]))
+       (CamlPrimitive["caml_string_notequal"](buffer,Dynlinkaux["Config"][19]))
        {Pervasives["close_in"](ic);
         throw [0,$$Error,/* Corrupted_interface */[4,filename]];
         }
@@ -407,10 +408,16 @@ var
     catch(exn$1)
      {var exit$1;
       
-      if(exn$1=End_of_file)
+      if(exn$1===CamlPrimitive["caml_global_data"]["End_of_file"])
        {exit$1=33;}
       else
-       {var tag=exn$1[1];if(tag=Failure){exit$1=33;}else{throw exn$1;}}
+       {var tag=exn$1[1];
+        
+        if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+         {exit$1=33;}
+        else
+         {throw exn$1;}
+        }
       
       switch(exit$1)
        {case 33:
@@ -438,7 +445,7 @@ var allow_unsafe_modules=function(b){return unsafe_allowed[1]=b,0;};
 var
  check_unsafe_module=
   function(cu)
-   {if(!unsafe_allowed[1]&&cu[6]!=/* [] */0)
+   {if(!unsafe_allowed[1]&&cu[6]!==/* [] */0)
      {throw [0,$$Error,/* Unsafe_file */0];}
     else
      {return 0;}
@@ -452,17 +459,17 @@ var
     Pervasives["seek_in"](ic,compunit[2]);
     var code_size=compunit[3]+8;
     
-    var code=CamlPrimtivie["caml_static_alloc"](code_size);
+    var code=CamlPrimitive["caml_static_alloc"](code_size);
     
     Pervasives["unsafe_really_input"](ic,code,0,compunit[3]);
-    code[compunit[3]]=Char["chr"](Dynlinkaux["Opcodes"][41]),0;
-    code[compunit[3]+1]=0,0;
-    code[compunit[3]+2]=0,0;
-    code[compunit[3]+3]=0,0;
-    code[compunit[3]+4]=1,0;
-    code[compunit[3]+5]=0,0;
-    code[compunit[3]+6]=0,0;
-    code[compunit[3]+7]=0,0;
+    code[compunit[3]]=Char["chr"](Dynlinkaux["Opcodes"][41]);
+    code[compunit[3]+1]=0;
+    code[compunit[3]+2]=0;
+    code[compunit[3]+3]=0;
+    code[compunit[3]+4]=1;
+    code[compunit[3]+5]=0;
+    code[compunit[3]+6]=0;
+    code[compunit[3]+7]=0;
     var initial_symtable=Dynlinkaux["Symtable"][18](/* () */0);
     
     try
@@ -472,14 +479,18 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag=Dynlinkaux["Symtable"][22])
+      if(tag===Dynlinkaux["Symtable"][22])
        {var error=exn[2];
         
         switch(error[0])
          {case 0:var s=error[1];var new_error=/* Undefined_global */[0,s];
           case 1:
            var s$1=error[1];var new_error=/* Unavailable_primitive */[1,s$1];
-          case 2:throw [0,Assert_failure,[0,"dynlink.ml",232,13]];
+          case 2:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"dynlink.ml",232,13]];
+           
           case 3:
            var s$2=error[1];var new_error=/* Uninitialized_global */[2,s$2];
           }
@@ -492,9 +503,9 @@ var
     
     var digest=Digest["string"](Pervasives["^"](file_digest,compunit[1]));
     
-    CamlPrimtivie["caml_register_code_fragment"](code,code_size,digest);
+    CamlPrimitive["caml_register_code_fragment"](code,code_size,digest);
     try
-     {return CamlPrimtivie["caml_reify_bytecode"](code,code_size)(/* () */0);}
+     {return CamlPrimitive["caml_reify_bytecode"](code,code_size)(/* () */0);}
     catch(exn$1){Dynlinkaux["Symtable"][19](initial_symtable);throw exn$1;}
     };
 
@@ -502,14 +513,14 @@ var
  loadfile=
   function(file_name)
    {init(/* () */0);
-    if(!CamlPrimtivie["caml_sys_file_exists"](file_name))
+    if(!CamlPrimitive["caml_sys_file_exists"](file_name))
      {throw [0,$$Error,/* File_not_found */[5,file_name]];}
     else
      {}
     
     var ic=Pervasives["open_in_bin"](file_name);
     
-    var file_digest=CamlPrimtivie["caml_md5_chan"](ic,-1);
+    var file_digest=CamlPrimitive["caml_md5_chan"](ic,-1);
     
     Pervasives["seek_in"](ic,0);
     try
@@ -520,13 +531,13 @@ var
            (ic,Dynlinkaux["Config"][20]["length"]);
         }
       catch(exn)
-       {if(exn=End_of_file)
+       {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
          {throw [0,$$Error,/* Not_a_bytecode_file */[0,file_name]];}
         else
          {throw exn;}
         }
       
-      if(CamlPrimtivie["caml_string_equal"](buffer,Dynlinkaux["Config"][20]))
+      if(CamlPrimitive["caml_string_equal"](buffer,Dynlinkaux["Config"][20]))
        {var compunit_pos=Pervasives["input_binary_int"](ic);
         
         Pervasives["seek_in"](ic,compunit_pos);
@@ -535,7 +546,7 @@ var
         load_compunit(ic,file_name,file_digest,cu)}
       else
        {if
-         (CamlPrimtivie["caml_string_equal"](buffer,Dynlinkaux["Config"][21]))
+         (CamlPrimitive["caml_string_equal"](buffer,Dynlinkaux["Config"][21]))
          {var toc_pos=Pervasives["input_binary_int"](ic);
           
           Pervasives["seek_in"](ic,toc_pos);
@@ -547,7 +558,7 @@ var
           catch(exn$1)
            {var tag=exn$1[1];
             
-            if(tag=Failure)
+            if(tag===CamlPrimitive["caml_global_data"]["Failure"])
              {var reason=exn$1[2];
               
               throw [0,$$Error,/* Cannot_open_dll */[6,reason]];
@@ -581,7 +592,7 @@ var
       }
     catch(exn)
      {Dynlinkaux["Symtable"][20](initial_symtable);
-      crc_interfaces[1]=initial_crc,0;
+      crc_interfaces[1]=initial_crc;
       throw exn;
       }
     };
@@ -589,7 +600,7 @@ var
 var
  error_message=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return "this object file uses unsafe features";}}
     else
      {switch(param[0])

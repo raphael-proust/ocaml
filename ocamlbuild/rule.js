@@ -1,24 +1,25 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Options=require("Options");
-var Pervasives=require("Pervasives");
-var Pathname=require("Pathname");
-var Resource=require("Resource");
-var Format=require("Format");
-var Digest_cache=require("Digest_cache");
-var Command=require("Command");
-var Shell=require("Shell");
-var Buffer=require("Buffer");
-var My_std=require("My_std");
-var Log=require("Log");
+var Options=require("./options.js");
+var Pervasives=require("./pervasives.js");
+var Pathname=require("./pathname.js");
+var Resource=require("./resource.js");
+var Format=require("./format.js");
+var Digest_cache=require("./digest_cache.js");
+var Command=require("./command.js");
+var Shell=require("./shell.js");
+var Buffer=require("./buffer.js");
+var My_std=require("./my_std.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
 var
  Exit_rule_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Rule.Exit_rule_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Rule.Exit_rule_error",0]);
 
-var Failed=CamlPrimtivie["caml_set_oo_id"]([248,"Rule.Failed",0]);
+var Failed=CamlPrimitive["caml_set_oo_id"]([248,"Rule.Failed",0]);
 
 var name_of_rule=function(r){return r[1];};
 
@@ -32,7 +33,11 @@ var doc_of_rule=function(r){return r[5];};
 
 var
  compare=
-  function(param,param$1){throw [0,Assert_failure,[0,"rule.ml",49,18]];};
+  function(param,param$1)
+   {throw [0,
+           CamlPrimitive["caml_global_data"]["Assert_failure"],
+           [0,"rule.ml",49,18]];
+    };
 
 var print_rule_name=function(f,r){return Format["pp_print_string"](f,r[1]);};
 
@@ -263,7 +268,7 @@ var
             function(env){return rule[6](finder(env));}];
     };
 
-var Can_produce=CamlPrimtivie["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
+var Can_produce=CamlPrimitive["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
 
 var
  can_produce=
@@ -282,7 +287,7 @@ var
       return /* None */0;
       }
     catch(exn)
-     {if(exn[1]=Can_produce){return /* Some */[0,exn[2]];}else{throw exn;}}
+     {if(exn[1]===Can_produce){return /* Some */[0,exn[2]];}else{throw exn;}}
     };
 
 var
@@ -348,7 +353,12 @@ var
    {try
      {return /* Some */[0,Digest_cache["get"](Pervasives["^"]("Rule: ",r[1]))];
       }
-    catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -365,7 +375,12 @@ var
   function(find,p,rs)
    {try
      {return /* Some */[0,find(p,rs)];}
-    catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -440,7 +455,7 @@ var
                           r[3],
                           res$prime);
                       
-                      dyndeps[1]=Resource["Resources"][4](res$prime,dyndeps[1]),0;
+                      dyndeps[1]=Resource["Resources"][4](res$prime,dyndeps[1]);
                       My_std["List"][14]
                        (function(x){return Resource["Cache"][13](x,res$prime);},
                         r[3]);
@@ -525,7 +540,7 @@ var
             
             var rule_digest=digest_rule(r,dyndeps$1,action);
             
-            if(CamlPrimtivie["caml_string_equal"](d,rule_digest))
+            if(CamlPrimitive["caml_string_equal"](d,rule_digest))
              {var
                match$3=
                 [/* tuple */0,/* cache_hit */-805933418,/* true */1];
@@ -727,13 +742,13 @@ var
                   
                   var new_digest=My_std["List"][36](f,new_prod_digests);
                   
-                  if(CamlPrimtivie["caml_string_notequal"](digest,new_digest))
-                   {throw Not_found;}
+                  if(CamlPrimitive["caml_string_notequal"](digest,new_digest))
+                   {throw CamlPrimitive["caml_global_data"]["Not_found"];}
                   else
                    {return 0;}
                   }
                 catch(exn)
-                 {if(exn=Not_found)
+                 {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                    {return Resource["Cache"][3](p);}
                   else
                    {throw exn;}
@@ -777,7 +792,7 @@ var
       {var
         match$1=
          My_std["List"][32]
-          (function(x){return CamlPrimtivie["caml_string_equal"](x[1],r[1]);},
+          (function(x){return CamlPrimitive["caml_string_equal"](x[1],r[1]);},
            rules[1]);
        
        throw [0,
@@ -793,7 +808,7 @@ var
                 r)];
        }
      catch(exn)
-      {if(exn=Not_found)
+      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
         {if(typeof pos==="number")
           {if(pos>=5793429)
             {return rules[1]=/* :: */[0,r,rules[1]],0;}
@@ -810,7 +825,7 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if(CamlPrimtivie["caml_string_equal"](x[1],s))
+                       {if(CamlPrimitive["caml_string_equal"](x[1],s))
                          {return /* :: */[0,x,/* :: */[0,r,acc]];}
                         else
                          {return /* :: */[0,x,acc];}
@@ -825,7 +840,7 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if(CamlPrimtivie["caml_string_equal"](x[1],s$1))
+                       {if(CamlPrimitive["caml_string_equal"](x[1],s$1))
                          {return /* :: */[0,r,/* :: */[0,x,acc]];}
                         else
                          {return /* :: */[0,x,acc];}
@@ -925,7 +940,7 @@ var
                  init);
         };
     
-    if((prods=/* [] */0)&&(prod=/* None */0)&&(stamp=/* None */0))
+    if(prods===/* [] */0&&prod===/* None */0&&stamp===/* None */0)
      {throw [0,Exit_rule_error,"Can't make a rule that produces nothing"];}
     else
      {}

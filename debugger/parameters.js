@@ -1,11 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Envaux=require("Envaux");
-var Primitives=require("Primitives");
-var Filename=require("Filename");
-var Debugger_config=require("Debugger_config");
-var Hashtbl=require("Hashtbl");
-var Config=require("Config");
+var Envaux=require("./envaux.js");
+var Primitives=require("./primitives.js");
+var Filename=require("./filename.js");
+var Debugger_config=require("./debugger_config.js");
+var Hashtbl=require("./hashtbl.js");
+var Config=require("./config.js");
 
 
 var program_loaded=/* false */0;
@@ -27,8 +27,7 @@ var
  add_path=
   function(dir)
    {Config["load_path"][1]=
-    /* :: */[0,dir,Primitives["except"](dir,Config["load_path"][1])],
-    0;
+    /* :: */[0,dir,Primitives["except"](dir,Config["load_path"][1])];
     return Envaux["reset_cache"](/* () */0);
     };
 
@@ -37,7 +36,12 @@ var
   function(mdl,dir)
    {try
      {var old=Hashtbl["find"](Debugger_config["load_path_for"],mdl);}
-    catch(exn){if(exn=Not_found){var old=/* [] */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var old=/* [] */0;}
+      else
+       {throw exn;}
+      }
     
     return Hashtbl["replace"]
             (Debugger_config["load_path_for"],mdl,/* :: */[0,dir,old]);

@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Events=require("Events");
-var Checkpoints=require("Checkpoints");
-var Program_loading=require("Program_loading");
-var Set=require("Set");
-var Bytesections=require("Bytesections");
-var Debugger_config=require("Debugger_config");
-var Hashtbl=require("Hashtbl");
-var Symtable=require("Symtable");
-var $$Array=require("Array");
-var Debugcom=require("Debugcom");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Events=require("./events.js");
+var Checkpoints=require("./checkpoints.js");
+var Program_loading=require("./program_loading.js");
+var Set=require("./set.js");
+var Bytesections=require("./bytesections.js");
+var Debugger_config=require("./debugger_config.js");
+var Hashtbl=require("./hashtbl.js");
+var Symtable=require("./symtable.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Debugcom=require("./debugcom.js");
 
 
 var $$let=$$String;
@@ -33,12 +34,12 @@ var all_events_by_module=Hashtbl["create"](/* None */0,17);
 var
  relocate_event=
   function(orig,ev)
-   {ev[1]=orig+ev[1],0;
+   {ev[1]=orig+ev[1];
     var match=ev[10];
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=44;}}
     else
      {switch(match[0]){case 0:return match[1][1]=ev[1],0;case 1:exit=44;}}
@@ -56,10 +57,14 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=Bytesections["Bad_magic_number"])
+      if(exn===Bytesections["Bad_magic_number"])
        {exit=40;}
       else
-       {if(exn=Not_found){exit=40;}else{throw exn;}}
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {exit=40;}
+        else
+         {throw exn;}
+        }
       
       switch(exit)
        {case 40:
@@ -74,7 +79,7 @@ var
     try
      {Bytesections["seek_section"](ic,"DBUG")}
     catch(exn$1)
-     {if(exn$1=Not_found)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {Pervasives["prerr_string"](bytecode_file);
         Pervasives["prerr_endline"](" has no debugging info.");
         throw Debugger_config["Toplevel"];
@@ -107,7 +112,7 @@ var
     try
      {Bytesections["seek_section"](ic,"CODE")}
     catch(exn$2)
-     {if(exn$2=Not_found)
+     {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
        {Program_loading["set_launching_function"]
          (List["assoc"]("manual",Program_loading["loading_modes"]))}
       else
@@ -125,9 +130,9 @@ var
     
     var all_events=match[1];
     
-    modules[1]=/* [] */0,0;
-    events[1]=/* [] */0,0;
-    program_source_dirs[1]=StringSet[20](match[2]),0;
+    modules[1]=/* [] */0;
+    events[1]=/* [] */0;
+    program_source_dirs[1]=StringSet[20](match[2]);
     Hashtbl["clear"](events_by_pc);
     Hashtbl["clear"](events_by_module);
     Hashtbl["clear"](all_events_by_module);
@@ -135,7 +140,7 @@ var
      (function(evl)
        {return List["iter"]
                 (function(ev)
-                  {events[1]=/* :: */[0,ev,events[1]],0;
+                  {events[1]=/* :: */[0,ev,events[1]];
                    return Hashtbl["add"](events_by_pc,ev[1],ev);
                    },
                  evl);
@@ -149,13 +154,13 @@ var
                  var
                   cmp=
                    function(ev1,ev2)
-                    {return CamlPrimtivie["caml_int_compare"]
+                    {return CamlPrimitive["caml_int_compare"]
                              (Events["get_pos"](ev1)[4],Events["get_pos"](ev2)[4]);
                      };
                  
                  var sorted_evl=List["sort"](cmp,evl);
                  
-                 modules[1]=/* :: */[0,md,modules[1]],0;
+                 modules[1]=/* :: */[0,md,modules[1]];
                  Hashtbl["add"](all_events_by_module,md,sorted_evl);
                  var
                   real_evl=
@@ -166,7 +171,7 @@ var
                        var exit;
                        
                        if(typeof match$1==="number")
-                        {if(match$1!=0){return /* false */0;}else{exit=25;}}
+                        {if(match$1!==0){return /* false */0;}else{exit=25;}}
                        else
                         {exit=25;}
                        
@@ -195,7 +200,11 @@ var
     var exit;
     
     if(typeof match==="number")
-     {if(match!=0){throw Not_found;}else{exit=21;}}
+     {if(match!==0)
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+      else
+       {exit=21;}
+      }
     else
      {exit=21;}
     
@@ -207,7 +216,12 @@ var
   function(pc)
    {try
      {event_at_pc(pc);return Debugcom["set_event"](pc);}
-    catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* () */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -215,7 +229,12 @@ var
   function(mdle)
    {try
      {return Hashtbl["find"](all_events_by_module,mdle);}
-    catch(exn){if(exn=Not_found){return /* [] */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* [] */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -225,15 +244,15 @@ var
      bsearch=
       function(lo,hi)
        {if(lo>=hi)
-         {if(Events["get_pos"](ev[hi])[4]<$$char)
-           {throw Not_found;}
+         {if(Events["get_pos"](ev[hi+1])[4]<$$char)
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
           else
            {return hi;}
           }
         else
          {var pivot=(lo+hi)/2;
           
-          var e=ev[pivot];
+          var e=ev[pivot+1];
           
           if($$char<=Events["get_pos"](e)[4])
            {return bsearch(lo,pivot);}
@@ -242,7 +261,7 @@ var
           }
         };
     
-    return bsearch(0,ev["length"]-1);
+    return bsearch(0,/* -1 for tag */ev["length"]-1-1);
     };
 
 var
@@ -250,7 +269,7 @@ var
   function(md,$$char)
    {var ev=Hashtbl["find"](events_by_module,md);
     
-    return ev[find_event(ev,$$char)];
+    return ev[find_event(ev,$$char)+1];
     };
 
 var
@@ -265,20 +284,23 @@ var
        (pos>
         0&&
         $$char-
-        Events["get_pos"](ev[pos-1])[4]<=
-        Events["get_pos"](ev[pos])[4]-
+        Events["get_pos"](ev[pos-1+1])[4]<=
+        Events["get_pos"](ev[pos+1])[4]-
         $$char)
-       {return ev[pos-1];}
+       {return ev[pos-1+1];}
       else
-       {return ev[pos];}
+       {return ev[pos+1];}
       }
     catch(exn)
-     {if(exn=Not_found)
-       {var pos$1=ev["length"]-1;
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var pos$1=/* -1 for tag */ev["length"]-1-1;
         
-        if(pos$1<0){throw Not_found;}else{}
+        if(pos$1<0)
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+        else
+         {}
         
-        return ev[pos$1];
+        return ev[pos$1+1];
         }
       else
        {throw exn;}
@@ -295,7 +317,7 @@ var
                var exit;
                
                if(typeof match==="number")
-                {if(match!=0){return /* () */0;}else{exit=5;}}
+                {if(match!==0){return /* () */0;}else{exit=5;}}
                else
                 {exit=5;}
                
@@ -312,21 +334,24 @@ var
    {var opt_pc=Checkpoints["current_pc"](/* () */0);
     
     if(opt_pc)
-     {if(CamlPrimtivie["caml_notequal"](opt_pc,old_pc[1]))
+     {if(CamlPrimitive["caml_notequal"](opt_pc,old_pc[1]))
        {var $js;
         try
          {$js=/* Some */[0,event_at_pc(opt_pc[1])];}
-        catch(exn){if(exn=Not_found){$js=/* None */0;}else{throw exn;}}
-        Events["current_event"][1]=$js,0;
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {$js=/* None */0;}
+          else
+           {throw exn;}
+          }
+        Events["current_event"][1]=$js;
         return old_pc[1]=opt_pc,0;
         }
       else
        {return /* () */0;}
       }
     else
-     {Events["current_event"][1]=/* None */0,0;
-      return old_pc[1]=/* None */0,0;
-      }
+     {Events["current_event"][1]=/* None */0;return old_pc[1]=/* None */0,0;}
     };
 
 module["exports"]=

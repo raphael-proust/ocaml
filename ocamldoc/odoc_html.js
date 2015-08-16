@@ -1,21 +1,22 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Odoc_global=require("Odoc_global");
-var CamlinternalOO=require("CamlinternalOO");
-var Char=require("Char");
-var Odoc_dag2html=require("Odoc_dag2html");
-var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Odoc_ocamlhtml=require("Odoc_ocamlhtml");
-var Printf=require("Printf");
-var Set=require("Set");
-var Buffer=require("Buffer");
-var Filename=require("Filename");
-var Str=require("Str");
-var $$Array=require("Array");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var Odoc_global=require("./odoc_global.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Char=require("./char.js");
+var Odoc_dag2html=require("./odoc_dag2html.js");
+var Odoc_info=require("./odoc_info.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Odoc_ocamlhtml=require("./odoc_ocamlhtml.js");
+var Printf=require("./printf.js");
+var Set=require("./set.js");
+var Buffer=require("./buffer.js");
+var Filename=require("./filename.js");
+var Str=require("./str.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 var shared=[0,"html_of_text"];
@@ -337,7 +338,12 @@ var
       
       if(25<-65+match>>>0){var qual="-c";}else{var qual="";}
       }
-    catch(exn){if(exn=Not_found){var qual="";}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var qual="";}
+      else
+       {throw exn;}
+      }
     
     var prefix=Pervasives["^"](name,qual);
     
@@ -359,7 +365,7 @@ var
     
     var s=Odoc_info["Name"][5](complete_name);
     
-    if(CamlPrimtivie["caml_string_equal"](s,""))
+    if(CamlPrimitive["caml_string_equal"](s,""))
      {var module_name=simple_name;}
     else
      {var module_name=s;}
@@ -678,7 +684,7 @@ var
    file_code_module_complete_target,
    file_type_class_complete_target];
 
-var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var StringSet=Set["Make"]([0,compare]);
 
@@ -892,7 +898,7 @@ var
           },
         html_of_text_element,
         function(self$neg2,b,txt)
-         {if(typeof txt=="number")
+         {if(typeof txt==="number")
            {switch(txt)
              {case 0:
                /* unknown */"(sendself self-2/1492 html_of_Newline/1435 b/1493)";
@@ -976,7 +982,7 @@ var
         html_of_Target,
         function(self$neg2,b,target,code)
          {if
-           (CamlPrimtivie["caml_string_equal"]
+           (CamlPrimitive["caml_string_equal"]
              ($$String["lowercase"](target),"html"))
            {return bs(b,code);}
           else
@@ -1016,7 +1022,7 @@ var
                   else
                    {var match=s[n];
                     
-                    if(match!=10)
+                    if(match!==10)
                      {return /* Some */[0,n];}
                     else
                      {return iter_first(n+1);}
@@ -1036,7 +1042,7 @@ var
                     else
                      {var match$1=s[n];
                       
-                      if(match$1!=9)
+                      if(match$1!==9)
                        {return /* Some */[0,n];}
                       else
                        {return iter_last(n-1);}
@@ -1324,7 +1330,7 @@ var
                  m=
                   List["find"]
                    (function(m)
-                     {return CamlPrimtivie["caml_string_equal"](m[1],name);},
+                     {return CamlPrimitive["caml_string_equal"](m[1],name);},
                     0);
                 
                 var match=Naming[11](m[1]);
@@ -1348,7 +1354,7 @@ var
                 /* unknown */"(sendself self-2/1645 html_of_info_first_sentence/1443 b/1646\n  (field 2 m/1649))";
                 }
               catch(exn)
-               {if(exn=Not_found)
+               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                  {Odoc_global["pwarning"]
                    (Odoc_messages["cross_module_not_found"](name)),
                   bp
@@ -1726,12 +1732,12 @@ var
                     {var tag=param[1];
                      
                      try
-                      {var f=List["assoc"](tag,self$neg3[tag_functions]);
+                      {var f=List["assoc"](tag,self$neg3[tag_functions+1]);
                        
                        return Buffer["add_string"](b,f(param[2]));
                        }
                      catch(exn)
-                      {if(exn=Not_found)
+                      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                         {return Odoc_info["warning"]
                                  (Odoc_messages["tag_not_handled"](tag));
                          }
@@ -1781,7 +1787,7 @@ var
              {var d=match$1[1];
               
               if
-               (CamlPrimtivie["caml_equal"]
+               (CamlPrimitive["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
@@ -1820,7 +1826,7 @@ var
             
             var M=Odoc_info;
             
-            var dep=info$1[7]!=/* None */0;
+            var dep=info$1[7]!==/* None */0;
             
             bs(b,'<div class="info">\n');
             if(dep){bs(b,'<span class="deprecated">')}else{}
@@ -1831,7 +1837,7 @@ var
              {var d=match[1];
               
               if
-               (CamlPrimtivie["caml_equal"]
+               (CamlPrimitive["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {}
               else
@@ -1852,7 +1858,7 @@ var
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
-       $$self$1[tag_functions]=/* [] */0,0;
+       $$self$1[tag_functions+1]=/* [] */0;
        return $$self$1;
        };
      },
@@ -1891,7 +1897,7 @@ var
     for(var i=0;i<=len-1;i++)
      {var c=s[i];
       
-      if(c!=10)
+      if(c!==10)
        {Buffer["add_char"](b,c)}
       else
        {Buffer["add_string"](b,"<br>     ")}
@@ -2169,7 +2175,7 @@ var
        index_prefix,
        function(self$neg4)
         {if
-          (CamlPrimtivie["caml_string_equal"]
+          (CamlPrimitive["caml_string_equal"]
             (Odoc_global["out_file"][1],Odoc_messages["default_out_file"]))
           {return "index";}
          else
@@ -2312,19 +2318,19 @@ var
         {var match=css_style[1];
          
          if(match)
-          {self$neg4[style_file]=match[1],0}
+          {self$neg4[style_file+1]=match[1]}
          else
           {var
             default_style=
-             $$String["concat"]("\n",self$neg4[default_style_options]);
+             $$String["concat"]("\n",self$neg4[default_style_options+1]);
            
            try
             {var
               file=
                Filename["concat"]
-                (Odoc_info["Global"][5][1],self$neg4[style_file]);
+                (Odoc_info["Global"][5][1],self$neg4[style_file+1]);
              
-             if(CamlPrimtivie["caml_sys_file_exists"](file))
+             if(CamlPrimitive["caml_sys_file_exists"](file))
               {Odoc_info["verbose"]
                 (Odoc_messages["file_exists_dont_generate"](file))}
              else
@@ -2336,18 +2342,18 @@ var
                Odoc_info["verbose"](Odoc_messages["file_generated"](file))}
              }
            catch(exn)
-            {if(exn[1]=Sys_error)
+            {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
               {Pervasives["prerr_endline"](exn[2]),Odoc_info["errors"][0]++}
              else
               {throw exn;}
              }
            }
          
-         return self$neg4[style]=
+         return self$neg4[style+1]=
                 Pervasives["^"]
                  ('<link rel="stylesheet" href="',
                   Pervasives["^"]
-                   (self$neg4[style_file],'" type="text/css">\n')),
+                   (self$neg4[style_file+1],'" type="text/css">\n')),
                 0;
          },
        title,
@@ -2371,7 +2377,7 @@ var
          },
        print_header,
        function(self$neg4,b,nav,comments,title)
-        {return self$neg4[header](b,nav,comments,title);},
+        {return self$neg4[header+1](b,nav,comments,title);},
        prepare_header,
        function(self$neg4,module_list)
         {var
@@ -2412,7 +2418,7 @@ var
                  };
              
              bs(b,"<head>\n");
-             bs(b,self$neg4[style]);
+             bs(b,self$neg4[style+1]);
              /* unknown */"(sendself self-4/2008 character_encoding/1825 0a)";
              bs(b,0);
              bs(b,'<link rel="Start" href="');
@@ -2456,7 +2462,7 @@ var
                
                var father=Odoc_info["Name"][5](match[3]);
                
-               if(CamlPrimtivie["caml_string_equal"](father,""))
+               if(CamlPrimitive["caml_string_equal"](father,""))
                 {/* unknown */"(sendself self-4/2008 index/1833)";}
                else
                 {var href=Naming[11](father)[1];}
@@ -2534,7 +2540,7 @@ var
              return bs(b,"</title>\n</head>\n");
              };
          
-         return self$neg4[header]=f,0;
+         return self$neg4[header+1]=f,0;
          },
        html_sections_links,
        function(self$neg4,b,comments)
@@ -2565,8 +2571,8 @@ var
          var
           sorted_levels=
            List["sort"]
-            (function(prim,prim)
-              {return CamlPrimtivie["caml_compare"](prim$1,prim);},
+            (function(prim,prim$1)
+              {return CamlPrimitive["caml_compare"](prim,prim$1);},
              levels);
          
          if(sorted_levels)
@@ -2592,7 +2598,7 @@ var
               {var n$1=level_opt[1];
                
                return List["filter"]
-                       (function(param){return param[1]=n$1;},titles);
+                       (function(param){return param[1]===n$1;},titles);
                }
              else
               {return /* [] */0;}
@@ -2672,12 +2678,12 @@ var
          bs(b,"&nbsp;");
          var father=Odoc_info["Name"][5](name);
          
-         if(CamlPrimtivie["caml_string_equal"](father,""))
+         if(CamlPrimitive["caml_string_equal"](father,""))
           {/* unknown */"(sendself self-4/2066 index/1833)";}
          else
           {var href=Naming[11](father)[1];}
          
-         if(CamlPrimtivie["caml_string_equal"](father,""))
+         if(CamlPrimitive["caml_string_equal"](father,""))
           {var father_name="Index";}
          else
           {var father_name=father;}
@@ -2759,7 +2765,7 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
              return Pervasives["prerr_endline"](exn[2]);
              }
@@ -2781,7 +2787,7 @@ var
                Odoc_info["apply_if_equal"]
                 (Odoc_info["use_hidden_modules"],match_s,rel);
              
-             if(StringSet[3](match_s,self$neg4[known_types_names]))
+             if(StringSet[3](match_s,self$neg4[known_types_names+1]))
               {return Pervasives["^"]
                        ('<a href="',
                         Pervasives["^"]
@@ -2789,7 +2795,7 @@ var
                           Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))));
                }
              else
-              {if(StringSet[3](match_s,self$neg4[known_classes_names]))
+              {if(StringSet[3](match_s,self$neg4[known_classes_names+1]))
                 {var match=Naming[11](match_s);
                  
                  return Pervasives["^"]
@@ -2823,7 +2829,7 @@ var
                Odoc_info["apply_if_equal"]
                 (Odoc_info["use_hidden_modules"],match_s,rel);
              
-             if(StringSet[3](match_s,self$neg4[known_modules_names]))
+             if(StringSet[3](match_s,self$neg4[known_modules_names+1]))
               {var match=Naming[11](match_s);
                
                return Pervasives["^"]
@@ -3248,7 +3254,7 @@ var
          /* unknown */"(sendself self-4/2248 create_fully_qualified_idents_links/1882 m_name/2250\n  (field 1 te/2251))";
          bs(b,0);
          bs(b," += ");
-         if(te[4]=/* Private */0){bs(b,"private ")}else{}
+         if(te[4]===/* Private */0){bs(b,"private ")}else{}
          
          bs(b,"</code></pre>");
          bs(b,'<table class="typetable">\n');
@@ -3522,7 +3528,7 @@ var
          
          bs(b,Odoc_info["Name"][1](t[1]));
          bs(b,"</span> ");
-         var priv=t[5]=/* Private */0;
+         var priv=t[5]===/* Private */0;
          
          var match$3=t[6];
          
@@ -3581,7 +3587,7 @@ var
          
          var match$5=t[4];
          
-         if(typeof match$5=="number")
+         if(typeof match$5==="number")
           {switch(match$5)
             {case 0:bs(b,"</pre>");case 1:bs(b,"= .."),bs(b,"</pre>")}}
          else
@@ -3893,7 +3899,7 @@ var
               l2=
                List["filter"]
                 (function(n)
-                  {return Odoc_info["Parameter"][4](p,n)!=/* None */0;},
+                  {return Odoc_info["Parameter"][4](p,n)!==/* None */0;},
                  l);
              
              var
@@ -3970,7 +3976,7 @@ var
             (function(p)
               {return List["exists"]
                        (function(n)
-                         {return Odoc_info["Parameter"][4](p,n)!=/* None */0;},
+                         {return Odoc_info["Parameter"][4](p,n)!==/* None */0;},
                         Odoc_info["Parameter"][3](p));
                },
              l);
@@ -4556,7 +4562,7 @@ var
          if(text)
           {var match=text[1];
            
-           if(typeof match=="number")
+           if(typeof match==="number")
             {switch(match){}}
            else
             {switch(match[0])
@@ -4684,7 +4690,7 @@ var
             sorted_elements=
              List["sort"]
               (function(e1,e2)
-                {return CamlPrimtivie["caml_string_compare"]
+                {return CamlPrimitive["caml_string_compare"]
                          (Odoc_info["Name"][1](name(e1)),
                           Odoc_info["Name"][1](name(e2)));
                  },
@@ -4720,9 +4726,9 @@ var
                  target(e),
                  0);
                if
-                (CamlPrimtivie["caml_string_notequal"]
+                (CamlPrimitive["caml_string_notequal"]
                   (simple_name,father_name)&&
-                 CamlPrimtivie["caml_string_notequal"](father_name,""))
+                 CamlPrimitive["caml_string_notequal"](father_name,""))
                 {bp
                   (b,
                    [/* Format */0,
@@ -4772,7 +4778,11 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_elements,
        function(self$neg4,f_generate,l)
@@ -4818,7 +4828,7 @@ var
            
            var post_name=opt(function(c){return c[1];},post);
            
-           bs(b,self$neg4[doctype]);
+           bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
            /* unknown */"(sendself self-4/2542 print_header/1875 b/2549\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2550 post_name/2552 (field 0 cl/2545))))\n  (makeblock 0 (apply (field 4 (field 8 (global Odoc_info!))) 0a cl/2545))\n  (sendself self-4/2542 inner_title/1874 (field 0 cl/2545)))";
            
@@ -4861,7 +4871,11 @@ var
            /* unknown */"(sendself self-4/2542 output_class_type/1896 (field 0 cl/2545)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2547)\n  (field 2 cl/2545))";
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_for_class_type,
        function(self$neg4,pre,post,clt)
@@ -4882,7 +4896,7 @@ var
            
            var post_name=opt(function(ct){return ct[1];},post);
            
-           bs(b,self$neg4[doctype]);
+           bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
            /* unknown */"(sendself self-4/2556 print_header/1875 b/2563\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2564 post_name/2566 (field 0 clt/2559))))\n  (makeblock 0 (apply (field 9 (field 8 (global Odoc_info!))) 0a clt/2559))\n  (sendself self-4/2556 inner_title/1874 (field 0 clt/2559)))";
            
@@ -4923,7 +4937,11 @@ var
            /* unknown */"(sendself self-4/2556 output_class_type/1896 (field 0 clt/2559)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2561)\n  (field 2 clt/2559))";
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_for_module_type,
        function(self$neg4,pre,post,mt)
@@ -4943,7 +4961,7 @@ var
            
            var post_name=opt(function(mt){return mt[1];},post);
            
-           bs(b,self$neg4[doctype]);
+           bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
            /* unknown */"(sendself self-4/2570 print_header/1875 b/2577\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2578 post_name/2580 (field 0 mt/2573))))\n  (makeblock 0 (apply (field 30 (field 9 (global Odoc_info!))) 0a mt/2573))\n  (sendself self-4/2570 inner_title/1874 (field 0 mt/2573)))";
            
@@ -5005,7 +5023,11 @@ var
             {return /* () */0;}
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_for_module,
        function(self$neg4,pre,post,modu)
@@ -5029,7 +5051,7 @@ var
            
            var post_name=opt(function(m){return m[1];},post);
            
-           bs(b,self$neg4[doctype]);
+           bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
            /* unknown */"(sendself self-4/2585 print_header/1875 b/2593\n  (makeblock 0\n    (makeblock 0\n      (makeblock 0 pre_name/2594 post_name/2596 (field 0 modu/2588))))\n  (makeblock 0 (apply (field 15 (field 9 (global Odoc_info!))) 0a modu/2588))\n  (sendself self-4/2585 inner_title/1874 (field 0 modu/2588)))";
            
@@ -5112,7 +5134,11 @@ var
             {return /* () */0;}
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_index,
        function(self$neg4,module_list)
@@ -5133,7 +5159,7 @@ var
            else
             {var title$1="";}
            
-           bs(b,self$neg4[doctype]);
+           bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
            /* unknown */"(sendself self-4/2601 print_header/1875 b/2604 0a 0a\n  (sendself self-4/2601 title/1873))";
            
@@ -5162,7 +5188,11 @@ var
            return Pervasives["close_out"](chanout);
            }
          catch(exn)
-          {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+           else
+            {throw exn;}
+           }
          },
        generate_values_index,
        function(self$neg4,module_list)
@@ -5208,60 +5238,54 @@ var
        function(self$neg4,module_list)
         {/* unknown */"(sendself self-4/2669 init_style/1872)";
          
-         self$neg4[list_values$1]=Odoc_info["Search"][2](module_list),0;
-         self$neg4[list_extensions$1]=Odoc_info["Search"][3](module_list),0;
-         self$neg4[list_exceptions$1]=Odoc_info["Search"][4](module_list),0;
-         self$neg4[list_types$1]=Odoc_info["Search"][5](module_list),0;
-         self$neg4[list_attributes$1]=Odoc_info["Search"][6](module_list),0;
-         self$neg4[list_methods$1]=Odoc_info["Search"][7](module_list),0;
-         self$neg4[list_classes$1]=Odoc_info["Search"][8](module_list),0;
-         self$neg4[list_class_types$1]=Odoc_info["Search"][9](module_list),0;
-         self$neg4[list_modules$1]=Odoc_info["Search"][10](module_list),0;
-         self$neg4[list_module_types$1]=
-         Odoc_info["Search"][11](module_list),
-         0;
+         self$neg4[list_values$1+1]=Odoc_info["Search"][2](module_list);
+         self$neg4[list_extensions$1+1]=Odoc_info["Search"][3](module_list);
+         self$neg4[list_exceptions$1+1]=Odoc_info["Search"][4](module_list);
+         self$neg4[list_types$1+1]=Odoc_info["Search"][5](module_list);
+         self$neg4[list_attributes$1+1]=Odoc_info["Search"][6](module_list);
+         self$neg4[list_methods$1+1]=Odoc_info["Search"][7](module_list);
+         self$neg4[list_classes$1+1]=Odoc_info["Search"][8](module_list);
+         self$neg4[list_class_types$1+1]=Odoc_info["Search"][9](module_list);
+         self$neg4[list_modules$1+1]=Odoc_info["Search"][10](module_list);
+         self$neg4[list_module_types$1+1]=
+         Odoc_info["Search"][11](module_list);
          /* unknown */"(sendself self-4/2669 prepare_header/1876 module_list/2670)";
          
          var types=Odoc_info["Search"][5](module_list);
          
-         self$neg4[known_types_names]=
+         self$neg4[known_types_names+1]=
          List["fold_left"]
           (function(acc,t){return StringSet[4](t[1],acc);},
-           self$neg4[known_types_names],
-           types),
-         0;
+           self$neg4[known_types_names+1],
+           types);
          var classes=Odoc_info["Search"][8](module_list);
          
          var class_types=Odoc_info["Search"][9](module_list);
          
-         self$neg4[known_classes_names]=
+         self$neg4[known_classes_names+1]=
          List["fold_left"]
           (function(acc,c){return StringSet[4](c[1],acc);},
-           self$neg4[known_classes_names],
-           classes),
-         0;
-         self$neg4[known_classes_names]=
+           self$neg4[known_classes_names+1],
+           classes);
+         self$neg4[known_classes_names+1]=
          List["fold_left"]
           (function(acc,ct){return StringSet[4](ct[1],acc);},
-           self$neg4[known_classes_names],
-           class_types),
-         0;
+           self$neg4[known_classes_names+1],
+           class_types);
          var module_types=Odoc_info["Search"][11](module_list);
          
          var modules=Odoc_info["Search"][10](module_list);
          
-         self$neg4[known_modules_names]=
+         self$neg4[known_modules_names+1]=
          List["fold_left"]
           (function(acc,m){return StringSet[4](m[1],acc);},
-           self$neg4[known_modules_names],
-           modules),
-         0;
-         self$neg4[known_modules_names]=
+           self$neg4[known_modules_names+1],
+           modules);
+         self$neg4[known_modules_names+1]=
          List["fold_left"]
           (function(acc,mt){return StringSet[4](mt[1],acc);},
-           self$neg4[known_modules_names],
-           module_types),
-         0;
+           self$neg4[known_modules_names+1],
+           module_types);
          if(!index_only[1])
           {/* unknown */"(sendself self-4/2669 generate_elements/1922\n  (sendself self-4/2669 generate_for_module/1926) module_list/2670)";
            }
@@ -5292,7 +5316,7 @@ var
            /* unknown */"(sendself self-4/2669 generate_module_types_index/1937 module_list/2670)";
            }
          catch(exn)
-          {if(exn[1]=Failure)
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {Pervasives["prerr_endline"](exn[2]);
              return Odoc_info["errors"][0]++;
              }
@@ -5318,10 +5342,9 @@ var
       
       obj_init($$self$1),
       obj_init$1($$self$1),
-      $$self$1[doctype]=
+      $$self$1[doctype+1]=
       '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n',
-      0,
-      $$self$1[default_style_options]=
+      $$self$1[default_style_options+1]=
       /* :: */[0,
        ".keyword { font-weight : bold ; color : Red }",
        /* :: */[0,
@@ -5453,53 +5476,37 @@ var
                                               [/* :: */0,
                                                "ul.indexlist li { list-style-type: none ; margin-left: 0; padding-left: 0; }",
                                                /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
-      0,
-      $$self$1[style_file]=
+      $$self$1[style_file+1]=
       "style.css",
-      0,
-      $$self$1[style]=
+      $$self$1[style+1]=
       "",
-      0,
-      $$self$1[known_types_names]=
+      $$self$1[known_types_names+1]=
       StringSet[1],
-      0,
-      $$self$1[known_classes_names]=
+      $$self$1[known_classes_names+1]=
       StringSet[1],
-      0,
-      $$self$1[known_modules_names]=
+      $$self$1[known_modules_names+1]=
       StringSet[1],
-      0,
-      $$self$1[list_attributes$1]=
+      $$self$1[list_attributes$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_methods$1]=
+      $$self$1[list_methods$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_values$1]=
+      $$self$1[list_values$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_extensions$1]=
+      $$self$1[list_extensions$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_exceptions$1]=
+      $$self$1[list_exceptions$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_types$1]=
+      $$self$1[list_types$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_modules$1]=
+      $$self$1[list_modules$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_module_types$1]=
+      $$self$1[list_module_types$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_classes$1]=
+      $$self$1[list_classes$1+1]=
       /* [] */0,
-      0,
-      $$self$1[list_class_types$1]=
+      $$self$1[list_class_types$1+1]=
       /* [] */0,
-      0,
-      $$self$1[header]=
+      $$self$1[header+1]=
       function(b,$staropt$star,$staropt$star,param)
        {if($staropt$star$1)
          {var nav=$staropt$star$1[1];}
@@ -5512,8 +5519,7 @@ var
          {var comments=/* [] */0;}
         
         return /* () */0;
-        },
-      0;
+        };
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
       };
     };

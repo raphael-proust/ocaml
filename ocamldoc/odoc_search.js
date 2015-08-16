@@ -1,16 +1,17 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_name=require("Odoc_name");
-var Odoc_class=require("Odoc_class");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Odoc_extension=require("Odoc_extension");
-var Str=require("Str");
-var Odoc_module=require("Odoc_module");
+var Odoc_name=require("./odoc_name.js");
+var Odoc_class=require("./odoc_class.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Odoc_extension=require("./odoc_extension.js");
+var Str=require("./str.js");
+var Odoc_module=require("./odoc_module.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
-Odoc_module,Odoc_name;
+
 var
  Search=
   function(P)
@@ -37,7 +38,7 @@ var
         
         var exit;
         
-        if(typeof e=="number")
+        if(typeof e==="number")
          {switch(e){case 0:exit=274;case 1:exit=274;}}
         else
          {switch(e[0])
@@ -111,12 +112,12 @@ var
       function(t,v)
        {var match=P[8](t,v);
         
-        if(match[1]!=0)
+        if(match[1]!==0)
          {var match$1=t[4];
           
           var exit;
           
-          if(typeof match$1=="number")
+          if(typeof match$1==="number")
            {switch(match$1){case 0:exit=264;case 1:exit=264;}}
           else
            {switch(match$1[0])
@@ -677,7 +678,7 @@ var
     
     var
      p=
-      function(v1,v2){return CamlPrimtivie["caml_string_equal"](v1[1],v2[1]);};
+      function(v1,v2){return CamlPrimitive["caml_string_equal"](v1[1],v2[1]);};
     
     var
      iter=
@@ -767,7 +768,7 @@ var
     
     var
      p=
-      function(x1,x2){return CamlPrimtivie["caml_string_equal"](x1[1],x2[1]);};
+      function(x1,x2){return CamlPrimitive["caml_string_equal"](x1[1],x2[1]);};
     
     var
      iter=
@@ -857,7 +858,7 @@ var
     
     var
      p=
-      function(e1,e2){return CamlPrimtivie["caml_string_equal"](e1[1],e2[1]);};
+      function(e1,e2){return CamlPrimitive["caml_string_equal"](e1[1],e2[1]);};
     
     var
      iter=
@@ -947,7 +948,7 @@ var
     
     var
      p=
-      function(t1,t2){return CamlPrimtivie["caml_string_equal"](t1[1],t2[1]);};
+      function(t1,t2){return CamlPrimitive["caml_string_equal"](t1[1],t2[1]);};
     
     var
      iter=
@@ -1038,7 +1039,7 @@ var
     var
      p=
       function(a1,a2)
-       {return CamlPrimtivie["caml_string_equal"](a1[1][1],a2[1][1]);};
+       {return CamlPrimitive["caml_string_equal"](a1[1][1],a2[1][1]);};
     
     var
      iter=
@@ -1129,7 +1130,7 @@ var
     var
      p=
       function(m1,m2)
-       {return CamlPrimtivie["caml_string_equal"](m1[1][1],m2[1][1]);};
+       {return CamlPrimitive["caml_string_equal"](m1[1][1],m2[1][1]);};
     
     var
      iter=
@@ -1219,7 +1220,7 @@ var
     
     var
      p=
-      function(c1,c2){return CamlPrimtivie["caml_string_equal"](c1[1],c2[1]);};
+      function(c1,c2){return CamlPrimitive["caml_string_equal"](c1[1],c2[1]);};
     
     var
      iter=
@@ -1309,7 +1310,7 @@ var
     
     var
      p=
-      function(c1,c2){return CamlPrimtivie["caml_string_equal"](c1[1],c2[1]);};
+      function(c1,c2){return CamlPrimitive["caml_string_equal"](c1[1],c2[1]);};
     
     var
      iter=
@@ -1399,7 +1400,7 @@ var
     
     var
      p=
-      function(m1,m2){return CamlPrimtivie["caml_string_equal"](m1[1],m2[1]);};
+      function(m1,m2){return CamlPrimitive["caml_string_equal"](m1[1],m2[1]);};
     
     var
      iter=
@@ -1489,7 +1490,7 @@ var
     
     var
      p=
-      function(m1,m2){return CamlPrimtivie["caml_string_equal"](m1[1],m2[1]);};
+      function(m1,m2){return CamlPrimitive["caml_string_equal"](m1[1],m2[1]);};
     
     var
      iter=
@@ -1663,7 +1664,11 @@ var
     
     switch(match[0])
      {case 10:return match[2];
-      default:throw [0,Assert_failure,[0,"odoc_search.ml",752,9]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_search.ml",752,9]];
+       }
     };
 
 module["exports"]=

@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
 
 
 var
@@ -110,7 +110,12 @@ var
         default:
          try
           {return /* Some */[0,List["assoc"](s,info_opt[1][8])];}
-         catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+         catch(exn)
+          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+            {return /* None */0;}
+           else
+            {throw exn;}
+           }
          }
       }
     else

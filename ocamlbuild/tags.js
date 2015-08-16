@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Format=require("Format");
-var Set=require("Set");
+var List=require("./list.js");
+var Format=require("./format.js");
+var Set=require("./set.js");
 
 
 var $$let=$$String;

@@ -1,20 +1,21 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Tools=require("Tools");
-var Options=require("Options");
-var Const=require("Const");
-var Pervasives=require("Pervasives");
-var Lexers=require("Lexers");
-var Printf=require("Printf");
-var Pathname=require("Pathname");
-var Flags=require("Flags");
-var Command=require("Command");
-var Param_tags=require("Param_tags");
-var Lexing=require("Lexing");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var Hashtbl=require("Hashtbl");
-var Log=require("Log");
+var Tools=require("./tools.js");
+var Options=require("./options.js");
+var Const=require("./const.js");
+var Pervasives=require("./pervasives.js");
+var Lexers=require("./lexers.js");
+var Printf=require("./printf.js");
+var Pathname=require("./pathname.js");
+var Flags=require("./flags.js");
+var Command=require("./command.js");
+var Param_tags=require("./param_tags.js");
+var Lexing=require("./lexing.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var Hashtbl=require("./hashtbl.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var $$let=My_std["String"];
@@ -106,7 +107,7 @@ var non_dependencies=[0,/* [] */0];
 var
  non_dependency=
   function(m1,m2)
-   {if(Pathname["get_extensions"](m1)["length"]=0)
+   {if(Pathname["get_extensions"](m1)["length"]===0)
      {Pervasives["invalid_arg"]("non_dependency: no extension")}
     else
      {}
@@ -207,7 +208,7 @@ var
     
     var reduced=Command["reduce"](flags);
     
-    if(reduced=/* N */0)
+    if(reduced===/* N */0)
      {return /* N */0;}
     else
      {return /* S */[0,
@@ -220,7 +221,7 @@ var
 var
  ocaml_add_include_flag=
   function(x,acc)
-   {if(CamlPrimtivie["caml_string_equal"](x,Pathname["current_dir_name"]))
+   {if(CamlPrimitive["caml_string_equal"](x,Pathname["current_dir_name"]))
      {return acc;}
     else
      {return /* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]];}
@@ -245,7 +246,12 @@ var
   function(m)
    {try
      {return Hashtbl["find"](libraries,m);}
-    catch(exn){if(exn=Not_found){return /* [] */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* [] */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -360,7 +366,7 @@ var cmi_of=Pathname["update_extensions"]("cmi");
 
 var
  Ocamldep_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Ocaml_utils.Ocamldep_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Ocaml_utils.Ocamldep_error",0]);
 
 var path_dependencies=Hashtbl["create"](/* None */0,103);
 
@@ -382,7 +388,7 @@ var
                     (Const["Source"][5],Lexing["from_channel"](ic));
                  }
                catch(exn)
-                {if(exn[1]=Lexers["Error"])
+                {if(exn[1]===Lexers["Error"])
                   {throw [0,
                           Ocamldep_error,
                           Printf["sprintf"]
@@ -408,7 +414,7 @@ var
                      var module_name$prime=module_name_of_pathname(path$1);
                      
                      if
-                      (CamlPrimtivie["caml_string_equal"]
+                      (CamlPrimitive["caml_string_equal"]
                         (module_name$prime,module_name))
                       {return My_std["List"][3](param[2],acc);}
                      else
@@ -455,7 +461,11 @@ var
                try
                 {$js=Hashtbl["find"](path_dependencies,path);}
                catch(exn$1)
-                {if(exn$1=Not_found){$js=/* [] */0;}else{throw exn$1;}}
+                {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+                  {$js=/* [] */0;}
+                 else
+                  {throw exn$1;}
+                 }
                Hashtbl["replace"]
                 (path_dependencies,path,My_std["List"][3]($js,deps$prime));
                return deps$prime;

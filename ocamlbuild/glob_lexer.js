@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Printf=require("Printf");
-var Glob_ast=require("Glob_ast");
-var Buffer=require("Buffer");
-var Lexing=require("Lexing");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Glob_ast=require("./glob_ast.js");
+var Buffer=require("./buffer.js");
+var Lexing=require("./lexing.js");
 
 
 var sf=Printf["sprintf"];
@@ -116,7 +116,7 @@ var
              
              var pl$1=/* :: */[0,match[1],pl];
              
-             if(match[2]=44)
+             if(match[2]===44)
               {return loop(pl$1);}
              else
               {return parse_pattern

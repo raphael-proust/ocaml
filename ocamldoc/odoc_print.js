@@ -1,10 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Printtyp=require("Printtyp");
-var Types=require("Types");
-var Format=require("Format");
-var Misc=require("Misc");
-var Buffer=require("Buffer");
+var Printtyp=require("./printtyp.js");
+var Types=require("./types.js");
+var Format=require("./format.js");
+var Misc=require("./misc.js");
+var Buffer=require("./buffer.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -56,7 +57,7 @@ var
     return flush_type_fmt(/* () */0);
     };
 
-var Use_code=CamlPrimtivie["caml_set_oo_id"]([248,"Odoc_print.Use_code",0]);
+var Use_code=CamlPrimitive["caml_set_oo_id"]([248,"Odoc_print.Use_code",0]);
 
 var
  simpl_module_type=
@@ -103,7 +104,7 @@ var
       Printtyp["modtype"](modtype_fmt,t2);
       return flush_modtype_fmt(/* () */0);
       }
-    catch(exn){if(exn[1]=Use_code){return exn[2];}else{throw exn;}}
+    catch(exn){if(exn[1]===Use_code){return exn[2];}else{throw exn;}}
     };
 
 var

@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_parameter=require("Odoc_parameter");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_parameter=require("./odoc_parameter.js");
 
 
 
@@ -16,7 +16,12 @@ var
     if(match)
      {try
        {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t];}
-      catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* None */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return /* None */0;}
@@ -276,7 +281,12 @@ var
     if(match)
      {try
        {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t];}
-      catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* None */0;}
+        else
+         {throw exn;}
+        }
       }
     else
      {return /* None */0;}

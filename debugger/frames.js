@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Symbols=require("Symbols");
-var Events=require("Events");
-var Misc=require("Misc");
-var Debugcom=require("Debugcom");
+var Pervasives=require("./pervasives.js");
+var Symbols=require("./symbols.js");
+var Events=require("./events.js");
+var Misc=require("./misc.js");
+var Debugcom=require("./debugcom.js");
 
 
 var current_frame=[0,0];
@@ -25,7 +25,7 @@ var
               Events["get_pos"](ev)[4]-Events["get_pos"](ev)[3]];
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -39,12 +39,12 @@ var
      {var match$1=match[1][4];
       
       if(typeof match$1==="number")
-       {if(match$1!=0){exit=17;}else{return /* true */1;}}
+       {if(match$1!==0){exit=17;}else{return /* true */1;}}
       else
        {exit=17;}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     
     switch(exit){case 17:return /* false */0;}
     };
@@ -57,7 +57,10 @@ var
     else
      {var match=Debugcom["up_frame"]($$event[9]);
       
-      if(match[1]<0){throw Not_found;}else{}
+      if(match[1]<0)
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+      else
+       {}
       
       return move_up(frame_count-1,Symbols["any_event_at_pc"](match[2]));
       }
@@ -66,7 +69,10 @@ var
 var
  select_frame=
   function(frame_number)
-   {if(frame_number<0){throw Not_found;}else{}
+   {if(frame_number<0)
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+    else
+     {}
     
     var match=Debugcom["get_frame"](/* () */0);
     
@@ -81,8 +87,7 @@ var
         if(match$2)
          {if(frame_number>=current_frame[1])
            {selected_event[1]=
-            /* Some */[0,move_up(frame_number-current_frame[1],match$2[1])],
-            0;
+            /* Some */[0,move_up(frame_number-current_frame[1],match$2[1])];
             return current_frame[1]=frame_number,0;
             }
           else
@@ -94,17 +99,19 @@ var
         switch(exit)
          {case 13:
            Debugcom["set_initial_frame"](/* () */0);
-           selected_event[1]=/* Some */[0,move_up(frame_number,match$1[1])],0;
+           selected_event[1]=/* Some */[0,move_up(frame_number,match$1[1])];
            return current_frame[1]=frame_number,0;
            
           }
         }
       else
-       {throw Not_found;}
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
       }
     catch(exn)
-     {if(exn=Not_found)
-       {Debugcom["set_frame"](match[1]);throw Not_found;}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {Debugcom["set_frame"](match[1]);
+        throw CamlPrimitive["caml_global_data"]["Not_found"];
+        }
       else
        {throw exn;}
       }
@@ -115,14 +122,19 @@ var
   function(frame_number)
    {try
      {return select_frame(frame_number);}
-    catch(exn){if(exn=Not_found){return /* () */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* () */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
  reset_frame=
   function(param)
    {Debugcom["set_initial_frame"](/* () */0);
-    selected_event[1]=Events["current_event"][1],0;
+    selected_event[1]=Events["current_event"][1];
     return current_frame[1]=0,0;
     };
 
@@ -147,10 +159,14 @@ var
           }
         }
       catch(exn)
-       {if(exn=Pervasives["Exit"])
+       {if(exn===Pervasives["Exit"])
          {}
         else
-         {if(exn=Not_found){action(/* None */0)}else{throw exn;}}
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {action(/* None */0)}
+          else
+           {throw exn;}
+          }
         }
       
       return Debugcom["set_frame"](match$1[1]);
@@ -169,7 +185,7 @@ var
        {if(param$1)
          {num_frames[0]++;return /* true */1;}
         else
-         {num_frames[1]=-1,0;return /* false */0;}
+         {num_frames[1]=-1;return /* false */0;}
         });
     return num_frames[1];
     };

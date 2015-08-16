@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Symbols=require("Symbols");
-var Printf=require("Printf");
-var Checkpoints=require("Checkpoints");
-var Pos=require("Pos");
-var Exec=require("Exec");
-var Debugcom=require("Debugcom");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Symbols=require("./symbols.js");
+var Printf=require("./printf.js");
+var Checkpoints=require("./checkpoints.js");
+var Pos=require("./pos.js");
+var Exec=require("./exec.js");
+var Debugcom=require("./debugcom.js");
 
 
 var debug_breakpoints=[0,/* false */0];
@@ -25,7 +25,7 @@ var max_version=[0,0];
 var
  copy_breakpoints=
   function(param)
-   {Checkpoints["current_checkpoint"][1][9]=positions[1],0;
+   {Checkpoints["current_checkpoint"][1][9]=positions[1];
     return Checkpoints["current_checkpoint"][1][8]=current_version[1],0;
     };
 
@@ -47,7 +47,7 @@ var
       
       var exit;
       
-      if(typeof match=="number")
+      if(typeof match==="number")
        {switch(match){case 0:exit=27;}}
       else
        {switch(match[0])
@@ -57,17 +57,22 @@ var
       
       switch(exit){case 27:$js=/* [] */0;}
       }
-    catch(exn){if(exn=Not_found){$js=/* [] */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {$js=/* [] */0;}
+      else
+       {throw exn;}
+      }
     return Pervasives["@"]
             ($js,
              List["map"]
               (function(prim){return prim[1];},
                List["filter"]
-                (function(param){var pos=param[2][1];return pos=pc;},
+                (function(param){var pos=param[2][1];return pos===pc;},
                  breakpoints[1])));
     };
 
-var breakpoint_at_pc=function(pc){return breakpoints_at_pc(pc)!=/* [] */0;};
+var breakpoint_at_pc=function(pc){return breakpoints_at_pc(pc)!==/* [] */0;};
 
 var
  remove_breakpoints=
@@ -130,7 +135,7 @@ var
     else
      {}
     
-    if(Checkpoints["current_checkpoint"][1][8]!=current_version[1])
+    if(Checkpoints["current_checkpoint"][1][8]!==current_version[1])
      {return Exec["protect"]
               (function(param$1)
                 {remove_breakpoints(Checkpoints["current_checkpoint"][1][9]);
@@ -147,7 +152,7 @@ var
   function(version,pos)
    {return Exec["protect"]
             (function(param)
-              {current_version[1]=version,0;return positions[1]=pos,0;});
+              {current_version[1]=version;return positions[1]=pos,0;});
     };
 
 var
@@ -169,8 +174,8 @@ var
    {try
      {return List["assoc"](pos,positions[1])[0]++;}
     catch(exn)
-     {if(exn=Not_found)
-       {positions[1]=/* :: */[0,/* tuple */[0,pos,[0,1]],positions[1]],0;
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {positions[1]=/* :: */[0,/* tuple */[0,pos,[0,1]],positions[1]];
         return new_version(/* () */0);
         }
       else
@@ -184,8 +189,8 @@ var
    {var count=List["assoc"](pos,positions[1]);
     
     count[0]--;
-    if(count[1]=0)
-     {positions[1]=List["remove_assoc"](pos,positions[1]),0;
+    if(count[1]===0)
+     {positions[1]=List["remove_assoc"](pos,positions[1]);
       return new_version(/* () */0);
       }
     else
@@ -199,7 +204,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){case 0:exit=12;}}
     else
      {switch(match[0])
@@ -255,7 +260,7 @@ var
       
       return Exec["protect"]
               (function(param)
-                {breakpoints[1]=List["remove_assoc"](number,breakpoints[1]),0;
+                {breakpoints[1]=List["remove_assoc"](number,breakpoints[1]);
                  remove_position(pos);
                  Printf["printf"]
                   ([/* Format */0,
@@ -282,12 +287,12 @@ var
                  });
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {Pervasives["prerr_endline"]
          (Pervasives["^"]
            ("No breakpoint number ",
             Pervasives["^"](Pervasives["string_of_int"](number),".")));
-        throw Not_found;
+        throw CamlPrimitive["caml_global_data"]["Not_found"];
         }
       else
        {throw exn;}
@@ -312,13 +317,13 @@ var
     var
      remove=
       function(param)
-       {temporary_breakpoint_position[1]=/* None */0,0;
-        current_version[1]=previous_version,0;
+       {temporary_breakpoint_position[1]=/* None */0;
+        current_version[1]=previous_version;
         var count=List["assoc"](pc,positions[1]);
         
         count[0]--;
-        if(count[1]=0)
-         {positions[1]=List["remove_assoc"](pc,positions[1]),0;
+        if(count[1]===0)
+         {positions[1]=List["remove_assoc"](pc,positions[1]);
           Debugcom["reset_instr"](pc);
           return Symbols["set_event_at_pc"](pc);
           }
@@ -327,7 +332,7 @@ var
         };
     
     Exec["protect"](function(param){return insert_position(pc);});
-    temporary_breakpoint_position[1]=/* Some */[0,pc],0;
+    temporary_breakpoint_position[1]=/* Some */[0,pc];
     try
      {funct(/* () */0);return Exec["protect"](remove);}
     catch(x){Exec["protect"](remove);throw x;}

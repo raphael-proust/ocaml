@@ -1,18 +1,19 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Options=require("Options");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Pathname=require("Pathname");
-var Shell=require("Shell");
-var Filename=require("Filename");
-var My_std=require("My_std");
-var Log=require("Log");
+var Options=require("./options.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Pathname=require("./pathname.js");
+var Shell=require("./shell.js");
+var Filename=require("./filename.js");
+var My_std=require("./my_std.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Exit_hygiene_violations=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Hygiene.Exit_hygiene_violations",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Hygiene.Exit_hygiene_violations",0]);
 
 var
  list_collect=
@@ -79,7 +80,7 @@ var
     var
      remove=
       function(path,name)
-       {if(sanitize!=/* None */0)
+       {if(sanitize!==/* None */0)
          {return microbes[1]=
                  SS[4](My_std["filename_concat"](path,name),microbes[1]),
                  0;
@@ -101,7 +102,7 @@ var
                    (function(param$1)
                      {var exit;
                       
-                      if(typeof param$1=="number")
+                      if(typeof param$1==="number")
                        {switch(param$1){}}
                       else
                        {switch(param$1[0])
@@ -110,7 +111,7 @@ var
                            
                            var path=param$1[1];
                            
-                           if(param$1[4]!=0)
+                           if(param$1[4]!==0)
                             {if(Filename["check_suffix"](name,suffix1))
                               {var base=Filename["chop_suffix"](name,suffix1);
                                
@@ -121,13 +122,13 @@ var
                                   (function(param$2)
                                     {var exit$1;
                                      
-                                     if(typeof param$2=="number")
+                                     if(typeof param$2==="number")
                                       {switch(param$2){}}
                                      else
                                       {switch(param$2[0])
                                         {case 1:
-                                          if(param$2[4]!=0)
-                                           {return CamlPrimtivie["caml_string_equal"]
+                                          if(param$2[4]!==0)
+                                           {return CamlPrimitive["caml_string_equal"]
                                                     (name$prime,param$2[2]);
                                             }
                                           else
@@ -180,7 +181,7 @@ var
                    (function(param$1)
                      {var exit;
                       
-                      if(typeof param$1=="number")
+                      if(typeof param$1==="number")
                        {switch(param$1){}}
                       else
                        {switch(param$1[0])
@@ -189,7 +190,7 @@ var
                            
                            var path=param$1[1];
                            
-                           if(param$1[4]!=0)
+                           if(param$1[4]!==0)
                             {if
                               (Filename["check_suffix"](name,suffix)&&
                                !Pathname["link_to_dir"]
@@ -235,12 +236,12 @@ var
       function(param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){}}
         else
          {switch(param[0])
            {case 0:
-             if(param[4]!=0)
+             if(param[4]!==0)
               {var entries=param[5];
                
                My_std["List"][14]
@@ -493,7 +494,7 @@ var
                                                                                                                  /* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
            "@[<hov 2>SANITIZE:@ a@ total@ of@ %d@ file%s@ that@ should@ probably@ not@ be@ in@ your@ source@ tree@ has@ been@ found.@ A@ script@ shell@ file@ %S@ is@ being@ created.@ Check@ this@ script@ and@ run@ it@ to@ remove@ unwanted@ files@ or@ use@ other@ options@ (such@ as@ defining@ hygiene@ exceptions@ or@ using@ the@ -no-hygiene@ option).@]"],
           m,
-          (m=1)?"":"s",
+          m===1?"":"s",
           fn$1);
         var
          oc=

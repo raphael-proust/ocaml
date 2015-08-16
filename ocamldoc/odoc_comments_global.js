@@ -27,16 +27,16 @@ var customs=[0,/* [] */0];
 var
  init=
   function(param)
-   {nb_chars[1]=0,0;
-    authors[1]=/* [] */0,0;
-    version[1]=/* None */0,0;
-    sees[1]=/* [] */0,0;
-    since[1]=/* None */0,0;
-    before[1]=/* [] */0,0;
-    deprecated[1]=/* None */0,0;
-    params[1]=/* [] */0,0;
-    raised_exceptions[1]=/* [] */0,0;
-    return_value[1]=/* None */0,0;
+   {nb_chars[1]=0;
+    authors[1]=/* [] */0;
+    version[1]=/* None */0;
+    sees[1]=/* [] */0;
+    since[1]=/* None */0;
+    before[1]=/* [] */0;
+    deprecated[1]=/* None */0;
+    params[1]=/* [] */0;
+    raised_exceptions[1]=/* [] */0;
+    return_value[1]=/* None */0;
     return customs[1]=/* [] */0,0;
     };
 

@@ -426,7 +426,7 @@ module["exports"]=
  "empty":empty,
  "peek":peek,
  "junk":junk,
- "%field0":function(prim){return prim[1];},
+ "count":function(prim){return prim[1];},
  "npeek":npeek,
  "iapp":iapp,
  "icons":icons,

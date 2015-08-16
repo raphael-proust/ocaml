@@ -101,7 +101,7 @@ let rec apply_coercion strict restr arg =
           apply_coercion Strict cc_res
             (Lapply(Lvar id, [apply_coercion Alias cc_arg (Lvar param)],
                     Location.none))))
-  | Tcoerce_primitive p ->
+  | Tcoerce_primitive (_,p) ->
       transl_primitive Location.none p
   | Tcoerce_alias (path, cc) ->
       name_lambda strict arg
@@ -145,8 +145,8 @@ let rec compose_coercions c1 c2 =
       in
       Tcoerce_structure
         (List.map
-          (function (p1, Tcoerce_primitive p) ->
-                      (p1, Tcoerce_primitive p)
+          (function (p1, Tcoerce_primitive _) as x ->
+                      x (* (p1, Tcoerce_primitive p) *)
                   | (p1, c1) ->
                       let (p2, c2) = v2.(p1) in (p2, compose_coercions c1 c2))
              pc1,
@@ -400,9 +400,9 @@ and transl_structure fields cc rootpath = function
                 let result = List.map
                   (fun (pos, cc) ->
                     begin match cc with
-                    | Tcoerce_primitive p -> 
+                    | Tcoerce_primitive (id,p) -> 
                         (if is_top rootpath then 
-                          export_identifiers := Prim p.prim_name :: !export_identifiers);
+                          export_identifiers := Id id:: !export_identifiers);
                         transl_primitive Location.none p
                     | _ -> 
                         (if is_top rootpath then 
@@ -762,7 +762,7 @@ let build_ident_map restr idlist more_ids =
         let rec export_map pos map prims undef = function
         [] ->
           natural_map pos map prims undef
-          | (source_pos, Tcoerce_primitive p) :: rem ->
+          | (source_pos, Tcoerce_primitive (_,p)) :: rem ->
             export_map (pos + 1) map ((pos, p) :: prims) undef rem
           | (source_pos, cc) :: rem ->
             let id = idarray.(source_pos) in

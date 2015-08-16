@@ -1,25 +1,26 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Const=require("Const");
-var Pervasives=require("Pervasives");
-var Lexers=require("Lexers");
-var Printf=require("Printf");
-var Lexing=require("Lexing");
-var My_std=require("My_std");
-var My_unix=require("My_unix");
-var Hashtbl=require("Hashtbl");
+var Const=require("./const.js");
+var Pervasives=require("./pervasives.js");
+var Lexers=require("./lexers.js");
+var Printf=require("./printf.js");
+var Lexing=require("./lexing.js");
+var My_std=require("./my_std.js");
+var My_unix=require("./my_unix.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Findlib_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Findlib.Findlib_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Findlib.Findlib_error",0]);
 
 var error=function(x){throw [0,Findlib_error,x];};
 
 var
  string_of_error=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param){case 0:return "Cannot run Ocamlfind.";}}
     else
      {switch(param[0])
@@ -104,7 +105,7 @@ var
    {try
      {return Hashtbl["find"](packages,name);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {try
          {var
            match=
@@ -153,8 +154,8 @@ var
           var
            deps$1=
             My_std["List"][33]
-             (function(prim,prim)
-                {return CamlPrimtivie["caml_notequal"](prim$1,prim);}
+             (function(prim,prim$1)
+                {return CamlPrimitive["caml_notequal"](prim,prim$1);}
                (n),
               deps);
           
@@ -163,10 +164,10 @@ var
           catch(exn$1)
            {var exit;
             
-            if(exn$1[1]=Findlib_error)
+            if(exn$1[1]===Findlib_error)
              {var match$1=exn$1[2];
               
-              if(typeof match$1=="number")
+              if(typeof match$1==="number")
                {switch(match$1){}}
               else
                {switch(match$1[0])
@@ -199,10 +200,10 @@ var
           return $$package;
           }
         catch(exn$2)
-         {if(exn$2[1]=Failure)
+         {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
            {return error(/* Cannot_run_ocamlfind */0);}
           else
-           {if(exn$2[1]=Lexers["Error"])
+           {if(exn$2[1]===Lexers["Error"])
              {return error(/* Cannot_parse_query */[2,name,exn$2[2][1]]);}
             else
              {throw exn$2;}
@@ -224,13 +225,18 @@ var
       function(s)
        {var pos=My_std["String"][29](s,10);
         
-        x[1]=/* :: */[0,My_std["String"][3](s,pos),x[1]],0;
+        x[1]=/* :: */[0,My_std["String"][3](s,pos),x[1]];
         return go(My_std["String"][4](s,pos+1));
         };
     
     try
      {return go(s);}
-    catch(exn){if(exn=Not_found){return x[1];}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return x[1];}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -238,7 +244,12 @@ var
   function(s)
    {try
      {return My_std["String"][3](s,My_std["String"][29](s,32));}
-    catch(exn){if(exn=Not_found){return s;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return s;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -284,7 +295,7 @@ var
   function(a,l)
    {var exit;
     
-    if(typeof a=="number")
+    if(typeof a==="number")
      {switch(a){}}
     else
      {switch(a[0])

@@ -1,10 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Dynlink=require("Dynlink");
-var Pervasives=require("Pervasives");
-var Arg=require("Arg");
-var Printf=require("Printf");
+var $$String=require("./string.js");
+var Dynlink=require("./dynlink.js");
+var Pervasives=require("./pervasives.js");
+var Arg=require("./arg.js");
+var Printf=require("./printf.js");
 
 
 var load_path=[0,/* [] */0];
@@ -21,7 +21,7 @@ var
          (unit,Pervasives["@"](load_path[1],[/* :: */0,".",/* [] */0]));
       
       if(first[1])
-       {first[1]=/* false */0,0}
+       {first[1]=/* false */0}
       else
        {Pervasives["print_string"](";\n")}
       
@@ -48,17 +48,17 @@ var
       Pervasives["prerr_endline"](unit);
       var tag=exn[1];
       
-      if(tag=Sys_error)
+      if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
        {var msg=exn[2];Pervasives["prerr_endline"](msg)}
       else
        {var tag$1=exn[1];
         
-        if(tag$1=Dynlink["Error"])
+        if(tag$1===Dynlink["Error"])
          {var match=exn[2];
           
           var exit;
           
-          if(typeof match=="number")
+          if(typeof match==="number")
            {switch(match){}}
           else
            {switch(match[0])

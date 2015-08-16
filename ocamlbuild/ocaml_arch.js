@@ -1,10 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Pathname=require("Pathname");
-var Format=require("Format");
-var My_std=require("My_std");
-var Hashtbl=require("Hashtbl");
+var Pervasives=require("./pervasives.js");
+var Pathname=require("./pathname.js");
+var Format=require("./format.js");
+var My_std=require("./my_std.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -21,7 +22,7 @@ var file=function(name){return /* Arch_file */[2,name,/* () */0];};
 var
  join_pack=
   function(parent,base)
-   {if(CamlPrimtivie["caml_string_equal"](parent,""))
+   {if(CamlPrimitive["caml_string_equal"](parent,""))
      {return base;}
     else
      {return Pervasives["^"](parent,Pervasives["^"](".",base));}
@@ -67,7 +68,7 @@ var
       function(name,contents,acc)
        {var current_path=Pathname["Operators"][1](acc[1],name);
         
-        if(CamlPrimtivie["caml_string_equal"](current_path,""))
+        if(CamlPrimitive["caml_string_equal"](current_path,""))
          {var include_dirs=acc[2];}
         else
          {var include_dirs=/* :: */[0,current_path,acc[2]];}
@@ -339,7 +340,7 @@ var
        "@[<hv0>{:@[<hv0>"]);
     Hashtbl["iter"]
      (function(k,v)
-       {if(CamlPrimtivie["caml_string_notequal"](k,""))
+       {if(CamlPrimitive["caml_string_notequal"](k,""))
          {return Format["fprintf"]
                   (f,
                    [/* Format */0,
@@ -453,7 +454,7 @@ var
       try
        {var for_pack=Hashtbl["find"](for_pack_table,m$prime);
         
-        if(CamlPrimtivie["caml_string_equal"](for_pack,""))
+        if(CamlPrimitive["caml_string_equal"](for_pack,""))
          {return /* N */0;}
         else
          {return /* S */[0,
@@ -463,13 +464,12 @@ var
           }
         }
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {return previous_forpack_flags_of_pathname(m);}
         else
          {throw exn;}
         }
-      },
-    0;
+      };
     return /* tuple */[0,include_dirs_table,for_pack_table];
     };
 

@@ -296,8 +296,8 @@ var
         
         return add_aux
                 (t,
-                 function(prim,prim,prim)
-                  {return CamlPrimitive["caml_weak_set"](prim$1,prim$2,prim);},
+                 function(prim,prim$1,prim$2)
+                  {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2);},
                  /* Some */[0,d],
                  h,
                  get_index(t,h));
@@ -363,8 +363,8 @@ var
                  function(h,index)
                   {add_aux
                     (t,
-                     function(prim,prim,prim)
-                      {return CamlPrimitive["caml_weak_set"](prim$1,prim$2,prim);},
+                     function(prim,prim$1,prim$2)
+                      {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2);},
                      /* Some */[0,d],
                      h,
                      index);
@@ -501,13 +501,13 @@ var
         var lens=$$Array["map"](length,t[1]);
         
         $$Array["sort"]
-         (function(prim,prim)
-           {return CamlPrimitive["caml_compare"](prim$1,prim);},
+         (function(prim,prim$1)
+           {return CamlPrimitive["caml_compare"](prim,prim$1);},
           lens);
         var
          totlen=
           $$Array["fold_left"]
-           (function(prim,prim){return prim$1+prim;},0,lens);
+           (function(prim,prim$1){return prim+prim$1;},0,lens);
         
         return /* tuple */[0,
                 len,
@@ -534,21 +534,21 @@ var
     };
 
 module["exports"]=
-{"caml_weak_create":
- function(prim){return CamlPrimitive["caml_weak_create"](prim);},
+{"create":function(prim){return CamlPrimitive["caml_weak_create"](prim);},
  "length":length,
- "caml_weak_set":
- function(prim,prim,prim)
-  {return CamlPrimitive["caml_weak_set"](prim$1,prim$2,prim);},
- "caml_weak_get":
- function(prim,prim){return CamlPrimitive["caml_weak_get"](prim$1,prim);},
- "caml_weak_get_copy":
- function(prim,prim){return CamlPrimitive["caml_weak_get_copy"](prim$1,prim);},
- "caml_weak_check":
- function(prim,prim){return CamlPrimitive["caml_weak_check"](prim$1,prim);},
+ "set":
+ function(prim,prim$1,prim$2)
+  {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2);},
+ "get":
+ function(prim,prim$1){return CamlPrimitive["caml_weak_get"](prim,prim$1);},
+ "get_copy":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_weak_get_copy"](prim,prim$1);},
+ "check":
+ function(prim,prim$1){return CamlPrimitive["caml_weak_check"](prim,prim$1);},
  "fill":fill,
- "caml_weak_blit":
- function(prim,prim,prim,prim,prim)
-  {return CamlPrimitive["caml_weak_blit"](prim$1,prim$2,prim$3,prim$4,prim);},
+ "blit":
+ function(prim,prim$1,prim$2,prim$3,prim$4)
+  {return CamlPrimitive["caml_weak_blit"](prim,prim$1,prim$2,prim$3,prim$4);},
  "Make":Make};
 

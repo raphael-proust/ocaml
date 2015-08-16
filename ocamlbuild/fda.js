@@ -1,16 +1,17 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Options=require("Options");
-var List=require("List");
-var Printf=require("Printf");
-var Pathname=require("Pathname");
-var Hygiene=require("Hygiene");
-var Log=require("Log");
+var Options=require("./options.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Pathname=require("./pathname.js");
+var Hygiene=require("./hygiene.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Exit_hygiene_failed=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Fda.Exit_hygiene_failed",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Fda.Exit_hygiene_failed",0]);
 
 var
  laws=
@@ -96,7 +97,7 @@ var
           
           var match=law[3];
           
-          if(match!=0)
+          if(match!==0)
            {if(!evil[1])
              {Printf["printf"]
                ([/* Format */0,
@@ -105,8 +106,7 @@ var
                   [/* Flush */10,/* End_of_format */0]],
                  "IMPORTANT: I cannot work with leftover compiled files.\n%!"]),
               evil[1]=
-              /* true */1,
-              0}
+              /* true */1}
             else
              {}
             

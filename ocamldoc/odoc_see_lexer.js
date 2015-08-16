@@ -1,8 +1,8 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Buffer=require("Buffer");
-var Lexing=require("Lexing");
+var $$String=require("./string.js");
+var Buffer=require("./buffer.js");
+var Lexing=require("./lexing.js");
 
 
 var buf=Buffer["create"](32);
@@ -65,7 +65,7 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!=0)
+    if(__ocaml_lex_state$1!==0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_url_rec(lexbuf,__ocaml_lex_state$1);
       }
@@ -85,7 +85,7 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!=0)
+    if(__ocaml_lex_state$1!==0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_doc_rec(lexbuf,__ocaml_lex_state$1);
       }
@@ -105,7 +105,7 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!=0)
+    if(__ocaml_lex_state$1!==0)
      {lexbuf[1](lexbuf);
       return __ocaml_lex_file_rec(lexbuf,__ocaml_lex_state$1);
       }
@@ -125,8 +125,8 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!=0)
-     {if(__ocaml_lex_state$1!=1)
+    if(__ocaml_lex_state$1!==0)
+     {if(__ocaml_lex_state$1!==1)
        {lexbuf[1](lexbuf);
         return __ocaml_lex_desc_rec(lexbuf,__ocaml_lex_state$1);
         }

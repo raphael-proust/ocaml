@@ -1,33 +1,34 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Question=require("Question");
-var Show_information=require("Show_information");
-var Frames=require("Frames");
-var Program_management=require("Program_management");
-var Cmi_format=require("Cmi_format");
-var Command_line=require("Command_line");
-var Pervasives=require("Pervasives");
-var Arg=require("Arg");
-var Env=require("Env");
-var Clflags=require("Clflags");
-var Checkpoints=require("Checkpoints");
-var Callback=require("Callback");
-var Format=require("Format");
-var Primitives=require("Primitives");
-var Misc=require("Misc");
-var Unix_tools=require("Unix_tools");
-var Unix=require("Unix");
-var Lexing=require("Lexing");
-var Buffer=require("Buffer");
-var Filename=require("Filename");
-var Parameters=require("Parameters");
-var Debugger_config=require("Debugger_config");
-var Exec=require("Exec");
-var Printexc=require("Printexc");
-var Input_handling=require("Input_handling");
-var Time_travel=require("Time_travel");
-var Config=require("Config");
-var Sys=require("Sys");
+var Question=require("./question.js");
+var Show_information=require("./show_information.js");
+var Frames=require("./frames.js");
+var Program_management=require("./program_management.js");
+var Cmi_format=require("./cmi_format.js");
+var Command_line=require("./command_line.js");
+var Pervasives=require("./pervasives.js");
+var Arg=require("./arg.js");
+var Env=require("./env.js");
+var Clflags=require("./clflags.js");
+var Checkpoints=require("./checkpoints.js");
+var Callback=require("./callback.js");
+var Format=require("./format.js");
+var Primitives=require("./primitives.js");
+var Misc=require("./misc.js");
+var Unix_tools=require("./unix_tools.js");
+var Unix=require("./unix.js");
+var Lexing=require("./lexing.js");
+var Buffer=require("./buffer.js");
+var Filename=require("./filename.js");
+var Parameters=require("./parameters.js");
+var Debugger_config=require("./debugger_config.js");
+var Exec=require("./exec.js");
+var Printexc=require("./printexc.js");
+var Input_handling=require("./input_handling.js");
+var Time_travel=require("./time_travel.js");
+var Config=require("./config.js");
+var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var line_buffer=Lexing["from_function"](Input_handling["read_user_input"]);
@@ -42,7 +43,7 @@ var
    {try
      {return loop(ppf);}
     catch(x)
-     {if(x=End_of_file)
+     {if(x===CamlPrimitive["caml_global_data"]["End_of_file"])
        {return protect
                 (ppf,
                  restart,
@@ -56,7 +57,7 @@ var
                    });
         }
       else
-       {if(x=Debugger_config["Toplevel"])
+       {if(x===Debugger_config["Toplevel"])
          {return protect
                   (ppf,
                    restart,
@@ -67,7 +68,7 @@ var
                      });
           }
         else
-         {if(x=Sys["Break"])
+         {if(x===Sys["Break"])
            {return protect
                     (ppf,
                      restart,
@@ -95,7 +96,7 @@ var
                        });
             }
           else
-           {if(x=Time_travel["Current_checkpoint_lost"])
+           {if(x===Time_travel["Current_checkpoint_lost"])
              {return protect
                       (ppf,
                        restart,
@@ -117,7 +118,7 @@ var
                          });
               }
             else
-             {if(x[1]=Time_travel["Current_checkpoint_lost_start_at"])
+             {if(x[1]===Time_travel["Current_checkpoint_lost_start_at"])
                {var init_duration=x[3];
                 
                 var time=x[2];
@@ -126,7 +127,7 @@ var
                         (ppf,
                          restart,
                          function(ppf)
-                          {if(current_duration[1]=-1)
+                          {if(current_duration[1]===-1)
                             {var
                               msg=
                                Format["sprintf"]
@@ -145,7 +146,7 @@ var
                              
                              Input_handling["stop_user_input"](/* () */0);
                              if(Question["yes_or_no"](msg))
-                              {current_duration[1]=init_duration,0;var b=/* true */1;}
+                              {current_duration[1]=init_duration;var b=/* true */1;}
                              else
                               {var b=/* false */0;}
                              }
@@ -154,14 +155,14 @@ var
                            
                            if(b)
                             {Time_travel["go_to"](time);
-                             current_duration[1]=current_duration[1]/10,0;
+                             current_duration[1]=current_duration[1]/10;
                              if(current_duration[1]>0)
                               {while(/* true */1)
                                 {Time_travel["step"](current_duration[1])}
                                return 0;
                                }
                              else
-                              {current_duration[1]=-1,0;
+                              {current_duration[1]=-1;
                                Input_handling["stop_user_input"](/* () */0);
                                Show_information["show_current_event"](ppf);
                                return restart(ppf);
@@ -191,12 +192,12 @@ var
     try
      {var base=".ocamldebug";
       
-      if(CamlPrimtivie["caml_sys_file_exists"](base))
+      if(CamlPrimitive["caml_sys_file_exists"](base))
        {var file=base;}
       else
        {var
          file=
-          Filename["concat"](CamlPrimtivie["caml_sys_getenv"]("HOME"),base);
+          Filename["concat"](CamlPrimitive["caml_sys_getenv"]("HOME"),base);
         }
       
       var ch=Pervasives["open_in"](file);
@@ -214,7 +215,7 @@ var
       while(/* true */1)
        {var line=Primitives["string_trim"](Pervasives["input_line"](ch));
         
-        if(CamlPrimtivie["caml_string_notequal"](line,"")&&line[0]!=35)
+        if(CamlPrimitive["caml_string_notequal"](line,"")&&line[0]!==35)
          {Buffer["add_string"](buffer,line),Buffer["add_char"](buffer,10)}
         else
          {}
@@ -237,22 +238,22 @@ var
 var
  toplevel_loop=
   function(param)
-   {Input_handling["interactif"][1]=/* false */0,0;
-    Input_handling["current_prompt"][1]="",0;
+   {Input_handling["interactif"][1]=/* false */0;
+    Input_handling["current_prompt"][1]="";
     execute_file_if_any(/* () */0);
-    Input_handling["interactif"][1]=/* true */1,0;
-    Input_handling["current_prompt"][1]=Debugger_config["debugger_prompt"],0;
+    Input_handling["interactif"][1]=/* true */1;
+    Input_handling["current_prompt"][1]=Debugger_config["debugger_prompt"];
     return protect(Format["std_formatter"],loop,loop);
     };
 
 var
  Found_program_name=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Main.Found_program_name",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Main.Found_program_name",0]);
 
 var
  anonymous=
   function(s)
-   {Parameters["program_name"][1]=Unix_tools["make_absolute"](s),0;
+   {Parameters["program_name"][1]=Unix_tools["make_absolute"](s);
     throw Found_program_name;
     };
 
@@ -272,7 +273,7 @@ var
  set_checkpoints=
   function(n){return Debugger_config["checkpoint_max_count"][1]=n,0;};
 
-var set_directory=function(dir){return CamlPrimtivie["caml_sys_chdir"](dir);};
+var set_directory=function(dir){return CamlPrimitive["caml_sys_chdir"](dir);};
 
 var
  print_version=
@@ -349,7 +350,9 @@ var
            " Print version number and exit"],
           /* [] */0]]]]]]]];
 
-var function_placeholder=function(param){throw Not_found;};
+var
+ function_placeholder=
+  function(param){throw CamlPrimitive["caml_global_data"]["Not_found"];};
 
 var
  main=
@@ -377,7 +380,7 @@ var
               ("camldebug",
                Pervasives["string_of_int"](Unix["getpid"](/* () */0))));
          }
-      Parameters["socket_name"][1]=$js,0;
+      Parameters["socket_name"][1]=$js;
       try
        {Arg["parse"](speclist,anonymous,""),
         Arg["usage"]
@@ -385,13 +388,18 @@ var
           "No program name specified\nUsage: ocamldebug [options] <program> [arguments]\nOptions are:"),
         Pervasives["exit"](2)}
       catch(exn)
-       {if(exn=Found_program_name)
-         {for(var j=Arg["current"][1]+1;j<=Sys["argv"]["length"]-1;j++)
+       {if(exn===Found_program_name)
+         {for
+           (var j=Arg["current"][1]+1;
+            j<=
+            /* -1 for tag */Sys["argv"]["length"]-
+            1-
+            1;
+            j++)
            {Parameters["arguments"][1]=
             Pervasives["^"]
              (Parameters["arguments"][1],
-              Pervasives["^"](" ",Filename["quote"](Sys["argv"][j]))),
-            0}
+              Pervasives["^"](" ",Filename["quote"](Sys["argv"][j+1])))}
           }
         else
          {throw exn;}
@@ -408,17 +416,17 @@ var
             [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]]],
          "\tOCaml Debugger version %s@.@."],
         Config["version"]);
-      Config["load_path"][1]=Parameters["default_load_path"][1],0;
-      Clflags["recursive_types"][1]=/* true */1,0;
+      Config["load_path"][1]=Parameters["default_load_path"][1];
+      Clflags["recursive_types"][1]=/* true */1;
       toplevel_loop(/* () */0);
       Program_management["kill_program"](/* () */0);
       return Pervasives["exit"](0);
       }
     catch(exn$1)
-     {if(exn$1=Debugger_config["Toplevel"])
+     {if(exn$1===Debugger_config["Toplevel"])
        {return Pervasives["exit"](2);}
       else
-       {if(exn$1[1]=Env["Error"])
+       {if(exn$1[1]===Env["Error"])
          {Format["eprintf"]
            ([/* Format */0,
              [/* String_literal */11,
@@ -448,7 +456,7 @@ var
           return Pervasives["exit"](2);
           }
         else
-         {if(exn$1[1]=Cmi_format["Error"])
+         {if(exn$1[1]===Cmi_format["Error"])
            {Format["eprintf"]
              ([/* Format */0,
                [/* String_literal */11,

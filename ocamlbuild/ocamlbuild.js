@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ocamlbuild_pack=require("Ocamlbuild_pack");
-var Ocamlbuild_unix_plugin=require("Ocamlbuild_unix_plugin");
+var Ocamlbuild_pack=require("./ocamlbuild_pack.js");
+var Ocamlbuild_unix_plugin=require("./ocamlbuild_unix_plugin.js");
 
 
 Ocamlbuild_unix_plugin["setup"](/* () */0),

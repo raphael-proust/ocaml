@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Unix=require("Unix");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Unix=require("./unix.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  Out_of_range=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Primitives.Out_of_range",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Primitives.Out_of_range",0]);
 
 var nothing=function(param){return /* () */0;};
 
@@ -22,7 +23,7 @@ var
           
           var elem=param[1];
           
-          if(CamlPrimtivie["caml_equal"](e,elem))
+          if(CamlPrimitive["caml_equal"](e,elem))
            {return l$1;}
           else
            {return /* :: */[0,elem,except_e(l$1)];}
@@ -41,13 +42,13 @@ var
      index_rec=
       function(i,param)
        {if(param)
-         {if(CamlPrimtivie["caml_equal"](a,param[1]))
+         {if(CamlPrimitive["caml_equal"](a,param[1]))
            {return i;}
           else
            {return index_rec(i+1,param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return index_rec(0,l);
@@ -56,7 +57,7 @@ var
 var
  list_truncate=
   function(p0,p1)
-   {if(p0!=0)
+   {if(p0!==0)
      {if(p1)
        {return /* :: */[0,p1[1],list_truncate(p0-1,p1[2])];}
       else
@@ -69,7 +70,7 @@ var
 var
  list_truncate2=
   function(p0,p1)
-   {if(p0!=0)
+   {if(p0!==0)
      {if(p1)
        {var match=list_truncate2(p0-1,p1[2]);
         
@@ -93,7 +94,10 @@ var
           
           var a=param[1];
           
-          if(a=x){return /* :: */[0,y,l];}else{return /* :: */[0,a,repl(l)];}
+          if(a===x)
+           {return /* :: */[0,y,l];}
+          else
+           {return /* :: */[0,a,repl(l)];}
           }
         else
          {return /* [] */0;}
@@ -107,8 +111,8 @@ var
   function(param)
    {var exit;
     
-    if(param!=9)
-     {if(param!=32){return /* false */0;}else{exit=12;}}
+    if(param!==9)
+     {if(param!==32){return /* false */0;}else{exit=12;}}
     else
      {exit=12;}
     
@@ -138,11 +142,12 @@ var
     
     var l2=s2["length"];
     
-    return (l1=l2)&&
-           CamlPrimtivie["caml_string_equal"](s1,s2)||
+    return l1===
+           l2&&
+           CamlPrimitive["caml_string_equal"](s1,s2)||
            l1<
            l2&&
-           CamlPrimtivie["caml_string_equal"](s1,$$String["sub"](s2,0,l1));
+           CamlPrimitive["caml_string_equal"](s1,$$String["sub"](s2,0,l1));
     };
 
 var
@@ -158,7 +163,7 @@ var
            {return /* :: */[0,$$String["sub"](str,i,j-i),/* [] */0];}
           }
         else
-         {if(str[j]=sep)
+         {if(str[j]===sep)
            {if(i>=j)
              {return skip_sep(j+1);}
             else
@@ -172,7 +177,7 @@ var
     var
      skip_sep=
       function(j)
-       {if(j<str["length"]&&(str[j]=sep))
+       {if(j<str["length"]&&str[j]===sep)
          {return skip_sep(j+1);}
         else
          {return split(j,j);}

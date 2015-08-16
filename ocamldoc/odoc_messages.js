@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Str=require("Str");
-var Config=require("Config");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Str=require("./str.js");
+var Config=require("./config.js");
+var Sys=require("./sys.js");
 
 
 var ok="Ok";
@@ -20,7 +20,7 @@ var magic=Pervasives["^"](config_version,"");
 var
  usage=
   Pervasives["^"]
-   ("Usage: ",Pervasives["^"](Sys["argv"][0]," [options] <files>\n"));
+   ("Usage: ",Pervasives["^"](Sys["argv"][1]," [options] <files>\n"));
 
 var options_are="Options are:";
 

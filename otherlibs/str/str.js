@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Buffer=require("Buffer");
-var Bytes=require("Bytes");
-var Map=require("Map");
-var $$Array=require("Array");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Buffer=require("./buffer.js");
+var Bytes=require("./bytes.js");
+var Map=require("./map.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var string_before=function(s,n){return $$String["sub"](s,0,n);};
@@ -28,16 +29,16 @@ var
 
 var
  add_range=
-  function(s,c1,c2){for(var i=c1;i<=c2;i++){add(s,Char["chr"](i))}};
+  function(s,c1,c2){for(var i=c1;i<=c2;i++){add(s,Char["chr"](i))}return 0;};
 
 var singleton=function(c){var s=make_empty(/* () */0);add(s,c);return s;};
 
 var
  complement=
   function(s)
-   {var r=CamlPrimtivie["caml_create_string"](32);
+   {var r=CamlPrimitive["caml_create_string"](32);
     
-    for(var i=0;i<=31;i++){r[i]=Char["chr"](s[i]^255),0}
+    for(var i=0;i<=31;i++){r[i]=Char["chr"](s[i]^255)}
     
     return r;
     };
@@ -45,9 +46,9 @@ var
 var
  union=
   function(s1,s2)
-   {var r=CamlPrimtivie["caml_create_string"](32);
+   {var r=CamlPrimitive["caml_create_string"](32);
     
-    for(var i=0;i<=31;i++){r[i]=Char["chr"](s1[i]|s2[i]),0}
+    for(var i=0;i<=31;i++){r[i]=Char["chr"](s1[i]|s2[i])}
     
     return r;
     };
@@ -57,12 +58,12 @@ var
   function(s1,s2)
    {try
      {for(var i=0;i<=31;i++)
-       {if((s1[i]&s2[i])!=0){throw Pervasives["Exit"];}else{}}
+       {if((s1[i]&s2[i])!==0){throw Pervasives["Exit"];}else{}}
       
       return /* true */1;
       }
     catch(exn)
-     {if(exn=Pervasives["Exit"]){return /* false */0;}else{throw exn;}}
+     {if(exn===Pervasives["Exit"]){return /* false */0;}else{throw exn;}}
     };
 
 var
@@ -71,13 +72,14 @@ var
    {for(var i=0;i<=31;i++)
      {var c=s[i];
       
-      if(c!=0)
+      if(c!==0)
        {for(var j=0;j<=7;j++)
-         {if((c&1<<j)!=0){fn(Char["chr"]((i<<3)+j))}else{}}
+         {if((c&1<<j)!==0){fn(Char["chr"]((i<<3)+j))}else{}}
         }
       else
        {}
       }
+    return 0;
     };
 
 var
@@ -161,7 +163,7 @@ var displ=function(dest,from){return dest-from-1;};
 var
  is_nullable=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:return /* true */1;
         case 1:return /* true */1;
@@ -170,7 +172,7 @@ var
     else
      {switch(param[0])
        {case 0:return /* false */0;
-        case 1:var s=param[1];return CamlPrimtivie["caml_string_equal"](s,"");
+        case 1:var s=param[1];return CamlPrimitive["caml_string_equal"](s,"");
         case 2:return /* false */0;
         case 3:var rl=param[1];return List["for_all"](is_nullable,rl);
         case 4:
@@ -191,7 +193,7 @@ var
 var
  first=
   function(param)
-   {if(typeof param=="number")
+   {if(typeof param==="number")
      {switch(param)
        {case 0:return Charset[1];
         case 1:return Charset[1];
@@ -203,7 +205,7 @@ var
         case 1:
          var s=param[1];
          
-         if(CamlPrimtivie["caml_string_equal"](s,""))
+         if(CamlPrimitive["caml_string_equal"](s,""))
           {return Charset[1];}
          else
           {return Charset[5](s[0]);}
@@ -239,7 +241,7 @@ var
       
       var exit;
       
-      if(typeof r=="number")
+      if(typeof r==="number")
        {switch(r){case 0:exit=136;case 1:exit=136;case 2:exit=136;}}
       else
        {switch(r[0])
@@ -270,7 +272,7 @@ var
   function(fold_case,re)
    {var exit;
     
-    if(typeof re=="number")
+    if(typeof re==="number")
      {switch(re){}}
     else
      {switch(re[0])
@@ -279,7 +281,13 @@ var
         case 2:var compl=re[2];var cl=re[1];var match=/* tuple */[0,cl,compl];
         default:exit=133;}}
     
-    switch(exit){case 133:throw [0,Assert_failure,[0,"str.ml",207,11]];}
+    switch(exit)
+     {case 133:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"str.ml",207,11]];
+       
+      }
     
     var compl$1=match[2];
     
@@ -290,20 +298,20 @@ var
     return Bytes["to_string"](compl$1?Charset[6](cl2):cl2);
     };
 
-var t=CamlPrimtivie["caml_create_string"](256);
+var t=CamlPrimitive["caml_create_string"](256);
 
-for(var i=0;i<=255;i++){t[i]=Char["lowercase"](Char["chr"](i)),0}
+for(var i=0;i<=255;i++){t[i]=Char["lowercase"](Char["chr"](i))}
 
 var fold_case_table=Bytes["to_string"](t);
 
-var compare=function(x,y){return CamlPrimtivie["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
 
 var StringMap=Map["Make"]([0,compare]);
 
 var
  compile=
   function(fold_case,re)
-   {var prog=[0,CamlPrimtivie["caml_make_vect"](32,0)];
+   {var prog=[0,CamlPrimitive["caml_make_vect"](32,0)];
     
     var progpos=[0,0];
     
@@ -318,18 +326,21 @@ var
     var
      emit_instr=
       function(opc,arg)
-       {if(progpos[1]>=prog[1]["length"])
-         {var newlen=[0,prog[1]["length"]];
+       {if(progpos[1]>=/* -1 for tag */prog[1]["length"]-1)
+         {var newlen=[0,/* -1 for tag */prog[1]["length"]-1];
           
-          while(progpos[1]>=newlen[1]){newlen[1]=newlen[1]*2,0}
+          while(progpos[1]>=newlen[1]){newlen[1]=newlen[1]*2}
           
-          var nprog=CamlPrimtivie["caml_make_vect"](newlen[1],0);
+          var nprog=CamlPrimitive["caml_make_vect"](newlen[1],0);
           
-          $$Array["blit"](prog[1],0,nprog,0,prog[1]["length"]),prog[1]=nprog,0}
+          $$Array["blit"]
+           (prog[1],0,nprog,0,/* -1 for tag */prog[1]["length"]-1),
+          prog[1]=
+          nprog}
         else
          {}
         
-        prog[1][progpos[1]]=instr(opc,arg),0;
+        prog[1][progpos[1]+1]=instr(opc,arg);
         return progpos[0]++;
         };
     
@@ -338,7 +349,7 @@ var
     var
      patch_instr=
       function(pos,opc,dest)
-       {return prog[1][pos]=instr(opc,displ(dest,pos)),0;};
+       {return prog[1][pos+1]=instr(opc,displ(dest,pos)),0;};
     
     var
      cpool_index=
@@ -346,10 +357,10 @@ var
        {try
          {return StringMap[22](s,cpool[1]);}
         catch(exn)
-         {if(exn=Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {var p=cpoolpos[1];
             
-            cpool[1]=StringMap[4](s,p,cpool[1]),0;
+            cpool[1]=StringMap[4](s,p,cpool[1]);
             cpoolpos[0]++;
             return p;
             }
@@ -379,7 +390,7 @@ var
     var
      emit_code=
       function(param)
-       {if(typeof param=="number")
+       {if(typeof param==="number")
          {switch(param)
            {case 0:return emit_instr(op_BOL,0);
             case 1:return emit_instr(op_EOL,0);
@@ -400,8 +411,8 @@ var
              
              var match=s["length"];
              
-             if(match!=0)
-              {if(match!=1)
+             if(match!==0)
+              {if(match!==1)
                 {try
                   {var i$1=$$String["index"](s,0);
                    
@@ -410,7 +421,7 @@ var
                    return emit_code(/* String */[1,string_after(s,i$1+1)]);
                    }
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {if(fold_case)
                       {return emit_instr
                                (op_STRINGNORM,cpool_index($$String["lowercase"](s)));
@@ -536,7 +547,7 @@ var
           
           var exit;
           
-          if(typeof r=="number")
+          if(typeof r==="number")
            {switch(r){}}
           else
            {switch(r[0])
@@ -545,7 +556,7 @@ var
                
                var exit$1;
                
-               if(typeof r$1=="number")
+               if(typeof r$1==="number")
                 {switch(r$1){}}
                else
                 {switch(r$1[0])
@@ -571,7 +582,7 @@ var
                
                var exit$2;
                
-               if(typeof r$2=="number")
+               if(typeof r$2==="number")
                 {switch(r$2){}}
                else
                 {switch(r$2[0])
@@ -597,7 +608,7 @@ var
                
                var exit$3;
                
-               if(typeof r$3=="number")
+               if(typeof r$3==="number")
                 {switch(r$3){}}
                else
                 {switch(r$3[0])
@@ -647,15 +658,16 @@ var
     else
      {var start$prime=start;}
     
-    if(CamlPrimtivie["caml_equal"](start,Charset[1]))
+    if(CamlPrimitive["caml_equal"](start,Charset[1]))
      {var start_pos=-1;}
     else
      {var start_pos=cpool_index(Bytes["to_string"](Charset[10](start$prime)));
       }
     
-    var constantpool=CamlPrimtivie["caml_make_vect"](cpoolpos[1],"");
+    var constantpool=CamlPrimitive["caml_make_vect"](cpoolpos[1],"");
     
-    StringMap[10](function(str,idx){return constantpool[idx]=str,0;},cpool[1]);
+    StringMap[10]
+     (function(str,idx){return constantpool[idx+1]=str,0;},cpool[1]);
     return /* record */[0,
             $$Array["sub"](prog[1],0,progpos[1]),
             constantpool,
@@ -677,8 +689,8 @@ var
     Buffer["clear"](buf[1]);
     var match=s["length"];
     
-    if(match!=0)
-     {if(match!=1)
+    if(match!==0)
+     {if(match!==1)
        {return buf[2]=/* :: */[0,/* String */[1,s],buf[2]],0;}
       else
        {return buf[2]=/* :: */[0,/* Char */[0,s[0]],buf[2]],0;}
@@ -692,7 +704,7 @@ var
   function(buf,re)
    {var exit;
     
-    if(typeof re=="number")
+    if(typeof re==="number")
      {switch(re){}}
     else
      {switch(re[0])
@@ -732,7 +744,7 @@ var
     var
      regexp0cont=
       function(r1,i)
-       {if(i+2<=len&&(s[i]=92)&&(s[i+1]=124))
+       {if(i+2<=len&&s[i]===92&&s[i+1]===124)
          {var match=regexp1(i+2);
           
           var j=match[2];
@@ -752,7 +764,7 @@ var
       function(sb,i)
        {var c=s[i+1];
         
-        if(i>=len||i+2<=len&&(s[i]=92)&&((c=124)||(c=41)))
+        if(i>=len||i+2<=len&&s[i]===92&&(c===124||c===41))
          {return /* tuple */[0,SeqBuffer[4](sb),i];}
         else
          {var match=regexp2(i);
@@ -789,13 +801,13 @@ var
           var switcher=-42+match;
           
           if(1<switcher>>>0)
-           {if(switcher!=21)
+           {if(switcher!==21)
              {return /* tuple */[0,r,i];}
             else
              {return regexp2cont(/* Option */[7,r],i+1);}
             }
           else
-           {if(switcher!=0)
+           {if(switcher!==0)
              {return regexp2cont(/* Plus */[6,r],i+1);}
             else
              {return regexp2cont(/* Star */[5,r],i+1);}
@@ -810,7 +822,7 @@ var
         
         var exit;
         
-        if(c!=36)
+        if(c!==36)
          {if(c>=91)
            {if(c>=95)
              {exit=62;}
@@ -836,7 +848,7 @@ var
               }
             }
           else
-           {if(c!=46)
+           {if(c!==46)
              {exit=62;}
             else
              {return /* tuple */[0,
@@ -871,7 +883,7 @@ var
                {exit=67;}
               }
             else
-             {if(switcher!=0)
+             {if(switcher!==0)
                {exit=65;}
               else
                {var group_no=group_counter[1];
@@ -884,7 +896,7 @@ var
                 
                 var r=match[1];
                 
-                if(j+1<len&&(s[j]=92)&&(s[j+1]=41))
+                if(j+1<len&&s[j]===92&&s[j+1]===41)
                  {if(group_no<32)
                    {return /* tuple */[0,/* Group */[8,group_no,r],j+2];}
                   else
@@ -896,15 +908,19 @@ var
               }
             }
           else
-           {if(c!=98)
-             {if(c!=124){exit=67;}else{exit=65;}}
+           {if(c!==98)
+             {if(c!==124){exit=67;}else{exit=65;}}
             else
              {return /* tuple */[0,/* Wordboundary */2,i+1];}
             }
           
           switch(exit)
            {case 67:var c$1=c;return /* tuple */[0,/* Char */[0,c$1],i+1];
-            case 65:throw [0,Assert_failure,[0,"str.ml",511,10]];
+            case 65:
+             throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"str.ml",511,10]];
+             
             }
           }
         };
@@ -912,7 +928,7 @@ var
     var
      regexpclass0=
       function(i)
-       {if(i<len&&(s[i]=94))
+       {if(i<len&&s[i]===94)
          {var match=regexpclass1(i+1);
           
           var j=match[2];
@@ -947,12 +963,12 @@ var
       function(c,start,i)
        {if(i>=len){Pervasives["failwith"]("[ class not closed by ]")}else{}
         
-        if((s[i]=93)&&i>start)
+        if(s[i]===93&&i>start)
          {return i+1;}
         else
          {var c1=s[i];
           
-          if(i+2<len&&(s[i+1]=45)&&s[i+2]!=93)
+          if(i+2<len&&s[i+1]===45&&s[i+2]!==93)
            {var c2=s[i+2];
             
             Charset[4](c,c1,c2);
@@ -969,7 +985,7 @@ var
     
     var r=match[1];
     
-    if(j=len)
+    if(j===len)
      {return r;}
     else
      {return Pervasives["failwith"]("spurious \) in regular expression");}
@@ -984,7 +1000,7 @@ var
   function(s)
    {var len=s["length"];
     
-    var buf=CamlPrimtivie["caml_create_string"](2*len);
+    var buf=CamlPrimitive["caml_create_string"](2*len);
     
     var pos=[0,0];
     
@@ -1023,8 +1039,8 @@ var
         }
       
       switch(exit)
-       {case 47:var c$1=c;buf[pos[1]]=c$1,0,pos[1]=pos[1]+1,0;
-        case 46:buf[pos[1]]=92,0,buf[pos[1]+1]=c,0,pos[1]=pos[1]+2,0
+       {case 47:var c$1=c;buf[pos[1]]=c$1,pos[1]=pos[1]+1;
+        case 46:buf[pos[1]]=92,buf[pos[1]+1]=c,pos[1]=pos[1]+2
         }
       }
     
@@ -1039,42 +1055,48 @@ var
  regexp_string_case_fold=
   function(s){return compile(/* true */1,/* String */[1,s]);};
 
-var last_search_result=[0,[]];
+var last_search_result=[0,[/* array */0]];
 
 var
  string_match=
   function(re,s,pos)
-   {var res=CamlPrimtivie["re_string_match"](re,s,pos);
+   {var res=CamlPrimitive["re_string_match"](re,s,pos);
     
-    last_search_result[1]=res,0;
-    return res["length"]>0;
+    last_search_result[1]=res;
+    return /* -1 for tag */res["length"]-1>0;
     };
 
 var
  string_partial_match=
   function(re,s,pos)
-   {var res=CamlPrimtivie["re_partial_match"](re,s,pos);
+   {var res=CamlPrimitive["re_partial_match"](re,s,pos);
     
-    last_search_result[1]=res,0;
-    return res["length"]>0;
+    last_search_result[1]=res;
+    return /* -1 for tag */res["length"]-1>0;
     };
 
 var
  search_forward=
   function(re,s,pos)
-   {var res=CamlPrimtivie["re_search_forward"](re,s,pos);
+   {var res=CamlPrimitive["re_search_forward"](re,s,pos);
     
-    last_search_result[1]=res,0;
-    if(res["length"]=0){throw Not_found;}else{return res[0];}
+    last_search_result[1]=res;
+    if(/* -1 for tag */res["length"]-1===0)
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+    else
+     {return res[1];}
     };
 
 var
  search_backward=
   function(re,s,pos)
-   {var res=CamlPrimtivie["re_search_backward"](re,s,pos);
+   {var res=CamlPrimitive["re_search_backward"](re,s,pos);
     
-    last_search_result[1]=res,0;
-    if(res["length"]=0){throw Not_found;}else{return res[0];}
+    last_search_result[1]=res;
+    if(/* -1 for tag */res["length"]-1===0)
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+    else
+     {return res[1];}
     };
 
 var
@@ -1082,12 +1104,15 @@ var
   function(n)
    {var n2=n+n;
     
-    if(n<0||n2>=last_search_result[1]["length"])
+    if(n<0||n2>=/* -1 for tag */last_search_result[1]["length"]-1)
      {return Pervasives["invalid_arg"]("Str.group_beginning");}
     else
-     {var pos=last_search_result[1][n2];
+     {var pos=last_search_result[1][n2+1];
       
-      if(pos=-1){throw Not_found;}else{return pos;}
+      if(pos===-1)
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+      else
+       {return pos;}
       }
     };
 
@@ -1096,12 +1121,15 @@ var
   function(n)
    {var n2=n+n;
     
-    if(n<0||n2>=last_search_result[1]["length"])
+    if(n<0||n2>=/* -1 for tag */last_search_result[1]["length"]-1)
      {return Pervasives["invalid_arg"]("Str.group_end");}
     else
-     {var pos=last_search_result[1][n2+1];
+     {var pos=last_search_result[1][n2+1+1];
       
-      if(pos=-1){throw Not_found;}else{return pos;}
+      if(pos===-1)
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+      else
+       {return pos;}
       }
     };
 
@@ -1110,14 +1138,17 @@ var
   function(n,txt)
    {var n2=n+n;
     
-    if(n<0||n2>=last_search_result[1]["length"])
+    if(n<0||n2>=/* -1 for tag */last_search_result[1]["length"]-1)
      {return Pervasives["invalid_arg"]("Str.matched_group");}
     else
-     {var b=last_search_result[1][n2];
+     {var b=last_search_result[1][n2+1];
       
-      var e=last_search_result[1][n2+1];
+      var e=last_search_result[1][n2+1+1];
       
-      if(b=-1){throw Not_found;}else{return $$String["sub"](txt,b,e-b);}
+      if(b===-1)
+       {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+      else
+       {return $$String["sub"](txt,b,e-b);}
       }
     };
 
@@ -1130,7 +1161,7 @@ var matched_string=function(txt){return matched_group(0,txt);};
 var
  replace_matched=
   function(repl,matched)
-   {return CamlPrimtivie["re_replacement_text"]
+   {return CamlPrimitive["re_replacement_text"]
             (repl,last_search_result[1],matched);
     };
 
@@ -1148,7 +1179,12 @@ var
                  repl_fun(text),
                  /* :: */[0,string_after(text,match_end(/* () */0)),/* [] */0]]]);
       }
-    catch(exn){if(exn=Not_found){return text;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return text;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1156,7 +1192,12 @@ var
   function(re,s,pos)
    {try
      {return /* Some */[0,search_forward(re,s,pos)];}
-    catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -1184,7 +1225,7 @@ var
                       repl_text,
                       /* :: */[0,$$String["sub"](text,start,pos-start),accu]],
                      end_pos,
-                     end_pos=pos);
+                     end_pos===pos);
             }
           else
            {return /* :: */[0,string_after(text,start),accu];}
@@ -1240,7 +1281,7 @@ var
        {if(start>=text["length"])
          {return accu;}
         else
-         {if(n=1)
+         {if(n===1)
            {return /* :: */[0,string_after(text,start),accu];}
           else
            {var match=opt_search_forward_progress(expr,text,start);
@@ -1273,7 +1314,7 @@ var
        {if(start>text["length"])
          {return accu;}
         else
-         {if(n=1)
+         {if(n===1)
            {return /* :: */[0,string_after(text,start),accu];}
           else
            {var match=opt_search_forward_progress(expr,text,start);
@@ -1292,7 +1333,7 @@ var
           }
         };
     
-    if(CamlPrimtivie["caml_string_equal"](text,""))
+    if(CamlPrimitive["caml_string_equal"](text,""))
      {return /* [] */0;}
     else
      {return List["rev"](split$1(/* [] */0,0,num));}
@@ -1309,7 +1350,7 @@ var
        {if(start>=text["length"])
          {return accu;}
         else
-         {if(n=1)
+         {if(n===1)
            {return /* :: */[0,/* Text */[0,string_after(text,start)],accu];}
           else
            {var match=opt_search_forward_progress(expr,text,start);

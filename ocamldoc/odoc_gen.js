@@ -1,6 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlinternalOO=require("CamlinternalOO");
+var CamlinternalOO=require("./camlinternalOO.js");
 
 
 var

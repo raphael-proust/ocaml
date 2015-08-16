@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Ctype=require("Ctype");
-var $$String=require("String");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Btype=require("Btype");
-var Predef=require("Predef");
-var Printf=require("Printf");
-var Unix=require("Unix");
-var Path=require("Path");
-var Buffer=require("Buffer");
-var Odoc_messages=require("Odoc_messages");
+var Ctype=require("./ctype.js");
+var $$String=require("./string.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Btype=require("./btype.js");
+var Predef=require("./predef.js");
+var Printf=require("./printf.js");
+var Unix=require("./unix.js");
+var Path=require("./path.js");
+var Buffer=require("./buffer.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 var
@@ -31,7 +32,7 @@ var
       if(!(4<switcher>>>0))
        {if(1<-2+switcher>>>0){exit=101;}else{exit=102;}}
       else
-       {if(switcher!=23){exit=102;}else{exit=101;}}
+       {if(switcher!==23){exit=102;}else{exit=101;}}
       
       switch(exit){case 102:Buffer["add_char"](buf,c);case 101:}
       }
@@ -46,7 +47,7 @@ var
     
     var len=1024;
     
-    var s=CamlPrimtivie["caml_create_string"](len);
+    var s=CamlPrimitive["caml_create_string"](len);
     
     var buf=Buffer["create"](len);
     
@@ -56,12 +57,17 @@ var
        {try
          {var n=Pervasives["input"](chanin,s,0,len);
           
-          if(n=0)
+          if(n===0)
            {return /* () */0;}
           else
            {Buffer["add_subbytes"](buf,s,0,n);return iter(/* () */0);}
           }
-        catch(exn){if(exn=End_of_file){return /* () */0;}else{throw exn;}}
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
+           {return /* () */0;}
+          else
+           {throw exn;}
+          }
         };
     
     iter(/* () */0);
@@ -171,14 +177,14 @@ var
                var exit;
                
                if(typeof field_kind==="number")
-                {if(field_kind!=0){return acc;}else{exit=84;}}
+                {if(field_kind!==0){return acc;}else{exit=84;}}
                else
                 {exit=84;}
                
                switch(exit)
                 {case 84:
                   if
-                   (CamlPrimtivie["caml_string_equal"](label,"*dummy method*"))
+                   (CamlPrimitive["caml_string_equal"](label,"*dummy method*"))
                    {return acc;}
                   else
                    {return Pervasives["@"]
@@ -199,7 +205,7 @@ var
       function(t_ele)
        {var exit;
         
-        if(typeof t_ele=="number")
+        if(typeof t_ele==="number")
          {switch(t_ele){case 0:return "\n";case 1:return "";}}
         else
          {switch(t_ele[0])
@@ -455,7 +461,7 @@ var
     if(match$1)
      {var d=match$1[1];
       
-      if(CamlPrimtivie["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
+      if(CamlPrimitive["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
        {var $js="";}
       else
        {var $js=Pervasives["^"](string_of_text(d),"\n");}
@@ -544,7 +550,7 @@ var
       function(t_ele)
        {var exit;
         
-        if(typeof t_ele=="number")
+        if(typeof t_ele==="number")
          {switch(t_ele)
            {case 0:return [/* :: */0,/* Newline */0,/* [] */0];
             case 1:return /* [] */0;
@@ -648,7 +654,7 @@ var
       function(ele)
        {var exit;
         
-        if(typeof ele=="number")
+        if(typeof ele==="number")
          {switch(ele){case 0:exit=53;case 1:exit=53;}}
         else
          {switch(ele[0])
@@ -731,7 +737,7 @@ var
         if(!(4<switcher>>>0))
          {if(1<-2+switcher>>>0){exit=43;}else{exit=44;}}
         else
-         {if(switcher!=23){exit=44;}else{exit=43;}}
+         {if(switcher!==23){exit=44;}else{exit=43;}}
         
         switch(exit)
          {case 44:
@@ -752,7 +758,7 @@ var
         }
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return /* tuple */[0,/* false */0,s,""];}
       else
        {throw exn;}
@@ -797,7 +803,7 @@ var
   function(text_ele)
    {var exit;
     
-    if(typeof text_ele=="number")
+    if(typeof text_ele==="number")
      {switch(text_ele)
        {case 0:
          return [/* tuple */0,
@@ -917,7 +923,7 @@ var
     else
      {var match=s[len-1];
       
-      if(match!=10){return s;}else{return $$String["sub"](s,0,len-1);}
+      if(match!==10){return s;}else{return $$String["sub"](s,0,len-1);}
       }
     };
 
@@ -931,28 +937,28 @@ var
       function(s)
        {var len=s["length"];
         
-        var match=CamlPrimtivie["caml_int_compare"](len,lenp);
+        var match=CamlPrimitive["caml_int_compare"](len,lenp);
         
-        if(match!=-1)
-         {if(match!=0)
+        if(match!==-1)
+         {if(match!==0)
            {var pos=len-lenp;
             
             var s2=$$String["sub"](s,pos,lenp);
             
-            if(CamlPrimtivie["caml_string_equal"](s2,pat))
+            if(CamlPrimitive["caml_string_equal"](s2,pat))
              {return pos;}
             else
              {return iter($$String["sub"](s,0,pos));}
             }
           else
-           {if(CamlPrimtivie["caml_string_equal"](pat,s))
+           {if(CamlPrimitive["caml_string_equal"](pat,s))
              {return 0;}
             else
-             {throw Not_found;}
+             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
             }
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return function(s){return iter(s);};
@@ -992,7 +998,7 @@ var
                         q);
                }
              else
-              {if(current=first)
+              {if(current===first)
                 {return f
                          (current,
                           acc0,
@@ -1032,7 +1038,7 @@ var
       function(t)
        {var exit;
         
-        if(typeof t=="number")
+        if(typeof t==="number")
          {switch(t){}}
         else
          {switch(t[0])

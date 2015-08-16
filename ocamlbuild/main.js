@@ -1,48 +1,49 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Tools=require("Tools");
-var Ocaml_utils=require("Ocaml_utils");
-var Options=require("Options");
-var Ocaml_dependencies=require("Ocaml_dependencies");
-var Const=require("Const");
-var Slurp=require("Slurp");
-var Plugin=require("Plugin");
-var Exit_codes=require("Exit_codes");
-var Ocaml_specific=require("Ocaml_specific");
-var Rule=require("Rule");
-var Pervasives=require("Pervasives");
-var Lexers=require("Lexers");
-var Arg=require("Arg");
-var Fda=require("Fda");
-var Pathname=require("Pathname");
-var Resource=require("Resource");
-var Flags=require("Flags");
-var Format=require("Format");
-var Digest_cache=require("Digest_cache");
-var Solver=require("Solver");
-var Command=require("Command");
-var Param_tags=require("Param_tags");
-var Loc=require("Loc");
-var Shell=require("Shell");
-var Hooks=require("Hooks");
-var Filename=require("Filename");
-var Report=require("Report");
-var My_std=require("My_std");
-var Printexc=require("Printexc");
-var Tags=require("Tags");
-var Configuration=require("Configuration");
-var My_unix=require("My_unix");
-var Log=require("Log");
-var Sys=require("Sys");
+var Tools=require("./tools.js");
+var Ocaml_utils=require("./ocaml_utils.js");
+var Options=require("./options.js");
+var Ocaml_dependencies=require("./ocaml_dependencies.js");
+var Const=require("./const.js");
+var Slurp=require("./slurp.js");
+var Plugin=require("./plugin.js");
+var Exit_codes=require("./exit_codes.js");
+var Ocaml_specific=require("./ocaml_specific.js");
+var Rule=require("./rule.js");
+var Pervasives=require("./pervasives.js");
+var Lexers=require("./lexers.js");
+var Arg=require("./arg.js");
+var Fda=require("./fda.js");
+var Pathname=require("./pathname.js");
+var Resource=require("./resource.js");
+var Flags=require("./flags.js");
+var Format=require("./format.js");
+var Digest_cache=require("./digest_cache.js");
+var Solver=require("./solver.js");
+var Command=require("./command.js");
+var Param_tags=require("./param_tags.js");
+var Loc=require("./loc.js");
+var Shell=require("./shell.js");
+var Hooks=require("./hooks.js");
+var Filename=require("./filename.js");
+var Report=require("./report.js");
+var My_std=require("./my_std.js");
+var Printexc=require("./printexc.js");
+var Tags=require("./tags.js");
+var Configuration=require("./configuration.js");
+var My_unix=require("./my_unix.js");
+var Log=require("./log.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var
  Exit_build_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Main.Exit_build_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Main.Exit_build_error",0]);
 
 var
  Exit_silently=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Main.Exit_silently",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Main.Exit_silently",0]);
 
 var
  clean=
@@ -147,15 +148,13 @@ var
    {Hooks["call_hook"](/* Before_options */2);
     Options["init"](/* () */0);
     Options["include_dirs"][1]=
-    My_std["List"][16](Pathname["normalize"],Options["include_dirs"][1]),
-    0;
+    My_std["List"][16](Pathname["normalize"],Options["include_dirs"][1]);
     Options["exclude_dirs"][1]=
-    My_std["List"][16](Pathname["normalize"],Options["exclude_dirs"][1]),
-    0;
+    My_std["List"][16](Pathname["normalize"],Options["exclude_dirs"][1]);
     if(Options["must_clean"][1]){clean(/* () */0)}else{}
     
     Hooks["call_hook"](/* After_options */3);
-    var options_wd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
+    var options_wd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
     var
      first_run_for_plugin=
@@ -200,9 +199,9 @@ var
     else
      {}
     
-    var newpwd=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
+    var newpwd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
-    CamlPrimtivie["caml_sys_chdir"](Pathname["pwd"]);
+    CamlPrimitive["caml_sys_chdir"](Pathname["pwd"]);
     var entry_include_dirs=[0,/* [] */0];
     
     var
@@ -210,7 +209,7 @@ var
       Slurp["filter"]
        (function(path,name,param$1)
          {if
-           (CamlPrimtivie["caml_string_equal"]
+           (CamlPrimitive["caml_string_equal"]
              (path,Filename["current_dir_name"]))
            {var dir=/* None */0;}
           else
@@ -218,10 +217,10 @@ var
           
           var path_name=Pathname["Operators"][1](path,name);
           
-          if(CamlPrimtivie["caml_string_equal"](name,"_tags"))
+          if(CamlPrimitive["caml_string_equal"](name,"_tags"))
            {if
-             (CamlPrimtivie["caml_string_equal"]
-               (CamlPrimtivie["caml_sys_getcwd"](/* () */0),Pathname["pwd"]))
+             (CamlPrimitive["caml_string_equal"]
+               (CamlPrimitive["caml_sys_getcwd"](/* () */0),Pathname["pwd"]))
              {var tags_path=path_name;}
             else
              {var
@@ -238,19 +237,18 @@ var
           return (My_std["List"][30](name,[/* :: */0,"_oasis",/* [] */0])||
                   name["length"]>
                   0&&
-                  name[0]!=
+                  name[0]!==
                   95)&&
-                 CamlPrimtivie["caml_string_notequal"]
+                 CamlPrimitive["caml_string_notequal"]
                   (name,Options["build_dir"][1])&&
                  !My_std["List"][30](name,Options["exclude_dirs"][1])&&
-                 (!(CamlPrimtivie["caml_string_notequal"]
+                 (!(CamlPrimitive["caml_string_notequal"]
                     (path_name,Filename["current_dir_name"])&&
                    Pathname["is_directory"](path_name))||
                   (Tags["mem"]("include",tags)||
                     My_std["List"][30](path_name,Options["include_dirs"][1])
                     ?(entry_include_dirs[1]=
                       /* :: */[0,path_name,entry_include_dirs[1]],
-                      0,
                       /* true */1)
                     :Tags["mem"]("traverse",tags)||
                      My_std["List"][27]
@@ -258,7 +256,7 @@ var
                        Options["include_dirs"][1])||
                      My_std["List"][27]
                       (Pathname["is_prefix"](path_name),target_dirs))&&
-                  CamlPrimtivie["caml_string_notequal"]
+                  CamlPrimitive["caml_string_notequal"]
                    (Pathname["normalize"](Options["build_dir"][1]),
                     Pathname["normalize"]
                      (Pathname["Operators"][1](Pathname["pwd"],path_name))));
@@ -289,8 +287,7 @@ var
     Options["include_dirs"][1]=
     /* :: */[0,
      Pathname["current_dir_name"],
-     My_std["List"][9](entry_include_dirs[1])],
-    0;
+     My_std["List"][9](entry_include_dirs[1])];
     Log["dprintf"]
      (3,
       [/* Format */0,
@@ -302,14 +299,14 @@ var
        "include directories are:@ %a"],
       My_std["print_string_list"],
       Options["include_dirs"][1]);
-    Options["entry"][1]=/* Some */[0,hygiene_entry],0;
+    Options["entry"][1]=/* Some */[0,hygiene_entry];
     Hooks["call_hook"](/* Before_rules */4);
     Ocaml_specific["init"](/* () */0);
     Hooks["call_hook"](/* After_rules */5);
-    CamlPrimtivie["caml_sys_chdir"](options_wd);
+    CamlPrimitive["caml_sys_chdir"](options_wd);
     Plugin["execute_plugin_if_needed"](/* () */0);
     Param_tags["init"](/* () */0);
-    CamlPrimtivie["caml_sys_chdir"](newpwd);
+    CamlPrimitive["caml_sys_chdir"](newpwd);
     if(Options["show_documentation"][1])
      {show_documentation(/* () */0);throw Exit_silently;}
     else
@@ -439,7 +436,7 @@ var
         if(match$1)
          {var cmd=match$1[1];
           
-          if(match$1[2]!=/* [] */0)
+          if(match$1[2]!==/* [] */0)
            {Log["dprintf"]
              (0,
               [/* Format */0,
@@ -479,7 +476,7 @@ var
        {return /* () */0;}
       }
     catch(exn)
-     {if(exn[1]=Ocaml_dependencies["Circular_dependencies"])
+     {if(exn[1]===Ocaml_dependencies["Circular_dependencies"])
        {throw [0,
                Exit_build_error,
                My_std["sbprintf"]
@@ -520,7 +517,7 @@ var
      exit=
       function(rc)
        {Log["finish"]
-         (/* Some */[0,rc!=0?/* Error */106380200:/* Success */94326179],
+         (/* Some */[0,rc!==0?/* Error */106380200:/* Success */94326179],
           /* () */0);
         return Pervasives["exit"](rc);
         };
@@ -532,10 +529,10 @@ var
        {try
          {throw e;}
         catch(e$1)
-         {if(e$1=My_std["Exit_OK"])
+         {if(e$1===My_std["Exit_OK"])
            {return exit(Exit_codes["rc_ok"]);}
           else
-           {if(e$1=Fda["Exit_hygiene_failed"])
+           {if(e$1===Fda["Exit_hygiene_failed"])
              {Log["eprintf"]
                ([/* Format */0,
                  [/* String_literal */11,
@@ -545,7 +542,7 @@ var
               return exit(Exit_codes["rc_hygiene"]);
               }
             else
-             {if(e$1[1]=My_std["Exit_usage"])
+             {if(e$1[1]===My_std["Exit_usage"])
                {Log["eprintf"]
                  ([/* Format */0,
                    [/* String_literal */11,
@@ -560,7 +557,7 @@ var
                 return exit(Exit_codes["rc_usage"]);
                 }
               else
-               {if(e$1[1]=My_std["Exit_system_error"])
+               {if(e$1[1]===My_std["Exit_system_error"])
                  {Log["eprintf"]
                    ([/* Format */0,
                      [/* String_literal */11,
@@ -575,22 +572,22 @@ var
                   return exit(Exit_codes["rc_system_error"]);
                   }
                 else
-                 {if(e$1[1]=My_std["Exit_with_code"])
+                 {if(e$1[1]===My_std["Exit_with_code"])
                    {return exit(e$1[2]);}
                   else
-                   {if(e$1=Exit_silently)
+                   {if(e$1===Exit_silently)
                      {Log["finish"]
                        ([/* Some */0,/* Quiet */-249890668],/* () */0);
                       return Pervasives["exit"](Exit_codes["rc_ok"]);
                       }
                     else
-                     {if(e$1[1]=My_std["Exit_silently_with_code"])
+                     {if(e$1[1]===My_std["Exit_silently_with_code"])
                        {Log["finish"]
                          ([/* Some */0,/* Quiet */-249890668],/* () */0);
                         return Pervasives["exit"](e$1[2]);
                         }
                       else
-                       {if(e$1[1]=Solver["Failed"])
+                       {if(e$1[1]===Solver["Failed"])
                          {var backtrace=e$1[2];
                           
                           Log["raw_dprintf"]
@@ -643,7 +640,7 @@ var
                           return exit(Exit_codes["rc_solver_failed"]);
                           }
                         else
-                         {if(e$1[1]=Failure)
+                         {if(e$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
                            {Log["eprintf"]
                              ([/* Format */0,
                                [/* String_literal */11,
@@ -658,7 +655,7 @@ var
                             return exit(Exit_codes["rc_failure"]);
                             }
                           else
-                           {if(e$1[1]=Solver["Circular"])
+                           {if(e$1[1]===Solver["Circular"])
                              {Log["eprintf"]
                                ([/* Format */0,
                                  [/* String_literal */11,
@@ -680,7 +677,9 @@ var
                               return exit(Exit_codes["rc_circularity"]);
                               }
                             else
-                             {if(e$1[1]=Invalid_argument)
+                             {if
+                               (e$1[1]===
+                                CamlPrimitive["caml_global_data"]["Invalid_argument"])
                                {Log["eprintf"]
                                  ([/* Format */0,
                                    [/* String_literal */11,
@@ -695,7 +694,7 @@ var
                                 return exit(Exit_codes["rc_invalid_argument"]);
                                 }
                               else
-                               {if(e$1[1]=Ocaml_utils["Ocamldep_error"])
+                               {if(e$1[1]===Ocaml_utils["Ocamldep_error"])
                                  {Log["eprintf"]
                                    ([/* Format */0,
                                      [/* String_literal */11,
@@ -706,7 +705,7 @@ var
                                   return exit(Exit_codes["rc_ocamldep_error"]);
                                   }
                                 else
-                                 {if(e$1[1]=Lexers["Error"])
+                                 {if(e$1[1]===Lexers["Error"])
                                    {var match=e$1[2];
                                     
                                     Log["eprintf"]
@@ -724,7 +723,7 @@ var
                                     return exit(Exit_codes["rc_lexing_error"]);
                                     }
                                   else
-                                   {if(e$1[1]=Arg["Bad"])
+                                   {if(e$1[1]===Arg["Bad"])
                                      {Log["eprintf"]
                                        ([/* Format */0,
                                          [/* String */2,/* No_padding */0,/* End_of_format */0],
@@ -733,7 +732,7 @@ var
                                       return exit(Exit_codes["rc_usage"]);
                                       }
                                     else
-                                     {if(e$1[1]=Exit_build_error)
+                                     {if(e$1[1]===Exit_build_error)
                                        {Log["eprintf"]
                                          ([/* Format */0,
                                            [/* String */2,/* No_padding */0,/* End_of_format */0],
@@ -742,7 +741,7 @@ var
                                         return exit(Exit_codes["rc_build_error"]);
                                         }
                                       else
-                                       {if(e$1[1]=Arg["Help"])
+                                       {if(e$1[1]===Arg["Help"])
                                          {Log["eprintf"]
                                            ([/* Format */0,
                                              [/* String */2,/* No_padding */0,/* End_of_format */0],

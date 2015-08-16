@@ -1,11 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Checkpoints=require("Checkpoints");
-var Primitives=require("Primitives");
-var Debugger_config=require("Debugger_config");
-var Int64ops=require("Int64ops");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Checkpoints=require("./checkpoints.js");
+var Primitives=require("./primitives.js");
+var Debugger_config=require("./debugger_config.js");
+var Int64ops=require("./int64ops.js");
 
 
 var history=[0,/* [] */0];
@@ -17,10 +17,10 @@ var
   function(param)
    {var time=Checkpoints["current_time"](/* () */0);
     
-    if(history[1]=/* [] */0)
+    if(history[1]===/* [] */0)
      {return history[1]=/* :: */[0,time,/* [] */0],0;}
     else
-     {if(time!=List["hd"](history[1]))
+     {if(time!==List["hd"](history[1]))
        {return history[1]=
                Primitives["list_truncate"]
                 (Debugger_config["history_size"][1],
@@ -42,7 +42,7 @@ var
     if(match)
      {var hist=match[2];
       
-      if(hist){history[1]=hist,0;return hist[1];}else{exit=1;}
+      if(hist){history[1]=hist;return hist[1];}else{exit=1;}
       }
     else
      {exit=1;}
@@ -58,7 +58,7 @@ var
 var
  previous_time=
   function(n)
-   {if(n=Int64ops["_1"])
+   {if(n===Int64ops["_1"])
      {return previous_time_1(/* () */0);}
     else
      {previous_time_1(/* () */0);return previous_time(Int64ops["pre64"](n));}

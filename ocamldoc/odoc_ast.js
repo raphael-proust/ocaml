@@ -1,27 +1,28 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_name=require("Odoc_name");
-var $$String=require("String");
-var Odoc_global=require("Odoc_global");
-var Odoc_value=require("Odoc_value");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Predef=require("Predef");
-var Printf=require("Printf");
-var Odoc_sig=require("Odoc_sig");
-var Types=require("Types");
-var Misc=require("Misc");
-var Path=require("Path");
-var Odoc_env=require("Odoc_env");
-var Filename=require("Filename");
-var Location=require("Location");
-var Hashtbl=require("Hashtbl");
-var Ident=require("Ident");
-var Odoc_parameter=require("Odoc_parameter");
-var Odoc_messages=require("Odoc_messages");
+var Odoc_name=require("./odoc_name.js");
+var $$String=require("./string.js");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_value=require("./odoc_value.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Predef=require("./predef.js");
+var Printf=require("./printf.js");
+var Odoc_sig=require("./odoc_sig.js");
+var Types=require("./types.js");
+var Misc=require("./misc.js");
+var Path=require("./path.js");
+var Odoc_env=require("./odoc_env.js");
+var Filename=require("./filename.js");
+var Location=require("./location.js");
+var Hashtbl=require("./hashtbl.js");
+var Ident=require("./ident.js");
+var Odoc_parameter=require("./odoc_parameter.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
-Odoc_module,Odoc_name;
+
 var blank="[ \n\r\t\f']";
 
 var simple_blank="[ \r\t\f]";
@@ -31,7 +32,7 @@ var
   function(param)
    {var exit;
     
-    if(typeof param=="number")
+    if(typeof param==="number")
      {switch(param){case 0:exit=379;}}
     else
      {switch(param[0])
@@ -84,7 +85,10 @@ var
                  (table,/* X */[5,Odoc_name["from_ident"](match[1][1])],tt);
          }
        else
-        {throw [0,Assert_failure,[0,"odoc_ast.ml",81,18]];}
+        {throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"odoc_ast.ml",81,18]];
+         }
        
       case 5:
        return Hashtbl["add"]
@@ -153,7 +157,11 @@ var
     
     switch(match[0])
      {case 6:return match[1][3];
-      default:throw [0,Assert_failure,[0,"odoc_ast.ml",129,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",129,13]];
+       }
     };
 
 var
@@ -163,7 +171,11 @@ var
     
     switch(match[0])
      {case 8:return match[1];
-      default:throw [0,Assert_failure,[0,"odoc_ast.ml",134,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",134,13]];
+       }
     };
 
 var
@@ -173,7 +185,11 @@ var
     
     switch(match[0])
      {case 4:return match[1];
-      default:throw [0,Assert_failure,[0,"odoc_ast.ml",139,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",139,13]];
+       }
     };
 
 var
@@ -183,7 +199,11 @@ var
     
     switch(match[0])
      {case 5:return match[1];
-      default:throw [0,Assert_failure,[0,"odoc_ast.ml",144,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",144,13]];
+       }
     };
 
 var
@@ -204,7 +224,13 @@ var
        
       default:exit=363;}
     
-    switch(exit){case 363:throw [0,Assert_failure,[0,"odoc_ast.ml",149,13]];}
+    switch(exit)
+     {case 363:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",149,13]];
+       
+      }
     };
 
 var
@@ -230,7 +256,7 @@ var
              return /* tuple */[0,ce,type_decl[4][1]];
              }
            catch(exn)
-            {if(exn=Not_found)
+            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
               {return /* tuple */[0,ce,/* [] */0];}
              else
               {throw exn;}
@@ -242,7 +268,13 @@ var
        
       default:exit=361;}
     
-    switch(exit){case 361:throw [0,Assert_failure,[0,"odoc_ast.ml",163,13]];}
+    switch(exit)
+     {case 361:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",163,13]];
+       
+      }
     };
 
 var
@@ -263,7 +295,13 @@ var
        
       default:exit=356;}
     
-    switch(exit){case 356:throw [0,Assert_failure,[0,"odoc_ast.ml",168,13]];}
+    switch(exit)
+     {case 356:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",168,13]];
+       
+      }
     };
 
 var search_value=function(table,name){return Hashtbl["find"](table,name);};
@@ -275,7 +313,11 @@ var
     
     switch(match[0])
      {case 2:return match[1][4][1];
-      default:throw [0,Assert_failure,[0,"odoc_ast.ml",175,13]];}
+      default:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"odoc_ast.ml",175,13]];
+       }
     };
 
 var
@@ -289,11 +331,11 @@ var
           
           switch(match[0])
            {case 0:
-             if(n=cpt){return match[2];}else{return iter(cpt+1,param[2]);}
+             if(n===cpt){return match[2];}else{return iter(cpt+1,param[2]);}
             default:return iter(cpt,param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return iter(0,cls[2]);
@@ -319,7 +361,7 @@ var
              switch(match$1[0])
               {case 0:
                 if
-                 (CamlPrimtivie["caml_string_equal"]
+                 (CamlPrimitive["caml_string_equal"]
                    (Odoc_name["from_ident"](ident),name))
                  {return match$1[1][2];}
                 else
@@ -327,7 +369,7 @@ var
                 
                case 1:
                 if
-                 (CamlPrimtivie["caml_string_equal"]
+                 (CamlPrimitive["caml_string_equal"]
                    (Odoc_name["from_ident"](ident),name))
                  {return match$1[2][4];}
                 else
@@ -340,7 +382,7 @@ var
           switch(exit){case 349:return iter(param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return iter(cls[2]);
@@ -376,7 +418,7 @@ var
              switch(match$1[0])
               {case 0:exit=345;
                case 1:
-                if(CamlPrimtivie["caml_string_equal"](match[1][1],name))
+                if(CamlPrimitive["caml_string_equal"](match[1][1],name))
                  {return match$1[2];}
                 else
                  {exit=345;}
@@ -388,7 +430,7 @@ var
           switch(exit){case 345:return iter$1(param[2]);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     return iter$1(cls[2]);
@@ -441,7 +483,7 @@ var
             
             var exit;
             
-            if(typeof match=="number")
+            if(typeof match==="number")
              {switch(match){}}
             else
              {switch(match[0])
@@ -466,7 +508,7 @@ var
                  var exit$1;
                  
                  var $js;
-                 if(typeof match$1=="number")
+                 if(typeof match$1==="number")
                   {switch(match$1){}}
                  else
                   {switch(match$1[0])
@@ -547,7 +589,7 @@ var
                        
                        var match$4=match$3[1][1];
                        
-                       if(typeof match$4=="number")
+                       if(typeof match$4==="number")
                         {switch(match$4){}}
                        else
                         {switch(match$4[0])
@@ -599,7 +641,7 @@ var
           }
         else
          {throw [0,
-                 Failure,
+                 CamlPrimitive["caml_global_data"]["Failure"],
                  "tt_analyse_function_parameters: 'function' without pattern"];
           }
         };
@@ -615,7 +657,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -646,7 +688,7 @@ var
                    complete_name,
                    comment_opt,
                    Odoc_env["subst_type"](env,pat[4]),
-                   rec_flag=/* Recursive */1,
+                   rec_flag===/* Recursive */1,
                    tt_analyse_function_parameters(env,comment_opt,match$1[2]),
                    code,
                    /* record */[0,/* Some */[0,loc],/* None */0]];
@@ -676,7 +718,7 @@ var
                    complete_name$1,
                    comment_opt,
                    Odoc_env["subst_type"](env,pat[4]),
-                   rec_flag=/* Recursive */1,
+                   rec_flag===/* Recursive */1,
                    /* [] */0,
                    code$1,
                    /* record */[0,/* Some */[0,loc],/* None */0]];
@@ -767,7 +809,7 @@ var
                               
                               var match$5=match$4[1][1];
                               
-                              if(typeof match$5=="number")
+                              if(typeof match$5==="number")
                                {switch(match$5){}}
                               else
                                {switch(match$5[0])
@@ -822,11 +864,14 @@ var
                  }
                }
              else
-              {throw [0,Assert_failure,[0,"odoc_ast.ml",458,19]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"odoc_ast.ml",458,19]];
+               }
              }
            else
             {throw [0,
-                    Failure,
+                    CamlPrimitive["caml_global_data"]["Failure"],
                     Pervasives["^"]
                      (Odoc_messages["bad_tree"],
                       Pervasives["^"]
@@ -871,9 +916,9 @@ var
                  try
                   {var tt_clexp=Typedtree_search[13](tt_cls,n);}
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["inherit_classexp_not_found_in_typedtree"](n)];
                      }
                    else
@@ -921,9 +966,9 @@ var
                  try
                   {var type_exp=Typedtree_search[14](tt_cls,label);}
                  catch(exn$1)
-                  {if(exn$1=Not_found)
+                  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["attribute_not_found_in_typedtree"]
                              (complete_name)];
                      }
@@ -950,7 +995,7 @@ var
                      /* [] */0,
                      code,
                      /* record */[0,/* Some */[0,loc],/* None */0]],
-                    match$2[2]=/* Mutable */1,
+                    match$2[2]===/* Mutable */1,
                     virt];
                  
                  return iter$1
@@ -984,9 +1029,9 @@ var
                         Odoc_sig["Signature_search"][10](label$1,tt_class_sig);
                       }
                     catch(exn$2)
-                     {if(exn$2=Not_found)
+                     {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
                        {throw [0,
-                               Failure,
+                               CamlPrimitive["caml_global_data"]["Failure"],
                                Odoc_messages["method_type_not_found"]
                                 (current_class_name,label$1)];
                         }
@@ -998,7 +1043,7 @@ var
                     
                     var exit$1;
                     
-                    if(typeof match$6=="number")
+                    if(typeof match$6==="number")
                      {switch(match$6){}}
                     else
                      {switch(match$6[0])
@@ -1025,7 +1070,7 @@ var
                         /* [] */0,
                         code$1,
                         /* record */[0,/* Some */[0,loc],/* None */0]],
-                       private_flag=/* Private */0,
+                       private_flag===/* Private */0,
                        /* true */1];
                     
                     Odoc_value["update_value_parameters_text"](met[1]);
@@ -1050,9 +1095,9 @@ var
                     try
                      {var exp=Typedtree_search[16](tt_cls,label$1);}
                     catch(exn$3)
-                     {if(exn$3=Not_found)
+                     {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                        {throw [0,
-                               Failure,
+                               CamlPrimitive["caml_global_data"]["Failure"],
                                Odoc_messages["method_not_found_in_typedtree"]
                                 (complete_name$2)];
                         }
@@ -1064,7 +1109,7 @@ var
                     
                     var exit$2;
                     
-                    if(typeof match$8=="number")
+                    if(typeof match$8==="number")
                      {switch(match$8){}}
                     else
                      {switch(match$8[0])
@@ -1092,7 +1137,7 @@ var
                          (env,complete_name$2,info_opt$1,/* None */0,exp),
                         code$2,
                         /* record */[0,/* Some */[0,loc],/* None */0]],
-                       private_flag=/* Private */0,
+                       private_flag===/* Private */0,
                        /* false */0];
                     
                     Odoc_value["update_value_parameters_text"](met$1[1]);
@@ -1112,7 +1157,11 @@ var
                 case 4:
                  return iter$1(acc_inher,acc_fields,match[1][2][2][4],q);
                 case 5:exit=297;
-                case 6:throw [0,Assert_failure,[0,"odoc_ast.ml",689,39]];
+                case 6:
+                 throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"odoc_ast.ml",689,39]];
+                 
                 }
               
               switch(exit)
@@ -1207,7 +1256,7 @@ var
               switch(exit$2)
                {case 246:
                  throw [0,
-                        Failure,
+                        CamlPrimitive["caml_global_data"]["Failure"],
                         "analyse_class_kind: no class signature for a class structure."];
                  
                 }
@@ -1241,13 +1290,13 @@ var
               
               var exit$3;
               
-              if(typeof match$5=="number")
+              if(typeof match$5==="number")
                {switch(match$5){}}
               else
                {switch(match$5[0])
                  {case 0:
                    if
-                    (CamlPrimtivie["caml_string_equal"]
+                    (CamlPrimitive["caml_string_equal"]
                       (Odoc_name["from_ident"](match$5[1]),"*opt*"))
                     {var match$6=tt_class_expr2[1];
                      
@@ -1262,7 +1311,7 @@ var
                           
                           var match$9=match$8[1][1];
                           
-                          if(typeof match$9=="number")
+                          if(typeof match$9==="number")
                            {switch(match$9){}}
                           else
                            {switch(match$9[0])
@@ -1288,7 +1337,10 @@ var
                      
                      switch(exit$4)
                       {case 251:
-                        throw [0,Failure,"analyse_class_kind: strange case"];
+                        throw [0,
+                               CamlPrimitive["caml_global_data"]["Failure"],
+                               "analyse_class_kind: strange case"];
+                        
                        }
                      }
                    else
@@ -1429,7 +1481,7 @@ var
         switch(exit)
          {case 263:
            throw [0,
-                  Failure,
+                  CamlPrimitive["caml_global_data"]["Failure"],
                   "analyse_class_kind: Parsetree and typedtree don't match."];
            
           }
@@ -1453,7 +1505,7 @@ var
         
         var pos_start=loc[1][4];
         
-        var virt=p_class_decl[1]=/* Virtual */0;
+        var virt=p_class_decl[1]===/* Virtual */0;
         
         var cltype=Odoc_env["subst_class_type"](env,tt_class_exp[3]);
         
@@ -1569,8 +1621,7 @@ var
               m[6]=
               /* Module_struct */[0,
                filter_module_elements_with_module_type_constraint
-                (match[1],mt[1])],
-              0;
+                (match[1],mt[1])];
               return m[2]=mt,0;
               
              default:exit=195;}
@@ -1598,8 +1649,7 @@ var
                 /* Some */[0,
                  /* Module_type_struct */[0,
                   filter_module_elements_with_module_type_constraint
-                   (match$1[1],mt[1])]],
-                0;
+                   (match$1[1],mt[1])]];
                 return mtyp[3]=/* Some */[0,mt],0;
                 
                default:exit=196;}
@@ -1631,9 +1681,9 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      var match=CamlPrimtivie["caml_string_equal"](n1,n2);
+                      var match=CamlPrimitive["caml_string_equal"](n1,n2);
                       
-                      if(match!=0)
+                      if(match!==0)
                        {filter_module_with_module_type_constraint(m,param[2][1]);
                         return /* true */1;
                         }
@@ -1660,9 +1710,9 @@ var
                         
                         var n2=Ident["name"](param[1]);
                         
-                        var match$1=CamlPrimtivie["caml_string_equal"](n1,n2);
+                        var match$1=CamlPrimitive["caml_string_equal"](n1,n2);
                         
-                        if(match$1!=0)
+                        if(match$1!==0)
                          {filter_module_type_with_module_type_constraint(mt,match[1]);
                           return /* true */1;
                           }
@@ -1690,7 +1740,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return CamlPrimtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimitive["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1707,7 +1757,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return CamlPrimtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimitive["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1724,7 +1774,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return CamlPrimtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimitive["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1737,8 +1787,8 @@ var
                  filter_extension_constructors_with_module_type_constraint
                   (te[5],lsig);
                
-               te[5]=l$1,0;
-               if(l$1!=/* [] */0)
+               te[5]=l$1;
+               if(l$1!==/* [] */0)
                 {var f=function(param){return /* true */1;};}
                else
                 {var f=function(param){return /* false */0;};}
@@ -1755,7 +1805,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return CamlPrimtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimitive["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1772,7 +1822,7 @@ var
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return CamlPrimtivie["caml_string_equal"](n1,n2);
+                      return CamlPrimitive["caml_string_equal"](n1,n2);
                       
                      default:return /* false */0;}
                    };
@@ -1800,7 +1850,7 @@ var
                           
                           var n2=Ident["name"](param[1]);
                           
-                          return CamlPrimtivie["caml_string_equal"](n1,n2);
+                          return CamlPrimitive["caml_string_equal"](n1,n2);
                           
                          default:return /* false */0;}
                        },
@@ -1903,7 +1953,7 @@ var
              function(param)
               {var exit$1;
                
-               if(typeof param=="number")
+               if(typeof param==="number")
                 {switch(param){case 0:exit$1=32;}}
                else
                 {switch(param[0])
@@ -1970,7 +2020,7 @@ var
                               q);
                      }
                    catch(exn)
-                    {if(exn=Not_found)
+                    {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                       {return iter$1(/* None */0,new_last_pos,acc_env,acc,q);}
                      else
                       {throw exn;}
@@ -2048,7 +2098,7 @@ var
               (function(td)
                 {return List["exists"]
                          (function(param)
-                           {return CamlPrimtivie["caml_string_equal"]
+                           {return CamlPrimitive["caml_string_equal"]
                                     (param[1][1],"nonrec");
                             },
                           td[7]);
@@ -2097,9 +2147,9 @@ var
                  try
                   {var tt_type_decl=Typedtree_search[8](table,name$1);}
                  catch(exn)
-                  {if(exn=Not_found)
+                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["type_not_found_in_typedtree"]
                              (complete_name$1)];
                      }
@@ -2153,7 +2203,7 @@ var
                  
                  var maybe_more2=match$4[1];
                  
-                 t[2]=Sig[10](t[2],match$4[2]),0;
+                 t[2]=Sig[10](t[2],match$4[2]);
                  var
                   match$5=
                    f(/* None */0,maybe_more+maybe_more2,new_end+maybe_more2,q);
@@ -2184,9 +2234,9 @@ var
              try
               {var tt_tyext=Typedtree_search[6](table,ext[1][1]);}
              catch(exn)
-              {if(exn=Not_found)
+              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {throw [0,
-                        Failure,
+                        CamlPrimitive["caml_global_data"]["Failure"],
                         Odoc_messages["extension_not_found_in_typedtree"]
                          (Odoc_name["concat"](current_module_name,ext[1][1]))];
                  }
@@ -2195,7 +2245,10 @@ var
                }
              }
            else
-            {throw [0,Assert_failure,[0,"odoc_ast.ml",1280,20]];}
+            {throw [0,
+                    CamlPrimitive["caml_global_data"]["Assert_failure"],
+                    [0,"odoc_ast.ml",1280,20]];
+             }
            
            var
             new_env$1=
@@ -2293,7 +2346,7 @@ var
                  
                  var match$4=My_ir[3](file_name[1],s);
                  
-                 new_xt[7]=match$4[2],0;
+                 new_xt[7]=match$4[2];
                  return analyse_extension_constructors
                          (match$4[1],/* :: */[0,new_xt,exts_acc],q);
                  }
@@ -2305,7 +2358,7 @@ var
             match$3=
              analyse_extension_constructors(0,/* [] */0,tt_tyext[4]);
            
-           new_te[5]=match$3[2],0;
+           new_te[5]=match$3[2];
            return /* tuple */[0,
                    match$3[1],
                    new_env$1,
@@ -2321,9 +2374,9 @@ var
            try
             {var tt_ext=Typedtree_search[7](table,name$1[1]);}
            catch(exn$1)
-            {if(exn$1=Not_found)
+            {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["exception_not_found_in_typedtree"]
                        (complete_name$1)];
                }
@@ -2417,7 +2470,7 @@ var
              
              var newrecord=/* unknown */"duprecord regular 11";
              
-             newrecord[9]=code$1,0;
+             newrecord[9]=code$1;
              var new_module=newrecord;
              
              var new_env$3=Odoc_env["add_module"](env,new_module[1]);
@@ -2442,13 +2495,13 @@ var
                      /* :: */[0,/* Element_module */[0,new_module],/* [] */0]];
              }
            catch(exn$2)
-            {if(exn$2=Not_found)
+            {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
               {var
                 complete_name$2=
                  Odoc_name["concat"](current_module_name,name$2[1]);
                
                throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["module_not_found_in_typedtree"]
                        (complete_name$2)];
                }
@@ -2474,9 +2527,9 @@ var
                  try
                   {var tt_mod_exp=Typedtree_search[4](table,name$3[1]);}
                  catch(exn$3)
-                  {if(exn$3=Not_found)
+                  {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["module_not_found_in_typedtree"]
                              (complete_name$3)];
                      }
@@ -2535,9 +2588,9 @@ var
                  try
                   {var tt_mod_exp=Typedtree_search[4](table,name$3[1]);}
                  catch(exn$3)
-                  {if(exn$3=Not_found)
+                  {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["module_not_found_in_typedtree"]
                              (complete_name$3)];
                      }
@@ -2588,9 +2641,9 @@ var
            try
             {var tt_module_type=Typedtree_search[5](table,name$3[1]);}
            catch(exn$3)
-            {if(exn$3=Not_found)
+            {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
-                      Failure,
+                      CamlPrimitive["caml_global_data"]["Failure"],
                       Odoc_messages["module_type_not_found_in_typedtree"]
                        (complete_name$3)];
                }
@@ -2714,13 +2767,13 @@ var
                  try
                   {var match$12=Typedtree_search[9](table,class_decl[3][1]);}
                  catch(exn$4)
-                  {if(exn$4=Not_found)
+                  {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                     {var
                       complete_name$4=
                        Odoc_name["concat"](current_module_name,class_decl[3][1]);
                      
                      throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["class_not_found_in_typedtree"]
                              (complete_name$4)];
                      }
@@ -2798,7 +2851,7 @@ var
                   complete_name$4=
                    Odoc_name["concat"](current_module_name,name$4[1]);
                  
-                 var virt=class_type_decl[1]=/* Virtual */0;
+                 var virt=class_type_decl[1]===/* Virtual */0;
                  
                  try
                   {var
@@ -2806,9 +2859,9 @@ var
                      Typedtree_search[10](table,name$4[1]);
                    }
                  catch(exn$4)
-                  {if(exn$4=Not_found)
+                  {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
-                            Failure,
+                            CamlPrimitive["caml_global_data"]["Failure"],
                             Odoc_messages["class_type_not_found_in_typedtree"]
                              (complete_name$4)];
                      }
@@ -2980,7 +3033,7 @@ var
               
               var newrecord=/* unknown */"duprecord regular 11";
               
-              newrecord[6]=/* Module_struct */[0,elements2],0;
+              newrecord[6]=/* Module_struct */[0,elements2];
               return newrecord;
               
              case 4:
@@ -3011,10 +3064,8 @@ var
                  
                  var newrecord$1=/* unknown */"duprecord regular 11";
                  
-                 newrecord$1[2]=
-                 Odoc_env["subst_module_type"](env,match$2[2]),
-                 0;
-                 newrecord$1[6]=/* Module_struct */[0,elements2$1],0;
+                 newrecord$1[2]=Odoc_env["subst_module_type"](env,match$2[2]);
+                 newrecord$1[6]=/* Module_struct */[0,elements2$1];
                  return newrecord$1;
                  
                 default:exit=184;}
@@ -3092,7 +3143,7 @@ var
               
               var newrecord$2=/* unknown */"duprecord regular 11";
               
-              newrecord$2[6]=/* Module_functor */[2,param,kind],0;
+              newrecord$2[6]=/* Module_functor */[2,param,kind];
               return newrecord$2;
               
              default:exit=184;}
@@ -3167,8 +3218,8 @@ var
               
               var newrecord$3=/* unknown */"duprecord regular 11";
               
-              newrecord$3[2]=tt_modtype$1,0;
-              newrecord$3[6]=/* Module_constraint */[5,m_base2$1[6],mtkind],0;
+              newrecord$3[2]=tt_modtype$1;
+              newrecord$3[6]=/* Module_constraint */[5,m_base2$1[6],mtkind];
               return newrecord$3;
               
              default:exit=184;}
@@ -3211,10 +3262,8 @@ var
               
               var newrecord$4=/* unknown */"duprecord regular 11";
               
-              newrecord$4[2]=
-              Odoc_env["subst_module_type"](env,tt_modtype$2),
-              0;
-              newrecord$4[6]=/* Module_unpack */[7,code,alias],0;
+              newrecord$4[2]=Odoc_env["subst_module_type"](env,tt_modtype$2);
+              newrecord$4[6]=/* Module_unpack */[7,code,alias];
               return newrecord$4;
               
              default:exit=184;}
@@ -3225,7 +3274,7 @@ var
         switch(exit)
          {case 184:
            throw [0,
-                  Failure,
+                  CamlPrimitive["caml_global_data"]["Failure"],
                   "analyse_module: parsetree and typedtree don't match."];
            
           case 182:
@@ -3236,8 +3285,7 @@ var
            var newrecord$5=/* unknown */"duprecord regular 11";
            
            newrecord$5[6]=
-           /* Module_alias */[1,/* record */[0,alias_name,/* None */0]],
-           0;
+           /* Module_alias */[1,/* record */[0,alias_name,/* None */0]];
            return newrecord$5;
            
           case 183:
@@ -3263,7 +3311,7 @@ var
            
            var newrecord$6=/* unknown */"duprecord regular 11";
            
-           newrecord$6[6]=/* Module_apply */[3,m1[6],m2[6]],0;
+           newrecord$6[6]=/* Module_apply */[3,m1[6],m2[6]];
            return newrecord$6;
            
           }
@@ -3275,7 +3323,7 @@ var
        {var tree_structure=typedtree[1];
         
         try
-         {var curdir=CamlPrimtivie["caml_sys_getcwd"](/* () */0);
+         {var curdir=CamlPrimitive["caml_sys_getcwd"](/* () */0);
           
           var
            match=
@@ -3283,17 +3331,17 @@ var
              Filename["dirname"](source_file),
              Filename["basename"](source_file)];
           
-          CamlPrimtivie["caml_sys_chdir"](match[1]);
+          CamlPrimitive["caml_sys_chdir"](match[1]);
           var
            complete=
             Filename["concat"]
-             (CamlPrimtivie["caml_sys_getcwd"](/* () */0),match[2]);
+             (CamlPrimitive["caml_sys_getcwd"](/* () */0),match[2]);
           
-          CamlPrimtivie["caml_sys_chdir"](curdir);
+          CamlPrimitive["caml_sys_chdir"](curdir);
           var complete_source_file=complete;
           }
         catch(exn)
-         {if(exn[1]=Sys_error)
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {Pervasives["prerr_endline"](exn[2]);
             Odoc_global["errors"][0]++;
             var complete_source_file=source_file;

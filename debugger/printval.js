@@ -1,13 +1,14 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Printtyp=require("Printtyp");
-var Pervasives=require("Pervasives");
-var Format=require("Format");
-var Oprint=require("Oprint");
-var Genprintval=require("Genprintval");
-var Hashtbl=require("Hashtbl");
-var Symtable=require("Symtable");
-var Debugcom=require("Debugcom");
+var Printtyp=require("./printtyp.js");
+var Pervasives=require("./pervasives.js");
+var Format=require("./format.js");
+var Oprint=require("./oprint.js");
+var Genprintval=require("./genprintval.js");
+var Hashtbl=require("./hashtbl.js");
+var Symtable=require("./symtable.js");
+var Debugcom=require("./debugcom.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var named_values=Hashtbl["create"](/* None */0,29);
@@ -48,7 +49,7 @@ var
 
 var
  $$Error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"Printval.EvalPath.Error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"Printval.EvalPath.Error",0]);
 
 var
  eval_path=
@@ -60,7 +61,7 @@ var
                  (Symtable["get_global_position"](param[1]));
          }
        catch(exn)
-        {if(exn[1]=Symtable["Error"]){throw $$Error;}else{throw exn;}}
+        {if(exn[1]===Symtable["Error"]){throw $$Error;}else{throw exn;}}
        
       case 1:
        var v=eval_path(env,param[1]);
@@ -95,7 +96,7 @@ var
               {try
                 {return fn(ppf,Debugcom["Remote_value"][1](remote_val));}
                catch(exn)
-                {if(exn=Debugcom["Marshalling_error"])
+                {if(exn===Debugcom["Marshalling_error"])
                   {return Format["fprintf"]
                            (ppf,
                             [/* Format */0,
@@ -139,7 +140,7 @@ var
       function(ppf,param)
        {var exit;
         
-        if(typeof param=="number")
+        if(typeof param==="number")
          {switch(param){}}
         else
          {switch(param[0])

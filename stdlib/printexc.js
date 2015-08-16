@@ -672,24 +672,24 @@ module["exports"]=
  "catch":$$catch,
  "print_backtrace":print_backtrace,
  "get_backtrace":get_backtrace,
- "caml_record_backtrace":
+ "record_backtrace":
  function(prim){return CamlPrimitive["caml_record_backtrace"](prim);},
- "caml_backtrace_status":
+ "backtrace_status":
  function(prim){return CamlPrimitive["caml_backtrace_status"](prim);},
  "register_printer":register_printer,
- "caml_get_exception_raw_backtrace":
+ "get_raw_backtrace":
  function(prim)
   {return CamlPrimitive["caml_get_exception_raw_backtrace"](prim);},
  "print_raw_backtrace":print_raw_backtrace,
  "raw_backtrace_to_string":raw_backtrace_to_string,
- "caml_get_current_callstack":
+ "get_callstack":
  function(prim){return CamlPrimitive["caml_get_current_callstack"](prim);},
  "set_uncaught_exception_handler":set_uncaught_exception_handler,
  "backtrace_slots":backtrace_slots,
  "Slot":[0,Slot[2],Slot[3],Slot[1]],
  "raw_backtrace_length":raw_backtrace_length,
  "get_raw_backtrace_slot":get_raw_backtrace_slot,
- "caml_convert_raw_backtrace_slot":
+ "convert_raw_backtrace_slot":
  function(prim)
   {return CamlPrimitive["caml_convert_raw_backtrace_slot"](prim);},
  "exn_slot_id":exn_slot_id,

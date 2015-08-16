@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Arith_flags=require("Arith_flags");
+var Pervasives=require("./pervasives.js");
+var Arith_flags=require("./arith_flags.js");
 
 
 var
@@ -55,7 +55,7 @@ var
 var
  arith_print_bool=
   function(param)
-   {if(param!=0)
+   {if(param!==0)
      {return Pervasives["print_string"]("ON");}
     else
      {return Pervasives["print_string"]("OFF");}

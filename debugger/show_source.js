@@ -1,13 +1,13 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Events=require("Events");
-var Primitives=require("Primitives");
-var Parameters=require("Parameters");
-var Debugger_config=require("Debugger_config");
-var Source=require("Source");
+var $$String=require("./string.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Events=require("./events.js");
+var Primitives=require("./primitives.js");
+var Parameters=require("./parameters.js");
+var Debugger_config=require("./debugger_config.js");
+var Source=require("./source.js");
 
 
 var
@@ -58,7 +58,7 @@ var
   function(ev,selected)
    {var mdle=ev[2];
     
-    var before=ev[4]=/* Event_before */0;
+    var before=ev[4]===/* Event_before */0;
     
     if(Parameters["emacs"][1]&&selected)
      {try
@@ -98,10 +98,10 @@ var
                  before?":before":":after");
         }
       catch(exn)
-       {if(exn=Primitives["Out_of_range"])
+       {if(exn===Primitives["Out_of_range"])
          {return Pervasives["prerr_endline"]("Position out of range.");}
         else
-         {if(exn=Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {Pervasives["prerr_endline"]
              (Pervasives["^"]("No source file for ",Pervasives["^"](mdle,".")));
             return show_no_point(/* () */0);
@@ -122,10 +122,10 @@ var
         return print_line(buffer$1,pos[2],match[1],match[2],before);
         }
       catch(exn$1)
-       {if(exn$1=Primitives["Out_of_range"])
+       {if(exn$1===Primitives["Out_of_range"])
          {return Pervasives["prerr_endline"]("Position out of range.");}
         else
-         {if(exn$1=Not_found)
+         {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
            {return Pervasives["prerr_endline"]
                     (Pervasives["^"]
                       ("No source file for ",Pervasives["^"](mdle,".")));
@@ -161,10 +161,10 @@ var
       return aff(Source["pos_of_line"](buffer,start));
       }
     catch(exn)
-     {if(exn=Primitives["Out_of_range"])
+     {if(exn===Primitives["Out_of_range"])
        {return Pervasives["prerr_endline"]("Position out of range.");}
       else
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {return Pervasives["prerr_endline"]
                   (Pervasives["^"]
                     ("No source file for ",Pervasives["^"](mdle,".")));

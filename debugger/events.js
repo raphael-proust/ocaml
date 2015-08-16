@@ -8,7 +8,7 @@ var
    {var match=ev[4];
     
     if(typeof match==="number")
-     {if(match!=0){return ev[3][1];}else{return ev[3][1];}}
+     {if(match!==0){return ev[3][1];}else{return ev[3][1];}}
     else
      {return ev[3][2];}
     };
@@ -20,7 +20,10 @@ var
   function(param)
    {var match=current_event[1];
     
-    if(match){return match[1];}else{throw Not_found;}
+    if(match)
+     {return match[1];}
+    else
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -34,12 +37,12 @@ var
      {var match$1=match[1][4];
       
       if(typeof match$1==="number")
-       {if(match$1!=0){exit=1;}else{return /* true */1;}}
+       {if(match$1!==0){exit=1;}else{return /* true */1;}}
       else
        {exit=1;}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     
     switch(exit){case 1:return /* false */0;}
     };

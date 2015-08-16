@@ -249,10 +249,10 @@ var delete_alarm=function(a){return a[1]=/* false */0,0;};
 module["exports"]=
 {"print_stat":print_stat,
  "allocated_bytes":allocated_bytes,
- "caml_final_register":
- function(prim,prim)
-  {return CamlPrimitive["caml_final_register"](prim$1,prim);},
- "caml_final_release":
+ "finalise":
+ function(prim,prim$1)
+  {return CamlPrimitive["caml_final_register"](prim,prim$1);},
+ "finalise_release":
  function(prim){return CamlPrimitive["caml_final_release"](prim);},
  "create_alarm":create_alarm,
  "delete_alarm":delete_alarm};

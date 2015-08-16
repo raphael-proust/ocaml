@@ -1,16 +1,16 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Odoc_name=require("Odoc_name");
-var $$String=require("String");
-var Printtyp=require("Printtyp");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Printf=require("Printf");
-var Format=require("Format");
-var Buffer=require("Buffer");
-var Odoc_print=require("Odoc_print");
-var Odoc_misc=require("Odoc_misc");
-var Odoc_messages=require("Odoc_messages");
+var Odoc_name=require("./odoc_name.js");
+var $$String=require("./string.js");
+var Printtyp=require("./printtyp.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Buffer=require("./buffer.js");
+var Odoc_print=require("./odoc_print.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 
@@ -18,16 +18,17 @@ var
  string_of_variance=
   function(t,param)
    {if
-     (((t[4]=/* Type_abstract */0)||(t[4]=/* Type_open */1))&&
-      (t[6]=/* None */0))
+     ((t[4]===/* Type_abstract */0||t[4]===/* Type_open */1)&&
+      t[6]===
+      /* None */0)
      {var cn=param[2];
       
       var exit;
       
-      if(param[1]!=0)
-       {if(cn!=0){exit=52;}else{return "+";}}
+      if(param[1]!==0)
+       {if(cn!==0){exit=52;}else{return "+";}}
       else
-       {if(cn!=0){return "-";}else{exit=52;}}
+       {if(cn!==0){return "-";}else{exit=52;}}
       
       switch(exit){case 52:return "";}
       }
@@ -42,7 +43,7 @@ var
     
     var exit;
     
-    if(typeof match=="number")
+    if(typeof match==="number")
      {switch(match){}}
     else
      {switch(match[0])
@@ -69,7 +70,7 @@ var
         
         var exit;
         
-        if(typeof match=="number")
+        if(typeof match==="number")
          {switch(match){}}
         else
          {switch(match[0])
@@ -333,7 +334,8 @@ var
 
 var
  bool_of_private=
-  function(param){if(param!=0){return /* false */0;}else{return /* true */1;}};
+  function(param)
+   {if(param!==0){return /* false */0;}else{return /* true */1;}};
 
 var
  string_of_type=
@@ -437,7 +439,7 @@ var
     
     var match$2=t[4];
     
-    if(typeof match$2=="number")
+    if(typeof match$2==="number")
      {switch(match$2)
        {case 0:var type_kind_str="";case 1:var type_kind_str="= ..";}}
     else

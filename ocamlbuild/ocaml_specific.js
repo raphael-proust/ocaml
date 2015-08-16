@@ -1,23 +1,24 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Tools=require("Tools");
-var Ocaml_utils=require("Ocaml_utils");
-var Options=require("Options");
-var Ocaml_compiler=require("Ocaml_compiler");
-var Char=require("Char");
-var Pervasives=require("Pervasives");
-var Rule=require("Rule");
-var Pathname=require("Pathname");
-var Flags=require("Flags");
-var Format=require("Format");
-var Command=require("Command");
-var Filename=require("Filename");
-var My_std=require("My_std");
-var Tags=require("Tags");
-var Ocaml_tools=require("Ocaml_tools");
-var Configuration=require("Configuration");
-var Findlib=require("Findlib");
-var Ocamlbuild_config=require("Ocamlbuild_config");
+var Tools=require("./tools.js");
+var Ocaml_utils=require("./ocaml_utils.js");
+var Options=require("./options.js");
+var Ocaml_compiler=require("./ocaml_compiler.js");
+var Char=require("./char.js");
+var Pervasives=require("./pervasives.js");
+var Rule=require("./rule.js");
+var Pathname=require("./pathname.js");
+var Flags=require("./flags.js");
+var Format=require("./format.js");
+var Command=require("./command.js");
+var Filename=require("./filename.js");
+var My_std=require("./my_std.js");
+var Tags=require("./tags.js");
+var Ocaml_tools=require("./ocaml_tools.js");
+var Configuration=require("./configuration.js");
+var Findlib=require("./findlib.js");
+var Ocamlbuild_config=require("./ocamlbuild_config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -38,7 +39,7 @@ var
       function(x)
        {if
          (Filename["check_suffix"](x,".o")&&
-          CamlPrimtivie["caml_string_notequal"](Options["ext_obj"][1],"o"))
+          CamlPrimitive["caml_string_notequal"](Options["ext_obj"][1],"o"))
          {return Pathname["update_extension"](Options["ext_obj"][1],x);}
         else
          {return x;}
@@ -834,7 +835,7 @@ var
               /* :: */[0,[/* A */1,"-c"],/* :: */[0,/* Px */[3,c],/* [] */0]]]]]];
         
         if
-         (CamlPrimtivie["caml_string_equal"]
+         (CamlPrimitive["caml_string_equal"]
            (Pathname["dirname"](o),Pathname["current_dir_name"]))
          {return cc;}
         else
@@ -1117,7 +1118,7 @@ var
             Findlib["link_flags_native"](pkgs));
         }
       catch(exn)
-       {if(exn[1]=Findlib["Findlib_error"])
+       {if(exn[1]===Findlib["Findlib_error"])
          {var match$1=Findlib["report_error"](exn[2]);}
         else
          {throw exn;}

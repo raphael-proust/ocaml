@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Ratio=require("Ratio");
-var Int_misc=require("Int_misc");
-var Big_int=require("Big_int");
-var Nat=require("Nat");
-var Arith_flags=require("Arith_flags");
+var Pervasives=require("./pervasives.js");
+var Ratio=require("./ratio.js");
+var Int_misc=require("./int_misc.js");
+var Big_int=require("./big_int.js");
+var Nat=require("./nat.js");
+var Arith_flags=require("./arith_flags.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var biggest_INT=Big_int["big_int_of_int"](Int_misc["biggest_int"]);
@@ -198,7 +199,7 @@ var
       }
     };
 
-var $plus$unknown=add_num;
+var $plus$slash=add_num;
 
 var
  minus_num=
@@ -207,7 +208,7 @@ var
      {case 0:
        var i=param[1];
        
-       if(i=Int_misc["monster_int"])
+       if(i===Int_misc["monster_int"])
         {return /* Big_int */[1,
                  Big_int["minus_big_int"](Big_int["big_int_of_int"](i))];
          }
@@ -222,7 +223,7 @@ var
 
 var sub_num=function(n1,n2){return add_num(n1,minus_num(n2));};
 
-var $neg$unknown=sub_num;
+var $neg$slash=sub_num;
 
 var
  mult_num=
@@ -320,7 +321,7 @@ var
       }
     };
 
-var $star$unknown=mult_num;
+var $star$slash=mult_num;
 
 var
  square_num=
@@ -408,7 +409,7 @@ var
       }
     };
 
-var $unknown$unknown=div_num;
+var $slash$slash=div_num;
 
 var
  floor_num=
@@ -589,8 +590,8 @@ var
        
        var match$2=Int_misc["sign_int"](n);
        
-       if(match$2!=0)
-        {if(match$2!=1)
+       if(match$2!==0)
+        {if(match$2!==1)
           {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
@@ -609,8 +610,8 @@ var
        
        var match$3=Int_misc["sign_int"](n$1);
        
-       if(match$3!=0)
-        {if(match$3!=1)
+       if(match$3!==0)
+        {if(match$3!==1)
           {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
@@ -631,8 +632,8 @@ var
        
        var match$4=Int_misc["sign_int"](n$2);
        
-       if(match$4!=0)
-        {if(match$4!=1)
+       if(match$4!==0)
+        {if(match$4!==1)
           {return /* Ratio */[2,
                    Ratio["power_ratio_positive_int"]
                     (Ratio["inverse_ratio"](r),-n$2)];
@@ -661,8 +662,8 @@ var
        
        var match$2=Big_int["sign_big_int"](n);
        
-       if(match$2!=0)
-        {if(match$2!=1)
+       if(match$2!==0)
+        {if(match$2!==1)
           {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
@@ -682,8 +683,8 @@ var
        
        var match$3=Big_int["sign_big_int"](n$1);
        
-       if(match$3!=0)
-        {if(match$3!=1)
+       if(match$3!==0)
+        {if(match$3!==1)
           {return /* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
@@ -705,8 +706,8 @@ var
        
        var match$4=Big_int["sign_big_int"](n$2);
        
-       if(match$4!=0)
-        {if(match$4!=1)
+       if(match$4!==0)
+        {if(match$4!==1)
           {return /* Ratio */[2,
                    Ratio["power_ratio_positive_big_int"]
                     (Ratio["inverse_ratio"](r),Big_int["minus_big_int"](n$2))];
@@ -735,7 +736,7 @@ var
       }
     };
 
-var $star$star$unknown=power_num;
+var $star$star$slash=power_num;
 
 var
  is_integer_num=
@@ -799,7 +800,7 @@ var
        var int1=match[1];
        
        switch(match$1[0])
-        {case 0:var int2=match$1[1];return int1=int2;
+        {case 0:var int2=match$1[1];return int1===int2;
          case 1:
           var i=int1;
           
@@ -863,9 +864,9 @@ var
       }
     };
 
-var $eq$unknown=eq_num;
+var $eq$slash=eq_num;
 
-var $less$great$unknown=function(a,b){return !eq_num(a,b);};
+var $less$great$slash=function(a,b){return !eq_num(a,b);};
 
 var
  compare_num=
@@ -955,13 +956,13 @@ var gt_num=function(num1,num2){return compare_num(num1,num2)>0;};
 
 var ge_num=function(num1,num2){return compare_num(num1,num2)>=0;};
 
-var $less$unknown=lt_num;
+var $less$slash=lt_num;
 
-var $less$eq$unknown=le_num;
+var $less$eq$slash=le_num;
 
-var $great$unknown=gt_num;
+var $great$slash=gt_num;
 
-var $great$eq$unknown=ge_num;
+var $great$eq$slash=ge_num;
 
 var
  max_num=
@@ -984,7 +985,7 @@ var
 var
  num_of_int=
   function(i)
-   {if(i=Int_misc["monster_int"])
+   {if(i===Int_misc["monster_int"])
      {return /* Big_int */[1,Big_int["big_int_of_int"](i)];}
     else
      {return /* Int */[0,i];}
@@ -1004,7 +1005,7 @@ var
  num_of_nat=
   function(nat)
    {if(Nat["is_nat_int"](nat,0,Nat["length_nat"](nat)))
-     {return /* Int */[0,CamlPrimtivie["nth_digit_nat"](nat,0)];}
+     {return /* Int */[0,CamlPrimitive["nth_digit_nat"](nat,0)];}
     else
      {return /* Big_int */[1,Big_int["big_int_of_nat"](nat)];}
     };
@@ -1051,10 +1052,10 @@ var
    {try
      {var flag=Arith_flags["normalize_ratio_flag"][1];
       
-      Arith_flags["normalize_ratio_flag"][1]=/* true */1,0;
+      Arith_flags["normalize_ratio_flag"][1]=/* true */1;
       var r=Ratio["ratio_of_string"](s);
       
-      Arith_flags["normalize_ratio_flag"][1]=flag,0;
+      Arith_flags["normalize_ratio_flag"][1]=flag;
       if
        (Big_int["eq_big_int"]
          (Ratio["denominator_ratio"](r),Big_int["unit_big_int"]))
@@ -1065,7 +1066,7 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag=Failure)
+      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
        {return Pervasives["failwith"]("num_of_string");}
       else
        {throw exn;}
@@ -1089,7 +1090,7 @@ var
      {case 0:
        var i=param[1];
        
-       if(i=Int_misc["biggest_int"])
+       if(i===Int_misc["biggest_int"])
         {return /* Big_int */[1,
                  Big_int["succ_big_int"](Big_int["big_int_of_int"](i))];
          }
@@ -1109,7 +1110,7 @@ var
      {case 0:
        var i=param[1];
        
-       if(i=Int_misc["monster_int"])
+       if(i===Int_misc["monster_int"])
         {return /* Big_int */[1,
                  Big_int["pred_big_int"](Big_int["big_int_of_int"](i))];
          }
@@ -1130,7 +1131,7 @@ var
      {case 0:
        var i=param[1];
        
-       if(i=Int_misc["monster_int"])
+       if(i===Int_misc["monster_int"])
         {return /* Big_int */[1,
                  Big_int["minus_big_int"](Big_int["big_int_of_int"](i))];
          }
@@ -1156,19 +1157,19 @@ var incr_num=function(r){return r[1]=succ_num(r[1]),0;};
 var decr_num=function(r){return r[1]=pred_num(r[1]),0;};
 
 module["exports"]=
-{"+/":$plus$unknown,
+{"+/":$plus$slash,
  "add_num":add_num,
  "minus_num":minus_num,
- "-/":$neg$unknown,
+ "-/":$neg$slash,
  "sub_num":sub_num,
- "*/":$star$unknown,
+ "*/":$star$slash,
  "mult_num":mult_num,
  "square_num":square_num,
- "//":$unknown$unknown,
+ "//":$slash$slash,
  "div_num":div_num,
  "quo_num":quo_num,
  "mod_num":mod_num,
- "**/":$star$star$unknown,
+ "**/":$star$star$slash,
  "power_num":power_num,
  "abs_num":abs_num,
  "succ_num":succ_num,
@@ -1181,12 +1182,12 @@ module["exports"]=
  "round_num":round_num,
  "ceiling_num":ceiling_num,
  "sign_num":sign_num,
- "=/":$eq$unknown,
- "</":$less$unknown,
- ">/":$great$unknown,
- "<=/":$less$eq$unknown,
- ">=/":$great$eq$unknown,
- "<>/":$less$great$unknown,
+ "=/":$eq$slash,
+ "</":$less$slash,
+ ">/":$great$slash,
+ "<=/":$less$eq$slash,
+ ">=/":$great$eq$slash,
+ "<>/":$less$great$slash,
  "eq_num":eq_num,
  "lt_num":lt_num,
  "le_num":le_num,

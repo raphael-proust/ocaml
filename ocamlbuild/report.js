@@ -1,9 +1,9 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Resource=require("Resource");
-var Format=require("Format");
-var My_std=require("My_std");
-var Glob=require("Glob");
+var Resource=require("./resource.js");
+var Format=require("./format.js");
+var My_std=require("./my_std.js");
+var Glob=require("./glob.js");
 
 
 var

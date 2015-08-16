@@ -1,14 +1,15 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Printf=require("Printf");
-var Format=require("Format");
-var Str=require("Str");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Printf=require("./printf.js");
+var Format=require("./format.js");
+var Str=require("./str.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -297,7 +298,7 @@ var
                      var tag=param[1];
                      
                      try
-                      {var f=List["assoc"](tag,self$neg1[tag_functions]);
+                      {var f=List["assoc"](tag,self$neg1[tag_functions+1]);
                        
                        if(acc)
                         {return Pervasives["@"]
@@ -307,7 +308,7 @@ var
                         {return f(text);}
                        }
                      catch(exn)
-                      {if(exn=Not_found)
+                      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                         {Odoc_info["warning"](Odoc_messages["tag_not_handled"](tag));
                          return acc;
                          }
@@ -336,7 +337,7 @@ var
              {var t=match$1[1];
               
               if
-               (CamlPrimtivie["caml_equal"]
+               (CamlPrimitive["caml_equal"]
                  (t,[/* :: */0,[/* Raw */0,""],/* [] */0]))
                {var $js=/* [] */0;}
               else
@@ -390,7 +391,7 @@ var
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
-       $$self$1[tag_functions]=/* [] */0,0;
+       $$self$1[tag_functions+1]=/* [] */0;
        return $$self$1;
        };
      },
@@ -852,7 +853,7 @@ var
                l2=
                 List["filter"]
                  (function(n)
-                   {return Odoc_info["Parameter"][4](p,n)!=/* None */0;},
+                   {return Odoc_info["Parameter"][4](p,n)!==/* None */0;},
                   l);
               
               if(l2)

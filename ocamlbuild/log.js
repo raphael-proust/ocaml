@@ -1,11 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Display=require("Display");
-var Pervasives=require("Pervasives");
-var Queue=require("Queue");
-var My_std=require("My_std");
-var My_unix=require("My_unix");
-var Hashtbl=require("Hashtbl");
+var Display=require("./display.js");
+var Pervasives=require("./pervasives.js");
+var Queue=require("./queue.js");
+var My_std=require("./my_std.js");
+var My_unix=require("./my_unix.js");
+var Hashtbl=require("./hashtbl.js");
 
 
 var mode=function(param){return /* true */1;};

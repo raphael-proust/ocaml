@@ -1,36 +1,37 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Format=require("Format");
-var Set=require("Set");
-var Buffer=require("Buffer");
-var Filename=require("Filename");
-var Lexing=require("Lexing");
-var Bytes=require("Bytes");
-var Hashtbl=require("Hashtbl");
-var CamlinternalLazy=require("CamlinternalLazy");
-var $$Array=require("Array");
-var Sys=require("Sys");
+var $$String=require("./string.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Format=require("./format.js");
+var Set=require("./set.js");
+var Buffer=require("./buffer.js");
+var Filename=require("./filename.js");
+var Lexing=require("./lexing.js");
+var Bytes=require("./bytes.js");
+var Hashtbl=require("./hashtbl.js");
+var CamlinternalLazy=require("./camlinternalLazy.js");
+var $$Array=require("./array.js");
+var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
-Digest,$$String,List;
-var Exit_OK=CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_OK",0]);
 
-var Exit_usage=CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_usage",0]);
+var Exit_OK=CamlPrimitive["caml_set_oo_id"]([248,"My_std.Exit_OK",0]);
+
+var Exit_usage=CamlPrimitive["caml_set_oo_id"]([248,"My_std.Exit_usage",0]);
 
 var
  Exit_system_error=
-  CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_system_error",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"My_std.Exit_system_error",0]);
 
 var
  Exit_with_code=
-  CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_with_code",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"My_std.Exit_with_code",0]);
 
 var
  Exit_silently_with_code=
-  CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Exit_silently_with_code",0]);
+  CamlPrimitive["caml_set_oo_id"]([248,"My_std.Exit_silently_with_code",0]);
 
 var
  ignore_good=
@@ -110,7 +111,7 @@ var
     
     var
      Found=
-      CamlPrimtivie["caml_set_oo_id"]([248,"My_std.Set.Make(M).Found",0]);
+      CamlPrimitive["caml_set_oo_id"]([248,"My_std.Set.Make(M).Found",0]);
     
     var
      find_elt=
@@ -119,9 +120,9 @@ var
          {iter
            (function(elt){if(p(elt)){throw [0,Found,elt];}else{return 0;}},
             set);
-          throw Not_found;
+          throw CamlPrimitive["caml_global_data"]["Not_found"];
           }
-        catch(exn){if(exn[1]=Found){return exn[2];}else{throw exn;}}
+        catch(exn){if(exn[1]===Found){return exn[2];}else{throw exn;}}
         };
     
     var
@@ -323,7 +324,8 @@ var
   function(lst)
    {var
      compare=
-      function(prim,prim){return CamlPrimtivie["caml_compare"](prim$1,prim);};
+      function(prim,prim$1)
+       {return CamlPrimitive["caml_compare"](prim,prim$1);};
     
     var print$1=function(param,param$1){return /* () */0;};
     
@@ -426,8 +428,8 @@ var
       function(param)
        {var exit;
         
-        if(param!=10)
-         {if(param!=13){return /* false */0;}else{exit=102;}}
+        if(param!==10)
+         {if(param!==13){return /* false */0;}else{exit=102;}}
         else
          {exit=102;}
         
@@ -437,7 +439,7 @@ var
     var
      cut=
       function(n)
-       {if(n=0)
+       {if(n===0)
          {return 0;}
         else
          {if(is_nl_char(s[n-1])){return cut(n-1);}else{return n;}}
@@ -447,7 +449,7 @@ var
     
     var n=cut(ls);
     
-    if(n=ls){return s;}else{return sub(s,0,n);}
+    if(n===ls){return s;}else{return sub(s,0,n);}
     };
 
 var before=function(s,pos){return sub(s,0,pos);};
@@ -462,7 +464,7 @@ var
  eq_sub_strings=
   function(s1,p1,s2,p2,len)
    {if(len>0)
-     {return (s1[p1]=s2[p2])&&eq_sub_strings(s1,p1+1,s2,p2+1,len-1);}
+     {return s1[p1]===s2[p2]&&eq_sub_strings(s1,p1+1,s2,p2+1,len-1);}
     else
      {return /* true */1;}
     };
@@ -486,7 +488,12 @@ var
          {return contains_string(s1,pos+1,s2);}
         }
       }
-    catch(exn){if(exn=Not_found){return /* None */0;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -520,7 +527,7 @@ var
  tr=
   function(patt,subst,text)
    {return $$String["map"]
-            (function(c){if(c=patt){return subst;}else{return c;}},text);
+            (function(c){if(c===patt){return subst;}else{return c;}},text);
     };
 
 var
@@ -530,7 +537,7 @@ var
     
     var n=v["length"];
     
-    var loop=function(i){return (i=m)||(u[i]=v[i])&&loop(i+1);};
+    var loop=function(i){return i===m||u[i]===v[i]&&loop(i+1);};
     
     return m<=n&&loop(0);
     };
@@ -542,7 +549,7 @@ var
     
     var n=v["length"];
     
-    var loop=function(i){return (i=n)||(u[m-1-i]=v[n-1-i])&&loop(i+1);};
+    var loop=function(i){return i===n||u[m-1-i]===v[n-1-i]&&loop(i+1);};
     
     return n<=m&&loop(0);
     };
@@ -552,9 +559,9 @@ var
   function(s)
    {var sl=s["length"];
     
-    var s$prime=CamlPrimtivie["caml_create_string"](sl);
+    var s$prime=CamlPrimitive["caml_create_string"](sl);
     
-    for(var i=0;i<=sl-1;i++){s$prime[i]=s[sl-i-1],0}
+    for(var i=0;i<=sl-1;i++){s$prime[i]=s[sl-i-1]}
     
     return Bytes["to_string"](s$prime);
     };
@@ -563,11 +570,11 @@ var
  implode=
   function(l)
    {if(l)
-     {var r=CamlPrimtivie["caml_create_string"](List[1](l));
+     {var r=CamlPrimitive["caml_create_string"](List[1](l));
       
       var pos=[0,0];
       
-      List[10](function(c){r[pos[1]]=c,0;return pos[0]++;},l);
+      List[10](function(c){r[pos[1]]=c;return pos[0]++;},l);
       return Bytes["to_string"](r);
       }
     else
@@ -645,12 +652,12 @@ var
    {try
      {return Hashtbl["find"](cache,dir);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var
          res=
           Outcome[3]
            (function(prim)
-             {return CamlPrimtivie["caml_sys_read_directory"](prim);},
+             {return CamlPrimitive["caml_sys_read_directory"](prim);},
             dir);
         
         Hashtbl["add"](cache,dir,res);
@@ -689,14 +696,14 @@ var
     switch(match$1[0])
      {case 0:
        if
-        (CamlPrimtivie["caml_string_equal"]
+        (CamlPrimitive["caml_string_equal"]
           (basename,Filename["current_dir_name"]))
         {return /* true */1;}
        else
         {try
           {$$Array["iter"]
             (function(x)
-              {if(CamlPrimtivie["caml_string_equal"](x,basename))
+              {if(CamlPrimitive["caml_string_equal"](x,basename))
                 {throw Pervasives["Exit"];}
                else
                 {return 0;}
@@ -705,7 +712,7 @@ var
            return /* false */0;
            }
          catch(exn)
-          {if(exn=Pervasives["Exit"]){return /* true */1;}else{throw exn;}}
+          {if(exn===Pervasives["Exit"]){return /* true */1;}else{throw exn;}}
          }
        
       case 1:return /* false */0;
@@ -719,12 +726,12 @@ switch(match$1)
    var
     sys_command=
      function(cmd)
-      {if(CamlPrimtivie["caml_string_equal"](cmd,""))
+      {if(CamlPrimitive["caml_string_equal"](cmd,""))
         {return 0;}
        else
         {var cmd$1=Pervasives["^"]("bash --norc -c ",Filename["quote"](cmd));
          
-         return CamlPrimtivie["caml_sys_system_command"](cmd$1);
+         return CamlPrimitive["caml_sys_system_command"](cmd$1);
          }
        };
    
@@ -732,10 +739,10 @@ switch(match$1)
    var
     sys_command=
      function(cmd)
-      {if(CamlPrimtivie["caml_string_equal"](cmd,""))
+      {if(CamlPrimitive["caml_string_equal"](cmd,""))
         {return 0;}
        else
-        {return CamlPrimtivie["caml_sys_system_command"](cmd);}
+        {return CamlPrimitive["caml_sys_system_command"](cmd);}
        };
    }
 
@@ -743,15 +750,17 @@ var
  filename_concat=
   function(x,y)
    {if
-     (CamlPrimtivie["caml_string_equal"](x,Filename["current_dir_name"])||
-      CamlPrimtivie["caml_string_equal"](x,""))
+     (CamlPrimitive["caml_string_equal"](x,Filename["current_dir_name"])||
+      CamlPrimitive["caml_string_equal"](x,""))
      {return y;}
     else
      {if
-       (CamlPrimtivie["caml_string_equal"](Sys["os_type"],"Win32")&&
-        (x[x["length"]-1]=92)||
-        (x[x["length"]-1]=47))
-       {if(CamlPrimtivie["caml_string_equal"](y,""))
+       (CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")&&
+        x[x["length"]-1]===
+        92||
+        x[x["length"]-1]===
+        47)
+       {if(CamlPrimitive["caml_string_equal"](y,""))
          {return x;}
         else
          {return Pervasives["^"](x,y);}
@@ -778,9 +787,9 @@ var
  getenv=
   function($$default,$$var)
    {try
-     {return CamlPrimtivie["caml_sys_getenv"]($$var);}
+     {return CamlPrimitive["caml_sys_getenv"]($$var);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {if($$default)
          {return $$default[1];}
         else
@@ -852,7 +861,7 @@ var
      m$2=
       Pervasives["max"](16384,Pervasives["min"](Sys["max_string_length"],m$1));
     
-    var buf=CamlPrimtivie["caml_create_string"](m$2);
+    var buf=CamlPrimitive["caml_create_string"](m$2);
     
     var
      loop=
@@ -886,12 +895,12 @@ var
 var
  $unknown$star=
   function(prim)
-   {var tag=CamlPrimtivie["caml_obj_tag"](prim);
+   {var tag=CamlPrimitive["caml_obj_tag"](prim);
     
-    if(tag=250)
+    if(tag===250)
      {return prim[1];}
     else
-     {if(tag=246)
+     {if(tag===246)
        {return CamlinternalLazy["force_lazy_block"](prim);}
       else
        {return prim;}
@@ -928,7 +937,7 @@ var
    {try
      {return Hashtbl["find"](digest_cache,f);}
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var res=file(f);Hashtbl["add"](digest_cache,f,res);return res;}
       else
        {throw exn;}
@@ -968,7 +977,7 @@ var
  sys_remove=
   function(x)
    {reset_filesys_cache_for_file(x);
-    return CamlPrimtivie["caml_sys_remove"](x);
+    return CamlPrimitive["caml_sys_remove"](x);
     };
 
 var
@@ -977,8 +986,8 @@ var
    {var tmp=Filename["temp_file"](/* None */0,pre,suf);
     
     try
-     {var res=fct(tmp);CamlPrimtivie["caml_sys_remove"](tmp);return res;}
-    catch(e){CamlPrimtivie["caml_sys_remove"](tmp);throw e;}
+     {var res=fct(tmp);CamlPrimitive["caml_sys_remove"](tmp);return res;}
+    catch(e){CamlPrimitive["caml_sys_remove"](tmp);throw e;}
     };
 
 var
@@ -990,7 +999,7 @@ var
      {try
        {return Hashtbl["find"](cache$1,x);}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {var res=f(x);Hashtbl["add"](cache$1,x,res);return res;}
         else
          {throw exn;}
@@ -1007,7 +1016,7 @@ var
      {try
        {return Hashtbl["find"](cache$1,/* tuple */[0,x,y]);}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {var res=f(x,y);
           
           Hashtbl["add"](cache$1,/* tuple */[0,x,y],res);
@@ -1028,7 +1037,7 @@ var
      {try
        {return Hashtbl["find"](cache$1,/* tuple */[0,x,y,z]);}
       catch(exn)
-       {if(exn=Not_found)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {var res=f(x,y,z);
           
           Hashtbl["add"](cache$1,/* tuple */[0,x,y,z],res);
@@ -1045,10 +1054,10 @@ var
   function(fname,lexbuf)
    {var init=lexbuf[11];
     
-    lexbuf[11]=/* record */[0,fname,init[2],init[3],init[4]],0;
+    lexbuf[11]=/* record */[0,fname,init[2],init[3],init[4]];
     var init$1=lexbuf[12];
     
-    lexbuf[12]=/* record */[0,fname,init$1[2],init$1[3],init$1[4]],0;
+    lexbuf[12]=/* record */[0,fname,init$1[2],init$1[3],init$1[4]];
     return /* () */0;
     };
 

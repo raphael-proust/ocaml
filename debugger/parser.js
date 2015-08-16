@@ -1,17 +1,18 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var Pervasives=require("Pervasives");
-var Parsing=require("Parsing");
-var Int64ops=require("Int64ops");
-var Input_handling=require("Input_handling");
+var Pervasives=require("./pervasives.js");
+var Parsing=require("./parsing.js");
+var Int64ops=require("./int64ops.js");
+var Input_handling=require("./input_handling.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
  yytransl_const=
-  CamlPrimtivie["caml_obj_dup"]
+  CamlPrimitive["caml_obj_dup"]
    ([0,262,263,264,265,266,267,268,269,270,271,272,273,0]);
 
-var yytransl_block=CamlPrimtivie["caml_obj_dup"]([0,257,258,259,260,261,0]);
+var yytransl_block=CamlPrimitive["caml_obj_dup"]([0,257,258,259,260,261,0]);
 
 var
  yylhs=
@@ -59,7 +60,8 @@ var yynames_block="ARGUMENT\0LIDENT\0UIDENT\0OPERATOR\0INTEGER\0";
 
 var
  yyact=
-  [function(param){return Pervasives["failwith"]("parser");},
+  [/* array */0,
+   function(param){return Pervasives["failwith"]("parser");},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      

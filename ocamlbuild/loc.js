@@ -1,7 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Format=require("Format");
+var $$String=require("./string.js");
+var Format=require("./format.js");
 
 
 var file=function(loc){return loc[1];};
@@ -82,9 +82,9 @@ var
               "%s %S, line%a, character%a:@."],
              $$String["capitalize"](param[1]),
              file(start),
-             print(line(start)=line(end_)),
+             print(line(start)===line(end_)),
              /* tuple */[0,line(start),line(end_)],
-             print((line(start)=line(end_))&&($$char(start)=$$char(end_))),
+             print(line(start)===line(end_)&&$$char(start)===$$char(end_)),
              /* tuple */[0,$$char(start),$$char(end_)]);
     };
 

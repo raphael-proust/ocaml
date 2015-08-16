@@ -1,29 +1,30 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Odoc_global=require("Odoc_global");
-var Odoc_html=require("Odoc_html");
-var Odoc_latex=require("Odoc_latex");
-var Odoc_man=require("Odoc_man");
-var Main_args=require("Main_args");
-var Warnings=require("Warnings");
-var Pervasives=require("Pervasives");
-var List=require("List");
-var Odoc_types=require("Odoc_types");
-var Odoc_dot=require("Odoc_dot");
-var Arg=require("Arg");
-var Clflags=require("Clflags");
-var Printf=require("Printf");
-var Odoc_texi=require("Odoc_texi");
-var Misc=require("Misc");
-var Filename=require("Filename");
-var Compenv=require("Compenv");
-var Odoc_config=require("Odoc_config");
-var Str=require("Str");
-var Location=require("Location");
-var Odoc_gen=require("Odoc_gen");
-var Config=require("Config");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_html=require("./odoc_html.js");
+var Odoc_latex=require("./odoc_latex.js");
+var Odoc_man=require("./odoc_man.js");
+var Main_args=require("./main_args.js");
+var Warnings=require("./warnings.js");
+var Pervasives=require("./pervasives.js");
+var List=require("./list.js");
+var Odoc_types=require("./odoc_types.js");
+var Odoc_dot=require("./odoc_dot.js");
+var Arg=require("./arg.js");
+var Clflags=require("./clflags.js");
+var Printf=require("./printf.js");
+var Odoc_texi=require("./odoc_texi.js");
+var Misc=require("./misc.js");
+var Filename=require("./filename.js");
+var Compenv=require("./compenv.js");
+var Odoc_config=require("./odoc_config.js");
+var Str=require("./str.js");
+var Location=require("./location.js");
+var Odoc_gen=require("./odoc_gen.js");
+var Config=require("./config.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -281,15 +282,14 @@ var
    {try
      {var pos=$$String["index"](s,44);
       
-      var n=CamlPrimtivie["caml_int_of_string"]($$String["sub"](s,0,pos));
+      var n=CamlPrimitive["caml_int_of_string"]($$String["sub"](s,0,pos));
       
       var len=s["length"];
       
       var command=$$String["sub"](s,pos+1,len-pos-1);
       
       Odoc_latex["latex_titles"][1]=
-      List["remove_assoc"](n,Odoc_latex["latex_titles"][1]),
-      0;
+      List["remove_assoc"](n,Odoc_latex["latex_titles"][1]);
       return Odoc_latex["latex_titles"][1]=
              /* :: */[0,
               /* tuple */[0,n,command],
@@ -299,10 +299,14 @@ var
     catch(exn)
      {var exit;
       
-      if(exn=Not_found)
+      if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {exit=66;}
       else
-       {if(exn[1]=Invalid_argument){exit=66;}else{throw exn;}}
+       {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
+         {exit=66;}
+        else
+         {throw exn;}
+        }
       
       switch(exit)
        {case 66:
@@ -453,7 +457,11 @@ var _vmthread=set(Clflags["use_vmthreads"]);
 
 var
  _unsafe=
-  function(param){throw [0,Assert_failure,[0,"odoc_args.ml",216,19]];};
+  function(param)
+   {throw [0,
+           CamlPrimitive["caml_global_data"]["Assert_failure"],
+           [0,"odoc_args.ml",216,19]];
+    };
 
 var _unsafe_string=set(Clflags["unsafe_string"]);
 
@@ -470,11 +478,19 @@ var _w=Warnings["parse_options"](/* false */0);
 
 var
  _warn_error=
-  function(param){throw [0,Assert_failure,[0,"odoc_args.ml",222,22]];};
+  function(param)
+   {throw [0,
+           CamlPrimitive["caml_global_data"]["Assert_failure"],
+           [0,"odoc_args.ml",222,22]];
+    };
 
 var
  _warn_help=
-  function(param){throw [0,Assert_failure,[0,"odoc_args.ml",223,21]];};
+  function(param)
+   {throw [0,
+           CamlPrimitive["caml_global_data"]["Assert_failure"],
+           [0,"odoc_args.ml",223,21]];
+    };
 
 var _where=Compenv["print_standard_library"];
 
@@ -865,7 +881,7 @@ var
                                                      /* tuple */[0,
                                                       "-info-section",
                                                       /* String */[4,
-                                                       function(prim,prim){return prim$1[1]=prim,0;}
+                                                       function(prim,prim$1){return prim[1]=prim$1,0;}
                                                         (Odoc_texi["info_section"])],
                                                       Odoc_messages["info_section"]],
                                                      /* :: */[0,
@@ -928,7 +944,7 @@ var
 
 var options=[0,default_options];
 
-var modified_options=function(param){return options[1]!=default_options;};
+var modified_options=function(param){return options[1]!==default_options;};
 
 var
  append_last_doc=
@@ -996,7 +1012,7 @@ var
           
           var s2=match$1[1];
           
-          if(CamlPrimtivie["caml_string_equal"](s,s2))
+          if(CamlPrimitive["caml_string_equal"](s,s2))
            {return /* :: */[0,o,q];}
           else
            {return /* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)];
@@ -1025,7 +1041,7 @@ var
     
     return Odoc_global["hidden_modules"][1]=
            List["sort"]
-            (function(a,b){return -CamlPrimtivie["caml_string_compare"](a,b);},
+            (function(a,b){return -CamlPrimitive["caml_string_compare"](a,b);},
              Odoc_global["hidden_modules"][1]),
            0;
     };

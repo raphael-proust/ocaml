@@ -1,12 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var CamlinternalOO=require("CamlinternalOO");
-var Odoc_info=require("Odoc_info");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Format=require("Format");
-var Odoc_args=require("Odoc_args");
-var Printexc=require("Printexc");
+var CamlinternalOO=require("./camlinternalOO.js");
+var Odoc_info=require("./odoc_info.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Format=require("./format.js");
+var Odoc_args=require("./odoc_args.js");
+var Printexc=require("./printexc.js");
 
 
 var
@@ -151,7 +151,7 @@ var
              function(self$neg1,m)
               {var match=m[3];
                
-               return self$neg1[test_kinds]=
+               return self$neg1[test_kinds+1]=
                       List["fold_left"]
                        (function(acc,param)
                          {switch(param[1])
@@ -165,11 +165,11 @@ var
                },
              scan_type,
              function(self$neg1,t)
-              {var match=self$neg1[test_kinds];
+              {var match=self$neg1[test_kinds+1];
                
                if(match)
                 {p
-                  (self$neg1[fmt],
+                  (self$neg1[fmt+1],
                    [/* Format */0,
                     [/* String_literal */11,
                      "# type ",
@@ -194,7 +194,7 @@ var
                    else
                     {var $js="None";}
                    return p
-                           (self$neg1[fmt],
+                           (self$neg1[fmt+1],
                             [/* Format */0,
                              [/* String_literal */11,
                               "# manifest :\n<[",
@@ -213,7 +213,7 @@ var
              scan_module_pre,
              function(self$neg1,m)
               {p
-                (self$neg1[fmt],
+                (self$neg1[fmt+1],
                  [/* Format */0,
                   [/* String_literal */11,
                    "#\n# module ",
@@ -225,7 +225,7 @@ var
                /* unknown */"(sendself self-1/1253 must_display_types/1233)";
                if(0)
                 {p
-                  (self$neg1[fmt],
+                  (self$neg1[fmt+1],
                    [/* Format */0,
                     [/* String_literal */11,
                      "# Odoc_info.string_of_module_type:\n<[",
@@ -236,7 +236,7 @@ var
                    Odoc_info["string_of_module_type"]
                     (/* None */0,/* None */0,m[2])),
                  p
-                  (self$neg1[fmt],
+                  (self$neg1[fmt+1],
                    [/* Format */0,
                     [/* String_literal */11,
                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
@@ -254,7 +254,7 @@ var
              scan_module_type_pre,
              function(self$neg1,m)
               {p
-                (self$neg1[fmt],
+                (self$neg1[fmt+1],
                  [/* Format */0,
                   [/* String_literal */11,
                    "#\n# module type ",
@@ -268,7 +268,7 @@ var
                 {var match=m[3];
                  
                  p
-                  (self$neg1[fmt],
+                  (self$neg1[fmt+1],
                    [/* Format */0,
                     [/* String_literal */11,
                      "# Odoc_info.string_of_module_type:\n<[",
@@ -283,7 +283,7 @@ var
                  var match$1=m[3];
                  
                  p
-                  (self$neg1[fmt],
+                  (self$neg1[fmt+1],
                    [/* Format */0,
                     [/* String_literal */11,
                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
@@ -304,7 +304,7 @@ var
              function(self$neg1,module_list)
               {var oc=Pervasives["open_out"](Odoc_info["Global"][3][1]);
                
-               self$neg1[fmt]=Format["formatter_of_out_channel"](oc),0;
+               self$neg1[fmt+1]=Format["formatter_of_out_channel"](oc);
                try
                 {List["iter"]
                   (function(m)
@@ -315,7 +315,7 @@ var
                    module_list)}
                catch(e){Pervasives["prerr_endline"](Printexc["to_string"](e))}
                
-               Format["pp_print_flush"](self$neg1[fmt],/* () */0);
+               Format["pp_print_flush"](self$neg1[fmt+1],/* () */0);
                return Pervasives["close_out"](oc);
                }]);
           return function(env)
@@ -325,12 +325,10 @@ var
                 CamlinternalOO["create_object_opt"]($$self,$$class);
               
               obj_init(env[2],$$self$1),
-              $$self$1[test_kinds]=
+              $$self$1[test_kinds+1]=
               /* [] */0,
-              0,
-              $$self$1[fmt]=
-              Format["str_formatter"],
-              0;
+              $$self$1[fmt+1]=
+              Format["str_formatter"];
               return CamlinternalOO["run_initializers_opt"]
                       ($$self,$$self$1,$$class);
               };
@@ -385,7 +383,7 @@ var
                $$self$1=
                 CamlinternalOO["create_object_opt"]($$self,$$class);
               
-              $$self$1[g$1]=env$1[2],0,obj_init(env[2],$$self$1);
+              $$self$1[g$1+1]=env$1[2],obj_init(env[2],$$self$1);
               return CamlinternalOO["run_initializers_opt"]
                       ($$self,$$self$1,$$class);
               };

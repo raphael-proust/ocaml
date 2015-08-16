@@ -1,33 +1,34 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
-var $$String=require("String");
-var Parse=require("Parse");
-var Odoc_global=require("Odoc_global");
-var Odoc_dep=require("Odoc_dep");
-var Warnings=require("Warnings");
-var List=require("List");
-var Pervasives=require("Pervasives");
-var Odoc_cross=require("Odoc_cross");
-var Odoc_types=require("Odoc_types");
-var Env=require("Env");
-var Odoc_comments=require("Odoc_comments");
-var Clflags=require("Clflags");
-var Odoc_sig=require("Odoc_sig");
-var Format=require("Format");
-var Syntaxerr=require("Syntaxerr");
-var Misc=require("Misc");
-var Typemod=require("Typemod");
-var Odoc_merge=require("Odoc_merge");
-var Filename=require("Filename");
-var Odoc_misc=require("Odoc_misc");
-var Odoc_module=require("Odoc_module");
-var Printexc=require("Printexc");
-var Odoc_text=require("Odoc_text");
-var Location=require("Location");
-var Pparse=require("Pparse");
-var Config=require("Config");
-var Odoc_ast=require("Odoc_ast");
-var Odoc_messages=require("Odoc_messages");
+var $$String=require("./string.js");
+var Parse=require("./parse.js");
+var Odoc_global=require("./odoc_global.js");
+var Odoc_dep=require("./odoc_dep.js");
+var Warnings=require("./warnings.js");
+var List=require("./list.js");
+var Pervasives=require("./pervasives.js");
+var Odoc_cross=require("./odoc_cross.js");
+var Odoc_types=require("./odoc_types.js");
+var Env=require("./env.js");
+var Odoc_comments=require("./odoc_comments.js");
+var Clflags=require("./clflags.js");
+var Odoc_sig=require("./odoc_sig.js");
+var Format=require("./format.js");
+var Syntaxerr=require("./syntaxerr.js");
+var Misc=require("./misc.js");
+var Typemod=require("./typemod.js");
+var Odoc_merge=require("./odoc_merge.js");
+var Filename=require("./filename.js");
+var Odoc_misc=require("./odoc_misc.js");
+var Odoc_module=require("./odoc_module.js");
+var Printexc=require("./printexc.js");
+var Odoc_text=require("./odoc_text.js");
+var Location=require("./location.js");
+var Pparse=require("./pparse.js");
+var Config=require("./config.js");
+var Odoc_ast=require("./odoc_ast.js");
+var Odoc_messages=require("./odoc_messages.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var
@@ -37,8 +38,7 @@ var
     /* :: */[0,
      "",
      List["rev"]
-      (/* :: */[0,Config["standard_library"],Clflags["include_dirs"][1]])],
-    0;
+      (/* :: */[0,Config["standard_library"],Clflags["include_dirs"][1]])];
     return Env["reset_cache"](/* () */0);
     };
 
@@ -57,7 +57,7 @@ var
        {return Env["open_pers_signature"]("Pervasives",initial);}
       }
     catch(exn)
-     {if(exn=Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return Misc["fatal_error"]("cannot open pervasives.cmi");}
       else
        {throw exn;}
@@ -70,7 +70,7 @@ var
    {try
      {return Pparse["preprocess"](sourcefile);}
     catch(exn)
-     {if(exn[1]=Pparse["Error"])
+     {if(exn[1]===Pparse["Error"])
        {Format["eprintf"]
          ([/* Format */0,
            [/* String_literal */11,
@@ -128,7 +128,7 @@ var
               inputfile];
       }
     catch(e)
-     {if(e[1]=Syntaxerr["Error"])
+     {if(e[1]===Syntaxerr["Error"])
        {Format["fprintf"]
          (Format["err_formatter"],
           [/* Format */0,
@@ -146,7 +146,7 @@ var
         return /* tuple */[0,/* None */0,inputfile];
         }
       else
-       {if(e[1]=Failure)
+       {if(e[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {Pervasives["prerr_endline"](e[2]);
           Odoc_global["errors"][0]++;
           return /* tuple */[0,/* None */0,inputfile];
@@ -255,7 +255,7 @@ var
      {case 0:
        var file=sourcefile[1];
        
-       Location["input_name"][1]=file,0;
+       Location["input_name"][1]=file;
        try
         {var match=process_implementation_file(ppf,file);
          
@@ -271,7 +271,7 @@ var
              Ast_analyser[1]
               (file,Location["input_name"][1],parsetree,match$1[2]);
            
-           file_module[8]=Odoc_dep["impl_dependencies"](parsetree),0;
+           file_module[8]=Odoc_dep["impl_dependencies"](parsetree);
            if(Odoc_global["verbose"][1])
             {Format["print_string"](Odoc_messages["ok"]),
              Format["print_newline"](/* () */0)}
@@ -287,10 +287,10 @@ var
        catch(e)
         {var exit$1;
          
-         if(e[1]=Sys_error)
+         if(e[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
           {var s=e[2];exit$1=28;}
          else
-          {if(e[1]=Failure)
+          {if(e[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s=e[2];exit$1=28;}
            else
             {process_error(e);Odoc_global["errors"][0]++;return /* None */0;}
@@ -308,7 +308,7 @@ var
       case 1:
        var file$1=sourcefile[1];
        
-       Location["input_name"][1]=file$1,0;
+       Location["input_name"][1]=file$1;
        try
         {var match$2=process_interface_file(ppf,file$1);
          
@@ -319,7 +319,7 @@ var
            Sig_analyser[13]
             (file$1,Location["input_name"][1],ast,match$2[2][2]);
          
-         file_module$1[8]=Odoc_dep["intf_dependencies"](ast),0;
+         file_module$1[8]=Odoc_dep["intf_dependencies"](ast);
          if(Odoc_global["verbose"][1])
           {Format["print_string"](Odoc_messages["ok"]),
            Format["print_newline"](/* () */0)}
@@ -332,10 +332,10 @@ var
        catch(e$1)
         {var exit$2;
          
-         if(e$1[1]=Sys_error)
+         if(e$1[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
           {var s$1=e$1[2];exit$2=34;}
          else
-          {if(e$1[1]=Failure)
+          {if(e$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s$1=e$1[2];exit$2=34;}
            else
             {process_error(e$1);
@@ -356,7 +356,7 @@ var
       case 2:
        var file$2=sourcefile[1];
        
-       Location["input_name"][1]=file$2,0;
+       Location["input_name"][1]=file$2;
        try
         {try
           {var s$2=Filename["chop_extension"](file$2);}
@@ -370,9 +370,9 @@ var
              Odoc_text["Texter"][1](Odoc_misc["input_file_as_string"](file$2));
            }
          catch(exn$1)
-          {if(exn$1[1]=Odoc_text["Text_syntax"])
+          {if(exn$1[1]===Odoc_text["Text_syntax"])
             {throw [0,
-                    Failure,
+                    CamlPrimitive["caml_global_data"]["Failure"],
                     Odoc_messages["text_parse_error"]
                      (exn$1[2],exn$1[3],exn$1[4])];
              }
@@ -403,10 +403,10 @@ var
        catch(e$2)
         {var exit$3;
          
-         if(e$2[1]=Sys_error)
+         if(e$2[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
           {var s$3=e$2[2];exit$3=40;}
          else
-          {if(e$2[1]=Failure)
+          {if(e$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s$3=e$2[2];exit$3=40;}
            else
             {process_error(e$2);
@@ -446,7 +446,7 @@ var
          if(match)
           {var match$1=match[1];
            
-           if(typeof match$1=="number")
+           if(typeof match$1==="number")
             {switch(match$1){}}
            else
             {switch(match$1[0])
@@ -529,7 +529,7 @@ var
          var m=ele[1];
          
          if(keep)
-          {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]),0;
+          {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]);
            return /* :: */[0,
                    /* Element_module */[0,m],
                    remove_module_elements_between_stop(keep,q)];
@@ -543,8 +543,7 @@ var
          if(keep)
           {mt[6]=
            Odoc_misc["apply_opt"]
-            (remove_module_elements_between_stop_in_module_type_kind,mt[6]),
-           0;
+            (remove_module_elements_between_stop_in_module_type_kind,mt[6]);
            return /* :: */[0,
                    /* Element_module_type */[1,mt],
                    remove_module_elements_between_stop(keep,q)];
@@ -563,7 +562,7 @@ var
          var c=ele[1];
          
          if(keep)
-          {c[6]=remove_class_elements_between_stop_in_class_kind(c[6]),0;
+          {c[6]=remove_class_elements_between_stop_in_class_kind(c[6]);
            return /* :: */[0,
                    /* Element_class */[3,c],
                    remove_module_elements_between_stop(keep,q)];
@@ -575,9 +574,7 @@ var
          var ct=ele[1];
          
          if(keep)
-          {ct[6]=
-           remove_class_elements_between_stop_in_class_type_kind(ct[6]),
-           0;
+          {ct[6]=remove_class_elements_between_stop_in_class_type_kind(ct[6]);
            return /* :: */[0,
                    /* Element_class_type */[4,ct],
                    remove_module_elements_between_stop(keep,q)];
@@ -593,7 +590,7 @@ var
          if(match)
           {var match$1=match[1];
            
-           if(typeof match$1=="number")
+           if(typeof match$1==="number")
             {switch(match$1){}}
            else
             {switch(match$1[0])
@@ -699,9 +696,7 @@ var
   function(module_list)
    {return List["map"]
             (function(m)
-              {m[6]=
-               remove_module_elements_between_stop_in_module_kind(m[6]),
-               0;
+              {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]);
                return m;
                },
              module_list);
@@ -727,7 +722,7 @@ var
                {return acc;}
               }
             catch(exn)
-             {if(exn[1]=Failure)
+             {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
                {Pervasives["prerr_endline"](exn[2]);
                 Odoc_global["errors"][0]++;
                 return acc;
@@ -789,7 +784,7 @@ var
     if(Odoc_global["sort_modules"][1])
      {return List["sort"]
               (function(m1,m2)
-                {return CamlPrimtivie["caml_string_compare"](m1[1],m2[1]);},
+                {return CamlPrimitive["caml_string_compare"](m1[1],m2[1]);},
                merged_modules);
       }
     else
@@ -808,7 +803,11 @@ var
       return Pervasives["close_out"](chanout);
       }
     catch(exn)
-     {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+       {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -823,7 +822,11 @@ var
       return Odoc_types["open_dump"](dump);
       }
     catch(exn)
-     {if(exn[1]=Sys_error){throw [0,Failure,exn[2]];}else{throw exn;}}
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+       {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+      else
+       {throw exn;}
+      }
     };
 
 module["exports"]=
