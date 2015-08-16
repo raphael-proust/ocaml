@@ -329,11 +329,8 @@ let rec bound_value_identifiers = function
   | _ :: rem -> bound_value_identifiers rem
 
 (* Compile a module expression *)
-type exports = 
-  | Id of Ident.t 
-  | Prim of string 
  
-let export_identifiers  : exports list ref = ref []
+let export_identifiers  : Ident.t list ref = ref []
 let get_export_identifiers () = 
    List.rev !export_identifiers
 
@@ -384,7 +381,7 @@ and transl_structure fields cc rootpath = function
                 let fields =  (List.rev fields) in
                 List.map (fun id -> begin
                   (if is_top rootpath then 
-                    export_identifiers := Id id :: !export_identifiers);
+                    export_identifiers :=  id :: !export_identifiers);
                   Lvar id end) fields )
       | Tcoerce_structure(pos_cc_list, id_pos_list) ->
               (* Do not ignore id_pos_list ! *)
@@ -402,11 +399,11 @@ and transl_structure fields cc rootpath = function
                     begin match cc with
                     | Tcoerce_primitive (id,p) -> 
                         (if is_top rootpath then 
-                          export_identifiers := Id id:: !export_identifiers);
+                          export_identifiers := id:: !export_identifiers);
                         transl_primitive Location.none p
                     | _ -> 
                         (if is_top rootpath then 
-                          export_identifiers := Id v.(pos) :: !export_identifiers);
+                          export_identifiers :=  v.(pos) :: !export_identifiers);
                         apply_coercion Strict cc (get_field pos)
                     end)
                   pos_cc_list in 

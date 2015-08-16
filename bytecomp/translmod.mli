@@ -40,9 +40,6 @@ val report_error: Format.formatter -> error -> unit
 
 val reset: unit -> unit
 
-type exports = 
-  | Id of Ident.t 
-  | Prim of string 
 
 (** make it an array for better performance*)
-val get_export_identifiers : unit -> exports list 
+val get_export_identifiers : unit -> Ident.t list 

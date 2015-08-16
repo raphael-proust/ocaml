@@ -930,7 +930,7 @@ var
                     (function(id$2)
                       {if(is_top(rootpath))
                         {export_identifiers[1]=
-                         /* :: */[0,/* Id */[0,id$2],export_identifiers[1]],
+                         /* :: */[0,id$2,export_identifiers[1]],
                          0}
                        else
                         {}
@@ -971,7 +971,7 @@ var
                      {case 2:
                        if(is_top(rootpath))
                         {export_identifiers[1]=
-                         /* :: */[0,/* Id */[0,cc$1[1]],export_identifiers[1]],
+                         /* :: */[0,cc$1[1],export_identifiers[1]],
                          0}
                        else
                         {}
@@ -985,7 +985,7 @@ var
                    {case 97:
                      if(is_top(rootpath))
                       {export_identifiers[1]=
-                       /* :: */[0,/* Id */[0,v[pos]],export_identifiers[1]],
+                       /* :: */[0,v[pos],export_identifiers[1]],
                        0}
                      else
                       {}
@@ -1474,12 +1474,12 @@ var
            {if(may_coerce)
              {return subst;}
             else
-             {throw [0,Assert_failure,[0,"bytecomp/translmod.ml",721,40]];}
+             {throw [0,Assert_failure,[0,"bytecomp/translmod.ml",718,40]];}
             }
           }
         catch(exn)
          {if(exn=Not_found)
-           {throw [0,Assert_failure,[0,"bytecomp/translmod.ml",723,6]];}
+           {throw [0,Assert_failure,[0,"bytecomp/translmod.ml",720,6]];}
           else
            {throw exn;}
           }
@@ -1616,7 +1616,7 @@ var
                 {if(size=0)
                   {}
                  else
-                  {throw [0,Assert_failure,[0,"bytecomp/translmod.ml",788,8]];
+                  {throw [0,Assert_failure,[0,"bytecomp/translmod.ml",785,8]];
                    }
                  
                  return Lambda["subst_lambda"]
@@ -1935,7 +1935,7 @@ var
                     0,
                     pos_cc_list)]];
          
-        default:throw [0,Assert_failure,[0,"bytecomp/translmod.ml",971,9]];}}
+        default:throw [0,Assert_failure,[0,"bytecomp/translmod.ml",968,9]];}}
     };
 
 var
