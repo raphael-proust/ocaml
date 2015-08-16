@@ -442,7 +442,7 @@ var
        {return assoc(x,l);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -460,7 +460,7 @@ var
       if(a===x){return b;}else{return assq(x,l);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -541,7 +541,7 @@ var
       if(p(x)){return x;}else{return find(p,l);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -684,7 +684,10 @@ var
      {if(l)
        {var t=l[2];return chop(k-1,t);}
       else
-       {throw [0,Assert_failure,[0,"list.ml",223,11]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"list.ml",223,11]];
+        }
       }
     };
 

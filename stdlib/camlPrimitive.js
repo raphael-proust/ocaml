@@ -1,4 +1,4 @@
-
+"use strict";
 //# 1 "mlString.js"
 // Js_of_ocaml runtime support
 // http://www.ocsigen.org/js_of_ocaml/
@@ -4807,7 +4807,6 @@ for(var i = 0; i < predefined_exceptions.length; i++){
 
 module["exports"] = {
     "caml_global_data" : caml_global_data,
-    "caml_string_compare" : caml_string_compare ,
     "caml_string_compare": caml_string_compare,
     "caml_string_equal" :  caml_string_equal,
     "caml_string_get" : caml_string_get,

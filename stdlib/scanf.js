@@ -18,20 +18,20 @@ var
    {try
      {var c=ib[7](/* () */0);
       
-      ib[2]=c,0;
-      ib[3]=/* true */1,0;
-      ib[4]=1+ib[4],0;
-      if(c===10){ib[5]=1+ib[5],0}else{}
+      ib[2]=c;
+      ib[3]=/* true */1;
+      ib[4]=1+ib[4];
+      if(c===10){ib[5]=1+ib[5]}else{}
       
       return c;
       }
     catch(exn)
-     {if(exn===End_of_file)
+     {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
        {var c$1=null_char;
         
-        ib[2]=c$1,0;
-        ib[3]=/* false */0,0;
-        ib[1]=/* true */1,0;
+        ib[2]=c$1;
+        ib[3]=/* false */0;
+        ib[1]=/* true */1;
         return c$1;
         }
       else
@@ -46,7 +46,12 @@ var
 var
  checked_peek_char=
   function(ib)
-   {var c=peek_char(ib);if(ib[1]){throw End_of_file;}else{}return c;};
+   {var c=peek_char(ib);
+    
+    if(ib[1]){throw CamlPrimitive["caml_global_data"]["End_of_file"];}else{}
+    
+    return c;
+    };
 
 var end_of_input=function(ib){peek_char(ib);return ib[1];};
 
@@ -77,7 +82,7 @@ var line_count=function(ib){return ib[5];};
 
 var reset_token=function(ib){return Buffer["reset"](ib[8]);};
 
-var invalidate_current_char=function(ib){return ib[3]=/* false */0,0;};
+var invalidate_current_char=function(ib){return ib[3]=/* false */0;};
 
 var
  token=
@@ -87,7 +92,7 @@ var
     var tok=Buffer["contents"](tokbuf);
     
     Buffer["clear"](tokbuf);
-    ib[6]=1+ib[6],0;
+    ib[6]=1+ib[6];
     return tok;
     };
 
@@ -129,7 +134,11 @@ var
     var
      next=
       function(param)
-       {if(i[1]>=len){throw End_of_file;}else{var c=s[i[1]];i[0]++;return c;}};
+       {if(i[1]>=len)
+         {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
+        else
+         {var c=s[i[1]];i[0]++;return c;}
+        };
     
     return create(/* From_string */0,next);
     };
@@ -140,9 +149,14 @@ var file_buffer_size=[0,1024];
 
 var
  scan_close_at_end=
-  function(ic){Pervasives["close_in"](ic);throw End_of_file;};
+  function(ic)
+   {Pervasives["close_in"](ic);
+    throw CamlPrimitive["caml_global_data"]["End_of_file"];
+    };
 
-var scan_raise_at_end=function(_ic){throw End_of_file;};
+var
+ scan_raise_at_end=
+  function(_ic){throw CamlPrimitive["caml_global_data"]["End_of_file"];};
 
 var
  from_ic=
@@ -164,13 +178,13 @@ var
          {var c=buf[i[1]];i[0]++;return c;}
         else
          {if(eof$1[1])
-           {throw End_of_file;}
+           {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
           else
-           {lim[1]=Pervasives["input"](ic,buf,0,len),0;
+           {lim[1]=Pervasives["input"](ic,buf,0,len);
             if(lim[1]===0)
-             {eof$1[1]=/* true */1,0;return scan_close_ic(ic);}
+             {eof$1[1]=/* true */1;return scan_close_ic(ic);}
             else
-             {i[1]=1,0;return buf[0];}
+             {i[1]=1;return buf[0];}
             }
           }
         };
@@ -229,10 +243,10 @@ var
    {try
      {return List["assq"](ic,memo[1]);}
     catch(exn)
-     {if(exn===Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var ib=from_ic(scan_close_ic,/* From_channel */[1,ic],ic);
         
-        memo[1]=/* :: */[0,/* tuple */[0,ic,ib],memo[1]],0;
+        memo[1]=/* :: */[0,/* tuple */[0,ic,ib],memo[1]];
         return ib;
         }
       else
@@ -497,7 +511,11 @@ var
       }
     
     switch(exit)
-     {case 228:throw [0,Assert_failure,[0,"scanf.ml",507,11]];
+     {case 228:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"scanf.ml",507,11]];
+       
       case 226:var tok=Scanning[10](ib);
       case 227:var tok=Pervasives["^"]("0x",Scanning[10](ib));
       }
@@ -844,7 +862,11 @@ var
       }
     
     switch(exit)
-     {case 174:throw [0,Assert_failure,[0,"scanf.ml",674,9]];
+     {case 174:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"scanf.ml",674,9]];
+       
       case 173:return scan_hexadecimal_int(width,ib);
       }
     };
@@ -1438,7 +1460,10 @@ var
     else
      {var tag$1=x[1];
       
-      if(tag$1===Failure){var s$2=x[2];var s$1=s$2;exit=91;}else{throw x;}
+      if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
+       {var s$2=x[2];var s$1=s$2;exit=91;}
+      else
+       {throw x;}
       }
     
     switch(exit)
@@ -1999,7 +2024,7 @@ var
          catch(exn)
           {var tag=exn[1];
            
-           if(tag===Failure)
+           if(tag===CamlPrimitive["caml_global_data"]["Failure"])
             {var msg=exn[2];var fmt$1=bad_input(msg);}
            else
             {throw exn;}
@@ -2044,7 +2069,7 @@ var
          catch(exn$1)
           {var tag$1=exn$1[1];
            
-           if(tag$1===Failure)
+           if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
             {var msg$1=exn$1[2];var match$12=bad_input(msg$1);}
            else
             {throw exn$1;}
@@ -2208,7 +2233,10 @@ var
          if(match$20)
           {var arg_rest=match$20[2];return arg_rest;}
          else
-          {throw [0,Assert_failure,[0,"scanf.ml",1258,13]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"scanf.ml",1258,13]];
+           }
          
         case 24:
          return Pervasives["invalid_arg"]
@@ -2320,15 +2348,17 @@ var
           else
            {var tag$1=exc[1];
             
-            if(tag$1===Failure)
+            if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
              {exit=21;}
             else
-             {if(exc===End_of_file)
+             {if(exc===CamlPrimitive["caml_global_data"]["End_of_file"])
                {exit=21;}
               else
                {var tag$2=exc[1];
                 
-                if(tag$2===Invalid_argument)
+                if
+                 (tag$2===
+                  CamlPrimitive["caml_global_data"]["Invalid_argument"])
                  {var msg=exc[2];
                   
                   var
@@ -2389,7 +2419,7 @@ var
     catch(exn)
      {var tag=exn[1];
       
-      if(tag===Failure)
+      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
        {var msg=exn[2];var fmt$prime=bad_input(msg);}
       else
        {throw exn;}

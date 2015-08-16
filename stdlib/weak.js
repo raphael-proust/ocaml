@@ -12,9 +12,14 @@ var
  fill=
   function(ar,ofs,len,x)
    {if(ofs<0||len<0||ofs+len>length(ar))
-     {throw [0,Invalid_argument,"Weak.fill"];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "Weak.fill"];
+      }
     else
-     {for(var i=ofs;i<=ofs+len-1;i++){CamlPrimitive["caml_weak_set"](ar,i,x)}}
+     {for(var i=ofs;i<=ofs+len-1;i++){CamlPrimitive["caml_weak_set"](ar,i,x)}
+      return 0;
+      }
     };
 
 var
@@ -46,7 +51,7 @@ var
         
         return /* record */[0,
                 CamlPrimitive["caml_make_vect"](sz$2,emptybucket),
-                CamlPrimitive["caml_make_vect"](sz$2,[]),
+                CamlPrimitive["caml_make_vect"](sz$2,[0]),
                 limit,
                 0,
                 0];
@@ -56,10 +61,10 @@ var
      clear=
       function(t)
        {for(var i=0;i<=t[1]["length"]-1;i++)
-         {t[1][i]=emptybucket,0,t[2][i]=[],0}
+         {t[1][i+1]=emptybucket,t[2][i+1]=[0]}
         
-        t[3]=limit,0;
-        return t[4]=0,0;
+        t[3]=limit;
+        return t[4]=0;
         };
     
     var
@@ -116,7 +121,7 @@ var
              {var match=CamlPrimitive["caml_weak_check"](b,i);
               
               if(match!==0)
-               {f(b,t[2][j],i);return iter_bucket(i+1,j,b);}
+               {f(b,t[2][j+1],i);return iter_bucket(i+1,j,b);}
               else
                {return iter_bucket(i+1,j,b);}
               }
@@ -149,9 +154,9 @@ var
     var
      test_shrink_bucket=
       function(t)
-       {var bucket=t[1][t[5]];
+       {var bucket=t[1][t[5]+1];
         
-        var hbucket=t[2][t[5]];
+        var hbucket=t[2][t[5]+1];
         
         var len=length(bucket);
         
@@ -169,7 +174,7 @@ var
                 else
                  {if(CamlPrimitive["caml_weak_check"](bucket,j))
                    {CamlPrimitive["caml_weak_blit"](bucket,j,bucket,i,1);
-                    hbucket[i]=hbucket[j],0;
+                    hbucket[i+1]=hbucket[j+1];
                     return loop(i+1,j-1);
                     }
                   else
@@ -182,17 +187,17 @@ var
           
           loop(0,length(bucket)-1);
           if(prev_len===0)
-           {t[1][t[5]]=emptybucket,0,t[2][t[5]]=[],0}
+           {t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[0]}
           else
            {CamlPrimitive["caml_obj_truncate"](bucket,prev_len+1),
             CamlPrimitive["caml_obj_truncate"](hbucket,prev_len)}
           
-          if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1,0}else{}
+          if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1}else{}
           }
         else
          {}
         
-        return t[5]=(t[5]+1)%t[1]["length"],0;
+        return t[5]=(t[5]+1)%t[1]["length"];
         };
     
     var
@@ -213,28 +218,28 @@ var
                 function(nb,ni,param)
                  {return CamlPrimitive["caml_weak_blit"](ob,oi,nb,ni,1);};
               
-              var h=oh[oi];
+              var h=oh[oi+1];
               
               return add_aux(newt,setter,/* None */0,h,get_index(newt,h));
               };
           
           iter_weak(add_weak,t);
-          t[1]=newt[1],0;
-          t[2]=newt[2],0;
-          t[3]=newt[3],0;
-          t[4]=newt[4],0;
-          return t[5]=t[5]%newt[1]["length"],0;
+          t[1]=newt[1];
+          t[2]=newt[2];
+          t[3]=newt[3];
+          t[4]=newt[4];
+          return t[5]=t[5]%newt[1]["length"];
           }
         else
-         {t[3]=Pervasives["max_int"],0;return t[4]=0,0;}
+         {t[3]=Pervasives["max_int"];return t[4]=0;}
         };
     
     var
      add_aux=
       function(t,setter,d,h,index)
-       {var bucket=t[1][index];
+       {var bucket=t[1][index+1];
         
-        var hashes=t[2][index];
+        var hashes=t[2][index+1];
         
         var sz=length(bucket);
         
@@ -257,11 +262,11 @@ var
               CamlPrimitive["caml_weak_blit"](bucket,0,newbucket,0,sz);
               $$Array["blit"](hashes,0,newhashes,0,sz);
               setter(newbucket,sz,d);
-              newhashes[sz]=h,0;
-              t[1][index]=newbucket,0;
-              t[2][index]=newhashes,0;
+              newhashes[sz+1]=h;
+              t[1][index+1]=newbucket;
+              t[2][index+1]=newhashes;
               if(sz<=t[3]&&newsz>t[3])
-               {t[4]=t[4]+1,0;
+               {t[4]=t[4]+1;
                 for(var _i=0;_i<=over_limit;_i++){test_shrink_bucket(t)}
                 }
               else
@@ -276,7 +281,7 @@ var
              {if(CamlPrimitive["caml_weak_check"](bucket,i))
                {return loop(i+1);}
               else
-               {setter(bucket,i,d);return hashes[i]=h,0;}
+               {setter(bucket,i,d);return hashes[i+1]=h;}
               }
             };
         
@@ -304,9 +309,9 @@ var
         
         var index=get_index(t,h);
         
-        var bucket=t[1][index];
+        var bucket=t[1][index+1];
         
-        var hashes=t[2][index];
+        var hashes=t[2][index+1];
         
         var sz=length(bucket);
         
@@ -316,7 +321,7 @@ var
            {if(i>=sz)
              {return ifnotfound(h,index);}
             else
-             {if(h===hashes[i])
+             {if(h===hashes[i+1])
                {var match=CamlPrimitive["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
@@ -368,7 +373,13 @@ var
     
     var
      find=
-      function(t,d){return find_or(t,d,function(h,index){throw Not_found;});};
+      function(t,d)
+       {return find_or
+                (t,
+                 d,
+                 function(h,index)
+                  {throw CamlPrimitive["caml_global_data"]["Not_found"];});
+        };
     
     var
      find_shadow=
@@ -377,9 +388,9 @@ var
         
         var index=get_index(t,h);
         
-        var bucket=t[1][index];
+        var bucket=t[1][index+1];
         
-        var hashes=t[2][index];
+        var hashes=t[2][index+1];
         
         var sz=length(bucket);
         
@@ -389,7 +400,7 @@ var
            {if(i>=sz)
              {return ifnotfound;}
             else
-             {if(h===hashes[i])
+             {if(h===hashes[i+1])
                {var match=CamlPrimitive["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
@@ -437,9 +448,9 @@ var
         
         var index=get_index(t,h);
         
-        var bucket=t[1][index];
+        var bucket=t[1][index+1];
         
-        var hashes=t[2][index];
+        var hashes=t[2][index+1];
         
         var sz=length(bucket);
         
@@ -449,7 +460,7 @@ var
            {if(i>=sz)
              {return accu;}
             else
-             {if(h===hashes[i])
+             {if(h===hashes[i+1])
                {var match=CamlPrimitive["caml_weak_get_copy"](bucket,i);
                 
                 var exit;
@@ -501,9 +512,9 @@ var
                 len,
                 count(t),
                 totlen,
-                lens[0],
-                lens[len/2],
-                lens[len-1]];
+                lens[1],
+                lens[len/2+1],
+                lens[len-1+1]];
         };
     
     return [0,

@@ -50,16 +50,16 @@ var
     switch(exit)
      {case 7:
        if(CamlPrimitive["caml_is_printable"](c))
-        {var s=CamlPrimitive["caml_create_string"](1);s[0]=c,0;return s;}
+        {var s=CamlPrimitive["caml_create_string"](1);s[0]=c;return s;}
        else
         {var n=c;
          
          var s$1=CamlPrimitive["caml_create_string"](4);
          
-         s$1[0]=92,0;
-         s$1[1]=48+n/100,0;
-         s$1[2]=48+n/10%10,0;
-         s$1[3]=48+n%10,0;
+         s$1[0]=92;
+         s$1[1]=48+n/100;
+         s$1[2]=48+n/10%10;
+         s$1[3]=48+n%10;
          return s$1;
          }
        

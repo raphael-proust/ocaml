@@ -148,7 +148,12 @@ var
 
 try
  {var temp_dir_name=CamlPrimitive["caml_sys_getenv"]("TMPDIR");}
-catch(exn){if(exn===Not_found){var temp_dir_name="/tmp";}else{throw exn;}}
+catch(exn)
+ {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var temp_dir_name="/tmp";}
+  else
+   {throw exn;}
+  }
 
 var quote=generic_quote("'\''");
 
@@ -221,7 +226,11 @@ var
 try
  {var temp_dir_name$1=CamlPrimitive["caml_sys_getenv"]("TEMP");}
 catch(exn$1)
- {if(exn$1===Not_found){var temp_dir_name$1=".";}else{throw exn$1;}}
+ {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+   {var temp_dir_name$1=".";}
+  else
+   {throw exn$1;}
+  }
 
 var
  quote$1=
@@ -271,7 +280,7 @@ var
     
     var
      add_bs=
-      function(n){for(var _j=1;_j<=n;_j++){Buffer["add_char"](b,92)}};
+      function(n){for(var _j=1;_j<=n;_j++){Buffer["add_char"](b,92)}return 0;};
     
     loop(0);
     return Buffer["contents"](b);
@@ -441,7 +450,13 @@ switch(match)
    
   default:exit=21;}
 
-switch(exit){case 21:throw [0,Assert_failure,[0,"filename.ml",189,9]];}
+switch(exit)
+ {case 21:
+   throw [0,
+          CamlPrimitive["caml_global_data"]["Assert_failure"],
+          [0,"filename.ml",189,9]];
+   
+  }
 
 var dirname$3=match$1[11];
 
@@ -542,7 +557,7 @@ var
 
 var current_temp_dir_name=[0,temp_dir_name$3];
 
-var set_temp_dir_name=function(s){return current_temp_dir_name[1]=s,0;};
+var set_temp_dir_name=function(s){return current_temp_dir_name[1]=s;};
 
 var get_temp_dir_name=function(param){return current_temp_dir_name[1];};
 
@@ -574,7 +589,7 @@ var
         catch(e)
          {var tag=e[1];
           
-          if(tag===Sys_error)
+          if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
            {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
           else
            {throw e;}
@@ -617,7 +632,7 @@ var
         catch(e)
          {var tag=e[1];
           
-          if(tag===Sys_error)
+          if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
            {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
           else
            {throw e;}

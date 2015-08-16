@@ -17,7 +17,7 @@ var
 var
  assign=
   function(st1,st2)
-   {$$Array["blit"](st2[1],0,st1[1],0,55);return st1[2]=st2[2],0;};
+   {$$Array["blit"](st2[1],0,st1[1],0,55);return st1[2]=st2[2];};
 
 var
  full_init=
@@ -31,11 +31,11 @@ var
     
     var extract=function(d){return d[0]+(d[1]<<8)+(d[2]<<16)+(d[3]<<24);};
     
-    if(seed["length"]===0){var seed$1=[0];}else{var seed$1=seed;}
+    if(seed["length"]===0){var seed$1=[0,0];}else{var seed$1=seed;}
     
     var l=seed$1["length"];
     
-    for(var i=0;i<=54;i++){s[1][i]=i,0}
+    for(var i=0;i<=54;i++){s[1][i+1]=i}
     
     var accu=[0,"x"];
     
@@ -45,14 +45,12 @@ var
       var k=i$1%l;
       
       accu[1]=
-      combine(accu[1],seed$1[k]),
-      0,
-      s[1][j]=
-      (s[1][j]^extract(accu[1]))&
-      1073741823,
-      0}
+      combine(accu[1],seed$1[k+1]),
+      s[1][j+1]=
+      (s[1][j+1]^extract(accu[1]))&
+      1073741823}
     
-    return s[2]=0,0;
+    return s[2]=0;
     };
 
 var
@@ -72,14 +70,14 @@ var
 var
  bits=
   function(s)
-   {s[2]=(s[2]+1)%55,0;
-    var curval=s[1][s[2]];
+   {s[2]=(s[2]+1)%55;
+    var curval=s[1][s[2]+1];
     
-    var newval=s[1][(s[2]+24)%55]+(curval^curval>>>25&31);
+    var newval=s[1][(s[2]+24)%55+1]+(curval^curval>>>25&31);
     
     var newval30=newval&1073741823;
     
-    s[1][s[2]]=newval30,0;
+    s[1][s[2]+1]=newval30;
     return newval30;
     };
 
@@ -270,7 +268,7 @@ var bool$1=function(param){return State[17]($$default);};
 
 var full_init$1=function(seed){return State[3]($$default,seed);};
 
-var init=function(seed){return State[3]($$default,[seed]);};
+var init=function(seed){return State[3]($$default,[0,seed]);};
 
 var
  self_init=

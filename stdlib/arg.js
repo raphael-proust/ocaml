@@ -33,7 +33,7 @@ var
        {var t$1=t;return assoc3(x,t$1);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -119,7 +119,7 @@ var
    {try
      {assoc3("-help",speclist);var add1=/* [] */0;}
     catch(exn)
-     {if(exn===Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var
          add1=
           /* :: */[0,
@@ -136,7 +136,7 @@ var
     try
      {assoc3("--help",speclist);var add2=/* [] */0;}
     catch(exn$1)
-     {if(exn$1===Not_found)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {var
          add2=
           /* :: */[0,
@@ -205,7 +205,7 @@ var
     var
      stop=
       function(error)
-       {if(initpos<l){var progname=argv[initpos];}else{var progname="(?)";}
+       {if(initpos<l){var progname=argv[initpos+1];}else{var progname="(?)";}
         
         switch(error[0])
          {case 0:
@@ -309,13 +309,13 @@ var
     
     current$1[0]++;
     while(current$1[1]<l)
-     {var s=argv[current$1[1]];
+     {var s=argv[current$1[1]+1];
       
       if(s["length"]>=1&&s[0]===45)
        {try
          {var action=assoc3(s,speclist[1]);}
         catch(exn)
-         {if(exn===Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {var action=stop(/* Unknown */[0,s]);}
           else
            {throw exn;}
@@ -333,7 +333,7 @@ var
                  var f$1=param[1];
                  
                  if(current$1[1]+1<l)
-                  {var arg=argv[current$1[1]+1];
+                  {var arg=argv[current$1[1]+1+1];
                    
                    try
                     {f$1(Pervasives["bool_of_string"](arg))}
@@ -342,7 +342,9 @@ var
                      
                      var tag=exn$1[1];
                      
-                     if(tag===Invalid_argument)
+                     if
+                      (tag===
+                       CamlPrimitive["caml_global_data"]["Invalid_argument"])
                       {var match=exn$1[2];
                        
                        switch(match)
@@ -361,13 +363,13 @@ var
                  else
                   {exit=44;}
                  
-                case 2:var r=param[1];return r[1]=/* true */1,0;
-                case 3:var r$1=param[1];return r$1[1]=/* false */0,0;
+                case 2:var r=param[1];return r[1]=/* true */1;
+                case 3:var r$1=param[1];return r$1[1]=/* false */0;
                 case 4:
                  var f$2=param[1];
                  
                  if(current$1[1]+1<l)
-                  {f$2(argv[current$1[1]+1]);return current$1[0]++;}
+                  {f$2(argv[current$1[1]+1+1]);return current$1[0]++;}
                  else
                   {exit=44;}
                  
@@ -375,7 +377,7 @@ var
                  var r$2=param[1];
                  
                  if(current$1[1]+1<l)
-                  {r$2[1]=argv[current$1[1]+1],0;return current$1[0]++;}
+                  {r$2[1]=argv[current$1[1]+1+1];return current$1[0]++;}
                  else
                   {exit=44;}
                  
@@ -383,7 +385,7 @@ var
                  var f$3=param[1];
                  
                  if(current$1[1]+1<l)
-                  {var arg$1=argv[current$1[1]+1];
+                  {var arg$1=argv[current$1[1]+1+1];
                    
                    try
                     {f$3(CamlPrimitive["caml_int_of_string"](arg$1))}
@@ -392,7 +394,7 @@ var
                      
                      var tag$1=exn$2[1];
                      
-                     if(tag$1===Failure)
+                     if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
                       {var match$1=exn$2[2];
                        
                        switch(match$1)
@@ -415,16 +417,16 @@ var
                  var r$3=param[1];
                  
                  if(current$1[1]+1<l)
-                  {var arg$2=argv[current$1[1]+1];
+                  {var arg$2=argv[current$1[1]+1+1];
                    
                    try
-                    {r$3[1]=CamlPrimitive["caml_int_of_string"](arg$2),0}
+                    {r$3[1]=CamlPrimitive["caml_int_of_string"](arg$2)}
                    catch(exn$3)
                     {var exit$3;
                      
                      var tag$2=exn$3[1];
                      
-                     if(tag$2===Failure)
+                     if(tag$2===CamlPrimitive["caml_global_data"]["Failure"])
                       {var match$2=exn$3[2];
                        
                        switch(match$2)
@@ -447,7 +449,7 @@ var
                  var f$4=param[1];
                  
                  if(current$1[1]+1<l)
-                  {var arg$3=argv[current$1[1]+1];
+                  {var arg$3=argv[current$1[1]+1+1];
                    
                    try
                     {f$4(CamlPrimitive["caml_float_of_string"](arg$3))}
@@ -456,7 +458,7 @@ var
                      
                      var tag$3=exn$4[1];
                      
-                     if(tag$3===Failure)
+                     if(tag$3===CamlPrimitive["caml_global_data"]["Failure"])
                       {var match$3=exn$4[2];
                        
                        switch(match$3)
@@ -479,16 +481,16 @@ var
                  var r$4=param[1];
                  
                  if(current$1[1]+1<l)
-                  {var arg$4=argv[current$1[1]+1];
+                  {var arg$4=argv[current$1[1]+1+1];
                    
                    try
-                    {r$4[1]=CamlPrimitive["caml_float_of_string"](arg$4),0}
+                    {r$4[1]=CamlPrimitive["caml_float_of_string"](arg$4)}
                    catch(exn$5)
                     {var exit$5;
                      
                      var tag$4=exn$5[1];
                      
-                     if(tag$4===Failure)
+                     if(tag$4===CamlPrimitive["caml_global_data"]["Failure"])
                       {var match$4=exn$5[2];
                        
                        switch(match$4)
@@ -515,10 +517,10 @@ var
                  var symb=param[1];
                  
                  if(current$1[1]+1<l)
-                  {var arg$5=argv[current$1[1]+1];
+                  {var arg$5=argv[current$1[1]+1+1];
                    
                    if(List["mem"](arg$5,symb))
-                    {f$5(argv[current$1[1]+1]);return current$1[0]++;}
+                    {f$5(argv[current$1[1]+1+1]);return current$1[0]++;}
                    else
                     {throw [0,
                             Stop,
@@ -535,7 +537,7 @@ var
                  var f$6=param[1];
                  
                  while(current$1[1]<l-1)
-                  {f$6(argv[current$1[1]+1]),current$1[0]++}
+                  {f$6(argv[current$1[1]+1+1]),current$1[0]++}
                  return 0;
                  
                 }
@@ -676,7 +678,12 @@ var
     
     try
      {return loop($$String["index"](s,32));}
-    catch(exn){if(exn===Not_found){return len;}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return len;}
+      else
+       {throw exn;}
+      }
     };
 
 var

@@ -104,7 +104,7 @@ var
 
 var
  swap=
-  function(arr,i,j){var tmp=arr[i];arr[i]=arr[j],0;return arr[j]=tmp,0;};
+  function(arr,i,j){var tmp=arr[i+1];arr[i+1]=arr[j+1];return arr[j+1]=tmp;};
 
 var
  array=
@@ -115,30 +115,33 @@ var
        {if(hi-lo>=6)
          {var mid=lo+hi>>>1;
           
-          if(cmp(arr[mid],arr[lo])){swap(arr,mid,lo)}else{}
+          if(cmp(arr[mid+1],arr[lo+1])){swap(arr,mid,lo)}else{}
           
-          if(cmp(arr[hi],arr[mid]))
+          if(cmp(arr[hi+1],arr[mid+1]))
            {swap(arr,mid,hi);
-            if(cmp(arr[mid],arr[lo])){swap(arr,mid,lo)}else{}
+            if(cmp(arr[mid+1],arr[lo+1])){swap(arr,mid,lo)}else{}
             }
           else
            {}
           
-          var pivot=arr[mid];
+          var pivot=arr[mid+1];
           
           var i=[0,lo+1];
           
           var j=[0,hi-1];
           
-          if(!cmp(pivot,arr[hi])||!cmp(arr[lo],pivot))
-           {throw [0,Invalid_argument,"Sort.array"];}
+          if(!cmp(pivot,arr[hi+1])||!cmp(arr[lo+1],pivot))
+           {throw [0,
+                   CamlPrimitive["caml_global_data"]["Invalid_argument"],
+                   "Sort.array"];
+            }
           else
            {}
           
           while(i[1]<j[1])
-           {while(!cmp(pivot,arr[i[1]])){i[0]++}
+           {while(!cmp(pivot,arr[i[1]+1])){i[0]++}
             
-            while(!cmp(arr[j[1]],pivot)){j[0]--}
+            while(!cmp(arr[j[1]+1],pivot)){j[0]--}
             
             if(i[1]<j[1]){swap(arr,i[1],j[1])}else{}
             
@@ -155,19 +158,20 @@ var
     
     qsort(0,arr["length"]-1);
     for(var i=1;i<=arr["length"]-1;i++)
-     {var val_i=arr[i];
+     {var val_i=arr[i+1];
       
-      if(!cmp(arr[i-1],val_i))
-       {arr[i]=arr[i-1],0;
+      if(!cmp(arr[i-1+1],val_i))
+       {arr[i+1]=arr[i-1+1];
         var j=[0,i-1];
         
-        while(j[1]>=1&&!cmp(arr[j[1]-1],val_i))
-         {arr[j[1]]=arr[j[1]-1],0,j[0]--}
+        while(j[1]>=1&&!cmp(arr[j[1]-1+1],val_i))
+         {arr[j[1]+1]=arr[j[1]-1+1],j[0]--}
         
-        arr[j[1]]=val_i,0}
+        arr[j[1]+1]=val_i}
       else
        {}
       }
+    return 0;
     };
 
 module["exports"]={"list":list,"array":array,"merge":merge};

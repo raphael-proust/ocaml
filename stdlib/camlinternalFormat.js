@@ -22,8 +22,7 @@ var
     var mask=1<<(ind&7);
     
     return char_set[str_ind]=
-           Pervasives["char_of_int"](char_set[str_ind]|mask),
-           0;
+           Pervasives["char_of_int"](char_set[str_ind]|mask);
     };
 
 var freeze_char_set=function(char_set){return Bytes["to_string"](char_set);};
@@ -34,7 +33,7 @@ var
    {var char_set$prime=create_char_set(/* () */0);
     
     for(var i=0;i<=31;i++)
-     {char_set$prime[i]=Pervasives["char_of_int"](char_set[i]^255),0}
+     {char_set$prime[i]=Pervasives["char_of_int"](char_set[i]^255)}
     
     return Bytes["unsafe_to_string"](char_set$prime);
     };
@@ -207,7 +206,7 @@ var
       var new_str=CamlPrimitive["caml_create_string"](new_len);
       
       Bytes["blit"](buf[2],0,new_str,0,len);
-      return buf[2]=new_str,0;
+      return buf[2]=new_str;
       }
     else
      {return 0;}
@@ -216,7 +215,7 @@ var
 var
  buffer_add_char=
   function(buf,c)
-   {buffer_check_size(buf,1);buf[2][buf[1]]=c,0;return buf[1]=buf[1]+1,0;};
+   {buffer_check_size(buf,1);buf[2][buf[1]]=c;return buf[1]=buf[1]+1;};
 
 var
  buffer_add_string=
@@ -225,7 +224,7 @@ var
     
     buffer_check_size(buf,str_len);
     $$String["blit"](s,0,buf[2],buf[1],str_len);
-    return buf[1]=buf[1]+str_len,0;
+    return buf[1]=buf[1]+str_len;
     };
 
 var
@@ -644,7 +643,9 @@ var
 var
  bprint_string_literal=
   function(buf,str)
-   {for(var i=0;i<=str["length"]-1;i++){bprint_char_literal(buf,str[i])}};
+   {for(var i=0;i<=str["length"]-1;i++){bprint_char_literal(buf,str[i])}
+    return 0;
+    };
 
 var
  bprint_fmtty=
@@ -1481,7 +1482,10 @@ var
              case 13:exit=339;
              case 14:exit=337;
              default:
-              throw [0,Assert_failure,[0,"camlinternalFormat.ml",816,23]];}}
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"camlinternalFormat.ml",816,23]];
+              }}
          
         }}
     else
@@ -1734,7 +1738,10 @@ var
          
          switch(exit$1)
           {case 346:
-            throw [0,Assert_failure,[0,"camlinternalFormat.ml",780,21]];
+            throw [0,
+                   CamlPrimitive["caml_global_data"]["Assert_failure"],
+                   [0,"camlinternalFormat.ml",780,21]];
+            
            }
          
         case 11:
@@ -1806,20 +1813,76 @@ var
         }}
     
     switch(exit)
-     {case 345:throw [0,Assert_failure,[0,"camlinternalFormat.ml",781,21]];
-      case 344:throw [0,Assert_failure,[0,"camlinternalFormat.ml",784,21]];
-      case 343:throw [0,Assert_failure,[0,"camlinternalFormat.ml",785,21]];
-      case 342:throw [0,Assert_failure,[0,"camlinternalFormat.ml",788,19]];
-      case 341:throw [0,Assert_failure,[0,"camlinternalFormat.ml",789,19]];
-      case 340:throw [0,Assert_failure,[0,"camlinternalFormat.ml",792,22]];
-      case 339:throw [0,Assert_failure,[0,"camlinternalFormat.ml",793,22]];
-      case 338:throw [0,Assert_failure,[0,"camlinternalFormat.ml",797,30]];
-      case 337:throw [0,Assert_failure,[0,"camlinternalFormat.ml",798,30]];
-      case 336:throw [0,Assert_failure,[0,"camlinternalFormat.ml",802,26]];
-      case 335:throw [0,Assert_failure,[0,"camlinternalFormat.ml",803,26]];
-      case 334:throw [0,Assert_failure,[0,"camlinternalFormat.ml",812,28]];
-      case 333:throw [0,Assert_failure,[0,"camlinternalFormat.ml",813,28]];
-      case 331:throw [0,Assert_failure,[0,"camlinternalFormat.ml",817,23]];
+     {case 345:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",781,21]];
+       
+      case 344:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",784,21]];
+       
+      case 343:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",785,21]];
+       
+      case 342:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",788,19]];
+       
+      case 341:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",789,19]];
+       
+      case 340:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",792,22]];
+       
+      case 339:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",793,22]];
+       
+      case 338:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",797,30]];
+       
+      case 337:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",798,30]];
+       
+      case 336:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",802,26]];
+       
+      case 335:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",803,26]];
+       
+      case 334:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",812,28]];
+       
+      case 333:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",813,28]];
+       
+      case 331:
+       throw [0,
+              CamlPrimitive["caml_global_data"]["Assert_failure"],
+              [0,"camlinternalFormat.ml",817,23]];
+       
       }
     };
 
@@ -3470,10 +3533,10 @@ var
         case 1:$$String["blit"](str,0,res,width$1-len,len);
         case 2:
          if(len>0&&(str[0]===43||str[0]===45||str[0]===32))
-          {res[0]=str[0],0,$$String["blit"](str,1,res,width$1-len+1,len-1)}
+          {res[0]=str[0],$$String["blit"](str,1,res,width$1-len+1,len-1)}
          else
           {if(len>1&&str[0]===48&&(str[1]===120||str[1]===88))
-            {res[1]=str[1],0,$$String["blit"](str,2,res,width$1-len+2,len-2)}
+            {res[1]=str[1],$$String["blit"](str,2,res,width$1-len+2,len-2)}
            else
             {$$String["blit"](str,0,res,width$1-len,len)}
            }
@@ -3516,7 +3579,7 @@ var
              if(prec$1+2>len&&len>1&&(str[1]===120||str[1]===88))
               {var res=Bytes["make"](prec$1+2,48);
                
-               res[1]=str[1],0;
+               res[1]=str[1];
                $$String["blit"](str,2,res,prec$1-len+4,len-2);
                return Bytes["unsafe_to_string"](res);
                }
@@ -3546,7 +3609,7 @@ var
        if(prec$1+1>len)
         {var res$1=Bytes["make"](prec$1+1,48);
          
-         res$1[0]=c,0;
+         res$1[0]=c;
          $$String["blit"](str,1,res$1,prec$1-len+2,len-1);
          return Bytes["unsafe_to_string"](res$1);
          }
@@ -3954,7 +4017,11 @@ var
             
            }
          
-        case 19:throw [0,Assert_failure,[0,"camlinternalFormat.ml",1449,4]];
+        case 19:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"camlinternalFormat.ml",1449,4]];
+         
         case 20:
          var rest$20=fmt[3];
          
@@ -4011,7 +4078,11 @@ var
        {case 0:return make_invalid_arg(k,o,acc,fmt);
         case 1:return make_invalid_arg(k,o,acc,fmt);
         case 2:return make_invalid_arg(k,o,acc,fmt);
-        case 3:throw [0,Assert_failure,[0,"camlinternalFormat.ml",1517,39]];
+        case 3:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"camlinternalFormat.ml",1517,39]];
+         
         case 4:return make_invalid_arg(k,o,acc,fmt);
         }}
     else
@@ -4116,8 +4187,16 @@ var
          
          return function(param){return make_from_fmtty(k,o,acc,rest$12,fmt);};
          
-        case 13:throw [0,Assert_failure,[0,"camlinternalFormat.ml",1540,31]];
-        case 14:throw [0,Assert_failure,[0,"camlinternalFormat.ml",1541,31]];
+        case 13:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"camlinternalFormat.ml",1540,31]];
+         
+        case 14:
+         throw [0,
+                CamlPrimitive["caml_global_data"]["Assert_failure"],
+                [0,"camlinternalFormat.ml",1541,31]];
+         
         }}
     };
 
@@ -4803,7 +4882,7 @@ var
         catch(exn)
          {var tag=exn[1];
           
-          if(tag===Failure)
+          if(tag===CamlPrimitive["caml_global_data"]["Failure"])
            {var indent=invalid_box(/* () */0);}
           else
            {throw exn;}
@@ -5101,7 +5180,7 @@ var
             else
              {}
             
-            return flag[1]=/* true */1,0;
+            return flag[1]=/* true */1;
             };
         
         var
@@ -5470,25 +5549,25 @@ var
         
         var prec_used=[0,/* false */0];
         
-        var get_plus=function(param){plus_used[1]=/* true */1,0;return plus;};
+        var get_plus=function(param){plus_used[1]=/* true */1;return plus;};
         
         var
          get_sharp=
-          function(param){sharp_used[1]=/* true */1,0;return sharp;};
+          function(param){sharp_used[1]=/* true */1;return sharp;};
         
         var
          get_space=
-          function(param){space_used[1]=/* true */1,0;return space;};
+          function(param){space_used[1]=/* true */1;return space;};
         
-        var get_ign=function(param){ign_used[1]=/* true */1,0;return ign;};
+        var get_ign=function(param){ign_used[1]=/* true */1;return ign;};
         
-        var get_pad=function(param){pad_used[1]=/* true */1,0;return pad;};
+        var get_pad=function(param){pad_used[1]=/* true */1;return pad;};
         
-        var get_prec=function(param){prec_used[1]=/* true */1,0;return prec;};
+        var get_prec=function(param){prec_used[1]=/* true */1;return prec;};
         
         var
          get_padprec=
-          function(param){pad_used[1]=/* true */1,0;return padprec;};
+          function(param){pad_used[1]=/* true */1;return padprec;};
         
         var
          check_no_0=
@@ -6621,7 +6700,10 @@ var
                catch(exn)
                 {var tag=exn[1];
                  
-                 if(tag===Failure){return /* () */0;}else{throw exn;}
+                 if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+                  {return /* () */0;}
+                 else
+                  {throw exn;}
                  }
                }
              else
@@ -6636,16 +6718,22 @@ var
      parse_tag=
       function(is_open_tag,str_ind,end_ind)
        {try
-         {if(str_ind===end_ind){throw Not_found;}else{}
+         {if(str_ind===end_ind)
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+          else
+           {}
           
           var match=str[str_ind];
           
           if(match!==60)
-           {throw Not_found;}
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
           else
            {var ind=$$String["index_from"](str,str_ind+1,62);
             
-            if(ind>=end_ind){throw Not_found;}else{}
+            if(ind>=end_ind)
+             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+            else
+             {}
             
             var sub_str=$$String["sub"](str,str_ind,ind-str_ind+1);
             
@@ -6671,7 +6759,7 @@ var
             }
           }
         catch(exn)
-         {if(exn===Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {var match$3=parse(str_ind,end_ind);
             
             var fmt_rest$1=match$3[1];
@@ -6695,7 +6783,10 @@ var
      parse_good_break=
       function(str_ind,end_ind)
        {try
-         {if(str_ind===end_ind||str[str_ind]!==60){throw Not_found;}else{}
+         {if(str_ind===end_ind||str[str_ind]!==60)
+           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+          else
+           {}
           
           var str_ind_1=parse_spaces(str_ind+1,end_ind);
           
@@ -6709,7 +6800,7 @@ var
            {if(match!==45){exit=114;}else{exit=113;}}
           
           switch(exit)
-           {case 114:throw Not_found;
+           {case 114:throw CamlPrimitive["caml_global_data"]["Not_found"];
             case 113:
              var match$1=parse_integer(str_ind_1,end_ind);
              
@@ -6737,7 +6828,10 @@ var
                  
                  var str_ind_5=parse_spaces(str_ind_4,end_ind);
                  
-                 if(str[str_ind_5]!==62){throw Not_found;}else{}
+                 if(str[str_ind_5]!==62)
+                  {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+                 else
+                  {}
                  
                  var s=$$String["sub"](str,str_ind-2,str_ind_5-str_ind+3);
                  
@@ -6760,17 +6854,24 @@ var
                  }
                }
              
-             switch(exit$1){case 110:throw Not_found;}
+             switch(exit$1)
+              {case 110:throw CamlPrimitive["caml_global_data"]["Not_found"];}
              
             }
           }
         catch(exn)
          {var exit$2;
           
-          if(exn===Not_found)
+          if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {exit$2=103;}
           else
-           {var tag=exn[1];if(tag===Failure){exit$2=103;}else{throw exn;}}
+           {var tag=exn[1];
+            
+            if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+             {exit$2=103;}
+            else
+             {throw exn;}
+            }
           
           switch(exit$2)
            {case 103:
@@ -6816,7 +6917,10 @@ var
              
              var str_ind_3=parse_spaces(str_ind_2,end_ind);
              
-             if(str[str_ind_3]!==62){throw Not_found;}else{}
+             if(str[str_ind_3]!==62)
+              {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+             else
+              {}
              
              var s=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
              
@@ -6830,10 +6934,16 @@ var
         catch(exn)
          {var exit$1;
           
-          if(exn===Not_found)
+          if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {exit$1=118;}
           else
-           {var tag=exn[1];if(tag===Failure){exit$1=118;}else{throw exn;}}
+           {var tag=exn[1];
+            
+            if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+             {exit$1=118;}
+            else
+             {throw exn;}
+            }
           
           switch(exit$1){case 118:var match$1=/* None */0;}
           }
@@ -6876,6 +6986,7 @@ var
           function(c,c$prime)
            {for(var i=c;i<=c$prime;i++)
              {add_in_char_set(char_set,Pervasives["char_of_int"](i))}
+            return 0;
             };
         
         var
@@ -7141,7 +7252,10 @@ var
         
         switch(exit)
          {case 148:
-           throw [0,Assert_failure,[0,"camlinternalFormat.ml",2621,11]];
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"camlinternalFormat.ml",2621,11]];
+           
           }
         };
     
@@ -7349,7 +7463,10 @@ var
         
         switch(exit)
          {case 159:
-           throw [0,Assert_failure,[0,"camlinternalFormat.ml",2683,34]];
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"camlinternalFormat.ml",2683,34]];
+           
           }
         };
     
@@ -7537,7 +7654,10 @@ var
                 {return incompatible_flag(pct_ind,str_ind,symb,"' '");}
                }
              else
-              {throw [0,Assert_failure,[0,"camlinternalFormat.ml",2716,28]];}
+              {throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"camlinternalFormat.ml",2716,28]];
+               }
              }
            
           }
@@ -7677,7 +7797,10 @@ var
             
             switch(exit$2)
              {case 166:
-               throw [0,Assert_failure,[0,"camlinternalFormat.ml",2744,25]];
+               throw [0,
+                      CamlPrimitive["caml_global_data"]["Assert_failure"],
+                      [0,"camlinternalFormat.ml",2744,25]];
+               
               }
             }
           }

@@ -13,28 +13,28 @@ var raise_undefined=function(param){throw Undefined;};
 var
  force_lazy_block=
   function(blk)
-   {var closure=blk[0];
+   {var closure=blk[1];
     
-    blk[0]=raise_undefined,0;
+    blk[1]=raise_undefined;
     try
      {var result=closure(/* () */0);
       
-      blk[0]=result,0;
+      blk[1]=result;
       CamlPrimitive["caml_obj_set_tag"](blk,Obj["forward_tag"]);
       return result;
       }
-    catch(e){blk[0]=function(param){throw e;},0;throw e;}
+    catch(e){blk[1]=function(param){throw e;};throw e;}
     };
 
 var
  force_val_lazy_block=
   function(blk)
-   {var closure=blk[0];
+   {var closure=blk[1];
     
-    blk[0]=raise_undefined,0;
+    blk[1]=raise_undefined;
     var result=closure(/* () */0);
     
-    blk[0]=result,0;
+    blk[1]=result;
     CamlPrimitive["caml_obj_set_tag"](blk,Obj["forward_tag"]);
     return result;
     };
@@ -47,7 +47,7 @@ var
     var t=CamlPrimitive["caml_obj_tag"](x);
     
     if(t===Obj["forward_tag"])
-     {return x[0];}
+     {return x[1];}
     else
      {if(t!==Obj["lazy_tag"]){return x;}else{return force_lazy_block(lzv);}}
     };
@@ -60,7 +60,7 @@ var
     var t=CamlPrimitive["caml_obj_tag"](x);
     
     if(t===Obj["forward_tag"])
-     {return x[0];}
+     {return x[1];}
     else
      {if(t!==Obj["lazy_tag"])
        {return x;}

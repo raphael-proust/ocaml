@@ -22,10 +22,15 @@ var
 try
  {var params=CamlPrimitive["caml_sys_getenv"]("OCAMLRUNPARAM");}
 catch(exn)
- {if(exn===Not_found)
+ {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
    {try
      {var params=CamlPrimitive["caml_sys_getenv"]("CAMLRUNPARAM");}
-    catch(exn$1){if(exn$1===Not_found){var params="";}else{throw exn$1;}}
+    catch(exn$1)
+     {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
+       {var params="";}
+      else
+       {throw exn$1;}
+      }
     }
   else
    {throw exn;}
@@ -35,7 +40,7 @@ var randomized_default=$$String["contains"](params,82);
 
 var randomized=[0,randomized_default];
 
-var randomize=function(param){return randomized[1]=/* true */1,0;};
+var randomize=function(param){return randomized[1]=/* true */1;};
 
 var prng=[246,function(param){return Random["State"][2](/* () */0);}];
 
@@ -87,10 +92,11 @@ var
 var
  clear=
   function(h)
-   {h[1]=0,0;
+   {h[1]=0;
     var len=h[2]["length"];
     
-    for(var i=0;i<=len-1;i++){h[2][i]=/* Empty */0,0}
+    for(var i=0;i<=len-1;i++){h[2][i+1]=/* Empty */0}
+    return 0;
     };
 
 var
@@ -101,9 +107,7 @@ var
     if(h["length"]<4||len===h[4])
      {return clear(h);}
     else
-     {h[1]=0,0;
-      return h[2]=CamlPrimitive["caml_make_vect"](h[4],/* Empty */0),0;
-      }
+     {h[1]=0;return h[2]=CamlPrimitive["caml_make_vect"](h[4],/* Empty */0);}
     };
 
 var
@@ -128,7 +132,7 @@ var
     if(nsize<Sys["max_array_length"])
      {var ndata=CamlPrimitive["caml_make_vect"](nsize,/* Empty */0);
       
-      h[2]=ndata,0;
+      h[2]=ndata;
       var
        insert_bucket=
         function(param)
@@ -142,13 +146,14 @@ var
             insert_bucket(rest);
             var nidx=indexfun(h,key);
             
-            return ndata[nidx]=/* Cons */[0,key,data,ndata[nidx]],0;
+            return ndata[nidx+1]=/* Cons */[0,key,data,ndata[nidx+1]];
             }
           else
            {return /* () */0;}
           };
       
-      for(var i=0;i<=osize-1;i++){insert_bucket(odata[i])}
+      for(var i=0;i<=osize-1;i++){insert_bucket(odata[i+1])}
+      return 0;
       }
     else
      {return 0;}
@@ -169,10 +174,10 @@ var
   function(h,key,info)
    {var i=key_index(h,key);
     
-    var bucket=/* Cons */[0,key,info,h[2][i]];
+    var bucket=/* Cons */[0,key,info,h[2][i+1]];
     
-    h[2][i]=bucket,0;
-    h[1]=h[1]+1,0;
+    h[2][i+1]=bucket;
+    h[1]=h[1]+1;
     if(h[1]>h[2]["length"]<<1){return resize(key_index,h);}else{return 0;}
     };
 
@@ -190,7 +195,7 @@ var
           var k=param[1];
           
           if(CamlPrimitive["caml_compare"](k,key)===0)
-           {h[1]=h[1]-1,0;return next;}
+           {h[1]=h[1]-1;return next;}
           else
            {return /* Cons */[0,k,i,remove_bucket(next)];}
           }
@@ -200,7 +205,7 @@ var
     
     var i=key_index(h,key);
     
-    return h[2][i]=remove_bucket(h[2][i]),0;
+    return h[2][i+1]=remove_bucket(h[2][i+1]);
     };
 
 var
@@ -219,13 +224,13 @@ var
        {return find_rec(key,rest);}
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
  find=
   function(h,key)
-   {var match=h[2][key_index(h,key)];
+   {var match=h[2][key_index(h,key)+1];
     
     if(match)
      {var rest1=match[3];
@@ -260,15 +265,15 @@ var
                {return find_rec(key,rest3);}
               }
             else
-             {throw Not_found;}
+             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
             }
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         }
       }
     else
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
 
 var
@@ -293,7 +298,7 @@ var
          {return /* [] */0;}
         };
     
-    return find_in_bucket(h[2][key_index(h,key)]);
+    return find_in_bucket(h[2][key_index(h,key)+1]);
     };
 
 var
@@ -315,19 +320,19 @@ var
            {return /* Cons */[0,k,i,replace_bucket(next)];}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var i=key_index(h,key);
     
-    var l=h[2][i];
+    var l=h[2][i+1];
     
     try
-     {return h[2][i]=replace_bucket(l),0;}
+     {return h[2][i+1]=replace_bucket(l);}
     catch(exn$2)
-     {if(exn$2===Not_found)
-       {h[2][i]=/* Cons */[0,key,info,l],0;
-        h[1]=h[1]+1,0;
+     {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
+       {h[2][i+1]=/* Cons */[0,key,info,l];
+        h[1]=h[1]+1;
         if(h[1]>h[2]["length"]<<1){return resize(key_index,h);}else{return 0;}
         }
       else
@@ -354,7 +359,7 @@ var
          {return /* false */0;}
         };
     
-    return mem_in_bucket(h[2][key_index(h,key)]);
+    return mem_in_bucket(h[2][key_index(h,key)+1]);
     };
 
 var
@@ -379,7 +384,8 @@ var
     
     var d=h[2];
     
-    for(var i=0;i<=d["length"]-1;i++){do_bucket(d[i])}
+    for(var i=0;i<=d["length"]-1;i++){do_bucket(d[i+1])}
+    return 0;
     };
 
 var
@@ -405,7 +411,7 @@ var
     
     var accu=[0,init];
     
-    for(var i=0;i<=d["length"]-1;i++){accu[1]=do_bucket(d[i],accu[1]),0}
+    for(var i=0;i<=d["length"]-1;i++){accu[1]=do_bucket(d[i+1],accu[1])}
     
     return accu[1];
     };
@@ -430,7 +436,7 @@ var
     var histo=CamlPrimitive["caml_make_vect"](mbl+1,0);
     
     $$Array["iter"]
-     (function(b){var l=bucket_length(0,b);return histo[l]=histo[l]+1,0;},
+     (function(b){var l=bucket_length(0,b);return histo[l+1]=histo[l+1]+1;},
       h[2]);
     return /* record */[0,h[1],h[2]["length"],mbl,histo];
     };
@@ -453,10 +459,10 @@ var
       function(h,key,info)
        {var i=key_index$1(h,key);
         
-        var bucket=/* Cons */[0,key,info,h[2][i]];
+        var bucket=/* Cons */[0,key,info,h[2][i+1]];
         
-        h[2][i]=bucket,0;
-        h[1]=h[1]+1,0;
+        h[2][i+1]=bucket;
+        h[1]=h[1]+1;
         if(h[1]>h[2]["length"]<<1)
          {return resize(key_index$1,h);}
         else
@@ -477,7 +483,7 @@ var
               var k=param[1];
               
               if(H[1](k,key))
-               {h[1]=h[1]-1,0;return next;}
+               {h[1]=h[1]-1;return next;}
               else
                {return /* Cons */[0,k,i,remove_bucket(next)];}
               }
@@ -487,7 +493,7 @@ var
         
         var i=key_index$1(h,key);
         
-        return h[2][i]=remove_bucket(h[2][i]),0;
+        return h[2][i+1]=remove_bucket(h[2][i+1]);
         };
     
     var
@@ -503,13 +509,13 @@ var
           if(H[1](key,k)){return d;}else{return find_rec$1(key,rest);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var
      find$1=
       function(h,key)
-       {var match=h[2][key_index$1(h,key)];
+       {var match=h[2][key_index$1(h,key)+1];
         
         if(match)
          {var rest1=match[3];
@@ -544,15 +550,15 @@ var
                    {return find_rec$1(key,rest3);}
                   }
                 else
-                 {throw Not_found;}
+                 {throw CamlPrimitive["caml_global_data"]["Not_found"];}
                 }
               }
             else
-             {throw Not_found;}
+             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
             }
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var
@@ -577,7 +583,7 @@ var
              {return /* [] */0;}
             };
         
-        return find_in_bucket(h[2][key_index$1(h,key)]);
+        return find_in_bucket(h[2][key_index$1(h,key)+1]);
         };
     
     var
@@ -599,19 +605,19 @@ var
                {return /* Cons */[0,k,i,replace_bucket(next)];}
               }
             else
-             {throw Not_found;}
+             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
             };
         
         var i=key_index$1(h,key);
         
-        var l=h[2][i];
+        var l=h[2][i+1];
         
         try
-         {return h[2][i]=replace_bucket(l),0;}
+         {return h[2][i+1]=replace_bucket(l);}
         catch(exn$2)
-         {if(exn$2===Not_found)
-           {h[2][i]=/* Cons */[0,key,info,l],0;
-            h[1]=h[1]+1,0;
+         {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
+           {h[2][i+1]=/* Cons */[0,key,info,l];
+            h[1]=h[1]+1;
             if(h[1]>h[2]["length"]<<1)
              {return resize(key_index$1,h);}
             else
@@ -639,7 +645,7 @@ var
              {return /* false */0;}
             };
         
-        return mem_in_bucket(h[2][key_index$1(h,key)]);
+        return mem_in_bucket(h[2][key_index$1(h,key)+1]);
         };
     
     var iter$1=iter;

@@ -43,7 +43,7 @@ var
 var
  field=
   function(x,i)
-   {var f=x[i];
+   {var f=x[i+1];
     
     if(!CamlPrimitive["caml_obj_is_block"](f))
      {return Printf["sprintf"]
@@ -146,15 +146,15 @@ var
           if(match){var s=match[1];return s;}else{return conv(tl);}
           }
         else
-         {if(x===Out_of_memory)
+         {if(x===CamlPrimitive["caml_global_data"]["Out_of_memory"])
            {return "Out of memory";}
           else
-           {if(x===Stack_overflow)
+           {if(x===CamlPrimitive["caml_global_data"]["Stack_overflow"])
              {return "Stack overflow";}
             else
              {var tag=x[1];
               
-              if(tag===Match_failure)
+              if(tag===CamlPrimitive["caml_global_data"]["Match_failure"])
                {var match$1=x[2];
                 
                 var $$char=match$1[3];
@@ -169,7 +169,8 @@ var
               else
                {var tag$1=x[1];
                 
-                if(tag$1===Assert_failure)
+                if
+                 (tag$1===CamlPrimitive["caml_global_data"]["Assert_failure"])
                  {var match$2=x[2];
                   
                   var $$char$1=match$2[3];
@@ -189,7 +190,10 @@ var
                 else
                  {var tag$2=x[1];
                   
-                  if(tag$2===Undefined_recursive_module)
+                  if
+                   (tag$2===
+                    CamlPrimitive["caml_global_data"]
+                     ["Undefined_recursive_module"])
                    {var match$3=x[2];
                     
                     var $$char$2=match$3[3];
@@ -210,9 +214,9 @@ var
                    {var x$1=x;
                     
                     if(CamlPrimitive["caml_obj_tag"](x$1)!==0)
-                     {return x$1[0];}
+                     {return x$1[1];}
                     else
-                     {var constructor=x$1[0][0];
+                     {var constructor=x$1[1][1];
                       
                       return Pervasives["^"](constructor,fields(x$1));
                       }
@@ -281,7 +285,13 @@ var
                 rbckt)];
       }
     catch(exn)
-     {var tag=exn[1];if(tag===Failure){return /* None */0;}else{throw exn;}}
+     {var tag=exn[1];
+      
+      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+       {return /* None */0;}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -375,7 +385,7 @@ var
      {var a=backtrace[1];
       
       for(var i=0;i<=a["length"]-1;i++)
-       {var match=format_backtrace_slot(i,a[i]);
+       {var match=format_backtrace_slot(i,a[i+1]);
         
         if(match)
          {var str=match[1];
@@ -391,6 +401,7 @@ var
         else
          {}
         }
+      return 0;
       }
     else
      {return Printf["fprintf"]
@@ -427,7 +438,7 @@ var
       var b=Buffer["create"](1024);
       
       for(var i=0;i<=a["length"]-1;i++)
-       {var match=format_backtrace_slot(i,a[i]);
+       {var match=format_backtrace_slot(i,a[i+1]);
         
         if(match)
          {var str=match[1];
@@ -503,7 +514,7 @@ var
        exists_usable=
         function(i)
          {if(i!==-1)
-           {return usable_slot(backtrace[i])||exists_usable(i-1);}
+           {return usable_slot(backtrace[i+1])||exists_usable(i-1);}
           else
            {return /* false */0;}
           };
@@ -527,7 +538,7 @@ var Slot=[0,format,is_raise,$$location];
 
 var raw_backtrace_length=function(bckt){return bckt["length"];};
 
-var get_raw_backtrace_slot=function(bckt,i){return bckt[i];};
+var get_raw_backtrace_slot=function(bckt,i){return bckt[i+1];};
 
 var
  get_backtrace=
@@ -539,7 +550,7 @@ var
 
 var
  register_printer=
-  function(fn){return printers[1]=/* :: */[0,fn,printers[1]],0;};
+  function(fn){return printers[1]=/* :: */[0,fn,printers[1]];};
 
 var
  exn_slot=
@@ -547,20 +558,20 @@ var
    {var x$1=x;
     
     if(CamlPrimitive["caml_obj_tag"](x$1)===0)
-     {return x$1[0];}
+     {return x$1[1];}
     else
      {return x$1;}
     };
 
-var exn_slot_id=function(x){var slot=exn_slot(x);return slot[1];};
+var exn_slot_id=function(x){var slot=exn_slot(x);return slot[2];};
 
-var exn_slot_name=function(x){var slot=exn_slot(x);return slot[0];};
+var exn_slot_name=function(x){var slot=exn_slot(x);return slot[1];};
 
 var uncaught_exception_handler=[0,/* None */0];
 
 var
  set_uncaught_exception_handler=
-  function(fn){return uncaught_exception_handler[1]=/* Some */[0,fn],0;};
+  function(fn){return uncaught_exception_handler[1]=/* Some */[0,fn];};
 
 var empty_backtrace=CamlPrimitive["caml_obj_block"](Obj["abstract_tag"],0);
 
@@ -631,7 +642,7 @@ var
         }
       }
     catch(exn$2)
-     {if(exn$2===Out_of_memory)
+     {if(exn$2===CamlPrimitive["caml_global_data"]["Out_of_memory"])
        {return Pervasives["prerr_endline"]
                 ("Fatal error: out of memory in uncaught exception handler");
         }

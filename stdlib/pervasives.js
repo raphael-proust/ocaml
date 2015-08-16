@@ -7,11 +7,19 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var
  match=
   CamlPrimitive["caml_register_named_value"]
-   ("Pervasives.array_bound_error",[0,Invalid_argument,"index out of bounds"]);
+   ("Pervasives.array_bound_error",
+    [0,
+     CamlPrimitive["caml_global_data"]["Invalid_argument"],
+     "index out of bounds"]);
 
-var failwith=function(s){throw [0,Failure,s];};
+var
+ failwith=
+  function(s){throw [0,CamlPrimitive["caml_global_data"]["Failure"],s];};
 
-var invalid_arg=function(s){throw [0,Invalid_argument,s];};
+var
+ invalid_arg=
+  function(s)
+   {throw [0,CamlPrimitive["caml_global_data"]["Invalid_argument"],s];};
 
 var Exit=CamlPrimitive["caml_set_oo_id"]([248,"Pervasives.Exit",0]);
 
@@ -290,7 +298,7 @@ var
      {var r=CamlPrimitive["caml_ml_input"](ic,s,ofs,len);
       
       if(r===0)
-       {throw End_of_file;}
+       {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
       else
        {return unsafe_really_input(ic,s,ofs+r,len-r);}
       }
@@ -345,7 +353,7 @@ var
                     (CamlPrimitive["caml_create_string"](len),len,accu);
             }
           else
-           {throw End_of_file;}
+           {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
           }
         else
          {if(n>0)
@@ -481,8 +489,7 @@ var
    {var g=exit_function[1];
     
     return exit_function[1]=
-           function(param){f(/* () */0);return g(/* () */0);},
-           0;
+           function(param){f(/* () */0);return g(/* () */0);};
     };
 
 var do_at_exit=function(param){return exit_function[1](/* () */0);};

@@ -55,9 +55,9 @@ var
 
 var length=function(b){return b[2];};
 
-var clear=function(b){return b[2]=0,0;};
+var clear=function(b){return b[2]=0;};
 
-var reset=function(b){b[2]=0,0;b[1]=b[4],0;return b[3]=b[1]["length"],0;};
+var reset=function(b){b[2]=0;b[1]=b[4];return b[3]=b[1]["length"];};
 
 var
  resize=
@@ -66,11 +66,11 @@ var
     
     var new_len=[0,len];
     
-    while(b[2]+more>new_len[1]){new_len[1]=2*new_len[1],0}
+    while(b[2]+more>new_len[1]){new_len[1]=2*new_len[1]}
     
     if(new_len[1]>Sys["max_string_length"])
      {if(b[2]+more<=Sys["max_string_length"])
-       {new_len[1]=Sys["max_string_length"],0}
+       {new_len[1]=Sys["max_string_length"]}
       else
        {Pervasives["failwith"]("Buffer.add: cannot grow buffer")}
       }
@@ -80,8 +80,8 @@ var
     var new_buffer=CamlPrimitive["caml_create_string"](new_len[1]);
     
     Bytes["blit"](b[1],0,new_buffer,0,b[2]);
-    b[1]=new_buffer,0;
-    return b[3]=new_len[1],0;
+    b[1]=new_buffer;
+    return b[3]=new_len[1];
     };
 
 var
@@ -91,8 +91,8 @@ var
     
     if(pos>=b[3]){resize(b,1)}else{}
     
-    b[1][pos]=c,0;
-    return b[2]=pos+1,0;
+    b[1][pos]=c;
+    return b[2]=pos+1;
     };
 
 var
@@ -108,7 +108,7 @@ var
     if(new_position>b[3]){resize(b,len)}else{}
     
     Bytes["blit_string"](s,offset,b[1],b[2],len);
-    return b[2]=new_position,0;
+    return b[2]=new_position;
     };
 
 var
@@ -126,7 +126,7 @@ var
     if(new_position>b[3]){resize(b,len)}else{}
     
     Bytes["blit_string"](s,0,b[1],b[2],len);
-    return b[2]=new_position,0;
+    return b[2]=new_position;
     };
 
 var
@@ -146,7 +146,7 @@ var
     if(b[2]+len>b[3]){resize(b,len)}else{}
     
     Pervasives["really_input"](ic,b[1],b[2],len);
-    return b[2]=b[2]+len,0;
+    return b[2]=b[2]+len;
     };
 
 var
@@ -158,7 +158,10 @@ var
   function(param)
    {if(param!==40)
      {if(param!==123)
-       {throw [0,Assert_failure,[0,"buffer.ml",115,9]];}
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"buffer.ml",115,9]];
+        }
       else
        {return 125;}
       }
@@ -173,7 +176,7 @@ var
      advance=
       function(k,i,lim)
        {if(i>=lim)
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         else
          {if(s[i]===opening)
            {return advance(k+1,i+1,lim);}
@@ -226,7 +229,7 @@ var
  find_ident=
   function(s,start,lim)
    {if(start>=lim)
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     else
      {var c=s[start];
       

@@ -8,14 +8,14 @@ var
  init=
   function(l,f)
    {if(l===0)
-     {return [];}
+     {return [0];}
     else
      {if(l<0)
        {return Pervasives["invalid_arg"]("Array.init");}
       else
        {var res=CamlPrimitive["caml_make_vect"](l,f(0));
         
-        for(var i=1;i<=-1+l;i++){res[i]=f(i),0}
+        for(var i=1;i<=-1+l;i++){res[i+1]=f(i)}
         
         return res;
         }
@@ -25,10 +25,10 @@ var
 var
  make_matrix=
   function(sx,sy,init)
-   {var res=CamlPrimitive["caml_make_vect"](sx,[]);
+   {var res=CamlPrimitive["caml_make_vect"](sx,[0]);
     
     for(var x=0;x<=-1+sx;x++)
-     {res[x]=CamlPrimitive["caml_make_vect"](sy,init),0}
+     {res[x+1]=CamlPrimitive["caml_make_vect"](sy,init)}
     
     return res;
     };
@@ -40,7 +40,7 @@ var
   function(a)
    {var l=a["length"];
     
-    if(l===0){return [];}else{return CamlPrimitive["caml_array_sub"](a,0,l);}
+    if(l===0){return [0];}else{return CamlPrimitive["caml_array_sub"](a,0,l);}
     };
 
 var
@@ -73,7 +73,7 @@ var
    {if(ofs<0||len<0||ofs>a["length"]-len)
      {return Pervasives["invalid_arg"]("Array.fill");}
     else
-     {for(var i=ofs;i<=ofs+len-1;i++){a[i]=v,0}}
+     {for(var i=ofs;i<=ofs+len-1;i++){a[i+1]=v}return 0;}
     };
 
 var
@@ -85,7 +85,7 @@ var
      {return CamlPrimitive["caml_array_blit"](a1,ofs1,a2,ofs2,len);}
     };
 
-var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}};
+var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i+1])}return 0;};
 
 var
  map=
@@ -93,17 +93,19 @@ var
    {var l=a["length"];
     
     if(l===0)
-     {return [];}
+     {return [0];}
     else
-     {var r=CamlPrimitive["caml_make_vect"](l,f(a[0]));
+     {var r=CamlPrimitive["caml_make_vect"](l,f(a[1]));
       
-      for(var i=1;i<=l-1;i++){r[i]=f(a[i]),0}
+      for(var i=1;i<=l-1;i++){r[i+1]=f(a[i+1])}
       
       return r;
       }
     };
 
-var iteri=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i])}};
+var
+ iteri=
+  function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i+1])}return 0;};
 
 var
  mapi=
@@ -111,11 +113,11 @@ var
    {var l=a["length"];
     
     if(l===0)
-     {return [];}
+     {return [0];}
     else
-     {var r=CamlPrimitive["caml_make_vect"](l,f(0,a[0]));
+     {var r=CamlPrimitive["caml_make_vect"](l,f(0,a[1]));
       
-      for(var i=1;i<=l-1;i++){r[i]=f(i,a[i]),0}
+      for(var i=1;i<=l-1;i++){r[i+1]=f(i,a[i+1])}
       
       return r;
       }
@@ -127,7 +129,7 @@ var
    {var
      tolist=
       function(i,res)
-       {if(i<0){return res;}else{return tolist(i-1,/* :: */[0,a[i],res]);}};
+       {if(i<0){return res;}else{return tolist(i-1,/* :: */[0,a[i+1],res]);}};
     
     return tolist(a["length"]-1,/* [] */0);
     };
@@ -155,7 +157,7 @@ var
             
             var hd$1=param[1];
             
-            a[i]=hd$1,0;
+            a[i+1]=hd$1;
             return fill$1(i+1,tl$1);
             }
           else
@@ -165,7 +167,7 @@ var
       return fill$1(1,tl);
       }
     else
-     {return [];}
+     {return [0];}
     };
 
 var
@@ -173,7 +175,7 @@ var
   function(f,x,a)
    {var r=[0,x];
     
-    for(var i=0;i<=a["length"]-1;i++){r[1]=f(r[1],a[i]),0}
+    for(var i=0;i<=a["length"]-1;i++){r[1]=f(r[1],a[i+1])}
     
     return r[1];
     };
@@ -183,7 +185,7 @@ var
   function(f,a,x)
    {var r=[0,x];
     
-    for(var i=a["length"]-1;i>=0;i--){r[1]=f(a[i],r[1]),0}
+    for(var i=a["length"]-1;i>=0;i--){r[1]=f(a[i+1],r[1])}
     
     return r[1];
     };
@@ -201,14 +203,14 @@ var
         var x=[0,i31];
         
         if(i31+2<l)
-         {if(cmp(a[i31],a[i31+1])<0){x[1]=i31+1,0}else{}
+         {if(cmp(a[i31+1],a[i31+1+1])<0){x[1]=i31+1}else{}
           
-          if(cmp(a[x[1]],a[i31+2])<0){x[1]=i31+2,0}else{}
+          if(cmp(a[x[1]+1],a[i31+2+1])<0){x[1]=i31+2}else{}
           
           return x[1];
           }
         else
-         {if(i31+1<l&&cmp(a[i31],a[i31+1])<0)
+         {if(i31+1<l&&cmp(a[i31+1],a[i31+1+1])<0)
            {return i31+1;}
           else
            {if(i31<l){return i31;}else{throw [0,Bottom,i];}}
@@ -220,10 +222,10 @@ var
       function(l,i,e)
        {var j=maxson(l,i);
         
-        if(cmp(a[j],e)>0)
-         {a[i]=a[j],0;return trickledown(l,j,e);}
+        if(cmp(a[j+1],e)>0)
+         {a[i+1]=a[j+1];return trickledown(l,j,e);}
         else
-         {return a[i]=e,0;}
+         {return a[i+1]=e;}
         };
     
     var
@@ -234,13 +236,13 @@ var
         catch(exn)
          {var tag=exn[1];
           
-          if(tag===Bottom){var i$1=exn[2];return a[i$1]=e,0;}else{throw exn;}
+          if(tag===Bottom){var i$1=exn[2];return a[i$1+1]=e;}else{throw exn;}
           }
         };
     
     var
      bubbledown=
-      function(l,i){var j=maxson(l,i);a[i]=a[j],0;return bubbledown(l,j);};
+      function(l,i){var j=maxson(l,i);a[i+1]=a[j+1];return bubbledown(l,j);};
     
     var
      bubble=
@@ -259,24 +261,30 @@ var
       function(i,e)
        {var father=(i-1)/3;
         
-        if(i!==father){}else{throw [0,Assert_failure,[0,"array.ml",168,4]];}
+        if(i!==father)
+         {}
+        else
+         {throw [0,
+                 CamlPrimitive["caml_global_data"]["Assert_failure"],
+                 [0,"array.ml",168,4]];
+          }
         
-        if(cmp(a[father],e)<0)
-         {a[i]=a[father],0;
-          if(father>0){return trickleup(father,e);}else{return a[0]=e,0;}
+        if(cmp(a[father+1],e)<0)
+         {a[i+1]=a[father+1];
+          if(father>0){return trickleup(father,e);}else{return a[1]=e;}
           }
         else
-         {return a[i]=e,0;}
+         {return a[i+1]=e;}
         };
     
     var l=a["length"];
     
-    for(var i=(l+1)/3-1;i>=0;i--){trickle(l,i,a[i])}
+    for(var i=(l+1)/3-1;i>=0;i--){trickle(l,i,a[i+1])}
     
     for(var i$1=l-1;i$1>=2;i$1--)
-     {var e=a[i$1];a[i$1]=a[0],0,trickleup(bubble(i$1,0),e)}
+     {var e=a[i$1+1];a[i$1+1]=a[1],trickleup(bubble(i$1,0),e)}
     
-    if(l>1){var e$1=a[1];a[1]=a[0],0;return a[0]=e$1,0;}else{return 0;}
+    if(l>1){var e$1=a[2];a[2]=a[1];return a[1]=e$1;}else{return 0;}
     };
 
 var cutoff=5;
@@ -295,40 +303,41 @@ var
          loop=
           function(i1,s1,i2,s2,d)
            {if(cmp(s1,s2)<=0)
-             {dst[d]=s1,0;
+             {dst[d+1]=s1;
               var i1$1=i1+1;
               
               if(i1$1<src1r)
-               {return loop(i1$1,a[i1$1],i2,s2,d+1);}
+               {return loop(i1$1,a[i1$1+1],i2,s2,d+1);}
               else
                {return blit(src2,i2,dst,d+1,src2r-i2);}
               }
             else
-             {dst[d]=s2,0;
+             {dst[d+1]=s2;
               var i2$1=i2+1;
               
               if(i2$1<src2r)
-               {return loop(i1,s1,i2$1,src2[i2$1],d+1);}
+               {return loop(i1,s1,i2$1,src2[i2$1+1],d+1);}
               else
                {return blit(a,i1,dst,d+1,src1r-i1);}
               }
             };
         
-        return loop(src1ofs,a[src1ofs],src2ofs,src2[src2ofs],dstofs);
+        return loop(src1ofs,a[src1ofs+1],src2ofs,src2[src2ofs+1],dstofs);
         };
     
     var
      isortto=
       function(srcofs,dst,dstofs,len)
        {for(var i=0;i<=len-1;i++)
-         {var e=a[srcofs+i];
+         {var e=a[srcofs+i+1];
           
           var j=[0,dstofs+i-1];
           
-          while(j[1]>=dstofs&&cmp(dst[j[1]],e)>0)
-           {dst[j[1]+1]=dst[j[1]],0,j[0]--}
+          while(j[1]>=dstofs&&cmp(dst[j[1]+1],e)>0)
+           {dst[j[1]+1+1]=dst[j[1]+1],j[0]--}
           
-          dst[j[1]+1]=e,0}
+          dst[j[1]+1+1]=e}
+        return 0;
         };
     
     var
@@ -356,7 +365,7 @@ var
       
       var l2=l-l1;
       
-      var t=CamlPrimitive["caml_make_vect"](l2,a[0]);
+      var t=CamlPrimitive["caml_make_vect"](l2,a[1]);
       
       sortto(l1,t,0,l2);
       sortto(0,a,l2,l1);

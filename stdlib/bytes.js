@@ -20,7 +20,7 @@ var
   function(n,f)
    {var s=CamlPrimitive["caml_create_string"](n);
     
-    for(var i=0;i<=n-1;i++){s[i]=f(i),0}
+    for(var i=0;i<=n-1;i++){s[i]=f(i)}
     
     return s;
     };
@@ -110,9 +110,11 @@ var
      {return CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);}
     };
 
-var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}};
+var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}return 0;};
 
-var iteri=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i])}};
+var
+ iteri=
+  function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i])}return 0;};
 
 var
  concat=
@@ -126,8 +128,7 @@ var
       
       var len=[0,0];
       
-      List["iter"]
-       (function(s){num[0]++;return len[1]=len[1]+s["length"],0;},l);
+      List["iter"](function(s){num[0]++;return len[1]=len[1]+s["length"];},l);
       var
        r=
         CamlPrimitive["caml_create_string"](len[1]+sep["length"]*(num[1]-1));
@@ -138,9 +139,9 @@ var
       List["iter"]
        (function(s)
          {CamlPrimitive["caml_blit_string"](sep,0,r,pos[1],sep["length"]);
-          pos[1]=pos[1]+sep["length"],0;
+          pos[1]=pos[1]+sep["length"];
           CamlPrimitive["caml_blit_string"](s,0,r,pos[1],s["length"]);
-          return pos[1]=pos[1]+s["length"],0;
+          return pos[1]=pos[1]+s["length"];
           },
         tl);
       return r;
@@ -218,14 +219,14 @@ var
        {case 30:if(CamlPrimitive["caml_is_printable"](c)){$js=1;}else{$js=4;}
         case 29:$js=2;
         }
-      n[1]=n[1]+$js,0}
+      n[1]=n[1]+$js}
     
     if(n[1]===s["length"])
      {return copy(s);}
     else
      {var s$prime=CamlPrimitive["caml_create_string"](n[1]);
       
-      n[1]=0,0;
+      n[1]=0;
       for(var i$1=0;i$1<=s["length"]-1;i$1++)
        {var c$1=s[i$1];
         
@@ -237,7 +238,7 @@ var
          {var switcher$1=-1+switcher;
           
           if(56<switcher$1>>>0)
-           {s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=c$1,0}
+           {s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=c$1}
           else
            {exit$1=27;}
           }
@@ -256,12 +257,12 @@ var
               case 5:exit$1=27;
               case 6:exit$1=27;
               case 7:exit$1=27;
-              case 8:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=98,0;
-              case 9:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=116,0;
-              case 10:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=110,0;
+              case 8:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=98;
+              case 9:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=116;
+              case 10:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=110;
               case 11:exit$1=27;
               case 12:exit$1=27;
-              case 13:s$prime[n[1]]=92,0,n[0]++,s$prime[n[1]]=114,0
+              case 13:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=114
               }
             }
           }
@@ -271,32 +272,28 @@ var
            var c$2=c$1;
            
            if(CamlPrimitive["caml_is_printable"](c$2))
-            {s$prime[n[1]]=c$2,0}
+            {s$prime[n[1]]=c$2}
            else
             {var a=c$2;
              
              s$prime[n[1]]=
              92,
-             0,
              n[0]++,
              s$prime[n[1]]=
              48+
              a/
              100,
-             0,
              n[0]++,
              s$prime[n[1]]=
              48+
              a/
              10%
              10,
-             0,
              n[0]++,
              s$prime[n[1]]=
              48+
              a%
-             10,
-             0}
+             10}
            
           }
         
@@ -316,7 +313,7 @@ var
     else
      {var r=CamlPrimitive["caml_create_string"](l);
       
-      for(var i=0;i<=l-1;i++){r[i]=f(s[i]),0}
+      for(var i=0;i<=l-1;i++){r[i]=f(s[i])}
       
       return r;
       }
@@ -332,7 +329,7 @@ var
     else
      {var r=CamlPrimitive["caml_create_string"](l);
       
-      for(var i=0;i<=l-1;i++){r[i]=f(i,s[i]),0}
+      for(var i=0;i<=l-1;i++){r[i]=f(i,s[i])}
       
       return r;
       }
@@ -345,8 +342,7 @@ var lowercase=function(s){return map(Char["lowercase"],s);};
 var
  apply1=
   function(f,s)
-   {if(s["length"]===0){return s;}else{var r=copy(s);r[0]=f(s[0]),0;return r;}
-    };
+   {if(s["length"]===0){return s;}else{var r=copy(s);r[0]=f(s[0]);return r;}};
 
 var capitalize=function(s){return apply1(Char["uppercase"],s);};
 
@@ -356,7 +352,7 @@ var
  index_rec=
   function(s,lim,i,c)
    {if(i>=lim)
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     else
      {if(s[i]===c){return i;}else{return index_rec(s,lim,i+1,c);}}
     };
@@ -379,7 +375,7 @@ var
  rindex_rec=
   function(s,i,c)
    {if(i<0)
-     {throw Not_found;}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     else
      {if(s[i]===c){return i;}else{return rindex_rec(s,i-1,c);}}
     };
@@ -409,7 +405,12 @@ var
     else
      {try
        {index_rec(s,l,i,c);return /* true */1;}
-      catch(exn){if(exn===Not_found){return /* false */0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* false */0;}
+        else
+         {throw exn;}
+        }
       }
     };
 
@@ -425,7 +426,12 @@ var
     else
      {try
        {rindex_rec(s,i,c);return /* true */1;}
-      catch(exn){if(exn===Not_found){return /* false */0;}else{throw exn;}}
+      catch(exn)
+       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+         {return /* false */0;}
+        else
+         {throw exn;}
+        }
       }
     };
 

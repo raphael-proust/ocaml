@@ -56,7 +56,7 @@ var
    {var result=CamlPrimitive["caml_create_string"](32);
     
     for(var i=0;i<=15;i++)
-     {var x=d[i];result[i*2]=char_hex(x>>>4),0,result[i*2+1]=char_hex(x&15),0}
+     {var x=d[i];result[i*2]=char_hex(x>>>4),result[i*2+1]=char_hex(x&15)}
     
     return Bytes["unsafe_to_string"](result);
     };
@@ -64,7 +64,13 @@ var
 var
  from_hex=
   function(s)
-   {if(s["length"]!==32){throw [0,Invalid_argument,"Digest.from_hex"];}else{}
+   {if(s["length"]!==32)
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Invalid_argument"],
+             "Digest.from_hex"];
+      }
+    else
+     {}
     
     var
      digit=
@@ -80,14 +86,20 @@ var
         else
          {var switcher=-48+c;if(9<switcher>>>0){exit=6;}else{return c-48;}}
         
-        switch(exit){case 6:throw [0,Invalid_argument,"Digest.from_hex"];}
+        switch(exit)
+         {case 6:
+           throw [0,
+                  CamlPrimitive["caml_global_data"]["Invalid_argument"],
+                  "Digest.from_hex"];
+           
+          }
         };
     
     var $$byte=function(i){return (digit(s[i])<<4)+digit(s[i+1]);};
     
     var result=CamlPrimitive["caml_create_string"](16);
     
-    for(var i=0;i<=15;i++){result[i]=Char["chr"]($$byte(2*i)),0}
+    for(var i=0;i<=15;i++){result[i]=Char["chr"]($$byte(2*i))}
     
     return Bytes["unsafe_to_string"](result);
     };

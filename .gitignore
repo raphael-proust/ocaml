@@ -2790,3 +2790,4 @@ stdlib/target_camlheader
 stdlib/target_camlheaderd
 
 *.raw
+node_modules

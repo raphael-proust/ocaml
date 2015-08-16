@@ -7,13 +7,13 @@ var Empty=CamlPrimitive["caml_set_oo_id"]([248,"Queue.Empty",0]);
 
 var create=function(param){return /* record */[0,0,/* None */0];};
 
-var clear=function(q){q[1]=0,0;return q[2]=/* None */0,0;};
+var clear=function(q){q[1]=0;return q[2]=/* None */0;};
 
 var
  add=
   function(x,q)
    {if(q[1]===0)
-     {var cell=/* record */[0,x,cell];q[1]=1,0;return q[2]=cell,0;}
+     {var cell=/* record */[0,x,cell];q[1]=1;return q[2]=cell;}
     else
      {var tail=q[2];
       
@@ -21,9 +21,9 @@ var
       
       var cell$1=/* record */[0,x,head];
       
-      q[1]=q[1]+1,0;
-      tail[2]=cell$1,0;
-      return q[2]=cell$1,0;
+      q[1]=q[1]+1;
+      tail[2]=cell$1;
+      return q[2]=cell$1;
       }
     };
 
@@ -38,12 +38,12 @@ var
   function(q)
    {if(q[1]===0){throw Empty;}else{}
     
-    q[1]=q[1]-1,0;
+    q[1]=q[1]-1;
     var tail=q[2];
     
     var head=tail[2];
     
-    if(head===tail){q[2]=/* None */0,0}else{tail[2]=head[2],0}
+    if(head===tail){q[2]=/* None */0}else{tail[2]=head[2]}
     
     return head[1];
     };
@@ -66,7 +66,7 @@ var
          {if(cell!==tail)
            {var res=/* record */[0,cell[1],tail$prime];
             
-            prev[2]=res,0;
+            prev[2]=res;
             return copy$1(res,cell[2]);
             }
           else
@@ -135,12 +135,12 @@ var
         
         var head2=tail2[2];
         
-        tail1[2]=head2,0,tail2[2]=head1,0}
+        tail1[2]=head2,tail2[2]=head1}
       else
        {}
       
-      q2[1]=q2[1]+length1,0;
-      return q2[2]=tail1,0;
+      q2[1]=q2[1]+length1;
+      return q2[2]=tail1;
       }
     else
      {return 0;}

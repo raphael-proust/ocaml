@@ -672,7 +672,9 @@ module rec
   Compile_primitive:sig
                       val jsop_of_comp : Lambda.comparison -> J.binop
                       val compile_primitive :
-                        Lambda.primitive -> J.expression list -> J.expression
+                        Gen_util.st ->
+                          Lambda.primitive ->
+                            J.expression list -> J.expression
                       val compile_const :
                         Lambda.structured_constant -> J.expression
                     end =
@@ -693,7 +695,11 @@ module rec
       | Variant x -> Some ("`" ^ x)
       | Record  -> Some "record"
       | NA  -> None
-    let compile_primitive (prim : Lambda.primitive)
+    let decorate_side_effect (st : Gen_util.st) e =
+      match st with
+      | EffectCall  -> e
+      | Assign _|Declare _|NeedValue  -> E.seq e (E.unit ())
+    let compile_primitive (st : Gen_util.st) (prim : Lambda.primitive)
       (args : J.expression list) =
       (match prim with
        | Pmakeblock (tag,tag_info,_) ->
@@ -793,7 +799,9 @@ module rec
             | e1::e2::[] -> E.bin op e1 e2
             | _ -> E.unknown_primitive prim)
        | Pgetglobal i ->
-           if Ident.global i then E.var i else E.unknown_primitive prim
+           if Ident.is_predef_exn i
+           then E.global i.name
+           else if Ident.global i then E.var i else E.unknown_primitive prim
        | Praise _raise_kind -> E.unknown_primitive prim
        | Prevapply _ ->
            (match args with
@@ -806,34 +814,48 @@ module rec
        | Ploc kind -> E.unknown_primitive prim
        | Pintoffloat  ->
            (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
-       | Psetfield (i,_) ->
-           (match args with
-            | e0::e1::[] ->
-                E.seq (E.eq (E.access e0 (E.int (i + 1))) e1) (E.unit ())
-            | _ -> E.unknown_primitive prim)
-       | Pfloatfield i ->
-           (match args with
-            | e::[] -> E.access e (E.int i)
-            | _ -> E.unknown_primitive prim)
-       | Psetfloatfield i ->
-           (match args with
-            | e::e0::[] -> E.seq (E.eq (E.access e (E.int i)) e0) (E.unit ())
-            | _ -> E.unknown_primitive prim)
        | Parraylength _|Pstringlength  ->
            (match args with
             | e::[] -> E.access e (E.str "length")
             | _ -> E.unknown_primitive prim)
-       | Pmakearray i ->
-           (match i with
-            | Pgenarray |Paddrarray |Pintarray |Pfloatarray  -> E.arr args)
-       | Parrayrefu _|Parrayrefs _|Pstringrefu |Pstringrefs  ->
+       | Psetfield (i,_) ->
+           (match args with
+            | e0::e1::[] ->
+                decorate_side_effect st
+                  (E.eq (E.access e0 (E.int (i + 1))) e1)
+            | _ -> E.unknown_primitive prim)
+       | Psetfloatfield i ->
+           (match args with
+            | e::e0::[] ->
+                decorate_side_effect st
+                  (E.eq (E.access e (E.int (i + 1))) e0)
+            | _ -> E.unknown_primitive prim)
+       | Parraysetu _|Parraysets _ ->
+           (match args with
+            | e::e0::e1::[] ->
+                decorate_side_effect st (E.eq (E.access e (E.inc e0)) e1)
+            | _ -> E.unknown_primitive prim)
+       | Pstringsetu |Pstringsets  ->
+           (match args with
+            | e::e0::e1::[] ->
+                decorate_side_effect st (E.eq (E.access e e0) e1)
+            | _ -> E.unknown_primitive prim)
+       | Pfloatfield i ->
+           (match args with
+            | e::[] -> E.access e (E.int (i + 1))
+            | _ -> E.unknown_primitive prim)
+       | Parrayrefu _|Parrayrefs _ ->
+           (match args with
+            | e::e1::[] -> E.access e (E.inc e1)
+            | _ -> E.unknown_primitive prim)
+       | Pstringrefu |Pstringrefs  ->
            (match args with
             | e::e1::[] -> E.access e e1
             | _ -> E.unknown_primitive prim)
-       | Parraysetu _|Parraysets _|Pstringsetu |Pstringsets  ->
-           (match args with
-            | e::e0::e1::[] -> E.seq (E.eq (E.access e e0) e1) (E.unit ())
-            | _ -> E.unknown_primitive prim)
+       | Pmakearray i ->
+           (match i with
+            | Pgenarray |Paddrarray |Pintarray  -> E.arr ((E.int 0) :: args)
+            | Pfloatarray  -> E.arr ((E.int Obj.double_array_tag) :: args))
        | Pbintofint _|Pintofbint _|Pfloatofint  ->
            (match args with | e::[] -> e | _ -> E.unknown_primitive prim)
        | Pabsfloat  ->
@@ -1021,7 +1043,8 @@ module rec
            ignore (Pp_js.program cxt p [statement_of_opt_expr exp])
        end and
             J_helper:sig
-                       val prim : string
+                       val prim : string[@@ocaml.doc
+                                          " The [CamlPrimtivie] primitives are from this module, in the future,\n    we might split into several small modules\n"]
                        module Exp :
                        sig
                          type t = J.expression
@@ -1065,6 +1088,9 @@ module rec
                            " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
                          val prim : ?comment:string -> string -> t[@@ocaml.doc
                                                                     " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
+                         val global : ?comment:string -> string -> t[@@ocaml.doc
+                                                                    " [global \"xx\"] -> CamlPrimtivie[\"caml_global_data\"][\"xx\"]\n      this name is subject to change, don't use it externally\n   "]
+                         val inc : ?comment:string -> t -> t
                        end
                        module Stmt :
                        sig
@@ -1211,8 +1237,16 @@ module rec
                   let undefined ?comment  () = js_var ?comment "undefined"
                   let math ?comment  v =
                     access ?comment (js_var "Math") (str v)
+                  let inc ?comment  (e : t) =
+                    match e with
+                    | { expression_desc = ENum i;_} ->
+                        { e with expression_desc = (ENum (i +. 1.)) }
+                    | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
+                                                        " handle comment "]
                   let prim ?comment  v =
                     access ?comment (js_var prim) (str v)
+                  let global ?comment  v =
+                    access (prim ?comment "caml_global_data") (str v)
                 end
               module Stmt =
                 struct
@@ -1403,7 +1437,7 @@ module rec
                                     | _ -> assert false) args_lambda) in
                           let args_code = List.concat args_block in
                           let exp =
-                            Compile_primitive.compile_primitive prim
+                            Compile_primitive.compile_primitive st prim
                               args_expr in
                           Gen_util.handle_block_return st should_return lam
                             args_code exp
@@ -1693,29 +1727,32 @@ module rec
                                          match direction with
                                          | Upto  -> (J.Le, J.IncrA)
                                          | Downto  -> (J.Ge, J.DecrA) in
-                                       let open J_helper.Stmt in
-                                         for_
-                                           (Right [(id, (Some (e1, J.N)))])
-                                           ~pred:(E.bin cmp (E.var id) e2)
-                                           ~step:(E.un inc (E.var id))
-                                           (block
-                                              (Gen_util.block_of_output @@
-                                                 (compile_lambda
-                                                    {
-                                                      cxt with
-                                                      should_return = false;
-                                                      st = EffectCall
-                                                    } body))))])
+                                       S.for_
+                                         (Right [(id, (Some (e1, J.N)))])
+                                         ~pred:(E.bin cmp (E.var id) e2)
+                                         ~step:(E.un inc (E.var id))
+                                         (S.block
+                                            (Gen_util.block_of_output @@
+                                               (compile_lambda
+                                                  {
+                                                    cxt with
+                                                    should_return = false;
+                                                    st = EffectCall
+                                                  } body))))])
                             | _ -> assert false in
-                          (match st with
-                           | EffectCall  -> (block, None)
-                           | Declare x ->
+                          (match (st, should_return) with
+                           | (EffectCall ,false ) -> (block, None)
+                           | (EffectCall ,true ) ->
+                               ((block @ [S.return_unit ()]), None)
+                           | ((Declare _|Assign _),true ) ->
+                               ([S.unknown_lambda lam], None)
+                           | (Declare x,false ) ->
                                ((block @ [J_helper.Stmt.declare_unit x]),
                                  None)
-                           | Assign x ->
+                           | (Assign x,false ) ->
                                ((block @ [J_helper.Stmt.assign_unit x]),
                                  None)
-                           | NeedValue  -> (block, (Some (E.unit ()))))
+                           | (NeedValue ,_) -> (block, (Some (E.unit ()))))
                       | Lassign (id,lambda) ->
                           let block =
                             match compile_lambda

@@ -195,7 +195,7 @@ var
           if(l){return min_elt(l);}else{var v=param[2];return v;}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var
@@ -209,7 +209,7 @@ var
           if(r){return max_elt(r);}else{return v;}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var
@@ -765,7 +765,7 @@ var
           if(c===0){return v;}else{return find(x,c<0?l:r);}
           }
         else
-         {throw Not_found;}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
     
     var
@@ -887,7 +887,10 @@ var
                  return /* tuple */[0,create(left,mid,right),l$8];
                  }
                else
-                {throw [0,Assert_failure,[0,"set.ml",372,18]];}
+                {throw [0,
+                        CamlPrimitive["caml_global_data"]["Assert_failure"],
+                        [0,"set.ml",372,18]];
+                 }
                
               }
             };

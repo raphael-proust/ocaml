@@ -18,7 +18,7 @@ var bufpos=[0,0];
 
 var
  reset_buffer=
-  function(param){buffer[1]=initial_buffer,0;return bufpos[1]=0,0;};
+  function(param){buffer[1]=initial_buffer;return bufpos[1]=0;};
 
 var
  store=
@@ -26,11 +26,11 @@ var
    {if(bufpos[1]>=buffer[1]["length"])
      {var newbuffer=CamlPrimitive["caml_create_string"](2*bufpos[1]);
       
-      Bytes["blit"](buffer[1],0,newbuffer,0,bufpos[1]),buffer[1]=newbuffer,0}
+      Bytes["blit"](buffer[1],0,newbuffer,0,bufpos[1]),buffer[1]=newbuffer}
     else
      {}
     
-    buffer[1][bufpos[1]]=c,0;
+    buffer[1][bufpos[1]]=c;
     return bufpos[0]++;
     };
 
@@ -39,7 +39,7 @@ var
   function(param)
    {var s=Bytes["sub_string"](buffer[1],0,bufpos[1]);
     
-    buffer[1]=initial_buffer,0;
+    buffer[1]=initial_buffer;
     return s;
     };
 
@@ -57,7 +57,11 @@ var
        {try
          {return Hashtbl["find"](kwd_table,id);}
         catch(exn)
-         {if(exn===Not_found){return /* Ident */[1,id];}else{throw exn;}}
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {return /* Ident */[1,id];}
+          else
+           {throw exn;}
+          }
         };
     
     var
@@ -68,7 +72,7 @@ var
         try
          {return Hashtbl["find"](kwd_table,s);}
         catch(exn)
-         {if(exn===Not_found)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {throw [0,Stream["Error"],Pervasives["^"]("Illegal character ",s)];
             }
           else

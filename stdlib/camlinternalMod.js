@@ -28,11 +28,29 @@ var
          
          var pad8=8;
          
-         return function(param){throw [0,Undefined_recursive_module,loc];};
+         return function(param)
+          {
+           
+           
+           
+           
+           
+           
+           
+           throw [0,
+                  CamlPrimitive["caml_global_data"]
+                   ["Undefined_recursive_module"],
+                  loc];
+           };
          
         case 1:
          return [246,
-                 function(param){throw [0,Undefined_recursive_module,loc];}];
+                 function(param)
+                  {throw [0,
+                          CamlPrimitive["caml_global_data"]
+                           ["Undefined_recursive_module"],
+                          loc];
+                   }];
          
         case 2:return CamlinternalOO["dummy_class"](loc);
         }}
@@ -49,9 +67,13 @@ var
    {if(o["length"]>=n["length"])
      {}
     else
-     {throw [0,Assert_failure,[0,"camlinternalMod.ml",40,2]];}
+     {throw [0,
+             CamlPrimitive["caml_global_data"]["Assert_failure"],
+             [0,"camlinternalMod.ml",40,2]];
+      }
     
-    for(var i=0;i<=n["length"]-1;i++){o[i]=n[i],0}
+    for(var i=0;i<=n["length"]-1;i++){o[i+1]=n[i+1]}
+    return 0;
     };
 
 var
@@ -73,15 +95,15 @@ var
          
         case 1:
          if(CamlPrimitive["caml_obj_tag"](n)===Obj["lazy_tag"])
-          {return o[0]=n[0],0;}
+          {return o[1]=n[1];}
          else
           {if(CamlPrimitive["caml_obj_tag"](n)===Obj["forward_tag"])
             {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
-             return o[0]=n[0],0;
+             return o[1]=n[1];
              }
            else
             {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
-             return o[0]=n,0;
+             return o[1]=n;
              }
            }
          
@@ -89,7 +111,10 @@ var
          if(CamlPrimitive["caml_obj_tag"](n)===0&&n["length"]===4)
           {}
          else
-          {throw [0,Assert_failure,[0,"camlinternalMod.ml",63,6]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"camlinternalMod.ml",63,6]];
+           }
          
          return overwrite(o,n);
          
@@ -103,9 +128,14 @@ var
           (CamlPrimitive["caml_obj_tag"](n)===0&&n["length"]>=comps["length"])
           {}
          else
-          {throw [0,Assert_failure,[0,"camlinternalMod.ml",66,6]];}
+          {throw [0,
+                  CamlPrimitive["caml_global_data"]["Assert_failure"],
+                  [0,"camlinternalMod.ml",66,6]];
+           }
          
-         for(var i=0;i<=comps["length"]-1;i++){update_mod(comps[i],o[i],n[i])}
+         for(var i=0;i<=comps["length"]-1;i++)
+          {update_mod(comps[i+1],o[i+1],n[i+1])}
+         return 0;
          
         case 1:return /* () */0;
         }}

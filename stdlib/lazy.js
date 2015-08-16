@@ -12,11 +12,7 @@ var force_val=CamlinternalLazy["force_val"];
 var
  from_fun=
   function(f)
-   {var x=CamlPrimitive["caml_obj_block"](Obj["lazy_tag"],1);
-    
-    x[0]=f,0;
-    return x;
-    };
+   {var x=CamlPrimitive["caml_obj_block"](Obj["lazy_tag"],1);x[1]=f;return x;};
 
 var
  from_val=

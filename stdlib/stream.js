@@ -10,12 +10,12 @@ var Failure=CamlPrimitive["caml_set_oo_id"]([248,"Stream.Failure",0]);
 
 var $$Error=CamlPrimitive["caml_set_oo_id"]([248,"Stream.Error",0]);
 
-var set_data=function(s,d){return s[1]=d,0;};
+var set_data=function(s,d){return s[2]=d;};
 
 var
  fill_buff=
   function(b)
-   {b[3]=Pervasives["input"](b[1],b[2],0,b[2]["length"]),0;return b[4]=0,0;};
+   {b[3]=Pervasives["input"](b[1],b[2],0,b[2]["length"]);return b[4]=0;};
 
 var
  get_data=
@@ -45,7 +45,11 @@ var
               
               return /* Scons */[0,a,/* Sapp */[1,d11,d2]];
               
-             default:throw [0,Assert_failure,[0,"stream.ml",53,12]];}}
+             default:
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"stream.ml",53,12]];
+              }}
          
         case 2:
          var f=d[1];
@@ -69,11 +73,7 @@ var
           {var match$2=match$1[1];
            
            if(match$2)
-            {var a$1=match$2[1];
-             
-             g[1]=/* None */0,0;
-             return /* Scons */[0,a$1,d];
-             }
+            {var a$1=match$2[1];g[1]=/* None */0;return /* Scons */[0,a$1,d];}
            else
             {return /* Sempty */0;}
            }
@@ -85,7 +85,7 @@ var
            if(match$3)
             {var a$2=match$3[1];return /* Scons */[0,a$2,d];}
            else
-            {g$1[1]=[/* Some */0,/* None */0],0;return /* Sempty */0;}
+            {g$1[1]=[/* Some */0,/* None */0];return /* Sempty */0;}
            }
          
         case 4:
@@ -96,7 +96,7 @@ var
          if(b[3]===0)
           {return /* Sempty */0;}
          else
-          {var r=b[2][b[4]];b[4]=1+b[4],0;return /* Scons */[0,r,d];}
+          {var r=b[2][b[4]];b[4]=1+b[4];return /* Scons */[0,r,d];}
          
         }}
     
@@ -121,7 +121,11 @@ var
          else
           {switch(d[0])
             {case 0:var a$1=d[1];set_data(s,d);return /* Some */[0,a$1];
-             default:throw [0,Assert_failure,[0,"stream.ml",82,12]];}}
+             default:
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"stream.ml",82,12]];
+              }}
          
         case 2:
          var f=match[1];
@@ -145,7 +149,7 @@ var
          if(match$1)
           {var a$2=match$1[1];return a$2;}
          else
-          {var x=g[2](s[1]);g[1]=/* Some */[0,x],0;return x;}
+          {var x=g[2](s[1]);g[1]=/* Some */[0,x];return x;}
          
         case 4:
          var b=match[1];
@@ -171,15 +175,15 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 0:var d=match[2];s[1]=1+s[1],0;return set_data(s,d);
+       {case 0:var d=match[2];s[1]=1+s[1];return set_data(s,d);
         case 3:
          var g=match[1];
          
          var match$1=g[1];
          
-         if(match$1){s[1]=1+s[1],0;return g[1]=/* None */0,0;}else{exit=24;}
+         if(match$1){s[1]=1+s[1];return g[1]=/* None */0;}else{exit=24;}
          
-        case 4:var b=match[1];s[1]=1+s[1],0;return b[4]=1+b[4],0;
+        case 4:var b=match[1];s[1]=1+s[1];return b[4]=1+b[4];
         default:exit=24;}}
     
     switch(exit)
@@ -226,7 +230,7 @@ var
     
     var al=match[1];
     
-    s[1]=s[1]-len,0;
+    s[1]=s[1]-len;
     set_data(s,d);
     return al;
     };

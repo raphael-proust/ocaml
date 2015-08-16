@@ -14,10 +14,10 @@ var
    {var result=CamlPrimitive["caml_lex_engine"](tbl,state,buf);
     
     if(result>=0)
-     {buf[11]=buf[12],0;
+     {buf[11]=buf[12];
       var init=buf[12];
       
-      buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]],0}
+      buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]]}
     else
      {}
     
@@ -30,10 +30,10 @@ var
    {var result=CamlPrimitive["caml_new_lex_engine"](tbl,state,buf);
     
     if(result>=0)
-     {buf[11]=buf[12],0;
+     {buf[11]=buf[12];
       var init=buf[12];
       
-      buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]],0}
+      buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]]}
     else
      {}
     
@@ -45,7 +45,7 @@ var
   function(read_fun,aux_buffer,lexbuf)
    {var read=read_fun(aux_buffer,aux_buffer["length"]);
     
-    if(read>0){var n=read;}else{lexbuf[9]=/* true */1,0;var n=0;}
+    if(read>0){var n=read;}else{lexbuf[9]=/* true */1;var n=0;}
     
     if(lexbuf[3]+n>lexbuf[2]["length"])
      {if(lexbuf[3]-lexbuf[5]+n<=lexbuf[2]["length"])
@@ -64,25 +64,25 @@ var
         
         Bytes["blit"](lexbuf[2],lexbuf[5],newbuf,0,lexbuf[3]-lexbuf[5]),
         lexbuf[2]=
-        newbuf,
-        0}
+        newbuf}
       
       var s=lexbuf[5];
       
-      lexbuf[4]=lexbuf[4]+s,0;
-      lexbuf[6]=lexbuf[6]-s,0;
-      lexbuf[5]=0,0;
-      lexbuf[7]=lexbuf[7]-s,0;
-      lexbuf[3]=lexbuf[3]-s,0;
+      lexbuf[4]=lexbuf[4]+s;
+      lexbuf[6]=lexbuf[6]-s;
+      lexbuf[5]=0;
+      lexbuf[7]=lexbuf[7]-s;
+      lexbuf[3]=lexbuf[3]-s;
       var t=lexbuf[10];
       
-      for(var i=0;i<=t["length"]-1;i++){var v=t[i];if(v>=0){t[i]=v-s,0}else{}}
+      for(var i=0;i<=t["length"]-1;i++)
+       {var v=t[i+1];if(v>=0){t[i+1]=v-s}else{}}
       }
     else
      {}
     
     Bytes["blit"](aux_buffer,0,lexbuf[2],lexbuf[3],n);
-    return lexbuf[3]=lexbuf[3]+n,0;
+    return lexbuf[3]=lexbuf[3]+n;
     };
 
 var zero_pos=[/* record */0,"",1,0,0];
@@ -100,7 +100,7 @@ var
             0,
             0,
             /* false */0,
-            [],
+            [0],
             zero_pos,
             zero_pos];
     };
@@ -116,7 +116,7 @@ var
  from_string=
   function(s)
    {return /* record */[0,
-            function(lexbuf){return lexbuf[9]=/* true */1,0;},
+            function(lexbuf){return lexbuf[9]=/* true */1;},
             Bytes["of_string"](s),
             s["length"],
             0,
@@ -125,7 +125,7 @@ var
             0,
             0,
             /* true */1,
-            [],
+            [0],
             zero_pos,
             zero_pos];
     };
@@ -179,18 +179,18 @@ var
     
     var init=lcp;
     
-    return lexbuf[12]=/* record */[0,init[1],lcp[2]+1,lcp[4],init[4]],0;
+    return lexbuf[12]=/* record */[0,init[1],lcp[2]+1,lcp[4],init[4]];
     };
 
 var
  flush_input=
   function(lb)
-   {lb[6]=0,0;
-    lb[4]=0,0;
+   {lb[6]=0;
+    lb[4]=0;
     var init=lb[12];
     
-    lb[12]=/* record */[0,init[1],init[2],init[3],0],0;
-    return lb[3]=0,0;
+    lb[12]=/* record */[0,init[1],init[2],init[3],0];
+    return lb[3]=0;
     };
 
 module["exports"]=

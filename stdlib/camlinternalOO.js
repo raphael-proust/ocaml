@@ -31,9 +31,9 @@ var
   function(s)
    {var accu=[0,0];
     
-    for(var i=0;i<=s["length"]-1;i++){accu[1]=223*accu[1]+s[i],0}
+    for(var i=0;i<=s["length"]-1;i++){accu[1]=223*accu[1]+s[i]}
     
-    accu[1]=accu[1]&(1<<31)-1,0;
+    accu[1]=accu[1]&(1<<31)-1;
     if(accu[1]>1073741823){var tag=accu[1]-(1<<31);}else{var tag=accu[1];}
     
     return tag;
@@ -57,7 +57,7 @@ var
  dummy_table=
   /* record */[0,
    0,
-   [dummy_item],
+   [0,dummy_item],
    Meths[1],
    Labs[1],
    /* [] */0,
@@ -81,9 +81,9 @@ var
     
     var methods=CamlPrimitive["caml_make_vect"](len*2+2,dummy_met);
     
-    methods[0]=len,0;
-    methods[1]=fit_size(len)*Sys["word_size"]/8-1,0;
-    for(var i=0;i<=len-1;i++){methods[i*2+3]=pub_labels[i],0}
+    methods[1]=len;
+    methods[2]=fit_size(len)*Sys["word_size"]/8-1;
+    for(var i=0;i<=len-1;i++){methods[i*2+3+1]=pub_labels[i+1]}
     
     return /* record */[0,
             initial_object_size,
@@ -105,7 +105,7 @@ var
      {var new_buck=CamlPrimitive["caml_make_vect"](new_size,dummy_met);
       
       $$Array["blit"](array[2],0,new_buck,0,old_size);
-      return array[2]=new_buck,0;
+      return array[2]=new_buck;
       }
     else
      {return 0;}
@@ -114,7 +114,7 @@ var
 var
  put=
   function(array,label,element)
-   {resize(array,label+1);return array[2][label]=element,0;};
+   {resize(array,label+1);return array[2][label+1]=element;};
 
 var method_count=[0,0];
 
@@ -131,11 +131,11 @@ var
    {try
      {return Meths[22](name,table[3]);}
     catch(exn)
-     {if(exn===Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var label=new_method(table);
         
-        table[3]=Meths[4](name,label,table[3]),0;
-        table[4]=Labs[4](label,/* true */1,table[4]),0;
+        table[3]=Meths[4](name,label,table[3]);
+        table[4]=Labs[4](label,/* true */1,table[4]);
         return label;
         }
       else
@@ -154,7 +154,7 @@ var
     if(Labs[22](label,table[4]))
      {return put(table,label,element);}
     else
-     {return table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]],0;}
+     {return table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]];}
     };
 
 var
@@ -162,7 +162,12 @@ var
   function(table,label)
    {try
      {return List["assoc"](label,table[6]);}
-    catch(exn){if(exn===Not_found){return table[2][label];}else{throw exn;}}
+    catch(exn)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {return table[2][label+1];}
+      else
+       {throw exn;}
+      }
     };
 
 var
@@ -186,8 +191,7 @@ var
     table[5]=
     /* :: */[0,
      /* tuple */[0,table[3],table[4],table[6],table[7],virt_meth_labs,vars$1],
-     table[5]],
-    0;
+     table[5]];
     table[7]=
     Vars[11]
      (function(lab,info,tvars)
@@ -197,32 +201,36 @@ var
          {return tvars;}
         },
       table[7],
-      Vars[1]),
-    0;
+      Vars[1]);
     var by_name=[0,Meths[1]];
     
     var by_label=[0,Labs[1]];
     
     List["iter2"]
      (function(met,label)
-       {by_name[1]=Meths[4](met,label,by_name[1]),0;
+       {by_name[1]=Meths[4](met,label,by_name[1]);
         var $js;
         try
          {$js=Labs[22](label,table[4]);}
-        catch(exn){if(exn===Not_found){$js=/* true */1;}else{throw exn;}}
-        return by_label[1]=Labs[4](label,$js,by_label[1]),0;
+        catch(exn)
+         {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+           {$js=/* true */1;}
+          else
+           {throw exn;}
+          }
+        return by_label[1]=Labs[4](label,$js,by_label[1]);
         },
       concr_meths$1,
       concr_meth_labs);
     List["iter2"]
      (function(met,label)
-       {by_name[1]=Meths[4](met,label,by_name[1]),0;
-        return by_label[1]=Labs[4](label,/* false */0,by_label[1]),0;
+       {by_name[1]=Meths[4](met,label,by_name[1]);
+        return by_label[1]=Labs[4](label,/* false */0,by_label[1]);
         },
       virt_meths$1,
       virt_meth_labs);
-    table[3]=by_name[1],0;
-    table[4]=by_label[1],0;
+    table[3]=by_name[1];
+    table[4]=by_label[1];
     return table[6]=
            List["fold_right"]
             (function(met,hm)
@@ -234,8 +242,7 @@ var
                 {return /* :: */[0,met,hm];}
                },
              table[6],
-             /* [] */0),
-           0;
+             /* [] */0);
     };
 
 var
@@ -255,15 +262,14 @@ var
     
     var by_name=match[1];
     
-    table[5]=List["tl"](table[5]),0;
+    table[5]=List["tl"](table[5]);
     table[7]=
     List["fold_left"]
      (function(s,v){return Vars[4](v,Vars[22](v,table[7]),s);},
       saved_vars,
-      vars),
-    0;
-    table[3]=by_name,0;
-    table[4]=by_label,0;
+      vars);
+    table[3]=by_name;
+    table[4]=by_label;
     return table[6]=
            List["fold_right"]
             (function(met,hm)
@@ -275,13 +281,12 @@ var
                 {return /* :: */[0,met,hm];}
                },
              table[6],
-             saved_hidden_meths),
-           0;
+             saved_hidden_meths);
     };
 
 var
  new_slot=
-  function(table){var index=table[1];table[1]=index+1,0;return index;};
+  function(table){var index=table[1];table[1]=index+1;return index;};
 
 var
  new_variable=
@@ -289,11 +294,11 @@ var
    {try
      {return Vars[22](name,table[7]);}
     catch(exn)
-     {if(exn===Not_found)
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var index=new_slot(table);
         
         if(CamlPrimitive["caml_string_notequal"](name,""))
-         {table[7]=Vars[4](name,index,table[7]),0}
+         {table[7]=Vars[4](name,index,table[7])}
         else
          {}
         
@@ -307,7 +312,7 @@ var
 var
  to_array=
   function(arr)
-   {if(CamlPrimitive["caml_equal"](arr,0)){return [];}else{return arr;}};
+   {if(CamlPrimitive["caml_equal"](arr,0)){return [0];}else{return arr;}};
 
 var
  new_methods_variables=
@@ -320,10 +325,11 @@ var
     
     var res=CamlPrimitive["caml_make_vect"](nmeths+nvals,0);
     
-    for(var i=0;i<=nmeths-1;i++){res[i]=get_method_label(table,meths$1[i]),0}
+    for(var i=0;i<=nmeths-1;i++)
+     {res[i+1]=get_method_label(table,meths$1[i+1])}
     
     for(var i$1=0;i$1<=nvals-1;i$1++)
-     {res[i$1+nmeths]=new_variable(table,vals[i$1]),0}
+     {res[i$1+nmeths+1]=new_variable(table,vals[i$1+1])}
     
     return res;
     };
@@ -334,8 +340,11 @@ var
    {try
      {return Vars[22](name,table[7]);}
     catch(exn)
-     {if(exn===Not_found)
-       {throw [0,Assert_failure,[0,"camlinternalOO.ml",280,50]];}
+     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Assert_failure"],
+               [0,"camlinternalOO.ml",280,50]];
+        }
       else
        {throw exn;}
       }
@@ -347,13 +356,13 @@ var
 
 var
  add_initializer=
-  function(table,f){return table[8]=/* :: */[0,f,table[8]],0;};
+  function(table,f){return table[8]=/* :: */[0,f,table[8]];};
 
 var
  create_table=
   function(public_methods)
    {if(public_methods===0)
-     {return new_table([]);}
+     {return new_table([0]);}
     else
      {var tags=$$Array["map"](public_method_label,public_methods);
       
@@ -363,8 +372,8 @@ var
        (function(i,met)
          {var lab=i*2+2;
           
-          table[3]=Meths[4](met,lab,table[3]),0;
-          return table[4]=Labs[4](lab,/* true */1,table[4]),0;
+          table[3]=Meths[4](met,lab,table[3]);
+          return table[4]=Labs[4](lab,/* true */1,table[4]);
           },
         public_methods);
       return table;
@@ -374,9 +383,9 @@ var
 var
  init_class=
   function(table)
-   {inst_var_count[1]=inst_var_count[1]+table[1]-1,0;
-    table[8]=List["rev"](table[8]),0;
-    return resize(table,3+table[2][1]*16/Sys["word_size"]);
+   {inst_var_count[1]=inst_var_count[1]+table[1]-1;
+    table[8]=List["rev"](table[8]);
+    return resize(table,3+table[2][2]*16/Sys["word_size"]);
     };
 
 var
@@ -392,7 +401,7 @@ var
     widen(cla);
     return $$Array["concat"]
             (/* :: */[0,
-              [init],
+              [0,init],
               /* :: */[0,
                $$Array["map"](get_variable(cla),to_array(vals)),
                /* :: */[0,
@@ -422,14 +431,20 @@ var
     var env_init=class_init(table);
     
     init_class(table);
-    init_table[2]=class_init,0;
-    return init_table[1]=env_init,0;
+    init_table[2]=class_init;
+    return init_table[1]=env_init;
     };
 
 var
  dummy_class=
   function(loc)
-   {var undef=function(param){throw [0,Undefined_recursive_module,loc];};
+   {var
+     undef=
+      function(param)
+       {throw [0,
+               CamlPrimitive["caml_global_data"]["Undefined_recursive_module"],
+               loc];
+        };
     
     return /* tuple */[0,undef,undef,undef,0];
     };
@@ -439,7 +454,7 @@ var
   function(table)
    {var obj=CamlPrimitive["caml_obj_block"](Obj["object_tag"],table[1]);
     
-    obj[0]=table[2],0;
+    obj[1]=table[2];
     return CamlPrimitive["caml_set_oo_id"](obj);
     };
 
@@ -451,7 +466,7 @@ var
     else
      {var obj=CamlPrimitive["caml_obj_block"](Obj["object_tag"],table[1]);
       
-      obj[0]=table[2],0;
+      obj[1]=table[2];
       return CamlPrimitive["caml_set_oo_id"](obj);
       }
     };
@@ -503,9 +518,9 @@ var
     
     var r=[0,res];
     
-    for(var i=0;i<=n;i++){r[1]=/* Cons */[0,keys[i],r[1],/* Empty */0],0}
+    for(var i=0;i<=n;i++){r[1]=/* Cons */[0,keys[i+1],r[1],/* Empty */0]}
     
-    tables[2]=r[1],0;
+    tables[2]=r[1];
     return res;
     };
 
@@ -515,7 +530,7 @@ var
    {if(i<0)
      {return tables;}
     else
-     {var key=keys[i];
+     {var key=keys[i+1];
       
       var
        lookup_key=
@@ -528,7 +543,7 @@ var
             else
              {var next=/* Cons */[0,key,/* Empty */0,/* Empty */0];
               
-              tables[3]=next,0;
+              tables[3]=next;
               return build_path(i-1,keys,next);
               }
             }
@@ -551,22 +566,22 @@ var
 
 var get_const=function(x){return function(obj){return x;};};
 
-var get_var=function(n){return function(obj){return obj[n];};};
+var get_var=function(n){return function(obj){return obj[n+1];};};
 
-var get_env=function(e,n){return function(obj){return obj[e][n];};};
+var get_env=function(e,n){return function(obj){return obj[e+1][n+1];};};
 
 var
  get_meth=
   function(n)
    {return function(obj){/* unknown */"(sendself obj/1330 n/1329)";};};
 
-var set_var=function(n){return function(obj,x){return obj[n]=x,0;};};
+var set_var=function(n){return function(obj,x){return obj[n+1]=x;};};
 
 var app_const=function(f,x){return function(obj){return f(x);};};
 
-var app_var=function(f,n){return function(obj){return f(obj[n]);};};
+var app_var=function(f,n){return function(obj){return f(obj[n+1]);};};
 
-var app_env=function(f,e,n){return function(obj){return f(obj[e][n]);};};
+var app_env=function(f,e,n){return function(obj){return f(obj[e+1][n+1]);};};
 
 var
  app_meth=
@@ -577,7 +592,9 @@ var
 
 var app_const_const=function(f,x,y){return function(obj){return f(x,y);};};
 
-var app_const_var=function(f,x,n){return function(obj){return f(x,obj[n]);};};
+var
+ app_const_var=
+  function(f,x,n){return function(obj){return f(x,obj[n+1]);};};
 
 var
  app_const_meth=
@@ -586,7 +603,9 @@ var
      {/* unknown */"(sendself obj/1366 n/1365)";return f(x,0);};
     };
 
-var app_var_const=function(f,n,x){return function(obj){return f(obj[n],x);};};
+var
+ app_var_const=
+  function(f,n,x){return function(obj){return f(obj[n+1],x);};};
 
 var
  app_meth_const=
@@ -597,11 +616,11 @@ var
 
 var
  app_const_env=
-  function(f,x,e,n){return function(obj){return f(x,obj[e][n]);};};
+  function(f,x,e,n){return function(obj){return f(x,obj[e+1][n+1]);};};
 
 var
  app_env_const=
-  function(f,e,n,x){return function(obj){return f(obj[e][n],x);};};
+  function(f,e,n,x){return function(obj){return f(obj[e+1][n+1],x);};};
 
 var
  meth_app_const=
@@ -662,19 +681,19 @@ var
   function(table)
    {var n=new_method(table);
     
-    if(n%2===0||n>2+table[2][1]*16/Sys["word_size"])
+    if(n%2===0||n>2+table[2][2]*16/Sys["word_size"])
      {var n$1=n;}
     else
      {var n$1=new_method(table);}
     
-    table[2][n$1]=0,0;
+    table[2][n$1+1]=0;
     return n$1;
     };
 
 var
  method_impl=
   function(table,i,arr)
-   {var next=function(param){i[0]++;return arr[i[1]];};
+   {var next=function(param){i[0]++;return arr[i[1]+1];};
     
     var clo=next(/* () */0);
     
@@ -857,7 +876,7 @@ var
     var i=[0,0];
     
     while(i[1]<len)
-     {var label=methods[i[1]];
+     {var label=methods[i[1]+1];
       
       var clo=method_impl(table,i,methods);
       
