@@ -3619,7 +3619,7 @@ var
             idarg,
             arg,
             /* Lifthenelse */[12,
-             /* Lprim */[6,/* Pisint */33,/* :: */[0,varg,/* [] */0]],
+             /* Lprim */[6,/* Pisint */38,/* :: */[0,varg,/* [] */0]],
              varg,
              /* Lswitch */[7,
               varg,
@@ -4473,7 +4473,7 @@ var
  make_isout=
   function(h,arg)
    {return /* Lprim */[6,
-            /* Pisout */34,
+            /* Pisout */39,
             /* :: */[0,h,/* :: */[0,arg,/* [] */0]]];
     };
 
@@ -5617,7 +5617,7 @@ var
             {var
               lambda1$1=
                /* Lifthenelse */[12,
-                /* Lprim */[6,/* Pisint */33,/* :: */[0,arg,/* [] */0]],
+                /* Lprim */[6,/* Pisint */38,/* :: */[0,arg,/* [] */0]],
                 call_switcher(/* None */0,arg,0,match$6-1,consts$1),
                 match$10[1]];
              }
@@ -5726,7 +5726,7 @@ var
      test_int_or_block=
       function(arg,if_int,if_block)
        {return /* Lifthenelse */[12,
-                /* Lprim */[6,/* Pisint */33,/* :: */[0,arg,/* [] */0]],
+                /* Lprim */[6,/* Pisint */38,/* :: */[0,arg,/* [] */0]],
                 if_int,
                 if_block];
         };

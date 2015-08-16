@@ -155,8 +155,8 @@ let prim_size prim args =
   | Pduprecord _ -> 10 + List.length args
   | Pccall p -> (if p.prim_alloc then 10 else 4) + List.length args
   | Praise _ -> 4
-  | Pstringlength -> 5
-  | Pstringrefs | Pstringsets -> 6
+  | Pstringlength | Pbyteslength -> 5
+  | Pstringrefs | Pstringsets | Pbytesrefs | Pbytessets -> 6
   | Pmakearray kind -> 5 + List.length args
   | Parraylength kind -> if kind = Pgenarray then 6 else 2
   | Parrayrefu kind -> if kind = Pgenarray then 12 else 2
@@ -241,6 +241,7 @@ let rec is_pure_clambda = function
   | Uconst _ -> true
   | Uprim((Psetglobal _ | Psetfield _ | Psetfloatfield _ | Pduprecord _ |
            Pccall _ | Praise _ | Poffsetref _ | Pstringsetu | Pstringsets |
+           Pbytessetu | Pbytessets |
            Parraysetu _ | Parraysets _ | Pbigarrayset _), _, _) -> false
   | Uprim(p, args, _) -> List.for_all is_pure_clambda args
   | _ -> false
@@ -475,7 +476,7 @@ let simplif_prim_pure fpc p (args, approxs) dbg =
     when n < List.length ul ->
       (List.nth ul n, field_approx n approx)
   (* Strings *)
-  | Pstringlength, _, [ Value_const(Uconst_ref(_, Uconst_string s)) ] ->
+  | (Pstringlength | Pbyteslength), _, [ Value_const(Uconst_ref(_, Uconst_string s)) ] ->
       make_const_int (String.length s)
   (* Identity *)
   | (Pidentity | Pbytes_of_string | Pbytes_to_string), [arg1], [app1] ->
@@ -666,6 +667,7 @@ let rec is_pure = function
   | Lconst cst -> true
   | Lprim((Psetglobal _ | Psetfield _ | Psetfloatfield _ | Pduprecord _ |
            Pccall _ | Praise _ | Poffsetref _ | Pstringsetu | Pstringsets |
+           Pbytessetu | Pbytessets |
            Parraysetu _ | Parraysets _ | Pbigarrayset _), _) -> false
   | Lprim(p, args) -> List.for_all is_pure args
   | Levent(lam, ev) -> is_pure lam

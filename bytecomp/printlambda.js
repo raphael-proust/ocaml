@@ -656,31 +656,70 @@ var
          return Format["fprintf"]
                  (ppf,
                   [/* Format */0,
+                   [/* String_literal */11,"bytes.length",/* End_of_format */0],
+                   "bytes.length"]);
+         
+        case 34:
+         return Format["fprintf"]
+                 (ppf,
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "bytes.unsafe_get",
+                    /* End_of_format */0],
+                   "bytes.unsafe_get"]);
+         
+        case 35:
+         return Format["fprintf"]
+                 (ppf,
+                  [/* Format */0,
+                   [/* String_literal */11,
+                    "bytes.unsafe_set",
+                    /* End_of_format */0],
+                   "bytes.unsafe_set"]);
+         
+        case 36:
+         return Format["fprintf"]
+                 (ppf,
+                  [/* Format */0,
+                   [/* String_literal */11,"bytes.get",/* End_of_format */0],
+                   "bytes.get"]);
+         
+        case 37:
+         return Format["fprintf"]
+                 (ppf,
+                  [/* Format */0,
+                   [/* String_literal */11,"bytes.set",/* End_of_format */0],
+                   "bytes.set"]);
+         
+        case 38:
+         return Format["fprintf"]
+                 (ppf,
+                  [/* Format */0,
                    [/* String_literal */11,"isint",/* End_of_format */0],
                    "isint"]);
          
-        case 34:
+        case 39:
          return Format["fprintf"]
                  (ppf,
                   [/* Format */0,
                    [/* String_literal */11,"isout",/* End_of_format */0],
                    "isout"]);
          
-        case 35:
+        case 40:
          return Format["fprintf"]
                  (ppf,
                   [/* Format */0,
                    [/* String_literal */11,"testbit",/* End_of_format */0],
                    "testbit"]);
          
-        case 36:
+        case 41:
          return Format["fprintf"]
                  (ppf,
                   [/* Format */0,
                    [/* String_literal */11,"bswap16",/* End_of_format */0],
                    "bswap16"]);
          
-        case 37:
+        case 42:
          return Format["fprintf"]
                  (ppf,
                   [/* Format */0,
@@ -1391,7 +1430,7 @@ var
       default:
        throw [0,
               CamlPrimitive["caml_global_data"]["Assert_failure"],
-              [0,"bytecomp/printlambda.ml",296,9]];
+              [0,"bytecomp/printlambda.ml",302,9]];
        }
     };
 
@@ -1447,7 +1486,7 @@ var
       default:
        throw [0,
               CamlPrimitive["caml_global_data"]["Assert_failure"],
-              [0,"bytecomp/printlambda.ml",322,9]];
+              [0,"bytecomp/printlambda.ml",328,9]];
        }
     };
 

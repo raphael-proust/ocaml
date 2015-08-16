@@ -49,15 +49,15 @@ var
        {switch(match){}}
       else
        {switch(match[0])
-         {case 0:exit$1=181;case 22:exit$1=181;default:exit=180;}}
+         {case 0:exit$1=186;case 22:exit$1=186;default:exit=185;}}
       
-      switch(exit$1){case 181:return /* tuple */[0,match[1],cont];}
+      switch(exit$1){case 186:return /* tuple */[0,match[1],cont];}
       }
     else
-     {exit=180;}
+     {exit=185;}
     
     switch(exit)
-     {case 180:
+     {case 185:
        var lbl=new_label(/* () */0);
        
        return /* tuple */[0,lbl,/* :: */[0,/* Klabel */[0,lbl],cont]];
@@ -80,13 +80,13 @@ var
          {case 0:return make_branch_2(lbl,n,cont,param[2]);
           case 3:return make_branch_2(lbl,n+match[1],cont,param[2]);
           case 8:return /* tuple */[0,/* Kreturn */[8,n+match[1]],cont];
-          default:exit=178;}}
+          default:exit=183;}}
       }
     else
-     {exit=178;}
+     {exit=183;}
     
     switch(exit)
-     {case 178:
+     {case 183:
        if(lbl)
         {return /* tuple */[0,/* Kbranch */[22,lbl[1]],cont];}
        else
@@ -115,17 +115,17 @@ var
       else
        {switch(branch[0])
          {case 0:return make_branch_2(/* Some */[0,branch[1]],0,cont,cont);
-          case 8:exit$1=175;
-          case 22:exit$1=175;
+          case 8:exit$1=180;
+          case 22:exit$1=180;
           case 29:return /* tuple */[0,/* Kraise */[29,branch[1]],cont];
-          default:exit=174;}}
+          default:exit=179;}}
       
-      switch(exit$1){case 175:return /* tuple */[0,branch,cont];}
+      switch(exit$1){case 180:return /* tuple */[0,branch,cont];}
       }
     else
-     {exit=174;}
+     {exit=179;}
     
-    switch(exit){case 174:return make_branch_2(/* None */0,0,cont,cont);}
+    switch(exit){case 179:return make_branch_2(/* None */0,0,cont,cont);}
     };
 
 var
@@ -140,13 +140,13 @@ var
        {switch(match){}}
       else
        {switch(match[0])
-         {case 0:if(label===match[1]){return cont;}else{exit=172;}
-          default:exit=172;}}
+         {case 0:if(label===match[1]){return cont;}else{exit=177;}
+          default:exit=177;}}
       }
     else
-     {exit=172;}
+     {exit=177;}
     
-    switch(exit){case 172:return /* :: */[0,/* Kbranch */[22,label],cont];}
+    switch(exit){case 177:return /* :: */[0,/* Kbranch */[22,label],cont];}
     };
 
 var
@@ -157,12 +157,12 @@ var
       
       var $js=cont[1];
       if(typeof $js==="number")
-       {switch($js){case 1:exit=170;}}
+       {switch($js){case 1:exit=175;}}
       else
-       {switch($js[0]){case 0:exit=170;case 14:exit=170;default:exit=171;}}
+       {switch($js[0]){case 0:exit=175;case 14:exit=175;default:exit=176;}}
       
       switch(exit)
-       {case 171:return discard_dead_code(cont[2]);case 170:return cont;}
+       {case 176:return discard_dead_code(cont[2]);case 175:return cont;}
       }
     else
      {return /* [] */0;}
@@ -181,17 +181,17 @@ var
        {switch($js){}}
       else
        {switch($js[0])
-         {case 0:exit$1=169;
-          case 3:exit$1=169;
+         {case 0:exit$1=174;
+          case 3:exit$1=174;
           case 8:return /* true */1;
-          default:exit=168;}}
+          default:exit=173;}}
       
-      switch(exit$1){case 169:return is_tailcall(param[2]);}
+      switch(exit$1){case 174:return is_tailcall(param[2]);}
       }
     else
-     {exit=168;}
+     {exit=173;}
     
-    switch(exit){case 168:return /* false */0;}
+    switch(exit){case 173:return /* false */0;}
     };
 
 var
@@ -212,12 +212,12 @@ var
            {case 3:return add_pop(n+match[1],cont[2]);
             case 8:return /* :: */[0,/* Kreturn */[8,n+match[1]],cont[2]];
             case 29:return cont;
-            default:exit=167;}}
+            default:exit=172;}}
         }
       else
-       {exit=167;}
+       {exit=172;}
       
-      switch(exit){case 167:return /* :: */[0,/* Kpop */[3,n],cont];}
+      switch(exit){case 172:return /* :: */[0,/* Kpop */[3,n],cont];}
       }
     };
 
@@ -234,19 +234,19 @@ var
        {switch($js){}}
       else
        {switch($js[0])
-         {case 1:exit$1=165;
-          case 5:exit$1=165;
-          case 13:exit$1=165;
-          case 15:exit$1=165;
-          default:exit=164;}}
+         {case 1:exit$1=170;
+          case 5:exit$1=170;
+          case 13:exit$1=170;
+          case 15:exit$1=170;
+          default:exit=169;}}
       
-      switch(exit$1){case 165:return cont;}
+      switch(exit$1){case 170:return cont;}
       }
     else
-     {exit=164;}
+     {exit=169;}
     
     switch(exit)
-     {case 164:return /* :: */[0,/* Kconst */[15,Lambda["const_unit"]],cont];}
+     {case 169:return /* :: */[0,/* Kconst */[15,Lambda["const_unit"]],cont];}
     };
 
 var
@@ -280,10 +280,10 @@ var
            {switch($js){}}
           else
            {switch($js[0])
-             {case 7:exit$1=162;case 9:exit$1=162;default:exit=161;}}
+             {case 7:exit$1=167;case 9:exit$1=167;default:exit=166;}}
           
           switch(exit$1)
-           {case 162:
+           {case 167:
              var match$1=match[2];
              
              if(match$1)
@@ -295,27 +295,27 @@ var
                   
                   if(match$3)
                    {if(match$3[2])
-                     {exit=161;}
+                     {exit=166;}
                     else
                      {return CamlPrimitive["caml_equal"](match$2[1],id)&&
                              check_recordwith_updates(id,e[2]);
                       }
                     }
                   else
-                   {exit=161;}
+                   {exit=166;}
                   
-                 default:exit=161;}
+                 default:exit=166;}
                }
              else
-              {exit=161;}
+              {exit=166;}
              
             }
           
-         default:exit=161;}
+         default:exit=166;}
        
-      default:exit=161;}
+      default:exit=166;}
     
-    switch(exit){case 161:return /* false */0;}
+    switch(exit){case 166:return /* false */0;}
     };
 
 var
@@ -332,7 +332,7 @@ var
        var exit$1;
        
        if(funct[1]!==0)
-        {exit$1=158;}
+        {exit$1=163;}
        else
         {var match=funct[3];
          
@@ -354,16 +354,16 @@ var
                     {return /* RHS_block */[0,size];}
                    }
                  else
-                  {exit$1=158;}
+                  {exit$1=163;}
                  
-                default:exit$1=158;}}
+                default:exit$1=163;}}
             
-           default:exit$1=158;}
+           default:exit$1=163;}
          }
        
-       switch(exit$1){case 158:return size_of_lambda(funct[4]);}
+       switch(exit$1){case 163:return size_of_lambda(funct[4]);}
        
-      case 5:exit=160;
+      case 5:exit=165;
       case 6:
        var match$2=funct[1];
        
@@ -393,15 +393,15 @@ var
                      [0,"bytecomp/bytegen.ml",156,42]];
               }
             
-           default:exit=157;}}
+           default:exit=162;}}
        
-      case 13:exit=160;
+      case 13:exit=165;
       case 18:return size_of_lambda(funct[1]);
-      default:exit=157;}
+      default:exit=162;}
     
     switch(exit)
-     {case 160:return size_of_lambda(funct[2]);
-      case 157:return /* RHS_nonrec */0;
+     {case 165:return size_of_lambda(funct[2]);
+      case 162:return /* RHS_nonrec */0;
       }
     };
 
@@ -431,18 +431,18 @@ var
     var exit;
     
     if(typeof match==="number")
-     {if(match!==0){return match$1;}else{exit=154;}}
+     {if(match!==0){return match$1;}else{exit=159;}}
     else
-     {exit=154;}
+     {exit=159;}
     
     switch(exit)
-     {case 154:
+     {case 159:
        if(typeof match$1==="number")
-        {if(match$1!==0){return match;}else{exit=153;}}
+        {if(match$1!==0){return match;}else{exit=158;}}
        else
-        {exit=153;}
+        {exit=158;}
        
-      case 153:return Misc["fatal_error"]("Bytegen.merge_infos");
+      case 158:return Misc["fatal_error"]("Bytegen.merge_infos");
       }
     };
 
@@ -463,15 +463,15 @@ var
          var r=match[1];
          
          if(typeof match$1==="number")
-          {switch(match$1){case 0:exit=151;}}
+          {switch(match$1){case 0:exit=156;}}
          else
           {switch(match$1[0])
-            {case 0:exit=150;
+            {case 0:exit=155;
              case 1:
               if(r===match$1[1]&&r[1]===1)
                {return /* Event_none */0;}
               else
-               {exit=150;}
+               {exit=155;}
               
              }}
          
@@ -479,23 +479,23 @@ var
          var r$1=match[1];
          
          if(typeof match$1==="number")
-          {switch(match$1){case 0:exit=151;}}
+          {switch(match$1){case 0:exit=156;}}
          else
           {switch(match$1[0])
             {case 0:
               if(r$1===match$1[1])
                {return /* Event_parent */[0,r$1];}
               else
-               {exit=150;}
+               {exit=155;}
               
-             case 1:exit=150;
+             case 1:exit=155;
              }}
          
         }}
     
     switch(exit)
-     {case 151:return match;
-      case 150:return Misc["fatal_error"]("Bytegen.merge_repr");
+     {case 156:return match;
+      case 155:return Misc["fatal_error"]("Bytegen.merge_repr");
       }
     };
 
@@ -515,25 +515,25 @@ var
        {var exit$1;
         
         if(typeof match$1==="number")
-         {if(match$1!==0){exit=145;}else{exit$1=146;}}
+         {if(match$1!==0){exit=150;}else{exit$1=151;}}
         else
-         {exit$1=146;}
+         {exit$1=151;}
         
-        switch(exit$1){case 146:var match$2=/* tuple */[0,ev$prime,ev];}
+        switch(exit$1){case 151:var match$2=/* tuple */[0,ev$prime,ev];}
         }
       }
     else
      {var exit$2;
       
       if(typeof match$1==="number")
-       {if(match$1!==0){exit=145;}else{exit$2=147;}}
+       {if(match$1!==0){exit=150;}else{exit$2=152;}}
       else
-       {exit$2=147;}
+       {exit$2=152;}
       
-      switch(exit$2){case 147:var match$2=/* tuple */[0,ev,ev$prime];}
+      switch(exit$2){case 152:var match$2=/* tuple */[0,ev,ev$prime];}
       }
     
-    switch(exit){case 145:var match$2=/* tuple */[0,ev,ev$prime];}
+    switch(exit){case 150:var match$2=/* tuple */[0,ev,ev$prime];}
     
     var min=match$2[2];
     
@@ -557,7 +557,7 @@ var
         
         if(typeof match$1==="number")
          {if(match$1!==0)
-           {exit=142;}
+           {exit=147;}
           else
            {var match$2=cont[2];
             
@@ -597,21 +597,21 @@ var
                        }
                      }
                    else
-                    {exit=142;}
+                    {exit=147;}
                    
-                  default:exit=142;}}
+                  default:exit=147;}}
               }
             else
-             {exit=142;}
+             {exit=147;}
             }
           }
         else
-         {exit=142;}
+         {exit=147;}
         }
       else
-       {exit=142;}
+       {exit=147;}
       
-      switch(exit){case 142:return /* :: */[0,/* Kevent */[35,ev],cont];}
+      switch(exit){case 147:return /* :: */[0,/* Kevent */[35,ev],cont];}
       }
     };
 
@@ -628,12 +628,12 @@ var
       else
        {switch(match[0])
          {case 35:return weaken_event(merge_events(ev,match[1]),cont[2]);
-          default:exit=136;}}
+          default:exit=141;}}
       }
     else
-     {exit=136;}
+     {exit=141;}
     
-    switch(exit){case 136:return weaken_event(ev,cont);}
+    switch(exit){case 141:return weaken_event(ev,cont);}
     };
 
 var try_blocks=[0,/* [] */0];
@@ -677,7 +677,7 @@ var
     switch(l[0])
      {case 9:
        if(l[2])
-        {exit=129;}
+        {exit=134;}
        else
         {var match=find_raise_label(l[1]);
          
@@ -687,9 +687,9 @@ var
           {return /* None */0;}
          }
        
-      default:exit=129;}
+      default:exit=134;}
     
-    switch(exit){case 129:return /* None */0;}
+    switch(exit){case 134:return /* None */0;}
     };
 
 var functions_to_compile=Stack["create"](/* () */0);
@@ -737,16 +737,21 @@ var
         case 25:return [/* Kccall */30,"caml_sub_float",2];
         case 26:return [/* Kccall */30,"caml_mul_float",2];
         case 27:return [/* Kccall */30,"caml_div_float",2];
-        case 28:return [/* Kccall */30,"caml_ml_string_length",1];
-        case 29:return /* Kgetstringchar */5;
-        case 30:return /* Ksetstringchar */6;
-        case 31:return [/* Kccall */30,"caml_string_get",2];
-        case 32:return [/* Kccall */30,"caml_string_set",3];
-        case 33:return /* Kisint */22;
-        case 34:return /* Kisout */23;
-        case 35:return [/* Kccall */30,"caml_bitvect_test",2];
-        case 36:return [/* Kccall */30,"caml_bswap16",1];
-        case 37:return [/* Kccall */30,"caml_int_as_pointer",1];
+        case 28:exit=117;
+        case 29:exit=120;
+        case 30:exit=121;
+        case 31:exit=118;
+        case 32:exit=119;
+        case 33:exit=117;
+        case 34:exit=120;
+        case 35:exit=121;
+        case 36:exit=118;
+        case 37:exit=119;
+        case 38:return /* Kisint */22;
+        case 39:return /* Kisout */23;
+        case 40:return [/* Kccall */30,"caml_bitvect_test",2];
+        case 41:return [/* Kccall */30,"caml_bswap16",1];
+        case 42:return [/* Kccall */30,"caml_int_as_pointer",1];
         }}
     else
      {switch(p[0])
@@ -827,7 +832,7 @@ var
          switch(p[1])
           {case 0:
             switch(p[2])
-             {case 0:exit=117;
+             {case 0:exit=122;
               case 1:return [/* Kccall */30,"caml_nativeint_to_int32",1];
               case 2:return [/* Kccall */30,"caml_int64_of_nativeint",1];
               }
@@ -835,7 +840,7 @@ var
            case 1:
             switch(p[2])
              {case 0:return [/* Kccall */30,"caml_nativeint_of_int32",1];
-              case 1:exit=117;
+              case 1:exit=122;
               case 2:return [/* Kccall */30,"caml_int64_of_int32",1];
               }
             
@@ -843,7 +848,7 @@ var
             switch(p[2])
              {case 0:return [/* Kccall */30,"caml_int64_to_nativeint",1];
               case 1:return [/* Kccall */30,"caml_int64_to_int32",1];
-              case 2:exit=117;
+              case 2:exit=122;
               }
             
            }
@@ -924,10 +929,16 @@ var
                  1];
          
         case 55:return comp_bint_primitive(p[1],"bswap",args);
-        default:exit=117;}}
+        default:exit=122;}}
     
     switch(exit)
-     {case 117:return Misc["fatal_error"]("Bytegen.comp_primitive");}
+     {case 122:return Misc["fatal_error"]("Bytegen.comp_primitive");
+      case 117:return [/* Kccall */30,"caml_ml_string_length",1];
+      case 118:return [/* Kccall */30,"caml_string_get",2];
+      case 119:return [/* Kccall */30,"caml_string_set",3];
+      case 120:return /* Kgetstringchar */5;
+      case 121:return /* Ksetstringchar */6;
+      }
     };
 
 var

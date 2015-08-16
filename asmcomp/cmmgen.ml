@@ -1607,7 +1607,7 @@ and transl_prim_1 p arg dbg =
   | Pabsfloat ->
       box_float(Cop(Cabsf, [transl_unbox_float arg]))
   (* String operations *)
-  | Pstringlength ->
+  | (Pstringlength | Pbyteslength) ->
       tag_int(string_length (transl arg))
   (* Array operations *)
   | Parraylength kind ->
@@ -1732,10 +1732,10 @@ and transl_prim_2 p arg1 arg2 dbg =
                   [transl_unbox_float arg1; transl_unbox_float arg2]))
 
   (* String operations *)
-  | Pstringrefu ->
+  | (Pstringrefu | Pbytesrefu) ->
       tag_int(Cop(Cload Byte_unsigned,
                   [add_int (transl arg1) (untag_int(transl arg2))]))
-  | Pstringrefs ->
+  | (Pstringrefs | Pbytesrefs) ->
       tag_int
         (bind "str" (transl arg1) (fun str ->
           bind "index" (untag_int (transl arg2)) (fun idx ->
@@ -1892,11 +1892,11 @@ and transl_prim_2 p arg1 arg2 dbg =
 and transl_prim_3 p arg1 arg2 arg3 dbg =
   match p with
   (* String operations *)
-    Pstringsetu ->
+  | (Pstringsetu | Pbytessetu) ->
       return_unit(Cop(Cstore Byte_unsigned,
                       [add_int (transl arg1) (untag_int(transl arg2));
                         untag_int(transl arg3)]))
-  | Pstringsets ->
+  | (Pstringsets | Pbytessets) ->
       return_unit
         (bind "str" (transl arg1) (fun str ->
           bind "index" (untag_int (transl arg2)) (fun idx ->
