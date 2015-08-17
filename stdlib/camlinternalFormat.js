@@ -4896,20 +4896,20 @@ var
       
       var nend=parse_int(nstart,nstart);
       
+      var indent;
       if(nstart===nend)
-       {var indent=0;}
+       {indent=0;}
       else
        {try
-         {var
-           indent=
-            CamlPrimitive["caml_int_of_string"]
-             ($$String["sub"](str,nstart,nend-nstart));
+         {indent=
+          CamlPrimitive["caml_int_of_string"]
+           ($$String["sub"](str,nstart,nend-nstart));
           }
         catch(exn)
          {var tag=exn[1];
           
           if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-           {var indent=invalid_box(/* () */0);}
+           {indent=invalid_box(/* () */0);}
           else
            {throw exn;}
           }
@@ -4917,7 +4917,8 @@ var
       
       var exp_end=parse_spaces(nend);
       
-      if(exp_end!==len){var match=invalid_box(/* () */0);}else{var match=0;}
+      var match;
+      if(exp_end!==len){match=invalid_box(/* () */0);}else{match=0;}
       
       var exit;
       
@@ -5018,10 +5019,11 @@ var
 var
  fmt_ebb_of_string=
   function(legacy_behavior,str)
-   {if(legacy_behavior)
-     {var flag=legacy_behavior[1];var legacy_behavior$1=flag;}
+   {var legacy_behavior$1;
+    if(legacy_behavior)
+     {var flag=legacy_behavior[1];legacy_behavior$1=flag;}
     else
-     {var legacy_behavior$1=/* true */1;}
+     {legacy_behavior$1=/* true */1;}
     
     var
      invalid_format_message=
@@ -5272,19 +5274,19 @@ var
         
         var match$1=minus;
         
+        var padty;
         if(match!==0)
          {if(match$1!==0)
            {if(legacy_behavior$1)
-             {var padty=/* Left */0;}
+             {padty=/* Left */0;}
             else
-             {var padty=incompatible_flag(pct_ind,str_ind,45,"0");}
+             {padty=incompatible_flag(pct_ind,str_ind,45,"0");}
             }
           else
-           {var padty=/* Zeros */2;}
+           {padty=/* Zeros */2;}
           }
         else
-         {if(match$1!==0){var padty=/* Left */0;}else{var padty=/* Right */1;}
-          }
+         {if(match$1!==0){padty=/* Left */0;}else{padty=/* Right */1;}}
         
         var match$2=str["charCodeAt"](str_ind);
         
@@ -5688,6 +5690,7 @@ var
         
         var exit;
         
+        var fmt_result;
         if(symb>=124)
          {exit=63;}
         else
@@ -5730,7 +5733,7 @@ var
              
              var fmt_rest=match[1];
              
-             var fmt_result=/* Fmt_EBB */[0,/* Flush */[10,fmt_rest]];
+             fmt_result=/* Fmt_EBB */[0,/* Flush */[10,fmt_rest]];
              
             case 34:exit=63;
             case 35:exit=69;
@@ -5756,21 +5759,19 @@ var
                 ignored=
                  /* Ignored_format_subst */[8,get_pad_opt(95),sub_fmtty];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored,fmt_rest$1]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored,fmt_rest$1]];
                }
              else
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Format_subst */[14,get_pad_opt(40),sub_fmtty,fmt_rest$1]];
+              {fmt_result=
+               /* Fmt_EBB */[0,
+                /* Format_subst */[14,get_pad_opt(40),sub_fmtty,fmt_rest$1]];
                }
              
             case 41:exit=63;
             case 42:exit=63;
             case 43:exit=69;
-            case 44:var fmt_result=parse(str_ind,end_ind);
+            case 44:fmt_result=parse(str_ind,end_ind);
             case 45:exit=69;
             case 46:exit=63;
             case 47:exit=63;
@@ -5799,13 +5800,12 @@ var
              var fmt_rest$2=match$3[1];
              
              if(get_ign(/* () */0))
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Ignored_param */[23,/* Ignored_caml_char */1,fmt_rest$2]];
+              {fmt_result=
+               /* Fmt_EBB */[0,
+                /* Ignored_param */[23,/* Ignored_caml_char */1,fmt_rest$2]];
                }
              else
-              {var fmt_result=/* Fmt_EBB */[0,/* Caml_char */[1,fmt_rest$2]];}
+              {fmt_result=/* Fmt_EBB */[0,/* Caml_char */[1,fmt_rest$2]];}
              
             case 68:exit=63;
             case 69:exit=66;
@@ -5827,15 +5827,12 @@ var
              if(get_ign(/* () */0))
               {var ignored$1=/* Ignored_scan_get_counter */[10,counter];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$1,fmt_rest$3]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$1,fmt_rest$3]];
                }
              else
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Scan_get_counter */[21,counter,fmt_rest$3]];
+              {fmt_result=
+               /* Fmt_EBB */[0,/* Scan_get_counter */[21,counter,fmt_rest$3]];
                }
              
             case 79:exit=63;
@@ -5852,9 +5849,8 @@ var
              if(get_ign(/* () */0))
               {var ignored$2=/* Ignored_caml_string */[1,get_padprec_opt(95)];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$2,fmt_rest$4]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$2,fmt_rest$4]];
                }
              else
               {var match$6=make_padding_fmt_ebb(pad$1,fmt_rest$4);
@@ -5863,10 +5859,8 @@ var
                
                var pad$prime=match$6[1];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Caml_string */[3,pad$prime,fmt_rest$prime]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Caml_string */[3,pad$prime,fmt_rest$prime]];
                }
              
             case 84:exit=63;
@@ -5892,15 +5886,13 @@ var
                 ignored$3=
                  /* Ignored_scan_char_set */[9,get_pad_opt(95),char_set];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$3,fmt_rest$5]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$3,fmt_rest$5]];
                }
              else
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Scan_char_set */[20,get_pad_opt(91),char_set,fmt_rest$5]];
+              {fmt_result=
+               /* Fmt_EBB */[0,
+                /* Scan_char_set */[20,get_pad_opt(91),char_set,fmt_rest$5]];
                }
              
             case 92:exit=63;
@@ -5913,7 +5905,7 @@ var
              
              var fmt_rest$6=match$9[1];
              
-             var fmt_result=/* Fmt_EBB */[0,/* Alpha */[15,fmt_rest$6]];
+             fmt_result=/* Fmt_EBB */[0,/* Alpha */[15,fmt_rest$6]];
              
             case 98:exit=67;
             case 99:
@@ -5952,15 +5944,15 @@ var
                
                if(_n!==0)
                 {if(!legacy_behavior$1)
-                  {var fmt_result=invalid_nonnull_char_width(str_ind);}
+                  {fmt_result=invalid_nonnull_char_width(str_ind);}
                  else
-                  {var fmt_result=char_format(fmt_rest$7);}
+                  {fmt_result=char_format(fmt_rest$7);}
                  }
                else
-                {var fmt_result=scan_format(fmt_rest$7);}
+                {fmt_result=scan_format(fmt_rest$7);}
                }
              else
-              {var fmt_result=char_format(fmt_rest$7);}
+              {fmt_result=char_format(fmt_rest$7);}
              
             case 100:exit=64;
             case 101:exit=66;
@@ -5982,13 +5974,12 @@ var
              var fmt_rest$8=match$12[1];
              
              if(get_ign(/* () */0))
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Ignored_param */[23,/* Ignored_reader */3,fmt_rest$8]];
+              {fmt_result=
+               /* Fmt_EBB */[0,
+                /* Ignored_param */[23,/* Ignored_reader */3,fmt_rest$8]];
                }
              else
-              {var fmt_result=/* Fmt_EBB */[0,/* Reader */[19,fmt_rest$8]];}
+              {fmt_result=/* Fmt_EBB */[0,/* Reader */[19,fmt_rest$8]];}
              
             case 115:
              var pad$2=check_no_0(symb,get_padprec(/* () */0));
@@ -6000,9 +5991,8 @@ var
              if(get_ign(/* () */0))
               {var ignored$4=/* Ignored_string */[0,get_padprec_opt(95)];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$4,fmt_rest$9]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$4,fmt_rest$9]];
                }
              else
               {var match$14=make_padding_fmt_ebb(pad$2,fmt_rest$9);
@@ -6011,9 +6001,8 @@ var
                
                var pad$prime$1=match$14[1];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,/* String */[2,pad$prime$1,fmt_rest$prime$1]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* String */[2,pad$prime$1,fmt_rest$prime$1]];
                }
              
             case 116:
@@ -6021,7 +6010,7 @@ var
              
              var fmt_rest$10=match$15[1];
              
-             var fmt_result=/* Fmt_EBB */[0,/* Theta */[16,fmt_rest$10]];
+             fmt_result=/* Fmt_EBB */[0,/* Theta */[16,fmt_rest$10]];
              
             case 117:exit=64;
             case 118:exit=63;
@@ -6047,19 +6036,13 @@ var
                 ignored$5=
                  /* Ignored_format_arg */[7,get_pad_opt(95),sub_fmtty$1];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Ignored_param */[23,ignored$5,fmt_rest$11]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$5,fmt_rest$11]];
                }
              else
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Format_arg */[13,
-                   get_pad_opt(123),
-                   sub_fmtty$1,
-                   fmt_rest$11]];
+              {fmt_result=
+               /* Fmt_EBB */[0,
+                /* Format_arg */[13,get_pad_opt(123),sub_fmtty$1,fmt_rest$11]];
                }
              
             }
@@ -6081,12 +6064,12 @@ var
            
            var fmt_rest$12=match$18[1];
            
+           var fmt_result;
            if(get_ign(/* () */0))
             {var ignored$6=/* Ignored_int */[2,iconv,get_pad_opt(95)];
              
-             var
-              fmt_result=
-               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$6,fmt_rest$12]];
+             fmt_result=
+             /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$6,fmt_rest$12]];
              }
            else
             {var match$19=get_pad(/* () */0);
@@ -6099,11 +6082,12 @@ var
              
              var exit$1;
              
+             var pad$3;
              if(typeof match$22==="number")
               {if(match$22!==0)
                 {exit$1=36;}
                else
-                {var pad$3=match$21;var pad$4=pad$3;}
+                {var pad$4=match$21;pad$3=pad$4;}
                }
              else
               {exit$1=36;}
@@ -6111,40 +6095,36 @@ var
              switch(exit$1)
               {case 36:
                 if(typeof match$21==="number")
-                 {switch(match$21){case 0:var pad$4=/* No_padding */0;}}
+                 {switch(match$21){case 0:var pad$3=/* No_padding */0;}}
                 else
                  {switch(match$21[0])
                    {case 0:
                      var match$23=match$21[1];
                      
+                     var pad$3;
                      if(match$23>=2)
                       {var n=match$21[2];
                        
                        if(legacy_behavior$1)
-                        {var pad$4=/* Lit_padding */[0,/* Right */1,n];}
+                        {pad$3=/* Lit_padding */[0,/* Right */1,n];}
                        else
-                        {var
-                          pad$4=
-                           incompatible_flag(pct_ind,str_ind,48,"precision");
-                         }
+                        {pad$3=incompatible_flag(pct_ind,str_ind,48,"precision");}
                        }
                      else
-                      {var pad$5=match$21;var pad$4=pad$5;}
+                      {var pad$5=match$21;pad$3=pad$5;}
                      
                     case 1:
                      var match$24=match$21[1];
                      
+                     var pad$3;
                      if(match$24>=2)
                       {if(legacy_behavior$1)
-                        {var pad$4=[/* Arg_padding */1,/* Right */1];}
+                        {pad$3=[/* Arg_padding */1,/* Right */1];}
                        else
-                        {var
-                          pad$4=
-                           incompatible_flag(pct_ind,str_ind,48,"precision");
-                         }
+                        {pad$3=incompatible_flag(pct_ind,str_ind,48,"precision");}
                        }
                      else
-                      {var pad$6=match$21;var pad$4=pad$6;}
+                      {var pad$6=match$21;pad$3=pad$6;}
                      
                     }}
                 
@@ -6152,7 +6132,7 @@ var
              
              var
               match$25=
-               make_padprec_fmt_ebb(pad$4,get_prec(/* () */0),fmt_rest$12);
+               make_padprec_fmt_ebb(pad$3,get_prec(/* () */0),fmt_rest$12);
              
              var fmt_rest$prime$2=match$25[3];
              
@@ -6160,13 +6140,13 @@ var
              
              var pad$prime$2=match$25[1];
              
-             var
-              fmt_result=
-               /* Fmt_EBB */[0,
-                /* Int */[4,iconv,pad$prime$2,prec$prime,fmt_rest$prime$2]];
+             fmt_result=
+             /* Fmt_EBB */[0,
+              /* Int */[4,iconv,pad$prime$2,prec$prime,fmt_rest$prime$2]];
              }
            
           case 65:
+           var fmt_result;
            if(str_ind===end_ind||!is_int_base(str["charCodeAt"](str_ind)))
             {var match$26=parse(str_ind,end_ind);
              
@@ -6177,16 +6157,13 @@ var
              if(get_ign(/* () */0))
               {var ignored$7=/* Ignored_scan_get_counter */[10,counter$1];
                
-               var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Ignored_param */[23,ignored$7,fmt_rest$13]];
+               fmt_result=
+               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$7,fmt_rest$13]];
                }
              else
-              {var
-                fmt_result=
-                 /* Fmt_EBB */[0,
-                  /* Scan_get_counter */[21,counter$1,fmt_rest$13]];
+              {fmt_result=
+               /* Fmt_EBB */[0,
+                /* Scan_get_counter */[21,counter$1,fmt_rest$13]];
                }
              }
            else
@@ -6202,14 +6179,14 @@ var
            
            var fmt_rest$14=match$27[1];
            
+           var fmt_result;
            if(get_ign(/* () */0))
             {var
               ignored$8=
                /* Ignored_float */[6,get_pad_opt(95),get_prec_opt(/* () */0)];
              
-             var
-              fmt_result=
-               /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$8,fmt_rest$14]];
+             fmt_result=
+             /* Fmt_EBB */[0,/* Ignored_param */[23,ignored$8,fmt_rest$14]];
              }
            else
             {var
@@ -6223,10 +6200,9 @@ var
              
              var pad$prime$3=match$28[1];
              
-             var
-              fmt_result=
-               /* Fmt_EBB */[0,
-                /* Float */[8,fconv,pad$prime$3,prec$prime$1,fmt_rest$prime$3]];
+             fmt_result=
+             /* Fmt_EBB */[0,
+              /* Float */[8,fconv,pad$prime$3,prec$prime$1,fmt_rest$prime$3]];
              }
            
           case 67:
@@ -6234,14 +6210,14 @@ var
            
            var fmt_rest$15=match$29[1];
            
+           var fmt_result;
            if(get_ign(/* () */0))
-            {var
-              fmt_result=
-               /* Fmt_EBB */[0,
-                /* Ignored_param */[23,/* Ignored_bool */2,fmt_rest$15]];
+            {fmt_result=
+             /* Fmt_EBB */[0,
+              /* Ignored_param */[23,/* Ignored_bool */2,fmt_rest$15]];
              }
            else
-            {var fmt_result=/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$15]];}
+            {fmt_result=/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$15]];}
            
           case 68:
            var c=symb;
@@ -6285,6 +6261,7 @@ var
                symb);
            
           case 63:
+           var fmt_result;
            if(symb>=108)
             {if(symb>=111)
               {exit=62;}
@@ -6312,10 +6289,9 @@ var
                      ignored$9=
                       /* Ignored_int32 */[3,iconv$1,get_pad_opt(95)];
                     
-                    var
-                     fmt_result=
-                      /* Fmt_EBB */[0,
-                       /* Ignored_param */[23,ignored$9,fmt_rest$17]];
+                    fmt_result=
+                    /* Fmt_EBB */[0,
+                     /* Ignored_param */[23,ignored$9,fmt_rest$17]];
                     }
                   else
                    {var
@@ -6329,14 +6305,13 @@ var
                     
                     var pad$prime$4=match$32[1];
                     
-                    var
-                     fmt_result=
-                      /* Fmt_EBB */[0,
-                       /* Int32 */[5,
-                        iconv$1,
-                        pad$prime$4,
-                        prec$prime$2,
-                        fmt_rest$prime$4]];
+                    fmt_result=
+                    /* Fmt_EBB */[0,
+                     /* Int32 */[5,
+                      iconv$1,
+                      pad$prime$4,
+                      prec$prime$2,
+                      fmt_rest$prime$4]];
                     }
                   
                  case 1:exit=62;
@@ -6360,10 +6335,9 @@ var
                      ignored$10=
                       /* Ignored_nativeint */[4,iconv$2,get_pad_opt(95)];
                     
-                    var
-                     fmt_result=
-                      /* Fmt_EBB */[0,
-                       /* Ignored_param */[23,ignored$10,fmt_rest$18]];
+                    fmt_result=
+                    /* Fmt_EBB */[0,
+                     /* Ignored_param */[23,ignored$10,fmt_rest$18]];
                     }
                   else
                    {var
@@ -6377,14 +6351,13 @@ var
                     
                     var pad$prime$5=match$34[1];
                     
-                    var
-                     fmt_result=
-                      /* Fmt_EBB */[0,
-                       /* Nativeint */[6,
-                        iconv$2,
-                        pad$prime$5,
-                        prec$prime$3,
-                        fmt_rest$prime$5]];
+                    fmt_result=
+                    /* Fmt_EBB */[0,
+                     /* Nativeint */[6,
+                      iconv$2,
+                      pad$prime$5,
+                      prec$prime$3,
+                      fmt_rest$prime$5]];
                     }
                   
                  }
@@ -6413,10 +6386,9 @@ var
                   ignored$11=
                    /* Ignored_int64 */[5,iconv$3,get_pad_opt(95)];
                  
-                 var
-                  fmt_result=
-                   /* Fmt_EBB */[0,
-                    /* Ignored_param */[23,ignored$11,fmt_rest$19]];
+                 fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Ignored_param */[23,ignored$11,fmt_rest$19]];
                  }
                else
                 {var
@@ -6430,14 +6402,13 @@ var
                  
                  var pad$prime$6=match$36[1];
                  
-                 var
-                  fmt_result=
-                   /* Fmt_EBB */[0,
-                    /* Int64 */[7,
-                     iconv$3,
-                     pad$prime$6,
-                     prec$prime$4,
-                     fmt_rest$prime$6]];
+                 fmt_result=
+                 /* Fmt_EBB */[0,
+                  /* Int64 */[7,
+                   iconv$3,
+                   pad$prime$6,
+                   prec$prime$4,
+                   fmt_rest$prime$6]];
                  }
                }
              }
@@ -6773,11 +6744,12 @@ var
             
             var sub_format=/* Format */[0,sub_fmt,sub_str];
             
+            var formatting;
             if(is_open_tag)
-             {var formatting=/* Open_tag */[0,sub_format];}
+             {formatting=/* Open_tag */[0,sub_format];}
             else
              {check_open_box(sub_fmt);
-              var formatting=/* Open_box */[1,sub_format];
+              formatting=/* Open_box */[1,sub_format];
               }
             
             return /* Fmt_EBB */[0,
@@ -6792,10 +6764,11 @@ var
             
             var sub_format$1=[/* Format */0,/* End_of_format */0,""];
             
+            var formatting$1;
             if(is_open_tag)
-             {var formatting$1=/* Open_tag */[0,sub_format$1];}
+             {formatting$1=/* Open_tag */[0,sub_format$1];}
             else
-             {var formatting$1=/* Open_box */[1,sub_format$1];}
+             {formatting$1=/* Open_box */[1,sub_format$1];}
             
             return /* Fmt_EBB */[0,
                     /* Formatting_gen */[18,formatting$1,fmt_rest$1]];
@@ -6808,7 +6781,8 @@ var
     var
      parse_good_break=
       function(str_ind,end_ind)
-       {try
+       {var match;
+        try
          {if(str_ind===end_ind||str["charCodeAt"](str_ind)!==60)
            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
           else
@@ -6816,41 +6790,41 @@ var
           
           var str_ind_1=parse_spaces(str_ind+1,end_ind);
           
-          var match=str["charCodeAt"](str_ind_1);
+          var match$1=str["charCodeAt"](str_ind_1);
           
           var exit;
           
-          if(match>=48)
-           {if(match>=58){exit=114;}else{exit=113;}}
+          if(match$1>=48)
+           {if(match$1>=58){exit=114;}else{exit=113;}}
           else
-           {if(match!==45){exit=114;}else{exit=113;}}
+           {if(match$1!==45){exit=114;}else{exit=113;}}
           
           switch(exit)
            {case 114:throw CamlPrimitive["caml_global_data"]["Not_found"];
             case 113:
-             var match$1=parse_integer(str_ind_1,end_ind);
+             var match$2=parse_integer(str_ind_1,end_ind);
              
-             var width=match$1[2];
+             var width=match$2[2];
              
-             var str_ind_2=match$1[1];
+             var str_ind_2=match$2[1];
              
              var str_ind_3=parse_spaces(str_ind_2,end_ind);
              
-             var match$2=str["charCodeAt"](str_ind_3);
+             var match$3=str["charCodeAt"](str_ind_3);
              
              var exit$1;
              
-             var switcher=-45+match$2;
+             var switcher=-45+match$3;
              
              if(!(12<switcher>>>0))
               {var switcher$1=-1+switcher;
                
                if(1<switcher$1>>>0)
-                {var match$3=parse_integer(str_ind_3,end_ind);
+                {var match$4=parse_integer(str_ind_3,end_ind);
                  
-                 var offset=match$3[2];
+                 var offset=match$4[2];
                  
-                 var str_ind_4=match$3[1];
+                 var str_ind_4=match$4[1];
                  
                  var str_ind_5=parse_spaces(str_ind_4,end_ind);
                  
@@ -6861,9 +6835,8 @@ var
                  
                  var s=$$String["sub"](str,str_ind-2,str_ind_5-str_ind+3);
                  
-                 var
-                  match$4=
-                   /* tuple */[0,str_ind_5+1,/* Break */[0,s,width,offset]];
+                 match=
+                 /* tuple */[0,str_ind_5+1,/* Break */[0,s,width,offset]];
                  }
                else
                 {exit$1=110;}
@@ -6874,9 +6847,7 @@ var
                else
                 {var s$1=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
                  
-                 var
-                  match$4=
-                   /* tuple */[0,str_ind_3+1,/* Break */[0,s$1,width,0]];
+                 match=/* tuple */[0,str_ind_3+1,/* Break */[0,s$1,width,0]];
                  }
                }
              
@@ -6900,14 +6871,12 @@ var
             }
           
           switch(exit$2)
-           {case 103:
-             var match$4=/* tuple */[0,str_ind,[/* Break */0,"@;",1,0]];
-            }
+           {case 103:match=/* tuple */[0,str_ind,[/* Break */0,"@;",1,0]];}
           }
         
-        var formatting_lit=match$4[2];
+        var formatting_lit=match[2];
         
-        var next_ind=match$4[1];
+        var next_ind=match[1];
         
         var match$5=parse(next_ind,end_ind);
         
@@ -6920,20 +6889,21 @@ var
     var
      parse_magic_size=
       function(str_ind,end_ind)
-       {try
+       {var match;
+        try
          {var str_ind_1=parse_spaces(str_ind,end_ind);
           
-          var match=str["charCodeAt"](str_ind_1);
+          var match$1=str["charCodeAt"](str_ind_1);
           
           var exit;
           
-          if(match>=48)
-           {if(match>=58){exit=124;}else{exit=123;}}
+          if(match$1>=48)
+           {if(match$1>=58){exit=124;}else{exit=123;}}
           else
-           {if(match!==45){exit=124;}else{exit=123;}}
+           {if(match$1!==45){exit=124;}else{exit=123;}}
           
           switch(exit)
-           {case 124:var match$1=/* None */0;
+           {case 124:match=/* None */0;
             case 123:
              var match$2=parse_integer(str_ind_1,end_ind);
              
@@ -6950,10 +6920,9 @@ var
              
              var s=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
              
-             var
-              match$1=
-               /* Some */[0,
-                /* tuple */[0,str_ind_3+1,/* Magic_size */[1,s,size]]];
+             match=
+             /* Some */[0,
+              /* tuple */[0,str_ind_3+1,/* Magic_size */[1,s,size]]];
              
             }
           }
@@ -6971,11 +6940,11 @@ var
              {throw exn;}
             }
           
-          switch(exit$1){case 118:var match$1=/* None */0;}
+          switch(exit$1){case 118:match=/* None */0;}
           }
         
-        if(match$1)
-         {var match$3=match$1[1];
+        if(match)
+         {var match$3=match[1];
           
           var formatting_lit=match$3[2];
           
@@ -7164,10 +7133,11 @@ var
         
         var match=str["charCodeAt"](str_ind);
         
+        var match$1;
         if(match!==94)
-         {var match$1=/* tuple */[0,str_ind,/* false */0];}
+         {match$1=/* tuple */[0,str_ind,/* false */0];}
         else
-         {var match$1=/* tuple */[0,str_ind+1,/* true */1];}
+         {match$1=/* tuple */[0,str_ind+1,/* true */1];}
         
         var reverse=match$1[2];
         

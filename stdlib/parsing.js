@@ -93,16 +93,16 @@ var
            return loop(/* Stacks_grown_2 */3,/* () */0);
            
           case 4:
+           var match$1;
            try
-            {var
-              match$1=
-               /* tuple */[0,
-                /* Semantic_action_computed */4,
-                tables[1][env[13]+1](env)];
+            {match$1=
+             /* tuple */[0,
+              /* Semantic_action_computed */4,
+              tables[1][env[13]+1](env)];
              }
            catch(exn)
             {if(exn===Parse_error)
-              {var match$1=/* tuple */[0,/* Error_detected */5,/* () */0];}
+              {match$1=/* tuple */[0,/* Error_detected */5,/* () */0];}
              else
               {throw exn;}
              }

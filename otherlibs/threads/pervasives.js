@@ -202,11 +202,12 @@ var
 var
  flush=
   function(oc)
-   {try
-     {var success=CamlPrimitive["caml_ml_flush_partial"](oc);}
+   {var success;
+    try
+     {success=CamlPrimitive["caml_ml_flush_partial"](oc);}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Sys_blocked_io"])
-       {wait_outchan(oc,-1);var success=/* false */0;}
+       {wait_outchan(oc,-1);success=/* false */0;}
       else
        {throw exn;}
       }
@@ -249,11 +250,12 @@ var
  unsafe_output=
   function(oc,buf,pos,len)
    {if(len>0)
-     {try
-       {var written=CamlPrimitive["caml_ml_output_partial"](oc,buf,pos,len);}
+     {var written;
+      try
+       {written=CamlPrimitive["caml_ml_output_partial"](oc,buf,pos,len);}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Sys_blocked_io"])
-         {wait_outchan(oc,len);var written=0;}
+         {wait_outchan(oc,len);written=0;}
         else
          {throw exn;}
         }
@@ -504,7 +506,8 @@ var
   function(ic)
    {var b1=input_byte(ic);
     
-    if(b1>=128){var n1=b1-256;}else{var n1=b1;}
+    var n1;
+    if(b1>=128){n1=b1-256;}else{n1=b1;}
     
     var b2=input_byte(ic);
     

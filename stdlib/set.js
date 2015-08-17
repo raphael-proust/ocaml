@@ -14,9 +14,11 @@ var
     var
      create=
       function(l,v,r)
-       {if(l){var h=l[4];var hl=h;}else{var hl=0;}
+       {var hl;
+        if(l){var h=l[4];hl=h;}else{hl=0;}
         
-        if(r){var h$1=r[4];var hr=h$1;}else{var hr=0;}
+        var hr;
+        if(r){var h$1=r[4];hr=h$1;}else{hr=0;}
         
         return /* Node */[0,l,v,r,hl>=hr?hl+1:hr+1];
         };
@@ -24,9 +26,11 @@ var
     var
      bal=
       function(l,v,r)
-       {if(l){var h=l[4];var hl=h;}else{var hl=0;}
+       {var hl;
+        if(l){var h=l[4];hl=h;}else{hl=0;}
         
-        if(r){var h$1=r[4];var hr=h$1;}else{var hr=0;}
+        var hr;
+        if(r){var h$1=r[4];hr=h$1;}else{hr=0;}
         
         if(hl>hr+2)
          {if(l)

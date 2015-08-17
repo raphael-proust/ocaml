@@ -82,17 +82,16 @@ var
       
       var i$1=Math["abs"](x[2]);
       
+      var w;
       if(r>=i$1)
        {var q=i$1/r;
         
-        var w=Math["sqrt"](r)*Math["sqrt"](0.5*(1+Math["sqrt"](1+q*q)));
+        w=Math["sqrt"](r)*Math["sqrt"](0.5*(1+Math["sqrt"](1+q*q)));
         }
       else
        {var q$1=r/i$1;
         
-        var
-         w=
-          Math["sqrt"](i$1)*Math["sqrt"](0.5*(q$1+Math["sqrt"](1+q$1*q$1)));
+        w=Math["sqrt"](i$1)*Math["sqrt"](0.5*(q$1+Math["sqrt"](1+q$1*q$1)));
         }
       
       if(x[1]>=0)

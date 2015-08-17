@@ -38,10 +38,11 @@ var
                (d["charCodeAt"](3)<<24);
         };
     
+    var seed$1;
     if(/* -1 for tag */seed["length"]-1===0)
-     {var seed$1=[/* array */0,0];}
+     {seed$1=[/* array */0,0];}
     else
-     {var seed$1=seed;}
+     {seed$1=seed;}
     
     var l=/* -1 for tag */seed$1["length"]-1;
     
@@ -158,10 +159,11 @@ var
      {return int64aux(s,bound);}
     };
 
+var nativeint;
 if(Nativeint["size"]===32)
- {var nativeint=function(s,bound){return int32(s,bound);};}
+ {nativeint=function(s,bound){return int32(s,bound);};}
 else
- {var nativeint=function(s,bound){return int64(s,bound);};}
+ {nativeint=function(s,bound){return int64(s,bound);};}
 
 var
  rawfloat=

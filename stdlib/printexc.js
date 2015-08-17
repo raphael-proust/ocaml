@@ -141,7 +141,8 @@ var
           
           var hd=param[1];
           
-          try {var match=hd(x);}catch(exn){var match=/* None */0;}
+          var match;
+          try {match=hd(x);}catch(exn){match=/* None */0;}
           
           if(match){var s=match[1];return s;}else{return conv(tl);}
           }
@@ -589,10 +590,11 @@ var
  handle_uncaught_exception$prime=
   function(exn,debugger_in_use)
    {try
-     {if(debugger_in_use)
-       {var raw_backtrace=empty_backtrace;}
+     {var raw_backtrace;
+      if(debugger_in_use)
+       {raw_backtrace=empty_backtrace;}
       else
-       {var raw_backtrace=try_get_raw_backtrace(/* () */0);}
+       {raw_backtrace=try_get_raw_backtrace(/* () */0);}
       
       try {Pervasives["do_at_exit"](/* () */0)}catch(exn$1){}
       

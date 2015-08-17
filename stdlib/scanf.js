@@ -470,6 +470,7 @@ var
     
     var switcher=-88+conv;
     
+    var tok;
     if(32<switcher>>>0)
      {exit=228;}
     else
@@ -484,7 +485,7 @@ var
         case 7:exit=228;
         case 8:exit=228;
         case 9:exit=228;
-        case 10:var tok=Pervasives["^"]("0b",Scanning[10](ib));
+        case 10:tok=Pervasives["^"]("0b",Scanning[10](ib));
         case 11:exit=228;
         case 12:exit=226;
         case 13:exit=228;
@@ -497,7 +498,7 @@ var
         case 20:exit=228;
         case 21:exit=228;
         case 22:exit=228;
-        case 23:var tok=Pervasives["^"]("0o",Scanning[10](ib));
+        case 23:tok=Pervasives["^"]("0o",Scanning[10](ib));
         case 24:exit=228;
         case 25:exit=228;
         case 26:exit=228;
@@ -1379,29 +1380,29 @@ var
   function(ib)
    {var c=Scanning[6](ib);
     
+    var m;
     if(c!==102)
      {if(c!==116)
        {var c$1=c;
         
-        var
-         m=
-          bad_input
-           (Printf["sprintf"]
-             ([/* Format */0,
+        m=
+        bad_input
+         (Printf["sprintf"]
+           ([/* Format */0,
+             [/* String_literal */11,
+              "the character ",
+              [/* Caml_char */1,
                [/* String_literal */11,
-                "the character ",
-                [/* Caml_char */1,
-                 [/* String_literal */11,
-                  " cannot start a boolean",
-                  /* End_of_format */0]]],
-               "the character %C cannot start a boolean"],
-              c$1));
+                " cannot start a boolean",
+                /* End_of_format */0]]],
+             "the character %C cannot start a boolean"],
+            c$1));
         }
       else
-       {var m=4;}
+       {m=4;}
       }
     else
-     {var m=5;}
+     {m=5;}
     
     return scan_string(/* None */0,m,ib);
     };
@@ -2019,13 +2020,14 @@ var
          
          var s=token_string(ib);
          
+         var fmt$1;
          try
-          {var fmt$1=CamlinternalFormat["format_of_string_fmtty"](s,fmtty);}
+          {fmt$1=CamlinternalFormat["format_of_string_fmtty"](s,fmtty);}
          catch(exn)
           {var tag=exn[1];
            
            if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-            {var msg=exn[2];var fmt$1=bad_input(msg);}
+            {var msg=exn[2];fmt$1=bad_input(msg);}
            else
             {throw exn;}
            }
@@ -2043,41 +2045,41 @@ var
          
          var s$1=token_string(ib);
          
+         var match$10;
          try
           {var
-            match$10=
-             CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
-           
-           var fmt$2=match$10[1];
-           
-           var
             match$11=
              CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
            
-           var fmt$prime$2=match$11[1];
+           var fmt$2=match$11[1];
            
            var
             match$12=
-             /* tuple */[0,
-              CamlinternalFormat["type_format"]
-               (fmt$2,CamlinternalFormatBasics["erase_rel"](fmtty$1)),
-              CamlinternalFormat["type_format"]
-               (fmt$prime$2,
-                CamlinternalFormatBasics["erase_rel"]
-                 (CamlinternalFormat["symm"](fmtty$1)))];
+             CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
+           
+           var fmt$prime$2=match$12[1];
+           
+           match$10=
+           /* tuple */[0,
+            CamlinternalFormat["type_format"]
+             (fmt$2,CamlinternalFormatBasics["erase_rel"](fmtty$1)),
+            CamlinternalFormat["type_format"]
+             (fmt$prime$2,
+              CamlinternalFormatBasics["erase_rel"]
+               (CamlinternalFormat["symm"](fmtty$1)))];
            }
          catch(exn$1)
           {var tag$1=exn$1[1];
            
            if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
-            {var msg$1=exn$1[2];var match$12=bad_input(msg$1);}
+            {var msg$1=exn$1[2];match$10=bad_input(msg$1);}
            else
             {throw exn$1;}
            }
          
-         var fmt$prime$3=match$12[2];
+         var fmt$prime$3=match$10[2];
          
-         var fmt$3=match$12[1];
+         var fmt$3=match$10[1];
          
          return /* Cons */[0,
                  /* Format */[0,fmt$3,s$1],
@@ -2336,8 +2338,9 @@ var
      k=
       function(readers,f)
        {Scanning[11](ib);
+        var match;
         try
-         {var match=/* Args */[0,make_scanf(ib,fmt,readers)];}
+         {match=/* Args */[0,make_scanf(ib,fmt,readers)];}
         catch(exc)
          {var exit;
           
@@ -2361,14 +2364,13 @@ var
                   CamlPrimitive["caml_global_data"]["Invalid_argument"])
                  {var msg=exc[2];
                   
-                  var
-                   match=
-                    Pervasives["invalid_arg"]
-                     (Pervasives["^"]
-                       (msg,
-                        Pervasives["^"]
-                         (' in format "',
-                          Pervasives["^"]($$String["escaped"](str),'"'))));
+                  match=
+                  Pervasives["invalid_arg"]
+                   (Pervasives["^"]
+                     (msg,
+                      Pervasives["^"]
+                       (' in format "',
+                        Pervasives["^"]($$String["escaped"](str),'"'))));
                   }
                 else
                  {throw exc;}
@@ -2376,7 +2378,7 @@ var
               }
             }
           
-          switch(exit){case 21:var match=/* Exc */[1,exc];}
+          switch(exit){case 21:match=/* Exc */[1,exc];}
           }
         
         switch(match[0])
@@ -2413,14 +2415,14 @@ var
     
     var str=token_string(ib);
     
+    var fmt$prime;
     try
-     {var fmt$prime=CamlinternalFormat["format_of_string_format"](str,format);
-      }
+     {fmt$prime=CamlinternalFormat["format_of_string_format"](str,format);}
     catch(exn)
      {var tag=exn[1];
       
       if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-       {var msg=exn[2];var fmt$prime=bad_input(msg);}
+       {var msg=exn[2];fmt$prime=bad_input(msg);}
       else
        {throw exn;}
       }

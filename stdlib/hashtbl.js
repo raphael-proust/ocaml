@@ -19,15 +19,16 @@ var
  seeded_hash=
   function(seed,x){return CamlPrimitive["caml_hash"](10,100,seed,x);};
 
+var params;
 try
- {var params=CamlPrimitive["caml_sys_getenv"]("OCAMLRUNPARAM");}
+ {params=CamlPrimitive["caml_sys_getenv"]("OCAMLRUNPARAM");}
 catch(exn)
  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
    {try
-     {var params=CamlPrimitive["caml_sys_getenv"]("CAMLRUNPARAM");}
+     {params=CamlPrimitive["caml_sys_getenv"]("CAMLRUNPARAM");}
     catch(exn$1)
      {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var params="";}
+       {params="";}
       else
        {throw exn$1;}
       }
@@ -60,27 +61,28 @@ var
 var
  create=
   function($staropt$star,initial_size)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var random=$starsth$star;}
+   {var random;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];random=$starsth$star;}
     else
-     {var random=randomized[1];}
+     {random=randomized[1];}
     
     var s=power_2_above(16,initial_size);
     
+    var seed;
     if(random)
      {var lzarg=prng;
       
       var tag=CamlPrimitive["caml_obj_tag"](lzarg);
       
-      var
-       seed=
-        Random["State"][4]
-         (tag===250
-           ?lzarg[1]
-           :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+      seed=
+      Random["State"][4]
+       (tag===250
+         ?lzarg[1]
+         :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
       }
     else
-     {var seed=0;}
+     {seed=0;}
     
     return /* record */[0,
             0,

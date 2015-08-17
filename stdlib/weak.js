@@ -43,12 +43,14 @@ var
     var
      create=
       function(sz)
-       {if(sz<7){var sz$1=7;}else{var sz$1=sz;}
+       {var sz$1;
+        if(sz<7){sz$1=7;}else{sz$1=sz;}
         
+        var sz$2;
         if(sz$1>Sys["max_array_length"])
-         {var sz$2=Sys["max_array_length"];}
+         {sz$2=Sys["max_array_length"];}
         else
-         {var sz$2=sz$1;}
+         {sz$2=sz$1;}
         
         return /* record */[0,
                 CamlPrimitive["caml_make_vect"](sz$2,emptybucket),

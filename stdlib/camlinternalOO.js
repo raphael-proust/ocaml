@@ -34,7 +34,8 @@ var
     for(var i=0;i<=s["length"]-1;i++){accu[1]=223*accu[1]+s["charCodeAt"](i)}
     
     accu[1]=accu[1]&(1<<31)-1;
-    if(accu[1]>1073741823){var tag=accu[1]-(1<<31);}else{var tag=accu[1];}
+    var tag;
+    if(accu[1]>1073741823){tag=accu[1]-(1<<31);}else{tag=accu[1];}
     
     return tag;
     };
@@ -406,7 +407,8 @@ var
     var $$super=param[2];
     
     narrow(cla,vals,virt_meths,concr_meths);
-    if(top){var init=$$super(cla,env);}else{var init=$$super(cla);}
+    var init;
+    if(top){init=$$super(cla,env);}else{init=$$super(cla);}
     
     widen(cla);
     return $$Array["concat"]
@@ -691,10 +693,11 @@ var
   function(table)
    {var n=new_method(table);
     
+    var n$1;
     if(n%2===0||n>2+table[2][2]*16/Sys["word_size"])
-     {var n$1=n;}
+     {n$1=n;}
     else
-     {var n$1=new_method(table);}
+     {n$1=new_method(table);}
     
     table[2][n$1+1]=0;
     return n$1;

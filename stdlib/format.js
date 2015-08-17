@@ -312,20 +312,21 @@ var
            
            var match$11=tabs$1[1];
            
+           var tab;
            if(match$11)
             {var x=match$11[1];
              
              try
-              {var tab=find(insertion_point,tabs$1[1]);}
+              {tab=find(insertion_point,tabs$1[1]);}
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var tab=x;}
+                {tab=x;}
                else
                 {throw exn;}
                }
              }
            else
-            {var tab=insertion_point;}
+            {tab=insertion_point;}
            
            var offset=tab-insertion_point;
            
@@ -348,14 +349,11 @@ var
          
          var offset$1=state[9]-off$2;
          
+         var bl_type;
          if(ty$1!==1)
-          {if(size>state[9])
-            {var bl_type=ty$1;}
-           else
-            {var bl_type=/* Pp_fits */5;}
-           }
+          {if(size>state[9]){bl_type=ty$1;}else{bl_type=/* Pp_fits */5;}}
          else
-          {var bl_type=/* Pp_vbox */1;}
+          {bl_type=/* Pp_vbox */1;}
          
          return state[2]=
                 /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]],
@@ -804,10 +802,11 @@ var
 var
  pp_print_list=
   function($staropt$star,pp_v,ppf,param)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var pp_sep=$starsth$star;}
+   {var pp_sep;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];pp_sep=$starsth$star;}
     else
-     {var pp_sep=pp_print_cut;}
+     {pp_sep=pp_print_cut;}
     
     if(param)
      {var vs=param[2];
@@ -904,12 +903,12 @@ var
      {var n$1=pp_limit(n);
       
       state[6]=n$1;
+      var new_max_indent;
       if(state[8]<=state[6])
-       {var new_max_indent=state[8];}
+       {new_max_indent=state[8];}
       else
-       {var
-         new_max_indent=
-          Pervasives["max"](Pervasives["max"](state[6]-state[7],state[6]/2),1);
+       {new_max_indent=
+        Pervasives["max"](Pervasives["max"](state[6]-state[7],state[6]/2),1);
         }
       
       return pp_set_max_indent(state,new_max_indent);

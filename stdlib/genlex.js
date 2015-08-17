@@ -163,8 +163,9 @@ var
                   case 38:exit=11;
                   case 39:
                    Stream["junk"](strm__);
+                   var c$1;
                    try
-                    {var c$1=$$char(strm__);}
+                    {c$1=$$char(strm__);}
                    catch(exn)
                     {if(exn===Stream["Failure"])
                       {throw [0,Stream["Error"],""];}
@@ -617,8 +618,9 @@ var
              {Stream["junk"](strm__);var s=strm__;store(c);return string(s);}
             else
              {Stream["junk"](strm__);
+              var c$1;
               try
-               {var c$1=$$escape(strm__);}
+               {c$1=$$escape(strm__);}
               catch(exn)
                {if(exn===Stream["Failure"])
                  {throw [0,Stream["Error"],""];}

@@ -45,7 +45,8 @@ var
   function(read_fun,aux_buffer,lexbuf)
    {var read=read_fun(aux_buffer,aux_buffer["length"]);
     
-    if(read>0){var n=read;}else{lexbuf[9]=/* true */1;var n=0;}
+    var n;
+    if(read>0){n=read;}else{lexbuf[9]=/* true */1;n=0;}
     
     if(lexbuf[3]+n>lexbuf[2]["length"])
      {if(lexbuf[3]-lexbuf[5]+n<=lexbuf[2]["length"])

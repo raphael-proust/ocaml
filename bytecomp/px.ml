@@ -1571,9 +1571,7 @@ module rec
                                           | (([],Some out1),([],Some out2))
                                               ->
                                               (b,
-                                                (Some
-                                                   (J_helper.Exp.econd e out1
-                                                      out2)))
+                                                (Some (E.econd e out1 out2)))
                                           | _ ->
                                               let v = Gen_util.gen () in
                                               (match ((compile_lambda
@@ -1589,29 +1587,50 @@ module rec
                                                with
                                                | (out1,out2) ->
                                                    ((b @
-                                                       [let open J_helper.Stmt in
-                                                          if_ e
-                                                            (block
-                                                               (Gen_util.block_of_output
-                                                                  out1))
-                                                            ~else_:(block
-                                                                    (Gen_util.block_of_output
+                                                       [S.if_ e
+                                                          (S.block
+                                                             (Gen_util.block_of_output
+                                                                out1))
+                                                          ~else_:(S.block
+                                                                    (
+                                                                    Gen_util.block_of_output
                                                                     out2))]),
                                                      (Some (E.var v)))))
-                                     | _ ->
+                                     | (Declare id,_) ->
+                                         ((((S.variable id) :: b) @
+                                             [S.if_ e
+                                                (S.block
+                                                   (Gen_util.block_of_output
+                                                      @@
+                                                      (compile_lambda
+                                                         {
+                                                           cxt with
+                                                           st = (Assign id)
+                                                         } t_br)))
+                                                ~else_:(S.block
+                                                          (Gen_util.block_of_output
+                                                             @@
+                                                             (compile_lambda
+                                                                {
+                                                                  cxt with
+                                                                  st =
+                                                                    (
+                                                                    Assign id)
+                                                                } f_br)))]),
+                                           None)
+                                     | ((Assign _|EffectCall ),_) ->
                                          ((b @
-                                             [let open J_helper.Stmt in
-                                                if_ e
-                                                  (block
-                                                     (Gen_util.block_of_output
-                                                        @@
-                                                        (compile_lambda cxt
-                                                           t_br)))
-                                                  ~else_:(block
-                                                            (Gen_util.block_of_output
-                                                               @@
-                                                               (compile_lambda
-                                                                  cxt f_br)))]),
+                                             [S.if_ e
+                                                (S.block
+                                                   (Gen_util.block_of_output
+                                                      @@
+                                                      (compile_lambda cxt
+                                                         t_br)))
+                                                ~else_:(S.block
+                                                          (Gen_util.block_of_output
+                                                             @@
+                                                             (compile_lambda
+                                                                cxt f_br)))]),
                                            None))
                                 | _ -> assert false)
                            | Lstringswitch (l,cases,default) ->
@@ -1889,19 +1908,22 @@ module rec
                                     (block, (Some (E.unit ()))))
                            | Ltrywith (lam,id,catch) ->
                                let aux st =
-                                 let b = compile_lambda { cxt with st } lam in
                                  [S.try_
+                                    (Gen_util.block_of_output
+                                       (compile_lambda { cxt with st } lam))
                                     ~with_:(id,
                                              (Gen_util.block_of_output @@
                                                 (compile_lambda
-                                                   { cxt with st } catch)))
-                                    (Gen_util.block_of_output b)] in
+                                                   { cxt with st } catch)))] in
                                (match st with
                                 | NeedValue  ->
                                     let v = Gen_util.gen () in
                                     (((S.variable v) :: (aux (Assign v))),
                                       (Some (E.var v)))
-                                | _ -> ((aux st), None))
+                                | Declare id ->
+                                    (((S.variable id) :: (aux (Assign id))),
+                                      None)
+                                | Assign _|EffectCall  -> ((aux st), None))
                            | Lapply (fn,args_lambda,_) ->
                                (match compile_lambda
                                         {
@@ -3410,7 +3432,9 @@ module rec
                                                    Set.Make(String)
                                                  let gen_symbs =
                                                    SSet.of_list
-                                                     ["param"; "prim"]
+                                                     ["param";
+                                                     "prim";
+                                                     "match"]
                                                  let string_of_id ?(replace=
                                                    false)  (id : Ident.t)
                                                    (({ mapping } as cxt) :

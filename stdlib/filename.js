@@ -146,11 +146,12 @@ var
              suff);
     };
 
+var temp_dir_name;
 try
- {var temp_dir_name=CamlPrimitive["caml_sys_getenv"]("TMPDIR");}
+ {temp_dir_name=CamlPrimitive["caml_sys_getenv"]("TMPDIR");}
 catch(exn)
  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-   {var temp_dir_name="/tmp";}
+   {temp_dir_name="/tmp";}
   else
    {throw exn;}
   }
@@ -225,11 +226,12 @@ var
             ($$String["lowercase"](s),$$String["lowercase"](suff));
     };
 
+var temp_dir_name$1;
 try
- {var temp_dir_name$1=CamlPrimitive["caml_sys_getenv"]("TEMP");}
+ {temp_dir_name$1=CamlPrimitive["caml_sys_getenv"]("TEMP");}
 catch(exn$1)
  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-   {var temp_dir_name$1=".";}
+   {temp_dir_name$1=".";}
   else
    {throw exn$1;}
   }
@@ -570,10 +572,11 @@ var get_temp_dir_name=function(param){return current_temp_dir_name[1];};
 var
  temp_file=
   function($staropt$star,prefix,suffix)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var temp_dir=$starsth$star;}
+   {var temp_dir;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];temp_dir=$starsth$star;}
     else
-     {var temp_dir=current_temp_dir_name[1];}
+     {temp_dir=current_temp_dir_name[1];}
     
     var
      try_name=
@@ -608,15 +611,17 @@ var
 var
  open_temp_file=
   function($staropt$star,$staropt$star,prefix,suffix)
-   {if($staropt$star$1)
-     {var $starsth$star=$staropt$star$1[1];var mode=$starsth$star;}
+   {var mode;
+    if($staropt$star$1)
+     {var $starsth$star=$staropt$star$1[1];mode=$starsth$star;}
     else
-     {var mode=[/* :: */0,/* Open_text */7,/* [] */0];}
+     {mode=[/* :: */0,/* Open_text */7,/* [] */0];}
     
+    var temp_dir;
     if($staropt$star)
-     {var $starsth$star$1=$staropt$star[1];var temp_dir=$starsth$star$1;}
+     {var $starsth$star$1=$staropt$star[1];temp_dir=$starsth$star$1;}
     else
-     {var temp_dir=current_temp_dir_name[1];}
+     {temp_dir=current_temp_dir_name[1];}
     
     var
      try_name=

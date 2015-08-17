@@ -61,6 +61,7 @@ var
   function(x)
    {var x$1=x;
     
+    var slot;
     if
      (CamlPrimitive["caml_obj_is_block"](x$1)&&
       CamlPrimitive["caml_obj_tag"](x$1)!==
@@ -68,15 +69,16 @@ var
       /* -1 for tag */x$1["length"]-
       1>=
       1)
-     {var slot=x$1[1];}
+     {slot=x$1[1];}
     else
-     {var slot=x$1;}
+     {slot=x$1;}
     
+    var name;
     if
      (CamlPrimitive["caml_obj_is_block"](slot)&&
       CamlPrimitive["caml_obj_tag"](slot)===
       object_tag)
-     {var name=slot[1];}
+     {name=slot[1];}
     else
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     

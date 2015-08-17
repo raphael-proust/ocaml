@@ -27,9 +27,11 @@ var
     var
      bal=
       function(l,x,d,r)
-       {if(l){var h=l[5];var hl=h;}else{var hl=0;}
+       {var hl;
+        if(l){var h=l[5];hl=h;}else{hl=0;}
         
-        if(r){var h$1=r[5];var hr=h$1;}else{var hr=0;}
+        var hr;
+        if(r){var h$1=r[5];hr=h$1;}else{hr=0;}
         
         if(hl>hr+2)
          {if(l)

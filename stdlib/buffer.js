@@ -10,12 +10,14 @@ var Sys=require("./sys.js");
 var
  create=
   function(n)
-   {if(n<1){var n$1=1;}else{var n$1=n;}
+   {var n$1;
+    if(n<1){n$1=1;}else{n$1=n;}
     
+    var n$2;
     if(n$1>Sys["max_string_length"])
-     {var n$2=Sys["max_string_length"];}
+     {n$2=Sys["max_string_length"];}
     else
-     {var n$2=n$1;}
+     {n$2=n$1;}
     
     var s=CamlPrimitive["caml_create_string"](n$2);
     

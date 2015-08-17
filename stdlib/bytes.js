@@ -69,10 +69,11 @@ var
     
     var r=CamlPrimitive["caml_create_string"](len);
     
+    var match;
     if(left<0)
-     {var match=/* tuple */[0,-left,0];}
+     {match=/* tuple */[0,-left,0];}
     else
-     {var match=/* tuple */[0,0,left];}
+     {match=/* tuple */[0,0,left];}
     
     var dstoff=match[2];
     
@@ -212,20 +213,22 @@ var
       var exit;
       
       if(c>=14)
-       {if(c!==34){if(c!==92){exit=30;}else{exit=29;}}else{exit=29;}}
+       {var $js;if(c!==34){if(c!==92){exit=30;}else{exit=29;}}else{exit=29;}}
       else
-       {if(c>=11)
+       {var $js;
+        if(c>=11)
          {if(c>=13){exit=29;}else{exit=30;}}
         else
          {if(c>=8){exit=29;}else{exit=30;}}
         }
       
-      var $js;
+      var $js$1;
       switch(exit)
-       {case 30:if(CamlPrimitive["caml_is_printable"](c)){$js=1;}else{$js=4;}
-        case 29:$js=2;
+       {case 30:
+         if(CamlPrimitive["caml_is_printable"](c)){$js$1=1;}else{$js$1=4;}
+        case 29:$js$1=2;
         }
-      n[1]=n[1]+$js}
+      n[1]=n[1]+$js$1}
     
     if(n[1]===s["length"])
      {return copy(s);}

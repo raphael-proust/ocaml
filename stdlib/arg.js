@@ -116,35 +116,35 @@ var help_action=function(param){throw [0,Stop,[/* Unknown */0,"-help"]];};
 var
  add_help=
   function(speclist)
-   {try
-     {assoc3("-help",speclist);var add1=/* [] */0;}
+   {var add1;
+    try
+     {assoc3("-help",speclist);add1=/* [] */0;}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var
-         add1=
-          /* :: */[0,
-           /* tuple */[0,
-            "-help",
-            /* Unit */[0,help_action],
-            " Display this list of options"],
-           /* [] */0];
+       {add1=
+        /* :: */[0,
+         /* tuple */[0,
+          "-help",
+          /* Unit */[0,help_action],
+          " Display this list of options"],
+         /* [] */0];
         }
       else
        {throw exn;}
       }
     
+    var add2;
     try
-     {assoc3("--help",speclist);var add2=/* [] */0;}
+     {assoc3("--help",speclist);add2=/* [] */0;}
     catch(exn$1)
      {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var
-         add2=
-          /* :: */[0,
-           /* tuple */[0,
-            "--help",
-            /* Unit */[0,help_action],
-            " Display this list of options"],
-           /* [] */0];
+       {add2=
+        /* :: */[0,
+         /* tuple */[0,
+          "--help",
+          /* Unit */[0,help_action],
+          " Display this list of options"],
+         /* [] */0];
         }
       else
        {throw exn$1;}
@@ -191,10 +191,11 @@ var current=[0,0];
 var
  parse_argv_dynamic=
   function($staropt$star,argv,speclist,anonfun,errmsg)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var current$1=$starsth$star;}
+   {var current$1;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];current$1=$starsth$star;}
     else
-     {var current$1=current;}
+     {current$1=current;}
     
     var l=/* -1 for tag */argv["length"]-1;
     
@@ -205,7 +206,8 @@ var
     var
      stop=
       function(error)
-       {if(initpos<l){var progname=argv[initpos+1];}else{var progname="(?)";}
+       {var progname;
+        if(initpos<l){progname=argv[initpos+1];}else{progname="(?)";}
         
         switch(error[0])
          {case 0:
@@ -312,11 +314,12 @@ var
      {var s=argv[current$1[1]+1];
       
       if(s["length"]>=1&&s["charCodeAt"](0)===45)
-       {try
-         {var action=assoc3(s,speclist[1]);}
+       {var action;
+        try
+         {action=assoc3(s,speclist[1]);}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {var action=stop(/* Unknown */[0,s]);}
+           {action=stop(/* Unknown */[0,s]);}
           else
            {throw exn;}
           }
@@ -579,10 +582,11 @@ var
 var
  parse_argv=
   function($staropt$star,argv,speclist,anonfun,errmsg)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var current$1=$starsth$star;}
+   {var current$1;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];current$1=$starsth$star;}
     else
-     {var current$1=current;}
+     {current$1=current;}
     
     return parse_argv_dynamic
             (/* Some */[0,current$1],argv,[0,speclist],anonfun,errmsg);
@@ -761,10 +765,11 @@ var
 var
  align=
   function($staropt$star,speclist)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var limit=$starsth$star;}
+   {var limit;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];limit=$starsth$star;}
     else
-     {var limit=Pervasives["max_int"];}
+     {limit=Pervasives["max_int"];}
     
     var completed=add_help(speclist);
     
