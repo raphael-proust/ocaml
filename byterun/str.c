@@ -62,8 +62,9 @@ CAMLprim value caml_string_of_char_list(value char_list)
     caml_invalid_argument("String.of_char_list");
   }
   res = caml_alloc_string(size);
-  for(size=0, l = char_list; l!=Val_int(0); l = Field(l,1)){
+  for(size = 0, l = char_list; l!=Val_int(0); l = Field(l,1)){
     Byte_u(res, size) = Int_val(Field(l,0));
+    ++size;
   }
   CAMLreturn(res);
 }
