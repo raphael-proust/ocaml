@@ -246,13 +246,9 @@ var
                          {if(!Debugcom["Remote_value"][2](v))
                            {throw [0,$$Error,/* List_index */[6,pos,n$1]];}
                           else
-                           {if(pos===n$1)
-                             {return /* tuple */[0,
-                                      Debugcom["Remote_value"][5](v,0),
-                                      ty_arg];
-                              }
-                            else
-                             {return nth(pos+1,Debugcom["Remote_value"][5](v,1));}
+                           {return pos===n$1
+                                    ?/* tuple */[0,Debugcom["Remote_value"][5](v,0),ty_arg]
+                                    :nth(pos+1,Debugcom["Remote_value"][5](v,1));
                             }
                           };
                       
@@ -271,7 +267,7 @@ var
                    {throw [0,$$Error,/* String_index */[7,s,s["length"],n$1]];}
                   else
                    {return /* tuple */[0,
-                            Debugcom["Remote_value"][7](s[n$1]),
+                            Debugcom["Remote_value"][7](s["charCodeAt"](n$1)),
                             Predef["type_char"]];
                     }
                   }

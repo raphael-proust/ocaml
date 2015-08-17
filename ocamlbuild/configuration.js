@@ -57,7 +57,7 @@ var
 var
  parse_string=
   function(source,s)
-   {if(source){var source$1=source[1];}else{var source$1=Const["Source"][8];}
+   {var source$1=source?source[1]:Const["Source"][8];
     
     return parse_lexbuf
             (/* None */0,source$1,My_std["lexbuf_of_string"](/* None */0,s));
@@ -90,12 +90,10 @@ var
             (function(tags,param)
               {var v=param[2];
                
-               if(key_match(param[1],s))
-                {return My_std["List"][20]
-                         (add,v[1],My_std["List"][20](remove,v[2],tags));
-                 }
-               else
-                {return tags;}
+               return key_match(param[1],s)
+                       ?My_std["List"][20]
+                         (add,v[1],My_std["List"][20](remove,v[2],tags))
+                       :tags;
                },
              init,
              config);
@@ -133,8 +131,8 @@ var has_tag=function(tag){return Tags["mem"](tag,global_tags(/* () */0));};
 var
  tag_file=
   function(file,tags)
-   {if(tags!==/* [] */0)
-     {return parse_string
+   {return tags!==/* [] */0
+            ?parse_string
               (/* None */0,
                Printf["sprintf"]
                 ([/* Format */0,
@@ -145,17 +143,15 @@ var
                     [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                   "%S: %s"],
                  file,
-                 My_std["String"][22](", ",tags)));
-      }
-    else
-     {return 0;}
+                 My_std["String"][22](", ",tags)))
+            :0;
     };
 
 var
  tag_any=
   function(tags)
-   {if(tags!==/* [] */0)
-     {return parse_string
+   {return tags!==/* [] */0
+            ?parse_string
               (/* None */0,
                Printf["sprintf"]
                 ([/* Format */0,
@@ -163,10 +159,8 @@ var
                    "true: ",
                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
                   "true: %s"],
-                 My_std["String"][22](", ",tags)));
-      }
-    else
-     {return 0;}
+                 My_std["String"][22](", ",tags)))
+            :0;
     };
 
 var
@@ -177,8 +171,8 @@ var
       function(param)
        {var tag=param[1];
         
-        if(!Tags["mem"](tag,useful_tags))
-         {return Log["eprintf"]
+        return !Tags["mem"](tag,useful_tags)
+                ?Log["eprintf"]
                   ([/* Format */0,
                     [/* Alpha */15,
                      [/* String_literal */11,
@@ -191,10 +185,8 @@ var
                     "%aWarning: the tag %S is not used in any flag or dependency declaration, so it will have no effect; it may be a typo. Otherwise you can use `mark_tag_used` in your myocamlbuild.ml to disable this warning."],
                    Loc["print_loc"],
                    param[2],
-                   tag);
-          }
-        else
-         {return 0;}
+                   tag)
+                :0;
         };
     
     var

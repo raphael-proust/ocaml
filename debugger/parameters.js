@@ -34,11 +34,12 @@ var
 var
  add_path_for=
   function(mdl,dir)
-   {try
-     {var old=Hashtbl["find"](Debugger_config["load_path_for"],mdl);}
+   {var old;
+    try
+     {old=Hashtbl["find"](Debugger_config["load_path_for"],mdl);}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var old=/* [] */0;}
+       {old=/* [] */0;}
       else
        {throw exn;}
       }

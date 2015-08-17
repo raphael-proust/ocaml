@@ -152,7 +152,7 @@ var
 var
  module_elements=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var
      iter_kind=
@@ -222,7 +222,7 @@ var
 var
  module_type_elements=
   function($staropt$star,mt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var
      iter_kind=
@@ -237,20 +237,14 @@ var
              if(trans)
               {var match$1=match[1][2];
                
-               if(match$1)
-                {return module_type_elements(/* None */0,match$1[1]);}
-               else
-                {return /* [] */0;}
+               return match$1
+                       ?module_type_elements(/* None */0,match$1[1])
+                       :/* [] */0;
                }
              else
               {return /* [] */0;}
              
-            case 3:
-             if(trans)
-              {return iter_kind(/* Some */[0,match[1]]);}
-             else
-              {return /* [] */0;}
-             
+            case 3:return trans?iter_kind(/* Some */[0,match[1]]):/* [] */0;
             case 4:return /* [] */0;
             }
           }
@@ -264,7 +258,7 @@ var
 var
  module_values=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return values(module_elements(/* Some */[0,trans],m));
     };
@@ -272,7 +266,7 @@ var
 var
  module_functions=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["filter"]
             (function(v){return Odoc_value["is_function"](v);},
@@ -282,7 +276,7 @@ var
 var
  module_simple_values=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["filter"]
             (function(v){return !Odoc_value["is_function"](v);},
@@ -292,7 +286,7 @@ var
 var
  module_types=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return types(module_elements(/* Some */[0,trans],m));
     };
@@ -300,7 +294,7 @@ var
 var
  module_type_extensions=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return type_extensions(module_elements(/* Some */[0,trans],m));
     };
@@ -308,7 +302,7 @@ var
 var
  module_exceptions=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return exceptions(module_elements(/* Some */[0,trans],m));
     };
@@ -316,7 +310,7 @@ var
 var
  module_classes=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return classes(module_elements(/* Some */[0,trans],m));
     };
@@ -324,7 +318,7 @@ var
 var
  module_class_types=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return class_types(module_elements(/* Some */[0,trans],m));
     };
@@ -332,7 +326,7 @@ var
 var
  module_modules=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return modules(module_elements(/* Some */[0,trans],m));
     };
@@ -340,7 +334,7 @@ var
 var
  module_module_types=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return mod_types(module_elements(/* Some */[0,trans],m));
     };
@@ -348,7 +342,7 @@ var
 var
  module_included_modules=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return included_modules(module_elements(/* Some */[0,trans],m));
     };
@@ -356,7 +350,7 @@ var
 var
  module_comments=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return comments(module_elements(/* Some */[0,trans],m));
     };
@@ -364,7 +358,7 @@ var
 var
  module_type_parameters=
   function($staropt$star,mt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var
      iter=
@@ -381,21 +375,22 @@ var
              
              var match$1=mt[2];
              
+             var param;
              if(match$1)
               {try
                 {var d=List["assoc"](p[1],match$1[1][8]);
                  
-                 var param=/* tuple */[0,p,/* Some */[0,d]];
+                 param=/* tuple */[0,p,/* Some */[0,d]];
                  }
                catch(exn)
                 {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                  {var param=/* tuple */[0,p,/* None */0];}
+                  {param=/* tuple */[0,p,/* None */0];}
                  else
                   {throw exn;}
                  }
                }
              else
-              {var param=/* tuple */[0,p,/* None */0];}
+              {param=/* tuple */[0,p,/* None */0];}
              
              return /* :: */[0,param,iter(/* Some */[0,match[2]])];
              
@@ -403,21 +398,14 @@ var
              if(trans)
               {var match$2=match[1][2];
                
-               if(match$2)
-                {return module_type_parameters(/* Some */[0,trans],match$2[1]);
-                 }
-               else
-                {return /* [] */0;}
+               return match$2
+                       ?module_type_parameters(/* Some */[0,trans],match$2[1])
+                       :/* [] */0;
                }
              else
               {return /* [] */0;}
              
-            case 3:
-             if(trans)
-              {return iter(/* Some */[0,match[1]]);}
-             else
-              {return /* [] */0;}
-             
+            case 3:return trans?iter(/* Some */[0,match[1]]):/* [] */0;
             case 4:exit=35;
             }
           
@@ -433,7 +421,7 @@ var
 var
  module_parameters=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var
      iter=
@@ -466,21 +454,22 @@ var
            
            var match$2=m[3];
            
+           var param$1;
            if(match$2)
             {try
               {var d=List["assoc"](p[1],match$2[1][8]);
                
-               var param$1=/* tuple */[0,p,/* Some */[0,d]];
+               param$1=/* tuple */[0,p,/* Some */[0,d]];
                }
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var param$1=/* tuple */[0,p,/* None */0];}
+                {param$1=/* tuple */[0,p,/* None */0];}
                else
                 {throw exn;}
                }
              }
            else
-            {var param$1=/* tuple */[0,p,/* None */0];}
+            {param$1=/* tuple */[0,p,/* None */0];}
            
            return /* :: */[0,param$1,iter(param[2])];
            
@@ -505,7 +494,7 @@ var
 var
  module_all_submodules=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var l=module_modules(/* Some */[0,trans],m);
     
@@ -535,10 +524,7 @@ var
             case 2:
              var match$1=match[1][2];
              
-             if(match$1)
-              {return module_type_is_functor(match$1[1]);}
-             else
-              {return /* false */0;}
+             return match$1?module_type_is_functor(match$1[1]):/* false */0;
              
             case 3:return iter(/* Some */[0,match[1]]);
             case 4:exit=29;
@@ -585,7 +571,7 @@ var
 var
  module_type_values=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return values(module_type_elements(/* Some */[0,trans],m));
     };
@@ -593,7 +579,7 @@ var
 var
  module_type_types=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return types(module_type_elements(/* Some */[0,trans],m));
     };
@@ -601,7 +587,7 @@ var
 var
  module_type_type_extensions=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return type_extensions(module_type_elements(/* Some */[0,trans],m));
     };
@@ -609,7 +595,7 @@ var
 var
  module_type_exceptions=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return exceptions(module_type_elements(/* Some */[0,trans],m));
     };
@@ -617,7 +603,7 @@ var
 var
  module_type_classes=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return classes(module_type_elements(/* Some */[0,trans],m));
     };
@@ -625,7 +611,7 @@ var
 var
  module_type_class_types=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return class_types(module_type_elements(/* Some */[0,trans],m));
     };
@@ -633,7 +619,7 @@ var
 var
  module_type_modules=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return modules(module_type_elements(/* Some */[0,trans],m));
     };
@@ -641,7 +627,7 @@ var
 var
  module_type_module_types=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return mod_types(module_type_elements(/* Some */[0,trans],m));
     };
@@ -649,7 +635,7 @@ var
 var
  module_type_included_modules=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return included_modules(module_type_elements(/* Some */[0,trans],m));
     };
@@ -657,7 +643,7 @@ var
 var
  module_type_comments=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return comments(module_type_elements(/* Some */[0,trans],m));
     };
@@ -665,7 +651,7 @@ var
 var
  module_type_functions=
   function($staropt$star,mt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["filter"]
             (function(v){return Odoc_value["is_function"](v);},
@@ -675,7 +661,7 @@ var
 var
  module_type_simple_values=
   function($staropt$star,mt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["filter"]
             (function(v){return !Odoc_value["is_function"](v);},
@@ -685,7 +671,7 @@ var
 var
  module_all_classes=
   function($staropt$star,m)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,m)
@@ -705,7 +691,7 @@ var
 var
  module_type_all_classes=
   function($staropt$star,mt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,m)

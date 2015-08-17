@@ -92,31 +92,30 @@ var
      print_one_type=
       function(variance,t)
        {Printtyp["mark_loops"](t);
-        if(need_parent(t))
-         {Format["fprintf"]
-           (fmt,
-            [/* Format */0,
-             [/* Char_literal */12,
-              40,
-              [/* String */2,/* No_padding */0,/* End_of_format */0]],
-             "(%s"],
-            variance);
-          Printtyp["type_scheme_max"]([/* Some */0,/* false */0],fmt,t);
-          return Format["fprintf"]
-                  (fmt,
-                   [/* Format */0,
-                    [/* Char_literal */12,41,/* End_of_format */0],
-                    ")"]);
-          }
-        else
-         {Format["fprintf"]
-           (fmt,
-            [/* Format */0,
-             [/* String */2,/* No_padding */0,/* End_of_format */0],
-             "%s"],
-            variance);
-          return Printtyp["type_scheme_max"]([/* Some */0,/* false */0],fmt,t);
-          }
+        return need_parent(t)
+                ?(Format["fprintf"]
+                   (fmt,
+                    [/* Format */0,
+                     [/* Char_literal */12,
+                      40,
+                      [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                     "(%s"],
+                    variance),
+                  Printtyp["type_scheme_max"]
+                   ([/* Some */0,/* false */0],fmt,t),
+                  Format["fprintf"]
+                   (fmt,
+                    [/* Format */0,
+                     [/* Char_literal */12,41,/* End_of_format */0],
+                     ")"]))
+                :(Format["fprintf"]
+                   (fmt,
+                    [/* Format */0,
+                     [/* String */2,/* No_padding */0,/* End_of_format */0],
+                     "%s"],
+                    variance),
+                  Printtyp["type_scheme_max"]
+                   ([/* Some */0,/* false */0],fmt,t));
         };
     
     if(type_list)
@@ -128,38 +127,37 @@ var
       
       var variance=match[1];
       
-      if(tyl)
-       {Format["fprintf"]
-         (fmt,
-          [/* Format */0,
-           [/* Formatting_gen */18,
-            [/* Open_box */1,
-             [/* Format */0,
-              [/* String_literal */11,"<hov 2>",/* End_of_format */0],
-              "<hov 2>"]],
-            /* End_of_format */0],
-           "@[<hov 2>"]),
-        print_one_type(variance,ty),
-        List["iter"]
-         (function(param)
-           {Format["fprintf"]
-             (fmt,
+      tyl
+       ?(Format["fprintf"]
+          (fmt,
+           [/* Format */0,
+            [/* Formatting_gen */18,
+             [/* Open_box */1,
               [/* Format */0,
-               [/* Formatting_lit */17,
-                [/* Break */0,"@,",0,0],
-                [/* String */2,/* No_padding */0,/* End_of_format */0]],
-               "@,%s"],
-              sep);
-            return print_one_type(param[1],param[2]);
-            },
-          tyl),
-        Format["fprintf"]
-         (fmt,
-          [/* Format */0,
-           [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0],
-           "@]"])}
-      else
-       {print_one_type(variance,ty)}
+               [/* String_literal */11,"<hov 2>",/* End_of_format */0],
+               "<hov 2>"]],
+             /* End_of_format */0],
+            "@[<hov 2>"]),
+         print_one_type(variance,ty),
+         List["iter"]
+          (function(param)
+            {Format["fprintf"]
+              (fmt,
+               [/* Format */0,
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@,",0,0],
+                 [/* String */2,/* No_padding */0,/* End_of_format */0]],
+                "@,%s"],
+               sep);
+             return print_one_type(param[1],param[2]);
+             },
+           tyl),
+         Format["fprintf"]
+          (fmt,
+           [/* Format */0,
+            [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0],
+            "@]"]))
+       :print_one_type(variance,ty);
       }
     else
      {}
@@ -171,17 +169,18 @@ var
 var
  string_of_type_list=
   function(par,sep,type_list)
-   {if(par)
-     {var par$1=par[1];}
+   {var par$1;
+    if(par)
+     {par$1=par[1];}
     else
      {var exit;
       
       if(type_list)
-       {if(type_list[2]){var par$1=/* true */1;}else{exit=36;}}
+       {if(type_list[2]){par$1=/* true */1;}else{exit=36;}}
       else
        {exit=36;}
       
-      switch(exit){case 36:var par$1=/* false */0;}
+      switch(exit){case 36:par$1=/* false */0;}
       }
     
     return Printf["sprintf"]
@@ -206,7 +205,8 @@ var
     
     var exit;
     
-    if(match){if(match[2]){var par=/* true */1;}else{exit=32;}}else{exit=32;}
+    var par;
+    if(match){if(match[2]){par=/* true */1;}else{exit=32;}}else{exit=32;}
     
     switch(exit){case 32:var par=/* false */0;}
     
@@ -238,7 +238,8 @@ var
     
     var exit;
     
-    if(match){if(match[2]){var par=/* true */1;}else{exit=28;}}else{exit=28;}
+    var par;
+    if(match){if(match[2]){par=/* true */1;}else{exit=28;}}else{exit=28;}
     
     switch(exit){case 28:var par=/* false */0;}
     
@@ -262,7 +263,8 @@ var
   function(l)
    {var exit;
     
-    if(l){if(l[2]){var par=/* true */1;}else{exit=24;}}else{exit=24;}
+    var par;
+    if(l){if(l[2]){par=/* true */1;}else{exit=24;}}else{exit=24;}
     
     switch(exit){case 24:var par=/* false */0;}
     
@@ -334,8 +336,7 @@ var
 
 var
  bool_of_private=
-  function(param)
-   {if(param!==0){return /* false */0;}else{return /* true */1;}};
+  function(param){return param!==0?/* false */0:/* true */1;};
 
 var
  string_of_type=
@@ -347,8 +348,8 @@ var
     var
      field_doc_str=
       function(param)
-       {if(param)
-         {return P[4]
+       {return param
+                ?P[4]
                   ([/* Format */0,
                     [/* String_literal */11,
                      "(* ",
@@ -356,10 +357,8 @@ var
                       /* No_padding */0,
                       [/* String_literal */11," *)",/* End_of_format */0]]],
                     "(* %s *)"],
-                   Odoc_misc["string_of_info"](param[1]));
-          }
-        else
-         {return "";}
+                   Odoc_misc["string_of_info"](param[1]))
+                :"";
         };
     
     var priv=bool_of_private(t[5]);
@@ -378,64 +377,63 @@ var
     
     var match=t[6];
     
+    var manifest_str;
     if(match)
      {var match$1=match[1];
       
       switch(match$1[0])
        {case 0:
-         var
-          manifest_str=
+         manifest_str=
+         Pervasives["^"]
+          ("= ",
            Pervasives["^"]
-            ("= ",
+            (priv?"private ":"",
              Pervasives["^"]
-              (priv?"private ":"",
-               Pervasives["^"]
-                (Odoc_print["string_of_type_expr"](match$1[1])," ")));
+              (Odoc_print["string_of_type_expr"](match$1[1])," ")));
          
         case 1:
-         var
-          manifest_str=
-           P[4]
-            ([/* Format */0,
+         manifest_str=
+         P[4]
+          ([/* Format */0,
+            [/* String_literal */11,
+             "= ",
+             [/* String */2,
+              /* No_padding */0,
               [/* String_literal */11,
-               "= ",
+               "<\n",
                [/* String */2,
                 /* No_padding */0,
-                [/* String_literal */11,
-                 "<\n",
-                 [/* String */2,
-                  /* No_padding */0,
-                  [/* String_literal */11,"\n>\n",/* End_of_format */0]]]]],
-              "= %s<\n%s\n>\n"],
-             priv?"private ":"",
-             $$String["concat"]
-              ("\n",
-               List["map"]
-                (function(field)
-                  {return P[4]
-                           ([/* Format */0,
+                [/* String_literal */11,"\n>\n",/* End_of_format */0]]]]],
+            "= %s<\n%s\n>\n"],
+           priv?"private ":"",
+           $$String["concat"]
+            ("\n",
+             List["map"]
+              (function(field)
+                {return P[4]
+                         ([/* Format */0,
+                           [/* String_literal */11,
+                            "   ",
+                            [/* String */2,
+                             /* No_padding */0,
                              [/* String_literal */11,
-                              "   ",
+                              " : ",
                               [/* String */2,
                                /* No_padding */0,
-                               [/* String_literal */11,
-                                " : ",
-                                [/* String */2,
-                                 /* No_padding */0,
-                                 [/* Char_literal */12,
-                                  59,
-                                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
-                             "   %s : %s;%s"],
-                            field[1],
-                            Odoc_print["string_of_type_expr"](field[2]),
-                            field_doc_str(field[3]));
-                   },
-                 match$1[1])));
+                               [/* Char_literal */12,
+                                59,
+                                [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
+                           "   %s : %s;%s"],
+                          field[1],
+                          Odoc_print["string_of_type_expr"](field[2]),
+                          field_doc_str(field[3]));
+                 },
+               match$1[1])));
          
         }
       }
     else
-     {var manifest_str="";}
+     {manifest_str="";}
     
     var match$2=t[4];
     
@@ -466,10 +464,10 @@ var
                 (function(cons)
                   {var match$3=cons[4];
                    
-                   if(match$3)
-                    {var
-                      comment=
-                       P[4]
+                   var
+                    comment=
+                     match$3
+                      ?P[4]
                         ([/* Format */0,
                           [/* String_literal */11,
                            "(* ",
@@ -477,10 +475,8 @@ var
                             /* No_padding */0,
                             [/* String_literal */11," *)",/* End_of_format */0]]],
                           "(* %s *)"],
-                         Odoc_misc["string_of_info"](match$3[1]));
-                     }
-                   else
-                    {var comment="";}
+                         Odoc_misc["string_of_info"](match$3[1]))
+                      :"";
                    
                    var
                     string_of_parameters=
@@ -643,15 +639,16 @@ var
                                
                                var match$3=x[5];
                                
+                               var $js;
                                if(match$3)
                                 {var xa=match$3[1];
                                  
                                  var match$4=xa[2];
                                  
-                                 var $js=Pervasives["^"](" = ",match$4?match$4[1][1]:xa[1]);
+                                 $js=Pervasives["^"](" = ",match$4?match$4[1][1]:xa[1]);
                                  }
                                else
-                                {var $js="";}
+                                {$js="";}
                                var match$5=x[7];
                                
                                return Pervasives["^"]
@@ -716,15 +713,16 @@ var
     
     var match$2=e[5];
     
+    var $js;
     if(match$2)
      {var ea=match$2[1];
       
       var match$3=ea[2];
       
-      var $js=Pervasives["^"](" = ",match$3?match$3[1][1]:ea[1]);
+      $js=Pervasives["^"](" = ",match$3?match$3[1][1]:ea[1]);
       }
     else
-     {var $js="";}
+     {$js="";}
     var match$4=e[2];
     
     return Pervasives["^"]

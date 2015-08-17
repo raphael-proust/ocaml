@@ -375,13 +375,11 @@ var
       Lexing["new_engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
     if(2<__ocaml_lex_state$1>>>0)
-     {if(__ocaml_lex_state$1!==3)
-       {lexbuf[1](lexbuf);
-        return __ocaml_lex_comma_or_blank_sep_strings_aux_rec
-                (source,lexbuf,__ocaml_lex_state$1);
-        }
-      else
-       {return error
+     {return __ocaml_lex_state$1!==3
+              ?(lexbuf[1](lexbuf),
+                __ocaml_lex_comma_or_blank_sep_strings_aux_rec
+                 (source,lexbuf,__ocaml_lex_state$1))
+              :error
                 (source,
                  lexbuf,
                  [/* Format */0,
@@ -389,7 +387,6 @@ var
                    "Expecting (comma|blank)-separated strings (2)",
                    /* End_of_format */0],
                   "Expecting (comma|blank)-separated strings (2)"]);
-        }
       }
     else
      {if(__ocaml_lex_state$1>=2)
@@ -588,21 +585,21 @@ var
          
          var s2=Lexing["sub_lexeme"](lexbuf,lexbuf[10][3]+1,lexbuf[6]);
          
+         var bexpr;
          try
-          {var bexpr=Glob["parse"](dir,k);}
+          {bexpr=Glob["parse"](dir,k);}
          catch(exn)
-          {var
-            bexpr=
-             error
-              (source,
-               lexbuf,
-               [/* Format */0,
-                [/* String_literal */11,
-                 "Invalid globbing pattern ",
-                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                "Invalid globbing pattern %S"],
-               k,
-               Printexc["to_string"](exn));
+          {bexpr=
+           error
+            (source,
+             lexbuf,
+             [/* Format */0,
+              [/* String_literal */11,
+               "Invalid globbing pattern ",
+               [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+              "Invalid globbing pattern %S"],
+             k,
+             Printexc["to_string"](exn));
            }
          
          sublex(count_lines(lexbuf),s1);
@@ -870,13 +867,11 @@ var
       Lexing["new_engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
     if(__ocaml_lex_state$1!==0)
-     {if(__ocaml_lex_state$1!==1)
-       {lexbuf[1](lexbuf);
-        return __ocaml_lex_ocamlfind_query_rec
-                (source,lexbuf,__ocaml_lex_state$1);
-        }
-      else
-       {return error
+     {return __ocaml_lex_state$1!==1
+              ?(lexbuf[1](lexbuf),
+                __ocaml_lex_ocamlfind_query_rec
+                 (source,lexbuf,__ocaml_lex_state$1))
+              :error
                 (source,
                  lexbuf,
                  [/* Format */0,
@@ -884,7 +879,6 @@ var
                    "Bad ocamlfind query",
                    /* End_of_format */0],
                   "Bad ocamlfind query"]);
-        }
       }
     else
      {var n=Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[10][2]);
@@ -919,24 +913,19 @@ var
      __ocaml_lex_state$1=
       Lexing["new_engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!==0)
-     {if(__ocaml_lex_state$1!==1)
-       {lexbuf[1](lexbuf);
-        return __ocaml_lex_trim_blanks_rec(source,lexbuf,__ocaml_lex_state$1);
-        }
-      else
-       {return error
+    return __ocaml_lex_state$1!==0
+            ?__ocaml_lex_state$1!==1
+              ?(lexbuf[1](lexbuf),
+                __ocaml_lex_trim_blanks_rec(source,lexbuf,__ocaml_lex_state$1))
+              :error
                 (source,
                  lexbuf,
                  [/* Format */0,
                   [/* String_literal */11,
                    "Bad input for trim_blanks",
                    /* End_of_format */0],
-                  "Bad input for trim_blanks"]);
-        }
-      }
-    else
-     {return Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[10][2]);}
+                  "Bad input for trim_blanks"])
+            :Lexing["sub_lexeme"](lexbuf,lexbuf[10][1],lexbuf[10][2]);
     };
 
 var
@@ -954,12 +943,10 @@ var
       Lexing["new_engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
     if(__ocaml_lex_state$1!==0)
-     {if(__ocaml_lex_state$1!==1)
-       {lexbuf[1](lexbuf);
-        return __ocaml_lex_tag_gen_rec(source,lexbuf,__ocaml_lex_state$1);
-        }
-      else
-       {return error
+     {return __ocaml_lex_state$1!==1
+              ?(lexbuf[1](lexbuf),
+                __ocaml_lex_tag_gen_rec(source,lexbuf,__ocaml_lex_state$1))
+              :error
                 (source,
                  lexbuf,
                  [/* Format */0,
@@ -967,7 +954,6 @@ var
                    "Not a valid parametrized tag",
                    /* End_of_format */0],
                   "Not a valid parametrized tag"]);
-        }
       }
     else
      {var name=Lexing["sub_lexeme"](lexbuf,lexbuf[5],lexbuf[10][1]);

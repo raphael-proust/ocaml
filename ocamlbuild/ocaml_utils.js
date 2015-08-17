@@ -107,10 +107,9 @@ var non_dependencies=[0,/* [] */0];
 var
  non_dependency=
   function(m1,m2)
-   {if(Pathname["get_extensions"](m1)["length"]===0)
-     {Pervasives["invalid_arg"]("non_dependency: no extension")}
-    else
-     {}
+   {Pathname["get_extensions"](m1)["length"]===0
+     ?Pervasives["invalid_arg"]("non_dependency: no extension")
+     :0;
     
     return non_dependencies[1]=
            /* :: */[0,/* tuple */[0,m1,m2],non_dependencies[1]],
@@ -142,10 +141,7 @@ var
       return /* ignored */-589744366;
       }
     else
-     {if(ignore_stdlib(x))
-       {return /* just_try */886832744;}
-      else
-       {return /* mandatory */-38817255;}
+     {return ignore_stdlib(x)?/* just_try */886832744:/* mandatory */-38817255;
       }
     };
 
@@ -208,23 +204,20 @@ var
     
     var reduced=Command["reduce"](flags);
     
-    if(reduced===/* N */0)
-     {return /* N */0;}
-    else
-     {return /* S */[0,
+    return reduced===/* N */0
+            ?/* N */0
+            :/* S */[0,
               /* :: */[0,
                [/* A */1,"-pp"],
                /* :: */[0,/* Quote */[7,reduced],/* [] */0]]];
-      }
     };
 
 var
  ocaml_add_include_flag=
   function(x,acc)
-   {if(CamlPrimitive["caml_string_equal"](x,Pathname["current_dir_name"]))
-     {return acc;}
-    else
-     {return /* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]];}
+   {return CamlPrimitive["caml_string_equal"](x,Pathname["current_dir_name"])
+            ?acc
+            :/* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]];
     };
 
 var
@@ -262,81 +255,65 @@ var
 var
  ocaml_lib=
   function($staropt$star,$staropt$star,$staropt$star,dir,tag_name,libpath)
-   {if($staropt$star$1)
-     {var extern=$staropt$star$1[1];}
-    else
-     {var extern=/* false */0;}
+   {var extern=$staropt$star$1?$staropt$star$1[1]:/* false */0;
     
-    if($staropt$star$2)
-     {var $$byte=$staropt$star$2[1];}
-    else
-     {var $$byte=/* true */1;}
+    var $$byte=$staropt$star$2?$staropt$star$2[1]:/* true */1;
     
-    if($staropt$star)
-     {var $$native=$staropt$star[1];}
-    else
-     {var $$native=/* true */1;}
+    var $$native=$staropt$star?$staropt$star[1]:/* true */1;
     
     var
      add_dir=
       function(x)
-       {if(dir)
-         {return /* S */[0,
+       {return dir
+                ?/* S */[0,
                   /* :: */[0,
                    [/* A */1,"-I"],
-                   /* :: */[0,/* P */[2,dir[1]],/* :: */[0,x,/* [] */0]]]];
-          }
-        else
-         {return x;}
+                   /* :: */[0,/* P */[2,dir[1]],/* :: */[0,x,/* [] */0]]]]
+                :x;
         };
     
-    if(tag_name)
-     {var tag_name$1=tag_name[1];}
-    else
-     {var tag_name$1=Pervasives["^"]("use_",Pathname["basename"](libpath));}
+    var
+     tag_name$1=
+      tag_name
+       ?tag_name[1]
+       :Pervasives["^"]("use_",Pathname["basename"](libpath));
     
     var
      flag_and_dep$1=
       function(tags,lib)
        {Flags["flag"](/* None */0,tags,add_dir(/* A */[1,lib]));
-        if(!extern)
-         {return Command["dep"](tags,/* :: */[0,lib,/* [] */0]);}
-        else
-         {return 0;}
+        return !extern?Command["dep"](tags,/* :: */[0,lib,/* [] */0]):0;
         };
     
     Hashtbl["replace"]
      (info_libraries,tag_name$1,/* tuple */[0,libpath,extern]);
     Flags["mark_tag_used"](tag_name$1);
     if(extern)
-     {if($$byte)
-       {flag_and_dep$1
+     {$$byte
+       ?flag_and_dep$1
          (/* :: */[0,
            "ocaml",
            /* :: */[0,
             tag_name$1,
             [/* :: */0,"link",[/* :: */0,"byte",/* [] */0]]]],
-          Pervasives["^"](libpath,".cma"))}
-      else
-       {}
+          Pervasives["^"](libpath,".cma"))
+       :0;
       
-      if($$native)
-       {flag_and_dep$1
+      $$native
+       ?flag_and_dep$1
          (/* :: */[0,
            "ocaml",
            /* :: */[0,
             tag_name$1,
             [/* :: */0,"link",[/* :: */0,"native",/* [] */0]]]],
-          Pervasives["^"](libpath,".cmxa"))}
-      else
-       {}
+          Pervasives["^"](libpath,".cmxa"))
+       :0;
       }
     else
-     {if(!$$byte&&!$$native)
-       {Pervasives["invalid_arg"]
-         ("ocaml_lib: ~byte:false or ~native:false only works with ~extern:true")}
-      else
-       {}
+     {!$$byte&&!$$native
+       ?Pervasives["invalid_arg"]
+         ("ocaml_lib: ~byte:false or ~native:false only works with ~extern:true")
+       :0;
       }
     
     if(dir)
@@ -381,11 +358,11 @@ var
             (/* None */0,
              depends,
              function(ic)
-              {try
-                {var
-                  ocamldep_output=
-                   Lexers["ocamldep_output"]
-                    (Const["Source"][5],Lexing["from_channel"](ic));
+              {var ocamldep_output;
+               try
+                {ocamldep_output=
+                 Lexers["ocamldep_output"]
+                  (Const["Source"][5],Lexing["from_channel"](ic));
                  }
                catch(exn)
                 {if(exn[1]===Lexers["Error"])
@@ -436,12 +413,12 @@ var
                    ocamldep_output,
                    /* [] */0);
                
-               if
-                (Options["nostdlib"][1]&&
-                 !Tags["mem"]("nopervasives",Tools["tags_of_pathname"](path)))
-                {var deps$1=/* :: */[0,"Pervasives",deps];}
-               else
-                {var deps$1=deps;}
+               var
+                deps$1=
+                 Options["nostdlib"][1]&&
+                  !Tags["mem"]("nopervasives",Tools["tags_of_pathname"](path))
+                  ?/* :: */[0,"Pervasives",deps]
+                  :deps;
                
                var
                 deps$prime=
@@ -449,10 +426,9 @@ var
                   (function(dep,acc)
                     {var importance=path_importance(path,dep);
                      
-                     if(importance>=-38817255)
-                      {return /* :: */[0,/* tuple */[0,importance,dep],acc];}
-                     else
-                      {return acc;}
+                     return importance>=-38817255
+                             ?/* :: */[0,/* tuple */[0,importance,dep],acc]
+                             :acc;
                      },
                    deps$1,
                    /* [] */0);

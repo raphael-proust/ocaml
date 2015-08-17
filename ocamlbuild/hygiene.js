@@ -26,10 +26,9 @@ var
           
           var match=f(param[1]);
           
-          if(match)
-           {return loop(/* :: */[0,match[1],result],rest);}
-          else
-           {return loop(result,rest);}
+          return match
+                  ?loop(/* :: */[0,match[1],result],rest)
+                  :loop(result,rest);
           }
         else
          {return My_std["List"][9](result);}
@@ -45,7 +44,7 @@ var
      loop=
       function(param)
        {if(param)
-         {var y=f(param[1]);if(y){return y;}else{return loop(param[2]);}}
+         {var y=f(param[1]);return y?y:loop(param[2]);}
         else
          {return /* None */0;}
         };
@@ -66,27 +65,23 @@ var
     
     var microbes=[0,SS[1]];
     
+    var match;
     if(sanitize)
      {var fn=sanitize[1];
       
-      if(My_std["sys_file_exists"](fn))
-       {var match=My_std["sys_remove"](fn);}
-      else
-       {var match=0;}
+      match=My_std["sys_file_exists"](fn)?My_std["sys_remove"](fn):0;
       }
     else
-     {var match=/* () */0;}
+     {match=/* () */0;}
     
     var
      remove=
       function(path,name)
-       {if(sanitize!==/* None */0)
-         {return microbes[1]=
-                 SS[4](My_std["filename_concat"](path,name),microbes[1]),
-                 0;
-          }
-        else
-         {return 0;}
+       {return sanitize!==/* None */0
+                ?(microbes[1]=
+                  SS[4](My_std["filename_concat"](path,name),microbes[1]),
+                  0)
+                :0;
         };
     
     var
@@ -117,50 +112,47 @@ var
                                
                                var name$prime=Pervasives["^"](base,suffix2);
                                
-                               if
-                                (My_std["List"][27]
-                                  (function(param$2)
-                                    {var exit$1;
-                                     
-                                     if(typeof param$2==="number")
-                                      {switch(param$2){}}
-                                     else
-                                      {switch(param$2[0])
-                                        {case 1:
-                                          if(param$2[4]!==0)
-                                           {return CamlPrimitive["caml_string_equal"]
-                                                    (name$prime,param$2[2]);
-                                            }
-                                          else
-                                           {exit$1=10;}
-                                          
-                                         default:exit$1=10;}}
-                                     
-                                     switch(exit$1){case 10:return /* false */0;}
-                                     },
-                                   entries))
-                                {remove(path,name$prime);
-                                 return /* Some */[0,
-                                         sf
-                                          ([/* Format */0,
-                                            [/* String_literal */11,
-                                             "Files ",
-                                             [/* String */2,
-                                              /* No_padding */0,
-                                              [/* String_literal */11,
-                                               " and ",
-                                               [/* String */2,
-                                                /* No_padding */0,
-                                                [/* String_literal */11,
-                                                 " should not be together in ",
-                                                 [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
-                                            "Files %s and %s should not be together in %s"],
-                                           name,
-                                           name$prime,
-                                           path)];
-                                 }
-                               else
-                                {return /* None */0;}
+                               return My_std["List"][27]
+                                        (function(param$2)
+                                          {var exit$1;
+                                           
+                                           if(typeof param$2==="number")
+                                            {switch(param$2){}}
+                                           else
+                                            {switch(param$2[0])
+                                              {case 1:
+                                                if(param$2[4]!==0)
+                                                 {return CamlPrimitive["caml_string_equal"]
+                                                          (name$prime,param$2[2]);
+                                                  }
+                                                else
+                                                 {exit$1=10;}
+                                                
+                                               default:exit$1=10;}}
+                                           
+                                           switch(exit$1){case 10:return /* false */0;}
+                                           },
+                                         entries)
+                                       ?(remove(path,name$prime),
+                                         /* Some */[0,
+                                          sf
+                                           ([/* Format */0,
+                                             [/* String_literal */11,
+                                              "Files ",
+                                              [/* String */2,
+                                               /* No_padding */0,
+                                               [/* String_literal */11,
+                                                " and ",
+                                                [/* String */2,
+                                                 /* No_padding */0,
+                                                 [/* String_literal */11,
+                                                  " should not be together in ",
+                                                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
+                                             "Files %s and %s should not be together in %s"],
+                                            name,
+                                            name$prime,
+                                            path)])
+                                       :/* None */0;
                                }
                              else
                               {return /* None */0;}
@@ -191,33 +183,30 @@ var
                            var path=param$1[1];
                            
                            if(param$1[4]!==0)
-                            {if
-                              (Filename["check_suffix"](name,suffix)&&
-                               !Pathname["link_to_dir"]
-                                (My_std["filename_concat"](path,name),
-                                 Options["build_dir"][1]))
-                              {remove(path,name);
-                               return /* Some */[0,
-                                       sf
-                                        ([/* Format */0,
-                                          [/* String_literal */11,
-                                           "File ",
-                                           [/* String */2,
-                                            /* No_padding */0,
-                                            [/* String_literal */11,
-                                             " in ",
-                                             [/* String */2,
-                                              /* No_padding */0,
-                                              [/* String_literal */11,
-                                               " has suffix ",
-                                               [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
-                                          "File %s in %s has suffix %s"],
-                                         name,
-                                         path,
-                                         suffix)];
-                               }
-                             else
-                              {return /* None */0;}
+                            {return Filename["check_suffix"](name,suffix)&&
+                                     !Pathname["link_to_dir"]
+                                      (My_std["filename_concat"](path,name),
+                                       Options["build_dir"][1])
+                                     ?(remove(path,name),
+                                       /* Some */[0,
+                                        sf
+                                         ([/* Format */0,
+                                           [/* String_literal */11,
+                                            "File ",
+                                            [/* String */2,
+                                             /* No_padding */0,
+                                             [/* String_literal */11,
+                                              " in ",
+                                              [/* String */2,
+                                               /* No_padding */0,
+                                               [/* String_literal */11,
+                                                " has suffix ",
+                                                [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
+                                           "File %s in %s has suffix %s"],
+                                          name,
+                                          path,
+                                          suffix)])
+                                     :/* None */0;
                              }
                            else
                             {exit=8;}
@@ -252,13 +241,11 @@ var
                       (My_std["List"][16]
                         (check_rule(My_std["!*"](entries)),law[2]));
                    
-                   if(explanations)
-                    {return penalties[1]=
-                            /* :: */[0,/* tuple */[0,law,explanations],penalties[1]],
-                            0;
-                     }
-                   else
-                    {return /* () */0;}
+                   return explanations
+                           ?(penalties[1]=
+                             /* :: */[0,/* tuple */[0,law,explanations],penalties[1]],
+                             0)
+                           :/* () */0;
                    },
                  laws);
                return My_std["List"][14](check_entry,My_std["!*"](entries));

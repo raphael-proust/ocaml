@@ -90,44 +90,36 @@ var
         if(a&&b&&c&&we_have_a_plugin$1)
          {return /* () */0;}
         else
-         {if
-           (Options["native_plugin"][1]&&
-            !My_std["sys_file_exists"]
-             (Pathname["Operators"][1]
-               (Ocamlbuild_where["libdir"][1],"ocamlbuildlib.cmxa")))
-           {Options["native_plugin"][1]=
-            /* false */0,
-            Log["eprintf"]
-             ([/* Format */0,
-               [/* String_literal */11,
-                "Warning: Won't be able to compile a native plugin",
-                /* End_of_format */0],
-               "Warning: Won't be able to compile a native plugin"])}
-          else
-           {}
+         {Options["native_plugin"][1]&&
+           !My_std["sys_file_exists"]
+            (Pathname["Operators"][1]
+              (Ocamlbuild_where["libdir"][1],"ocamlbuildlib.cmxa"))
+           ?(Options["native_plugin"][1]=
+             /* false */0,
+             Log["eprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Warning: Won't be able to compile a native plugin",
+                 /* End_of_format */0],
+                "Warning: Won't be able to compile a native plugin"]))
+           :0;
           
-          if(we_have_a_config_file$1)
-           {if(we_have_a_config_file_interface$1)
-             {var
-               plugin_config=
-                /* S */[0,
+          var
+           plugin_config=
+            we_have_a_config_file$1
+             ?we_have_a_config_file_interface$1
+               ?/* S */[0,
                  /* :: */[0,
                   /* P */[2,plugin_config_file_interface],
-                  /* :: */[0,/* P */[2,plugin_config_file],/* [] */0]]];
-              }
-            else
-             {var plugin_config=/* P */[2,plugin_config_file];}
-            }
-          else
-           {var plugin_config=/* N */0;}
+                  /* :: */[0,/* P */[2,plugin_config_file],/* [] */0]]]
+               :/* P */[2,plugin_config_file]
+             :/* N */0;
           
-          if(Options["native_plugin"][1])
-           {var
-             match=
-              /* tuple */[0,"cmxa","cmx",Options["ocamlopt"][1],"native"];
-            }
-          else
-           {var match=/* tuple */[0,"cma","cmo",Options["ocamlc"][1],"byte"];}
+          var
+           match=
+            Options["native_plugin"][1]
+             ?/* tuple */[0,"cmxa","cmx",Options["ocamlopt"][1],"native"]
+             :/* tuple */[0,"cma","cmo",Options["ocamlc"][1],"byte"];
           
           var cmo=match[2];
           
@@ -144,52 +136,43 @@ var
             Options["plugin_tags"][1]!==
             /* [] */0;
           
-          if(use_ocamlfind_pkgs)
-           {var unix_lib=[/* `Package */0,251810662,"unix"];}
-          else
-           {if(use_light_mode)
-             {var unix_lib=/* Nothing */481346541;}
-            else
-             {var unix_lib=[/* `Lib */0,3802917,"unix"];}
-            }
+          var
+           unix_lib=
+            use_ocamlfind_pkgs
+             ?[/* `Package */0,251810662,"unix"]
+             :use_light_mode
+               ?/* Nothing */481346541
+               :[/* `Lib */0,3802917,"unix"];
           
-          if(use_ocamlfind_pkgs)
-           {var ocamlbuild_lib=[/* `Package */0,251810662,"ocamlbuild"];}
-          else
-           {if(use_light_mode)
-             {var
-               ocamlbuild_lib=
-                [/* `Local_lib */0,945409809,"ocamlbuildlightlib"];
-              }
-            else
-             {var
-               ocamlbuild_lib=
-                [/* `Local_lib */0,945409809,"ocamlbuildlib"];
-              }
-            }
+          var
+           ocamlbuild_lib=
+            use_ocamlfind_pkgs
+             ?[/* `Package */0,251810662,"ocamlbuild"]
+             :use_light_mode
+               ?[/* `Local_lib */0,945409809,"ocamlbuildlightlib"]
+               :[/* `Local_lib */0,945409809,"ocamlbuildlib"];
           
-          if(use_light_mode)
-           {var
-             ocamlbuild_module=
-              [/* `Local_mod */0,945460878,"ocamlbuildlight"];
-            }
-          else
-           {var ocamlbuild_module=[/* `Local_mod */0,945460878,"ocamlbuild"];}
+          var
+           ocamlbuild_module=
+            use_light_mode
+             ?[/* `Local_mod */0,945460878,"ocamlbuildlight"]
+             :[/* `Local_mod */0,945460878,"ocamlbuild"];
           
           var dir=Ocamlbuild_where["libdir"][1];
           
-          if(Pathname["is_implicit"](dir))
-           {var dir$1=Pathname["Operators"][1](Pathname["pwd"],dir);}
-          else
-           {var dir$1=dir;}
+          var
+           dir$1=
+            Pathname["is_implicit"](dir)
+             ?Pathname["Operators"][1](Pathname["pwd"],dir)
+             :dir;
           
           var
            in_dir=
             function(file)
              {var path=Pathname["Operators"][1](dir$1,file);
               
-              if(!My_std["sys_file_exists"](path))
-               {Pervasives["failwith"]
+              !My_std["sys_file_exists"](path)
+               ?Pervasives["failwith"]
                  (Format["sprintf"]
                    ([/* Format */0,
                      [/* String_literal */11,
@@ -200,9 +183,8 @@ var
                         " in ocamlbuild -where directory",
                         /* End_of_format */0]]],
                      "Cannot find %S in ocamlbuild -where directory"],
-                    file))}
-              else
-               {}
+                    file))
+               :0;
               
               return path;
               };
@@ -215,33 +197,23 @@ var
               else
                {var variant=param$1[1];
                 
-                if(variant>=945409809)
-                 {if(variant>=945460878)
-                   {return /* P */[2,
-                            in_dir(Pathname["Operators"][2](param$1[2],cmo))];
-                    }
-                  else
-                   {return /* S */[0,
+                return variant>=945409809
+                        ?variant>=945460878
+                          ?/* P */[2,in_dir(Pathname["Operators"][2](param$1[2],cmo))]
+                          :/* S */[0,
                             /* :: */[0,
                              [/* A */1,"-I"],
                              /* :: */[0,
                               /* A */[1,dir$1],
                               /* :: */[0,
                                /* P */[2,in_dir(Pathname["Operators"][2](param$1[2],cma))],
-                               /* [] */0]]]];
-                    }
-                  }
-                else
-                 {if(variant>=251810662)
-                   {return /* S */[0,
+                               /* [] */0]]]]
+                        :variant>=251810662
+                          ?/* S */[0,
                             /* :: */[0,
                              [/* A */1,"-package"],
-                             /* :: */[0,/* A */[1,param$1[2]],/* [] */0]]];
-                    }
-                  else
-                   {return /* P */[2,Pathname["Operators"][2](param$1[2],cma)];
-                    }
-                  }
+                             /* :: */[0,/* A */[1,param$1[2]],/* [] */0]]]
+                          :/* P */[2,Pathname["Operators"][2](param$1[2],cma)];
                 }
               };
           
@@ -305,10 +277,9 @@ var
        {if(we_need_a_plugin$1)
          {rebuild_plugin_if_needed(/* () */0);
           Shell["chdir"](Pathname["pwd"]);
-          if(Options["native_plugin"][1])
-           {var runner=/* N */0;}
-          else
-           {var runner=Options["ocamlrun"][1];}
+          var
+           runner=
+            Options["native_plugin"][1]?/* N */0:Options["ocamlrun"][1];
           
           var argv=My_std["List"][7]($$Array["to_list"](Sys["argv"]));
           
@@ -343,20 +314,17 @@ var
           throw [0,My_std["Exit_silently_with_code"],rc];
           }
         else
-         {if
-           (!My_std["sys_file_exists"](plugin_file)&&
-            Options["plugin_tags"][1]!==
-            /* [] */0)
-           {return Log["eprintf"]
+         {return !My_std["sys_file_exists"](plugin_file)&&
+                  Options["plugin_tags"][1]!==
+                  /* [] */0
+                  ?Log["eprintf"]
                     ([/* Format */0,
                       [/* String_literal */11,
                        "Warning: option -plugin-tag(s) has no effect in absence of plugin file ",
                        [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                       "Warning: option -plugin-tag(s) has no effect in absence of plugin file %S"],
-                     plugin_file);
-            }
-          else
-           {return /* () */0;}
+                     plugin_file)
+                  :/* () */0;
           }
         };
     

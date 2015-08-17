@@ -243,20 +243,20 @@ var p=Printf["bprintf"];
 
 var match=Odoc_args["current_generator"][1];
 
+var Html;
 if(match)
  {var match$1=match[1];
   
   switch(match$1[0])
-   {case 0:var Html=match$1[1];
+   {case 0:Html=match$1[1];
     default:
-     var
-      Html=
-       Pervasives["failwith"]
-        ("A non-html generator is already set. Cannot install the Todo-list html generator");
+     Html=
+     Pervasives["failwith"]
+      ("A non-html generator is already set. Cannot install the Todo-list html generator");
      }
   }
 else
- {var Html=Odoc_html["Generator"];}
+ {Html=Odoc_html["Generator"];}
 
 var
  scanner_init=
@@ -392,12 +392,9 @@ var
                    if(match$2)
                     {var match$3=b[1];
                      
-                     if(match$3)
-                      {return CamlPrimitive["caml_int_compare"]
-                               (match$2[1],match$3[1]);
-                       }
-                     else
-                      {return 1;}
+                     return match$3
+                             ?CamlPrimitive["caml_int_compare"](match$2[1],match$3[1])
+                             :1;
                      }
                    else
                     {return -1;}
@@ -657,7 +654,7 @@ var
         generate$1(self$neg2,modules);
         var match$2=Odoc_info["Global"][6][1];
         
-        if(match$2){var title=match$2[1];}else{var title="";}
+        var title=match$2?match$2[1]:"";
         
         var b=Buffer["create"](512);
         

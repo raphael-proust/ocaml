@@ -66,12 +66,14 @@ var
     if(match)
      {var s2=match[1];
       
-      if(match[2])
-       {line_number[1]=line_number[1]+(List["length"](l)-1);
-        return char_number[1]=s2["length"],0;
-        }
-      else
-       {return char_number[1]=char_number[1]+s2["length"],0;}
+      return match[2]
+              ?(line_number[1]=
+                line_number[1]+
+                (List["length"](l)-1),
+                char_number[1]=
+                s2["length"],
+                0)
+              :(char_number[1]=char_number[1]+s2["length"],0);
       }
     else
      {return /* () */0;}
@@ -125,10 +127,7 @@ var
            1)
           {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
          else
-          {if(ele_ref_mode[1])
-            {var match=(ele_ref_mode[1]=/* false */0,0);}
-           else
-            {var match=0;}
+          {var match=ele_ref_mode[1]?(ele_ref_mode[1]=/* false */0,0):0;
            
            return /* END */0;
            }
@@ -147,7 +146,7 @@ var
           {var s$1=Lexing["lexeme"](lexbuf);
            
            try
-            {if(s$1[0]===60)
+            {if(s$1["charCodeAt"](0)===60)
               {var match$1=/* tuple */[0,2,s$1["length"]-3];
                
                var s2=$$String["sub"](s$1,match$1[1],match$1[2]);
@@ -193,159 +192,135 @@ var
          
         case 3:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* BOLD */1;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* BOLD */1;
          
         case 4:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* ITALIC */6;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* ITALIC */6;
          
         case 5:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* LINK */10;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* LINK */10;
          
         case 6:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* EMP */2;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* EMP */2;
          
         case 7:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* SUPERSCRIPT */36;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* SUPERSCRIPT */36;
          
         case 8:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* SUBSCRIPT */37;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* SUBSCRIPT */37;
          
         case 9:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* CENTER */3;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* CENTER */3;
          
         case 10:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* LEFT */4;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* LEFT */4;
          
         case 11:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* RIGHT */5;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* RIGHT */5;
          
         case 12:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* LIST */7;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* LIST */7;
          
         case 13:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* ENUM */8;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* ENUM */8;
          
         case 14:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* ITEM */9;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* ITEM */9;
          
         case 15:
          incr_cpts(lexbuf);
@@ -372,61 +347,57 @@ var
          
         case 16:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {target_mode[1]=/* true */1;return /* LATEX */17;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :(target_mode[1]=/* true */1,/* LATEX */17);
          
         case 17:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           open_brackets[1]>=
-           1||
-           code_pre_mode[1]||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {target_mode[1]=/* false */0;return /* END_TARGET */18;}
+         return verb_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :(target_mode[1]=/* false */0,/* END_TARGET */18);
          
         case 18:exit=21;
         case 19:
          incr_cpts(lexbuf);
-         if(verb_mode[1]||target_mode[1]||code_pre_mode[1]||ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(open_brackets[1]<=0)
-            {open_brackets[1]=1;return /* CODE */11;}
-           else
-            {open_brackets[0]++;
-             return /* Char */[3,Lexing["lexeme"](lexbuf)];
-             }
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :open_brackets[1]<=0
+                   ?(open_brackets[1]=1,/* CODE */11)
+                   :(open_brackets[0]++,/* Char */[3,Lexing["lexeme"](lexbuf)]);
          
         case 20:
          incr_cpts(lexbuf);
-         if(verb_mode[1]||target_mode[1]||code_pre_mode[1]||ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(open_brackets[1]>1)
-            {open_brackets[0]--;return [/* Char */3,"]"];}
-           else
-            {open_brackets[1]=0;return /* END_CODE */12;}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :open_brackets[1]>1
+                   ?(open_brackets[0]--,[/* Char */3,"]"])
+                   :(open_brackets[1]=0,/* END_CODE */12);
          
         case 21:exit=21;
         case 22:
          incr_cpts(lexbuf);
-         if(verb_mode[1]||target_mode[1]||code_pre_mode[1]||ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {code_pre_mode[1]=/* true */1;return /* CODE_PRE */13;}
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :(code_pre_mode[1]=/* true */1,/* CODE_PRE */13);
          
         case 23:
          incr_cpts(lexbuf);
@@ -440,337 +411,259 @@ var
              lexbuf[12]=
              /* record */[0,init$1[1],init$1[2],init$1[3],lexbuf[12][4]-1];
              char_number[0]--;
-             if(open_brackets[1]>1)
-              {open_brackets[0]--;return [/* Char */3,"]"];}
-             else
-              {open_brackets[1]=0;return /* END_CODE */12;}
+             return open_brackets[1]>1
+                     ?(open_brackets[0]--,[/* Char */3,"]"])
+                     :(open_brackets[1]=0,/* END_CODE */12);
              }
            else
-            {if(code_pre_mode[1])
-              {code_pre_mode[1]=/* false */0;return /* END_CODE_PRE */14;}
-             else
-              {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
+            {return code_pre_mode[1]
+                     ?(code_pre_mode[1]=/* false */0,/* END_CODE_PRE */14)
+                     :/* Char */[3,Lexing["lexeme"](lexbuf)];
              }
            }
          
         case 24:exit=21;
         case 25:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* ELE_REF */20;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* ELE_REF */20)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 26:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* VAL_REF */21;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* VAL_REF */21)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 27:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* TYP_REF */22;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* TYP_REF */22)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 28:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* EXT_REF */23;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* EXT_REF */23)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 29:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* EXC_REF */24;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* EXC_REF */24)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 30:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* MOD_REF */25;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* MOD_REF */25)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 31:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* MODT_REF */26;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* MODT_REF */26)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 32:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* CLA_REF */27;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* CLA_REF */27)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 33:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* CLT_REF */28;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* CLT_REF */28)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 34:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* ATT_REF */29;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* ATT_REF */29)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 35:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* MET_REF */30;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* MET_REF */30)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 36:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* SEC_REF */31;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* SEC_REF */31)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 37:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* RECF_REF */32;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* RECF_REF */32)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 38:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* CONST_REF */33;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* CONST_REF */33)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 39:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {ele_ref_mode[1]=/* true */1;return /* MOD_LIST_REF */34;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?(ele_ref_mode[1]=/* true */1,/* MOD_LIST_REF */34)
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 40:
          incr_cpts(lexbuf);
-         if
-          (verb_mode[1]||
-           target_mode[1]||
-           code_pre_mode[1]||
-           open_brackets[1]>=
-           1)
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(!ele_ref_mode[1])
-            {return /* INDEX_LIST */35;}
-           else
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           }
+         return verb_mode[1]||
+                 target_mode[1]||
+                 code_pre_mode[1]||
+                 open_brackets[1]>=
+                 1
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :!ele_ref_mode[1]
+                   ?/* INDEX_LIST */35
+                   :/* Char */[3,Lexing["lexeme"](lexbuf)];
          
         case 41:
          incr_cpts(lexbuf);
-         if
-          (target_mode[1]||
-           open_brackets[1]>=
-           1||
-           code_pre_mode[1]||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {verb_mode[1]=/* true */1;return /* VERB */15;}
+         return target_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :(verb_mode[1]=/* true */1,/* VERB */15);
          
         case 42:
          incr_cpts(lexbuf);
-         if
-          (target_mode[1]||
-           open_brackets[1]>=
-           1||
-           code_pre_mode[1]||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {verb_mode[1]=/* false */0;return /* END_VERB */16;}
+         return target_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :(verb_mode[1]=/* false */0,/* END_VERB */16);
          
         case 43:
          incr_cpts(lexbuf);
-         if
-          (target_mode[1]||
-           open_brackets[1]>=
-           1||
-           code_pre_mode[1]||
-           ele_ref_mode[1]||
-           verb_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(shortcut_list_mode[1])
-            {return /* SHORTCUT_LIST_ITEM */40;}
-           else
-            {shortcut_list_mode[1]=/* true */1;
-             return /* BEGIN_SHORTCUT_LIST_ITEM */38;
-             }
-           }
+         return target_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]||
+                 verb_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :shortcut_list_mode[1]
+                   ?/* SHORTCUT_LIST_ITEM */40
+                   :(shortcut_list_mode[1]=
+                     /* true */1,
+                     /* BEGIN_SHORTCUT_LIST_ITEM */38);
          
         case 44:
          incr_cpts(lexbuf);
-         if
-          (target_mode[1]||
-           open_brackets[1]>=
-           1||
-           code_pre_mode[1]||
-           ele_ref_mode[1]||
-           verb_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {if(shortcut_list_mode[1])
-            {return /* SHORTCUT_ENUM_ITEM */41;}
-           else
-            {shortcut_list_mode[1]=/* true */1;
-             return /* BEGIN_SHORTCUT_ENUM_ITEM */39;
-             }
-           }
+         return target_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]||
+                 verb_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :shortcut_list_mode[1]
+                   ?/* SHORTCUT_ENUM_ITEM */41
+                   :(shortcut_list_mode[1]=
+                     /* true */1,
+                     /* BEGIN_SHORTCUT_ENUM_ITEM */39);
          
         case 45:
          incr_cpts(lexbuf);
@@ -780,22 +673,18 @@ var
          lexbuf[12]=
          /* record */[0,init$2[1],init$2[2],init$2[3],lexbuf[12][4]-1];
          line_number[0]--;
-         if(shortcut_list_mode[1])
-          {shortcut_list_mode[1]=/* false */0;
-           return /* END_SHORTCUT_LIST */42;
-           }
-         else
-          {if
-            (target_mode[1]||
-             open_brackets[1]>=
-             1||
-             code_pre_mode[1]||
-             ele_ref_mode[1]||
-             verb_mode[1])
-            {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-           else
-            {return /* BLANK_LINE */43;}
-           }
+         return shortcut_list_mode[1]
+                 ?(shortcut_list_mode[1]=
+                   /* false */0,
+                   /* END_SHORTCUT_LIST */42)
+                 :target_mode[1]||
+                   open_brackets[1]>=
+                   1||
+                   code_pre_mode[1]||
+                   ele_ref_mode[1]||
+                   verb_mode[1]
+                   ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                   :/* BLANK_LINE */43;
          
         case 46:return /* EOF */44;
         case 47:
@@ -820,15 +709,13 @@ var
          
         case 48:
          incr_cpts(lexbuf);
-         if
-          (target_mode[1]||
-           open_brackets[1]>=
-           1||
-           code_pre_mode[1]||
-           ele_ref_mode[1])
-          {return /* Char */[3,Lexing["lexeme"](lexbuf)];}
-         else
-          {return /* LBRACE */19;}
+         return target_mode[1]||
+                 open_brackets[1]>=
+                 1||
+                 code_pre_mode[1]||
+                 ele_ref_mode[1]
+                 ?/* Char */[3,Lexing["lexeme"](lexbuf)]
+                 :/* LBRACE */19;
          
         case 49:exit=21;
         }

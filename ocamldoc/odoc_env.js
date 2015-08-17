@@ -35,7 +35,7 @@ var
       function(id)
        {var n=Odoc_name["from_ident"](id);
         
-        if(rel){return Odoc_name["concat"](rel[1],n);}else{return n;}
+        return rel?Odoc_name["concat"](rel[1],n):n;
         };
     
     var
@@ -103,23 +103,23 @@ var
            
            var match$1=item[2][1];
            
+           var env2$1;
            if(match$1)
             {var modtype=match$1[1];
              
              switch(modtype[0])
               {case 1:
-                var
-                 env2$1=
-                  add_signature
-                   (env,
-                    qualify(ident$4),
-                    /* Some */[0,rel_name(ident$4)],
-                    modtype[1]);
+                env2$1=
+                add_signature
+                 (env,
+                  qualify(ident$4),
+                  /* Some */[0,rel_name(ident$4)],
+                  modtype[1]);
                 
-               default:var env2$1=env;}
+               default:env2$1=env;}
              }
            else
-            {var env2$1=env;}
+            {env2$1=env;}
            
            var newrecord$4=/* unknown */"duprecord regular 7";
            

@@ -81,12 +81,9 @@ var
        {switch(s)
          {case "":return s;
           default:
-           var match=s[0];
+           var match=s["charCodeAt"](0);
            
-           if(match!==63)
-            {return s;}
-           else
-            {return $$String["sub"](s,1,s["length"]-1);}
+           return match!==63?s:$$String["sub"](s,1,s["length"]-1);
            }
         };
     
@@ -109,16 +106,13 @@ var
         else
          {switch(match[0])
            {case 2:
-             if(CamlPrimitive["caml_string_equal"](label,""))
-              {return /* Tuple */[1,
+             return CamlPrimitive["caml_string_equal"](label,"")
+                     ?/* Tuple */[1,
                        List["map"]
                         (function(t2){return iter(/* tuple */[0,"",t2]);},match[1]),
-                       t];
-               }
-             else
-              {return /* Simple_name */[0,
+                       t]
+                     :/* Simple_name */[0,
                        /* record */[0,normal_name(label),t,/* None */0]];
-               }
              
             case 6:exit=5;
             case 7:exit=5;

@@ -189,8 +189,8 @@ var
       r[3]);
     var match=r[5];
     
-    if(match)
-     {Format["fprintf"]
+    match
+     ?Format["fprintf"]
        (f,
         [/* Format */0,
          [/* String_literal */11,
@@ -210,9 +210,8 @@ var
                /* End_of_format */0]]]]]],
          '~doc:"@[<hov>%a@]"@ '],
         Format["pp_print_text"],
-        match[1])}
-    else
-     {}
+        match[1])
+     :/* () */0;
     
     return Format["fprintf"]
             (f,
@@ -241,10 +240,9 @@ var
     
     var match=rule[4];
     
-    if(match)
-     {var stamp=/* Some */[0,Resource["subst_pattern"](env,match[1])];}
-    else
-     {var stamp=/* None */0;}
+    var
+     stamp=
+      match?/* Some */[0,Resource["subst_pattern"](env,match[1])]:/* None */0;
     
     var prods=subst_resource_patterns(rule[3]);
     
@@ -297,13 +295,9 @@ var
             (function(p,acc)
               {var f=Pathname["to_string"](Resource["in_build_dir"](p));
                
-               if(My_std["sys_file_exists"](f))
-                {return /* :: */[0,
-                         /* tuple */[0,f,My_std["Digest"][3](f)],
-                         acc];
-                 }
-               else
-                {return acc;}
+               return My_std["sys_file_exists"](f)
+                       ?/* :: */[0,/* tuple */[0,f,My_std["Digest"][3](f)],acc]
+                       :acc;
                },
              r[3],
              /* [] */0);
@@ -388,15 +382,13 @@ var
   function(builder,tags)
    {var deps=Command["deps_of_tags"](tags);
     
-    if(deps)
-     {return My_std["List"][16]
+    return deps
+            ?My_std["List"][16]
               (My_std["Outcome"][3],
                builder
                 (My_std["List"][16]
-                  (function(x){return /* :: */[0,x,/* [] */0];},deps)));
-      }
-    else
-     {return /* [] */0;}
+                  (function(x){return /* :: */[0,x,/* [] */0];},deps)))
+            :/* [] */0;
     };
 
 var
@@ -406,15 +398,13 @@ var
             (function(tags)
               {var deps=Command["deps_of_tags"](tags);
                
-               if(deps)
-                {return My_std["List"][14]
+               return deps
+                       ?My_std["List"][14]
                          (My_std["Outcome"][2],
                           builder
                            (My_std["List"][16]
-                             (function(x){return /* :: */[0,x,/* [] */0];},deps)));
-                 }
-               else
-                {return /* () */0;}
+                             (function(x){return /* :: */[0,x,/* [] */0];},deps)))
+                       :/* () */0;
                });
     };
 
@@ -503,22 +493,21 @@ var
         function(r){return !Resource["exists_in_build_dir"](r);},
         r[3]);
     
+    var match$3;
     if(match$2)
-     {var
-       match$3=
-        /* tuple */[0,
-         /* `cache_miss_missing_prod */[0,-900031434,match$2[1]],
-         /* false */0];
+     {match$3=
+      /* tuple */[0,
+       /* `cache_miss_missing_prod */[0,-900031434,match$2[1]],
+       /* false */0];
       }
     else
      {var match$4=exists2(My_std["List"][32],Resource["Cache"][4],r[2]);
       
       if(match$4)
-       {var
-         match$3=
-          /* tuple */[0,
-           /* `cache_miss_changed_dep */[0,1009970846,match$4[1]],
-           /* false */0];
+       {match$3=
+        /* tuple */[0,
+         /* `cache_miss_changed_dep */[0,1009970846,match$4[1]],
+         /* false */0];
         }
       else
        {var
@@ -526,11 +515,10 @@ var
           exists2(Resource["Resources"][26],Resource["Cache"][4],dyndeps$1);
         
         if(match$5)
-         {var
-           match$3=
-            /* tuple */[0,
-             /* `cache_miss_changed_dyn_dep */[0,738140888,match$5[1]],
-             /* false */0];
+         {match$3=
+          /* tuple */[0,
+           /* `cache_miss_changed_dyn_dep */[0,738140888,match$5[1]],
+           /* false */0];
           }
         else
          {var match$6=cached_digest(r);
@@ -540,25 +528,18 @@ var
             
             var rule_digest=digest_rule(r,dyndeps$1,action);
             
-            if(CamlPrimitive["caml_string_equal"](d,rule_digest))
-             {var
-               match$3=
-                [/* tuple */0,/* cache_hit */-805933418,/* true */1];
-              }
-            else
-             {var
-               match$3=
-                /* tuple */[0,
-                 /* `cache_miss_digest_changed */[0,
-                  -433471969,
-                  /* tuple */[0,d,rule_digest]],
-                 /* false */0];
-              }
+            match$3=
+            CamlPrimitive["caml_string_equal"](d,rule_digest)
+             ?[/* tuple */0,/* cache_hit */-805933418,/* true */1]
+             :/* tuple */[0,
+               /* `cache_miss_digest_changed */[0,
+                -433471969,
+                /* tuple */[0,d,rule_digest]],
+               /* false */0];
             }
           else
-           {var
-             match$3=
-              [/* tuple */0,/* cache_miss_no_digest */242554396,/* false */0];
+           {match$3=
+            [/* tuple */0,/* cache_miss_no_digest */242554396,/* false */0];
             }
           }
         }
@@ -581,8 +562,8 @@ var
           print,
           r);
         if(typeof reason==="number")
-         {if(reason>=242554396)
-           {return Log["dprintf"]
+         {return reason>=242554396
+                  ?Log["dprintf"]
                     (l,
                      [/* Format */0,
                       [/* String_literal */11,
@@ -593,22 +574,19 @@ var
                          " (the command, a dependency, or a product)",
                          /* End_of_format */0]]],
                       "cache miss: no digest found for %S (the command, a dependency, or a product)"],
-                     r[1]);
-            }
-          else
-           {return Log["dprintf"]
+                     r[1])
+                  :Log["dprintf"]
                     (l+1,
                      [/* Format */0,
                       [/* String_literal */11,"cache hit",/* End_of_format */0],
                       "cache hit"]);
-            }
           }
         else
          {var variant=reason[1];
           
           if(variant>=738140888)
-           {if(variant>=1009970846)
-             {return Log["dprintf"]
+           {return variant>=1009970846
+                    ?Log["dprintf"]
                       (l,
                        [/* Format */0,
                         [/* String_literal */11,
@@ -617,10 +595,8 @@ var
                           [/* Char_literal */12,41,/* End_of_format */0]]],
                         "cache miss: a dependency has changed (%a)"],
                        Resource["print"],
-                       reason[2]);
-              }
-            else
-             {return Log["dprintf"]
+                       reason[2])
+                    :Log["dprintf"]
                       (l,
                        [/* Format */0,
                         [/* String_literal */11,
@@ -630,7 +606,6 @@ var
                         "cache miss: a dynamic dependency has changed (%a)"],
                        Resource["print"],
                        reason[2]);
-              }
             }
           else
            {if(variant>=-433471969)
@@ -675,7 +650,7 @@ var
     
     var prod_digests=digest_prods(r);
     
-    if(!cached){My_std["List"][14](Resource["clean"],r[3])}else{}
+    !cached?My_std["List"][14](Resource["clean"],r[3]):0;
     
     if(Options["nothing_should_be_rebuilt"][1]&&!cached)
      {explain_reason(-1);
@@ -771,14 +746,12 @@ var
         catch(exn){My_std["List"][14](Resource["clean"],r[3]);throw exn;}
         };
     
-    if(cached)
-     {return thunk(/* () */0);}
-    else
-     {return My_std["List"][14]
+    return cached
+            ?thunk(/* () */0)
+            :My_std["List"][14]
               (function(x)
                 {return Resource["Cache"][8](x,action[2],thunk,r[3]);},
                r[3]);
-      }
     };
 
 var rules=[0,/* [] */0];
@@ -810,13 +783,11 @@ var
      catch(exn)
       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
         {if(typeof pos==="number")
-          {if(pos>=5793429)
-            {return rules[1]=/* :: */[0,r,rules[1]],0;}
-           else
-            {return rules[1]=
-                    Pervasives["@"](rules[1],/* :: */[0,r,/* [] */0]),
-                    0;
-             }
+          {return pos>=5793429
+                   ?(rules[1]=/* :: */[0,r,rules[1]],0)
+                   :(rules[1]=
+                     Pervasives["@"](rules[1],/* :: */[0,r,/* [] */0]),
+                     0);
            }
          else
           {if(pos[1]>=497182236)
@@ -825,10 +796,9 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if(CamlPrimitive["caml_string_equal"](x[1],s))
-                         {return /* :: */[0,x,/* :: */[0,r,acc]];}
-                        else
-                         {return /* :: */[0,x,acc];}
+                       {return CamlPrimitive["caml_string_equal"](x[1],s)
+                                ?/* :: */[0,x,/* :: */[0,r,acc]]
+                                :/* :: */[0,x,acc];
                         },
                       rules[1],
                       /* [] */0),
@@ -840,10 +810,9 @@ var
              return rules[1]=
                     My_std["List"][20]
                      (function(x,acc)
-                       {if(CamlPrimitive["caml_string_equal"](x[1],s$1))
-                         {return /* :: */[0,r,/* :: */[0,x,acc]];}
-                        else
-                         {return /* :: */[0,x,acc];}
+                       {return CamlPrimitive["caml_string_equal"](x[1],s$1)
+                                ?/* :: */[0,r,/* :: */[0,x,acc]]
+                                :/* :: */[0,x,acc];
                         },
                       rules[1],
                       /* [] */0),
@@ -876,22 +845,16 @@ var
     $staropt$star,
     doc,
     code)
-   {if($staropt$star$1)
-     {var prods=$staropt$star$1[1];}
-    else
-     {var prods=/* [] */0;}
+   {var prods=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
     
-    if($staropt$star$2){var deps=$staropt$star$2[1];}else{var deps=/* [] */0;}
+    var deps=$staropt$star$2?$staropt$star$2[1]:/* [] */0;
     
-    if($staropt$star)
-     {var insert=$staropt$star[1];}
-    else
-     {var insert=/* bottom */-445061397;}
+    var insert=$staropt$star?$staropt$star[1]:/* bottom */-445061397;
     
-    if(tags)
-     {var
-       match$1=
-        Log["eprintf"]
+    var
+     match$1=
+      tags
+       ?Log["eprintf"]
          ([/* Format */0,
            [/* String_literal */11,
             "Warning: your ocamlbuild rule ",
@@ -901,25 +864,20 @@ var
               " uses the ~tags parameter,\n                     which is deprecated and ignored.",
               /* End_of_format */0]]],
            "Warning: your ocamlbuild rule %S uses the ~tags parameter,\n                     which is deprecated and ignored."],
-          name);
-      }
-    else
-     {var match$1=/* () */0;}
+          name)
+       :/* () */0;
     
     var
      res_add=
       function($$import,xs,xopt)
-       {if(xopt)
-         {var init=/* :: */[0,$$import(xopt[1]),/* [] */0];}
-        else
-         {var init=/* [] */0;}
+       {var init=xopt?/* :: */[0,$$import(xopt[1]),/* [] */0]:/* [] */0;
         
         return My_std["List"][20]
                 (function(x,acc)
                   {var r=$$import(x);
                    
-                   if(My_std["List"][30](r,acc))
-                    {return Pervasives["failwith"]
+                   return My_std["List"][30](r,acc)
+                           ?Pervasives["failwith"]
                              (Format["sprintf"]
                                ([/* Format */0,
                                  [/* String_literal */11,
@@ -931,10 +889,8 @@ var
                                     [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                                  "in rule %s, multiple occurrences of the resource %s"],
                                 name,
-                                x));
-                     }
-                   else
-                    {return /* :: */[0,r,acc];}
+                                x))
+                           :/* :: */[0,r,acc];
                    },
                  xs,
                  init);
@@ -945,17 +901,17 @@ var
     else
      {}
     
+    var match$2;
     if(stamp)
      {var stamp$1=stamp[1];
       
-      var
-       match$2=
-        /* tuple */[0,
-         /* Some */[0,Resource["import_pattern"](stamp$1)],
-         /* :: */[0,stamp$1,prods]];
+      match$2=
+      /* tuple */[0,
+       /* Some */[0,Resource["import_pattern"](stamp$1)],
+       /* :: */[0,stamp$1,prods]];
       }
     else
-     {var match$2=/* tuple */[0,/* None */0,prods];}
+     {match$2=/* tuple */[0,/* None */0,prods];}
     
     var prods$1=res_add(Resource["import_pattern"],match$2[2],prod);
     

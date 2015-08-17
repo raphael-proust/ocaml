@@ -19,7 +19,7 @@ var
   function(param)
    {var match=fork_mode[1];
     
-    if(match!==0){var a=1;}else{var a=0;}
+    var a=match!==0?1:0;
     
     Pervasives["output_char"](conn[1][2],75);
     return Pervasives["output_binary_int"](conn[1][2],a);
@@ -68,14 +68,15 @@ var
                
                var switcher=-98+match;
                
+               var summary;
                if(22<switcher>>>0)
                 {exit=50;}
                else
                 {switch(switcher)
-                  {case 0:var summary=/* Breakpoint */1;
+                  {case 0:summary=/* Breakpoint */1;
                    case 1:exit=50;
                    case 2:exit=50;
-                   case 3:var summary=/* Event */0;
+                   case 3:summary=/* Event */0;
                    case 4:exit=50;
                    case 5:exit=50;
                    case 6:exit=50;
@@ -89,12 +90,12 @@ var
                    case 14:exit=50;
                    case 15:exit=50;
                    case 16:exit=50;
-                   case 17:var summary=/* Trap_barrier */3;
+                   case 17:summary=/* Trap_barrier */3;
                    case 18:exit=50;
-                   case 19:var summary=/* Uncaught_exc */4;
+                   case 19:summary=/* Uncaught_exc */4;
                    case 20:exit=50;
                    case 21:exit=50;
-                   case 22:var summary=/* Exited */2;
+                   case 22:summary=/* Exited */2;
                    }
                  }
                
@@ -122,12 +123,10 @@ var
              [0,"debugcom.ml",105,2]];
       }
     
-    if(n>Int64ops["max_small_int"])
-     {do_go_smallint(Pervasives["max_int"]);
-      return do_go(Int64ops["--"](n,Int64ops["max_small_int"]));
-      }
-    else
-     {return do_go_smallint(n);}
+    return n>Int64ops["max_small_int"]
+            ?(do_go_smallint(Pervasives["max_int"]),
+              do_go(Int64ops["--"](n,Int64ops["max_small_int"])))
+            :do_go_smallint(n);
     };
 
 var
@@ -142,10 +141,7 @@ var
        Pervasives["flush"](conn[1][2]);
        var pid=Pervasives["input_binary_int"](conn[1][1]);
        
-       if(pid===-1)
-        {return /* Checkpoint_failed */0;}
-       else
-        {return /* Checkpoint_done */[0,pid];}
+       return pid===-1?/* Checkpoint_failed */0:/* Checkpoint_done */[0,pid];
        }
     };
 
@@ -215,10 +211,7 @@ var
     Pervasives["flush"](conn[1][2]);
     var stack_pos=Pervasives["input_binary_int"](conn[1][1]);
     
-    if(stack_pos===-1)
-     {var pc=0;}
-    else
-     {var pc=Pervasives["input_binary_int"](conn[1][1]);}
+    var pc=stack_pos===-1?0:Pervasives["input_binary_int"](conn[1][1]);
     
     return /* tuple */[0,stack_pos,pc];
     };
@@ -249,7 +242,7 @@ var
     return Pervasives["output_binary_int"](conn[1][2],pos);
     };
 
-if(1<<31===0){var value_size=4;}else{var value_size=8;}
+var value_size=1<<31===0?4:8;
 
 var
  input_remote_value=
@@ -331,10 +324,9 @@ var
        Pervasives["flush"](conn[1][2]);
        var header=Pervasives["input_binary_int"](conn[1][1]);
        
-       if((header&255)===Obj["double_array_tag"]&&Sys["word_size"]===32)
-        {return header>>>11;}
-       else
-        {return header>>>10;}
+       return (header&255)===Obj["double_array_tag"]&&Sys["word_size"]===32
+               ?header>>>11
+               :header>>>10;
        
       case 1:return /* -1 for tag */param[1]["length"]-1;
       }

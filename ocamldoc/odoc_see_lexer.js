@@ -125,18 +125,13 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!==0)
-     {if(__ocaml_lex_state$1!==1)
-       {lexbuf[1](lexbuf);
-        return __ocaml_lex_desc_rec(lexbuf,__ocaml_lex_state$1);
-        }
-      else
-       {Buffer["add_string"](buf,Lexing["lexeme"](lexbuf));
-        return desc(lexbuf);
-        }
-      }
-    else
-     {return /* Desc */[5,Buffer["contents"](buf)];}
+    return __ocaml_lex_state$1!==0
+            ?__ocaml_lex_state$1!==1
+              ?(lexbuf[1](lexbuf),
+                __ocaml_lex_desc_rec(lexbuf,__ocaml_lex_state$1))
+              :(Buffer["add_string"](buf,Lexing["lexeme"](lexbuf)),
+                desc(lexbuf))
+            :/* Desc */[5,Buffer["contents"](buf)];
     };
 
 module["exports"]=

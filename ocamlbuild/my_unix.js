@@ -14,11 +14,10 @@ var is_degraded=/* true */1;
 var
  stat=
   function(f)
-   {if(My_std["sys_file_exists"](f))
-     {if(CamlPrimitive["caml_sys_is_directory"](f))
-       {var $js=/* FK_dir */0;}
-      else
-       {var $js=/* FK_file */1;}
+   {var $js;
+    if(My_std["sys_file_exists"](f))
+     {$js=
+      CamlPrimitive["caml_sys_is_directory"](f)?/* FK_dir */0:/* FK_file */1;
       }
     else
      {var
@@ -56,17 +55,16 @@ var
                
                var st=My_std["sys_command"](s$1);
                
-               if(st!==0)
-                {Pervasives["failwith"]
+               st!==0
+                ?Pervasives["failwith"]
                   (Printf["sprintf"]
                     ([/* Format */0,
                       [/* String_literal */11,
                        "Error while running: ",
                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       "Error while running: %s"],
-                     s$1))}
-               else
-                {}
+                     s$1))
+                :0;
                
                return My_std["with_input_file"](/* None */0,tmp,kont);
                });
@@ -119,10 +117,11 @@ var
      {try
        {var y=readlinkcmd(x);
         
-        if(Filename["is_relative"](y))
-         {var y$1=Filename["concat"](Filename["dirname"](x),y);}
-        else
-         {var y$1=y;}
+        var
+         y$1=
+          Filename["is_relative"](y)
+           ?Filename["concat"](Filename["dirname"](x),y)
+           :y;
         
         if(lstat(y$1)[1]===/* FK_dir */0)
          {throw Link_to_directories_not_supported;}
@@ -159,12 +158,7 @@ var
 
 var
  lstat=
-  function(x)
-   {if(is_link(x))
-     {return /* record */[0,/* FK_link */2,x];}
-    else
-     {return stat(x);}
-    };
+  function(x){return is_link(x)?/* record */[0,/* FK_link */2,x]:stat(x);};
 
 var
  implem=
@@ -228,12 +222,9 @@ var
                  function(pos)
                   {var len=Pervasives["input"](ic,buf,0,bufsiz);
                    
-                   if(len>0)
-                    {Buffer["add_subbytes"](totalbuf,buf,0,len);
-                     return loop(pos+len);
-                     }
-                   else
-                    {return 0;}
+                   return len>0
+                           ?(Buffer["add_subbytes"](totalbuf,buf,0,len),loop(pos+len))
+                           :0;
                    };
                
                loop(0);

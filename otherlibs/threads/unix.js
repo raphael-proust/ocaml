@@ -44,12 +44,11 @@ var
         Pervasives["prerr_string"](': "');
         Pervasives["prerr_string"](fun_name);
         Pervasives["prerr_string"]('" failed');
-        if(arg$1["length"]>0)
-         {Pervasives["prerr_string"](' on "'),
-          Pervasives["prerr_string"](arg$1),
-          Pervasives["prerr_string"]('"')}
-        else
-         {}
+        arg$1["length"]>0
+         ?(Pervasives["prerr_string"](' on "'),
+           Pervasives["prerr_string"](arg$1),
+           Pervasives["prerr_string"]('"'))
+         :0;
         
         Pervasives["prerr_string"](": ");
         Pervasives["prerr_endline"](CamlPrimitive["unix_error_message"](err));
@@ -70,10 +69,9 @@ var
  read=
   function(fd,buf,ofs,len)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.read");}
-      else
-       {return CamlPrimitive["unix_read"](fd,buf,ofs,len);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.read")
+              :CamlPrimitive["unix_read"](fd,buf,ofs,len);
       }
     catch(exn)
      {var exit;
@@ -107,10 +105,9 @@ var
  write=
   function(fd,buf,ofs,len)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.write");}
-      else
-       {return CamlPrimitive["unix_write"](fd,buf,ofs,len);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.write")
+              :CamlPrimitive["unix_write"](fd,buf,ofs,len);
       }
     catch(exn)
      {var exit;
@@ -144,10 +141,9 @@ var
  single_write=
   function(fd,buf,ofs,len)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.single_write");}
-      else
-       {return CamlPrimitive["unix_single_write"](fd,buf,ofs,len);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.single_write")
+              :CamlPrimitive["unix_single_write"](fd,buf,ofs,len);
       }
     catch(exn)
      {var exit;
@@ -335,10 +331,9 @@ var wait=function(param){return wait_pid(-1);};
 var
  waitpid=
   function(flags,pid)
-   {if(List["mem"](/* WNOHANG */0,flags))
-     {return CamlPrimitive["unix_waitpid"](flags,pid);}
-    else
-     {return wait_pid(pid);}
+   {return List["mem"](/* WNOHANG */0,flags)
+            ?CamlPrimitive["unix_waitpid"](flags,pid)
+            :wait_pid(pid);
     };
 
 var
@@ -355,24 +350,26 @@ var inet_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("0.0.0.0");
 
 var inet_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("127.0.0.1");
 
+var inet6_addr_any;
 try
- {var inet6_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("::");}
+ {inet6_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("::");}
 catch(exn)
  {var tag=exn[1];
   
   if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-   {var inet6_addr_any=inet_addr_any;}
+   {inet6_addr_any=inet_addr_any;}
   else
    {throw exn;}
   }
 
+var inet6_addr_loopback;
 try
- {var inet6_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("::1");}
+ {inet6_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("::1");}
 catch(exn$1)
  {var tag$1=exn$1[1];
   
   if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
-   {var inet6_addr_loopback=inet_addr_loopback;}
+   {inet6_addr_loopback=inet_addr_loopback;}
   else
    {throw exn$1;}
   }
@@ -385,13 +382,7 @@ var
    {switch(param[0])
      {case 0:return /* PF_UNIX */0;
       case 1:
-       var a=param[1];
-       
-       if(is_inet6_addr(a))
-        {return /* PF_INET6 */2;}
-       else
-        {return /* PF_INET */1;}
-       
+       var a=param[1];return is_inet6_addr(a)?/* PF_INET6 */2:/* PF_INET */1;
       }
     };
 
@@ -496,10 +487,9 @@ var
  recv=
   function(fd,buf,ofs,len,flags)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.recv");}
-      else
-       {return CamlPrimitive["unix_recv"](fd,buf,ofs,len,flags);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.recv")
+              :CamlPrimitive["unix_recv"](fd,buf,ofs,len,flags);
       }
     catch(exn$2)
      {var exit;
@@ -534,10 +524,9 @@ var
  recvfrom=
   function(fd,buf,ofs,len,flags)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.recvfrom");}
-      else
-       {return CamlPrimitive["unix_recvfrom"](fd,buf,ofs,len,flags);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.recvfrom")
+              :CamlPrimitive["unix_recvfrom"](fd,buf,ofs,len,flags);
       }
     catch(exn$2)
      {var exit;
@@ -572,10 +561,9 @@ var
  send=
   function(fd,buf,ofs,len,flags)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.send");}
-      else
-       {return CamlPrimitive["unix_send"](fd,buf,ofs,len,flags);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.send")
+              :CamlPrimitive["unix_send"](fd,buf,ofs,len,flags);
       }
     catch(exn$2)
      {var exit;
@@ -610,10 +598,9 @@ var
  sendto=
   function(fd,buf,ofs,len,flags,addr)
    {try
-     {if(ofs<0||len<0||ofs>buf["length"]-len)
-       {return Pervasives["invalid_arg"]("Unix.sendto");}
-      else
-       {return CamlPrimitive["unix_sendto"](fd,buf,ofs,len,flags,addr);}
+     {return ofs<0||len<0||ofs>buf["length"]-len
+              ?Pervasives["invalid_arg"]("Unix.sendto")
+              :CamlPrimitive["unix_sendto"](fd,buf,ofs,len,flags,addr);
       }
     catch(exn$2)
      {var exit;
@@ -758,49 +745,38 @@ var
     
     var match=opt_socktype[1];
     
+    var ports;
     if(match)
      {var ty=match[1];
       
-      if(ty!==1)
-       {if(ty!==0)
-         {if(CamlPrimitive["caml_string_equal"](service,""))
-           {var ports=/* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
-          else
-           {var ports=/* [] */0;}
-          }
-        else
-         {var ports=get_port(/* SOCK_STREAM */0,"tcp");}
-        }
-      else
-       {var ports=get_port(/* SOCK_DGRAM */1,"udp");}
+      ports=
+      ty!==1
+       ?ty!==0
+         ?CamlPrimitive["caml_string_equal"](service,"")
+           ?/* :: */[0,/* tuple */[0,ty,0],/* [] */0]
+           :/* [] */0
+         :get_port(/* SOCK_STREAM */0,"tcp")
+       :get_port(/* SOCK_DGRAM */1,"udp");
       }
     else
-     {var
-       ports=
-        Pervasives["@"]
-         (get_port(/* SOCK_STREAM */0,"tcp"),
-          get_port(/* SOCK_DGRAM */1,"udp"));
+     {ports=
+      Pervasives["@"]
+       (get_port(/* SOCK_STREAM */0,"tcp"),get_port(/* SOCK_DGRAM */1,"udp"));
       }
     
+    var addresses;
     if(CamlPrimitive["caml_string_equal"](node,""))
-     {if(List["mem"](/* AI_PASSIVE */2,opts))
-       {var
-         addresses=
-          /* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],/* [] */0];
-        }
-      else
-       {var
-         addresses=
-          /* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],/* [] */0];
-        }
+     {addresses=
+      List["mem"](/* AI_PASSIVE */2,opts)
+       ?/* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],/* [] */0]
+       :/* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],/* [] */0];
       }
     else
      {try
-       {var
-         addresses=
-          /* :: */[0,
-           /* tuple */[0,CamlPrimitive["unix_inet_addr_of_string"](node),node],
-           /* [] */0];
+       {addresses=
+        /* :: */[0,
+         /* tuple */[0,CamlPrimitive["unix_inet_addr_of_string"](node),node],
+         /* [] */0];
         }
       catch(exn$2)
        {var tag$2=exn$2[1];
@@ -809,15 +785,14 @@ var
          {try
            {var he=CamlPrimitive["unix_gethostbyname"](node);
             
-            var
-             addresses=
-              List["map"]
-               (function(a){return /* tuple */[0,a,he[1]];},
-                $$Array["to_list"](he[4]));
+            addresses=
+            List["map"]
+             (function(a){return /* tuple */[0,a,he[1]];},
+              $$Array["to_list"](he[4]));
             }
           catch(exn$3)
            {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
-             {var addresses=/* [] */0;}
+             {addresses=/* [] */0;}
             else
              {throw exn$3;}
             }
@@ -878,13 +853,14 @@ var
        
        var a=addr[1];
        
+       var hostname;
        try
         {if(List["mem"](/* NI_NUMERICHOST */1,opts))
           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
          else
           {}
          
-         var hostname=CamlPrimitive["unix_gethostbyaddr"](a)[1];
+         hostname=CamlPrimitive["unix_gethostbyaddr"](a)[1];
          }
        catch(exn$2)
         {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -893,28 +869,26 @@ var
            else
             {}
            
-           var hostname=CamlPrimitive["unix_string_of_inet_addr"](a);
+           hostname=CamlPrimitive["unix_string_of_inet_addr"](a);
            }
          else
           {throw exn$2;}
          }
        
+       var service;
        try
         {if(List["mem"](/* NI_NUMERICSERV */3,opts))
           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
          else
           {}
          
-         if(List["mem"](/* NI_DGRAM */4,opts))
-          {var kind="udp";}
-         else
-          {var kind="tcp";}
+         var kind=List["mem"](/* NI_DGRAM */4,opts)?"udp":"tcp";
          
-         var service=CamlPrimitive["unix_getservbyport"](p,kind)[1];
+         service=CamlPrimitive["unix_getservbyport"](p,kind)[1];
          }
        catch(exn$3)
         {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
-          {var service=Pervasives["string_of_int"](p);}
+          {service=Pervasives["string_of_int"](p);}
          else
           {throw exn$3;}
          }
@@ -1038,17 +1012,15 @@ var
     if(id!==0)
      {return Hashtbl["add"](popen_processes,proc,id);}
     else
-     {if(input!==stdin)
-       {CamlPrimitive["unix_dup2"](input,stdin),
-        CamlPrimitive["unix_close"](input)}
-      else
-       {}
+     {input!==stdin
+       ?(CamlPrimitive["unix_dup2"](input,stdin),
+         CamlPrimitive["unix_close"](input))
+       :0;
       
-      if(output!==stdout)
-       {CamlPrimitive["unix_dup2"](output,stdout),
-        CamlPrimitive["unix_close"](output)}
-      else
-       {}
+      output!==stdout
+       ?(CamlPrimitive["unix_dup2"](output,stdout),
+         CamlPrimitive["unix_close"](output))
+       :0;
       
       List["iter"]
        (function(prim){return CamlPrimitive["unix_close"](prim);},toclose);
@@ -1347,10 +1319,7 @@ var
       if(id!==0)
        {CamlPrimitive["unix_close"](s),waitpid(/* [] */0,id)}
       else
-       {if(CamlPrimitive["unix_fork"](/* () */0)!==0)
-         {Pervasives["exit"](0)}
-        else
-         {}
+       {CamlPrimitive["unix_fork"](/* () */0)!==0?Pervasives["exit"](0):0;
         
         var inchan=CamlPrimitive["caml_ml_open_descriptor_in"](s);
         

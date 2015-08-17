@@ -20,10 +20,9 @@ var
    {return /* S */[0,
             List["fold_left"]
              (function(acc,param)
-               {if(Tags["does_match"](matched_tags,param[1]))
-                 {return /* :: */[0,param[2],acc];}
-                else
-                 {return acc;}
+               {return Tags["does_match"](matched_tags,param[1])
+                        ?/* :: */[0,param[2],acc]
+                        :acc;
                 },
               /* [] */0,
               all_decls[1])];
@@ -40,10 +39,7 @@ var
 var
  flag=
   function($staropt$star,tags,flags)
-   {if($staropt$star)
-     {var deprecated=$staropt$star[1];}
-    else
-     {var deprecated=/* false */0;}
+   {var deprecated=$staropt$star?$staropt$star[1]:/* false */0;
     
     var tags$1=Tags["of_list"](tags);
     
@@ -77,7 +73,7 @@ var
   function(param)
    {var sflag=Command["string_of_command_spec"](param[2]);
     
-    if(param[3]){var header="deprecated flag";}else{var header="flag";}
+    var header=param[3]?"deprecated flag":"flag";
     
     var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
     
@@ -119,11 +115,9 @@ var
  show_documentation=
   function(param)
    {List["iter"]
-     (function(decl){if(!decl[3]){return pretty_print(decl);}else{return 0;}},
-      all_decls[1]);
+     (function(decl){return !decl[3]?pretty_print(decl):0;},all_decls[1]);
     List["iter"]
-     (function(decl){if(decl[3]){return pretty_print(decl);}else{return 0;}},
-      all_decls[1]);
+     (function(decl){return decl[3]?pretty_print(decl):0;},all_decls[1]);
     var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
     
     return pp

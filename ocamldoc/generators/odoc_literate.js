@@ -198,20 +198,20 @@ var bs=Buffer["add_string"];
 
 var match=Odoc_args["current_generator"][1];
 
+var Html;
 if(match)
  {var match$1=match[1];
   
   switch(match$1[0])
-   {case 0:var Html=match$1[1];
+   {case 0:Html=match$1[1];
     default:
-     var
-      Html=
-       Pervasives["failwith"]
-        ("A non-html generator is already set. Cannot install the Todo-list html generator");
+     Html=
+     Pervasives["failwith"]
+      ("A non-html generator is already set. Cannot install the Todo-list html generator");
      }
   }
 else
- {var Html=Odoc_html["Generator"];}
+ {Html=Odoc_html["Generator"];}
 
 var
  html_init=
@@ -259,6 +259,7 @@ var
        function(self$neg1,b,text)
         {var exit;
          
+         var match$2;
          if(text)
           {var $js=text[1];
            if(typeof $js==="number")
@@ -266,10 +267,10 @@ var
            else
             {switch($js[0])
               {case 13:
-                if(text[2])
-                 {var match$2=[/* tuple */0,/* false */0,/* true */1];}
-                else
-                 {var match$2=[/* tuple */0,/* false */0,/* false */0];}
+                match$2=
+                text[2]
+                 ?[/* tuple */0,/* false */0,/* true */1]
+                 :[/* tuple */0,/* false */0,/* false */0];
                 
                default:exit=2;}}
            }
@@ -279,26 +280,23 @@ var
          switch(exit)
           {case 2:var match$2=[/* tuple */0,/* true */1,/* true */1];}
          
-         if(match$2[1])
-          {p
+         match$2[1]
+          ?p
             (b,
              [/* Format */0,
               [/* String_literal */11,"<br/>",/* End_of_format */0],
-              "<br/>"])}
-         else
-          {}
+              "<br/>"])
+          :0;
          
          /* unknown */"(sendself self-1/1377 html_of_text/1388 b/1378 text/1379)";
          
-         if(match$2[2])
-          {return p
+         return match$2[2]
+                 ?p
                    (b,
                     [/* Format */0,
                      [/* String_literal */11,"<br/><br/>\n",/* End_of_format */0],
-                     "<br/><br/>\n"]);
-           }
-         else
-          {return 0;}
+                     "<br/><br/>\n"])
+                 :0;
          },
        html_of_Title,
        function(self$neg1,b,n,l_opt,t)

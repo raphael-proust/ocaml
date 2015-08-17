@@ -33,23 +33,21 @@ var
       case 2:
        var r=bt[1];
        
-       if(Glob["eval"](sources_glob,r))
-        {Format["fprintf"]
-          (f,
-           [/* Format */0,
-            [/* String_literal */11,
-             "Ocamlbuild cannot find or build ",
-             [/* Alpha */15,
-              [/* String_literal */11,
-               ".  A file with such a name would usually be a source file.  I suspect you have given a wrong target name to Ocamlbuild.",
-               /* End_of_format */0]]],
-            "Ocamlbuild cannot find or build %a.  A file with such a name would usually be a source file.  I suspect you have given a wrong target name to Ocamlbuild."],
-           Resource["print"],
-           r);
-         return /* false */0;
-         }
-       else
-        {return analyze(f,bt[2]);}
+       return Glob["eval"](sources_glob,r)
+               ?(Format["fprintf"]
+                  (f,
+                   [/* Format */0,
+                    [/* String_literal */11,
+                     "Ocamlbuild cannot find or build ",
+                     [/* Alpha */15,
+                      [/* String_literal */11,
+                       ".  A file with such a name would usually be a source file.  I suspect you have given a wrong target name to Ocamlbuild.",
+                       /* End_of_format */0]]],
+                    "Ocamlbuild cannot find or build %a.  A file with such a name would usually be a source file.  I suspect you have given a wrong target name to Ocamlbuild."],
+                   Resource["print"],
+                   r),
+                 /* false */0)
+               :analyze(f,bt[2]);
        
       case 3:return analyze(f,bt[2]);
       }

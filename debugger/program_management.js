@@ -27,13 +27,11 @@ var buffer=CamlPrimitive["caml_create_string"](1024);
 var
  control_connection=
   function(pid,fd)
-   {if(Unix["read"](fd[3],buffer,0,1024)===0)
-     {return Time_travel["forget_process"](fd,pid);}
-    else
-     {Pervasives["prerr_string"]("Garbage data from process ");
-      Pervasives["prerr_int"](pid);
-      return Pervasives["prerr_endline"]("");
-      }
+   {return Unix["read"](fd[3],buffer,0,1024)===0
+            ?Time_travel["forget_process"](fd,pid)
+            :(Pervasives["prerr_string"]("Garbage data from process "),
+              Pervasives["prerr_int"](pid),
+              Pervasives["prerr_endline"](""));
     };
 
 var
@@ -53,10 +51,9 @@ var
       return $$continue(/* () */0);
       }
     else
-     {if(Time_travel["set_file_descriptor"](pid,io_chan))
-       {return Input_handling["add_file"](io_chan,control_connection(pid));}
-      else
-       {return 0;}
+     {return Time_travel["set_file_descriptor"](pid,io_chan)
+              ?Input_handling["add_file"](io_chan,control_connection(pid))
+              :0;
       }
     };
 
@@ -107,7 +104,7 @@ var
       Primitives["close_io"](Program_loading["connection"][1]);
       var match=file_name[1];
       
-      if(match){return Unix["unlink"](match[1]);}else{return /* () */0;}
+      return match?Unix["unlink"](match[1]):/* () */0;
       }
     else
      {return 0;}
@@ -135,7 +132,7 @@ var
        answer=
         Question["yes_or_no"]("A program is being debugged already. Kill it");
       
-      if(answer){kill_program(/* () */0)}else{}
+      answer?kill_program(/* () */0):0;
       
       return answer;
       }
@@ -144,20 +141,21 @@ var
 var
  initialize_loading=
   function(param)
-   {if(Program_loading["debug_loading"][1])
-     {Pervasives["prerr_endline"]("Loading debugging information..."),
-      Printf["fprintf"]
-       (Pervasives["stderr"],
-        [/* Format */0,
-         [/* String_literal */11,
-          "\tProgram: [",
-          [/* String */2,
-           /* No_padding */0,
-           [/* String_literal */11,"]\n",[/* Flush */10,/* End_of_format */0]]]],
-         "\tProgram: [%s]\n%!"],
-        Parameters["program_name"][1])}
-    else
-     {}
+   {Program_loading["debug_loading"][1]
+     ?(Pervasives["prerr_endline"]("Loading debugging information..."),
+       Printf["fprintf"]
+        (Pervasives["stderr"],
+         [/* Format */0,
+          [/* String_literal */11,
+           "\tProgram: [",
+           [/* String */2,
+            /* No_padding */0,
+            [/* String_literal */11,
+             "]\n",
+             [/* Flush */10,/* End_of_format */0]]]],
+          "\tProgram: [%s]\n%!"],
+         Parameters["program_name"][1]))
+     :0;
     
     try
      {Unix["access"]
@@ -175,10 +173,9 @@ var
     Config["load_path"][1]=
     Pervasives["@"](Config["load_path"][1],Symbols["program_source_dirs"][1]);
     Envaux["reset_cache"](/* () */0);
-    if(Program_loading["debug_loading"][1])
-     {Pervasives["prerr_endline"]("Opening a socket...")}
-    else
-     {}
+    Program_loading["debug_loading"][1]
+     ?Pervasives["prerr_endline"]("Opening a socket...")
+     :0;
     
     return open_connection
             (Parameters["socket_name"][1],
@@ -205,10 +202,9 @@ var
       try
        {initialize_loading(/* () */0);
         Program_loading["launching_func"][1](/* () */0);
-        if(Program_loading["debug_loading"][1])
-         {Pervasives["prerr_endline"]("Waiting for connection...")}
-        else
-         {}
+        Program_loading["debug_loading"][1]
+         ?Pervasives["prerr_endline"]("Waiting for connection...")
+         :0;
         
         Input_handling["main_loop"](/* () */0);
         loaded[1]=/* true */1;

@@ -77,12 +77,11 @@ var
       Pervasives["prerr_string"]("Unix error: '");
       Pervasives["prerr_string"](param[3]);
       Pervasives["prerr_string"]("' failed");
-      if(arg["length"]>0)
-       {Pervasives["prerr_string"](" on '"),
-        Pervasives["prerr_string"](arg),
-        Pervasives["prerr_string"]("'")}
-      else
-       {}
+      arg["length"]>0
+       ?(Pervasives["prerr_string"](" on '"),
+         Pervasives["prerr_string"](arg),
+         Pervasives["prerr_string"]("'"))
+       :0;
       
       Pervasives["prerr_string"](": ");
       return Pervasives["prerr_endline"](Unix["error_message"](param[2]));
@@ -127,10 +126,9 @@ var
       var
        traverse=
         function(pointer)
-         {if(pointer>=length||path[pointer]===58)
-           {return pointer;}
-          else
-           {return traverse(pointer+1);}
+         {return pointer>=length||path["charCodeAt"](pointer)===58
+                  ?pointer
+                  :traverse(pointer+1);
           };
       
       var
@@ -140,11 +138,11 @@ var
           
           var directory=$$String["sub"](path,pos,pos2-pos);
           
-          if(CamlPrimitive["caml_string_equal"](directory,""))
-           {var fullname=name;}
-          else
-           {var fullname=Pervasives["^"](directory,Pervasives["^"]("/",name));
-            }
+          var
+           fullname=
+            CamlPrimitive["caml_string_equal"](directory,"")
+             ?name
+             :Pervasives["^"](directory,Pervasives["^"]("/",name));
           
           try
            {return check(fullname);}
@@ -173,16 +171,13 @@ var
        {try
          {var pos=$$String["index"](ch,36);
           
-          if(pos+1<ch["length"]&&ch[pos+1]===36)
-           {return Pervasives["^"]
+          return pos+1<ch["length"]&&ch["charCodeAt"](pos+1)===36
+                  ?Pervasives["^"]
                     ($$String["sub"](ch,0,pos+1),
-                     subst_variable($$String["sub"](ch,pos+2,ch["length"]-pos-2)));
-            }
-          else
-           {return Pervasives["^"]
+                     subst_variable($$String["sub"](ch,pos+2,ch["length"]-pos-2)))
+                  :Pervasives["^"]
                     ($$String["sub"](ch,0,pos),
                      subst2($$String["sub"](ch,pos+1,ch["length"]-pos-1)));
-            }
           }
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -197,7 +192,7 @@ var
       function(ch)
        {var i=0;
         
-        var c=ch[i];
+        var c=ch["charCodeAt"](i);
         
         while
          (i<ch["length"]&&(c>=97&&c<=122||c>=65&&c<=90||c>=48&&c<=57||c===95))
@@ -225,7 +220,7 @@ var
           }
         };
     
-    if(ch$1[0]===126)
+    if(ch$1["charCodeAt"](0)===126)
      {try
        {var n=$$String["index"](ch$1,47);
         
@@ -265,10 +260,9 @@ var
 var
  make_absolute=
   function(name)
-   {if(Filename["is_relative"](name))
-     {return Filename["concat"](Unix["getcwd"](/* () */0),name);}
-    else
-     {return name;}
+   {return Filename["is_relative"](name)
+            ?Filename["concat"](Unix["getcwd"](/* () */0),name)
+            :name;
     };
 
 module["exports"]=

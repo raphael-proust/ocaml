@@ -182,10 +182,9 @@ var
     
     do_backtrace
      (function(param$1)
-       {if(param$1)
-         {num_frames[0]++;return /* true */1;}
-        else
-         {num_frames[1]=-1;return /* false */0;}
+       {return param$1
+                ?(num_frames[0]++,/* true */1)
+                :(num_frames[1]=-1,/* false */0);
         });
     return num_frames[1];
     };

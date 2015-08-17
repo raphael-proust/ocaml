@@ -30,17 +30,16 @@ var
          "%s: %S failed"],
         Sys["argv"][1],
         exn[3]);
-      if(arg["length"]>0)
-       {Format["fprintf"]
+      arg["length"]>0
+       ?Format["fprintf"]
          (f,
           [/* Format */0,
            [/* String_literal */11,
             " on ",
             [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
            " on %S"],
-          arg)}
-      else
-       {}
+          arg)
+       :0;
       
       return Format["fprintf"]
               (f,
@@ -58,8 +57,9 @@ var
 var
  mkstat=
   function(unix_stat,x)
-   {try
-     {var st=unix_stat(x);}
+   {var st;
+    try
+     {st=unix_stat(x);}
     catch(e)
      {if(e[1]===Unix["Unix_error"])
        {throw [0,
@@ -121,11 +121,7 @@ var
     
     return Pervasives["at_exit"]
             (function(param)
-              {if(pid===Unix["getpid"](/* () */0))
-                {return callback(/* () */0);}
-               else
-                {return 0;}
-               });
+              {return pid===Unix["getpid"](/* () */0)?callback(/* () */0):0;});
     };
 
 var
@@ -160,7 +156,8 @@ var
           }
         };
     
-    try {var res=kont(ic);}catch(e){close(/* () */0);throw e;}
+    var res;
+    try {res=kont(ic);}catch(e){close(/* () */0);throw e;}
     
     close(/* () */0);
     return res;
@@ -208,10 +205,9 @@ var
   function(x)
    {var y=Unix["readlink"](x);
     
-    if(Filename["is_relative"](y))
-     {return Filename["concat"](Filename["dirname"](x),y);}
-    else
-     {return y;}
+    return Filename["is_relative"](y)
+            ?Filename["concat"](Filename["dirname"](x),y)
+            :y;
     };
 
 var

@@ -33,8 +33,8 @@ var
       Checkpoints["current_time"](/* () */0));
     var match=Checkpoints["current_pc"](/* () */0);
     
-    if(match)
-     {Format["fprintf"]
+    match
+     ?Format["fprintf"]
        (ppf,
         [/* Format */0,
          [/* String_literal */11,
@@ -45,9 +45,8 @@ var
            /* No_precision */0,
            /* End_of_format */0]],
          " - pc: %i"],
-        match[1])}
-    else
-     {}
+        match[1])
+     :/* () */0;
     
     Symbols["update_current_event"](/* () */0);
     Frames["reset_frame"](/* () */0);
@@ -124,9 +123,9 @@ var
            ev[2]);
          var breakpoints=Breakpoints["breakpoints_at_pc"](match$2[4]);
          
-         if(breakpoints)
-          {if(breakpoints[2])
-            {Format["fprintf"]
+         breakpoints
+          ?breakpoints[2]
+            ?Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* String_literal */11,
@@ -155,9 +154,8 @@ var
                List["sort"]
                 (function(prim,prim$1)
                   {return CamlPrimitive["caml_compare"](prim,prim$1);},
-                 breakpoints))}
-           else
-            {Format["fprintf"]
+                 breakpoints))
+            :Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* String_literal */11,
@@ -170,10 +168,8 @@ var
                    /* Flush_newline */4,
                    /* End_of_format */0]]],
                 "Breakpoint: %i@."],
-               breakpoints[1])}
-           }
-         else
-          {}
+               breakpoints[1])
+          :/* () */0;
          
          return Show_source["show_point"](ev,/* true */1);
          
@@ -198,15 +194,16 @@ var
   function(framenum,ppf,$$event)
    {var pos=Events["get_pos"]($$event);
     
+    var cnum;
     try
      {var buffer=Source["get_buffer"](pos,$$event[2]);
       
-      var cnum=Source["start_and_cnum"](buffer,pos)[2];
+      cnum=Source["start_and_cnum"](buffer,pos)[2];
       }
-    catch(exn){var cnum=pos[4];}
+    catch(exn){cnum=pos[4];}
     
-    if(Parameters["machine_readable"][1])
-     {return Format["fprintf"]
+    return Parameters["machine_readable"][1]
+            ?Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* Char_literal */12,
@@ -238,10 +235,8 @@ var
                framenum,
                $$event[1],
                $$event[2],
-               cnum);
-      }
-    else
-     {return Format["fprintf"]
+               cnum)
+            :Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* Char_literal */12,
@@ -279,7 +274,6 @@ var
                pos[1],
                pos[2],
                pos[4]-pos[3]+1);
-      }
     };
 
 var
@@ -293,9 +287,9 @@ var
       show_one_frame(Frames["current_frame"][1],ppf,sel_ev);
       var breakpoints=Breakpoints["breakpoints_at_pc"](sel_ev[1]);
       
-      if(breakpoints)
-       {if(breakpoints[2])
-         {Format["fprintf"]
+      breakpoints
+       ?breakpoints[2]
+         ?Format["fprintf"]
            (ppf,
             [/* Format */0,
              [/* String_literal */11,
@@ -324,9 +318,8 @@ var
             List["sort"]
              (function(prim,prim$1)
                {return CamlPrimitive["caml_compare"](prim,prim$1);},
-              breakpoints))}
-        else
-         {Format["fprintf"]
+              breakpoints))
+         :Format["fprintf"]
            (ppf,
             [/* Format */0,
              [/* String_literal */11,
@@ -339,10 +332,8 @@ var
                 /* Flush_newline */4,
                 /* End_of_format */0]]],
              "Breakpoint: %i@."],
-            breakpoints[1])}
-        }
-      else
-       {}
+            breakpoints[1])
+       :/* () */0;
       
       return Show_source["show_point"](sel_ev,selected);
       }

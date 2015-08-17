@@ -23,7 +23,7 @@ var
        {if(pos>=ls)
          {return /* true */1;}
         else
-         {var match=s[pos];
+         {var match=s["charCodeAt"](pos);
           
           var exit;
           
@@ -51,11 +51,10 @@ var
 var
  quote_filename_if_needed=
   function(s)
-   {if(is_simple_filename(s))
-     {return s;}
-    else
-     {if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
-       {return Printf["sprintf"]
+   {return is_simple_filename(s)
+            ?s
+            :CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")
+              ?Printf["sprintf"]
                 ([/* Format */0,
                   [/* Char_literal */12,
                    39,
@@ -63,11 +62,8 @@ var
                     /* No_padding */0,
                     [/* Char_literal */12,39,/* End_of_format */0]]],
                   "'%s'"],
-                 s);
-        }
-      else
-       {return Filename["quote"](s);}
-      }
+                 s)
+              :Filename["quote"](s);
     };
 
 var
@@ -92,8 +88,8 @@ var
      {Log["event"](/* None */0,cmd,target,Tags["empty"]);
       var st=My_std["sys_command"](cmd);
       
-      if(st!==0)
-       {return Pervasives["failwith"]
+      return st!==0
+              ?Pervasives["failwith"]
                 (Printf["sprintf"]
                   ([/* Format */0,
                     [/* String_literal */11,
@@ -109,10 +105,8 @@ var
                         [/* String_literal */11,".\n",/* End_of_format */0]]]]],
                     "Error during command `%s'.\nExit code %d.\n"],
                    cmd,
-                   st));
-        }
-      else
-       {return /* () */0;}
+                   st))
+              :/* () */0;
       }
     else
      {var
@@ -126,8 +120,8 @@ var
            /* :: */[0,function(param){return cmd;},/* [] */0],
            /* [] */0]);
       
-      if(match)
-       {return Pervasives["failwith"]
+      return match
+              ?Pervasives["failwith"]
                 (Printf["sprintf"]
                   ([/* Format */0,
                     [/* String_literal */11,
@@ -139,18 +133,14 @@ var
                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                     "Error during command %S: %s"],
                    cmd,
-                   Printexc["to_string"](match[1][2])));
-        }
-      else
-       {return /* () */0;}
+                   Printexc["to_string"](match[1][2])))
+              :/* () */0;
       }
     };
 
 var rm=My_std["sys_remove"];
 
-var
- rm_f=
-  function(x){if(My_std["sys_file_exists"](x)){return rm(x);}else{return 0;}};
+var rm_f=function(x){return My_std["sys_file_exists"](x)?rm(x):0;};
 
 var
  mkdir=
@@ -161,16 +151,14 @@ var
 
 var
  try_mkdir=
-  function(dir)
-   {if(!My_std["sys_file_exists"](dir)){return mkdir(dir);}else{return 0;}};
+  function(dir){return !My_std["sys_file_exists"](dir)?mkdir(dir):0;};
 
 var
  mkdir_p=
   function(dir)
-   {if(My_std["sys_file_exists"](dir))
-     {return /* () */0;}
-    else
-     {mkdir_p(Filename["dirname"](dir));return mkdir(dir);}
+   {return My_std["sys_file_exists"](dir)
+            ?/* () */0
+            :(mkdir_p(Filename["dirname"](dir)),mkdir(dir));
     };
 
 var
@@ -187,10 +175,10 @@ var
 var
  cp=
   function(src,dst)
-   {if(Filename["check_suffix"](src,".a")&&Filename["check_suffix"](dst,".a"))
-     {return cp_pf(src,dst);}
-    else
-     {return My_std["copy_file"](src,dst);}
+   {return Filename["check_suffix"](src,".a")&&
+            Filename["check_suffix"](dst,".a")
+            ?cp_pf(src,dst)
+            :My_std["copy_file"](src,dst);
     };
 
 var readlink=My_unix["readlink"];

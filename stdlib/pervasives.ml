@@ -171,8 +171,8 @@ external string_blit : string -> int -> bytes -> int -> int -> unit
                      = "caml_blit_string" "noalloc"
 external bytes_blit : bytes -> int -> bytes -> int -> int -> unit
                         = "caml_blit_string" "noalloc"
-external bytes_unsafe_to_string : bytes -> string = "%identity"
-external bytes_unsafe_of_string : string -> bytes = "%identity"
+external bytes_unsafe_to_string : bytes -> string = "%bytes_to_string"
+external bytes_unsafe_of_string : string -> bytes = "%bytes_of_string"
 
 let ( ^ ) s1 s2 =
   let l1 = string_length s1 and l2 = string_length s2 in

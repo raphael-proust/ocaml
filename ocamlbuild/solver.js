@@ -87,10 +87,9 @@ var
          
         case 2:
          if(!Pathname["is_relative"](target)&&Pathname["exists"](target))
-          {if(Resource["Cache"][15](target))
-            {return /* () */0;}
-           else
-            {return failed(target,/* Leaf */[0,target]);}
+          {return Resource["Cache"][15](target)
+                   ?/* () */0
+                   :failed(target,/* Leaf */[0,target]);
            }
          else
           {if(Resource["exists_in_source_dir"](target))
@@ -231,10 +230,10 @@ var
     
     var count=My_std["List"][5](cmds);
     
-    if(Command["jobs"][1]===1){var job_debug=10;}else{var job_debug=5;}
+    var job_debug=Command["jobs"][1]===1?10:5;
     
-    if(count>1)
-     {Log["dprintf"]
+    count>1
+     ?Log["dprintf"]
        (job_debug,
         [/* Format */0,
          [/* String_literal */11,
@@ -245,28 +244,24 @@ var
            /* No_precision */0,
            /* End_of_format */0]],
          ">>> PARALLEL: %d"],
-        count)}
-    else
-     {}
+        count)
+     :0;
     
     var opt_exn=Command["execute_many"](/* None */0,/* None */0,cmds);
     
-    if(count>1)
-     {Log["dprintf"]
+    count>1
+     ?Log["dprintf"]
        (job_debug,
         [/* Format */0,
          [/* String_literal */11,"<<< PARALLEL",/* End_of_format */0],
-         "<<< PARALLEL"])}
-    else
-     {}
+         "<<< PARALLEL"])
+     :0;
     
     if(opt_exn)
      {var match$1=opt_exn[1];
       
       My_std["List"][21]
-       (function(res,thunk){if(res){return thunk(/* () */0);}else{return 0;}},
-        match$1[1],
-        thunks);
+       (function(res,thunk){return res?thunk(/* () */0):0;},match$1[1],thunks);
       Log["finish"]([/* Some */0,/* Error */106380200],/* () */0);
       throw match$1[2];
       }

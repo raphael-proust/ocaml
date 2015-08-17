@@ -93,13 +93,10 @@ var
 var
  string_of_module_type=
   function(code,$staropt$star,t)
-   {if($staropt$star)
-     {var complete=$staropt$star[1];}
-    else
-     {var complete=/* false */0;}
+   {var complete=$staropt$star?$staropt$star[1]:/* false */0;
     
     try
-     {if(complete){var t2=t;}else{var t2=simpl_module_type(code,t);}
+     {var t2=complete?t:simpl_module_type(code,t);
       
       Printtyp["modtype"](modtype_fmt,t2);
       return flush_modtype_fmt(/* () */0);
@@ -141,12 +138,9 @@ var
 var
  string_of_class_type=
   function($staropt$star,t)
-   {if($staropt$star)
-     {var complete=$staropt$star[1];}
-    else
-     {var complete=/* false */0;}
+   {var complete=$staropt$star?$staropt$star[1]:/* false */0;
     
-    if(complete){var t2=t;}else{var t2=simpl_class_type(t);}
+    var t2=complete?t:simpl_class_type(t);
     
     Printtyp["class_type"](modtype_fmt,t2);
     return flush_modtype_fmt(/* () */0);

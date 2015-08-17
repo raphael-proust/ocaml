@@ -26,15 +26,14 @@ var
         [/* Char_literal */12,32,/* End_of_format */0]],
        "%i "],
       line_number);
-    if(point<=next&&point>=start)
-     {Pervasives["print_string"]($$String["sub"](content,start,point-start)),
-      Pervasives["print_string"]
-       (before
-         ?Debugger_config["event_mark_before"]
-         :Debugger_config["event_mark_after"]),
-      Pervasives["print_string"]($$String["sub"](content,point,next-point))}
-    else
-     {Pervasives["print_string"]($$String["sub"](content,start,next-start))}
+    point<=next&&point>=start
+     ?(Pervasives["print_string"]($$String["sub"](content,start,point-start)),
+       Pervasives["print_string"]
+        (before
+          ?Debugger_config["event_mark_before"]
+          :Debugger_config["event_mark_after"]),
+       Pervasives["print_string"]($$String["sub"](content,point,next-point)))
+     :Pervasives["print_string"]($$String["sub"](content,start,next-start));
     
     Pervasives["print_newline"](/* () */0);
     return next;
@@ -43,14 +42,12 @@ var
 var
  show_no_point=
   function(param)
-   {if(Parameters["emacs"][1])
-     {return Printf["printf"]
+   {return Parameters["emacs"][1]
+            ?Printf["printf"]
               ([/* Format */0,
                 [/* String_literal */11,"\x1a\x1aH\n",/* End_of_format */0],
-                "\x1a\x1aH\n"]);
-      }
-    else
-     {return 0;}
+                "\x1a\x1aH\n"])
+            :0;
     };
 
 var
@@ -148,14 +145,12 @@ var
         function(param)
          {var line_number=param[2];
           
-          if(line_number<=stop)
-           {return aff
+          return line_number<=stop
+                  ?aff
                     (/* tuple */[0,
                       print_line(buffer,line_number,param[1],point,before)+1,
-                      line_number+1]);
-            }
-          else
-           {return 0;}
+                      line_number+1])
+                  :0;
           };
       
       return aff(Source["pos_of_line"](buffer,start));

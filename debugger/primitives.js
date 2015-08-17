@@ -23,10 +23,9 @@ var
           
           var elem=param[1];
           
-          if(CamlPrimitive["caml_equal"](e,elem))
-           {return l$1;}
-          else
-           {return /* :: */[0,elem,except_e(l$1)];}
+          return CamlPrimitive["caml_equal"](e,elem)
+                  ?l$1
+                  :/* :: */[0,elem,except_e(l$1)];
           }
         else
          {return /* [] */0;}
@@ -42,10 +41,9 @@ var
      index_rec=
       function(i,param)
        {if(param)
-         {if(CamlPrimitive["caml_equal"](a,param[1]))
-           {return i;}
-          else
-           {return index_rec(i+1,param[2]);}
+         {return CamlPrimitive["caml_equal"](a,param[1])
+                  ?i
+                  :index_rec(i+1,param[2]);
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -57,14 +55,9 @@ var
 var
  list_truncate=
   function(p0,p1)
-   {if(p0!==0)
-     {if(p1)
-       {return /* :: */[0,p1[1],list_truncate(p0-1,p1[2])];}
-      else
-       {return /* [] */0;}
-      }
-    else
-     {return /* [] */0;}
+   {return p0!==0
+            ?p1?/* :: */[0,p1[1],list_truncate(p0-1,p1[2])]:/* [] */0
+            :/* [] */0;
     };
 
 var
@@ -94,10 +87,7 @@ var
           
           var a=param[1];
           
-          if(a===x)
-           {return /* :: */[0,y,l];}
-          else
-           {return /* :: */[0,a,repl(l)];}
+          return a===x?/* :: */[0,y,l]:/* :: */[0,a,repl(l)];
           }
         else
          {return /* [] */0;}
@@ -126,11 +116,11 @@ var
     
     var i=0;
     
-    while(i<l&&is_space(s[i])){i=1+i;}
+    while(i<l&&is_space(s["charCodeAt"](i))){i=1+i;}
     
     var j=l-1;
     
-    while(j>=i&&is_space(s[j])){j=-1+j;}
+    while(j>=i&&is_space(s["charCodeAt"](j))){j=-1+j;}
     
     return $$String["sub"](s,i,j-i+1);
     };
@@ -156,31 +146,23 @@ var
    {var
      split=
       function(i,j)
-       {if(j>=str["length"])
-         {if(i>=j)
-           {return /* [] */0;}
-          else
-           {return /* :: */[0,$$String["sub"](str,i,j-i),/* [] */0];}
-          }
-        else
-         {if(str[j]===sep)
-           {if(i>=j)
-             {return skip_sep(j+1);}
-            else
-             {return /* :: */[0,$$String["sub"](str,i,j-i),skip_sep(j+1)];}
-            }
-          else
-           {return split(i,j+1);}
-          }
+       {return j>=str["length"]
+                ?i>=j
+                  ?/* [] */0
+                  :/* :: */[0,$$String["sub"](str,i,j-i),/* [] */0]
+                :str["charCodeAt"](j)===sep
+                  ?i>=j
+                    ?skip_sep(j+1)
+                    :/* :: */[0,$$String["sub"](str,i,j-i),skip_sep(j+1)]
+                  :split(i,j+1);
         };
     
     var
      skip_sep=
       function(j)
-       {if(j<str["length"]&&str[j]===sep)
-         {return skip_sep(j+1);}
-        else
-         {return split(j,j);}
+       {return j<str["length"]&&str["charCodeAt"](j)===sep
+                ?skip_sep(j+1)
+                :split(j,j);
         };
     
     return split(0,0);

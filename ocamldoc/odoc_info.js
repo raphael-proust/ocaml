@@ -48,32 +48,17 @@ var
     $staropt$star,
     $staropt$star,
     files)
-   {if($staropt$star$1)
-     {var merge_options=$staropt$star$1[1];}
-    else
-     {var merge_options=/* [] */0;}
+   {var merge_options=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
     
-    if($staropt$star$2)
-     {var include_dirs=$staropt$star$2[1];}
-    else
-     {var include_dirs=/* [] */0;}
+    var include_dirs=$staropt$star$2?$staropt$star$2[1]:/* [] */0;
     
-    if($staropt$star$3)
-     {var labels=$staropt$star$3[1];}
-    else
-     {var labels=/* false */0;}
+    var labels=$staropt$star$3?$staropt$star$3[1]:/* false */0;
     
-    if($staropt$star$4)
-     {var sort_modules=$staropt$star$4[1];}
-    else
-     {var sort_modules=/* false */0;}
+    var sort_modules=$staropt$star$4?$staropt$star$4[1]:/* false */0;
     
-    if($staropt$star$5)
-     {var no_stop=$staropt$star$5[1];}
-    else
-     {var no_stop=/* false */0;}
+    var no_stop=$staropt$star$5?$staropt$star$5[1]:/* false */0;
     
-    if($staropt$star){var init=$staropt$star[1];}else{var init=/* [] */0;}
+    var init=$staropt$star?$staropt$star[1]:/* [] */0;
     
     Odoc_global["merge_options"][1]=merge_options;
     Odoc_global["include_dirs"][1]=include_dirs;
@@ -175,12 +160,10 @@ var
 var
  verbose=
   function(s)
-   {if(Odoc_global["verbose"][1])
-     {Pervasives["print_string"](s);
-      return Pervasives["print_newline"](/* () */0);
-      }
-    else
-     {return /* () */0;}
+   {return Odoc_global["verbose"][1]
+            ?(Pervasives["print_string"](s),
+              Pervasives["print_newline"](/* () */0))
+            :/* () */0;
     };
 
 var warning=function(s){return Odoc_global["pwarning"](s);};
@@ -193,8 +176,7 @@ var apply_opt=Odoc_misc["apply_opt"];
 
 var
  apply_if_equal=
-  function(f,v1,v2)
-   {if(CamlPrimitive["caml_equal"](v1,v2)){return f(v1);}else{return v2;}};
+  function(f,v1,v2){return CamlPrimitive["caml_equal"](v1,v2)?f(v1):v2;};
 
 var text_of_string=Odoc_text["Texter"][1];
 
@@ -208,9 +190,9 @@ var
     var b=Buffer["create"](len);
     
     for(var i=0;i<=len-1;i++)
-     {var c=s[i];
+     {var c=s["charCodeAt"](i);
       
-      if(c!==64){Buffer["add_char"](b,c)}else{Buffer["add_string"](b,"\@")}
+      c!==64?Buffer["add_char"](b,c):Buffer["add_string"](b,"\@");
       }
     
     return Buffer["contents"](b);
@@ -225,15 +207,14 @@ var
     
     var match=i[1];
     
-    if(match)
-     {p
+    match
+     ?p
        (b,
         [/* Format */0,
          [/* String */2,/* No_padding */0,/* End_of_format */0],
          "%s"],
-        escape_arobas(text_string_of_text(match[1])))}
-    else
-     {}
+        escape_arobas(text_string_of_text(match[1])))
+     :/* () */0;
     
     List["iter"]
      (function(s)
@@ -253,8 +234,8 @@ var
       i[2]);
     var match$1=i[3];
     
-    if(match$1)
-     {p
+    match$1
+     ?p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -265,9 +246,8 @@ var
             "version ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@version %s"],
-        escape_arobas(match$1[1]))}
-    else
-     {}
+        escape_arobas(match$1[1]))
+     :/* () */0;
     
     var
      f_see_ref=
@@ -332,8 +312,8 @@ var
       i[4]);
     var match$2=i[5];
     
-    if(match$2)
-     {p
+    match$2
+     ?p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -344,14 +324,13 @@ var
             "since ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@since %s"],
-        escape_arobas(match$2[1]))}
-    else
-     {}
+        escape_arobas(match$2[1]))
+     :/* () */0;
     
     var match$3=i[7];
     
-    if(match$3)
-     {p
+    match$3
+     ?p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -362,9 +341,8 @@ var
             "deprecated ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@deprecated %s"],
-        escape_arobas(text_string_of_text(match$3[1])))}
-    else
-     {}
+        escape_arobas(text_string_of_text(match$3[1])))
+     :/* () */0;
     
     List["iter"]
      (function(param)
@@ -410,8 +388,8 @@ var
       i[9]);
     var match$4=i[10];
     
-    if(match$4)
-     {p
+    match$4
+     ?p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -422,9 +400,8 @@ var
             "return ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@return %s"],
-        escape_arobas(text_string_of_text(match$4[1])))}
-    else
-     {}
+        escape_arobas(text_string_of_text(match$4[1])))
+     :/* () */0;
     
     List["iter"]
      (function(param)

@@ -133,6 +133,7 @@ var
      
      var exit;
      
+     var $js;
      if(match)
       {var id=match[1];
        
@@ -151,13 +152,12 @@ var
                "",
                remain);
            
-           var
-            $js=
-             (Odoc_comments_global["params"][1]=
-              Pervasives["@"]
-               (Odoc_comments_global["params"][1],
-                /* :: */[0,/* tuple */[0,id,remain2],/* [] */0]),
-              0);
+           $js=
+           (Odoc_comments_global["params"][1]=
+            Pervasives["@"]
+             (Odoc_comments_global["params"][1],
+              /* :: */[0,/* tuple */[0,id,remain2],/* [] */0]),
+            0);
            }
          else
           {throw [0,
@@ -218,6 +218,7 @@ var
      
      var exit;
      
+     var $js;
      if(match)
       {var id=match[1];
        
@@ -233,13 +234,12 @@ var
              "",
              remain);
          
-         var
-          $js=
-           (Odoc_comments_global["before"][1]=
-            Pervasives["@"]
-             (Odoc_comments_global["before"][1],
-              /* :: */[0,/* tuple */[0,id,remain2],/* [] */0]),
-            0);
+         $js=
+         (Odoc_comments_global["before"][1]=
+          Pervasives["@"]
+           (Odoc_comments_global["before"][1],
+            /* :: */[0,/* tuple */[0,id,remain2],/* [] */0]),
+          0);
          }
        else
         {exit=38;}
@@ -269,6 +269,7 @@ var
      
      var exit;
      
+     var $js;
      if(match)
       {var id=match[1];
        
@@ -297,13 +298,12 @@ var
                "",
                remain);
            
-           var
-            $js=
-             (Odoc_comments_global["raised_exceptions"][1]=
-              Pervasives["@"]
-               (Odoc_comments_global["raised_exceptions"][1],
-                /* :: */[0,/* tuple */[0,id,remain2],/* [] */0]),
-              0);
+           $js=
+           (Odoc_comments_global["raised_exceptions"][1]=
+            Pervasives["@"]
+             (Odoc_comments_global["raised_exceptions"][1],
+              /* :: */[0,/* tuple */[0,id,remain2],/* [] */0]),
+            0);
            }
          else
           {throw [0,

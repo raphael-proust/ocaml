@@ -29,94 +29,94 @@ var
         
         var e=param[2];
         
+        var msg;
         if(typeof e==="number")
          {switch(e)
-           {case 0:var msg="E2BIG";
-            case 1:var msg="EACCES";
-            case 2:var msg="EAGAIN";
-            case 3:var msg="EBADF";
-            case 4:var msg="EBUSY";
-            case 5:var msg="ECHILD";
-            case 6:var msg="EDEADLK";
-            case 7:var msg="EDOM";
-            case 8:var msg="EEXIST";
-            case 9:var msg="EFAULT";
-            case 10:var msg="EFBIG";
-            case 11:var msg="EINTR";
-            case 12:var msg="EINVAL";
-            case 13:var msg="EIO";
-            case 14:var msg="EISDIR";
-            case 15:var msg="EMFILE";
-            case 16:var msg="EMLINK";
-            case 17:var msg="ENAMETOOLONG";
-            case 18:var msg="ENFILE";
-            case 19:var msg="ENODEV";
-            case 20:var msg="ENOENT";
-            case 21:var msg="ENOEXEC";
-            case 22:var msg="ENOLCK";
-            case 23:var msg="ENOMEM";
-            case 24:var msg="ENOSPC";
-            case 25:var msg="ENOSYS";
-            case 26:var msg="ENOTDIR";
-            case 27:var msg="ENOTEMPTY";
-            case 28:var msg="ENOTTY";
-            case 29:var msg="ENXIO";
-            case 30:var msg="EPERM";
-            case 31:var msg="EPIPE";
-            case 32:var msg="ERANGE";
-            case 33:var msg="EROFS";
-            case 34:var msg="ESPIPE";
-            case 35:var msg="ESRCH";
-            case 36:var msg="EXDEV";
-            case 37:var msg="EWOULDBLOCK";
-            case 38:var msg="EINPROGRESS";
-            case 39:var msg="EALREADY";
-            case 40:var msg="ENOTSOCK";
-            case 41:var msg="EDESTADDRREQ";
-            case 42:var msg="EMSGSIZE";
-            case 43:var msg="EPROTOTYPE";
-            case 44:var msg="ENOPROTOOPT";
-            case 45:var msg="EPROTONOSUPPORT";
-            case 46:var msg="ESOCKTNOSUPPORT";
-            case 47:var msg="EOPNOTSUPP";
-            case 48:var msg="EPFNOSUPPORT";
-            case 49:var msg="EAFNOSUPPORT";
-            case 50:var msg="EADDRINUSE";
-            case 51:var msg="EADDRNOTAVAIL";
-            case 52:var msg="ENETDOWN";
-            case 53:var msg="ENETUNREACH";
-            case 54:var msg="ENETRESET";
-            case 55:var msg="ECONNABORTED";
-            case 56:var msg="ECONNRESET";
-            case 57:var msg="ENOBUFS";
-            case 58:var msg="EISCONN";
-            case 59:var msg="ENOTCONN";
-            case 60:var msg="ESHUTDOWN";
-            case 61:var msg="ETOOMANYREFS";
-            case 62:var msg="ETIMEDOUT";
-            case 63:var msg="ECONNREFUSED";
-            case 64:var msg="EHOSTDOWN";
-            case 65:var msg="EHOSTUNREACH";
-            case 66:var msg="ELOOP";
-            case 67:var msg="EOVERFLOW";
+           {case 0:msg="E2BIG";
+            case 1:msg="EACCES";
+            case 2:msg="EAGAIN";
+            case 3:msg="EBADF";
+            case 4:msg="EBUSY";
+            case 5:msg="ECHILD";
+            case 6:msg="EDEADLK";
+            case 7:msg="EDOM";
+            case 8:msg="EEXIST";
+            case 9:msg="EFAULT";
+            case 10:msg="EFBIG";
+            case 11:msg="EINTR";
+            case 12:msg="EINVAL";
+            case 13:msg="EIO";
+            case 14:msg="EISDIR";
+            case 15:msg="EMFILE";
+            case 16:msg="EMLINK";
+            case 17:msg="ENAMETOOLONG";
+            case 18:msg="ENFILE";
+            case 19:msg="ENODEV";
+            case 20:msg="ENOENT";
+            case 21:msg="ENOEXEC";
+            case 22:msg="ENOLCK";
+            case 23:msg="ENOMEM";
+            case 24:msg="ENOSPC";
+            case 25:msg="ENOSYS";
+            case 26:msg="ENOTDIR";
+            case 27:msg="ENOTEMPTY";
+            case 28:msg="ENOTTY";
+            case 29:msg="ENXIO";
+            case 30:msg="EPERM";
+            case 31:msg="EPIPE";
+            case 32:msg="ERANGE";
+            case 33:msg="EROFS";
+            case 34:msg="ESPIPE";
+            case 35:msg="ESRCH";
+            case 36:msg="EXDEV";
+            case 37:msg="EWOULDBLOCK";
+            case 38:msg="EINPROGRESS";
+            case 39:msg="EALREADY";
+            case 40:msg="ENOTSOCK";
+            case 41:msg="EDESTADDRREQ";
+            case 42:msg="EMSGSIZE";
+            case 43:msg="EPROTOTYPE";
+            case 44:msg="ENOPROTOOPT";
+            case 45:msg="EPROTONOSUPPORT";
+            case 46:msg="ESOCKTNOSUPPORT";
+            case 47:msg="EOPNOTSUPP";
+            case 48:msg="EPFNOSUPPORT";
+            case 49:msg="EAFNOSUPPORT";
+            case 50:msg="EADDRINUSE";
+            case 51:msg="EADDRNOTAVAIL";
+            case 52:msg="ENETDOWN";
+            case 53:msg="ENETUNREACH";
+            case 54:msg="ENETRESET";
+            case 55:msg="ECONNABORTED";
+            case 56:msg="ECONNRESET";
+            case 57:msg="ENOBUFS";
+            case 58:msg="EISCONN";
+            case 59:msg="ENOTCONN";
+            case 60:msg="ESHUTDOWN";
+            case 61:msg="ETOOMANYREFS";
+            case 62:msg="ETIMEDOUT";
+            case 63:msg="ECONNREFUSED";
+            case 64:msg="EHOSTDOWN";
+            case 65:msg="EHOSTUNREACH";
+            case 66:msg="ELOOP";
+            case 67:msg="EOVERFLOW";
             }
           }
         else
          {var x=e[1];
           
-          var
-           msg=
-            Printf["sprintf"]
-             ([/* Format */0,
-               [/* String_literal */11,
-                "EUNKNOWNERR ",
-                [/* Int */4,
-                 /* Int_d */0,
-                 /* No_padding */0,
-                 /* No_precision */0,
-                 /* End_of_format */0]],
-               "EUNKNOWNERR %d"],
-              x);
+          msg=
+          Printf["sprintf"]
+           ([/* Format */0,
+             [/* String_literal */11,
+              "EUNKNOWNERR ",
+              [/* Int */4,
+               /* Int_d */0,
+               /* No_padding */0,
+               /* No_precision */0,
+               /* End_of_format */0]],
+             "EUNKNOWNERR %d"],
+            x);
           }
         
         return /* Some */[0,
@@ -163,12 +163,11 @@ var
         Pervasives["prerr_string"](': "');
         Pervasives["prerr_string"](fun_name);
         Pervasives["prerr_string"]('" failed');
-        if(arg$1["length"]>0)
-         {Pervasives["prerr_string"](' on "'),
-          Pervasives["prerr_string"](arg$1),
-          Pervasives["prerr_string"]('"')}
-        else
-         {}
+        arg$1["length"]>0
+         ?(Pervasives["prerr_string"](' on "'),
+           Pervasives["prerr_string"](arg$1),
+           Pervasives["prerr_string"]('"'))
+         :0;
         
         Pervasives["prerr_string"](": ");
         Pervasives["prerr_endline"](CamlPrimitive["unix_error_message"](err));
@@ -188,28 +187,25 @@ var stderr=2;
 var
  read=
   function(fd,buf,ofs,len)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.read");}
-    else
-     {return CamlPrimitive["unix_read"](fd,buf,ofs,len);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.read")
+            :CamlPrimitive["unix_read"](fd,buf,ofs,len);
     };
 
 var
  write=
   function(fd,buf,ofs,len)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.write");}
-    else
-     {return CamlPrimitive["unix_write"](fd,buf,ofs,len);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.write")
+            :CamlPrimitive["unix_write"](fd,buf,ofs,len);
     };
 
 var
  single_write=
   function(fd,buf,ofs,len)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.single_write");}
-    else
-     {return CamlPrimitive["unix_single_write"](fd,buf,ofs,len);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.single_write")
+            :CamlPrimitive["unix_single_write"](fd,buf,ofs,len);
     };
 
 var
@@ -253,24 +249,26 @@ var inet_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("0.0.0.0");
 
 var inet_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("127.0.0.1");
 
+var inet6_addr_any;
 try
- {var inet6_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("::");}
+ {inet6_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("::");}
 catch(exn)
  {var tag=exn[1];
   
   if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-   {var inet6_addr_any=inet_addr_any;}
+   {inet6_addr_any=inet_addr_any;}
   else
    {throw exn;}
   }
 
+var inet6_addr_loopback;
 try
- {var inet6_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("::1");}
+ {inet6_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("::1");}
 catch(exn$1)
  {var tag$1=exn$1[1];
   
   if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
-   {var inet6_addr_loopback=inet_addr_loopback;}
+   {inet6_addr_loopback=inet_addr_loopback;}
   else
    {throw exn$1;}
   }
@@ -281,50 +279,40 @@ var
    {switch(param[0])
      {case 0:return /* PF_UNIX */0;
       case 1:
-       var a=param[1];
-       
-       if(is_inet6_addr(a))
-        {return /* PF_INET6 */2;}
-       else
-        {return /* PF_INET */1;}
-       
+       var a=param[1];return is_inet6_addr(a)?/* PF_INET6 */2:/* PF_INET */1;
       }
     };
 
 var
  recv=
   function(fd,buf,ofs,len,flags)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.recv");}
-    else
-     {return CamlPrimitive["unix_recv"](fd,buf,ofs,len,flags);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.recv")
+            :CamlPrimitive["unix_recv"](fd,buf,ofs,len,flags);
     };
 
 var
  recvfrom=
   function(fd,buf,ofs,len,flags)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.recvfrom");}
-    else
-     {return CamlPrimitive["unix_recvfrom"](fd,buf,ofs,len,flags);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.recvfrom")
+            :CamlPrimitive["unix_recvfrom"](fd,buf,ofs,len,flags);
     };
 
 var
  send=
   function(fd,buf,ofs,len,flags)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.send");}
-    else
-     {return CamlPrimitive["unix_send"](fd,buf,ofs,len,flags);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.send")
+            :CamlPrimitive["unix_send"](fd,buf,ofs,len,flags);
     };
 
 var
  sendto=
   function(fd,buf,ofs,len,flags,addr)
-   {if(ofs<0||len<0||ofs>buf["length"]-len)
-     {return Pervasives["invalid_arg"]("Unix.sendto");}
-    else
-     {return CamlPrimitive["unix_sendto"](fd,buf,ofs,len,flags,addr);}
+   {return ofs<0||len<0||ofs>buf["length"]-len
+            ?Pervasives["invalid_arg"]("Unix.sendto")
+            :CamlPrimitive["unix_sendto"](fd,buf,ofs,len,flags,addr);
     };
 
 var
@@ -441,49 +429,38 @@ var
     
     var match$1=opt_socktype[1];
     
+    var ports;
     if(match$1)
      {var ty=match$1[1];
       
-      if(ty!==1)
-       {if(ty!==0)
-         {if(CamlPrimitive["caml_string_equal"](service,""))
-           {var ports=/* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
-          else
-           {var ports=/* [] */0;}
-          }
-        else
-         {var ports=get_port(/* SOCK_STREAM */0,"tcp");}
-        }
-      else
-       {var ports=get_port(/* SOCK_DGRAM */1,"udp");}
+      ports=
+      ty!==1
+       ?ty!==0
+         ?CamlPrimitive["caml_string_equal"](service,"")
+           ?/* :: */[0,/* tuple */[0,ty,0],/* [] */0]
+           :/* [] */0
+         :get_port(/* SOCK_STREAM */0,"tcp")
+       :get_port(/* SOCK_DGRAM */1,"udp");
       }
     else
-     {var
-       ports=
-        Pervasives["@"]
-         (get_port(/* SOCK_STREAM */0,"tcp"),
-          get_port(/* SOCK_DGRAM */1,"udp"));
+     {ports=
+      Pervasives["@"]
+       (get_port(/* SOCK_STREAM */0,"tcp"),get_port(/* SOCK_DGRAM */1,"udp"));
       }
     
+    var addresses;
     if(CamlPrimitive["caml_string_equal"](node,""))
-     {if(List["mem"](/* AI_PASSIVE */2,opts))
-       {var
-         addresses=
-          /* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],/* [] */0];
-        }
-      else
-       {var
-         addresses=
-          /* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],/* [] */0];
-        }
+     {addresses=
+      List["mem"](/* AI_PASSIVE */2,opts)
+       ?/* :: */[0,/* tuple */[0,inet_addr_any,"0.0.0.0"],/* [] */0]
+       :/* :: */[0,/* tuple */[0,inet_addr_loopback,"127.0.0.1"],/* [] */0];
       }
     else
      {try
-       {var
-         addresses=
-          /* :: */[0,
-           /* tuple */[0,CamlPrimitive["unix_inet_addr_of_string"](node),node],
-           /* [] */0];
+       {addresses=
+        /* :: */[0,
+         /* tuple */[0,CamlPrimitive["unix_inet_addr_of_string"](node),node],
+         /* [] */0];
         }
       catch(exn$2)
        {var tag$2=exn$2[1];
@@ -492,15 +469,14 @@ var
          {try
            {var he=CamlPrimitive["unix_gethostbyname"](node);
             
-            var
-             addresses=
-              List["map"]
-               (function(a){return /* tuple */[0,a,he[1]];},
-                $$Array["to_list"](he[4]));
+            addresses=
+            List["map"]
+             (function(a){return /* tuple */[0,a,he[1]];},
+              $$Array["to_list"](he[4]));
             }
           catch(exn$3)
            {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
-             {var addresses=/* [] */0;}
+             {addresses=/* [] */0;}
             else
              {throw exn$3;}
             }
@@ -561,13 +537,14 @@ var
        
        var a=addr[1];
        
+       var hostname;
        try
         {if(List["mem"](/* NI_NUMERICHOST */1,opts))
           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
          else
           {}
          
-         var hostname=CamlPrimitive["unix_gethostbyaddr"](a)[1];
+         hostname=CamlPrimitive["unix_gethostbyaddr"](a)[1];
          }
        catch(exn$2)
         {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -576,28 +553,26 @@ var
            else
             {}
            
-           var hostname=CamlPrimitive["unix_string_of_inet_addr"](a);
+           hostname=CamlPrimitive["unix_string_of_inet_addr"](a);
            }
          else
           {throw exn$2;}
          }
        
+       var service;
        try
         {if(List["mem"](/* NI_NUMERICSERV */3,opts))
           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
          else
           {}
          
-         if(List["mem"](/* NI_DGRAM */4,opts))
-          {var kind="udp";}
-         else
-          {var kind="tcp";}
+         var kind=List["mem"](/* NI_DGRAM */4,opts)?"udp":"tcp";
          
-         var service=CamlPrimitive["unix_getservbyport"](p,kind)[1];
+         service=CamlPrimitive["unix_getservbyport"](p,kind)[1];
          }
        catch(exn$3)
         {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
-          {var service=Pervasives["string_of_int"](p);}
+          {service=Pervasives["string_of_int"](p);}
          else
           {throw exn$3;}
          }
@@ -750,23 +725,20 @@ var
     if(id!==0)
      {return Hashtbl["add"](popen_processes,proc,id);}
     else
-     {if(input!==stdin)
-       {CamlPrimitive["unix_dup2"](input,stdin),
-        CamlPrimitive["unix_close"](input)}
-      else
-       {}
+     {input!==stdin
+       ?(CamlPrimitive["unix_dup2"](input,stdin),
+         CamlPrimitive["unix_close"](input))
+       :0;
       
-      if(output!==stdout)
-       {CamlPrimitive["unix_dup2"](output,stdout),
-        CamlPrimitive["unix_close"](output)}
-      else
-       {}
+      output!==stdout
+       ?(CamlPrimitive["unix_dup2"](output,stdout),
+         CamlPrimitive["unix_close"](output))
+       :0;
       
-      if(!cloexec)
-       {List["iter"]
-         (function(prim){return CamlPrimitive["unix_close"](prim);},toclose)}
-      else
-       {}
+      !cloexec
+       ?List["iter"]
+         (function(prim){return CamlPrimitive["unix_close"](prim);},toclose)
+       :0;
       
       try
        {return CamlPrimitive["unix_execv"]
@@ -894,11 +866,10 @@ var
       CamlPrimitive["unix_close"](output);
       CamlPrimitive["unix_dup2"](error,stderr);
       CamlPrimitive["unix_close"](error);
-      if(!cloexec)
-       {List["iter"]
-         (function(prim){return CamlPrimitive["unix_close"](prim);},toclose)}
-      else
-       {}
+      !cloexec
+       ?List["iter"]
+         (function(prim){return CamlPrimitive["unix_close"](prim);},toclose)
+       :0;
       
       try
        {return CamlPrimitive["unix_execve"]
@@ -1126,10 +1097,7 @@ var
       if(id!==0)
        {CamlPrimitive["unix_close"](s),waitpid_non_intr(id)}
       else
-       {if(CamlPrimitive["unix_fork"](/* () */0)!==0)
-         {Pervasives["exit"](0)}
-        else
-         {}
+       {CamlPrimitive["unix_fork"](/* () */0)!==0?Pervasives["exit"](0):0;
         
         CamlPrimitive["unix_close"](sock);
         try_set_close_on_exec(s);

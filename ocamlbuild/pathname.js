@@ -51,7 +51,12 @@ var
     
     var lext=ext["length"];
     
-    return lx>lext+1&&x[lx-lext-1]===46&&My_std["String"][9](x,ext);
+    return lx>
+           lext+
+           1&&
+           x["charCodeAt"](lx-lext-1)===
+           46&&
+           My_std["String"][9](x,ext);
     };
 
 var $neg$dot$neg=function(file,ext){return add_extension(ext,file);};
@@ -97,10 +102,9 @@ var
       function(p,acc)
        {var dir=dirname(p);
         
-        if(CamlPrimitive["caml_string_equal"](dir,p))
-         {return /* tuple */[0,dir,acc];}
-        else
-         {return go(dir,/* :: */[0,basename(p),acc]);}
+        return CamlPrimitive["caml_string_equal"](dir,p)
+                ?/* tuple */[0,dir,acc]
+                :go(dir,/* :: */[0,basename(p),acc]);
         };
     
     return go(p,/* [] */0);
@@ -109,24 +113,25 @@ var
 var
  join=
   function(root,paths)
-   {if(CamlPrimitive["caml_string_equal"](root,current_dir_name))
-     {var root$1="";}
-    else
-     {var root$1=root;}
+   {var
+     root$1=
+      CamlPrimitive["caml_string_equal"](root,current_dir_name)?"":root;
     
     return My_std["List"][19](Operators[1],root$1,paths);
     };
 
+var _H1;
 if(CamlPrimitive["caml_string_equal"](current_dir_name,"."))
- {var _H1=0;}
+ {_H1=0;}
 else
  {throw [0,
          CamlPrimitive["caml_global_data"]["Assert_failure"],
          [0,"pathname.ml",74,10]];
   }
 
+var _H2;
 if(CamlPrimitive["caml_string_equal"](parent_dir_name,".."))
- {var _H2=0;}
+ {_H2=0;}
 else
  {throw [0,
          CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -186,16 +191,12 @@ var
     
     var ly=y["length"];
     
-    if(lx===ly)
-     {return CamlPrimitive["caml_string_equal"](x,My_std["String"][3](y,lx));}
-    else
-     {if(lx<ly)
-       {return CamlPrimitive["caml_string_equal"](x,My_std["String"][3](y,lx))&&
-               My_std["List"][30](y[lx],dir_seps);
-        }
-      else
-       {return /* false */0;}
-      }
+    return lx===ly
+            ?CamlPrimitive["caml_string_equal"](x,My_std["String"][3](y,lx))
+            :lx<ly
+              ?CamlPrimitive["caml_string_equal"](x,My_std["String"][3](y,lx))&&
+               My_std["List"][30](y["charCodeAt"](lx),dir_seps)
+              :/* false */0;
     };
 
 var
@@ -293,9 +294,7 @@ var copy=Shell["cp"];
 
 var remove=Shell["rm"];
 
-var
- try_remove=
-  function(x){if(exists(x)){return Shell["rm"](x);}else{return 0;}};
+var try_remove=function(x){return exists(x)?Shell["rm"](x):0;};
 
 var read=My_std["read_file"];
 
@@ -330,10 +329,7 @@ var
 var
  define_context=
   function(dir,context)
-   {if(CamlPrimitive["caml_string_equal"](dir,""))
-     {var dir$1=current_dir_name;}
-    else
-     {var dir$1=dir;}
+   {var dir$1=CamlPrimitive["caml_string_equal"](dir,"")?current_dir_name:dir;
     
     return My_std["&"]
             (Hashtbl["replace"](context_table,dir$1),

@@ -83,8 +83,8 @@ var
      match$1=
       fold
        (function(elt,first)
-         {if(!first)
-           {Format["fprintf"]
+         {!first
+           ?Format["fprintf"]
              (f,
               [/* Format */0,
                [/* Char_literal */12,
@@ -92,9 +92,8 @@ var
                 [/* Formatting_lit */17,
                  [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]],
-               ",@ "])}
-          else
-           {}
+               ",@ "])
+           :0;
           
           Format["pp_print_string"](f,elt);
           return /* false */0;
@@ -113,13 +112,9 @@ var $plus$plus=function(x,y){return add(y,x);};
 
 var $neg$neg=function(x,y){return remove(y,x);};
 
-var
- $plus$plus$plus=
-  function(x,param){if(param){return add(param[1],x);}else{return x;}};
+var $plus$plus$plus=function(x,param){return param?add(param[1],x):x;};
 
-var
- $neg$neg$neg=
-  function(x,param){if(param){return remove(param[1],x);}else{return x;}};
+var $neg$neg$neg=function(x,param){return param?remove(param[1],x):x;};
 
 var Operators=[0,$plus$plus,$neg$neg,$plus$plus$plus,$neg$neg$neg];
 

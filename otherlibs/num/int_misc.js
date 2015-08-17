@@ -7,18 +7,13 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var
  gcd_int=
-  function(i1,i2)
-   {if(i2===0){return Pervasives["abs"](i1);}else{return gcd_int(i2,i1%i2);}};
+  function(i1,i2){return i2===0?Pervasives["abs"](i1):gcd_int(i2,i1%i2);};
 
-var
- num_bits_int_aux=
-  function(n){if(n===0){return 0;}else{return 1+num_bits_int_aux(n>>>1);}};
+var num_bits_int_aux=function(n){return n===0?0:1+num_bits_int_aux(n>>>1);};
 
 var num_bits_int=function(n){return num_bits_int_aux(Pervasives["abs"](n));};
 
-var
- sign_int=
-  function(i){if(i===0){return 0;}else{if(i>0){return 1;}else{return -1;}}};
+var sign_int=function(i){return i===0?0:i>0?1:-1;};
 
 var length_of_int=Sys["word_size"]-2;
 
@@ -31,11 +26,7 @@ var least_int=-biggest_int;
 var
  compare_int=
   function(n1,n2)
-   {if(n1===n2)
-     {return 0;}
-    else
-     {if(CamlPrimitive["caml_greaterthan"](n1,n2)){return 1;}else{return -1;}}
-    };
+   {return n1===n2?0:CamlPrimitive["caml_greaterthan"](n1,n2)?1:-1;};
 
 module["exports"]=
 {"gcd_int":gcd_int,

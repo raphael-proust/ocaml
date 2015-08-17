@@ -16,14 +16,12 @@ var
           case 1:
            var pi_list=pi[1];
            
-           if(pi_list)
-            {return Pervasives["^"]
+           return pi_list
+                   ?Pervasives["^"]
                      ("(",
                       Pervasives["^"]
-                       ($$String["concat"](",",List["map"](iter,pi_list)),")"));
-             }
-           else
-            {return "??";}
+                       ($$String["concat"](",",List["map"](iter,pi_list)),")"))
+                   :"??";
            
           }
         };

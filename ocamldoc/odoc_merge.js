@@ -63,28 +63,22 @@ var
     
     var exit;
     
+    var new_desc_opt;
     if(match)
      {var d1=match[1];
       
       if(match$1)
-       {if(List["mem"](/* Merge_description */0,merge_options))
-         {var
-           new_desc_opt=
-            /* Some */[0,
-             Pervasives["@"](d1,/* :: */[0,/* Newline */0,match$1[1]])];
-          }
-        else
-         {var new_desc_opt=/* Some */[0,d1];}
+       {new_desc_opt=
+        List["mem"](/* Merge_description */0,merge_options)
+         ?/* Some */[0,
+           Pervasives["@"](d1,/* :: */[0,/* Newline */0,match$1[1]])]
+         :/* Some */[0,d1];
         }
       else
        {var d=d1;exit=152;}
       }
     else
-     {if(match$1)
-       {var d=match$1[1];exit=152;}
-      else
-       {var new_desc_opt=/* None */0;}
-      }
+     {if(match$1){var d=match$1[1];exit=152;}else{new_desc_opt=/* None */0;}}
     
     switch(exit){case 152:var new_desc_opt=/* Some */[0,d];}
     
@@ -94,18 +88,20 @@ var
     
     var exit$1;
     
+    var new_authors;
     if(match$2)
      {if(match$3){exit$1=149;}else{var l=match$2;exit$1=147;}}
     else
-     {if(match$3){exit$1=149;}else{var new_authors=/* [] */0;}}
+     {if(match$3){exit$1=149;}else{new_authors=/* [] */0;}}
     
     switch(exit$1)
      {case 149:
+       var new_authors;
        if(match$2)
-        {if(List["mem"](/* Merge_author */1,merge_options))
-          {var new_authors=Pervasives["@"](match$2,match$3);}
-         else
-          {var new_authors=match$2;}
+        {new_authors=
+         List["mem"](/* Merge_author */1,merge_options)
+          ?Pervasives["@"](match$2,match$3)
+          :match$2;
          }
        else
         {var l=match$3;exit$1=147;}
@@ -119,27 +115,21 @@ var
     
     var exit$2;
     
+    var new_version;
     if(match$4)
      {var v1=match$4[1];
       
       if(match$5)
-       {if(List["mem"](/* Merge_version */2,merge_options))
-         {var
-           new_version=
-            /* Some */[0,Pervasives["^"](v1,Pervasives["^"](" ",match$5[1]))];
-          }
-        else
-         {var new_version=/* Some */[0,v1];}
+       {new_version=
+        List["mem"](/* Merge_version */2,merge_options)
+         ?/* Some */[0,Pervasives["^"](v1,Pervasives["^"](" ",match$5[1]))]
+         :/* Some */[0,v1];
         }
       else
        {var v=v1;exit$2=145;}
       }
     else
-     {if(match$5)
-       {var v=match$5[1];exit$2=145;}
-      else
-       {var new_version=/* None */0;}
-      }
+     {if(match$5){var v=match$5[1];exit$2=145;}else{new_version=/* None */0;}}
     
     switch(exit$2){case 145:var new_version=/* Some */[0,v];}
     
@@ -149,18 +139,20 @@ var
     
     var exit$3;
     
+    var new_sees;
     if(match$6)
      {if(match$7){exit$3=142;}else{var l$1=match$6;exit$3=140;}}
     else
-     {if(match$7){exit$3=142;}else{var new_sees=/* [] */0;}}
+     {if(match$7){exit$3=142;}else{new_sees=/* [] */0;}}
     
     switch(exit$3)
      {case 142:
+       var new_sees;
        if(match$6)
-        {if(List["mem"](/* Merge_see */3,merge_options))
-          {var new_sees=Pervasives["@"](match$6,match$7);}
-         else
-          {var new_sees=match$6;}
+        {new_sees=
+         List["mem"](/* Merge_see */3,merge_options)
+          ?Pervasives["@"](match$6,match$7)
+          :match$6;
          }
        else
         {var l$1=match$7;exit$3=140;}
@@ -174,28 +166,21 @@ var
     
     var exit$4;
     
+    var new_since;
     if(match$8)
      {var v1$1=match$8[1];
       
       if(match$9)
-       {if(List["mem"](/* Merge_since */4,merge_options))
-         {var
-           new_since=
-            /* Some */[0,
-             Pervasives["^"](v1$1,Pervasives["^"](" ",match$9[1]))];
-          }
-        else
-         {var new_since=/* Some */[0,v1$1];}
+       {new_since=
+        List["mem"](/* Merge_since */4,merge_options)
+         ?/* Some */[0,Pervasives["^"](v1$1,Pervasives["^"](" ",match$9[1]))]
+         :/* Some */[0,v1$1];
         }
       else
        {var v$1=v1$1;exit$4=138;}
       }
     else
-     {if(match$9)
-       {var v$1=match$9[1];exit$4=138;}
-      else
-       {var new_since=/* None */0;}
-      }
+     {if(match$9){var v$1=match$9[1];exit$4=138;}else{new_since=/* None */0;}}
     
     switch(exit$4){case 138:var new_since=/* Some */[0,v$1];}
     
@@ -205,18 +190,20 @@ var
     
     var exit$5;
     
+    var new_before;
     if(match$10)
      {if(match$11){exit$5=135;}else{var l$2=match$10;exit$5=133;}}
     else
-     {if(match$11){exit$5=135;}else{var new_before=/* [] */0;}}
+     {if(match$11){exit$5=135;}else{new_before=/* [] */0;}}
     
     switch(exit$5)
      {case 135:
+       var new_before;
        if(match$10)
-        {if(List["mem"](/* Merge_before */5,merge_options))
-          {var new_before=merge_before_tags(Pervasives["@"](m1[6],m2[6]));}
-         else
-          {var new_before=match$10;}
+        {new_before=
+         List["mem"](/* Merge_before */5,merge_options)
+          ?merge_before_tags(Pervasives["@"](m1[6],m2[6]))
+          :match$10;
          }
        else
         {var l$2=match$11;exit$5=133;}
@@ -256,28 +243,22 @@ var
     
     var exit$6;
     
+    var new_dep;
     if(match$12)
      {var t1=match$12[1];
       
       if(match$13)
-       {if(List["mem"](/* Merge_deprecated */6,merge_options))
-         {var
-           new_dep=
-            /* Some */[0,
-             Pervasives["@"](t1,/* :: */[0,/* Newline */0,match$13[1]])];
-          }
-        else
-         {var new_dep=/* Some */[0,t1];}
+       {new_dep=
+        List["mem"](/* Merge_deprecated */6,merge_options)
+         ?/* Some */[0,
+           Pervasives["@"](t1,/* :: */[0,/* Newline */0,match$13[1]])]
+         :/* Some */[0,t1];
         }
       else
        {var t=t1;exit$6=128;}
       }
     else
-     {if(match$13)
-       {var t=match$13[1];exit$6=128;}
-      else
-       {var new_dep=/* None */0;}
-      }
+     {if(match$13){var t=match$13[1];exit$6=128;}else{new_dep=/* None */0;}}
     
     switch(exit$6){case 128:var new_dep=/* Some */[0,t];}
     
@@ -287,13 +268,15 @@ var
     
     var exit$7;
     
+    var new_params;
     if(match$14)
      {if(match$15){exit$7=125;}else{var l$3=match$14;exit$7=123;}}
     else
-     {if(match$15){exit$7=125;}else{var new_params=/* [] */0;}}
+     {if(match$15){exit$7=125;}else{new_params=/* [] */0;}}
     
     switch(exit$7)
      {case 125:
+       var new_params;
        if(match$14)
         {if(List["mem"](/* Merge_param */7,merge_options))
           {var
@@ -325,10 +308,10 @@ var
            
            var l1_completed=iter(match$16[1]);
            
-           var new_params=Pervasives["@"](l1_completed,match$16[2]);
+           new_params=Pervasives["@"](l1_completed,match$16[2]);
            }
          else
-          {var new_params=match$14;}
+          {new_params=match$14;}
          }
        else
         {var l$3=match$15;exit$7=123;}
@@ -342,13 +325,15 @@ var
     
     var exit$8;
     
+    var new_raised_exceptions;
     if(match$17)
      {if(match$18){exit$8=117;}else{var l$4=match$17;exit$8=115;}}
     else
-     {if(match$18){exit$8=117;}else{var new_raised_exceptions=/* [] */0;}}
+     {if(match$18){exit$8=117;}else{new_raised_exceptions=/* [] */0;}}
     
     switch(exit$8)
      {case 117:
+       var new_raised_exceptions;
        if(match$17)
         {if(List["mem"](/* Merge_raised_exception */8,merge_options))
           {var
@@ -380,12 +365,10 @@ var
            
            var l1_completed$1=iter$1(match$19[1]);
            
-           var
-            new_raised_exceptions=
-             Pervasives["@"](l1_completed$1,match$19[2]);
+           new_raised_exceptions=Pervasives["@"](l1_completed$1,match$19[2]);
            }
          else
-          {var new_raised_exceptions=match$17;}
+          {new_raised_exceptions=match$17;}
          }
        else
         {var l$4=match$18;exit$8=115;}
@@ -399,28 +382,22 @@ var
     
     var exit$9;
     
+    var new_rv;
     if(match$20)
      {var t1$1=match$20[1];
       
       if(match$21)
-       {if(List["mem"](/* Merge_return_value */9,merge_options))
-         {var
-           new_rv=
-            /* Some */[0,
-             Pervasives["@"](t1$1,/* :: */[0,/* Newline */0,match$21[1]])];
-          }
-        else
-         {var new_rv=/* Some */[0,t1$1];}
+       {new_rv=
+        List["mem"](/* Merge_return_value */9,merge_options)
+         ?/* Some */[0,
+           Pervasives["@"](t1$1,/* :: */[0,/* Newline */0,match$21[1]])]
+         :/* Some */[0,t1$1];
         }
       else
        {var t$1=t1$1;exit$9=110;}
       }
     else
-     {if(match$21)
-       {var t$1=match$21[1];exit$9=110;}
-      else
-       {var new_rv=/* None */0;}
-      }
+     {if(match$21){var t$1=match$21[1];exit$9=110;}else{new_rv=/* None */0;}}
     
     switch(exit$9){case 110:var new_rv=/* Some */[0,t$1];}
     
@@ -430,22 +407,19 @@ var
     
     var exit$10;
     
+    var new_custom;
     if(match$22)
      {if(match$23)
-       {if(List["mem"](/* Merge_custom */10,merge_options))
-         {var new_custom=Pervasives["@"](match$22,match$23);}
-        else
-         {var new_custom=match$22;}
+       {new_custom=
+        List["mem"](/* Merge_custom */10,merge_options)
+         ?Pervasives["@"](match$22,match$23)
+         :match$22;
         }
       else
        {var l$5=match$22;exit$10=105;}
       }
     else
-     {if(match$23)
-       {var l$5=match$23;exit$10=105;}
-      else
-       {var new_custom=/* [] */0;}
-      }
+     {if(match$23){var l$5=match$23;exit$10=105;}else{new_custom=/* [] */0;}}
     
     switch(exit$10){case 105:var new_custom=l$5;}
     
@@ -469,13 +443,12 @@ var
    {if(mli_opt)
      {var i=mli_opt[1];
       
-      if(ml_opt)
-       {return /* Some */[0,merge_info(merge_options,i,ml_opt[1])];}
-      else
-       {return /* Some */[0,i];}
+      return ml_opt
+              ?/* Some */[0,merge_info(merge_options,i,ml_opt[1])]
+              :/* Some */[0,i];
       }
     else
-     {if(ml_opt){return /* Some */[0,ml_opt[1]];}else{return /* None */0;}}
+     {return ml_opt?/* Some */[0,ml_opt[1]]:/* None */0;}
     };
 
 var
@@ -531,17 +504,15 @@ var
                     
                     var exit$1;
                     
+                    var new_desc;
                     if(match$3)
                      {var d1=match$3[1];
                       
                       if(match$4)
-                       {if(List["mem"](/* Merge_description */0,merge_options))
-                         {var
-                           new_desc=
-                            /* Some */[0,merge_info(merge_options,d1,match$4[1])];
-                          }
-                        else
-                         {var new_desc=/* Some */[0,d1];}
+                       {new_desc=
+                        List["mem"](/* Merge_description */0,merge_options)
+                         ?/* Some */[0,merge_info(merge_options,d1,match$4[1])]
+                         :/* Some */[0,d1];
                         }
                       else
                        {var d=d1;exit$1=92;}
@@ -550,7 +521,7 @@ var
                      {if(match$4)
                        {var d=match$4[1];exit$1=92;}
                       else
-                       {var new_desc=/* None */0;}
+                       {new_desc=/* None */0;}
                       }
                     
                     switch(exit$1){case 92:var new_desc=/* Some */[0,d];}
@@ -601,17 +572,15 @@ var
                     
                     var exit$1;
                     
+                    var new_desc;
                     if(match$3)
                      {var d1=match$3[1];
                       
                       if(match$4)
-                       {if(List["mem"](/* Merge_description */0,merge_options))
-                         {var
-                           new_desc=
-                            /* Some */[0,merge_info(merge_options,d1,match$4[1])];
-                          }
-                        else
-                         {var new_desc=/* Some */[0,d1];}
+                       {new_desc=
+                        List["mem"](/* Merge_description */0,merge_options)
+                         ?/* Some */[0,merge_info(merge_options,d1,match$4[1])]
+                         :/* Some */[0,d1];
                         }
                       else
                        {var d=d1;exit$1=97;}
@@ -620,7 +589,7 @@ var
                      {if(match$4)
                        {var d=match$4[1];exit$1=97;}
                       else
-                       {var new_desc=/* None */0;}
+                       {new_desc=/* None */0;}
                       }
                     
                     switch(exit$1){case 97:var new_desc=/* Some */[0,d];}
@@ -682,20 +651,21 @@ var
     
     var exit;
     
+    var new_desc;
     if(match)
      {var d1=match[1];
       
       if(match$1)
-       {if(List["mem"](/* Merge_description */0,merge_options))
-         {var new_desc=/* Some */[0,merge_info(merge_options,d1,match$1[1])];}
-        else
-         {var new_desc=/* Some */[0,d1];}
+       {new_desc=
+        List["mem"](/* Merge_description */0,merge_options)
+         ?/* Some */[0,merge_info(merge_options,d1,match$1[1])]
+         :/* Some */[0,d1];
         }
       else
        {var d=d1;exit=86;}
       }
     else
-     {if(match$1){var d=match$1[1];exit=86;}else{var new_desc=/* None */0;}}
+     {if(match$1){var d=match$1[1];exit=86;}else{new_desc=/* None */0;}}
     
     switch(exit){case 86:var new_desc=/* Some */[0,d];}
     
@@ -711,12 +681,10 @@ var
        
        switch(pi_ml[0])
         {case 0:
-          if(CamlPrimitive["caml_string_equal"](sn_mli[1],""))
-           {return /* Simple_name */[0,
-                    /* record */[0,pi_ml[1][1],sn_mli[2],sn_mli[3]]];
-            }
-          else
-           {return pi_mli;}
+          return CamlPrimitive["caml_string_equal"](sn_mli[1],"")
+                  ?/* Simple_name */[0,
+                    /* record */[0,pi_ml[1][1],sn_mli[2],sn_mli[3]]]
+                  :pi_mli;
           
          case 1:return pi_mli;
          }
@@ -795,7 +763,7 @@ var
                      var init$1=a[1][7];
                      
                      a[1][7]=/* record */[0,a2[1][7][1],init$1[2]];
-                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6]}else{}
+                     Odoc_global["keep_code"][1]?(a[1][6]=a2[1][6],0):0;
                      
                      return /* true */1;
                      }
@@ -841,7 +809,7 @@ var
                             m[1][7]=/* record */[0,m2[1][7][1],init$1[2]];
                             m[1][5]=merge_parameters(m[1][5],m2[1][5]);
                             Odoc_value["update_value_parameters_text"](m[1]);
-                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6]}else{}
+                            Odoc_global["keep_code"][1]?(m[1][6]=m2[1][6],0):0;
                             
                             return /* true */1;
                             }
@@ -892,7 +860,7 @@ var
                      var init$1=a[1][7];
                      
                      a[1][7]=/* record */[0,a2[1][7][1],init$1[2]];
-                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6]}else{}
+                     Odoc_global["keep_code"][1]?(a[1][6]=a2[1][6],0):0;
                      
                      return /* true */1;
                      }
@@ -938,7 +906,7 @@ var
                             m[1][7]=/* record */[0,m2[1][7][1],init$1[2]];
                             m[1][5]=merge_parameters(m[1][5],m2[1][5]);
                             Odoc_value["update_value_parameters_text"](m[1]);
-                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6]}else{}
+                            Odoc_global["keep_code"][1]?(m[1][6]=m2[1][6],0):0;
                             
                             return /* true */1;
                             }
@@ -1011,10 +979,9 @@ var
                    
                    var match$1=List["partition"](merge_ext,exts);
                    
-                   if(match$1[1]!==/* [] */0)
-                    {merge_type_extension(merge_options,te,te2)}
-                   else
-                    {}
+                   match$1[1]!==/* [] */0
+                    ?merge_type_extension(merge_options,te,te2)
+                    :0;
                    
                    return f(match$1[2],elems[2]);
                    
@@ -1084,10 +1051,9 @@ var
                  {case 8:
                    var ty2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](ty2[1],ty[1]))
-                    {merge_types(merge_options,ty,ty2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](ty2[1],ty[1])
+                           ?(merge_types(merge_options,ty,ty2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1114,10 +1080,9 @@ var
                  {case 0:
                    var m2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
-                    {merge_modules(merge_options,m,m2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](m2[1],m[1])
+                           ?(merge_modules(merge_options,m,m2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1144,10 +1109,9 @@ var
                  {case 1:
                    var m2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
-                    {merge_module_types(merge_options,m,m2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](m2[1],m[1])
+                           ?(merge_module_types(merge_options,m,m2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1181,7 +1145,7 @@ var
                      v[7]=/* record */[0,v2[7][1],init$1[2]];
                      v[5]=merge_parameters(v[5],v2[5]);
                      Odoc_value["update_value_parameters_text"](v);
-                     if(Odoc_global["keep_code"][1]){v[6]=v2[6]}else{}
+                     Odoc_global["keep_code"][1]?(v[6]=v2[6],0):0;
                      
                      return /* true */1;
                      }
@@ -1213,10 +1177,9 @@ var
                  {case 3:
                    var c2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
-                    {merge_classes(merge_options,c,c2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](c2[1],c[1])
+                           ?(merge_classes(merge_options,c,c2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1243,10 +1206,9 @@ var
                         {case 4:
                           var c2=ele[1];
                           
-                          if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
-                           {merge_class_types(merge_options,c,c2);return /* true */1;}
-                          else
-                           {return /* false */0;}
+                          return CamlPrimitive["caml_string_equal"](c2[1],c[1])
+                                  ?(merge_class_types(merge_options,c,c2),/* true */1)
+                                  :/* false */0;
                           
                          default:return /* false */0;}
                        },
@@ -1280,49 +1242,42 @@ var
           
           var h=param[1];
           
-          if(List["mem"](h,acc))
-           {return remove_doubles(acc,q);}
-          else
-           {return remove_doubles(/* :: */[0,h,acc],q);}
+          return List["mem"](h,acc)
+                  ?remove_doubles(acc,q)
+                  :remove_doubles(/* :: */[0,h,acc],q);
           }
         else
          {return acc;}
         };
     
     mli[8]=remove_doubles(mli[8],ml[8]);
+    var code;
     if(Odoc_global["keep_code"][1])
      {var match=mli[9];
       
       var match$1=ml[9];
       
-      if(match)
-       {var code=/* Some */[0,match[1]];}
-      else
-       {if(match$1)
-         {var code=/* Some */[0,match$1[1]];}
-        else
-         {var code=/* None */0;}
-        }
+      code=
+      match
+       ?/* Some */[0,match[1]]
+       :match$1?/* Some */[0,match$1[1]]:/* None */0;
       }
     else
-     {var code=/* None */0;}
+     {code=/* None */0;}
     
+    var code_intf;
     if(Odoc_global["keep_code"][1])
      {var match$2=mli[10];
       
       var match$3=ml[10];
       
-      if(match$2)
-       {var code_intf=/* Some */[0,match$2[1]];}
-      else
-       {if(match$3)
-         {var code_intf=/* Some */[0,match$3[1]];}
-        else
-         {var code_intf=/* None */0;}
-        }
+      code_intf=
+      match$2
+       ?/* Some */[0,match$2[1]]
+       :match$3?/* Some */[0,match$3[1]]:/* None */0;
       }
     else
-     {var code_intf=/* None */0;}
+     {code_intf=/* None */0;}
     
     mli[9]=code;
     mli[10]=code_intf;
@@ -1365,10 +1320,9 @@ var
                    
                    var match$5=List["partition"](merge_ext,exts);
                    
-                   if(match$5[1]!==/* [] */0)
-                    {merge_type_extension(merge_options,te,te2)}
-                   else
-                    {}
+                   match$5[1]!==/* [] */0
+                    ?merge_type_extension(merge_options,te,te2)
+                    :0;
                    
                    return f(match$5[2],elems[2]);
                    
@@ -1437,10 +1391,9 @@ var
                  {case 8:
                    var ty2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](ty2[1],ty[1]))
-                    {merge_types(merge_options,ty,ty2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](ty2[1],ty[1])
+                           ?(merge_types(merge_options,ty,ty2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1467,10 +1420,9 @@ var
                  {case 0:
                    var m2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
-                    {merge_modules(merge_options,m,m2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](m2[1],m[1])
+                           ?(merge_modules(merge_options,m,m2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1497,10 +1449,9 @@ var
                  {case 1:
                    var m2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](m2[1],m[1]))
-                    {merge_module_types(merge_options,m,m2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](m2[1],m[1])
+                           ?(merge_module_types(merge_options,m,m2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1530,7 +1481,7 @@ var
                   v[7]=/* record */[0,v2[7][1],init$1[2]];
                   v[5]=merge_parameters(v[5],v2[5]);
                   Odoc_value["update_value_parameters_text"](v);
-                  if(Odoc_global["keep_code"][1]){v[6]=v2[6]}else{}
+                  Odoc_global["keep_code"][1]?(v[6]=v2[6],0):0;
                   
                   return /* true */1;
                   }
@@ -1560,10 +1511,9 @@ var
                  {case 3:
                    var c2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
-                    {merge_classes(merge_options,c,c2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](c2[1],c[1])
+                           ?(merge_classes(merge_options,c,c2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1590,10 +1540,9 @@ var
                  {case 4:
                    var c2=ele[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](c2[1],c[1]))
-                    {merge_class_types(merge_options,c,c2);return /* true */1;}
-                   else
-                    {return /* false */0;}
+                   return CamlPrimitive["caml_string_equal"](c2[1],c[1])
+                           ?(merge_class_types(merge_options,c,c2),/* true */1)
+                           :/* false */0;
                    
                   default:return /* false */0;}
                 },
@@ -1644,11 +1593,7 @@ var
               var
                f=
                 function(b)
-                 {if(Odoc_global["inverse_merge_ml_mli"][1])
-                   {return !b;}
-                  else
-                   {return b;}
-                  };
+                 {return Odoc_global["inverse_merge_ml_mli"][1]?!b:b;};
               
               var match$1=f(m[4]);
               

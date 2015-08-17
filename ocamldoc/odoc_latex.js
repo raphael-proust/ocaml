@@ -328,7 +328,7 @@ var
           
           var c=param[1];
           
-          if(q){f(c);ps(fmt,sep);return iter(q);}else{return f(c);}
+          return q?(f(c),ps(fmt,sep),iter(q)):f(c);
           }
         else
          {return /* () */0;}
@@ -480,20 +480,18 @@ var
          },
        label,
        function(self$neg1,$staropt$star,name)
-        {if($staropt$star)
-          {var no_=$staropt$star[1];}
-         else
-          {var no_=/* true */1;}
+        {var no_=$staropt$star?$staropt$star[1]:/* true */1;
          
          var len=name["length"];
          
          var buf=Buffer["create"](len);
          
          for(var i=0;i<=len-1;i++)
-          {var c=name[i];
+          {var c=name["charCodeAt"](i);
            
            var exit;
            
+           var match;
            if(c>=96)
             {var switcher=-124+c;
              
@@ -501,30 +499,30 @@ var
               {exit=106;}
              else
               {switch(switcher)
-                {case 0:var match=[/* tuple */0,"-pipe",'"|'];
+                {case 0:match=[/* tuple */0,"-pipe",'"|'];
                  case 1:exit=106;
-                 case 2:var match=[/* tuple */0,"-tilde","~"];
+                 case 2:match=[/* tuple */0,"-tilde","~"];
                  }
                }
              }
            else
             {if(c>=33)
               {switch(-33+c)
-                {case 0:var match=[/* tuple */0,"-bang",'"!'];
+                {case 0:match=[/* tuple */0,"-bang",'"!'];
                  case 1:exit=106;
                  case 2:exit=106;
-                 case 3:var match=[/* tuple */0,"-dollar","$"];
-                 case 4:var match=[/* tuple */0,"-percent","%"];
-                 case 5:var match=[/* tuple */0,"-ampersand","&"];
+                 case 3:match=[/* tuple */0,"-dollar","$"];
+                 case 4:match=[/* tuple */0,"-percent","%"];
+                 case 5:match=[/* tuple */0,"-ampersand","&"];
                  case 6:exit=106;
                  case 7:exit=106;
                  case 8:exit=106;
-                 case 9:var match=[/* tuple */0,"-star","*"];
-                 case 10:var match=[/* tuple */0,"-plus","+"];
+                 case 9:match=[/* tuple */0,"-star","*"];
+                 case 10:match=[/* tuple */0,"-plus","+"];
                  case 11:exit=106;
-                 case 12:var match=[/* tuple */0,"-minus","-"];
+                 case 12:match=[/* tuple */0,"-minus","-"];
                  case 13:exit=106;
-                 case 14:var match=[/* tuple */0,"-slash","/"];
+                 case 14:match=[/* tuple */0,"-slash","/"];
                  case 15:exit=106;
                  case 16:exit=106;
                  case 17:exit=106;
@@ -535,13 +533,13 @@ var
                  case 22:exit=106;
                  case 23:exit=106;
                  case 24:exit=106;
-                 case 25:var match=[/* tuple */0,"-colon",":"];
+                 case 25:match=[/* tuple */0,"-colon",":"];
                  case 26:exit=106;
-                 case 27:var match=[/* tuple */0,"-lt","<"];
-                 case 28:var match=[/* tuple */0,"-equal","="];
-                 case 29:var match=[/* tuple */0,"-gt",">"];
+                 case 27:match=[/* tuple */0,"-lt","<"];
+                 case 28:match=[/* tuple */0,"-equal","="];
+                 case 29:match=[/* tuple */0,"-gt",">"];
                  case 30:exit=106;
-                 case 31:var match=[/* tuple */0,"-at",'"@'];
+                 case 31:match=[/* tuple */0,"-at",'"@'];
                  case 32:exit=106;
                  case 33:exit=106;
                  case 34:exit=106;
@@ -571,8 +569,8 @@ var
                  case 58:exit=106;
                  case 59:exit=106;
                  case 60:exit=106;
-                 case 61:var match=[/* tuple */0,"-exp","^"];
-                 case 62:var match=[/* tuple */0,"-underscore","_"];
+                 case 61:match=[/* tuple */0,"-exp","^"];
+                 case 62:match=[/* tuple */0,"-underscore","_"];
                  }
                }
              else
@@ -899,7 +897,8 @@ var
           {var kind=ref_opt[1];
            
            if(typeof kind==="number")
-            {if(typeof kind==="number")
+            {var f_label;
+             if(typeof kind==="number")
               {switch(kind)
                 {case 0:
                   /* unknown */"(sendself self-1/1524 module_label/1279)";
@@ -933,15 +932,13 @@ var
                       [0,"odoc_latex.ml",423,40]];
                }
              
-             if(text_opt)
-              {var text=text_opt[1];}
-             else
-              {var
-                text=
-                 /* :: */[0,
+             var
+              text=
+               text_opt
+                ?text_opt[1]
+                :/* :: */[0,
                   /* Code */[1,Odoc_info["use_hidden_modules"](name)],
                   /* [] */0];
-               }
              
              /* unknown */'(sendself self-1/1524 latex_of_text/1288 fmt/1525\n  (apply (field 21 (global Pervasives!)) text/1532\n    (makeblock 0\n      (makeblock 14\n        (apply (field 15 (global Pervasives!)) "["\n          (apply (field 15 (global Pervasives!))\n            (sendself self-1/1524 make_ref/1287\n              (apply f_label/1531 0a name/1526))\n            "]")))\n      0a)))';
              }
@@ -1170,10 +1167,7 @@ var
       ($$class,
        latex_of_info,
        function(self$neg2,fmt,$staropt$star,info_opt)
-        {if($staropt$star)
-          {var block=$staropt$star[1];}
-         else
-          {var block=/* false */0;}
+        {var block=$staropt$star?$staropt$star[1]:/* false */0;
          
          /* unknown */"(sendself self-2/1553 latex_of_text/1549 fmt/1554\n  (sendself self-2/1553 text_of_info/1550 (makeblock 0 block/1556)\n    info_opt/1558))";
          });
@@ -1437,7 +1431,7 @@ var
          
          var match$1=t[3];
          
-         if(match$1){ps(fmt2," ")}else{}
+         match$1?ps(fmt2," "):/* () */0;
          
          ps(fmt2,s_name);
          var priv=t[5]===/* Private */0;
@@ -1541,6 +1535,7 @@ var
               
               var exit$2;
               
+              var defs;
               if(match$7)
                {var match$8=match$7[1];
                 
@@ -1582,11 +1577,10 @@ var
                          },
                        match$8[1]);
                    
-                   var
-                    defs=
-                     Pervasives["@"]
-                      (List["flatten"](fields),
-                       [/* :: */0,[/* CodePre */2,">"],/* [] */0]);
+                   defs=
+                   Pervasives["@"]
+                    (List["flatten"](fields),
+                     [/* :: */0,[/* CodePre */2,">"],/* [] */0]);
                    
                   }
                 }
@@ -1958,6 +1952,7 @@ var
                  /* unknown */"(sendself self-3/1782 make_label/1702\n  (sendself self-3/1782 extension_label/1804 0a (field 0 x/1795)))";
                  var match$5=x[7];
                  
+                 var $js;
                  if(match$5)
                   {ps(fmt2,"\begin{ocamldoccomment}\n");
                    /* unknown */"(sendself self-3/1782 latex_of_info/1753 fmt2/1787 0a\n  (makeblock 0 (field 0 match/2252)))";
@@ -1965,10 +1960,10 @@ var
                    ps(fmt2,"\n\end{ocamldoccomment}\n");
                    var s=flush2(/* () */0);
                    
-                   var $js=/* :: */[0,/* Latex */[14,s],/* [] */0];
+                   $js=/* :: */[0,/* Latex */[14,s],/* [] */0];
                    }
                  else
-                  {var $js=/* [] */0;}
+                  {$js=/* [] */0;}
                  return Pervasives["@"]
                          (/* :: */[0,
                            /* Latex */[14,0],
@@ -2279,7 +2274,7 @@ var
                    (function(param)
                      {var text_opt=param[2];
                       
-                      if(text_opt){var t$2=text_opt[1];}else{var t$2=/* [] */0;}
+                      var t$2=text_opt?text_opt[1]:/* [] */0;
                       
                       return /* :: */[0,
                               /* Raw */[0,param[1][1]],
@@ -2397,7 +2392,7 @@ var
                    (function(param)
                      {var text_opt=param[2];
                       
-                      if(text_opt){var t$2=text_opt[1];}else{var t$2=/* [] */0;}
+                      var t$2=text_opt?text_opt[1]:/* [] */0;
                       
                       return /* :: */[0,
                               /* Raw */[0,param[1][1]],
@@ -2437,12 +2432,13 @@ var
          
          var l=c[4];
          
+         var type_params;
          if(l)
           {/* unknown */"(sendself self-3/1953 normal_class_type_param_list/1959 father/1956 l/1958)";
-           var type_params=Pervasives["^"](0," ");
+           type_params=Pervasives["^"](0," ");
            }
          else
-          {var type_params="";}
+          {type_params="";}
          
          var
           t=
@@ -2522,12 +2518,13 @@ var
          
          var l=ct[4];
          
+         var type_params;
          if(l)
           {/* unknown */"(sendself self-3/1962 normal_class_type_param_list/1959 father/1965 l/1967)";
-           var type_params=Pervasives["^"](0," ");
+           type_params=Pervasives["^"](0," ");
            }
          else
-          {var type_params="";}
+          {type_params="";}
          
          var
           t=
@@ -2751,22 +2748,18 @@ var
          
          var first_t=match[1];
          
-         if(m[11])
-          {var
-            text$1=
-             /* :: */[0,
+         var
+          text$1=
+           m[11]
+            ?/* :: */[0,
               /* Title */[13,
                1,
                /* None */0,
                Pervasives["@"]
                 (/* :: */[0,/* Raw */[0,m[1]],/* [] */0],
                  first_t?/* :: */[0,[/* Raw */0," : "],first_t]:/* [] */0)],
-              /* [] */0];
-           }
-         else
-          {var
-            text$1=
-             /* :: */[0,
+              /* [] */0]
+            :/* :: */[0,
               /* Title */[13,
                1,
                /* None */0,
@@ -2776,7 +2769,6 @@ var
                   /* :: */[0,/* Code */[1,m[1]],/* [] */0]],
                  first_t?/* :: */[0,[/* Raw */0," : "],first_t]:/* [] */0)],
               /* [] */0];
-           }
          
          /* unknown */"(sendself self-3/2017 latex_of_text/1703 fmt/2018 text/2022)";
          
@@ -2788,7 +2780,7 @@ var
          
          /* unknown */"(sendself self-3/2017 latex_of_text/1703 fmt/2018 [0: 0a 0a])";
          
-         if(!m[11]){ps(fmt,"\ocamldocvspace{0.5cm}\n\n")}else{}
+         !m[11]?ps(fmt,"\ocamldocvspace{0.5cm}\n\n"):0;
          
          return List["iter"]
                  (function(ele)
@@ -2820,9 +2812,9 @@ var
          ps(fmt,"\begin{document}\n");
          var match$1=Odoc_info["Global"][6][1];
          
-         if(match$1){ps(fmt,"\maketitle\n")}else{}
+         match$1?ps(fmt,"\maketitle\n"):/* () */0;
          
-         if(Odoc_info["Global"][8][1]){ps(fmt,"\tableofcontents\n")}else{}
+         Odoc_info["Global"][8][1]?ps(fmt,"\tableofcontents\n"):0;
          
          var
           info$1=
@@ -2830,11 +2822,11 @@ var
             (Odoc_info["info_of_comment_file"](module_list),
              Odoc_info["Global"][7][1]);
          
-         if(info$1){ps(fmt,"\vspace{0.2cm}")}else{}
+         info$1?ps(fmt,"\vspace{0.2cm}"):/* () */0;
          
          /* unknown */"(sendself self-3/2027 latex_of_info/1753 fmt/2028 0a info/2032)";
          
-         if(info$1){return ps(fmt,"\n\n");}else{return /* () */0;}
+         return info$1?ps(fmt,"\n\n"):/* () */0;
          },
        generate_style_file,
        function(self$neg3)
@@ -2942,7 +2934,7 @@ var
                  }
                },
              module_list);
-           if(Odoc_info["Global"][11][1]){ps(fmt,"\end{document}")}else{}
+           Odoc_info["Global"][11][1]?ps(fmt,"\end{document}"):0;
            
            Format["pp_print_flush"](fmt,/* () */0);
            return Pervasives["close_out"](chanout);

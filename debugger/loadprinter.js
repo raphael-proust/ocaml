@@ -28,13 +28,13 @@ var
     
     var match=debugger_symtable[1];
     
-    if(match)
-     {Symtable["restore_state"](match[1])}
-    else
-     {Dynlink["init"](/* () */0),
-      Dynlink["allow_unsafe_modules"](/* true */1),
-      debugger_symtable[1]=
-      /* Some */[0,Symtable["current_state"](/* () */0)]}
+    match
+     ?Symtable["restore_state"](match[1])
+     :(Dynlink["init"](/* () */0),
+       Dynlink["allow_unsafe_modules"](/* true */1),
+       debugger_symtable[1]=
+       /* Some */[0,Symtable["current_state"](/* () */0)],
+       0);
     
     try
      {var result=fn(arg);
@@ -55,15 +55,11 @@ var
       use_debugger_symtable(Dynlink["loadfile"],filename);
       var d=Filename["dirname"](name);
       
-      if
-       (CamlPrimitive["caml_string_notequal"](d,Filename["current_dir_name"]))
-       {if(!List["mem"](d,Config["load_path"][1]))
-         {Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]]}
-        else
-         {}
-        }
-      else
-       {}
+      CamlPrimitive["caml_string_notequal"](d,Filename["current_dir_name"])
+       ?!List["mem"](d,Config["load_path"][1])
+         ?(Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]],0)
+         :0
+       :0;
       
       Format["fprintf"]
        (ppf,
@@ -151,11 +147,11 @@ var match=Env["read_signature"]("Topdirs",topdirs);
 var
  match_printer_type=
   function(desc,typename)
-   {try
-     {var
-       match$1=
-        Env["lookup_type"]
-         (/* Ldot */[1,[/* Lident */0,"Topdirs"],typename],Env["empty"]);
+   {var match$1;
+    try
+     {match$1=
+      Env["lookup_type"]
+       (/* Ldot */[1,[/* Lident */0,"Topdirs"],typename],Env["empty"]);
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -189,20 +185,19 @@ var
       
       var desc=match$1[2];
       
+      var match$2;
       try
-       {var
-         match$2=
-          /* tuple */[0,
-           match_printer_type(desc,"printer_type_new"),
-           /* false */0];
+       {match$2=
+        /* tuple */[0,
+         match_printer_type(desc,"printer_type_new"),
+         /* false */0];
         }
       catch(exn)
        {if(exn[1]===Ctype["Unify"])
-         {var
-           match$2=
-            /* tuple */[0,
-             match_printer_type(desc,"printer_type_old"),
-             /* true */1];
+         {match$2=
+          /* tuple */[0,
+           match_printer_type(desc,"printer_type_old"),
+           /* true */1];
           }
         else
          {throw exn;}
@@ -229,8 +224,9 @@ var
     
     var path=match$1[2];
     
+    var v;
     try
-     {var v=use_debugger_symtable(eval_path,path);}
+     {v=use_debugger_symtable(eval_path,path);}
     catch(exn)
      {var exit;
       
@@ -247,10 +243,11 @@ var
       switch(exit){case 6:throw exn;}
       }
     
-    if(match$1[3])
-     {var print_function=function(formatter,repr){return v(repr);};}
-    else
-     {var print_function=function(formatter,repr){return v(formatter,repr);};}
+    var
+     print_function=
+      match$1[3]
+       ?function(formatter,repr){return v(repr);}
+       :function(formatter,repr){return v(formatter,repr);};
     
     return Printval["install_printer"](path,match$1[1],ppf,print_function);
     };

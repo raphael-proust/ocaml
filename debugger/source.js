@@ -30,7 +30,7 @@ var
           try
            {return CamlPrimitive["caml_string_equal"]
                     ($$String["sub"](m,0,len$prime),m$prime)&&
-                   m[len$prime]===
+                   m["charCodeAt"](len$prime)===
                    46;
             }
           catch(exn)
@@ -44,24 +44,23 @@ var
       var
        path=
         Hashtbl["fold"]
-         (function(mdl,dirs,acc)
-           {if(is_submodule(mdle,mdl)){return dirs;}else{return acc;}},
+         (function(mdl,dirs,acc){return is_submodule(mdle,mdl)?dirs:acc;},
           Debugger_config["load_path_for"],
           Config["load_path"][1]);
       
       var fname=pos[1];
       
       if(CamlPrimitive["caml_string_equal"](fname,""))
-       {try
+       {var innermost_module;
+        try
          {var dot_index=$$String["rindex"](mdle,46);
           
-          var
-           innermost_module=
-            $$String["sub"](mdle,1+dot_index,-1+(mdle["length"]-dot_index));
+          innermost_module=
+          $$String["sub"](mdle,1+dot_index,-1+(mdle["length"]-dot_index));
           }
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {var innermost_module=mdle;}
+           {innermost_module=mdle;}
           else
            {throw exn;}
           }
@@ -154,14 +153,11 @@ var
           
           var lin=a[2];
           
-          if(CamlPrimitive["caml_lessthan"](lin,line))
-           {return /* :: */[0,pair,l$prime];}
-          else
-           {if(CamlPrimitive["caml_equal"](lin,line))
-             {return l$prime;}
-            else
-             {return /* :: */[0,a,new_list(l$prime[2])];}
-            }
+          return CamlPrimitive["caml_lessthan"](lin,line)
+                  ?/* :: */[0,pair,l$prime]
+                  :CamlPrimitive["caml_equal"](lin,line)
+                    ?l$prime
+                    :/* :: */[0,a,new_list(l$prime[2])];
           }
         else
          {return /* :: */[0,/* tuple */[0,position,line],/* [] */0];}
@@ -185,7 +181,7 @@ var
      {var
        search=
         function(p)
-         {if(p===len||buffer[p]===10){return p;}else{return search(1+p);}};
+         {return p===len||buffer["charCodeAt"](p)===10?p:search(1+p);};
       
       return search(pos);
       }
@@ -203,10 +199,7 @@ var
      find=
       function(param)
        {if(param)
-         {var pair=param[1];
-          
-          if(pair[1]>position){return find(param[2]);}else{return pair;}
-          }
+         {var pair=param[1];return pair[1]>position?find(param[2]):pair;}
         else
          {if(position<0)
            {throw Primitives["Out_of_range"];}
@@ -220,7 +213,7 @@ var
       function(previous)
        {var next=next_line(buffer,previous);
         
-        if(next[1]<=position){return find_line(next);}else{return previous;}
+        return next[1]<=position?find_line(next):previous;
         };
     
     var result=find_line(find(buffer[2][1]));
@@ -236,10 +229,7 @@ var
      find=
       function(param)
        {if(param)
-         {var pair=param[1];
-          
-          if(pair[2]>line){return find(param[2]);}else{return pair;}
-          }
+         {var pair=param[1];return pair[2]>line?find(param[2]):pair;}
         else
          {if(line<=0)
            {throw Primitives["Out_of_range"];}
@@ -253,7 +243,7 @@ var
       function(previous)
        {var next=next_line(buffer,previous);
         
-        if(next[2]<=line){return find_pos(next);}else{return previous;}
+        return next[2]<=line?find_pos(next):previous;
         };
     
     var result=find_pos(find(buffer[2][1]));

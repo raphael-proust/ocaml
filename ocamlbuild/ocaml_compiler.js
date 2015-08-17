@@ -20,10 +20,9 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var
  forpack_flags=
   function(arg,tags)
-   {if(Tags["mem"]("pack",tags))
-     {return Ocaml_arch["forpack_flags_of_pathname"](arg);}
-    else
-     {return /* N */0;}
+   {return Tags["mem"]("pack",tags)
+            ?Ocaml_arch["forpack_flags_of_pathname"](arg)
+            :/* N */0;
     };
 
 var
@@ -111,10 +110,9 @@ var
 var
  byte_lib_linker=
   function(tags)
-   {if(Tags["mem"]("ocamlmklib",tags))
-     {return ocamlmklib(tags);}
-    else
-     {return ocamlc_link_lib(tags);}
+   {return Tags["mem"]("ocamlmklib",tags)
+            ?ocamlmklib(tags)
+            :ocamlc_link_lib(tags);
     };
 
 var
@@ -266,10 +264,9 @@ var
 var
  native_lib_linker=
   function(tags)
-   {if(Tags["mem"]("ocamlmklib",tags))
-     {return ocamlmklib(tags);}
-    else
-     {return ocamlopt_link_lib(tags);}
+   {return Tags["mem"]("ocamlmklib",tags)
+            ?ocamlmklib(tags)
+            :ocamlopt_link_lib(tags);
     };
 
 var
@@ -327,10 +324,9 @@ var
                           /* End_of_format */0]]],
                        "Warning: Failed to build the module %s requested by ocamldep."],
                       param[2]);
-                    if
-                     (!(Options["recursive"][1]||
-                       Options["ocamlbuild_project_heuristic"](/* () */0)))
-                     {return Log["at_failure"]
+                    return !(Options["recursive"][1]||
+                             Options["ocamlbuild_project_heuristic"](/* () */0))
+                            ?Log["at_failure"]
                               ("a module failed to build,\n           while recursive traversal was disabled by fragile heuristic;\n           hint that having a _tags or myocamlbuild.ml would maybe solve\n           the build error",
                                function(param$1)
                                 {return Log["eprintf"]
@@ -592,10 +588,8 @@ var
                                                                                                                                                                          /* Close_box */0,
                                                                                                                                                                          /* End_of_format */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
                                            "Hint:@ Recursive@ traversal@ of@ subdirectories@ was@ not@ enabled@ for@ this@ build,@ as@ the@ working@ directory does@ not@ look@ like@ an@ ocamlbuild@ project@ (no@ '_tags'@ or@ 'myocamlbuild.ml'@ file).@ If@ you@ have@ modules@ in@ subdirectories,@ you@ should@ add@ the@ option@ \"-r\"@ or@ create@ an@ empty@ '_tags'@ file.@\n@\nTo@ enable@ recursive@ traversal@ for@ some@ subdirectories@ only,@ you@ can@ use@ the@ following@ '_tags'@ file:@\n@[<v 4>@,true: -traverse@,<dir1> or <dir2>: traverse@,@]"]);
-                                 });
-                      }
-                    else
-                     {return 0;}
+                                 })
+                            :0;
                     }
                   
                  }
@@ -628,10 +622,7 @@ var
     prepare_compile(build,mli$1);
     var tags=Tags["Operators"][1](Tools["tags_of_pathname"](mli$1),"interf");
     
-    if(Tags["mem"]("native",tags))
-     {var comp_c=ocamlopt_c;}
-    else
-     {var comp_c=ocamlc_c;}
+    var comp_c=Tags["mem"]("native",tags)?ocamlopt_c:ocamlc_c;
     
     return comp_c(tags,mli$1,cmi$1);
     };
@@ -681,15 +672,13 @@ var
          ?Ocaml_utils["path_dependencies_of"](mli)
          :/* [] */0);
     
-    if(modules===/* [] */0&&Pathname["exists"](Pervasives["^"](ml,"pack")))
-     {var
-       modules$1=
-        My_std["List"][16]
+    var
+     modules$1=
+      modules===/* [] */0&&Pathname["exists"](Pervasives["^"](ml,"pack"))
+       ?My_std["List"][16]
          (function(s){return /* tuple */[0,/* mandatory */-38817255,s];},
-          Ocaml_utils["string_list_of_file"](Pervasives["^"](ml,"pack")));
-      }
-    else
-     {var modules$1=modules;}
+          Ocaml_utils["string_list_of_file"](Pervasives["^"](ml,"pack")))
+       :modules;
     
     if(modules$1!==/* [] */0&&!Hashtbl["mem"](cache_prepare_link,key))
      {var match=Hashtbl["add"](cache_prepare_link,key,/* true */1);
@@ -729,7 +718,7 @@ var
 var
  native_compile_ocaml_implem=
   function(tag,$staropt$star,ml,env,build)
-   {if($staropt$star){var cmx_ext=$staropt$star[1];}else{var cmx_ext="cmx";}
+   {var cmx_ext=$staropt$star?$staropt$star[1]:"cmx";
     
     var ml$1=env(ml);
     
@@ -759,10 +748,7 @@ var
               {try
                 {var match=Hashtbl["find"](Ocaml_utils["info_libraries"],tag);
                  
-                 if(match[2])
-                  {return acc;}
-                 else
-                  {return /* :: */[0,match[1],acc];}
+                 return match[2]?acc:/* :: */[0,match[1],acc];
                  }
                catch(exn)
                 {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -905,10 +891,7 @@ var
     
     var deps$2=My_std["List"][33](is_not_stdlib,deps$1);
     
-    if(deps$2===/* [] */0)
-     {Pervasives["failwith"]("Link list cannot be empty")}
-    else
-     {}
+    deps$2===/* [] */0?Pervasives["failwith"]("Link list cannot be empty"):0;
     
     var
      match=
@@ -1135,10 +1118,9 @@ var
     
     var dir1=Pathname["remove_extensions"](cmX$1);
     
-    if(Resource["exists_in_source_dir"](dir1))
-     {var dir=dir1;}
-    else
-     {var dir=Pathname["dirname"](cmX$1);}
+    var
+     dir=
+      Resource["exists_in_source_dir"](dir1)?dir1:Pathname["dirname"](cmX$1);
     
     var include_dirs=Pathname["include_dirs_of"](dir);
     
@@ -1440,7 +1422,7 @@ var
 var
  native_shared_library_link=
   function($staropt$star,x)
-   {if($staropt$star){var tags=$staropt$star[1];}else{var tags=/* [] */0;}
+   {var tags=$staropt$star?$staropt$star[1]:/* [] */0;
     
     return link_one_gen
             (native_shared_lib_linker,native_shared_library_tags(tags),x);

@@ -89,10 +89,9 @@ var
        function(self$neg1)
         {var match=self$neg1[colors+1];
          
-         if(match)
-          {self$neg1[colors+1]=match[2];return /* Some */[0,match[1]];}
-         else
-          {return /* None */0;}
+         return match
+                 ?(self$neg1[colors+1]=match[2],/* Some */[0,match[1]])
+                 :/* None */0;
          },
        node_color,
        function(self$neg1,s)
@@ -120,8 +119,8 @@ var
        function(self$neg1,fmt,m)
         {/* unknown */"(sendself self-1/1169 node_color/1149\n  (apply (field 10 (global Filename!)) (field 4 m/1171)))";
          
-         if(match)
-          {return Format["fprintf"]
+         return match
+                 ?Format["fprintf"]
                    (fmt,
                     [/* Format */0,
                      [/* Char_literal */12,
@@ -135,17 +134,15 @@ var
                          [/* String_literal */11,"];\n",/* End_of_format */0]]]]],
                      '"%s" [style=filled, color=%s];\n'],
                     m[1],
-                    match[1]);
-           }
-         else
-          {return /* () */0;}
+                    match[1])
+                 :/* () */0;
          },
        print_type_atts,
        function(self$neg1,fmt,t)
         {/* unknown */"(sendself self-1/1174 node_color/1149\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 t/1176)))";
          
-         if(match)
-          {return Format["fprintf"]
+         return match
+                 ?Format["fprintf"]
                    (fmt,
                     [/* Format */0,
                      [/* Char_literal */12,
@@ -159,10 +156,8 @@ var
                          [/* String_literal */11,"];\n",/* End_of_format */0]]]]],
                      '"%s" [style=filled, color=%s];\n'],
                     t[1],
-                    match[1]);
-           }
-         else
-          {return /* () */0;}
+                    match[1])
+                 :/* () */0;
          },
        print_one_dep,
        function(self$neg1,fmt,src,dest)
@@ -258,7 +253,7 @@ var
               [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
              0);
-           if(dot_reduce[1]){Odoc_info["Dep"][1](modules_list)}else{}
+           dot_reduce[1]?Odoc_info["Dep"][1](modules_list):0;
            
            /* unknown */"(sendself self-1/1203 generate_for_module/1153 fmt/1206)";
            List["iter"](0,modules_list);

@@ -218,10 +218,7 @@ var
                   
                   bs(b,"\n");
                   bs(b,"\n");
-                  if(q)
-                   {bs(b,linebreak);return iter(q);}
-                  else
-                   {return /* () */0;}
+                  return q?(bs(b,linebreak),iter(q)):/* () */0;
                   }
                 else
                  {return /* () */0;}
@@ -267,10 +264,7 @@ var
                   /* unknown */"(sendself self-1/1287 man_of_text/1248 b/1289 (field 1 match/2214))";
                   
                   bs(b,"\n");
-                  if(q)
-                   {bs(b,linebreak);return iter(q);}
-                  else
-                   {return /* () */0;}
+                  return q?(bs(b,linebreak),iter(q)):/* () */0;
                   }
                 else
                  {return /* () */0;}
@@ -326,10 +320,7 @@ var
                   /* unknown */"(sendself self-1/1303 str_man_of_see/1255 (field 0 param/2205))";
                   bs(b,0);
                   bs(b,"\n");
-                  if(q)
-                   {bs(b,linebreak);return iter(q);}
-                  else
-                   {return /* () */0;}
+                  return q?(bs(b,linebreak),iter(q)):/* () */0;
                   }
                 else
                  {return /* () */0;}
@@ -385,7 +376,7 @@ var
           },
         man_of_info,
         function(self$neg1,$staropt$star,b,info_opt)
-         {if($staropt$star){var margin=$staropt$star[1];}else{var margin=0;}
+         {var margin=$staropt$star?$staropt$star[1]:0;
           
           if(info_opt)
            {var info$1=info_opt[1];
@@ -394,6 +385,7 @@ var
             
             var match=info$1[7];
             
+            var $js;
             if(match)
              {var b$1=Buffer["create"](256);
               
@@ -403,26 +395,27 @@ var
               /* unknown */"(sendself self-1/1323 man_of_text/1248 b/1333 (field 0 match/2194))";
               
               bs(b$1,"\n");
-              var $js=/* :: */[0,Buffer["contents"](b$1),/* [] */0];
+              $js=/* :: */[0,Buffer["contents"](b$1),/* [] */0];
               }
             else
-             {var $js=/* [] */0;}
+             {$js=/* [] */0;}
             var match$1=info$1[1];
             
+            var $js$1;
             if(match$1)
              {var d=match$1[1];
               
               if
                (CamlPrimitive["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
-               {var $js$1=/* [] */0;}
+               {$js$1=/* [] */0;}
               else
                {/* unknown */"(sendself self-1/1323 str_man_of_text/1249 d/1334)";
-                var $js$1=/* :: */[0,Pervasives["^"](0,"\n"),/* [] */0];
+                $js$1=/* :: */[0,Pervasives["^"](0,"\n"),/* [] */0];
                 }
               }
             else
-             {var $js$1=/* [] */0;}
+             {$js$1=/* [] */0;}
             /* unknown */"(sendself self-1/1323 str_man_of_author_list/1250 (field 1 info/1329))";
             /* unknown */"(sendself self-1/1323 str_man_of_version_opt/1251 (field 2 info/1329))";
             /* unknown */"(sendself self-1/1323 str_man_of_before/1252 (field 5 info/1329))";
@@ -602,7 +595,7 @@ var
          var b=Buffer["create"](len);
          
          for(var i=0;i<=len-1;i++)
-          {var c=s[i];
+          {var c=s["charCodeAt"](i);
            
            var exit;
            
@@ -751,12 +744,10 @@ var
        function(self$neg2,b,s,t){return /* () */0;},
        man_of_Target,
        function(self$neg2,b,target,code)
-        {if
-          (CamlPrimitive["caml_string_equal"]
-            ($$String["lowercase"](target),"man"))
-          {return bs(b,code);}
-         else
-          {return /* () */0;}
+        {return CamlPrimitive["caml_string_equal"]
+                  ($$String["lowercase"](target),"man")
+                 ?bs(b,code)
+                 :/* () */0;
          },
        man_of_code,
        function(self$neg2,b,s)
@@ -894,7 +885,7 @@ var
          bs(b,0);
          bs(b," \n");
          bs(b,"+=");
-         if(te[4]===/* Private */0){bs(b," private")}else{}
+         te[4]===/* Private */0?bs(b," private"):0;
          
          bs(b,"\n ");
          List["iter"]
@@ -1031,7 +1022,7 @@ var
          
          var match=t[3];
          
-         if(match){bs(b,".I ")}else{}
+         match?bs(b,".I "):/* () */0;
          
          bs(b,Odoc_info["Name"][1](t[1]));
          bs(b," \n");
@@ -1045,13 +1036,13 @@ var
            switch(match$2[0])
             {case 0:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2110))";
               
              case 1:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               bs(b,"<"),
               List["iter"]
@@ -1077,7 +1068,7 @@ var
           {switch(match$3[0])
             {case 0:
               bs(b,"=");
-              if(priv){bs(b," private")}else{}
+              priv?bs(b," private"):0;
               
               bs(b,"\n "),
               List["iter"]
@@ -1167,7 +1158,7 @@ var
                 match$3[1]);
              case 1:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               bs(b,"{"),
               List["iter"]
@@ -1191,9 +1182,9 @@ var
        man_of_attribute,
        function(self$neg2,b,a)
         {bs(b,".I val ");
-         if(a[3]){bs(b,"virtual ")}else{}
+         a[3]?bs(b,"virtual "):0;
          
-         if(a[2]){bs(b,Pervasives["^"](Odoc_messages["mutab"]," "))}else{}
+         a[2]?bs(b,Pervasives["^"](Odoc_messages["mutab"]," ")):0;
          
          bs(b,Pervasives["^"](Odoc_info["Name"][1](a[1][1])," : "));
          /* unknown */"(sendself self-2/1583 man_of_type_expr/1369 b/1584\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 (field 0 a/1585)))\n  (field 2 (field 0 a/1585)))";
@@ -1206,9 +1197,9 @@ var
        man_of_method,
        function(self$neg2,b,m)
         {bs(b,".I method ");
-         if(m[2]){bs(b,"private ")}else{}
+         m[2]?bs(b,"private "):0;
          
-         if(m[3]){bs(b,"virtual ")}else{}
+         m[3]?bs(b,"virtual "):0;
          
          bs(b,Pervasives["^"](Odoc_info["Name"][1](m[1][1])," : "));
          /* unknown */"(sendself self-2/1587 man_of_type_expr/1369 b/1588\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 (field 0 m/1589)))\n  (field 2 (field 0 m/1589)))";
@@ -1220,28 +1211,26 @@ var
          },
        man_of_parameter_list,
        function(self$neg2,b,m_name,l)
-        {if(l)
-          {bs(b,"\n.B ");
-           bs(b,Odoc_messages["parameters"]);
-           bs(b,": \n");
-           List["iter"]
-            (function(p)
-              {bs(b,".sp\n");
-               bs(b,'"');
-               bs(b,Odoc_info["Parameter"][1](p));
-               bs(b,'"\n');
-               /* unknown */"(sendself self-2/1591 man_of_type_expr/1369 b/1592 m_name/1593\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1595))";
-               
-               bs(b,"\n");
-               /* unknown */"(sendself self-2/1591 man_of_parameter_description/1381 b/1592 p/1595)";
-               
-               return bs(b,"\n");
-               },
-             l);
-           return bs(b,"\n");
-           }
-         else
-          {return /* () */0;}
+        {return l
+                 ?(bs(b,"\n.B "),
+                   bs(b,Odoc_messages["parameters"]),
+                   bs(b,": \n"),
+                   List["iter"]
+                    (function(p)
+                      {bs(b,".sp\n");
+                       bs(b,'"');
+                       bs(b,Odoc_info["Parameter"][1](p));
+                       bs(b,'"\n');
+                       /* unknown */"(sendself self-2/1591 man_of_type_expr/1369 b/1592 m_name/1593\n  (apply (field 1 (field 3 (global Odoc_info!))) p/1595))";
+                       
+                       bs(b,"\n");
+                       /* unknown */"(sendself self-2/1591 man_of_parameter_description/1381 b/1592 p/1595)";
+                       
+                       return bs(b,"\n");
+                       },
+                     l),
+                   bs(b,"\n"))
+                 :/* () */0;
          },
        man_of_parameter_description,
        function(self$neg2,b,p)
@@ -1279,34 +1268,32 @@ var
          },
        man_of_module_parameter_list,
        function(self$neg2,b,m_name,l)
-        {if(l)
-          {bs(b,'.B "');
-           bs(b,Odoc_messages["parameters"]);
-           bs(b,':"\n');
-           List["iter"]
-            (function(param)
-              {var desc_opt=param[2];
-               
-               var p=param[1];
-               
-               bs(b,".sp\n");
-               bs(b,Pervasives["^"]('"',Pervasives["^"](p[1],'"\n')));
-               /* unknown */"(sendself self-2/1606 man_of_module_type/1373 b/1607 m_name/1608)";
-               Misc["may"](0,p[2]);
-               bs(b,"\n");
-               if(desc_opt)
-                {/* unknown */"(sendself self-2/1606 man_of_text/1362 b/1607 (field 0 desc_opt/1611))";
-                 }
-               else
-                {}
-               
-               return bs(b,"\n");
-               },
-             l);
-           return bs(b,"\n\n");
-           }
-         else
-          {return /* () */0;}
+        {return l
+                 ?(bs(b,'.B "'),
+                   bs(b,Odoc_messages["parameters"]),
+                   bs(b,':"\n'),
+                   List["iter"]
+                    (function(param)
+                      {var desc_opt=param[2];
+                       
+                       var p=param[1];
+                       
+                       bs(b,".sp\n");
+                       bs(b,Pervasives["^"]('"',Pervasives["^"](p[1],'"\n')));
+                       /* unknown */"(sendself self-2/1606 man_of_module_type/1373 b/1607 m_name/1608)";
+                       Misc["may"](0,p[2]);
+                       bs(b,"\n");
+                       if(desc_opt)
+                        {/* unknown */"(sendself self-2/1606 man_of_text/1362 b/1607 (field 0 desc_opt/1611))";
+                         }
+                       else
+                        {}
+                       
+                       return bs(b,"\n");
+                       },
+                     l),
+                   bs(b,"\n\n"))
+                 :/* () */0;
          },
        man_of_class,
        function(self$neg2,b,c)
@@ -1314,14 +1301,13 @@ var
          var father=Odoc_info["Name"][5](c[1]);
          
          bs(b,".I class ");
-         if(c[5]){bs(b,"virtual ")}else{}
+         c[5]?bs(b,"virtual "):0;
          
          var l=c[4];
          
-         if(l)
-          {bs(b,Odoc_str["string_of_class_type_param_list"](l)),bs(b," ")}
-         else
-          {}
+         l
+          ?(bs(b,Odoc_str["string_of_class_type_param_list"](l)),bs(b," "))
+          :/* () */0;
          
          bs(b,Odoc_info["Name"][1](c[1]));
          bs(b," : ");
@@ -1336,14 +1322,13 @@ var
        function(self$neg2,b,ct)
         {Odoc_info["reset_type_names"](/* () */0);
          bs(b,".I class type ");
-         if(ct[5]){bs(b,"virtual ")}else{}
+         ct[5]?bs(b,"virtual "):0;
          
          var l=ct[4];
          
-         if(l)
-          {bs(b,Odoc_str["string_of_class_type_param_list"](l)),bs(b," ")}
-         else
-          {}
+         l
+          ?(bs(b,Odoc_str["string_of_class_type_param_list"](l)),bs(b," "))
+          :/* () */0;
          
          bs(b,Odoc_info["Name"][1](ct[1]));
          bs(b," = ");
@@ -1401,7 +1386,7 @@ var
        man_of_recfield,
        function(self$neg2,b,modname,f)
         {bs(b,".I ");
-         if(f[2]){bs(b,Pervasives["^"](Odoc_messages["mutab"]," "))}else{}
+         f[2]?bs(b,Pervasives["^"](Odoc_messages["mutab"]," ")):0;
          
          bs(b,Pervasives["^"](f[1]," : "));
          /* unknown */"(sendself self-2/1642 man_of_type_expr/1369 b/1643 modname/1644\n  (field 2 f/1645))";
@@ -1482,6 +1467,7 @@ var
            
            var exit;
            
+           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1581,6 +1567,7 @@ var
            
            var exit;
            
+           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1722,6 +1709,7 @@ var
            
            var exit;
            
+           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1862,6 +1850,7 @@ var
            
            var exit;
            
+           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1989,20 +1978,13 @@ var
                
                var h=l[1];
                
-               if(acc2)
-                {if(CamlPrimitive["caml_string_equal"](name(h),name(acc2[1])))
-                  {if(List["mem"](h,acc2))
-                    {return f(acc1,acc2,q);}
-                   else
-                    {return f
-                             (acc1,Pervasives["@"](acc2,/* :: */[0,h,/* [] */0]),q);
-                     }
-                   }
-                 else
-                  {return f(/* :: */[0,acc2,acc1],/* :: */[0,h,/* [] */0],q);}
-                 }
-               else
-                {return f(acc1,/* :: */[0,h,/* [] */0],q);}
+               return acc2
+                       ?CamlPrimitive["caml_string_equal"](name(h),name(acc2[1]))
+                         ?List["mem"](h,acc2)
+                           ?f(acc1,acc2,q)
+                           :f(acc1,Pervasives["@"](acc2,/* :: */[0,h,/* [] */0]),q)
+                         :f(/* :: */[0,acc2,acc1],/* :: */[0,h,/* [] */0],q)
+                       :f(acc1,/* :: */[0,h,/* [] */0],q);
                }
              else
               {return /* :: */[0,acc2,acc1];}

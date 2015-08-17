@@ -72,15 +72,12 @@ var open_graph=match$1[1];
 var
  auto_synchronize=
   function(param)
-   {if(param!==0)
-     {CamlPrimitive["caml_gr_display_mode"](/* true */1);
-      CamlPrimitive["caml_gr_remember_mode"](/* true */1);
-      return CamlPrimitive["caml_gr_synchronize"](/* () */0);
-      }
-    else
-     {CamlPrimitive["caml_gr_display_mode"](/* false */0);
-      return CamlPrimitive["caml_gr_remember_mode"](/* true */1);
-      }
+   {return param!==0
+            ?(CamlPrimitive["caml_gr_display_mode"](/* true */1),
+              CamlPrimitive["caml_gr_remember_mode"](/* true */1),
+              CamlPrimitive["caml_gr_synchronize"](/* () */0))
+            :(CamlPrimitive["caml_gr_display_mode"](/* false */0),
+              CamlPrimitive["caml_gr_remember_mode"](/* true */1));
     };
 
 var rgb=function(r,g,b){return (r<<16)+(g<<8)+b;};
@@ -175,10 +172,7 @@ var
         
         CamlPrimitive["caml_gr_lineto"](x,y)}
       
-      if(close_flag)
-       {CamlPrimitive["caml_gr_lineto"](points[1][1],points[1][2])}
-      else
-       {}
+      close_flag?CamlPrimitive["caml_gr_lineto"](points[1][1],points[1][2]):0;
       
       return CamlPrimitive["caml_gr_moveto"](savex,savey);
       }

@@ -23,7 +23,7 @@ var
     var buf=Buffer["create"](len);
     
     for(var i=0;i<=len-1;i++)
-     {var c=s[i];
+     {var c=s["charCodeAt"](i);
       
       var exit;
       
@@ -57,10 +57,9 @@ var
        {try
          {var n=Pervasives["input"](chanin,s,0,len);
           
-          if(n===0)
-           {return /* () */0;}
-          else
-           {Buffer["add_subbytes"](buf,s,0,n);return iter(/* () */0);}
+          return n===0
+                  ?/* () */0
+                  :(Buffer["add_subbytes"](buf,s,0,n),iter(/* () */0));
           }
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
@@ -89,7 +88,7 @@ var
             default:return /* :: */[0,acc,/* [] */0];}
           }
         else
-         {if(List["mem"](s[pos],chars))
+         {if(List["mem"](s["charCodeAt"](pos),chars))
            {switch(acc)
              {case "":return iter("",pos+1);
               default:return /* :: */[0,acc,iter("",pos+1)];}
@@ -103,7 +102,7 @@ var
                          [/* Char */0,/* End_of_format */0]],
                         "%s%c"],
                        acc,
-                       s[pos]),
+                       s["charCodeAt"](pos)),
                      pos+1);
             }
           }
@@ -133,10 +132,7 @@ var
           
           var h=param[1];
           
-          if(q)
-           {return /* :: */[0,h,/* :: */[0,sep,q]];}
-          else
-           {return /* :: */[0,h,/* [] */0];}
+          return q?/* :: */[0,h,/* :: */[0,sep,q]]:/* :: */[0,h,/* [] */0];
           }
         else
          {return /* [] */0;}
@@ -183,13 +179,11 @@ var
                
                switch(exit)
                 {case 84:
-                  if
-                   (CamlPrimitive["caml_string_equal"](label,"*dummy method*"))
-                   {return acc;}
-                  else
-                   {return Pervasives["@"]
+                  return CamlPrimitive["caml_string_equal"]
+                           (label,"*dummy method*")
+                          ?acc
+                          :Pervasives["@"]
                             (acc,/* :: */[0,/* tuple */[0,label,param[3]],/* [] */0]);
-                    }
                   
                  }
                },
@@ -227,17 +221,15 @@ var
              var
               f=
                function(n,param)
-                {if(param)
-                  {return Pervasives["^"]
+                {return param
+                         ?Pervasives["^"]
                            ("\n",
                             Pervasives["^"]
                              (Pervasives["string_of_int"](n),
                               Pervasives["^"]
                                (". ",
-                                Pervasives["^"](string_of_text(param[1]),f(n+1,param[2])))));
-                   }
-                 else
-                  {return "\n";}
+                                Pervasives["^"](string_of_text(param[1]),f(n+1,param[2])))))
+                         :"\n";
                  };
              
              return f(1,t_ele[1]);
@@ -261,8 +253,8 @@ var
             case 16:
              var match=t_ele[3];
              
-             if(match)
-              {return Printf["sprintf"]
+             return match
+                     ?Printf["sprintf"]
                        ([/* Format */0,
                          [/* Char_literal */12,
                           91,
@@ -270,10 +262,8 @@ var
                            /* No_padding */0,
                            [/* Char_literal */12,93,/* End_of_format */0]]],
                          "[%s]"],
-                        string_of_text(match[1]));
-               }
-             else
-              {return iter(/* Code */[1,t_ele[1]]);}
+                        string_of_text(match[1]))
+                     :iter(/* Code */[1,t_ele[1]]);
              
             case 17:
              return Pervasives["^"]
@@ -302,40 +292,34 @@ var
 var
  string_of_author_list=
   function(l)
-   {if(l)
-     {return Pervasives["^"]
+   {return l
+            ?Pervasives["^"]
               ("* ",
                Pervasives["^"]
                 (Odoc_messages["authors"],
                  Pervasives["^"]
-                  (":\n",Pervasives["^"]($$String["concat"](", ",l),"\n"))));
-      }
-    else
-     {return "";}
+                  (":\n",Pervasives["^"]($$String["concat"](", ",l),"\n"))))
+            :"";
     };
 
 var
  string_of_version_opt=
   function(v_opt)
-   {if(v_opt)
-     {return Pervasives["^"]
+   {return v_opt
+            ?Pervasives["^"]
               (Odoc_messages["version"],
-               Pervasives["^"](": ",Pervasives["^"](v_opt[1],"\n")));
-      }
-    else
-     {return "";}
+               Pervasives["^"](": ",Pervasives["^"](v_opt[1],"\n")))
+            :"";
     };
 
 var
  string_of_since_opt=
   function(s_opt)
-   {if(s_opt)
-     {return Pervasives["^"]
+   {return s_opt
+            ?Pervasives["^"]
               (Odoc_messages["since"],
-               Pervasives["^"](" ",Pervasives["^"](s_opt[1],"\n")));
-      }
-    else
-     {return "";}
+               Pervasives["^"](" ",Pervasives["^"](s_opt[1],"\n")))
+            :"";
     };
 
 var
@@ -408,9 +392,9 @@ var
 var
  string_of_sees=
   function(l)
-   {if(l)
-     {if(l[2])
-       {return Pervasives["^"]
+   {return l
+            ?l[2]
+              ?Pervasives["^"]
                 (Odoc_messages["see_also"],
                  Pervasives["^"]
                   ("\n",
@@ -423,30 +407,23 @@ var
                                    ("- ",Pervasives["^"](string_of_see(see),"\n"));
                            },
                          l)),
-                     "\n")));
-        }
-      else
-       {return Pervasives["^"]
+                     "\n")))
+              :Pervasives["^"]
                 (Odoc_messages["see_also"],
                  Pervasives["^"]
-                  (" ",Pervasives["^"](string_of_see(l[1])," \n")));
-        }
-      }
-    else
-     {return "";}
+                  (" ",Pervasives["^"](string_of_see(l[1])," \n")))
+            :"";
     };
 
 var
  string_of_return_opt=
   function(return_opt)
-   {if(return_opt)
-     {return Pervasives["^"]
+   {return return_opt
+            ?Pervasives["^"]
               (Odoc_messages["returns"],
                Pervasives["^"]
-                (" ",Pervasives["^"](string_of_text(return_opt[1]),"\n")));
-      }
-    else
-     {return "";}
+                (" ",Pervasives["^"](string_of_text(return_opt[1]),"\n")))
+            :"";
     };
 
 var
@@ -458,16 +435,17 @@ var
     
     var match$1=i[1];
     
+    var $js;
     if(match$1)
      {var d=match$1[1];
       
-      if(CamlPrimitive["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
-       {var $js="";}
-      else
-       {var $js=Pervasives["^"](string_of_text(d),"\n");}
+      $js=
+      CamlPrimitive["caml_equal"](d,[/* :: */0,[/* Raw */0,""],/* [] */0])
+       ?""
+       :Pervasives["^"](string_of_text(d),"\n");
       }
     else
-     {var $js="";}
+     {$js="";}
     return Pervasives["^"]
             (match
               ?Pervasives["^"]
@@ -490,18 +468,14 @@ var
 
 var
  apply_opt=
-  function(f,v_opt)
-   {if(v_opt){return /* Some */[0,f(v_opt[1])];}else{return /* None */0;}};
+  function(f,v_opt){return v_opt?/* Some */[0,f(v_opt[1])]:/* None */0;};
 
 var
  string_of_date=
   function($staropt$star,d)
-   {if($staropt$star){var hour=$staropt$star[1];}else{var hour=/* true */1;}
+   {var hour=$staropt$star?$staropt$star[1]:/* true */1;
     
-    var
-     add_0=
-      function(s)
-       {if(s["length"]<2){return Pervasives["^"]("0",s);}else{return s;}};
+    var add_0=function(s){return s["length"]<2?Pervasives["^"]("0",s):s;};
     
     var t=Unix["localtime"](d);
     
@@ -533,10 +507,7 @@ var
       
       var t=l[1];
       
-      if(q)
-       {return Pervasives["@"](t,/* :: */[0,sep,text_list_concat(sep,q)]);}
-      else
-       {return t;}
+      return q?Pervasives["@"](t,/* :: */[0,sep,text_list_concat(sep,q)]):t;
       }
     else
      {return /* [] */0;}
@@ -705,10 +676,7 @@ var
           
           var last=param[1];
           
-          if(q)
-           {return Pervasives["@"](last,Pervasives["@"](sep,iter(q)));}
-          else
-           {return last;}
+          return q?Pervasives["@"](last,Pervasives["@"](sep,iter(q))):last;
           }
         else
          {return /* [] */0;}
@@ -728,7 +696,7 @@ var
       if(n+1>=len)
        {return /* tuple */[0,/* true */1,s,""];}
       else
-       {var match=s[n+1];
+       {var match=s["charCodeAt"](n+1);
         
         var exit;
         
@@ -921,9 +889,9 @@ var
     if(len<=0)
      {return s;}
     else
-     {var match=s[len-1];
+     {var match=s["charCodeAt"](len-1);
       
-      if(match!==10){return s;}else{return $$String["sub"](s,0,len-1);}
+      return match!==10?s:$$String["sub"](s,0,len-1);
       }
     };
 
@@ -945,10 +913,9 @@ var
             
             var s2=$$String["sub"](s,pos,lenp);
             
-            if(CamlPrimitive["caml_string_equal"](s2,pat))
-             {return pos;}
-            else
-             {return iter($$String["sub"](s,0,pos));}
+            return CamlPrimitive["caml_string_equal"](s2,pat)
+                    ?pos
+                    :iter($$String["sub"](s,0,pos));
             }
           else
            {if(CamlPrimitive["caml_string_equal"](pat,s))
@@ -987,34 +954,28 @@ var
                       q);
              
             default:
-             var first=Char["uppercase"](s[0]);
+             var first=Char["uppercase"](s["charCodeAt"](0));
              
-             if(25<-65+first>>>0)
-              {return f
+             return 25<-65+first>>>0
+                     ?f
                        (current,
                         Pervasives["@"](acc0,/* :: */[0,ele,/* [] */0]),
                         acc1,
                         acc2,
-                        q);
-               }
-             else
-              {if(current===first)
-                {return f
+                        q)
+                     :current===first
+                       ?f
                          (current,
                           acc0,
                           acc1,
                           Pervasives["@"](acc2,/* :: */[0,ele,/* [] */0]),
-                          q);
-                 }
-               else
-                {return f
+                          q)
+                       :f
                          (first,
                           acc0,
                           Pervasives["@"](acc1,/* :: */[0,acc2,/* [] */0]),
                           /* :: */[0,ele,/* [] */0],
                           q);
-                 }
-               }
              }
           }
         else

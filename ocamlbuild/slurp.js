@@ -29,8 +29,8 @@ var
          
          var path=f[1];
          
-         if(predicate(path,name,attr))
-          {return /* Dir */[0,
+         return predicate(path,name,attr)
+                 ?/* Dir */[0,
                    path,
                    name,
                    f[3],
@@ -39,13 +39,10 @@ var
                     function(param)
                      {return My_std["List"][16]
                               (filter(predicate),My_std["!*"](entries));
-                      }]];
-           }
-         else
-          {return /* Nothing */0;}
+                      }]]
+                 :/* Nothing */0;
          
-        case 1:
-         if(predicate(f[1],f[2],f[4])){return f;}else{return /* Nothing */0;}
+        case 1:return predicate(f[1],f[2],f[4])?f:/* Nothing */0;
         case 2:return f;
         }}
     };
@@ -58,10 +55,9 @@ var
     var
      abs=
       function(x)
-       {if(Filename["is_implicit"](x)||Filename["is_relative"](x))
-         {return $slash(cwd,x);}
-        else
-         {return x;}
+       {return Filename["is_implicit"](x)||Filename["is_relative"](x)
+                ?$slash(cwd,x)
+                :x;
         };
     
     var visited=Hashtbl["create"](/* None */0,1024);
@@ -115,13 +111,13 @@ var
         
         var absfn=abs(fn);
         
+        var match;
         try
-         {var
-           match=
-            /* Good */[0,
-             link_mode?My_unix["lstat"](absfn):My_unix["stat"](absfn)];
+         {match=
+          /* Good */[0,
+           link_mode?My_unix["lstat"](absfn):My_unix["stat"](absfn)];
           }
-        catch(x){var match=/* Bad */[1,x];}
+        catch(x){match=/* Bad */[1,x];}
         
         switch(match[0])
          {case 0:
@@ -173,13 +169,11 @@ var
                case 2:
                 var fn$prime=My_unix["readlink"](absfn);
                 
-                if(My_std["sys_file_exists"](abs(fn$prime)))
-                 {var res=do_entry(/* false */0,path,name);}
-                else
-                 {var
-                   res=
-                    /* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
-                  }
+                var
+                 res=
+                  My_std["sys_file_exists"](abs(fn$prime))
+                   ?do_entry(/* false */0,path,name)
+                   :/* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
                 
                case 3:var res=/* None */0;
                }
@@ -206,15 +200,12 @@ var
    {var
      aux=
       function(path)
-       {if
-         (CamlPrimitive["caml_string_equal"]
-           (path,Filename["current_dir_name"]))
-         {return /* [] */0;}
-        else
-         {return /* :: */[0,
+       {return CamlPrimitive["caml_string_equal"]
+                 (path,Filename["current_dir_name"])
+                ?/* [] */0
+                :/* :: */[0,
                   Filename["basename"](path),
                   aux(Filename["dirname"](path))];
-          }
         };
     
     return My_std["List"][9](aux(path));
@@ -224,12 +215,7 @@ var
  join=
   function(param)
    {if(param)
-     {var xs=param[2];
-      
-      var x=param[1];
-      
-      if(xs){return $slash(x,join(xs));}else{return x;}
-      }
+     {var xs=param[2];var x=param[1];return xs?$slash(x,join(xs)):x;}
     else
      {throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -263,8 +249,8 @@ var
              
              var dname=d[2];
              
-             if(CamlPrimitive["caml_string_equal"](xpath,dname))
-              {return /* :: */[0,
+             return CamlPrimitive["caml_string_equal"](xpath,dname)
+                     ?/* :: */[0,
                        /* Dir */[0,
                         d[1],
                         dname,
@@ -275,10 +261,8 @@ var
                           {return add
                                    ($slash(root,xpath),xspath,My_std["!*"](dentries));
                            }]],
-                       entries$1];
-               }
-             else
-              {return /* :: */[0,d,add(root,path,entries$1)];}
+                       entries$1]
+                     :/* :: */[0,d,add(root,path,entries$1)];
              
             case 1:exit$1=16;
             case 2:exit=14;
@@ -297,8 +281,8 @@ var
              
              var fname=f[2];
              
-             if(CamlPrimitive["caml_string_equal"](xpath,fname))
-              {return /* :: */[0,
+             return CamlPrimitive["caml_string_equal"](xpath,fname)
+                     ?/* :: */[0,
                        /* Dir */[0,
                         f[1],
                         fname,
@@ -307,10 +291,8 @@ var
                         [246,
                          function(param)
                           {return add($slash(root,xpath),xspath,/* [] */0);}]],
-                       entries$prime];
-               }
-             else
-              {return /* :: */[0,f,add(root,path,entries$prime)];}
+                       entries$prime]
+                     :/* :: */[0,f,add(root,path,entries$prime)];
              }
            else
             {return /* :: */[0,
@@ -331,10 +313,9 @@ var
           {if(entries)
             {var f$1=entries[1];
              
-             if(CamlPrimitive["caml_string_equal"](xpath,f$1[2]))
-              {return entries;}
-             else
-              {return /* :: */[0,f$1,add(root,path,entries[2])];}
+             return CamlPrimitive["caml_string_equal"](xpath,f$1[2])
+                     ?entries
+                     :/* :: */[0,f$1,add(root,path,entries[2])];
              }
            else
             {return /* :: */[0,
@@ -355,20 +336,17 @@ var
     
     switch(exit)
      {case 14:
-       if(typeof entries[1]==="number")
-        {return add(root,path,entries[2]);}
-       else
-        {return entries;}
-       
+       return typeof entries[1]==="number"?add(root,path,entries[2]):entries;
       }
     };
 
 var
  slurp_with_find=
   function(path)
-   {try
-     {var find_cmd=CamlPrimitive["caml_sys_getenv"]("OCAMLBUILD_FIND");}
-    catch(exn){var find_cmd="find";}
+   {var find_cmd;
+    try
+     {find_cmd=CamlPrimitive["caml_sys_getenv"]("OCAMLBUILD_FIND");}
+    catch(exn){find_cmd="find";}
     
     var
      lines=
@@ -405,29 +383,24 @@ var
       My_std["List"][20]
        (function(line,acc){return add(path,split(line),acc);},lines,/* [] */0);
     
-    if(res)
-     {if(res[2])
-       {return /* Dir */[0,
+    return res
+            ?res[2]
+              ?/* Dir */[0,
                 path,
                 Filename["basename"](path),
                 [246,function(param){return My_unix["stat"](path);}],
                 /* () */0,
-                [250,res]];
-        }
-      else
-       {return res[1];}
-      }
-    else
-     {return /* Nothing */0;}
+                [250,res]]
+              :res[1]
+            :/* Nothing */0;
     };
 
 var
  slurp=
   function(x)
-   {if(My_std["!*"](My_unix["is_degraded"]))
-     {return slurp_with_find(x);}
-    else
-     {return real_slurp(x);}
+   {return My_std["!*"](My_unix["is_degraded"])
+            ?slurp_with_find(x)
+            :real_slurp(x);
     };
 
 var

@@ -30,7 +30,7 @@ var
 var
  class_elements=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var
      iter_kind=
@@ -91,7 +91,7 @@ var
 var
  class_type_elements=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     var match=clt[6];
     
@@ -131,7 +131,7 @@ var
 var
  class_attributes=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,ele)
@@ -153,7 +153,7 @@ var
 var
  class_methods=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,ele)
@@ -175,7 +175,7 @@ var
 var
  class_comments=
   function($staropt$star,cl)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,ele)
@@ -210,7 +210,7 @@ var
 var
  class_type_attributes=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,ele)
@@ -232,7 +232,7 @@ var
 var
  class_type_methods=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,ele)
@@ -254,7 +254,7 @@ var
 var
  class_type_comments=
   function($staropt$star,clt)
-   {if($staropt$star){var trans=$staropt$star[1];}else{var trans=/* true */1;}
+   {var trans=$staropt$star?$staropt$star[1]:/* true */1;
     
     return List["fold_left"]
             (function(acc,ele)

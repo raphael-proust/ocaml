@@ -17,13 +17,12 @@ var warn_error=[0,/* false */0];
 var
  pwarning=
   function(s)
-   {if(Odoc_config["print_warnings"][1])
-     {Pervasives["prerr_endline"]
-       (Pervasives["^"](Odoc_messages["warning"],Pervasives["^"](": ",s)))}
-    else
-     {}
+   {Odoc_config["print_warnings"][1]
+     ?Pervasives["prerr_endline"]
+       (Pervasives["^"](Odoc_messages["warning"],Pervasives["^"](": ",s)))
+     :0;
     
-    if(warn_error[1]){return errors[0]++;}else{return 0;}
+    return warn_error[1]?errors[0]++:0;
     };
 
 var merge_options=[0,/* [] */0];

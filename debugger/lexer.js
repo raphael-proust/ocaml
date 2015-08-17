@@ -84,16 +84,12 @@ var
      __ocaml_lex_state$1=
       Lexing["engine"](__ocaml_lex_tables,__ocaml_lex_state,lexbuf);
     
-    if(__ocaml_lex_state$1!==0)
-     {if(__ocaml_lex_state$1!==1)
-       {lexbuf[1](lexbuf);
-        return __ocaml_lex_line_argument_rec(lexbuf,__ocaml_lex_state$1);
-        }
-      else
-       {return /* EOL */11;}
-      }
-    else
-     {return /* ARGUMENT */[0,Lexing["lexeme"](lexbuf)];}
+    return __ocaml_lex_state$1!==0
+            ?__ocaml_lex_state$1!==1
+              ?(lexbuf[1](lexbuf),
+                __ocaml_lex_line_argument_rec(lexbuf,__ocaml_lex_state$1))
+              :/* EOL */11
+            :/* ARGUMENT */[0,Lexing["lexeme"](lexbuf)];
     };
 
 var lexeme=function(lexbuf){return __ocaml_lex_lexeme_rec(lexbuf,12);};

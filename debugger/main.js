@@ -85,12 +85,10 @@ var
                        Exec["protect"]
                         (function(param)
                           {Input_handling["stop_user_input"](/* () */0);
-                           if(Program_management["loaded"][1])
-                            {Frames["try_select_frame"](0);
-                             return Show_information["show_current_event"](ppf);
-                             }
-                           else
-                            {return 0;}
+                           return Program_management["loaded"][1]
+                                   ?(Frames["try_select_frame"](0),
+                                     Show_information["show_current_event"](ppf))
+                                   :0;
                            });
                        return restart(ppf);
                        });
@@ -127,7 +125,8 @@ var
                         (ppf,
                          restart,
                          function(ppf)
-                          {if(current_duration[1]===-1)
+                          {var b;
+                           if(current_duration[1]===-1)
                             {var
                               msg=
                                Format["sprintf"]
@@ -145,13 +144,13 @@ var
                                  time);
                              
                              Input_handling["stop_user_input"](/* () */0);
-                             if(Question["yes_or_no"](msg))
-                              {current_duration[1]=init_duration;var b=/* true */1;}
-                             else
-                              {var b=/* false */0;}
+                             b=
+                             Question["yes_or_no"](msg)
+                              ?(current_duration[1]=init_duration,/* true */1)
+                              :/* false */0;
                              }
                            else
-                            {var b=/* true */1;}
+                            {b=/* true */1;}
                            
                            if(b)
                             {Time_travel["go_to"](time);
@@ -192,13 +191,11 @@ var
     try
      {var base=".ocamldebug";
       
-      if(CamlPrimitive["caml_sys_file_exists"](base))
-       {var file=base;}
-      else
-       {var
-         file=
-          Filename["concat"](CamlPrimitive["caml_sys_getenv"]("HOME"),base);
-        }
+      var
+       file=
+        CamlPrimitive["caml_sys_file_exists"](base)
+         ?base
+         :Filename["concat"](CamlPrimitive["caml_sys_getenv"]("HOME"),base);
       
       var ch=Pervasives["open_in"](file);
       
@@ -215,10 +212,11 @@ var
       while(/* true */1)
        {var line=Primitives["string_trim"](Pervasives["input_line"](ch));
         
-        if(CamlPrimitive["caml_string_notequal"](line,"")&&line[0]!==35)
-         {Buffer["add_string"](buffer,line),Buffer["add_char"](buffer,10)}
-        else
-         {}
+        CamlPrimitive["caml_string_notequal"](line,"")&&
+         line["charCodeAt"](0)!==
+         35
+         ?(Buffer["add_string"](buffer,line),Buffer["add_char"](buffer,10))
+         :0;
         }
       }
     catch(exn){}

@@ -53,8 +53,8 @@ var Outcome=[0,ignore_good,good,wrap];
 var
  opt_print=
   function(elt,ppf,param)
-   {if(param)
-     {return Format["fprintf"]
+   {return param
+            ?Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* Formatting_gen */18,
@@ -72,10 +72,8 @@ var
                      /* End_of_format */0]]]]],
                 "@[<2>Some@ %a@]"],
                elt,
-               param[1]);
-      }
-    else
-     {return Format["pp_print_string"](ppf,"None");}
+               param[1])
+            :Format["pp_print_string"](ppf,"None");
     };
 
 var
@@ -160,8 +158,8 @@ var
          match$1=
           fold
            (function(elt,first)
-             {if(!first)
-               {Format["fprintf"]
+             {!first
+               ?Format["fprintf"]
                  (f,
                   [/* Format */0,
                    [/* Char_literal */12,
@@ -169,9 +167,8 @@ var
                     [/* Formatting_lit */17,
                      [/* Break */0,"@ ",1,0],
                      /* End_of_format */0]],
-                   ",@ "])}
-              else
-               {}
+                   ",@ "])
+               :0;
               
               M[2](f,elt);
               return /* false */0;
@@ -255,8 +252,8 @@ var
      match=
       fold_left
        (function(first,elt)
-         {if(!first)
-           {Format["fprintf"]
+         {!first
+           ?Format["fprintf"]
              (f,
               [/* Format */0,
                [/* Char_literal */12,
@@ -264,9 +261,8 @@ var
                 [/* Formatting_lit */17,
                  [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]],
-               ";@ "])}
-          else
-           {}
+               ";@ "])
+           :0;
           
           pp_elt(f,elt);
           return /* false */0;
@@ -290,10 +286,7 @@ var
   function(f,xs)
    {return List["fold_right"]
             (function(x,acc)
-              {var match=f(x);
-               
-               if(match){return /* :: */[0,match[1],acc];}else{return acc;}
-               },
+              {var match=f(x);return match?/* :: */[0,match[1],acc]:acc;},
              xs,
              /* [] */0);
     };
@@ -306,10 +299,9 @@ var
       
       var x=param[1];
       
-      if(mem(x,acc))
-       {return rev_append_uniq(acc,xs);}
-      else
-       {return rev_append_uniq(/* :: */[0,x,acc],xs);}
+      return mem(x,acc)
+              ?rev_append_uniq(acc,xs)
+              :rev_append_uniq(/* :: */[0,x,acc],xs);
       }
     else
      {return acc;}
@@ -339,10 +331,9 @@ var
           
           var set=param[1];
           
-          if(Set$1[3](el,set))
-           {return /* tuple */[0,set,acc];}
-          else
-           {return /* tuple */[0,Set$1[4](el,set),/* :: */[0,el,acc]];}
+          return Set$1[3](el,set)
+                  ?/* tuple */[0,set,acc]
+                  :/* tuple */[0,Set$1[4](el,set),/* :: */[0,el,acc]];
           },
         /* tuple */[0,Set$1[1],/* [] */0],
         lst);
@@ -438,18 +429,13 @@ var
     
     var
      cut=
-      function(n)
-       {if(n===0)
-         {return 0;}
-        else
-         {if(is_nl_char(s[n-1])){return cut(n-1);}else{return n;}}
-        };
+      function(n){return n===0?0:is_nl_char(s["charCodeAt"](n-1))?cut(n-1):n;};
     
     var ls=s["length"];
     
     var n=cut(ls);
     
-    if(n===ls){return s;}else{return sub(s,0,n);}
+    return n===ls?s:sub(s,0,n);
     };
 
 var before=function(s,pos){return sub(s,0,pos);};
@@ -463,10 +449,11 @@ var last_chars=function(s,n){return sub(s,s["length"]-n,n);};
 var
  eq_sub_strings=
   function(s1,p1,s2,p2,len)
-   {if(len>0)
-     {return s1[p1]===s2[p2]&&eq_sub_strings(s1,p1+1,s2,p2+1,len-1);}
-    else
-     {return /* true */1;}
+   {return len>0
+            ?s1["charCodeAt"](p1)===
+             s2["charCodeAt"](p2)&&
+             eq_sub_strings(s1,p1+1,s2,p2+1,len-1)
+            :/* true */1;
     };
 
 var
@@ -477,16 +464,13 @@ var
     var ls2=s2["length"];
     
     try
-     {var pos=index_from(s1,p1,s2[0]);
+     {var pos=index_from(s1,p1,s2["charCodeAt"](0));
       
-      if(ls1-pos<ls2)
-       {return /* None */0;}
-      else
-       {if(eq_sub_strings(s1,pos,s2,0,ls2))
-         {return /* Some */[0,pos];}
-        else
-         {return contains_string(s1,pos+1,s2);}
-        }
+      return ls1-pos<ls2
+              ?/* None */0
+              :eq_sub_strings(s1,pos,s2,0,ls2)
+                ?/* Some */[0,pos]
+                :contains_string(s1,pos+1,s2);
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -526,9 +510,7 @@ var
 var
  tr=
   function(patt,subst,text)
-   {return $$String["map"]
-            (function(c){if(c===patt){return subst;}else{return c;}},text);
-    };
+   {return $$String["map"](function(c){return c===patt?subst:c;},text);};
 
 var
  is_prefix=
@@ -537,7 +519,10 @@ var
     
     var n=v["length"];
     
-    var loop=function(i){return i===m||u[i]===v[i]&&loop(i+1);};
+    var
+     loop=
+      function(i)
+       {return i===m||u["charCodeAt"](i)===v["charCodeAt"](i)&&loop(i+1);};
     
     return m<=n&&loop(0);
     };
@@ -549,7 +534,15 @@ var
     
     var n=v["length"];
     
-    var loop=function(i){return i===n||u[m-1-i]===v[n-1-i]&&loop(i+1);};
+    var
+     loop=
+      function(i)
+       {return i===
+               n||
+               u["charCodeAt"](m-1-i)===
+               v["charCodeAt"](n-1-i)&&
+               loop(i+1);
+        };
     
     return n<=m&&loop(0);
     };
@@ -561,7 +554,7 @@ var
     
     var s$prime=CamlPrimitive["caml_create_string"](sl);
     
-    for(var i=0;i<=sl-1;i++){s$prime[i]=s[sl-i-1]}
+    for(var i=0;i<=sl-1;i++){s$prime[i]=s["charCodeAt"](sl-i-1)}
     
     return Bytes["to_string"](s$prime);
     };
@@ -589,11 +582,7 @@ var
     var
      go=
       function(pos)
-       {if(pos>=sl)
-         {return /* [] */0;}
-        else
-         {return /* :: */[0,s[pos],go(pos+1)];}
-        };
+       {return pos>=sl?/* [] */0:/* :: */[0,s["charCodeAt"](pos),go(pos+1)];};
     
     return go(0);
     };
@@ -739,35 +728,25 @@ switch(match$1)
    var
     sys_command=
      function(cmd)
-      {if(CamlPrimitive["caml_string_equal"](cmd,""))
-        {return 0;}
-       else
-        {return CamlPrimitive["caml_sys_system_command"](cmd);}
+      {return CamlPrimitive["caml_string_equal"](cmd,"")
+               ?0
+               :CamlPrimitive["caml_sys_system_command"](cmd);
        };
    }
 
 var
  filename_concat=
   function(x,y)
-   {if
-     (CamlPrimitive["caml_string_equal"](x,Filename["current_dir_name"])||
-      CamlPrimitive["caml_string_equal"](x,""))
-     {return y;}
-    else
-     {if
-       (CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")&&
-        x[x["length"]-1]===
-        92||
-        x[x["length"]-1]===
-        47)
-       {if(CamlPrimitive["caml_string_equal"](y,""))
-         {return x;}
-        else
-         {return Pervasives["^"](x,y);}
-        }
-      else
-       {return Pervasives["^"](x,Pervasives["^"]("/",y));}
-      }
+   {return CamlPrimitive["caml_string_equal"](x,Filename["current_dir_name"])||
+            CamlPrimitive["caml_string_equal"](x,"")
+            ?y
+            :CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")&&
+              x["charCodeAt"](x["length"]-1)===
+              92||
+              x["charCodeAt"](x["length"]-1)===
+              47
+              ?CamlPrimitive["caml_string_equal"](y,"")?x:Pervasives["^"](x,y)
+              :Pervasives["^"](x,Pervasives["^"]("/",y));
     };
 
 var
@@ -777,10 +756,9 @@ var
 var
  the=
   function(param)
-   {if(param)
-     {return param[1];}
-    else
-     {return Pervasives["invalid_arg"]("the: expect Some not None");}
+   {return param
+            ?param[1]
+            :Pervasives["invalid_arg"]("the: expect Some not None");
     };
 
 var
@@ -790,10 +768,9 @@ var
      {return CamlPrimitive["caml_sys_getenv"]($$var);}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {if($$default)
-         {return $$default[1];}
-        else
-         {return Pervasives["failwith"]
+       {return $$default
+                ?$$default[1]
+                :Pervasives["failwith"]
                   (Format["sprintf"]
                     ([/* Format */0,
                       [/* String_literal */11,
@@ -805,7 +782,6 @@ var
                          /* End_of_format */0]]],
                       "This command must have %S in his environment"],
                      $$var));
-          }
         }
       else
        {throw exn;}
@@ -815,7 +791,7 @@ var
 var
  with_input_file=
   function($staropt$star,x,f)
-   {if($staropt$star){var bin=$staropt$star[1];}else{var bin=/* false */0;}
+   {var bin=$staropt$star?$staropt$star[1]:/* false */0;
     
     var ic=(bin?Pervasives["open_in_bin"]:Pervasives["open_in"])(x);
     
@@ -827,7 +803,7 @@ var
 var
  with_output_file=
   function($staropt$star,x,f)
-   {if($staropt$star){var bin=$staropt$star[1];}else{var bin=/* false */0;}
+   {var bin=$staropt$star?$staropt$star[1]:/* false */0;
     
     reset_readdir_cache_for$1(Filename["dirname"](x));
     var oc=(bin?Pervasives["open_out_bin"]:Pervasives["open_out"])(x);
@@ -868,10 +844,7 @@ var
       function(param)
        {var len=Pervasives["input"](ic,buf,0,m$2);
         
-        if(len>0)
-         {Pervasives["output"](oc,buf,0,len);return loop(/* () */0);}
-        else
-         {return 0;}
+        return len>0?(Pervasives["output"](oc,buf,0,len),loop(/* () */0)):0;
         };
     
     return loop(/* () */0);
@@ -897,14 +870,9 @@ var
   function(prim)
    {var tag=CamlPrimitive["caml_obj_tag"](prim);
     
-    if(tag===250)
-     {return prim[1];}
-    else
-     {if(tag===246)
-       {return CamlinternalLazy["force_lazy_block"](prim);}
-      else
-       {return prim;}
-      }
+    return tag===250
+            ?prim[1]
+            :tag===246?CamlinternalLazy["force_lazy_block"](prim):prim;
     };
 
 var
@@ -1066,14 +1034,13 @@ var
   function(name,content)
    {var lexbuf=Lexing["from_string"](content);
     
-    if(name)
-     {var fname=name[1];}
-    else
-     {if(content["length"]<40&&!$$String[18](content,10))
-       {var fname=$$String[13](content);}
-      else
-       {var fname="";}
-      }
+    var
+     fname=
+      name
+       ?name[1]
+       :content["length"]<40&&!$$String[18](content,10)
+         ?$$String[13](content)
+         :"";
     
     set_lexbuf_fname(fname,lexbuf);
     return lexbuf;

@@ -102,7 +102,7 @@ var
     
     var prio=List["filter"](function(i){return i[2];},all);
     
-    if(prio===/* [] */0){return all;}else{return prio;}
+    return prio===/* [] */0?all:prio;
     };
 
 var
@@ -119,16 +119,12 @@ var
     if(match)
      {var match$1=matcher(match[1]);
       
-      if(match$1)
-       {if(match$1[2])
-         {return error
-                  (Pervasives["^"]("Ambiguous ",Pervasives["^"](name,".")));
-          }
-        else
-         {return action(match$1[1],ppf,lexbuf);}
-        }
-      else
-       {return error(Pervasives["^"]("Unknown ",Pervasives["^"](name,".")));}
+      return match$1
+              ?match$1[2]
+                ?error
+                  (Pervasives["^"]("Ambiguous ",Pervasives["^"](name,".")))
+                :action(match$1[1],ppf,lexbuf)
+              :error(Pervasives["^"]("Unknown ",Pervasives["^"](name,".")));
       }
     else
      {return alternative(ppf);}
@@ -207,11 +203,9 @@ var
 var
  module_of_longident=
   function(id)
-   {if(id)
-     {return /* Some */[0,$$String["concat"](".",Longident["flatten"](id[1]))];
-      }
-    else
-     {return /* None */0;}
+   {return id
+            ?/* Some */[0,$$String["concat"](".",Longident["flatten"](id[1]))]
+            :/* None */0;
     };
 
 var
@@ -295,17 +289,17 @@ var
     
     try
      {while(/* true */1)
-       {if(Program_management["loaded"][1])
-         {History["add_current_time"](/* () */0)}
-        else
-         {}
+       {Program_management["loaded"][1]
+         ?History["add_current_time"](/* () */0)
+         :0;
         
         var new_line=Primitives["string_trim"](Lexer["line"](line_buffer));
         
-        if(CamlPrimitive["caml_string_notequal"](new_line,""))
-         {var line=new_line;}
-        else
-         {var line=previous_line;}
+        var
+         line=
+          CamlPrimitive["caml_string_notequal"](new_line,"")
+           ?new_line
+           :previous_line;
         
         previous_line="";
         
@@ -350,8 +344,8 @@ var
     
     var err=CamlPrimitive["caml_sys_system_command"](cmd);
     
-    if(err!==0)
-     {return Format["eprintf"]
+    return err!==0
+            ?Format["eprintf"]
               ([/* Format */0,
                 [/* String_literal */11,
                  "Shell command ",
@@ -368,10 +362,8 @@ var
                      [/* Flush */10,/* End_of_format */0]]]]]],
                 "Shell command %S failed with exit code %d\n%!"],
                cmd,
-               err);
-      }
-    else
-     {return 0;}
+               err)
+            :0;
     };
 
 var
@@ -463,14 +455,13 @@ var
    {var new_directory=Parser["argument_list_eol"](Lexer["argument"],lexbuf);
     
     if(new_directory===/* [] */0)
-     {if(Question["yes_or_no"]("Reinitialize directory list"))
-       {Config["load_path"][1]=
-        Parameters["default_load_path"][1],
-        Envaux["reset_cache"](/* () */0),
-        Hashtbl["clear"](Debugger_config["load_path_for"]),
-        Source["flush_buffer_list"](/* () */0)}
-      else
-       {}
+     {Question["yes_or_no"]("Reinitialize directory list")
+       ?(Config["load_path"][1]=
+         Parameters["default_load_path"][1],
+         Envaux["reset_cache"](/* () */0),
+         Hashtbl["clear"](Debugger_config["load_path_for"]),
+         Source["flush_buffer_list"](/* () */0))
+       :0;
       }
     else
      {var new_directory$prime=List["rev"](new_directory);
@@ -582,17 +573,12 @@ var
  instr_kill=
   function(ppf,lexbuf)
    {eol(lexbuf);
-    if(!Program_management["loaded"][1])
-     {error("The program is not being run.")}
-    else
-     {}
+    !Program_management["loaded"][1]?error("The program is not being run."):0;
     
-    if(Question["yes_or_no"]("Kill the program being debugged"))
-     {Program_management["kill_program"](/* () */0);
-      return Show_source["show_no_point"](/* () */0);
-      }
-    else
-     {return 0;}
+    return Question["yes_or_no"]("Kill the program being debugged")
+            ?(Program_management["kill_program"](/* () */0),
+              Show_source["show_no_point"](/* () */0))
+            :0;
     };
 
 var
@@ -621,7 +607,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_signed_int64_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var step_count=match[1];}else{var step_count=Int64ops["_1"];}
+    var step_count=match?match[1]:Int64ops["_1"];
     
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
@@ -634,7 +620,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_signed_int64_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var step_count=match[1];}else{var step_count=Int64ops["_1"];}
+    var step_count=match?match[1]:Int64ops["_1"];
     
     check_not_windows("backstep");
     Program_management["ensure_loaded"](/* () */0);
@@ -658,7 +644,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_integer_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var step_count=match[1];}else{var step_count=1;}
+    var step_count=match?match[1]:1;
     
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
@@ -682,7 +668,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_integer_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var step_count=match[1];}else{var step_count=1;}
+    var step_count=match?match[1]:1;
     
     check_not_windows("previous");
     Program_management["ensure_loaded"](/* () */0);
@@ -829,10 +815,9 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(CamlPrimitive["caml_string_equal"](x,"help"))
-                  {return match_list(lexbuf);}
-                 else
-                  {return [/* :: */0,"help",/* [] */0];}
+                {return CamlPrimitive["caml_string_equal"](x,"help")
+                         ?match_list(lexbuf)
+                         :[/* :: */0,"help",/* [] */0];
                  }
                
               case "info":
@@ -857,10 +842,9 @@ var
                        else
                         {var i$1=l$1[1];
                          
-                         if(CamlPrimitive["caml_string_equal"](i$1[1],ident))
-                          {return /* [] */0;}
-                         else
-                          {return /* :: */[0,i$1[1],/* [] */0];}
+                         return CamlPrimitive["caml_string_equal"](i$1[1],ident)
+                                 ?/* [] */0
+                                 :/* :: */[0,i$1[1],/* [] */0];
                          }
                        }
                      else
@@ -887,10 +871,9 @@ var
                if(l[2])
                 {exit=122;}
                else
-                {if(CamlPrimitive["caml_string_equal"](x,i[1]))
-                  {return /* [] */0;}
-                 else
-                  {return /* :: */[0,i[1],/* [] */0];}
+                {return CamlPrimitive["caml_string_equal"](x,i[1])
+                         ?/* [] */0
+                         :/* :: */[0,i[1],/* [] */0];
                  }
                
               case 123:
@@ -915,10 +898,9 @@ var
                        else
                         {var v=l$2[1];
                          
-                         if(CamlPrimitive["caml_string_equal"](v[1],ident$1))
-                          {return /* [] */0;}
-                         else
-                          {return /* :: */[0,v[1],/* [] */0];}
+                         return CamlPrimitive["caml_string_equal"](v[1],ident$1)
+                                 ?/* [] */0
+                                 :/* :: */[0,v[1],/* [] */0];
                          }
                        }
                      else
@@ -1149,8 +1131,9 @@ var
    {var exprs=Parser["expression_list_eol"](Lexer["lexeme"],lexbuf);
     
     Program_management["ensure_loaded"](/* () */0);
+    var env;
     try
-     {var env=env_of_event(Frames["selected_event"][1]);}
+     {env=env_of_event(Frames["selected_event"][1]);}
     catch(exn)
      {if(exn[1]===Envaux["Error"])
        {Envaux["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"];}
@@ -1174,9 +1157,9 @@ var
   function(arg)
    {var l=arg["length"];
     
-    if(l>0&&arg[0]===34){var pos1=1;}else{var pos1=0;}
+    var pos1=l>0&&arg["charCodeAt"](0)===34?1:0;
     
-    if(l>0&&arg[l-1]===34){var pos2=l-1;}else{var pos2=l;}
+    var pos2=l>0&&arg["charCodeAt"](l-1)===34?l-1:l;
     
     return $$String["sub"](arg,pos1,pos2-pos1);
     };
@@ -1192,19 +1175,19 @@ var
     
     var old_channel=Input_handling["user_channel"][1];
     
+    var io_chan;
     try
-     {var
-       io_chan=
-        Primitives["io_channel_of_descr"]
-         (Unix["openfile"]
-           (Misc["find_in_path"]
-             (Config["load_path"][1],Unix_tools["expand_path"](file)),
-            [/* :: */0,/* O_RDONLY */0,/* [] */0],
-            0));
+     {io_chan=
+      Primitives["io_channel_of_descr"]
+       (Unix["openfile"]
+         (Misc["find_in_path"]
+           (Config["load_path"][1],Unix_tools["expand_path"](file)),
+          [/* :: */0,/* O_RDONLY */0,/* [] */0],
+          0));
       }
     catch(x)
      {if(x===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var io_chan=error("Source file not found.");}
+       {io_chan=error("Source file not found.");}
       else
        {if(x[1]===Unix["Unix_error"])
          {Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
@@ -1276,18 +1259,18 @@ var
        {case 0:
          var match=Frames["selected_event"][1];
          
-         if(match)
-          {return Breakpoints["new_breakpoint"](match[1]);}
-         else
-          {return error("Can't add breakpoint at this point.");}
+         return match
+                 ?Breakpoints["new_breakpoint"](match[1])
+                 :error("Can't add breakpoint at this point.");
          
         }}
     else
      {switch(argument[0])
        {case 0:return add_breakpoint_at_pc(argument[1]);
         case 1:
+         var env;
          try
-          {var env=env_of_event(Frames["selected_event"][1]);}
+          {env=env_of_event(Frames["selected_event"][1]);}
          catch(exn)
           {if(exn[1]===Envaux["Error"])
             {Envaux["report_error"](ppf,exn[2]);
@@ -1356,8 +1339,9 @@ var
             ev_pos=
              /* record */[0,Events["get_pos"](ev)[1],init[2],init[3],init[4]];
            
+           var buffer;
            try
-            {var buffer=Source["get_buffer"](ev_pos,module_name);}
+            {buffer=Source["get_buffer"](ev_pos,module_name);}
            catch(exn$2)
             {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
               {Format["eprintf"]
@@ -1379,16 +1363,12 @@ var
               {throw exn$2;}
              }
            
-           if(column)
-            {$js=
-             Symbols["event_near_pos"]
-              (module_name,Source["point_of_coord"](buffer,line,column[1]));
-             }
-           else
-            {$js=
-             Symbols["event_at_pos"]
+           $js=
+           column
+            ?Symbols["event_near_pos"]
+              (module_name,Source["point_of_coord"](buffer,line,column[1]))
+            :Symbols["event_at_pos"]
               (module_name,Source["pos_of_line"](buffer,line)[1]);
-             }
            }
          catch(exn$3)
           {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -1450,8 +1430,8 @@ var
   function(ppf,lexbuf)
    {var breakpoints=Parser["integer_list_eol"](Lexer["lexeme"],lexbuf);
     
-    if(breakpoints)
-     {return List["iter"]
+    return breakpoints
+            ?List["iter"]
               (function(x)
                 {try
                   {return Breakpoints["remove_breakpoint"](x);}
@@ -1462,17 +1442,12 @@ var
                     {throw exn;}
                    }
                  },
-               breakpoints);
-      }
-    else
-     {if
-       (Breakpoints["breakpoints_count"](/* () */0)!==
-        0&&
-        Question["yes_or_no"]("Delete all breakpoints"))
-       {return Breakpoints["remove_all_breakpoints"](/* () */0);}
-      else
-       {return 0;}
-      }
+               breakpoints)
+            :Breakpoints["breakpoints_count"](/* () */0)!==
+              0&&
+              Question["yes_or_no"]("Delete all breakpoints")
+              ?Breakpoints["remove_all_breakpoints"](/* () */0)
+              :0;
     };
 
 var
@@ -1480,10 +1455,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_integer_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match)
-     {var frame_number=match[1];}
-    else
-     {var frame_number=Frames["current_frame"][1];}
+    var frame_number=match?match[1]:Frames["current_frame"][1];
     
     Program_management["ensure_loaded"](/* () */0);
     try
@@ -1508,7 +1480,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_signed_integer_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var number=match[1];}else{var number=0;}
+    var number=match?match[1]:0;
     
     Program_management["ensure_loaded"](/* () */0);
     var match$1=Checkpoints["current_report"](/* () */0);
@@ -1530,15 +1502,14 @@ var
            print_frame=
             function(first_frame,last_frame,param)
              {if(param)
-               {if(frame_counter[1]>=first_frame)
-                 {Show_information["show_one_frame"]
-                   (frame_counter[1],ppf,param[1])}
-                else
-                 {}
+               {frame_counter[1]>=first_frame
+                 ?Show_information["show_one_frame"]
+                   (frame_counter[1],ppf,param[1])
+                 :0;
                 
                 frame_counter[0]++;
-                if(frame_counter[1]>=last_frame)
-                 {Format["fprintf"]
+                frame_counter[1]>=last_frame
+                 ?Format["fprintf"]
                    (ppf,
                     [/* Format */0,
                      [/* String_literal */11,
@@ -1546,9 +1517,8 @@ var
                       [/* Formatting_lit */17,
                        /* Flush_newline */4,
                        /* End_of_format */0]],
-                     "(More frames follow)@."])}
-                else
-                 {}
+                     "(More frames follow)@."])
+                 :0;
                 
                 return frame_counter[1]<last_frame;
                 }
@@ -1585,8 +1555,8 @@ var
             else
              {var num_frames=Frames["stack_depth"](/* () */0);
               
-              if(num_frames<0)
-               {return Format["fprintf"]
+              return num_frames<0
+                      ?Format["fprintf"]
                         (ppf,
                          [/* Format */0,
                           [/* String_literal */11,
@@ -1594,12 +1564,9 @@ var
                            [/* Formatting_lit */17,
                             /* Flush_newline */4,
                             /* End_of_format */0]],
-                          "(Encountered a function with no debugging information)@."]);
-                }
-              else
-               {return Frames["do_backtrace"]
+                          "(Encountered a function with no debugging information)@."])
+                      :Frames["do_backtrace"]
                         (print_frame(num_frames+number,Pervasives["max_int"]));
-                }
               }
             }
           }
@@ -1620,7 +1587,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_signed_integer_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var offset=match[1];}else{var offset=1;}
+    var offset=match?match[1]:1;
     
     Program_management["ensure_loaded"](/* () */0);
     try
@@ -1640,7 +1607,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_signed_integer_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var offset=match[1];}else{var offset=1;}
+    var offset=match?match[1]:1;
     
     Program_management["ensure_loaded"](/* () */0);
     try
@@ -1660,7 +1627,7 @@ var
   function(ppf,lexbuf)
    {var match=Parser["opt_signed_int64_eol"](Lexer["lexeme"],lexbuf);
     
-    if(match){var count=match[1];}else{var count=Int64ops["_1"];}
+    var count=match?match[1]:Int64ops["_1"];
     
     check_not_windows("last");
     Printval["reset_named_values"](/* () */0);
@@ -1679,11 +1646,12 @@ var
     
     var mo=match[1];
     
+    var match$1;
     try
-     {var match$1=Frames["selected_point"](/* () */0);}
+     {match$1=Frames["selected_point"](/* () */0);}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var match$1=[/* tuple */0,"",-1,-1];}
+       {match$1=[/* tuple */0,"",-1,-1];}
       else
        {throw exn;}
       }
@@ -1696,55 +1664,50 @@ var
     
     var pos=Lexing["dummy_pos"];
     
+    var buffer;
     try
-     {var buffer=Source["get_buffer"](pos,mdle);}
+     {buffer=Source["get_buffer"](pos,mdle);}
     catch(exn$1)
      {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var
-         buffer=
-          error
-           (Pervasives["^"]("No source file for ",Pervasives["^"](mdle,".")));
+       {buffer=
+        error
+         (Pervasives["^"]("No source file for ",Pervasives["^"](mdle,".")));
         }
       else
        {throw exn$1;}
       }
     
-    if(column!==-1)
-     {var point=Source["point_of_coord"](buffer,line,1)+column;}
-    else
-     {var point=-1;}
+    var point=column!==-1?Source["point_of_coord"](buffer,line,1)+column:-1;
     
+    var beginning;
     if(beg)
-     {var beginning=beg[1];}
+     {beginning=beg[1];}
     else
      {if(mo!==/* None */0||line===-1)
-       {var beginning=1;}
+       {beginning=1;}
       else
        {try
-         {var beginning=Pervasives["max"](1,line-10);}
+         {beginning=Pervasives["max"](1,line-10);}
         catch(exn$2)
          {if(exn$2===Primitives["Out_of_range"])
-           {var beginning=1;}
+           {beginning=1;}
           else
            {throw exn$2;}
           }
         }
       }
     
-    if(e){var en=e[1];}else{var en=beginning+20;}
+    var en=e?e[1]:beginning+20;
     
-    if(CamlPrimitive["caml_string_equal"](mdle,match$1[1]))
-     {return Show_source["show_listing"]
+    return CamlPrimitive["caml_string_equal"](mdle,match$1[1])
+            ?Show_source["show_listing"]
               (pos,
                mdle,
                beginning,
                en,
                point,
-               Events["current_event_is_before"](/* () */0));
-      }
-    else
-     {return Show_source["show_listing"](pos,mdle,beginning,en,-1,/* true */1);
-      }
+               Events["current_event_is_before"](/* () */0))
+            :Show_source["show_listing"](pos,mdle,beginning,en,-1,/* true */1);
     };
 
 var
@@ -1754,10 +1717,9 @@ var
             function(lexbuf)
              {var argument=Parser["argument_eol"](Lexer["argument"],lexbuf);
               
-              if(!kill||Program_management["ask_kill_program"](/* () */0))
-               {return name[1]=argument,0;}
-              else
-               {return 0;}
+              return !kill||Program_management["ask_kill_program"](/* () */0)
+                      ?(name[1]=argument,0)
+                      :0;
               },
             function(ppf)
              {return Format["fprintf"]
@@ -1782,10 +1744,9 @@ var
                argument=
                 Parser["argument_eol"](Lexer["line_argument"],lexbuf);
               
-              if(!kill||Program_management["ask_kill_program"](/* () */0))
-               {return name[1]=argument,0;}
-              else
-               {return 0;}
+              return !kill||Program_management["ask_kill_program"](/* () */0)
+                      ?(name[1]=argument,0)
+                      :0;
               },
             function(ppf)
              {return Format["fprintf"]
@@ -1808,14 +1769,11 @@ var
             function(lexbuf)
              {var argument=Parser["integer_eol"](Lexer["lexeme"],lexbuf);
               
-              if(argument<min)
-               {return Pervasives["print_endline"](msg);}
-              else
-               {if(!kill||Program_management["ask_kill_program"](/* () */0))
-                 {return name[1]=argument,0;}
-                else
-                 {return 0;}
-                }
+              return argument<min
+                      ?Pervasives["print_endline"](msg)
+                      :!kill||Program_management["ask_kill_program"](/* () */0)
+                        ?(name[1]=argument,0)
+                        :0;
               },
             function(ppf)
              {return Format["fprintf"]
@@ -1840,14 +1798,11 @@ var
             function(lexbuf)
              {var argument=Parser["int64_eol"](Lexer["lexeme"],lexbuf);
               
-              if(argument<min)
-               {return Pervasives["print_endline"](msg);}
-              else
-               {if(!kill||Program_management["ask_kill_program"](/* () */0))
-                 {return name[1]=argument,0;}
-                else
-                 {return 0;}
-                }
+              return argument<min
+                      ?Pervasives["print_endline"](msg)
+                      :!kill||Program_management["ask_kill_program"](/* () */0)
+                        ?(name[1]=argument,0)
+                        :0;
               },
             function(ppf)
              {return Format["fprintf"]
@@ -1885,10 +1840,9 @@ var
                 case 28:var argument=/* false */0;
                 }
               
-              if(!kill||Program_management["ask_kill_program"](/* () */0))
-               {return name[1]=argument,0;}
-              else
-               {return 0;}
+              return !kill||Program_management["ask_kill_program"](/* () */0)
+                      ?(name[1]=argument,0)
+                      :0;
               },
             function(ppf)
              {return Format["fprintf"]
@@ -1911,14 +1865,12 @@ var
             function(lexbuf)
              {var argument=Parser["argument_eol"](Lexer["argument"],lexbuf);
               
-              if(!kill||Program_management["ask_kill_program"](/* () */0))
-               {return name[1]=
-                       Unix_tools["make_absolute"]
-                        (Unix_tools["expand_path"](argument)),
-                       0;
-                }
-              else
-               {return 0;}
+              return !kill||Program_management["ask_kill_program"](/* () */0)
+                      ?(name[1]=
+                        Unix_tools["make_absolute"]
+                         (Unix_tools["expand_path"](argument)),
+                        0)
+                      :0;
               },
             function(ppf)
              {return Format["fprintf"]
@@ -1956,16 +1908,14 @@ var
                  {if(param)
                    {var match=param[1];
                     
-                    if(match[2]===Program_loading["launching_func"][1])
-                     {return Format["fprintf"]
+                    return match[2]===Program_loading["launching_func"][1]
+                            ?Format["fprintf"]
                               (ppf,
                                [/* Format */0,
                                 [/* String */2,/* No_padding */0,/* End_of_format */0],
                                 "%s"],
-                               match[1]);
-                      }
-                    else
-                     {return find(param[2]);}
+                               match[1])
+                            :find(param[2]);
                     }
                   else
                    {return /* () */0;}
@@ -1998,10 +1948,9 @@ var
      switch(exit){case 22:var mode=error("Syntax error.");}
      
      Debugcom["fork_mode"][1]=mode;
-     if(Program_management["loaded"][1])
-      {return Debugcom["update_follow_fork_mode"](/* () */0);}
-     else
-      {return 0;}
+     return Program_management["loaded"][1]
+             ?Debugcom["update_follow_fork_mode"](/* () */0)
+             :0;
      },
    function(ppf)
     {var match=Debugcom["fork_mode"][1];
@@ -2065,8 +2014,8 @@ var
  info_checkpoints=
   function(ppf,lexbuf)
    {eol(lexbuf);
-    if(Checkpoints["checkpoints"][1]===/* [] */0)
-     {return Format["fprintf"]
+    return Checkpoints["checkpoints"][1]===/* [] */0
+            ?Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* String_literal */11,
@@ -2074,73 +2023,68 @@ var
                  [/* Formatting_lit */17,
                   /* Flush_newline */4,
                   /* End_of_format */0]],
-                "No checkpoint.@."]);
-      }
-    else
-     {if(Breakpoints["debug_breakpoints"][1])
-       {Pervasives["prerr_endline"]("               Time   Pid Version");
-        return List["iter"]
-                (function(param)
-                  {var time=param[1];
-                   
-                   var pid=param[2];
-                   
-                   var version=param[8];
-                   
-                   return Printf["printf"]
-                           ([/* Format */0,
-                             [/* Int64 */7,
-                              /* Int_d */0,
-                              [/* Lit_padding */0,/* Right */1,19],
-                              /* No_precision */0,
-                              [/* Char_literal */12,
-                               32,
-                               [/* Int */4,
-                                /* Int_d */0,
-                                [/* Lit_padding */0,/* Right */1,5],
-                                /* No_precision */0,
-                                [/* Char_literal */12,
-                                 32,
-                                 [/* Int */4,
-                                  /* Int_d */0,
-                                  /* No_padding */0,
-                                  /* No_precision */0,
-                                  [/* Char_literal */12,10,/* End_of_format */0]]]]]],
-                             "%19Ld %5d %d\n"],
-                            time,
-                            pid,
-                            version);
-                   },
-                 Checkpoints["checkpoints"][1]);
-        }
-      else
-       {Pervasives["print_endline"]("               Time   Pid");
-        return List["iter"]
-                (function(param)
-                  {var time=param[1];
-                   
-                   var pid=param[2];
-                   
-                   return Printf["printf"]
-                           ([/* Format */0,
-                             [/* Int64 */7,
-                              /* Int_d */0,
-                              [/* Lit_padding */0,/* Right */1,19],
-                              /* No_precision */0,
-                              [/* Char_literal */12,
-                               32,
-                               [/* Int */4,
-                                /* Int_d */0,
-                                [/* Lit_padding */0,/* Right */1,5],
-                                /* No_precision */0,
-                                [/* Char_literal */12,10,/* End_of_format */0]]]],
-                             "%19Ld %5d\n"],
-                            time,
-                            pid);
-                   },
-                 Checkpoints["checkpoints"][1]);
-        }
-      }
+                "No checkpoint.@."])
+            :Breakpoints["debug_breakpoints"][1]
+              ?(Pervasives["prerr_endline"]
+                 ("               Time   Pid Version"),
+                List["iter"]
+                 (function(param)
+                   {var time=param[1];
+                    
+                    var pid=param[2];
+                    
+                    var version=param[8];
+                    
+                    return Printf["printf"]
+                            ([/* Format */0,
+                              [/* Int64 */7,
+                               /* Int_d */0,
+                               [/* Lit_padding */0,/* Right */1,19],
+                               /* No_precision */0,
+                               [/* Char_literal */12,
+                                32,
+                                [/* Int */4,
+                                 /* Int_d */0,
+                                 [/* Lit_padding */0,/* Right */1,5],
+                                 /* No_precision */0,
+                                 [/* Char_literal */12,
+                                  32,
+                                  [/* Int */4,
+                                   /* Int_d */0,
+                                   /* No_padding */0,
+                                   /* No_precision */0,
+                                   [/* Char_literal */12,10,/* End_of_format */0]]]]]],
+                              "%19Ld %5d %d\n"],
+                             time,
+                             pid,
+                             version);
+                    },
+                  Checkpoints["checkpoints"][1]))
+              :(Pervasives["print_endline"]("               Time   Pid"),
+                List["iter"]
+                 (function(param)
+                   {var time=param[1];
+                    
+                    var pid=param[2];
+                    
+                    return Printf["printf"]
+                            ([/* Format */0,
+                              [/* Int64 */7,
+                               /* Int_d */0,
+                               [/* Lit_padding */0,/* Right */1,19],
+                               /* No_precision */0,
+                               [/* Char_literal */12,
+                                32,
+                                [/* Int */4,
+                                 /* Int_d */0,
+                                 [/* Lit_padding */0,/* Right */1,5],
+                                 /* No_precision */0,
+                                 [/* Char_literal */12,10,/* End_of_format */0]]]],
+                              "%19Ld %5d\n"],
+                             time,
+                             pid);
+                    },
+                  Checkpoints["checkpoints"][1]));
     };
 
 var
@@ -2178,8 +2122,8 @@ var
  info_breakpoints=
   function(ppf,lexbuf)
    {eol(lexbuf);
-    if(Breakpoints["breakpoints"][1]===/* [] */0)
-     {return Format["fprintf"]
+    return Breakpoints["breakpoints"][1]===/* [] */0
+            ?Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* String_literal */11,
@@ -2187,20 +2131,19 @@ var
                  [/* Formatting_lit */17,
                   /* Flush_newline */4,
                   /* End_of_format */0]],
-                "No breakpoints.@."]);
-      }
-    else
-     {Format["fprintf"]
-       (ppf,
-        [/* Format */0,
-         [/* String_literal */11,
-          "Num    Address  Where",
-          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
-         "Num    Address  Where@."]);
-      return List["iter"]
-              (info_one_breakpoint(ppf),
-               List["rev"](Breakpoints["breakpoints"][1]));
-      }
+                "No breakpoints.@."])
+            :(Format["fprintf"]
+               (ppf,
+                [/* Format */0,
+                 [/* String_literal */11,
+                  "Num    Address  Where",
+                  [/* Formatting_lit */17,
+                   /* Flush_newline */4,
+                   /* End_of_format */0]],
+                 "Num    Address  Where@."]),
+              List["iter"]
+               (info_one_breakpoint(ppf),
+                List["rev"](Breakpoints["breakpoints"][1])));
     };
 
 var
@@ -2218,16 +2161,16 @@ var
      ("   Address  Characters        Kind      Repr.");
     return List["iter"]
             (function(ev)
-              {try
+              {var match;
+               try
                 {var buffer=Source["get_buffer"](Events["get_pos"](ev),ev[2]);
                  
-                 var
-                  match=
-                   /* tuple */[0,
-                    Source["start_and_cnum"](buffer,ev[3][1])[2],
-                    Source["start_and_cnum"](buffer,ev[3][2])[2]];
+                 match=
+                 /* tuple */[0,
+                  Source["start_and_cnum"](buffer,ev[3][1])[2],
+                  Source["start_and_cnum"](buffer,ev[3][2])[2]];
                  }
-               catch(exn){var match=/* tuple */[0,ev[3][1][4],ev[3][2][4]];}
+               catch(exn){match=/* tuple */[0,ev[3][1][4],ev[3][2][4]];}
                
                var match$1=ev[4];
                

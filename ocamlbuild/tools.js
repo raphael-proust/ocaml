@@ -24,8 +24,8 @@ var
 var
  opt_print=
   function(elt,ppf,param)
-   {if(param)
-     {return Format["fprintf"]
+   {return param
+            ?Format["fprintf"]
               (ppf,
                [/* Format */0,
                 [/* Formatting_gen */18,
@@ -43,10 +43,8 @@ var
                      /* End_of_format */0]]]]],
                 "@[<2>Some@ %a@]"],
                elt,
-               param[1]);
-      }
-    else
-     {return Format["pp_print_string"](ppf,"None");}
+               param[1])
+            :Format["pp_print_string"](ppf,"None");
     };
 
 var

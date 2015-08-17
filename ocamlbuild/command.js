@@ -45,20 +45,20 @@ var
    function(param)
     {var path_var=CamlPrimitive["caml_sys_getenv"]("PATH");
      
-     if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
-      {var parse_path=Lexers["parse_environment_path_w"];}
-     else
-      {var parse_path=Lexers["parse_environment_path"];}
+     var
+      parse_path=
+       CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")
+        ?Lexers["parse_environment_path_w"]
+        :Lexers["parse_environment_path"];
      
      var paths=parse_path(Const["Source"][3],Lexing["from_string"](path_var));
      
      var
       norm_current_dir_name=
        function(path)
-        {if(CamlPrimitive["caml_string_equal"](path,""))
-          {return Filename["current_dir_name"];}
-         else
-          {return path;}
+        {return CamlPrimitive["caml_string_equal"](path,"")
+                 ?Filename["current_dir_name"]
+                 :path;
          };
      
      return My_std["List"][16](norm_current_dir_name,paths);
@@ -74,24 +74,24 @@ var
 var
  virtual_solver=
   function(virtual_command)
-   {try
-     {var solver=Hashtbl["find"](virtual_solvers,virtual_command);}
+   {var solver;
+    try
+     {solver=Hashtbl["find"](virtual_solvers,virtual_command);}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var
-         solver=
-          Pervasives["failwith"]
-           (My_std["sbprintf"]
-             ([/* Format */0,
+       {solver=
+        Pervasives["failwith"]
+         (My_std["sbprintf"]
+           ([/* Format */0,
+             [/* String_literal */11,
+              "no solver for the virtual command ",
+              [/* Caml_string */3,
+               /* No_padding */0,
                [/* String_literal */11,
-                "no solver for the virtual command ",
-                [/* Caml_string */3,
-                 /* No_padding */0,
-                 [/* String_literal */11,
-                  " (setup one with Command.setup_virtual_command_solver)",
-                  /* End_of_format */0]]],
-               "no solver for the virtual command %S (setup one with Command.setup_virtual_command_solver)"],
-              virtual_command));
+                " (setup one with Command.setup_virtual_command_solver)",
+                /* End_of_format */0]]],
+             "no solver for the virtual command %S (setup one with Command.setup_virtual_command_solver)"],
+            virtual_command));
         }
       else
        {throw exn;}
@@ -133,12 +133,10 @@ var
    {var
      try_path=
       function(path)
-       {if
-         (CamlPrimitive["caml_string_equal"]
-           (path,Filename["current_dir_name"]))
-         {return file_or_exe_exists(cmd);}
-        else
-         {return file_or_exe_exists(My_std["filename_concat"](path,cmd));}
+       {return CamlPrimitive["caml_string_equal"]
+                 (path,Filename["current_dir_name"])
+                ?file_or_exe_exists(cmd)
+                :file_or_exe_exists(My_std["filename_concat"](path,cmd));
         };
     
     if(Filename["is_implicit"](cmd))
@@ -160,21 +158,16 @@ var
     
     var b=Buffer["create"](256);
     
-    if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
-     {Buffer["add_string"](b,"''")}
-    else
-     {}
+    CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")
+     ?Buffer["add_string"](b,"''")
+     :0;
     
     var first=[0,/* true */1];
     
     var
      put_space=
       function(param)
-       {if(first[1])
-         {return first[1]=/* false */0,0;}
-        else
-         {return Buffer["add_char"](b,32);}
-        };
+       {return first[1]?(first[1]=/* false */0,0):Buffer["add_char"](b,32);};
     
     var
      put_filename=
@@ -211,21 +204,19 @@ var
             case 6:
              var v=param[1];
              
-             if(resolve_virtuals)
-              {return do_spec(virtual_solver(v));}
-             else
-              {put_space(/* () */0);
-               return Printf["bprintf"]
-                       (b,
-                        [/* Format */0,
-                         [/* String_literal */11,
-                          "<virtual ",
-                          [/* String */2,
-                           /* No_padding */0,
-                           [/* Char_literal */12,62,/* End_of_format */0]]],
-                         "<virtual %s>"],
-                        Shell["quote_filename_if_needed"](v));
-               }
+             return resolve_virtuals
+                     ?do_spec(virtual_solver(v))
+                     :(put_space(/* () */0),
+                       Printf["bprintf"]
+                        (b,
+                         [/* Format */0,
+                          [/* String_literal */11,
+                           "<virtual ",
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* Char_literal */12,62,/* End_of_format */0]]],
+                          "<virtual %s>"],
+                         Shell["quote_filename_if_needed"](v)));
              
             case 7:put_space(/* () */0);return put_filename($$self(param[1]));
             }}
@@ -267,10 +258,7 @@ var
         /* true */1,
         spec);
     
-    if(CamlPrimitive["caml_string_equal"](rtarget[1],""))
-     {var target=s;}
-    else
-     {var target=rtarget[1];}
+    var target=CamlPrimitive["caml_string_equal"](rtarget[1],"")?s:rtarget[1];
     
     return /* tuple */[0,s,target,rtags[1]];
     };
@@ -287,10 +275,7 @@ var
     var s=match[1];
     
     return function(param)
-     {if(!quiet){Log["event"](/* Some */[0,pretend],s,target,tags)}else{}
-      
-      return s;
-      };
+     {!quiet?Log["event"](/* Some */[0,pretend],s,target,tags):0;return s;};
     };
 
 var
@@ -368,16 +353,19 @@ var xcountall=[0,0];
 var
  add_parallel_stat=
   function(x)
-   {if(x>0){xcountall[0]++,xsumall[1]=x+xsumall[1]}else{}
+   {x>0?(xcountall[0]++,xsumall[1]=x+xsumall[1],0):0;
     
-    if(x>1)
-     {xcount[0]++;
-      xsum[1]=x+xsum[1];
-      xmax[1]=Pervasives["max"](xmax[1],x);
-      return xmin[1]=Pervasives["min"](xmin[1],x),0;
-      }
-    else
-     {return 0;}
+    return x>1
+            ?(xcount[0]++,
+              xsum[1]=
+              x+
+              xsum[1],
+              xmax[1]=
+              Pervasives["max"](xmax[1],x),
+              xmin[1]=
+              Pervasives["min"](xmin[1],x),
+              0)
+            :0;
     };
 
 var
@@ -476,11 +464,7 @@ var Primitives=[0,do_echo,echo];
 var
  list_rev_iter=
   function(f,param)
-   {if(param)
-     {list_rev_iter(f,param[2]);return f(param[1]);}
-    else
-     {return /* () */0;}
-    };
+   {return param?(list_rev_iter(f,param[2]),f(param[1])):/* () */0;};
 
 var
  flatten_commands=
@@ -520,15 +504,9 @@ var
 var
  execute_many=
   function($staropt$star,$staropt$star,cmds)
-   {if($staropt$star$1)
-     {var quiet=$staropt$star$1[1];}
-    else
-     {var quiet=/* false */0;}
+   {var quiet=$staropt$star$1?$staropt$star$1[1]:/* false */0;
     
-    if($staropt$star)
-     {var pretend=$staropt$star[1];}
-    else
-     {var pretend=/* false */0;}
+    var pretend=$staropt$star?$staropt$star[1]:/* false */0;
     
     add_parallel_stat$1(My_std["List"][5](cmds));
     var
@@ -538,12 +516,9 @@ var
     
     var jobs$1=jobs[1];
     
-    if(jobs$1<0){Pervasives["invalid_arg"]("jobs < 0")}else{}
+    jobs$1<0?Pervasives["invalid_arg"]("jobs < 0"):0;
     
-    if(jobs$1===0)
-     {var max_jobs=/* None */0;}
-    else
-     {var max_jobs=/* Some */[0,jobs$1];}
+    var max_jobs=jobs$1===0?/* None */0:/* Some */[0,jobs$1];
     
     var ticker=Log["update"];
     
@@ -584,8 +559,8 @@ var
                         var rc=My_std["sys_command"](cmd);
                         
                         if(rc!==0)
-                         {if(!quiet)
-                           {Log["eprintf"]
+                         {!quiet
+                           ?Log["eprintf"]
                              ([/* Format */0,
                                [/* String_literal */11,
                                 "Exit code ",
@@ -600,9 +575,8 @@ var
                                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
                                "Exit code %d while executing this command:@\n%s"],
                               rc,
-                              cmd)}
-                          else
-                           {}
+                              cmd)
+                           :0;
                           
                           throw [0,My_std["Exit_with_code"],rc];
                           }
@@ -626,12 +600,10 @@ var
           
           var opt_exn=match$1[2];
           
-          if(opt_exn)
-           {return /* Some */[0,
-                    /* tuple */[0,My_std["List"][9](match$1[1]),opt_exn[1]]];
-            }
-          else
-           {return /* None */0;}
+          return opt_exn
+                  ?/* Some */[0,
+                    /* tuple */[0,My_std["List"][9](match$1[1]),opt_exn[1]]]
+                  :/* None */0;
           }
         else
          {return My_unix["execute_many"]
@@ -749,10 +721,7 @@ var
     
     var xs=$$self(x,/* [] */0);
     
-    if(xs)
-     {if(xs[2]){return /* S */[0,xs];}else{return xs[1];}}
-    else
-     {return /* N */0;}
+    return xs?xs[2]?/* S */[0,xs]:xs[1]:/* N */0;
     };
 
 var list=My_std["List"][20];
@@ -804,11 +773,7 @@ var
             (My_std["List"][9],
              My_std["List"][19]
               (function(acc,dep)
-                {if(My_std["List"][30](dep,acc))
-                  {return acc;}
-                 else
-                  {return /* :: */[0,dep,acc];}
-                 },
+                {return My_std["List"][30](dep,acc)?acc:/* :: */[0,dep,acc];},
                acc,
                deps));
     };
@@ -818,10 +783,7 @@ var
   function(tags)
    {return My_std["List"][19]
             (function(acc,param)
-              {if(Tags["does_match"](tags,param[1]))
-                {return cons(param[2],acc);}
-               else
-                {return acc;}
+              {return Tags["does_match"](tags,param[1])?cons(param[2],acc):acc;
                },
              /* [] */0,
              all_deps_of_tags[1]);

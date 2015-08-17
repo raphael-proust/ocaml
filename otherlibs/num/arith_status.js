@@ -55,10 +55,9 @@ var
 var
  arith_print_bool=
   function(param)
-   {if(param!==0)
-     {return Pervasives["print_string"]("ON");}
-    else
-     {return Pervasives["print_string"]("OFF");}
+   {return param!==0
+            ?Pervasives["print_string"]("ON")
+            :Pervasives["print_string"]("OFF");
     };
 
 var
@@ -93,19 +92,18 @@ var
     Pervasives["print_string"]
      ("     (modifiable with set_approx_printing <your choice>)");
     Pervasives["print_newline"](/* () */0);
-    if(get_approx_printing(/* () */0))
-     {Pervasives["print_string"]("  Default precision = "),
-      Pervasives["print_int"](get_floating_precision(/* () */0)),
-      Pervasives["print_newline"](/* () */0),
-      Pervasives["print_string"]
-       ("     (returned by get_floating_precision ())"),
-      Pervasives["print_newline"](/* () */0),
-      Pervasives["print_string"]
-       ("     (modifiable with set_floating_precision <your choice>)"),
-      Pervasives["print_newline"](/* () */0),
-      Pervasives["print_newline"](/* () */0)}
-    else
-     {Pervasives["print_newline"](/* () */0)}
+    get_approx_printing(/* () */0)
+     ?(Pervasives["print_string"]("  Default precision = "),
+       Pervasives["print_int"](get_floating_precision(/* () */0)),
+       Pervasives["print_newline"](/* () */0),
+       Pervasives["print_string"]
+        ("     (returned by get_floating_precision ())"),
+       Pervasives["print_newline"](/* () */0),
+       Pervasives["print_string"]
+        ("     (modifiable with set_floating_precision <your choice>)"),
+       Pervasives["print_newline"](/* () */0),
+       Pervasives["print_newline"](/* () */0))
+     :Pervasives["print_newline"](/* () */0);
     
     arith_print_string("Error when a rational denominator is null");
     arith_print_bool(get_error_when_null_denominator(/* () */0));

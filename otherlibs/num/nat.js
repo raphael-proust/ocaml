@@ -61,10 +61,9 @@ var
 var
  sys_int_of_nat=
   function(nat,off,len)
-   {if(is_nat_int(nat,off,len))
-     {return CamlPrimitive["nth_digit_nat"](nat,off);}
-    else
-     {return Pervasives["failwith"]("int_of_nat");}
+   {return is_nat_int(nat,off,len)
+            ?CamlPrimitive["nth_digit_nat"](nat,off)
+            :Pervasives["failwith"]("int_of_nat");
     };
 
 var int_of_nat=function(nat){return sys_int_of_nat(nat,0,length_nat(nat));};
@@ -77,10 +76,7 @@ var
     else
      {var res=make_nat(1);
       
-      if(i===0)
-       {return res;}
-      else
-       {CamlPrimitive["set_digit_nat"](res,0,i);return res;}
+      return i===0?res:(CamlPrimitive["set_digit_nat"](res,0,i),res);
       }
     };
 
@@ -200,7 +196,7 @@ var
       CamlPrimitive["blit_nat"](copy2[1],0,nat2,off2,len2);
       CamlPrimitive["set_digit_nat"](copy1[1],len1,0);
       CamlPrimitive["set_digit_nat"](copy2[1],len2,0);
-      if(lt_nat(copy1[1],0,len1,copy2[1],0,len2)){exchange(copy1,copy2)}else{}
+      lt_nat(copy1[1],0,len1,copy2[1],0,len2)?exchange(copy1,copy2):0;
       
       var
        real_len1=
@@ -270,12 +266,11 @@ var
            (next_cand,cand_len,cand_rest,cand,0,cand_len,0);
           CamlPrimitive["shift_right_nat"]
            (next_cand,cand_len,cand_rest,a_1,0,1);
-          if(lt_nat(next_cand,cand_len,cand_rest,cand,0,cand_len))
-           {CamlPrimitive["blit_nat"](cand,0,next_cand,cand_len,cand_len);
-            return loop(/* () */0);
-            }
-          else
-           {return cand;}
+          return lt_nat(next_cand,cand_len,cand_rest,cand,0,cand_len)
+                  ?(CamlPrimitive["blit_nat"]
+                     (cand,0,next_cand,cand_len,cand_len),
+                    loop(/* () */0))
+                  :cand;
           };
       
       return loop(/* () */0);
@@ -298,6 +293,7 @@ if(length_of_digit!==32)
 else
  {CamlPrimitive["set_digit_nat"](power_base_max,0,1e9)}
 
+var pmax;
 if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
@@ -305,11 +301,12 @@ if(length_of_digit!==32)
            [0,"nat.ml",259,9]];
     }
   else
-   {var pmax=19;}
+   {pmax=19;}
   }
 else
- {var pmax=9;}
+ {pmax=9;}
 
+var max_superscript_10_power_in_int;
 if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
@@ -317,11 +314,12 @@ if(length_of_digit!==32)
            [0,"nat.ml",266,9]];
     }
   else
-   {var max_superscript_10_power_in_int=18;}
+   {max_superscript_10_power_in_int=18;}
   }
 else
- {var max_superscript_10_power_in_int=9;}
+ {max_superscript_10_power_in_int=9;}
 
+var max_power_10_power_in_int;
 if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
@@ -329,10 +327,10 @@ if(length_of_digit!==32)
            [0,"nat.ml",272,9]];
     }
   else
-   {var max_power_10_power_in_int=nat_of_int(1e18);}
+   {max_power_10_power_in_int=nat_of_int(1e18);}
   }
 else
- {var max_power_10_power_in_int=nat_of_int(1e9);}
+ {max_power_10_power_in_int=nat_of_int(1e9);}
 
 var
  raw_string_of_digit=
@@ -398,7 +396,13 @@ var
     var j=[0,times];
     
     while((i[1]!==0||j[1]!==0)&&pos_ref[1]!==-1)
-     {s[pos_ref[1]]=digits[i[1]%base],pos_ref[0]--,j[0]--,i[1]=i[1]/base}
+     {s[pos_ref[1]]=
+      digits["charCodeAt"](i[1]%base),
+      pos_ref[0]--,
+      j[0]--,
+      i[1]=
+      i[1]/
+      base}
     return 0;
     };
 
@@ -425,7 +429,7 @@ var
           var rem=i%(1+pmax$1);
           
           if(n>0)
-           {if(i===Int_misc["biggest_int"]){var newn=n;}else{var newn=1+n;}
+           {var newn=i===Int_misc["biggest_int"]?n:1+n;
             
             var res=make_nat(newn);
             
@@ -442,22 +446,19 @@ var
               var succ_len2=1+len2;
               
               CamlPrimitive["square_nat"](res2,0,len2,res,0,len);
-              if((n&1<<i$1)>0)
-               {CamlPrimitive["set_to_zero_nat"](res,0,len),
-                CamlPrimitive["mult_digit_nat"]
-                 (res,0,succ_len2,res2,0,len2,power_base,pmax$1)}
-              else
-               {CamlPrimitive["blit_nat"](res,0,res2,0,len2)}
+              (n&1<<i$1)>0
+               ?(CamlPrimitive["set_to_zero_nat"](res,0,len),
+                 CamlPrimitive["mult_digit_nat"]
+                  (res,0,succ_len2,res2,0,len2,power_base,pmax$1))
+               :CamlPrimitive["blit_nat"](res,0,res2,0,len2);
               
               CamlPrimitive["set_to_zero_nat"](res2,0,len2)}
             
-            if(rem>0)
-             {CamlPrimitive["mult_digit_nat"]
-               (res2,0,newn,res,0,n,power_base,-1+rem);
-              return res2;
-              }
-            else
-             {return res;}
+            return rem>0
+                    ?(CamlPrimitive["mult_digit_nat"]
+                       (res2,0,newn,res,0,n,power_base,-1+rem),
+                      res2)
+                    :res;
             }
           else
            {return copy_nat(power_base,-1+rem,1);}
@@ -522,7 +523,11 @@ var
     
     try
      {for(var i=0;i<=s["length"]-2;i++)
-       {if(s[i]!==48){index[1]=i;throw Pervasives["Exit"];}else{}}
+       {if(s["charCodeAt"](i)!==48)
+         {index[1]=i;throw Pervasives["Exit"];}
+        else
+         {}
+        }
       }
     catch(exn){if(exn===Pervasives["Exit"]){}else{throw exn;}}
     
@@ -534,18 +539,13 @@ var
   function(c,base)
    {var n=c;
     
-    if(n>=48&&n<=47+Pervasives["min"](base,10))
-     {return n-48;}
-    else
-     {if(n>=65&&n<=65+base-11)
-       {return n-55;}
-      else
-       {if(n>=97&&n<=97+base-11)
-         {return n-87;}
-        else
-         {return Pervasives["failwith"]("invalid digit");}
-        }
-      }
+    return n>=48&&n<=47+Pervasives["min"](base,10)
+            ?n-48
+            :n>=65&&n<=65+base-11
+              ?n-55
+              :n>=97&&n<=97+base-11
+                ?n-87
+                :Pervasives["failwith"]("invalid digit");
     };
 
 var
@@ -576,7 +576,7 @@ var
     var $$int=[0,0];
     
     for(var i=off;i<=bound;i++)
-     {var c=s[i];
+     {var c=s["charCodeAt"](i);
       
       var exit;
       
@@ -601,10 +601,9 @@ var
       
       if((digits_read[1]===pint||i===bound)&&!(digits_read[1]===0))
        {CamlPrimitive["set_digit_nat"](nat1,0,$$int[1]);
-        if(new_len[1]===current_len[1])
-         {var erase_len=current_len[1]-1;}
-        else
-         {var erase_len=current_len[1];}
+        var
+         erase_len=
+          new_len[1]===current_len[1]?current_len[1]-1:current_len[1];
         
         for(var j=1;j<=erase_len;j++)
          {CamlPrimitive["set_digit_nat"](nat1,j,0)}

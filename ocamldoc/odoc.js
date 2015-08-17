@@ -228,12 +228,11 @@ if(match$3)
 else
  {}
 
-if(Odoc_global["errors"][1]>0)
- {Pervasives["prerr_endline"]
-   (Odoc_messages["errors_occured"](Odoc_global["errors"][1])),
-  Pervasives["exit"](1)}
-else
- {Pervasives["exit"](0)}
+Odoc_global["errors"][1]>0
+ ?(Pervasives["prerr_endline"]
+    (Odoc_messages["errors_occured"](Odoc_global["errors"][1])),
+   Pervasives["exit"](1))
+ :Pervasives["exit"](0);
 
 module["exports"]=
 {"M":M,

@@ -7,10 +7,7 @@ var
   function(ev)
    {var match=ev[4];
     
-    if(typeof match==="number")
-     {if(match!==0){return ev[3][1];}else{return ev[3][1];}}
-    else
-     {return ev[3][2];}
+    return typeof match==="number"?match!==0?ev[3][1]:ev[3][1]:ev[3][2];
     };
 
 var current_event=[0,/* None */0];

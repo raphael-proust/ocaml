@@ -37,23 +37,20 @@ var
 var
  $unknown$neg=
   function(r)
-   {var match=r[1];
-    
-    if(match){return match[1];}else{return My_std["!*"](failsafe_display);}
-    };
+   {var match=r[1];return match?match[1]:My_std["!*"](failsafe_display);};
 
 var
  init=
   function(log_file)
-   {if
-     (classic_display[1]||
-      My_std["!*"](My_unix["is_degraded"])||
-      level[1]<=
-      0||
-      !My_unix["stdout_isatty"](/* () */0))
-     {var mode$2=/* Classic */920812018;}
-    else
-     {var mode$2=/* Sophisticated */-369468030;}
+   {var
+     mode$2=
+      classic_display[1]||
+       My_std["!*"](My_unix["is_degraded"])||
+       level[1]<=
+       0||
+       !My_unix["stdout_isatty"](/* () */0)
+       ?/* Classic */920812018
+       :/* Sophisticated */-369468030;
     
     return internal_display[1]=
            /* Some */[0,
@@ -122,12 +119,10 @@ var already_asked=Hashtbl["create"](/* None */0,10);
 var
  at_end_always=
   function(name,thunk)
-   {if(!Hashtbl["mem"](already_asked,name))
-     {Hashtbl["add"](already_asked,name,/* () */0);
-      return Queue["add"](thunk,do_at_end);
-      }
-    else
-     {return 0;}
+   {return !Hashtbl["mem"](already_asked,name)
+            ?(Hashtbl["add"](already_asked,name,/* () */0),
+              Queue["add"](thunk,do_at_end))
+            :0;
     };
 
 var
@@ -136,11 +131,7 @@ var
    {return at_end_always
             (name,
              function(param)
-              {if(param>=94326179)
-                {return thunk(/* Error */106380200);}
-               else
-                {return /* () */0;}
-               });
+              {return param>=94326179?thunk(/* Error */106380200):/* () */0;});
     };
 
 var
@@ -149,11 +140,7 @@ var
    {return at_end_always
             (name,
              function(param)
-              {if(param>=106380200)
-                {return thunk(/* Error */106380200);}
-               else
-                {return /* () */0;}
-               });
+              {return param>=106380200?thunk(/* Error */106380200):/* () */0;});
     };
 
 var
@@ -169,7 +156,7 @@ var
     
     var match=internal_display[1];
     
-    if(match){return Display["finish"](how,match[1]);}else{return /* () */0;}
+    return match?Display["finish"](how,match[1]):/* () */0;
     };
 
 module["exports"]=

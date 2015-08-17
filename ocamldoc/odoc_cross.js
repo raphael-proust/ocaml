@@ -101,8 +101,9 @@ var
     
     var exit;
     
+    var $js;
     if(match)
-     {switch(match[1][0]){case 2:var $js=/* true */1;default:exit=159;}}
+     {switch(match[1][0]){case 2:$js=/* true */1;default:exit=159;}}
     else
      {exit=159;}
     
@@ -224,13 +225,12 @@ var
          
          var match$4=x[5];
          
-         if(match$4)
-          {Hashtbl["add"]
+         match$4
+          ?Hashtbl["add"]
             (extension_aliases,
              x[1],
-             /* tuple */[0,match$4[1][1],/* Alias_to_resolve */1])}
-         else
-          {}
+             /* tuple */[0,match$4[1][1],/* Alias_to_resolve */1])
+          :/* () */0;
          
          return build_alias_list(param[2]);
          
@@ -239,13 +239,12 @@ var
          
          var match$5=e[5];
          
-         if(match$5)
-          {Hashtbl["add"]
+         match$5
+          ?Hashtbl["add"]
             (exception_aliases,
              e[1],
-             /* tuple */[0,match$5[1][1],/* Alias_to_resolve */1])}
-         else
-          {}
+             /* tuple */[0,match$5[1][1],/* Alias_to_resolve */1])
+          :/* () */0;
          
          return build_alias_list(param[2]);
          
@@ -275,7 +274,7 @@ var
       
       var s=match[1];
       
-      if(match[2]!==0){return f(t,s);}else{return s;}
+      return match[2]!==0?f(t,s):s;
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -364,103 +363,92 @@ var
 var
  kind_name_exists=
   function(kind)
-   {if(typeof kind==="number")
+   {var pred;
+    if(typeof kind==="number")
      {switch(kind)
        {case 0:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 0:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 0:return /* true */1;default:return /* false */0;}
+           };
          
         case 1:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 1:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 1:return /* true */1;default:return /* false */0;}
+           };
          
         case 2:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 2:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 2:return /* true */1;default:return /* false */0;}
+           };
          
         case 3:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 3:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 3:return /* true */1;default:return /* false */0;}
+           };
          
         case 4:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 4:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 4:return /* true */1;default:return /* false */0;}
+           };
          
         case 5:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 5:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 5:return /* true */1;default:return /* false */0;}
+           };
          
         case 6:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 6:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 6:return /* true */1;default:return /* false */0;}
+           };
          
         case 7:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 7:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 7:return /* true */1;default:return /* false */0;}
+           };
          
         case 8:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 8:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 8:return /* true */1;default:return /* false */0;}
+           };
          
         case 9:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 9:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 9:return /* true */1;default:return /* false */0;}
+           };
          
         case 10:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 11:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 11:return /* true */1;default:return /* false */0;}
+           };
          
         case 11:
-         var
-          pred=
-           function(e)
-            {switch(e[0])
-              {case 12:return /* true */1;default:return /* false */0;}
-             };
+         pred=
+         function(e)
+          {switch(e[0])
+            {case 12:return /* true */1;default:return /* false */0;}
+           };
          
         }
       }
@@ -807,18 +795,18 @@ var
            if(match)
             {return /* tuple */[0,acc_b,acc_inc,acc_names];}
            else
-            {try
-              {var mmt_opt=/* Some */[0,/* Mod */[0,lookup_module(ma[1])]];}
+            {var mmt_opt;
+             try
+              {mmt_opt=/* Some */[0,/* Mod */[0,lookup_module(ma[1])]];}
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {try
-                  {var
-                    mmt_opt=
-                     /* Some */[0,/* Modtype */[1,lookup_module_type(ma[1])]];
+                  {mmt_opt=
+                   /* Some */[0,/* Modtype */[1,lookup_module_type(ma[1])]];
                    }
                  catch(exn$1)
                   {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {var mmt_opt=/* None */0;}
+                    {mmt_opt=/* None */0;}
                    else
                     {throw exn$1;}
                    }
@@ -827,12 +815,11 @@ var
                 {throw exn;}
                }
              
-             if(mmt_opt)
-              {ma[2]=/* Some */[0,mmt_opt[1]];
-               return /* tuple */[0,/* true */1,acc_inc,acc_names];
-               }
-             else
-              {return /* tuple */[0,
+             return mmt_opt
+                     ?(ma[2]=
+                       /* Some */[0,mmt_opt[1]],
+                       /* tuple */[0,/* true */1,acc_inc,acc_names])
+                     :/* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](m[1]),acc_inc],
                        CamlPrimitive["caml_string_equal"]
@@ -841,7 +828,6 @@ var
                          (ma[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mmt */[2,ma[1]],acc_names]];
-               }
              }
            
           case 2:
@@ -889,21 +875,21 @@ var
            if(match$3)
             {return /* tuple */[0,acc_b,acc_inc,acc_names];}
            else
-            {try
-              {var mt_opt=/* Some */[0,lookup_module_type(mta[1])];}
+            {var mt_opt;
+             try
+              {mt_opt=/* Some */[0,lookup_module_type(mta[1])];}
              catch(exn$2)
               {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var mt_opt=/* None */0;}
+                {mt_opt=/* None */0;}
                else
                 {throw exn$2;}
                }
              
-             if(mt_opt)
-              {mta[2]=/* Some */[0,mt_opt[1]];
-               return /* tuple */[0,/* true */1,acc_inc,acc_names];
-               }
-             else
-              {return /* tuple */[0,
+             return mt_opt
+                     ?(mta[2]=
+                       /* Some */[0,mt_opt[1]],
+                       /* tuple */[0,/* true */1,acc_inc,acc_names])
+                     :/* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](m[1]),acc_inc],
                        CamlPrimitive["caml_string_equal"]
@@ -912,7 +898,6 @@ var
                          (mta[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mt */[1,mta[1]],acc_names]];
-               }
              }
            
           }
@@ -956,21 +941,21 @@ var
            if(match)
             {return /* tuple */[0,acc_b,acc_inc,acc_names];}
            else
-            {try
-              {var mt_opt=/* Some */[0,lookup_module_type(mta[1])];}
+            {var mt_opt;
+             try
+              {mt_opt=/* Some */[0,lookup_module_type(mta[1])];}
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var mt_opt=/* None */0;}
+                {mt_opt=/* None */0;}
                else
                 {throw exn;}
                }
              
-             if(mt_opt)
-              {mta[2]=/* Some */[0,mt_opt[1]];
-               return /* tuple */[0,/* true */1,acc_inc,acc_names];
-               }
-             else
-              {return /* tuple */[0,
+             return mt_opt
+                     ?(mta[2]=
+                       /* Some */[0,mt_opt[1]],
+                       /* tuple */[0,/* true */1,acc_inc,acc_names])
+                     :/* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](mt[1]),acc_inc],
                        CamlPrimitive["caml_string_equal"]
@@ -979,7 +964,6 @@ var
                          (mta[1],Odoc_messages["sig_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_mt */[1,mta[1]],acc_names]];
-               }
              }
            
           case 3:
@@ -990,20 +974,17 @@ var
     
     var match=mt[6];
     
-    if(match)
-     {return iter_kind
+    return match
+            ?iter_kind
               (/* tuple */[0,
                 acc_b_modif,
                 acc_incomplete_top_module_names,
                 acc_names_not_found],
-               match[1]);
-      }
-    else
-     {return /* tuple */[0,
+               match[1])
+            :/* tuple */[0,
               acc_b_modif,
               acc_incomplete_top_module_names,
               acc_names_not_found];
-      }
     };
 
 var
@@ -1046,18 +1027,18 @@ var
                  acc_names_not_found];
          }
        else
-        {try
-          {var mmt_opt=/* Some */[0,/* Mod */[0,lookup_module(im[1])]];}
+        {var mmt_opt;
+         try
+          {mmt_opt=/* Some */[0,/* Mod */[0,lookup_module(im[1])]];}
          catch(exn)
           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
             {try
-              {var
-                mmt_opt=
-                 /* Some */[0,/* Modtype */[1,lookup_module_type(im[1])]];
+              {mmt_opt=
+               /* Some */[0,/* Modtype */[1,lookup_module_type(im[1])]];
                }
              catch(exn$1)
               {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var mmt_opt=/* None */0;}
+                {mmt_opt=/* None */0;}
                else
                 {throw exn$1;}
                }
@@ -1066,15 +1047,14 @@ var
             {throw exn;}
            }
          
-         if(mmt_opt)
-          {im[2]=/* Some */[0,mmt_opt[1]];
-           return /* tuple */[0,
-                   /* true */1,
-                   acc_incomplete_top_module_names,
-                   acc_names_not_found];
-           }
-         else
-          {return /* tuple */[0,
+         return mmt_opt
+                 ?(im[2]=
+                   /* Some */[0,mmt_opt[1]],
+                   /* tuple */[0,
+                    /* true */1,
+                    acc_incomplete_top_module_names,
+                    acc_names_not_found])
+                 :/* tuple */[0,
                    acc_b_modif,
                    /* :: */[0,
                     Odoc_name["head"](m_name),
@@ -1085,7 +1065,6 @@ var
                      (im[1],Odoc_messages["sig_end"])
                     ?acc_names_not_found
                     :/* :: */[0,/* NF_mmt */[2,im[1]],acc_names_not_found]];
-           }
          }
        
       case 3:
@@ -1130,30 +1109,29 @@ var
                    acc_names_not_found];
            }
          else
-          {try
-            {var ex_opt=/* Some */[0,lookup_exception(ea[1])];}
+          {var ex_opt;
+           try
+            {ex_opt=/* Some */[0,lookup_exception(ea[1])];}
            catch(exn$2)
             {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
-              {var ex_opt=/* None */0;}
+              {ex_opt=/* None */0;}
              else
               {throw exn$2;}
              }
            
-           if(ex_opt)
-            {ea[2]=/* Some */[0,ex_opt[1]];
-             return /* tuple */[0,
-                     /* true */1,
-                     acc_incomplete_top_module_names,
-                     acc_names_not_found];
-             }
-           else
-            {return /* tuple */[0,
+           return ex_opt
+                   ?(ea[2]=
+                     /* Some */[0,ex_opt[1]],
+                     /* tuple */[0,
+                      /* true */1,
+                      acc_incomplete_top_module_names,
+                      acc_names_not_found])
+                   :/* tuple */[0,
                      acc_b_modif,
                      /* :: */[0,
                       Odoc_name["head"](m_name),
                       acc_incomplete_top_module_names],
                      /* :: */[0,/* NF_ex */[7,ea[1]],acc_names_not_found]];
-             }
            }
          }
        else
@@ -1199,19 +1177,19 @@ var
                if(match)
                 {return /* tuple */[0,acc_b2,acc_inc2,acc_names2];}
                else
-                {try
-                  {var cct_opt=/* Some */[0,/* Cl */[0,lookup_class(ic[1])]];}
+                {var cct_opt;
+                 try
+                  {cct_opt=/* Some */[0,/* Cl */[0,lookup_class(ic[1])]];}
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {try
-                      {var
-                        cct_opt=
-                         /* Some */[0,
-                          /* Cltype */[1,lookup_class_type(ic[1]),/* [] */0]];
+                      {cct_opt=
+                       /* Some */[0,
+                        /* Cltype */[1,lookup_class_type(ic[1]),/* [] */0]];
                        }
                      catch(exn$1)
                       {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                        {var cct_opt=/* None */0;}
+                        {cct_opt=/* None */0;}
                        else
                         {throw exn$1;}
                        }
@@ -1220,19 +1198,17 @@ var
                     {throw exn;}
                    }
                  
-                 if(cct_opt)
-                  {ic[2]=/* Some */[0,cct_opt[1]];
-                   return /* tuple */[0,/* true */1,acc_inc2,acc_names2];
-                   }
-                 else
-                  {return /* tuple */[0,
+                 return cct_opt
+                         ?(ic[2]=
+                           /* Some */[0,cct_opt[1]],
+                           /* tuple */[0,/* true */1,acc_inc2,acc_names2])
+                         :/* tuple */[0,
                            acc_b2,
                            /* :: */[0,Odoc_name["head"](c[1]),acc_inc2],
                            CamlPrimitive["caml_string_equal"]
                              (ic[1],Odoc_messages["object_end"])
                             ?acc_names2
                             :/* :: */[0,/* NF_cct */[5,ic[1]],acc_names2]];
-                   }
                  }
                };
            
@@ -1247,28 +1223,27 @@ var
            if(match)
             {return /* tuple */[0,acc_b,acc_inc,acc_names];}
            else
-            {try
-              {var cl_opt=/* Some */[0,lookup_class(capp[1])];}
+            {var cl_opt;
+             try
+              {cl_opt=/* Some */[0,lookup_class(capp[1])];}
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var cl_opt=/* None */0;}
+                {cl_opt=/* None */0;}
                else
                 {throw exn;}
                }
              
-             if(cl_opt)
-              {capp[2]=/* Some */[0,cl_opt[1]];
-               return /* tuple */[0,/* true */1,acc_inc,acc_names];
-               }
-             else
-              {return /* tuple */[0,
+             return cl_opt
+                     ?(capp[2]=
+                       /* Some */[0,cl_opt[1]],
+                       /* tuple */[0,/* true */1,acc_inc,acc_names])
+                     :/* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](c[1]),acc_inc],
                        CamlPrimitive["caml_string_equal"]
                          (capp[1],Odoc_messages["object_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_c */[3,capp[1]],acc_names]];
-               }
              }
            
           case 2:
@@ -1279,11 +1254,12 @@ var
            if(match$1)
             {return /* tuple */[0,acc_b,acc_inc,acc_names];}
            else
-            {try
-              {var cl_opt$1=/* Some */[0,lookup_class(cco[1])];}
+            {var cl_opt$1;
+             try
+              {cl_opt$1=/* Some */[0,lookup_class(cco[1])];}
              catch(exn$1)
               {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                {var cl_opt$1=/* None */0;}
+                {cl_opt$1=/* None */0;}
                else
                 {throw exn$1;}
                }
@@ -1293,28 +1269,27 @@ var
                return /* tuple */[0,/* true */1,acc_inc,acc_names];
                }
              else
-              {try
-                {var clt_opt=/* Some */[0,lookup_class_type(cco[1])];}
+              {var clt_opt;
+               try
+                {clt_opt=/* Some */[0,lookup_class_type(cco[1])];}
                catch(exn$2)
                 {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
-                  {var clt_opt=/* None */0;}
+                  {clt_opt=/* None */0;}
                  else
                   {throw exn$2;}
                  }
                
-               if(clt_opt)
-                {cco[2]=/* Some */[0,/* Cltype */[1,clt_opt[1],/* [] */0]];
-                 return /* tuple */[0,/* true */1,acc_inc,acc_names];
-                 }
-               else
-                {return /* tuple */[0,
+               return clt_opt
+                       ?(cco[2]=
+                         /* Some */[0,/* Cltype */[1,clt_opt[1],/* [] */0]],
+                         /* tuple */[0,/* true */1,acc_inc,acc_names])
+                       :/* tuple */[0,
                          acc_b,
                          /* :: */[0,Odoc_name["head"](c[1]),acc_inc],
                          CamlPrimitive["caml_string_equal"]
                            (cco[1],Odoc_messages["object_end"])
                           ?acc_names
                           :/* :: */[0,/* NF_cct */[5,cco[1]],acc_names]];
-                 }
                }
              }
            
@@ -1367,19 +1342,19 @@ var
                if(match)
                 {return /* tuple */[0,acc_b2,acc_inc2,acc_names2];}
                else
-                {try
-                  {var
-                    cct_opt=
-                     /* Some */[0,
-                      /* Cltype */[1,lookup_class_type(ic[1]),/* [] */0]];
+                {var cct_opt;
+                 try
+                  {cct_opt=
+                   /* Some */[0,
+                    /* Cltype */[1,lookup_class_type(ic[1]),/* [] */0]];
                    }
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {try
-                      {var cct_opt=/* Some */[0,/* Cl */[0,lookup_class(ic[1])]];}
+                      {cct_opt=/* Some */[0,/* Cl */[0,lookup_class(ic[1])]];}
                      catch(exn$1)
                       {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                        {var cct_opt=/* None */0;}
+                        {cct_opt=/* None */0;}
                        else
                         {throw exn$1;}
                        }
@@ -1388,19 +1363,17 @@ var
                     {throw exn;}
                    }
                  
-                 if(cct_opt)
-                  {ic[2]=/* Some */[0,cct_opt[1]];
-                   return /* tuple */[0,/* true */1,acc_inc2,acc_names2];
-                   }
-                 else
-                  {return /* tuple */[0,
+                 return cct_opt
+                         ?(ic[2]=
+                           /* Some */[0,cct_opt[1]],
+                           /* tuple */[0,/* true */1,acc_inc2,acc_names2])
+                         :/* tuple */[0,
                            acc_b2,
                            /* :: */[0,Odoc_name["head"](ct[1]),acc_inc2],
                            CamlPrimitive["caml_string_equal"]
                              (ic[1],Odoc_messages["object_end"])
                             ?acc_names2
                             :/* :: */[0,/* NF_cct */[5,ic[1]],acc_names2]];
-                   }
                  }
                };
            
@@ -1415,20 +1388,19 @@ var
            if(match)
             {return /* tuple */[0,acc_b,acc_inc,acc_names];}
            else
-            {try
-              {var
-                cct_opt=
-                 /* Some */[0,
-                  /* Cltype */[1,lookup_class_type(cta[1]),/* [] */0]];
+            {var cct_opt;
+             try
+              {cct_opt=
+               /* Some */[0,
+                /* Cltype */[1,lookup_class_type(cta[1]),/* [] */0]];
                }
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {try
-                  {var cct_opt=/* Some */[0,/* Cl */[0,lookup_class(cta[1])]];
-                   }
+                  {cct_opt=/* Some */[0,/* Cl */[0,lookup_class(cta[1])]];}
                  catch(exn$1)
                   {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {var cct_opt=/* None */0;}
+                    {cct_opt=/* None */0;}
                    else
                     {throw exn$1;}
                    }
@@ -1437,19 +1409,17 @@ var
                 {throw exn;}
                }
              
-             if(cct_opt)
-              {cta[2]=/* Some */[0,cct_opt[1]];
-               return /* tuple */[0,/* true */1,acc_inc,acc_names];
-               }
-             else
-              {return /* tuple */[0,
+             return cct_opt
+                     ?(cta[2]=
+                       /* Some */[0,cct_opt[1]],
+                       /* tuple */[0,/* true */1,acc_inc,acc_names])
+                     :/* tuple */[0,
                        acc_b,
                        /* :: */[0,Odoc_name["head"](ct[1]),acc_inc],
                        CamlPrimitive["caml_string_equal"]
                          (cta[1],Odoc_messages["object_end"])
                         ?acc_names
                         :/* :: */[0,/* NF_cct */[5,cta[1]],acc_names]];
-               }
              }
            
           }
@@ -1483,30 +1453,29 @@ var
                            acc_names_not_found];
                    }
                  else
-                  {try
-                    {var xt_opt=/* Some */[0,lookup_extension(xa[1])];}
+                  {var xt_opt;
+                   try
+                    {xt_opt=/* Some */[0,lookup_extension(xa[1])];}
                    catch(exn)
                     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                      {var xt_opt=/* None */0;}
+                      {xt_opt=/* None */0;}
                      else
                       {throw exn;}
                      }
                    
-                   if(xt_opt)
-                    {xa[2]=/* Some */[0,xt_opt[1]];
-                     return /* tuple */[0,
-                             /* true */1,
-                             acc_incomplete_top_module_names,
-                             acc_names_not_found];
-                     }
-                   else
-                    {return /* tuple */[0,
+                   return xt_opt
+                           ?(xa[2]=
+                             /* Some */[0,xt_opt[1]],
+                             /* tuple */[0,
+                              /* true */1,
+                              acc_incomplete_top_module_names,
+                              acc_names_not_found])
+                           :/* tuple */[0,
                              acc_b_modif,
                              /* :: */[0,
                               Odoc_name["head"](xt[1]),
                               acc_incomplete_top_module_names],
                              /* :: */[0,/* NF_xt */[6,xa[1]],acc_names_not_found]];
-                     }
                    }
                  }
                else
@@ -1525,24 +1494,25 @@ var ao=Odoc_misc["apply_opt"];
 var
  not_found_of_kind=
   function(kind,name)
-   {if(typeof kind==="number")
+   {var $js;
+    if(typeof kind==="number")
      {switch(kind)
-       {case 0:var $js=Odoc_messages["cross_module_not_found"];
-        case 1:var $js=Odoc_messages["cross_module_type_not_found"];
-        case 2:var $js=Odoc_messages["cross_class_not_found"];
-        case 3:var $js=Odoc_messages["cross_class_type_not_found"];
-        case 4:var $js=Odoc_messages["cross_value_not_found"];
-        case 5:var $js=Odoc_messages["cross_type_not_found"];
-        case 6:var $js=Odoc_messages["cross_extension_not_found"];
-        case 7:var $js=Odoc_messages["cross_exception_not_found"];
-        case 8:var $js=Odoc_messages["cross_attribute_not_found"];
-        case 9:var $js=Odoc_messages["cross_method_not_found"];
-        case 10:var $js=Odoc_messages["cross_recfield_not_found"];
-        case 11:var $js=Odoc_messages["cross_const_not_found"];
+       {case 0:$js=Odoc_messages["cross_module_not_found"];
+        case 1:$js=Odoc_messages["cross_module_type_not_found"];
+        case 2:$js=Odoc_messages["cross_class_not_found"];
+        case 3:$js=Odoc_messages["cross_class_type_not_found"];
+        case 4:$js=Odoc_messages["cross_value_not_found"];
+        case 5:$js=Odoc_messages["cross_type_not_found"];
+        case 6:$js=Odoc_messages["cross_extension_not_found"];
+        case 7:$js=Odoc_messages["cross_exception_not_found"];
+        case 8:$js=Odoc_messages["cross_attribute_not_found"];
+        case 9:$js=Odoc_messages["cross_method_not_found"];
+        case 10:$js=Odoc_messages["cross_recfield_not_found"];
+        case 11:$js=Odoc_messages["cross_const_not_found"];
         }
       }
     else
-     {var $js=Odoc_messages["cross_section_not_found"];}
+     {$js=Odoc_messages["cross_section_not_found"];}
     return $js(name);
     };
 
@@ -1621,21 +1591,23 @@ var
                if(was_verified(v))
                 {return /* Ref */[16,name,/* Some */[0,kind],text_option];}
                else
-                {if(typeof kind==="number")
-                  {if(typeof kind==="number")
+                {var res;
+                 if(typeof kind==="number")
+                  {var f$1;
+                   if(typeof kind==="number")
                     {switch(kind)
-                      {case 0:var f$1=module_exists;
-                       case 1:var f$1=module_type_exists;
-                       case 2:var f$1=class_exists;
-                       case 3:var f$1=class_type_exists;
-                       case 4:var f$1=value_exists;
-                       case 5:var f$1=type_exists;
-                       case 6:var f$1=extension_exists;
-                       case 7:var f$1=exception_exists;
-                       case 8:var f$1=attribute_exists;
-                       case 9:var f$1=method_exists;
-                       case 10:var f$1=recfield_exists;
-                       case 11:var f$1=const_exists;
+                      {case 0:f$1=module_exists;
+                       case 1:f$1=module_type_exists;
+                       case 2:f$1=class_exists;
+                       case 3:f$1=class_type_exists;
+                       case 4:f$1=value_exists;
+                       case 5:f$1=type_exists;
+                       case 6:f$1=extension_exists;
+                       case 7:f$1=exception_exists;
+                       case 8:f$1=attribute_exists;
+                       case 9:f$1=method_exists;
+                       case 10:f$1=recfield_exists;
+                       case 11:f$1=const_exists;
                        }
                      }
                    else
@@ -1644,12 +1616,10 @@ var
                             [0,"odoc_cross.ml",808,37]];
                      }
                    
-                   if(f$1(name))
-                    {add_verified(v);
-                     var res=/* tuple */[0,name,/* Some */[0,kind]];
-                     }
-                   else
-                    {var res=/* tuple */[0,name,/* None */0];}
+                   res=
+                   f$1(name)
+                    ?(add_verified(v),/* tuple */[0,name,/* Some */[0,kind]])
+                    :/* tuple */[0,name,/* None */0];
                    }
                  else
                   {try
@@ -1666,13 +1636,11 @@ var
                        /* tuple */[0,name,/* Some */[0,/* RK_section */[0,t]]];
                      
                      add_verified(v2);
-                     var
-                      res=
-                       /* tuple */[0,name,/* Some */[0,/* RK_section */[0,t]]];
+                     res=/* tuple */[0,name,/* Some */[0,/* RK_section */[0,t]]];
                      }
                    catch(exn)
                     {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                      {var res=/* tuple */[0,name,/* None */0];}
+                      {res=/* tuple */[0,name,/* None */0];}
                      else
                       {throw exn;}
                      }
@@ -1720,6 +1688,7 @@ var
                
                var match$1=get_known_elements(name$1);
                
+               var res;
                if(match$1)
                 {var ele=match$1[1];
                  
@@ -1785,7 +1754,7 @@ var
                  var name$2=match$2[1];
                  
                  add_verified(/* tuple */[0,name$2,/* Some */[0,kind$1]]);
-                 var res=/* tuple */[0,name$2,/* Some */[0,kind$1]];
+                 res=/* tuple */[0,name$2,/* Some */[0,kind$1]];
                  }
                else
                 {try
@@ -1802,13 +1771,12 @@ var
                      /* tuple */[0,name$1,/* Some */[0,/* RK_section */[0,t]]];
                    
                    add_verified(v2);
-                   var
-                    res=
-                     /* tuple */[0,name$1,/* Some */[0,/* RK_section */[0,t]]];
+                   res=
+                   /* tuple */[0,name$1,/* Some */[0,/* RK_section */[0,t]]];
                    }
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {var res=/* tuple */[0,name$1,/* None */0];}
+                    {res=/* tuple */[0,name$1,/* None */0];}
                    else
                     {throw exn;}
                    }
@@ -2240,10 +2208,9 @@ var
           
           var h=param[1];
           
-          if(List["mem"](h,acc))
-           {return remove_doubles(acc,q);}
-          else
-           {return remove_doubles(/* :: */[0,h,acc],q);}
+          return List["mem"](h,acc)
+                  ?remove_doubles(acc,q)
+                  :remove_doubles(/* :: */[0,h,acc],q);
           }
         else
          {return acc;}
@@ -2267,13 +2234,13 @@ var
            (function(m){return List["mem"](m[1],remaining_no_doubles);},
             incomplete_modules);
         
-        if(match[1]){return iter(remaining_modules);}else{return match[3];}
+        return match[1]?iter(remaining_modules):match[3];
         };
     
     var names_not_found=iter(module_list);
     
-    if(names_not_found)
-     {List["iter"]
+    names_not_found
+     ?List["iter"]
        (function(nf)
          {var $js;
           switch(nf[0])
@@ -2292,9 +2259,8 @@ var
             }
           return Odoc_global["pwarning"]($js);
           },
-        names_not_found)}
-    else
-     {}
+        names_not_found)
+     :/* () */0;
     
     return associate_type_of_elements_in_comments(module_list);
     };

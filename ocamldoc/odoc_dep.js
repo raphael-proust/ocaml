@@ -81,15 +81,13 @@ var
 var
  trans_closure=
   function(graph,acc,n)
-   {if(S[3](n[1],acc))
-     {return acc;}
-    else
-     {return S[14]
+   {return S[3](n[1],acc)
+            ?acc
+            :S[14]
               (function(child,acc2)
                 {return trans_closure(graph,acc2,get_node(graph,child));},
                n[2],
                S[4](n[1],acc));
-      }
     };
 
 var
@@ -121,35 +119,31 @@ var
          set_reachables=
           List["fold_left"]
            (function(acc,param)
-             {if(CamlPrimitive["caml_string_equal"](child,param[1]))
-               {return acc;}
-              else
-               {return S[7](acc,param[2]);}
+             {return CamlPrimitive["caml_string_equal"](child,param[1])
+                      ?acc
+                      :S[7](acc,param[2]);
               },
             S[1],
             node[3]);
         
         var set=S[6](node[1],set_reachables);
         
-        if(S[16](function(n2){return S[3](child,get_node(graph,n2)[2]);},set))
-         {node[2]=S[6](child,node[2]);
-          return node[3]=
-                 List["filter"]
-                  (function(param)
-                    {return CamlPrimitive["caml_string_notequal"]
-                             (param[1],child);
-                     },
-                   node[3]),
-                 0;
-          }
-        else
-         {return /* () */0;}
+        return S[16]
+                 (function(n2){return S[3](child,get_node(graph,n2)[2]);},set)
+                ?(node[2]=
+                  S[6](child,node[2]),
+                  node[3]=
+                  List["filter"]
+                   (function(param)
+                     {return CamlPrimitive["caml_string_notequal"]
+                              (param[1],child);
+                      },
+                    node[3]),
+                  0)
+                :/* () */0;
         },
       node[2]);
-    if(node[4])
-     {return node[2]=S[4](node[1],node[2]),0;}
-    else
-     {return /* () */0;}
+    return node[4]?(node[2]=S[4](node[1],node[2]),0):/* () */0;
     };
 
 var
@@ -269,10 +263,7 @@ var
 var
  deps_of_types=
   function($staropt$star,types)
-   {if($staropt$star)
-     {var kernel$1=$staropt$star[1];}
-    else
-     {var kernel$1=/* false */0;}
+   {var kernel$1=$staropt$star?$staropt$star[1]:/* false */0;
     
     var
      deps_pre=

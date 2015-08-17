@@ -17,19 +17,15 @@ var
   function(param)
    {var time=Checkpoints["current_time"](/* () */0);
     
-    if(history[1]===/* [] */0)
-     {return history[1]=/* :: */[0,time,/* [] */0],0;}
-    else
-     {if(time!==List["hd"](history[1]))
-       {return history[1]=
-               Primitives["list_truncate"]
-                (Debugger_config["history_size"][1],
-                 /* :: */[0,time,history[1]]),
-               0;
-        }
-      else
-       {return 0;}
-      }
+    return history[1]===/* [] */0
+            ?(history[1]=/* :: */[0,time,/* [] */0],0)
+            :time!==List["hd"](history[1])
+              ?(history[1]=
+                Primitives["list_truncate"]
+                 (Debugger_config["history_size"][1],
+                  /* :: */[0,time,history[1]]),
+                0)
+              :0;
     };
 
 var
@@ -58,10 +54,9 @@ var
 var
  previous_time=
   function(n)
-   {if(n===Int64ops["_1"])
-     {return previous_time_1(/* () */0);}
-    else
-     {previous_time_1(/* () */0);return previous_time(Int64ops["pre64"](n));}
+   {return n===Int64ops["_1"]
+            ?previous_time_1(/* () */0)
+            :(previous_time_1(/* () */0),previous_time(Int64ops["pre64"](n)));
     };
 
 module["exports"]=

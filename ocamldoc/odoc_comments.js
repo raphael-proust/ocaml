@@ -69,15 +69,15 @@ var
             
             var mem_nb_chars=Odoc_comments_global["nb_chars"][1];
             
+            var match$3;
             if(remain_opt)
              {var lexbuf2=Lexing["from_string"](remain_opt[1]);
               
-              var
-               match$3=
-                Odoc_parser["info_part2"](Odoc_lexer["elements"],lexbuf2);
+              match$3=
+              Odoc_parser["info_part2"](Odoc_lexer["elements"],lexbuf2);
               }
             else
-             {var match$3=/* () */0;}
+             {match$3=/* () */0;}
             
             switch(desc)
              {case "":var $js=/* None */0;
@@ -119,54 +119,48 @@ var
            {return [/* tuple */0,0,/* None */0];}
           }
         catch(exn)
-         {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-           {Odoc_global["errors"][0]++;
-            Printf["eprintf"]
-             ([/* Format */0,
-               [/* String_literal */11,
-                "File ",
-                [/* Caml_string */3,
-                 /* No_padding */0,
-                 [/* String_literal */11,
-                  ", line ",
-                  [/* Int */4,
-                   /* Int_d */0,
-                   /* No_padding */0,
-                   /* No_precision */0,
-                   [/* String_literal */11,
-                    ":\n",
-                    [/* String */2,
-                     /* No_padding */0,
-                     [/* Char_literal */12,
-                      10,
-                      [/* Flush */10,/* End_of_format */0]]]]]]]],
-               "File %S, line %d:\n%s\n%!"],
-              file,
-              Odoc_lexer["line_number"][1]+1,
-              exn[2]);
-            return [/* tuple */0,0,/* None */0];
-            }
-          else
-           {if(exn[1]===Odoc_text["Text_syntax"])
-             {Odoc_global["errors"][0]++;
-              Pervasives["prerr_endline"]
-               (Pervasives["^"]
-                 (file,
-                  Pervasives["^"]
-                   (" : ",
-                    Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4]))));
-              return [/* tuple */0,0,/* None */0];
-              }
-            else
-             {Odoc_global["errors"][0]++;
-              Pervasives["prerr_endline"]
-               (Pervasives["^"]
-                 (file,
-                  Pervasives["^"]
-                   (" : ",Pervasives["^"](Odoc_messages["parse_error"],"\n"))));
-              return [/* tuple */0,0,/* None */0];
-              }
-            }
+         {return exn[1]===CamlPrimitive["caml_global_data"]["Failure"]
+                  ?(Odoc_global["errors"][0]++,
+                    Printf["eprintf"]
+                     ([/* Format */0,
+                       [/* String_literal */11,
+                        "File ",
+                        [/* Caml_string */3,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          ", line ",
+                          [/* Int */4,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           [/* String_literal */11,
+                            ":\n",
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* Char_literal */12,
+                              10,
+                              [/* Flush */10,/* End_of_format */0]]]]]]]],
+                       "File %S, line %d:\n%s\n%!"],
+                      file,
+                      Odoc_lexer["line_number"][1]+1,
+                      exn[2]),
+                    [/* tuple */0,0,/* None */0])
+                  :exn[1]===Odoc_text["Text_syntax"]
+                    ?(Odoc_global["errors"][0]++,
+                      Pervasives["prerr_endline"]
+                       (Pervasives["^"]
+                         (file,
+                          Pervasives["^"]
+                           (" : ",
+                            Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4])))),
+                      [/* tuple */0,0,/* None */0])
+                    :(Odoc_global["errors"][0]++,
+                      Pervasives["prerr_endline"]
+                       (Pervasives["^"]
+                         (file,
+                          Pervasives["^"]
+                           (" : ",Pervasives["^"](Odoc_messages["parse_error"],"\n")))),
+                      [/* tuple */0,0,/* None */0]);
           }
         };
     
@@ -176,10 +170,7 @@ var
        {try
          {var pos=Str["search_forward"](Str["regexp"]("(\*"),s,0);
           
-          if(s["length"]>=pos+1)
-           {var next_char=s[pos+2];}
-          else
-           {var next_char=95;}
+          var next_char=s["length"]>=pos+1?s["charCodeAt"](pos+2):95;
           
           var s2=$$String["sub"](s,0,pos);
           
@@ -249,13 +240,11 @@ var
         
         var match$1=Odoc_parser["main"](Odoc_lexer["simple"],lexbuf);
         
-        if(match$1)
-         {return /* tuple */[0,
+        return match$1
+                ?/* tuple */[0,
                   Odoc_comments_global["nb_chars"][1],
-                  /* Some */[0,Odoc_types["dummy_info"]]];
-          }
-        else
-         {return [/* tuple */0,0,/* None */0];}
+                  /* Some */[0,Odoc_types["dummy_info"]]]
+                :[/* tuple */0,0,/* None */0];
         };
     
     var
@@ -297,23 +286,17 @@ var
     var
      retrieve_first_info_simple=
       function($staropt$star,file,s)
-       {if($staropt$star)
-         {var strict=$staropt$star[1];}
-        else
-         {var strict=/* true */1;}
+       {var strict=$staropt$star?$staropt$star[1]:/* true */1;
         
         var match=retrieve_info_simple(file,s);
         
         var match$1=match[2];
         
-        if(match$1)
-         {if(!strict||nothing_before_simple_comment(s))
-           {return /* tuple */[0,match[1],/* Some */[0,match$1[1]]];}
-          else
-           {return [/* tuple */0,0,/* None */0];}
-          }
-        else
-         {return [/* tuple */0,0,/* None */0];}
+        return match$1
+                ?!strict||nothing_before_simple_comment(s)
+                  ?/* tuple */[0,match[1],/* Some */[0,match$1[1]]]
+                  :[/* tuple */0,0,/* None */0]
+                :[/* tuple */0,0,/* None */0];
         };
     
     var
@@ -331,10 +314,9 @@ var
               
               var len=match[1];
               
-              if(match$1)
-               {return f(len+cur_len,/* Some */[0,match$1[1]]);}
-              else
-               {return /* tuple */[0,cur_len+len,cur_d];}
+              return match$1
+                      ?f(len+cur_len,/* Some */[0,match$1[1]])
+                      :/* tuple */[0,cur_len+len,cur_d];
               }
             catch(exn){return /* tuple */[0,cur_len,cur_d];}
             };
@@ -357,10 +339,9 @@ var
               
               var len=match[1];
               
-              if(match$1)
-               {return f(len+cur_len,/* Some */[0,match$1[1]]);}
-              else
-               {return /* tuple */[0,cur_len+len,cur_d];}
+              return match$1
+                      ?f(len+cur_len,/* Some */[0,match$1[1]])
+                      :/* tuple */[0,cur_len+len,cur_d];
               }
             catch(exn){return /* tuple */[0,cur_len,cur_d];}
             };
@@ -415,13 +396,11 @@ var
            {try
              {var pos=Str["search_forward"](Str["regexp_string"]("(**"),s,0);
               
-              if
-               (blank_line($$String["sub"](s,0,pos))||
-                CamlPrimitive["caml_equal"]
-                 (d[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]]))
-               {return [/* tuple */0,0,/* None */0];}
-              else
-               {return /* tuple */[0,len,/* Some */[0,d]];}
+              return blank_line($$String["sub"](s,0,pos))||
+                      CamlPrimitive["caml_equal"]
+                       (d[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]])
+                      ?[/* tuple */0,0,/* None */0]
+                      :/* tuple */[0,len,/* Some */[0,d]];
               }
             catch(exn)
              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -448,23 +427,20 @@ var
         
         var match$1=List["rev"](special_coms);
         
+        var match$2;
         if(match$1)
          {var h=match$1[1];
           
-          if
-           (blank_line_outside_simple
-             (file,$$String["sub"](s,len,s["length"]-len))||
-            CamlPrimitive["caml_equal"]
-             (h[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]]))
-           {var match$2=/* tuple */[0,/* None */0,special_coms];}
-          else
-           {var
-             match$2=
-              /* tuple */[0,/* Some */[0,h],List["rev"](match$1[2])];
-            }
+          match$2=
+          blank_line_outside_simple
+            (file,$$String["sub"](s,len,s["length"]-len))||
+           CamlPrimitive["caml_equal"]
+            (h[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]])
+           ?/* tuple */[0,/* None */0,special_coms]
+           :/* tuple */[0,/* Some */[0,h],List["rev"](match$1[2])];
           }
         else
-         {var match$2=[/* tuple */0,/* None */0,/* [] */0];}
+         {match$2=[/* tuple */0,/* None */0,/* [] */0];}
         
         var
          ele_comments=
@@ -472,12 +448,10 @@ var
            (function(acc,sc)
              {var match$3=sc[1];
               
-              if(match$3)
-               {return Pervasives["@"]
-                        (acc,/* :: */[0,f_create_ele(match$3[1]),/* [] */0]);
-                }
-              else
-               {return acc;}
+              return match$3
+                      ?Pervasives["@"]
+                        (acc,/* :: */[0,f_create_ele(match$3[1]),/* [] */0])
+                      :acc;
               },
             /* [] */0,
             match$2[2]);
@@ -540,7 +514,7 @@ var
     
     var i_opt=match[2];
     
-    if(i_opt){return i_opt[1];}else{return dummy;}
+    return i_opt?i_opt[1]:dummy;
     };
 
 var

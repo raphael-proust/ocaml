@@ -97,23 +97,24 @@ var
           
           var match=law[3];
           
+          var $js;
           if(match!==0)
-           {if(!evil[1])
-             {Printf["printf"]
-               ([/* Format */0,
-                 [/* String_literal */11,
-                  "IMPORTANT: I cannot work with leftover compiled files.\n",
-                  [/* Flush */10,/* End_of_format */0]],
-                 "IMPORTANT: I cannot work with leftover compiled files.\n%!"]),
-              evil[1]=
-              /* true */1}
-            else
-             {}
+           {!evil[1]
+             ?(Printf["printf"]
+                ([/* Format */0,
+                  [/* String_literal */11,
+                   "IMPORTANT: I cannot work with leftover compiled files.\n",
+                   [/* Flush */10,/* End_of_format */0]],
+                  "IMPORTANT: I cannot work with leftover compiled files.\n%!"]),
+               evil[1]=
+               /* true */1,
+               0)
+             :0;
             
-            var $js="ERROR";
+            $js="ERROR";
             }
           else
-           {var $js="Warning";}
+           {$js="Warning";}
           Printf["printf"]
            ([/* Format */0,
              [/* String */2,

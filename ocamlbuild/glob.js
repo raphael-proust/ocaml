@@ -75,12 +75,11 @@ var
     var
      $neg$neg$great=
       function(q1,t,q2)
-       {if(t)
-         {transitions[1]=/* :: */[0,/* tuple */[0,q1,t[1],q2],transitions[1]];
-          return q1;
-          }
-        else
-         {epsilons[1]=/* :: */[0,/* tuple */[0,q1,q2],epsilons[1]];return q1;}
+       {return t
+                ?(transitions[1]=
+                  /* :: */[0,/* tuple */[0,q1,t[1],q2],transitions[1]],
+                  q1)
+                :(epsilons[1]=/* :: */[0,/* tuple */[0,q1,q2],epsilons[1]],q1);
         };
     
     var
@@ -146,16 +145,15 @@ var
                 {if(i===m)
                   {return q0;}
                  else
-                  {if(i===m-1)
-                    {var q$prime=qf;}
-                   else
-                    {var q$prime=state(/* () */0);}
+                  {var q$prime=i===m-1?qf:state(/* () */0);
                    
                    var
                     match$4=
                      $neg$neg$great
                       (q,
-                       /* QCLASS */[0,/* Atom */[3,/* tuple */[0,u[i],u[i]]]],
+                       /* QCLASS */[0,
+                        /* Atom */[3,
+                         /* tuple */[0,u["charCodeAt"](i),u["charCodeAt"](i)]]],
                        q$prime);
                    
                    return loop$1(q$prime,i+1);
@@ -193,10 +191,9 @@ var
            future$prime=
             IS[14]
              (function(q$prime,future$prime)
-               {if(IS[3](q$prime,past$prime))
-                 {return future$prime;}
-                else
-                 {return /* :: */[0,q$prime,future$prime];}
+               {return IS[3](q$prime,past$prime)
+                        ?future$prime
+                        :/* :: */[0,q$prime,future$prime];
                 },
               graph[q+1],
               param[2]);
@@ -238,10 +235,7 @@ var build=function(x){var match=build$prime(x);return match[3];};
 var
  run=
   function($staropt$star,machine,u)
-   {if($staropt$star)
-     {var trace=$staropt$star[1];}
-    else
-     {var trace=/* false */0;}
+   {var trace=$staropt$star?$staropt$star[1]:/* false */0;
     
     var m=u["length"];
     
@@ -258,10 +252,9 @@ var
                (function(q,qs$prime)
                  {return My_std["List"][19]
                           (function(qs$prime,param)
-                            {if(match_character_class(param[1],c))
-                              {return IS[7](qs$prime,param[2]);}
-                             else
-                              {return qs$prime;}
+                            {return match_character_class(param[1],c)
+                                     ?IS[7](qs$prime,param[2])
+                                     :qs$prime;
                              },
                            qs$prime,
                            machine[2][q+1]);
@@ -269,11 +262,12 @@ var
                 qs,
                 IS[1]);
             
+            var t$1;
             try
-             {var t$1=Hashtbl["find"](machine[4],c);}
+             {t$1=Hashtbl["find"](machine[4],c);}
             catch(exn$1)
              {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-               {var t$1=ISM[1];}
+               {t$1=ISM[1];}
               else
                {throw exn$1;}
               }
@@ -295,45 +289,44 @@ var
          {if(i===m)
            {return IS[3](machine[3],qs);}
           else
-           {var c=u[i];
+           {var c=u["charCodeAt"](i);
             
-            if(trace)
-             {Printf["printf"]
-               ([/* Format */0,
-                 [/* Int */4,
-                  /* Int_d */0,
-                  /* No_padding */0,
-                  /* No_precision */0,
-                  [/* Char_literal */12,
-                   32,
-                   [/* Caml_char */1,
-                    [/* String_literal */11," {",/* End_of_format */0]]]],
-                 "%d %C {"],
-                i,
-                c),
-              IS[13]
-               (function(q)
-                 {return Printf["printf"]
-                          ([/* Format */0,
-                            [/* Char_literal */12,
-                             32,
-                             [/* Int */4,
-                              /* Int_d */0,
-                              /* No_padding */0,
-                              /* No_precision */0,
-                              /* End_of_format */0]],
-                            " %d"],
-                           q);
-                  },
-                qs),
-              Printf["printf"]
-               ([/* Format */0,
-                 [/* String_literal */11,
-                  " }\n",
-                  [/* Flush */10,/* End_of_format */0]],
-                 " }\n%!"])}
-            else
-             {}
+            trace
+             ?(Printf["printf"]
+                ([/* Format */0,
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* Char_literal */12,
+                    32,
+                    [/* Caml_char */1,
+                     [/* String_literal */11," {",/* End_of_format */0]]]],
+                  "%d %C {"],
+                 i,
+                 c),
+               IS[13]
+                (function(q)
+                  {return Printf["printf"]
+                           ([/* Format */0,
+                             [/* Char_literal */12,
+                              32,
+                              [/* Int */4,
+                               /* Int_d */0,
+                               /* No_padding */0,
+                               /* No_precision */0,
+                               /* End_of_format */0]],
+                             " %d"],
+                            q);
+                   },
+                 qs),
+               Printf["printf"]
+                ([/* Format */0,
+                  [/* String_literal */11,
+                   " }\n",
+                   [/* Flush */10,/* End_of_format */0]],
+                  " }\n%!"]))
+             :0;
             
             var qs$prime=apply(qs,c);
             
@@ -406,10 +399,9 @@ var
                      var
                       check=
                        function(k)
-                        {if(k===n)
-                          {return /* true */1;}
-                         else
-                          {return match_character_class(cl,u[i+k])&&check(k+1);}
+                        {return k===n
+                                 ?/* true */1
+                                 :match_character_class(cl,u["charCodeAt"](i+k))&&check(k+1);
                          };
                      
                      return check(0);
@@ -420,7 +412,8 @@ var
              
              switch(exit){case 26:throw Too_hard;}
              
-            case 1:return n===1&&match_character_class(p$1[1],u[i]);
+            case 1:
+             return n===1&&match_character_class(p$1[1],u["charCodeAt"](i));
             case 2:
              var p2=p$1[2];
              
@@ -448,7 +441,13 @@ var
              
              var
               check$1=
-               function(j){return j===n||v[j]===u[i+j]&&check$1(j+1);};
+               function(j)
+                {return j===
+                        n||
+                        v["charCodeAt"](j)===
+                        u["charCodeAt"](i+j)&&
+                        check$1(j+1);
+                 };
              
              return v["length"]===n&&check$1(0);
              
@@ -521,10 +520,7 @@ var
       function(param)
        {var match=tok[1];
         
-        if(match)
-         {tok[1]=/* None */0;return match[1];}
-        else
-         {return Glob_lexer["token"](l);}
+        return match?(tok[1]=/* None */0,match[1]):Glob_lexer["token"](l);
         };
     
     var

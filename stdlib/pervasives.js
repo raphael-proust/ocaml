@@ -64,7 +64,7 @@ var
     
     CamlPrimitive["caml_blit_string"](s1,0,s,0,l1);
     CamlPrimitive["caml_blit_string"](s2,0,s,l1,l2);
-    return s;
+    return String["fromCharCode"][apply](null,s);
     };
 
 var char_of_int=function(n){return n<0||n>255?invalid_arg("char_of_int"):n;};
@@ -306,7 +306,7 @@ var
    {var s=CamlPrimitive["caml_create_string"](len);
     
     really_input(ic,s,0,len);
-    return s;
+    return String["fromCharCode"][apply](null,s);
     };
 
 var
@@ -368,7 +368,7 @@ var
           }
         };
     
-    return scan(/* [] */0,0);
+    return String["fromCharCode"][apply](null,scan(/* [] */0,0));
     };
 
 var

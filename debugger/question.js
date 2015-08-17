@@ -27,19 +27,15 @@ var
                  (Lexing["from_function"](Input_handling["read_user_input"])));
             
             Input_handling["stop_user_input"](/* () */0);
-            if(line["length"]>0){var match=line[0];}else{var match=32;}
+            var match=line["length"]>0?line["charCodeAt"](0):32;
             
-            if(match!==110)
-             {if(match!==121)
-               {Pervasives["print_string"]("Please answer y or n.");
-                Pervasives["print_newline"](/* () */0);
-                return ask(/* () */0);
-                }
-              else
-               {return /* true */1;}
-              }
-            else
-             {return /* false */0;}
+            return match!==110
+                    ?match!==121
+                      ?(Pervasives["print_string"]("Please answer y or n."),
+                        Pervasives["print_newline"](/* () */0),
+                        ask(/* () */0))
+                      :/* true */1
+                    :/* false */0;
             };
         
         var answer=ask(/* () */0);

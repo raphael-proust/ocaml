@@ -119,11 +119,12 @@ var
      loop=
       function(i)
        {if(i<m)
-         {try
-           {var j=$$String["index_from"](u,i,10);}
+         {var j;
+          try
+           {j=$$String["index_from"](u,i,10);}
           catch(exn)
            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-             {var j=m;}
+             {j=m;}
             else
              {throw exn;}
             }
@@ -142,22 +143,19 @@ var
  execute=
   function
    ($staropt$star,$staropt$star,$staropt$star,$staropt$star,exit,commands)
-   {if($staropt$star$1)
-     {var max_jobs=$staropt$star$1[1];}
-    else
-     {var max_jobs=Pervasives["max_int"];}
+   {var max_jobs=$staropt$star$1?$staropt$star$1[1]:Pervasives["max_int"];
     
-    if($staropt$star$2)
-     {var ticker=$staropt$star$2[1];}
-    else
-     {var ticker=function(prim){return prim;};}
+    var
+     ticker=
+      $staropt$star$2?$staropt$star$2[1]:function(prim){return prim;};
     
-    if($staropt$star$3){var period=$staropt$star$3[1];}else{var period=0.1;}
+    var period=$staropt$star$3?$staropt$star$3[1]:0.1;
     
-    if($staropt$star)
-     {var display=$staropt$star[1];}
-    else
-     {var display=function(f){return f(Pervasives["stdout"]);};}
+    var
+     display=
+      $staropt$star
+       ?$staropt$star[1]
+       :function(f){return f(Pervasives["stdout"]);};
     
     var batch_id=[0,0];
     
@@ -197,27 +195,27 @@ var
     var
      compute_fds=
       function(param)
-       {if(!(prev_jobs[1]===jobs[1]))
-         {prev_jobs[1]=
-          jobs[1],
-          fds[1]=
-          JS[14]
-           (function(job,param$1)
-             {var ofd=doi(job[5]);
-              
-              var ifd=doo(job[6]);
-              
-              var efd=doi(job[7]);
-              
-              return /* tuple */[0,
-                      /* :: */[0,ofd,/* :: */[0,efd,param$1[1]]],
-                      param$1[2],
-                      /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
-              },
-            jobs[1],
-            [/* tuple */0,/* [] */0,/* [] */0,/* [] */0])}
-        else
-         {}
+       {!(prev_jobs[1]===jobs[1])
+         ?(prev_jobs[1]=
+           jobs[1],
+           fds[1]=
+           JS[14]
+            (function(job,param$1)
+              {var ofd=doi(job[5]);
+               
+               var ifd=doo(job[6]);
+               
+               var efd=doi(job[7]);
+               
+               return /* tuple */[0,
+                       /* :: */[0,ofd,/* :: */[0,efd,param$1[1]]],
+                       param$1[2],
+                       /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
+               },
+             jobs[1],
+             [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]),
+           0)
+         :0;
         
         return fds[1];
         };
@@ -260,10 +258,9 @@ var
           
           var cmd=param[1](/* () */0);
           
-          if(CamlPrimitive["caml_string_equal"](cmd,""))
-           {return skip_empty_tasks(tasks);}
-          else
-           {return /* Some */[0,/* tuple */[0,cmd,tasks]];}
+          return CamlPrimitive["caml_string_equal"](cmd,"")
+                  ?skip_empty_tasks(tasks)
+                  :/* Some */[0,/* tuple */[0,cmd,tasks]];
           }
         else
          {return /* None */0;}
@@ -293,17 +290,14 @@ var
     var
      terminate=
       function($staropt$star,job)
-       {if($staropt$star)
-         {var $$continue=$staropt$star[1];}
-        else
-         {var $$continue=/* true */1;}
+       {var $$continue=$staropt$star?$staropt$star[1]:/* true */1;
         
-        if(!job[9])
-         {job[9]=/* true */1;
-          return Queue["add"](/* tuple */[0,job,$$continue],jobs_to_terminate);
-          }
-        else
-         {return /* () */0;}
+        return !job[9]
+                ?(job[9]=
+                  /* true */1,
+                  Queue["add"]
+                   (/* tuple */[0,job,$$continue],jobs_to_terminate))
+                :/* () */0;
         };
     
     var
@@ -320,17 +314,15 @@ var
     var
      do_read=
       function($staropt$star,fd,job)
-       {if($staropt$star)
-         {var loop=$staropt$star[1];}
-        else
-         {var loop=/* false */0;}
+       {var loop=$staropt$star?$staropt$star[1]:/* false */0;
         
         try
          {var
            iteration=
             function(param)
-             {try
-               {var m=Unix["read"](fd,u,0,u["length"]);}
+             {var m;
+              try
+               {m=Unix["read"](fd,u,0,u["length"]);}
               catch(exn)
                {if(exn[1]===Unix["Unix_error"])
                  {var msg=Unix["error_message"](exn[2]);
@@ -348,22 +340,16 @@ var
                                 "Error while reading stdout/stderr: %s\n"],
                                msg);
                       });
-                  var m=0;
+                  m=0;
                   }
                 else
                  {throw exn;}
                 }
               
-              if(m===0)
-               {if(job[9])
-                 {return /* () */0;}
-                else
-                 {return terminate(/* None */0,job);}
-                }
-              else
-               {Buffer["add_subbytes"](job[8],u,0,m);
-                if(loop){return iteration(/* () */0);}else{return /* () */0;}
-                }
+              return m===0
+                      ?job[9]?/* () */0:terminate(/* None */0,job)
+                      :(Buffer["add_subbytes"](job[8],u,0,m),
+                        loop?iteration(/* () */0):/* () */0);
               };
           
           return iteration(/* () */0);
@@ -418,10 +404,9 @@ var
           var
            show_command=
             function(param$1)
-             {if(shown[1])
-               {return /* () */0;}
-              else
-               {return display
+             {return shown[1]
+                      ?/* () */0
+                      :display
                         (function(oc)
                           {shown[1]=/* true */1;
                            fp
@@ -436,10 +421,9 @@ var
                              job[2]);
                            return output_lines("",oc,job[8]);
                            });
-                }
               };
           
-          if(Buffer["length"](job[8])>0){show_command(/* () */0)}else{}
+          Buffer["length"](job[8])>0?show_command(/* () */0):0;
           
           var exit$1;
           

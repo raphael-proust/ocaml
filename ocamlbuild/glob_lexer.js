@@ -12,10 +12,9 @@ var sf=Printf["sprintf"];
 var
  concat_patterns=
   function(p1,p2)
-   {if(typeof p1==="number")
-     {return p2;}
-    else
-     {if(typeof p2==="number"){return p1;}else{return /* Concat */[2,p1,p2];}}
+   {return typeof p1==="number"
+            ?p2
+            :typeof p2==="number"?p1:/* Concat */[2,p1,p2];
     };
 
 var slash=[/* Class */1,[/* Atom */3,[/* tuple */0,47,47]]];
@@ -116,12 +115,10 @@ var
              
              var pl$1=/* :: */[0,match[1],pl];
              
-             if(match[2]===44)
-              {return loop(pl$1);}
-             else
-              {return parse_pattern
+             return match[2]===44
+                     ?loop(pl$1)
+                     :parse_pattern
                        (eof_chars,concat_patterns(p,/* Union */[3,pl$1]),lexbuf);
-               }
              };
          
          return loop(/* [] */0);

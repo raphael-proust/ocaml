@@ -331,16 +331,17 @@ var type_prefix="type_";
 var
  html_files=
   function(name)
-   {try
+   {var qual;
+    try
      {var i=$$String["rindex"](name,46);
       
-      var match=name[i+1];
+      var match=name["charCodeAt"](i+1);
       
-      if(25<-65+match>>>0){var qual="-c";}else{var qual="";}
+      qual=25<-65+match>>>0?"-c":"";
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var qual="";}
+       {qual="";}
       else
        {throw exn;}
       }
@@ -365,10 +366,7 @@ var
     
     var s=Odoc_info["Name"][5](complete_name);
     
-    if(CamlPrimitive["caml_string_equal"](s,""))
-     {var module_name=simple_name;}
-    else
-     {var module_name=s;}
+    var module_name=CamlPrimitive["caml_string_equal"](s,"")?simple_name:s;
     
     var match=html_files(module_name);
     
@@ -486,7 +484,7 @@ var
     var st=function(s){return Buffer["add_string"](buf,s);};
     
     for(var i=0;i<=len-1;i++)
-     {var c=name[i];
+     {var c=name["charCodeAt"](i);
       
       var exit;
       
@@ -699,10 +697,7 @@ var
      ($$class,
       html_of_code,
       function(self$neg1,b,$staropt$star,code)
-       {if($staropt$star)
-         {var with_pre=$staropt$star[1];}
-        else
-         {var with_pre=/* true */1;}
+       {var with_pre=$staropt$star?$staropt$star[1]:/* true */1;
         
         return Odoc_ocamlhtml["html_of_code"](b,/* Some */[0,with_pre],code);
         });
@@ -845,7 +840,7 @@ var
           var buf=Buffer["create"](len);
           
           for(var i=0;i<=len-1;i++)
-           {var match=s[i];
+           {var match=s["charCodeAt"](i);
             
             var exit;
             
@@ -856,7 +851,8 @@ var
             else
              {if(6<-10+switcher>>>0){exit=236;}else{exit=237;}}
             
-            switch(exit){case 237:case 236:Buffer["add_char"](buf,s[i])}
+            switch(exit)
+             {case 237:case 236:Buffer["add_char"](buf,s["charCodeAt"](i))}
             }
           
           return Buffer["contents"](buf);
@@ -981,12 +977,10 @@ var
         function(self$neg2,b,s,t){return /* () */0;},
         html_of_Target,
         function(self$neg2,b,target,code)
-         {if
-           (CamlPrimitive["caml_string_equal"]
-             ($$String["lowercase"](target),"html"))
-           {return bs(b,code);}
-          else
-           {return /* () */0;}
+         {return CamlPrimitive["caml_string_equal"]
+                   ($$String["lowercase"](target),"html")
+                  ?bs(b,code)
+                  :/* () */0;
           },
         html_of_Raw,
         function(self$neg2,b,s)
@@ -1020,12 +1014,9 @@ var
                  {if(n>=len)
                    {return /* None */0;}
                   else
-                   {var match=s[n];
+                   {var match=s["charCodeAt"](n);
                     
-                    if(match!==10)
-                     {return /* Some */[0,n];}
-                    else
-                     {return iter_first(n+1);}
+                    return match!==10?/* Some */[0,n]:iter_first(n+1);
                     }
                   };
               
@@ -1040,21 +1031,17 @@ var
                    {if(n<=first)
                      {return /* None */0;}
                     else
-                     {var match$1=s[n];
+                     {var match$1=s["charCodeAt"](n);
                       
-                      if(match$1!==9)
-                       {return /* Some */[0,n];}
-                      else
-                       {return iter_last(n-1);}
+                      return match$1!==9?/* Some */[0,n]:iter_last(n-1);
                       }
                     };
                 
                 var match$1=iter_last(len-1);
                 
-                if(match$1)
-                 {return $$String["sub"](s,first,match$1[1]-first+1);}
-                else
-                 {return $$String["sub"](s,first,1);}
+                return match$1
+                        ?$$String["sub"](s,first,match$1[1]-first+1)
+                        :$$String["sub"](s,first,1);
                 }
               else
                {return "";}
@@ -1165,22 +1152,22 @@ var
         function(self$neg2,b,n,label_opt,t)
          {/* unknown */"(sendself self-2/1602 create_title_label/1418\n  (makeblock 0 n/1604 label_opt/1605 t/1606))";
           
+          var match;
           if(n>6)
-           {var
-             match=
-              /* tuple */[0,
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   'div class="h',
-                   [/* Int */4,
-                    /* Int_d */0,
-                    /* No_padding */0,
-                    /* No_precision */0,
-                    [/* Char_literal */12,34,/* End_of_format */0]]],
-                  'div class="h%d"'],
-                 n),
-               "div"];
+           {match=
+            /* tuple */[0,
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 'div class="h',
+                 [/* Int */4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,34,/* End_of_format */0]]],
+                'div class="h%d"'],
+               n),
+             "div"];
             }
           else
            {var
@@ -1197,7 +1184,7 @@ var
                  "h%d"],
                 n);
             
-            var match=/* tuple */[0,t$1,t$1];
+            match=/* tuple */[0,t$1,t$1];
             }
           
           bs(b,"<");
@@ -1244,6 +1231,7 @@ var
             
             var exit;
             
+            var match;
             if(typeof kind==="number")
              {switch(kind)
                {case 0:exit=223;
@@ -1251,30 +1239,29 @@ var
                 case 2:exit=223;
                 case 3:exit=223;
                 case 4:
-                 var match=/* tuple */[0,Naming[13](Naming[6],name),h(name)];
+                 match=/* tuple */[0,Naming[13](Naming[6],name),h(name)];
                 case 5:
-                 var match=/* tuple */[0,Naming[13](Naming[1],name),h(name)];
+                 match=/* tuple */[0,Naming[13](Naming[1],name),h(name)];
                 case 6:
-                 var match=/* tuple */[0,Naming[13](Naming[4],name),h(name)];
+                 match=/* tuple */[0,Naming[13](Naming[4],name),h(name)];
                 case 7:
-                 var match=/* tuple */[0,Naming[13](Naming[5],name),h(name)];
+                 match=/* tuple */[0,Naming[13](Naming[5],name),h(name)];
                 case 8:
-                 var match=/* tuple */[0,Naming[13](Naming[7],name),h(name)];
+                 match=/* tuple */[0,Naming[13](Naming[7],name),h(name)];
                 case 9:
-                 var match=/* tuple */[0,Naming[13](Naming[8],name),h(name)];
-                case 10:var match=/* tuple */[0,Naming[19](name),h(name)];
-                case 11:var match=/* tuple */[0,Naming[20](name),h(name)];
+                 match=/* tuple */[0,Naming[13](Naming[8],name),h(name)];
+                case 10:match=/* tuple */[0,Naming[19](name),h(name)];
+                case 11:match=/* tuple */[0,Naming[20](name),h(name)];
                 }
               }
             else
-             {var
-               match=
-                /* tuple */[0,
-                 Naming[36](name),
-                 /* Italic */[5,
-                  /* :: */[0,
-                   /* Raw */[0,Odoc_info["string_of_text"](kind[1])],
-                   /* [] */0]]];
+             {match=
+              /* tuple */[0,
+               Naming[36](name),
+               /* Italic */[5,
+                /* :: */[0,
+                 /* Raw */[0,Odoc_info["string_of_text"](kind[1])],
+                 /* [] */0]]];
               }
             
             switch(exit)
@@ -1285,10 +1272,7 @@ var
                
               }
             
-            if(text_opt)
-             {var text$1=text_opt[1];}
-            else
-             {var text$1=/* :: */[0,match[2],/* [] */0];}
+            var text$1=text_opt?text_opt[1]:/* :: */[0,match[2],/* [] */0];
             
             bs(b,Pervasives["^"]('<a href="',Pervasives["^"](match[1],'">')));
             /* unknown */"(sendself self-2/1620 html_of_text/1419 b/1621 text/1634)";
@@ -1296,10 +1280,9 @@ var
             return bs(b,"</a>");
             }
           else
-           {if(text_opt)
-             {var text$2=text_opt[1];}
-            else
-             {var text$2=/* :: */[0,/* Code */[1,name],/* [] */0];}
+           {var
+             text$2=
+              text_opt?text_opt[1]:/* :: */[0,/* Code */[1,name],/* [] */0];
             
             /* unknown */"(sendself self-2/1620 html_of_text/1419 b/1621 text/1626)";
             }
@@ -1379,8 +1362,8 @@ var
          {var
            index_if_not_empty=
             function(l,url,m)
-             {if(l)
-               {return bp
+             {return l
+                      ?bp
                         (b,
                          [/* Format */0,
                           [/* String_literal */11,
@@ -1394,10 +1377,8 @@ var
                               [/* String_literal */11,"</a></li>\n",/* End_of_format */0]]]]],
                           '<li><a href="%s">%s</a></li>\n'],
                          url,
-                         m);
-                }
-              else
-               {return /* () */0;}
+                         m)
+                      :/* () */0;
               };
           
           bp
@@ -1749,25 +1730,21 @@ var
           },
         html_of_info,
         function(self$neg3,$staropt$star,$staropt$star,b,info_opt)
-         {if($staropt$star$1){var cls=$staropt$star$1[1];}else{var cls="";}
+         {var cls=$staropt$star$1?$staropt$star$1[1]:"";
           
-          if($staropt$star)
-           {var indent=$staropt$star[1];}
-          else
-           {var indent=/* true */1;}
+          var indent=$staropt$star?$staropt$star[1]:/* true */1;
           
           if(info_opt)
            {var info$1=info_opt[1];
             
             var M=Odoc_info;
             
-            if(indent)
-             {bs
+            indent
+             ?bs
                (b,
                 Pervasives["^"]
-                 ('<div class="info ',Pervasives["^"](cls,'">\n')))}
-            else
-             {}
+                 ('<div class="info ',Pervasives["^"](cls,'">\n')))
+             :0;
             
             var match=info$1[7];
             
@@ -1814,7 +1791,7 @@ var
             
             /* unknown */"(sendself self-3/1736 html_of_custom/1676 b/1743 (field 10 info/1745))";
             
-            if(indent){return bs(b,"</div>\n");}else{return 0;}
+            return indent?bs(b,"</div>\n"):0;
             }
           else
            {return /* () */0;}
@@ -1829,7 +1806,7 @@ var
             var dep=info$1[7]!==/* None */0;
             
             bs(b,'<div class="info">\n');
-            if(dep){bs(b,'<span class="deprecated">')}else{}
+            dep?bs(b,'<span class="deprecated">'):0;
             
             var match=info$1[1];
             
@@ -1848,7 +1825,7 @@ var
             else
              {}
             
-            if(dep){bs(b,"</span>")}else{}
+            dep?bs(b,"</span>"):0;
             
             return bs(b,"</div>\n");
             }
@@ -1878,7 +1855,7 @@ var
           
           var c=param[1];
           
-          if(q){f(c);bs(b,sep);return iter(q);}else{return f(c);}
+          return q?(f(c),bs(b,sep),iter(q)):f(c);
           }
         else
          {return /* () */0;}
@@ -1895,12 +1872,9 @@ var
     var b=Buffer["create"](len);
     
     for(var i=0;i<=len-1;i++)
-     {var c=s[i];
+     {var c=s["charCodeAt"](i);
       
-      if(c!==10)
-       {Buffer["add_char"](b,c)}
-      else
-       {Buffer["add_string"](b,"<br>     ")}
+      c!==10?Buffer["add_char"](b,c):Buffer["add_string"](b,"<br>     ");
       }
     
     return Buffer["contents"](b);
@@ -2174,12 +2148,11 @@ var
          },
        index_prefix,
        function(self$neg4)
-        {if
-          (CamlPrimitive["caml_string_equal"]
-            (Odoc_global["out_file"][1],Odoc_messages["default_out_file"]))
-          {return "index";}
-         else
-          {return Filename["basename"](Odoc_global["out_file"][1]);}
+        {return CamlPrimitive["caml_string_equal"]
+                  (Odoc_global["out_file"][1],
+                   Odoc_messages["default_out_file"])
+                 ?"index"
+                 :Filename["basename"](Odoc_global["out_file"][1]);
          },
        index,
        function(self$neg4)
@@ -2383,21 +2356,15 @@ var
         {var
           f=
            function(b,$staropt$star,$staropt$star,t)
-            {if($staropt$star$1)
-              {var nav=$staropt$star$1[1];}
-             else
-              {var nav=/* None */0;}
+            {var nav=$staropt$star$1?$staropt$star$1[1]:/* None */0;
              
-             if($staropt$star)
-              {var comments=$staropt$star[1];}
-             else
-              {var comments=/* [] */0;}
+             var comments=$staropt$star?$staropt$star[1]:/* [] */0;
              
              var
               link_if_not_empty=
                function(l,m,url)
-                {if(l)
-                  {return bp
+                {return l
+                         ?bp
                            (b,
                             [/* Format */0,
                              [/* String_literal */11,
@@ -2411,10 +2378,8 @@ var
                                  [/* String_literal */11,'">\n',/* End_of_format */0]]]]],
                              '<link title="%s" rel=Appendix href="%s">\n'],
                             m,
-                            url);
-                   }
-                 else
-                  {return /* () */0;}
+                            url)
+                         :/* () */0;
                  };
              
              bs(b,"<head>\n");
@@ -2432,8 +2397,8 @@ var
                
                var pre_opt=match[1];
                
-               if(pre_opt)
-                {bp
+               pre_opt
+                ?bp
                   (b,
                    [/* Format */0,
                     [/* String_literal */11,
@@ -2442,12 +2407,11 @@ var
                       /* No_padding */0,
                       [/* String_literal */11,'">\n',/* End_of_format */0]]],
                     '<link rel="previous" href="%s">\n'],
-                   Naming[11](pre_opt[1])[1])}
-               else
-                {}
+                   Naming[11](pre_opt[1])[1])
+                :/* () */0;
                
-               if(post_opt)
-                {bp
+               post_opt
+                ?bp
                   (b,
                    [/* Format */0,
                     [/* String_literal */11,
@@ -2456,16 +2420,16 @@ var
                       /* No_padding */0,
                       [/* String_literal */11,'">\n',/* End_of_format */0]]],
                     '<link rel="next" href="%s">\n'],
-                   Naming[11](post_opt[1])[1])}
-               else
-                {}
+                   Naming[11](post_opt[1])[1])
+                :/* () */0;
                
                var father=Odoc_info["Name"][5](match[3]);
                
+               var href;
                if(CamlPrimitive["caml_string_equal"](father,""))
                 {/* unknown */"(sendself self-4/2008 index/1833)";}
                else
-                {var href=Naming[11](father)[1];}
+                {href=Naming[11](father)[1];}
                
                bp
                 (b,
@@ -2557,10 +2521,7 @@ var
                
                var n=l[1][1];
                
-               if(List["mem"](n,acc))
-                {return iter(acc,q);}
-               else
-                {return iter(/* :: */[0,n,acc],q);}
+               return List["mem"](n,acc)?iter(acc,q):iter(/* :: */[0,n,acc],q);
                }
              else
               {return acc;}
@@ -2575,21 +2536,19 @@ var
               {return CamlPrimitive["caml_compare"](prim,prim$1);},
              levels);
          
+         var match;
          if(sorted_levels)
-          {var match=sorted_levels[2];
+          {var match$1=sorted_levels[2];
            
            var n=sorted_levels[1];
            
-           if(match)
-            {var
-              match$1=
-               /* tuple */[0,/* Some */[0,n],/* Some */[0,match[1]]];
-             }
-           else
-            {var match$1=/* tuple */[0,/* Some */[0,n],/* None */0];}
+           match=
+           match$1
+            ?/* tuple */[0,/* Some */[0,n],/* Some */[0,match$1[1]]]
+            :/* tuple */[0,/* Some */[0,n],/* None */0];
            }
          else
-          {var match$1=[/* tuple */0,/* None */0,/* None */0];}
+          {match=[/* tuple */0,/* None */0,/* None */0];}
          
          var
           titles_per_level=
@@ -2604,9 +2563,9 @@ var
               {return /* [] */0;}
              };
          
-         var section_titles=titles_per_level(match$1[1]);
+         var section_titles=titles_per_level(match[1]);
          
-         var subsection_titles=titles_per_level(match$1[2]);
+         var subsection_titles=titles_per_level(match[2]);
          
          var
           print_lines=
@@ -2678,15 +2637,15 @@ var
          bs(b,"&nbsp;");
          var father=Odoc_info["Name"][5](name);
          
+         var href;
          if(CamlPrimitive["caml_string_equal"](father,""))
           {/* unknown */"(sendself self-4/2066 index/1833)";}
          else
-          {var href=Naming[11](father)[1];}
+          {href=Naming[11](father)[1];}
          
-         if(CamlPrimitive["caml_string_equal"](father,""))
-          {var father_name="Index";}
-         else
-          {var father_name=father;}
+         var
+          father_name=
+           CamlPrimitive["caml_string_equal"](father,"")?"Index":father;
          
          bp
           (b,
@@ -2956,19 +2915,16 @@ var
            case 2:
             var k=kind[2];
             
-            if(html_short_functors[1])
-             {bs(b," ")}
-            else
-             {bs(b,'<div class="sig_block">')}
+            html_short_functors[1]?bs(b," "):bs(b,'<div class="sig_block">');
             
             /* unknown */"(sendself self-4/2159 html_of_module_parameter/1891 b/2160 father/2161\n  (field 0 kind/2163))";
             
             switch(k[0])
-             {case 2:default:if(html_short_functors[1]){bs(b,": ")}else{}}
+             {case 2:default:html_short_functors[1]?bs(b,": "):/* () */0;}
             
             /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  k/2167)";
             
-            if(!html_short_functors[1]){return bs(b,"</div>");}else{return 0;}
+            return !html_short_functors[1]?bs(b,"</div>"):0;
             
            case 3:
             /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 0a\n  (field 0 kind/2163))";
@@ -3031,10 +2987,11 @@ var
          },
        html_of_module_parameter,
        function(self$neg4,b,father,p)
-        {if(html_short_functors[1])
-          {var match=[/* tuple */0,"",""];}
-         else
-          {var match=[/* tuple */0,"functor ","-> "];}
+        {var
+          match=
+           html_short_functors[1]
+            ?[/* tuple */0,"",""]
+            :[/* tuple */0,"functor ","-> "];
          
          /* unknown */'(sendself self-4/2183 html_of_text/2177 b/2184\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) (field 0 match/3097) "("))\n    (makeblock 0 (makeblock 1 (field 0 p/2186)) [0: [1: " : "] 0a])))';
          
@@ -3249,12 +3206,12 @@ var
          bs(b,"</code>");
          var match=te[3];
          
-         if(match){bs(b," ")}else{}
+         match?bs(b," "):/* () */0;
          
          /* unknown */"(sendself self-4/2248 create_fully_qualified_idents_links/1882 m_name/2250\n  (field 1 te/2251))";
          bs(b,0);
          bs(b," += ");
-         if(te[4]===/* Private */0){bs(b,"private ")}else{}
+         te[4]===/* Private */0?bs(b,"private "):0;
          
          bs(b,"</code></pre>");
          bs(b,'<table class="typetable">\n');
@@ -3524,7 +3481,7 @@ var
          
          var match$2=t[3];
          
-         if(match$2){bs(b," ")}else{}
+         match$2?bs(b," "):/* () */0;
          
          bs(b,Odoc_info["Name"][1](t[1]));
          bs(b,"</span> ");
@@ -3538,14 +3495,14 @@ var
            switch(match$4[0])
             {case 0:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3039))";
               
               bs(b," ");
              case 1:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               bs(b,"&lt;</pre>");
               bs(b,'<table class="typetable">\n');
@@ -3594,7 +3551,7 @@ var
           {switch(match$5[0])
             {case 0:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               var match$6=t[6];
               
@@ -3686,7 +3643,7 @@ var
               print_concat(b,"\n",print_one$1,match$5[1]),bs(b,"</table>\n");
              case 1:
               bs(b,"= ");
-              if(priv){bs(b,"private ")}else{}
+              priv?bs(b,"private "):0;
               
               bs(b,"{");
               var match$7=t[6];
@@ -3996,59 +3953,48 @@ var
          },
        html_of_module_parameter_list,
        function(self$neg4,b,m_name,l)
-        {if(l)
-          {bs(b,'<table border="0" cellpadding="3" width="100%">\n');
-           bs(b,"<tr>\n");
-           bs(b,'<td align="left" valign="top" width="1%%"><b>');
-           bs(b,Odoc_messages["parameters"]);
-           bs(b,": </b></td>\n<td>\n");
-           bs(b,'<table class="paramstable">\n');
-           List["iter"]
-            (function(param)
-              {var desc_opt=param[2];
-               
-               var p=param[1];
-               
-               bs(b,"<tr>\n");
-               bs(b,'<td align="center" valign="top" width="15%">\n<code>');
-               bs(b,p[1]);
-               bs(b,"</code></td>\n");
-               bs(b,'<td align="center" valign="top">:</td>\n');
-               bs(b,"<td>");
-               /* unknown */"(sendself self-4/2344 html_of_module_parameter_type/1894 b/2345 m_name/2346\n  p/2348)";
-               
-               bs(b,"\n");
-               if(desc_opt)
-                {bs(b,"<br>");
-                 /* unknown */"(sendself self-4/2344 html_of_text/2177 b/2345 (field 0 desc_opt/2349))";
-                 
-                 return bs(b,"\n</tr>\n");
-                 }
-               else
-                {return /* () */0;}
-               },
-             l);
-           return bs(b,"</table>\n</td>\n</tr>\n</table>\n");
-           }
-         else
-          {return /* () */0;}
+        {return l
+                 ?(bs(b,'<table border="0" cellpadding="3" width="100%">\n'),
+                   bs(b,"<tr>\n"),
+                   bs(b,'<td align="left" valign="top" width="1%%"><b>'),
+                   bs(b,Odoc_messages["parameters"]),
+                   bs(b,": </b></td>\n<td>\n"),
+                   bs(b,'<table class="paramstable">\n'),
+                   List["iter"]
+                    (function(param)
+                      {var desc_opt=param[2];
+                       
+                       var p=param[1];
+                       
+                       bs(b,"<tr>\n");
+                       bs(b,'<td align="center" valign="top" width="15%">\n<code>');
+                       bs(b,p[1]);
+                       bs(b,"</code></td>\n");
+                       bs(b,'<td align="center" valign="top">:</td>\n');
+                       bs(b,"<td>");
+                       /* unknown */"(sendself self-4/2344 html_of_module_parameter_type/1894 b/2345 m_name/2346\n  p/2348)";
+                       
+                       bs(b,"\n");
+                       if(desc_opt)
+                        {bs(b,"<br>");
+                         /* unknown */"(sendself self-4/2344 html_of_text/2177 b/2345 (field 0 desc_opt/2349))";
+                         
+                         return bs(b,"\n</tr>\n");
+                         }
+                       else
+                        {return /* () */0;}
+                       },
+                     l),
+                   bs(b,"</table>\n</td>\n</tr>\n</table>\n"))
+                 :/* () */0;
          },
        html_of_module,
        function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,m)
-        {if($staropt$star$1)
-          {var info$1=$staropt$star$1[1];}
-         else
-          {var info$1=/* true */1;}
+        {var info$1=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
-         if($staropt$star$2)
-          {var complete=$staropt$star$2[1];}
-         else
-          {var complete=/* true */1;}
+         var complete=$staropt$star$2?$staropt$star$2[1]:/* true */1;
          
-         if($staropt$star)
-          {var with_link=$staropt$star[1];}
-         else
-          {var with_link=/* true */1;}
+         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
          
          var match=Naming[11](m[1]);
          
@@ -4057,8 +4003,8 @@ var
          bs(b,"\n<pre>");
          /* unknown */'(sendself self-4/2352 keyword/1879 "module")';
          bs(b,Pervasives["^"](0," "));
-         if(with_link)
-          {bp
+         with_link
+          ?bp
             (b,
              [/* Format */0,
               [/* String_literal */11,
@@ -4072,9 +4018,8 @@ var
                   [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
-             Odoc_info["Name"][1](m[1]))}
-         else
-          {bs(b,Odoc_info["Name"][1](m[1]))}
+             Odoc_info["Name"][1](m[1]))
+          :bs(b,Odoc_info["Name"][1](m[1]));
          
          var match$1=m[6];
          
@@ -4089,7 +4034,8 @@ var
          
          bs(b,"</pre>");
          if(info$1)
-          {if(complete)
+          {var $js;
+           if(complete)
             {/* unknown */'(sendself self-4/2352 html_of_info/2246 [0: "module top"] [0: 1a])';
              }
            else
@@ -4102,20 +4048,11 @@ var
          },
        html_of_modtype,
        function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,mt)
-        {if($staropt$star$1)
-          {var info$1=$staropt$star$1[1];}
-         else
-          {var info$1=/* true */1;}
+        {var info$1=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
-         if($staropt$star$2)
-          {var complete=$staropt$star$2[1];}
-         else
-          {var complete=/* true */1;}
+         var complete=$staropt$star$2?$staropt$star$2[1]:/* true */1;
          
-         if($staropt$star)
-          {var with_link=$staropt$star[1];}
-         else
-          {var with_link=/* true */1;}
+         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
          
          var match=Naming[11](mt[1]);
          
@@ -4124,8 +4061,8 @@ var
          bs(b,"\n<pre>");
          /* unknown */'(sendself self-4/2368 keyword/1879 "module type")';
          bs(b,Pervasives["^"](0," "));
-         if(with_link)
-          {bp
+         with_link
+          ?bp
             (b,
              [/* Format */0,
               [/* String_literal */11,
@@ -4139,9 +4076,8 @@ var
                   [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
-             Odoc_info["Name"][1](mt[1]))}
-         else
-          {bs(b,Odoc_info["Name"][1](mt[1]))}
+             Odoc_info["Name"][1](mt[1]))
+          :bs(b,Odoc_info["Name"][1](mt[1]));
          
          var match$1=mt[6];
          
@@ -4154,7 +4090,8 @@ var
          
          bs(b,"</pre>");
          if(info$1)
-          {if(complete)
+          {var $js;
+           if(complete)
             {/* unknown */'(sendself self-4/2368 html_of_info/2246 [0: "modtype top"] [0: 1a])';
              }
            else
@@ -4336,15 +4273,9 @@ var
          },
        html_of_class,
        function(self$neg4,b,$staropt$star,$staropt$star,c)
-        {if($staropt$star$1)
-          {var complete=$staropt$star$1[1];}
-         else
-          {var complete=/* true */1;}
+        {var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
-         if($staropt$star)
-          {var with_link=$staropt$star[1];}
-         else
-          {var with_link=/* true */1;}
+         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
          
          var father=Odoc_info["Name"][5](c[1]);
          
@@ -4388,8 +4319,8 @@ var
          else
           {}
          
-         if(with_link)
-          {bp
+         with_link
+          ?bp
             (b,
              [/* Format */0,
               [/* String_literal */11,
@@ -4403,9 +4334,8 @@ var
                   [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
-             Odoc_info["Name"][1](c[1]))}
-         else
-          {bs(b,Odoc_info["Name"][1](c[1]))}
+             Odoc_info["Name"][1](c[1]))
+          :bs(b,Odoc_info["Name"][1](c[1]));
          
          bs(b,"</span>");
          bs(b," : ");
@@ -4414,6 +4344,7 @@ var
          /* unknown */"(sendself self-4/2429 html_of_class_kind/1911 b/2430 father/2438\n  (makeblock 0 c/2437) (field 5 c/2437))";
          
          bs(b,"</pre>");
+         var $js;
          if(complete)
           {/* unknown */'(sendself self-4/2429 html_of_info/2246 [0: "class top"] [0: 1a])';
            }
@@ -4424,15 +4355,9 @@ var
          },
        html_of_class_type,
        function(self$neg4,b,$staropt$star,$staropt$star,ct)
-        {if($staropt$star$1)
-          {var complete=$staropt$star$1[1];}
-         else
-          {var complete=/* true */1;}
+        {var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
-         if($staropt$star)
-          {var with_link=$staropt$star[1];}
-         else
-          {var with_link=/* true */1;}
+         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
          
          Odoc_info["reset_type_names"](/* () */0);
          var father=Odoc_info["Name"][5](ct[1]);
@@ -4476,8 +4401,8 @@ var
          else
           {}
          
-         if(with_link)
-          {bp
+         with_link
+          ?bp
             (b,
              [/* Format */0,
               [/* String_literal */11,
@@ -4491,15 +4416,15 @@ var
                   [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
               '<a href="%s">%s</a>'],
              match[1],
-             Odoc_info["Name"][1](ct[1]))}
-         else
-          {bs(b,Odoc_info["Name"][1](ct[1]))}
+             Odoc_info["Name"][1](ct[1]))
+          :bs(b,Odoc_info["Name"][1](ct[1]));
          
          bs(b,"</span>");
          bs(b," = ");
          /* unknown */"(sendself self-4/2442 html_of_class_type_kind/1912 b/2443 father/2451\n  (makeblock 0 ct/2450) (field 5 ct/2450))";
          
          bs(b,"</pre>");
+         var $js;
          if(complete)
           {/* unknown */'(sendself self-4/2442 html_of_info/2246 [0: "classtype top"] [0: 1a])';
            }
@@ -4519,13 +4444,14 @@ var
              
              var name=match[1];
              
+             var match$1;
              if(cct_opt)
               {var c=cct_opt[1][1];
                
-               var match$1=/* tuple */[0,c[1],Naming[11](c[1])[1]];
+               match$1=/* tuple */[0,c[1],Naming[11](c[1])[1]];
                }
              else
-              {var match$1=/* tuple */[0,name,Naming[11](name)[1]];}
+              {match$1=/* tuple */[0,name,Naming[11](name)[1]];}
              
              var
               new_v=
@@ -4559,6 +4485,7 @@ var
        function(self$neg4,b,text)
         {var exit;
          
+         var text2;
          if(text)
           {var match=text[1];
            
@@ -4567,14 +4494,13 @@ var
            else
             {switch(match[0])
               {case 0:
-                var
-                 text2=
-                  /* :: */[0,
-                   /* Title */[13,
-                    2,
-                    /* None */0,
-                    /* :: */[0,/* Raw */[0,match[1]],/* [] */0]],
-                   text[2]];
+                text2=
+                /* :: */[0,
+                 /* Title */[13,
+                  2,
+                  /* None */0,
+                  /* :: */[0,/* Raw */[0,match[1]],/* [] */0]],
+                 text[2]];
                 
                default:exit=63;}}
            }
@@ -4725,11 +4651,9 @@ var
                   '<tr><td><a href="%s">%s</a> '],
                  target(e),
                  0);
-               if
-                (CamlPrimitive["caml_string_notequal"]
-                  (simple_name,father_name)&&
-                 CamlPrimitive["caml_string_notequal"](father_name,""))
-                {bp
+               CamlPrimitive["caml_string_notequal"](simple_name,father_name)&&
+                CamlPrimitive["caml_string_notequal"](father_name,"")
+                ?bp
                   (b,
                    [/* Format */0,
                     [/* String_literal */11,
@@ -4743,9 +4667,8 @@ var
                         [/* String_literal */11,"</a>]",/* End_of_format */0]]]]],
                     '[<a href="%s">%s</a>]'],
                    Naming[11](father_name)[1],
-                   father_name)}
-               else
-                {}
+                   father_name)
+                :0;
                
                bs(b,"</td>\n<td>");
                /* unknown */"(sendself self-4/2507 html_of_info_first_sentence/2366 b/2515\n  (apply info/2510 e/2522))";
@@ -4757,9 +4680,12 @@ var
             f_group=
              function(l)
               {if(l)
-                {var c=Char["uppercase"](Odoc_info["Name"][1](name(l[1]))[0]);
+                {var
+                  c=
+                   Char["uppercase"]
+                    (Odoc_info["Name"][1](name(l[1]))["charCodeAt"](0));
                  
-                 if(25<-65+c>>>0){var s="";}else{var s=$$String["make"](1,c);}
+                 var s=25<-65+c>>>0?"":$$String["make"](1,c);
                  
                  bs(b,'<tr><td align="left"><br>');
                  bs(b,s);
@@ -4837,7 +4763,7 @@ var
            
            bs(b,"<h1>");
            bs(b,Pervasives["^"](Odoc_messages["clas"]," "));
-           if(cl[5]){bs(b,"virtual ")}else{}
+           cl[5]?bs(b,"virtual "):0;
            
            bp
             (b,
@@ -4905,7 +4831,7 @@ var
            
            bs(b,"<h1>");
            bs(b,Pervasives["^"](Odoc_messages["class_type"]," "));
-           if(clt[5]){bs(b,"virtual ")}else{}
+           clt[5]?bs(b,"virtual "):0;
            
            bp
             (b,
@@ -4976,8 +4902,8 @@ var
            bs(b,Pervasives["^"](Odoc_messages["module_type"]," "));
            var match$1=mt[3];
            
-           if(match$1)
-            {bp
+           match$1
+            ?bp
               (b,
                [/* Format */0,
                 [/* String_literal */11,
@@ -4991,9 +4917,8 @@ var
                     [/* String_literal */11,"</a>",/* End_of_format */0]]]]],
                 '<a href="%s">%s</a>'],
                type_file,
-               mt[1])}
-           else
-            {bs(b,mt[1])}
+               mt[1])
+            :bs(b,mt[1]);
            
            bs(b,"</h1>\n");
            /* unknown */"(sendself self-4/2570 html_of_modtype/1908 b/2577 0a 0a [0: 0a] mt/2573)";
@@ -5084,8 +5009,8 @@ var
                modu[1]);
              var match$1=modu[9];
              
-             if(match$1)
-              {bp
+             match$1
+              ?bp
                 (b,
                  [/* Format */0,
                   [/* String_literal */11,
@@ -5094,9 +5019,8 @@ var
                     /* No_padding */0,
                     [/* String_literal */11,'">.ml</a>)',/* End_of_format */0]]],
                   ' (<a href="%s">.ml</a>)'],
-                 code_file)}
-             else
-              {}
+                 code_file)
+              :/* () */0;
              }
            
            bs(b,"</h1>\n");
@@ -5108,7 +5032,7 @@ var
            
            /* unknown */"(sendself self-4/2585 html_of_module_parameter_list/1906 b/2593\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 modu/2588))\n  (apply (field 14 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
-           if(!modu[11]){bs(b,'<hr width="100%">\n')}else{}
+           !modu[11]?bs(b,'<hr width="100%">\n'):0;
            
            /* unknown */"(sendself self-4/2585 html_of_module_element/1892 b/2593 (field 0 modu/2588))";
            List["iter"](0,Odoc_info["Module"][1](/* None */0,modu));
@@ -5153,11 +5077,12 @@ var
            
            var match=Odoc_info["Global"][6][1];
            
+           var title$1;
            if(match)
             {/* unknown */"(sendself self-4/2601 escape/1996 (field 0 match/2859))";
              }
            else
-            {var title$1="";}
+            {title$1="";}
            
            bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
@@ -5508,15 +5433,9 @@ var
       /* [] */0,
       $$self$1[header+1]=
       function(b,$staropt$star,$staropt$star,param)
-       {if($staropt$star$1)
-         {var nav=$staropt$star$1[1];}
-        else
-         {var nav=/* None */0;}
+       {var nav=$staropt$star$1?$staropt$star$1[1]:/* None */0;
         
-        if($staropt$star)
-         {var comments=$staropt$star[1];}
-        else
-         {var comments=/* [] */0;}
+        var comments=$staropt$star?$staropt$star[1]:/* [] */0;
         
         return /* () */0;
         };

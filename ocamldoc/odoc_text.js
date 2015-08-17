@@ -37,7 +37,8 @@ var
   function(s,c)
    {var count$1=0;
     
-    for(var i=0;i<=s["length"]-1;i++){if(s[i]===c){count$1=1+count$1;}else{}}
+    for(var i=0;i<=s["length"]-1;i++)
+     {if(s["charCodeAt"](i)===c){count$1=1+count$1;}else{}}
     
     return count$1;
     };
@@ -52,7 +53,7 @@ var
     var b=Buffer["create"](len+n);
     
     for(var i=0;i<=len-1;i++)
-     {if(s[i]===c&&remain>0)
+     {if(s["charCodeAt"](i)===c&&remain>0)
        {Printf["bprintf"]
          (b,
           [/* Format */0,
@@ -62,7 +63,7 @@ var
         remain=-1+remain;
         }
       else
-       {Buffer["add_char"](b,s[i])}
+       {Buffer["add_char"](b,s["charCodeAt"](i))}
       }
     
     return Buffer["contents"](b);
@@ -75,14 +76,11 @@ var
     
     var close_brackets=count(s,93);
     
-    if(open_brackets>close_brackets)
-     {return escape_n(s,91,open_brackets-close_brackets);}
-    else
-     {if(close_brackets>open_brackets)
-       {return escape_n(s,93,close_brackets-open_brackets);}
-      else
-       {return s;}
-      }
+    return open_brackets>close_brackets
+            ?escape_n(s,91,open_brackets-close_brackets)
+            :close_brackets>open_brackets
+              ?escape_n(s,93,close_brackets-open_brackets)
+              :s;
     };
 
 var
@@ -93,7 +91,7 @@ var
     var b=Buffer["create"](len);
     
     for(var i=0;i<=len-1;i++)
-     {var c=s[i];
+     {var c=s["charCodeAt"](i);
       
       var exit;
       
@@ -110,7 +108,7 @@ var
            [/* Format */0,
             [/* Char_literal */12,92,[/* Char */0,/* End_of_format */0]],
             "\%c"],
-           s[i])
+           s["charCodeAt"](i))
         }
       }
     
@@ -378,32 +376,34 @@ var
          
          var kind_opt=param[2];
          
+         var $js;
          if(kind_opt)
           {var k=kind_opt[1];
            
+           var s;
            if(typeof k==="number")
             {switch(k)
-              {case 0:var s="module";
-               case 1:var s="modtype";
-               case 2:var s="class";
-               case 3:var s="classtype";
-               case 4:var s="val";
-               case 5:var s="type";
-               case 6:var s="extension";
-               case 7:var s="exception";
-               case 8:var s="attribute";
-               case 9:var s="method";
-               case 10:var s="recfield";
-               case 11:var s="const";
+              {case 0:s="module";
+               case 1:s="modtype";
+               case 2:s="class";
+               case 3:s="classtype";
+               case 4:s="val";
+               case 5:s="type";
+               case 6:s="extension";
+               case 7:s="exception";
+               case 8:s="attribute";
+               case 9:s="method";
+               case 10:s="recfield";
+               case 11:s="const";
                }
              }
            else
-            {var s="section";}
+            {s="section";}
            
-           var $js=Pervasives["^"](s,":");
+           $js=Pervasives["^"](s,":");
            }
          else
-          {var $js="";}
+          {$js="";}
          p
           (b,
            [/* Format */0,
@@ -420,16 +420,14 @@ var
            text_opt?"{":"",
            $js,
            param[1]);
-         if(text_opt)
-          {p_text(b,text_opt[1]);
-           return p
-                   (b,
-                    [/* Format */0,
-                     [/* Char_literal */12,125,/* End_of_format */0],
-                     "}"]);
-           }
-         else
-          {return /* () */0;}
+         return text_opt
+                 ?(p_text(b,text_opt[1]),
+                   p
+                    (b,
+                     [/* Format */0,
+                      [/* Char_literal */12,125,/* End_of_format */0],
+                      "}"]))
+                 :/* () */0;
          
         case 17:
          p

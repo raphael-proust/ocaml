@@ -820,7 +820,7 @@ module rec
                 (match args with
                  | e::[] ->
                      E.call
-                       (E.access (E.string "fromCharCode") (E.js_var "apply"))
+                       (E.access (E.string "fromCharCode") (E.str "apply"))
                        [E.null (); e]
                  | _ -> E.unknown_primitive prim)
             | Pignore  ->

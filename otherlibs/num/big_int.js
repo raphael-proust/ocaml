@@ -15,18 +15,18 @@ var Sys=require("./sys.js");
 var
  create_big_int=
   function(sign,nat)
-   {if
-     (sign===
-      1||
-      sign===
-      -1||
-      sign===
-      0&&
-      Nat["is_zero_nat"]
-       (nat,0,CamlPrimitive["num_digits_nat"](nat,0,Nat["length_nat"](nat))))
-     {return /* record */[0,sign,nat];}
-    else
-     {return Pervasives["invalid_arg"]("create_big_int");}
+   {return sign===
+            1||
+            sign===
+            -1||
+            sign===
+            0&&
+            Nat["is_zero_nat"]
+             (nat,
+              0,
+              CamlPrimitive["num_digits_nat"](nat,0,Nat["length_nat"](nat)))
+            ?/* record */[0,sign,nat]
+            :Pervasives["invalid_arg"]("create_big_int");
     };
 
 var sign_big_int=function(bi){return bi[1];};
@@ -59,36 +59,27 @@ var
 var
  compare_big_int=
   function(bi1,bi2)
-   {if(bi1[1]===0&&bi2[1]===0)
-     {return 0;}
-    else
-     {if(bi1[1]<bi2[1])
-       {return -1;}
-      else
-       {if(bi1[1]>bi2[1])
-         {return 1;}
-        else
-         {if(bi1[1]===1)
-           {return CamlPrimitive["compare_nat"]
+   {return bi1[1]===0&&bi2[1]===0
+            ?0
+            :bi1[1]<bi2[1]
+              ?-1
+              :bi1[1]>bi2[1]
+                ?1
+                :bi1[1]===1
+                  ?CamlPrimitive["compare_nat"]
                     (bi1[2],
                      0,
                      num_digits_big_int(bi1),
                      bi2[2],
                      0,
-                     num_digits_big_int(bi2));
-            }
-          else
-           {return CamlPrimitive["compare_nat"]
+                     num_digits_big_int(bi2))
+                  :CamlPrimitive["compare_nat"]
                     (bi2[2],
                      0,
                      num_digits_big_int(bi2),
                      bi1[2],
                      0,
                      num_digits_big_int(bi1));
-            }
-          }
-        }
-      }
     };
 
 var eq_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)===0;};
@@ -101,13 +92,9 @@ var lt_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)<0;};
 
 var gt_big_int=function(bi1,bi2){return compare_big_int(bi1,bi2)>0;};
 
-var
- max_big_int=
-  function(bi1,bi2){if(lt_big_int(bi1,bi2)){return bi2;}else{return bi1;}};
+var max_big_int=function(bi1,bi2){return lt_big_int(bi1,bi2)?bi2:bi1;};
 
-var
- min_big_int=
-  function(bi1,bi2){if(gt_big_int(bi1,bi2)){return bi2;}else{return bi1;}};
+var min_big_int=function(bi1,bi2){return gt_big_int(bi1,bi2)?bi2:bi1;};
 
 var
  pred_big_int=
@@ -187,13 +174,14 @@ var
        match=
         CamlPrimitive["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
       
+      var $js;
       if(match!==-1)
        {var res=CamlPrimitive["create_nat"](1+size_bi1);
         
         CamlPrimitive["blit_nat"](res,0,bi1[2],0,size_bi1);
         CamlPrimitive["set_digit_nat"](res,size_bi1,0);
         CamlPrimitive["add_nat"](res,0,1+size_bi1,bi2[2],0,size_bi2,0);
-        var $js=res;
+        $js=res;
         }
       else
        {var res$1=CamlPrimitive["create_nat"](1+size_bi2);
@@ -201,7 +189,7 @@ var
         CamlPrimitive["blit_nat"](res$1,0,bi2[2],0,size_bi2);
         CamlPrimitive["set_digit_nat"](res$1,size_bi2,0);
         CamlPrimitive["add_nat"](res$1,0,1+size_bi2,bi1[2],0,size_bi1,0);
-        var $js=res$1;
+        $js=res$1;
         }
       return /* record */[0,bi1[1],$js];
       }
@@ -240,11 +228,10 @@ var
   function(i)
    {var res=CamlPrimitive["create_nat"](1);
     
-    if(i===Int_misc["monster_int"])
-     {CamlPrimitive["set_digit_nat"](res,0,Int_misc["biggest_int"]),
-      CamlPrimitive["incr_nat"](res,0,1,1)}
-    else
-     {CamlPrimitive["set_digit_nat"](res,0,Pervasives["abs"](i))}
+    i===Int_misc["monster_int"]
+     ?(CamlPrimitive["set_digit_nat"](res,0,Int_misc["biggest_int"]),
+       CamlPrimitive["incr_nat"](res,0,1,1))
+     :CamlPrimitive["set_digit_nat"](res,0,Pervasives["abs"](i));
     
     return /* record */[0,Int_misc["sign_int"](i),res];
     };
@@ -334,10 +321,11 @@ var
        {if(match!==0)
          {var bi1_negatif=bi1[1]===-1;
           
-          if(bi1_negatif)
-           {var size_q=1+Pervasives["max"](1+(size_bi1-size_bi2),1);}
-          else
-           {var size_q=Pervasives["max"](1+(size_bi1-size_bi2),1);}
+          var
+           size_q=
+            bi1_negatif
+             ?1+Pervasives["max"](1+(size_bi1-size_bi2),1)
+             :Pervasives["max"](1+(size_bi1-size_bi2),1);
           
           var size_r=1+Pervasives["max"](size_bi1,size_bi2);
           
@@ -366,10 +354,7 @@ var
                       new_r)]];
             }
           else
-           {if(bi1_negatif)
-             {CamlPrimitive["set_digit_nat"](q,-1+size_q,0)}
-            else
-             {}
+           {bi1_negatif?CamlPrimitive["set_digit_nat"](q,-1+size_q,0):0;
             
             return /* tuple */[0,
                     /* record */[0,
@@ -384,14 +369,11 @@ var
          {return /* tuple */[0,big_int_of_int(bi1[1]*bi2[1]),zero_big_int];}
         }
       else
-       {if(bi1[1]>=0)
-         {return /* tuple */[0,big_int_of_int(0),bi1];}
-        else
-         {if(bi2[1]>=0)
-           {return /* tuple */[0,big_int_of_int(-1),add_big_int(bi2,bi1)];}
-          else
-           {return /* tuple */[0,big_int_of_int(1),sub_big_int(bi1,bi2)];}
-          }
+       {return bi1[1]>=0
+                ?/* tuple */[0,big_int_of_int(0),bi1]
+                :bi2[1]>=0
+                  ?/* tuple */[0,big_int_of_int(-1),add_big_int(bi2,bi1)]
+                  :/* tuple */[0,big_int_of_int(1),sub_big_int(bi1,bi2)];
         }
       }
     };
@@ -417,24 +399,25 @@ var
          match=
           CamlPrimitive["compare_nat"](bi1[2],0,size_bi1,bi2[2],0,size_bi2);
         
+        var $js;
         if(match!==0)
          {if(match!==1)
            {var res=Nat["copy_nat"](bi2[2],0,size_bi2);
             
             var len=Nat["gcd_nat"](res,0,size_bi2,bi1[2],0,size_bi1);
             
-            var $js=Nat["copy_nat"](res,0,len);
+            $js=Nat["copy_nat"](res,0,len);
             }
           else
            {var res$1=Nat["copy_nat"](bi1[2],0,size_bi1);
             
             var len$1=Nat["gcd_nat"](res$1,0,size_bi1,bi2[2],0,size_bi2);
             
-            var $js=Nat["copy_nat"](res$1,0,len$1);
+            $js=Nat["copy_nat"](res$1,0,len$1);
             }
           }
         else
-         {var $js=bi1[2];}
+         {$js=bi1[2];}
         return /* record */[0,1,$js];
         }
       }
@@ -458,18 +441,14 @@ var
  int_of_big_int=
   function(bi)
    {try
-     {var n=Nat["int_of_nat"](bi[2]);
-      
-      if(bi[1]===-1){return -n;}else{return n;}
-      }
+     {var n=Nat["int_of_nat"](bi[2]);return bi[1]===-1?-n:n;}
     catch(exn)
      {var tag=exn[1];
       
       if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-       {if(eq_big_int(bi,monster_big_int))
-         {return Int_misc["monster_int"];}
-        else
-         {return Pervasives["failwith"]("int_of_big_int");}
+       {return eq_big_int(bi,monster_big_int)
+                ?Int_misc["monster_int"]
+                :Pervasives["failwith"]("int_of_big_int");
         }
       else
        {throw exn;}
@@ -500,25 +479,15 @@ var
 var
  nativeint_of_big_int=
   function(bi)
-   {if(num_digits_big_int(bi)>1)
-     {Pervasives["failwith"]("nativeint_of_big_int")}
-    else
-     {}
+   {num_digits_big_int(bi)>1?Pervasives["failwith"]("nativeint_of_big_int"):0;
     
     var i=CamlPrimitive["nth_digit_nat_native"](bi[2],0);
     
-    if(bi[1]>=0)
-     {if(i>=0)
-       {return i;}
-      else
-       {return Pervasives["failwith"]("nativeint_of_big_int");}
-      }
-    else
-     {if(i>=0||i===Nativeint["min_int"])
-       {return -i;}
-      else
-       {return Pervasives["failwith"]("nativeint_of_big_int");}
-      }
+    return bi[1]>=0
+            ?i>=0?i:Pervasives["failwith"]("nativeint_of_big_int")
+            :i>=0||i===Nativeint["min_int"]
+              ?-i
+              :Pervasives["failwith"]("nativeint_of_big_int");
     };
 
 var big_int_of_int32=function(i){return big_int_of_nativeint(i);};
@@ -528,10 +497,9 @@ var
   function(bi)
    {var i=nativeint_of_big_int(bi);
     
-    if(i<=2147483647&&i>=-2147483648)
-     {return i;}
-    else
-     {return Pervasives["failwith"]("int32_of_big_int");}
+    return i<=2147483647&&i>=-2147483648
+            ?i
+            :Pervasives["failwith"]("int32_of_big_int");
     };
 
 var
@@ -540,14 +508,9 @@ var
    {if(Sys["word_size"]===64)
      {return big_int_of_nativeint(i);}
     else
-     {if(i===0)
-       {var match=[/* tuple */0,0,0];}
-      else
-       {if(i>0)
-         {var match=/* tuple */[0,1,i];}
-        else
-         {var match=/* tuple */[0,-1,-i];}
-        }
+     {var
+       match=
+        i===0?[/* tuple */0,0,0]:i>0?/* tuple */[0,1,i]:/* tuple */[0,-1,-i];
       
       var absi=match[2];
       
@@ -569,43 +532,31 @@ var
     else
      {var match=num_digits_big_int(bi);
       
-      if(match!==1)
-       {if(match!==2)
-         {var i=Pervasives["failwith"]("int64_of_big_int");}
-        else
-         {var
-           i=
-            CamlPrimitive["nth_digit_nat_native"](bi[2],0)&
+      var
+       i=
+        match!==1
+         ?match!==2
+           ?Pervasives["failwith"]("int64_of_big_int")
+           :CamlPrimitive["nth_digit_nat_native"](bi[2],0)&
             4294967295|
             CamlPrimitive["nth_digit_nat_native"](bi[2],1)<<
-            32;
-          }
-        }
-      else
-       {var i=CamlPrimitive["nth_digit_nat_native"](bi[2],0)&4294967295;}
+            32
+         :CamlPrimitive["nth_digit_nat_native"](bi[2],0)&4294967295;
       
-      if(bi[1]>=0)
-       {if(i>=0)
-         {return i;}
-        else
-         {return Pervasives["failwith"]("int64_of_big_int");}
-        }
-      else
-       {if(i>=0||i===Int64["min_int"])
-         {return -i;}
-        else
-         {return Pervasives["failwith"]("int64_of_big_int");}
-        }
+      return bi[1]>=0
+              ?i>=0?i:Pervasives["failwith"]("int64_of_big_int")
+              :i>=0||i===Int64["min_int"]
+                ?-i
+                :Pervasives["failwith"]("int64_of_big_int");
       }
     };
 
 var
  nat_of_big_int=
   function(bi)
-   {if(bi[1]===-1)
-     {return Pervasives["failwith"]("nat_of_big_int");}
-    else
-     {return Nat["copy_nat"](bi[2],0,num_digits_big_int(bi));}
+   {return bi[1]===-1
+            ?Pervasives["failwith"]("nat_of_big_int")
+            :Nat["copy_nat"](bi[2],0,num_digits_big_int(bi));
     };
 
 var
@@ -625,36 +576,34 @@ var
 var
  string_of_big_int=
   function(bi)
-   {if(bi[1]===-1)
-     {return Pervasives["^"]("-",Nat["string_of_nat"](bi[2]));}
-    else
-     {return Nat["string_of_nat"](bi[2]);}
+   {return bi[1]===-1
+            ?Pervasives["^"]("-",Nat["string_of_nat"](bi[2]))
+            :Nat["string_of_nat"](bi[2]);
     };
 
 var
  sys_big_int_of_string_aux=
   function(s,ofs,len,sgn,base)
-   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}else{}
+   {len<1?Pervasives["failwith"]("sys_big_int_of_string"):0;
     
     var n=Nat["sys_nat_of_string"](base,s,ofs,len);
     
-    if(Nat["is_zero_nat"](n,0,Nat["length_nat"](n)))
-     {return zero_big_int;}
-    else
-     {return /* record */[0,sgn,n];}
+    return Nat["is_zero_nat"](n,0,Nat["length_nat"](n))
+            ?zero_big_int
+            :/* record */[0,sgn,n];
     };
 
 var
  sys_big_int_of_string_base=
   function(s,ofs,len,sgn)
-   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}else{}
+   {len<1?Pervasives["failwith"]("sys_big_int_of_string"):0;
     
     if(len<2)
      {return sys_big_int_of_string_aux(s,ofs,len,sgn,10);}
     else
-     {var match=s[ofs];
+     {var match=s["charCodeAt"](ofs);
       
-      var match$1=s[ofs+1];
+      var match$1=s["charCodeAt"](ofs+1);
       
       var match$2=match;
       
@@ -699,9 +648,9 @@ var
 var
  sys_big_int_of_string=
   function(s,ofs,len)
-   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}else{}
+   {len<1?Pervasives["failwith"]("sys_big_int_of_string"):0;
     
-    var match=s[ofs];
+    var match=s["charCodeAt"](ofs);
     
     var exit;
     
@@ -772,22 +721,19 @@ var
             var succ_len2=1+len2;
             
             CamlPrimitive["square_nat"](res2,0,len2,res,0,len$1);
-            if((n&1<<i)>0)
-             {CamlPrimitive["set_to_zero_nat"](res,0,len$1),
-              CamlPrimitive["mult_digit_nat"]
-               (res,0,succ_len2,res2,0,len2,power_base,pmax)}
-            else
-             {CamlPrimitive["blit_nat"](res,0,res2,0,len2)}
+            (n&1<<i)>0
+             ?(CamlPrimitive["set_to_zero_nat"](res,0,len$1),
+               CamlPrimitive["mult_digit_nat"]
+                (res,0,succ_len2,res2,0,len2,power_base,pmax))
+             :CamlPrimitive["blit_nat"](res,0,res2,0,len2);
             
             CamlPrimitive["set_to_zero_nat"](res2,0,len2)}
           
-          if(rem>0)
-           {CamlPrimitive["mult_digit_nat"]
-             (res2,0,1+n,res,0,n,power_base,-1+rem);
-            return res2;
-            }
-          else
-           {return res;}
+          return rem>0
+                  ?(CamlPrimitive["mult_digit_nat"]
+                     (res2,0,1+n,res,0,n,power_base,-1+rem),
+                    res2)
+                  :res;
           }
         }
       }
@@ -937,10 +883,9 @@ var
            (res,0,new_len,bi[2],0,len_bi,nat,0,len_nat)
          :CamlPrimitive["mult_nat"]
            (res,0,new_len,nat,0,len_nat,bi[2],0,len_bi);
-        if(Nat["is_zero_nat"](res,0,new_len))
-         {return zero_big_int;}
-        else
-         {return create_big_int(bi[1],res);}
+        return Nat["is_zero_nat"](res,0,new_len)
+                ?zero_big_int
+                :create_big_int(bi[1],res);
         }
       else
        {return bi;}
@@ -969,10 +914,9 @@ var
           CamlPrimitive["blit_nat"](copy,0,bi[2],0,len_bi$1);
           CamlPrimitive["set_digit_nat"](copy,len_bi$1,0);
           CamlPrimitive["div_nat"](copy,0,1+len_bi$1,nat$1,0,len_nat$1);
-          if(!Nat["is_zero_nat"](copy,0,len_nat$1))
-           {return Pervasives["invalid_arg"]("base_power_big_int");}
-          else
-           {return /* record */[0,bi[1],Nat["copy_nat"](copy,len_nat$1,1)];}
+          return !Nat["is_zero_nat"](copy,0,len_nat$1)
+                  ?Pervasives["invalid_arg"]("base_power_big_int")
+                  :/* record */[0,bi[1],Nat["copy_nat"](copy,len_nat$1,1)];
           }
         }
       }
@@ -988,17 +932,13 @@ var
   function(bi)
    {var match=bi[1];
     
-    if(match!==-1)
-     {if(match!==0)
-       {return /* record */[0,
+    return match!==-1
+            ?match!==0
+              ?/* record */[0,
                 1,
-                Nat["sqrt_nat"](bi[2],0,num_digits_big_int(bi))];
-        }
-      else
-       {return zero_big_int;}
-      }
-    else
-     {return Pervasives["invalid_arg"]("sqrt_big_int");}
+                Nat["sqrt_nat"](bi[2],0,num_digits_big_int(bi))]
+              :zero_big_int
+            :Pervasives["invalid_arg"]("sqrt_big_int");
     };
 
 var
@@ -1032,10 +972,9 @@ var
           else
            {var current_char=s[l];
             
-            if(current_char===57)
-             {s[l]=48;return round_rec(-1+l);}
-            else
-             {s[l]=Char["chr"](1+current_char);return /* false */0;}
+            return current_char===57
+                    ?(s[l]=48,round_rec(-1+l))
+                    :(s[l]=Char["chr"](1+current_char),/* false */0);
             }
           };
       
@@ -1067,27 +1006,22 @@ var
       Bytes["unsafe_of_string"]
        (string_of_big_int(div_big_int(bi,power_int_positive_int(10,n))));
     
-    if(s[0]===45)
-     {var match=/* tuple */[0,"-",1,1+prec];}
-    else
-     {var match=/* tuple */[0,"",0,prec];}
+    var match=s[0]===45?/* tuple */[0,"-",1,1+prec]:/* tuple */[0,"",0,prec];
     
     var off=match[2];
     
     var sign=match[1];
     
-    if(round_futur_last_digit(s,off,1+prec))
-     {return Pervasives["^"]
+    return round_futur_last_digit(s,off,1+prec)
+            ?Pervasives["^"]
               (sign,
                Pervasives["^"]
                 ("1.",
                  Pervasives["^"]
                   ($$String["make"](prec,48),
                    Pervasives["^"]
-                    ("e",Pervasives["string_of_int"](n+1-off+s["length"])))));
-      }
-    else
-     {return Pervasives["^"]
+                    ("e",Pervasives["string_of_int"](n+1-off+s["length"])))))
+            :Pervasives["^"]
               (sign,
                Pervasives["^"]
                 (Bytes["sub_string"](s,off,1),
@@ -1097,7 +1031,6 @@ var
                     (Bytes["sub_string"](s,1+off,-1+prec),
                      Pervasives["^"]
                       ("e",Pervasives["string_of_int"](n-(1+off)+s["length"]))))));
-      }
     };
 
 var
@@ -1126,11 +1059,10 @@ var
           CamlPrimitive["blit_nat"](res,ndigits,bi[2],0,size_bi);
           var nbits=n%Nat["length_of_digit"];
           
-          if(nbits>0)
-           {CamlPrimitive["shift_left_nat"]
-             (res,ndigits,size_bi,res,ndigits+size_bi,nbits)}
-          else
-           {}
+          nbits>0
+           ?CamlPrimitive["shift_left_nat"]
+             (res,ndigits,size_bi,res,ndigits+size_bi,nbits)
+           :0;
           
           return /* record */[0,bi[1],res];
           }
@@ -1171,10 +1103,9 @@ var
             else
              {}
             
-            if(Nat["is_zero_nat"](res,0,size_res))
-             {return zero_big_int;}
-            else
-             {return /* record */[0,bi[1],res];}
+            return Nat["is_zero_nat"](res,0,size_res)
+                    ?zero_big_int
+                    :/* record */[0,bi[1],res];
             }
           }
         }
@@ -1205,16 +1136,12 @@ var
 var
  shift_right_big_int=
   function(bi,n)
-   {if(n<0)
-     {return Pervasives["invalid_arg"]("shift_right_big_int");}
-    else
-     {if(bi[1]>=0)
-       {return shift_right_towards_zero_big_int(bi,n);}
-      else
-       {return shift_right_towards_zero_big_int
+   {return n<0
+            ?Pervasives["invalid_arg"]("shift_right_big_int")
+            :bi[1]>=0
+              ?shift_right_towards_zero_big_int(bi,n)
+              :shift_right_towards_zero_big_int
                 (sub_big_int(bi,two_power_m1_big_int(n)),n);
-        }
-      }
     };
 
 var
@@ -1236,11 +1163,10 @@ var
         
         var res=Nat["make_nat"](size_res);
         
-        if(ndigits<size_bi)
-         {CamlPrimitive["blit_nat"]
-           (res,0,bi[2],ndigits,Pervasives["min"](size_res,size_bi-ndigits))}
-        else
-         {}
+        ndigits<size_bi
+         ?CamlPrimitive["blit_nat"]
+           (res,0,bi[2],ndigits,Pervasives["min"](size_res,size_bi-ndigits))
+         :0;
         
         if(bi[1]<0)
          {CamlPrimitive["complement_nat"](res,0,size_res);
@@ -1255,7 +1181,7 @@ var
                      carry_incr(i+1);
               };
           
-          if(carry_incr(0)){CamlPrimitive["incr_nat"](res,0,size_res,1)}else{}
+          carry_incr(0)?CamlPrimitive["incr_nat"](res,0,size_res,1):0;
           }
         else
          {}
@@ -1278,10 +1204,9 @@ var
         else
          {}
         
-        if(Nat["is_zero_nat"](res,0,size_res))
-         {return zero_big_int;}
-        else
-         {return /* record */[0,1,res];}
+        return Nat["is_zero_nat"](res,0,size_res)
+                ?zero_big_int
+                :/* record */[0,1,res];
         }
       }
     };
@@ -1307,10 +1232,9 @@ var
         for(var i=0;i<=size_res-1;i++)
          {CamlPrimitive["land_digit_nat"](res,i,b[2],i)}
         
-        if(Nat["is_zero_nat"](res,0,size_res))
-         {return zero_big_int;}
-        else
-         {return /* record */[0,1,res];}
+        return Nat["is_zero_nat"](res,0,size_res)
+                ?zero_big_int
+                :/* record */[0,1,res];
         }
       }
     };
@@ -1344,12 +1268,11 @@ var
               return 0;
               };
           
-          if(size_a>=size_b){or_aux(a,b,size_b)}else{or_aux(b,a,size_a)}
+          size_a>=size_b?or_aux(a,b,size_b):or_aux(b,a,size_a);
           
-          if(Nat["is_zero_nat"](res,0,size_res))
-           {return zero_big_int;}
-          else
-           {return /* record */[0,1,res];}
+          return Nat["is_zero_nat"](res,0,size_res)
+                  ?zero_big_int
+                  :/* record */[0,1,res];
           }
         }
       }
@@ -1384,12 +1307,11 @@ var
               return 0;
               };
           
-          if(size_a>=size_b){xor_aux(a,b,size_b)}else{xor_aux(b,a,size_a)}
+          size_a>=size_b?xor_aux(a,b,size_b):xor_aux(b,a,size_a);
           
-          if(Nat["is_zero_nat"](res,0,size_res))
-           {return zero_big_int;}
-          else
-           {return /* record */[0,1,res];}
+          return Nat["is_zero_nat"](res,0,size_res)
+                  ?zero_big_int
+                  :/* record */[0,1,res];
           }
         }
       }

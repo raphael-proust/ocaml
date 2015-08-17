@@ -159,8 +159,9 @@ var
                (n),
               deps);
           
+          var deps$2;
           try
-           {var deps$2=My_std["List"][16](query,deps$1);}
+           {deps$2=My_std["List"][16](query,deps$1);}
           catch(exn$1)
            {var exit;
             
@@ -172,10 +173,7 @@ var
               else
                {switch(match$1[0])
                  {case 1:
-                   var
-                    deps$2=
-                     error(/* Dependency_not_found */[0,name,match$1[1]]);
-                   
+                   deps$2=error(/* Dependency_not_found */[0,name,match$1[1]]);
                   default:exit=32;}}
               }
             else
@@ -271,10 +269,7 @@ var
 var
  topological_closure=
   function(l)
-   {var
-     add=
-      function(l,x)
-       {if(My_std["List"][30](x,l)){return l;}else{return /* :: */[0,x,l];}};
+   {var add=function(l,x){return My_std["List"][30](x,l)?l:/* :: */[0,x,l];};
     
     var
      l$1=

@@ -56,7 +56,7 @@ var
    {var b=Buffer["create"](20+s["length"]);
     
     for(var i=0;i<=s["length"]-1;i++)
-     {var match=s[i];
+     {var match=s["charCodeAt"](i);
       
       var exit;
       
@@ -79,7 +79,7 @@ var
       
       switch(exit){case 25:case 24:Buffer["add_char"](b,94)}
       
-      Buffer["add_char"](b,s[i])}
+      Buffer["add_char"](b,s["charCodeAt"](i))}
     
     return Buffer["contents"](b);
     };
@@ -113,13 +113,11 @@ var
 var
  generic_exec_unix=
   function(cmdline,param)
-   {if(debug_loading[1])
-     {Pervasives["prerr_endline"]("Launching program...")}
-    else
-     {}
+   {debug_loading[1]?Pervasives["prerr_endline"]("Launching program..."):0;
     
+    var child;
     try
-     {var child=Unix["fork"](/* () */0);}
+     {child=Unix["fork"](/* () */0);}
     catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
     
     if(child!==0)
@@ -169,10 +167,7 @@ var
 var
  generic_exec_win=
   function(cmdline,param)
-   {if(debug_loading[1])
-     {Pervasives["prerr_endline"]("Launching program...")}
-    else
-     {}
+   {debug_loading[1]?Pervasives["prerr_endline"]("Launching program..."):0;
     
     try
      {return Unix["create_process"]

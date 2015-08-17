@@ -149,7 +149,7 @@ var
           },
         sigs);
     
-    if(gotsig[1]===0){sleep(/* () */0)}else{}
+    gotsig[1]===0?sleep(/* () */0):0;
     
     List["iter2"](Sys["set_signal"],sigs,oldhdlrs);
     return gotsig[1];
@@ -174,10 +174,9 @@ var
 var
  preempt=
   function(signal)
-   {if(critical_section[1])
-     {return /* () */0;}
-    else
-     {return CamlPrimitive["thread_request_reschedule"](/* () */0);}
+   {return critical_section[1]
+            ?/* () */0
+            :CamlPrimitive["thread_request_reschedule"](/* () */0);
     };
 
 CamlPrimitive["thread_initialize"](/* () */0);

@@ -73,9 +73,7 @@ var
      {var c=s[i];
       
       if(c!==0)
-       {for(var j=0;j<=7;j++)
-         {if((c&1<<j)!==0){fn(Char["chr"]((i<<3)+j))}else{}}
-        }
+       {for(var j=0;j<=7;j++){(c&1<<j)!==0?fn(Char["chr"]((i<<3)+j)):0;}}
       else
        {}
       }
@@ -205,18 +203,12 @@ var
         case 1:
          var s=param[1];
          
-         if(CamlPrimitive["caml_string_equal"](s,""))
-          {return Charset[1];}
-         else
-          {return Charset[5](s[0]);}
+         return CamlPrimitive["caml_string_equal"](s,"")
+                 ?Charset[1]
+                 :Charset[5](s["charCodeAt"](0));
          
         case 2:
-         var cmpl=param[2];
-         
-         var cl=param[1];
-         
-         if(cmpl){return Charset[6](cl);}else{return cl;}
-         
+         var cmpl=param[2];var cl=param[1];return cmpl?Charset[6](cl):cl;
         case 3:var rl=param[1];return first_seq(rl);
         case 4:
          var r2=param[2];
@@ -293,7 +285,7 @@ var
     
     var cl1=match[1];
     
-    if(fold_case){var cl2=Charset[11](cl1);}else{var cl2=cl1;}
+    var cl2=fold_case?Charset[11](cl1):cl1;
     
     return Bytes["to_string"](compl$1?Charset[6](cl2):cl2);
     };
@@ -375,10 +367,9 @@ var
        {if(is_nullable(r))
          {var n=numregs[1];
           
-          if(n>=64)
-           {Pervasives["failwith"]("too many r* or r+ where r is nullable")}
-          else
-           {}
+          n>=64
+           ?Pervasives["failwith"]("too many r* or r+ where r is nullable")
+           :0;
           
           numregs[0]++;
           return n;
@@ -401,10 +392,9 @@ var
            {case 0:
              var c=param[1];
              
-             if(fold_case)
-              {return emit_instr(op_CHARNORM,Char["lowercase"](c));}
-             else
-              {return emit_instr(op_CHAR,c);}
+             return fold_case
+                     ?emit_instr(op_CHARNORM,Char["lowercase"](c))
+                     :emit_instr(op_CHAR,c);
              
             case 1:
              var s=param[1];
@@ -422,22 +412,20 @@ var
                    }
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {if(fold_case)
-                      {return emit_instr
-                               (op_STRINGNORM,cpool_index($$String["lowercase"](s)));
-                       }
-                     else
-                      {return emit_instr(op_STRING,cpool_index(s));}
+                    {return fold_case
+                             ?emit_instr
+                               (op_STRINGNORM,cpool_index($$String["lowercase"](s)))
+                             :emit_instr(op_STRING,cpool_index(s));
                      }
                    else
                     {throw exn;}
                    }
                  }
                else
-                {if(fold_case)
-                  {return emit_instr(op_CHARNORM,Char["lowercase"](s[0]));}
-                 else
-                  {return emit_instr(op_CHAR,s[0]);}
+                {return fold_case
+                         ?emit_instr
+                           (op_CHARNORM,Char["lowercase"](s["charCodeAt"](0)))
+                         :emit_instr(op_CHAR,s["charCodeAt"](0));
                  }
                }
              else
@@ -448,9 +436,9 @@ var
              
              var cl=param[1];
              
-             if(fold_case){var cl1=Charset[11](cl);}else{var cl1=cl;}
+             var cl1=fold_case?Charset[11](cl):cl;
              
-             if(compl){var cl2=Charset[6](cl1);}else{var cl2=cl1;}
+             var cl2=compl?Charset[6](cl1):cl1;
              
              return emit_instr
                      (op_CHARCLASS,cpool_index(Bytes["to_string"](cl2)));
@@ -481,10 +469,10 @@ var
              
              var lbl1$1=emit_hole(/* () */0);
              
-             if(regno>=0){emit_instr(op_SETMARK,regno)}else{}
+             regno>=0?emit_instr(op_SETMARK,regno):0;
              
              emit_code(r);
-             if(regno>=0){emit_instr(op_CHECKPROGRESS,regno)}else{}
+             regno>=0?emit_instr(op_CHECKPROGRESS,regno):0;
              
              emit_instr(op_GOTO,displ(lbl1$1,progpos[1]));
              var lbl2$1=progpos[1];
@@ -499,11 +487,11 @@ var
              var lbl1$2=progpos[1];
              
              emit_code(r$1);
-             if(regno$1>=0){emit_instr(op_CHECKPROGRESS,regno$1)}else{}
+             regno$1>=0?emit_instr(op_CHECKPROGRESS,regno$1):0;
              
              var pos_pushback$1=emit_hole(/* () */0);
              
-             if(regno$1>=0){emit_instr(op_SETMARK,regno$1)}else{}
+             regno$1>=0?emit_instr(op_SETMARK,regno$1):0;
              
              emit_instr(op_GOTO,displ(lbl1$2,progpos[1]));
              var lbl2$2=progpos[1];
@@ -525,10 +513,7 @@ var
              
              var n=param[1];
              
-             if(n>=32)
-              {Pervasives["failwith"]("too many \(...\) groups")}
-             else
-              {}
+             n>=32?Pervasives["failwith"]("too many \(...\) groups"):0;
              
              emit_instr(op_BEGGROUP,n);
              emit_code(r$3);
@@ -643,26 +628,22 @@ var
     var
      disjoint_modulo_case=
       function(c1,c2)
-       {if(fold_case)
-         {return Charset[8](Charset[11](c1),Charset[11](c2));}
-        else
-         {return Charset[8](c1,c2);}
+       {return fold_case
+                ?Charset[8](Charset[11](c1),Charset[11](c2))
+                :Charset[8](c1,c2);
         };
     
     emit_code(re);
     emit_instr(op_ACCEPT,0);
     var start=first(re);
     
-    if(fold_case)
-     {var start$prime=Charset[11](start);}
-    else
-     {var start$prime=start;}
+    var start$prime=fold_case?Charset[11](start):start;
     
-    if(CamlPrimitive["caml_equal"](start,Charset[1]))
-     {var start_pos=-1;}
-    else
-     {var start_pos=cpool_index(Bytes["to_string"](Charset[10](start$prime)));
-      }
+    var
+     start_pos=
+      CamlPrimitive["caml_equal"](start,Charset[1])
+       ?-1
+       :cpool_index(Bytes["to_string"](Charset[10](start$prime)));
     
     var constantpool=CamlPrimitive["caml_make_vect"](cpoolpos[1],"");
     
@@ -689,14 +670,11 @@ var
     Buffer["clear"](buf[1]);
     var match=s["length"];
     
-    if(match!==0)
-     {if(match!==1)
-       {return buf[2]=/* :: */[0,/* String */[1,s],buf[2]],0;}
-      else
-       {return buf[2]=/* :: */[0,/* Char */[0,s[0]],buf[2]],0;}
-      }
-    else
-     {return /* () */0;}
+    return match!==0
+            ?match!==1
+              ?(buf[2]=/* :: */[0,/* String */[1,s],buf[2]],0)
+              :(buf[2]=/* :: */[0,/* Char */[0,s["charCodeAt"](0)],buf[2]],0)
+            :/* () */0;
     };
 
 var
@@ -744,7 +722,7 @@ var
     var
      regexp0cont=
       function(r1,i)
-       {if(i+2<=len&&s[i]===92&&s[i+1]===124)
+       {if(i+2<=len&&s["charCodeAt"](i)===92&&s["charCodeAt"](i+1)===124)
          {var match=regexp1(i+2);
           
           var j=match[2];
@@ -762,9 +740,9 @@ var
     var
      regexp1cont=
       function(sb,i)
-       {var c=s[i+1];
+       {var c=s["charCodeAt"](i+1);
         
-        if(i>=len||i+2<=len&&s[i]===92&&(c===124||c===41))
+        if(i>=len||i+2<=len&&s["charCodeAt"](i)===92&&(c===124||c===41))
          {return /* tuple */[0,SeqBuffer[4](sb),i];}
         else
          {var match=regexp2(i);
@@ -796,29 +774,24 @@ var
        {if(i>=len)
          {return /* tuple */[0,r,i];}
         else
-         {var match=s[i];
+         {var match=s["charCodeAt"](i);
           
           var switcher=-42+match;
           
-          if(1<switcher>>>0)
-           {if(switcher!==21)
-             {return /* tuple */[0,r,i];}
-            else
-             {return regexp2cont(/* Option */[7,r],i+1);}
-            }
-          else
-           {if(switcher!==0)
-             {return regexp2cont(/* Plus */[6,r],i+1);}
-            else
-             {return regexp2cont(/* Star */[5,r],i+1);}
-            }
+          return 1<switcher>>>0
+                  ?switcher!==21
+                    ?/* tuple */[0,r,i]
+                    :regexp2cont(/* Option */[7,r],i+1)
+                  :switcher!==0
+                    ?regexp2cont(/* Plus */[6,r],i+1)
+                    :regexp2cont(/* Star */[5,r],i+1);
           }
         };
     
     var
      regexp3=
       function(i)
-       {var c=s[i];
+       {var c=s["charCodeAt"](i);
         
         var exit;
         
@@ -869,7 +842,7 @@ var
        {if(i>=len)
          {return /* tuple */[0,[/* Char */0,92],i];}
         else
-         {var c=s[i];
+         {var c=s["charCodeAt"](i);
           
           var exit;
           
@@ -888,7 +861,7 @@ var
               else
                {var group_no=group_counter[1];
                 
-                if(group_no<32){group_counter[0]++}else{}
+                group_no<32?group_counter[0]++:0;
                 
                 var match=regexp0(i+1);
                 
@@ -896,14 +869,17 @@ var
                 
                 var r=match[1];
                 
-                if(j+1<len&&s[j]===92&&s[j+1]===41)
-                 {if(group_no<32)
-                   {return /* tuple */[0,/* Group */[8,group_no,r],j+2];}
-                  else
-                   {return /* tuple */[0,r,j+2];}
-                  }
-                else
-                 {return Pervasives["failwith"]("\( group not closed by \)");}
+                return j+
+                        1<
+                        len&&
+                        s["charCodeAt"](j)===
+                        92&&
+                        s["charCodeAt"](j+1)===
+                        41
+                        ?group_no<32
+                          ?/* tuple */[0,/* Group */[8,group_no,r],j+2]
+                          :/* tuple */[0,r,j+2]
+                        :Pervasives["failwith"]("\( group not closed by \)");
                 }
               }
             }
@@ -928,7 +904,7 @@ var
     var
      regexpclass0=
       function(i)
-       {if(i<len&&s[i]===94)
+       {if(i<len&&s["charCodeAt"](i)===94)
          {var match=regexpclass1(i+1);
           
           var j=match[2];
@@ -961,15 +937,15 @@ var
     var
      regexpclass2=
       function(c,start,i)
-       {if(i>=len){Pervasives["failwith"]("[ class not closed by ]")}else{}
+       {i>=len?Pervasives["failwith"]("[ class not closed by ]"):0;
         
-        if(s[i]===93&&i>start)
+        if(s["charCodeAt"](i)===93&&i>start)
          {return i+1;}
         else
-         {var c1=s[i];
+         {var c1=s["charCodeAt"](i);
           
-          if(i+2<len&&s[i+1]===45&&s[i+2]!==93)
-           {var c2=s[i+2];
+          if(i+2<len&&s["charCodeAt"](i+1)===45&&s["charCodeAt"](i+2)!==93)
+           {var c2=s["charCodeAt"](i+2);
             
             Charset[4](c,c1,c2);
             return regexpclass2(c,start,i+3);
@@ -985,10 +961,9 @@ var
     
     var r=match[1];
     
-    if(j===len)
-     {return r;}
-    else
-     {return Pervasives["failwith"]("spurious \) in regular expression");}
+    return j===len
+            ?r
+            :Pervasives["failwith"]("spurious \) in regular expression");
     };
 
 var regexp=function(e){return compile(/* false */0,parse(e));};
@@ -1005,7 +980,7 @@ var
     var pos=[0,0];
     
     for(var i$1=0;i$1<=len-1;i$1++)
-     {var c=s[i$1];
+     {var c=s["charCodeAt"](i$1);
       
       var exit;
       
@@ -1206,7 +1181,7 @@ var
    {var
      replace=
       function(accu,start,last_was_empty)
-       {if(last_was_empty){var startpos=start+1;}else{var startpos=start;}
+       {var startpos=last_was_empty?start+1:start;
         
         if(startpos>text["length"])
          {return /* :: */[0,string_after(text,start),accu];}
@@ -1254,14 +1229,11 @@ var
     if(match)
      {var pos=match[1];
       
-      if(match_end(/* () */0)>start)
-       {return /* Some */[0,pos];}
-      else
-       {if(start<text["length"])
-         {return opt_search_forward(expr,text,start+1);}
-        else
-         {return /* None */0;}
-        }
+      return match_end(/* () */0)>start
+              ?/* Some */[0,pos]
+              :start<text["length"]
+                ?opt_search_forward(expr,text,start+1)
+                :/* None */0;
       }
     else
      {return /* None */0;}
@@ -1270,10 +1242,7 @@ var
 var
  bounded_split=
   function(expr,text,num)
-   {if(string_match(expr,text,0))
-     {var start=match_end(/* () */0);}
-    else
-     {var start=0;}
+   {var start=string_match(expr,text,0)?match_end(/* () */0):0;
     
     var
      split=
@@ -1333,10 +1302,9 @@ var
           }
         };
     
-    if(CamlPrimitive["caml_string_equal"](text,""))
-     {return /* [] */0;}
-    else
-     {return List["rev"](split$1(/* [] */0,0,num));}
+    return CamlPrimitive["caml_string_equal"](text,"")
+            ?/* [] */0
+            :List["rev"](split$1(/* [] */0,0,num));
     };
 
 var split_delim=function(expr,text){return bounded_split_delim(expr,text,0);};
@@ -1360,20 +1328,17 @@ var
               
               var s=matched_string(text);
               
-              if(pos>start)
-               {return split$1
+              return pos>start
+                      ?split$1
                         (/* :: */[0,
                           /* Delim */[1,s],
                           /* :: */[0,
                            /* Text */[0,$$String["sub"](text,start,pos-start)],
                            accu]],
                          match_end(/* () */0),
-                         n-1);
-                }
-              else
-               {return split$1
+                         n-1)
+                      :split$1
                         (/* :: */[0,/* Delim */[1,s],accu],match_end(/* () */0),n-1);
-                }
               }
             else
              {return /* :: */[0,/* Text */[0,string_after(text,start)],accu];}

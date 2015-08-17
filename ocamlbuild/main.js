@@ -67,15 +67,14 @@ var
 var
  show_tags=
   function(param)
-   {if(My_std["List"][5](Options["show_tags"][1])>0)
-     {Log["eprintf"]
+   {My_std["List"][5](Options["show_tags"][1])>0
+     ?Log["eprintf"]
        ([/* Format */0,
          [/* String_literal */11,
           "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n",
           /* End_of_format */0],
-         "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n"])}
-    else
-     {}
+         "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n"])
+     :0;
     
     return My_std["List"][14]
             (function(path)
@@ -151,7 +150,7 @@ var
     My_std["List"][16](Pathname["normalize"],Options["include_dirs"][1]);
     Options["exclude_dirs"][1]=
     My_std["List"][16](Pathname["normalize"],Options["exclude_dirs"][1]);
-    if(Options["must_clean"][1]){clean(/* () */0)}else{}
+    Options["must_clean"][1]?clean(/* () */0):0;
     
     Hooks["call_hook"](/* After_options */3);
     var options_wd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
@@ -173,31 +172,27 @@ var
      (Configuration["parse_string"](/* Some */[0,Const["Source"][2]]),
       Options["tag_lines"][1]);
     Configuration["tag_any"](Options["tags"][1]);
-    if
-     (Options["recursive"][1]||
-      Options["ocamlbuild_project_heuristic"](/* () */0))
-     {Configuration["tag_any"]([/* :: */0,"traverse",/* [] */0])}
-    else
-     {}
+    Options["recursive"][1]||
+     Options["ocamlbuild_project_heuristic"](/* () */0)
+     ?Configuration["tag_any"]([/* :: */0,"traverse",/* [] */0])
+     :0;
     
-    if(Options["use_ocamlfind"][1])
-     {My_std["List"][14]
+    Options["use_ocamlfind"][1]
+     ?My_std["List"][14]
        (function(pkg)
          {var tag=Param_tags["make"]("package",pkg);
           
           return Configuration["tag_any"](/* :: */[0,tag,/* [] */0]);
           },
-        Options["ocaml_pkgs"][1])}
-    else
-     {}
+        Options["ocaml_pkgs"][1])
+     :0;
     
     var match=Options["ocaml_syntax"][1];
     
-    if(match)
-     {Configuration["tag_any"]
-       (/* :: */[0,Param_tags["make"]("syntax",match[1]),/* [] */0])}
-    else
-     {}
+    match
+     ?Configuration["tag_any"]
+       (/* :: */[0,Param_tags["make"]("syntax",match[1]),/* [] */0])
+     :/* () */0;
     
     var newpwd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
@@ -208,25 +203,22 @@ var
      entry=
       Slurp["filter"]
        (function(path,name,param$1)
-         {if
-           (CamlPrimitive["caml_string_equal"]
-             (path,Filename["current_dir_name"]))
-           {var dir=/* None */0;}
-          else
-           {var dir=/* Some */[0,path];}
+         {var
+           dir=
+            CamlPrimitive["caml_string_equal"]
+              (path,Filename["current_dir_name"])
+             ?/* None */0
+             :/* Some */[0,path];
           
           var path_name=Pathname["Operators"][1](path,name);
           
           if(CamlPrimitive["caml_string_equal"](name,"_tags"))
-           {if
-             (CamlPrimitive["caml_string_equal"]
-               (CamlPrimitive["caml_sys_getcwd"](/* () */0),Pathname["pwd"]))
-             {var tags_path=path_name;}
-            else
-             {var
-               tags_path=
-                Pathname["Operators"][1](Pathname["pwd"],path_name);
-              }
+           {var
+             tags_path=
+              CamlPrimitive["caml_string_equal"]
+                (CamlPrimitive["caml_sys_getcwd"](/* () */0),Pathname["pwd"])
+               ?path_name
+               :Pathname["Operators"][1](Pathname["pwd"],path_name);
             
             Configuration["parse_file"](dir,tags_path)}
           else
@@ -237,7 +229,7 @@ var
           return (My_std["List"][30](name,[/* :: */0,"_oasis",/* [] */0])||
                   name["length"]>
                   0&&
-                  name[0]!==
+                  name["charCodeAt"](0)!==
                   95)&&
                  CamlPrimitive["caml_string_notequal"]
                   (name,Options["build_dir"][1])&&
@@ -278,10 +270,9 @@ var
         entry);
     
     Slurp["force"](hygiene_entry);
-    if(Options["hygiene"][1]&&!first_run_for_plugin)
-     {Fda["inspect"](hygiene_entry)}
-    else
-     {}
+    Options["hygiene"][1]&&!first_run_for_plugin
+     ?Fda["inspect"](hygiene_entry)
+     :0;
     
     Hooks["call_hook"](/* After_hygiene */1);
     Options["include_dirs"][1]=
@@ -379,8 +370,8 @@ var
             var
              link=
               function(x)
-               {if(Options["make_links"][1])
-                 {return call
+               {return Options["make_links"][1]
+                        ?call
                           (/* S */[0,
                             /* :: */[0,
                              [/* A */1,"ln"],
@@ -390,10 +381,8 @@ var
                                /* P */[2,x],
                                /* :: */[0,
                                 /* A */[1,Pathname["current_dir_name"]],
-                                /* [] */0]]]]]);
-                  }
-                else
-                 {return 0;}
+                                /* [] */0]]]]])
+                        :0;
                 };
             
             var exit;
@@ -407,8 +396,8 @@ var
             
             switch(exit)
              {case 25:
-               if(Options["program_to_execute"][1])
-                {Format["eprintf"]
+               Options["program_to_execute"][1]
+                ?Format["eprintf"]
                   ([/* Format */0,
                     [/* String_literal */11,
                      "Warning: Won't execute ",
@@ -418,9 +407,8 @@ var
                        " whose extension is neither .byte nor .native",
                        /* End_of_format */0]]],
                     "Warning: Won't execute %s whose extension is neither .byte nor .native"],
-                   cmd)}
-               else
-                {}
+                   cmd)
+                :0;
                
                return acc;
                
@@ -436,16 +424,15 @@ var
         if(match$1)
          {var cmd=match$1[1];
           
-          if(match$1[2]!==/* [] */0)
-           {Log["dprintf"]
+          match$1[2]!==/* [] */0
+           ?Log["dprintf"]
              (0,
               [/* Format */0,
                [/* String_literal */11,
                 "Warning: Using -- only run the last target",
                 /* End_of_format */0],
-               "Warning: Using -- only run the last target"])}
-          else
-           {}
+               "Warning: Using -- only run the last target"])
+           :0;
           
           var
            cmd_spec=

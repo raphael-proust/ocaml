@@ -33,10 +33,7 @@ var
                    
                    var id=param[1];
                    
-                   if(!List["mem"](id,ids_done))
-                    {return f(/* () */0);}
-                   else
-                    {return 0;}
+                   return !List["mem"](id,ids_done)?f(/* () */0):0;
                    },
                  abort_env);
         }
@@ -68,10 +65,9 @@ var
     var
      poll_events=
       function(i)
-       {if(i>=/* -1 for tag */bev["length"]-1)
-         {return /* false */0;}
-        else
-         {return bev[i+1][1](/* () */0)||poll_events(i+1);}
+       {return i>=/* -1 for tag */bev["length"]-1
+                ?/* false */0
+                :bev[i+1][1](/* () */0)||poll_events(i+1);
         };
     
     Mutex["lock"](masterlock);
@@ -101,7 +97,7 @@ var
   function(a)
    {var len=/* -1 for tag */a["length"]-1;
     
-    if(len===0){Pervasives["invalid_arg"]("Event.choose")}else{}
+    len===0?Pervasives["invalid_arg"]("Event.choose"):0;
     
     for(var i=len-1;i>=1;i--)
      {var j=Random["int"](i+1);var temp=a[i+1];a[i+1]=a[j+1],a[j+1]=temp}
@@ -202,10 +198,9 @@ var
     var
      poll_events=
       function(i)
-       {if(i>=/* -1 for tag */bev["length"]-1)
-         {return /* false */0;}
-        else
-         {return bev[i+1][1](/* () */0)||poll_events(i+1);}
+       {return i>=/* -1 for tag */bev["length"]-1
+                ?/* false */0
+                :bev[i+1][1](/* () */0)||poll_events(i+1);
         };
     
     Mutex["lock"](masterlock);
@@ -244,9 +239,7 @@ var
    {var q$prime=Queue["create"](/* () */0);
     
     Queue["iter"]
-     (function(c)
-       {if(c[1][1]===-1){return Queue["add"](c,q$prime);}else{return 0;}},
-      q);
+     (function(c){return c[1][1]===-1?Queue["add"](c,q$prime):0;},q);
     return q$prime;
     };
 
@@ -278,14 +271,15 @@ var
                           function(param$1)
                            {var rcomm=Queue["take"](channel[2]);
                             
-                            if(rcomm[1][1]>=0)
-                             {return poll$1(/* () */0);}
-                            else
-                             {rcomm[3]=wcomm[3];
-                              performed[1]=evnum;
-                              rcomm[1][1]=rcomm[4];
-                              return Condition["signal"](rcomm[2]);
-                              }
+                            return rcomm[1][1]>=0
+                                    ?poll$1(/* () */0)
+                                    :(rcomm[3]=
+                                      wcomm[3],
+                                      performed[1]=
+                                      evnum,
+                                      rcomm[1][1]=
+                                      rcomm[4],
+                                      Condition["signal"](rcomm[2]));
                             };
                         
                         try
@@ -319,14 +313,15 @@ var
                           function(param$1)
                            {var wcomm=Queue["take"](channel[1]);
                             
-                            if(wcomm[1][1]>=0)
-                             {return poll$1(/* () */0);}
-                            else
-                             {rcomm[3]=wcomm[3];
-                              performed[1]=evnum;
-                              wcomm[1][1]=wcomm[4];
-                              return Condition["signal"](wcomm[2]);
-                              }
+                            return wcomm[1][1]>=0
+                                    ?poll$1(/* () */0)
+                                    :(rcomm[3]=
+                                      wcomm[3],
+                                      performed[1]=
+                                      evnum,
+                                      wcomm[1][1]=
+                                      wcomm[4],
+                                      Condition["signal"](wcomm[2]));
                             };
                         
                         try

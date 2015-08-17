@@ -222,20 +222,14 @@ var
                  if(crco)
                   {var crc=crco[1];
                    
-                   if(CamlPrimitive["caml_string_equal"](name,cu[1]))
-                    {return Dynlinkaux["Consistbl"][5]
-                             (crc_interfaces[1],name,crc,file_name);
-                     }
-                   else
-                    {if(allow_extension[1])
-                      {return Dynlinkaux["Consistbl"][3]
+                   return CamlPrimitive["caml_string_equal"](name,cu[1])
+                           ?Dynlinkaux["Consistbl"][5]
+                             (crc_interfaces[1],name,crc,file_name)
+                           :allow_extension[1]
+                             ?Dynlinkaux["Consistbl"][3]
+                               (crc_interfaces[1],name,crc,file_name)
+                             :Dynlinkaux["Consistbl"][4]
                                (crc_interfaces[1],name,crc,file_name);
-                       }
-                     else
-                      {return Dynlinkaux["Consistbl"][4]
-                               (crc_interfaces[1],name,crc,file_name);
-                       }
-                     }
                    }
                  else
                   {return /* () */0;}
@@ -328,13 +322,14 @@ var inited=[0,/* false */0];
 var
  init=
   function(param)
-   {if(!inited[1])
-     {default_crcs[1]=Dynlinkaux["Symtable"][11](/* () */0);
-      default_available_units(/* () */0);
-      return inited[1]=/* true */1,0;
-      }
-    else
-     {return 0;}
+   {return !inited[1]
+            ?(default_crcs[1]=
+              Dynlinkaux["Symtable"][11](/* () */0),
+              default_available_units(/* () */0),
+              inited[1]=
+              /* true */1,
+              0)
+            :0;
     };
 
 var
@@ -358,8 +353,9 @@ var
   function(unit,loadpath)
    {var shortname=Pervasives["^"](unit,".cmi");
     
+    var filename;
     try
-     {var filename=Dynlinkaux["Misc"][15](loadpath,shortname);}
+     {filename=Dynlinkaux["Misc"][15](loadpath,shortname);}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {throw [0,$$Error,/* File_not_found */[5,shortname]];}
@@ -390,12 +386,13 @@ var
       
       var exit;
       
+      var crc;
       if(match$1)
        {var match$2=match$1[1];
         
         var match$3=match$2[2];
         
-        if(match$3){var crc=match$3[1];var crc$1=crc;}else{exit=35;}
+        if(match$3){var crc$1=match$3[1];crc=crc$1;}else{exit=35;}
         }
       else
        {exit=35;}
@@ -403,7 +400,7 @@ var
       switch(exit)
        {case 35:throw [0,$$Error,/* Corrupted_interface */[4,filename]];}
       
-      return crc$1;
+      return crc;
       }
     catch(exn$1)
      {var exit$1;
@@ -524,11 +521,11 @@ var
     
     Pervasives["seek_in"](ic,0);
     try
-     {try
-       {var
-         buffer=
-          Pervasives["really_input_string"]
-           (ic,Dynlinkaux["Config"][20]["length"]);
+     {var buffer;
+      try
+       {buffer=
+        Pervasives["really_input_string"]
+         (ic,Dynlinkaux["Config"][20]["length"]);
         }
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])

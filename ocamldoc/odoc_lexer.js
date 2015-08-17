@@ -50,10 +50,9 @@ var
               "",
               liste[1]);
           
-          if(CamlPrimitive["caml_string_equal"](h2,""))
-           {return iter(q);}
-          else
-           {return /* :: */[0,h2,q];}
+          return CamlPrimitive["caml_string_equal"](h2,"")
+                  ?iter(q)
+                  :/* :: */[0,h2,q];
           }
         else
          {return /* [] */0;}
@@ -72,10 +71,9 @@ var
             Str["global_replace"]
              (Str["regexp"](Pervasives["^"](blank,"+$")),"",liste[1]);
           
-          if(CamlPrimitive["caml_string_equal"](h2,""))
-           {return iter$1(q);}
-          else
-           {return /* :: */[0,h2,q];}
+          return CamlPrimitive["caml_string_equal"](h2,"")
+                  ?iter$1(q)
+                  :/* :: */[0,h2,q];
           }
         else
          {return /* [] */0;}
@@ -146,13 +144,12 @@ var
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"];
          comments_level[0]++;
-         if(comments_level[1]===1)
-          {reset_string_buffer(/* () */0);
-           description[1]="";
-           return special_comment(lexbuf);
-           }
-         else
-          {return main(lexbuf);}
+         return comments_level[1]===1
+                 ?(reset_string_buffer(/* () */0),
+                   description[1]=
+                   "",
+                   special_comment(lexbuf))
+                 :main(lexbuf);
          
         case 6:return /* EOF */9;
         case 7:
@@ -212,10 +209,7 @@ var
            
            var s3=remove_blanks(s2);
            
-           if(Odoc_global["remove_stars"][1])
-            {var s4=remove_stars(s3);}
-           else
-            {var s4=s3;}
+           var s4=Odoc_global["remove_stars"][1]?remove_stars(s3):s3;
            
            return /* Description */[0,/* tuple */[0,s4,/* None */0]];
            }
@@ -263,7 +257,7 @@ var
          var c$1=Lexing["lexeme_char"](lexbuf,0);
          
          ajout_char_string(c$1);
-         if(c$1===10){line_number[0]++}else{}
+         c$1===10?line_number[0]++:0;
          
          Odoc_comments_global["nb_chars"][0]++;
          return special_comment(lexbuf);
@@ -296,17 +290,17 @@ var
          Odoc_comments_global["nb_chars"][1]+
          s["length"];
          if(comments_level[1]===1)
-          {if(Odoc_global["remove_stars"][1])
-            {var desc=remove_stars(description[1]);}
-           else
-            {var desc=description[1];}
+          {var
+            desc=
+             Odoc_global["remove_stars"][1]
+              ?remove_stars(description[1])
+              :description[1];
            
            var remain=lecture_string(/* () */0);
            
-           if(Odoc_global["remove_stars"][1])
-            {var remain2=remove_stars(remain);}
-           else
-            {var remain2=remain;}
+           var
+            remain2=
+             Odoc_global["remove_stars"][1]?remove_stars(remain):remain;
            
            return /* Description */[0,
                    /* tuple */[0,desc,/* Some */[0,remain2]]];
@@ -331,7 +325,7 @@ var
          var c=Lexing["lexeme_char"](lexbuf,0);
          
          ajout_char_string(c);
-         if(c===10){line_number[0]++}else{}
+         c===10?line_number[0]++:0;
          
          Odoc_comments_global["nb_chars"][0]++;
          return special_comment_part2(lexbuf);
@@ -486,13 +480,12 @@ var
          Odoc_comments_global["nb_chars"][1]+
          s$2["length"];
          comments_level[0]++;
-         if(comments_level[1]===1)
-          {reset_string_buffer(/* () */0);
-           description[1]="";
-           return special_comment(lexbuf);
-           }
-         else
-          {ajout_string(s$2);return simple(lexbuf);}
+         return comments_level[1]===1
+                 ?(reset_string_buffer(/* () */0),
+                   description[1]=
+                   "",
+                   special_comment(lexbuf))
+                 :(ajout_string(s$2),simple(lexbuf));
          
         case 6:return /* EOF */9;
         case 7:

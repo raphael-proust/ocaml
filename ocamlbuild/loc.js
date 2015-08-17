@@ -22,8 +22,8 @@ var
       function(one_or_two,ppf,param$1)
        {var start_num=param$1[1];
         
-        if(one_or_two)
-         {return Format["fprintf"]
+        return one_or_two
+                ?Format["fprintf"]
                   (ppf,
                    [/* Format */0,
                     [/* Char_literal */12,
@@ -34,10 +34,8 @@ var
                       /* No_precision */0,
                       /* End_of_format */0]],
                     " %d"],
-                   start_num);
-          }
-        else
-         {return Format["fprintf"]
+                   start_num)
+                :Format["fprintf"]
                   (ppf,
                    [/* Format */0,
                     [/* String_literal */11,
@@ -56,7 +54,6 @@ var
                     "s %d-%d"],
                    start_num,
                    param$1[2]);
-          }
         };
     
     return Format["fprintf"]
@@ -94,8 +91,7 @@ var
 
 var
  print_loc_option=
-  function(ppf,param)
-   {if(param){return print_loc(ppf,param[1]);}else{return /* () */0;}};
+  function(ppf,param){return param?print_loc(ppf,param[1]):/* () */0;};
 
 module["exports"]=
 {"print_loc":print_loc,

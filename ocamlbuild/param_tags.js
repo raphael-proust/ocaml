@@ -23,10 +23,9 @@ var
    {var instances=[0,StringSet[1]];
     
     return function(param)
-     {if(StringSet[3](param,instances[1]))
-       {return /* () */0;}
-      else
-       {instances[1]=StringSet[4](param,instances[1]);return f(param);}
+     {return StringSet[3](param,instances[1])
+              ?/* () */0
+              :(instances[1]=StringSet[4](param,instances[1]),f(param));
       };
     };
 
@@ -63,18 +62,15 @@ var
     
     var name=match[1];
     
-    if($staropt$star)
-     {var quiet=$staropt$star[1];}
-    else
-     {var quiet=/* false */0;}
+    var quiet=$staropt$star?$staropt$star[1]:/* false */0;
     
     if(param$1)
      {var param$2=param$1[1];
       
       var actions=My_std["List"][9](Hashtbl["find_all"](declared_tags,name));
       
-      if(actions===/* [] */0&&!quiet)
-       {Log["eprintf"]
+      actions===/* [] */0&&!quiet
+       ?Log["eprintf"]
          ([/* Format */0,
            [/* Alpha */15,
             [/* String_literal */11,
@@ -88,15 +84,14 @@ var
           Loc["print_loc_option"],
           maybe_loc,
           name,
-          param$2)}
-      else
-       {}
+          param$2)
+       :0;
       
       return My_std["List"][14](function(f){return f(param$2);},actions);
       }
     else
-     {if(Hashtbl["mem"](declared_tags,name)&&!quiet)
-       {return Log["eprintf"]
+     {return Hashtbl["mem"](declared_tags,name)&&!quiet
+              ?Log["eprintf"]
                 ([/* Format */0,
                   [/* Alpha */15,
                    [/* String_literal */11,
@@ -109,10 +104,8 @@ var
                   "%aWarning: tag %S expects a parameter"],
                  Loc["print_loc_option"],
                  maybe_loc,
-                 name);
-        }
-      else
-       {return 0;}
+                 name)
+              :0;
       }
     };
 

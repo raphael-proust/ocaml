@@ -78,7 +78,7 @@ var
 var
  print=
   function($staropt$star,s)
-   {if($staropt$star){var esc=$staropt$star[1];}else{var esc=/* true */1;}
+   {var esc=$staropt$star?$staropt$star[1]:/* true */1;
     
     return Format["pp_print_string"](fmt[1],esc?$$escape(s):s);
     };
@@ -86,7 +86,7 @@ var
 var
  print_class=
   function($staropt$star,cl,s)
-   {if($staropt$star){var esc=$staropt$star[1];}else{var esc=/* true */1;}
+   {var esc=$staropt$star?$staropt$star[1]:/* true */1;
     
     return print
             ([/* Some */0,/* false */0],
@@ -255,10 +255,7 @@ var add_comment_string=Buffer["add_string"](comment_buffer);
 var
  make_margin=
   function(param)
-   {var
-     iter=
-      function(n)
-       {if(n<=0){return "";}else{return Pervasives["^"]("&nbsp;",iter(n-1));}};
+   {var iter=function(n){return n<=0?"":Pervasives["^"]("&nbsp;",iter(n-1));};
     
     return iter(margin[1]);
     };
@@ -270,65 +267,61 @@ var
     
     var len=s["length"];
     
+    var code;
     if(len<1)
-     {var
-       code=
+     {code=
+      Pervasives["^"]
+       ('<span class="',
+        Pervasives["^"]
+         (comment_class,
+          Pervasives["^"]('">(*',Pervasives["^"]($$escape(s),"*)</span>"))));
+      }
+    else
+     {var match=s["charCodeAt"](0);
+      
+      if(match!==42)
+       {code=
         Pervasives["^"]
          ('<span class="',
           Pervasives["^"]
            (comment_class,
             Pervasives["^"]('">(*',Pervasives["^"]($$escape(s),"*)</span>"))));
-      }
-    else
-     {var match=s[0];
-      
-      if(match!==42)
-       {var
-         code=
-          Pervasives["^"]
-           ('<span class="',
-            Pervasives["^"]
-             (comment_class,
-              Pervasives["^"]('">(*',Pervasives["^"]($$escape(s),"*)</span>"))));
         }
       else
        {try
          {var html=html_of_comment[1]($$String["sub"](s,1,len-1));
           
-          var
-           code=
+          code=
+          Pervasives["^"]
+           ("</code><table><tr><td>",
             Pervasives["^"]
-             ("</code><table><tr><td>",
+             (make_margin(/* () */0),
               Pervasives["^"]
-               (make_margin(/* () */0),
+               ("</td><td>",
                 Pervasives["^"]
-                 ("</td><td>",
+                 ('<span class="',
                   Pervasives["^"]
-                   ('<span class="',
+                   (comment_class,
                     Pervasives["^"]
-                     (comment_class,
+                     ('">',
                       Pervasives["^"]
-                       ('">',
+                       ("(**",
                         Pervasives["^"]
-                         ("(**",
+                         (html,
                           Pervasives["^"]
-                           (html,
+                           ("*)",
                             Pervasives["^"]
-                             ("*)",
-                              Pervasives["^"]
-                               ('</span></td></tr></table><code class="',
-                                Pervasives["^"](code_class,'">')))))))))));
+                             ('</span></td></tr></table><code class="',
+                              Pervasives["^"](code_class,'">')))))))))));
           }
         catch(e)
          {Pervasives["prerr_endline"](Printexc["to_string"](e));
-          var
-           code=
+          code=
+          Pervasives["^"]
+           ('<span class="',
             Pervasives["^"]
-             ('<span class="',
-              Pervasives["^"]
-               (comment_class,
-                Pervasives["^"]
-                 ('">(*',Pervasives["^"]($$escape(s),"*)</span>"))));
+             (comment_class,
+              Pervasives["^"]('">(*',Pervasives["^"]($$escape(s),"*)</span>"))));
           }
         }
       }
@@ -657,7 +650,8 @@ var
         case 65:
          throw [0,
                 $$Error,
-                /* Illegal_character */[0,Lexing["lexeme"](lexbuf)[0]],
+                /* Illegal_character */[0,
+                 Lexing["lexeme"](lexbuf)["charCodeAt"](0)],
                 Lexing["lexeme_start"](lexbuf),
                 Lexing["lexeme_end"](lexbuf)];
          
@@ -714,14 +708,13 @@ var
          if(match)
           {var l=match[2];
            
-           if(l)
-            {store_comment_char(42);
-             store_comment_char(41);
-             comment_start_pos[1]=l;
-             return comment(lexbuf);
-             }
-           else
-            {return comment_start_pos[1]=/* [] */0,0;}
+           return l
+                   ?(store_comment_char(42),
+                     store_comment_char(41),
+                     comment_start_pos[1]=
+                     l,
+                     comment(lexbuf))
+                   :(comment_start_pos[1]=/* [] */0,0);
            }
          else
           {throw [0,
@@ -789,10 +782,7 @@ var
 var
  html_of_code=
   function(b,$staropt$star,code)
-   {if($staropt$star)
-     {var with_pre=$staropt$star[1];}
-    else
-     {var with_pre=/* true */1;}
+   {var with_pre=$staropt$star?$staropt$star[1]:/* true */1;
     
     var old_pre=pre[1];
     
@@ -815,6 +805,7 @@ var
     
     var ending="</code>";
     
+    var html;
     try
      {print([/* Some */0,/* false */0],start);
       var lexbuf=Lexing["from_string"](code);
@@ -823,11 +814,11 @@ var
       
       print([/* Some */0,/* false */0],ending);
       Format["pp_print_flush"](fmt[1],/* () */0);
-      var html=Buffer["contents"](buf);
+      html=Buffer["contents"](buf);
       }
     catch(exn)
      {Format["pp_print_flush"](fmt[1],/* () */0);
-      var html=Pervasives["^"](start,Pervasives["^"](code,ending));
+      html=Pervasives["^"](start,Pervasives["^"](code,ending));
       }
     
     pre[1]=old_pre;

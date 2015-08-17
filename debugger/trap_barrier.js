@@ -14,17 +14,15 @@ var remove_trap_barrier=function(param){return current_trap_barrier[1]=0,0;};
 var
  update_trap_barrier=
   function(param)
-   {if(Checkpoints["current_checkpoint"][1][10]!==current_trap_barrier[1])
-     {return Exec["protect"]
+   {return Checkpoints["current_checkpoint"][1][10]!==current_trap_barrier[1]
+            ?Exec["protect"]
               (function(param$1)
                 {Debugcom["set_trap_barrier"](current_trap_barrier[1]);
                  return Checkpoints["current_checkpoint"][1][10]=
                         current_trap_barrier[1],
                         0;
-                 });
-      }
-    else
-     {return 0;}
+                 })
+            :0;
     };
 
 var

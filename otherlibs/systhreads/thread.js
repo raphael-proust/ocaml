@@ -60,7 +60,7 @@ var
     
     var match$2=match$1[1];
     
-    if(match$2){return /* true */1;}else{return /* false */0;}
+    return match$2?/* true */1:/* false */0;
     };
 
 var
@@ -72,7 +72,7 @@ var
     
     var match$2=match$1[2];
     
-    if(match$2){return /* true */1;}else{return /* false */0;}
+    return match$2?/* true */1:/* false */0;
     };
 
 var select=Unix["select"];

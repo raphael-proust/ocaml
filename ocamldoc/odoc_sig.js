@@ -161,7 +161,7 @@ var
      {case 4:
        var match$1=match[2][1];
        
-       if(match$1){return /* Some */[0,match$1[1]];}else{return /* None */0;}
+       return match$1?/* Some */[0,match$1[1]]:/* None */0;
        
       default:
        throw [0,
@@ -451,14 +451,12 @@ var
                function(param)
                 {var field_name=param[1];
                  
+                 var comment_opt;
                  try
-                  {var
-                    comment_opt=
-                     List["assoc"](field_name,name_comment_list);
-                   }
+                  {comment_opt=List["assoc"](field_name,name_comment_list);}
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {var comment_opt=/* None */0;}
+                    {comment_opt=/* None */0;}
                    else
                     {throw exn;}
                    }
@@ -497,14 +495,12 @@ var
                function(param)
                 {var field_name=Ident["name"](param[1]);
                  
+                 var comment_opt;
                  try
-                  {var
-                    comment_opt=
-                     List["assoc"](field_name,name_comment_list);
-                   }
+                  {comment_opt=List["assoc"](field_name,name_comment_list);}
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {var comment_opt=/* None */0;}
+                    {comment_opt=/* None */0;}
                    else
                     {throw exn;}
                    }
@@ -524,14 +520,14 @@ var
                function(param)
                 {var constructor_name=Ident["name"](param[1]);
                  
+                 var comment_opt;
                  try
-                  {var
-                    comment_opt=
-                     List["assoc"](constructor_name,name_comment_list);
+                  {comment_opt=
+                   List["assoc"](constructor_name,name_comment_list);
                    }
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {var comment_opt=/* None */0;}
+                    {comment_opt=/* None */0;}
                    else
                     {throw exn;}
                    }
@@ -574,10 +570,9 @@ var
     var
      filter_out_erased_items_from_signature=
       function(erased,signature)
-       {if(Odoc_name["Set"][2](erased))
-         {return signature;}
-        else
-         {return List["fold_right"]
+       {return Odoc_name["Set"][2](erased)
+                ?signature
+                :List["fold_right"]
                   (function(sig_item,acc)
                     {var
                       take_item=
@@ -599,10 +594,7 @@ var
                            (function(td){return !Odoc_name["Set"][3](td[1][1],erased);},
                             tp[1]);
                         
-                        if(types)
-                         {return take_item(/* Psig_type */[1,types]);}
-                        else
-                         {return acc;}
+                        return types?take_item(/* Psig_type */[1,types]):acc;
                         
                        case 4:exit=261;
                        case 5:
@@ -613,26 +605,21 @@ var
                              {return !Odoc_name["Set"][3](pmd[1][1],erased);},
                             tp[1]);
                         
-                        if(mods)
-                         {return take_item(/* Psig_recmodule */[5,mods]);}
-                        else
-                         {return acc;}
+                        return mods?take_item(/* Psig_recmodule */[5,mods]):acc;
                         
                        case 6:exit=261;
                        default:return take_item(tp);}
                      
                      switch(exit)
                       {case 261:
-                        if(Odoc_name["Set"][3](tp[1][1][1],erased))
-                         {return acc;}
-                        else
-                         {return take_item(tp);}
+                        return Odoc_name["Set"][3](tp[1][1][1],erased)
+                                ?acc
+                                :take_item(tp);
                         
                        }
                      },
                    signature,
                    /* [] */0);
-          }
         };
     
     var
@@ -672,8 +659,9 @@ var
           function(name,comment_opt,private_flag,loc,q)
            {var complete_name=Odoc_name["concat"](current_class_name,name);
             
+            var typ;
             try
-             {var typ=Signature_search[11](name,class_signature);}
+             {typ=Signature_search[11](name,class_signature);}
             catch(exn)
              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                {throw [0,
@@ -745,10 +733,7 @@ var
                  
                  var comment_opt2=merge_infos(match$1[1],match$2[2]);
                  
-                 if(comment_opt2)
-                  {var text_opt=comment_opt2[1][1];}
-                 else
-                  {var text_opt=/* None */0;}
+                 var text_opt=comment_opt2?comment_opt2[1][1]:/* None */0;
                  
                  var match$3=class_type[1];
                  
@@ -802,8 +787,9 @@ var
                   complete_name=
                    Odoc_name["concat"](current_class_name,name$1);
                  
+                 var typ;
                  try
-                  {var typ=Signature_search[10](name$1,class_signature);}
+                  {typ=Signature_search[10](name$1,class_signature);}
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -860,10 +846,9 @@ var
                  
                  var met=match$11[1];
                  
-                 if(match$9[3]!==0)
-                  {var met2=met;}
-                 else
-                  {var met2=/* record */[0,met[1],met[2],/* true */1];}
+                 var
+                  met2=
+                   match$9[3]!==0?met:/* record */[0,met[1],met[2],/* true */1];
                  
                  var match$12=f(loc[2][4]+match$11[2],q);
                  
@@ -909,13 +894,11 @@ var
                  (function(acc,sc)
                    {var match$18=sc[1];
                     
-                    if(match$18)
-                     {return Pervasives["@"]
+                    return match$18
+                            ?Pervasives["@"]
                               (acc,
-                               /* :: */[0,/* Class_comment */[2,match$18[1]],/* [] */0]);
-                      }
-                    else
-                     {return acc;}
+                               /* :: */[0,/* Class_comment */[2,match$18[1]],/* [] */0])
+                            :acc;
                     },
                   /* [] */0,
                   match$17[2]);
@@ -975,15 +958,13 @@ var
                  (function(acc,sc)
                    {var match$3=sc[1];
                     
-                    if(match$3)
-                     {return Pervasives["@"]
+                    return match$3
+                            ?Pervasives["@"]
                               (acc,
                                /* :: */[0,
                                 /* Element_module_comment */[9,match$3[1]],
-                                /* [] */0]);
-                      }
-                    else
-                     {return acc;}
+                                /* [] */0])
+                            :acc;
                     },
                   /* [] */0,
                   match$2[2]);
@@ -1014,8 +995,9 @@ var
          {case 0:
            var name_pre=sig_item_desc[1][1];
            
+           var type_expr;
            try
-            {var type_expr=Signature_search[3](table,name_pre[1]);}
+            {type_expr=Signature_search[3](table,name_pre[1]);}
            catch(exn)
             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
@@ -1084,16 +1066,13 @@ var
                  },
                name_type_decl_list);
            
-           if(is_nonrec){var env$1=env;}else{var env$1=extended_env;}
+           var env$1=is_nonrec?env:extended_env;
            
            var
             f=
              function
               ($staropt$star,acc_maybe_more,last_pos,name_type_decl_list)
-              {if($staropt$star)
-                {var first=$staropt$star[1];}
-               else
-                {var first=/* false */0;}
+              {var first=$staropt$star?$staropt$star[1]:/* false */0;
                
                if(name_type_decl_list)
                 {var q=name_type_decl_list[2];
@@ -1102,18 +1081,13 @@ var
                  
                  var name$1=type_decl[1];
                  
-                 if(first)
-                  {var match$1=/* tuple */[0,comment_opt,/* [] */0];}
-                 else
-                  {var
-                    match$1=
-                     get_comments_in_module(last_pos,type_decl[8][1][4]);
-                   }
+                 var
+                  match$1=
+                   first
+                    ?/* tuple */[0,comment_opt,/* [] */0]
+                    :get_comments_in_module(last_pos,type_decl[8][1][4]);
                  
-                 if(q)
-                  {var pos_limit2=q[1][8][1][4];}
-                 else
-                  {var pos_limit2=pos_limit;}
+                 var pos_limit2=q?q[1][8][1][4]:pos_limit;
                  
                  var
                   match$2=
@@ -1124,8 +1098,9 @@ var
                  
                  var maybe_more=match$2[1];
                  
+                 var sig_type_decl;
                  try
-                  {var sig_type_decl=Signature_search[5](table,name$1[1]);}
+                  {sig_type_decl=Signature_search[5](table,name$1[1]);}
                  catch(exn$1)
                   {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -1219,8 +1194,9 @@ var
                   env_acc=
                    Odoc_env["add_extension"](param[1],complete_name);
                  
+                 var types_ext;
                  try
-                  {var types_ext=Signature_search[4](table,name$1);}
+                  {types_ext=Signature_search[4](table,name$1);}
                  catch(exn$1)
                   {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -1244,11 +1220,9 @@ var
            
            var new_env$1=match$2[1];
            
+           var match$3;
            if(last_ext)
-            {var ext=last_ext[1];
-             
-             var match$3=/* tuple */[0,ext[1],ext[2],ext[5]];
-             }
+            {var ext=last_ext[1];match$3=/* tuple */[0,ext[1],ext[2],ext[5]];}
            else
             {throw [0,
                     CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -1293,10 +1267,7 @@ var
                     /* record */[0,/* None */0,/* Some */[0,types_ext[6]]],
                     /* None */0];
                  
-                 if(q)
-                  {var pos_limit2=q[1][2][6][1][4];}
-                 else
-                  {var pos_limit2=pos_limit;}
+                 var pos_limit2=q?q[1][2][6][1][4]:pos_limit;
                  
                  var s=get_string_of_file(ext_loc_end,pos_limit2);
                  
@@ -1330,8 +1301,9 @@ var
           case 3:
            var name$1=sig_item_desc[1][1];
            
+           var types_ext;
            try
-            {var types_ext=Signature_search[4](table,name$1[1]);}
+            {types_ext=Signature_search[4](table,name$1[1]);}
            catch(exn$1)
             {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
@@ -1379,8 +1351,9 @@ var
             complete_name=
              Odoc_name["concat"](current_module_name,name$2[1]);
            
+           var sig_module_type;
            try
-            {var sig_module_type=Signature_search[8](table,name$2[1]);}
+            {sig_module_type=Signature_search[8](table,name$2[1]);}
            catch(exn$2)
             {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
@@ -1397,6 +1370,7 @@ var
              analyse_module_kind
               (/* None */0,env,complete_name,module_type,sig_module_type);
            
+           var code_intf;
            if(Odoc_global["keep_code"][1])
             {var loc=module_type[2];
              
@@ -1404,10 +1378,10 @@ var
              
              var en=loc[2][4];
              
-             var code_intf=/* Some */[0,get_string_of_file(st,en)];
+             code_intf=/* Some */[0,get_string_of_file(st,en)];
              }
            else
-            {var code_intf=/* None */0;}
+            {code_intf=/* None */0;}
            
            var
             new_module=
@@ -1465,8 +1439,9 @@ var
                  
                  var e$1=Odoc_env["add_module"](acc_env,complete_name$1);
                  
+                 var sig_module_type$1;
                  try
-                  {var sig_module_type$1=Signature_search[8](table,name$3);}
+                  {sig_module_type$1=Signature_search[8](table,name$3);}
                  catch(exn$3)
                   {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -1494,10 +1469,7 @@ var
            var
             f$1=
              function($staropt$star,acc_maybe_more,last_pos,name_mtype_list)
-              {if($staropt$star)
-                {var first=$staropt$star[1];}
-               else
-                {var first=/* false */0;}
+              {var first=$staropt$star?$staropt$star[1]:/* false */0;
                
                if(name_mtype_list)
                 {var q=name_mtype_list[2];
@@ -1518,19 +1490,17 @@ var
                  
                  var loc_end=loc$1[2][4];
                  
-                 if(first)
-                  {var match$11=/* tuple */[0,comment_opt,/* [] */0];}
-                 else
-                  {var match$11=get_comments_in_module(last_pos,loc_start);}
+                 var
+                  match$11=
+                   first
+                    ?/* tuple */[0,comment_opt,/* [] */0]
+                    :get_comments_in_module(last_pos,loc_start);
                  
-                 if(q)
-                  {var pos_limit2=loc$1[1][4];}
-                 else
-                  {var pos_limit2=pos_limit;}
+                 var pos_limit2=q?loc$1[1][4]:pos_limit;
                  
+                 var sig_module_type$1;
                  try
-                  {var sig_module_type$1=Signature_search[8](table,name$3[1]);
-                   }
+                  {sig_module_type$1=Signature_search[8](table,name$3[1]);}
                  catch(exn$3)
                   {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -1551,15 +1521,16 @@ var
                      modtype,
                      sig_module_type$1);
                  
+                 var code_intf$1;
                  if(Odoc_global["keep_code"][1])
                   {var st$1=loc$1[1][4];
                    
                    var en$1=loc$1[2][4];
                    
-                   var code_intf$1=/* Some */[0,get_string_of_file(st$1,en$1)];
+                   code_intf$1=/* Some */[0,get_string_of_file(st$1,en$1)];
                    }
                  else
-                  {var code_intf$1=/* None */0;}
+                  {code_intf$1=/* None */0;}
                  
                  var
                   new_module$1=
@@ -1615,8 +1586,9 @@ var
             complete_name$1=
              Odoc_name["concat"](current_module_name,name$3[1]);
            
+           var sig_mtype;
            try
-            {var sig_mtype=Signature_search[9](table,name$3[1]);}
+            {sig_mtype=Signature_search[9](table,name$3[1]);}
            catch(exn$3)
             {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
               {throw [0,
@@ -1628,23 +1600,19 @@ var
               {throw exn$3;}
              }
            
-           if(pmodtype_decl)
-            {if(sig_mtype)
-              {var
-                module_type_kind=
-                 /* Some */[0,
+           var
+            module_type_kind=
+             pmodtype_decl
+              ?sig_mtype
+                ?/* Some */[0,
                   analyse_module_type_kind
                    (/* None */0,
                     env,
                     complete_name$1,
                     pmodtype_decl[1],
-                    sig_mtype[1])];
-               }
-             else
-              {var module_type_kind=/* None */0;}
-             }
-           else
-            {var module_type_kind=/* None */0;}
+                    sig_mtype[1])]
+                :/* None */0
+              :/* None */0;
            
            var
             mt=
@@ -1666,18 +1634,18 @@ var
            
            var exit$1;
            
+           var new_env2$1;
            if(sig_mtype)
             {var match$13=sig_mtype[1];
              
              switch(match$13[0])
               {case 1:
-                var
-                 new_env2$1=
-                  Odoc_env["add_signature"]
-                   (new_env$5,
-                    mt[1],
-                    /* Some */[0,Odoc_name["simple"](mt[1])],
-                    match$13[1]);
+                new_env2$1=
+                Odoc_env["add_signature"]
+                 (new_env$5,
+                  mt[1],
+                  /* Some */[0,Odoc_name["simple"](mt[1])],
+                  match$13[1]);
                 
                default:exit$1=102;}
              }
@@ -1692,21 +1660,19 @@ var
                    /* :: */[0,/* Element_module_type */[1,mt],/* [] */0]];
            
           case 7:
+           var ele_comments;
            if(comment_opt)
             {var match$14=comment_opt[1][1];
              
-             if(match$14)
-              {var
-                ele_comments=
-                 /* :: */[0,
-                  /* Element_module_comment */[9,match$14[1]],
-                  /* [] */0];
-               }
-             else
-              {var ele_comments=/* [] */0;}
+             ele_comments=
+             match$14
+              ?/* :: */[0,
+                /* Element_module_comment */[9,match$14[1]],
+                /* [] */0]
+              :/* [] */0;
              }
            else
-            {var ele_comments=/* [] */0;}
+            {ele_comments=/* [] */0;}
            
            return /* tuple */[0,0,env,ele_comments];
            
@@ -1773,30 +1739,22 @@ var
             f$3=
              function
               ($staropt$star,acc_maybe_more,last_pos,class_description_list)
-              {if($staropt$star)
-                {var first=$staropt$star[1];}
-               else
-                {var first=/* false */0;}
+              {var first=$staropt$star?$staropt$star[1]:/* false */0;
                
                if(class_description_list)
                 {var q=class_description_list[2];
                  
                  var class_desc=class_description_list[1];
                  
-                 if(first)
-                  {var match$15=/* tuple */[0,comment_opt,/* [] */0];}
-                 else
-                  {var
-                    match$15=
-                     get_comments_in_module(last_pos,class_desc[5][1][4]);
-                   }
+                 var
+                  match$15=
+                   first
+                    ?/* tuple */[0,comment_opt,/* [] */0]
+                    :get_comments_in_module(last_pos,class_desc[5][1][4]);
                  
                  var pos_end=class_desc[5][2][4];
                  
-                 if(q)
-                  {var pos_limit2=q[1][5][1][4];}
-                 else
-                  {var pos_limit2=pos_limit;}
+                 var pos_limit2=q?q[1][5][1][4]:pos_limit;
                  
                  var name$5=class_desc[3];
                  
@@ -1804,8 +1762,9 @@ var
                   complete_name$2=
                    Odoc_name["concat"](current_module_name,name$5[1]);
                  
+                 var sig_class_decl;
                  try
-                  {var sig_class_decl=Signature_search[6](table,name$5[1]);}
+                  {sig_class_decl=Signature_search[6](table,name$5[1]);}
                  catch(exn$4)
                   {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -1897,30 +1856,22 @@ var
                acc_maybe_more,
                last_pos,
                class_type_description_list)
-              {if($staropt$star)
-                {var first=$staropt$star[1];}
-               else
-                {var first=/* false */0;}
+              {var first=$staropt$star?$staropt$star[1]:/* false */0;
                
                if(class_type_description_list)
                 {var q=class_type_description_list[2];
                  
                  var ct_decl=class_type_description_list[1];
                  
-                 if(first)
-                  {var match$16=/* tuple */[0,comment_opt,/* [] */0];}
-                 else
-                  {var
-                    match$16=
-                     get_comments_in_module(last_pos,ct_decl[5][1][4]);
-                   }
+                 var
+                  match$16=
+                   first
+                    ?/* tuple */[0,comment_opt,/* [] */0]
+                    :get_comments_in_module(last_pos,ct_decl[5][1][4]);
                  
                  var pos_end=ct_decl[5][2][4];
                  
-                 if(q)
-                  {var pos_limit2=q[1][5][1][4];}
-                 else
-                  {var pos_limit2=pos_limit;}
+                 var pos_limit2=q?q[1][5][1][4]:pos_limit;
                  
                  var name$5=ct_decl[3];
                  
@@ -1928,8 +1879,9 @@ var
                   complete_name$2=
                    Odoc_name["concat"](current_module_name,name$5[1]);
                  
+                 var sig_cltype_decl;
                  try
-                  {var sig_cltype_decl=Signature_search[7](table,name$5[1]);}
+                  {sig_cltype_decl=Signature_search[7](table,name$5[1]);}
                  catch(exn$4)
                   {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
                     {throw [0,
@@ -2006,10 +1958,7 @@ var
      analyse_module_type_kind=
       function
        ($staropt$star,env,current_module_name,module_type,sig_module_type)
-       {if($staropt$star)
-         {var erased=$staropt$star[1];}
-        else
-         {var erased=Odoc_name["Set"][1];}
+       {var erased=$staropt$star?$staropt$star[1]:Odoc_name["Set"][1];
         
         var match=module_type[1];
         
@@ -2054,10 +2003,7 @@ var
           case 2:
            var pmodule_type2=match[2];
            
-           if(pmodule_type2)
-            {var loc=pmodule_type2[1][2];}
-           else
-            {var loc=Location["none"];}
+           var loc=pmodule_type2?pmodule_type2[1][2]:Location["none"];
            
            var loc_start=loc[1][4];
            
@@ -2071,16 +2017,16 @@ var
               
               var exit;
               
+              var mp_kind;
               if(pmodule_type2)
                {if(param_module_type)
-                 {var
-                   mp_kind=
-                    analyse_module_type_kind
-                     (/* None */0,
-                      env,
-                      current_module_name,
-                      pmodule_type2[1],
-                      param_module_type[1]);
+                 {mp_kind=
+                  analyse_module_type_kind
+                   (/* None */0,
+                    env,
+                    current_module_name,
+                    pmodule_type2[1],
+                    param_module_type[1]);
                   }
                 else
                  {exit=160;}
@@ -2172,10 +2118,7 @@ var
      analyse_module_kind=
       function
        ($staropt$star,env,current_module_name,module_type,sig_module_type)
-       {if($staropt$star)
-         {var erased=$staropt$star[1];}
-        else
-         {var erased=Odoc_name["Set"][1];}
+       {var erased=$staropt$star?$staropt$star[1]:Odoc_name["Set"][1];
         
         var match=module_type[1];
         
@@ -2221,10 +2164,7 @@ var
             {case 2:
               var param_module_type=sig_module_type[2];
               
-              if(pmodule_type2)
-               {var loc=pmodule_type2[1][2];}
-              else
-               {var loc=Location["none"];}
+              var loc=pmodule_type2?pmodule_type2[1][2]:Location["none"];
               
               var loc_start=loc[1][4];
               
@@ -2234,16 +2174,16 @@ var
               
               var exit;
               
+              var mp_kind;
               if(pmodule_type2)
                {if(param_module_type)
-                 {var
-                   mp_kind=
-                    analyse_module_type_kind
-                     (/* None */0,
-                      env,
-                      current_module_name,
-                      pmodule_type2[1],
-                      param_module_type[1]);
+                 {mp_kind=
+                  analyse_module_type_kind
+                   (/* None */0,
+                    env,
+                    current_module_name,
+                    pmodule_type2[1],
+                    param_module_type[1]);
                   }
                 else
                  {exit=184;}
@@ -2505,7 +2445,8 @@ var
     var
      analyse_signature=
       function(source_file,input_file,ast,signat)
-       {try
+       {var complete_source_file;
+        try
          {var curdir=CamlPrimitive["caml_sys_getcwd"](/* () */0);
           
           var
@@ -2521,13 +2462,13 @@ var
              (CamlPrimitive["caml_sys_getcwd"](/* () */0),match[2]);
           
           CamlPrimitive["caml_sys_chdir"](curdir);
-          var complete_source_file=complete;
+          complete_source_file=complete;
           }
         catch(exn)
          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {Pervasives["prerr_endline"](exn[2]);
             Odoc_global["errors"][0]++;
-            var complete_source_file=source_file;
+            complete_source_file=source_file;
             }
           else
            {throw exn;}
@@ -2552,10 +2493,9 @@ var
             file[1]["length"],
             ast);
         
-        if(Odoc_global["keep_code"][1])
-         {var code_intf=/* Some */[0,file[1]];}
-        else
-         {var code_intf=/* None */0;}
+        var
+         code_intf=
+          Odoc_global["keep_code"][1]?/* Some */[0,file[1]]:/* None */0;
         
         return /* record */[0,
                 mod_name,

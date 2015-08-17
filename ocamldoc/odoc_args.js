@@ -209,10 +209,9 @@ var
   function(l,s)
    {return List["fold_left"]
             (function(acc,param)
-              {if($$String["contains"](s,param[1][1]))
-                {return Pervasives["@"](acc,param[2]);}
-               else
-                {return acc;}
+              {return $$String["contains"](s,param[1][1])
+                       ?Pervasives["@"](acc,param[2])
+                       :acc;
                },
              /* [] */0,
              l);
@@ -331,18 +330,15 @@ var
                switch(name)
                 {case "":return /* () */0;
                  default:
-                  var match=name[0];
+                  var match=name["charCodeAt"](0);
                   
-                  if(25<-65+match>>>0)
-                   {Odoc_global["errors"][0]++;
-                    return Pervasives["prerr_endline"]
-                            (Odoc_messages["not_a_module_name"](name));
-                    }
-                  else
-                   {return Odoc_global["hidden_modules"][1]=
-                           /* :: */[0,name,Odoc_global["hidden_modules"][1]],
-                           0;
-                    }
+                  return 25<-65+match>>>0
+                          ?(Odoc_global["errors"][0]++,
+                            Pervasives["prerr_endline"]
+                             (Odoc_messages["not_a_module_name"](name)))
+                          :(Odoc_global["hidden_modules"][1]=
+                            /* :: */[0,name,Odoc_global["hidden_modules"][1]],
+                            0);
                   }
                },
              l);
@@ -353,21 +349,15 @@ var set_generator=function(g){return current_generator[1]=/* Some */[0,g],0;};
 var
  anonymous=
   function(f)
-   {if(Filename["check_suffix"](f,"ml"))
-     {var sf=/* Impl_file */[0,f];}
-    else
-     {if(Filename["check_suffix"](f,Config["interface_suffix"][1]))
-       {var sf=/* Intf_file */[1,f];}
-      else
-       {if(Filename["check_suffix"](f,"txt"))
-         {var sf=/* Text_file */[2,f];}
-        else
-         {var
-           sf=
-            Pervasives["failwith"](Odoc_messages["unknown_extension"](f));
-          }
-        }
-      }
+   {var
+     sf=
+      Filename["check_suffix"](f,"ml")
+       ?/* Impl_file */[0,f]
+       :Filename["check_suffix"](f,Config["interface_suffix"][1])
+         ?/* Intf_file */[1,f]
+         :Filename["check_suffix"](f,"txt")
+           ?/* Text_file */[2,f]
+           :Pervasives["failwith"](Odoc_messages["unknown_extension"](f));
     
     return Odoc_global["files"][1]=
            Pervasives["@"](Odoc_global["files"][1],/* :: */[0,sf,/* [] */0]),
@@ -995,10 +985,9 @@ var
 var
  add_option=
   function(o)
-   {if(!modified_options(/* () */0))
-     {append_last_doc("\n *** custom generator options ***\n")}
-    else
-     {}
+   {!modified_options(/* () */0)
+     ?append_last_doc("\n *** custom generator options ***\n")
+     :0;
     
     var s=o[1];
     
@@ -1012,11 +1001,9 @@ var
           
           var s2=match$1[1];
           
-          if(CamlPrimitive["caml_string_equal"](s,s2))
-           {return /* :: */[0,o,q];}
-          else
-           {return /* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)];
-            }
+          return CamlPrimitive["caml_string_equal"](s,s2)
+                  ?/* :: */[0,o,q]
+                  :/* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)];
           }
         else
          {return /* :: */[0,o,/* [] */0];}
@@ -1028,7 +1015,7 @@ var
 var
  parse=
   function(param)
-   {if(modified_options(/* () */0)){append_last_doc("\n")}else{}
+   {modified_options(/* () */0)?append_last_doc("\n"):0;
     
     var options$1=Pervasives["@"](options[1],help_options[1]);
     

@@ -173,16 +173,14 @@ var
       function(fold,filter)
        {return fold
                 (function(name,contents,acc)
-                  {if(filter(name))
-                    {return My_std["List"][20]
+                  {return filter(name)
+                           ?My_std["List"][20]
                              (function(elt,acc)
                                {return add(elt,/* :: */[0,name,find_all_list(elt,acc)],acc);
                                 },
                               contents,
-                              acc);
-                     }
-                   else
-                    {return acc;}
+                              acc)
+                           :acc;
                    },
                  empty);
         };
@@ -211,41 +209,21 @@ var
         $staropt$star,
         $staropt$star,
         fns)
-       {if($staropt$star$1)
-         {var caml_obj_ext=$staropt$star$1[1];}
-        else
-         {var caml_obj_ext="cmo";}
+       {var caml_obj_ext=$staropt$star$1?$staropt$star$1[1]:"cmo";
         
-        if($staropt$star$2)
-         {var caml_lib_ext=$staropt$star$2[1];}
-        else
-         {var caml_lib_ext="cma";}
+        var caml_lib_ext=$staropt$star$2?$staropt$star$2[1]:"cma";
         
-        if($staropt$star$3)
-         {var pack_mode=$staropt$star$3[1];}
-        else
-         {var pack_mode=/* false */0;}
+        var pack_mode=$staropt$star$3?$staropt$star$3[1]:/* false */0;
         
-        if($staropt$star$4)
-         {var used_libraries=$staropt$star$4[1];}
-        else
-         {var used_libraries=/* [] */0;}
+        var used_libraries=$staropt$star$4?$staropt$star$4[1]:/* [] */0;
         
-        if($staropt$star)
-         {var hidden_packages=$staropt$star[1];}
-        else
-         {var hidden_packages=/* [] */0;}
+        var hidden_packages=$staropt$star?$staropt$star[1]:/* [] */0;
         
-        if(pack_mode)
-         {var
-           valid_link_exts=
-            /* :: */[0,caml_obj_ext,[/* :: */0,"cmi",/* [] */0]];
-          }
-        else
-         {var
-           valid_link_exts=
-            /* :: */[0,caml_obj_ext,/* :: */[0,caml_lib_ext,/* [] */0]];
-          }
+        var
+         valid_link_exts=
+          pack_mode
+           ?/* :: */[0,caml_obj_ext,[/* :: */0,"cmi",/* [] */0]]
+           :/* :: */[0,caml_obj_ext,/* :: */[0,caml_lib_ext,/* [] */0]];
         
         mydprintf
          ([/* Format */0,
@@ -296,10 +274,9 @@ var
         var
          caml_obj_ext_of_cmi=
           function(x)
-           {if(Filename["check_suffix"](x,".cmi"))
-             {return Pathname["update_extensions"](caml_obj_ext,x);}
-            else
-             {return x;}
+           {return Filename["check_suffix"](x,".cmi")
+                    ?Pathname["update_extensions"](caml_obj_ext,x)
+                    :x;
             };
         
         var
@@ -309,19 +286,15 @@ var
              {if(Filename["check_suffix"](x,".cmi"))
                {var caml_obj=Pathname["update_extensions"](caml_obj_ext,x);
                 
-                if(Resource["exists_in_build_dir"](caml_obj))
-                 {return caml_obj;}
-                else
-                 {return x;}
+                return Resource["exists_in_build_dir"](caml_obj)?caml_obj:x;
                 }
               else
                {return x;}
               }
             else
-             {if(Filename["check_suffix"](x,".cmi"))
-               {return Pathname["update_extensions"](caml_obj_ext,x);}
-              else
-               {return x;}
+             {return Filename["check_suffix"](x,".cmi")
+                      ?Pathname["update_extensions"](caml_obj_ext,x)
+                      :x;
               }
             };
         
@@ -340,13 +313,11 @@ var
               
               var y$1=maybe_caml_obj_ext_of_cmi(y);
               
-              if
-               (CamlPrimitive["caml_string_equal"](x$1,y$1)||
-                not_linkable(x$1)||
-                not_linkable(y$1))
-               {return acc;}
-              else
-               {return Utils[4](x$1,y$1,acc);}
+              return CamlPrimitive["caml_string_equal"](x$1,y$1)||
+                      not_linkable(x$1)||
+                      not_linkable(y$1)
+                      ?acc
+                      :Utils[4](x$1,y$1,acc);
               },
             SMap[1]);
         
@@ -376,12 +347,10 @@ var
          open_packages=
           Resource["Resources"][14]
            (function(file,acc)
-             {if
-               (Resource["Resources"][3](file,packages)&&
-                !My_std["List"][30](file,hidden_packages))
-               {return /* :: */[0,file,acc];}
-              else
-               {return acc;}
+             {return Resource["Resources"][3](file,packages)&&
+                      !My_std["List"][30](file,hidden_packages)
+                      ?/* :: */[0,file,acc]
+                      :acc;
               },
             used_files,
             /* [] */0);
@@ -431,9 +400,9 @@ var
           function(x)
            {var pkgs=Utils[9](x,My_std["!*"](package_index));
             
-            if(pkgs)
-             {if(pkgs[2])
-               {return Pervasives["failwith"]
+            return pkgs
+                    ?pkgs[2]
+                      ?Pervasives["failwith"]
                         (My_std["sbprintf"]
                           ([/* Format */0,
                             [/* String_literal */11,
@@ -447,13 +416,9 @@ var
                             "the file %S is included in more than one active open package (%a)"],
                            x,
                            Tools["pp_l"],
-                           pkgs));
-                }
-              else
-               {return resolve_packages(pkgs[1]);}
-              }
-            else
-             {return x;}
+                           pkgs))
+                      :resolve_packages(pkgs[1])
+                    :x;
             };
         
         var libs_of=function(x){return Utils[9](x,My_std["!*"](lib_index));};
@@ -463,9 +428,9 @@ var
           function(x)
            {var libs=libs_of(x);
             
-            if(libs)
-             {if(libs[2])
-               {return Pervasives["failwith"]
+            return libs
+                    ?libs[2]
+                      ?Pervasives["failwith"]
                         (My_std["sbprintf"]
                           ([/* Format */0,
                             [/* String_literal */11,
@@ -479,13 +444,9 @@ var
                             "the file %S is included in more than one active library (%a)"],
                            x,
                            Tools["pp_l"],
-                           libs));
-                }
-              else
-               {return /* Some */[0,libs[1]];}
-              }
-            else
-             {return /* None */0;}
+                           libs))
+                      :/* Some */[0,libs[1]]
+                    :/* None */0;
             };
         
         var
@@ -498,10 +459,9 @@ var
             var
              add_if_diff=
               function(x,y)
-               {if(CamlPrimitive["caml_string_equal"](x,y))
-                 {return acc;}
-                else
-                 {return Utils[4](x,y,acc);}
+               {return CamlPrimitive["caml_string_equal"](x,y)
+                        ?acc
+                        :Utils[4](x,y,acc);
                 };
             
             var match=lib_of(src$1);
@@ -511,16 +471,14 @@ var
             if(match)
              {var liba=match[1];
               
-              if(match$1)
-               {return add_if_diff(liba,match$1[1]);}
-              else
-               {return add_if_diff(liba,dst$1);}
+              return match$1
+                      ?add_if_diff(liba,match$1[1])
+                      :add_if_diff(liba,dst$1);
               }
             else
-             {if(match$1)
-               {return add_if_diff(src$1,match$1[1]);}
-              else
-               {return add_if_diff(src$1,dst$1);}
+             {return match$1
+                      ?add_if_diff(src$1,match$1[1])
+                      :add_if_diff(src$1,dst$1);
               }
             };
         
@@ -569,18 +527,13 @@ var
                {var
                  through_dep=
                   function(f,cycle)
-                   {if(cycle)
-                     {return cycle;}
-                    else
-                     {if(My_std["List"][30](f,path))
-                       {return /* Some */[0,My_std["List"][9](path)];}
-                      else
-                       {if(!Resource["Resources"][3](f,files))
-                         {return /* None */0;}
-                        else
-                         {return dfs(/* :: */[0,f,path],f);}
-                        }
-                      }
+                   {return cycle
+                            ?cycle
+                            :My_std["List"][30](f,path)
+                              ?/* Some */[0,My_std["List"][9](path)]
+                              :!Resource["Resources"][3](f,files)
+                                ?/* None */0
+                                :dfs(/* :: */[0,f,path],f);
                     };
                 
                 if(Resource["Resources"][3](fn,dead_ends[1]))
@@ -591,21 +544,17 @@ var
                     Resource["Resources"][14]
                      (through_dep,dependencies_of(fn),/* None */0);
                   
-                  if(cycle)
-                   {return cycle;}
-                  else
-                   {dead_ends[1]=Resource["Resources"][4](fn,dead_ends[1]);
-                    return /* None */0;
-                    }
+                  return cycle
+                          ?cycle
+                          :(dead_ends[1]=
+                            Resource["Resources"][4](fn,dead_ends[1]),
+                            /* None */0);
                   }
                 };
             
             var match=dfs(/* [] */0,starting_file);
             
-            if(match)
-             {return match[1];}
-            else
-             {return Resource["Resources"][20](files);}
+            return match?match[1]:Resource["Resources"][20](files);
             };
         
         var needed_in_order=[0,/* [] */0];
@@ -632,14 +581,11 @@ var
                    {if(Filename["check_suffix"](f,".cmi"))
                      {var f$prime=caml_obj_ext_of_cmi(f);
                       
-                      if(CamlPrimitive["caml_string_notequal"](f$prime,fn))
-                       {if(My_std["sys_file_exists"](f$prime))
-                         {return aux(f$prime);}
-                        else
-                         {if(pack_mode){return aux(f);}else{return /* () */0;}}
-                        }
-                      else
-                       {return /* () */0;}
+                      return CamlPrimitive["caml_string_notequal"](f$prime,fn)
+                              ?My_std["sys_file_exists"](f$prime)
+                                ?aux(f$prime)
+                                :pack_mode?aux(f):/* () */0
+                              :/* () */0;
                       }
                     else
                      {return aux(f);}

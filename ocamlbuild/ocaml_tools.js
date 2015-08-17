@@ -40,10 +40,11 @@ var
 var
  menhir_ocamldep_command$prime=
   function(tags,menhir_spec,out)
-   {if(Options["ocamlyacc"][1]===/* N */0)
-     {var menhir=[/* V */6,"MENHIR"];}
-    else
-     {var menhir=Options["ocamlyacc"][1];}
+   {var
+     menhir=
+      Options["ocamlyacc"][1]===/* N */0
+       ?[/* V */6,"MENHIR"]
+       :Options["ocamlyacc"][1];
     
     return /* Cmd */[1,
             /* S */[0,
@@ -145,10 +146,11 @@ var
 var
  menhir_modular=
   function(menhir_base,mlypack,mlypack_depends,env,build)
-   {if(Options["ocamlyacc"][1]===/* N */0)
-     {var menhir=[/* V */6,"MENHIR"];}
-    else
-     {var menhir=Options["ocamlyacc"][1];}
+   {var
+     menhir=
+      Options["ocamlyacc"][1]===/* N */0
+       ?[/* V */6,"MENHIR"]
+       :Options["ocamlyacc"][1];
     
     var menhir_base$1=env(menhir_base);
     
@@ -229,10 +231,11 @@ var
   function(mly,env,_build)
    {var mly$1=env(mly);
     
-    if(Options["ocamlyacc"][1]===/* N */0)
-     {var ocamlyacc$1=[/* V */6,"OCAMLYACC"];}
-    else
-     {var ocamlyacc$1=Options["ocamlyacc"][1];}
+    var
+     ocamlyacc$1=
+      Options["ocamlyacc"][1]===/* N */0
+       ?[/* V */6,"OCAMLYACC"]
+       :Options["ocamlyacc"][1];
     
     return /* Cmd */[1,
             /* S */[0,
@@ -307,10 +310,11 @@ var
     
     var ml=Pathname["update_extension"]("ml",mly$1);
     
-    if(Options["ocamlyacc"][1]===/* N */0)
-     {var menhir$1=[/* V */6,"MENHIR"];}
-    else
-     {var menhir$1=Options["ocamlyacc"][1];}
+    var
+     menhir$1=
+      Options["ocamlyacc"][1]===/* N */0
+       ?[/* V */6,"MENHIR"]
+       :Options["ocamlyacc"][1];
     
     var
      ocamlc_tags=
@@ -495,10 +499,7 @@ var
 var
  document_ocaml_project=
   function($staropt$star,odocl,docout,docdir,env,build)
-   {if($staropt$star)
-     {var ocamldoc=$staropt$star[1];}
-    else
-     {var ocamldoc=ocamldoc_l_file;}
+   {var ocamldoc=$staropt$star?$staropt$star[1]:ocamldoc_l_file;
     
     var odocl$1=env(odocl);
     
@@ -537,10 +538,7 @@ var
 var
  camlp4=
   function($staropt$star,tag,i,o,env,build)
-   {if($staropt$star)
-     {var $$default=$staropt$star[1];}
-    else
-     {var $$default=[/* A */1,"camlp4o"];}
+   {var $$default=$staropt$star?$staropt$star[1]:[/* A */1,"camlp4o"];
     
     var ml=env(i);
     
@@ -557,7 +555,7 @@ var
     
     var pp=Command["reduce"](Flags["of_tags"](tags));
     
-    if(typeof pp==="number"){var pp$1=$$default;}else{var pp$1=pp;}
+    var pp$1=typeof pp==="number"?$$default:pp;
     
     return /* Cmd */[1,
             /* S */[0,

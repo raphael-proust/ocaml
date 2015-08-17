@@ -45,16 +45,16 @@ var
 var
  initial_env=
   function(param)
-   {if(Clflags["unsafe_string"][1])
-     {var initial=Env["initial_unsafe_string"];}
-    else
-     {var initial=Env["initial_safe_string"];}
+   {var
+     initial=
+      Clflags["unsafe_string"][1]
+       ?Env["initial_unsafe_string"]
+       :Env["initial_safe_string"];
     
     try
-     {if(Clflags["nopervasives"][1])
-       {return initial;}
-      else
-       {return Env["open_pers_signature"]("Pervasives",initial);}
+     {return Clflags["nopervasives"][1]
+              ?initial
+              :Env["open_pers_signature"]("Pervasives",initial);
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -201,8 +201,8 @@ var
   function(exn)
    {var match=Location["error_of_exn"](exn);
     
-    if(match)
-     {return Format["fprintf"]
+    return match
+            ?Format["fprintf"]
               (Format["err_formatter"],
                [/* Format */0,
                 [/* Formatting_gen */18,
@@ -215,10 +215,8 @@ var
                     /* End_of_format */0]]]],
                 "@[%a@]@."],
                Location["report_error"],
-               match[1]);
-      }
-    else
-     {return Format["fprintf"]
+               match[1])
+            :Format["fprintf"]
               (Format["err_formatter"],
                [/* Format */0,
                 [/* String_literal */11,
@@ -232,7 +230,6 @@ var
                     /* End_of_format */0]]]],
                 "Compilation error(%s). Use the OCaml compiler to get more details.@."],
                Printexc["to_string"](exn));
-      }
     };
 
 var
@@ -272,11 +269,10 @@ var
               (file,Location["input_name"][1],parsetree,match$1[2]);
            
            file_module[8]=Odoc_dep["impl_dependencies"](parsetree);
-           if(Odoc_global["verbose"][1])
-            {Format["print_string"](Odoc_messages["ok"]),
-             Format["print_newline"](/* () */0)}
-           else
-            {}
+           Odoc_global["verbose"][1]
+            ?(Format["print_string"](Odoc_messages["ok"]),
+              Format["print_newline"](/* () */0))
+            :0;
            
            Pparse["remove_preprocessed"](match[2]);
            return /* Some */[0,file_module];
@@ -320,11 +316,10 @@ var
             (file$1,Location["input_name"][1],ast,match$2[2][2]);
          
          file_module$1[8]=Odoc_dep["intf_dependencies"](ast);
-         if(Odoc_global["verbose"][1])
-          {Format["print_string"](Odoc_messages["ok"]),
-           Format["print_newline"](/* () */0)}
-         else
-          {}
+         Odoc_global["verbose"][1]
+          ?(Format["print_string"](Odoc_messages["ok"]),
+            Format["print_newline"](/* () */0))
+          :0;
          
          Pparse["remove_preprocessed"](match$2[3]);
          return /* Some */[0,file_module$1];
@@ -358,16 +353,15 @@ var
        
        Location["input_name"][1]=file$2;
        try
-        {try
-          {var s$2=Filename["chop_extension"](file$2);}
-         catch(exn){var s$2=file$2;}
+        {var s$2;
+         try {s$2=Filename["chop_extension"](file$2);}catch(exn){s$2=file$2;}
          
          var mod_name=$$String["capitalize"](Filename["basename"](s$2));
          
+         var txt;
          try
-          {var
-            txt=
-             Odoc_text["Texter"][1](Odoc_misc["input_file_as_string"](file$2));
+          {txt=
+           Odoc_text["Texter"][1](Odoc_misc["input_file_as_string"](file$2));
            }
          catch(exn$1)
           {if(exn$1[1]===Odoc_text["Text_syntax"])
@@ -469,10 +463,9 @@ var
       
       switch(exit)
        {case 25:
-         if(keep)
-          {return /* :: */[0,ele,remove_class_elements_between_stop(keep,q)];}
-         else
-          {return remove_class_elements_between_stop(keep,q);}
+         return keep
+                 ?/* :: */[0,ele,remove_class_elements_between_stop(keep,q)]
+                 :remove_class_elements_between_stop(keep,q);
          
         }
       }
@@ -528,59 +521,53 @@ var
        {case 0:
          var m=ele[1];
          
-         if(keep)
-          {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]);
-           return /* :: */[0,
-                   /* Element_module */[0,m],
-                   remove_module_elements_between_stop(keep,q)];
-           }
-         else
-          {return remove_module_elements_between_stop(keep,q);}
+         return keep
+                 ?(m[6]=
+                   remove_module_elements_between_stop_in_module_kind(m[6]),
+                   /* :: */[0,
+                    /* Element_module */[0,m],
+                    remove_module_elements_between_stop(keep,q)])
+                 :remove_module_elements_between_stop(keep,q);
          
         case 1:
          var mt=ele[1];
          
-         if(keep)
-          {mt[6]=
-           Odoc_misc["apply_opt"]
-            (remove_module_elements_between_stop_in_module_type_kind,mt[6]);
-           return /* :: */[0,
-                   /* Element_module_type */[1,mt],
-                   remove_module_elements_between_stop(keep,q)];
-           }
-         else
-          {return remove_module_elements_between_stop(keep,q);}
+         return keep
+                 ?(mt[6]=
+                   Odoc_misc["apply_opt"]
+                    (remove_module_elements_between_stop_in_module_type_kind,
+                     mt[6]),
+                   /* :: */[0,
+                    /* Element_module_type */[1,mt],
+                    remove_module_elements_between_stop(keep,q)])
+                 :remove_module_elements_between_stop(keep,q);
          
         case 2:
-         if(keep)
-          {return /* :: */[0,ele,remove_module_elements_between_stop(keep,q)];
-           }
-         else
-          {return remove_module_elements_between_stop(keep,q);}
+         return keep
+                 ?/* :: */[0,ele,remove_module_elements_between_stop(keep,q)]
+                 :remove_module_elements_between_stop(keep,q);
          
         case 3:
          var c=ele[1];
          
-         if(keep)
-          {c[6]=remove_class_elements_between_stop_in_class_kind(c[6]);
-           return /* :: */[0,
-                   /* Element_class */[3,c],
-                   remove_module_elements_between_stop(keep,q)];
-           }
-         else
-          {return remove_module_elements_between_stop(keep,q);}
+         return keep
+                 ?(c[6]=
+                   remove_class_elements_between_stop_in_class_kind(c[6]),
+                   /* :: */[0,
+                    /* Element_class */[3,c],
+                    remove_module_elements_between_stop(keep,q)])
+                 :remove_module_elements_between_stop(keep,q);
          
         case 4:
          var ct=ele[1];
          
-         if(keep)
-          {ct[6]=remove_class_elements_between_stop_in_class_type_kind(ct[6]);
-           return /* :: */[0,
-                   /* Element_class_type */[4,ct],
-                   remove_module_elements_between_stop(keep,q)];
-           }
-         else
-          {return remove_module_elements_between_stop(keep,q);}
+         return keep
+                 ?(ct[6]=
+                   remove_class_elements_between_stop_in_class_type_kind(ct[6]),
+                   /* :: */[0,
+                    /* Element_class_type */[4,ct],
+                    remove_module_elements_between_stop(keep,q)])
+                 :remove_module_elements_between_stop(keep,q);
          
         case 9:
          var match=ele[1];
@@ -611,22 +598,16 @@ var
          
          switch(exit)
           {case 20:
-            if(keep)
-             {return /* :: */[0,
-                      ele,
-                      remove_module_elements_between_stop(keep,q)];
-              }
-            else
-             {return remove_module_elements_between_stop(keep,q);}
+            return keep
+                    ?/* :: */[0,ele,remove_module_elements_between_stop(keep,q)]
+                    :remove_module_elements_between_stop(keep,q);
             
            }
          
         default:
-         if(keep)
-          {return /* :: */[0,ele,remove_module_elements_between_stop(keep,q)];
-           }
-         else
-          {return remove_module_elements_between_stop(keep,q);}
+         return keep
+                 ?/* :: */[0,ele,remove_module_elements_between_stop(keep,q)]
+                 :remove_module_elements_between_stop(keep,q);
          }
       }
     else
@@ -705,7 +686,7 @@ var
 var
  analyse_files=
   function($staropt$star,files)
-   {if($staropt$star){var init=$staropt$star[1];}else{var init=/* [] */0;}
+   {var init=$staropt$star?$staropt$star[1]:/* [] */0;
     
     var
      modules_pre=
@@ -716,10 +697,9 @@ var
            {try
              {var match=process_file(Format["err_formatter"],file);
               
-              if(match)
-               {return Pervasives["@"](acc,/* :: */[0,match[1],/* [] */0]);}
-              else
-               {return acc;}
+              return match
+                      ?Pervasives["@"](acc,/* :: */[0,match[1],/* [] */0])
+                      :acc;
               }
             catch(exn)
              {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
@@ -734,26 +714,25 @@ var
           /* [] */0,
           files));
     
-    if(Odoc_global["no_stop"][1])
-     {var modules=modules_pre;}
-    else
-     {var modules=remove_elements_between_stop(modules_pre);}
+    var
+     modules=
+      Odoc_global["no_stop"][1]
+       ?modules_pre
+       :remove_elements_between_stop(modules_pre);
     
-    if(Odoc_global["verbose"][1])
-     {Format["print_string"](Odoc_messages["merging"]),
-      Format["print_newline"](/* () */0)}
-    else
-     {}
+    Odoc_global["verbose"][1]
+     ?(Format["print_string"](Odoc_messages["merging"]),
+       Format["print_newline"](/* () */0))
+     :0;
     
     var
      merged_modules=
       Odoc_merge["merge"](Odoc_global["merge_options"][1],modules);
     
-    if(Odoc_global["verbose"][1])
-     {Format["print_string"](Odoc_messages["ok"]),
-      Format["print_newline"](/* () */0)}
-    else
-     {}
+    Odoc_global["verbose"][1]
+     ?(Format["print_string"](Odoc_messages["ok"]),
+       Format["print_newline"](/* () */0))
+     :0;
     
     var
      modules_list=
@@ -767,28 +746,24 @@ var
         merged_modules,
         merged_modules);
     
-    if(Odoc_global["verbose"][1])
-     {Format["print_string"](Odoc_messages["cross_referencing"]),
-      Format["print_newline"](/* () */0)}
-    else
-     {}
+    Odoc_global["verbose"][1]
+     ?(Format["print_string"](Odoc_messages["cross_referencing"]),
+       Format["print_newline"](/* () */0))
+     :0;
     
     var match=Odoc_cross["associate"](modules_list);
     
-    if(Odoc_global["verbose"][1])
-     {Format["print_string"](Odoc_messages["ok"]),
-      Format["print_newline"](/* () */0)}
-    else
-     {}
+    Odoc_global["verbose"][1]
+     ?(Format["print_string"](Odoc_messages["ok"]),
+       Format["print_newline"](/* () */0))
+     :0;
     
-    if(Odoc_global["sort_modules"][1])
-     {return List["sort"]
+    return Odoc_global["sort_modules"][1]
+            ?List["sort"]
               (function(m1,m2)
                 {return CamlPrimitive["caml_string_compare"](m1[1],m2[1]);},
-               merged_modules);
-      }
-    else
-     {return merged_modules;}
+               merged_modules)
+            :merged_modules;
     };
 
 var

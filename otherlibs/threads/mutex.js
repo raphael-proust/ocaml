@@ -9,20 +9,19 @@ var create=function(param){return /* record */[0,/* false */0,/* [] */0];};
 var
  lock=
   function(m)
-   {if(m[1])
-     {Thread["critical_section"][1]=/* true */1;
-      m[2]=/* :: */[0,Thread["self"](/* () */0),m[2]];
-      Thread["sleep"](/* () */0);
-      return lock(m);
-      }
-    else
-     {return m[1]=/* true */1,0;}
+   {return m[1]
+            ?(Thread["critical_section"][1]=
+              /* true */1,
+              m[2]=
+              /* :: */[0,Thread["self"](/* () */0),m[2]],
+              Thread["sleep"](/* () */0),
+              lock(m))
+            :(m[1]=/* true */1,0);
     };
 
 var
  try_lock=
-  function(m)
-   {if(m[1]){return /* false */0;}else{m[1]=/* true */1;return /* true */1;}};
+  function(m){return m[1]?/* false */0:(m[1]=/* true */1,/* true */1);};
 
 var
  unlock=

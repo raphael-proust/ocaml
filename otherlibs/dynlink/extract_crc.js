@@ -20,10 +20,7 @@ var
         Dynlink["digest_interface"]
          (unit,Pervasives["@"](load_path[1],[/* :: */0,".",/* [] */0]));
       
-      if(first[1])
-       {first[1]=/* false */0}
-      else
-       {Pervasives["print_string"](";\n")}
+      first[1]?(first[1]=/* false */0,0):Pervasives["print_string"](";\n");
       
       Pervasives["print_string"]('  "');
       Pervasives["print_string"]($$String["capitalize"](unit));
@@ -39,7 +36,7 @@ var
              /* No_precision */0,
              /* End_of_format */0]],
            "\%03d"],
-          crc[i])}
+          crc["charCodeAt"](i))}
       
       return Pervasives["print_string"]('"');
       }

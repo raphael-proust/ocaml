@@ -37,12 +37,11 @@ var
     var
      obj_of_o=
       function(x)
-       {if
-         (Filename["check_suffix"](x,".o")&&
-          CamlPrimitive["caml_string_notequal"](Options["ext_obj"][1],"o"))
-         {return Pathname["update_extension"](Options["ext_obj"][1],x);}
-        else
-         {return x;}
+       {return Filename["check_suffix"](x,".o")&&
+                CamlPrimitive["caml_string_notequal"]
+                 (Options["ext_obj"][1],"o")
+                ?Pathname["update_extension"](Options["ext_obj"][1],x)
+                :x;
         };
     
     var
@@ -738,57 +737,56 @@ var
         "%(dir).odocl",
         "%(dir).docdir/%(file)",
         "%(dir).docdir"));
-    if(Options["use_menhir"][1]||Configuration["has_tag"]("use_menhir"))
-     {Rule["rule"]
-       ("ocaml: modular menhir (mlypack)",
-        /* None */0,
-        [/* Some */0,[/* :: */0,"%.mli",[/* :: */0,"%.ml",/* [] */0]]],
-        [/* Some */0,[/* :: */0,"%.mlypack",/* [] */0]],
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        [/* Some */0,
-         "Menhir supports building a parser by composing several .mly files together, containing different parts of the grammar description. To use that feature with ocamlbuild, you should create a .mlypack file with the same syntax as .mllib or .mlpack files: a whitespace-separated list of the capitalized module names of the .mly files you want to combine together."],
-        Ocaml_tools["menhir_modular"]("%","%.mlypack","%.mlypack.depends")),
-      Rule["rule"]
-       ("ocaml: menhir modular dependencies",
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        [/* Some */0,"%.mlypack.depends"],
-        [/* Some */0,"%.mlypack"],
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        Ocaml_tools["menhir_modular_ocamldep_command"]
-         ("%.mlypack","%.mlypack.depends")),
-      Rule["rule"]
-       ("ocaml: menhir",
-        /* None */0,
-        [/* Some */0,[/* :: */0,"%.ml",[/* :: */0,"%.mli",/* [] */0]]],
-        [/* Some */0,
-         [/* :: */0,"%.mly",[/* :: */0,"%.mly.depends",/* [] */0]]],
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        [/* Some */0,
-         "Invokes menhir to build the .ml and .mli files derived from a .mly grammar. If you want to use ocamlyacc instead, you must disable the -use-menhir option that was passed to ocamlbuild."],
-        Ocaml_tools["menhir"]("%.mly")),
-      Rule["rule"]
-       ("ocaml: menhir dependencies",
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        [/* Some */0,"%.mly.depends"],
-        [/* Some */0,"%.mly"],
-        /* None */0,
-        /* None */0,
-        /* None */0,
-        Ocaml_tools["menhir_ocamldep_command"]("%.mly","%.mly.depends"))}
-    else
-     {Rule["rule"]
+    Options["use_menhir"][1]||Configuration["has_tag"]("use_menhir")
+     ?(Rule["rule"]
+        ("ocaml: modular menhir (mlypack)",
+         /* None */0,
+         [/* Some */0,[/* :: */0,"%.mli",[/* :: */0,"%.ml",/* [] */0]]],
+         [/* Some */0,[/* :: */0,"%.mlypack",/* [] */0]],
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         [/* Some */0,
+          "Menhir supports building a parser by composing several .mly files together, containing different parts of the grammar description. To use that feature with ocamlbuild, you should create a .mlypack file with the same syntax as .mllib or .mlpack files: a whitespace-separated list of the capitalized module names of the .mly files you want to combine together."],
+         Ocaml_tools["menhir_modular"]("%","%.mlypack","%.mlypack.depends")),
+       Rule["rule"]
+        ("ocaml: menhir modular dependencies",
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         [/* Some */0,"%.mlypack.depends"],
+         [/* Some */0,"%.mlypack"],
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         Ocaml_tools["menhir_modular_ocamldep_command"]
+          ("%.mlypack","%.mlypack.depends")),
+       Rule["rule"]
+        ("ocaml: menhir",
+         /* None */0,
+         [/* Some */0,[/* :: */0,"%.ml",[/* :: */0,"%.mli",/* [] */0]]],
+         [/* Some */0,
+          [/* :: */0,"%.mly",[/* :: */0,"%.mly.depends",/* [] */0]]],
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         [/* Some */0,
+          "Invokes menhir to build the .ml and .mli files derived from a .mly grammar. If you want to use ocamlyacc instead, you must disable the -use-menhir option that was passed to ocamlbuild."],
+         Ocaml_tools["menhir"]("%.mly")),
+       Rule["rule"]
+        ("ocaml: menhir dependencies",
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         [/* Some */0,"%.mly.depends"],
+         [/* Some */0,"%.mly"],
+         /* None */0,
+         /* None */0,
+         /* None */0,
+         Ocaml_tools["menhir_ocamldep_command"]("%.mly","%.mly.depends")))
+     :Rule["rule"]
        ("ocamlyacc",
         /* None */0,
         [/* Some */0,[/* :: */0,"%.ml",[/* :: */0,"%.mli",/* [] */0]]],
@@ -799,7 +797,7 @@ var
         /* None */0,
         [/* Some */0,
          "By default, ocamlbuild will use ocamlyacc to produce a .ml and .mly from a .mly file of the same name. You can also enable the -use-menhir option to use menhir instead. Menhir is a recommended replacement for ocamlyacc, that supports more feature, lets you write more readable grammars, and helps you understand conflicts."],
-        Ocaml_tools["ocamlyacc"]("%.mly"))}
+        Ocaml_tools["ocamlyacc"]("%.mly"));
     
     Rule["rule"]
      ("ocaml C stubs: c -> o",
@@ -816,10 +814,11 @@ var
         
         var o=env(x_o);
         
-        if(Tags["mem"]("native",Tools["tags_of_pathname"](c)))
-         {var comp=Options["ocamlopt"][1];}
-        else
-         {var comp=Options["ocamlc"][1];}
+        var
+         comp=
+          Tags["mem"]("native",Tools["tags_of_pathname"](c))
+           ?Options["ocamlopt"][1]
+           :Options["ocamlc"][1];
         
         var
          cc=
@@ -834,18 +833,15 @@ var
                  "compile")],
               /* :: */[0,[/* A */1,"-c"],/* :: */[0,/* Px */[3,c],/* [] */0]]]]]];
         
-        if
-         (CamlPrimitive["caml_string_equal"]
-           (Pathname["dirname"](o),Pathname["current_dir_name"]))
-         {return cc;}
-        else
-         {return /* Seq */[0,
+        return CamlPrimitive["caml_string_equal"]
+                 (Pathname["dirname"](o),Pathname["current_dir_name"])
+                ?cc
+                :/* Seq */[0,
                   /* :: */[0,
                    cc,
                    /* :: */[0,
                     Rule["Common_commands"][1](Pathname["basename"](o),o),
                     /* [] */0]]];
-          }
         });
     Rule["rule"]
      ("ocaml: ml & ml.depends & *cmi -> .inferred.mli",
@@ -984,6 +980,7 @@ var
        My_std["List"][16]
         (function(x){return /* A */[1,Pervasives["^"](x,".cmx")];},
          Options["ocaml_mods"][1])]);
+    var match$1;
     if(Options["use_ocamlfind"][1])
      {My_std["&"]
        (Flags["flag"]
@@ -1048,43 +1045,41 @@ var
                 [/* :: */0,"ocaml",[/* :: */0,"infer_interface",/* [] */0]],
                 /* [] */0]]]]]]]];
       
-      var
-       match$1=
-        My_std["List"][14]
-         (function(tags)
-           {Flags["pflag"]
+      match$1=
+      My_std["List"][14]
+       (function(tags)
+         {Flags["pflag"]
+           (tags,
+            "package",
+            function(pkg)
+             {return /* S */[0,
+                      /* :: */[0,
+                       [/* A */1,"-package"],
+                       /* :: */[0,/* A */[1,pkg],/* [] */0]]];
+              });
+          !My_std["List"][30]("ocamldep",tags)
+           ?Flags["pflag"]
              (tags,
-              "package",
+              "predicate",
               function(pkg)
                {return /* S */[0,
                         /* :: */[0,
-                         [/* A */1,"-package"],
+                         [/* A */1,"-predicates"],
                          /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-                });
-            if(!My_std["List"][30]("ocamldep",tags))
-             {Flags["pflag"]
-               (tags,
-                "predicate",
-                function(pkg)
-                 {return /* S */[0,
-                          /* :: */[0,
-                           [/* A */1,"-predicates"],
-                           /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-                  })}
-            else
-             {}
-            
-            return Flags["pflag"]
-                    (tags,
-                     "syntax",
-                     function(pkg)
-                      {return /* S */[0,
-                               /* :: */[0,
-                                [/* A */1,"-syntax"],
-                                /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-                       });
-            },
-          all_tags);
+                })
+           :0;
+          
+          return Flags["pflag"]
+                  (tags,
+                   "syntax",
+                   function(pkg)
+                    {return /* S */[0,
+                             /* :: */[0,
+                              [/* A */1,"-syntax"],
+                              /* :: */[0,/* A */[1,pkg],/* [] */0]]];
+                     });
+          },
+        all_tags);
       }
     else
      {try
@@ -1108,18 +1103,17 @@ var
          (/* None */0,
           [/* :: */0,"ocaml",[/* :: */0,"byte",[/* :: */0,"link",/* [] */0]]],
           Findlib["link_flags_byte"](pkgs));
-        var
-         match$1=
-          Flags["flag"]
-           (/* None */0,
-            [/* :: */0,
-             "ocaml",
-             [/* :: */0,"native",[/* :: */0,"link",/* [] */0]]],
-            Findlib["link_flags_native"](pkgs));
+        match$1=
+        Flags["flag"]
+         (/* None */0,
+          [/* :: */0,
+           "ocaml",
+           [/* :: */0,"native",[/* :: */0,"link",/* [] */0]]],
+          Findlib["link_flags_native"](pkgs));
         }
       catch(exn)
        {if(exn[1]===Findlib["Findlib_error"])
-         {var match$1=Findlib["report_error"](exn[2]);}
+         {match$1=Findlib["report_error"](exn[2]);}
         else
          {throw exn;}
         }
@@ -1712,56 +1706,55 @@ var
      (/* None */0,
       [/* :: */0,"ocaml",[/* :: */0,"link",[/* :: */0,"thread",/* [] */0]]],
       [/* A */1,"-thread"]);
-    if(!Options["use_ocamlfind"][1])
-     {Flags["flag"]
-       (/* None */0,
-        [/* :: */0,"ocaml",[/* :: */0,"doc",[/* :: */0,"thread",/* [] */0]]],
-        [/* S */0,
-         [/* :: */0,
-          [/* A */1,"-I"],
-          [/* :: */0,[/* A */1,"+threads"],/* [] */0]]]),
-      Flags["flag"]
-       (/* None */0,
-        [/* :: */0,
-         "ocaml",
-         [/* :: */0,
-          "link",
+    !Options["use_ocamlfind"][1]
+     ?(Flags["flag"]
+        (/* None */0,
+         [/* :: */0,"ocaml",[/* :: */0,"doc",[/* :: */0,"thread",/* [] */0]]],
+         [/* S */0,
           [/* :: */0,
-           "thread",
-           [/* :: */0,"native",[/* :: */0,"program",/* [] */0]]]]],
-        [/* A */1,"threads.cmxa"]),
-      Flags["flag"]
-       (/* None */0,
-        [/* :: */0,
-         "ocaml",
+           [/* A */1,"-I"],
+           [/* :: */0,[/* A */1,"+threads"],/* [] */0]]]),
+       Flags["flag"]
+        (/* None */0,
          [/* :: */0,
-          "link",
+          "ocaml",
           [/* :: */0,
-           "thread",
-           [/* :: */0,"byte",[/* :: */0,"program",/* [] */0]]]]],
-        [/* A */1,"threads.cma"]),
-      Flags["flag"]
-       (/* None */0,
-        [/* :: */0,
-         "ocaml",
+           "link",
+           [/* :: */0,
+            "thread",
+            [/* :: */0,"native",[/* :: */0,"program",/* [] */0]]]]],
+         [/* A */1,"threads.cmxa"]),
+       Flags["flag"]
+        (/* None */0,
          [/* :: */0,
-          "link",
+          "ocaml",
           [/* :: */0,
-           "thread",
-           [/* :: */0,"native",[/* :: */0,"toplevel",/* [] */0]]]]],
-        [/* A */1,"threads.cmxa"]),
-      Flags["flag"]
-       (/* None */0,
-        [/* :: */0,
-         "ocaml",
+           "link",
+           [/* :: */0,
+            "thread",
+            [/* :: */0,"byte",[/* :: */0,"program",/* [] */0]]]]],
+         [/* A */1,"threads.cma"]),
+       Flags["flag"]
+        (/* None */0,
          [/* :: */0,
-          "link",
+          "ocaml",
           [/* :: */0,
-           "thread",
-           [/* :: */0,"byte",[/* :: */0,"toplevel",/* [] */0]]]]],
-        [/* A */1,"threads.cma"])}
-    else
-     {}
+           "link",
+           [/* :: */0,
+            "thread",
+            [/* :: */0,"native",[/* :: */0,"toplevel",/* [] */0]]]]],
+         [/* A */1,"threads.cmxa"]),
+       Flags["flag"]
+        (/* None */0,
+         [/* :: */0,
+          "ocaml",
+          [/* :: */0,
+           "link",
+           [/* :: */0,
+            "thread",
+            [/* :: */0,"byte",[/* :: */0,"toplevel",/* [] */0]]]]],
+         [/* A */1,"threads.cma"]))
+     :0;
     
     Flags["flag"]
      (/* None */0,

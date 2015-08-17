@@ -56,8 +56,8 @@ var
  init=
   function(param)
    {Shell["chdir"](Options["build_dir"][1]);
-    if(Pathname["exists"](My_std["!*"](_digests)))
-     {My_std["with_input_file"]
+    Pathname["exists"](My_std["!*"](_digests))
+     ?My_std["with_input_file"]
        (/* None */0,
         My_std["!*"](_digests),
         function(ic)
@@ -83,9 +83,8 @@ var
             else
              {throw exn;}
             }
-          })}
-    else
-     {}
+          })
+     :0;
     
     return My_unix["at_exit_once"](finalize);
     };

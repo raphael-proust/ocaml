@@ -37,10 +37,9 @@ var
 var
  in_source_dir=
   function(p)
-   {if(Pathname["is_implicit"](p))
-     {return Pathname["Operators"][1](Pathname["pwd"],p);}
-    else
-     {return Pervasives["invalid_arg"]
+   {return Pathname["is_implicit"](p)
+            ?Pathname["Operators"][1](Pathname["pwd"],p)
+            :Pervasives["invalid_arg"]
               (Printf["sprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -48,16 +47,14 @@ var
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "in_source_dir: %S"],
                  p));
-      }
     };
 
 var
  in_build_dir=
   function(p)
-   {if(Pathname["is_relative"](p))
-     {return p;}
-    else
-     {return Pervasives["invalid_arg"]
+   {return Pathname["is_relative"](p)
+            ?p
+            :Pervasives["invalid_arg"]
               (Printf["sprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -65,16 +62,14 @@ var
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "in_build_dir: %S"],
                  p));
-      }
     };
 
 var
  clean_up_links=
   function(entry)
-   {if(!Options["make_links"][1])
-     {return entry;}
-    else
-     {return Slurp["filter"]
+   {return !Options["make_links"][1]
+            ?entry
+            :Slurp["filter"]
               (function(path,name,param)
                 {var
                   pathname=
@@ -83,10 +78,9 @@ var
                  if(Pathname["link_to_dir"](pathname,Options["build_dir"][1]))
                   {var z=Pathname["readlink"](pathname);
                    
-                   if(!CamlPrimitive["caml_sys_file_exists"](z))
-                    {Shell["rm"](pathname)}
-                   else
-                    {}
+                   !CamlPrimitive["caml_sys_file_exists"](z)
+                    ?Shell["rm"](pathname)
+                    :0;
                    
                    return /* false */0;
                    }
@@ -94,7 +88,6 @@ var
                   {return /* true */1;}
                  },
                entry);
-      }
     };
 
 var
@@ -122,21 +115,18 @@ var
 var
  clean_links=
   function(param)
-   {if(My_std["!*"](My_unix["is_degraded"]))
-     {return /* () */0;}
-    else
-     {return clean_up_link_to_build(/* () */0);}
+   {return My_std["!*"](My_unix["is_degraded"])
+            ?/* () */0
+            :clean_up_link_to_build(/* () */0);
     };
 
 var
  exists_in_source_dir=
   function(p)
-   {if(My_std["!*"](My_unix["is_degraded"]))
-     {return My_std["sys_file_exists"](in_source_dir(p));}
-    else
-     {return My_std["StringSet"][3]
+   {return My_std["!*"](My_unix["is_degraded"])
+            ?My_std["sys_file_exists"](in_source_dir(p))
+            :My_std["StringSet"][3]
               (p,My_std["!*"](source_dir_path_set_without_links_to_build));
-      }
     };
 
 var clean=function(p){return Shell["rm_f"](p);};
@@ -371,8 +361,8 @@ var
        "@[<hv0>@[<hv2>{:"]);
     fold_cache
      (function(k,v,param$1)
-       {if(!Resources[2](v[3]))
-         {return Format["fprintf"]
+       {return !Resources[2](v[3])
+                ?Format["fprintf"]
                   (f,
                    [/* Format */0,
                     [/* Formatting_lit */17,
@@ -395,10 +385,8 @@ var
                    print,
                    k,
                    Resources[29],
-                   v[3]);
-          }
-        else
-         {return 0;}
+                   v[3])
+                :0;
         },
       /* () */0);
     return Format["fprintf"]
@@ -440,16 +428,15 @@ var
     
     var digest=My_std["Digest"][3](absolute_path);
     
+    var is_up_to_date;
     try
      {var digest$prime=Digest_cache["get"](key);
       
-      var
-       is_up_to_date=
-        CamlPrimitive["caml_string_equal"](digest,digest$prime);
+      is_up_to_date=CamlPrimitive["caml_string_equal"](digest,digest$prime);
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {var is_up_to_date=/* false */0;}
+       {is_up_to_date=/* false */0;}
       else
        {throw exn;}
       }
@@ -504,12 +491,9 @@ var
       case 2:
        var match$1=cache_entry[1];
        
+       var res;
        if(typeof match$1==="number")
-        {if(match$1>=2)
-          {var res=!prod_is_up_to_date(r);}
-         else
-          {var res=/* false */0;}
-         }
+        {res=match$1>=2?!prod_is_up_to_date(r):/* false */0;}
        else
         {throw [0,
                 CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -538,8 +522,8 @@ var
     
     var r_in_source_dir=in_source_dir(r);
     
-    if(source_is_up_to_date(r_in_source_dir,r_in_build_dir))
-     {Log["dprintf"]
+    source_is_up_to_date(r_in_source_dir,r_in_build_dir)
+     ?Log["dprintf"]
        (5,
         [/* Format */0,
          [/* Alpha */15,
@@ -548,22 +532,22 @@ var
            /* End_of_format */0]],
          "%a exists and up to date"],
         print,
-        r)}
-    else
-     {Log["dprintf"]
-       (5,
-        [/* Format */0,
-         [/* Alpha */15,
-          [/* String_literal */11,
-           " exists in source dir -> import it",
-           /* End_of_format */0]],
-         "%a exists in source dir -> import it"],
-        print,
-        r),
-      Shell["mkdir_p"](Pathname["dirname"](r)),
-      Pathname["copy"](r_in_source_dir,r_in_build_dir),
-      cache_entry[2]=
-      /* Yes */0}
+        r)
+     :(Log["dprintf"]
+        (5,
+         [/* Format */0,
+          [/* Alpha */15,
+           [/* String_literal */11,
+            " exists in source dir -> import it",
+            /* End_of_format */0]],
+          "%a exists in source dir -> import it"],
+         print,
+         r),
+       Shell["mkdir_p"](Pathname["dirname"](r)),
+       Pathname["copy"](r_in_source_dir,r_in_build_dir),
+       cache_entry[2]=
+       /* Yes */0,
+       0);
     
     return cache_entry[1]=/* Bbuilt */0,0;
     };
@@ -616,10 +600,7 @@ var
     
     var match=cache_entry[1];
     
-    if(typeof match==="number")
-     {return /* () */0;}
-    else
-     {return resume_suspension(match[1]);}
+    return typeof match==="number"?/* () */0:resume_suspension(match[1]);
     };
 
 var
@@ -627,10 +608,7 @@ var
   function(r)
    {var match=get(r)[1];
     
-    if(typeof match==="number")
-     {return /* None */0;}
-    else
-     {return /* Some */[0,match[1]];}
+    return typeof match==="number"?/* None */0:/* Some */[0,match[1]];
     };
 
 var
@@ -692,10 +670,9 @@ var
     var buf=Buffer["create"](1024);
     
     Buffer["add_string"](buf,f);
-    if(My_std["sys_file_exists"](f))
-     {Buffer["add_string"](buf,My_std["Digest"][3](f))}
-    else
-     {}
+    My_std["sys_file_exists"](f)
+     ?Buffer["add_string"](buf,My_std["Digest"][3](f))
+     :0;
     
     return My_std["Digest"][1](Buffer["contents"](buf));
     };
@@ -830,8 +807,8 @@ var
 var
  pp_opt=
   function(pp_elt,f,param)
-   {if(param)
-     {return Format["fprintf"]
+   {return param
+            ?Format["fprintf"]
               (f,
                [/* Format */0,
                 [/* String_literal */11,
@@ -840,10 +817,8 @@ var
                   [/* Char_literal */12,41,/* End_of_format */0]]],
                 "Some(%a)"],
                pp_elt,
-               param[1]);
-      }
-    else
-     {return Format["pp_print_string"](f,"None");}
+               param[1])
+            :Format["pp_print_string"](f,"None");
     };
 
 var
@@ -855,8 +830,8 @@ var
                
                var k=param[1];
                
-               if(CamlPrimitive["caml_string_equal"](k,""))
-                {return Format["fprintf"]
+               return CamlPrimitive["caml_string_equal"](k,"")
+                       ?Format["fprintf"]
                          (f,
                           [/* Format */0,
                            [/* Char_literal */12,
@@ -867,10 +842,8 @@ var
                               /* No_padding */0,
                               [/* Char_literal */12,32,/* End_of_format */0]]]],
                            "%%=%s "],
-                          v);
-                 }
-               else
-                {return Format["fprintf"]
+                          v)
+                       :Format["fprintf"]
                          (f,
                           [/* Format */0,
                            [/* Char_literal */12,
@@ -887,7 +860,6 @@ var
                            "%%(%s)=%s "],
                           k,
                           v);
-                 }
                },
              env);
     };

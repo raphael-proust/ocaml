@@ -50,10 +50,11 @@ var
 var
  map_file=
   function(fd,$staropt$star,kind,layout,shared,dims)
-   {if($staropt$star)
-     {var $starsth$star=$staropt$star[1];var pos=$starsth$star;}
+   {var pos;
+    if($staropt$star)
+     {var $starsth$star=$staropt$star[1];pos=$starsth$star;}
     else
-     {var pos=0;}
+     {pos=0;}
     
     return CamlPrimitive["caml_ba_map_file_bytecode"]
             (fd,kind,layout,shared,dims,pos);
@@ -71,7 +72,7 @@ var
   function(kind,layout,data)
    {var ba=create(kind,layout,/* -1 for tag */data["length"]-1);
     
-    if(layout!==0){var ofs=1;}else{var ofs=0;}
+    var ofs=layout!==0?1:0;
     
     for(var i=0;i<=/* -1 for tag */data["length"]-1-1;i++)
      {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
@@ -106,23 +107,19 @@ var
   function(kind,layout,data)
    {var dim1=/* -1 for tag */data["length"]-1;
     
-    if(dim1===0)
-     {var dim2=0;}
-    else
-     {var dim2=/* -1 for tag */data[1]["length"]-1;}
+    var dim2=dim1===0?0:/* -1 for tag */data[1]["length"]-1;
     
     var ba=create$1(kind,layout,dim1,dim2);
     
-    if(layout!==0){var ofs=1;}else{var ofs=0;}
+    var ofs=layout!==0?1:0;
     
     for(var i=0;i<=dim1-1;i++)
      {var row=data[i+1];
       
-      if(/* -1 for tag */row["length"]-1!==dim2)
-       {Pervasives["invalid_arg"]
-         ("Bigarray.Array2.of_array: non-rectangular data")}
-      else
-       {}
+      /* -1 for tag */row["length"]-1!==dim2
+       ?Pervasives["invalid_arg"]
+         ("Bigarray.Array2.of_array: non-rectangular data")
+       :0;
       
       for(var j=0;j<=dim2-1;j++)
        {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
@@ -168,36 +165,28 @@ var
   function(kind,layout,data)
    {var dim1=/* -1 for tag */data["length"]-1;
     
-    if(dim1===0)
-     {var dim2=0;}
-    else
-     {var dim2=/* -1 for tag */data[1]["length"]-1;}
+    var dim2=dim1===0?0:/* -1 for tag */data[1]["length"]-1;
     
-    if(dim2===0)
-     {var dim3=0;}
-    else
-     {var dim3=/* -1 for tag */data[1][1]["length"]-1;}
+    var dim3=dim2===0?0:/* -1 for tag */data[1][1]["length"]-1;
     
     var ba=create$2(kind,layout,dim1,dim2,dim3);
     
-    if(layout!==0){var ofs=1;}else{var ofs=0;}
+    var ofs=layout!==0?1:0;
     
     for(var i=0;i<=dim1-1;i++)
      {var row=data[i+1];
       
-      if(/* -1 for tag */row["length"]-1!==dim2)
-       {Pervasives["invalid_arg"]("Bigarray.Array3.of_array: non-cubic data")}
-      else
-       {}
+      /* -1 for tag */row["length"]-1!==dim2
+       ?Pervasives["invalid_arg"]("Bigarray.Array3.of_array: non-cubic data")
+       :0;
       
       for(var j=0;j<=dim2-1;j++)
        {var col=row[j+1];
         
-        if(/* -1 for tag */col["length"]-1!==dim3)
-         {Pervasives["invalid_arg"]
-           ("Bigarray.Array3.of_array: non-cubic data")}
-        else
-         {}
+        /* -1 for tag */col["length"]-1!==dim3
+         ?Pervasives["invalid_arg"]
+           ("Bigarray.Array3.of_array: non-cubic data")
+         :0;
         
         for(var k=0;k<=dim3-1;k++)
          {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
@@ -228,28 +217,25 @@ var
 var
  array1_of_genarray=
   function(a)
-   {if(CamlPrimitive["caml_ba_num_dims"](a)===1)
-     {return a;}
-    else
-     {return Pervasives["invalid_arg"]("Bigarray.array1_of_genarray");}
+   {return CamlPrimitive["caml_ba_num_dims"](a)===1
+            ?a
+            :Pervasives["invalid_arg"]("Bigarray.array1_of_genarray");
     };
 
 var
  array2_of_genarray=
   function(a)
-   {if(CamlPrimitive["caml_ba_num_dims"](a)===2)
-     {return a;}
-    else
-     {return Pervasives["invalid_arg"]("Bigarray.array2_of_genarray");}
+   {return CamlPrimitive["caml_ba_num_dims"](a)===2
+            ?a
+            :Pervasives["invalid_arg"]("Bigarray.array2_of_genarray");
     };
 
 var
  array3_of_genarray=
   function(a)
-   {if(CamlPrimitive["caml_ba_num_dims"](a)===3)
-     {return a;}
-    else
-     {return Pervasives["invalid_arg"]("Bigarray.array3_of_genarray");}
+   {return CamlPrimitive["caml_ba_num_dims"](a)===3
+            ?a
+            :Pervasives["invalid_arg"]("Bigarray.array3_of_genarray");
     };
 
 var

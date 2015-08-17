@@ -254,10 +254,9 @@ var
           
           var e=ev[pivot+1];
           
-          if($$char<=Events["get_pos"](e)[4])
-           {return bsearch(lo,pivot);}
-          else
-           {return bsearch(pivot+1,hi);}
+          return $$char<=Events["get_pos"](e)[4]
+                  ?bsearch(lo,pivot)
+                  :bsearch(pivot+1,hi);
           }
         };
     
@@ -280,16 +279,14 @@ var
     try
      {var pos=find_event(ev,$$char);
       
-      if
-       (pos>
-        0&&
-        $$char-
-        Events["get_pos"](ev[pos-1+1])[4]<=
-        Events["get_pos"](ev[pos+1])[4]-
-        $$char)
-       {return ev[pos-1+1];}
-      else
-       {return ev[pos+1];}
+      return pos>
+              0&&
+              $$char-
+              Events["get_pos"](ev[pos-1+1])[4]<=
+              Events["get_pos"](ev[pos+1])[4]-
+              $$char
+              ?ev[pos-1+1]
+              :ev[pos+1];
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])

@@ -77,21 +77,19 @@ var breakpoint_at_pc=function(pc){return breakpoints_at_pc(pc)!==/* [] */0;};
 var
  remove_breakpoints=
   function(pos)
-   {if(debug_breakpoints[1])
-     {Pervasives["print_string"]("Removing breakpoints..."),
-      Pervasives["print_newline"](/* () */0)}
-    else
-     {}
+   {debug_breakpoints[1]
+     ?(Pervasives["print_string"]("Removing breakpoints..."),
+       Pervasives["print_newline"](/* () */0))
+     :0;
     
     return List["iter"]
             (function(param)
               {var pos$1=param[1];
                
-               if(debug_breakpoints[1])
-                {Pervasives["print_int"](pos$1),
-                 Pervasives["print_newline"](/* () */0)}
-               else
-                {}
+               debug_breakpoints[1]
+                ?(Pervasives["print_int"](pos$1),
+                  Pervasives["print_newline"](/* () */0))
+                :0;
                
                Debugcom["reset_instr"](pos$1);
                return Symbols["set_event_at_pc"](pos$1);
@@ -102,21 +100,19 @@ var
 var
  set_breakpoints=
   function(pos)
-   {if(debug_breakpoints[1])
-     {Pervasives["print_string"]("Setting breakpoints..."),
-      Pervasives["print_newline"](/* () */0)}
-    else
-     {}
+   {debug_breakpoints[1]
+     ?(Pervasives["print_string"]("Setting breakpoints..."),
+       Pervasives["print_newline"](/* () */0))
+     :0;
     
     return List["iter"]
             (function(param)
               {var pos$1=param[1];
                
-               if(debug_breakpoints[1])
-                {Pervasives["print_int"](pos$1),
-                 Pervasives["print_newline"](/* () */0)}
-               else
-                {}
+               debug_breakpoints[1]
+                ?(Pervasives["print_int"](pos$1),
+                  Pervasives["print_newline"](/* () */0))
+                :0;
                
                return Debugcom["set_breakpoint"](pos$1);
                },
@@ -126,25 +122,22 @@ var
 var
  update_breakpoints=
   function(param)
-   {if(debug_breakpoints[1])
-     {Pervasives["prerr_string"]("Updating breakpoints... "),
-      Pervasives["prerr_int"](Checkpoints["current_checkpoint"][1][8]),
-      Pervasives["prerr_string"](" "),
-      Pervasives["prerr_int"](current_version[1]),
-      Pervasives["prerr_endline"]("")}
-    else
-     {}
+   {debug_breakpoints[1]
+     ?(Pervasives["prerr_string"]("Updating breakpoints... "),
+       Pervasives["prerr_int"](Checkpoints["current_checkpoint"][1][8]),
+       Pervasives["prerr_string"](" "),
+       Pervasives["prerr_int"](current_version[1]),
+       Pervasives["prerr_endline"](""))
+     :0;
     
-    if(Checkpoints["current_checkpoint"][1][8]!==current_version[1])
-     {return Exec["protect"]
+    return Checkpoints["current_checkpoint"][1][8]!==current_version[1]
+            ?Exec["protect"]
               (function(param$1)
                 {remove_breakpoints(Checkpoints["current_checkpoint"][1][9]);
                  set_breakpoints(positions[1]);
                  return copy_breakpoints(/* () */0);
-                 });
-      }
-    else
-     {return 0;}
+                 })
+            :0;
     };
 
 var
@@ -189,12 +182,11 @@ var
    {var count=List["assoc"](pos,positions[1]);
     
     count[0]--;
-    if(count[1]===0)
-     {positions[1]=List["remove_assoc"](pos,positions[1]);
-      return new_version(/* () */0);
-      }
-    else
-     {return 0;}
+    return count[1]===0
+            ?(positions[1]=
+              List["remove_assoc"](pos,positions[1]),
+              new_version(/* () */0))
+            :0;
     };
 
 var
@@ -322,13 +314,12 @@ var
         var count=List["assoc"](pc,positions[1]);
         
         count[0]--;
-        if(count[1]===0)
-         {positions[1]=List["remove_assoc"](pc,positions[1]);
-          Debugcom["reset_instr"](pc);
-          return Symbols["set_event_at_pc"](pc);
-          }
-        else
-         {return 0;}
+        return count[1]===0
+                ?(positions[1]=
+                  List["remove_assoc"](pc,positions[1]),
+                  Debugcom["reset_instr"](pc),
+                  Symbols["set_event_at_pc"](pc))
+                :0;
         };
     
     Exec["protect"](function(param){return insert_position(pc);});

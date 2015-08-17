@@ -90,17 +90,15 @@ var
        choices=
         /* :: */[0,
          function(param)
-          {if(Command["file_or_exe_exists"](long_opt))
-            {return /* Some */[0,long_opt];}
-           else
-            {return /* None */0;}
+          {return Command["file_or_exe_exists"](long_opt)
+                   ?/* Some */[0,long_opt]
+                   :/* None */0;
            },
          /* :: */[0,
           function(param)
-           {if(Command["file_or_exe_exists"]($$long))
-             {return /* Some */[0,$$long];}
-            else
-             {return /* None */0;}
+           {return Command["file_or_exe_exists"]($$long)
+                    ?/* Some */[0,$$long]
+                    :/* None */0;
             },
           /* [] */0]];
       
@@ -119,10 +117,11 @@ var
            },
          /* [] */0];
       
-      if(core_tool)
-       {var choices$1=Pervasives["@"](choices,choices$prime);}
-      else
-       {var choices$1=Pervasives["@"](choices$prime,choices);}
+      var
+       choices$1=
+        core_tool
+         ?Pervasives["@"](choices,choices$prime)
+         :Pervasives["@"](choices$prime,choices);
       
       try
        {var
@@ -311,10 +310,9 @@ var
 var
  add_to$prime=
   function(rxs,x)
-   {if(CamlPrimitive["caml_string_notequal"](x,dummy))
-     {return rxs[1]=/* :: */[0,/* :: */[0,x,/* [] */0],rxs[1]],0;}
-    else
-     {return /* () */0;}
+   {return CamlPrimitive["caml_string_notequal"](x,dummy)
+            ?(rxs[1]=/* :: */[0,/* :: */[0,x,/* [] */0],rxs[1]],0)
+            :/* () */0;
     };
 
 var
@@ -326,13 +324,12 @@ var
  set_build_dir=
   function(s)
    {make_links[1]=/* false */0;
-    if(Filename["is_relative"](s))
-     {return build_dir[1]=
-             Filename["concat"](CamlPrimitive["caml_sys_getcwd"](/* () */0),s),
-             0;
-      }
-    else
-     {return build_dir[1]=s,0;}
+    return Filename["is_relative"](s)
+            ?(build_dir[1]=
+              Filename["concat"]
+               (CamlPrimitive["caml_sys_getcwd"](/* () */0),s),
+              0)
+            :(build_dir[1]=s,0);
     };
 
 var
@@ -801,34 +798,31 @@ var
     /* Some */[0,CamlPrimitive["caml_sys_getcwd"](/* () */0)];
     var log=log_file_internal[1];
     
+    var match$1;
     if(CamlPrimitive["caml_string_equal"](log,""))
-     {var match$1=Log["init"](/* None */0);}
+     {match$1=Log["init"](/* None */0);}
     else
      {if(!Filename["is_implicit"](log))
-       {var
-         match$1=
-          Pervasives["failwith"]
-           (Format["sprintf"]
-             ([/* Format */0,
-               [/* String_literal */11,
-                "Bad log file name: the file name must be implicit (not ",
-                [/* Caml_string */3,
-                 /* No_padding */0,
-                 [/* Char_literal */12,41,/* End_of_format */0]]],
-               "Bad log file name: the file name must be implicit (not %S)"],
-              log));
+       {match$1=
+        Pervasives["failwith"]
+         (Format["sprintf"]
+           ([/* Format */0,
+             [/* String_literal */11,
+              "Bad log file name: the file name must be implicit (not ",
+              [/* Caml_string */3,
+               /* No_padding */0,
+               [/* Char_literal */12,41,/* End_of_format */0]]],
+             "Bad log file name: the file name must be implicit (not %S)"],
+            log));
         }
       else
        {var log$1=My_std["filename_concat"](build_dir[1],log);
         
         Shell["mkdir_p"](Filename["dirname"](log$1));
         Shell["rm_f"](log$1);
-        if(Log["level"][1]>0)
-         {var log$2=/* Some */[0,log$1];}
-        else
-         {var log$2=/* None */0;}
+        var log$2=Log["level"][1]>0?/* Some */[0,log$1]:/* None */0;
         
-        var match$1=Log["init"](log$2);
+        match$1=Log["init"](log$2);
         }
       }
     
@@ -910,10 +904,9 @@ var
     var
      check_dir=
       function(dir)
-       {if(Filename["is_implicit"](dir))
-         {return My_std["sys_file_exists"](dir);}
-        else
-         {return Pervasives["failwith"]
+       {return Filename["is_implicit"](dir)
+                ?My_std["sys_file_exists"](dir)
+                :Pervasives["failwith"]
                   (Format["sprintf"]
                     ([/* Format */0,
                       [/* String_literal */11,
@@ -923,7 +916,6 @@ var
                         [/* Char_literal */12,41,/* End_of_format */0]]],
                       "Included or excluded directories must be implicit (not %S)"],
                      dir));
-          }
         };
     
     var
@@ -949,10 +941,9 @@ var
   function(param)
    {var match$1=project_root_dir[1];
     
-    if(match$1)
-     {var root_dir=match$1[1];}
-    else
-     {var root_dir=CamlPrimitive["caml_sys_getcwd"](/* () */0);}
+    var
+     root_dir=
+      match$1?match$1[1]:CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
     var at_root=function(file){return Filename["concat"](root_dir,file);};
     
