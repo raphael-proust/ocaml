@@ -76,10 +76,9 @@ var
             else
              {var match=CamlPrimitive["caml_weak_get"](b,i);
               
-              if(match)
-               {var v=match[1];return fold_bucket(i+1,b,f(v,accu));}
-              else
-               {return fold_bucket(i+1,b,accu);}
+              return match
+                      ?fold_bucket(i+1,b,f(match[1],accu))
+                      :fold_bucket(i+1,b,accu);
               }
             };
         
@@ -97,10 +96,7 @@ var
             else
              {var match=CamlPrimitive["caml_weak_get"](b,i);
               
-              if(match)
-               {var v=match[1];f(v);return iter_bucket(i+1,b);}
-              else
-               {return iter_bucket(i+1,b);}
+              return match?(f(match[1]),iter_bucket(i+1,b)):iter_bucket(i+1,b);
               }
             };
         
@@ -313,15 +309,10 @@ var
                 var exit;
                 
                 if(match)
-                 {var v=match[1];
-                  
-                  if(H[1](v,d))
+                 {if(H[1](match[1],d))
                    {var match$1=CamlPrimitive["caml_weak_get"](bucket,i);
                     
-                    if(match$1)
-                     {var v$1=match$1[1];return v$1;}
-                    else
-                     {return loop(i+1);}
+                    return match$1?match$1[1]:loop(i+1);
                     }
                   else
                    {exit=23;}
@@ -392,9 +383,10 @@ var
                 var exit;
                 
                 if(match)
-                 {var v=match[1];
-                  
-                  if(H[1](v,d)){return iffound(bucket,i);}else{exit=14;}
+                 {if(H[1](match[1],d))
+                   {return iffound(bucket,i);}
+                  else
+                   {exit=14;}
                   }
                 else
                  {exit=14;}
@@ -452,15 +444,12 @@ var
                 var exit;
                 
                 if(match)
-                 {var v=match[1];
-                  
-                  if(H[1](v,d))
+                 {if(H[1](match[1],d))
                    {var match$1=CamlPrimitive["caml_weak_get"](bucket,i);
                     
-                    if(match$1)
-                     {var v$1=match$1[1];return loop(i+1,/* :: */[0,v$1,accu]);}
-                    else
-                     {return loop(i+1,accu);}
+                    return match$1
+                            ?loop(i+1,/* :: */[0,match$1[1],accu])
+                            :loop(i+1,accu);
                     }
                   else
                    {exit=5;}

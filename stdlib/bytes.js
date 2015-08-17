@@ -40,7 +40,7 @@ var
 
 var
  to_string=
-  function(b){return String["fromCharCode"][apply](null,copy(b));};
+  function(b){return String["fromCharCode"]["apply"](null,copy(b));};
 
 var of_string=function(s){return copy(s);};
 
@@ -60,7 +60,7 @@ var
 var
  sub_string=
   function(b,ofs,len)
-   {return String["fromCharCode"][apply](null,sub(b,ofs,len));};
+   {return String["fromCharCode"]["apply"](null,sub(b,ofs,len));};
 
 var
  extend=
@@ -116,9 +116,7 @@ var
  concat=
   function(sep,l)
    {if(l)
-     {var tl=l[2];
-      
-      var hd=l[1];
+     {var hd=l[1];
       
       var num=[0,0];
       
@@ -140,7 +138,7 @@ var
           CamlPrimitive["caml_blit_string"](s,0,r,pos[1],s["length"]);
           return pos[1]=pos[1]+s["length"],0;
           },
-        tl);
+        l[2]);
       return r;
       }
     else
@@ -181,21 +179,21 @@ var
   function(s)
    {var len=s["length"];
     
-    var i=[0,0];
+    var i=0;
     
-    while(i[1]<len&&is_space(s[i[1]])){i[0]++}
+    while(i<len&&is_space(s[i])){i=1+i;}
     
-    var j=[0,len-1];
+    var j=len-1;
     
-    while(j[1]>=i[1]&&is_space(s[j[1]])){j[0]--}
+    while(j>=i&&is_space(s[j])){j=-1+j;}
     
-    return j[1]>=i[1]?sub(s,i[1],j[1]-i[1]+1):empty;
+    return j>=i?sub(s,i,j-i+1):empty;
     };
 
 var
  escaped=
   function(s)
-   {var n=[0,0];
+   {var n=0;
     
     for(var i=0;i<=s["length"]-1;i++)
      {var c=s[i];
@@ -217,14 +215,16 @@ var
        {case 30:$js$1=CamlPrimitive["caml_is_printable"](c)?1:4;
         case 29:$js$1=2;
         }
-      n[1]=n[1]+$js$1}
+      n=n+$js$1;
+      }
     
-    if(n[1]===s["length"])
+    if(n===s["length"])
      {return copy(s);}
     else
-     {var s$prime=CamlPrimitive["caml_create_string"](n[1]);
+     {var s$prime=CamlPrimitive["caml_create_string"](n);
       
-      n[1]=0;
+      n=0;
+      
       for(var i$1=0;i$1<=s["length"]-1;i$1++)
        {var c$1=s[i$1];
         
@@ -233,10 +233,8 @@ var
         var switcher=-34+c$1;
         
         if(!(58<switcher>>>0))
-         {var switcher$1=-1+switcher;
-          
-          if(56<switcher$1>>>0)
-           {s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=c$1}
+         {if(56<-1+switcher>>>0)
+           {s$prime[n]=92;n=1+n;s$prime[n]=c$1}
           else
            {exit$1=27;}
           }
@@ -244,9 +242,7 @@ var
          {if(switcher>=-20)
            {exit$1=27;}
           else
-           {var switcher$2=34+switcher;
-            
-            switch(switcher$2)
+           {switch(34+switcher)
              {case 0:exit$1=27;
               case 1:exit$1=27;
               case 2:exit$1=27;
@@ -255,47 +251,38 @@ var
               case 5:exit$1=27;
               case 6:exit$1=27;
               case 7:exit$1=27;
-              case 8:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=98;
-              case 9:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=116;
-              case 10:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=110;
+              case 8:s$prime[n]=92;n=1+n;s$prime[n]=98;
+              case 9:s$prime[n]=92;n=1+n;s$prime[n]=116;
+              case 10:s$prime[n]=92;n=1+n;s$prime[n]=110;
               case 11:exit$1=27;
               case 12:exit$1=27;
-              case 13:s$prime[n[1]]=92,n[0]++,s$prime[n[1]]=114
+              case 13:s$prime[n]=92;n=1+n;s$prime[n]=114
               }
             }
           }
         
         switch(exit$1)
          {case 27:
-           var c$2=c$1;
-           
-           if(CamlPrimitive["caml_is_printable"](c$2))
-            {s$prime[n[1]]=c$2}
+           if(CamlPrimitive["caml_is_printable"](c$1))
+            {s$prime[n]=c$1}
            else
-            {var a=c$2;
+            {var a=c$1;
              
-             s$prime[n[1]]=
-             92,
-             n[0]++,
-             s$prime[n[1]]=
-             48+
-             a/
-             100,
-             n[0]++,
-             s$prime[n[1]]=
-             48+
-             a/
-             10%
-             10,
-             n[0]++,
-             s$prime[n[1]]=
-             48+
-             a%
-             10}
+             s$prime[n]=92;
+             n=1+n;
+             
+             s$prime[n]=48+a/100;
+             n=1+n;
+             
+             s$prime[n]=48+a/10%10;
+             n=1+n;
+             
+             s$prime[n]=48+a%10}
            
           }
         
-        n[0]++}
+        n=1+n;
+        }
       
       return s$prime;
       }
@@ -465,6 +452,6 @@ module["exports"]=
  "uncapitalize":uncapitalize,
  "compare":compare,
  "unsafe_to_string":
- function(prim){return String["fromCharCode"][apply](null,prim);},
+ function(prim){return String["fromCharCode"]["apply"](null,prim);},
  "unsafe_of_string":function(prim){return prim;}};
 

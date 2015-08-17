@@ -128,14 +128,10 @@ var
      conv=
       function(param)
        {if(param)
-         {var tl=param[2];
+         {var match;
+          try {match=param[1](x);}catch(exn){match=/* None */0;}
           
-          var hd=param[1];
-          
-          var match;
-          try {match=hd(x);}catch(exn){match=/* None */0;}
-          
-          if(match){var s=match[1];return s;}else{return conv(tl);}
+          return match?match[1]:conv(param[2]);
           }
         else
          {if(x===CamlPrimitive["caml_global_data"]["Out_of_memory"])
@@ -144,60 +140,46 @@ var
            {if(x===CamlPrimitive["caml_global_data"]["Stack_overflow"])
              {return "Stack overflow";}
             else
-             {var tag=x[1];
-              
-              if(tag===CamlPrimitive["caml_global_data"]["Match_failure"])
+             {if(x[1]===CamlPrimitive["caml_global_data"]["Match_failure"])
                {var match$1=x[2];
                 
                 var $$char=match$1[3];
                 
-                var line=match$1[2];
-                
-                var file=match$1[1];
-                
                 return Printf["sprintf"]
-                        (locfmt,file,line,$$char,$$char+5,"Pattern matching failed");
+                        (locfmt,
+                         match$1[1],
+                         match$1[2],
+                         $$char,
+                         $$char+5,
+                         "Pattern matching failed");
                 }
               else
-               {var tag$1=x[1];
-                
-                if
-                 (tag$1===CamlPrimitive["caml_global_data"]["Assert_failure"])
+               {if(x[1]===CamlPrimitive["caml_global_data"]["Assert_failure"])
                  {var match$2=x[2];
                   
                   var $$char$1=match$2[3];
                   
-                  var line$1=match$2[2];
-                  
-                  var file$1=match$2[1];
-                  
                   return Printf["sprintf"]
                           (locfmt,
-                           file$1,
-                           line$1,
+                           match$2[1],
+                           match$2[2],
                            $$char$1,
                            $$char$1+6,
                            "Assertion failed");
                   }
                 else
-                 {var tag$2=x[1];
-                  
-                  if
-                   (tag$2===
+                 {if
+                   (x[1]===
                     CamlPrimitive["caml_global_data"]
                      ["Undefined_recursive_module"])
                    {var match$3=x[2];
                     
                     var $$char$2=match$3[3];
                     
-                    var line$2=match$3[2];
-                    
-                    var file$2=match$3[1];
-                    
                     return Printf["sprintf"]
                             (locfmt,
-                             file$2,
-                             line$2,
+                             match$3[1],
+                             match$3[2],
                              $$char$2,
                              $$char$2+6,
                              "Undefined recursive module");
@@ -277,9 +259,7 @@ var
                 rbckt)];
       }
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
        {return /* None */0;}
       else
        {throw exn;}
@@ -299,16 +279,6 @@ var
     
     switch(slot[0])
      {case 0:
-       var endchar=slot[5];
-       
-       var startchar=slot[4];
-       
-       var lineno=slot[3];
-       
-       var filename=slot[2];
-       
-       var is_raise=slot[1];
-       
        return /* Some */[0,
                Printf["sprintf"]
                 ([/* Format */0,
@@ -338,16 +308,14 @@ var
                            /* No_precision */0,
                            /* End_of_format */0]]]]]]]]],
                   '%s file "%s", line %d, characters %d-%d'],
-                 info(is_raise),
-                 filename,
-                 lineno,
-                 startchar,
-                 endchar)];
+                 info(slot[1]),
+                 slot[2],
+                 slot[3],
+                 slot[4],
+                 slot[5])];
        
       case 1:
-       var match=slot[1];
-       
-       return match!==0
+       return slot[1]!==0
                ?/* None */0
                :/* Some */[0,
                  Printf["sprintf"]
@@ -372,19 +340,16 @@ var
       for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
        {var match=format_backtrace_slot(i,a[i+1]);
         
-        if(match)
-         {var str=match[1];
-          
-          Printf["fprintf"]
+        match
+         ?Printf["fprintf"]
            (outchan,
             [/* Format */0,
              [/* String */2,
               /* No_padding */0,
               [/* Char_literal */12,10,/* End_of_format */0]],
              "%s\n"],
-            str)}
-        else
-         {}
+            match[1])
+         :/* () */0;
         }
       return 0;
       }
@@ -425,19 +390,16 @@ var
       for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
        {var match=format_backtrace_slot(i,a[i+1]);
         
-        if(match)
-         {var str=match[1];
-          
-          Printf["bprintf"]
+        match
+         ?Printf["bprintf"]
            (b,
             [/* Format */0,
              [/* String */2,
               /* No_padding */0,
               [/* Char_literal */12,10,/* End_of_format */0]],
              "%s\n"],
-            str)}
-        else
-         {}
+            match[1])
+         :/* () */0;
         }
       
       return Buffer["contents"](b);
@@ -454,27 +416,15 @@ var
 var
  backtrace_slot_is_raise=
   function(param)
-   {switch(param[0])
-     {case 0:var is_raise=param[1];return is_raise;
-      case 1:var is_raise$1=param[1];return is_raise$1;
-      }
-    };
+   {switch(param[0]){case 0:return param[1];case 1:return param[1];}};
 
 var
  backtrace_slot_location=
   function(param)
    {switch(param[0])
      {case 0:
-       var end_char=param[5];
-       
-       var start_char=param[4];
-       
-       var line_number=param[3];
-       
-       var filename=param[2];
-       
        return /* Some */[0,
-               /* record */[0,filename,line_number,start_char,end_char]];
+               /* record */[0,param[2],param[3],param[4],param[5]]];
        
       case 1:return /* None */0;
       }
@@ -511,13 +461,9 @@ var
      {return /* None */0;}
     };
 
-var format=format_backtrace_slot;
-
-var is_raise=backtrace_slot_is_raise;
-
-var $$location=backtrace_slot_location;
-
-var Slot=[0,format,is_raise,$$location];
+var
+ Slot=
+  [0,format_backtrace_slot,backtrace_slot_is_raise,backtrace_slot_location];
 
 var
  raw_backtrace_length=
@@ -575,10 +521,8 @@ var
       var match=uncaught_exception_handler[1];
       
       if(match)
-       {var handler=match[1];
-        
-        try
-         {return handler(exn,raw_backtrace);}
+       {try
+         {return match[1](exn,raw_backtrace);}
         catch(exn$prime)
          {var raw_backtrace$prime=try_get_raw_backtrace(/* () */0);
           

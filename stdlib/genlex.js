@@ -113,9 +113,7 @@ var
              {if(switcher>=58)
                {exit=13;}
               else
-               {var switcher$2=65+switcher;
-                
-                switch(switcher$2)
+               {switch(65+switcher)
                  {case 0:exit=13;
                   case 1:exit=13;
                   case 2:exit=13;
@@ -152,10 +150,8 @@ var
                   case 33:exit=11;
                   case 34:
                    Stream["junk"](strm__);
-                   var s=strm__;
-                   
                    reset_buffer(/* () */0);
-                   return /* Some */[0,/* String */[4,string(s)]];
+                   return /* Some */[0,/* String */[4,string(strm__)]];
                    
                   case 35:exit=11;
                   case 36:exit=11;
@@ -178,9 +174,7 @@ var
                    var exit$1;
                    
                    if(match$1)
-                    {var match$2=match$1[1];
-                     
-                     if(match$2!==39)
+                    {if(match$1[1]!==39)
                       {exit$1=4;}
                      else
                       {Stream["junk"](strm__);
@@ -230,39 +224,25 @@ var
           
           switch(exit)
            {case 13:
-             var c$2=c;
-             
-             Stream["junk"](strm__);
-             return /* Some */[0,keyword_or_error(c$2)];
-             
+             Stream["junk"](strm__);return /* Some */[0,keyword_or_error(c)];
             case 9:Stream["junk"](strm__);return next_token(strm__);
             case 10:
              Stream["junk"](strm__);
-             var s$1=strm__;
-             
              reset_buffer(/* () */0);
              store(c);
-             return ident(s$1);
+             return ident(strm__);
              
             case 11:
-             var c$3=c;
-             
              Stream["junk"](strm__);
-             var s$2=strm__;
-             
              reset_buffer(/* () */0);
-             store(c$3);
-             return ident2(s$2);
+             store(c);
+             return ident2(strm__);
              
             case 12:
-             var c$4=c;
-             
              Stream["junk"](strm__);
-             var s$3=strm__;
-             
              reset_buffer(/* () */0);
-             store(c$4);
-             return number(s$3);
+             store(c);
+             return number(strm__);
              
             }
           }
@@ -292,18 +272,13 @@ var
             }
           else
            {if(c>=48)
-             {var switcher$1=-58+c;
-              
-              if(6<switcher$1>>>0){exit$1=16;}else{exit=15;}
-              }
+             {if(6<-58+c>>>0){exit$1=16;}else{exit=15;}}
             else
              {if(c!==39){exit=15;}else{exit$1=16;}}
             }
           
           switch(exit$1)
-           {case 16:
-             Stream["junk"](strm__);var s=strm__;store(c);return ident(s);
-            }
+           {case 16:Stream["junk"](strm__);store(c);return ident(strm__);}
           }
         else
          {exit=15;}
@@ -339,9 +314,7 @@ var
              {if(c!==92){exit=18;}else{exit$1=19;}}
             else
              {if(c>=33)
-               {var switcher$1=-33+c;
-                
-                switch(switcher$1)
+               {switch(-33+c)
                  {case 0:exit$1=19;
                   case 1:exit=18;
                   case 2:exit$1=19;
@@ -382,9 +355,7 @@ var
             }
           
           switch(exit$1)
-           {case 19:
-             Stream["junk"](strm__);var s=strm__;store(c);return ident2(s);
-            }
+           {case 19:Stream["junk"](strm__);store(c);return ident2(strm__);}
           }
         else
          {exit=18;}
@@ -405,32 +376,21 @@ var
         if(match)
          {var c=match[1];
           
-          var switcher=-48+c;
-          
-          if(9<switcher>>>0)
+          if(9<-48+c>>>0)
            {exit=22;}
           else
            {Stream["junk"](strm__);
-            var s=strm__;
-            
             reset_buffer(/* () */0);
             store(45);
             store(c);
-            return number(s);
+            return number(strm__);
             }
           }
         else
          {exit=22;}
         
         switch(exit)
-         {case 22:
-           var s$1=strm__;
-           
-           reset_buffer(/* () */0);
-           store(45);
-           return ident2(s$1);
-           
-          }
+         {case 22:reset_buffer(/* () */0);store(45);return ident2(strm__);}
         };
     
     var
@@ -450,32 +410,17 @@ var
           else
            {if(c!==46)
              {if(c>=48)
-               {Stream["junk"](strm__);
-                var s=strm__;
-                
-                store(c);
-                return number(s);
-                }
+               {Stream["junk"](strm__);store(c);return number(strm__);}
               else
                {exit=27;}
               }
             else
-             {Stream["junk"](strm__);
-              var s$1=strm__;
-              
-              store(46);
-              return decimal_part(s$1);
-              }
+             {Stream["junk"](strm__);store(46);return decimal_part(strm__);}
             }
           
           switch(exit$1)
            {case 29:
-             Stream["junk"](strm__);
-             var s$2=strm__;
-             
-             store(69);
-             return exponent_part(s$2);
-             
+             Stream["junk"](strm__);store(69);return exponent_part(strm__);
             }
           }
         else
@@ -503,28 +448,14 @@ var
           var switcher=-69+c;
           
           if(32<switcher>>>0)
-           {var switcher$1=21+switcher;
-            
-            if(9<switcher$1>>>0)
+           {if(9<21+switcher>>>0)
              {exit=32;}
             else
-             {Stream["junk"](strm__);
-              var s=strm__;
-              
-              store(c);
-              return decimal_part(s);
-              }
+             {Stream["junk"](strm__);store(c);return decimal_part(strm__);}
             }
           else
-           {var switcher$2=-1+switcher;
-            
-            if(30<switcher$2>>>0)
-             {Stream["junk"](strm__);
-              var s$1=strm__;
-              
-              store(69);
-              return exponent_part(s$1);
-              }
+           {if(30<-1+switcher>>>0)
+             {Stream["junk"](strm__);store(69);return exponent_part(strm__);}
             else
              {exit=32;}
             }
@@ -557,12 +488,7 @@ var
           
           switch(exit$1)
            {case 37:
-             Stream["junk"](strm__);
-             var s=strm__;
-             
-             store(c);
-             return end_exponent_part(s);
-             
+             Stream["junk"](strm__);store(c);return end_exponent_part(strm__);
             }
           }
         else
@@ -581,17 +507,10 @@ var
         if(match)
          {var c=match[1];
           
-          var switcher=-48+c;
-          
-          if(9<switcher>>>0)
+          if(9<-48+c>>>0)
            {exit=39;}
           else
-           {Stream["junk"](strm__);
-            var s=strm__;
-            
-            store(c);
-            return end_exponent_part(s);
-            }
+           {Stream["junk"](strm__);store(c);return end_exponent_part(strm__);}
           }
         else
          {exit=39;}
@@ -615,7 +534,7 @@ var
           
           if(c!==34)
            {if(c!==92)
-             {Stream["junk"](strm__);var s=strm__;store(c);return string(s);}
+             {Stream["junk"](strm__);store(c);return string(strm__);}
             else
              {Stream["junk"](strm__);
               var c$1;
@@ -628,10 +547,8 @@ var
                  {throw exn;}
                 }
               
-              var s$1=strm__;
-              
               store(c$1);
-              return string(s$1);
+              return string(strm__);
               }
             }
           else
@@ -704,9 +621,7 @@ var
               if(match$1)
                {var c2=match$1[1];
                 
-                var switcher$1=-48+c2;
-                
-                if(9<switcher$1>>>0)
+                if(9<-48+c2>>>0)
                  {exit$1=52;}
                 else
                  {Stream["junk"](strm__);
@@ -717,9 +632,7 @@ var
                   if(match$2)
                    {var c3=match$2[1];
                     
-                    var switcher$2=-48+c3;
-                    
-                    if(9<switcher$2>>>0)
+                    if(9<-48+c3>>>0)
                      {exit$2=50;}
                     else
                      {Stream["junk"](strm__);
@@ -741,7 +654,7 @@ var
              {exit=56;}
             }
           
-          switch(exit){case 56:var c=c1;Stream["junk"](strm__);return c;}
+          switch(exit){case 56:Stream["junk"](strm__);return c1;}
           }
         else
          {throw Stream["Failure"];}
@@ -755,17 +668,10 @@ var
         var exit;
         
         if(match)
-         {var match$1=match[1];
-          
-          if(match$1!==42)
+         {if(match[1]!==42)
            {exit=58;}
           else
-           {Stream["junk"](strm__);
-            var s=strm__;
-            
-            comment(s);
-            return next_token(s);
-            }
+           {Stream["junk"](strm__);comment(strm__);return next_token(strm__);}
           }
         else
          {exit=58;}
@@ -779,11 +685,9 @@ var
        {var match=Stream["peek"](strm__);
         
         if(match)
-         {var c=match[1];
+         {var exit;
           
-          var exit;
-          
-          var switcher=-40+c;
+          var switcher=-40+match[1];
           
           if(2<switcher>>>0)
            {exit=60;}
@@ -808,12 +712,9 @@ var
        {var match=Stream["peek"](strm__);
         
         if(match)
-         {var c=match[1];
-          
-          if(c!==42)
-           {Stream["junk"](strm__);return comment(strm__);}
-          else
-           {Stream["junk"](strm__);var s=strm__;comment(s);return comment(s);}
+         {return match[1]!==42
+                  ?(Stream["junk"](strm__),comment(strm__))
+                  :(Stream["junk"](strm__),comment(strm__),comment(strm__));
           }
         else
          {throw Stream["Failure"];}

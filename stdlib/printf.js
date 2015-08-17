@@ -8,36 +8,33 @@ var Buffer=require("./buffer.js");
 var
  kfprintf=
   function(k,o,param)
-   {var fmt=param[1];
-    
-    return CamlinternalFormat["make_printf"]
+   {return CamlinternalFormat["make_printf"]
             (function(o,acc)
               {CamlinternalFormat["output_acc"](o,acc);return k(o);},
              o,
              /* End_of_acc */0,
-             fmt);
+             param[1]);
     };
 
 var
  kbprintf=
   function(k,b,param)
-   {var fmt=param[1];
-    
-    return CamlinternalFormat["make_printf"]
+   {return CamlinternalFormat["make_printf"]
             (function(b,acc)
               {CamlinternalFormat["bufput_acc"](b,acc);return k(b);},
              b,
              /* End_of_acc */0,
-             fmt);
+             param[1]);
     };
 
 var
  ikfprintf=
   function(k,oc,param)
-   {var fmt=param[1];
-    
-    return CamlinternalFormat["make_printf"]
-            (function(oc,param$1){return k(oc);},oc,/* End_of_acc */0,fmt);
+   {return CamlinternalFormat["make_printf"]
+            (function(oc,param$1){return k(oc);},
+             oc,
+             /* End_of_acc */0,
+             param[1]);
     };
 
 var
@@ -59,9 +56,7 @@ var eprintf=function(fmt){return fprintf(Pervasives["stderr"],fmt);};
 var
  ksprintf=
   function(k,param)
-   {var fmt=param[1];
-    
-    var
+   {var
      k$prime=
       function(param$1,acc)
        {var buf=Buffer["create"](64);
@@ -71,7 +66,7 @@ var
         };
     
     return CamlinternalFormat["make_printf"]
-            (k$prime,/* () */0,/* End_of_acc */0,fmt);
+            (k$prime,/* () */0,/* End_of_acc */0,param[1]);
     };
 
 var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};

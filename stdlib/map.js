@@ -6,9 +6,7 @@ var Pervasives=require("./pervasives.js");
 var
  Make=
   function(Ord)
-   {var
-     height=
-      function(param){if(param){var h=param[5];return h;}else{return 0;}};
+   {var height=function(param){return param?param[5]:0;};
     
     var
      create=
@@ -27,11 +25,9 @@ var
     var
      bal=
       function(l,x,d,r)
-       {var hl;
-        if(l){var h=l[5];hl=h;}else{hl=0;}
+       {var hl=l?l[5]:0;
         
-        var hr;
-        if(r){var h$1=r[5];hr=h$1;}else{hr=0;}
+        var hr=r?r[5]:0;
         
         if(hl>hr+2)
          {if(l)
@@ -43,23 +39,12 @@ var
             
             var ll=l[1];
             
-            if(height(ll)>=height(lr))
-             {return create(ll,lv,ld,create(lr,x,d,r));}
-            else
-             {if(lr)
-               {var lrr=lr[4];
-                
-                var lrd=lr[3];
-                
-                var lrv=lr[2];
-                
-                var lrl=lr[1];
-                
-                return create(create(ll,lv,ld,lrl),lrv,lrd,create(lrr,x,d,r));
-                }
-              else
-               {return Pervasives["invalid_arg"]("Map.bal");}
-              }
+            return height(ll)>=height(lr)
+                    ?create(ll,lv,ld,create(lr,x,d,r))
+                    :lr
+                      ?create
+                        (create(ll,lv,ld,lr[1]),lr[2],lr[3],create(lr[4],x,d,r))
+                      :Pervasives["invalid_arg"]("Map.bal");
             }
           else
            {return Pervasives["invalid_arg"]("Map.bal");}
@@ -75,24 +60,12 @@ var
               
               var rl=r[1];
               
-              if(height(rr)>=height(rl))
-               {return create(create(l,x,d,rl),rv,rd,rr);}
-              else
-               {if(rl)
-                 {var rlr=rl[4];
-                  
-                  var rld=rl[3];
-                  
-                  var rlv=rl[2];
-                  
-                  var rll=rl[1];
-                  
-                  return create
-                          (create(l,x,d,rll),rlv,rld,create(rlr,rv,rd,rr));
-                  }
-                else
-                 {return Pervasives["invalid_arg"]("Map.bal");}
-                }
+              return height(rr)>=height(rl)
+                      ?create(create(l,x,d,rl),rv,rd,rr)
+                      :rl
+                        ?create
+                          (create(l,x,d,rl[1]),rl[2],rl[3],create(rl[4],rv,rd,rr))
+                        :Pervasives["invalid_arg"]("Map.bal");
               }
             else
              {return Pervasives["invalid_arg"]("Map.bal");}
@@ -110,9 +83,7 @@ var
      add=
       function(x,data,param)
        {if(param)
-         {var h=param[5];
-          
-          var r=param[4];
+         {var r=param[4];
           
           var d=param[3];
           
@@ -123,7 +94,7 @@ var
           var c=Ord[1](x,v);
           
           return c===0
-                  ?/* Node */[0,l,x,data,r,h]
+                  ?/* Node */[0,l,x,data,r,param[5]]
                   :c<0?bal(add(x,data,l),v,d,r):bal(l,v,d,add(x,data,r));
           }
         else
@@ -134,17 +105,9 @@ var
      find=
       function(x,param)
        {if(param)
-         {var r=param[4];
+         {var c=Ord[1](x,param[2]);
           
-          var d=param[3];
-          
-          var v=param[2];
-          
-          var l=param[1];
-          
-          var c=Ord[1](x,v);
-          
-          return c===0?d:find(x,c<0?l:r);
+          return c===0?param[3]:find(x,c<0?param[1]:param[4]);
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -154,15 +117,9 @@ var
      mem=
       function(x,param)
        {if(param)
-         {var r=param[4];
+         {var c=Ord[1](x,param[2]);
           
-          var v=param[2];
-          
-          var l=param[1];
-          
-          var c=Ord[1](x,v);
-          
-          return c===0||mem(x,c<0?l:r);
+          return c===0||mem(x,c<0?param[1]:param[4]);
           }
         else
          {return /* false */0;}
@@ -174,10 +131,7 @@ var
        {if(param)
          {var l=param[1];
           
-          if(l)
-           {return min_binding(l);}
-          else
-           {var d=param[3];var x=param[2];return /* tuple */[0,x,d];}
+          return l?min_binding(l):/* tuple */[0,param[2],param[3]];
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -189,11 +143,7 @@ var
        {if(param)
          {var r=param[4];
           
-          var d=param[3];
-          
-          var x=param[2];
-          
-          return r?max_binding(r):/* tuple */[0,x,d];
+          return r?max_binding(r):/* tuple */[0,param[2],param[3]];
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -205,17 +155,9 @@ var
        {if(param)
          {var l=param[1];
           
-          if(l)
-           {var r=param[4];
-            
-            var d=param[3];
-            
-            var x=param[2];
-            
-            return bal(remove_min_binding(l),x,d,r);
-            }
-          else
-           {var r$1=param[4];return r$1;}
+          return l
+                  ?bal(remove_min_binding(l),param[2],param[3],param[4])
+                  :param[4];
           }
         else
          {return Pervasives["invalid_arg"]("Map.remove_min_elt");}
@@ -224,25 +166,17 @@ var
     var
      merge=
       function(t1,t2)
-       {var match=t1;
-        
-        var match$1=t2;
-        
-        if(match)
-         {if(match$1)
-           {var match$2=min_binding(t2);
+       {if(t1)
+         {if(t2)
+           {var match=min_binding(t2);
             
-            var d=match$2[2];
-            
-            var x=match$2[1];
-            
-            return bal(t1,x,d,remove_min_binding(t2));
+            return bal(t1,match[1],match[2],remove_min_binding(t2));
             }
           else
-           {var t=match;return t;}
+           {return t1;}
           }
         else
-         {var t$1=match$1;return t$1;}
+         {return t2;}
         };
     
     var
@@ -270,44 +204,22 @@ var
     var
      iter=
       function(f,param)
-       {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
-          
-          var v=param[2];
-          
-          var l=param[1];
-          
-          iter(f,l);
-          f(v,d);
-          return iter(f,r);
-          }
-        else
-         {return /* () */0;}
+       {return param
+                ?(iter(f,param[1]),f(param[2],param[3]),iter(f,param[4]))
+                :/* () */0;
         };
     
     var
      map=
       function(f,param)
        {if(param)
-         {var h=param[5];
+         {var l$prime=map(f,param[1]);
           
-          var r=param[4];
+          var d$prime=f(param[3]);
           
-          var d=param[3];
+          var r$prime=map(f,param[4]);
           
-          var v=param[2];
-          
-          var l=param[1];
-          
-          var l$prime=map(f,l);
-          
-          var d$prime=f(d);
-          
-          var r$prime=map(f,r);
-          
-          return /* Node */[0,l$prime,v,d$prime,r$prime,h];
+          return /* Node */[0,l$prime,param[2],d$prime,r$prime,param[5]];
           }
         else
          {return /* Empty */0;}
@@ -317,23 +229,15 @@ var
      mapi=
       function(f,param)
        {if(param)
-         {var h=param[5];
+         {var v=param[2];
           
-          var r=param[4];
+          var l$prime=mapi(f,param[1]);
           
-          var d=param[3];
+          var d$prime=f(v,param[3]);
           
-          var v=param[2];
+          var r$prime=mapi(f,param[4]);
           
-          var l=param[1];
-          
-          var l$prime=mapi(f,l);
-          
-          var d$prime=f(v,d);
-          
-          var r$prime=mapi(f,r);
-          
-          return /* Node */[0,l$prime,v,d$prime,r$prime,h];
+          return /* Node */[0,l$prime,v,d$prime,r$prime,param[5]];
           }
         else
          {return /* Empty */0;}
@@ -342,125 +246,56 @@ var
     var
      fold=
       function(f,m,accu)
-       {if(m)
-         {var r=m[4];
-          
-          var d=m[3];
-          
-          var v=m[2];
-          
-          var l=m[1];
-          
-          return fold(f,r,f(v,d,fold(f,l,accu)));
-          }
-        else
-         {return accu;}
-        };
+       {return m?fold(f,m[4],f(m[2],m[3],fold(f,m[1],accu))):accu;};
     
     var
      for_all=
       function(p,param)
-       {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
-          
-          var v=param[2];
-          
-          var l=param[1];
-          
-          return p(v,d)&&for_all(p,l)&&for_all(p,r);
-          }
-        else
-         {return /* true */1;}
+       {return param
+                ?p(param[2],param[3])&&
+                 for_all(p,param[1])&&
+                 for_all(p,param[4])
+                :/* true */1;
         };
     
     var
      exists=
       function(p,param)
-       {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
-          
-          var v=param[2];
-          
-          var l=param[1];
-          
-          return p(v,d)||exists(p,l)||exists(p,r);
-          }
-        else
-         {return /* false */0;}
+       {return param
+                ?p(param[2],param[3])||exists(p,param[1])||exists(p,param[4])
+                :/* false */0;
         };
     
     var
      add_min_binding=
       function(k,v,param)
-       {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
-          
-          var x=param[2];
-          
-          var l=param[1];
-          
-          return bal(add_min_binding(k,v,l),x,d,r);
-          }
-        else
-         {return singleton(k,v);}
+       {return param
+                ?bal(add_min_binding(k,v,param[1]),param[2],param[3],param[4])
+                :singleton(k,v);
         };
     
     var
      add_max_binding=
       function(k,v,param)
-       {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
-          
-          var x=param[2];
-          
-          var l=param[1];
-          
-          return bal(l,x,d,add_max_binding(k,v,r));
-          }
-        else
-         {return singleton(k,v);}
+       {return param
+                ?bal(param[1],param[2],param[3],add_max_binding(k,v,param[4]))
+                :singleton(k,v);
         };
     
     var
      join=
       function(l,v,d,r)
-       {var match=l;
-        
-        var match$1=r;
-        
-        if(match)
-         {if(match$1)
-           {var rh=match$1[5];
+       {if(l)
+         {if(r)
+           {var rh=r[5];
             
-            var rr=match$1[4];
-            
-            var rd=match$1[3];
-            
-            var rv=match$1[2];
-            
-            var rl=match$1[1];
-            
-            var lh=match[5];
-            
-            var lr=match[4];
-            
-            var ld=match[3];
-            
-            var lv=match[2];
-            
-            var ll=match[1];
+            var lh=l[5];
             
             return lh>rh+2
-                    ?bal(ll,lv,ld,join(lr,v,d,r))
-                    :rh>lh+2?bal(join(l,v,d,rl),rv,rd,rr):create(l,v,d,r);
+                    ?bal(l[1],l[2],l[3],join(l[4],v,d,r))
+                    :rh>lh+2
+                      ?bal(join(l,v,d,r[1]),r[2],r[3],r[4])
+                      :create(l,v,d,r);
             }
           else
            {return add_max_binding(v,d,l);}
@@ -472,35 +307,22 @@ var
     var
      concat=
       function(t1,t2)
-       {var match=t1;
-        
-        var match$1=t2;
-        
-        if(match)
-         {if(match$1)
-           {var match$2=min_binding(t2);
+       {if(t1)
+         {if(t2)
+           {var match=min_binding(t2);
             
-            var d=match$2[2];
-            
-            var x=match$2[1];
-            
-            return join(t1,x,d,remove_min_binding(t2));
+            return join(t1,match[1],match[2],remove_min_binding(t2));
             }
           else
-           {var t=match;return t;}
+           {return t1;}
           }
         else
-         {var t$1=match$1;return t$1;}
+         {return t2;}
         };
     
     var
      concat_or_join=
-      function(t1,v,d,t2)
-       {if(d)
-         {var d$1=d[1];return join(t1,v,d$1,t2);}
-        else
-         {return concat(t1,t2);}
-        };
+      function(t1,v,d,t2){return d?join(t1,v,d[1],t2):concat(t1,t2);};
     
     var
      split=
@@ -522,24 +344,15 @@ var
            {if(c<0)
              {var match=split(x,l);
               
-              var rl=match[3];
-              
-              var pres=match[2];
-              
-              var ll=match[1];
-              
-              return /* tuple */[0,ll,pres,join(rl,v,d,r)];
+              return /* tuple */[0,match[1],match[2],join(match[3],v,d,r)];
               }
             else
              {var match$1=split(x,r);
               
-              var rr=match$1[3];
-              
-              var pres$1=match$1[2];
-              
-              var lr=match$1[1];
-              
-              return /* tuple */[0,join(l,v,d,lr),pres$1,rr];
+              return /* tuple */[0,
+                      join(l,v,d,match$1[1]),
+                      match$1[2],
+                      match$1[3]];
               }
             }
           }
@@ -550,68 +363,38 @@ var
     var
      merge$1=
       function(f,s1,s2)
-       {var match=s1;
+       {var exit;
         
-        var match$1=s2;
-        
-        var exit;
-        
-        if(match)
-         {var h1=match[5];
+        if(s1)
+         {var v1=s1[2];
           
-          var r1=match[4];
-          
-          var d1=match[3];
-          
-          var v1=match[2];
-          
-          var l1=match[1];
-          
-          if(h1>=height(s2))
-           {var match$2=split(v1,s2);
-            
-            var r2=match$2[3];
-            
-            var d2=match$2[2];
-            
-            var l2=match$2[1];
+          if(s1[5]>=height(s2))
+           {var match=split(v1,s2);
             
             return concat_or_join
-                    (merge$1(f,l1,l2),
+                    (merge$1(f,s1[1],match[1]),
                      v1,
-                     f(v1,/* Some */[0,d1],d2),
-                     merge$1(f,r1,r2));
+                     f(v1,/* Some */[0,s1[3]],match[2]),
+                     merge$1(f,s1[4],match[3]));
             }
           else
            {exit=20;}
           }
         else
-         {if(match$1){exit=20;}else{return /* Empty */0;}}
+         {if(s2){exit=20;}else{return /* Empty */0;}}
         
         switch(exit)
          {case 20:
-           if(match$1)
-            {var r2$1=match$1[4];
+           if(s2)
+            {var v2=s2[2];
              
-             var d2$1=match$1[3];
-             
-             var v2=match$1[2];
-             
-             var l2$1=match$1[1];
-             
-             var match$3=split(v2,s1);
-             
-             var r1$1=match$3[3];
-             
-             var d1$1=match$3[2];
-             
-             var l1$1=match$3[1];
+             var match$1=split(v2,s1);
              
              return concat_or_join
-                     (merge$1(f,l1$1,l2$1),
+                     (merge$1(f,match$1[1],s2[1]),
                       v2,
-                      f(v2,d1$1,/* Some */[0,d2$1]),
-                      merge$1(f,r1$1,r2$1));
+                      f(v2,match$1[2],/* Some */[0,s2[3]]),
+                      merge$1(f,match$1[3],s2[4]));
              }
            else
             {throw [0,
@@ -626,19 +409,15 @@ var
      filter=
       function(p,param)
        {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
+         {var d=param[3];
           
           var v=param[2];
           
-          var l=param[1];
-          
-          var l$prime=filter(p,l);
+          var l$prime=filter(p,param[1]);
           
           var pvd=p(v,d);
           
-          var r$prime=filter(p,r);
+          var r$prime=filter(p,param[4]);
           
           return pvd?join(l$prime,v,d,r$prime):concat(l$prime,r$prime);
           }
@@ -650,15 +429,11 @@ var
      partition=
       function(p,param)
        {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
+         {var d=param[3];
           
           var v=param[2];
           
-          var l=param[1];
-          
-          var match=partition(p,l);
+          var match=partition(p,param[1]);
           
           var lf=match[2];
           
@@ -666,7 +441,7 @@ var
           
           var pvd=p(v,d);
           
-          var match$1=partition(p,r);
+          var match$1=partition(p,param[4]);
           
           var rf=match$1[2];
           
@@ -683,20 +458,7 @@ var
     var
      cons_enum=
       function(m,e)
-       {if(m)
-         {var r=m[4];
-          
-          var d=m[3];
-          
-          var v=m[2];
-          
-          var l=m[1];
-          
-          return cons_enum(l,/* More */[0,v,d,r,e]);
-          }
-        else
-         {return e;}
-        };
+       {return m?cons_enum(m[1],/* More */[0,m[2],m[3],m[4],e]):e;};
     
     var
      compare=
@@ -704,45 +466,25 @@ var
        {var
          compare_aux=
           function(e1,e2)
-           {var match=e1;
-            
-            var match$1=e2;
-            
-            if(match)
-             {if(match$1)
-               {var e2$1=match$1[4];
-                
-                var r2=match$1[3];
-                
-                var d2=match$1[2];
-                
-                var v2=match$1[1];
-                
-                var e1$1=match[4];
-                
-                var r1=match[3];
-                
-                var d1=match[2];
-                
-                var v1=match[1];
-                
-                var c=Ord[1](v1,v2);
+           {if(e1)
+             {if(e2)
+               {var c=Ord[1](e1[1],e2[1]);
                 
                 if(c!==0)
                  {return c;}
                 else
-                 {var c$1=cmp(d1,d2);
+                 {var c$1=cmp(e1[2],e2[2]);
                   
                   return c$1!==0
                           ?c$1
-                          :compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));
+                          :compare_aux(cons_enum(e1[3],e1[4]),cons_enum(e2[3],e2[4]));
                   }
                 }
               else
                {return 1;}
               }
             else
-             {return match$1?-1:0;}
+             {return e2?-1:0;}
             };
         
         return compare_aux(cons_enum(m1,/* End */0),cons_enum(m2,/* End */0));
@@ -754,38 +496,14 @@ var
        {var
          equal_aux=
           function(e1,e2)
-           {var match=e1;
-            
-            var match$1=e2;
-            
-            if(match)
-             {if(match$1)
-               {var e2$1=match$1[4];
-                
-                var r2=match$1[3];
-                
-                var d2=match$1[2];
-                
-                var v2=match$1[1];
-                
-                var e1$1=match[4];
-                
-                var r1=match[3];
-                
-                var d1=match[2];
-                
-                var v1=match[1];
-                
-                return Ord[1](v1,v2)===
+           {return e1
+                    ?e2
+                      ?Ord[1](e1[1],e2[1])===
                        0&&
-                       cmp(d1,d2)&&
-                       equal_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));
-                }
-              else
-               {return /* false */0;}
-              }
-            else
-             {return match$1?/* false */0:/* true */1;}
+                       cmp(e1[2],e2[2])&&
+                       equal_aux(cons_enum(e1[3],e1[4]),cons_enum(e2[3],e2[4]))
+                      :/* false */0
+                    :e2?/* false */0:/* true */1;
             };
         
         return equal_aux(cons_enum(m1,/* End */0),cons_enum(m2,/* End */0));
@@ -793,35 +511,21 @@ var
     
     var
      cardinal=
-      function(param)
-       {if(param)
-         {var r=param[4];var l=param[1];return cardinal(l)+1+cardinal(r);}
-        else
-         {return 0;}
-        };
+      function(param){return param?cardinal(param[1])+1+cardinal(param[4]):0;};
     
     var
      bindings_aux=
       function(accu,param)
-       {if(param)
-         {var r=param[4];
-          
-          var d=param[3];
-          
-          var v=param[2];
-          
-          var l=param[1];
-          
-          return bindings_aux
-                  (/* :: */[0,/* tuple */[0,v,d],bindings_aux(accu,r)],l);
-          }
-        else
-         {return accu;}
+       {return param
+                ?bindings_aux
+                  (/* :: */[0,
+                    /* tuple */[0,param[2],param[3]],
+                    bindings_aux(accu,param[4])],
+                   param[1])
+                :accu;
         };
     
     var bindings=function(s){return bindings_aux(/* [] */0,s);};
-    
-    var choose=min_binding;
     
     return [0,
             height,
@@ -858,7 +562,7 @@ var
             cardinal,
             bindings_aux,
             bindings,
-            choose];
+            min_binding];
     };
 
 module["exports"]=

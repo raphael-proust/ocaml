@@ -6,18 +6,14 @@ var
  merge=
   function(order,l1,l2)
    {if(l1)
-     {var t1=l1[2];
-      
-      var h1=l1[1];
+     {var h1=l1[1];
       
       if(l2)
-       {var t2=l2[2];
-        
-        var h2=l2[1];
+       {var h2=l2[1];
         
         return order(h1,h2)
-                ?/* :: */[0,h1,merge(order,t1,l2)]
-                :/* :: */[0,h2,merge(order,l1,t2)];
+                ?/* :: */[0,h1,merge(order,l1[2],l2)]
+                :/* :: */[0,h2,merge(order,l1,l2[2])];
         }
       else
        {return l1;}
@@ -38,17 +34,13 @@ var
           var e=param[1];
           
           if(match)
-           {var e1=e;
-            
-            var rest=match[2];
-            
-            var e2=match[1];
+           {var e2=match[1];
             
             return /* :: */[0,
-                    order(e1,e2)
-                     ?/* :: */[0,e1,/* :: */[0,e2,/* [] */0]]
-                     :/* :: */[0,e2,/* :: */[0,e1,/* [] */0]],
-                    initlist(rest)];
+                    order(e,e2)
+                     ?/* :: */[0,e,/* :: */[0,e2,/* [] */0]]
+                     :/* :: */[0,e2,/* :: */[0,e,/* [] */0]],
+                    initlist(match[2])];
             }
           else
            {return /* :: */[0,/* :: */[0,e,/* [] */0],/* [] */0];}
@@ -66,14 +58,7 @@ var
          {var match=x[2];
           
           if(match)
-           {var rest=match[2];
-            
-            var l2=match[1];
-            
-            var l1=x[1];
-            
-            return /* :: */[0,merge(order,l1,l2),merge2(rest)];
-            }
+           {return /* :: */[0,merge(order,x[1],match[1]),merge2(match[2])];}
           else
            {exit=11;}
           }
@@ -86,17 +71,7 @@ var
     var
      mergeall=
       function(llist)
-       {if(llist)
-         {var match=llist[2];
-          
-          if(match)
-           {return mergeall(merge2(llist));}
-          else
-           {var l$1=llist[1];return l$1;}
-          }
-        else
-         {return /* [] */0;}
-        };
+       {return llist?llist[2]?mergeall(merge2(llist)):llist[1]:/* [] */0;};
     
     return mergeall(initlist(l));
     };
@@ -122,9 +97,9 @@ var
           
           var pivot=arr[mid+1];
           
-          var i=[0,lo+1];
+          var i=lo+1;
           
-          var j=[0,hi-1];
+          var j=hi-1;
           
           if(!cmp(pivot,arr[hi+1])||!cmp(arr[lo+1],pivot))
            {throw [0,
@@ -134,18 +109,21 @@ var
           else
            {}
           
-          while(i[1]<j[1])
-           {while(!cmp(pivot,arr[i[1]+1])){i[0]++}
+          while(i<j)
+           {while(!cmp(pivot,arr[i+1])){i=1+i;}
             
-            while(!cmp(arr[j[1]+1],pivot)){j[0]--}
+            while(!cmp(arr[j+1],pivot)){j=-1+j;}
             
-            i[1]<j[1]?swap(arr,i[1],j[1]):0;
+            i<j?swap(arr,i,j):0;
             
-            i[0]++,j[0]--}
+            i=1+i;
+            
+            j=-1+j;
+            }
           
-          return j[1]-lo<=hi-i[1]
-                  ?(qsort(lo,j[1]),qsort(i[1],hi))
-                  :(qsort(i[1],hi),qsort(lo,j[1]));
+          return j-lo<=hi-i
+                  ?(qsort(lo,j),qsort(i,hi))
+                  :(qsort(i,hi),qsort(lo,j));
           }
         else
          {return 0;}
@@ -157,12 +135,11 @@ var
       
       if(!cmp(arr[i-1+1],val_i))
        {arr[i+1]=arr[i-1+1];
-        var j=[0,i-1];
+        var j=i-1;
         
-        while(j[1]>=1&&!cmp(arr[j[1]-1+1],val_i))
-         {arr[j[1]+1]=arr[j[1]-1+1],j[0]--}
+        while(j>=1&&!cmp(arr[j-1+1],val_i)){arr[j+1]=arr[j-1+1];j=-1+j;}
         
-        arr[j[1]+1]=val_i}
+        arr[j+1]=val_i}
       else
        {}
       }

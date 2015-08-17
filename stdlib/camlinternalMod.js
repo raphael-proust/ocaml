@@ -56,8 +56,8 @@ var
         }}
     else
      {switch(shape[0])
-       {case 0:var comps=shape[1];return $$Array["map"](init_mod(loc),comps);
-        case 1:var v=shape[1];return v;
+       {case 0:return $$Array["map"](init_mod(loc),shape[1]);
+        case 1:return shape[1];
         }}
     };
 

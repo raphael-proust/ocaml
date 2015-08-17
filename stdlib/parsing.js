@@ -107,11 +107,7 @@ var
               {throw exn;}
              }
            
-           var value=match$1[2];
-           
-           var action=match$1[1];
-           
-           return loop(action,value);
+           return loop(match$1[1],match$1[2]);
            
           case 5:
            tables[14]("syntax error");
@@ -149,10 +145,8 @@ var
       env[7]=init_curr_char;
       env[8]=init_lval;
       env[16]=init_errflag;
-      var tag=exn[1];
-      
-      if(tag===YYexit)
-       {var v=exn[2];return v;}
+      if(exn[1]===YYexit)
+       {return exn[2];}
       else
        {current_lookahead_fun[1]=
         function(tok)

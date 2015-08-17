@@ -6,28 +6,13 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var
  length_aux=
-  function(len,param)
-   {if(param){var l=param[2];return length_aux(len+1,l);}else{return len;}};
+  function(len,param){return param?length_aux(len+1,param[2]):len;};
 
 var length=function(l){return length_aux(0,l);};
 
-var
- hd=
-  function(param)
-   {if(param)
-     {var a=param[1];return a;}
-    else
-     {return Pervasives["failwith"]("hd");}
-    };
+var hd=function(param){return param?param[1]:Pervasives["failwith"]("hd");};
 
-var
- tl=
-  function(param)
-   {if(param)
-     {var l=param[2];return l;}
-    else
-     {return Pervasives["failwith"]("tl");}
-    };
+var tl=function(param){return param?param[2]:Pervasives["failwith"]("tl");};
 
 var
  nth=
@@ -38,10 +23,7 @@ var
      {var
        nth_aux=
         function(l,n)
-         {if(l)
-           {var l$1=l[2];var a=l[1];return n===0?a:nth_aux(l$1,n-1);}
-          else
-           {return Pervasives["failwith"]("nth");}
+         {return l?n===0?l[1]:nth_aux(l[2],n-1):Pervasives["failwith"]("nth");
           };
       
       return nth_aux(l,n);
@@ -52,23 +34,14 @@ var append=Pervasives["@"];
 
 var
  rev_append=
-  function(l1,l2)
-   {if(l1)
-     {var l=l1[2];var a=l1[1];return rev_append(l,/* :: */[0,a,l2]);}
-    else
-     {return l2;}
-    };
+  function(l1,l2){return l1?rev_append(l1[2],/* :: */[0,l1[1],l2]):l2;};
 
 var rev=function(l){return rev_append(l,/* [] */0);};
 
 var
  flatten=
   function(param)
-   {if(param)
-     {var r=param[2];var l=param[1];return Pervasives["@"](l,flatten(r));}
-    else
-     {return /* [] */0;}
-    };
+   {return param?Pervasives["@"](param[1],flatten(param[2])):/* [] */0;};
 
 var concat=flatten;
 
@@ -76,7 +49,7 @@ var
  map=
   function(f,param)
    {if(param)
-     {var l=param[2];var a=param[1];var r=f(a);return /* :: */[0,r,map(f,l)];}
+     {var r=f(param[1]);return /* :: */[0,r,map(f,param[2])];}
     else
      {return /* [] */0;}
     };
@@ -85,14 +58,7 @@ var
  mapi=
   function(i,f,param)
    {if(param)
-     {var l=param[2];
-      
-      var a=param[1];
-      
-      var r=f(i,a);
-      
-      return /* :: */[0,r,mapi(i+1,f,l)];
-      }
+     {var r=f(i,param[1]);return /* :: */[0,r,mapi(i+1,f,param[2])];}
     else
      {return /* [] */0;}
     };
@@ -105,86 +71,43 @@ var
    {var
      rmap_f=
       function(accu,param)
-       {if(param)
-         {var l$1=param[2];
-          
-          var a=param[1];
-          
-          return rmap_f(/* :: */[0,f(a),accu],l$1);
-          }
-        else
-         {return accu;}
-        };
+       {return param?rmap_f(/* :: */[0,f(param[1]),accu],param[2]):accu;};
     
     return rmap_f(/* [] */0,l);
     };
 
 var
  iter=
-  function(f,param)
-   {if(param)
-     {var l=param[2];var a=param[1];f(a);return iter(f,l);}
-    else
-     {return /* () */0;}
-    };
+  function(f,param){return param?(f(param[1]),iter(f,param[2])):/* () */0;};
 
 var
  iteri=
   function(i,f,param)
-   {if(param)
-     {var l=param[2];var a=param[1];f(i,a);return iteri(i+1,f,l);}
-    else
-     {return /* () */0;}
-    };
+   {return param?(f(i,param[1]),iteri(i+1,f,param[2])):/* () */0;};
 
 var iteri$1=function(f,l){return iteri(0,f,l);};
 
 var
  fold_left=
-  function(f,accu,l)
-   {if(l)
-     {var l$1=l[2];var a=l[1];return fold_left(f,f(accu,a),l$1);}
-    else
-     {return accu;}
-    };
+  function(f,accu,l){return l?fold_left(f,f(accu,l[1]),l[2]):accu;};
 
 var
  fold_right=
-  function(f,l,accu)
-   {if(l)
-     {var l$1=l[2];var a=l[1];return f(a,fold_right(f,l$1,accu));}
-    else
-     {return accu;}
-    };
+  function(f,l,accu){return l?f(l[1],fold_right(f,l[2],accu)):accu;};
 
 var
  map2=
   function(f,l1,l2)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        var r=f(a1,a2);
-        
-        return /* :: */[0,r,map2(f,l1$1,l2$1)];
-        }
+    if(l1)
+     {if(l2)
+       {var r=f(l1[1],l2[1]);return /* :: */[0,r,map2(f,l1[2],l2[2])];}
       else
        {exit=66;}
       }
     else
-     {if(match$1){exit=66;}else{return /* [] */0;}}
+     {if(l2){exit=66;}else{return /* [] */0;}}
     
     switch(exit){case 66:return Pervasives["invalid_arg"]("List.map2");}
     };
@@ -195,29 +118,16 @@ var
    {var
      rmap2_f=
       function(accu,l1,l2)
-       {var match=l1;
+       {var exit;
         
-        var match$1=l2;
-        
-        var exit;
-        
-        if(match)
-         {if(match$1)
-           {var l2$1=match$1[2];
-            
-            var a2=match$1[1];
-            
-            var l1$1=match[2];
-            
-            var a1=match[1];
-            
-            return rmap2_f(/* :: */[0,f(a1,a2),accu],l1$1,l2$1);
-            }
+        if(l1)
+         {if(l2)
+           {return rmap2_f(/* :: */[0,f(l1[1],l2[1]),accu],l1[2],l2[2]);}
           else
            {exit=63;}
           }
         else
-         {if(match$1){exit=63;}else{return accu;}}
+         {if(l2){exit=63;}else{return accu;}}
         
         switch(exit)
          {case 63:return Pervasives["invalid_arg"]("List.rev_map2");}
@@ -229,30 +139,12 @@ var
 var
  iter2=
   function(f,l1,l2)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        f(a1,a2);
-        return iter2(f,l1$1,l2$1);
-        }
-      else
-       {exit=62;}
-      }
+    if(l1)
+     {if(l2){f(l1[1],l2[1]);return iter2(f,l1[2],l2[2]);}else{exit=62;}}
     else
-     {if(match$1){exit=62;}else{return /* () */0;}}
+     {if(l2){exit=62;}else{return /* () */0;}}
     
     switch(exit){case 62:return Pervasives["invalid_arg"]("List.iter2");}
     };
@@ -260,29 +152,16 @@ var
 var
  fold_left2=
   function(f,accu,l1,l2)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        return fold_left2(f,f(accu,a1,a2),l1$1,l2$1);
-        }
+    if(l1)
+     {if(l2)
+       {return fold_left2(f,f(accu,l1[1],l2[1]),l1[2],l2[2]);}
       else
        {exit=61;}
       }
     else
-     {if(match$1){exit=61;}else{return accu;}}
+     {if(l2){exit=61;}else{return accu;}}
     
     switch(exit){case 61:return Pervasives["invalid_arg"]("List.fold_left2");}
     };
@@ -290,29 +169,16 @@ var
 var
  fold_right2=
   function(f,l1,l2,accu)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        return f(a1,a2,fold_right2(f,l1$1,l2$1,accu));
-        }
+    if(l1)
+     {if(l2)
+       {return f(l1[1],l2[1],fold_right2(f,l1[2],l2[2],accu));}
       else
        {exit=60;}
       }
     else
-     {if(match$1){exit=60;}else{return accu;}}
+     {if(l2){exit=60;}else{return accu;}}
     
     switch(exit)
      {case 60:return Pervasives["invalid_arg"]("List.fold_right2");}
@@ -321,47 +187,22 @@ var
 var
  for_all=
   function(p,param)
-   {if(param)
-     {var l=param[2];var a=param[1];return p(a)&&for_all(p,l);}
-    else
-     {return /* true */1;}
-    };
+   {return param?p(param[1])&&for_all(p,param[2]):/* true */1;};
 
 var
  exists=
   function(p,param)
-   {if(param)
-     {var l=param[2];var a=param[1];return p(a)||exists(p,l);}
-    else
-     {return /* false */0;}
-    };
+   {return param?p(param[1])||exists(p,param[2]):/* false */0;};
 
 var
  for_all2=
   function(p,l1,l2)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        return p(a1,a2)&&for_all2(p,l1$1,l2$1);
-        }
-      else
-       {exit=59;}
-      }
+    if(l1)
+     {if(l2){return p(l1[1],l2[1])&&for_all2(p,l1[2],l2[2]);}else{exit=59;}}
     else
-     {if(match$1){exit=59;}else{return /* true */1;}}
+     {if(l2){exit=59;}else{return /* true */1;}}
     
     switch(exit){case 59:return Pervasives["invalid_arg"]("List.for_all2");}
     };
@@ -369,29 +210,12 @@ var
 var
  exists2=
   function(p,l1,l2)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        return p(a1,a2)||exists2(p,l1$1,l2$1);
-        }
-      else
-       {exit=58;}
-      }
+    if(l1)
+     {if(l2){return p(l1[1],l2[1])||exists2(p,l1[2],l2[2]);}else{exit=58;}}
     else
-     {if(match$1){exit=58;}else{return /* false */0;}}
+     {if(l2){exit=58;}else{return /* false */0;}}
     
     switch(exit){case 58:return Pervasives["invalid_arg"]("List.exists2");}
     };
@@ -399,39 +223,24 @@ var
 var
  mem=
   function(x,param)
-   {if(param)
-     {var l=param[2];
-      
-      var a=param[1];
-      
-      return CamlPrimitive["caml_compare"](a,x)===0||mem(x,l);
-      }
-    else
-     {return /* false */0;}
+   {return param
+            ?CamlPrimitive["caml_compare"](param[1],x)===0||mem(x,param[2])
+            :/* false */0;
     };
 
 var
  memq=
-  function(x,param)
-   {if(param)
-     {var l=param[2];var a=param[1];return a===x||memq(x,l);}
-    else
-     {return /* false */0;}
-    };
+  function(x,param){return param?param[1]===x||memq(x,param[2]):/* false */0;};
 
 var
  assoc=
   function(x,param)
    {if(param)
-     {var l=param[2];
+     {var match=param[1];
       
-      var match=param[1];
-      
-      var b=match[2];
-      
-      var a=match[1];
-      
-      return CamlPrimitive["caml_compare"](a,x)===0?b:assoc(x,l);
+      return CamlPrimitive["caml_compare"](match[1],x)===0
+              ?match[2]
+              :assoc(x,param[2]);
       }
     else
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -441,16 +250,7 @@ var
  assq=
   function(x,param)
    {if(param)
-     {var l=param[2];
-      
-      var match=param[1];
-      
-      var b=match[2];
-      
-      var a=match[1];
-      
-      return a===x?b:assq(x,l);
-      }
+     {var match=param[1];return match[1]===x?match[2]:assq(x,param[2]);}
     else
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
@@ -458,34 +258,17 @@ var
 var
  mem_assoc=
   function(x,param)
-   {if(param)
-     {var l=param[2];
-      
-      var match=param[1];
-      
-      var a=match[1];
-      
-      return CamlPrimitive["caml_compare"](a,x)===0||mem_assoc(x,l);
-      }
-    else
-     {return /* false */0;}
+   {return param
+            ?CamlPrimitive["caml_compare"](param[1][1],x)===
+             0||
+             mem_assoc(x,param[2])
+            :/* false */0;
     };
 
 var
  mem_assq=
   function(x,param)
-   {if(param)
-     {var l=param[2];
-      
-      var match=param[1];
-      
-      var a=match[1];
-      
-      return a===x||mem_assq(x,l);
-      }
-    else
-     {return /* false */0;}
-    };
+   {return param?param[1][1]===x||mem_assq(x,param[2]):/* false */0;};
 
 var
  remove_assoc=
@@ -495,9 +278,7 @@ var
       
       var pair=param[1];
       
-      var a=pair[1];
-      
-      return CamlPrimitive["caml_compare"](a,x)===0
+      return CamlPrimitive["caml_compare"](pair[1],x)===0
               ?l
               :/* :: */[0,pair,remove_assoc(x,l)];
       }
@@ -513,9 +294,7 @@ var
       
       var pair=param[1];
       
-      var a=pair[1];
-      
-      return a===x?l:/* :: */[0,pair,remove_assq(x,l)];
+      return pair[1]===x?l:/* :: */[0,pair,remove_assq(x,l)];
       }
     else
      {return /* [] */0;}
@@ -525,7 +304,7 @@ var
  find=
   function(p,param)
    {if(param)
-     {var l=param[2];var x=param[1];return p(x)?x:find(p,l);}
+     {var x=param[1];return p(x)?x:find(p,param[2]);}
     else
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     };
@@ -578,21 +357,13 @@ var
  split=
   function(param)
    {if(param)
-     {var l=param[2];
+     {var match=param[1];
       
-      var match=param[1];
+      var match$1=split(param[2]);
       
-      var y=match[2];
-      
-      var x=match[1];
-      
-      var match$1=split(l);
-      
-      var ry=match$1[2];
-      
-      var rx=match$1[1];
-      
-      return /* tuple */[0,/* :: */[0,x,rx],/* :: */[0,y,ry]];
+      return /* tuple */[0,
+              /* :: */[0,match[1],match$1[1]],
+              /* :: */[0,match[2],match$1[2]]];
       }
     else
      {return [/* tuple */0,/* [] */0,/* [] */0];}
@@ -601,29 +372,16 @@ var
 var
  combine=
   function(l1,l2)
-   {var match=l1;
+   {var exit;
     
-    var match$1=l2;
-    
-    var exit;
-    
-    if(match)
-     {if(match$1)
-       {var l2$1=match$1[2];
-        
-        var a2=match$1[1];
-        
-        var l1$1=match[2];
-        
-        var a1=match[1];
-        
-        return /* :: */[0,/* tuple */[0,a1,a2],combine(l1$1,l2$1)];
-        }
+    if(l1)
+     {if(l2)
+       {return /* :: */[0,/* tuple */[0,l1[1],l2[1]],combine(l1[2],l2[2])];}
       else
        {exit=53;}
       }
     else
-     {if(match$1){exit=53;}else{return /* [] */0;}}
+     {if(l2){exit=53;}else{return /* [] */0;}}
     
     switch(exit){case 53:return Pervasives["invalid_arg"]("List.combine");}
     };
@@ -631,29 +389,21 @@ var
 var
  merge=
   function(cmp,l1,l2)
-   {var match=l1;
-    
-    var match$1=l2;
-    
-    if(match)
-     {if(match$1)
-       {var t2=match$1[2];
+   {if(l1)
+     {if(l2)
+       {var h2=l2[1];
         
-        var h2=match$1[1];
-        
-        var t1=match[2];
-        
-        var h1=match[1];
+        var h1=l1[1];
         
         return cmp(h1,h2)<=0
-                ?/* :: */[0,h1,merge(cmp,t1,l2)]
-                :/* :: */[0,h2,merge(cmp,l1,t2)];
+                ?/* :: */[0,h1,merge(cmp,l1[2],l2)]
+                :/* :: */[0,h2,merge(cmp,l1,l2[2])];
         }
       else
-       {var l1$1=match;return l1$1;}
+       {return l1;}
       }
     else
-     {var l2$1=match$1;return l2$1;}
+     {return l2;}
     };
 
 var
@@ -663,7 +413,7 @@ var
      {return l;}
     else
      {if(l)
-       {var t=l[2];return chop(k-1,t);}
+       {return chop(k-1,l[2]);}
       else
        {throw [0,
                CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -678,84 +428,64 @@ var
    {var
      rev_merge=
       function(l1,l2,accu)
-       {var match=l1;
-        
-        var match$1=l2;
-        
-        if(match)
-         {if(match$1)
-           {var t2=match$1[2];
+       {if(l1)
+         {if(l2)
+           {var h2=l2[1];
             
-            var h2=match$1[1];
-            
-            var t1=match[2];
-            
-            var h1=match[1];
+            var h1=l1[1];
             
             return cmp(h1,h2)<=0
-                    ?rev_merge(t1,l2,/* :: */[0,h1,accu])
-                    :rev_merge(l1,t2,/* :: */[0,h2,accu]);
+                    ?rev_merge(l1[2],l2,/* :: */[0,h1,accu])
+                    :rev_merge(l1,l2[2],/* :: */[0,h2,accu]);
             }
           else
-           {var l1$1=match;return rev_append(l1$1,accu);}
+           {return rev_append(l1,accu);}
           }
         else
-         {var l2$1=match$1;return rev_append(l2$1,accu);}
+         {return rev_append(l2,accu);}
         };
     
     var
      rev_merge_rev=
       function(l1,l2,accu)
-       {var match=l1;
-        
-        var match$1=l2;
-        
-        if(match)
-         {if(match$1)
-           {var t2=match$1[2];
+       {if(l1)
+         {if(l2)
+           {var h2=l2[1];
             
-            var h2=match$1[1];
-            
-            var t1=match[2];
-            
-            var h1=match[1];
+            var h1=l1[1];
             
             return cmp(h1,h2)>0
-                    ?rev_merge_rev(t1,l2,/* :: */[0,h1,accu])
-                    :rev_merge_rev(l1,t2,/* :: */[0,h2,accu]);
+                    ?rev_merge_rev(l1[2],l2,/* :: */[0,h1,accu])
+                    :rev_merge_rev(l1,l2[2],/* :: */[0,h2,accu]);
             }
           else
-           {var l1$1=match;return rev_append(l1$1,accu);}
+           {return rev_append(l1,accu);}
           }
         else
-         {var l2$1=match$1;return rev_append(l2$1,accu);}
+         {return rev_append(l2,accu);}
         };
     
     var
      sort=
       function(n,l)
-       {var match=n;
+       {var exit;
         
-        var match$1=l;
-        
-        var exit;
-        
-        if(match!==2)
-         {if(match!==3)
+        if(n!==2)
+         {if(n!==3)
            {exit=41;}
           else
-           {if(match$1)
-             {var match$2=match$1[2];
+           {if(l)
+             {var match=l[2];
               
-              if(match$2)
-               {var match$3=match$2[2];
+              if(match)
+               {var match$1=match[2];
                 
-                if(match$3)
-                 {var x3=match$3[1];
+                if(match$1)
+                 {var x3=match$1[1];
                   
-                  var x2=match$2[1];
+                  var x2=match[1];
                   
-                  var x1=match$1[1];
+                  var x1=l[1];
                   
                   return cmp(x1,x2)<=0
                           ?cmp(x2,x3)<=0
@@ -780,13 +510,13 @@ var
             }
           }
         else
-         {if(match$1)
-           {var match$4=match$1[2];
+         {if(l)
+           {var match$2=l[2];
             
-            if(match$4)
-             {var x2$1=match$4[1];
+            if(match$2)
+             {var x2$1=match$2[1];
               
-              var x1$1=match$1[1];
+              var x1$1=l[1];
               
               return cmp(x1$1,x2$1)<=0
                       ?/* :: */[0,x1$1,/* :: */[0,x2$1,/* [] */0]]
@@ -801,17 +531,13 @@ var
         
         switch(exit)
          {case 41:
-           var l$1=match$1;
+           var n1=n>>1;
            
-           var n$1=match;
+           var n2=n-n1;
            
-           var n1=n$1>>1;
+           var l2=chop(n1,l);
            
-           var n2=n$1-n1;
-           
-           var l2=chop(n1,l$1);
-           
-           var s1=rev_sort(n1,l$1);
+           var s1=rev_sort(n1,l);
            
            var s2=rev_sort(n2,l2);
            
@@ -823,28 +549,24 @@ var
     var
      rev_sort=
       function(n,l)
-       {var match=n;
+       {var exit;
         
-        var match$1=l;
-        
-        var exit;
-        
-        if(match!==2)
-         {if(match!==3)
+        if(n!==2)
+         {if(n!==3)
            {exit=47;}
           else
-           {if(match$1)
-             {var match$2=match$1[2];
+           {if(l)
+             {var match=l[2];
               
-              if(match$2)
-               {var match$3=match$2[2];
+              if(match)
+               {var match$1=match[2];
                 
-                if(match$3)
-                 {var x3=match$3[1];
+                if(match$1)
+                 {var x3=match$1[1];
                   
-                  var x2=match$2[1];
+                  var x2=match[1];
                   
-                  var x1=match$1[1];
+                  var x1=l[1];
                   
                   return cmp(x1,x2)>0
                           ?cmp(x2,x3)>0
@@ -869,13 +591,13 @@ var
             }
           }
         else
-         {if(match$1)
-           {var match$4=match$1[2];
+         {if(l)
+           {var match$2=l[2];
             
-            if(match$4)
-             {var x2$1=match$4[1];
+            if(match$2)
+             {var x2$1=match$2[1];
               
-              var x1$1=match$1[1];
+              var x1$1=l[1];
               
               return cmp(x1$1,x2$1)>0
                       ?/* :: */[0,x1$1,/* :: */[0,x2$1,/* [] */0]]
@@ -890,17 +612,13 @@ var
         
         switch(exit)
          {case 47:
-           var l$1=match$1;
+           var n1=n>>1;
            
-           var n$1=match;
+           var n2=n-n1;
            
-           var n1=n$1>>1;
+           var l2=chop(n1,l);
            
-           var n2=n$1-n1;
-           
-           var l2=chop(n1,l$1);
-           
-           var s1=sort(n1,l$1);
+           var s1=sort(n1,l);
            
            var s2=sort(n2,l2);
            
@@ -924,19 +642,15 @@ var
    {var
      rev_merge=
       function(l1,l2,accu)
-       {var match=l1;
-        
-        var match$1=l2;
-        
-        if(match)
-         {if(match$1)
-           {var t2=match$1[2];
+       {if(l1)
+         {if(l2)
+           {var t2=l2[2];
             
-            var h2=match$1[1];
+            var h2=l2[1];
             
-            var t1=match[2];
+            var t1=l1[2];
             
-            var h1=match[1];
+            var h1=l1[1];
             
             var c=cmp(h1,h2);
             
@@ -947,28 +661,24 @@ var
                       :rev_merge(l1,t2,/* :: */[0,h2,accu]);
             }
           else
-           {var l1$1=match;return rev_append(l1$1,accu);}
+           {return rev_append(l1,accu);}
           }
         else
-         {var l2$1=match$1;return rev_append(l2$1,accu);}
+         {return rev_append(l2,accu);}
         };
     
     var
      rev_merge_rev=
       function(l1,l2,accu)
-       {var match=l1;
-        
-        var match$1=l2;
-        
-        if(match)
-         {if(match$1)
-           {var t2=match$1[2];
+       {if(l1)
+         {if(l2)
+           {var t2=l2[2];
             
-            var h2=match$1[1];
+            var h2=l2[1];
             
-            var t1=match[2];
+            var t1=l1[2];
             
-            var h1=match[1];
+            var h1=l1[1];
             
             var c=cmp(h1,h2);
             
@@ -979,37 +689,33 @@ var
                       :rev_merge_rev(l1,t2,/* :: */[0,h2,accu]);
             }
           else
-           {var l1$1=match;return rev_append(l1$1,accu);}
+           {return rev_append(l1,accu);}
           }
         else
-         {var l2$1=match$1;return rev_append(l2$1,accu);}
+         {return rev_append(l2,accu);}
         };
     
     var
      sort$1=
       function(n,l)
-       {var match=n;
+       {var exit;
         
-        var match$1=l;
-        
-        var exit;
-        
-        if(match!==2)
-         {if(match!==3)
+        if(n!==2)
+         {if(n!==3)
            {exit=14;}
           else
-           {if(match$1)
-             {var match$2=match$1[2];
+           {if(l)
+             {var match=l[2];
               
-              if(match$2)
-               {var match$3=match$2[2];
+              if(match)
+               {var match$1=match[2];
                 
-                if(match$3)
-                 {var x3=match$3[1];
+                if(match$1)
+                 {var x3=match$1[1];
                   
-                  var x2=match$2[1];
+                  var x2=match[1];
                   
-                  var x1=match$1[1];
+                  var x1=l[1];
                   
                   var c=cmp(x1,x2);
                   
@@ -1080,13 +786,13 @@ var
             }
           }
         else
-         {if(match$1)
-           {var match$4=match$1[2];
+         {if(l)
+           {var match$2=l[2];
             
-            if(match$4)
-             {var x2$1=match$4[1];
+            if(match$2)
+             {var x2$1=match$2[1];
               
-              var x1$1=match$1[1];
+              var x1$1=l[1];
               
               var c$6=cmp(x1$1,x2$1);
               
@@ -1105,17 +811,13 @@ var
         
         switch(exit)
          {case 14:
-           var l$1=match$1;
+           var n1=n>>1;
            
-           var n$1=match;
+           var n2=n-n1;
            
-           var n1=n$1>>1;
+           var l2=chop(n1,l);
            
-           var n2=n$1-n1;
-           
-           var l2=chop(n1,l$1);
-           
-           var s1=rev_sort(n1,l$1);
+           var s1=rev_sort(n1,l);
            
            var s2=rev_sort(n2,l2);
            
@@ -1127,28 +829,24 @@ var
     var
      rev_sort=
       function(n,l)
-       {var match=n;
+       {var exit;
         
-        var match$1=l;
-        
-        var exit;
-        
-        if(match!==2)
-         {if(match!==3)
+        if(n!==2)
+         {if(n!==3)
            {exit=27;}
           else
-           {if(match$1)
-             {var match$2=match$1[2];
+           {if(l)
+             {var match=l[2];
               
-              if(match$2)
-               {var match$3=match$2[2];
+              if(match)
+               {var match$1=match[2];
                 
-                if(match$3)
-                 {var x3=match$3[1];
+                if(match$1)
+                 {var x3=match$1[1];
                   
-                  var x2=match$2[1];
+                  var x2=match[1];
                   
-                  var x1=match$1[1];
+                  var x1=l[1];
                   
                   var c=cmp(x1,x2);
                   
@@ -1219,13 +917,13 @@ var
             }
           }
         else
-         {if(match$1)
-           {var match$4=match$1[2];
+         {if(l)
+           {var match$2=l[2];
             
-            if(match$4)
-             {var x2$1=match$4[1];
+            if(match$2)
+             {var x2$1=match$2[1];
               
-              var x1$1=match$1[1];
+              var x1$1=l[1];
               
               var c$6=cmp(x1$1,x2$1);
               
@@ -1244,17 +942,13 @@ var
         
         switch(exit)
          {case 27:
-           var l$1=match$1;
+           var n1=n>>1;
            
-           var n$1=match;
+           var n2=n-n1;
            
-           var n1=n$1>>1;
+           var l2=chop(n1,l);
            
-           var n2=n$1-n1;
-           
-           var l2=chop(n1,l$1);
-           
-           var s1=sort$1(n1,l$1);
+           var s1=sort$1(n1,l);
            
            var s2=sort$1(n2,l2);
            

@@ -44,18 +44,16 @@ var
     
     for(var i=0;i<=54;i++){s[1][i+1]=i}
     
-    var accu=[0,"x"];
+    var accu="x";
     
     for(var i$1=0;i$1<=54+Pervasives["max"](55,l);i$1++)
      {var j=i$1%55;
       
       var k=i$1%l;
       
-      accu[1]=
-      combine(accu[1],seed$1[k+1]),
-      s[1][j+1]=
-      (s[1][j+1]^extract(accu[1]))&
-      1073741823}
+      accu=combine(accu,seed$1[k+1]);
+      
+      s[1][j+1]=(s[1][j+1]^extract(accu))&1073741823}
     
     return s[2]=0,0;
     };

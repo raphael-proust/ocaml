@@ -53,25 +53,19 @@ var
 var
  create=
   function($staropt$star,initial_size)
-   {var random;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];random=$starsth$star;}
-    else
-     {random=randomized[1];}
+   {var random=$staropt$star?$staropt$star[1]:randomized[1];
     
     var s=power_2_above(16,initial_size);
     
     var seed;
     if(random)
-     {var lzarg=prng;
-      
-      var tag=CamlPrimitive["caml_obj_tag"](lzarg);
+     {var tag=CamlPrimitive["caml_obj_tag"](prng);
       
       seed=
       Random["State"][4]
        (tag===250
-         ?lzarg[1]
-         :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+         ?prng[1]
+         :tag===246?CamlinternalLazy["force_lazy_block"](prng):prng);
       }
     else
      {seed=0;}
@@ -109,11 +103,7 @@ var
 
 var
  copy=
-  function(h)
-   {var init=h;
-    
-    return /* record */[0,init[1],$$Array["copy"](h[2]),init[3],init[4]];
-    };
+  function(h){return /* record */[0,h[1],$$Array["copy"](h[2]),h[3],h[4]];};
 
 var length=function(h){return h[1];};
 
@@ -134,16 +124,12 @@ var
        insert_bucket=
         function(param)
          {if(param)
-           {var rest=param[3];
+           {var key=param[1];
             
-            var data=param[2];
-            
-            var key=param[1];
-            
-            insert_bucket(rest);
+            insert_bucket(param[3]);
             var nidx=indexfun(h,key);
             
-            return ndata[nidx+1]=/* Cons */[0,key,data,ndata[nidx+1]],0;
+            return ndata[nidx+1]=/* Cons */[0,key,param[2],ndata[nidx+1]],0;
             }
           else
            {return /* () */0;}
@@ -189,13 +175,11 @@ var
        {if(param)
          {var next=param[3];
           
-          var i=param[2];
-          
           var k=param[1];
           
           return CamlPrimitive["caml_compare"](k,key)===0
                   ?(h[1]=h[1]-1,next)
-                  :/* Cons */[0,k,i,remove_bucket(next)];
+                  :/* Cons */[0,k,param[2],remove_bucket(next)];
           }
         else
          {return /* Empty */0;}
@@ -210,13 +194,9 @@ var
  find_rec=
   function(key,param)
    {if(param)
-     {var rest=param[3];
-      
-      var d=param[2];
-      
-      var k=param[1];
-      
-      return CamlPrimitive["caml_compare"](key,k)===0?d:find_rec(key,rest);
+     {return CamlPrimitive["caml_compare"](key,param[1])===0
+              ?param[2]
+              :find_rec(key,param[3]);
       }
     else
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -230,33 +210,19 @@ var
     if(match)
      {var rest1=match[3];
       
-      var d1=match[2];
-      
-      var k1=match[1];
-      
-      if(CamlPrimitive["caml_compare"](key,k1)===0)
-       {return d1;}
+      if(CamlPrimitive["caml_compare"](key,match[1])===0)
+       {return match[2];}
       else
        {if(rest1)
          {var rest2=rest1[3];
           
-          var d2=rest1[2];
-          
-          var k2=rest1[1];
-          
-          if(CamlPrimitive["caml_compare"](key,k2)===0)
-           {return d2;}
+          if(CamlPrimitive["caml_compare"](key,rest1[1])===0)
+           {return rest1[2];}
           else
            {if(rest2)
-             {var rest3=rest2[3];
-              
-              var d3=rest2[2];
-              
-              var k3=rest2[1];
-              
-              return CamlPrimitive["caml_compare"](key,k3)===0
-                      ?d3
-                      :find_rec(key,rest3);
+             {return CamlPrimitive["caml_compare"](key,rest2[1])===0
+                      ?rest2[2]
+                      :find_rec(key,rest2[3]);
               }
             else
              {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -279,12 +245,8 @@ var
        {if(param)
          {var rest=param[3];
           
-          var d=param[2];
-          
-          var k=param[1];
-          
-          return CamlPrimitive["caml_compare"](k,key)===0
-                  ?/* :: */[0,d,find_in_bucket(rest)]
+          return CamlPrimitive["caml_compare"](param[1],key)===0
+                  ?/* :: */[0,param[2],find_in_bucket(rest)]
                   :find_in_bucket(rest);
           }
         else
@@ -303,13 +265,11 @@ var
        {if(param)
          {var next=param[3];
           
-          var i=param[2];
-          
           var k=param[1];
           
           return CamlPrimitive["caml_compare"](k,key)===0
                   ?/* Cons */[0,key,info,next]
-                  :/* Cons */[0,k,i,replace_bucket(next)];
+                  :/* Cons */[0,k,param[2],replace_bucket(next)];
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -338,17 +298,11 @@ var
    {var
      mem_in_bucket=
       function(param)
-       {if(param)
-         {var rest=param[3];
-          
-          var k=param[1];
-          
-          return CamlPrimitive["caml_compare"](k,key)===
+       {return param
+                ?CamlPrimitive["caml_compare"](param[1],key)===
                  0||
-                 mem_in_bucket(rest);
-          }
-        else
-         {return /* false */0;}
+                 mem_in_bucket(param[3])
+                :/* false */0;
         };
     
     return mem_in_bucket(h[2][key_index(h,key)+1]);
@@ -360,19 +314,7 @@ var
    {var
      do_bucket=
       function(param)
-       {if(param)
-         {var rest=param[3];
-          
-          var d=param[2];
-          
-          var k=param[1];
-          
-          f(k,d);
-          return do_bucket(rest);
-          }
-        else
-         {return /* () */0;}
-        };
+       {return param?(f(param[1],param[2]),do_bucket(param[3])):/* () */0;};
     
     var d=h[2];
     
@@ -385,38 +327,19 @@ var
   function(f,h,init)
    {var
      do_bucket=
-      function(b,accu)
-       {if(b)
-         {var rest=b[3];
-          
-          var d=b[2];
-          
-          var k=b[1];
-          
-          return do_bucket(rest,f(k,d,accu));
-          }
-        else
-         {return accu;}
-        };
+      function(b,accu){return b?do_bucket(b[3],f(b[1],b[2],accu)):accu;};
     
     var d=h[2];
     
-    var accu=[0,init];
-    
     for(var i=0;i<=/* -1 for tag */d["length"]-1-1;i++)
-     {accu[1]=do_bucket(d[i+1],accu[1])}
+     {accu=do_bucket(d[i+1],init);}
     
-    return accu[1];
+    return init;
     };
 
 var
  bucket_length=
-  function(accu,param)
-   {if(param)
-     {var rest=param[3];return bucket_length(accu+1,rest);}
-    else
-     {return accu;}
-    };
+  function(accu,param){return param?bucket_length(accu+1,param[3]):accu;};
 
 var
  stats=
@@ -437,15 +360,7 @@ var
 var
  MakeSeeded=
   function(H)
-   {var create$1=create;
-    
-    var clear$1=clear;
-    
-    var reset$1=reset;
-    
-    var copy$1=copy;
-    
-    var
+   {var
      key_index$1=
       function(h,key)
        {return H[2](h[3],key)&/* -1 for tag */h[2]["length"]-1-1;};
@@ -473,13 +388,11 @@ var
            {if(param)
              {var next=param[3];
               
-              var i=param[2];
-              
               var k=param[1];
               
               return H[1](k,key)
                       ?(h[1]=h[1]-1,next)
-                      :/* Cons */[0,k,i,remove_bucket(next)];
+                      :/* Cons */[0,k,param[2],remove_bucket(next)];
               }
             else
              {return /* Empty */0;}
@@ -494,14 +407,7 @@ var
      find_rec$1=
       function(key,param)
        {if(param)
-         {var rest=param[3];
-          
-          var d=param[2];
-          
-          var k=param[1];
-          
-          return H[1](key,k)?d:find_rec$1(key,rest);
-          }
+         {return H[1](key,param[1])?param[2]:find_rec$1(key,param[3]);}
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
@@ -514,31 +420,17 @@ var
         if(match)
          {var rest1=match[3];
           
-          var d1=match[2];
-          
-          var k1=match[1];
-          
-          if(H[1](key,k1))
-           {return d1;}
+          if(H[1](key,match[1]))
+           {return match[2];}
           else
            {if(rest1)
              {var rest2=rest1[3];
               
-              var d2=rest1[2];
-              
-              var k2=rest1[1];
-              
-              if(H[1](key,k2))
-               {return d2;}
+              if(H[1](key,rest1[1]))
+               {return rest1[2];}
               else
                {if(rest2)
-                 {var rest3=rest2[3];
-                  
-                  var d3=rest2[2];
-                  
-                  var k3=rest2[1];
-                  
-                  return H[1](key,k3)?d3:find_rec$1(key,rest3);
+                 {return H[1](key,rest2[1])?rest2[2]:find_rec$1(key,rest2[3]);
                   }
                 else
                  {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -561,12 +453,8 @@ var
            {if(param)
              {var rest=param[3];
               
-              var d=param[2];
-              
-              var k=param[1];
-              
-              return H[1](k,key)
-                      ?/* :: */[0,d,find_in_bucket(rest)]
+              return H[1](param[1],key)
+                      ?/* :: */[0,param[2],find_in_bucket(rest)]
                       :find_in_bucket(rest);
               }
             else
@@ -585,13 +473,11 @@ var
            {if(param)
              {var next=param[3];
               
-              var i=param[2];
-              
               var k=param[1];
               
               return H[1](k,key)
                       ?/* Cons */[0,key,info,next]
-                      :/* Cons */[0,k,i,replace_bucket(next)];
+                      :/* Cons */[0,k,param[2],replace_bucket(next)];
               }
             else
              {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -622,43 +508,29 @@ var
        {var
          mem_in_bucket=
           function(param)
-           {if(param)
-             {var rest=param[3];
-              
-              var k=param[1];
-              
-              return H[1](k,key)||mem_in_bucket(rest);
-              }
-            else
-             {return /* false */0;}
+           {return param
+                    ?H[1](param[1],key)||mem_in_bucket(param[3])
+                    :/* false */0;
             };
         
         return mem_in_bucket(h[2][key_index$1(h,key)+1]);
         };
     
-    var iter$1=iter;
-    
-    var fold$1=fold;
-    
-    var length$1=length;
-    
-    var stats$1=stats;
-    
     return [0,
-            create$1,
-            clear$1,
-            reset$1,
-            copy$1,
+            create,
+            clear,
+            reset,
+            copy,
             add$1,
             remove$1,
             find$1,
             find_all$1,
             replace$1,
             mem$1,
-            iter$1,
-            fold$1,
-            length$1,
-            stats$1];
+            iter,
+            fold,
+            length,
+            stats];
     };
 
 var
@@ -672,51 +544,25 @@ var
     
     var create$1=include[1];
     
-    var clear$1=include[2];
-    
-    var reset$1=include[3];
-    
-    var copy$1=include[4];
-    
-    var add$1=include[5];
-    
-    var remove$1=include[6];
-    
-    var find$1=include[7];
-    
-    var find_all$1=include[8];
-    
-    var replace$1=include[9];
-    
-    var mem$1=include[10];
-    
-    var iter$1=include[11];
-    
-    var fold$1=include[12];
-    
-    var length$1=include[13];
-    
-    var stats$1=include[14];
-    
     var
      create$2=
       function(sz){return create$1([/* Some */0,/* false */0],sz);};
     
     return [0,
             create$2,
-            clear$1,
-            reset$1,
-            copy$1,
-            add$1,
-            remove$1,
-            find$1,
-            find_all$1,
-            replace$1,
-            mem$1,
-            iter$1,
-            fold$1,
-            length$1,
-            stats$1];
+            include[2],
+            include[3],
+            include[4],
+            include[5],
+            include[6],
+            include[7],
+            include[8],
+            include[9],
+            include[10],
+            include[11],
+            include[12],
+            include[13],
+            include[14]];
     };
 
 module["exports"]=

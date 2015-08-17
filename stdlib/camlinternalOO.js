@@ -29,12 +29,13 @@ var dummy_item=/* () */0;
 var
  public_method_label=
   function(s)
-   {var accu=[0,0];
+   {var accu=0;
     
-    for(var i=0;i<=s["length"]-1;i++){accu[1]=223*accu[1]+s["charCodeAt"](i)}
+    for(var i=0;i<=s["length"]-1;i++){accu=223*accu+s["charCodeAt"](i);}
     
-    accu[1]=accu[1]&(1<<31)-1;
-    var tag=accu[1]>1073741823?accu[1]-(1<<31):accu[1];
+    accu=accu&(1<<31)-1;
+    
+    var tag=accu>1073741823?accu-(1<<31):accu;
     
     return tag;
     };
@@ -228,9 +229,7 @@ var
     return table[6]=
            List["fold_right"]
             (function(met,hm)
-              {var lab=met[1];
-               
-               return List["mem"](lab,virt_meth_labs)?hm:/* :: */[0,met,hm];
+              {return List["mem"](met[1],virt_meth_labs)?hm:/* :: */[0,met,hm];
                },
              table[6],
              /* [] */0),
@@ -242,35 +241,22 @@ var
   function(table)
    {var match=List["hd"](table[5]);
     
-    var vars=match[6];
-    
     var virt_meths=match[5];
-    
-    var saved_vars=match[4];
-    
-    var saved_hidden_meths=match[3];
-    
-    var by_label=match[2];
-    
-    var by_name=match[1];
     
     table[5]=List["tl"](table[5]);
     table[7]=
     List["fold_left"]
      (function(s,v){return Vars[4](v,Vars[22](v,table[7]),s);},
-      saved_vars,
-      vars);
-    table[3]=by_name;
-    table[4]=by_label;
+      match[4],
+      match[6]);
+    table[3]=match[1];
+    table[4]=match[2];
     return table[6]=
            List["fold_right"]
             (function(met,hm)
-              {var lab=met[1];
-               
-               return List["mem"](lab,virt_meths)?hm:/* :: */[0,met,hm];
-               },
+              {return List["mem"](met[1],virt_meths)?hm:/* :: */[0,met,hm];},
              table[6],
-             saved_hidden_meths),
+             match[3]),
            0;
     };
 
@@ -379,12 +365,10 @@ var
 var
  inherits=
   function(cla,vals,virt_meths,concr_meths,param,top)
-   {var env=param[4];
-    
-    var $$super=param[2];
+   {var $$super=param[2];
     
     narrow(cla,vals,virt_meths,concr_meths);
-    var init=top?$$super(cla,env):$$super(cla);
+    var init=top?$$super(cla,param[4]):$$super(cla);
     
     widen(cla);
     return $$Array["concat"]
@@ -462,11 +446,7 @@ var
 var
  iter_f=
   function(obj,param)
-   {if(param)
-     {var l=param[2];var f=param[1];f(obj);return iter_f(obj,l);}
-    else
-     {return /* () */0;}
-    };
+   {return param?(param[1](obj),iter_f(obj,param[2])):/* () */0;};
 
 var
  run_initializers=
@@ -496,11 +476,9 @@ var
   function(n,keys,tables)
    {var res=/* record */[0,0,/* Empty */0,/* Empty */0];
     
-    var r=[0,res];
+    for(var i=0;i<=n;i++){r=/* Cons */[0,keys[i+1],res,/* Empty */0];}
     
-    for(var i=0;i<=n;i++){r[1]=/* Cons */[0,keys[i+1],r[1],/* Empty */0]}
-    
-    tables[2]=r[1];
+    tables[2]=res;
     return res;
     };
 

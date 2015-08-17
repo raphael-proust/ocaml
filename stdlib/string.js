@@ -26,9 +26,7 @@ var
  concat=
   function(sep,l)
    {if(l)
-     {var tl=l[2];
-      
-      var hd=l[1];
+     {var hd=l[1];
       
       var num=[0,0];
       
@@ -50,7 +48,7 @@ var
           CamlPrimitive["caml_blit_string"](s,0,r,pos[1],s["length"]);
           return pos[1]=pos[1]+s["length"],0;
           },
-        tl);
+        l[2]);
       return Bytes["unsafe_to_string"](r);
       }
     else

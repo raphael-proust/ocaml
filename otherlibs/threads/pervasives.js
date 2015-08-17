@@ -120,14 +120,7 @@ var
   function(f)
    {return valid_float_lexem(CamlPrimitive["caml_format_float"]("%.12g",f));};
 
-var
- $at=
-  function(l1,l2)
-   {if(l1)
-     {var tl=l1[2];var hd=l1[1];return /* :: */[0,hd,$at(tl,l2)];}
-    else
-     {return l2;}
-    };
+var $at=function(l1,l2){return l1?/* :: */[0,l1[1],$at(l1[2],l2)]:l2;};
 
 var stdin=CamlPrimitive["caml_ml_open_descriptor_in"](0);
 
@@ -213,22 +206,16 @@ var
      iter=
       function(param$1)
        {if(param$1)
-         {var l=param$1[2];
-          
-          var a=param$1[1];
-          
-          try
-           {flush(a)}
+         {try
+           {flush(param$1[1])}
           catch(exn)
-           {var tag=exn[1];
-            
-            if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
+           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
              {}
             else
              {throw exn;}
             }
           
-          return iter(l);
+          return iter(param$1[2]);
           }
         else
          {return /* () */0;}
@@ -434,18 +421,18 @@ var
 var
  input_line=
   function(ic)
-   {var buf=[0,CamlPrimitive["caml_create_string"](128)];
+   {var buf=CamlPrimitive["caml_create_string"](128);
     
-    var pos=[0,0];
+    var pos=0;
     
     try
      {while(/* true */1)
-       {if(pos[1]===buf[1]["length"])
-         {var newbuf=CamlPrimitive["caml_create_string"](2*pos[1]);
+       {if(pos===buf["length"])
+         {var newbuf=CamlPrimitive["caml_create_string"](2*pos);
           
-          CamlPrimitive["caml_blit_string"](buf[1],0,newbuf,0,pos[1]),
-          buf[1]=
-          newbuf}
+          CamlPrimitive["caml_blit_string"](buf,0,newbuf,0,pos);
+          buf=newbuf;
+          }
         else
          {}
         
@@ -453,14 +440,16 @@ var
         
         if(c===10){throw Exit;}else{}
         
-        /* unknown */"string.set",pos[0]++}
+        /* unknown */"string.set";
+        pos=1+pos;
+        }
       }
     catch(exn)
      {if(exn===Exit)
        {}
       else
        {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
-         {if(pos[1]===0)
+         {if(pos===0)
            {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
           else
            {}
@@ -470,9 +459,9 @@ var
         }
       }
     
-    var res=CamlPrimitive["caml_create_string"](pos[1]);
+    var res=CamlPrimitive["caml_create_string"](pos);
     
-    CamlPrimitive["caml_blit_string"](buf[1],0,res,0,pos[1]);
+    CamlPrimitive["caml_blit_string"](buf,0,res,0,pos);
     return res;
     };
 
@@ -580,22 +569,14 @@ var
 
 var LargeFile=[0];
 
-var string_of_format=function(param){var str=param[2];return str;};
+var string_of_format=function(param){return param[2];};
 
 var
  $caret$caret=
   function(param,param$1)
-   {var str2=param$1[2];
-    
-    var fmt2=param$1[1];
-    
-    var str1=param[2];
-    
-    var fmt1=param[1];
-    
-    return /* Format */[0,
-            CamlinternalFormatBasics["concat_fmt"](fmt1,fmt2),
-            $caret(str1,$caret("%,",str2))];
+   {return /* Format */[0,
+            CamlinternalFormatBasics["concat_fmt"](param[1],param$1[1]),
+            $caret(param[2],$caret("%,",param$1[2]))];
     };
 
 var exit_function=[0,flush_all];

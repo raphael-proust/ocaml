@@ -67,21 +67,22 @@ var
   function(b,more)
    {var len=b[3];
     
-    var new_len=[0,len];
+    while(b[2]+more>len){new_len=2*len;}
     
-    while(b[2]+more>new_len[1]){new_len[1]=2*new_len[1]}
+    if(len>Sys["max_string_length"])
+     {if(b[2]+more<=Sys["max_string_length"])
+       {new_len=Sys["max_string_length"];}
+      else
+       {Pervasives["failwith"]("Buffer.add: cannot grow buffer")}
+      }
+    else
+     {}
     
-    new_len[1]>Sys["max_string_length"]
-     ?b[2]+more<=Sys["max_string_length"]
-       ?(new_len[1]=Sys["max_string_length"],0)
-       :Pervasives["failwith"]("Buffer.add: cannot grow buffer")
-     :0;
-    
-    var new_buffer=CamlPrimitive["caml_create_string"](new_len[1]);
+    var new_buffer=CamlPrimitive["caml_create_string"](len);
     
     Bytes["blit"](b[1],0,new_buffer,0,b[2]);
     b[1]=new_buffer;
-    return b[3]=new_len[1],0;
+    return b[3]=len,0;
     };
 
 var
@@ -262,20 +263,11 @@ var
          {var current=s["charCodeAt"](i);
           
           if(current!==36)
-           {var current$1=current;
-            
-            if(previous===92)
-             {add_char(b,92);add_char(b,current$1);return subst(32,i+1);}
-            else
-             {if(current!==92)
-               {var current$2=current;
-                
-                add_char(b,current$2);
-                return subst(current$2,i+1);
-                }
-              else
-               {var current$3=current;return subst(current$3,i+1);}
-              }
+           {return previous===92
+                    ?(add_char(b,92),add_char(b,current),subst(32,i+1))
+                    :current!==92
+                      ?(add_char(b,current),subst(current,i+1))
+                      :subst(current,i+1);
             }
           else
            {if(previous===92)
@@ -285,12 +277,8 @@ var
               
               var match=find_ident(s,j,lim);
               
-              var next_i=match[2];
-              
-              var ident=match[1];
-              
-              add_string(b,f(ident));
-              return subst(32,next_i);
+              add_string(b,f(match[1]));
+              return subst(32,match[2]);
               }
             }
           }

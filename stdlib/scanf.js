@@ -27,12 +27,10 @@ var
       }
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
-       {var c$1=null_char;
-        
-        ib[2]=c$1;
+       {ib[2]=null_char;
         ib[3]=/* false */0;
         ib[1]=/* true */1;
-        return c$1;
+        return null_char;
         }
       else
        {throw exn;}
@@ -69,7 +67,7 @@ var
         }}
     else
      {switch(match[0])
-       {case 0:var fname=match[1];return fname;
+       {case 0:return match[1];
         case 1:return "unnamed pervasives input channel";
         }}
     };
@@ -198,19 +196,15 @@ var
     /* From_file */[0,"-",Pervasives["stdin"]],
     Pervasives["stdin"]);
 
-var stdib=stdin;
-
 var
  open_in=
   function(fname)
    {switch(fname)
      {case "-":return stdin;
       default:
-       var fname$1=fname;
+       var ic=Pervasives["open_in"](fname);
        
-       var ic=Pervasives["open_in"](fname$1);
-       
-       return from_ic_close_at_end(/* From_file */[0,fname$1,ic],ic);
+       return from_ic_close_at_end(/* From_file */[0,fname,ic],ic);
        }
     };
 
@@ -220,17 +214,11 @@ var
    {switch(fname)
      {case "-":return stdin;
       default:
-       var fname$1=fname;
+       var ic=Pervasives["open_in_bin"](fname);
        
-       var ic=Pervasives["open_in_bin"](fname$1);
-       
-       return from_ic_close_at_end(/* From_file */[0,fname$1,ic],ic);
+       return from_ic_close_at_end(/* From_file */[0,fname,ic],ic);
        }
     };
-
-var from_file=open_in;
-
-var from_file_bin=open_in_bin;
 
 var memo=[0,/* [] */0];
 
@@ -264,8 +252,8 @@ var
      {switch(match){case 0:exit=247;case 1:exit=247;}}
     else
      {switch(match[0])
-       {case 0:var ic=match[2];return Pervasives["close_in"](ic);
-        case 1:var ic$1=match[1];return Pervasives["close_in"](ic$1);
+       {case 0:return Pervasives["close_in"](match[2]);
+        case 1:return Pervasives["close_in"](match[1]);
         }}
     
     switch(exit){case 247:return /* () */0;}
@@ -275,7 +263,7 @@ var
  Scanning=
   [0,
    stdin,
-   stdib,
+   stdin,
    next_char,
    invalidate_current_char,
    peek_char,
@@ -294,8 +282,8 @@ var
    name_of_input,
    open_in,
    open_in_bin,
-   from_file,
-   from_file_bin,
+   open_in,
+   open_in_bin,
    from_string,
    from_function,
    from_channel,
@@ -390,10 +378,7 @@ var
       var switcher=-9+c;
       
       if(!(4<switcher>>>0))
-       {var switcher$1=-2+switcher;
-        
-        if(1<switcher$1>>>0){exit=237;}else{exit=238;}
-        }
+       {if(1<-2+switcher>>>0){exit=237;}else{exit=238;}}
       else
        {if(switcher!==23){exit=238;}else{exit=237;}}
       
@@ -574,9 +559,7 @@ var
           }
         else
          {if(c>=48)
-           {var c$1=c;
-            
-            var width$2=Scanning[7](width,ib,c$1);
+           {var width$2=Scanning[7](width,ib,c);
             
             return scan_decimal_digits(width$2,ib);
             }
@@ -597,12 +580,8 @@ var
     else
      {var c=Scanning[6](ib);
       
-      var switcher=-48+c;
-      
-      if(9<switcher>>>0)
-       {var c$1=c;
-        
-        return bad_input
+      if(9<-48+c>>>0)
+       {return bad_input
                 (Printf["sprintf"]
                   ([/* Format */0,
                     [/* String_literal */11,
@@ -612,7 +591,7 @@ var
                        " is not a decimal digit",
                        /* End_of_format */0]]],
                     "character %C is not a decimal digit"],
-                   c$1));
+                   c));
         }
       else
        {var width$1=Scanning[7](width,ib,c);
@@ -636,10 +615,8 @@ var
           if(Scanning[15](ib))
            {return width;}
           else
-           {var c$1=c;
-            
-            if(digitp(c$1))
-             {var width$1=Scanning[7](width,ib,c$1);
+           {if(digitp(c))
+             {var width$1=Scanning[7](width,ib,c);
               
               return scan_digits(width$1);
               }
@@ -684,15 +661,13 @@ var
 
 var
  is_binary_digit=
-  function(param)
-   {var switcher=-48+param;return 1<switcher>>>0?/* false */0:/* true */1;};
+  function(param){return 1<-48+param>>>0?/* false */0:/* true */1;};
 
 var scan_binary_int=scan_digits_plus("binary",is_binary_digit);
 
 var
  is_octal_digit=
-  function(param)
-   {var switcher=-48+param;return 7<switcher>>>0?/* false */0:/* true */1;};
+  function(param){return 7<-48+param>>>0?/* false */0:/* true */1;};
 
 var scan_octal_int=scan_digits_plus("octal",is_octal_digit);
 
@@ -704,22 +679,14 @@ var
     var switcher=-48+param;
     
     if(22<switcher>>>0)
-     {var switcher$1=-49+switcher;
-      
-      if(5<switcher$1>>>0){exit=192;}else{exit=191;}
-      }
+     {if(5<-49+switcher>>>0){exit=192;}else{exit=191;}}
     else
-     {var switcher$2=-10+switcher;
-      
-      if(6<switcher$2>>>0){exit=191;}else{exit=192;}
-      }
+     {if(6<-10+switcher>>>0){exit=191;}else{exit=192;}}
     
     switch(exit){case 192:return /* false */0;case 191:return /* true */1;}
     };
 
 var scan_hexadecimal_int=scan_digits_plus("hexadecimal",is_hexa_digit);
-
-var scan_unsigned_decimal_int=scan_decimal_digits_plus;
 
 var
  scan_sign=
@@ -748,7 +715,7 @@ var
   function(width,ib)
    {var width$1=scan_sign(width,ib);
     
-    return scan_unsigned_decimal_int(width$1,ib);
+    return scan_decimal_digits_plus(width$1,ib);
     };
 
 var
@@ -757,7 +724,7 @@ var
    {var c=Scanning[6](ib);
     
     if(c!==48)
-     {return scan_unsigned_decimal_int(width,ib);}
+     {return scan_decimal_digits_plus(width,ib);}
     else
      {var width$1=Scanning[7](width,ib,c);
       
@@ -843,7 +810,7 @@ var
         case 26:exit=174;
         case 27:exit=174;
         case 28:exit=174;
-        case 29:return scan_unsigned_decimal_int(width,ib);
+        case 29:return scan_decimal_digits_plus(width,ib);
         case 30:exit=174;
         case 31:exit=174;
         case 32:exit=173;
@@ -868,16 +835,11 @@ var
     else
      {var c=Scanning[5](ib);
       
-      if(Scanning[15](ib))
-       {return width;}
-      else
-       {var switcher=-48+c;
-        
-        if(9<switcher>>>0)
-         {return width;}
-        else
-         {var c$1=c;return scan_decimal_digits(Scanning[7](width,ib,c$1),ib);}
-        }
+      return Scanning[15](ib)
+              ?width
+              :9<-48+c>>>0
+                ?width
+                :scan_decimal_digits(Scanning[7](width,ib,c),ib);
       }
     };
 
@@ -898,10 +860,8 @@ var
         
         switch(exit)
          {case 165:
-           var c$1=c;
-           
            return scan_optionally_signed_decimal_int
-                   (Scanning[7](width,ib,c$1),ib);
+                   (Scanning[7](width,ib,c),ib);
            
           }
         }
@@ -959,9 +919,7 @@ var
         var switcher=-69+c;
         
         if(!(32<switcher>>>0))
-         {var switcher$1=-1+switcher;
-          
-          if(30<switcher$1>>>0)
+         {if(30<-1+switcher>>>0)
            {return scan_exp_part(width$1,ib);}
           else
            {exit=152;}
@@ -1000,9 +958,7 @@ var
            {return width;}
           else
            {if(stp)
-             {var c$prime=stp[1];
-              
-              return c===c$prime
+             {return c===stp[1]
                       ?Scanning[8](width,ib)
                       :loop(Scanning[7](width,ib,c));
               }
@@ -1012,10 +968,7 @@ var
               var switcher=-9+c;
               
               if(!(4<switcher>>>0))
-               {var switcher$1=-2+switcher;
-                
-                if(1<switcher$1>>>0){exit=144;}else{exit=145;}
-                }
+               {if(1<-2+switcher>>>0){exit=144;}else{exit=145;}}
               else
                {if(switcher!==23){exit=145;}else{exit=144;}}
               
@@ -1044,9 +997,7 @@ var
      {if(c>=117)
        {exit=141;}
       else
-       {var switcher=-110+c;
-        
-        switch(switcher)
+       {switch(-110+c)
          {case 0:return 10;
           case 1:exit=141;
           case 2:exit=141;
@@ -1183,20 +1134,12 @@ var
                  var switcher$1=-48+c$1;
                  
                  if(22<switcher$1>>>0)
-                  {var switcher$2=-49+switcher$1;
-                   
-                   if(5<switcher$2>>>0){exit$1=123;}else{exit$1=122;}
-                   }
+                  {if(5<-49+switcher$1>>>0){exit$1=123;}else{exit$1=122;}}
                  else
-                  {var switcher$3=-10+switcher$1;
-                   
-                   if(6<switcher$3>>>0){exit$1=122;}else{exit$1=123;}
-                   }
+                  {if(6<-10+switcher$1>>>0){exit$1=122;}else{exit$1=123;}}
                  
                  switch(exit$1)
-                  {case 123:var c$2=c$1;return bad_input_escape(c$2);
-                   case 122:var c$3=c$1;return c$3;
-                   }
+                  {case 123:return bad_input_escape(c$1);case 122:return c$1;}
                  };
              
              var c1=get_digit(/* () */0);
@@ -1210,28 +1153,19 @@ var
         }
       else
        {if(c>=48)
-         {var c$1=c;
-          
-          var
+         {var
            get_digit$1=
             function(param)
-             {var c$2=Scanning[3](ib);
+             {var c$1=Scanning[3](ib);
               
-              var switcher$1=-48+c$2;
-              
-              if(9<switcher$1>>>0)
-               {var c$3=c$2;return bad_input_escape(c$3);}
-              else
-               {var c$4=c$2;return c$4;}
+              return 9<-48+c$1>>>0?bad_input_escape(c$1):c$1;
               };
-          
-          var c0=c$1;
           
           var c1$1=get_digit$1(/* () */0);
           
           var c2$1=get_digit$1(/* () */0);
           
-          return Scanning[7](width-2,ib,char_for_decimal_code(c0,c1$1,c2$1));
+          return Scanning[7](width-2,ib,char_for_decimal_code(c,c1$1,c2$1));
           }
         else
          {exit=128;}
@@ -1241,7 +1175,7 @@ var
      {if(c!==34){if(c>=39){exit=126;}else{exit=128;}}else{exit=126;}}
     
     switch(exit)
-     {case 128:var c$2=c;return bad_input_escape(c$2);
+     {case 128:return bad_input_escape(c);
       case 126:return Scanning[7](width,ib,char_for_backslash(c));
       }
     };
@@ -1343,29 +1277,23 @@ var
   function(ib)
    {var c=Scanning[6](ib);
     
-    var m;
-    if(c!==102)
-     {if(c!==116)
-       {var c$1=c;
-        
-        m=
-        bad_input
-         (Printf["sprintf"]
-           ([/* Format */0,
-             [/* String_literal */11,
-              "the character ",
-              [/* Caml_char */1,
+    var
+     m=
+      c!==102
+       ?c!==116
+         ?bad_input
+           (Printf["sprintf"]
+             ([/* Format */0,
                [/* String_literal */11,
-                " cannot start a boolean",
-                /* End_of_format */0]]],
-             "the character %C cannot start a boolean"],
-            c$1));
-        }
-      else
-       {m=4;}
-      }
-    else
-     {m=5;}
+                "the character ",
+                [/* Caml_char */1,
+                 [/* String_literal */11,
+                  " cannot start a boolean",
+                  /* End_of_format */0]]],
+               "the character %C cannot start a boolean"],
+              c))
+         :4
+       :5;
     
     return scan_string(/* None */0,m,ib);
     };
@@ -1414,15 +1342,11 @@ var
   function(ib,x)
    {var exit;
     
-    var tag=x[1];
-    
-    if(tag===Scan_failure)
-     {var s=x[2];var s$1=s;exit=91;}
+    if(x[1]===Scan_failure)
+     {var s=x[2];exit=91;}
     else
-     {var tag$1=x[1];
-      
-      if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
-       {var s$2=x[2];var s$1=s$2;exit=91;}
+     {if(x[1]===CamlPrimitive["caml_global_data"]["Failure"])
+       {var s=x[2];exit=91;}
       else
        {throw x;}
       }
@@ -1445,7 +1369,7 @@ var
                       [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
                    "scanf: bad input at char number %i: %S"],
                   i,
-                  s$1));
+                  s));
        
       }
     };
@@ -1462,12 +1386,7 @@ var
 
 var
  width_of_pad_opt=
-  function(pad_opt)
-   {if(pad_opt)
-     {var width=pad_opt[1];return width;}
-    else
-     {return Pervasives["max_int"];}
-    };
+  function(pad_opt){return pad_opt?pad_opt[1]:Pervasives["max_int"];};
 
 var
  stopper_of_formatting_lit=
@@ -1492,57 +1411,43 @@ var
      {switch(fmt){case 0:return k(/* Nil */0);}}
     else
      {switch(fmt[0])
-       {case 0:var rest=fmt[1];return take_format_readers(k,rest);
-        case 1:var rest$1=fmt[1];return take_format_readers(k,rest$1);
-        case 2:var rest$2=fmt[2];return take_format_readers(k,rest$2);
-        case 3:var rest$3=fmt[2];return take_format_readers(k,rest$3);
-        case 4:var rest$4=fmt[4];return take_format_readers(k,rest$4);
-        case 5:var rest$5=fmt[4];return take_format_readers(k,rest$5);
-        case 6:var rest$6=fmt[4];return take_format_readers(k,rest$6);
-        case 7:var rest$7=fmt[4];return take_format_readers(k,rest$7);
-        case 8:var rest$8=fmt[4];return take_format_readers(k,rest$8);
-        case 9:var rest$9=fmt[1];return take_format_readers(k,rest$9);
-        case 10:var rest$10=fmt[1];return take_format_readers(k,rest$10);
-        case 11:var rest$11=fmt[2];return take_format_readers(k,rest$11);
-        case 12:var rest$12=fmt[2];return take_format_readers(k,rest$12);
-        case 13:var rest$13=fmt[3];return take_format_readers(k,rest$13);
+       {case 0:return take_format_readers(k,fmt[1]);
+        case 1:return take_format_readers(k,fmt[1]);
+        case 2:return take_format_readers(k,fmt[2]);
+        case 3:return take_format_readers(k,fmt[2]);
+        case 4:return take_format_readers(k,fmt[4]);
+        case 5:return take_format_readers(k,fmt[4]);
+        case 6:return take_format_readers(k,fmt[4]);
+        case 7:return take_format_readers(k,fmt[4]);
+        case 8:return take_format_readers(k,fmt[4]);
+        case 9:return take_format_readers(k,fmt[1]);
+        case 10:return take_format_readers(k,fmt[1]);
+        case 11:return take_format_readers(k,fmt[2]);
+        case 12:return take_format_readers(k,fmt[2]);
+        case 13:return take_format_readers(k,fmt[3]);
         case 14:
-         var rest$14=fmt[3];
-         
-         var fmtty=fmt[2];
-         
          return take_fmtty_format_readers
                  (k,
                   CamlinternalFormatBasics["erase_rel"]
-                   (CamlinternalFormat["symm"](fmtty)),
-                  rest$14);
+                   (CamlinternalFormat["symm"](fmt[2])),
+                  fmt[3]);
          
-        case 15:var rest$15=fmt[1];return take_format_readers(k,rest$15);
-        case 16:var rest$16=fmt[1];return take_format_readers(k,rest$16);
-        case 17:var rest$17=fmt[2];return take_format_readers(k,rest$17);
+        case 15:return take_format_readers(k,fmt[1]);
+        case 16:return take_format_readers(k,fmt[1]);
+        case 17:return take_format_readers(k,fmt[2]);
         case 18:
          var match=fmt[1];
          
          switch(match[0])
           {case 0:
-            var rest$18=fmt[2];
-            
-            var match$1=match[1];
-            
-            var fmt$1=match$1[1];
-            
             return take_format_readers
-                    (k,CamlinternalFormatBasics["concat_fmt"](fmt$1,rest$18));
+                    (k,
+                     CamlinternalFormatBasics["concat_fmt"](match[1][1],fmt[2]));
             
            case 1:
-            var rest$19=fmt[2];
-            
-            var match$2=match[1];
-            
-            var fmt$2=match$2[1];
-            
             return take_format_readers
-                    (k,CamlinternalFormatBasics["concat_fmt"](fmt$2,rest$19));
+                    (k,
+                     CamlinternalFormatBasics["concat_fmt"](match[1][1],fmt[2]));
             
            }
          
@@ -1558,17 +1463,11 @@ var
            return take_format_readers(new_k,fmt_rest);
            };
          
-        case 20:var rest$20=fmt[3];return take_format_readers(k,rest$20);
-        case 21:var rest$21=fmt[2];return take_format_readers(k,rest$21);
-        case 22:var rest$22=fmt[1];return take_format_readers(k,rest$22);
-        case 23:
-         var rest$23=fmt[2];
-         
-         var ign=fmt[1];
-         
-         return take_ignored_format_readers(k,ign,rest$23);
-         
-        case 24:var rest$24=fmt[3];return take_format_readers(k,rest$24);
+        case 20:return take_format_readers(k,fmt[3]);
+        case 21:return take_format_readers(k,fmt[2]);
+        case 22:return take_format_readers(k,fmt[1]);
+        case 23:return take_ignored_format_readers(k,fmt[1],fmt[2]);
+        case 24:return take_format_readers(k,fmt[3]);
         }}
     };
 
@@ -1579,43 +1478,27 @@ var
      {switch(fmtty){case 0:return take_format_readers(k,fmt);}}
     else
      {switch(fmtty[0])
-       {case 0:var rest=fmtty[1];return take_fmtty_format_readers(k,rest,fmt);
-        case 1:
-         var rest$1=fmtty[1];return take_fmtty_format_readers(k,rest$1,fmt);
-        case 2:
-         var rest$2=fmtty[1];return take_fmtty_format_readers(k,rest$2,fmt);
-        case 3:
-         var rest$3=fmtty[1];return take_fmtty_format_readers(k,rest$3,fmt);
-        case 4:
-         var rest$4=fmtty[1];return take_fmtty_format_readers(k,rest$4,fmt);
-        case 5:
-         var rest$5=fmtty[1];return take_fmtty_format_readers(k,rest$5,fmt);
-        case 6:
-         var rest$6=fmtty[1];return take_fmtty_format_readers(k,rest$6,fmt);
-        case 7:
-         var rest$7=fmtty[1];return take_fmtty_format_readers(k,rest$7,fmt);
-        case 8:
-         var rest$8=fmtty[2];return take_fmtty_format_readers(k,rest$8,fmt);
+       {case 0:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 1:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 2:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 3:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 4:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 5:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 6:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 7:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 8:return take_fmtty_format_readers(k,fmtty[2],fmt);
         case 9:
-         var rest$9=fmtty[3];
-         
-         var ty2=fmtty[2];
-         
-         var ty1=fmtty[1];
-         
          var
           ty=
-           CamlinternalFormat["trans"](CamlinternalFormat["symm"](ty1),ty2);
+           CamlinternalFormat["trans"]
+            (CamlinternalFormat["symm"](fmtty[1]),fmtty[2]);
          
          return take_fmtty_format_readers
-                 (k,CamlinternalFormatBasics["concat_fmtty"](ty,rest$9),fmt);
+                 (k,CamlinternalFormatBasics["concat_fmtty"](ty,fmtty[3]),fmt);
          
-        case 10:
-         var rest$10=fmtty[1];return take_fmtty_format_readers(k,rest$10,fmt);
-        case 11:
-         var rest$11=fmtty[1];return take_fmtty_format_readers(k,rest$11,fmt);
-        case 12:
-         var rest$12=fmtty[1];return take_fmtty_format_readers(k,rest$12,fmt);
+        case 10:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 11:return take_fmtty_format_readers(k,fmtty[1],fmt);
+        case 12:return take_fmtty_format_readers(k,fmtty[1],fmt);
         case 13:
          var fmt_rest=fmtty[1];
          
@@ -1673,7 +1556,7 @@ var
         case 5:return take_format_readers(k,fmt);
         case 6:return take_format_readers(k,fmt);
         case 7:return take_format_readers(k,fmt);
-        case 8:var fmtty=ign[2];return take_fmtty_format_readers(k,fmtty,fmt);
+        case 8:return take_fmtty_format_readers(k,ign[2],fmt);
         case 9:return take_format_readers(k,fmt);
         case 10:return take_format_readers(k,fmt);
         }}
@@ -1687,42 +1570,32 @@ var
     else
      {switch(fmt[0])
        {case 0:
-         var rest=fmt[1];
-         
          var match=scan_char(0,ib);
          
          var c=token_char(ib);
          
-         return /* Cons */[0,c,make_scanf(ib,rest,readers)];
+         return /* Cons */[0,c,make_scanf(ib,fmt[1],readers)];
          
         case 1:
-         var rest$1=fmt[1];
-         
          var match$1=scan_caml_char(0,ib);
          
          var c$1=token_char(ib);
          
-         return /* Cons */[0,c$1,make_scanf(ib,rest$1,readers)];
+         return /* Cons */[0,c$1,make_scanf(ib,fmt[1],readers)];
          
         case 2:
-         var rest$2=fmt[2];
+         var rest=fmt[2];
          
          var pad=fmt[1];
          
          var exit;
          
-         if(typeof rest$2==="number")
-          {switch(rest$2){}}
+         if(typeof rest==="number")
+          {switch(rest){}}
          else
-          {switch(rest$2[0])
+          {switch(rest[0])
             {case 17:
-              var rest$3=rest$2[2];
-              
-              var fmting_lit=rest$2[1];
-              
-              var match$2=stopper_of_formatting_lit(fmting_lit);
-              
-              var str=match$2[2];
+              var match$2=stopper_of_formatting_lit(rest[1]);
               
               var stp=match$2[1];
               
@@ -1731,7 +1604,7 @@ var
                 function(width,param,ib)
                  {return scan_string(/* Some */[0,stp],width,ib);};
               
-              var str_rest=/* String_literal */[11,str,rest$3];
+              var str_rest=/* String_literal */[11,match$2[2],rest[2]];
               
               return pad_prec_scanf
                       (ib,
@@ -1743,18 +1616,10 @@ var
                        token_string);
               
              case 18:
-              var match$3=rest$2[1];
+              var match$3=rest[1];
               
               switch(match$3[0])
                {case 0:
-                 var pad$1=pad;
-                 
-                 var rest$4=rest$2[2];
-                 
-                 var match$4=match$3[1];
-                 
-                 var fmt$prime=match$4[1];
-                 
                  var
                   scan$1=
                    function(width,param,ib)
@@ -1762,22 +1627,15 @@ var
                  
                  return pad_prec_scanf
                          (ib,
-                          CamlinternalFormatBasics["concat_fmt"](fmt$prime,rest$4),
+                          CamlinternalFormatBasics["concat_fmt"]
+                           (match$3[1][1],rest[2]),
                           readers,
-                          pad$1,
+                          pad,
                           /* No_precision */0,
                           scan$1,
                           token_string);
                  
                 case 1:
-                 var pad$2=pad;
-                 
-                 var rest$5=rest$2[2];
-                 
-                 var match$5=match$3[1];
-                 
-                 var fmt$prime$1=match$5[1];
-                 
                  var
                   scan$2=
                    function(width,param,ib)
@@ -1785,9 +1643,10 @@ var
                  
                  return pad_prec_scanf
                          (ib,
-                          CamlinternalFormatBasics["concat_fmt"](fmt$prime$1,rest$5),
+                          CamlinternalFormatBasics["concat_fmt"]
+                           (match$3[1][1],rest[2]),
                           readers,
-                          pad$2,
+                          pad,
                           /* No_precision */0,
                           scan$2,
                           token_string);
@@ -1798,8 +1657,6 @@ var
          
          switch(exit)
           {case 67:
-            var pad$3=pad;
-            
             var
              scan$3=
               function(width,param,ib)
@@ -1807,9 +1664,9 @@ var
             
             return pad_prec_scanf
                     (ib,
-                     rest$2,
+                     rest,
                      readers,
-                     pad$3,
+                     pad,
                      /* No_precision */0,
                      scan$3,
                      token_string);
@@ -1817,234 +1674,144 @@ var
            }
          
         case 3:
-         var rest$6=fmt[2];
-         
-         var pad$4=fmt[1];
-         
          var
           scan$4=
            function(width,param,ib){return scan_caml_string(width,ib);};
          
          return pad_prec_scanf
                  (ib,
-                  rest$6,
+                  fmt[2],
                   readers,
-                  pad$4,
+                  fmt[1],
                   /* No_precision */0,
                   scan$4,
                   token_string);
          
         case 4:
-         var rest$7=fmt[4];
-         
-         var prec=fmt[3];
-         
-         var pad$5=fmt[2];
-         
-         var iconv=fmt[1];
-         
-         var c$2=CamlinternalFormat["char_of_iconv"](iconv);
+         var c$2=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
          var
           scan$5=
            function(width,param,ib){return scan_int_conv(c$2,width,ib);};
          
          return pad_prec_scanf
-                 (ib,rest$7,readers,pad$5,prec,scan$5,token_int(c$2));
+                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$5,token_int(c$2));
          
         case 5:
-         var rest$8=fmt[4];
-         
-         var prec$1=fmt[3];
-         
-         var pad$6=fmt[2];
-         
-         var iconv$1=fmt[1];
-         
-         var c$3=CamlinternalFormat["char_of_iconv"](iconv$1);
+         var c$3=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
          var
           scan$6=
            function(width,param,ib){return scan_int_conv(c$3,width,ib);};
          
          return pad_prec_scanf
-                 (ib,rest$8,readers,pad$6,prec$1,scan$6,token_int32(c$3));
+                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$6,token_int32(c$3));
          
         case 6:
-         var rest$9=fmt[4];
-         
-         var prec$2=fmt[3];
-         
-         var pad$7=fmt[2];
-         
-         var iconv$2=fmt[1];
-         
-         var c$4=CamlinternalFormat["char_of_iconv"](iconv$2);
+         var c$4=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
          var
           scan$7=
            function(width,param,ib){return scan_int_conv(c$4,width,ib);};
          
          return pad_prec_scanf
-                 (ib,rest$9,readers,pad$7,prec$2,scan$7,token_nativeint(c$4));
+                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$7,token_nativeint(c$4));
          
         case 7:
-         var rest$10=fmt[4];
-         
-         var prec$3=fmt[3];
-         
-         var pad$8=fmt[2];
-         
-         var iconv$3=fmt[1];
-         
-         var c$5=CamlinternalFormat["char_of_iconv"](iconv$3);
+         var c$5=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
          var
           scan$8=
            function(width,param,ib){return scan_int_conv(c$5,width,ib);};
          
          return pad_prec_scanf
-                 (ib,rest$10,readers,pad$8,prec$3,scan$8,token_int64(c$5));
+                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$8,token_int64(c$5));
          
         case 8:
-         var match$6=fmt[1];
-         
-         if(match$6>=15)
-          {var rest$11=fmt[4];
-           
-           var prec$4=fmt[3];
-           
-           var pad$9=fmt[2];
-           
-           return pad_prec_scanf
+         return fmt[1]>=15
+                 ?pad_prec_scanf
                    (ib,
-                    rest$11,
+                    fmt[4],
                     readers,
-                    pad$9,
-                    prec$4,
+                    fmt[2],
+                    fmt[3],
                     scan_caml_float,
-                    token_float);
-           }
-         else
-          {var rest$12=fmt[4];
-           
-           var prec$5=fmt[3];
-           
-           var pad$10=fmt[2];
-           
-           return pad_prec_scanf
-                   (ib,rest$12,readers,pad$10,prec$5,scan_float,token_float);
-           }
+                    token_float)
+                 :pad_prec_scanf
+                   (ib,fmt[4],readers,fmt[2],fmt[3],scan_float,token_float);
          
         case 9:
-         var rest$13=fmt[1];
-         
-         var match$7=scan_bool(ib);
+         var match$4=scan_bool(ib);
          
          var b=token_bool(ib);
          
-         return /* Cons */[0,b,make_scanf(ib,rest$13,readers)];
+         return /* Cons */[0,b,make_scanf(ib,fmt[1],readers)];
          
         case 10:
-         var rest$14=fmt[1];
-         
          return Scanning[16](ib)
-                 ?make_scanf(ib,rest$14,readers)
+                 ?make_scanf(ib,fmt[1],readers)
                  :bad_input("end of input not found");
          
         case 11:
-         var rest$15=fmt[2];
+         $$String["iter"](check_char(ib),fmt[1]);
+         return make_scanf(ib,fmt[2],readers);
          
-         var str$1=fmt[1];
-         
-         $$String["iter"](check_char(ib),str$1);
-         return make_scanf(ib,rest$15,readers);
-         
-        case 12:
-         var rest$16=fmt[2];
-         
-         var chr=fmt[1];
-         
-         check_char(ib,chr);
-         return make_scanf(ib,rest$16,readers);
-         
+        case 12:check_char(ib,fmt[1]);return make_scanf(ib,fmt[2],readers);
         case 13:
-         var rest$17=fmt[3];
-         
-         var fmtty=fmt[2];
-         
-         var pad_opt=fmt[1];
-         
-         var match$8=scan_caml_string(width_of_pad_opt(pad_opt),ib);
+         var match$5=scan_caml_string(width_of_pad_opt(fmt[1]),ib);
          
          var s=token_string(ib);
          
          var fmt$1;
          try
-          {fmt$1=CamlinternalFormat["format_of_string_fmtty"](s,fmtty);}
+          {fmt$1=CamlinternalFormat["format_of_string_fmtty"](s,fmt[2]);}
          catch(exn)
-          {var tag=exn[1];
-           
-           if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-            {var msg=exn[2];fmt$1=bad_input(msg);}
+          {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {fmt$1=bad_input(exn[2]);}
            else
             {throw exn;}
            }
          
-         return /* Cons */[0,fmt$1,make_scanf(ib,rest$17,readers)];
+         return /* Cons */[0,fmt$1,make_scanf(ib,fmt[3],readers)];
          
         case 14:
-         var rest$18=fmt[3];
+         var fmtty=fmt[2];
          
-         var fmtty$1=fmt[2];
-         
-         var pad_opt$1=fmt[1];
-         
-         var match$9=scan_caml_string(width_of_pad_opt(pad_opt$1),ib);
+         var match$6=scan_caml_string(width_of_pad_opt(fmt[1]),ib);
          
          var s$1=token_string(ib);
          
-         var match$10;
+         var match$7;
          try
           {var
-            match$11=
+            match$8=
              CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
-           
-           var fmt$2=match$11[1];
            
            var
-            match$12=
+            match$9=
              CamlinternalFormat["fmt_ebb_of_string"](/* None */0,s$1);
            
-           var fmt$prime$2=match$12[1];
-           
-           match$10=
+           match$7=
            /* tuple */[0,
             CamlinternalFormat["type_format"]
-             (fmt$2,CamlinternalFormatBasics["erase_rel"](fmtty$1)),
+             (match$8[1],CamlinternalFormatBasics["erase_rel"](fmtty)),
             CamlinternalFormat["type_format"]
-             (fmt$prime$2,
+             (match$9[1],
               CamlinternalFormatBasics["erase_rel"]
-               (CamlinternalFormat["symm"](fmtty$1)))];
+               (CamlinternalFormat["symm"](fmtty)))];
            }
          catch(exn$1)
-          {var tag$1=exn$1[1];
-           
-           if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
-            {var msg$1=exn$1[2];match$10=bad_input(msg$1);}
+          {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
+            {match$7=bad_input(exn$1[2]);}
            else
             {throw exn$1;}
            }
          
-         var fmt$prime$3=match$10[2];
-         
-         var fmt$3=match$10[1];
-         
          return /* Cons */[0,
-                 /* Format */[0,fmt$3,s$1],
+                 /* Format */[0,match$7[1],s$1],
                  make_scanf
                   (ib,
-                   CamlinternalFormatBasics["concat_fmt"](fmt$prime$3,rest$18),
+                   CamlinternalFormatBasics["concat_fmt"](match$7[2],fmt[3]),
                    readers)];
          
         case 15:
@@ -2052,62 +1819,42 @@ var
         case 16:
          return Pervasives["invalid_arg"]('scanf: bad conversion "%t"');
         case 17:
-         var rest$19=fmt[2];
-         
-         var formatting_lit=fmt[1];
-         
          $$String["iter"]
           (check_char(ib),
-           CamlinternalFormat["string_of_formatting_lit"](formatting_lit));
-         return make_scanf(ib,rest$19,readers);
+           CamlinternalFormat["string_of_formatting_lit"](fmt[1]));
+         return make_scanf(ib,fmt[2],readers);
          
         case 18:
-         var match$13=fmt[1];
+         var match$10=fmt[1];
          
-         switch(match$13[0])
+         switch(match$10[0])
           {case 0:
-            var rest$20=fmt[2];
-            
-            var match$14=match$13[1];
-            
-            var fmt$prime$4=match$14[1];
-            
             check_char(ib,64);
             check_char(ib,123);
             return make_scanf
                     (ib,
-                     CamlinternalFormatBasics["concat_fmt"](fmt$prime$4,rest$20),
+                     CamlinternalFormatBasics["concat_fmt"]
+                      (match$10[1][1],fmt[2]),
                      readers);
             
            case 1:
-            var rest$21=fmt[2];
-            
-            var match$15=match$13[1];
-            
-            var fmt$prime$5=match$15[1];
-            
             check_char(ib,64);
             check_char(ib,91);
             return make_scanf
                     (ib,
-                     CamlinternalFormatBasics["concat_fmt"](fmt$prime$5,rest$21),
+                     CamlinternalFormatBasics["concat_fmt"]
+                      (match$10[1][1],fmt[2]),
                      readers);
             
            }
          
         case 19:
-         var fmt_rest=fmt[1];
+         var x=readers[1](ib);
          
-         var readers_rest=readers[2];
-         
-         var reader=readers[1];
-         
-         var x=reader(ib);
-         
-         return /* Cons */[0,x,make_scanf(ib,fmt_rest,readers_rest)];
+         return /* Cons */[0,x,make_scanf(ib,fmt[1],readers[2])];
          
         case 20:
-         var rest$22=fmt[3];
+         var rest$1=fmt[3];
          
          var char_set=fmt[2];
          
@@ -2115,30 +1862,23 @@ var
          
          var exit$1;
          
-         if(typeof rest$22==="number")
-          {switch(rest$22){}}
+         if(typeof rest$1==="number")
+          {switch(rest$1){}}
          else
-          {switch(rest$22[0])
+          {switch(rest$1[0])
             {case 17:
-              var rest$23=rest$22[2];
-              
-              var fmting_lit$1=rest$22[1];
-              
-              var match$16=stopper_of_formatting_lit(fmting_lit$1);
-              
-              var str$2=match$16[2];
-              
-              var stp$1=match$16[1];
+              var match$11=stopper_of_formatting_lit(rest$1[1]);
               
               var width=width_of_pad_opt(width_opt);
               
               var
-               match$17=
-                scan_chars_in_char_set(char_set,/* Some */[0,stp$1],width,ib);
+               match$12=
+                scan_chars_in_char_set
+                 (char_set,/* Some */[0,match$11[1]],width,ib);
               
               var s$2=token_string(ib);
               
-              var str_rest$1=/* String_literal */[11,str$2,rest$23];
+              var str_rest$1=/* String_literal */[11,match$11[2],rest$1[2]];
               
               return /* Cons */[0,s$2,make_scanf(ib,str_rest$1,readers)];
               
@@ -2146,53 +1886,37 @@ var
          
          switch(exit$1)
           {case 69:
-            var char_set$1=char_set;
-            
-            var width_opt$1=width_opt;
-            
-            var width$1=width_of_pad_opt(width_opt$1);
+            var width$1=width_of_pad_opt(width_opt);
             
             var
-             match$18=
-              scan_chars_in_char_set(char_set$1,/* None */0,width$1,ib);
+             match$13=
+              scan_chars_in_char_set(char_set,/* None */0,width$1,ib);
             
             var s$3=token_string(ib);
             
-            return /* Cons */[0,s$3,make_scanf(ib,rest$22,readers)];
+            return /* Cons */[0,s$3,make_scanf(ib,rest$1,readers)];
             
            }
          
         case 21:
-         var rest$24=fmt[2];
+         var count=get_counter(ib,fmt[1]);
          
-         var counter=fmt[1];
-         
-         var count=get_counter(ib,counter);
-         
-         return /* Cons */[0,count,make_scanf(ib,rest$24,readers)];
+         return /* Cons */[0,count,make_scanf(ib,fmt[2],readers)];
          
         case 22:
-         var rest$25=fmt[1];
-         
          var c$6=Scanning[6](ib);
          
-         return /* Cons */[0,c$6,make_scanf(ib,rest$25,readers)];
+         return /* Cons */[0,c$6,make_scanf(ib,fmt[1],readers)];
          
         case 23:
-         var rest$26=fmt[2];
-         
-         var ign=fmt[1];
-         
          var
-          match$19=
-           CamlinternalFormat["param_format_of_ignored_format"](ign,rest$26);
+          match$14=
+           CamlinternalFormat["param_format_of_ignored_format"](fmt[1],fmt[2]);
          
-         var fmt$prime$6=match$19[1];
+         var match$15=make_scanf(ib,match$14[1],readers);
          
-         var match$20=make_scanf(ib,fmt$prime$6,readers);
-         
-         if(match$20)
-          {var arg_rest=match$20[2];return arg_rest;}
+         if(match$15)
+          {return match$15[2];}
          else
           {throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -2209,18 +1933,14 @@ var
 var
  pad_prec_scanf=
   function(ib,fmt,readers,pad,prec,scan,token)
-   {var match=pad;
-    
-    var match$1=prec;
-    
-    if(typeof match==="number")
-     {switch(match)
+   {if(typeof pad==="number")
+     {switch(pad)
        {case 0:
-         if(typeof match$1==="number")
-          {if(match$1!==0)
+         if(typeof prec==="number")
+          {if(prec!==0)
             {return Pervasives["invalid_arg"]('scanf: bad conversion "%*"');}
            else
-            {var match$2=scan(Pervasives["max_int"],Pervasives["max_int"],ib);
+            {var match=scan(Pervasives["max_int"],Pervasives["max_int"],ib);
              
              var x=token(ib);
              
@@ -2228,9 +1948,7 @@ var
              }
            }
          else
-          {var p=match$1[1];
-           
-           var match$3=scan(Pervasives["max_int"],p,ib);
+          {var match$1=scan(Pervasives["max_int"],prec[1],ib);
            
            var x$1=token(ib);
            
@@ -2239,19 +1957,17 @@ var
          
         }}
     else
-     {switch(match[0])
+     {switch(pad[0])
        {case 0:
-         var match$4=match[1];
-         
-         if(match$4!==0)
-          {var w=match[2];
+         if(pad[1]!==0)
+          {var w=pad[2];
            
-           if(typeof match$1==="number")
-            {if(match$1!==0)
+           if(typeof prec==="number")
+            {if(prec!==0)
               {return Pervasives["invalid_arg"]('scanf: bad conversion "%*"');
                }
              else
-              {var match$5=scan(w,Pervasives["max_int"],ib);
+              {var match$2=scan(w,Pervasives["max_int"],ib);
                
                var x$2=token(ib);
                
@@ -2259,11 +1975,7 @@ var
                }
              }
            else
-            {var w$1=w;
-             
-             var p$1=match$1[1];
-             
-             var match$6=scan(w$1,p$1,ib);
+            {var match$3=scan(w,prec[1],ib);
              
              var x$3=token(ib);
              
@@ -2284,14 +1996,7 @@ var
     
     var fmt=param[1];
     
-    var
-     apply=
-      function(f,args)
-       {if(args)
-         {var r=args[2];var x=args[1];return apply(f(x),r);}
-        else
-         {return f;}
-        };
+    var apply=function(f,args){return args?apply(f(args[1]),args[2]):f;};
     
     var
      k=
@@ -2303,30 +2008,22 @@ var
         catch(exc)
          {var exit;
           
-          var tag=exc[1];
-          
-          if(tag===Scan_failure)
+          if(exc[1]===Scan_failure)
            {exit=21;}
           else
-           {var tag$1=exc[1];
-            
-            if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
+           {if(exc[1]===CamlPrimitive["caml_global_data"]["Failure"])
              {exit=21;}
             else
              {if(exc===CamlPrimitive["caml_global_data"]["End_of_file"])
                {exit=21;}
               else
-               {var tag$2=exc[1];
-                
-                if
-                 (tag$2===
+               {if
+                 (exc[1]===
                   CamlPrimitive["caml_global_data"]["Invalid_argument"])
-                 {var msg=exc[2];
-                  
-                  match=
+                 {match=
                   Pervasives["invalid_arg"]
                    (Pervasives["^"]
-                     (msg,
+                     (exc[2],
                       Pervasives["^"]
                        (' in format "',
                         Pervasives["^"]($$String["escaped"](str),'"'))));
@@ -2341,19 +2038,15 @@ var
           }
         
         switch(match[0])
-         {case 0:var args=match[1];return apply(f,args);
-          case 1:var exc$1=match[1];return ef(ib,exc$1);
-          }
+         {case 0:return apply(f,match[1]);case 1:return ef(ib,match[1]);}
         };
     
     return take_format_readers(k,fmt);
     };
 
-var kbscanf=kscanf;
+var ksscanf=function(s,ef,fmt){return kscanf(Scanning[23](s),ef,fmt);};
 
-var ksscanf=function(s,ef,fmt){return kbscanf(Scanning[23](s),ef,fmt);};
-
-var kfscanf=function(ic,ef,fmt){return kbscanf(Scanning[25](ic),ef,fmt);};
+var kfscanf=function(ic,ef,fmt){return kscanf(Scanning[25](ic),ef,fmt);};
 
 var bscanf=function(ib,fmt){return kscanf(ib,scanf_bad_input,fmt);};
 
@@ -2378,10 +2071,8 @@ var
     try
      {fmt$prime=CamlinternalFormat["format_of_string_format"](str,format);}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-       {var msg=exn[2];fmt$prime=bad_input(msg);}
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
+       {fmt$prime=bad_input(exn[2]);}
       else
        {throw exn;}
       }

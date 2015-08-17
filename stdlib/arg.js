@@ -19,18 +19,9 @@ var
  assoc3=
   function(x,l)
    {if(l)
-     {var t=l[2];
+     {var match=l[1];
       
-      var match=l[1];
-      
-      var y2=match[2];
-      
-      var y1=match[1];
-      
-      if(CamlPrimitive["caml_equal"](y1,x))
-       {return y2;}
-      else
-       {var t$1=t;return assoc3(x,t$1);}
+      return CamlPrimitive["caml_equal"](match[1],x)?match[2]:assoc3(x,l[2]);
       }
     else
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -39,21 +30,15 @@ var
 var
  make_symlist=
   function(prefix,sep,suffix,l)
-   {if(l)
-     {var t=l[2];
-      
-      var h=l[1];
-      
-      return Pervasives["^"]
+   {return l
+            ?Pervasives["^"]
               (List["fold_left"]
                 (function(x,y)
                   {return Pervasives["^"](x,Pervasives["^"](sep,y));},
-                 Pervasives["^"](prefix,h),
-                 t),
-               suffix);
-      }
-    else
-     {return "<none>";}
+                 Pervasives["^"](prefix,l[1]),
+                 l[2]),
+               suffix)
+            :"<none>";
     };
 
 var
@@ -68,8 +53,6 @@ var
     if(doc["length"]>0)
      {switch(spec[0])
        {case 11:
-         var l=spec[1];
-         
          return Printf["bprintf"]
                  (buf,
                   [/* Format */0,
@@ -86,7 +69,7 @@ var
                         [/* Char_literal */12,10,/* End_of_format */0]]]]]],
                    "  %s %s%s\n"],
                   key,
-                  make_symlist("{","|","}",l),
+                  make_symlist("{","|","}",spec[1]),
                   doc);
          
         default:
@@ -191,11 +174,7 @@ var current=[0,0];
 var
  parse_argv_dynamic=
   function($staropt$star,argv,speclist,anonfun,errmsg)
-   {var current$1;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];current$1=$starsth$star;}
-    else
-     {current$1=current;}
+   {var current$1=$staropt$star?$staropt$star[1]:current;
     
     var l=/* -1 for tag */argv["length"]-1;
     
@@ -234,12 +213,6 @@ var
              }
            
           case 1:
-           var expected=error[3];
-           
-           var arg=error[2];
-           
-           var opt=error[1];
-           
            Printf["bprintf"]
             (b,
              [/* Format */0,
@@ -260,12 +233,10 @@ var
                      [/* String_literal */11,".\n",/* End_of_format */0]]]]]]]],
               "%s: wrong argument '%s'; option '%s' expects %s.\n"],
              progname,
-             arg,
-             opt,
-             expected);
+             error[2],
+             error[1],
+             error[3]);
           case 2:
-           var s$1=error[1];
-           
            Printf["bprintf"]
             (b,
              [/* Format */0,
@@ -280,10 +251,8 @@ var
                   /* End_of_format */0]]]],
               "%s: option '%s' needs an argument.\n"],
              progname,
-             s$1);
+             error[1]);
           case 3:
-           var s$2=error[1];
-           
            Printf["bprintf"]
             (b,
              [/* Format */0,
@@ -296,7 +265,7 @@ var
                  [/* String_literal */11,".\n",/* End_of_format */0]]]],
               "%s: %s.\n"],
              progname,
-             s$2)
+             error[1])
           }
         
         usage_b(b,speclist[1],errmsg);
@@ -330,26 +299,20 @@ var
              {var exit;
               
               switch(param[0])
-               {case 0:var f=param[1];return f(/* () */0);
+               {case 0:return param[1](/* () */0);
                 case 1:
-                 var f$1=param[1];
-                 
                  if(current$1[1]+1<l)
                   {var arg=argv[current$1[1]+1+1];
                    
                    try
-                    {f$1(Pervasives["bool_of_string"](arg))}
+                    {param[1](Pervasives["bool_of_string"](arg))}
                    catch(exn$1)
                     {var exit$1;
                      
-                     var tag=exn$1[1];
-                     
                      if
-                      (tag===
+                      (exn$1[1]===
                        CamlPrimitive["caml_global_data"]["Invalid_argument"])
-                      {var match=exn$1[2];
-                       
-                       switch(match)
+                      {switch(exn$1[2])
                         {case "bool_of_string":
                           throw [0,Stop,/* Wrong */[1,s,arg,"a boolean"]];
                          default:exit$1=33;}
@@ -365,41 +328,31 @@ var
                  else
                   {exit=44;}
                  
-                case 2:var r=param[1];return r[1]=/* true */1,0;
-                case 3:var r$1=param[1];return r$1[1]=/* false */0,0;
+                case 2:return param[1][1]=/* true */1,0;
+                case 3:return param[1][1]=/* false */0,0;
                 case 4:
-                 var f$2=param[1];
-                 
                  if(current$1[1]+1<l)
-                  {f$2(argv[current$1[1]+1+1]);return current$1[0]++;}
+                  {param[1](argv[current$1[1]+1+1]);return current$1[0]++;}
                  else
                   {exit=44;}
                  
                 case 5:
-                 var r$2=param[1];
-                 
                  if(current$1[1]+1<l)
-                  {r$2[1]=argv[current$1[1]+1+1];return current$1[0]++;}
+                  {param[1][1]=argv[current$1[1]+1+1];return current$1[0]++;}
                  else
                   {exit=44;}
                  
                 case 6:
-                 var f$3=param[1];
-                 
                  if(current$1[1]+1<l)
                   {var arg$1=argv[current$1[1]+1+1];
                    
                    try
-                    {f$3(CamlPrimitive["caml_int_of_string"](arg$1))}
+                    {param[1](CamlPrimitive["caml_int_of_string"](arg$1))}
                    catch(exn$2)
                     {var exit$2;
                      
-                     var tag$1=exn$2[1];
-                     
-                     if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
-                      {var match$1=exn$2[2];
-                       
-                       switch(match$1)
+                     if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
+                      {switch(exn$2[2])
                         {case "int_of_string":
                           throw [0,Stop,/* Wrong */[1,s,arg$1,"an integer"]];
                          default:exit$2=36;}
@@ -416,22 +369,16 @@ var
                   {exit=44;}
                  
                 case 7:
-                 var r$3=param[1];
-                 
                  if(current$1[1]+1<l)
                   {var arg$2=argv[current$1[1]+1+1];
                    
                    try
-                    {r$3[1]=CamlPrimitive["caml_int_of_string"](arg$2)}
+                    {param[1][1]=CamlPrimitive["caml_int_of_string"](arg$2)}
                    catch(exn$3)
                     {var exit$3;
                      
-                     var tag$2=exn$3[1];
-                     
-                     if(tag$2===CamlPrimitive["caml_global_data"]["Failure"])
-                      {var match$2=exn$3[2];
-                       
-                       switch(match$2)
+                     if(exn$3[1]===CamlPrimitive["caml_global_data"]["Failure"])
+                      {switch(exn$3[2])
                         {case "int_of_string":
                           throw [0,Stop,/* Wrong */[1,s,arg$2,"an integer"]];
                          default:exit$3=38;}
@@ -448,22 +395,16 @@ var
                   {exit=44;}
                  
                 case 8:
-                 var f$4=param[1];
-                 
                  if(current$1[1]+1<l)
                   {var arg$3=argv[current$1[1]+1+1];
                    
                    try
-                    {f$4(CamlPrimitive["caml_float_of_string"](arg$3))}
+                    {param[1](CamlPrimitive["caml_float_of_string"](arg$3))}
                    catch(exn$4)
                     {var exit$4;
                      
-                     var tag$3=exn$4[1];
-                     
-                     if(tag$3===CamlPrimitive["caml_global_data"]["Failure"])
-                      {var match$3=exn$4[2];
-                       
-                       switch(match$3)
+                     if(exn$4[1]===CamlPrimitive["caml_global_data"]["Failure"])
+                      {switch(exn$4[2])
                         {case "float_of_string":
                           throw [0,Stop,/* Wrong */[1,s,arg$3,"a float"]];
                          default:exit$4=40;}
@@ -480,22 +421,16 @@ var
                   {exit=44;}
                  
                 case 9:
-                 var r$4=param[1];
-                 
                  if(current$1[1]+1<l)
                   {var arg$4=argv[current$1[1]+1+1];
                    
                    try
-                    {r$4[1]=CamlPrimitive["caml_float_of_string"](arg$4)}
+                    {param[1][1]=CamlPrimitive["caml_float_of_string"](arg$4)}
                    catch(exn$5)
                     {var exit$5;
                      
-                     var tag$4=exn$5[1];
-                     
-                     if(tag$4===CamlPrimitive["caml_global_data"]["Failure"])
-                      {var match$4=exn$5[2];
-                       
-                       switch(match$4)
+                     if(exn$5[1]===CamlPrimitive["caml_global_data"]["Failure"])
+                      {switch(exn$5[2])
                         {case "float_of_string":
                           throw [0,Stop,/* Wrong */[1,s,arg$4,"a float"]];
                          default:exit$5=42;}
@@ -511,18 +446,15 @@ var
                  else
                   {exit=44;}
                  
-                case 10:
-                 var specs=param[1];return List["iter"](treat_action,specs);
+                case 10:return List["iter"](treat_action,param[1]);
                 case 11:
-                 var f$5=param[2];
-                 
                  var symb=param[1];
                  
                  if(current$1[1]+1<l)
                   {var arg$5=argv[current$1[1]+1+1];
                    
                    if(List["mem"](arg$5,symb))
-                    {f$5(argv[current$1[1]+1+1]);return current$1[0]++;}
+                    {param[2](argv[current$1[1]+1+1]);return current$1[0]++;}
                    else
                     {throw [0,
                             Stop,
@@ -536,10 +468,10 @@ var
                   {exit=44;}
                  
                 case 12:
-                 var f$6=param[1];
+                 var f=param[1];
                  
                  while(current$1[1]<l-1)
-                  {f$6(argv[current$1[1]+1+1]),current$1[0]++}
+                  {f(argv[current$1[1]+1+1]),current$1[0]++}
                  return 0;
                  
                 }
@@ -549,15 +481,10 @@ var
           
           treat_action(action)}
         catch(exn$1)
-         {var tag=exn$1[1];
-          
-          if(tag===Bad)
-           {var m=exn$1[2];stop(/* Message */[3,m])}
+         {if(exn$1[1]===Bad)
+           {stop(/* Message */[3,exn$1[2]])}
           else
-           {var tag$1=exn$1[1];
-            
-            if(tag$1===Stop){var e=exn$1[2];stop(e)}else{throw exn$1;}
-            }
+           {if(exn$1[1]===Stop){stop(exn$1[2])}else{throw exn$1;}}
           }
         
         current$1[0]++}
@@ -565,10 +492,8 @@ var
        {try
          {anonfun(s)}
         catch(exn$2)
-         {var tag$2=exn$2[1];
-          
-          if(tag$2===Bad)
-           {var m$1=exn$2[2];stop(/* Message */[3,m$1])}
+         {if(exn$2[1]===Bad)
+           {stop(/* Message */[3,exn$2[2]])}
           else
            {throw exn$2;}
           }
@@ -581,11 +506,7 @@ var
 var
  parse_argv=
   function($staropt$star,argv,speclist,anonfun,errmsg)
-   {var current$1;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];current$1=$starsth$star;}
-    else
-     {current$1=current;}
+   {var current$1=$staropt$star?$staropt$star[1]:current;
     
     return parse_argv_dynamic
             (/* Some */[0,current$1],argv,[0,speclist],anonfun,errmsg);
@@ -597,29 +518,21 @@ var
    {try
      {return parse_argv(/* None */0,Sys["argv"],l,f,msg);}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===Bad)
-       {var msg$1=exn[2];
-        
-        Printf["eprintf"]
+     {if(exn[1]===Bad)
+       {Printf["eprintf"]
          ([/* Format */0,
            [/* String */2,/* No_padding */0,/* End_of_format */0],
            "%s"],
-          msg$1);
+          exn[2]);
         return Pervasives["exit"](2);
         }
       else
-       {var tag$1=exn[1];
-        
-        if(tag$1===Help)
-         {var msg$2=exn[2];
-          
-          Printf["printf"]
+       {if(exn[1]===Help)
+         {Printf["printf"]
            ([/* Format */0,
              [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
-            msg$2);
+            exn[2]);
           return Pervasives["exit"](0);
           }
         else
@@ -634,29 +547,21 @@ var
    {try
      {return parse_argv_dynamic(/* None */0,Sys["argv"],l,f,msg);}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===Bad)
-       {var msg$1=exn[2];
-        
-        Printf["eprintf"]
+     {if(exn[1]===Bad)
+       {Printf["eprintf"]
          ([/* Format */0,
            [/* String */2,/* No_padding */0,/* End_of_format */0],
            "%s"],
-          msg$1);
+          exn[2]);
         return Pervasives["exit"](2);
         }
       else
-       {var tag$1=exn[1];
-        
-        if(tag$1===Help)
-         {var msg$2=exn[2];
-          
-          Printf["printf"]
+       {if(exn[1]===Help)
+         {Printf["printf"]
            ([/* Format */0,
              [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
-            msg$2);
+            exn[2]);
           return Pervasives["exit"](0);
           }
         else
@@ -687,15 +592,12 @@ var
 var
  max_arg_len=
   function(cur,param)
-   {var doc=param[3];
+   {var kwd=param[1];
     
-    var spec=param[2];
-    
-    var kwd=param[1];
-    
-    switch(spec[0])
+    switch(param[2][0])
      {case 11:return Pervasives["max"](cur,kwd["length"]);
-      default:return Pervasives["max"](cur,kwd["length"]+second_word(doc));}
+      default:
+       return Pervasives["max"](cur,kwd["length"]+second_word(param[3]));}
     };
 
 var
@@ -705,9 +607,7 @@ var
     
     var kwd=ksd[1];
     
-    var match=ksd[3];
-    
-    switch(match)
+    switch(ksd[3])
      {case "":return ksd;
       default:
        switch(spec[0])
@@ -724,20 +624,16 @@ var
                   Pervasives["^"]("\n",Pervasives["^"](spaces,msg))];
           
          default:
-          var spec$1=spec;
-          
-          var kwd$1=kwd;
-          
           var msg$1=ksd[3];
           
           var cutcol$1=second_word(msg$1);
           
-          var kwd_len=kwd$1["length"];
+          var kwd_len=kwd["length"];
           
           var diff=len-kwd_len-cutcol$1;
           
           if(diff<=0)
-           {return /* tuple */[0,kwd$1,spec$1,msg$1];}
+           {return /* tuple */[0,kwd,spec,msg$1];}
           else
            {var spaces$1=$$String["make"](diff,32);
             
@@ -748,8 +644,8 @@ var
               $$String["sub"](msg$1,cutcol$1,msg$1["length"]-cutcol$1);
             
             return /* tuple */[0,
-                    kwd$1,
-                    spec$1,
+                    kwd,
+                    spec,
                     Pervasives["^"](prefix,Pervasives["^"](spaces$1,suffix))];
             }
           }
@@ -759,11 +655,7 @@ var
 var
  align=
   function($staropt$star,speclist)
-   {var limit;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];limit=$starsth$star;}
-    else
-     {limit=Pervasives["max_int"];}
+   {var limit=$staropt$star?$staropt$star[1]:Pervasives["max_int"];
     
     var completed=add_help(speclist);
     

@@ -265,7 +265,7 @@ var
        {var exit;
         
         if(param>=91)
-         {var switcher=-97+param;if(25<switcher>>>0){exit=41;}else{exit=40;}}
+         {if(25<-97+param>>>0){exit=41;}else{exit=40;}}
         else
          {if(param>=65){exit=40;}else{exit=41;}}
         
@@ -294,13 +294,9 @@ var
   function(s)
    {var match=drive_and_path(s);
     
-    var path=match[2];
+    var dir=generic_dirname(is_dir_sep$1,current_dir_name$1,match[2]);
     
-    var drive=match[1];
-    
-    var dir=generic_dirname(is_dir_sep$1,current_dir_name$1,path);
-    
-    return Pervasives["^"](drive,dir);
+    return Pervasives["^"](match[1],dir);
     };
 
 var
@@ -308,9 +304,7 @@ var
   function(s)
    {var match=drive_and_path(s);
     
-    var path=match[2];
-    
-    return generic_basename(is_dir_sep$1,current_dir_name$1,path);
+    return generic_basename(is_dir_sep$1,current_dir_name$1,match[2]);
     };
 
 var
@@ -493,16 +487,14 @@ var prng=[246,function(param){return Random["State"][2](/* () */0);}];
 var
  temp_file_name=
   function(temp_dir,prefix,suffix)
-   {var lzarg=prng;
-    
-    var tag=CamlPrimitive["caml_obj_tag"](lzarg);
+   {var tag=CamlPrimitive["caml_obj_tag"](prng);
     
     var
      rnd=
       Random["State"][4]
        (tag===250
-         ?lzarg[1]
-         :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg)&
+         ?prng[1]
+         :tag===246?CamlinternalLazy["force_lazy_block"](prng):prng)&
       16777215;
     
     return concat
@@ -531,11 +523,7 @@ var get_temp_dir_name=function(param){return current_temp_dir_name[1];};
 var
  temp_file=
   function($staropt$star,prefix,suffix)
-   {var temp_dir;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];temp_dir=$starsth$star;}
-    else
-     {temp_dir=current_temp_dir_name[1];}
+   {var temp_dir=$staropt$star?$staropt$star[1]:current_temp_dir_name[1];
     
     var
      try_name=
@@ -555,9 +543,7 @@ var
           return name;
           }
         catch(e)
-         {var tag=e[1];
-          
-          if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
+         {if(e[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
           else
            {throw e;}
@@ -570,17 +556,13 @@ var
 var
  open_temp_file=
   function($staropt$star,$staropt$star,prefix,suffix)
-   {var mode;
-    if($staropt$star$1)
-     {var $starsth$star=$staropt$star$1[1];mode=$starsth$star;}
-    else
-     {mode=[/* :: */0,/* Open_text */7,/* [] */0];}
+   {var
+     mode=
+      $staropt$star$1
+       ?$staropt$star$1[1]
+       :[/* :: */0,/* Open_text */7,/* [] */0];
     
-    var temp_dir;
-    if($staropt$star)
-     {var $starsth$star$1=$staropt$star[1];temp_dir=$starsth$star$1;}
-    else
-     {temp_dir=current_temp_dir_name[1];}
+    var temp_dir=$staropt$star?$staropt$star[1]:current_temp_dir_name[1];
     
     var
      try_name=
@@ -600,9 +582,7 @@ var
                     name)];
           }
         catch(e)
-         {var tag=e[1];
-          
-          if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
+         {if(e[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
           else
            {throw e;}

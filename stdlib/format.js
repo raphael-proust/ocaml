@@ -18,10 +18,7 @@ var
     
     var match=q[1];
     
-    if(match)
-     {var cell=match[1];q[1]=c;return cell[2]=c,0;}
-    else
-     {q[1]=c;return q[2]=c,0;}
+    return match?(q[1]=c,match[1][2]=c,0):(q[1]=c,q[2]=c,0);
     };
 
 var Empty_queue=CamlPrimitive["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
@@ -29,13 +26,7 @@ var Empty_queue=CamlPrimitive["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
 var
  peek_queue=
   function(param)
-   {var match=param[2];
-    
-    if(match)
-     {var match$1=match[1];var x=match$1[1];return x;}
-    else
-     {throw Empty_queue;}
-    };
+   {var match=param[2];if(match){return match[1][1];}else{throw Empty_queue;}};
 
 var
  take_queue=
@@ -45,14 +36,12 @@ var
     if(match)
      {var match$1=match[1];
       
-      var x=match$1[1];
-      
       var tl=match$1[2];
       
       q[2]=tl;
       tl===/* Nil */0?(q[1]=/* Nil */0,0):0;
       
-      return x;
+      return match$1[1];
       }
     else
      {throw Empty_queue;}
@@ -61,11 +50,7 @@ var
 var
  pp_enqueue=
   function(state,token)
-   {var len=token[3];
-    
-    state[13]=state[13]+len;
-    return add_queue(token,state[27]);
-    };
+   {state[13]=state[13]+token[3];return add_queue(token,state[27]);};
 
 var
  pp_clear_queue=
@@ -125,12 +110,8 @@ var
   function(state)
    {var match=take_queue(state[27]);
     
-    var size=match[1];
-    
-    var len=match[3];
-    
-    state[12]=state[12]-len;
-    return state[9]=state[9]+size,0;
+    state[12]=state[12]-match[3];
+    return state[9]=state[9]+match[1],0;
     };
 
 var
@@ -142,21 +123,17 @@ var
          var match=state[3];
          
          if(match)
-          {var match$1=match[1];
-           
-           var tabs=match$1[1];
+          {var tabs=match[1][1];
            
            var
             add_tab=
              function(n,ls)
               {if(ls)
-                {var l=ls[2];
-                 
-                 var x=ls[1];
+                {var x=ls[1];
                  
                  return CamlPrimitive["caml_lessthan"](n,x)
                          ?/* :: */[0,n,ls]
-                         :/* :: */[0,x,add_tab(n,l)];
+                         :/* :: */[0,x,add_tab(n,ls[2])];
                  }
                else
                 {return /* :: */[0,n,/* [] */0];}
@@ -168,47 +145,31 @@ var
           {return /* () */0;}
          
         case 1:
-         var match$2=state[2];
+         var match$1=state[2];
          
-         if(match$2)
-          {var ls=match$2[2];return state[2]=ls,0;}
-         else
-          {return /* () */0;}
+         return match$1?(state[2]=match$1[2],0):/* () */0;
          
         case 2:
-         var match$3=state[3];
+         var match$2=state[3];
          
-         if(match$3)
-          {var ls$1=match$3[2];return state[3]=ls$1,0;}
-         else
-          {return /* () */0;}
+         return match$2?(state[3]=match$2[2],0):/* () */0;
          
         case 3:
-         var match$4=state[2];
+         var match$3=state[2];
          
-         if(match$4)
-          {var match$5=match$4[1];
-           
-           var width=match$5[2];
-           
-           return break_line(state,width);
-           }
-         else
-          {return pp_output_newline(state);}
+         return match$3
+                 ?break_line(state,match$3[1][2])
+                 :pp_output_newline(state);
          
         case 4:return state[10]!==state[6]-state[9]?pp_skip_token(state):0;
         case 5:
-         var match$6=state[5];
+         var match$4=state[5];
          
-         if(match$6)
-          {var tags=match$6[2];
-           
-           var tag_name=match$6[1];
-           
-           var marker=state[24](tag_name);
+         if(match$4)
+          {var marker=state[24](match$4[1]);
            
            pp_output_string(state,marker);
-           return state[5]=tags,0;
+           return state[5]=match$4[2],0;
            }
          else
           {return /* () */0;}
@@ -217,10 +178,8 @@ var
     else
      {switch(param[0])
        {case 0:
-         var s=param[1];
-         
          state[9]=state[9]-size;
-         pp_output_string(state,s);
+         pp_output_string(state,param[1]);
          return state[11]=/* false */0,0;
          
         case 1:
@@ -228,31 +187,29 @@ var
          
          var n=param[1];
          
-         var match$7=state[2];
+         var match$5=state[2];
          
-         if(match$7)
-          {var match$8=match$7[1];
+         if(match$5)
+          {var match$6=match$5[1];
            
-           var width$1=match$8[2];
+           var width=match$6[2];
            
-           var ty=match$8[1];
-           
-           switch(ty)
+           switch(match$6[1])
             {case 0:return break_same_line(state,n);
-             case 1:return break_new_line(state,off,width$1);
-             case 2:return break_new_line(state,off,width$1);
+             case 1:return break_new_line(state,off,width);
+             case 2:return break_new_line(state,off,width);
              case 3:
               return size>state[9]
-                      ?break_new_line(state,off,width$1)
+                      ?break_new_line(state,off,width)
                       :break_same_line(state,n);
               
              case 4:
               return state[11]
                       ?break_same_line(state,n)
                       :size>state[9]
-                        ?break_new_line(state,off,width$1)
-                        :state[10]>state[6]-width$1+off
-                          ?break_new_line(state,off,width$1)
+                        ?break_new_line(state,off,width)
+                        :state[10]>state[6]-width+off
+                          ?break_new_line(state,off,width)
                           :break_same_line(state,n);
               
              case 5:return break_same_line(state,n);
@@ -262,44 +219,36 @@ var
           {return /* () */0;}
          
         case 2:
-         var off$1=param[2];
-         
-         var n$1=param[1];
-         
          var insertion_point=state[6]-state[9];
          
-         var match$9=state[3];
+         var match$7=state[3];
          
-         if(match$9)
-          {var match$10=match$9[1];
-           
-           var tabs$1=match$10[1];
+         if(match$7)
+          {var tabs$1=match$7[1][1];
            
            var
             find=
              function(n,param$1)
               {if(param$1)
-                {var l=param$1[2];
+                {var x=param$1[1];
                  
-                 var x=param$1[1];
-                 
-                 return CamlPrimitive["caml_greaterequal"](x,n)?x:find(n,l);
+                 return CamlPrimitive["caml_greaterequal"](x,n)
+                         ?x
+                         :find(n,param$1[2]);
                  }
                else
                 {throw CamlPrimitive["caml_global_data"]["Not_found"];}
                };
            
-           var match$11=tabs$1[1];
+           var match$8=tabs$1[1];
            
            var tab;
-           if(match$11)
-            {var x=match$11[1];
-             
-             try
+           if(match$8)
+            {try
               {tab=find(insertion_point,tabs$1[1]);}
              catch(exn)
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                {tab=x;}
+                {tab=match$8[1];}
                else
                 {throw exn;}
                }
@@ -310,39 +259,35 @@ var
            var offset=tab-insertion_point;
            
            return offset>=0
-                   ?break_same_line(state,offset+n$1)
-                   :break_new_line(state,tab+off$1,state[6]);
+                   ?break_same_line(state,offset+param[1])
+                   :break_new_line(state,tab+param[2],state[6]);
            }
          else
           {return /* () */0;}
          
         case 3:
-         var ty$1=param[2];
-         
-         var off$2=param[1];
+         var ty=param[2];
          
          var insertion_point$1=state[6]-state[9];
          
          insertion_point$1>state[8]?pp_force_break_line(state):0;
          
-         var offset$1=state[9]-off$2;
+         var offset$1=state[9]-param[1];
          
-         var
-          bl_type=
-           ty$1!==1?size>state[9]?ty$1:/* Pp_fits */5:/* Pp_vbox */1;
+         var bl_type=ty!==1?size>state[9]?ty:/* Pp_fits */5:/* Pp_vbox */1;
          
          return state[2]=
                 /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]],
                 0;
          
-        case 4:var tbox=param[1];return state[3]=/* :: */[0,tbox,state[3]],0;
+        case 4:return state[3]=/* :: */[0,param[1],state[3]],0;
         case 5:
-         var tag_name$1=param[1];
+         var tag_name=param[1];
          
-         var marker$1=state[23](tag_name$1);
+         var marker$1=state[23](tag_name);
          
          pp_output_string(state,marker$1);
-         return state[5]=/* :: */[0,tag_name$1,state[5]],0;
+         return state[5]=/* :: */[0,tag_name,state[5]],0;
          
         }}
     };
@@ -354,17 +299,13 @@ var
     
     var size=match[1];
     
-    var len=match[3];
-    
-    var tok=match[2];
-    
     var size$1=size;
     
     return !(size$1<0&&state[13]-state[12]<state[9])
             ?(take_queue(state[27]),
-              format_pp_token(state,size$1<0?pp_infinity:size$1,tok),
+              format_pp_token(state,size$1<0?pp_infinity:size$1,match[2]),
               state[12]=
-              len+
+              match[3]+
               state[12],
               advance_loop(state))
             :0;
@@ -415,32 +356,27 @@ var
       
       var queue_elem=match$1[2];
       
-      var left_tot=match$1[1];
+      var t=match[2];
       
       var size=queue_elem[1];
       
-      var t=match[2];
-      
-      var tok=queue_elem[2];
-      
-      var size$1=size;
-      
-      if(left_tot<state[12])
+      if(match$1[1]<state[12])
        {return clear_scan_stack(state);}
       else
        {var exit;
         
-        if(typeof tok==="number")
-         {switch(tok){}}
+        var $js=queue_elem[2];
+        if(typeof $js==="number")
+         {switch($js){}}
         else
-         {switch(tok[0])
+         {switch($js[0])
            {case 1:exit=193;
             case 2:exit=193;
-            case 3:return !ty?(queue_elem[1]=state[13]+size$1,state[1]=t,0):0;
+            case 3:return !ty?(queue_elem[1]=state[13]+size,state[1]=t,0):0;
             default:exit=194;}}
         
         switch(exit)
-         {case 193:return ty?(queue_elem[1]=state[13]+size$1,state[1]=t,0):0;
+         {case 193:return ty?(queue_elem[1]=state[13]+size,state[1]=t,0):0;
           case 194:return /* () */0;
           }
         }
@@ -510,16 +446,7 @@ var
     if(state[21])
      {var match=state[4];
       
-      if(match)
-       {var tags=match[2];
-        
-        var tag_name=match[1];
-        
-        state[26](tag_name);
-        return state[4]=tags,0;
-        }
-      else
-       {return /* () */0;}
+      return match?(state[26](match[1]),state[4]=match[2],0):/* () */0;
       }
     else
      {return 0;}
@@ -546,18 +473,10 @@ var
 var
  pp_set_formatter_tag_functions=
   function(state,param)
-   {var pct=param[4];
-    
-    var pot=param[3];
-    
-    var mct=param[2];
-    
-    var mot=param[1];
-    
-    state[23]=mot;
-    state[24]=mct;
-    state[25]=pot;
-    return state[26]=pct,0;
+   {state[23]=param[1];
+    state[24]=param[2];
+    state[25]=param[3];
+    return state[26]=param[4],0;
     };
 
 var
@@ -748,26 +667,18 @@ var
 var
  pp_print_list=
   function($staropt$star,pp_v,ppf,param)
-   {var pp_sep;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];pp_sep=$starsth$star;}
-    else
-     {pp_sep=pp_print_cut;}
+   {var pp_sep=$staropt$star?$staropt$star[1]:pp_print_cut;
     
     if(param)
      {var vs=param[2];
       
       var v=param[1];
       
-      if(vs)
-       {var v$1=v;
-        
-        pp_v(ppf,v$1);
-        pp_sep(ppf,/* () */0);
-        return pp_print_list(/* Some */[0,pp_sep],pp_v,ppf,vs);
-        }
-      else
-       {return pp_v(ppf,v);}
+      return vs
+              ?(pp_v(ppf,v),
+                pp_sep(ppf,/* () */0),
+                pp_print_list(/* Some */[0,pp_sep],pp_v,ppf,vs))
+              :pp_v(ppf,v);
       }
     else
      {return /* () */0;}
@@ -857,18 +768,10 @@ var pp_get_margin=function(state,param){return state[6];};
 var
  pp_set_formatter_out_functions=
   function(state,param)
-   {var i=param[4];
-    
-    var h=param[3];
-    
-    var g=param[2];
-    
-    var f=param[1];
-    
-    state[17]=f;
-    state[18]=g;
-    state[19]=h;
-    return state[20]=i,0;
+   {state[17]=param[1];
+    state[18]=param[2];
+    state[19]=param[3];
+    return state[20]=param[4],0;
     };
 
 var
@@ -1170,20 +1073,9 @@ var
         }}
     else
      {switch(fmting_lit[0])
-       {case 0:
-         var offset=fmting_lit[3];
-         
-         var width=fmting_lit[2];
-         
-         return pp_print_break(ppf,width,offset);
-         
+       {case 0:return pp_print_break(ppf,fmting_lit[2],fmting_lit[3]);
         case 1:return /* () */0;
-        case 2:
-         var c=fmting_lit[1];
-         
-         pp_print_char(ppf,64);
-         return pp_print_char(ppf,c);
-         
+        case 2:pp_print_char(ppf,64);return pp_print_char(ppf,fmting_lit[1]);
         }}
     };
 
@@ -1197,223 +1089,139 @@ var
     else
      {switch(acc[0])
        {case 0:
-         var f=acc[2];
-         
-         var p=acc[1];
-         
-         output_acc(ppf,p);
-         return output_formatting_lit(ppf,f);
-         
+         output_acc(ppf,acc[1]);return output_formatting_lit(ppf,acc[2]);
         case 1:
          var match=acc[2];
          
-         var p$1=acc[1];
+         var p=acc[1];
          
          switch(match[0])
           {case 0:
-            var acc$prime=match[1];
-            
-            output_acc(ppf,p$1);
-            return pp_open_tag(ppf,compute_tag(output_acc,acc$prime));
+            output_acc(ppf,p);
+            return pp_open_tag(ppf,compute_tag(output_acc,match[1]));
             
            case 1:
-            var p$2=p$1;
-            
-            var acc$prime$1=match[1];
-            
-            var match$1=output_acc(ppf,p$2);
+            var match$1=output_acc(ppf,p);
             
             var
              match$2=
               CamlinternalFormat["open_box_of_string"]
-               (compute_tag(output_acc,acc$prime$1));
+               (compute_tag(output_acc,match[1]));
             
-            var bty=match$2[2];
-            
-            var indent=match$2[1];
-            
-            return pp_open_box_gen(ppf,indent,bty);
+            return pp_open_box_gen(ppf,match$2[1],match$2[2]);
             
            }
          
         case 2:
-         var p$3=acc[1];
+         var p$1=acc[1];
          
          var exit$1;
          
-         if(typeof p$3==="number")
-          {switch(p$3){}}
+         if(typeof p$1==="number")
+          {switch(p$1){}}
          else
-          {switch(p$3[0])
+          {switch(p$1[0])
             {case 0:
-              var match$3=p$3[2];
+              var match$3=p$1[2];
               
               if(typeof match$3==="number")
                {switch(match$3){}}
               else
                {switch(match$3[0])
                  {case 1:
-                   var s=acc[2];
-                   
-                   var size=match$3[2];
-                   
-                   var p$4=p$3[1];
-                   
-                   var p$5=p$4;
-                   
-                   var size$1=size;
-                   
-                   var s$1=s;
-                   
-                   exit=32;
-                   
+                   var p$2=p$1[1];var size=match$3[2];var s=acc[2];exit=32;
                   default:exit$1=36;}}
               
              default:exit$1=36;}}
          
-         switch(exit$1)
-          {case 36:var s$2=acc[2];var p$6=p$3;var s$3=s$2;exit=34;}
+         switch(exit$1){case 36:var p$3=p$1;var s$1=acc[2];exit=34;}
          
         case 3:
-         var p$7=acc[1];
+         var p$4=acc[1];
          
          var exit$2;
          
-         if(typeof p$7==="number")
-          {switch(p$7){}}
+         if(typeof p$4==="number")
+          {switch(p$4){}}
          else
-          {switch(p$7[0])
+          {switch(p$4[0])
             {case 0:
-              var match$4=p$7[2];
+              var match$4=p$4[2];
               
               if(typeof match$4==="number")
                {switch(match$4){}}
               else
                {switch(match$4[0])
                  {case 1:
-                   var c=acc[2];
-                   
-                   var size$2=match$4[2];
-                   
-                   var p$8=p$7[1];
-                   
-                   var p$9=p$8;
-                   
-                   var size$3=size$2;
-                   
-                   var c$1=c;
-                   
-                   exit=33;
-                   
+                   var p$5=p$4[1];var size$1=match$4[2];var c=acc[2];exit=33;
                   default:exit$2=38;}}
               
              default:exit$2=38;}}
          
-         switch(exit$2)
-          {case 38:var c$2=acc[2];var p$10=p$7;var c$3=c$2;exit=35;}
+         switch(exit$2){case 38:var p$6=p$4;var c$1=acc[2];exit=35;}
          
         case 4:
-         var p$11=acc[1];
+         var p$7=acc[1];
          
          var exit$3;
          
-         if(typeof p$11==="number")
-          {switch(p$11){}}
+         if(typeof p$7==="number")
+          {switch(p$7){}}
          else
-          {switch(p$11[0])
+          {switch(p$7[0])
             {case 0:
-              var match$5=p$11[2];
+              var match$5=p$7[2];
               
               if(typeof match$5==="number")
                {switch(match$5){}}
               else
                {switch(match$5[0])
                  {case 1:
-                   var s$4=acc[2];
-                   
-                   var size$4=match$5[2];
-                   
-                   var p$12=p$11[1];
-                   
-                   var p$5=p$12;
-                   
-                   var size$1=size$4;
-                   
-                   var s$1=s$4;
-                   
-                   exit=32;
-                   
+                   var p$2=p$7[1];var size=match$5[2];var s=acc[2];exit=32;
                   default:exit$3=37;}}
               
              default:exit$3=37;}}
          
-         switch(exit$3)
-          {case 37:var s$5=acc[2];var p$6=p$11;var s$3=s$5;exit=34;}
+         switch(exit$3){case 37:var p$3=p$7;var s$1=acc[2];exit=34;}
          
         case 5:
-         var p$13=acc[1];
+         var p$8=acc[1];
          
          var exit$4;
          
-         if(typeof p$13==="number")
-          {switch(p$13){}}
+         if(typeof p$8==="number")
+          {switch(p$8){}}
          else
-          {switch(p$13[0])
+          {switch(p$8[0])
             {case 0:
-              var match$6=p$13[2];
+              var match$6=p$8[2];
               
               if(typeof match$6==="number")
                {switch(match$6){}}
               else
                {switch(match$6[0])
                  {case 1:
-                   var c$4=acc[2];
-                   
-                   var size$5=match$6[2];
-                   
-                   var p$14=p$13[1];
-                   
-                   var p$9=p$14;
-                   
-                   var size$3=size$5;
-                   
-                   var c$1=c$4;
-                   
-                   exit=33;
-                   
+                   var p$5=p$8[1];var size$1=match$6[2];var c=acc[2];exit=33;
                   default:exit$4=39;}}
               
              default:exit$4=39;}}
          
-         switch(exit$4)
-          {case 39:var c$5=acc[2];var p$10=p$13;var c$3=c$5;exit=35;}
+         switch(exit$4){case 39:var p$6=p$8;var c$1=acc[2];exit=35;}
          
-        case 6:
-         var f$1=acc[2];var p$15=acc[1];output_acc(ppf,p$15);return f$1(ppf);
-        case 7:
-         var p$16=acc[1];
-         
-         output_acc(ppf,p$16);
-         return pp_print_flush(ppf,/* () */0);
-         
+        case 6:output_acc(ppf,acc[1]);return acc[2](ppf);
+        case 7:output_acc(ppf,acc[1]);return pp_print_flush(ppf,/* () */0);
         case 8:
-         var msg=acc[2];
-         
-         var p$17=acc[1];
-         
-         output_acc(ppf,p$17);
-         return Pervasives["invalid_arg"](msg);
-         
+         output_acc(ppf,acc[1]);return Pervasives["invalid_arg"](acc[2]);
         }}
     
     switch(exit)
-     {case 32:output_acc(ppf,p$5);return pp_print_as_size(ppf,size$1,s$1);
+     {case 32:output_acc(ppf,p$2);return pp_print_as_size(ppf,size,s);
       case 33:
-       output_acc(ppf,p$9);
-       return pp_print_as_size(ppf,size$3,$$String["make"](1,c$1));
+       output_acc(ppf,p$5);
+       return pp_print_as_size(ppf,size$1,$$String["make"](1,c));
        
-      case 34:output_acc(ppf,p$6);return pp_print_string(ppf,s$3);
-      case 35:output_acc(ppf,p$10);return pp_print_char(ppf,c$3);
+      case 34:output_acc(ppf,p$3);return pp_print_string(ppf,s$1);
+      case 35:output_acc(ppf,p$6);return pp_print_char(ppf,c$1);
       }
     };
 
@@ -1427,222 +1235,144 @@ var
     else
      {switch(acc[0])
        {case 0:
-         var f=acc[2];
-         
-         var p=acc[1];
-         
-         strput_acc(ppf,p);
-         return output_formatting_lit(ppf,f);
-         
+         strput_acc(ppf,acc[1]);return output_formatting_lit(ppf,acc[2]);
         case 1:
          var match=acc[2];
          
-         var p$1=acc[1];
+         var p=acc[1];
          
          switch(match[0])
           {case 0:
-            var acc$prime=match[1];
-            
-            strput_acc(ppf,p$1);
-            return pp_open_tag(ppf,compute_tag(strput_acc,acc$prime));
+            strput_acc(ppf,p);
+            return pp_open_tag(ppf,compute_tag(strput_acc,match[1]));
             
            case 1:
-            var p$2=p$1;
-            
-            var acc$prime$1=match[1];
-            
-            var match$1=strput_acc(ppf,p$2);
+            var match$1=strput_acc(ppf,p);
             
             var
              match$2=
               CamlinternalFormat["open_box_of_string"]
-               (compute_tag(strput_acc,acc$prime$1));
+               (compute_tag(strput_acc,match[1]));
             
-            var bty=match$2[2];
-            
-            var indent=match$2[1];
-            
-            return pp_open_box_gen(ppf,indent,bty);
+            return pp_open_box_gen(ppf,match$2[1],match$2[2]);
             
            }
          
         case 2:
-         var p$3=acc[1];
+         var p$1=acc[1];
          
          var exit$1;
          
-         if(typeof p$3==="number")
-          {switch(p$3){}}
+         if(typeof p$1==="number")
+          {switch(p$1){}}
          else
-          {switch(p$3[0])
+          {switch(p$1[0])
             {case 0:
-              var match$3=p$3[2];
+              var match$3=p$1[2];
               
               if(typeof match$3==="number")
                {switch(match$3){}}
               else
                {switch(match$3[0])
                  {case 1:
-                   var s=acc[2];
-                   
-                   var size=match$3[2];
-                   
-                   var p$4=p$3[1];
-                   
-                   var p$5=p$4;
-                   
-                   var size$1=size;
-                   
-                   var s$1=s;
-                   
-                   exit=21;
-                   
+                   var p$2=p$1[1];var size=match$3[2];var s=acc[2];exit=21;
                   default:exit$1=26;}}
               
              default:exit$1=26;}}
          
-         switch(exit$1)
-          {case 26:var s$2=acc[2];var p$6=p$3;var s$3=s$2;exit=23;}
+         switch(exit$1){case 26:var p$3=p$1;var s$1=acc[2];exit=23;}
          
         case 3:
-         var p$7=acc[1];
+         var p$4=acc[1];
          
          var exit$2;
          
-         if(typeof p$7==="number")
-          {switch(p$7){}}
+         if(typeof p$4==="number")
+          {switch(p$4){}}
          else
-          {switch(p$7[0])
+          {switch(p$4[0])
             {case 0:
-              var match$4=p$7[2];
+              var match$4=p$4[2];
               
               if(typeof match$4==="number")
                {switch(match$4){}}
               else
                {switch(match$4[0])
                  {case 1:
-                   var c=acc[2];
-                   
-                   var size$2=match$4[2];
-                   
-                   var p$8=p$7[1];
-                   
-                   var p$9=p$8;
-                   
-                   var size$3=size$2;
-                   
-                   var c$1=c;
-                   
-                   exit=22;
-                   
+                   var p$5=p$4[1];var size$1=match$4[2];var c=acc[2];exit=22;
                   default:exit$2=28;}}
               
              default:exit$2=28;}}
          
-         switch(exit$2)
-          {case 28:var c$2=acc[2];var p$10=p$7;var c$3=c$2;exit=24;}
+         switch(exit$2){case 28:var p$6=p$4;var c$1=acc[2];exit=24;}
          
         case 4:
-         var p$11=acc[1];
+         var p$7=acc[1];
          
          var exit$3;
          
-         if(typeof p$11==="number")
-          {switch(p$11){}}
+         if(typeof p$7==="number")
+          {switch(p$7){}}
          else
-          {switch(p$11[0])
+          {switch(p$7[0])
             {case 0:
-              var match$5=p$11[2];
+              var match$5=p$7[2];
               
               if(typeof match$5==="number")
                {switch(match$5){}}
               else
                {switch(match$5[0])
                  {case 1:
-                   var s$4=acc[2];
-                   
-                   var size$4=match$5[2];
-                   
-                   var p$12=p$11[1];
-                   
-                   var p$5=p$12;
-                   
-                   var size$1=size$4;
-                   
-                   var s$1=s$4;
-                   
-                   exit=21;
-                   
+                   var p$2=p$7[1];var size=match$5[2];var s=acc[2];exit=21;
                   default:exit$3=27;}}
               
              default:exit$3=27;}}
          
-         switch(exit$3)
-          {case 27:var s$5=acc[2];var p$6=p$11;var s$3=s$5;exit=23;}
+         switch(exit$3){case 27:var p$3=p$7;var s$1=acc[2];exit=23;}
          
         case 5:
-         var p$13=acc[1];
+         var p$8=acc[1];
          
          var exit$4;
          
-         if(typeof p$13==="number")
-          {switch(p$13){}}
+         if(typeof p$8==="number")
+          {switch(p$8){}}
          else
-          {switch(p$13[0])
+          {switch(p$8[0])
             {case 0:
-              var match$6=p$13[2];
+              var match$6=p$8[2];
               
               if(typeof match$6==="number")
                {switch(match$6){}}
               else
                {switch(match$6[0])
                  {case 1:
-                   var c$4=acc[2];
-                   
-                   var size$5=match$6[2];
-                   
-                   var p$14=p$13[1];
-                   
-                   var p$9=p$14;
-                   
-                   var size$3=size$5;
-                   
-                   var c$1=c$4;
-                   
-                   exit=22;
-                   
+                   var p$5=p$8[1];var size$1=match$6[2];var c=acc[2];exit=22;
                   default:exit$4=29;}}
               
              default:exit$4=29;}}
          
-         switch(exit$4)
-          {case 29:var c$5=acc[2];var p$10=p$13;var c$3=c$5;exit=24;}
+         switch(exit$4){case 29:var p$6=p$8;var c$1=acc[2];exit=24;}
          
         case 6:
-         var p$15=acc[1];
+         var p$9=acc[1];
          
          var exit$5;
          
-         if(typeof p$15==="number")
-          {switch(p$15){}}
+         if(typeof p$9==="number")
+          {switch(p$9){}}
          else
-          {switch(p$15[0])
+          {switch(p$9[0])
             {case 0:
-              var match$7=p$15[2];
+              var match$7=p$9[2];
               
               if(typeof match$7==="number")
                {switch(match$7){}}
               else
                {switch(match$7[0])
                  {case 1:
-                   var f$1=acc[2];
-                   
-                   var size$6=match$7[2];
-                   
-                   var p$16=p$15[1];
-                   
-                   strput_acc(ppf,p$16);
-                   return pp_print_as_size(ppf,size$6,f$1(/* () */0));
+                   strput_acc(ppf,p$9[1]);
+                   return pp_print_as_size(ppf,match$7[2],acc[2](/* () */0));
                    
                   default:exit$5=25;}}
               
@@ -1650,59 +1380,43 @@ var
          
          switch(exit$5)
           {case 25:
-            var f$2=acc[2];
-            
-            strput_acc(ppf,p$15);
-            return pp_print_string(ppf,f$2(/* () */0));
-            
+            strput_acc(ppf,p$9);return pp_print_string(ppf,acc[2](/* () */0));
            }
          
-        case 7:
-         var p$17=acc[1];
-         
-         strput_acc(ppf,p$17);
-         return pp_print_flush(ppf,/* () */0);
-         
+        case 7:strput_acc(ppf,acc[1]);return pp_print_flush(ppf,/* () */0);
         case 8:
-         var msg=acc[2];
-         
-         var p$18=acc[1];
-         
-         strput_acc(ppf,p$18);
-         return Pervasives["invalid_arg"](msg);
-         
+         strput_acc(ppf,acc[1]);return Pervasives["invalid_arg"](acc[2]);
         }}
     
     switch(exit)
-     {case 21:strput_acc(ppf,p$5);return pp_print_as_size(ppf,size$1,s$1);
+     {case 21:strput_acc(ppf,p$2);return pp_print_as_size(ppf,size,s);
       case 22:
-       strput_acc(ppf,p$9);
-       return pp_print_as_size(ppf,size$3,$$String["make"](1,c$1));
+       strput_acc(ppf,p$5);
+       return pp_print_as_size(ppf,size$1,$$String["make"](1,c));
        
-      case 23:strput_acc(ppf,p$6);return pp_print_string(ppf,s$3);
-      case 24:strput_acc(ppf,p$10);return pp_print_char(ppf,c$3);
+      case 23:strput_acc(ppf,p$3);return pp_print_string(ppf,s$1);
+      case 24:strput_acc(ppf,p$6);return pp_print_char(ppf,c$1);
       }
     };
 
 var
  kfprintf=
   function(k,o,param)
-   {var fmt=param[1];
-    
-    return CamlinternalFormat["make_printf"]
+   {return CamlinternalFormat["make_printf"]
             (function(o,acc){output_acc(o,acc);return k(o);},
              o,
              /* End_of_acc */0,
-             fmt);
+             param[1]);
     };
 
 var
  ikfprintf=
   function(k,x,param)
-   {var fmt=param[1];
-    
-    return CamlinternalFormat["make_printf"]
-            (function(param$1,param$2){return k(x);},x,/* End_of_acc */0,fmt);
+   {return CamlinternalFormat["make_printf"]
+            (function(param$1,param$2){return k(x);},
+             x,
+             /* End_of_acc */0,
+             param[1]);
     };
 
 var
@@ -1720,9 +1434,7 @@ var eprintf=function(fmt){return fprintf(err_formatter,fmt);};
 var
  ksprintf=
   function(k,param)
-   {var fmt=param[1];
-    
-    var b=Buffer["create"](512);
+   {var b=Buffer["create"](512);
     
     var ppf=formatter_of_buffer(b);
     
@@ -1732,7 +1444,7 @@ var
        {strput_acc(ppf,acc);return k(flush_buf_formatter(b,ppf));};
     
     return CamlinternalFormat["make_printf"]
-            (k$prime,/* () */0,/* End_of_acc */0,fmt);
+            (k$prime,/* () */0,/* End_of_acc */0,param[1]);
     };
 
 var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};
@@ -1740,9 +1452,7 @@ var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};
 var
  asprintf=
   function(param)
-   {var fmt=param[1];
-    
-    var b=Buffer["create"](512);
+   {var b=Buffer["create"](512);
     
     var ppf=formatter_of_buffer(b);
     
@@ -1755,21 +1465,19 @@ var
         };
     
     return CamlinternalFormat["make_printf"]
-            (k$prime,ppf,/* End_of_acc */0,fmt);
+            (k$prime,ppf,/* End_of_acc */0,param[1]);
     };
 
 var
  bprintf=
   function(b,param)
-   {var fmt=param[1];
-    
-    var
+   {var
      k=
       function(ppf,acc)
        {output_acc(ppf,acc);return pp_flush_queue(ppf,/* false */0);};
     
     return CamlinternalFormat["make_printf"]
-            (k,formatter_of_buffer(b),/* End_of_acc */0,fmt);
+            (k,formatter_of_buffer(b),/* End_of_acc */0,param[1]);
     };
 
 var kprintf=ksprintf;

@@ -215,13 +215,7 @@ var
   function(param)
    {var match=[0,0,0,0];
     
-    var ma=match[3];
-    
-    var pro=match[2];
-    
-    var mi=match[1];
-    
-    return (mi+ma-pro)*(Sys["word_size"]/8);
+    return (match[1]+match[3]-match[2])*(Sys["word_size"]/8);
     };
 
 var

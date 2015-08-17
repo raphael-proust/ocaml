@@ -1663,27 +1663,26 @@ module rec
                                 | (v,Some e) ->
                                     let aux st =
                                       v @
-                                        [let open J_helper.Stmt in
-                                           switch e
-                                             (List.map
-                                                (fun (x,lam)  ->
-                                                   ((E.str x),
-                                                     (Gen_util.block_of_output
-                                                        @@
-                                                        (compile_lambda
-                                                           { cxt with st }
-                                                           lam)))) cases)
-                                             ?default:(match default with
-                                                       | None  -> None
-                                                       | Some lam ->
-                                                           Some
-                                                             (Gen_util.block_of_output
-                                                                @@
-                                                                (compile_lambda
-                                                                   {
-                                                                    cxt with
-                                                                    st
-                                                                   } lam)))] in
+                                        [S.switch e
+                                           (List.map
+                                              (fun (x,lam)  ->
+                                                 ((E.str x),
+                                                   (Gen_util.block_of_output
+                                                      @@
+                                                      (compile_lambda
+                                                         { cxt with st } lam))))
+                                              cases)
+                                           ?default:(match default with
+                                                     | None  -> None
+                                                     | Some lam ->
+                                                         Some
+                                                           (Gen_util.block_of_output
+                                                              @@
+                                                              (compile_lambda
+                                                                 {
+                                                                   cxt with
+                                                                   st
+                                                                 } lam)))] in
                                     (match st with
                                      | NeedValue  ->
                                          let v = Gen_util.gen () in
@@ -1698,24 +1697,22 @@ module rec
                                let aux st (v : J.expression)
                                  (table : (int* Lambda.lambda) list) default
                                  =
-                                 [let open J_helper.Stmt in
-                                    switch v
-                                      (List.map
-                                         (fun (x,lam)  ->
-                                            ((E.int x),
-                                              (Gen_util.block_of_output @@
-                                                 (compile_lambda
-                                                    { cxt with st } lam))))
-                                         table)
-                                      ?default:(match default with
-                                                | None  -> None
-                                                | Some lam ->
-                                                    Some
-                                                      (Gen_util.block_of_output
-                                                         @@
-                                                         (compile_lambda
-                                                            { cxt with st }
-                                                            lam)))] in
+                                 [S.switch v
+                                    (List.map
+                                       (fun (x,lam)  ->
+                                          ((E.int x),
+                                            (Gen_util.block_of_output @@
+                                               (compile_lambda
+                                                  { cxt with st } lam))))
+                                       table)
+                                    ?default:(match default with
+                                              | None  -> None
+                                              | Some lam ->
+                                                  Some
+                                                    (Gen_util.block_of_output
+                                                       @@
+                                                       (compile_lambda
+                                                          { cxt with st } lam)))] in
                                let aux2 st =
                                  match (sw_numconsts, sw_numblocks,
                                          (compile_lambda
@@ -1752,8 +1749,8 @@ module rec
                                (match st with
                                 | NeedValue  ->
                                     let v = Gen_util.gen () in
-                                    (((J_helper.Stmt.variable v) ::
-                                      (aux2 (Assign v))), (Some (E.var v)))
+                                    (((S.variable v) :: (aux2 (Assign v))),
+                                      (Some (E.var v)))
                                 | _ -> ((aux2 st), None))
                            | Lstaticraise (i,largs) ->
                                (match Compile_defs.HandlerMap.find i
@@ -1779,8 +1776,7 @@ module rec
                                                       } x) largs
                                            (args : Ident.t list)) in
                                     args_code ++
-                                      ([J_helper.Stmt.assign exit_id
-                                          (E.int i)],
+                                      ([S.assign exit_id (E.int i)],
                                         (Some (E.undefined ())))
                                 | exception Not_found  ->
                                     ([S.unknown_lambda ~comment:"error" lam],
@@ -1836,13 +1832,9 @@ module rec
                                                     } body)))] in
                                     (match (st, should_return) with
                                      | (Declare x,_) ->
-                                         ((block @
-                                             [J_helper.Stmt.declare_unit x]),
-                                           None)
+                                         ((block @ [S.declare_unit x]), None)
                                      | (Assign x,_) ->
-                                         ((block @
-                                             [J_helper.Stmt.assign_unit x]),
-                                           None)
+                                         ((block @ [S.assign_unit x]), None)
                                      | (EffectCall ,true ) ->
                                          ((block @ [S.return_unit ()]), None)
                                      | (EffectCall ,_) -> (block, None)
@@ -1892,11 +1884,9 @@ module rec
                                 | ((Declare _|Assign _),true ) ->
                                     ([S.unknown_lambda lam], None)
                                 | (Declare x,false ) ->
-                                    ((block @ [J_helper.Stmt.declare_unit x]),
-                                      None)
+                                    ((block @ [S.declare_unit x]), None)
                                 | (Assign x,false ) ->
-                                    ((block @ [J_helper.Stmt.assign_unit x]),
-                                      None)
+                                    ((block @ [S.assign_unit x]), None)
                                 | (NeedValue ,_) ->
                                     (block, (Some (E.unit ()))))
                            | Lassign (id,lambda) ->
@@ -1908,8 +1898,7 @@ module rec
                                            should_return = false
                                          } lambda
                                  with
-                                 | (b,Some v) ->
-                                     b @ [J_helper.Stmt.assign id v]
+                                 | (b,Some v) -> b @ [S.assign id v]
                                  | _ -> assert false in
                                (match (st, should_return) with
                                 | (EffectCall ,false ) -> (block, None)
@@ -1918,11 +1907,9 @@ module rec
                                 | ((Declare _|Assign _),true ) ->
                                     ([S.unknown_lambda lam], None)
                                 | (Declare x,false ) ->
-                                    ((block @ [J_helper.Stmt.declare_unit x]),
-                                      None)
+                                    ((block @ [S.declare_unit x]), None)
                                 | (Assign x,false ) ->
-                                    ((block @ [J_helper.Stmt.assign_unit x]),
-                                      None)
+                                    ((block @ [S.assign_unit x]), None)
                                 | (NeedValue ,_) ->
                                     (block, (Some (E.unit ()))))
                            | Ltrywith (lam,id,catch) ->
@@ -1989,6 +1976,7 @@ module rec
                         let compile_group env (x : group) =
                           (match x with
                            | Single (kind,id,lam) ->
+                               let lam = Optimizer.simplify_lets [] lam in
                                compile_lambda
                                  {
                                    st = (Declare id);
@@ -2066,7 +2054,7 @@ module rec
                                               | (_,_) -> assert false)
                                            lambda_exports) in
                                     let js: Gen_util.output =
-                                      (((([J_helper.Stmt.comment
+                                      (((([S.comment
                                              "Generated CODE, PLEASE EDIT WITH CARE "],
                                            None) ++
                                            ((Gen_of_env.required_modules ()),
@@ -2388,9 +2376,7 @@ module rec
                                            body params args
                                        let simplify_lets
                                          (export_defs : Ident.t list) lam =
-                                         let optimize =
-                                           (!Clflags.native_code) ||
-                                             (not (!Clflags.debug)) in
+                                         let optimize = true in
                                          let occ: (Ident.t,int ref) Hashtbl.t
                                            = Hashtbl.create 83 in
                                          let count_var v =

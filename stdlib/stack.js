@@ -19,16 +19,12 @@ var
   function(s)
    {var match=s[1];
     
-    if(match)
-     {var tl=match[2];var hd=match[1];s[1]=tl;return hd;}
-    else
-     {throw Empty;}
+    if(match){s[1]=match[2];return match[1];}else{throw Empty;}
     };
 
 var
  top=
-  function(s)
-   {var match=s[1];if(match){var hd=match[1];return hd;}else{throw Empty;}};
+  function(s){var match=s[1];if(match){return match[1];}else{throw Empty;}};
 
 var is_empty=function(s){return s[1]===/* [] */0;};
 

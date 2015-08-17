@@ -85,7 +85,7 @@ var
            {if(c>=71){exit=6;}else{return c-65+10;}}
           }
         else
-         {var switcher=-48+c;if(9<switcher>>>0){exit=6;}else{return c-48;}}
+         {if(9<-48+c>>>0){exit=6;}else{return c-48;}}
         
         switch(exit)
          {case 6:

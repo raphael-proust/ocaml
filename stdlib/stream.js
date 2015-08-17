@@ -30,21 +30,13 @@ var
         case 1:
          var d2=d[2];
          
-         var d1=d[1];
-         
-         var match=get_data(count,d1);
+         var match=get_data(count,d[1]);
          
          if(typeof match==="number")
           {switch(match){case 0:return get_data(count,d2);}}
          else
           {switch(match[0])
-            {case 0:
-              var d11=match[2];
-              
-              var a=match[1];
-              
-              return /* Scons */[0,a,/* Sapp */[1,d11,d2]];
-              
+            {case 0:return /* Scons */[0,match[1],/* Sapp */[1,match[2],d2]];
              default:
               throw [0,
                      CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -54,15 +46,13 @@ var
         case 2:
          var f=d[1];
          
-         var lzarg=f;
-         
-         var tag=CamlPrimitive["caml_obj_tag"](lzarg);
+         var tag=CamlPrimitive["caml_obj_tag"](f);
          
          return get_data
                  (count,
                   tag===250
-                   ?lzarg[1]
-                   :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+                   ?f[1]
+                   :tag===246?CamlinternalLazy["force_lazy_block"](f):f);
          
         case 3:
          var g=d[1];
@@ -72,20 +62,16 @@ var
          if(match$1)
           {var match$2=match$1[1];
            
-           if(match$2)
-            {var a$1=match$2[1];g[1]=/* None */0;return /* Scons */[0,a$1,d];}
-           else
-            {return /* Sempty */0;}
+           return match$2
+                   ?(g[1]=/* None */0,/* Scons */[0,match$2[1],d])
+                   :/* Sempty */0;
            }
          else
-          {var g$1=g;
+          {var match$3=g[2](count);
            
-           var match$3=g$1[2](count);
-           
-           if(match$3)
-            {var a$2=match$3[1];return /* Scons */[0,a$2,d];}
-           else
-            {g$1[1]=[/* Some */0,/* None */0];return /* Sempty */0;}
+           return match$3
+                   ?/* Scons */[0,match$3[1],d]
+                   :(g[1]=[/* Some */0,/* None */0],/* Sempty */0);
            }
          
         case 4:
@@ -112,7 +98,7 @@ var
      {switch(match){case 0:return /* None */0;}}
     else
      {switch(match[0])
-       {case 0:var a=match[1];return /* Some */[0,a];
+       {case 0:return /* Some */[0,match[1]];
         case 1:
          var d=get_data(s[1],s[2]);
          
@@ -120,7 +106,7 @@ var
           {switch(d){case 0:return /* None */0;}}
          else
           {switch(d[0])
-            {case 0:var a$1=d[1];set_data(s,d);return /* Some */[0,a$1];
+            {case 0:set_data(s,d);return /* Some */[0,d[1]];
              default:
               throw [0,
                      CamlPrimitive["caml_global_data"]["Assert_failure"],
@@ -130,15 +116,11 @@ var
         case 2:
          var f=match[1];
          
-         var lzarg=f;
-         
-         var tag=CamlPrimitive["caml_obj_tag"](lzarg);
+         var tag=CamlPrimitive["caml_obj_tag"](f);
          
          set_data
           (s,
-           tag===250
-            ?lzarg[1]
-            :tag===246?CamlinternalLazy["force_lazy_block"](lzarg):lzarg);
+           tag===250?f[1]:tag===246?CamlinternalLazy["force_lazy_block"](f):f);
          return peek(s);
          
         case 3:
@@ -147,7 +129,7 @@ var
          var match$1=g[1];
          
          if(match$1)
-          {var a$2=match$1[1];return a$2;}
+          {return match$1[1];}
          else
           {var x=g[2](s[1]);g[1]=/* Some */[0,x];return x;}
          
@@ -174,7 +156,7 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 0:var d=match[2];s[1]=1+s[1];return set_data(s,d);
+       {case 0:s[1]=1+s[1];return set_data(s,match[2]);
         case 3:
          var g=match[1];
          
@@ -203,13 +185,10 @@ var
         junk(s);
         var match$1=nget(-1+n,s);
         
-        var k=match$1[3];
-        
-        var d=match$1[2];
-        
-        var al=match$1[1];
-        
-        return /* tuple */[0,/* :: */[0,a,al],/* Scons */[0,a,d],1+k];
+        return /* tuple */[0,
+                /* :: */[0,a,match$1[1]],
+                /* Scons */[0,a,match$1[2]],
+                1+match$1[3]];
         }
       else
        {return /* tuple */[0,/* [] */0,s[2],0];}
@@ -221,24 +200,15 @@ var
   function(n,s)
    {var match=nget(n,s);
     
-    var len=match[3];
-    
-    var d=match[2];
-    
-    var al=match[1];
-    
-    s[1]=s[1]-len;
-    set_data(s,d);
-    return al;
+    s[1]=s[1]-match[3];
+    set_data(s,match[2]);
+    return match[1];
     };
 
 var
  next=
   function(s)
-   {var match=peek(s);
-    
-    if(match){var a=match[1];junk(s);return a;}else{throw Failure;}
-    };
+   {var match=peek(s);if(match){junk(s);return match[1];}else{throw Failure;}};
 
 var
  empty=
@@ -253,10 +223,7 @@ var
       function(param)
        {var match=peek(strm);
         
-        if(match)
-         {var a=match[1];junk(strm);f(a);return do_rec(/* () */0);}
-        else
-         {return /* () */0;}
+        return match?(junk(strm),f(match[1]),do_rec(/* () */0)):/* () */0;
         };
     
     return do_rec(/* () */0);
@@ -381,25 +348,17 @@ var
     else
      {switch(param[0])
        {case 0:
-         var d=param[2];
-         
-         var a=param[1];
-         
          Pervasives["print_string"]("Scons (");
-         f(a);
+         f(param[1]);
          Pervasives["print_string"](", ");
-         dump_data(f,d);
+         dump_data(f,param[2]);
          return Pervasives["print_string"](")");
          
         case 1:
-         var d2=param[2];
-         
-         var d1=param[1];
-         
          Pervasives["print_string"]("Sapp (");
-         dump_data(f,d1);
+         dump_data(f,param[1]);
          Pervasives["print_string"](", ");
-         dump_data(f,d2);
+         dump_data(f,param[2]);
          return Pervasives["print_string"](")");
          
         case 2:return Pervasives["print_string"]("Slazy");

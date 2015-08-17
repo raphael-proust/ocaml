@@ -175,9 +175,7 @@ var
   function(lexbuf)
    {var lcp=lexbuf[12];
     
-    var init=lcp;
-    
-    return lexbuf[12]=/* record */[0,init[1],lcp[2]+1,lcp[4],init[4]],0;
+    return lexbuf[12]=/* record */[0,lcp[1],lcp[2]+1,lcp[4],lcp[4]],0;
     };
 
 var

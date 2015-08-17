@@ -147,35 +147,20 @@ var
 
 var
  list_length=
-  function(accu,param)
-   {if(param){var t=param[2];return list_length(1+accu,t);}else{return accu;}};
+  function(accu,param){return param?list_length(1+accu,param[2]):accu;};
 
 var
  of_list=
   function(l)
    {if(l)
-     {var tl=l[2];
-      
-      var hd=l[1];
-      
-      var a=CamlPrimitive["caml_make_vect"](list_length(0,l),hd);
+     {var a=CamlPrimitive["caml_make_vect"](list_length(0,l),l[1]);
       
       var
        fill$1=
         function(i,param)
-         {if(param)
-           {var tl$1=param[2];
-            
-            var hd$1=param[1];
-            
-            a[i+1]=hd$1;
-            return fill$1(i+1,tl$1);
-            }
-          else
-           {return a;}
-          };
+         {return param?(a[i+1]=param[1],fill$1(i+1,param[2])):a;};
       
-      return fill$1(1,tl);
+      return fill$1(1,l[2]);
       }
     else
      {return [/* array */0];}
@@ -184,21 +169,17 @@ var
 var
  fold_left=
   function(f,x,a)
-   {var r=[0,x];
+   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){r=f(x,a[i+1]);}
     
-    for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){r[1]=f(r[1],a[i+1])}
-    
-    return r[1];
+    return x;
     };
 
 var
  fold_right=
   function(f,a,x)
-   {var r=[0,x];
+   {for(var i=/* -1 for tag */a["length"]-1-1;i>=0;i--){r=f(a[i+1],x);}
     
-    for(var i=/* -1 for tag */a["length"]-1-1;i>=0;i--){r[1]=f(a[i+1],r[1])}
-    
-    return r[1];
+    return x;
     };
 
 var Bottom=CamlPrimitive["caml_set_oo_id"]([248,"Array.Bottom",0]);
@@ -211,14 +192,12 @@ var
       function(l,i)
        {var i31=i+i+i+1;
         
-        var x=[0,i31];
-        
         if(i31+2<l)
-         {cmp(a[i31+1],a[i31+1+1])<0?(x[1]=i31+1,0):0;
+         {if(cmp(a[i31+1],a[i31+1+1])<0){x=i31+1;}else{}
           
-          cmp(a[x[1]+1],a[i31+2+1])<0?(x[1]=i31+2,0):0;
+          if(cmp(a[i31+1],a[i31+2+1])<0){x=i31+2;}else{}
           
-          return x[1];
+          return i31;
           }
         else
          {if(i31+1<l&&cmp(a[i31+1],a[i31+1+1])<0)
@@ -242,13 +221,7 @@ var
        {try
          {return trickledown(l,i,e);}
         catch(exn)
-         {var tag=exn[1];
-          
-          if(tag===Bottom)
-           {var i$1=exn[2];return a[i$1+1]=e,0;}
-          else
-           {throw exn;}
-          }
+         {if(exn[1]===Bottom){return a[exn[2]+1]=e,0;}else{throw exn;}}
         };
     
     var
@@ -260,11 +233,7 @@ var
       function(l,i)
        {try
          {return bubbledown(l,i);}
-        catch(exn)
-         {var tag=exn[1];
-          
-          if(tag===Bottom){var i$1=exn[2];return i$1;}else{throw exn;}
-          }
+        catch(exn){if(exn[1]===Bottom){return exn[2];}else{throw exn;}}
         };
     
     var
@@ -337,12 +306,11 @@ var
        {for(var i=0;i<=len-1;i++)
          {var e=a[srcofs+i+1];
           
-          var j=[0,dstofs+i-1];
+          var j=dstofs+i-1;
           
-          while(j[1]>=dstofs&&cmp(dst[j[1]+1],e)>0)
-           {dst[j[1]+1+1]=dst[j[1]+1],j[0]--}
+          while(j>=dstofs&&cmp(dst[j+1],e)>0){dst[j+1+1]=dst[j+1];j=-1+j;}
           
-          dst[j[1]+1+1]=e}
+          dst[j+1+1]=e}
         return 0;
         };
     
