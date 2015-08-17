@@ -19,6 +19,7 @@
 #include <stdarg.h>
 #include "caml/alloc.h"
 #include "caml/fail.h"
+#include "caml/memory.h"
 #include "caml/mlvalues.h"
 #include "caml/misc.h"
 #ifdef HAS_LOCALE
@@ -48,6 +49,23 @@ CAMLprim value caml_create_string(value len)
     caml_invalid_argument("String.create");
   }
   return caml_alloc_string(size);
+}
+
+CAMLprim value caml_string_of_char_list(value char_list)
+{
+  CAMLparam1(char_list);
+  CAMLlocal2(res,l);
+  mlsize_t size = 0 ;
+  for(l = char_list; l!=Val_int(0); l = Field(l,1)) size++;
+  
+  if (size > Bsize_wsize (Max_wosize) - 1){
+    caml_invalid_argument("String.of_char_list");
+  }
+  res = caml_alloc_string(size);
+  for(size=0, l = char_list; l!=Val_int(0); l = Field(l,1)){
+    Byte_u(res, size) = Int_val(Field(l,0));
+  }
+  CAMLreturn(res);
 }
 
 CAMLprim value caml_string_get(value str, value index)
