@@ -3548,17 +3548,15 @@ var
            str["charCodeAt"](0),
            $$String["blit"](str,1,res,width$1-len+1,len-1)}
          else
-          {if
-            (len>
-             1&&
-             str["charCodeAt"](0)===
-             48&&
-             (str["charCodeAt"](1)===120||str["charCodeAt"](1)===88))
-            {res[1]=
-             str["charCodeAt"](1),
-             $$String["blit"](str,2,res,width$1-len+2,len-2)}
-           else
-            {$$String["blit"](str,0,res,width$1-len,len)}
+          {len>
+            1&&
+            str["charCodeAt"](0)===
+            48&&
+            (str["charCodeAt"](1)===120||str["charCodeAt"](1)===88)
+            ?(res[1]=
+              str["charCodeAt"](1),
+              $$String["blit"](str,2,res,width$1-len+2,len-2))
+            :$$String["blit"](str,0,res,width$1-len,len);
            }
          
         }

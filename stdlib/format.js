@@ -848,10 +848,7 @@ var
      {var match=s["charCodeAt"](right[1]);
       
       if(match!==10)
-       {if(match!==32)
-         {right[0]++}
-        else
-         {flush(/* () */0),pp_print_space(ppf,/* () */0)}
+       {match!==32?right[0]++:(flush(/* () */0),pp_print_space(ppf,/* () */0));
         }
       else
        {flush(/* () */0),pp_force_newline(ppf,/* () */0)}

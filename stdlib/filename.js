@@ -19,10 +19,9 @@ var
     
     Buffer["add_char"](b,39);
     for(var i=0;i<=l-1;i++)
-     {if(s["charCodeAt"](i)===39)
-       {Buffer["add_string"](b,quotequote)}
-      else
-       {Buffer["add_char"](b,s["charCodeAt"](i))}
+     {s["charCodeAt"](i)===39
+       ?Buffer["add_string"](b,quotequote)
+       :Buffer["add_char"](b,s["charCodeAt"](i));
       }
     
     Buffer["add_char"](b,39);

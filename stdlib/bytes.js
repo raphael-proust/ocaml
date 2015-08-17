@@ -212,11 +212,11 @@ var
       
       var exit;
       
+      var $js;
       if(c>=14)
-       {var $js;if(c!==34){if(c!==92){exit=30;}else{exit=29;}}else{exit=29;}}
+       {if(c!==34){if(c!==92){exit=30;}else{exit=29;}}else{exit=29;}}
       else
-       {var $js;
-        if(c>=11)
+       {if(c>=11)
          {if(c>=13){exit=29;}else{exit=30;}}
         else
          {if(c>=8){exit=29;}else{exit=30;}}

@@ -189,11 +189,10 @@ var
               };
           
           loop(0,length(bucket)-1);
-          if(prev_len===0)
-           {t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[/* array */0]}
-          else
-           {CamlPrimitive["caml_obj_truncate"](bucket,prev_len+1),
-            CamlPrimitive["caml_obj_truncate"](hbucket,prev_len)}
+          prev_len===0
+           ?(t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[/* array */0])
+           :(CamlPrimitive["caml_obj_truncate"](bucket,prev_len+1),
+             CamlPrimitive["caml_obj_truncate"](hbucket,prev_len));
           
           if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1}else{}
           }

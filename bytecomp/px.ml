@@ -1027,15 +1027,13 @@ module rec
               let handle_block_return st should_return lam block exp =
                 (match (st, should_return) with
                  | (Declare n,false ) ->
-                     ((block @ [J_helper.Stmt.variable n ~loc_exp:(exp, N)]),
-                       None)
-                 | (Assign n,false ) ->
-                     ((block @ [J_helper.Stmt.assign n exp]), None)
+                     ((block @ [S.variable n ~loc_exp:(exp, N)]), None)
+                 | (Assign n,false ) -> ((block @ [S.assign n exp]), None)
                  | ((Declare _|Assign _),true ) ->
                      ([S.unknown_lambda lam], None)
                  | (EffectCall ,false ) -> (block, (Some exp))
                  | (EffectCall ,true ) ->
-                     ((block @ [J_helper.Stmt.return (Some exp)]), None)
+                     ((block @ [S.return (Some exp)]), None)
                  | (NeedValue ,_) -> (block, (Some exp)) : output)
               let gen ?(name= "$js")  () = Jident.create name
               let exports (idents : Ident.t list) (lams : J.expression list)
@@ -1563,40 +1561,43 @@ module rec
                                         } p
                                 with
                                 | (b,Some e) ->
-                                    (match (st, should_return) with
-                                     | (NeedValue ,_) ->
-                                         (match ((compile_lambda cxt t_br),
-                                                  (compile_lambda cxt f_br))
+                                    (match (st, should_return,
+                                             (compile_lambda cxt t_br),
+                                             (compile_lambda cxt f_br))
+                                     with
+                                     | (NeedValue
+                                        ,_,([],Some out1),([],Some out2)) ->
+                                         (b, (Some (E.econd e out1 out2)))
+                                     | (NeedValue ,_,_,_) ->
+                                         let id = Gen_util.gen () in
+                                         (match ((compile_lambda
+                                                    {
+                                                      cxt with
+                                                      st = (Assign id)
+                                                    } t_br),
+                                                  (compile_lambda
+                                                     {
+                                                       cxt with
+                                                       st = (Assign id)
+                                                     } f_br))
                                           with
-                                          | (([],Some out1),([],Some out2))
-                                              ->
-                                              (b,
-                                                (Some (E.econd e out1 out2)))
-                                          | _ ->
-                                              let v = Gen_util.gen () in
-                                              (match ((compile_lambda
-                                                         {
-                                                           cxt with
-                                                           st = (Declare v)
-                                                         } t_br),
-                                                       (compile_lambda
-                                                          {
-                                                            cxt with
-                                                            st = (Declare v)
-                                                          } f_br))
-                                               with
-                                               | (out1,out2) ->
-                                                   ((b @
-                                                       [S.if_ e
-                                                          (S.block
-                                                             (Gen_util.block_of_output
-                                                                out1))
-                                                          ~else_:(S.block
-                                                                    (
-                                                                    Gen_util.block_of_output
-                                                                    out2))]),
-                                                     (Some (E.var v)))))
-                                     | (Declare id,_) ->
+                                          | (out1,out2) ->
+                                              ((((S.variable id) :: b) @
+                                                  [S.if_ e
+                                                     (S.block
+                                                        (Gen_util.block_of_output
+                                                           out1))
+                                                     ~else_:(S.block
+                                                               (Gen_util.block_of_output
+                                                                  out2))]),
+                                                (Some (E.var id))))
+                                     | (Declare
+                                        id,_,([],Some out1),([],Some out2))
+                                         ->
+                                         ([S.variable
+                                             ~loc_exp:((E.econd e out1 out2),
+                                                        N) id], None)
+                                     | (Declare id,_,_,_) ->
                                          ((((S.variable id) :: b) @
                                              [S.if_ e
                                                 (S.block
@@ -1618,7 +1619,21 @@ module rec
                                                                     Assign id)
                                                                 } f_br)))]),
                                            None)
-                                     | ((Assign _|EffectCall ),_) ->
+                                     | (Assign
+                                        id,_,([],Some out1),([],Some out2))
+                                         ->
+                                         ([S.assign id (E.econd e out1 out2)],
+                                           None)
+                                     | (EffectCall ,true
+                                        ,([],Some out1),([],Some out2)) ->
+                                         ([S.return
+                                             (Some (E.econd e out1 out2))],
+                                           None)
+                                     | (EffectCall ,false
+                                        ,([],Some out1),([],Some out2)) ->
+                                         ([S.exp (E.econd e out1 out2)],
+                                           None)
+                                     | ((Assign _|EffectCall ),_,_,_) ->
                                          ((b @
                                              [S.if_ e
                                                 (S.block

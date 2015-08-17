@@ -71,10 +71,9 @@ var
     while(b[2]+more>new_len[1]){new_len[1]=2*new_len[1]}
     
     if(new_len[1]>Sys["max_string_length"])
-     {if(b[2]+more<=Sys["max_string_length"])
-       {new_len[1]=Sys["max_string_length"]}
-      else
-       {Pervasives["failwith"]("Buffer.add: cannot grow buffer")}
+     {b[2]+more<=Sys["max_string_length"]
+       ?new_len[1]=Sys["max_string_length"]
+       :Pervasives["failwith"]("Buffer.add: cannot grow buffer");
       }
     else
      {}
