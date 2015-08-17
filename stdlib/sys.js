@@ -81,12 +81,10 @@ var Break=CamlPrimitive["caml_set_oo_id"]([248,"Sys.Break",0]);
 var
  catch_break=
   function(on)
-   {if(on)
-     {return set_signal
-              (sigint,/* Signal_handle */[0,function(param){throw Break;}]);
-      }
-    else
-     {return set_signal(sigint,/* Signal_default */0);}
+   {return on
+            ?set_signal
+              (sigint,/* Signal_handle */[0,function(param){throw Break;}])
+            :set_signal(sigint,/* Signal_default */0);
     };
 
 var ocaml_version="4.02.3+dev1-2015-07-10";

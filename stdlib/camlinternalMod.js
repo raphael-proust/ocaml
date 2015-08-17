@@ -82,33 +82,29 @@ var
    {if(typeof shape==="number")
      {switch(shape)
        {case 0:
-         if
-          (CamlPrimitive["caml_obj_tag"](n)===
-           Obj["closure_tag"]&&
-           /* -1 for tag */n["length"]-
-           1<=
-           /* -1 for tag */o["length"]-
-           1)
-          {overwrite(o,n);
-           return CamlPrimitive["caml_obj_truncate"]
-                   (o,/* -1 for tag */n["length"]-1);
-           }
-         else
-          {return overwrite(o,function(x){return n(x);});}
+         return CamlPrimitive["caml_obj_tag"](n)===
+                 Obj["closure_tag"]&&
+                 /* -1 for tag */n["length"]-
+                 1<=
+                 /* -1 for tag */o["length"]-
+                 1
+                 ?(overwrite(o,n),
+                   CamlPrimitive["caml_obj_truncate"]
+                    (o,/* -1 for tag */n["length"]-1))
+                 :overwrite(o,function(x){return n(x);});
          
         case 1:
-         if(CamlPrimitive["caml_obj_tag"](n)===Obj["lazy_tag"])
-          {return o[1]=n[1],0;}
-         else
-          {if(CamlPrimitive["caml_obj_tag"](n)===Obj["forward_tag"])
-            {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
-             return o[1]=n[1],0;
-             }
-           else
-            {CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]);
-             return o[1]=n,0;
-             }
-           }
+         return CamlPrimitive["caml_obj_tag"](n)===Obj["lazy_tag"]
+                 ?(o[1]=n[1],0)
+                 :CamlPrimitive["caml_obj_tag"](n)===Obj["forward_tag"]
+                   ?(CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]),
+                     o[1]=
+                     n[1],
+                     0)
+                   :(CamlPrimitive["caml_obj_set_tag"](o,Obj["forward_tag"]),
+                     o[1]=
+                     n,
+                     0);
          
         case 2:
          if

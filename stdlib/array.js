@@ -40,10 +40,7 @@ var
   function(a)
    {var l=/* -1 for tag */a["length"]-1;
     
-    if(l===0)
-     {return [/* array */0];}
-    else
-     {return CamlPrimitive["caml_array_sub"](a,0,l);}
+    return l===0?[/* array */0]:CamlPrimitive["caml_array_sub"](a,0,l);
     };
 
 var
@@ -51,23 +48,19 @@ var
   function(a1,a2)
    {var l1=/* -1 for tag */a1["length"]-1;
     
-    if(l1===0)
-     {return copy(a2);}
-    else
-     {if(/* -1 for tag */a2["length"]-1===0)
-       {return CamlPrimitive["caml_array_sub"](a1,0,l1);}
-      else
-       {return a1["concat"](a2);}
-      }
+    return l1===0
+            ?copy(a2)
+            :/* -1 for tag */a2["length"]-1===0
+              ?CamlPrimitive["caml_array_sub"](a1,0,l1)
+              :a1["concat"](a2);
     };
 
 var
  sub=
   function(a,ofs,len)
-   {if(len<0||ofs>/* -1 for tag */a["length"]-1-len)
-     {return Pervasives["invalid_arg"]("Array.sub");}
-    else
-     {return CamlPrimitive["caml_array_sub"](a,ofs,len);}
+   {return len<0||ofs>/* -1 for tag */a["length"]-1-len
+            ?Pervasives["invalid_arg"]("Array.sub")
+            :CamlPrimitive["caml_array_sub"](a,ofs,len);
     };
 
 var
@@ -82,24 +75,22 @@ var
 var
  blit=
   function(a1,ofs1,a2,ofs2,len)
-   {if
-     (len<
-      0||
-      ofs1<
-      0||
-      ofs1>
-      /* -1 for tag */a1["length"]-
-      1-
-      len||
-      ofs2<
-      0||
-      ofs2>
-      /* -1 for tag */a2["length"]-
-      1-
-      len)
-     {return Pervasives["invalid_arg"]("Array.blit");}
-    else
-     {return CamlPrimitive["caml_array_blit"](a1,ofs1,a2,ofs2,len);}
+   {return len<
+            0||
+            ofs1<
+            0||
+            ofs1>
+            /* -1 for tag */a1["length"]-
+            1-
+            len||
+            ofs2<
+            0||
+            ofs2>
+            /* -1 for tag */a2["length"]-
+            1-
+            len
+            ?Pervasives["invalid_arg"]("Array.blit")
+            :CamlPrimitive["caml_array_blit"](a1,ofs1,a2,ofs2,len);
     };
 
 var
@@ -149,8 +140,7 @@ var
   function(a)
    {var
      tolist=
-      function(i,res)
-       {if(i<0){return res;}else{return tolist(i-1,/* :: */[0,a[i+1],res]);}};
+      function(i,res){return i<0?res:tolist(i-1,/* :: */[0,a[i+1],res]);};
     
     return tolist(/* -1 for tag */a["length"]-1-1,/* [] */0);
     };
@@ -224,9 +214,9 @@ var
         var x=[0,i31];
         
         if(i31+2<l)
-         {if(cmp(a[i31+1],a[i31+1+1])<0){x[1]=i31+1}else{}
+         {cmp(a[i31+1],a[i31+1+1])<0?(x[1]=i31+1,0):0;
           
-          if(cmp(a[x[1]+1],a[i31+2+1])<0){x[1]=i31+2}else{}
+          cmp(a[x[1]+1],a[i31+2+1])<0?(x[1]=i31+2,0):0;
           
           return x[1];
           }
@@ -243,10 +233,7 @@ var
       function(l,i,e)
        {var j=maxson(l,i);
         
-        if(cmp(a[j+1],e)>0)
-         {a[i+1]=a[j+1];return trickledown(l,j,e);}
-        else
-         {return a[i+1]=e,0;}
+        return cmp(a[j+1],e)>0?(a[i+1]=a[j+1],trickledown(l,j,e)):(a[i+1]=e,0);
         };
     
     var
@@ -293,12 +280,9 @@ var
                  [0,"array.ml",168,4]];
           }
         
-        if(cmp(a[father+1],e)<0)
-         {a[i+1]=a[father+1];
-          if(father>0){return trickleup(father,e);}else{return a[1]=e,0;}
-          }
-        else
-         {return a[i+1]=e,0;}
+        return cmp(a[father+1],e)<0
+                ?(a[i+1]=a[father+1],father>0?trickleup(father,e):(a[1]=e,0))
+                :(a[i+1]=e,0);
         };
     
     var l=/* -1 for tag */a["length"]-1;
@@ -330,19 +314,17 @@ var
              {dst[d+1]=s1;
               var i1$1=i1+1;
               
-              if(i1$1<src1r)
-               {return loop(i1$1,a[i1$1+1],i2,s2,d+1);}
-              else
-               {return blit(src2,i2,dst,d+1,src2r-i2);}
+              return i1$1<src1r
+                      ?loop(i1$1,a[i1$1+1],i2,s2,d+1)
+                      :blit(src2,i2,dst,d+1,src2r-i2);
               }
             else
              {dst[d+1]=s2;
               var i2$1=i2+1;
               
-              if(i2$1<src2r)
-               {return loop(i1,s1,i2$1,src2[i2$1+1],d+1);}
-              else
-               {return blit(a,i1,dst,d+1,src1r-i1);}
+              return i2$1<src2r
+                      ?loop(i1,s1,i2$1,src2[i2$1+1],d+1)
+                      :blit(a,i1,dst,d+1,src1r-i1);
               }
             };
         

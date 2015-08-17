@@ -320,23 +320,20 @@ var
                    !(is_in_char_set(set,before)&&is_in_char_set(set,after));
             };
         
-        if(is_alone(93)){buffer_add_char(buf,93)}else{}
+        is_alone(93)?buffer_add_char(buf,93):0;
         
         print_out(set,1);
-        if(is_alone(45)){return buffer_add_char(buf,45);}else{return 0;}
+        return is_alone(45)?buffer_add_char(buf,45):0;
         };
     
     var
      print_out=
       function(set,i)
-       {if(i<256)
-         {if(is_in_char_set(set,Pervasives["char_of_int"](i)))
-           {return print_first(set,i);}
-          else
-           {return print_out(set,i+1);}
-          }
-        else
-         {return 0;}
+       {return i<256
+                ?is_in_char_set(set,Pervasives["char_of_int"](i))
+                  ?print_first(set,i)
+                  :print_out(set,i+1)
+                :0;
         };
     
     var
@@ -390,13 +387,9 @@ var
           
           switch(exit)
            {case 376:
-             if(!is_in_char_set(set,Pervasives["char_of_int"](i+1)))
-              {print_char(buf,i-1);
-               print_char(buf,i);
-               return print_out(set,i+2);
-               }
-             else
-              {return print_in(set,i-1,i+2);}
+             return !is_in_char_set(set,Pervasives["char_of_int"](i+1))
+                     ?(print_char(buf,i-1),print_char(buf,i),print_out(set,i+2))
+                     :print_in(set,i-1,i+2);
              
             }
           }
@@ -407,14 +400,12 @@ var
     var
      print_in=
       function(set,i,j)
-       {if(j===256||!is_in_char_set(set,Pervasives["char_of_int"](j)))
-         {print_char(buf,i);
-          print_char(buf,45);
-          print_char(buf,j-1);
-          if(j<256){return print_out(set,j+1);}else{return 0;}
-          }
-        else
-         {return print_in(set,i,j+1);}
+       {return j===256||!is_in_char_set(set,Pervasives["char_of_int"](j))
+                ?(print_char(buf,i),
+                  print_char(buf,45),
+                  print_char(buf,j-1),
+                  j<256?print_out(set,j+1):0)
+                :print_in(set,i,j+1);
         };
     
     var
@@ -422,14 +413,11 @@ var
       function(buf,i)
        {var c=Pervasives["char_of_int"](i);
         
-        if(c!==37)
-         {if(c!==64)
-           {return buffer_add_char(buf,c);}
-          else
-           {buffer_add_char(buf,37);return buffer_add_char(buf,64);}
-          }
-        else
-         {buffer_add_char(buf,37);return buffer_add_char(buf,37);}
+        return c!==37
+                ?c!==64
+                  ?buffer_add_char(buf,c)
+                  :(buffer_add_char(buf,37),buffer_add_char(buf,64))
+                :(buffer_add_char(buf,37),buffer_add_char(buf,37));
         };
     
     buffer_add_char(buf,91);
@@ -452,8 +440,7 @@ var
 
 var
  bprint_ignored_flag=
-  function(buf,ign_flag)
-   {if(ign_flag){return buffer_add_char(buf,95);}else{return 0;}};
+  function(buf,ign_flag){return ign_flag?buffer_add_char(buf,95):0;};
 
 var
  bprint_pad_opt=
@@ -495,8 +482,7 @@ var
  bprint_precision=
   function(buf,prec)
    {if(typeof prec==="number")
-     {if(prec!==0){return buffer_add_string(buf,".*");}else{return /* () */0;}
-      }
+     {return prec!==0?buffer_add_string(buf,".*"):/* () */0;}
     else
      {var n=prec[1];
       
@@ -636,11 +622,7 @@ var
 var
  bprint_char_literal=
   function(buf,chr)
-   {if(chr!==37)
-     {return buffer_add_char(buf,chr);}
-    else
-     {return buffer_add_string(buf,"%%");}
-    };
+   {return chr!==37?buffer_add_char(buf,chr):buffer_add_string(buf,"%%");};
 
 var
  bprint_string_literal=
@@ -2120,11 +2102,7 @@ var
 var
  fmtty_of_precision_fmtty=
   function(prec,fmtty)
-   {if(typeof prec==="number")
-     {if(prec!==0){return /* Int_ty */[2,fmtty];}else{return fmtty;}}
-    else
-     {return fmtty;}
-    };
+   {return typeof prec==="number"?prec!==0?/* Int_ty */[2,fmtty]:fmtty:fmtty;};
 
 var
  Type_mismatch=
@@ -3535,20 +3513,18 @@ var
        {case 0:$$String["blit"](str,0,res,0,len);
         case 1:$$String["blit"](str,0,res,width$1-len,len);
         case 2:
-         if
-          (len>
-           0&&
-           (str["charCodeAt"](0)===
-            43||
-            str["charCodeAt"](0)===
-            45||
-            str["charCodeAt"](0)===
-            32))
-          {res[0]=
-           str["charCodeAt"](0),
-           $$String["blit"](str,1,res,width$1-len+1,len-1)}
-         else
-          {len>
+         len>
+          0&&
+          (str["charCodeAt"](0)===
+           43||
+           str["charCodeAt"](0)===
+           45||
+           str["charCodeAt"](0)===
+           32)
+          ?(res[0]=
+            str["charCodeAt"](0),
+            $$String["blit"](str,1,res,width$1-len+1,len-1))
+          :len>
             1&&
             str["charCodeAt"](0)===
             48&&
@@ -3557,7 +3533,6 @@ var
               str["charCodeAt"](1),
               $$String["blit"](str,2,res,width$1-len+2,len-2))
             :$$String["blit"](str,0,res,width$1-len,len);
-           }
          
         }
       
@@ -3788,14 +3763,9 @@ var
       
       var match=CamlPrimitive["caml_classify_float"](x);
       
-      if(match!==3)
-       {if(match>=4)
-         {return "nan";}
-        else
-         {if(is_valid(0)){return str;}else{return Pervasives["^"](str,".");}}
-        }
-      else
-       {if(x<0){return "neg_infinity";}else{return "infinity";}}
+      return match!==3
+              ?match>=4?"nan":is_valid(0)?str:Pervasives["^"](str,".")
+              :x<0?"neg_infinity":"infinity";
       }
     };
 
@@ -4284,20 +4254,17 @@ var
      {switch(match)
        {case 0:
          if(typeof match$1==="number")
-          {if(match$1!==0)
-            {return function(p,x)
-              {var str=fix_int_precision(p,trans(iconv,x));
-               
-               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
-               };
-             }
-           else
-            {return function(x)
-              {var str=trans(iconv,x);
-               
-               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
-               };
-             }
+          {return match$1!==0
+                   ?function(p,x)
+                     {var str=fix_int_precision(p,trans(iconv,x));
+                      
+                      return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
+                      }
+                   :function(x)
+                     {var str=trans(iconv,x);
+                      
+                      return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
+                      };
            }
          else
           {var p=match$1[1];
@@ -4406,20 +4373,17 @@ var
      {switch(match)
        {case 0:
          if(typeof match$1==="number")
-          {if(match$1!==0)
-            {return function(p,x)
-              {var str=convert_float(fconv,p,x);
-               
-               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
-               };
-             }
-           else
-            {return function(x)
-              {var str=convert_float(fconv,default_float_precision,x);
-               
-               return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
-               };
-             }
+          {return match$1!==0
+                   ?function(p,x)
+                     {var str=convert_float(fconv,p,x);
+                      
+                      return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
+                      }
+                   :function(x)
+                     {var str=convert_float(fconv,default_float_precision,x);
+                      
+                      return make_printf(k,o,/* Acc_data_string */[4,acc,str],fmt);
+                      };
            }
          else
           {var p=match$1[1];
@@ -4861,7 +4825,7 @@ var
             
             var switcher=-97+match;
             
-            if(25<switcher>>>0){return j;}else{return parse_lword(i,j+1);}
+            return 25<switcher>>>0?j:parse_lword(i,j+1);
             }
           };
       
@@ -4915,8 +4879,7 @@ var
       
       var exp_end=parse_spaces(nend);
       
-      var match;
-      if(exp_end!==len){match=invalid_box(/* () */0);}else{match=0;}
+      var match=exp_end!==len?invalid_box(/* () */0):0;
       
       var exit;
       
@@ -4965,10 +4928,9 @@ var
  make_precision_fmt_ebb=
   function(prec,fmt)
    {if(typeof prec==="number")
-     {if(prec!==0)
-       {return /* Precision_fmt_EBB */[0,/* Arg_precision */1,fmt];}
-      else
-       {return /* Precision_fmt_EBB */[0,/* No_precision */0,fmt];}
+     {return prec!==0
+              ?/* Precision_fmt_EBB */[0,/* Arg_precision */1,fmt]
+              :/* Precision_fmt_EBB */[0,/* No_precision */0,fmt];
       }
     else
      {var p=prec[1];
@@ -5157,14 +5119,13 @@ var
     var
      parse_ign=
       function(pct_ind,str_ind,end_ind)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var match=str["charCodeAt"](str_ind);
         
-        if(match!==95)
-         {return parse_flags(pct_ind,str_ind,end_ind,/* false */0);}
-        else
-         {return parse_flags(pct_ind,str_ind+1,end_ind,/* true */1);}
+        return match!==95
+                ?parse_flags(pct_ind,str_ind,end_ind,/* false */0)
+                :parse_flags(pct_ind,str_ind+1,end_ind,/* true */1);
         };
     
     var
@@ -5183,8 +5144,8 @@ var
         var
          set_flag=
           function(str_ind,flag)
-           {if(flag[1]&&!legacy_behavior$1)
-             {failwith_message
+           {flag[1]&&!legacy_behavior$1
+             ?failwith_message
                ([/* Format */0,
                  [/* String_literal */11,
                   "invalid format ",
@@ -5202,9 +5163,8 @@ var
                  "invalid format %S: at character number %d, duplicate flag %C"],
                 str,
                 str_ind,
-                str["charCodeAt"](str_ind))}
-            else
-             {}
+                str["charCodeAt"](str_ind))
+             :0;
             
             return flag[1]=/* true */1,0;
             };
@@ -5212,7 +5172,7 @@ var
         var
          read_flags=
           function(str_ind)
-           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+           {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
             
             var match=str["charCodeAt"](str_ind);
             
@@ -5266,25 +5226,21 @@ var
     var
      parse_padding=
       function(pct_ind,str_ind,end_ind,zero,minus,plus,sharp,space,ign)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var match=zero;
         
         var match$1=minus;
         
-        var padty;
-        if(match!==0)
-         {if(match$1!==0)
-           {if(legacy_behavior$1)
-             {padty=/* Left */0;}
-            else
-             {padty=incompatible_flag(pct_ind,str_ind,45,"0");}
-            }
-          else
-           {padty=/* Zeros */2;}
-          }
-        else
-         {if(match$1!==0){padty=/* Left */0;}else{padty=/* Right */1;}}
+        var
+         padty=
+          match!==0
+           ?match$1!==0
+             ?legacy_behavior$1
+               ?/* Left */0
+               :incompatible_flag(pct_ind,str_ind,45,"0")
+             :/* Zeros */2
+           :match$1!==0?/* Left */0:/* Right */1;
         
         var match$2=str["charCodeAt"](str_ind);
         
@@ -5333,10 +5289,9 @@ var
          {case 16:
            switch(padty)
             {case 0:
-              if(!legacy_behavior$1)
-               {invalid_format_without(str_ind-1,45,"padding")}
-              else
-               {}
+              !legacy_behavior$1
+               ?invalid_format_without(str_ind-1,45,"padding")
+               :0;
               
               return parse_after_padding
                       (pct_ind,
@@ -5381,12 +5336,12 @@ var
     var
      parse_after_padding=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var symb=str["charCodeAt"](str_ind);
         
-        if(symb!==46)
-         {return parse_conversion
+        return symb!==46
+                ?parse_conversion
                   (pct_ind,
                    str_ind+1,
                    end_ind,
@@ -5397,18 +5352,15 @@ var
                    pad,
                    /* No_precision */0,
                    pad,
-                   symb);
-          }
-        else
-         {return parse_precision
+                   symb)
+                :parse_precision
                   (pct_ind,str_ind+1,end_ind,minus,plus,sharp,space,ign,pad);
-          }
         };
     
     var
      parse_precision=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var
          parse_literal$1=
@@ -5475,8 +5427,8 @@ var
             {exit=19;}
            
           case 19:
-           if(legacy_behavior$1)
-            {return parse_after_precision
+           return legacy_behavior$1
+                   ?parse_after_precision
                      (pct_ind,
                       str_ind,
                       end_ind,
@@ -5486,10 +5438,8 @@ var
                       space,
                       ign,
                       pad,
-                      [/* Lit_precision */0,0]);
-             }
-           else
-            {return invalid_format_without(str_ind-1,46,"precision");}
+                      [/* Lit_precision */0,0])
+                   :invalid_format_without(str_ind-1,46,"precision");
            
           }
         };
@@ -5497,7 +5447,7 @@ var
     var
      parse_after_precision=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad,prec)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var
          parse_conv=
@@ -5608,10 +5558,9 @@ var
                  if(match>=2)
                   {var width=pad[2];
                    
-                   if(legacy_behavior$1)
-                    {return /* Lit_padding */[0,/* Right */1,width];}
-                   else
-                    {return incompatible_flag(pct_ind,str_ind,symb,"0");}
+                   return legacy_behavior$1
+                           ?/* Lit_padding */[0,/* Right */1,width]
+                           :incompatible_flag(pct_ind,str_ind,symb,"0");
                    }
                  else
                   {return pad;}
@@ -5619,14 +5568,11 @@ var
                 case 1:
                  var match$1=pad[1];
                  
-                 if(match$1>=2)
-                  {if(legacy_behavior$1)
-                    {return [/* Arg_padding */1,/* Right */1];}
-                   else
-                    {return incompatible_flag(pct_ind,str_ind,symb,"0");}
-                   }
-                 else
-                  {return pad;}
+                 return match$1>=2
+                         ?legacy_behavior$1
+                           ?[/* Arg_padding */1,/* Right */1]
+                           :incompatible_flag(pct_ind,str_ind,symb,"0")
+                         :pad;
                  
                 }}
             };
@@ -5645,19 +5591,17 @@ var
                   {case 0:
                     var width=pad[2];
                     
-                    if(legacy_behavior$1)
-                     {return /* Some */[0,width];}
-                    else
-                     {return incompatible_flag(pct_ind,str_ind,c,"'-'");}
+                    return legacy_behavior$1
+                            ?/* Some */[0,width]
+                            :incompatible_flag(pct_ind,str_ind,c,"'-'");
                     
                    case 1:var width$1=pad[2];return /* Some */[0,width$1];
                    case 2:
                     var width$2=pad[2];
                     
-                    if(legacy_behavior$1)
-                     {return /* Some */[0,width$2];}
-                    else
-                     {return incompatible_flag(pct_ind,str_ind,c,"'0'");}
+                    return legacy_behavior$1
+                            ?/* Some */[0,width$2]
+                            :incompatible_flag(pct_ind,str_ind,c,"'0'");
                     
                    }
                  
@@ -5677,10 +5621,9 @@ var
            {var match=get_prec(/* () */0);
             
             if(typeof match==="number")
-             {if(match!==0)
-               {return incompatible_flag(pct_ind,str_ind,95,"'*'");}
-              else
-               {return /* None */0;}
+             {return match!==0
+                      ?incompatible_flag(pct_ind,str_ind,95,"'*'")
+                      :/* None */0;
               }
             else
              {var ndec=match[1];return /* Some */[0,ndec];}
@@ -5797,13 +5740,11 @@ var
              
              var fmt_rest$2=match$3[1];
              
-             if(get_ign(/* () */0))
-              {fmt_result=
-               /* Fmt_EBB */[0,
-                /* Ignored_param */[23,/* Ignored_caml_char */1,fmt_rest$2]];
-               }
-             else
-              {fmt_result=/* Fmt_EBB */[0,/* Caml_char */[1,fmt_rest$2]];}
+             fmt_result=
+             get_ign(/* () */0)
+              ?/* Fmt_EBB */[0,
+                /* Ignored_param */[23,/* Ignored_caml_char */1,fmt_rest$2]]
+              :/* Fmt_EBB */[0,/* Caml_char */[1,fmt_rest$2]];
              
             case 68:exit=63;
             case 69:exit=66;
@@ -5910,25 +5851,21 @@ var
              var
               char_format=
                function(fmt_rest)
-                {if(get_ign(/* () */0))
-                  {return /* Fmt_EBB */[0,
-                           /* Ignored_param */[23,/* Ignored_char */0,fmt_rest]];
-                   }
-                 else
-                  {return /* Fmt_EBB */[0,/* Char */[0,fmt_rest]];}
+                {return get_ign(/* () */0)
+                         ?/* Fmt_EBB */[0,
+                           /* Ignored_param */[23,/* Ignored_char */0,fmt_rest]]
+                         :/* Fmt_EBB */[0,/* Char */[0,fmt_rest]];
                  };
              
              var
               scan_format=
                function(fmt_rest)
-                {if(get_ign(/* () */0))
-                  {return /* Fmt_EBB */[0,
+                {return get_ign(/* () */0)
+                         ?/* Fmt_EBB */[0,
                            /* Ignored_param */[23,
                             /* Ignored_scan_next_char */4,
-                            fmt_rest]];
-                   }
-                 else
-                  {return /* Fmt_EBB */[0,/* Scan_next_char */[22,fmt_rest]];}
+                            fmt_rest]]
+                         :/* Fmt_EBB */[0,/* Scan_next_char */[22,fmt_rest]];
                  };
              
              var match$10=parse(str_ind,end_ind);
@@ -5940,14 +5877,12 @@ var
              if(match$11)
               {var _n=match$11[1];
                
-               if(_n!==0)
-                {if(!legacy_behavior$1)
-                  {fmt_result=invalid_nonnull_char_width(str_ind);}
-                 else
-                  {fmt_result=char_format(fmt_rest$7);}
-                 }
-               else
-                {fmt_result=scan_format(fmt_rest$7);}
+               fmt_result=
+               _n!==0
+                ?!legacy_behavior$1
+                  ?invalid_nonnull_char_width(str_ind)
+                  :char_format(fmt_rest$7)
+                :scan_format(fmt_rest$7);
                }
              else
               {fmt_result=char_format(fmt_rest$7);}
@@ -5971,13 +5906,11 @@ var
              
              var fmt_rest$8=match$12[1];
              
-             if(get_ign(/* () */0))
-              {fmt_result=
-               /* Fmt_EBB */[0,
-                /* Ignored_param */[23,/* Ignored_reader */3,fmt_rest$8]];
-               }
-             else
-              {fmt_result=/* Fmt_EBB */[0,/* Reader */[19,fmt_rest$8]];}
+             fmt_result=
+             get_ign(/* () */0)
+              ?/* Fmt_EBB */[0,
+                /* Ignored_param */[23,/* Ignored_reader */3,fmt_rest$8]]
+              :/* Fmt_EBB */[0,/* Reader */[19,fmt_rest$8]];
              
             case 115:
              var pad$2=check_no_0(symb,get_padprec(/* () */0));
@@ -6103,10 +6036,10 @@ var
                      if(match$23>=2)
                       {var n=match$21[2];
                        
-                       if(legacy_behavior$1)
-                        {pad$3=/* Lit_padding */[0,/* Right */1,n];}
-                       else
-                        {pad$3=incompatible_flag(pct_ind,str_ind,48,"precision");}
+                       pad$3=
+                       legacy_behavior$1
+                        ?/* Lit_padding */[0,/* Right */1,n]
+                        :incompatible_flag(pct_ind,str_ind,48,"precision");
                        }
                      else
                       {var pad$5=match$21;pad$3=pad$5;}
@@ -6116,10 +6049,10 @@ var
                      
                      var pad$3;
                      if(match$24>=2)
-                      {if(legacy_behavior$1)
-                        {pad$3=[/* Arg_padding */1,/* Right */1];}
-                       else
-                        {pad$3=incompatible_flag(pct_ind,str_ind,48,"precision");}
+                      {pad$3=
+                       legacy_behavior$1
+                        ?[/* Arg_padding */1,/* Right */1]
+                        :incompatible_flag(pct_ind,str_ind,48,"precision");
                        }
                      else
                       {var pad$6=match$21;pad$3=pad$6;}
@@ -6208,14 +6141,12 @@ var
            
            var fmt_rest$15=match$29[1];
            
-           var fmt_result;
-           if(get_ign(/* () */0))
-            {fmt_result=
-             /* Fmt_EBB */[0,
-              /* Ignored_param */[23,/* Ignored_bool */2,fmt_rest$15]];
-             }
-           else
-            {fmt_result=/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$15]];}
+           var
+            fmt_result=
+             get_ign(/* () */0)
+              ?/* Fmt_EBB */[0,
+                /* Ignored_param */[23,/* Ignored_bool */2,fmt_rest$15]]
+              :/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$15]];
            
           case 68:
            var c=symb;
@@ -6439,39 +6370,30 @@ var
           }
         
         if(!legacy_behavior$1)
-         {if(!plus_used[1]&&plus)
-           {incompatible_flag(pct_ind,str_ind,symb,"'+'")}
-          else
-           {}
+         {!plus_used[1]&&plus?incompatible_flag(pct_ind,str_ind,symb,"'+'"):0;
           
-          if(!sharp_used[1]&&sharp)
-           {incompatible_flag(pct_ind,str_ind,symb,"'#'")}
-          else
-           {}
+          !sharp_used[1]&&sharp
+           ?incompatible_flag(pct_ind,str_ind,symb,"'#'")
+           :0;
           
-          if(!space_used[1]&&space)
-           {incompatible_flag(pct_ind,str_ind,symb,"' '")}
-          else
-           {}
+          !space_used[1]&&space
+           ?incompatible_flag(pct_ind,str_ind,symb,"' '")
+           :0;
           
-          if
-           (!pad_used[1]&&
-            CamlPrimitive["caml_notequal"]
-             (/* Padding_EBB */[0,pad],[/* Padding_EBB */0,/* No_padding */0]))
-           {incompatible_flag(pct_ind,str_ind,symb,"`padding'")}
-          else
-           {}
+          !pad_used[1]&&
+           CamlPrimitive["caml_notequal"]
+            (/* Padding_EBB */[0,pad],[/* Padding_EBB */0,/* No_padding */0])
+           ?incompatible_flag(pct_ind,str_ind,symb,"`padding'")
+           :0;
           
-          if
-           (!prec_used[1]&&
-            CamlPrimitive["caml_notequal"]
-             (/* Precision_EBB */[0,prec],
-              [/* Precision_EBB */0,/* No_precision */0]))
-           {incompatible_flag(pct_ind,str_ind,ign?95:symb,"`precision'")}
-          else
-           {}
+          !prec_used[1]&&
+           CamlPrimitive["caml_notequal"]
+            (/* Precision_EBB */[0,prec],
+             [/* Precision_EBB */0,/* No_precision */0])
+           ?incompatible_flag(pct_ind,str_ind,ign?95:symb,"`precision'")
+           :0;
           
-          if(ign&&plus){incompatible_flag(pct_ind,str_ind,95,"'+'")}else{}
+          ign&&plus?incompatible_flag(pct_ind,str_ind,95,"'+'"):0;
           }
         else
          {}
@@ -6742,13 +6664,11 @@ var
             
             var sub_format=/* Format */[0,sub_fmt,sub_str];
             
-            var formatting;
-            if(is_open_tag)
-             {formatting=/* Open_tag */[0,sub_format];}
-            else
-             {check_open_box(sub_fmt);
-              formatting=/* Open_box */[1,sub_format];
-              }
+            var
+             formatting=
+              is_open_tag
+               ?/* Open_tag */[0,sub_format]
+               :(check_open_box(sub_fmt),/* Open_box */[1,sub_format]);
             
             return /* Fmt_EBB */[0,
                     /* Formatting_gen */[18,formatting,fmt_rest]];
@@ -6762,11 +6682,11 @@ var
             
             var sub_format$1=[/* Format */0,/* End_of_format */0,""];
             
-            var formatting$1;
-            if(is_open_tag)
-             {formatting$1=/* Open_tag */[0,sub_format$1];}
-            else
-             {formatting$1=/* Open_box */[1,sub_format$1];}
+            var
+             formatting$1=
+              is_open_tag
+               ?/* Open_tag */[0,sub_format$1]
+               :/* Open_box */[1,sub_format$1];
             
             return /* Fmt_EBB */[0,
                     /* Formatting_gen */[18,formatting$1,fmt_rest$1]];
@@ -6968,7 +6888,7 @@ var
     var
      parse_char_set=
       function(str_ind,end_ind)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var char_set=create_char_set(/* () */0);
         
@@ -7016,7 +6936,7 @@ var
         var
          parse_char_set_start=
           function(str_ind,end_ind)
-           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+           {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
             
             var c=str["charCodeAt"](str_ind);
             
@@ -7026,24 +6946,21 @@ var
         var
          parse_char_set_content=
           function(str_ind,end_ind)
-           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+           {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
             
             var c=str["charCodeAt"](str_ind);
             
-            if(c!==45)
-             {if(c!==93)
-               {return parse_char_set_after_char(str_ind+1,end_ind,c);}
-              else
-               {return str_ind+1;}
-              }
-            else
-             {add_char(45);return parse_char_set_content(str_ind+1,end_ind);}
+            return c!==45
+                    ?c!==93
+                      ?parse_char_set_after_char(str_ind+1,end_ind,c)
+                      :str_ind+1
+                    :(add_char(45),parse_char_set_content(str_ind+1,end_ind));
             };
         
         var
          parse_char_set_after_char=
           function(str_ind,end_ind,c)
-           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+           {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
             
             var c$prime=str["charCodeAt"](str_ind);
             
@@ -7079,7 +6996,7 @@ var
               case 132:
                var c$prime$1=c$prime;
                
-               if(c===37){fail_single_percent(str_ind)}else{}
+               c===37?fail_single_percent(str_ind):0;
                
                add_char(c);
                return parse_char_set_after_char(str_ind+1,end_ind,c$prime$1);
@@ -7090,20 +7007,18 @@ var
         var
          parse_char_set_after_minus=
           function(str_ind,end_ind,c)
-           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+           {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
             
             var c$prime=str["charCodeAt"](str_ind);
             
             if(c$prime!==37)
-             {if(c$prime!==93)
-               {add_range(c,c$prime);
-                return parse_char_set_content(str_ind+1,end_ind);
-                }
-              else
-               {add_char(c);add_char(45);return str_ind+1;}
+             {return c$prime!==93
+                      ?(add_range(c,c$prime),
+                        parse_char_set_content(str_ind+1,end_ind))
+                      :(add_char(c),add_char(45),str_ind+1);
               }
             else
-             {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
+             {str_ind+1===end_ind?unexpected_end_of_format(end_ind):0;
               
               var c$prime$1=str["charCodeAt"](str_ind+1);
               
@@ -7127,15 +7042,15 @@ var
               }
             };
         
-        if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+        str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var match=str["charCodeAt"](str_ind);
         
-        var match$1;
-        if(match!==94)
-         {match$1=/* tuple */[0,str_ind,/* false */0];}
-        else
-         {match$1=/* tuple */[0,str_ind+1,/* true */1];}
+        var
+         match$1=
+          match!==94
+           ?/* tuple */[0,str_ind,/* false */0]
+           :/* tuple */[0,str_ind+1,/* true */1];
         
         var reverse=match$1[2];
         
@@ -7153,18 +7068,17 @@ var
     var
      parse_spaces=
       function(str_ind,end_ind)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
-        if(str["charCodeAt"](str_ind)===32)
-         {return parse_spaces(str_ind+1,end_ind);}
-        else
-         {return str_ind;}
+        return str["charCodeAt"](str_ind)===32
+                ?parse_spaces(str_ind+1,end_ind)
+                :str_ind;
         };
     
     var
      parse_positive=
       function(str_ind,end_ind,acc)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var c=str["charCodeAt"](str_ind);
         
@@ -7175,8 +7089,8 @@ var
         else
          {var new_acc=acc*10+(c-48);
           
-          if(new_acc>Sys["max_string_length"])
-           {return failwith_message
+          return new_acc>Sys["max_string_length"]
+                  ?failwith_message
                     ([/* Format */0,
                       [/* String_literal */11,
                        "invalid format ",
@@ -7198,17 +7112,15 @@ var
                       "invalid format %S: integer %d is greater than the limit %d"],
                      str,
                      new_acc,
-                     Sys["max_string_length"]);
-            }
-          else
-           {return parse_positive(str_ind+1,end_ind,new_acc);}
+                     Sys["max_string_length"])
+                  :parse_positive(str_ind+1,end_ind,new_acc);
           }
         };
     
     var
      parse_integer=
       function(str_ind,end_ind)
-       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
+       {str_ind===end_ind?unexpected_end_of_format(end_ind):0;
         
         var match=str["charCodeAt"](str_ind);
         
@@ -7224,7 +7136,7 @@ var
          {if(match!==45)
            {exit=148;}
           else
-           {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
+           {str_ind+1===end_ind?unexpected_end_of_format(end_ind):0;
             
             var c=str["charCodeAt"](str_ind+1);
             
@@ -7258,27 +7170,22 @@ var
       function(lit_start,str_ind,fmt)
        {var size=str_ind-lit_start;
         
-        if(size!==0)
-         {if(size!==1)
-           {return /* Fmt_EBB */[0,
+        return size!==0
+                ?size!==1
+                  ?/* Fmt_EBB */[0,
                     /* String_literal */[11,
                      $$String["sub"](str,lit_start,size),
-                     fmt]];
-            }
-          else
-           {return /* Fmt_EBB */[0,
-                    /* Char_literal */[12,str["charCodeAt"](lit_start),fmt]];
-            }
-          }
-        else
-         {return /* Fmt_EBB */[0,fmt];}
+                     fmt]]
+                  :/* Fmt_EBB */[0,
+                    /* Char_literal */[12,str["charCodeAt"](lit_start),fmt]]
+                :/* Fmt_EBB */[0,fmt];
         };
     
     var
      search_subformat_end=
       function(str_ind,end_ind,c)
-       {if(str_ind===end_ind)
-         {failwith_message
+       {str_ind===end_ind
+         ?failwith_message
            ([/* Format */0,
              [/* String_literal */11,
               "invalid format ",
@@ -7299,16 +7206,15 @@ var
              'invalid format %S: unclosed sub-format, expected "%%%c" at character number %d'],
             str,
             c,
-            end_ind)}
-        else
-         {}
+            end_ind)
+         :0;
         
         var match=str["charCodeAt"](str_ind);
         
         if(match!==37)
          {return search_subformat_end(str_ind+1,end_ind,c);}
         else
-         {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
+         {str_ind+1===end_ind?unexpected_end_of_format(end_ind):0;
           
           if(str["charCodeAt"](str_ind+1)===c)
            {return str_ind;}
@@ -7340,10 +7246,7 @@ var
                {if(match$1>=96)
                  {exit=155;}
                 else
-                 {if(str_ind+2===end_ind)
-                   {unexpected_end_of_format(end_ind)}
-                  else
-                   {}
+                 {str_ind+2===end_ind?unexpected_end_of_format(end_ind):0;
                   
                   var match$2=str["charCodeAt"](str_ind+2);
                   
@@ -7611,42 +7514,31 @@ var
            
            switch(exit$1)
             {case 163:
-              if(legacy_behavior$1)
-               {return compute_int_conv
-                        (pct_ind,str_ind,plus,/* false */0,space,symb);
-                }
-              else
-               {return incompatible_flag(pct_ind,str_ind,symb,"'#'");}
+              return legacy_behavior$1
+                      ?compute_int_conv
+                        (pct_ind,str_ind,plus,/* false */0,space,symb)
+                      :incompatible_flag(pct_ind,str_ind,symb,"'#'");
               
              }
            
           case 160:
            if(match!==0)
-            {if(match$2!==0)
-              {if(legacy_behavior$1)
-                {return compute_int_conv
-                         (pct_ind,str_ind,plus,sharp,/* false */0,symb);
-                 }
-               else
-                {return incompatible_flag(pct_ind,str_ind,32,"'+'");}
-               }
-             else
-              {if(legacy_behavior$1)
-                {return compute_int_conv
-                         (pct_ind,str_ind,/* false */0,sharp,space,symb);
-                 }
-               else
-                {return incompatible_flag(pct_ind,str_ind,symb,"'+'");}
-               }
+            {return match$2!==0
+                     ?legacy_behavior$1
+                       ?compute_int_conv
+                         (pct_ind,str_ind,plus,sharp,/* false */0,symb)
+                       :incompatible_flag(pct_ind,str_ind,32,"'+'")
+                     :legacy_behavior$1
+                       ?compute_int_conv
+                         (pct_ind,str_ind,/* false */0,sharp,space,symb)
+                       :incompatible_flag(pct_ind,str_ind,symb,"'+'");
              }
            else
             {if(match$2!==0)
-              {if(legacy_behavior$1)
-                {return compute_int_conv
-                         (pct_ind,str_ind,plus,sharp,/* false */0,symb);
-                 }
-               else
-                {return incompatible_flag(pct_ind,str_ind,symb,"' '");}
+              {return legacy_behavior$1
+                       ?compute_int_conv
+                         (pct_ind,str_ind,plus,sharp,/* false */0,symb)
+                       :incompatible_flag(pct_ind,str_ind,symb,"' '");
                }
              else
               {throw [0,
@@ -7669,12 +7561,9 @@ var
         
         if(match!==0)
          {if(match$1!==0)
-           {if(legacy_behavior$1)
-             {return compute_float_conv
-                      (pct_ind,str_ind,plus,/* false */0,symb);
-              }
-            else
-             {return incompatible_flag(pct_ind,str_ind,32,"'+'");}
+           {return legacy_behavior$1
+                    ?compute_float_conv(pct_ind,str_ind,plus,/* false */0,symb)
+                    :incompatible_flag(pct_ind,str_ind,32,"'+'");
             }
           else
            {var exit;
@@ -7708,12 +7597,9 @@ var
             
             switch(exit)
              {case 164:
-               if(legacy_behavior$1)
-                {return compute_float_conv
-                         (pct_ind,str_ind,/* false */0,space,symb);
-                 }
-               else
-                {return incompatible_flag(pct_ind,str_ind,symb,"'+'");}
+               return legacy_behavior$1
+                       ?compute_float_conv(pct_ind,str_ind,/* false */0,space,symb)
+                       :incompatible_flag(pct_ind,str_ind,symb,"'+'");
                
               }
             }
@@ -7751,12 +7637,9 @@ var
             
             switch(exit$1)
              {case 165:
-               if(legacy_behavior$1)
-                {return compute_float_conv
-                         (pct_ind,str_ind,plus,/* false */0,symb);
-                 }
-               else
-                {return incompatible_flag(pct_ind,str_ind,symb,"' '");}
+               return legacy_behavior$1
+                       ?compute_float_conv(pct_ind,str_ind,plus,/* false */0,symb)
+                       :incompatible_flag(pct_ind,str_ind,symb,"' '");
                
               }
             }

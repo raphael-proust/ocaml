@@ -69,11 +69,7 @@ var
     
     var r=CamlPrimitive["caml_create_string"](len);
     
-    var match;
-    if(left<0)
-     {match=/* tuple */[0,-left,0];}
-    else
-     {match=/* tuple */[0,0,left];}
+    var match=left<0?/* tuple */[0,-left,0]:/* tuple */[0,0,left];
     
     var dstoff=match[2];
     
@@ -81,10 +77,7 @@ var
     
     var cpylen=Pervasives["min"](s["length"]-srcoff,len-dstoff);
     
-    if(cpylen>0)
-     {CamlPrimitive["caml_blit_string"](s,srcoff,r,dstoff,cpylen)}
-    else
-     {}
+    cpylen>0?CamlPrimitive["caml_blit_string"](s,srcoff,r,dstoff,cpylen):0;
     
     return r;
     };
@@ -92,28 +85,25 @@ var
 var
  fill=
   function(s,ofs,len,c)
-   {if(ofs<0||len<0||ofs>s["length"]-len)
-     {return Pervasives["invalid_arg"]("String.fill / Bytes.fill");}
-    else
-     {return CamlPrimitive["caml_fill_string"](s,ofs,len,c);}
+   {return ofs<0||len<0||ofs>s["length"]-len
+            ?Pervasives["invalid_arg"]("String.fill / Bytes.fill")
+            :CamlPrimitive["caml_fill_string"](s,ofs,len,c);
     };
 
 var
  blit=
   function(s1,ofs1,s2,ofs2,len)
-   {if(len<0||ofs1<0||ofs1>s1["length"]-len||ofs2<0||ofs2>s2["length"]-len)
-     {return Pervasives["invalid_arg"]("Bytes.blit");}
-    else
-     {return CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);}
+   {return len<0||ofs1<0||ofs1>s1["length"]-len||ofs2<0||ofs2>s2["length"]-len
+            ?Pervasives["invalid_arg"]("Bytes.blit")
+            :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);
     };
 
 var
  blit_string=
   function(s1,ofs1,s2,ofs2,len)
-   {if(len<0||ofs1<0||ofs1>s1["length"]-len||ofs2<0||ofs2>s2["length"]-len)
-     {return Pervasives["invalid_arg"]("String.blit / Bytes.blit_string");}
-    else
-     {return CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);}
+   {return len<0||ofs1<0||ofs1>s1["length"]-len||ofs2<0||ofs2>s2["length"]-len
+            ?Pervasives["invalid_arg"]("String.blit / Bytes.blit_string")
+            :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);
     };
 
 var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}return 0;};
@@ -199,7 +189,7 @@ var
     
     while(j[1]>=i[1]&&is_space(s[j[1]])){j[0]--}
     
-    if(j[1]>=i[1]){return sub(s,i[1],j[1]-i[1]+1);}else{return empty;}
+    return j[1]>=i[1]?sub(s,i[1],j[1]-i[1]+1):empty;
     };
 
 var
@@ -224,8 +214,7 @@ var
       
       var $js$1;
       switch(exit)
-       {case 30:
-         if(CamlPrimitive["caml_is_printable"](c)){$js$1=1;}else{$js$1=4;}
+       {case 30:$js$1=CamlPrimitive["caml_is_printable"](c)?1:4;
         case 29:$js$1=2;
         }
       n[1]=n[1]+$js$1}
@@ -363,7 +352,7 @@ var
    {if(i>=lim)
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     else
-     {if(s[i]===c){return i;}else{return index_rec(s,lim,i+1,c);}}
+     {return s[i]===c?i:index_rec(s,lim,i+1,c);}
     };
 
 var index=function(s,c){return index_rec(s,s["length"],0,c);};
@@ -373,11 +362,9 @@ var
   function(s,i,c)
    {var l=s["length"];
     
-    if(i<0||i>l)
-     {return Pervasives["invalid_arg"]("String.index_from / Bytes.index_from");
-      }
-    else
-     {return index_rec(s,l,i,c);}
+    return i<0||i>l
+            ?Pervasives["invalid_arg"]("String.index_from / Bytes.index_from")
+            :index_rec(s,l,i,c);
     };
 
 var
@@ -386,7 +373,7 @@ var
    {if(i<0)
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     else
-     {if(s[i]===c){return i;}else{return rindex_rec(s,i-1,c);}}
+     {return s[i]===c?i:rindex_rec(s,i-1,c);}
     };
 
 var rindex=function(s,c){return rindex_rec(s,s["length"]-1,c);};
@@ -394,12 +381,10 @@ var rindex=function(s,c){return rindex_rec(s,s["length"]-1,c);};
 var
  rindex_from=
   function(s,i,c)
-   {if(i<-1||i>=s["length"])
-     {return Pervasives["invalid_arg"]
-              ("String.rindex_from / Bytes.rindex_from");
-      }
-    else
-     {return rindex_rec(s,i,c);}
+   {return i<-1||i>=s["length"]
+            ?Pervasives["invalid_arg"]
+              ("String.rindex_from / Bytes.rindex_from")
+            :rindex_rec(s,i,c);
     };
 
 var

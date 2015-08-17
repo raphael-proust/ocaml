@@ -34,8 +34,7 @@ var
     for(var i=0;i<=s["length"]-1;i++){accu[1]=223*accu[1]+s["charCodeAt"](i)}
     
     accu[1]=accu[1]&(1<<31)-1;
-    var tag;
-    if(accu[1]>1073741823){tag=accu[1]-(1<<31);}else{tag=accu[1];}
+    var tag=accu[1]>1073741823?accu[1]-(1<<31):accu[1];
     
     return tag;
     };
@@ -70,9 +69,7 @@ var table_count=[0,0];
 
 var dummy_met=CamlPrimitive["caml_obj_block"](0,0);
 
-var
- fit_size=
-  function(n){if(n<=2){return n;}else{return fit_size((n+1)/2)*2;}};
+var fit_size=function(n){return n<=2?n:fit_size((n+1)/2)*2;};
 
 var
  new_table=
@@ -156,10 +153,9 @@ var
  set_method=
   function(table,label,element)
    {method_count[0]++;
-    if(Labs[22](label,table[4]))
-     {return put(table,label,element);}
-    else
-     {return table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]],0;}
+    return Labs[22](label,table[4])
+            ?put(table,label,element)
+            :(table[6]=/* :: */[0,/* tuple */[0,label,element],table[6]],0);
     };
 
 var
@@ -175,10 +171,7 @@ var
       }
     };
 
-var
- to_list=
-  function(arr)
-   {if(arr===0){return /* [] */0;}else{return $$Array["to_list"](arr);}};
+var to_list=function(arr){return arr===0?/* [] */0:$$Array["to_list"](arr);};
 
 var
  narrow=
@@ -200,11 +193,7 @@ var
     table[7]=
     Vars[11]
      (function(lab,info,tvars)
-       {if(List["mem"](lab,vars$1))
-         {return Vars[4](lab,info,tvars);}
-        else
-         {return tvars;}
-        },
+       {return List["mem"](lab,vars$1)?Vars[4](lab,info,tvars):tvars;},
       table[7],
       Vars[1]);
     var by_name=[0,Meths[1]];
@@ -241,10 +230,7 @@ var
             (function(met,hm)
               {var lab=met[1];
                
-               if(List["mem"](lab,virt_meth_labs))
-                {return hm;}
-               else
-                {return /* :: */[0,met,hm];}
+               return List["mem"](lab,virt_meth_labs)?hm:/* :: */[0,met,hm];
                },
              table[6],
              /* [] */0),
@@ -281,10 +267,7 @@ var
             (function(met,hm)
               {var lab=met[1];
                
-               if(List["mem"](lab,virt_meths))
-                {return hm;}
-               else
-                {return /* :: */[0,met,hm];}
+               return List["mem"](lab,virt_meths)?hm:/* :: */[0,met,hm];
                },
              table[6],
              saved_hidden_meths),
@@ -304,10 +287,9 @@ var
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var index=new_slot(table);
         
-        if(CamlPrimitive["caml_string_notequal"](name,""))
-         {table[7]=Vars[4](name,index,table[7])}
-        else
-         {}
+        CamlPrimitive["caml_string_notequal"](name,"")
+         ?(table[7]=Vars[4](name,index,table[7]),0)
+         :0;
         
         return index;
         }
@@ -318,12 +300,7 @@ var
 
 var
  to_array=
-  function(arr)
-   {if(CamlPrimitive["caml_equal"](arr,0))
-     {return [/* array */0];}
-    else
-     {return arr;}
-    };
+  function(arr){return CamlPrimitive["caml_equal"](arr,0)?[/* array */0]:arr;};
 
 var
  new_methods_variables=
@@ -407,8 +384,7 @@ var
     var $$super=param[2];
     
     narrow(cla,vals,virt_meths,concr_meths);
-    var init;
-    if(top){init=$$super(cla,env);}else{init=$$super(cla);}
+    var init=top?$$super(cla,env):$$super(cla);
     
     widen(cla);
     return $$Array["concat"]
@@ -495,10 +471,7 @@ var
 var
  run_initializers=
   function(obj,table)
-   {var inits=table[8];
-    
-    if(inits!==/* [] */0){return iter_f(obj,inits);}else{return 0;}
-    };
+   {var inits=table[8];return inits!==/* [] */0?iter_f(obj,inits):0;};
 
 var
  run_initializers_opt=
@@ -506,12 +479,7 @@ var
    {if(obj_0)
      {return obj;}
     else
-     {var inits=table[8];
-      
-      if(inits!==/* [] */0){iter_f(obj,inits)}else{}
-      
-      return obj;
-      }
+     {var inits=table[8];inits!==/* [] */0?iter_f(obj,inits):0;return obj;}
     };
 
 var
@@ -570,10 +538,9 @@ var
   function(root,keys)
    {var root$1=root;
     
-    if(root$1[2]!==/* Empty */0)
-     {return lookup_keys(/* -1 for tag */keys["length"]-1-1,keys,root$1[2]);}
-    else
-     {return build_path(/* -1 for tag */keys["length"]-1-1,keys,root$1);}
+    return root$1[2]!==/* Empty */0
+            ?lookup_keys(/* -1 for tag */keys["length"]-1-1,keys,root$1[2])
+            :build_path(/* -1 for tag */keys["length"]-1-1,keys,root$1);
     };
 
 var get_const=function(x){return function(obj){return x;};};
@@ -693,11 +660,7 @@ var
   function(table)
    {var n=new_method(table);
     
-    var n$1;
-    if(n%2===0||n>2+table[2][2]*16/Sys["word_size"])
-     {n$1=n;}
-    else
-     {n$1=new_method(table);}
+    var n$1=n%2===0||n>2+table[2][2]*16/Sys["word_size"]?n:new_method(table);
     
     table[2][n$1+1]=0;
     return n$1;

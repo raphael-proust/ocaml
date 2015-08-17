@@ -10,14 +10,9 @@ var Sys=require("./sys.js");
 var
  create=
   function(n)
-   {var n$1;
-    if(n<1){n$1=1;}else{n$1=n;}
+   {var n$1=n<1?1:n;
     
-    var n$2;
-    if(n$1>Sys["max_string_length"])
-     {n$2=Sys["max_string_length"];}
-    else
-     {n$2=n$1;}
+    var n$2=n$1>Sys["max_string_length"]?Sys["max_string_length"]:n$1;
     
     var s=CamlPrimitive["caml_create_string"](n$2);
     
@@ -31,28 +26,34 @@ var to_bytes=function(b){return Bytes["sub"](b[1],0,b[2]);};
 var
  sub=
   function(b,ofs,len)
-   {if(ofs<0||len<0||ofs>b[2]-len)
-     {return Pervasives["invalid_arg"]("Buffer.sub");}
-    else
-     {return Bytes["sub_string"](b[1],ofs,len);}
+   {return ofs<0||len<0||ofs>b[2]-len
+            ?Pervasives["invalid_arg"]("Buffer.sub")
+            :Bytes["sub_string"](b[1],ofs,len);
     };
 
 var
  blit=
   function(src,srcoff,dst,dstoff,len)
-   {if(len<0||srcoff<0||srcoff>src[2]-len||dstoff<0||dstoff>dst["length"]-len)
-     {return Pervasives["invalid_arg"]("Buffer.blit");}
-    else
-     {return Bytes["blit"](src[1],srcoff,dst,dstoff,len);}
+   {return len<
+            0||
+            srcoff<
+            0||
+            srcoff>
+            src[2]-
+            len||
+            dstoff<
+            0||
+            dstoff>
+            dst["length"]-
+            len
+            ?Pervasives["invalid_arg"]("Buffer.blit")
+            :Bytes["blit"](src[1],srcoff,dst,dstoff,len);
     };
 
 var
  nth=
   function(b,ofs)
-   {if(ofs<0||ofs>=b[2])
-     {return Pervasives["invalid_arg"]("Buffer.nth");}
-    else
-     {return b[1][ofs];}
+   {return ofs<0||ofs>=b[2]?Pervasives["invalid_arg"]("Buffer.nth"):b[1][ofs];
     };
 
 var length=function(b){return b[2];};
@@ -70,13 +71,11 @@ var
     
     while(b[2]+more>new_len[1]){new_len[1]=2*new_len[1]}
     
-    if(new_len[1]>Sys["max_string_length"])
-     {b[2]+more<=Sys["max_string_length"]
-       ?new_len[1]=Sys["max_string_length"]
-       :Pervasives["failwith"]("Buffer.add: cannot grow buffer");
-      }
-    else
-     {}
+    new_len[1]>Sys["max_string_length"]
+     ?b[2]+more<=Sys["max_string_length"]
+       ?(new_len[1]=Sys["max_string_length"],0)
+       :Pervasives["failwith"]("Buffer.add: cannot grow buffer")
+     :0;
     
     var new_buffer=CamlPrimitive["caml_create_string"](new_len[1]);
     
@@ -88,25 +87,18 @@ var
 var
  add_char=
   function(b,c)
-   {var pos=b[2];
-    
-    if(pos>=b[3]){resize(b,1)}else{}
-    
-    b[1][pos]=c;
-    return b[2]=pos+1,0;
-    };
+   {var pos=b[2];pos>=b[3]?resize(b,1):0;b[1][pos]=c;return b[2]=pos+1,0;};
 
 var
  add_substring=
   function(b,s,offset,len)
-   {if(offset<0||len<0||offset+len>s["length"])
-     {Pervasives["invalid_arg"]("Buffer.add_substring/add_subbytes")}
-    else
-     {}
+   {offset<0||len<0||offset+len>s["length"]
+     ?Pervasives["invalid_arg"]("Buffer.add_substring/add_subbytes")
+     :0;
     
     var new_position=b[2]+len;
     
-    if(new_position>b[3]){resize(b,len)}else{}
+    new_position>b[3]?resize(b,len):0;
     
     Bytes["blit_string"](s,offset,b[1],b[2],len);
     return b[2]=new_position,0;
@@ -124,7 +116,7 @@ var
     
     var new_position=b[2]+len;
     
-    if(new_position>b[3]){resize(b,len)}else{}
+    new_position>b[3]?resize(b,len):0;
     
     Bytes["blit_string"](s,0,b[1],b[2],len);
     return b[2]=new_position,0;
@@ -139,12 +131,11 @@ var add_buffer=function(b,bs){return add_subbytes(b,bs[1],0,bs[2]);};
 var
  add_channel=
   function(b,ic,len)
-   {if(len<0||len>Sys["max_string_length"])
-     {Pervasives["invalid_arg"]("Buffer.add_channel")}
-    else
-     {}
+   {len<0||len>Sys["max_string_length"]
+     ?Pervasives["invalid_arg"]("Buffer.add_channel")
+     :0;
     
-    if(b[2]+len>b[3]){resize(b,len)}else{}
+    b[2]+len>b[3]?resize(b,len):0;
     
     Pervasives["really_input"](ic,b[1],b[2],len);
     return b[2]=b[2]+len,0;
@@ -179,14 +170,11 @@ var
        {if(i>=lim)
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         else
-         {if(s["charCodeAt"](i)===opening)
-           {return advance(k+1,i+1,lim);}
-          else
-           {if(s["charCodeAt"](i)===closing)
-             {if(k===0){return i;}else{return advance(k-1,i+1,lim);}}
-            else
-             {return advance(k,i+1,lim);}
-            }
+         {return s["charCodeAt"](i)===opening
+                  ?advance(k+1,i+1,lim)
+                  :s["charCodeAt"](i)===closing
+                    ?k===0?i:advance(k-1,i+1,lim)
+                    :advance(k,i+1,lim);
           }
         };
     
@@ -307,7 +295,7 @@ var
             }
           }
         else
-         {if(previous===92){return add_char(b,previous);}else{return 0;}}
+         {return previous===92?add_char(b,previous):0;}
         };
     
     return subst(32,0);

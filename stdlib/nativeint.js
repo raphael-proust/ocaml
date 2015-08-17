@@ -14,7 +14,7 @@ var succ=function(n){return n+1;};
 
 var pred=function(n){return n-1;};
 
-var abs=function(n){if(n>=0){return n;}else{return -n;}};
+var abs=function(n){return n>=0?n:-n;};
 
 var size=Sys["word_size"];
 

@@ -104,10 +104,7 @@ var
     
     var empty=/* Empty */0;
     
-    var
-     is_empty=
-      function(param)
-       {if(param){return /* false */0;}else{return /* true */1;}};
+    var is_empty=function(param){return param?/* false */0:/* true */1;};
     
     var
      add=
@@ -125,14 +122,9 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c===0)
-           {return /* Node */[0,l,x,data,r,h];}
-          else
-           {if(c<0)
-             {return bal(add(x,data,l),v,d,r);}
-            else
-             {return bal(l,v,d,add(x,data,r));}
-            }
+          return c===0
+                  ?/* Node */[0,l,x,data,r,h]
+                  :c<0?bal(add(x,data,l),v,d,r):bal(l,v,d,add(x,data,r));
           }
         else
          {return /* Node */[0,/* Empty */0,x,data,/* Empty */0,1];}
@@ -152,7 +144,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c===0){return d;}else{return find(x,c<0?l:r);}
+          return c===0?d:find(x,c<0?l:r);
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -201,7 +193,7 @@ var
           
           var x=param[2];
           
-          if(r){return max_binding(r);}else{return /* tuple */[0,x,d];}
+          return r?max_binding(r):/* tuple */[0,x,d];
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -267,14 +259,9 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c===0)
-           {return merge(l,r);}
-          else
-           {if(c<0)
-             {return bal(remove(x,l),v,d,r);}
-            else
-             {return bal(l,v,d,remove(x,r));}
-            }
+          return c===0
+                  ?merge(l,r)
+                  :c<0?bal(remove(x,l),v,d,r):bal(l,v,d,remove(x,r));
           }
         else
          {return /* Empty */0;}
@@ -471,14 +458,9 @@ var
             
             var ll=match[1];
             
-            if(lh>rh+2)
-             {return bal(ll,lv,ld,join(lr,v,d,r));}
-            else
-             {if(rh>lh+2)
-               {return bal(join(l,v,d,rl),rv,rd,rr);}
-              else
-               {return create(l,v,d,r);}
-              }
+            return lh>rh+2
+                    ?bal(ll,lv,ld,join(lr,v,d,r))
+                    :rh>lh+2?bal(join(l,v,d,rl),rv,rd,rr):create(l,v,d,r);
             }
           else
            {return add_max_binding(v,d,l);}
@@ -658,10 +640,7 @@ var
           
           var r$prime=filter(p,r);
           
-          if(pvd)
-           {return join(l$prime,v,d,r$prime);}
-          else
-           {return concat(l$prime,r$prime);}
+          return pvd?join(l$prime,v,d,r$prime):concat(l$prime,r$prime);
           }
         else
          {return /* Empty */0;}
@@ -693,10 +672,9 @@ var
           
           var rt=match$1[1];
           
-          if(pvd)
-           {return /* tuple */[0,join(lt,v,d,rt),concat(lf,rf)];}
-          else
-           {return /* tuple */[0,concat(lt,rt),join(lf,v,d,rf)];}
+          return pvd
+                  ?/* tuple */[0,join(lt,v,d,rt),concat(lf,rf)]
+                  :/* tuple */[0,concat(lt,rt),join(lf,v,d,rf)];
           }
         else
          {return [/* tuple */0,/* Empty */0,/* Empty */0];}
@@ -755,17 +733,16 @@ var
                 else
                  {var c$1=cmp(d1,d2);
                   
-                  if(c$1!==0)
-                   {return c$1;}
-                  else
-                   {return compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));}
+                  return c$1!==0
+                          ?c$1
+                          :compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));
                   }
                 }
               else
                {return 1;}
               }
             else
-             {if(match$1){return -1;}else{return 0;}}
+             {return match$1?-1:0;}
             };
         
         return compare_aux(cons_enum(m1,/* End */0),cons_enum(m2,/* End */0));
@@ -808,7 +785,7 @@ var
                {return /* false */0;}
               }
             else
-             {if(match$1){return /* false */0;}else{return /* true */1;}}
+             {return match$1?/* false */0:/* true */1;}
             };
         
         return equal_aux(cons_enum(m1,/* End */0),cons_enum(m2,/* End */0));

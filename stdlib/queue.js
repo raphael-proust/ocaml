@@ -43,7 +43,7 @@ var
     
     var head=tail[2];
     
-    head===tail?q[2]=/* None */0:tail[2]=head[2];
+    head===tail?(q[2]=/* None */0,0):(tail[2]=head[2],0);
     
     return head[1];
     };
@@ -90,8 +90,7 @@ var
       
       var
        iter$1=
-        function(cell)
-         {f(cell[1]);if(cell!==tail){return iter$1(cell[2]);}else{return 0;}};
+        function(cell){f(cell[1]);return cell!==tail?iter$1(cell[2]):0;};
       
       return iter$1(tail[2]);
       }
@@ -112,7 +111,7 @@ var
         function(accu,cell)
          {var accu$1=f(accu,cell[1]);
           
-          if(cell===tail){return accu$1;}else{return fold$1(accu$1,cell[2]);}
+          return cell===tail?accu$1:fold$1(accu$1,cell[2]);
           };
       
       return fold$1(accu,tail[2]);

@@ -38,11 +38,7 @@ var
                (d["charCodeAt"](3)<<24);
         };
     
-    var seed$1;
-    if(/* -1 for tag */seed["length"]-1===0)
-     {seed$1=[/* array */0,0];}
-    else
-     {seed$1=seed;}
+    var seed$1=/* -1 for tag */seed["length"]-1===0?[/* array */0,0]:seed;
     
     var l=/* -1 for tag */seed$1["length"]-1;
     
@@ -95,20 +91,14 @@ var
 var
  intaux=
   function(s,n)
-   {var r=bits(s);
-    
-    var v=r%n;
-    
-    if(r-v>1073741823-n+1){return intaux(s,n);}else{return v;}
-    };
+   {var r=bits(s);var v=r%n;return r-v>1073741823-n+1?intaux(s,n):v;};
 
 var
  $$int=
   function(s,bound)
-   {if(bound>1073741823||bound<=0)
-     {return Pervasives["invalid_arg"]("Random.int");}
-    else
-     {return intaux(s,bound);}
+   {return bound>1073741823||bound<=0
+            ?Pervasives["invalid_arg"]("Random.int")
+            :intaux(s,bound);
     };
 
 var
@@ -122,16 +112,15 @@ var
     
     var v=r%n;
     
-    if(r-v>Int32["max_int"]-n+1){return int32aux(s,n);}else{return v;}
+    return r-v>Int32["max_int"]-n+1?int32aux(s,n):v;
     };
 
 var
  int32=
   function(s,bound)
-   {if(bound<=0)
-     {return Pervasives["invalid_arg"]("Random.int32");}
-    else
-     {return int32aux(s,bound);}
+   {return bound<=0
+            ?Pervasives["invalid_arg"]("Random.int32")
+            :int32aux(s,bound);
     };
 
 var
@@ -147,23 +136,22 @@ var
     
     var v=r%n;
     
-    if(r-v>Int64["max_int"]-n+1){return int64aux(s,n);}else{return v;}
+    return r-v>Int64["max_int"]-n+1?int64aux(s,n):v;
     };
 
 var
  int64=
   function(s,bound)
-   {if(bound<=0)
-     {return Pervasives["invalid_arg"]("Random.int64");}
-    else
-     {return int64aux(s,bound);}
+   {return bound<=0
+            ?Pervasives["invalid_arg"]("Random.int64")
+            :int64aux(s,bound);
     };
 
-var nativeint;
-if(Nativeint["size"]===32)
- {nativeint=function(s,bound){return int32(s,bound);};}
-else
- {nativeint=function(s,bound){return int64(s,bound);};}
+var
+ nativeint=
+  Nativeint["size"]===32
+   ?function(s,bound){return int32(s,bound);}
+   :function(s,bound){return int64(s,bound);};
 
 var
  rawfloat=

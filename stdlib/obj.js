@@ -61,17 +61,16 @@ var
   function(x)
    {var x$1=x;
     
-    var slot;
-    if
-     (CamlPrimitive["caml_obj_is_block"](x$1)&&
-      CamlPrimitive["caml_obj_tag"](x$1)!==
-      object_tag&&
-      /* -1 for tag */x$1["length"]-
-      1>=
-      1)
-     {slot=x$1[1];}
-    else
-     {slot=x$1;}
+    var
+     slot=
+      CamlPrimitive["caml_obj_is_block"](x$1)&&
+       CamlPrimitive["caml_obj_tag"](x$1)!==
+       object_tag&&
+       /* -1 for tag */x$1["length"]-
+       1>=
+       1
+       ?x$1[1]
+       :x$1;
     
     var name;
     if

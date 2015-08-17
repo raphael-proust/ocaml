@@ -45,8 +45,7 @@ var
   function(read_fun,aux_buffer,lexbuf)
    {var read=read_fun(aux_buffer,aux_buffer["length"]);
     
-    var n;
-    if(read>0){n=read;}else{lexbuf[9]=/* true */1;n=0;}
+    var n=read>0?read:(lexbuf[9]=/* true */1,0);
     
     if(lexbuf[3]+n>lexbuf[2]["length"])
      {if(lexbuf[3]-lexbuf[5]+n<=lexbuf[2]["length"])
@@ -56,10 +55,9 @@ var
          newlen=
           Pervasives["min"](2*lexbuf[2]["length"],Sys["max_string_length"]);
         
-        if(lexbuf[3]-lexbuf[5]+n>newlen)
-         {Pervasives["failwith"]("Lexing.lex_refill: cannot grow buffer")}
-        else
-         {}
+        lexbuf[3]-lexbuf[5]+n>newlen
+         ?Pervasives["failwith"]("Lexing.lex_refill: cannot grow buffer")
+         :0;
         
         var newbuf=CamlPrimitive["caml_create_string"](newlen);
         
@@ -77,7 +75,7 @@ var
       var t=lexbuf[10];
       
       for(var i=0;i<=/* -1 for tag */t["length"]-1-1;i++)
-       {var v=t[i+1];if(v>=0){t[i+1]=v-s}else{}}
+       {var v=t[i+1];v>=0?(t[i+1]=v-s,0):0;}
       }
     else
      {}
@@ -160,8 +158,7 @@ var sub_lexeme_char=function(lexbuf,i){return lexbuf[2][i];};
 
 var
  sub_lexeme_char_opt=
-  function(lexbuf,i)
-   {if(i>=0){return /* Some */[0,lexbuf[2][i]];}else{return /* None */0;}};
+  function(lexbuf,i){return i>=0?/* Some */[0,lexbuf[2][i]]:/* None */0;};
 
 var lexeme_char=function(lexbuf,i){return lexbuf[2][lexbuf[5]+i];};
 

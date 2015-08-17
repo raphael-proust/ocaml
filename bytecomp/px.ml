@@ -1562,8 +1562,12 @@ module rec
                                 with
                                 | (b,Some e) ->
                                     (match (st, should_return,
-                                             (compile_lambda cxt t_br),
-                                             (compile_lambda cxt f_br))
+                                             (compile_lambda
+                                                { cxt with st = NeedValue }
+                                                t_br),
+                                             (compile_lambda
+                                                { cxt with st = NeedValue }
+                                                f_br))
                                      with
                                      | (NeedValue
                                         ,_,([],Some out1),([],Some out2)) ->

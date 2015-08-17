@@ -21,7 +21,7 @@ var
       ib[2]=c;
       ib[3]=/* true */1;
       ib[4]=1+ib[4];
-      if(c===10){ib[5]=1+ib[5]}else{}
+      c===10?(ib[5]=1+ib[5],0):0;
       
       return c;
       }
@@ -39,9 +39,7 @@ var
       }
     };
 
-var
- peek_char=
-  function(ib){if(ib[3]){return ib[2];}else{return next_char(ib);}};
+var peek_char=function(ib){return ib[3]?ib[2]:next_char(ib);};
 
 var
  checked_peek_char=
@@ -76,7 +74,7 @@ var
         }}
     };
 
-var char_count=function(ib){if(ib[3]){return ib[4]-1;}else{return ib[4];}};
+var char_count=function(ib){return ib[3]?ib[4]-1:ib[4];};
 
 var line_count=function(ib){return ib[5];};
 
@@ -181,10 +179,9 @@ var
            {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
           else
            {lim[1]=Pervasives["input"](ic,buf,0,len);
-            if(lim[1]===0)
-             {eof$1[1]=/* true */1;return scan_close_ic(ic);}
-            else
-             {i[1]=1;return buf[0];}
+            return lim[1]===0
+                    ?(eof$1[1]=/* true */1,scan_close_ic(ic))
+                    :(i[1]=1,buf[0]);
             }
           }
         };
@@ -523,10 +520,7 @@ var
     
     var l=tok["length"];
     
-    if(l===0||tok["charCodeAt"](0)!==43)
-     {return tok;}
-    else
-     {return $$String["sub"](tok,1,l-1);}
+    return l===0||tok["charCodeAt"](0)!==43?tok:$$String["sub"](tok,1,l-1);
     };
 
 var
@@ -691,20 +685,14 @@ var
 var
  is_binary_digit=
   function(param)
-   {var switcher=-48+param;
-    
-    if(1<switcher>>>0){return /* false */0;}else{return /* true */1;}
-    };
+   {var switcher=-48+param;return 1<switcher>>>0?/* false */0:/* true */1;};
 
 var scan_binary_int=scan_digits_plus("binary",is_binary_digit);
 
 var
  is_octal_digit=
   function(param)
-   {var switcher=-48+param;
-    
-    if(7<switcher>>>0){return /* false */0;}else{return /* true */1;}
-    };
+   {var switcher=-48+param;return 7<switcher>>>0?/* false */0:/* true */1;};
 
 var scan_octal_int=scan_digits_plus("octal",is_octal_digit);
 
@@ -1014,10 +1002,9 @@ var
            {if(stp)
              {var c$prime=stp[1];
               
-              if(c===c$prime)
-               {return Scanning[8](width,ib);}
-              else
-               {return loop(Scanning[7](width,ib,c));}
+              return c===c$prime
+                      ?Scanning[8](width,ib)
+                      :loop(Scanning[7](width,ib,c));
               }
             else
              {var exit;
@@ -1089,8 +1076,8 @@ var
       decimal_value_of_char(c1)+
       decimal_value_of_char(c2);
     
-    if(c<0||c>255)
-     {return bad_input
+    return c<0||c>255
+            ?bad_input
               (Printf["sprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -1100,27 +1087,21 @@ var
                   "bad character decimal encoding \%c%c%c"],
                  c0,
                  c1,
-                 c2));
-      }
-    else
-     {return Pervasives["char_of_int"](c);}
+                 c2))
+            :Pervasives["char_of_int"](c);
     };
 
 var
  hexadecimal_value_of_char=
-  function(c)
-   {var d=c;
-    
-    if(d>=97){return d-87;}else{if(d>=65){return d-55;}else{return d-48;}}
-    };
+  function(c){var d=c;return d>=97?d-87:d>=65?d-55:d-48;};
 
 var
  char_for_hexadecimal_code=
   function(c1,c2)
    {var c=16*hexadecimal_value_of_char(c1)+hexadecimal_value_of_char(c2);
     
-    if(c<0||c>255)
-     {return bad_input
+    return c<0||c>255
+            ?bad_input
               (Printf["sprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
@@ -1128,10 +1109,8 @@ var
                    [/* Char */0,[/* Char */0,/* End_of_format */0]]],
                   "bad character hexadecimal encoding \%c%c"],
                  c1,
-                 c2));
-      }
-    else
-     {return Pervasives["char_of_int"](c);}
+                 c2))
+            :Pervasives["char_of_int"](c);
     };
 
 var
@@ -1142,7 +1121,7 @@ var
     else
      {var c=Scanning[5](ib);
       
-      if(Scanning[15](ib)){return bad_end_of_input(message);}else{return c;}
+      return Scanning[15](ib)?bad_end_of_input(message):c;
       }
     };
 
@@ -1275,10 +1254,9 @@ var
       function(width)
        {var c=Scanning[6](ib);
         
-        if(c!==39)
-         {return character_mismatch(39,c);}
-        else
-         {return find_char(Scanning[9](width,ib));}
+        return c!==39
+                ?character_mismatch(39,c)
+                :find_char(Scanning[9](width,ib));
         };
     
     var
@@ -1286,10 +1264,9 @@ var
       function(width)
        {var c=check_next_char_for_char(width,ib);
         
-        if(c!==92)
-         {return find_stop(Scanning[7](width,ib,c));}
-        else
-         {return find_stop(scan_backslash_char(Scanning[9](width,ib),ib));}
+        return c!==92
+                ?find_stop(Scanning[7](width,ib,c))
+                :find_stop(scan_backslash_char(Scanning[9](width,ib),ib));
         };
     
     var
@@ -1297,10 +1274,7 @@ var
       function(width)
        {var c=check_next_char_for_char(width,ib);
         
-        if(c!==39)
-         {return character_mismatch(39,c);}
-        else
-         {return Scanning[9](width,ib);}
+        return c!==39?character_mismatch(39,c):Scanning[9](width,ib);
         };
     
     return find_start(width);
@@ -1314,10 +1288,9 @@ var
       function(width)
        {var c=Scanning[6](ib);
         
-        if(c!==34)
-         {return character_mismatch(34,c);}
-        else
-         {return find_stop(Scanning[9](width,ib));}
+        return c!==34
+                ?character_mismatch(34,c)
+                :find_stop(Scanning[9](width,ib));
         };
     
     var
@@ -1325,14 +1298,11 @@ var
       function(width)
        {var c=check_next_char_for_string(width,ib);
         
-        if(c!==34)
-         {if(c!==92)
-           {return find_stop(Scanning[7](width,ib,c));}
-          else
-           {return scan_backslash(Scanning[9](width,ib));}
-          }
-        else
-         {return Scanning[9](width,ib);}
+        return c!==34
+                ?c!==92
+                  ?find_stop(Scanning[7](width,ib,c))
+                  :scan_backslash(Scanning[9](width,ib))
+                :Scanning[9](width,ib);
         };
     
     var
@@ -1340,14 +1310,11 @@ var
       function(width)
        {var match=check_next_char_for_string(width,ib);
         
-        if(match!==10)
-         {if(match!==13)
-           {return find_stop(scan_backslash_char(width,ib));}
-          else
-           {return skip_newline(Scanning[9](width,ib));}
-          }
-        else
-         {return skip_spaces(Scanning[9](width,ib));}
+        return match!==10
+                ?match!==13
+                  ?find_stop(scan_backslash_char(width,ib))
+                  :skip_newline(Scanning[9](width,ib))
+                :skip_spaces(Scanning[9](width,ib));
         };
     
     var
@@ -1355,10 +1322,9 @@ var
       function(width)
        {var match=check_next_char_for_string(width,ib);
         
-        if(match!==10)
-         {return find_stop(Scanning[7](width,ib,13));}
-        else
-         {return skip_spaces(Scanning[9](width,ib));}
+        return match!==10
+                ?find_stop(Scanning[7](width,ib,13))
+                :skip_spaces(Scanning[9](width,ib));
         };
     
     var
@@ -1366,10 +1332,7 @@ var
       function(width)
        {var match=check_next_char_for_string(width,ib);
         
-        if(match!==32)
-         {return find_stop(width);}
-        else
-         {return skip_spaces(Scanning[9](width,ib));}
+        return match!==32?find_stop(width):skip_spaces(Scanning[9](width,ib));
         };
     
     return find_start(width);
@@ -1437,10 +1400,7 @@ var
       if(!Scanning[15](ib))
        {var ci=Scanning[5](ib);
         
-        if(c===ci)
-         {return Scanning[4](ib);}
-        else
-         {return character_mismatch(c,ci);}
+        return c===ci?Scanning[4](ib):character_mismatch(c,ci);
         }
       else
        {return 0;}
@@ -1988,10 +1948,9 @@ var
         case 10:
          var rest$14=fmt[1];
          
-         if(Scanning[16](ib))
-          {return make_scanf(ib,rest$14,readers);}
-         else
-          {return bad_input("end of input not found");}
+         return Scanning[16](ib)
+                 ?make_scanf(ib,rest$14,readers)
+                 :bad_input("end of input not found");
          
         case 11:
          var rest$15=fmt[2];
@@ -2445,7 +2404,7 @@ var
     for(var i=0;i<=l-1;i++)
      {var c=s["charCodeAt"](i);
       
-      if(c===34){Buffer["add_char"](b,92)}else{}
+      c===34?Buffer["add_char"](b,92):0;
       
       Buffer["add_char"](b,c)}
     

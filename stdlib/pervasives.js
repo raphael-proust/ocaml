@@ -23,17 +23,11 @@ var
 
 var Exit=CamlPrimitive["caml_set_oo_id"]([248,"Pervasives.Exit",0]);
 
-var
- min=
-  function(x,y)
-   {if(CamlPrimitive["caml_lessequal"](x,y)){return x;}else{return y;}};
+var min=function(x,y){return CamlPrimitive["caml_lessequal"](x,y)?x:y;};
 
-var
- max=
-  function(x,y)
-   {if(CamlPrimitive["caml_greaterequal"](x,y)){return x;}else{return y;}};
+var max=function(x,y){return CamlPrimitive["caml_greaterequal"](x,y)?x:y;};
 
-var abs=function(x){if(x>=0){return x;}else{return -x;}};
+var abs=function(x){return x>=0?x:-x;};
 
 var lnot=function(x){return x^-1;};
 
@@ -73,12 +67,9 @@ var
     return s;
     };
 
-var
- char_of_int=
-  function(n)
-   {if(n<0||n>255){return invalid_arg("char_of_int");}else{return n;}};
+var char_of_int=function(n){return n<0||n>255?invalid_arg("char_of_int"):n;};
 
-var string_of_bool=function(b){if(b){return "true";}else{return "false";}};
+var string_of_bool=function(b){return b?"true":"false";};
 
 var
  bool_of_string=
@@ -214,19 +205,17 @@ var
 var
  output=
   function(oc,s,ofs,len)
-   {if(ofs<0||len<0||ofs>s["length"]-len)
-     {return invalid_arg("output");}
-    else
-     {return CamlPrimitive["caml_ml_output"](oc,s,ofs,len);}
+   {return ofs<0||len<0||ofs>s["length"]-len
+            ?invalid_arg("output")
+            :CamlPrimitive["caml_ml_output"](oc,s,ofs,len);
     };
 
 var
  output_substring=
   function(oc,s,ofs,len)
-   {if(ofs<0||len<0||ofs>s["length"]-len)
-     {return invalid_arg("output_substring");}
-    else
-     {return CamlPrimitive["caml_ml_output"](oc,s,ofs,len);}
+   {return ofs<0||len<0||ofs>s["length"]-len
+            ?invalid_arg("output_substring")
+            :CamlPrimitive["caml_ml_output"](oc,s,ofs,len);
     };
 
 var
@@ -283,10 +272,9 @@ var
 var
  input=
   function(ic,s,ofs,len)
-   {if(ofs<0||len<0||ofs>s["length"]-len)
-     {return invalid_arg("input");}
-    else
-     {return CamlPrimitive["caml_ml_input"](ic,s,ofs,len);}
+   {return ofs<0||len<0||ofs>s["length"]-len
+            ?invalid_arg("input")
+            :CamlPrimitive["caml_ml_input"](ic,s,ofs,len);
     };
 
 var
@@ -307,10 +295,9 @@ var
 var
  really_input=
   function(ic,s,ofs,len)
-   {if(ofs<0||len<0||ofs>s["length"]-len)
-     {return invalid_arg("really_input");}
-    else
-     {return unsafe_really_input(ic,s,ofs,len);}
+   {return ofs<0||len<0||ofs>s["length"]-len
+            ?invalid_arg("really_input")
+            :unsafe_really_input(ic,s,ofs,len);
     };
 
 var

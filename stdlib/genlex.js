@@ -827,14 +827,11 @@ var
         if(match)
          {var c=match[1];
           
-          if(c!==41)
-           {if(c!==42)
-             {Stream["junk"](strm__);return comment(strm__);}
-            else
-             {Stream["junk"](strm__);return maybe_end_comment(strm__);}
-            }
-          else
-           {Stream["junk"](strm__);return /* () */0;}
+          return c!==41
+                  ?c!==42
+                    ?(Stream["junk"](strm__),comment(strm__))
+                    :(Stream["junk"](strm__),maybe_end_comment(strm__))
+                  :(Stream["junk"](strm__),/* () */0);
           }
         else
          {throw Stream["Failure"];}

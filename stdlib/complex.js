@@ -94,10 +94,9 @@ var
         w=Math["sqrt"](i$1)*Math["sqrt"](0.5*(q$1+Math["sqrt"](1+q$1*q$1)));
         }
       
-      if(x[1]>=0)
-       {return [/* floatarray */254,w,0.5*x[2]/w];}
-      else
-       {return [/* floatarray */254,0.5*i$1/w,x[2]>=0?w:-w];}
+      return x[1]>=0
+              ?[/* floatarray */254,w,0.5*x[2]/w]
+              :[/* floatarray */254,0.5*i$1/w,x[2]>=0?w:-w];
       }
     };
 

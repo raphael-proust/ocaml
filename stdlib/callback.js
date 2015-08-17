@@ -13,11 +13,9 @@ var
   function(name,exn)
    {var exn$1=exn;
     
-    var slot;
-    if(CamlPrimitive["caml_obj_tag"](exn$1)===Obj["object_tag"])
-     {slot=exn$1;}
-    else
-     {slot=exn$1[1];}
+    var
+     slot=
+      CamlPrimitive["caml_obj_tag"](exn$1)===Obj["object_tag"]?exn$1:exn$1[1];
     
     return CamlPrimitive["caml_register_named_value"](name,slot);
     };

@@ -91,7 +91,7 @@ var
         case 4:
          var b=d[1];
          
-         if(b[4]>=b[3]){fill_buff(b)}else{}
+         b[4]>=b[3]?fill_buff(b):0;
          
          if(b[3]===0)
           {return /* Sempty */0;}
@@ -154,12 +154,11 @@ var
         case 4:
          var b=match[1];
          
-         if(b[4]>=b[3]){fill_buff(b)}else{}
+         b[4]>=b[3]?fill_buff(b):0;
          
-         if(b[3]===0)
-          {set_data(s,/* Sempty */0);return /* None */0;}
-         else
-          {return /* Some */[0,b[2][b[4]]];}
+         return b[3]===0
+                 ?(set_data(s,/* Sempty */0),/* None */0)
+                 :/* Some */[0,b[2][b[4]]];
          
         }}
     };
@@ -187,9 +186,7 @@ var
         default:exit=24;}}
     
     switch(exit)
-     {case 24:
-       var match$2=peek(s);if(match$2){return junk(s);}else{return /* () */0;}
-      }
+     {case 24:var match$2=peek(s);return match$2?junk(s):/* () */0;}
     };
 
 var
@@ -288,10 +285,9 @@ var
             (function(param)
               {var c=count[1];
                
-               if(c<s["length"])
-                {count[0]++;return /* Some */[0,s["charCodeAt"](c)];}
-               else
-                {return /* None */0;}
+               return c<s["length"]
+                       ?(count[0]++,/* Some */[0,s["charCodeAt"](c)])
+                       :/* None */0;
                });
     };
 
@@ -304,10 +300,9 @@ var
             (function(param)
               {var c=count[1];
                
-               if(c<s["length"])
-                {count[0]++;return /* Some */[0,s[c]];}
-               else
-                {return /* None */0;}
+               return c<s["length"]
+                       ?(count[0]++,/* Some */[0,s[c]])
+                       :/* None */0;
                });
     };
 

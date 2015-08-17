@@ -206,8 +206,7 @@ var
     var
      stop=
       function(error)
-       {var progname;
-        if(initpos<l){progname=argv[initpos+1];}else{progname="(?)";}
+       {var progname=initpos<l?argv[initpos+1]:"(?)";
         
         switch(error[0])
          {case 0:
@@ -673,12 +672,7 @@ var
     
     var
      loop=
-      function(n)
-       {if(n>=len)
-         {return len;}
-        else
-         {if(s["charCodeAt"](n)===32){return loop(n+1);}else{return n;}}
-        };
+      function(n){return n>=len?len:s["charCodeAt"](n)===32?loop(n+1):n;};
     
     try
      {return loop($$String["index"](s,32));}

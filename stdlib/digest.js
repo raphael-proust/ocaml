@@ -18,10 +18,9 @@ var bytes=function(b){return string(Bytes["unsafe_to_string"](b));};
 var
  substring=
   function(str,ofs,len)
-   {if(ofs<0||len<0||ofs>str["length"]-len)
-     {return Pervasives["invalid_arg"]("Digest.substring");}
-    else
-     {return CamlPrimitive["caml_md5_string"](str,ofs,len);}
+   {return ofs<0||len<0||ofs>str["length"]-len
+            ?Pervasives["invalid_arg"]("Digest.substring")
+            :CamlPrimitive["caml_md5_string"](str,ofs,len);
     };
 
 var

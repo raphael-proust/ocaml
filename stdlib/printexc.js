@@ -45,8 +45,8 @@ var
   function(x,i)
    {var f=x[i+1];
     
-    if(!CamlPrimitive["caml_obj_is_block"](f))
-     {return Printf["sprintf"]
+    return !CamlPrimitive["caml_obj_is_block"](f)
+            ?Printf["sprintf"]
               ([/* Format */0,
                 [/* Int */4,
                  /* Int_d */0,
@@ -54,32 +54,24 @@ var
                  /* No_precision */0,
                  /* End_of_format */0],
                 "%d"],
-               f);
-      }
-    else
-     {if(CamlPrimitive["caml_obj_tag"](f)===Obj["string_tag"])
-       {return Printf["sprintf"]
+               f)
+            :CamlPrimitive["caml_obj_tag"](f)===Obj["string_tag"]
+              ?Printf["sprintf"]
                 ([/* Format */0,
                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
                   "%S"],
-                 f);
-        }
-      else
-       {if(CamlPrimitive["caml_obj_tag"](f)===Obj["double_tag"])
-         {return Pervasives["string_of_float"](f);}
-        else
-         {return "_";}
-        }
-      }
+                 f)
+              :CamlPrimitive["caml_obj_tag"](f)===Obj["double_tag"]
+                ?Pervasives["string_of_float"](f)
+                :"_";
     };
 
 var
  other_fields=
   function(x,i)
-   {if(i>=/* -1 for tag */x["length"]-1)
-     {return "";}
-    else
-     {return Printf["sprintf"]
+   {return i>=/* -1 for tag */x["length"]-1
+            ?""
+            :Printf["sprintf"]
               ([/* Format */0,
                 [/* String_literal */11,
                  ", ",
@@ -89,7 +81,6 @@ var
                 ", %s%s"],
                field(x,i),
                other_fields(x,i+1));
-      }
     };
 
 var
@@ -301,14 +292,9 @@ var
    {var
      info=
       function(is_raise)
-       {if(is_raise)
-         {if(pos===0){return "Raised at";}else{return "Re-raised at";}}
-        else
-         {if(pos===0)
-           {return "Raised by primitive operation at";}
-          else
-           {return "Called from";}
-          }
+       {return is_raise
+                ?pos===0?"Raised at":"Re-raised at"
+                :pos===0?"Raised by primitive operation at":"Called from";
         };
     
     switch(slot[0])
@@ -361,10 +347,9 @@ var
       case 1:
        var match=slot[1];
        
-       if(match!==0)
-        {return /* None */0;}
-       else
-        {return /* Some */[0,
+       return match!==0
+               ?/* None */0
+               :/* Some */[0,
                  Printf["sprintf"]
                   ([/* Format */0,
                     [/* String */2,
@@ -374,7 +359,6 @@ var
                       /* End_of_format */0]],
                     "%s unknown location"],
                    info(/* false */0))];
-         }
        
       }
     };
@@ -514,16 +498,14 @@ var
       var
        exists_usable=
         function(i)
-         {if(i!==-1)
-           {return usable_slot(backtrace[i+1])||exists_usable(i-1);}
-          else
-           {return /* false */0;}
+         {return i!==-1
+                  ?usable_slot(backtrace[i+1])||exists_usable(i-1)
+                  :/* false */0;
           };
       
-      if(exists_usable(/* -1 for tag */backtrace["length"]-1-1))
-       {return /* Some */[0,backtrace];}
-      else
-       {return /* None */0;}
+      return exists_usable(/* -1 for tag */backtrace["length"]-1-1)
+              ?/* Some */[0,backtrace]
+              :/* None */0;
       }
     else
      {return /* None */0;}
@@ -558,13 +540,7 @@ var
 var
  exn_slot=
   function(x)
-   {var x$1=x;
-    
-    if(CamlPrimitive["caml_obj_tag"](x$1)===0)
-     {return x$1[1];}
-    else
-     {return x$1;}
-    };
+   {var x$1=x;return CamlPrimitive["caml_obj_tag"](x$1)===0?x$1[1]:x$1;};
 
 var exn_slot_id=function(x){var slot=exn_slot(x);return slot[2];};
 
@@ -590,11 +566,9 @@ var
  handle_uncaught_exception$prime=
   function(exn,debugger_in_use)
    {try
-     {var raw_backtrace;
-      if(debugger_in_use)
-       {raw_backtrace=empty_backtrace;}
-      else
-       {raw_backtrace=try_get_raw_backtrace(/* () */0);}
+     {var
+       raw_backtrace=
+        debugger_in_use?empty_backtrace:try_get_raw_backtrace(/* () */0);
       
       try {Pervasives["do_at_exit"](/* () */0)}catch(exn$1){}
       

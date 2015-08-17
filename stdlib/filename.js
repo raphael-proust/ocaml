@@ -34,33 +34,24 @@ var
    {var
      find_end=
       function(n)
-       {if(n<0)
-         {return $$String["sub"](name,0,1);}
-        else
-         {if(is_dir_sep(name,n))
-           {return find_end(n-1);}
-          else
-           {return find_beg(n,n+1);}
-          }
+       {return n<0
+                ?$$String["sub"](name,0,1)
+                :is_dir_sep(name,n)?find_end(n-1):find_beg(n,n+1);
         };
     
     var
      find_beg=
       function(n,p)
-       {if(n<0)
-         {return $$String["sub"](name,0,p);}
-        else
-         {if(is_dir_sep(name,n))
-           {return $$String["sub"](name,n+1,p-n-1);}
-          else
-           {return find_beg(n-1,p);}
-          }
+       {return n<0
+                ?$$String["sub"](name,0,p)
+                :is_dir_sep(name,n)
+                  ?$$String["sub"](name,n+1,p-n-1)
+                  :find_beg(n-1,p);
         };
     
-    if(CamlPrimitive["caml_string_equal"](name,""))
-     {return current_dir_name;}
-    else
-     {return find_end(name["length"]-1);}
+    return CamlPrimitive["caml_string_equal"](name,"")
+            ?current_dir_name
+            :find_end(name["length"]-1);
     };
 
 var
@@ -69,46 +60,32 @@ var
    {var
      trailing_sep=
       function(n)
-       {if(n<0)
-         {return $$String["sub"](name,0,1);}
-        else
-         {if(is_dir_sep(name,n))
-           {return trailing_sep(n-1);}
-          else
-           {return base(n);}
-          }
+       {return n<0
+                ?$$String["sub"](name,0,1)
+                :is_dir_sep(name,n)?trailing_sep(n-1):base(n);
         };
     
     var
      base=
       function(n)
-       {if(n<0)
-         {return current_dir_name;}
-        else
-         {if(is_dir_sep(name,n))
-           {return intermediate_sep(n);}
-          else
-           {return base(n-1);}
-          }
+       {return n<0
+                ?current_dir_name
+                :is_dir_sep(name,n)?intermediate_sep(n):base(n-1);
         };
     
     var
      intermediate_sep=
       function(n)
-       {if(n<0)
-         {return $$String["sub"](name,0,1);}
-        else
-         {if(is_dir_sep(name,n))
-           {return intermediate_sep(n-1);}
-          else
-           {return $$String["sub"](name,0,n+1);}
-          }
+       {return n<0
+                ?$$String["sub"](name,0,1)
+                :is_dir_sep(name,n)
+                  ?intermediate_sep(n-1)
+                  :$$String["sub"](name,0,n+1);
         };
     
-    if(CamlPrimitive["caml_string_equal"](name,""))
-     {return current_dir_name;}
-    else
-     {return trailing_sep(name["length"]-1);}
+    return CamlPrimitive["caml_string_equal"](name,"")
+            ?current_dir_name
+            :trailing_sep(name["length"]-1);
     };
 
 var current_dir_name=".";
@@ -251,14 +228,9 @@ var
         else
          {var c=s["charCodeAt"](i);
           
-          if(c!==34)
-           {if(c!==92)
-             {Buffer["add_char"](b,c);return loop(i+1);}
-            else
-             {return loop_bs(0,i);}
-            }
-          else
-           {return loop_bs(0,i);}
+          return c!==34
+                  ?c!==92?(Buffer["add_char"](b,c),loop(i+1)):loop_bs(0,i)
+                  :loop_bs(0,i);
           }
         };
     
@@ -270,14 +242,9 @@ var
         else
          {var c=s["charCodeAt"](i);
           
-          if(c!==34)
-           {if(c!==92)
-             {add_bs(n);return loop(i);}
-            else
-             {return loop_bs(n+1,i+1);}
-            }
-          else
-           {add_bs(2*n+1);Buffer["add_char"](b,34);return loop(i+1);}
+          return c!==34
+                  ?c!==92?(add_bs(n),loop(i)):loop_bs(n+1,i+1)
+                  :(add_bs(2*n+1),Buffer["add_char"](b,34),loop(i+1));
           }
         };
     
@@ -315,13 +282,11 @@ var
 var
  drive_and_path=
   function(s)
-   {if(has_drive(s))
-     {return /* tuple */[0,
+   {return has_drive(s)
+            ?/* tuple */[0,
               $$String["sub"](s,0,2),
-              $$String["sub"](s,2,s["length"]-2)];
-      }
-    else
-     {return /* tuple */[0,"",s];}
+              $$String["sub"](s,2,s["length"]-2)]
+            :/* tuple */[0,"",s];
     };
 
 var
@@ -492,10 +457,9 @@ var
   function(dirname,filename)
    {var l=dirname["length"];
     
-    if(l===0||is_dir_sep$3(dirname,l-1))
-     {return Pervasives["^"](dirname,filename);}
-    else
-     {return Pervasives["^"](dirname,Pervasives["^"](dir_sep$3,filename));}
+    return l===0||is_dir_sep$3(dirname,l-1)
+            ?Pervasives["^"](dirname,filename)
+            :Pervasives["^"](dirname,Pervasives["^"](dir_sep$3,filename));
     };
 
 var
@@ -503,10 +467,9 @@ var
   function(name,suff)
    {var n=name["length"]-suff["length"];
     
-    if(n<0)
-     {return Pervasives["invalid_arg"]("Filename.chop_suffix");}
-    else
-     {return $$String["sub"](name,0,n);}
+    return n<0
+            ?Pervasives["invalid_arg"]("Filename.chop_suffix")
+            :$$String["sub"](name,0,n);
     };
 
 var
@@ -515,14 +478,11 @@ var
    {var
      search_dot=
       function(i)
-       {if(i<0||is_dir_sep$3(name,i))
-         {return Pervasives["invalid_arg"]("Filename.chop_extension");}
-        else
-         {if(name["charCodeAt"](i)===46)
-           {return $$String["sub"](name,0,i);}
-          else
-           {return search_dot(i-1);}
-          }
+       {return i<0||is_dir_sep$3(name,i)
+                ?Pervasives["invalid_arg"]("Filename.chop_extension")
+                :name["charCodeAt"](i)===46
+                  ?$$String["sub"](name,0,i)
+                  :search_dot(i-1);
         };
     
     return search_dot(name["length"]-1);

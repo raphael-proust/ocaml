@@ -8,14 +8,11 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var
  to_buffer=
   function(buff,ofs,len,v,flags)
-   {if(ofs<0||len<0||ofs>buff["length"]-len)
-     {return Pervasives["invalid_arg"]
-              ("Marshal.to_buffer: substring out of bounds");
-      }
-    else
-     {return CamlPrimitive["caml_output_value_to_buffer"]
+   {return ofs<0||len<0||ofs>buff["length"]-len
+            ?Pervasives["invalid_arg"]
+              ("Marshal.to_buffer: substring out of bounds")
+            :CamlPrimitive["caml_output_value_to_buffer"]
               (buff,ofs,len,v,flags);
-      }
     };
 
 var header_size=20;
@@ -23,10 +20,9 @@ var header_size=20;
 var
  data_size=
   function(buff,ofs)
-   {if(ofs<0||ofs>buff["length"]-header_size)
-     {return Pervasives["invalid_arg"]("Marshal.data_size");}
-    else
-     {return CamlPrimitive["caml_marshal_data_size"](buff,ofs);}
+   {return ofs<0||ofs>buff["length"]-header_size
+            ?Pervasives["invalid_arg"]("Marshal.data_size")
+            :CamlPrimitive["caml_marshal_data_size"](buff,ofs);
     };
 
 var total_size=function(buff,ofs){return header_size+data_size(buff,ofs);};
@@ -39,10 +35,9 @@ var
     else
      {var len=CamlPrimitive["caml_marshal_data_size"](buff,ofs);
       
-      if(ofs>buff["length"]-(header_size+len))
-       {return Pervasives["invalid_arg"]("Marshal.from_bytes");}
-      else
-       {return CamlPrimitive["caml_input_value_from_string"](buff,ofs);}
+      return ofs>buff["length"]-(header_size+len)
+              ?Pervasives["invalid_arg"]("Marshal.from_bytes")
+              :CamlPrimitive["caml_input_value_from_string"](buff,ofs);
       }
     };
 

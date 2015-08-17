@@ -83,16 +83,12 @@ var
 var
  trim=
   function(s)
-   {if(CamlPrimitive["caml_string_equal"](s,""))
-     {return s;}
-    else
-     {if
-       (is_space(s["charCodeAt"](0))||
-        is_space(s["charCodeAt"](s["length"]-1)))
-       {return bts(Bytes["trim"](bos(s)));}
-      else
-       {return s;}
-      }
+   {return CamlPrimitive["caml_string_equal"](s,"")
+            ?s
+            :is_space(s["charCodeAt"](0))||
+              is_space(s["charCodeAt"](s["length"]-1))
+              ?bts(Bytes["trim"](bos(s)))
+              :s;
     };
 
 var
@@ -119,17 +115,16 @@ var
           
           switch(exit)
            {case 15:
-             if(CamlPrimitive["caml_is_printable"](c))
-              {return needs_escape(i+1);}
-             else
-              {return /* true */1;}
+             return CamlPrimitive["caml_is_printable"](c)
+                     ?needs_escape(i+1)
+                     :/* true */1;
              
             case 13:return /* true */1;
             }
           }
         };
     
-    if(needs_escape(0)){return bts(Bytes["escaped"](bos(s)));}else{return s;}
+    return needs_escape(0)?bts(Bytes["escaped"](bos(s))):s;
     };
 
 var index=function(s,c){return Bytes["index"](bos(s),c);};

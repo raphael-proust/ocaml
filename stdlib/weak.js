@@ -43,14 +43,9 @@ var
     var
      create=
       function(sz)
-       {var sz$1;
-        if(sz<7){sz$1=7;}else{sz$1=sz;}
+       {var sz$1=sz<7?7:sz;
         
-        var sz$2;
-        if(sz$1>Sys["max_array_length"])
-         {sz$2=Sys["max_array_length"];}
-        else
-         {sz$2=sz$1;}
+        var sz$2=sz$1>Sys["max_array_length"]?Sys["max_array_length"]:sz$1;
         
         return /* record */[0,
                 CamlPrimitive["caml_make_vect"](sz$2,emptybucket),
@@ -123,10 +118,9 @@ var
             else
              {var match=CamlPrimitive["caml_weak_check"](b,i);
               
-              if(match!==0)
-               {f(b,t[2][j+1],i);return iter_bucket(i+1,j,b);}
-              else
-               {return iter_bucket(i+1,j,b);}
+              return match!==0
+                      ?(f(b,t[2][j+1],i),iter_bucket(i+1,j,b))
+                      :iter_bucket(i+1,j,b);
               }
             };
         
@@ -136,12 +130,10 @@ var
     var
      count_bucket=
       function(i,b,accu)
-       {if(i>=length(b))
-         {return accu;}
-        else
-         {return count_bucket
+       {return i>=length(b)
+                ?accu
+                :count_bucket
                   (i+1,b,accu+(CamlPrimitive["caml_weak_check"](b,i)?1:0));
-          }
         };
     
     var
@@ -171,30 +163,25 @@ var
          {var
            loop=
             function(i,j)
-             {if(j>=prev_len)
-               {if(CamlPrimitive["caml_weak_check"](bucket,i))
-                 {return loop(i+1,j);}
-                else
-                 {if(CamlPrimitive["caml_weak_check"](bucket,j))
-                   {CamlPrimitive["caml_weak_blit"](bucket,j,bucket,i,1);
-                    hbucket[i+1]=hbucket[j+1];
-                    return loop(i+1,j-1);
-                    }
-                  else
-                   {return loop(i,j-1);}
-                  }
-                }
-              else
-               {return 0;}
+             {return j>=prev_len
+                      ?CamlPrimitive["caml_weak_check"](bucket,i)
+                        ?loop(i+1,j)
+                        :CamlPrimitive["caml_weak_check"](bucket,j)
+                          ?(CamlPrimitive["caml_weak_blit"](bucket,j,bucket,i,1),
+                            hbucket[i+1]=
+                            hbucket[j+1],
+                            loop(i+1,j-1))
+                          :loop(i,j-1)
+                      :0;
               };
           
           loop(0,length(bucket)-1);
           prev_len===0
-           ?(t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[/* array */0])
+           ?(t[1][t[5]+1]=emptybucket,t[2][t[5]+1]=[/* array */0],0)
            :(CamlPrimitive["caml_obj_truncate"](bucket,prev_len+1),
              CamlPrimitive["caml_obj_truncate"](hbucket,prev_len));
           
-          if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1}else{}
+          len>t[3]&&prev_len<=t[3]?(t[4]=t[4]-1,0):0;
           }
         else
          {}
@@ -251,11 +238,10 @@ var
            {if(i>=sz)
              {var newsz=Pervasives["min"](3*sz/2+3,Sys["max_array_length"]-1);
               
-              if(newsz<=sz)
-               {Pervasives["failwith"]
-                 ("Weak.Make: hash bucket cannot grow more")}
-              else
-               {}
+              newsz<=sz
+               ?Pervasives["failwith"]
+                 ("Weak.Make: hash bucket cannot grow more")
+               :0;
               
               var newbucket=weak_create(newsz);
               
@@ -274,16 +260,14 @@ var
               else
                {}
               
-              if(t[4]>/* -1 for tag */(t[1]["length"]-1)/over_limit)
-               {return resize(t);}
-              else
-               {return 0;}
+              return t[4]>/* -1 for tag */(t[1]["length"]-1)/over_limit
+                      ?resize(t)
+                      :0;
               }
             else
-             {if(CamlPrimitive["caml_weak_check"](bucket,i))
-               {return loop(i+1);}
-              else
-               {setter(bucket,i,d);return hashes[i+1]=h,0;}
+             {return CamlPrimitive["caml_weak_check"](bucket,i)
+                      ?loop(i+1)
+                      :(setter(bucket,i,d),hashes[i+1]=h,0);
               }
             };
         

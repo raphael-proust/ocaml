@@ -6,12 +6,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var
  chr=
-  function(n)
-   {if(n<0||n>255)
-     {return Pervasives["invalid_arg"]("Char.chr");}
-    else
-     {return n;}
-    };
+  function(n){return n<0||n>255?Pervasives["invalid_arg"]("Char.chr"):n;};
 
 var
  escaped=
@@ -69,21 +64,11 @@ var
 
 var
  lowercase=
-  function(c)
-   {if(c>=65&&c<=90||c>=192&&c<=214||c>=216&&c<=222)
-     {return c+32;}
-    else
-     {return c;}
-    };
+  function(c){return c>=65&&c<=90||c>=192&&c<=214||c>=216&&c<=222?c+32:c;};
 
 var
  uppercase=
-  function(c)
-   {if(c>=97&&c<=122||c>=224&&c<=246||c>=248&&c<=254)
-     {return c-32;}
-    else
-     {return c;}
-    };
+  function(c){return c>=97&&c<=122||c>=224&&c<=246||c>=248&&c<=254?c-32:c;};
 
 var compare=function(c1,c2){return c1-c2;};
 

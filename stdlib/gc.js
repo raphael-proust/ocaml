@@ -227,12 +227,10 @@ var
 var
  call_alarm=
   function(arec)
-   {if(arec[1][1])
-     {CamlPrimitive["caml_final_register"](call_alarm,arec);
-      return arec[2](/* () */0);
-      }
-    else
-     {return 0;}
+   {return arec[1][1]
+            ?(CamlPrimitive["caml_final_register"](call_alarm,arec),
+              arec[2](/* () */0))
+            :0;
     };
 
 var

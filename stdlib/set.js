@@ -104,10 +104,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c===0)
-           {return t;}
-          else
-           {if(c<0){return bal(add(x,l),v,r);}else{return bal(l,v,add(x,r));}}
+          return c===0?t:c<0?bal(add(x,l),v,r):bal(l,v,add(x,r));
           }
         else
          {return /* Node */[0,/* Empty */0,x,/* Empty */0,1];}
@@ -174,14 +171,9 @@ var
             
             var ll=match[1];
             
-            if(lh>rh+2)
-             {return bal(ll,lv,join(lr,v,r));}
-            else
-             {if(rh>lh+2)
-               {return bal(join(l,v,rl),rv,rr);}
-              else
-               {return create(l,v,r);}
-              }
+            return lh>rh+2
+                    ?bal(ll,lv,join(lr,v,r))
+                    :rh>lh+2?bal(join(l,v,rl),rv,rr):create(l,v,r);
             }
           else
            {return add_max_element(v,l);}
@@ -206,12 +198,7 @@ var
      max_elt=
       function(param)
        {if(param)
-         {var r=param[3];
-          
-          var v=param[2];
-          
-          if(r){return max_elt(r);}else{return v;}
-          }
+         {var r=param[3];var v=param[2];return r?max_elt(r):v;}
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         };
@@ -310,10 +297,7 @@ var
     
     var empty=/* Empty */0;
     
-    var
-     is_empty=
-      function(param)
-       {if(param){return /* false */0;}else{return /* true */1;}};
+    var is_empty=function(param){return param?/* false */0:/* true */1;};
     
     var
      mem=
@@ -345,14 +329,9 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c===0)
-           {return merge(l,r);}
-          else
-           {if(c<0)
-             {return bal(remove(x,l),v,r);}
-            else
-             {return bal(l,v,remove(x,r));}
-            }
+          return c===0
+                  ?merge(l,r)
+                  :c<0?bal(remove(x,l),v,r):bal(l,v,remove(x,r));
           }
         else
          {return /* Empty */0;}
@@ -536,16 +515,13 @@ var
             
             var c=Ord[1](v1,v2);
             
-            if(c!==0)
-             {return c;}
-            else
-             {return compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));}
+            return c!==0?c:compare_aux(cons_enum(r1,e1$1),cons_enum(r2,e2$1));
             }
           else
            {return 1;}
           }
         else
-         {if(match$1){return -1;}else{return 0;}}
+         {return match$1?-1:0;}
         };
     
     var
@@ -581,18 +557,13 @@ var
             
             var c=Ord[1](v1,v2);
             
-            if(c===0)
-             {return subset(l1,l2)&&subset(r1,r2);}
-            else
-             {if(c<0)
-               {return subset(/* Node */[0,l1,v1,/* Empty */0,0],l2)&&
-                       subset(r1,t2);
-                }
-              else
-               {return subset(/* Node */[0,/* Empty */0,v1,r1,0],r2)&&
+            return c===0
+                    ?subset(l1,l2)&&subset(r1,r2)
+                    :c<0
+                      ?subset(/* Node */[0,l1,v1,/* Empty */0,0],l2)&&
+                       subset(r1,t2)
+                      :subset(/* Node */[0,/* Empty */0,v1,r1,0],r2)&&
                        subset(l1,t2);
-                }
-              }
             }
           else
            {return /* false */0;}
@@ -683,10 +654,7 @@ var
           
           var r$prime=filter(p,r);
           
-          if(pv)
-           {return join(l$prime,v,r$prime);}
-          else
-           {return concat(l$prime,r$prime);}
+          return pv?join(l$prime,v,r$prime):concat(l$prime,r$prime);
           }
         else
          {return /* Empty */0;}
@@ -716,10 +684,9 @@ var
           
           var rt=match$1[1];
           
-          if(pv)
-           {return /* tuple */[0,join(lt,v,rt),concat(lf,rf)];}
-          else
-           {return /* tuple */[0,concat(lt,rt),join(lf,v,rf)];}
+          return pv
+                  ?/* tuple */[0,join(lt,v,rt),concat(lf,rf)]
+                  :/* tuple */[0,concat(lt,rt),join(lf,v,rf)];
           }
         else
          {return [/* tuple */0,/* Empty */0,/* Empty */0];}
@@ -766,7 +733,7 @@ var
           
           var c=Ord[1](x,v);
           
-          if(c===0){return v;}else{return find(x,c<0?l:r);}
+          return c===0?v:find(x,c<0?l:r);
           }
         else
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}

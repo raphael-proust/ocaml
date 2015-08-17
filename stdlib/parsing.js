@@ -156,12 +156,9 @@ var
       else
        {current_lookahead_fun[1]=
         function(tok)
-         {if(CamlPrimitive["caml_obj_is_block"](tok))
-           {return tables[3][CamlPrimitive["caml_obj_tag"](tok)+1]===
-                   curr_char;
-            }
-          else
-           {return tables[2][tok+1]===curr_char;}
+         {return CamlPrimitive["caml_obj_is_block"](tok)
+                  ?tables[3][CamlPrimitive["caml_obj_tag"](tok)+1]===curr_char
+                  :tables[2][tok+1]===curr_char;
           };
         throw exn;
         }
@@ -183,10 +180,7 @@ var
           
           var en=env[4][env[11]-i+1+1];
           
-          if(CamlPrimitive["caml_notequal"](st,en))
-           {return st;}
-          else
-           {return loop(i-1);}
+          return CamlPrimitive["caml_notequal"](st,en)?st:loop(i-1);
           }
         };
     

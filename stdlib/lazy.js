@@ -19,10 +19,9 @@ var
   function(v)
    {var t=CamlPrimitive["caml_obj_tag"](v);
     
-    if(t===Obj["forward_tag"]||t===Obj["lazy_tag"]||t===Obj["double_tag"])
-     {return CamlPrimitive["caml_lazy_make_forward"](v);}
-    else
-     {return v;}
+    return t===Obj["forward_tag"]||t===Obj["lazy_tag"]||t===Obj["double_tag"]
+            ?CamlPrimitive["caml_lazy_make_forward"](v)
+            :v;
     };
 
 var

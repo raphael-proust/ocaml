@@ -15,10 +15,9 @@ var
         
         var h2=l2[1];
         
-        if(order(h1,h2))
-         {return /* :: */[0,h1,merge(order,t1,l2)];}
-        else
-         {return /* :: */[0,h2,merge(order,l1,t2)];}
+        return order(h1,h2)
+                ?/* :: */[0,h1,merge(order,t1,l2)]
+                :/* :: */[0,h2,merge(order,l1,t2)];
         }
       else
        {return l1;}
@@ -115,14 +114,11 @@ var
        {if(hi-lo>=6)
          {var mid=lo+hi>>>1;
           
-          if(cmp(arr[mid+1],arr[lo+1])){swap(arr,mid,lo)}else{}
+          cmp(arr[mid+1],arr[lo+1])?swap(arr,mid,lo):0;
           
-          if(cmp(arr[hi+1],arr[mid+1]))
-           {swap(arr,mid,hi);
-            if(cmp(arr[mid+1],arr[lo+1])){swap(arr,mid,lo)}else{}
-            }
-          else
-           {}
+          cmp(arr[hi+1],arr[mid+1])
+           ?(swap(arr,mid,hi),cmp(arr[mid+1],arr[lo+1])?swap(arr,mid,lo):0)
+           :0;
           
           var pivot=arr[mid+1];
           
@@ -143,14 +139,13 @@ var
             
             while(!cmp(arr[j[1]+1],pivot)){j[0]--}
             
-            if(i[1]<j[1]){swap(arr,i[1],j[1])}else{}
+            i[1]<j[1]?swap(arr,i[1],j[1]):0;
             
             i[0]++,j[0]--}
           
-          if(j[1]-lo<=hi-i[1])
-           {qsort(lo,j[1]);return qsort(i[1],hi);}
-          else
-           {qsort(i[1],hi);return qsort(lo,j[1]);}
+          return j[1]-lo<=hi-i[1]
+                  ?(qsort(lo,j[1]),qsort(i[1],hi))
+                  :(qsort(i[1],hi),qsort(lo,j[1]));
           }
         else
          {return 0;}
