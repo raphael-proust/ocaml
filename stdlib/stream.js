@@ -289,7 +289,7 @@ var
               {var c=count[1];
                
                if(c<s["length"])
-                {count[0]++;return /* Some */[0,s[c]];}
+                {count[0]++;return /* Some */[0,s["charCodeAt"](c)];}
                else
                 {return /* None */0;}
                });

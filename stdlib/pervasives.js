@@ -108,7 +108,7 @@ var
        {if(i>=l)
          {return $caret(s,".");}
         else
-         {var match$1=s[i];
+         {var match$1=s["charCodeAt"](i);
           
           var exit;
           

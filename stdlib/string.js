@@ -86,7 +86,9 @@ var
    {if(CamlPrimitive["caml_string_equal"](s,""))
      {return s;}
     else
-     {if(is_space(s[0])||is_space(s[s["length"]-1]))
+     {if
+       (is_space(s["charCodeAt"](0))||
+        is_space(s["charCodeAt"](s["length"]-1)))
        {return bts(Bytes["trim"](bos(s)));}
       else
        {return s;}
@@ -102,7 +104,7 @@ var
        {if(i>=s["length"])
          {return /* false */0;}
         else
-         {var c=s[i];
+         {var c=s["charCodeAt"](i);
           
           var exit;
           

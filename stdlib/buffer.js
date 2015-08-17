@@ -178,10 +178,10 @@ var
        {if(i>=lim)
          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
         else
-         {if(s[i]===opening)
+         {if(s["charCodeAt"](i)===opening)
            {return advance(k+1,i+1,lim);}
           else
-           {if(s[i]===closing)
+           {if(s["charCodeAt"](i)===closing)
              {if(k===0){return i;}else{return advance(k-1,i+1,lim);}}
             else
              {return advance(k,i+1,lim);}
@@ -201,7 +201,7 @@ var
        {if(i>=lim)
          {return lim;}
         else
-         {var match=s[i];
+         {var match=s["charCodeAt"](i);
           
           var exit;
           
@@ -231,7 +231,7 @@ var
    {if(start>=lim)
      {throw CamlPrimitive["caml_global_data"]["Not_found"];}
     else
-     {var c=s[start];
+     {var c=s["charCodeAt"](start);
       
       var exit;
       
@@ -270,7 +270,7 @@ var
      subst=
       function(previous,i)
        {if(i<lim)
-         {var current=s[i];
+         {var current=s["charCodeAt"](i);
           
           if(current!==36)
            {var current$1=current;

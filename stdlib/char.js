@@ -21,22 +21,22 @@ var
     if(c!==39)
      {if(c!==92)
        {if(c>=14)
-         {exit=7;}
+         {exit=5;}
         else
          {switch(c)
-           {case 0:exit=7;
-            case 1:exit=7;
-            case 2:exit=7;
-            case 3:exit=7;
-            case 4:exit=7;
-            case 5:exit=7;
-            case 6:exit=7;
-            case 7:exit=7;
+           {case 0:exit=5;
+            case 1:exit=5;
+            case 2:exit=5;
+            case 3:exit=5;
+            case 4:exit=5;
+            case 5:exit=5;
+            case 6:exit=5;
+            case 7:exit=5;
             case 8:return "\b";
             case 9:return "\t";
             case 10:return "\n";
-            case 11:exit=7;
-            case 12:exit=7;
+            case 11:exit=5;
+            case 12:exit=5;
             case 13:return "\r";
             }
           }
@@ -48,19 +48,20 @@ var
      {return "\'";}
     
     switch(exit)
-     {case 7:
+     {case 5:
        if(CamlPrimitive["caml_is_printable"](c))
-        {var s=CamlPrimitive["caml_create_string"](1);s[0]=c;return s;}
+        {return CamlPrimitive["caml_string_of_char_list"]
+                 (/* :: */[0,c,/* [] */0]);
+         }
        else
         {var n=c;
          
-         var s$1=CamlPrimitive["caml_create_string"](4);
-         
-         s$1[0]=92;
-         s$1[1]=48+n/100;
-         s$1[2]=48+n/10%10;
-         s$1[3]=48+n%10;
-         return s$1;
+         return CamlPrimitive["caml_string_of_char_list"]
+                 (/* :: */[0,
+                   92,
+                   /* :: */[0,
+                    48+n/100,
+                    /* :: */[0,48+n/10%10,/* :: */[0,48+n%10,/* [] */0]]]]);
          }
        
       }

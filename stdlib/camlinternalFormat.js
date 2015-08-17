@@ -34,7 +34,8 @@ var
    {var char_set$prime=create_char_set(/* () */0);
     
     for(var i=0;i<=31;i++)
-     {char_set$prime[i]=Pervasives["char_of_int"](char_set[i]^255)}
+     {char_set$prime[i]=
+      Pervasives["char_of_int"](char_set["charCodeAt"](i)^255)}
     
     return Bytes["unsafe_to_string"](char_set$prime);
     };
@@ -48,7 +49,7 @@ var
     
     var mask=1<<(ind&7);
     
-    return (char_set[str_ind]&mask)!==0;
+    return (char_set["charCodeAt"](str_ind)&mask)!==0;
     };
 
 var
@@ -644,7 +645,8 @@ var
 var
  bprint_string_literal=
   function(buf,str)
-   {for(var i=0;i<=str["length"]-1;i++){bprint_char_literal(buf,str[i])}
+   {for(var i=0;i<=str["length"]-1;i++)
+     {bprint_char_literal(buf,str["charCodeAt"](i))}
     return 0;
     };
 
@@ -3533,11 +3535,28 @@ var
        {case 0:$$String["blit"](str,0,res,0,len);
         case 1:$$String["blit"](str,0,res,width$1-len,len);
         case 2:
-         if(len>0&&(str[0]===43||str[0]===45||str[0]===32))
-          {res[0]=str[0],$$String["blit"](str,1,res,width$1-len+1,len-1)}
+         if
+          (len>
+           0&&
+           (str["charCodeAt"](0)===
+            43||
+            str["charCodeAt"](0)===
+            45||
+            str["charCodeAt"](0)===
+            32))
+          {res[0]=
+           str["charCodeAt"](0),
+           $$String["blit"](str,1,res,width$1-len+1,len-1)}
          else
-          {if(len>1&&str[0]===48&&(str[1]===120||str[1]===88))
-            {res[1]=str[1],$$String["blit"](str,2,res,width$1-len+2,len-2)}
+          {if
+            (len>
+             1&&
+             str["charCodeAt"](0)===
+             48&&
+             (str["charCodeAt"](1)===120||str["charCodeAt"](1)===88))
+            {res[1]=
+             str["charCodeAt"](1),
+             $$String["blit"](str,2,res,width$1-len+2,len-2)}
            else
             {$$String["blit"](str,0,res,width$1-len,len)}
            }
@@ -3555,7 +3574,7 @@ var
     
     var len=str["length"];
     
-    var c=str[0];
+    var c=str["charCodeAt"](0);
     
     var exit;
     
@@ -3577,10 +3596,16 @@ var
             case 3:exit=274;
             case 4:exit=274;
             case 5:
-             if(prec$1+2>len&&len>1&&(str[1]===120||str[1]===88))
+             if
+              (prec$1+
+               2>
+               len&&
+               len>
+               1&&
+               (str["charCodeAt"](1)===120||str["charCodeAt"](1)===88))
               {var res=Bytes["make"](prec$1+2,48);
                
-               res[1]=str[1];
+               res[1]=str["charCodeAt"](1);
                $$String["blit"](str,2,res,prec$1-len+4,len-2);
                return Bytes["unsafe_to_string"](res);
                }
@@ -3744,7 +3769,7 @@ var
          {if(i===len)
            {return /* false */0;}
           else
-           {var match=str[i];
+           {var match=str["charCodeAt"](i);
             
             var exit;
             
@@ -4815,7 +4840,7 @@ var
          {if(i===len)
            {return i;}
           else
-           {var match=str[i];
+           {var match=str["charCodeAt"](i);
             
             var exit;
             
@@ -4834,7 +4859,7 @@ var
          {if(j===len)
            {return j;}
           else
-           {var match=str[j];
+           {var match=str["charCodeAt"](j);
             
             var switcher=-97+match;
             
@@ -4848,7 +4873,7 @@ var
          {if(j===len)
            {return j;}
           else
-           {var match=str[j];
+           {var match=str["charCodeAt"](j);
             
             var exit;
             
@@ -5102,7 +5127,7 @@ var
        {if(str_ind===end_ind)
          {return add_literal(lit_start,str_ind,/* End_of_format */0);}
         else
-         {var match=str[str_ind];
+         {var match=str["charCodeAt"](str_ind);
           
           if(match!==37)
            {if(match!==64)
@@ -5134,7 +5159,7 @@ var
       function(pct_ind,str_ind,end_ind)
        {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        var match=str[str_ind];
+        var match=str["charCodeAt"](str_ind);
         
         if(match!==95)
          {return parse_flags(pct_ind,str_ind,end_ind,/* false */0);}
@@ -5177,7 +5202,7 @@ var
                  "invalid format %S: at character number %d, duplicate flag %C"],
                 str,
                 str_ind,
-                str[str_ind])}
+                str["charCodeAt"](str_ind))}
             else
              {}
             
@@ -5189,7 +5214,7 @@ var
           function(str_ind)
            {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
-            var match=str[str_ind];
+            var match=str["charCodeAt"](str_ind);
             
             var exit;
             
@@ -5261,7 +5286,7 @@ var
          {if(match$1!==0){var padty=/* Left */0;}else{var padty=/* Right */1;}
           }
         
-        var match$2=str[str_ind];
+        var match$2=str["charCodeAt"](str_ind);
         
         var exit;
         
@@ -5358,7 +5383,7 @@ var
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
        {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        var symb=str[str_ind];
+        var symb=str["charCodeAt"](str_ind);
         
         if(symb!==46)
          {return parse_conversion
@@ -5407,7 +5432,7 @@ var
                      /* Lit_precision */[0,prec]);
             };
         
-        var symb=str[str_ind];
+        var symb=str["charCodeAt"](str_ind);
         
         var exit;
         
@@ -5488,7 +5513,7 @@ var
                      pad,
                      prec,
                      padprec,
-                     str[str_ind]);
+                     str["charCodeAt"](str_ind));
             };
         
         if(typeof pad==="number")
@@ -6142,7 +6167,7 @@ var
              }
            
           case 65:
-           if(str_ind===end_ind||!is_int_base(str[str_ind]))
+           if(str_ind===end_ind||!is_int_base(str["charCodeAt"](str_ind)))
             {var match$26=parse(str_ind,end_ind);
              
              var fmt_rest$13=match$26[1];
@@ -6276,7 +6301,7 @@ var
                       get_plus(/* () */0),
                       get_sharp(/* () */0),
                       get_space(/* () */0),
-                      str[str_ind]);
+                      str["charCodeAt"](str_ind));
                   
                   var match$31=parse(str_ind+1,end_ind);
                   
@@ -6324,7 +6349,7 @@ var
                       get_plus(/* () */0),
                       get_sharp(/* () */0),
                       get_space(/* () */0),
-                      str[str_ind]);
+                      str["charCodeAt"](str_ind));
                   
                   var match$33=parse(str_ind+1,end_ind);
                   
@@ -6377,7 +6402,7 @@ var
                    get_plus(/* () */0),
                    get_sharp(/* () */0),
                    get_space(/* () */0),
-                   str[str_ind]);
+                   str["charCodeAt"](str_ind));
                
                var match$35=parse(str_ind+1,end_ind);
                
@@ -6517,7 +6542,7 @@ var
                   [/* Char_literal */12,64,/* End_of_format */0]];
           }
         else
-         {var c=str[str_ind];
+         {var c=str["charCodeAt"](str_ind);
           
           var exit;
           
@@ -6582,7 +6607,7 @@ var
                   case 3:exit=91;
                   case 4:exit=91;
                   case 5:
-                   if(str_ind+1<end_ind&&str[str_ind+1]===37)
+                   if(str_ind+1<end_ind&&str["charCodeAt"](str_ind+1)===37)
                     {var match$3=parse(str_ind+2,end_ind);
                      
                      var fmt_rest$3=match$3[1];
@@ -6724,7 +6749,7 @@ var
           else
            {}
           
-          var match=str[str_ind];
+          var match=str["charCodeAt"](str_ind);
           
           if(match!==60)
            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
@@ -6784,14 +6809,14 @@ var
      parse_good_break=
       function(str_ind,end_ind)
        {try
-         {if(str_ind===end_ind||str[str_ind]!==60)
+         {if(str_ind===end_ind||str["charCodeAt"](str_ind)!==60)
            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
           else
            {}
           
           var str_ind_1=parse_spaces(str_ind+1,end_ind);
           
-          var match=str[str_ind_1];
+          var match=str["charCodeAt"](str_ind_1);
           
           var exit;
           
@@ -6811,7 +6836,7 @@ var
              
              var str_ind_3=parse_spaces(str_ind_2,end_ind);
              
-             var match$2=str[str_ind_3];
+             var match$2=str["charCodeAt"](str_ind_3);
              
              var exit$1;
              
@@ -6829,7 +6854,7 @@ var
                  
                  var str_ind_5=parse_spaces(str_ind_4,end_ind);
                  
-                 if(str[str_ind_5]!==62)
+                 if(str["charCodeAt"](str_ind_5)!==62)
                   {throw CamlPrimitive["caml_global_data"]["Not_found"];}
                  else
                   {}
@@ -6898,7 +6923,7 @@ var
        {try
          {var str_ind_1=parse_spaces(str_ind,end_ind);
           
-          var match=str[str_ind_1];
+          var match=str["charCodeAt"](str_ind_1);
           
           var exit;
           
@@ -6918,7 +6943,7 @@ var
              
              var str_ind_3=parse_spaces(str_ind_2,end_ind);
              
-             if(str[str_ind_3]!==62)
+             if(str["charCodeAt"](str_ind_3)!==62)
               {throw CamlPrimitive["caml_global_data"]["Not_found"];}
              else
               {}
@@ -7026,7 +7051,7 @@ var
           function(str_ind,end_ind)
            {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
-            var c=str[str_ind];
+            var c=str["charCodeAt"](str_ind);
             
             return parse_char_set_after_char(str_ind+1,end_ind,c);
             };
@@ -7036,7 +7061,7 @@ var
           function(str_ind,end_ind)
            {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
-            var c=str[str_ind];
+            var c=str["charCodeAt"](str_ind);
             
             if(c!==45)
              {if(c!==93)
@@ -7053,7 +7078,7 @@ var
           function(str_ind,end_ind,c)
            {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
-            var c$prime=str[str_ind];
+            var c$prime=str["charCodeAt"](str_ind);
             
             var exit;
             
@@ -7100,7 +7125,7 @@ var
           function(str_ind,end_ind,c)
            {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
             
-            var c$prime=str[str_ind];
+            var c$prime=str["charCodeAt"](str_ind);
             
             if(c$prime!==37)
              {if(c$prime!==93)
@@ -7113,7 +7138,7 @@ var
             else
              {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
               
-              var c$prime$1=str[str_ind+1];
+              var c$prime$1=str["charCodeAt"](str_ind+1);
               
               var exit;
               
@@ -7137,7 +7162,7 @@ var
         
         if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        var match=str[str_ind];
+        var match=str["charCodeAt"](str_ind);
         
         if(match!==94)
          {var match$1=/* tuple */[0,str_ind,/* false */0];}
@@ -7162,7 +7187,7 @@ var
       function(str_ind,end_ind)
        {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        if(str[str_ind]===32)
+        if(str["charCodeAt"](str_ind)===32)
          {return parse_spaces(str_ind+1,end_ind);}
         else
          {return str_ind;}
@@ -7173,7 +7198,7 @@ var
       function(str_ind,end_ind,acc)
        {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        var c=str[str_ind];
+        var c=str["charCodeAt"](str_ind);
         
         var switcher=-48+c;
         
@@ -7217,7 +7242,7 @@ var
       function(str_ind,end_ind)
        {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}else{}
         
-        var match=str[str_ind];
+        var match=str["charCodeAt"](str_ind);
         
         var exit;
         
@@ -7233,7 +7258,7 @@ var
           else
            {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
             
-            var c=str[str_ind+1];
+            var c=str["charCodeAt"](str_ind+1);
             
             var switcher=-48+c;
             
@@ -7273,7 +7298,8 @@ var
                      fmt]];
             }
           else
-           {return /* Fmt_EBB */[0,/* Char_literal */[12,str[lit_start],fmt]];
+           {return /* Fmt_EBB */[0,
+                    /* Char_literal */[12,str["charCodeAt"](lit_start),fmt]];
             }
           }
         else
@@ -7309,17 +7335,17 @@ var
         else
          {}
         
-        var match=str[str_ind];
+        var match=str["charCodeAt"](str_ind);
         
         if(match!==37)
          {return search_subformat_end(str_ind+1,end_ind,c);}
         else
          {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}else{}
           
-          if(str[str_ind+1]===c)
+          if(str["charCodeAt"](str_ind+1)===c)
            {return str_ind;}
           else
-           {var match$1=str[str_ind+1];
+           {var match$1=str["charCodeAt"](str_ind+1);
             
             var exit;
             
@@ -7351,7 +7377,7 @@ var
                   else
                    {}
                   
-                  var match$2=str[str_ind+2];
+                  var match$2=str["charCodeAt"](str_ind+2);
                   
                   if(match$2!==40)
                    {if(match$2!==123)

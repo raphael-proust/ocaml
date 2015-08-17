@@ -56,7 +56,9 @@ var
    {var result=CamlPrimitive["caml_create_string"](32);
     
     for(var i=0;i<=15;i++)
-     {var x=d[i];result[i*2]=char_hex(x>>>4),result[i*2+1]=char_hex(x&15)}
+     {var x=d["charCodeAt"](i);
+      
+      result[i*2]=char_hex(x>>>4),result[i*2+1]=char_hex(x&15)}
     
     return Bytes["unsafe_to_string"](result);
     };
@@ -95,7 +97,10 @@ var
           }
         };
     
-    var $$byte=function(i){return (digit(s[i])<<4)+digit(s[i+1]);};
+    var
+     $$byte=
+      function(i)
+       {return (digit(s["charCodeAt"](i))<<4)+digit(s["charCodeAt"](i+1));};
     
     var result=CamlPrimitive["caml_create_string"](16);
     

@@ -108,7 +108,7 @@ var
        {if(i>=l)
          {return $caret(s,".");}
         else
-         {var match$1=s[i];
+         {var match$1=s["charCodeAt"](i);
           
           var exit;
           
@@ -463,7 +463,7 @@ var
         
         if(c===10){throw Exit;}else{}
         
-        buf[1][pos[1]]=c,pos[0]++}
+        /* unknown */"string.set",pos[0]++}
       }
     catch(exn)
      {if(exn===Exit)

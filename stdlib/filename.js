@@ -19,10 +19,10 @@ var
     
     Buffer["add_char"](b,39);
     for(var i=0;i<=l-1;i++)
-     {if(s[i]===39)
+     {if(s["charCodeAt"](i)===39)
        {Buffer["add_string"](b,quotequote)}
       else
-       {Buffer["add_char"](b,s[i])}
+       {Buffer["add_char"](b,s["charCodeAt"](i))}
       }
     
     Buffer["add_char"](b,39);
@@ -118,9 +118,9 @@ var parent_dir_name="..";
 
 var dir_sep="/";
 
-var is_dir_sep=function(s,i){return s[i]===47;};
+var is_dir_sep=function(s,i){return s["charCodeAt"](i)===47;};
 
-var is_relative=function(n){return n["length"]<1||n[0]!==47;};
+var is_relative=function(n){return n["length"]<1||n["charCodeAt"](0)!==47;};
 
 var
  is_implicit=
@@ -182,14 +182,16 @@ var parent_dir_name$1="..";
 
 var dir_sep$1="\";
 
-var is_dir_sep$1=function(s,i){var c=s[i];return c===47||c===92||c===58;};
+var
+ is_dir_sep$1=
+  function(s,i){var c=s["charCodeAt"](i);return c===47||c===92||c===58;};
 
 var
  is_relative$1=
   function(n)
-   {return (n["length"]<1||n[0]!==47)&&
-           (n["length"]<1||n[0]!==92)&&
-           (n["length"]<2||n[1]!==58);
+   {return (n["length"]<1||n["charCodeAt"](0)!==47)&&
+           (n["length"]<1||n["charCodeAt"](0)!==92)&&
+           (n["length"]<2||n["charCodeAt"](1)!==58);
     };
 
 var
@@ -246,7 +248,7 @@ var
        {if(i===l)
          {return Buffer["add_char"](b,34);}
         else
-         {var c=s[i];
+         {var c=s["charCodeAt"](i);
           
           if(c!==34)
            {if(c!==92)
@@ -265,7 +267,7 @@ var
        {if(i===l)
          {Buffer["add_char"](b,34);return add_bs(n);}
         else
-         {var c=s[i];
+         {var c=s["charCodeAt"](i);
           
           if(c!==34)
            {if(c!==92)
@@ -302,7 +304,11 @@ var
         switch(exit){case 41:return /* false */0;case 40:return /* true */1;}
         };
     
-    return s["length"]>=2&&is_letter(s[0])&&s[1]===58;
+    return s["length"]>=
+           2&&
+           is_letter(s["charCodeAt"](0))&&
+           s["charCodeAt"](1)===
+           58;
     };
 
 var
@@ -511,7 +517,7 @@ var
        {if(i<0||is_dir_sep$3(name,i))
          {return Pervasives["invalid_arg"]("Filename.chop_extension");}
         else
-         {if(name[i]===46)
+         {if(name["charCodeAt"](i)===46)
            {return $$String["sub"](name,0,i);}
           else
            {return search_dot(i-1);}

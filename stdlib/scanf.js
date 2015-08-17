@@ -137,7 +137,7 @@ var
        {if(i[1]>=len)
          {throw CamlPrimitive["caml_global_data"]["End_of_file"];}
         else
-         {var c=s[i[1]];i[0]++;return c;}
+         {var c=s["charCodeAt"](i[1]);i[0]++;return c;}
         };
     
     return create(/* From_string */0,next);
@@ -433,7 +433,7 @@ var
       }
     };
 
-var token_char=function(ib){return Scanning[10](ib)[0];};
+var token_char=function(ib){return Scanning[10](ib)["charCodeAt"](0);};
 
 var token_string=Scanning[10];
 
@@ -522,7 +522,7 @@ var
     
     var l=tok["length"];
     
-    if(l===0||tok[0]!==43)
+    if(l===0||tok["charCodeAt"](0)!==43)
      {return tok;}
     else
      {return $$String["sub"](tok,1,l-1);}
@@ -1516,7 +1516,7 @@ var
     else
      {var str=CamlinternalFormat["string_of_formatting_lit"](fmting);
       
-      var stp=str[1];
+      var stp=str["charCodeAt"](1);
       
       var sub_str=$$String["sub"](str,2,str["length"]-2);
       
@@ -2441,7 +2441,7 @@ var
     
     Buffer["add_char"](b,34);
     for(var i=0;i<=l-1;i++)
-     {var c=s[i];
+     {var c=s["charCodeAt"](i);
       
       if(c===34){Buffer["add_char"](b,92)}else{}
       

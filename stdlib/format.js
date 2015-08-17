@@ -846,7 +846,7 @@ var
         };
     
     while(right[1]!==len)
-     {var match=s[right[1]];
+     {var match=s["charCodeAt"](right[1]);
       
       if(match!==10)
        {if(match!==32)

@@ -311,7 +311,7 @@ var
     while(current$1[1]<l)
      {var s=argv[current$1[1]+1];
       
-      if(s["length"]>=1&&s[0]===45)
+      if(s["length"]>=1&&s["charCodeAt"](0)===45)
        {try
          {var action=assoc3(s,speclist[1]);}
         catch(exn)
@@ -673,7 +673,7 @@ var
        {if(n>=len)
          {return len;}
         else
-         {if(s[n]===32){return loop(n+1);}else{return n;}}
+         {if(s["charCodeAt"](n)===32){return loop(n+1);}else{return n;}}
         };
     
     try

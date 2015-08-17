@@ -4971,6 +4971,7 @@ module["exports"] = {
     // "caml_static_free" : caml_static_free,
     // "caml_static_release_bytecode" : caml_static_release_bytecode,
     // "caml_static_resize" : caml_static_resize,
+    // "caml_string_of_char_list" : caml_string_of_char_list,
     "caml_sys_chdir" : caml_sys_chdir,
     "caml_sys_close" : caml_sys_close,
     "caml_sys_const_big_endian" : caml_sys_const_big_endian,
