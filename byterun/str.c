@@ -51,6 +51,24 @@ CAMLprim value caml_create_string(value len)
   return caml_alloc_string(size);
 }
 
+CAMLprim value caml_string_of_char_array(value char_array)
+{
+  CAMLparam1(char_array);
+  CAMLlocal1(res);
+  int i = 0; 
+  mlsize_t size = Wosize_val(char_array) ;
+
+  if (size > Bsize_wsize (Max_wosize) - 1){
+    caml_invalid_argument("String.of_char_array");
+  }
+
+  res = caml_alloc_string(size);
+  for(; i < size ; ++i){
+    Byte_u(res, i) = Int_val(Field(char_array,i));
+  }
+  CAMLreturn(res);
+}
+
 CAMLprim value caml_string_of_char_list(value char_list)
 {
   CAMLparam1(char_list);

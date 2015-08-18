@@ -21,7 +21,7 @@ let chr n =
 
 external is_printable: char -> bool = "caml_is_printable"
 
-external string_of_char_list : char list -> string = "caml_string_of_char_list"
+external string_of_char_array : char array -> string = "caml_string_of_char_array"
 
 let escaped = function
   | '\'' -> "\\'"
@@ -32,14 +32,14 @@ let escaped = function
   | '\b' -> "\\b"
   | c ->
     if is_printable c then begin
-      string_of_char_list [c]
+      string_of_char_array [|c|]
     end else begin
       let n = code c in
-      string_of_char_list ['\\'; 
+      string_of_char_array [|'\\'; 
                            (unsafe_chr (48 + n / 100));
                            (unsafe_chr (48 + (n / 10) mod 10));
                            (unsafe_chr (48 + n mod 10));
-                         ]
+                           |]
     end
 
 let lowercase c =
