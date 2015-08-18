@@ -1,10 +1,16 @@
 [@@@warning "-a"]
 module B64 :
   sig
-    val default_alphabet : string
-    val uri_safe_alphabet : string
-    val decode : ?alphabet:string -> string -> string
-    val encode : ?pad:bool -> ?alphabet:string -> string -> string
+    [@@@ocaml.text
+      " Base64 is a group of similar binary-to-text encoding schemes that represent\n    binary data in an ASCII string format by translating it into a radix-64\n    representation.  It is specified in RFC 4648. "]
+    val default_alphabet : string[@@ocaml.doc
+                                   " A 64-character string specifying the regular Base64 alphabet. "]
+    val uri_safe_alphabet : string[@@ocaml.doc
+                                    " A 64-character string specifying the URI- and filename-safe Base64\n    alphabet. "]
+    val decode : ?alphabet:string -> string -> string[@@ocaml.doc
+                                                       " [decode s] decodes the string [s] that is encoded in base64 format.\n    Will leave trailing NULLs on the string, padding it out to a multiple\n    of 3 characters.  "]
+    val encode : ?pad:bool -> ?alphabet:string -> string -> string[@@ocaml.doc
+                                                                    " [encode s] encodes the string [s] into base64. If [pad] is false,\n    no trailing padding is added. "]
   end =
   struct
     let default_alphabet =
@@ -208,7 +214,8 @@ module J :
       | Right of 'right
     and variable_declaration = (ident* (expression* location) option)
     and case_clause = (expression* block)
-    and block = statement list
+    and block = statement list[@@ocaml.doc
+                                " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
   end =
   struct
     type loc =
@@ -333,7 +340,8 @@ module J :
       | Right of 'right
     and variable_declaration = (ident* (expression* location) option)
     and case_clause = (expression* block)
-    and block = statement list
+    and block = statement list[@@ocaml.doc
+                                " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
   end 
 module Util :
   sig val string_of_fmt : (Format.formatter -> 'a -> unit) -> 'a -> string
@@ -388,7 +396,8 @@ module rec
       | Visit of Types.signature_item list
       | BuiltIn
     let cached_tbl: (Ident.t,env_value) Hashtbl.t = Hashtbl.create 31
-    let reset () = Hashtbl.clear cached_tbl
+    let reset () = Hashtbl.clear cached_tbl[@@ocaml.doc
+                                             " For each compilation we need reset to make it re-entrant "]
     let add_built_in_module name =
       Hashtbl.replace cached_tbl (Ident.create_persistent name) BuiltIn
     let get_name (serializable_sigs : Types.signature_item list) (pos : int)
@@ -401,7 +410,7 @@ module rec
         | Sig_class (i,_,_) -> i
         | Sig_class_type (i,_,_) -> i
         | Sig_type (i,_,_) -> i in
-      ident.name
+      ident.name[@@ocaml.doc " Used in [Pgetglobal] "]
     type key =
       | GetGlobal of Ident.t* int* Env.t
       | CamlPrimitive of Primitive.description* J.expression list
@@ -599,7 +608,8 @@ module rec
                    E.int ~comment:"allocation_policy" 0]
              | _ -> raise X.NA in
            Some v
-         with | X.NA  -> None : J.expression option)
+         with | X.NA  -> None : J.expression option)[@@ocaml.doc
+                                                      " \nThere are two things we need consider:\n1.  For some primitives we can replace caml-primitive with js primitives directly\n2.  For some standard library functions, we prefer to replace with javascript primitives\n    For example [Pervasives[\"^\"] -> ^]\n    We can collect all mli files in OCaml and replace it with an efficient javascript runtime\n"]
     let get_exp key =
       (match key with
        | GetGlobal ((id : Ident.t),(pos : int),env) ->
@@ -629,7 +639,8 @@ module rec
             | None  ->
                 (add_built_in_module J_helper.prim;
                  E.call (E.prim prim.prim_name) args)
-            | Some x -> x) : J.expression)
+            | Some x -> x) : J.expression)[@@ocaml.doc
+                                            " Given an module name and position, find its corresponding name  "]
     let string_of_value_description id =
       Util.string_of_fmt (Printtyp.value_description id)
     let rec dump_summary fmt (x : Env.summary) =
@@ -664,6 +675,8 @@ module rec
                  type value = {
                    exit_id: Ident.t;
                    args: Ident.t list;}
+                 [@@@ocaml.text
+                   " delegate to the callee to generate expression \n      Invariant: [output] should return a trailing expression\n   "]
                  type cxt =
                    {
                    st: Gen_util.st;
@@ -682,6 +695,8 @@ module rec
     type value = {
       exit_id: Ident.t;
       args: Ident.t list;}
+    [@@@ocaml.text
+      " delegate to the callee to generate expression \n      Invariant: [output] should return a trailing expression\n   "]
     type cxt =
       {
       st: Gen_util.st;
@@ -963,7 +978,8 @@ module rec
                   (List.map (fun x  -> compile_const x) xs))
             | Const_float_array ars ->
                 E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
-            | Const_immstring s -> E.str s : J.expression)
+            | Const_immstring s -> E.str s : J.expression)[@@ocaml.doc
+                                                            " TODO: check "]
        end and
             Gen_util:sig
                        type output = (J.block* J.expression option)
@@ -971,7 +987,9 @@ module rec
                          | EffectCall
                          | Declare of J.ident
                          | NeedValue
-                         | Assign of J.ident
+                         | Assign of
+                         J.ident[@ocaml.doc
+                                  " when use [Assign], var is not needed, since it's already declared \n      make sure all [Assigs] are declared first, otherwise you are creating global variables\n   "]
                        val gen : ?name:string -> unit -> Ident.t
                        val exports :
                          Ident.t list -> J.expression list -> J.statement
@@ -981,10 +999,13 @@ module rec
                        module Ops :
                        sig val (++) : output -> output -> output end
                        val dump_output : output -> out_channel -> unit
-                       val pp_output : output -> Pp.t -> unit
+                       val pp_output : output -> Pp.t -> unit[@@ocaml.doc
+                                                               " \n    - not should_return, has name\n      assign the value \n    - should_return, has name\n      impossible\n    - not should_return, no name\n      when prue ignoe\n      otherwise make  expression statement\n    - should_return, no name\n      return it \n "]
                        val handle_name_tail :
                          st ->
                            bool -> Lambda.lambda -> J.expression -> output
+                       [@@ocaml.doc
+                         " \n    - not should_return, has name\n      assign the value \n    - should_return, has name\n      impossible\n    - not should_return, no name\n      when prue ignoe\n      otherwise make  expression statement\n    - should_return, no name\n      return it \n "]
                        val handle_block_return :
                          st ->
                            bool ->
@@ -1097,7 +1118,8 @@ module rec
                 ignore (Pp_js.program cxt p [statement_of_opt_expr exp])
             end and
                  J_helper:sig
-                            val prim : string
+                            val prim : string[@@ocaml.doc
+                                               " The [CamlPrimtivie] primitives are from this module, in the future,\n    we might split into several small modules\n"]
                             module Exp :
                             sig
                               type t = J.expression
@@ -1135,11 +1157,21 @@ module rec
                               val unknown_primitive :
                                 ?comment:string -> Lambda.primitive -> t
                               val unit : ?comment:string -> unit -> t
+                              [@@ocaml.doc
+                                " [unit] in ocaml will be compiled into [0]  in js"]
                               val js_var : ?comment:string -> string -> t
                               val undefined : ?comment:string -> unit -> t
                               val math : ?comment:string -> string -> t
+                              [@@ocaml.doc
+                                " [math \"abs\"] --> Math[\"abs\"] "]
+                              [@@ocaml.doc
+                                " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
                               val prim : ?comment:string -> string -> t
+                              [@@ocaml.doc
+                                " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
                               val global : ?comment:string -> string -> t
+                              [@@ocaml.doc
+                                " [global \"xx\"] -> CamlPrimtivie[\"caml_global_data\"][\"xx\"]\n      this name is subject to change, don't use it externally\n   "]
                               val inc : ?comment:string -> t -> t
                               val dec : ?comment:string -> t -> t
                               val null : ?comment:string -> unit -> t
@@ -1215,10 +1247,12 @@ module rec
                                   ?loc:J.location -> Lambda.lambda -> t
                               val return_unit :
                                 ?comment:string ->
-                                  ?loc:J.location -> unit -> t
+                                  ?loc:J.location -> unit -> t[@@ocaml.doc
+                                                                " for ocaml function which returns unit \n      it will be compiled into [return 0] in js "]
                             end
                           end =
                  struct
+                   [@@@ocaml.text " A module help construct js ast "]
                    let prim = "CamlPrimitive"
                    module Exp =
                      struct
@@ -1306,12 +1340,14 @@ module rec
                          match e with
                          | { expression_desc = ENum i;_} ->
                              { e with expression_desc = (ENum (i +. 1.)) }
-                         | _ -> bin ?comment Plus e (int 1)
+                         | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
+                                                             " handle comment "]
                        let inc ?comment  (e : t) =
                          match e with
                          | { expression_desc = ENum i;_} ->
                              { e with expression_desc = (ENum (i +. 1.)) }
-                         | _ -> bin ?comment Plus e (int 1)
+                         | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
+                                                             " handle comment "]
                        let dec ?comment  (e : t) =
                          match e with
                          | { expression_desc = ENum i;_} ->
@@ -1432,6 +1468,7 @@ module rec
                      end
                  end and
                       Compile_lambda:sig
+                                       [@@@ocaml.text " Main entry "]
                                        val compile :
                                          ?filename:string ->
                                            Env.t ->
@@ -1461,6 +1498,9 @@ module rec
                                  acc) l
                            | _ -> (acc, x) : ((int* Lambda.lambda* Ident.t
                                                list) list* Lambda.lambda))
+                          [@@ocaml.doc " assume outer is [Lstaticcatch] "]
+                        [@@@ocaml.text
+                          " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
                         let rec compile_lambda
                           (({ st; should_return; jmp_table; env } as cxt) :
                             Compile_defs.cxt)
@@ -1974,7 +2014,8 @@ module rec
                            | Levent (lam,_lam_event) ->
                                compile_lambda cxt lam
                            | Lifused (_,lam) -> compile_lambda cxt lam : 
-                          Gen_util.output)
+                          Gen_util.output)[@@ocaml.text
+                                            " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
                         type group =
                           | Single of (Lambda.let_kind* Ident.t*
                           Lambda.lambda)
@@ -2080,6 +2121,8 @@ module rec
                                     js
                                 | _ -> raise Not_a_module)
                            | _ -> raise Not_a_module : Gen_util.output)
+                          [@@ocaml.doc
+                            " Actually simplify_lets is kind of global optimization since it requires you to know whether \n    it's used or not \n"]
                         let lambda_as_module raw env filename
                           (lam : Lambda.lambda) =
                           let out =
@@ -3189,6 +3232,8 @@ module rec
                                                      (fun i  ->
                                                         String.make 1
                                                           ("0123456789abcdef".[i]))
+                                                 [@@@ocaml.text
+                                                   " purely functional environment "]
                                                  module SMap =
                                                    Map.Make(String)
                                                  module IMap =
@@ -3446,6 +3491,8 @@ module rec
                                                                 done;
                                                                 Buffer.contents
                                                                   buffer)))
+                                                   [@@ocaml.doc
+                                                     " TODO:\n    check name conflicts with javascript conventions\n "]
                                                  module SSet =
                                                    Set.Make(String)
                                                  let gen_symbs =
