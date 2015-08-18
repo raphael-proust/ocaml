@@ -44,7 +44,7 @@ var
       var tl=match$1[2];
       
       q[2]=tl;
-      if(tl===/* Nil */0){tl===/* Nil */0}
+      if(tl===/* Nil */0){q[1]=/* Nil */0,0}
       
       return x;
       }
@@ -277,7 +277,7 @@ var
          
          var insertion_point$1=state[6]-state[9];
          
-         if(insertion_point$1>state[8]){insertion_point$1>state[8]}
+         if(insertion_point$1>state[8]){pp_force_break_line(state)}
          
          var offset$1=state[9]-param[1];
          
@@ -398,7 +398,7 @@ var
  scan_push=
   function(state,b,tok)
    {pp_enqueue(state,tok);
-    if(b){}
+    if(b){set_size(state,/* true */1)}
     
     return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0;
     };
@@ -424,7 +424,10 @@ var
  pp_close_box=
   function(state,param)
    {if(state[14]>1)
-     {if(state[14]<state[15]){state[14]<state[15]}
+     {if(state[14]<state[15])
+       {pp_enqueue(state,/* record */[0,0,/* Pp_end */1,0]),
+        set_size(state,/* true */1),
+        set_size(state,/* false */0)}
       
       return state[14]=state[14]-1,0;
       }
@@ -435,7 +438,7 @@ var
 var
  pp_open_tag=
   function(state,tag_name)
-   {if(state[21]){state[21]}
+   {if(state[21]){state[4]=/* :: */[0,tag_name,state[4]],state[25](tag_name)}
     
     return state[22]
             ?pp_enqueue
@@ -446,7 +449,7 @@ var
 var
  pp_close_tag=
   function(state,param)
-   {if(state[22]){state[22]}
+   {if(state[22]){pp_enqueue(state,/* record */[0,0,/* Pp_close_tag */5,0])}
     
     if(state[21])
      {var match=state[4];
@@ -506,7 +509,7 @@ var
     
     state[13]=pp_infinity;
     advance_left(state);
-    if(b){}
+    if(b){pp_output_newline(state)}
     
     return pp_rinit(state);
     };

@@ -274,7 +274,7 @@ var
                     is_in_char_set(set,match[2]));
             };
         
-        if(is_alone(93)){is_alone(93)}
+        if(is_alone(93)){buffer_add_char(buf,93)}
         
         print_out(set,1);
         return is_alone(45)?buffer_add_char(buf,45):0;
@@ -3739,7 +3739,7 @@ var
     var
      parse_ign=
       function(pct_ind,str_ind,end_ind)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var match=str["charCodeAt"](str_ind);
         
@@ -3764,7 +3764,26 @@ var
         var
          set_flag=
           function(str_ind,flag)
-           {if(flag[1]&&!legacy_behavior$1){flag[1]&&!legacy_behavior$1}
+           {if(flag[1]&&!legacy_behavior$1)
+             {failwith_message
+               ([/* Format */0,
+                 [/* String_literal */11,
+                  "invalid format ",
+                  [/* Caml_string */3,
+                   /* No_padding */0,
+                   [/* String_literal */11,
+                    ": at character number ",
+                    [/* Int */4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     [/* String_literal */11,
+                      ", duplicate flag ",
+                      [/* Caml_char */1,/* End_of_format */0]]]]]],
+                 "invalid format %S: at character number %d, duplicate flag %C"],
+                str,
+                str_ind,
+                str["charCodeAt"](str_ind))}
             
             return flag[1]=/* true */1,0;
             };
@@ -3772,7 +3791,7 @@ var
         var
          read_flags=
           function(str_ind)
-           {if(str_ind===end_ind){str_ind===end_ind}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
             
             var match=str["charCodeAt"](str_ind);
             
@@ -3826,7 +3845,7 @@ var
     var
      parse_padding=
       function(pct_ind,str_ind,end_ind,zero,minus,plus,sharp,space,ign)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var
          padty=
@@ -3881,7 +3900,8 @@ var
          {case 16:
            switch(padty)
             {case 0:
-              if(!legacy_behavior$1){!legacy_behavior$1}
+              if(!legacy_behavior$1)
+               {invalid_format_without(str_ind-1,45,"padding")}
               
               return parse_after_padding
                       (pct_ind,
@@ -3926,7 +3946,7 @@ var
     var
      parse_after_padding=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var symb=str["charCodeAt"](str_ind);
         
@@ -3950,7 +3970,7 @@ var
     var
      parse_precision=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var
          parse_literal$1=
@@ -4031,7 +4051,7 @@ var
     var
      parse_after_precision=
       function(pct_ind,str_ind,end_ind,minus,plus,sharp,space,ign,pad,prec)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var
          parse_conv=
@@ -4833,31 +4853,29 @@ var
           }
         
         if(!legacy_behavior$1)
-         {if(!plus_used[1]&&plus){!plus_used[1]&&plus}
+         {if(!plus_used[1]&&plus)
+           {incompatible_flag(pct_ind,str_ind,symb,"'+'")}
           
-          if(!sharp_used[1]&&sharp){!sharp_used[1]&&sharp}
+          if(!sharp_used[1]&&sharp)
+           {incompatible_flag(pct_ind,str_ind,symb,"'#'")}
           
-          if(!space_used[1]&&space){!space_used[1]&&space}
+          if(!space_used[1]&&space)
+           {incompatible_flag(pct_ind,str_ind,symb,"' '")}
           
           if
            (!pad_used[1]&&
             CamlPrimitive["caml_notequal"]
              (/* Padding_EBB */[0,pad],[/* Padding_EBB */0,/* No_padding */0]))
-           {!pad_used[1]&&
-            CamlPrimitive["caml_notequal"]
-             (/* Padding_EBB */[0,pad],[/* Padding_EBB */0,/* No_padding */0])}
+           {incompatible_flag(pct_ind,str_ind,symb,"`padding'")}
           
           if
            (!prec_used[1]&&
             CamlPrimitive["caml_notequal"]
              (/* Precision_EBB */[0,prec],
               [/* Precision_EBB */0,/* No_precision */0]))
-           {!prec_used[1]&&
-            CamlPrimitive["caml_notequal"]
-             (/* Precision_EBB */[0,prec],
-              [/* Precision_EBB */0,/* No_precision */0])}
+           {incompatible_flag(pct_ind,str_ind,ign?95:symb,"`precision'")}
           
-          if(ign&&plus){ign&&plus}
+          if(ign&&plus){incompatible_flag(pct_ind,str_ind,95,"'+'")}
           }
         else
          {}
@@ -5285,7 +5303,7 @@ var
     var
      parse_char_set=
       function(str_ind,end_ind)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var char_set=create_char_set(/* () */0);
         
@@ -5333,7 +5351,7 @@ var
         var
          parse_char_set_start=
           function(str_ind,end_ind)
-           {if(str_ind===end_ind){str_ind===end_ind}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
             
             var c=str["charCodeAt"](str_ind);
             
@@ -5343,7 +5361,7 @@ var
         var
          parse_char_set_content=
           function(str_ind,end_ind)
-           {if(str_ind===end_ind){str_ind===end_ind}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
             
             var c=str["charCodeAt"](str_ind);
             
@@ -5357,7 +5375,7 @@ var
         var
          parse_char_set_after_char=
           function(str_ind,end_ind,c)
-           {if(str_ind===end_ind){str_ind===end_ind}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
             
             var c$prime=str["charCodeAt"](str_ind);
             
@@ -5391,7 +5409,7 @@ var
                 {exit=132;}
                
               case 132:
-               if(c===37){c===37}
+               if(c===37){fail_single_percent(str_ind)}
                
                add_char(c);
                return parse_char_set_after_char(str_ind+1,end_ind,c$prime);
@@ -5402,7 +5420,7 @@ var
         var
          parse_char_set_after_minus=
           function(str_ind,end_ind,c)
-           {if(str_ind===end_ind){str_ind===end_ind}
+           {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
             
             var c$prime=str["charCodeAt"](str_ind);
             
@@ -5413,7 +5431,7 @@ var
                       :(add_char(c),add_char(45),str_ind+1);
               }
             else
-             {if(str_ind+1===end_ind){str_ind+1===end_ind}
+             {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}
               
               var c$prime$1=str["charCodeAt"](str_ind+1);
               
@@ -5437,7 +5455,7 @@ var
               }
             };
         
-        if(str_ind===end_ind){str_ind===end_ind}
+        if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var match=str["charCodeAt"](str_ind);
         
@@ -5459,7 +5477,7 @@ var
     var
      parse_spaces=
       function(str_ind,end_ind)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         return str["charCodeAt"](str_ind)===32
                 ?parse_spaces(str_ind+1,end_ind)
@@ -5469,7 +5487,7 @@ var
     var
      parse_positive=
       function(str_ind,end_ind,acc)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var c=str["charCodeAt"](str_ind);
         
@@ -5509,7 +5527,7 @@ var
     var
      parse_integer=
       function(str_ind,end_ind)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind){unexpected_end_of_format(end_ind)}
         
         var match=str["charCodeAt"](str_ind);
         
@@ -5525,7 +5543,7 @@ var
          {if(match!==45)
            {exit=148;}
           else
-           {if(str_ind+1===end_ind){str_ind+1===end_ind}
+           {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}
             
             var c=str["charCodeAt"](str_ind+1);
             
@@ -5567,14 +5585,36 @@ var
     var
      search_subformat_end=
       function(str_ind,end_ind,c)
-       {if(str_ind===end_ind){str_ind===end_ind}
+       {if(str_ind===end_ind)
+         {failwith_message
+           ([/* Format */0,
+             [/* String_literal */11,
+              "invalid format ",
+              [/* Caml_string */3,
+               /* No_padding */0,
+               [/* String_literal */11,
+                ': unclosed sub-format, expected "',
+                [/* Char_literal */12,
+                 37,
+                 [/* Char */0,
+                  [/* String_literal */11,
+                   '" at character number ',
+                   [/* Int */4,
+                    /* Int_d */0,
+                    /* No_padding */0,
+                    /* No_precision */0,
+                    /* End_of_format */0]]]]]]],
+             'invalid format %S: unclosed sub-format, expected "%%%c" at character number %d'],
+            str,
+            c,
+            end_ind)}
         
         var match=str["charCodeAt"](str_ind);
         
         if(match!==37)
          {return search_subformat_end(str_ind+1,end_ind,c);}
         else
-         {if(str_ind+1===end_ind){str_ind+1===end_ind}
+         {if(str_ind+1===end_ind){unexpected_end_of_format(end_ind)}
           
           if(str["charCodeAt"](str_ind+1)===c)
            {return str_ind;}
@@ -5604,7 +5644,7 @@ var
                {if(match$1>=96)
                  {exit=155;}
                 else
-                 {if(str_ind+2===end_ind){str_ind+2===end_ind}
+                 {if(str_ind+2===end_ind){unexpected_end_of_format(end_ind)}
                   
                   var match$2=str["charCodeAt"](str_ind+2);
                   

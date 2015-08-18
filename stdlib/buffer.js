@@ -90,17 +90,17 @@ var
 var
  add_char=
   function(b,c)
-   {var pos=b[2];if(pos>=b[3]){pos>=b[3]}b[1][pos]=c;return b[2]=pos+1,0;};
+   {var pos=b[2];if(pos>=b[3]){resize(b,1)}b[1][pos]=c;return b[2]=pos+1,0;};
 
 var
  add_substring=
   function(b,s,offset,len)
    {if(offset<0||len<0||offset+len>s["length"])
-     {offset<0||len<0||offset+len>s["length"]}
+     {Pervasives["invalid_arg"]("Buffer.add_substring/add_subbytes")}
     
     var new_position=b[2]+len;
     
-    if(new_position>b[3]){new_position>b[3]}
+    if(new_position>b[3]){resize(b,len)}
     
     Bytes["blit_string"](s,offset,b[1],b[2],len);
     return b[2]=new_position,0;
@@ -118,7 +118,7 @@ var
     
     var new_position=b[2]+len;
     
-    if(new_position>b[3]){new_position>b[3]}
+    if(new_position>b[3]){resize(b,len)}
     
     Bytes["blit_string"](s,0,b[1],b[2],len);
     return b[2]=new_position,0;
@@ -134,9 +134,9 @@ var
  add_channel=
   function(b,ic,len)
    {if(len<0||len>Sys["max_string_length"])
-     {len<0||len>Sys["max_string_length"]}
+     {Pervasives["invalid_arg"]("Buffer.add_channel")}
     
-    if(b[2]+len>b[3]){b[2]+len>b[3]}
+    if(b[2]+len>b[3]){resize(b,len)}
     
     Pervasives["really_input"](ic,b[1],b[2],len);
     return b[2]=b[2]+len,0;

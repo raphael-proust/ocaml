@@ -1639,7 +1639,7 @@ module rec
                                         ,([],Some out1),([],Some out2)) ->
                                          if Gen_util.is_js_pure out2
                                          then
-                                           ([S.if_ e (S.block [S.exp e])],
+                                           ([S.if_ e (S.block [S.exp out1])],
                                              None)
                                          else
                                            ([S.exp (E.econd e out1 out2)],

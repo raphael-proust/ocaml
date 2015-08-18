@@ -177,7 +177,7 @@ var
            :(CamlPrimitive["caml_obj_truncate"](bucket,prev_len+1),
              CamlPrimitive["caml_obj_truncate"](hbucket,prev_len));
           
-          if(len>t[3]&&prev_len<=t[3]){len>t[3]&&prev_len<=t[3]}
+          if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1,0}
           }
         else
          {}
@@ -234,7 +234,9 @@ var
            {if(i>=sz)
              {var newsz=Pervasives["min"](3*sz/2+3,Sys["max_array_length"]-1);
               
-              if(newsz<=sz){newsz<=sz}
+              if(newsz<=sz)
+               {Pervasives["failwith"]
+                 ("Weak.Make: hash bucket cannot grow more")}
               
               var newbucket=weak_create(newsz);
               

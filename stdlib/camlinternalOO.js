@@ -274,7 +274,7 @@ var
        {var index=new_slot(table);
         
         if(CamlPrimitive["caml_string_notequal"](name,""))
-         {CamlPrimitive["caml_string_notequal"](name,"")}
+         {table[7]=Vars[4](name,index,table[7]),0}
         
         return index;
         }
@@ -458,7 +458,7 @@ var
    {if(obj_0)
      {return obj;}
     else
-     {var inits=table[8];if(inits!==/* [] */0){inits!==/* [] */0}return obj;}
+     {var inits=table[8];if(inits!==/* [] */0){iter_f(obj,inits)}return obj;}
     };
 
 var
