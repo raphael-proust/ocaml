@@ -107,9 +107,8 @@ var non_dependencies=[0,/* [] */0];
 var
  non_dependency=
   function(m1,m2)
-   {Pathname["get_extensions"](m1)["length"]===0
-     ?Pervasives["invalid_arg"]("non_dependency: no extension")
-     :0;
+   {if(Pathname["get_extensions"](m1)["length"]===0)
+     {Pervasives["invalid_arg"]("non_dependency: no extension")}
     
     return non_dependencies[1]=
            /* :: */[0,/* tuple */[0,m1,m2],non_dependencies[1]],
@@ -289,31 +288,28 @@ var
      (info_libraries,tag_name$1,/* tuple */[0,libpath,extern]);
     Flags["mark_tag_used"](tag_name$1);
     if(extern)
-     {$$byte
-       ?flag_and_dep$1
+     {if($$byte)
+       {flag_and_dep$1
          (/* :: */[0,
            "ocaml",
            /* :: */[0,
             tag_name$1,
             [/* :: */0,"link",[/* :: */0,"byte",/* [] */0]]]],
-          Pervasives["^"](libpath,".cma"))
-       :0;
+          Pervasives["^"](libpath,".cma"))}
       
-      $$native
-       ?flag_and_dep$1
+      if($$native)
+       {flag_and_dep$1
          (/* :: */[0,
            "ocaml",
            /* :: */[0,
             tag_name$1,
             [/* :: */0,"link",[/* :: */0,"native",/* [] */0]]]],
-          Pervasives["^"](libpath,".cmxa"))
-       :0;
+          Pervasives["^"](libpath,".cmxa"))}
       }
     else
-     {!$$byte&&!$$native
-       ?Pervasives["invalid_arg"]
-         ("ocaml_lib: ~byte:false or ~native:false only works with ~extern:true")
-       :0;
+     {if(!$$byte&&!$$native)
+       {Pervasives["invalid_arg"]
+         ("ocaml_lib: ~byte:false or ~native:false only works with ~extern:true")}
       }
     
     if(dir)

@@ -55,16 +55,15 @@ var
                
                var st=My_std["sys_command"](s$1);
                
-               st!==0
-                ?Pervasives["failwith"]
+               if(st!==0)
+                {Pervasives["failwith"]
                   (Printf["sprintf"]
                     ([/* Format */0,
                       [/* String_literal */11,
                        "Error while running: ",
                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       "Error while running: %s"],
-                     s$1))
-                :0;
+                     s$1))}
                
                return My_std["with_input_file"](/* None */0,tmp,kont);
                });

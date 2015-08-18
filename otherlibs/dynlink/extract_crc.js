@@ -43,14 +43,10 @@ var
     catch(exn)
      {Pervasives["prerr_string"]("Error while reading the interface for ");
       Pervasives["prerr_endline"](unit);
-      var tag=exn[1];
-      
-      if(tag===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {var msg=exn[2];Pervasives["prerr_endline"](msg)}
+      if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
+       {Pervasives["prerr_endline"](exn[2])}
       else
-       {var tag$1=exn[1];
-        
-        if(tag$1===Dynlink["Error"])
+       {if(exn[1]===Dynlink["Error"])
          {var match=exn[2];
           
           var exit;
@@ -60,10 +56,8 @@ var
           else
            {switch(match[0])
              {case 5:
-               var name=match[1];
-               
                Pervasives["prerr_string"]("Cannot find file "),
-               Pervasives["prerr_endline"](name);
+               Pervasives["prerr_endline"](match[1]);
               default:exit=5;}}
           
           switch(exit)

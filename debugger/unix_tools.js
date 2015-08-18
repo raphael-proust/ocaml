@@ -77,11 +77,10 @@ var
       Pervasives["prerr_string"]("Unix error: '");
       Pervasives["prerr_string"](param[3]);
       Pervasives["prerr_string"]("' failed");
-      arg["length"]>0
-       ?(Pervasives["prerr_string"](" on '"),
-         Pervasives["prerr_string"](arg),
-         Pervasives["prerr_string"]("'"))
-       :0;
+      if(arg["length"]>0)
+       {Pervasives["prerr_string"](" on '"),
+        Pervasives["prerr_string"](arg),
+        Pervasives["prerr_string"]("'")}
       
       Pervasives["prerr_string"](": ");
       return Pervasives["prerr_endline"](Unix["error_message"](param[2]));

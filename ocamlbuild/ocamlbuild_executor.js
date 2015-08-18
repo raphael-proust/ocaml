@@ -195,27 +195,26 @@ var
     var
      compute_fds=
       function(param)
-       {!(prev_jobs[1]===jobs[1])
-         ?(prev_jobs[1]=
-           jobs[1],
-           fds[1]=
-           JS[14]
-            (function(job,param$1)
-              {var ofd=doi(job[5]);
-               
-               var ifd=doo(job[6]);
-               
-               var efd=doi(job[7]);
-               
-               return /* tuple */[0,
-                       /* :: */[0,ofd,/* :: */[0,efd,param$1[1]]],
-                       param$1[2],
-                       /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
-               },
-             jobs[1],
-             [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]),
-           0)
-         :0;
+       {if(!(prev_jobs[1]===jobs[1]))
+         {prev_jobs[1]=
+          jobs[1],
+          fds[1]=
+          JS[14]
+           (function(job,param$1)
+             {var ofd=doi(job[5]);
+              
+              var ifd=doo(job[6]);
+              
+              var efd=doi(job[7]);
+              
+              return /* tuple */[0,
+                      /* :: */[0,ofd,/* :: */[0,efd,param$1[1]]],
+                      param$1[2],
+                      /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
+              },
+            jobs[1],
+            [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]),
+          0}
         
         return fds[1];
         };
@@ -423,7 +422,7 @@ var
                            });
               };
           
-          Buffer["length"](job[8])>0?show_command(/* () */0):0;
+          if(Buffer["length"](job[8])>0){show_command(/* () */0)}
           
           var exit$1;
           

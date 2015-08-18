@@ -1057,8 +1057,8 @@ var
                        [/* A */1,"-package"],
                        /* :: */[0,/* A */[1,pkg],/* [] */0]]];
               });
-          !My_std["List"][30]("ocamldep",tags)
-           ?Flags["pflag"]
+          if(!My_std["List"][30]("ocamldep",tags))
+           {Flags["pflag"]
              (tags,
               "predicate",
               function(pkg)
@@ -1066,8 +1066,7 @@ var
                         /* :: */[0,
                          [/* A */1,"-predicates"],
                          /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-                })
-           :0;
+                })}
           
           return Flags["pflag"]
                   (tags,
@@ -1706,55 +1705,54 @@ var
      (/* None */0,
       [/* :: */0,"ocaml",[/* :: */0,"link",[/* :: */0,"thread",/* [] */0]]],
       [/* A */1,"-thread"]);
-    !Options["use_ocamlfind"][1]
-     ?(Flags["flag"]
-        (/* None */0,
-         [/* :: */0,"ocaml",[/* :: */0,"doc",[/* :: */0,"thread",/* [] */0]]],
-         [/* S */0,
-          [/* :: */0,
-           [/* A */1,"-I"],
-           [/* :: */0,[/* A */1,"+threads"],/* [] */0]]]),
-       Flags["flag"]
-        (/* None */0,
+    if(!Options["use_ocamlfind"][1])
+     {Flags["flag"]
+       (/* None */0,
+        [/* :: */0,"ocaml",[/* :: */0,"doc",[/* :: */0,"thread",/* [] */0]]],
+        [/* S */0,
          [/* :: */0,
-          "ocaml",
-          [/* :: */0,
-           "link",
-           [/* :: */0,
-            "thread",
-            [/* :: */0,"native",[/* :: */0,"program",/* [] */0]]]]],
-         [/* A */1,"threads.cmxa"]),
-       Flags["flag"]
-        (/* None */0,
+          [/* A */1,"-I"],
+          [/* :: */0,[/* A */1,"+threads"],/* [] */0]]]),
+      Flags["flag"]
+       (/* None */0,
+        [/* :: */0,
+         "ocaml",
          [/* :: */0,
-          "ocaml",
+          "link",
           [/* :: */0,
-           "link",
-           [/* :: */0,
-            "thread",
-            [/* :: */0,"byte",[/* :: */0,"program",/* [] */0]]]]],
-         [/* A */1,"threads.cma"]),
-       Flags["flag"]
-        (/* None */0,
+           "thread",
+           [/* :: */0,"native",[/* :: */0,"program",/* [] */0]]]]],
+        [/* A */1,"threads.cmxa"]),
+      Flags["flag"]
+       (/* None */0,
+        [/* :: */0,
+         "ocaml",
          [/* :: */0,
-          "ocaml",
+          "link",
           [/* :: */0,
-           "link",
-           [/* :: */0,
-            "thread",
-            [/* :: */0,"native",[/* :: */0,"toplevel",/* [] */0]]]]],
-         [/* A */1,"threads.cmxa"]),
-       Flags["flag"]
-        (/* None */0,
+           "thread",
+           [/* :: */0,"byte",[/* :: */0,"program",/* [] */0]]]]],
+        [/* A */1,"threads.cma"]),
+      Flags["flag"]
+       (/* None */0,
+        [/* :: */0,
+         "ocaml",
          [/* :: */0,
-          "ocaml",
+          "link",
           [/* :: */0,
-           "link",
-           [/* :: */0,
-            "thread",
-            [/* :: */0,"byte",[/* :: */0,"toplevel",/* [] */0]]]]],
-         [/* A */1,"threads.cma"]))
-     :0;
+           "thread",
+           [/* :: */0,"native",[/* :: */0,"toplevel",/* [] */0]]]]],
+        [/* A */1,"threads.cmxa"]),
+      Flags["flag"]
+       (/* None */0,
+        [/* :: */0,
+         "ocaml",
+         [/* :: */0,
+          "link",
+          [/* :: */0,
+           "thread",
+           [/* :: */0,"byte",[/* :: */0,"toplevel",/* [] */0]]]]],
+        [/* A */1,"threads.cma"])}
     
     Flags["flag"]
      (/* None */0,

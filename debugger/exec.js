@@ -34,7 +34,7 @@ var
      {return f(/* () */0);}
     else
      {is_protected[1]=/* true */1;
-      !interrupted[1]?f(/* () */0):0;
+      if(!interrupted[1]){f(/* () */0)}
       
       is_protected[1]=/* false */0;
       if(interrupted[1])

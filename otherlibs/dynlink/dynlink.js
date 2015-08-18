@@ -16,9 +16,7 @@ var
  match=
   Printexc["register_printer"]
    (function(param)
-     {var tag=param[1];
-      
-      if(tag===$$Error)
+     {if(param[1]===$$Error)
        {var err=param[2];
         
         if(typeof err==="number")
@@ -26,8 +24,6 @@ var
         else
          {switch(err[0])
            {case 0:
-             var s=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -36,11 +32,9 @@ var
                    "Not_a_bytecode_file ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Not_a_bytecode_file %S"],
-                 s);
+                 err[1]);
              
             case 1:
-             var s$1=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -49,11 +43,9 @@ var
                    "Inconsistent_import ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Inconsistent_import %S"],
-                 s$1);
+                 err[1]);
              
             case 2:
-             var s$2=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -62,17 +54,15 @@ var
                    "Unavailable_unit ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Unavailable_unit %S"],
-                 s$2);
+                 err[1]);
              
             case 3:
              var match$1=err[2];
              
-             var s$3=err[1];
+             var s=err[1];
              
              switch(match$1[0])
               {case 0:
-                var s$prime=match$1[1];
-                
                 var
                  msg=
                   Printf["sprintf"]
@@ -87,14 +77,10 @@ var
                          /* No_padding */0,
                          [/* Char_literal */12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Undefined_global %S)"],
-                    s$3,
-                    s$prime);
+                    s,
+                    match$1[1]);
                 
                case 1:
-                var s$4=s$3;
-                
-                var s$prime$1=match$1[1];
-                
                 var
                  msg=
                   Printf["sprintf"]
@@ -109,14 +95,10 @@ var
                          /* No_padding */0,
                          [/* Char_literal */12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Unavailable_primitive %S)"],
-                    s$4,
-                    s$prime$1);
+                    s,
+                    match$1[1]);
                 
                case 2:
-                var s$5=s$3;
-                
-                var s$prime$2=match$1[1];
-                
                 var
                  msg=
                   Printf["sprintf"]
@@ -131,14 +113,12 @@ var
                          /* No_padding */0,
                          [/* Char_literal */12,41,/* End_of_format */0]]]]],
                      "Linking_error (%S, Dynlink.Uninitialized_global %S)"],
-                    s$5,
-                    s$prime$2);
+                    s,
+                    match$1[1]);
                 
                }
              
             case 4:
-             var s$6=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -147,11 +127,9 @@ var
                    "Corrupted_interface ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Corrupted_interface %S"],
-                 s$6);
+                 err[1]);
              
             case 5:
-             var s$7=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -160,11 +138,9 @@ var
                    "File_not_found ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "File_not_found %S"],
-                 s$7);
+                 err[1]);
              
             case 6:
-             var s$8=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -173,11 +149,9 @@ var
                    "Cannot_open_dll ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Cannot_open_dll %S"],
-                 s$8);
+                 err[1]);
              
             case 7:
-             var s$9=err[1];
-             
              var
               msg=
                Printf["sprintf"]
@@ -186,7 +160,7 @@ var
                    "Inconsistent_implementation ",
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Inconsistent_implementation %S"],
-                 s$9);
+                 err[1]);
              
             }}
         
@@ -237,18 +211,11 @@ var
                cu[5]);
       }
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===Dynlinkaux["Consistbl"][9])
-       {var name=exn[2];throw [0,$$Error,/* Inconsistent_import */[1,name]];}
+     {if(exn[1]===Dynlinkaux["Consistbl"][9])
+       {throw [0,$$Error,/* Inconsistent_import */[1,exn[2]]];}
       else
-       {var tag$1=exn[1];
-        
-        if(tag$1===Dynlinkaux["Consistbl"][10])
-         {var name$1=exn[2];
-          
-          throw [0,$$Error,/* Unavailable_unit */[2,name$1]];
-          }
+       {if(exn[1]===Dynlinkaux["Consistbl"][10])
+         {throw [0,$$Error,/* Unavailable_unit */[2,exn[2]]];}
         else
          {throw exn;}
         }
@@ -283,12 +250,8 @@ var
   function(units)
    {return List["iter"]
             (function(param)
-              {var crc=param[2];
-               
-               var unit=param[1];
-               
-               return Dynlinkaux["Consistbl"][5]
-                       (crc_interfaces[1],unit,crc,"");
+              {return Dynlinkaux["Consistbl"][5]
+                       (crc_interfaces[1],param[1],param[2],"");
                },
              units);
     };
@@ -303,15 +266,10 @@ var
      (function(param$1)
        {var crco=param$1[2];
         
-        var unit=param$1[1];
-        
-        if(crco)
-         {var crc=crco[1];
-          
-          return Dynlinkaux["Consistbl"][5](crc_interfaces[1],unit,crc,"");
-          }
-        else
-         {return /* () */0;}
+        return crco
+                ?Dynlinkaux["Consistbl"][5]
+                  (crc_interfaces[1],param$1[1],crco[1],"")
+                :/* () */0;
         },
       default_crcs[1]);
     return allow_extension[1]=/* true */1,0;
@@ -388,12 +346,7 @@ var
       
       var crc;
       if(match$1)
-       {var match$2=match$1[1];
-        
-        var match$3=match$2[2];
-        
-        if(match$3){var crc$1=match$3[1];crc=crc$1;}else{exit=35;}
-        }
+       {var match$2=match$1[1][2];if(match$2){crc=match$2[1];}else{exit=35;}}
       else
        {exit=35;}
       
@@ -408,9 +361,7 @@ var
       if(exn$1===CamlPrimitive["caml_global_data"]["End_of_file"])
        {exit$1=33;}
       else
-       {var tag=exn$1[1];
-        
-        if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+       {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {exit$1=33;}
         else
          {throw exn$1;}
@@ -474,22 +425,18 @@ var
       Dynlinkaux["Symtable"][17](compunit[4]),
       Dynlinkaux["Symtable"][12](/* () */0)}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===Dynlinkaux["Symtable"][22])
+     {if(exn[1]===Dynlinkaux["Symtable"][22])
        {var error=exn[2];
         
         switch(error[0])
-         {case 0:var s=error[1];var new_error=/* Undefined_global */[0,s];
-          case 1:
-           var s$1=error[1];var new_error=/* Unavailable_primitive */[1,s$1];
+         {case 0:var new_error=/* Undefined_global */[0,error[1]];
+          case 1:var new_error=/* Unavailable_primitive */[1,error[1]];
           case 2:
            throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
                   [0,"dynlink.ml",232,13]];
            
-          case 3:
-           var s$2=error[1];var new_error=/* Uninitialized_global */[2,s$2];
+          case 3:var new_error=/* Uninitialized_global */[2,error[1]];
           }
         
         throw [0,$$Error,/* Linking_error */[3,file_name,new_error]];
@@ -553,13 +500,8 @@ var
            {Dynlinkaux["Dll"][2]
              (/* For_execution */1,List["map"](Dynlinkaux["Dll"][1],lib[5]))}
           catch(exn$1)
-           {var tag=exn$1[1];
-            
-            if(tag===CamlPrimitive["caml_global_data"]["Failure"])
-             {var reason=exn$1[2];
-              
-              throw [0,$$Error,/* Cannot_open_dll */[6,reason]];
-              }
+           {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
+             {throw [0,$$Error,/* Cannot_open_dll */[6,exn$1[2]]];}
             else
              {throw exn$1;}
             }
@@ -602,92 +544,60 @@ var
     else
      {switch(param[0])
        {case 0:
-         var name=param[1];
-         
-         return Pervasives["^"](name," is not a bytecode object file");
-         
-        case 1:
-         var name$1=param[1];
-         
-         return Pervasives["^"]("interface mismatch on ",name$1);
-         
+         return Pervasives["^"](param[1]," is not a bytecode object file");
+        case 1:return Pervasives["^"]("interface mismatch on ",param[1]);
         case 2:
-         var name$2=param[1];
-         
-         return Pervasives["^"]("no implementation available for ",name$2);
-         
+         return Pervasives["^"]("no implementation available for ",param[1]);
         case 3:
          var match$1=param[2];
          
-         var name$3=param[1];
+         var name=param[1];
          
          switch(match$1[0])
           {case 0:
-            var s=match$1[1];
-            
             return Pervasives["^"]
                     ("error while linking ",
                      Pervasives["^"]
-                      (name$3,
+                      (name,
                        Pervasives["^"]
                         (".\n",
                          Pervasives["^"]
-                          ("Reference to undefined global `",Pervasives["^"](s,"'")))));
+                          ("Reference to undefined global `",
+                           Pervasives["^"](match$1[1],"'")))));
             
            case 1:
-            var name$4=name$3;
-            
-            var s$1=match$1[1];
-            
             return Pervasives["^"]
                     ("error while linking ",
                      Pervasives["^"]
-                      (name$4,
+                      (name,
                        Pervasives["^"]
                         (".\n",
                          Pervasives["^"]
                           ("The external function `",
-                           Pervasives["^"](s$1,"' is not available")))));
+                           Pervasives["^"](match$1[1],"' is not available")))));
             
            case 2:
-            var name$5=name$3;
-            
-            var s$2=match$1[1];
-            
             return Pervasives["^"]
                     ("error while linking ",
                      Pervasives["^"]
-                      (name$5,
+                      (name,
                        Pervasives["^"]
                         (".\n",
                          Pervasives["^"]
                           ("The module `",
-                           Pervasives["^"](s$2,"' is not yet initialized")))));
+                           Pervasives["^"](match$1[1],"' is not yet initialized")))));
             
            }
          
-        case 4:
-         var name$6=param[1];
-         
-         return Pervasives["^"]("corrupted interface file ",name$6);
-         
+        case 4:return Pervasives["^"]("corrupted interface file ",param[1]);
         case 5:
-         var name$7=param[1];
-         
          return Pervasives["^"]
                  ("cannot find file ",
-                  Pervasives["^"](name$7," in search path"));
+                  Pervasives["^"](param[1]," in search path"));
          
         case 6:
-         var reason=param[1];
-         
-         return Pervasives["^"]("error loading shared library: ",reason);
-         
-        case 7:
-         var name$8=param[1];
-         
-         return Pervasives["^"]("implementation mismatch on ",name$8);
-         
+         return Pervasives["^"]("error loading shared library: ",param[1]);
+        case 7:return Pervasives["^"]("implementation mismatch on ",param[1]);
         }}
     };
 

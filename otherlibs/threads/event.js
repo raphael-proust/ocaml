@@ -29,18 +29,15 @@ var
         
         return List["iter"]
                 (function(param)
-                  {var f=param[2];
-                   
-                   var id=param[1];
-                   
-                   return !List["mem"](id,ids_done)?f(/* () */0):0;
+                  {return !List["mem"](param[1],ids_done)
+                           ?param[2](/* () */0)
+                           :0;
                    },
                  abort_env);
         }
       else
        {return List["iter"]
-                (function(param){var f=param[2];return f(/* () */0);},
-                 abort_env);
+                (function(param){return param[2](/* () */0);},abort_env);
         }
       }
     else
@@ -97,7 +94,7 @@ var
   function(a)
    {var len=/* -1 for tag */a["length"]-1;
     
-    len===0?Pervasives["invalid_arg"]("Event.choose"):0;
+    if(len===0){Pervasives["invalid_arg"]("Event.choose")}
     
     for(var i=len-1;i>=1;i--)
      {var j=Random["int"](i+1);var temp=a[i+1];a[i+1]=a[j+1],a[j+1]=temp}
@@ -114,57 +111,38 @@ var
   function(abort_list,accu,accu_abort,ev)
    {switch(ev[0])
      {case 0:
-       var bev=ev[1];
-       
        return /* tuple */[0,
-               /* :: */[0,/* tuple */[0,bev,abort_list],accu],
+               /* :: */[0,/* tuple */[0,ev[1],abort_list],accu],
                accu_abort];
        
       case 1:
-       var evl=ev[1];
-       
        var
         flatten_list=
          function(accu$prime,accu_abort$prime,param)
           {if(param)
-            {var l=param[2];
-             
-             var ev$1=param[1];
-             
-             var
+            {var
               match=
-               flatten_event(abort_list,accu$prime,accu_abort$prime,ev$1);
+               flatten_event(abort_list,accu$prime,accu_abort$prime,param[1]);
              
-             var accu_abort$prime$prime=match[2];
-             
-             var accu$prime$prime=match[1];
-             
-             return flatten_list(accu$prime$prime,accu_abort$prime$prime,l);
+             return flatten_list(match[1],match[2],param[2]);
              }
            else
             {return /* tuple */[0,accu$prime,accu_abort$prime];}
            };
        
-       return flatten_list(accu,accu_abort,evl);
+       return flatten_list(accu,accu_abort,ev[1]);
        
       case 2:
-       var fn=ev[2];
-       
-       var ev$1=ev[1];
-       
        var id=gensym(/* () */0);
        
        return flatten_event
                (/* :: */[0,id,abort_list],
                 accu,
-                /* :: */[0,/* tuple */[0,id,fn],accu_abort],
-                ev$1);
+                /* :: */[0,/* tuple */[0,id,ev[2]],accu_abort],
+                ev[1]);
        
       case 3:
-       var fn$1=ev[1];
-       
-       return flatten_event(abort_list,accu,accu_abort,fn$1(/* () */0));
-       
+       return flatten_event(abort_list,accu,accu_abort,ev[1](/* () */0));
       }
     };
 
@@ -173,11 +151,7 @@ var
   function(ev)
    {var match=flatten_event(/* [] */0,/* [] */0,/* [] */0,ev);
     
-    var abort_env=match[2];
-    
-    var evl=match[1];
-    
-    return basic_sync(abort_env,scramble_array($$Array["of_list"](evl)));
+    return basic_sync(match[2],scramble_array($$Array["of_list"](match[1])));
     };
 
 var
@@ -226,11 +200,7 @@ var
   function(ev)
    {var match=flatten_event(/* [] */0,/* [] */0,/* [] */0,ev);
     
-    var abort_env=match[2];
-    
-    var evl=match[1];
-    
-    return basic_poll(abort_env,scramble_array($$Array["of_list"](evl)));
+    return basic_poll(match[2],scramble_array($$Array["of_list"](match[1])));
     };
 
 var
@@ -340,10 +310,9 @@ var
                       function(param)
                        {var match=rcomm[3];
                         
-                        if(match)
-                         {var res=match[1];return res;}
-                        else
-                         {return Pervasives["invalid_arg"]("Event.receive");}
+                        return match
+                                ?match[1]
+                                :Pervasives["invalid_arg"]("Event.receive");
                         }];
               }];
     };
@@ -372,18 +341,10 @@ var
                  }];
        
       case 1:
-       var evl=ev[1];
-       
        return /* Choose */[1,
-               List["map"](function(ev){return wrap(ev,fn);},evl)];
+               List["map"](function(ev){return wrap(ev,fn);},ev[1])];
        
-      case 2:
-       var f$prime=ev[2];
-       
-       var ev$1=ev[1];
-       
-       return /* WrapAbort */[2,wrap(ev$1,fn),f$prime];
-       
+      case 2:return /* WrapAbort */[2,wrap(ev[1],fn),ev[2]];
       case 3:
        var gu=ev[1];
        

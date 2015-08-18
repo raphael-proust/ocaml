@@ -269,10 +269,9 @@ var
               (file,Location["input_name"][1],parsetree,match$1[2]);
            
            file_module[8]=Odoc_dep["impl_dependencies"](parsetree);
-           Odoc_global["verbose"][1]
-            ?(Format["print_string"](Odoc_messages["ok"]),
-              Format["print_newline"](/* () */0))
-            :0;
+           if(Odoc_global["verbose"][1])
+            {Format["print_string"](Odoc_messages["ok"]),
+             Format["print_newline"](/* () */0)}
            
            Pparse["remove_preprocessed"](match[2]);
            return /* Some */[0,file_module];
@@ -316,10 +315,9 @@ var
             (file$1,Location["input_name"][1],ast,match$2[2][2]);
          
          file_module$1[8]=Odoc_dep["intf_dependencies"](ast);
-         Odoc_global["verbose"][1]
-          ?(Format["print_string"](Odoc_messages["ok"]),
-            Format["print_newline"](/* () */0))
-          :0;
+         if(Odoc_global["verbose"][1])
+          {Format["print_string"](Odoc_messages["ok"]),
+           Format["print_newline"](/* () */0)}
          
          Pparse["remove_preprocessed"](match$2[3]);
          return /* Some */[0,file_module$1];
@@ -720,19 +718,17 @@ var
        ?modules_pre
        :remove_elements_between_stop(modules_pre);
     
-    Odoc_global["verbose"][1]
-     ?(Format["print_string"](Odoc_messages["merging"]),
-       Format["print_newline"](/* () */0))
-     :0;
+    if(Odoc_global["verbose"][1])
+     {Format["print_string"](Odoc_messages["merging"]),
+      Format["print_newline"](/* () */0)}
     
     var
      merged_modules=
       Odoc_merge["merge"](Odoc_global["merge_options"][1],modules);
     
-    Odoc_global["verbose"][1]
-     ?(Format["print_string"](Odoc_messages["ok"]),
-       Format["print_newline"](/* () */0))
-     :0;
+    if(Odoc_global["verbose"][1])
+     {Format["print_string"](Odoc_messages["ok"]),
+      Format["print_newline"](/* () */0)}
     
     var
      modules_list=
@@ -746,17 +742,15 @@ var
         merged_modules,
         merged_modules);
     
-    Odoc_global["verbose"][1]
-     ?(Format["print_string"](Odoc_messages["cross_referencing"]),
-       Format["print_newline"](/* () */0))
-     :0;
+    if(Odoc_global["verbose"][1])
+     {Format["print_string"](Odoc_messages["cross_referencing"]),
+      Format["print_newline"](/* () */0)}
     
     var match=Odoc_cross["associate"](modules_list);
     
-    Odoc_global["verbose"][1]
-     ?(Format["print_string"](Odoc_messages["ok"]),
-       Format["print_newline"](/* () */0))
-     :0;
+    if(Odoc_global["verbose"][1])
+     {Format["print_string"](Odoc_messages["ok"]),
+      Format["print_newline"](/* () */0)}
     
     return Odoc_global["sort_modules"][1]
             ?List["sort"]

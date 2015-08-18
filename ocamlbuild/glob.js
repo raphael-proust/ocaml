@@ -291,42 +291,41 @@ var
           else
            {var c=u["charCodeAt"](i);
             
-            trace
-             ?(Printf["printf"]
-                ([/* Format */0,
-                  [/* Int */4,
-                   /* Int_d */0,
-                   /* No_padding */0,
-                   /* No_precision */0,
-                   [/* Char_literal */12,
-                    32,
-                    [/* Caml_char */1,
-                     [/* String_literal */11," {",/* End_of_format */0]]]],
-                  "%d %C {"],
-                 i,
-                 c),
-               IS[13]
-                (function(q)
-                  {return Printf["printf"]
-                           ([/* Format */0,
-                             [/* Char_literal */12,
-                              32,
-                              [/* Int */4,
-                               /* Int_d */0,
-                               /* No_padding */0,
-                               /* No_precision */0,
-                               /* End_of_format */0]],
-                             " %d"],
-                            q);
-                   },
-                 qs),
-               Printf["printf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   " }\n",
-                   [/* Flush */10,/* End_of_format */0]],
-                  " }\n%!"]))
-             :0;
+            if(trace)
+             {Printf["printf"]
+               ([/* Format */0,
+                 [/* Int */4,
+                  /* Int_d */0,
+                  /* No_padding */0,
+                  /* No_precision */0,
+                  [/* Char_literal */12,
+                   32,
+                   [/* Caml_char */1,
+                    [/* String_literal */11," {",/* End_of_format */0]]]],
+                 "%d %C {"],
+                i,
+                c),
+              IS[13]
+               (function(q)
+                 {return Printf["printf"]
+                          ([/* Format */0,
+                            [/* Char_literal */12,
+                             32,
+                             [/* Int */4,
+                              /* Int_d */0,
+                              /* No_padding */0,
+                              /* No_precision */0,
+                              /* End_of_format */0]],
+                            " %d"],
+                           q);
+                  },
+                qs),
+              Printf["printf"]
+               ([/* Format */0,
+                 [/* String_literal */11,
+                  " }\n",
+                  [/* Flush */10,/* End_of_format */0]],
+                 " }\n%!"])}
             
             var qs$prime=apply(qs,c);
             

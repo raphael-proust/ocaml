@@ -129,12 +129,11 @@ var
 var
  set_current_checkpoint=
   function(checkpoint)
-   {debug_time_travel[1]
-     ?Pervasives["prerr_endline"]
-       (Pervasives["^"]("Select: ",Pervasives["string_of_int"](checkpoint[2])))
-     :0;
+   {if(debug_time_travel[1])
+     {Pervasives["prerr_endline"]
+       (Pervasives["^"]("Select: ",Pervasives["string_of_int"](checkpoint[2])))}
     
-    !checkpoint[4]?wait_for_connection(checkpoint):0;
+    if(!checkpoint[4]){wait_for_connection(checkpoint)}
     
     Checkpoints["current_checkpoint"][1]=checkpoint;
     return Debugcom["set_current_connection"](checkpoint[3]);
@@ -143,16 +142,15 @@ var
 var
  kill_checkpoint=
   function(checkpoint)
-   {debug_time_travel[1]
-     ?Pervasives["prerr_endline"]
-       (Pervasives["^"]("Kill: ",Pervasives["string_of_int"](checkpoint[2])))
-     :0;
+   {if(debug_time_travel[1])
+     {Pervasives["prerr_endline"]
+       (Pervasives["^"]("Kill: ",Pervasives["string_of_int"](checkpoint[2])))}
     
     if(checkpoint[2]>0)
-     {!checkpoint[4]?wait_for_connection(checkpoint):0;
+     {if(!checkpoint[4]){wait_for_connection(checkpoint)}
       
       Debugcom["stop"](checkpoint[3]);
-      checkpoint[7][2]>0?Debugcom["wait_child"](checkpoint[7][3]):0;
+      if(checkpoint[7][2]>0){Debugcom["wait_child"](checkpoint[7][3])}
       
       checkpoint[7]=
       Checkpoints["root"],
@@ -322,7 +320,7 @@ var
   function(param)
    {var checkpoint=Checkpoints["current_checkpoint"][1];
     
-    !checkpoint[4]?wait_for_connection(checkpoint):0;
+    if(!checkpoint[4]){wait_for_connection(checkpoint)}
     
     var
      new_checkpoint=
@@ -405,10 +403,9 @@ var
 var
  find_event=
   function(param)
-   {debug_time_travel[1]
-     ?(Pervasives["print_string"]("Searching next event..."),
-       Pervasives["print_newline"](/* () */0))
-     :0;
+   {if(debug_time_travel[1])
+     {Pervasives["print_string"]("Searching next event..."),
+      Pervasives["print_newline"](/* () */0)}
     
     var report=Debugcom["do_go"](Int64ops["_1"]);
     
@@ -570,10 +567,9 @@ var
           }
         };
     
-    debug_time_travel[1]
-     ?Pervasives["prerr_endline"]
-       (Pervasives["^"]("New connection: ",Pervasives["string_of_int"](pid)))
-     :0;
+    if(debug_time_travel[1])
+     {Pervasives["prerr_endline"]
+       (Pervasives["^"]("New connection: ",Pervasives["string_of_int"](pid)))}
     
     return find
             (/* :: */[0,
@@ -676,7 +672,7 @@ var
     Input_handling["remove_file"](checkpoint[3]);
     remove_checkpoint(checkpoint);
     checkpoint[2]=-1;
-    checkpoint[7][2]>0?Debugcom["wait_child"](checkpoint[7][3]):0;
+    if(checkpoint[7][2]>0){Debugcom["wait_child"](checkpoint[7][3])}
     
     return kont(/* () */0);
     };

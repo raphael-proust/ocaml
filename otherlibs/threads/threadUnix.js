@@ -74,9 +74,7 @@ var
       catch(exn)
        {var exit;
         
-        var tag=exn[1];
-        
-        if(tag===Unix["Unix_error"])
+        if(exn[1]===Unix["Unix_error"])
          {var match=exn[2];
           
           var exit$1;
@@ -111,9 +109,7 @@ var
       catch(exn)
        {var exit;
         
-        var tag=exn[1];
-        
-        if(tag===Unix["Unix_error"])
+        if(exn[1]===Unix["Unix_error"])
          {var match=exn[2];
           
           var exit$1;

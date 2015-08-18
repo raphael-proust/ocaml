@@ -119,10 +119,9 @@ var
  resume_user_input=
   function(param)
    {if(!List["mem_assoc"](user_channel[1][3],active_files[1]))
-     {interactif[1]
-       ?(Pervasives["print_string"](current_prompt[1]),
-         Pervasives["flush"](Pervasives["stdout"]))
-       :0;
+     {if(interactif[1])
+       {Pervasives["print_string"](current_prompt[1]),
+        Pervasives["flush"](Pervasives["stdout"])}
       
       return add_file(user_channel[1],exit_main_loop);
       }

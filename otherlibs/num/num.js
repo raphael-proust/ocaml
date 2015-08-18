@@ -64,8 +64,8 @@ var
  normalize_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return /* Int */[0,i];
-      case 1:var bi=param[1];return num_of_big_int(bi);
+     {case 0:return /* Int */[0,param[1]];
+      case 1:return num_of_big_int(param[1]);
       case 2:
        var r=param[1];
        
@@ -99,17 +99,13 @@ var
 var
  add_num=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match[0])
+   {switch(a[0])
      {case 0:
-       var int1=match[1];
+       var int1=a[1];
        
-       switch(match$1[0])
+       switch(b[0])
         {case 0:
-          var int2=match$1[1];
+          var int2=b[1];
           
           var r=int1+int2;
           
@@ -120,70 +116,26 @@ var
                      (Big_int["big_int_of_int"](int1),
                       Big_int["big_int_of_int"](int2))];
           
-         case 1:
-          var i=int1;
-          
-          var bi=match$1[1];
-          
-          return num_of_big_int(Big_int["add_int_big_int"](i,bi));
-          
-         case 2:
-          var i$1=int1;
-          
-          var r$1=match$1[1];
-          
-          return /* Ratio */[2,Ratio["add_int_ratio"](i$1,r$1)];
-          
+         case 1:return num_of_big_int(Big_int["add_int_big_int"](int1,b[1]));
+         case 2:return /* Ratio */[2,Ratio["add_int_ratio"](int1,b[1])];
          }
        
       case 1:
-       var bi$1=match[1];
+       var bi=a[1];
        
-       switch(match$1[0])
-        {case 0:
-          var i$2=match$1[1];
-          
-          return num_of_big_int(Big_int["add_int_big_int"](i$2,bi$1));
-          
-         case 1:
-          var bi1=bi$1;
-          
-          var bi2=match$1[1];
-          
-          return num_of_big_int(Big_int["add_big_int"](bi1,bi2));
-          
-         case 2:
-          var bi$2=bi$1;
-          
-          var r$2=match$1[1];
-          
-          return /* Ratio */[2,Ratio["add_big_int_ratio"](bi$2,r$2)];
-          
+       switch(b[0])
+        {case 0:return num_of_big_int(Big_int["add_int_big_int"](b[1],bi));
+         case 1:return num_of_big_int(Big_int["add_big_int"](bi,b[1]));
+         case 2:return /* Ratio */[2,Ratio["add_big_int_ratio"](bi,b[1])];
          }
        
       case 2:
-       var r$3=match[1];
+       var r$1=a[1];
        
-       switch(match$1[0])
-        {case 0:
-          var i$3=match$1[1];
-          
-          return /* Ratio */[2,Ratio["add_int_ratio"](i$3,r$3)];
-          
-         case 1:
-          var r$4=r$3;
-          
-          var bi$3=match$1[1];
-          
-          return /* Ratio */[2,Ratio["add_big_int_ratio"](bi$3,r$4)];
-          
-         case 2:
-          var r1=r$3;
-          
-          var r2=match$1[1];
-          
-          return num_of_ratio(Ratio["add_ratio"](r1,r2));
-          
+       switch(b[0])
+        {case 0:return /* Ratio */[2,Ratio["add_int_ratio"](b[1],r$1)];
+         case 1:return /* Ratio */[2,Ratio["add_big_int_ratio"](b[1],r$1)];
+         case 2:return num_of_ratio(Ratio["add_ratio"](r$1,b[1]));
          }
        
       }
@@ -203,9 +155,8 @@ var
                  Big_int["minus_big_int"](Big_int["big_int_of_int"](i))]
                :/* Int */[0,-i];
        
-      case 1:
-       var bi=param[1];return /* Big_int */[1,Big_int["minus_big_int"](bi)];
-      case 2:var r=param[1];return /* Ratio */[2,Ratio["minus_ratio"](r)];
+      case 1:return /* Big_int */[1,Big_int["minus_big_int"](param[1])];
+      case 2:return /* Ratio */[2,Ratio["minus_ratio"](param[1])];
       }
     };
 
@@ -216,17 +167,13 @@ var $neg$slash=sub_num;
 var
  mult_num=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match[0])
+   {switch(a[0])
      {case 0:
-       var int1=match[1];
+       var int1=a[1];
        
-       switch(match$1[0])
+       switch(b[0])
         {case 0:
-          var int2=match$1[1];
+          var int2=b[1];
           
           return Int_misc["num_bits_int"](int1)+
                   Int_misc["num_bits_int"](int2)<
@@ -237,70 +184,26 @@ var
                       (Big_int["big_int_of_int"](int1),
                        Big_int["big_int_of_int"](int2)));
           
-         case 1:
-          var i=int1;
-          
-          var bi=match$1[1];
-          
-          return num_of_big_int(Big_int["mult_int_big_int"](i,bi));
-          
-         case 2:
-          var i$1=int1;
-          
-          var r=match$1[1];
-          
-          return num_of_ratio(Ratio["mult_int_ratio"](i$1,r));
-          
+         case 1:return num_of_big_int(Big_int["mult_int_big_int"](int1,b[1]));
+         case 2:return num_of_ratio(Ratio["mult_int_ratio"](int1,b[1]));
          }
        
       case 1:
-       var bi$1=match[1];
+       var bi=a[1];
        
-       switch(match$1[0])
-        {case 0:
-          var i$2=match$1[1];
-          
-          return num_of_big_int(Big_int["mult_int_big_int"](i$2,bi$1));
-          
-         case 1:
-          var bi1=bi$1;
-          
-          var bi2=match$1[1];
-          
-          return num_of_big_int(Big_int["mult_big_int"](bi1,bi2));
-          
-         case 2:
-          var bi$2=bi$1;
-          
-          var r$1=match$1[1];
-          
-          return num_of_ratio(Ratio["mult_big_int_ratio"](bi$2,r$1));
-          
+       switch(b[0])
+        {case 0:return num_of_big_int(Big_int["mult_int_big_int"](b[1],bi));
+         case 1:return num_of_big_int(Big_int["mult_big_int"](bi,b[1]));
+         case 2:return num_of_ratio(Ratio["mult_big_int_ratio"](bi,b[1]));
          }
        
       case 2:
-       var r$2=match[1];
+       var r=a[1];
        
-       switch(match$1[0])
-        {case 0:
-          var i$3=match$1[1];
-          
-          return num_of_ratio(Ratio["mult_int_ratio"](i$3,r$2));
-          
-         case 1:
-          var r$3=r$2;
-          
-          var bi$3=match$1[1];
-          
-          return num_of_ratio(Ratio["mult_big_int_ratio"](bi$3,r$3));
-          
-         case 2:
-          var r1=r$2;
-          
-          var r2=match$1[1];
-          
-          return num_of_ratio(Ratio["mult_ratio"](r1,r2));
-          
+       switch(b[0])
+        {case 0:return num_of_ratio(Ratio["mult_int_ratio"](b[1],r));
+         case 1:return num_of_ratio(Ratio["mult_big_int_ratio"](b[1],r));
+         case 2:return num_of_ratio(Ratio["mult_ratio"](r,b[1]));
          }
        
       }
@@ -320,9 +223,8 @@ var
                :num_of_big_int
                  (Big_int["square_big_int"](Big_int["big_int_of_int"](i)));
        
-      case 1:
-       var bi=param[1];return /* Big_int */[1,Big_int["square_big_int"](bi)];
-      case 2:var r=param[1];return /* Ratio */[2,Ratio["square_ratio"](r)];
+      case 1:return /* Big_int */[1,Big_int["square_big_int"](param[1])];
+      case 2:return /* Ratio */[2,Ratio["square_ratio"](param[1])];
       }
     };
 
@@ -335,21 +237,16 @@ var
        
        switch(n2[0])
         {case 0:
-          var i2=n2[1];
-          
           return num_of_ratio
                   (Ratio["create_ratio"]
                     (Big_int["big_int_of_int"](i1),
-                     Big_int["big_int_of_int"](i2)));
+                     Big_int["big_int_of_int"](n2[1])));
           
          case 1:
-          var bi2=n2[1];
-          
           return num_of_ratio
-                  (Ratio["create_ratio"](Big_int["big_int_of_int"](i1),bi2));
+                  (Ratio["create_ratio"](Big_int["big_int_of_int"](i1),n2[1]));
           
-         case 2:
-          var r2=n2[1];return num_of_ratio(Ratio["div_int_ratio"](i1,r2));
+         case 2:return num_of_ratio(Ratio["div_int_ratio"](i1,n2[1]));
          }
        
       case 1:
@@ -357,36 +254,20 @@ var
        
        switch(n2[0])
         {case 0:
-          var i2$1=n2[1];
-          
           return num_of_ratio
-                  (Ratio["create_ratio"](bi1,Big_int["big_int_of_int"](i2$1)));
+                  (Ratio["create_ratio"](bi1,Big_int["big_int_of_int"](n2[1])));
           
-         case 1:
-          var bi2$1=n2[1];
-          
-          return num_of_ratio(Ratio["create_ratio"](bi1,bi2$1));
-          
-         case 2:
-          var r2$1=n2[1];
-          
-          return num_of_ratio(Ratio["div_big_int_ratio"](bi1,r2$1));
-          
+         case 1:return num_of_ratio(Ratio["create_ratio"](bi1,n2[1]));
+         case 2:return num_of_ratio(Ratio["div_big_int_ratio"](bi1,n2[1]));
          }
        
       case 2:
        var r1=n1[1];
        
        switch(n2[0])
-        {case 0:
-          var i2$2=n2[1];return num_of_ratio(Ratio["div_ratio_int"](r1,i2$2));
-         case 1:
-          var bi2$2=n2[1];
-          
-          return num_of_ratio(Ratio["div_ratio_big_int"](r1,bi2$2));
-          
-         case 2:
-          var r2$2=n2[1];return num_of_ratio(Ratio["div_ratio"](r1,r2$2));
+        {case 0:return num_of_ratio(Ratio["div_ratio_int"](r1,n2[1]));
+         case 1:return num_of_ratio(Ratio["div_ratio_big_int"](r1,n2[1]));
+         case 2:return num_of_ratio(Ratio["div_ratio"](r1,n2[1]));
          }
        
       }
@@ -399,8 +280,8 @@ var
   function(n)
    {switch(n[0])
      {case 0:return n;
-      case 1:var n$1=n;return n$1;
-      case 2:var r=n[1];return num_of_big_int(Ratio["floor_ratio"](r));
+      case 1:return n;
+      case 2:return num_of_big_int(Ratio["floor_ratio"](n[1]));
       }
     };
 
@@ -408,26 +289,22 @@ var
  ratio_of_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return Ratio["ratio_of_int"](i);
-      case 1:var bi=param[1];return Ratio["ratio_of_big_int"](bi);
-      case 2:var r=param[1];return r;
+     {case 0:return Ratio["ratio_of_int"](param[1]);
+      case 1:return Ratio["ratio_of_big_int"](param[1]);
+      case 2:return param[1];
       }
     };
 
 var
  quo_num=
   function(n1,n2)
-   {var match=n1;
-    
-    var match$1=n2;
-    
-    switch(match[0])
+   {switch(n1[0])
      {case 0:
-       var i1=match[1];
+       var i1=n1[1];
        
-       switch(match$1[0])
+       switch(n2[0])
         {case 0:
-          var i2=match$1[1];
+          var i2=n2[1];
           
           var q=i1/i2;
           
@@ -436,66 +313,49 @@ var
           return /* Int */[0,r>=0?q:i2>0?q-1:q+1];
           
          case 1:
-          var i1$1=i1;
-          
-          var bi2=match$1[1];
-          
           return num_of_big_int
-                  (Big_int["div_big_int"](Big_int["big_int_of_int"](i1$1),bi2));
+                  (Big_int["div_big_int"](Big_int["big_int_of_int"](i1),n2[1]));
           
          case 2:
-          var i1$2=i1;
-          
-          var r2=match$1[1];
+          var r2=n2[1];
           
           return num_of_big_int
                   (Ratio["report_sign_ratio"]
                     (r2,
                      Ratio["floor_ratio"]
-                      (Ratio["div_int_ratio"](i1$2,Ratio["abs_ratio"](r2)))));
+                      (Ratio["div_int_ratio"](i1,Ratio["abs_ratio"](r2)))));
           
          }
        
       case 1:
-       var bi1=match[1];
+       var bi1=n1[1];
        
-       switch(match$1[0])
+       switch(n2[0])
         {case 0:
-          var i2$1=match$1[1];
-          
           return num_of_big_int
-                  (Big_int["div_big_int"](bi1,Big_int["big_int_of_int"](i2$1)));
+                  (Big_int["div_big_int"]
+                    (bi1,Big_int["big_int_of_int"](n2[1])));
           
-         case 1:
-          var bi1$1=bi1;
-          
-          var bi2$1=match$1[1];
-          
-          return num_of_big_int(Big_int["div_big_int"](bi1$1,bi2$1));
-          
+         case 1:return num_of_big_int(Big_int["div_big_int"](bi1,n2[1]));
          case 2:
-          var bi1$2=bi1;
-          
-          var r2$1=match$1[1];
+          var r2$1=n2[1];
           
           return num_of_big_int
                   (Ratio["report_sign_ratio"]
                     (r2$1,
                      Ratio["floor_ratio"]
-                      (Ratio["div_big_int_ratio"](bi1$2,Ratio["abs_ratio"](r2$1)))));
+                      (Ratio["div_big_int_ratio"](bi1,Ratio["abs_ratio"](r2$1)))));
           
          }
        
       case 2:
-       var r1=match[1];
-       
        var r2$2=ratio_of_num(n2);
        
        return num_of_big_int
                (Ratio["report_sign_ratio"]
                  (r2$2,
                   Ratio["floor_ratio"]
-                   (Ratio["div_ratio"](r1,Ratio["abs_ratio"](r2$2)))));
+                   (Ratio["div_ratio"](n1[1],Ratio["abs_ratio"](r2$2)))));
        
       }
     };
@@ -503,52 +363,32 @@ var
 var
  mod_num=
   function(n1,n2)
-   {var match=n1;
+   {var exit;
     
-    var match$1=n2;
-    
-    var exit;
-    
-    switch(match[0])
+    switch(n1[0])
      {case 0:
-       var i1=match[1];
+       var i1=n1[1];
        
-       switch(match$1[0])
+       switch(n2[0])
         {case 0:
-          var i2=match$1[1];
-          
-          var r=i1%i2;
-          
-          return /* Int */[0,r>=0?r:i2>0?r+i2:r-i2];
-          
+          var i2=n2[1];var r=i1%i2;return /* Int */[0,r>=0?r:i2>0?r+i2:r-i2];
          case 1:
-          var i1$1=i1;
-          
-          var bi2=match$1[1];
-          
           return num_of_big_int
-                  (Big_int["mod_big_int"](Big_int["big_int_of_int"](i1$1),bi2));
+                  (Big_int["mod_big_int"](Big_int["big_int_of_int"](i1),n2[1]));
           
          case 2:exit=52;
          }
        
       case 1:
-       var bi1=match[1];
+       var bi1=n1[1];
        
-       switch(match$1[0])
+       switch(n2[0])
         {case 0:
-          var i2$1=match$1[1];
-          
           return num_of_big_int
-                  (Big_int["mod_big_int"](bi1,Big_int["big_int_of_int"](i2$1)));
+                  (Big_int["mod_big_int"]
+                    (bi1,Big_int["big_int_of_int"](n2[1])));
           
-         case 1:
-          var bi1$1=bi1;
-          
-          var bi2$1=match$1[1];
-          
-          return num_of_big_int(Big_int["mod_big_int"](bi1$1,bi2$1));
-          
+         case 1:return num_of_big_int(Big_int["mod_big_int"](bi1,n2[1]));
          case 2:exit=52;
          }
        
@@ -561,57 +401,46 @@ var
 var
  power_num_int=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match[0])
+   {switch(a[0])
      {case 0:
-       var n=match$1;
+       var i=a[1];
        
-       var i=match[1];
+       var match=Int_misc["sign_int"](b);
        
-       var match$2=Int_misc["sign_int"](n);
+       return match!==0
+               ?match!==1
+                 ?/* Ratio */[2,
+                   Ratio["create_normalized_ratio"]
+                    (Big_int["unit_big_int"],
+                     Big_int["power_int_positive_int"](i,-b))]
+                 :num_of_big_int(Big_int["power_int_positive_int"](i,b))
+               :[/* Int */0,1];
+       
+      case 1:
+       var bi=a[1];
+       
+       var match$1=Int_misc["sign_int"](b);
+       
+       return match$1!==0
+               ?match$1!==1
+                 ?/* Ratio */[2,
+                   Ratio["create_normalized_ratio"]
+                    (Big_int["unit_big_int"],
+                     Big_int["power_big_int_positive_int"](bi,-b))]
+                 :num_of_big_int(Big_int["power_big_int_positive_int"](bi,b))
+               :[/* Int */0,1];
+       
+      case 2:
+       var r=a[1];
+       
+       var match$2=Int_misc["sign_int"](b);
        
        return match$2!==0
                ?match$2!==1
                  ?/* Ratio */[2,
-                   Ratio["create_normalized_ratio"]
-                    (Big_int["unit_big_int"],
-                     Big_int["power_int_positive_int"](i,-n))]
-                 :num_of_big_int(Big_int["power_int_positive_int"](i,n))
-               :[/* Int */0,1];
-       
-      case 1:
-       var n$1=match$1;
-       
-       var bi=match[1];
-       
-       var match$3=Int_misc["sign_int"](n$1);
-       
-       return match$3!==0
-               ?match$3!==1
-                 ?/* Ratio */[2,
-                   Ratio["create_normalized_ratio"]
-                    (Big_int["unit_big_int"],
-                     Big_int["power_big_int_positive_int"](bi,-n$1))]
-                 :num_of_big_int
-                   (Big_int["power_big_int_positive_int"](bi,n$1))
-               :[/* Int */0,1];
-       
-      case 2:
-       var n$2=match$1;
-       
-       var r=match[1];
-       
-       var match$4=Int_misc["sign_int"](n$2);
-       
-       return match$4!==0
-               ?match$4!==1
-                 ?/* Ratio */[2,
                    Ratio["power_ratio_positive_int"]
-                    (Ratio["inverse_ratio"](r),-n$2)]
-                 :/* Ratio */[2,Ratio["power_ratio_positive_int"](r,n$2)]
+                    (Ratio["inverse_ratio"](r),-b)]
+                 :/* Ratio */[2,Ratio["power_ratio_positive_int"](r,b)]
                :[/* Int */0,1];
        
       }
@@ -620,59 +449,49 @@ var
 var
  power_num_big_int=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match[0])
+   {switch(a[0])
      {case 0:
-       var n=match$1;
+       var i=a[1];
        
-       var i=match[1];
+       var match=Big_int["sign_big_int"](b);
        
-       var match$2=Big_int["sign_big_int"](n);
-       
-       return match$2!==0
-               ?match$2!==1
+       return match!==0
+               ?match!==1
                  ?/* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
                      Big_int["power_int_positive_big_int"]
-                      (i,Big_int["minus_big_int"](n)))]
-                 :num_of_big_int(Big_int["power_int_positive_big_int"](i,n))
+                      (i,Big_int["minus_big_int"](b)))]
+                 :num_of_big_int(Big_int["power_int_positive_big_int"](i,b))
                :[/* Int */0,1];
        
       case 1:
-       var n$1=match$1;
+       var bi=a[1];
        
-       var bi=match[1];
+       var match$1=Big_int["sign_big_int"](b);
        
-       var match$3=Big_int["sign_big_int"](n$1);
-       
-       return match$3!==0
-               ?match$3!==1
+       return match$1!==0
+               ?match$1!==1
                  ?/* Ratio */[2,
                    Ratio["create_normalized_ratio"]
                     (Big_int["unit_big_int"],
                      Big_int["power_big_int_positive_big_int"]
-                      (bi,Big_int["minus_big_int"](n$1)))]
+                      (bi,Big_int["minus_big_int"](b)))]
                  :num_of_big_int
-                   (Big_int["power_big_int_positive_big_int"](bi,n$1))
+                   (Big_int["power_big_int_positive_big_int"](bi,b))
                :[/* Int */0,1];
        
       case 2:
-       var n$2=match$1;
+       var r=a[1];
        
-       var r=match[1];
+       var match$2=Big_int["sign_big_int"](b);
        
-       var match$4=Big_int["sign_big_int"](n$2);
-       
-       return match$4!==0
-               ?match$4!==1
+       return match$2!==0
+               ?match$2!==1
                  ?/* Ratio */[2,
                    Ratio["power_ratio_positive_big_int"]
-                    (Ratio["inverse_ratio"](r),Big_int["minus_big_int"](n$2))]
-                 :/* Ratio */[2,Ratio["power_ratio_positive_big_int"](r,n$2)]
+                    (Ratio["inverse_ratio"](r),Big_int["minus_big_int"](b))]
+                 :/* Ratio */[2,Ratio["power_ratio_positive_big_int"](r,b)]
                :[/* Int */0,1];
        
       }
@@ -681,13 +500,9 @@ var
 var
  power_num=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match$1[0])
-     {case 0:var n=match;var i=match$1[1];return power_num_int(n,i);
-      case 1:var n$1=match;var bi=match$1[1];return power_num_big_int(n$1,bi);
+   {switch(b[0])
+     {case 0:return power_num_int(a,b[1]);
+      case 1:return power_num_big_int(a,b[1]);
       case 2:return Pervasives["invalid_arg"]("power_num");
       }
     };
@@ -700,7 +515,7 @@ var
    {switch(param[0])
      {case 0:return /* true */1;
       case 1:return /* true */1;
-      case 2:var r=param[1];return Ratio["is_integer_ratio"](r);
+      case 2:return Ratio["is_integer_ratio"](param[1]);
       }
     };
 
@@ -709,8 +524,8 @@ var
   function(n)
    {switch(n[0])
      {case 0:return n;
-      case 1:var n$1=n;return n$1;
-      case 2:var r=n[1];return num_of_big_int(Ratio["integer_ratio"](r));
+      case 1:return n;
+      case 2:return num_of_big_int(Ratio["integer_ratio"](n[1]));
       }
     };
 
@@ -719,8 +534,8 @@ var
   function(n)
    {switch(n[0])
      {case 0:return n;
-      case 1:var n$1=n;return n$1;
-      case 2:var r=n[1];return num_of_big_int(Ratio["round_ratio"](r));
+      case 1:return n;
+      case 2:return num_of_big_int(Ratio["round_ratio"](n[1]));
       }
     };
 
@@ -729,8 +544,8 @@ var
   function(n)
    {switch(n[0])
      {case 0:return n;
-      case 1:var n$1=n;return n$1;
-      case 2:var r=n[1];return num_of_big_int(Ratio["ceiling_ratio"](r));
+      case 1:return n;
+      case 2:return num_of_big_int(Ratio["ceiling_ratio"](n[1]));
       }
     };
 
@@ -738,83 +553,47 @@ var
  sign_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return Int_misc["sign_int"](i);
-      case 1:var bi=param[1];return Big_int["sign_big_int"](bi);
-      case 2:var r=param[1];return Ratio["sign_ratio"](r);
+     {case 0:return Int_misc["sign_int"](param[1]);
+      case 1:return Big_int["sign_big_int"](param[1]);
+      case 2:return Ratio["sign_ratio"](param[1]);
       }
     };
 
 var
  eq_num=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match[0])
+   {switch(a[0])
      {case 0:
-       var int1=match[1];
+       var int1=a[1];
        
-       switch(match$1[0])
-        {case 0:var int2=match$1[1];return int1===int2;
+       switch(b[0])
+        {case 0:return int1===b[1];
          case 1:
-          var i=int1;
-          
-          var bi=match$1[1];
-          
-          return Big_int["eq_big_int"](Big_int["big_int_of_int"](i),bi);
-          
+          return Big_int["eq_big_int"](Big_int["big_int_of_int"](int1),b[1]);
          case 2:
-          var i$1=int1;
-          
-          var r=match$1[1];
-          
-          return Ratio["eq_big_int_ratio"](Big_int["big_int_of_int"](i$1),r);
+          return Ratio["eq_big_int_ratio"]
+                  (Big_int["big_int_of_int"](int1),b[1]);
           
          }
        
       case 1:
-       var bi$1=match[1];
+       var bi=a[1];
        
-       switch(match$1[0])
+       switch(b[0])
         {case 0:
-          var i$2=match$1[1];
-          
-          return Big_int["eq_big_int"](Big_int["big_int_of_int"](i$2),bi$1);
-          
-         case 1:
-          var bi1=bi$1;
-          
-          var bi2=match$1[1];
-          
-          return Big_int["eq_big_int"](bi1,bi2);
-          
-         case 2:
-          var bi$2=bi$1;
-          
-          var r$1=match$1[1];
-          
-          return Ratio["eq_big_int_ratio"](bi$2,r$1);
-          
+          return Big_int["eq_big_int"](Big_int["big_int_of_int"](b[1]),bi);
+         case 1:return Big_int["eq_big_int"](bi,b[1]);
+         case 2:return Ratio["eq_big_int_ratio"](bi,b[1]);
          }
        
       case 2:
-       var r$2=match[1];
+       var r=a[1];
        
-       switch(match$1[0])
+       switch(b[0])
         {case 0:
-          var i$3=match$1[1];
-          
-          return Ratio["eq_big_int_ratio"](Big_int["big_int_of_int"](i$3),r$2);
-          
-         case 1:
-          var r$3=r$2;
-          
-          var bi$3=match$1[1];
-          
-          return Ratio["eq_big_int_ratio"](bi$3,r$3);
-          
-         case 2:var r1=r$2;var r2=match$1[1];return Ratio["eq_ratio"](r1,r2);
+          return Ratio["eq_big_int_ratio"](Big_int["big_int_of_int"](b[1]),r);
+         case 1:return Ratio["eq_big_int_ratio"](b[1],r);
+         case 2:return Ratio["eq_ratio"](r,b[1]);
          }
        
       }
@@ -827,78 +606,44 @@ var $less$great$slash=function(a,b){return !eq_num(a,b);};
 var
  compare_num=
   function(a,b)
-   {var match=a;
-    
-    var match$1=b;
-    
-    switch(match[0])
+   {switch(a[0])
      {case 0:
-       var int1=match[1];
+       var int1=a[1];
        
-       switch(match$1[0])
-        {case 0:var int2=match$1[1];return Int_misc["compare_int"](int1,int2);
+       switch(b[0])
+        {case 0:return Int_misc["compare_int"](int1,b[1]);
          case 1:
-          var i=int1;
-          
-          var bi=match$1[1];
-          
-          return Big_int["compare_big_int"](Big_int["big_int_of_int"](i),bi);
+          return Big_int["compare_big_int"]
+                  (Big_int["big_int_of_int"](int1),b[1]);
           
          case 2:
-          var i$1=int1;
-          
-          var r=match$1[1];
-          
           return Ratio["compare_big_int_ratio"]
-                  (Big_int["big_int_of_int"](i$1),r);
+                  (Big_int["big_int_of_int"](int1),b[1]);
           
          }
        
       case 1:
-       var bi$1=match[1];
+       var bi=a[1];
        
-       switch(match$1[0])
+       switch(b[0])
         {case 0:
-          var i$2=match$1[1];
-          
           return Big_int["compare_big_int"]
-                  (bi$1,Big_int["big_int_of_int"](i$2));
+                  (bi,Big_int["big_int_of_int"](b[1]));
           
-         case 1:
-          var bi1=bi$1;
-          
-          var bi2=match$1[1];
-          
-          return Big_int["compare_big_int"](bi1,bi2);
-          
-         case 2:
-          var bi$2=bi$1;
-          
-          var r$1=match$1[1];
-          
-          return Ratio["compare_big_int_ratio"](bi$2,r$1);
-          
+         case 1:return Big_int["compare_big_int"](bi,b[1]);
+         case 2:return Ratio["compare_big_int_ratio"](bi,b[1]);
          }
        
       case 2:
-       var r$2=match[1];
+       var r=a[1];
        
-       switch(match$1[0])
+       switch(b[0])
         {case 0:
-          var i$3=match$1[1];
-          
           return -Ratio["compare_big_int_ratio"]
-                  (Big_int["big_int_of_int"](i$3),r$2);
+                  (Big_int["big_int_of_int"](b[1]),r);
           
-         case 1:
-          var r$3=r$2;
-          
-          var bi$3=match$1[1];
-          
-          return -Ratio["compare_big_int_ratio"](bi$3,r$3);
-          
-         case 2:
-          var r1=r$2;var r2=match$1[1];return Ratio["compare_ratio"](r1,r2);
+         case 1:return -Ratio["compare_big_int_ratio"](b[1],r);
+         case 2:return Ratio["compare_ratio"](r,b[1]);
          }
        
       }
@@ -928,9 +673,9 @@ var
  int_of_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return i;
-      case 1:var bi=param[1];return Big_int["int_of_big_int"](bi);
-      case 2:var r=param[1];return Ratio["int_of_ratio"](r);
+     {case 0:return param[1];
+      case 1:return Big_int["int_of_big_int"](param[1]);
+      case 2:return Ratio["int_of_ratio"](param[1]);
       }
     };
 
@@ -946,9 +691,9 @@ var
  nat_of_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return Nat["nat_of_int"](i);
-      case 1:var bi=param[1];return Big_int["nat_of_big_int"](bi);
-      case 2:var r=param[1];return Ratio["nat_of_ratio"](r);
+     {case 0:return Nat["nat_of_int"](param[1]);
+      case 1:return Big_int["nat_of_big_int"](param[1]);
+      case 2:return Ratio["nat_of_ratio"](param[1]);
       }
     };
 
@@ -964,9 +709,9 @@ var
  big_int_of_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return Big_int["big_int_of_int"](i);
-      case 1:var bi=param[1];return bi;
-      case 2:var r=param[1];return Ratio["big_int_of_ratio"](r);
+     {case 0:return Big_int["big_int_of_int"](param[1]);
+      case 1:return param[1];
+      case 2:return Ratio["big_int_of_ratio"](param[1]);
       }
     };
 
@@ -983,9 +728,9 @@ var
  string_of_normalized_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return Pervasives["string_of_int"](i);
-      case 1:var bi=param[1];return string_of_big_int_for_num(bi);
-      case 2:var r=param[1];return Ratio["string_of_ratio"](r);
+     {case 0:return Pervasives["string_of_int"](param[1]);
+      case 1:return string_of_big_int_for_num(param[1]);
+      case 2:return Ratio["string_of_ratio"](param[1]);
       }
     };
 
@@ -1010,9 +755,7 @@ var
               :/* Ratio */[2,r];
       }
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
        {return Pervasives["failwith"]("num_of_string");}
       else
        {throw exn;}
@@ -1023,9 +766,9 @@ var
  float_of_num=
   function(param)
    {switch(param[0])
-     {case 0:var i=param[1];return i;
-      case 1:var bi=param[1];return Big_int["float_of_big_int"](bi);
-      case 2:var r=param[1];return Ratio["float_of_ratio"](r);
+     {case 0:return param[1];
+      case 1:return Big_int["float_of_big_int"](param[1]);
+      case 2:return Ratio["float_of_ratio"](param[1]);
       }
     };
 
@@ -1041,9 +784,8 @@ var
                  Big_int["succ_big_int"](Big_int["big_int_of_int"](i))]
                :/* Int */[0,1+i];
        
-      case 1:
-       var bi=param[1];return num_of_big_int(Big_int["succ_big_int"](bi));
-      case 2:var r=param[1];return /* Ratio */[2,Ratio["add_int_ratio"](1,r)];
+      case 1:return num_of_big_int(Big_int["succ_big_int"](param[1]));
+      case 2:return /* Ratio */[2,Ratio["add_int_ratio"](1,param[1])];
       }
     };
 
@@ -1059,10 +801,8 @@ var
                  Big_int["pred_big_int"](Big_int["big_int_of_int"](i))]
                :/* Int */[0,-1+i];
        
-      case 1:
-       var bi=param[1];return num_of_big_int(Big_int["pred_big_int"](bi));
-      case 2:
-       var r=param[1];return /* Ratio */[2,Ratio["add_int_ratio"](-1,r)];
+      case 1:return num_of_big_int(Big_int["pred_big_int"](param[1]));
+      case 2:return /* Ratio */[2,Ratio["add_int_ratio"](-1,param[1])];
       }
     };
 
@@ -1078,9 +818,8 @@ var
                  Big_int["minus_big_int"](Big_int["big_int_of_int"](i))]
                :/* Int */[0,Pervasives["abs"](i)];
        
-      case 1:
-       var bi=param[1];return /* Big_int */[1,Big_int["abs_big_int"](bi)];
-      case 2:var r=param[1];return /* Ratio */[2,Ratio["abs_ratio"](r)];
+      case 1:return /* Big_int */[1,Big_int["abs_big_int"](param[1])];
+      case 2:return /* Ratio */[2,Ratio["abs_ratio"](param[1])];
       }
     };
 

@@ -55,11 +55,11 @@ var
       use_debugger_symtable(Dynlink["loadfile"],filename);
       var d=Filename["dirname"](name);
       
-      CamlPrimitive["caml_string_notequal"](d,Filename["current_dir_name"])
-       ?!List["mem"](d,Config["load_path"][1])
+      if
+       (CamlPrimitive["caml_string_notequal"](d,Filename["current_dir_name"]))
+       {!List["mem"](d,Config["load_path"][1])
          ?(Config["load_path"][1]=/* :: */[0,d,Config["load_path"][1]],0)
-         :0
-       :0;
+         :0}
       
       Format["fprintf"]
        (ppf,

@@ -31,27 +31,21 @@ var
    {try
      {return f(arg);}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===Unix_error)
+     {if(exn[1]===Unix_error)
        {var arg$1=exn[4];
-        
-        var fun_name=exn[3];
-        
-        var err=exn[2];
         
         Pervasives["prerr_string"](Sys["argv"][1]);
         Pervasives["prerr_string"](': "');
-        Pervasives["prerr_string"](fun_name);
+        Pervasives["prerr_string"](exn[3]);
         Pervasives["prerr_string"]('" failed');
-        arg$1["length"]>0
-         ?(Pervasives["prerr_string"](' on "'),
-           Pervasives["prerr_string"](arg$1),
-           Pervasives["prerr_string"]('"'))
-         :0;
+        if(arg$1["length"]>0)
+         {Pervasives["prerr_string"](' on "'),
+          Pervasives["prerr_string"](arg$1),
+          Pervasives["prerr_string"]('"')}
         
         Pervasives["prerr_string"](": ");
-        Pervasives["prerr_endline"](CamlPrimitive["unix_error_message"](err));
+        Pervasives["prerr_endline"]
+         (CamlPrimitive["unix_error_message"](exn[2]));
         return Pervasives["exit"](2);
         }
       else
@@ -76,9 +70,7 @@ var
     catch(exn)
      {var exit;
       
-      var tag=exn[1];
-      
-      if(tag===Unix_error)
+      if(exn[1]===Unix_error)
        {var match=exn[2];
         
         var exit$1;
@@ -112,9 +104,7 @@ var
     catch(exn)
      {var exit;
       
-      var tag=exn[1];
-      
-      if(tag===Unix_error)
+      if(exn[1]===Unix_error)
        {var match=exn[2];
         
         var exit$1;
@@ -148,9 +138,7 @@ var
     catch(exn)
      {var exit;
       
-      var tag=exn[1];
-      
-      if(tag===Unix_error)
+      if(exn[1]===Unix_error)
        {var match=exn[2];
         
         var exit$1;
@@ -191,12 +179,8 @@ var
   function(param)
    {var fd_pair=CamlPrimitive["unix_pipe"](/* () */0);
     
-    var in_fd=fd_pair[2];
-    
-    var out_fd=fd_pair[1];
-    
-    CamlPrimitive["unix_set_nonblock"](in_fd);
-    CamlPrimitive["unix_set_nonblock"](out_fd);
+    CamlPrimitive["unix_set_nonblock"](fd_pair[2]);
+    CamlPrimitive["unix_set_nonblock"](fd_pair[1]);
     return fd_pair;
     };
 
@@ -211,15 +195,7 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 0:
-         var e=match[3];
-         
-         var w=match[2];
-         
-         var r=match[1];
-         
-         return /* tuple */[0,r,w,e];
-         
+       {case 0:return /* tuple */[0,match[1],match[2],match[3]];
         default:exit=151;}}
     
     switch(exit)
@@ -231,8 +207,7 @@ var
   function(fd)
    {try
      {return CamlPrimitive["unix_clear_nonblock"](fd);}
-    catch(exn)
-     {var tag=exn[1];if(tag===Unix_error){return /* () */0;}else{throw exn;}}
+    catch(exn){if(exn[1]===Unix_error){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -240,8 +215,7 @@ var
   function(fd)
    {try
      {return CamlPrimitive["unix_set_nonblock"](fd);}
-    catch(exn)
-     {var tag=exn[1];if(tag===Unix_error){return /* () */0;}else{throw exn;}}
+    catch(exn){if(exn[1]===Unix_error){return /* () */0;}else{throw exn;}}
     };
 
 var
@@ -255,9 +229,7 @@ var
     try
      {return fn(/* () */0);}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===Unix_error)
+     {if(exn[1]===Unix_error)
        {CamlPrimitive["unix_setitimer"](/* ITIMER_VIRTUAL */1,oldtimer);
         safe_set_nonblock(stdin);
         safe_set_nonblock(stdout);
@@ -313,14 +285,7 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 1:
-         var status=match[2];
-         
-         var pid$1=match[1];
-         
-         return /* tuple */[0,pid$1,status];
-         
-        default:exit=138;}}
+       {case 1:return /* tuple */[0,match[1],match[2]];default:exit=138;}}
     
     switch(exit)
      {case 138:return Pervasives["invalid_arg"]("Thread.wait_pid");}
@@ -354,9 +319,7 @@ var inet6_addr_any;
 try
  {inet6_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("::");}
 catch(exn)
- {var tag=exn[1];
-  
-  if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+ {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
    {inet6_addr_any=inet_addr_any;}
   else
    {throw exn;}
@@ -366,9 +329,7 @@ var inet6_addr_loopback;
 try
  {inet6_addr_loopback=CamlPrimitive["unix_inet_addr_of_string"]("::1");}
 catch(exn$1)
- {var tag$1=exn$1[1];
-  
-  if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
+ {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
    {inet6_addr_loopback=inet_addr_loopback;}
   else
    {throw exn$1;}
@@ -381,8 +342,7 @@ var
   function(param)
    {switch(param[0])
      {case 0:return /* PF_UNIX */0;
-      case 1:
-       var a=param[1];return is_inet6_addr(a)?/* PF_INET6 */2:/* PF_INET */1;
+      case 1:return is_inet6_addr(param[1])?/* PF_INET6 */2:/* PF_INET */1;
       }
     };
 
@@ -400,12 +360,8 @@ var
   function(dom,typ,proto)
    {var spair=CamlPrimitive["unix_socketpair"](dom,typ,proto);
     
-    var s2=spair[2];
-    
-    var s1=spair[1];
-    
-    CamlPrimitive["unix_set_nonblock"](s1);
-    CamlPrimitive["unix_set_nonblock"](s2);
+    CamlPrimitive["unix_set_nonblock"](spair[1]);
+    CamlPrimitive["unix_set_nonblock"](spair[2]);
     return spair;
     };
 
@@ -416,17 +372,13 @@ var
     try
      {var result=CamlPrimitive["unix_accept"](req);
       
-      var s=result[1];
-      
-      CamlPrimitive["unix_set_nonblock"](s);
+      CamlPrimitive["unix_set_nonblock"](result[1]);
       return result;
       }
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         var exit$1;
@@ -457,9 +409,7 @@ var
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         var exit$1;
@@ -494,9 +444,7 @@ var
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         var exit$1;
@@ -531,9 +479,7 @@ var
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         var exit$1;
@@ -568,9 +514,7 @@ var
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         var exit$1;
@@ -605,9 +549,7 @@ var
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         var exit$1;
@@ -699,8 +641,8 @@ var
          {switch(param){case 2:return opt_passive[1]=/* true */1,0;}}
         else
          {switch(param[0])
-           {case 1:var s=param[1];return opt_socktype[1]=/* Some */[0,s],0;
-            case 2:var p=param[1];return opt_protocol[1]=p,0;
+           {case 1:return opt_socktype[1]=/* Some */[0,param[1]],0;
+            case 2:return opt_protocol[1]=param[1],0;
             default:exit=86;}}
         
         switch(exit){case 86:return /* () */0;}
@@ -720,9 +662,7 @@ var
                     /* [] */0];
             }
           catch(exn$2)
-           {var tag$2=exn$2[1];
-            
-            if(tag$2===CamlPrimitive["caml_global_data"]["Failure"])
+           {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
              {try
                {return /* :: */[0,
                         /* tuple */[0,
@@ -779,9 +719,7 @@ var
          /* [] */0];
         }
       catch(exn$2)
-       {var tag$2=exn$2[1];
-        
-        if(tag$2===CamlPrimitive["caml_global_data"]["Failure"])
+       {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {try
            {var he=CamlPrimitive["unix_gethostbyname"](node);
             
@@ -811,16 +749,12 @@ var
                  
                  return List["map"]
                          (function(param$1)
-                           {var name=param$1[2];
-                            
-                            var addr=param$1[1];
-                            
-                            return /* record */[0,
+                           {return /* record */[0,
                                     /* PF_INET */1,
                                     ty$1,
                                     opt_protocol[1],
-                                    /* ADDR_INET */[1,addr,port],
-                                    name];
+                                    /* ADDR_INET */[1,param$1[1],port],
+                                    param$1[2]];
                             },
                           addresses);
                  },
@@ -834,9 +768,7 @@ var
      {return List["rev"](CamlPrimitive["unix_getaddrinfo"](node,service,opts));
       }
     catch(exn$2)
-     {var tag$2=exn$2[1];
-      
-      if(tag$2===CamlPrimitive["caml_global_data"]["Invalid_argument"])
+     {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
        {return getaddrinfo_emulation(node,service,opts);}
       else
        {throw exn$2;}
@@ -847,7 +779,7 @@ var
  getnameinfo_emulation=
   function(addr,opts)
    {switch(addr[0])
-     {case 0:var f=addr[1];return /* record */[0,"",f];
+     {case 0:return /* record */[0,"",addr[1]];
       case 1:
        var p=addr[2];
        
@@ -904,9 +836,7 @@ var
    {try
      {return CamlPrimitive["unix_getnameinfo"](addr,opts);}
     catch(exn$2)
-     {var tag$2=exn$2[1];
-      
-      if(tag$2===CamlPrimitive["caml_global_data"]["Invalid_argument"])
+     {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
        {return getnameinfo_emulation(addr,opts);}
       else
        {throw exn$2;}
@@ -944,10 +874,7 @@ var
    {try
      {return CamlPrimitive["unix_close"](fd);}
     catch(exn$2)
-     {var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error){return /* () */0;}else{throw exn$2;}
-      }
+     {if(exn$2[1]===Unix_error){return /* () */0;}else{throw exn$2;}}
     };
 
 var
@@ -1012,15 +939,13 @@ var
     if(id!==0)
      {return Hashtbl["add"](popen_processes,proc,id);}
     else
-     {input!==stdin
-       ?(CamlPrimitive["unix_dup2"](input,stdin),
-         CamlPrimitive["unix_close"](input))
-       :0;
+     {if(input!==stdin)
+       {CamlPrimitive["unix_dup2"](input,stdin),
+        CamlPrimitive["unix_close"](input)}
       
-      output!==stdout
-       ?(CamlPrimitive["unix_dup2"](output,stdout),
-         CamlPrimitive["unix_close"](output))
-       :0;
+      if(output!==stdout)
+       {CamlPrimitive["unix_dup2"](output,stdout),
+        CamlPrimitive["unix_close"](output)}
       
       List["iter"]
        (function(prim){return CamlPrimitive["unix_close"](prim);},toclose);
@@ -1190,9 +1115,7 @@ var
     catch(exn$2)
      {var exit;
       
-      var tag$2=exn$2[1];
-      
-      if(tag$2===Unix_error)
+      if(exn$2[1]===Unix_error)
        {var match=exn$2[2];
         
         if(typeof match==="number")
@@ -1238,9 +1161,7 @@ var
     try
      {Pervasives["close_out"](outchan)}
     catch(exn$2)
-     {var tag$2=exn$2[1];
-      
-      if(tag$2===CamlPrimitive["caml_global_data"]["Sys_error"])
+     {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {}
       else
        {throw exn$2;}
@@ -1267,9 +1188,7 @@ var
     try
      {Pervasives["close_out"](outchan)}
     catch(exn$2)
-     {var tag$2=exn$2[1];
-      
-      if(tag$2===CamlPrimitive["caml_global_data"]["Sys_error"])
+     {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
        {}
       else
        {throw exn$2;}
@@ -1319,7 +1238,7 @@ var
       if(id!==0)
        {CamlPrimitive["unix_close"](s),waitpid(/* [] */0,id)}
       else
-       {CamlPrimitive["unix_fork"](/* () */0)!==0?Pervasives["exit"](0):0;
+       {if(CamlPrimitive["unix_fork"](/* () */0)!==0){Pervasives["exit"](0)}
         
         var inchan=CamlPrimitive["caml_ml_open_descriptor_in"](s);
         

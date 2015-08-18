@@ -222,30 +222,29 @@ var
                     [/* String_literal */11,":\n",/* End_of_format */0]]],
                   "#\n# module %s:\n"],
                  m[1]);
-               0
-                ?(p
-                   (self$neg1[fmt+1],
-                    [/* Format */0,
-                     [/* String_literal */11,
-                      "# Odoc_info.string_of_module_type:\n<[",
-                      [/* String */2,
-                       /* No_padding */0,
-                       [/* String_literal */11,"]>\n",/* End_of_format */0]]],
-                     "# Odoc_info.string_of_module_type:\n<[%s]>\n"],
-                    Odoc_info["string_of_module_type"]
-                     (/* None */0,/* None */0,m[2])),
-                  p
-                   (self$neg1[fmt+1],
-                    [/* Format */0,
-                     [/* String_literal */11,
-                      "# Odoc_info.string_of_module_type ~complete: true :\n<[",
-                      [/* String */2,
-                       /* No_padding */0,
-                       [/* String_literal */11,"]>\n",/* End_of_format */0]]],
-                     "# Odoc_info.string_of_module_type ~complete: true :\n<[%s]>\n"],
-                    Odoc_info["string_of_module_type"]
-                     (/* None */0,[/* Some */0,/* true */1],m[2])))
-                :0;
+               if(0)
+                {p
+                  (self$neg1[fmt+1],
+                   [/* Format */0,
+                    [/* String_literal */11,
+                     "# Odoc_info.string_of_module_type:\n<[",
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String_literal */11,"]>\n",/* End_of_format */0]]],
+                    "# Odoc_info.string_of_module_type:\n<[%s]>\n"],
+                   Odoc_info["string_of_module_type"]
+                    (/* None */0,/* None */0,m[2])),
+                 p
+                  (self$neg1[fmt+1],
+                   [/* Format */0,
+                    [/* String_literal */11,
+                     "# Odoc_info.string_of_module_type ~complete: true :\n<[",
+                     [/* String */2,
+                      /* No_padding */0,
+                      [/* String_literal */11,"]>\n",/* End_of_format */0]]],
+                    "# Odoc_info.string_of_module_type ~complete: true :\n<[%s]>\n"],
+                   Odoc_info["string_of_module_type"]
+                    (/* None */0,[/* Some */0,/* true */1],m[2]))}
                
                return /* true */1;
                },

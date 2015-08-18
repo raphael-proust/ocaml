@@ -113,7 +113,7 @@ var
 var
  generic_exec_unix=
   function(cmdline,param)
-   {debug_loading[1]?Pervasives["prerr_endline"]("Launching program..."):0;
+   {if(debug_loading[1]){Pervasives["prerr_endline"]("Launching program...")}
     
     var child;
     try
@@ -167,7 +167,7 @@ var
 var
  generic_exec_win=
   function(cmdline,param)
-   {debug_loading[1]?Pervasives["prerr_endline"]("Launching program..."):0;
+   {if(debug_loading[1]){Pervasives["prerr_endline"]("Launching program...")}
     
     try
      {return Unix["create_process"]

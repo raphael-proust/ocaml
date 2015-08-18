@@ -257,7 +257,7 @@ var
          var c$1=Lexing["lexeme_char"](lexbuf,0);
          
          ajout_char_string(c$1);
-         c$1===10?line_number[0]++:0;
+         if(c$1===10){line_number[0]++}
          
          Odoc_comments_global["nb_chars"][0]++;
          return special_comment(lexbuf);
@@ -325,7 +325,7 @@ var
          var c=Lexing["lexeme_char"](lexbuf,0);
          
          ajout_char_string(c);
-         c===10?line_number[0]++:0;
+         if(c===10){line_number[0]++}
          
          Odoc_comments_global["nb_chars"][0]++;
          return special_comment_part2(lexbuf);

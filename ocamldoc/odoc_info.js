@@ -207,14 +207,13 @@ var
     
     var match=i[1];
     
-    match
-     ?p
+    if(match)
+     {p
        (b,
         [/* Format */0,
          [/* String */2,/* No_padding */0,/* End_of_format */0],
          "%s"],
-        escape_arobas(text_string_of_text(match[1])))
-     :/* () */0;
+        escape_arobas(text_string_of_text(match[1])))}
     
     List["iter"]
      (function(s)
@@ -234,8 +233,8 @@ var
       i[2]);
     var match$1=i[3];
     
-    match$1
-     ?p
+    if(match$1)
+     {p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -246,8 +245,7 @@ var
             "version ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@version %s"],
-        escape_arobas(match$1[1]))
-     :/* () */0;
+        escape_arobas(match$1[1]))}
     
     var
      f_see_ref=
@@ -312,8 +310,8 @@ var
       i[4]);
     var match$2=i[5];
     
-    match$2
-     ?p
+    if(match$2)
+     {p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -324,13 +322,12 @@ var
             "since ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@since %s"],
-        escape_arobas(match$2[1]))
-     :/* () */0;
+        escape_arobas(match$2[1]))}
     
     var match$3=i[7];
     
-    match$3
-     ?p
+    if(match$3)
+     {p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -341,8 +338,7 @@ var
             "deprecated ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@deprecated %s"],
-        escape_arobas(text_string_of_text(match$3[1])))
-     :/* () */0;
+        escape_arobas(text_string_of_text(match$3[1])))}
     
     List["iter"]
      (function(param)
@@ -388,8 +384,8 @@ var
       i[9]);
     var match$4=i[10];
     
-    match$4
-     ?p
+    if(match$4)
+     {p
        (b,
         [/* Format */0,
          [/* Char_literal */12,
@@ -400,8 +396,7 @@ var
             "return ",
             [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
          "\n@@return %s"],
-        escape_arobas(text_string_of_text(match$4[1])))
-     :/* () */0;
+        escape_arobas(text_string_of_text(match$4[1])))}
     
     List["iter"]
      (function(param)

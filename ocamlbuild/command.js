@@ -158,9 +158,8 @@ var
     
     var b=Buffer["create"](256);
     
-    CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32")
-     ?Buffer["add_string"](b,"''")
-     :0;
+    if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Win32"))
+     {Buffer["add_string"](b,"''")}
     
     var first=[0,/* true */1];
     
@@ -275,7 +274,7 @@ var
     var s=match[1];
     
     return function(param)
-     {!quiet?Log["event"](/* Some */[0,pretend],s,target,tags):0;return s;};
+     {if(!quiet){Log["event"](/* Some */[0,pretend],s,target,tags)}return s;};
     };
 
 var
@@ -353,7 +352,7 @@ var xcountall=[0,0];
 var
  add_parallel_stat=
   function(x)
-   {x>0?(xcountall[0]++,xsumall[1]=x+xsumall[1],0):0;
+   {if(x>0){xcountall[0]++,xsumall[1]=x+xsumall[1],0}
     
     return x>1
             ?(xcount[0]++,
@@ -516,7 +515,7 @@ var
     
     var jobs$1=jobs[1];
     
-    jobs$1<0?Pervasives["invalid_arg"]("jobs < 0"):0;
+    if(jobs$1<0){Pervasives["invalid_arg"]("jobs < 0")}
     
     var max_jobs=jobs$1===0?/* None */0:/* Some */[0,jobs$1];
     
@@ -559,8 +558,8 @@ var
                         var rc=My_std["sys_command"](cmd);
                         
                         if(rc!==0)
-                         {!quiet
-                           ?Log["eprintf"]
+                         {if(!quiet)
+                           {Log["eprintf"]
                              ([/* Format */0,
                                [/* String_literal */11,
                                 "Exit code ",
@@ -575,8 +574,7 @@ var
                                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
                                "Exit code %d while executing this command:@\n%s"],
                               rc,
-                              cmd)
-                           :0;
+                              cmd)}
                           
                           throw [0,My_std["Exit_with_code"],rc];
                           }

@@ -33,8 +33,8 @@ var
       Checkpoints["current_time"](/* () */0));
     var match=Checkpoints["current_pc"](/* () */0);
     
-    match
-     ?Format["fprintf"]
+    if(match)
+     {Format["fprintf"]
        (ppf,
         [/* Format */0,
          [/* String_literal */11,
@@ -45,8 +45,7 @@ var
            /* No_precision */0,
            /* End_of_format */0]],
          " - pc: %i"],
-        match[1])
-     :/* () */0;
+        match[1])}
     
     Symbols["update_current_event"](/* () */0);
     Frames["reset_frame"](/* () */0);
@@ -123,8 +122,8 @@ var
            ev[2]);
          var breakpoints=Breakpoints["breakpoints_at_pc"](match$2[4]);
          
-         breakpoints
-          ?breakpoints[2]
+         if(breakpoints)
+          {breakpoints[2]
             ?Format["fprintf"]
               (ppf,
                [/* Format */0,
@@ -168,8 +167,7 @@ var
                    /* Flush_newline */4,
                    /* End_of_format */0]]],
                 "Breakpoint: %i@."],
-               breakpoints[1])
-          :/* () */0;
+               breakpoints[1])}
          
          return Show_source["show_point"](ev,/* true */1);
          
@@ -287,8 +285,8 @@ var
       show_one_frame(Frames["current_frame"][1],ppf,sel_ev);
       var breakpoints=Breakpoints["breakpoints_at_pc"](sel_ev[1]);
       
-      breakpoints
-       ?breakpoints[2]
+      if(breakpoints)
+       {breakpoints[2]
          ?Format["fprintf"]
            (ppf,
             [/* Format */0,
@@ -332,8 +330,7 @@ var
                 /* Flush_newline */4,
                 /* End_of_format */0]]],
              "Breakpoint: %i@."],
-            breakpoints[1])
-       :/* () */0;
+            breakpoints[1])}
       
       return Show_source["show_point"](sel_ev,selected);
       }

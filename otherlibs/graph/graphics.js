@@ -108,11 +108,7 @@ var
    {for(var i=0;i<=/* -1 for tag */points["length"]-1-1;i++)
      {var match$2=points[i+1];
       
-      var y=match$2[2];
-      
-      var x=match$2[1];
-      
-      CamlPrimitive["caml_gr_plot"](x,y)}
+      CamlPrimitive["caml_gr_plot"](match$2[1],match$2[2])}
     return 0;
     };
 
@@ -158,23 +154,16 @@ var
    {if(/* -1 for tag */points["length"]-1>0)
      {var match$2=current_point(/* () */0);
       
-      var savey=match$2[2];
-      
-      var savex=match$2[1];
-      
       CamlPrimitive["caml_gr_moveto"](points[1][1],points[1][2]);
       for(var i=1;i<=/* -1 for tag */points["length"]-1-1;i++)
        {var match$3=points[i+1];
         
-        var y=match$3[2];
-        
-        var x=match$3[1];
-        
-        CamlPrimitive["caml_gr_lineto"](x,y)}
+        CamlPrimitive["caml_gr_lineto"](match$3[1],match$3[2])}
       
-      close_flag?CamlPrimitive["caml_gr_lineto"](points[1][1],points[1][2]):0;
+      if(close_flag)
+       {CamlPrimitive["caml_gr_lineto"](points[1][1],points[1][2])}
       
-      return CamlPrimitive["caml_gr_moveto"](savex,savey);
+      return CamlPrimitive["caml_gr_moveto"](match$2[1],match$2[2]);
       }
     else
      {return 0;}
@@ -191,25 +180,13 @@ var
   function(segs)
    {var match$3=current_point(/* () */0);
     
-    var savey=match$3[2];
-    
-    var savex=match$3[1];
-    
     for(var i=0;i<=/* -1 for tag */segs["length"]-1-1;i++)
      {var match$4=segs[i+1];
       
-      var y2=match$4[4];
-      
-      var x2=match$4[3];
-      
-      var y1=match$4[2];
-      
-      var x1=match$4[1];
-      
-      CamlPrimitive["caml_gr_moveto"](x1,y1),
-      CamlPrimitive["caml_gr_lineto"](x2,y2)}
+      CamlPrimitive["caml_gr_moveto"](match$4[1],match$4[2]),
+      CamlPrimitive["caml_gr_lineto"](match$4[3],match$4[4])}
     
-    return CamlPrimitive["caml_gr_moveto"](savex,savey);
+    return CamlPrimitive["caml_gr_moveto"](match$3[1],match$3[2]);
     };
 
 var
@@ -346,58 +323,22 @@ var
 var
  add=
   function(param,param$1)
-   {var y2=param$1[2];
-    
-    var x2=param$1[1];
-    
-    var y1=param[2];
-    
-    var x1=param[1];
-    
-    return /* tuple */[0,x1+x2,y1+y2];
-    };
+   {return /* tuple */[0,param[1]+param$1[1],param[2]+param$1[2]];};
 
 var
  sub=
   function(param,param$1)
-   {var y2=param$1[2];
-    
-    var x2=param$1[1];
-    
-    var y1=param[2];
-    
-    var x1=param[1];
-    
-    return /* tuple */[0,x1-x2,y1-y2];
-    };
+   {return /* tuple */[0,param[1]-param$1[1],param[2]-param$1[2]];};
 
 var
  middle=
   function(param,param$1)
-   {var y2=param$1[2];
-    
-    var x2=param$1[1];
-    
-    var y1=param[2];
-    
-    var x1=param[1];
-    
-    return /* tuple */[0,(x1+x2)/2,(y1+y2)/2];
-    };
+   {return /* tuple */[0,(param[1]+param$1[1])/2,(param[2]+param$1[2])/2];};
 
 var
  area=
   function(param,param$1)
-   {var y2=param$1[2];
-    
-    var x2=param$1[1];
-    
-    var y1=param[2];
-    
-    var x1=param[1];
-    
-    return Math["abs"](x1*y2-x2*y1);
-    };
+   {return Math["abs"](param[1]*param$1[2]-param$1[1]*param[2]);};
 
 var
  norm=
@@ -445,26 +386,13 @@ var
 var
  curveto=
   function(b,c,d)
-   {var y=d[2];
-    
-    var x=d[1];
-    
-    var
-     float_point=
-      function(param)
-       {var y$1=param[2];var x$1=param[1];return /* tuple */[0,x$1,y$1];};
+   {var float_point=function(param){return /* tuple */[0,param[1],param[2]];};
     
     var round=function(f){return f+0.5;};
     
     var
      int_point=
-      function(param)
-       {var y$1=param[2];
-        
-        var x$1=param[1];
-        
-        return /* tuple */[0,round(x$1),round(y$1)];
-        };
+      function(param){return /* tuple */[0,round(param[1]),round(param[2])];};
     
     var
      points=
@@ -475,7 +403,7 @@ var
         float_point(d));
     
     draw_poly_line($$Array["of_list"](List["map"](int_point,points)));
-    return CamlPrimitive["caml_gr_moveto"](x,y);
+    return CamlPrimitive["caml_gr_moveto"](d[1],d[2]);
     };
 
 module["exports"]=

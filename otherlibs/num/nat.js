@@ -196,28 +196,27 @@ var
       CamlPrimitive["blit_nat"](copy2[1],0,nat2,off2,len2);
       CamlPrimitive["set_digit_nat"](copy1[1],len1,0);
       CamlPrimitive["set_digit_nat"](copy2[1],len2,0);
-      lt_nat(copy1[1],0,len1,copy2[1],0,len2)?exchange(copy1,copy2):0;
+      if(lt_nat(copy1[1],0,len1,copy2[1],0,len2)){exchange(copy1,copy2)}
       
       var
        real_len1=
-        [0,CamlPrimitive["num_digits_nat"](copy1[1],0,length_nat(copy1[1]))];
+        CamlPrimitive["num_digits_nat"](copy1[1],0,length_nat(copy1[1]));
       
       var
        real_len2=
-        [0,CamlPrimitive["num_digits_nat"](copy2[1],0,length_nat(copy2[1]))];
+        CamlPrimitive["num_digits_nat"](copy2[1],0,length_nat(copy2[1]));
       
-      while(!is_zero_nat(copy2[1],0,real_len2[1]))
-       {CamlPrimitive["set_digit_nat"](copy1[1],real_len1[1],0),
-        CamlPrimitive["div_nat"]
-         (copy1[1],0,1+real_len1[1],copy2[1],0,real_len2[1]),
-        exchange(copy1,copy2),
-        real_len1[1]=
-        real_len2[1],
-        real_len2[1]=
-        CamlPrimitive["num_digits_nat"](copy2[1],0,real_len2[1])}
+      while(!is_zero_nat(copy2[1],0,real_len2))
+       {CamlPrimitive["set_digit_nat"](copy1[1],real_len1,0);
+        CamlPrimitive["div_nat"](copy1[1],0,1+real_len1,copy2[1],0,real_len2);
+        exchange(copy1,copy2);
+        real_len1=real_len2;
+        
+        real_len2=CamlPrimitive["num_digits_nat"](copy2[1],0,real_len2);
+        }
       
-      CamlPrimitive["blit_nat"](nat1,off1,copy1[1],0,real_len1[1]);
-      return real_len1[1];
+      CamlPrimitive["blit_nat"](nat1,off1,copy1[1],0,real_len1);
+      return real_len1;
       }
     };
 
@@ -374,35 +373,36 @@ var digits="0123456789ABCDEF";
 var
  make_power_base=
   function(base,power_base)
-   {var i=[0,0];
+   {var i=0;
     
-    var j=[0,0];
+    var j=0;
     
     CamlPrimitive["set_digit_nat"](power_base,0,base);
-    while(i[0]++,CamlPrimitive["is_digit_zero"](power_base,i[1]))
+    i=1+i;
+    
+    while(CamlPrimitive["is_digit_zero"](power_base,i))
      {CamlPrimitive["mult_digit_nat"]
-       (power_base,i[1],2,power_base,-1+i[1],1,power_base,0)}
+       (power_base,i,2,power_base,-1+i,1,power_base,0)}
     
-    while(j[1]<i[1]-1&&CamlPrimitive["is_digit_int"](power_base,j[1])){j[0]++}
+    while(j<i-1&&CamlPrimitive["is_digit_int"](power_base,j)){j=1+j;}
     
-    return /* tuple */[0,i[1]-2,j[1]];
+    return /* tuple */[0,i-2,j];
     };
 
 var
  int_to_string=
   function($$int,s,pos_ref,base,times)
-   {var i=[0,$$int];
+   {var i=$$int;
     
-    var j=[0,times];
+    var j=times;
     
-    while((i[1]!==0||j[1]!==0)&&pos_ref[1]!==-1)
-     {s[pos_ref[1]]=
-      digits["charCodeAt"](i[1]%base),
-      pos_ref[0]--,
-      j[0]--,
-      i[1]=
-      i[1]/
-      base}
+    while((i!==0||j!==0)&&pos_ref[1]!==-1)
+     {s[pos_ref[1]]=digits["charCodeAt"](i%base);
+      pos_ref[0]--;
+      j=-1+j;
+      
+      i=i/base;
+      }
     return 0;
     };
 
@@ -475,11 +475,11 @@ var
     if(len===1)
      {return raw_string_of_digit(nat,off);}
     else
-     {var len_copy=[0,1+len];
+     {var len_copy=1+len;
       
-      var copy1=CamlPrimitive["create_nat"](len_copy[1]);
+      var copy1=CamlPrimitive["create_nat"](len_copy);
       
-      var copy2=make_nat(len_copy[1]);
+      var copy2=make_nat(len_copy);
       
       var rest_digit=make_nat(2);
       
@@ -490,24 +490,24 @@ var
         
         var s=Bytes["make"](len_s,48);
         
-        var pos_ref=[0,len_s];
+        var pos_ref=len_s;
         
-        len_copy[1]=-1+len_copy[1];
+        len_copy=-1+len_copy;
+        
         CamlPrimitive["blit_nat"](copy1,0,nat,off,len);
         CamlPrimitive["set_digit_nat"](copy1,len,0);
-        while(!is_zero_nat(copy1,0,len_copy[1]))
+        while(!is_zero_nat(copy1,0,len_copy))
          {CamlPrimitive["div_digit_nat"]
-           (copy2,0,rest_digit,0,copy1,0,1+len_copy[1],power_base_max,0);
+           (copy2,0,rest_digit,0,copy1,0,1+len_copy,power_base_max,0);
           var str=raw_string_of_digit(rest_digit,0);
           
-          $$String["blit"](str,0,s,pos_ref[1]-str["length"],str["length"]),
-          pos_ref[1]=
-          pos_ref[1]-
-          pmax,
-          len_copy[1]=
-          CamlPrimitive["num_digits_nat"](copy2,0,len_copy[1]),
-          CamlPrimitive["blit_nat"](copy1,0,copy2,0,len_copy[1]),
-          CamlPrimitive["set_digit_nat"](copy1,len_copy[1],0)}
+          $$String["blit"](str,0,s,pos_ref-str["length"],str["length"]);
+          pos_ref=pos_ref-pmax;
+          
+          len_copy=CamlPrimitive["num_digits_nat"](copy2,0,len_copy);
+          
+          CamlPrimitive["blit_nat"](copy1,0,copy2,0,len_copy),
+          CamlPrimitive["set_digit_nat"](copy1,len_copy,0)}
         
         return Bytes["unsafe_to_string"](s);
         }
@@ -519,19 +519,15 @@ var
   function(nat)
    {var s=unadjusted_string_of_nat(nat,0,length_nat(nat));
     
-    var index=[0,0];
+    var index=0;
     
     try
      {for(var i=0;i<=s["length"]-2;i++)
-       {if(s["charCodeAt"](i)!==48)
-         {index[1]=i;throw Pervasives["Exit"];}
-        else
-         {}
-        }
+       {if(s["charCodeAt"](i)!==48){index=i;throw Pervasives["Exit"];}else{}}
       }
     catch(exn){if(exn===Pervasives["Exit"]){}else{throw exn;}}
     
-    return $$String["sub"](s,index[1],s["length"]-index[1]);
+    return $$String["sub"](s,index,s["length"]-index);
     };
 
 var
@@ -557,23 +553,21 @@ var
     
     var pint=match[2];
     
-    var pmax$1=match[1];
+    var new_len=1+len/(match[1]+1);
     
-    var new_len=[0,1+len/(pmax$1+1)];
+    var current_len=1;
     
-    var current_len=[0,1];
+    var possible_len=Pervasives["min"](2,new_len);
     
-    var possible_len=[0,Pervasives["min"](2,new_len[1])];
+    var nat1=make_nat(new_len);
     
-    var nat1=make_nat(new_len[1]);
+    var nat2=make_nat(new_len);
     
-    var nat2=make_nat(new_len[1]);
-    
-    var digits_read=[0,0];
+    var digits_read=0;
     
     var bound=off+len-1;
     
-    var $$int=[0,0];
+    var $$int=0;
     
     for(var i=off;i<=bound;i++)
      {var c=s["charCodeAt"](i);
@@ -582,7 +576,7 @@ var
       
       if(c>=32)
        {if(c<93)
-         {var switcher=-33+c;if(58<switcher>>>0){exit=5;}else{exit=6;}}
+         {if(58<-33+c>>>0){exit=5;}else{exit=6;}}
         else
          {if(c!==95){exit=6;}else{if(i>off){}else{exit=6;}}}
         }
@@ -595,44 +589,38 @@ var
       
       switch(exit)
        {case 6:
-         $$int[1]=$$int[1]*base+base_digit_of_char(c,base),digits_read[0]++;
+         $$int=$$int*base+base_digit_of_char(c,base);
+         
+         digits_read=1+digits_read;
+         
         case 5:
         }
       
-      if((digits_read[1]===pint||i===bound)&&!(digits_read[1]===0))
-       {CamlPrimitive["set_digit_nat"](nat1,0,$$int[1]);
-        var
-         erase_len=
-          new_len[1]===current_len[1]?current_len[1]-1:current_len[1];
+      if((digits_read===pint||i===bound)&&!(digits_read===0))
+       {CamlPrimitive["set_digit_nat"](nat1,0,$$int);
+        var erase_len=new_len===current_len?current_len-1:current_len;
         
         for(var j=1;j<=erase_len;j++)
          {CamlPrimitive["set_digit_nat"](nat1,j,0)}
         
         CamlPrimitive["mult_digit_nat"]
-         (nat1,
-          0,
-          possible_len[1],
-          nat2,
-          0,
-          current_len[1],
-          power_base,
-          -1+digits_read[1]),
-        CamlPrimitive["blit_nat"](nat2,0,nat1,0,possible_len[1]),
-        current_len[1]=
-        CamlPrimitive["num_digits_nat"](nat1,0,possible_len[1]),
-        possible_len[1]=
-        Pervasives["min"](new_len[1],1+current_len[1]),
-        $$int[1]=
-        0,
-        digits_read[1]=
-        0}
+         (nat1,0,possible_len,nat2,0,current_len,power_base,-1+digits_read);
+        CamlPrimitive["blit_nat"](nat2,0,nat1,0,possible_len);
+        current_len=CamlPrimitive["num_digits_nat"](nat1,0,possible_len);
+        
+        possible_len=Pervasives["min"](new_len,1+current_len);
+        
+        $$int=0;
+        
+        digits_read=0;
+        }
       else
        {}
       }
     
-    var nat=CamlPrimitive["create_nat"](current_len[1]);
+    var nat=CamlPrimitive["create_nat"](current_len);
     
-    CamlPrimitive["blit_nat"](nat,0,nat1,0,current_len[1]);
+    CamlPrimitive["blit_nat"](nat,0,nat1,0,current_len);
     return nat;
     };
 

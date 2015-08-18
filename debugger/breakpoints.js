@@ -77,19 +77,17 @@ var breakpoint_at_pc=function(pc){return breakpoints_at_pc(pc)!==/* [] */0;};
 var
  remove_breakpoints=
   function(pos)
-   {debug_breakpoints[1]
-     ?(Pervasives["print_string"]("Removing breakpoints..."),
-       Pervasives["print_newline"](/* () */0))
-     :0;
+   {if(debug_breakpoints[1])
+     {Pervasives["print_string"]("Removing breakpoints..."),
+      Pervasives["print_newline"](/* () */0)}
     
     return List["iter"]
             (function(param)
               {var pos$1=param[1];
                
-               debug_breakpoints[1]
-                ?(Pervasives["print_int"](pos$1),
-                  Pervasives["print_newline"](/* () */0))
-                :0;
+               if(debug_breakpoints[1])
+                {Pervasives["print_int"](pos$1),
+                 Pervasives["print_newline"](/* () */0)}
                
                Debugcom["reset_instr"](pos$1);
                return Symbols["set_event_at_pc"](pos$1);
@@ -100,19 +98,17 @@ var
 var
  set_breakpoints=
   function(pos)
-   {debug_breakpoints[1]
-     ?(Pervasives["print_string"]("Setting breakpoints..."),
-       Pervasives["print_newline"](/* () */0))
-     :0;
+   {if(debug_breakpoints[1])
+     {Pervasives["print_string"]("Setting breakpoints..."),
+      Pervasives["print_newline"](/* () */0)}
     
     return List["iter"]
             (function(param)
               {var pos$1=param[1];
                
-               debug_breakpoints[1]
-                ?(Pervasives["print_int"](pos$1),
-                  Pervasives["print_newline"](/* () */0))
-                :0;
+               if(debug_breakpoints[1])
+                {Pervasives["print_int"](pos$1),
+                 Pervasives["print_newline"](/* () */0)}
                
                return Debugcom["set_breakpoint"](pos$1);
                },
@@ -122,13 +118,12 @@ var
 var
  update_breakpoints=
   function(param)
-   {debug_breakpoints[1]
-     ?(Pervasives["prerr_string"]("Updating breakpoints... "),
-       Pervasives["prerr_int"](Checkpoints["current_checkpoint"][1][8]),
-       Pervasives["prerr_string"](" "),
-       Pervasives["prerr_int"](current_version[1]),
-       Pervasives["prerr_endline"](""))
-     :0;
+   {if(debug_breakpoints[1])
+     {Pervasives["prerr_string"]("Updating breakpoints... "),
+      Pervasives["prerr_int"](Checkpoints["current_checkpoint"][1][8]),
+      Pervasives["prerr_string"](" "),
+      Pervasives["prerr_int"](current_version[1]),
+      Pervasives["prerr_endline"]("")}
     
     return Checkpoints["current_checkpoint"][1][8]!==current_version[1]
             ?Exec["protect"]

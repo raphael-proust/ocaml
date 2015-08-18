@@ -891,7 +891,8 @@ var
     
     var deps$2=My_std["List"][33](is_not_stdlib,deps$1);
     
-    deps$2===/* [] */0?Pervasives["failwith"]("Link list cannot be empty"):0;
+    if(deps$2===/* [] */0)
+     {Pervasives["failwith"]("Link list cannot be empty")}
     
     var
      match=

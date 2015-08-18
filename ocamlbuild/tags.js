@@ -83,8 +83,8 @@ var
      match$1=
       fold
        (function(elt,first)
-         {!first
-           ?Format["fprintf"]
+         {if(!first)
+           {Format["fprintf"]
              (f,
               [/* Format */0,
                [/* Char_literal */12,
@@ -92,8 +92,7 @@ var
                 [/* Formatting_lit */17,
                  [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]],
-               ",@ "])
-           :0;
+               ",@ "])}
           
           Format["pp_print_string"](f,elt);
           return /* false */0;

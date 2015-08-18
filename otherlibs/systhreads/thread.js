@@ -58,9 +58,7 @@ var
      match$1=
       Unix["select"](/* :: */[0,fd,/* [] */0],/* [] */0,/* [] */0,d);
     
-    var match$2=match$1[1];
-    
-    return match$2?/* true */1:/* false */0;
+    return match$1[1]?/* true */1:/* false */0;
     };
 
 var
@@ -70,9 +68,7 @@ var
      match$1=
       Unix["select"](/* [] */0,/* :: */[0,fd,/* [] */0],/* [] */0,d);
     
-    var match$2=match$1[2];
-    
-    return match$2?/* true */1:/* false */0;
+    return match$1[2]?/* true */1:/* false */0;
     };
 
 var select=Unix["select"];

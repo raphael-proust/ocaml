@@ -1431,7 +1431,7 @@ var
          
          var match$1=t[3];
          
-         match$1?ps(fmt2," "):/* () */0;
+         if(match$1){ps(fmt2," ")}
          
          ps(fmt2,s_name);
          var priv=t[5]===/* Private */0;
@@ -2780,7 +2780,7 @@ var
          
          /* unknown */"(sendself self-3/2017 latex_of_text/1703 fmt/2018 [0: 0a 0a])";
          
-         !m[11]?ps(fmt,"\ocamldocvspace{0.5cm}\n\n"):0;
+         if(!m[11]){ps(fmt,"\ocamldocvspace{0.5cm}\n\n")}
          
          return List["iter"]
                  (function(ele)
@@ -2812,9 +2812,9 @@ var
          ps(fmt,"\begin{document}\n");
          var match$1=Odoc_info["Global"][6][1];
          
-         match$1?ps(fmt,"\maketitle\n"):/* () */0;
+         if(match$1){ps(fmt,"\maketitle\n")}
          
-         Odoc_info["Global"][8][1]?ps(fmt,"\tableofcontents\n"):0;
+         if(Odoc_info["Global"][8][1]){ps(fmt,"\tableofcontents\n")}
          
          var
           info$1=
@@ -2822,7 +2822,7 @@ var
             (Odoc_info["info_of_comment_file"](module_list),
              Odoc_info["Global"][7][1]);
          
-         info$1?ps(fmt,"\vspace{0.2cm}"):/* () */0;
+         if(info$1){ps(fmt,"\vspace{0.2cm}")}
          
          /* unknown */"(sendself self-3/2027 latex_of_info/1753 fmt/2028 0a info/2032)";
          
@@ -2934,7 +2934,7 @@ var
                  }
                },
              module_list);
-           Odoc_info["Global"][11][1]?ps(fmt,"\end{document}"):0;
+           if(Odoc_info["Global"][11][1]){ps(fmt,"\end{document}")}
            
            Format["pp_print_flush"](fmt,/* () */0);
            return Pervasives["close_out"](chanout);

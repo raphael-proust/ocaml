@@ -212,11 +212,11 @@ var
       while(/* true */1)
        {var line=Primitives["string_trim"](Pervasives["input_line"](ch));
         
-        CamlPrimitive["caml_string_notequal"](line,"")&&
-         line["charCodeAt"](0)!==
-         35
-         ?(Buffer["add_string"](buffer,line),Buffer["add_char"](buffer,10))
-         :0;
+        if
+         (CamlPrimitive["caml_string_notequal"](line,"")&&
+          line["charCodeAt"](0)!==
+          35)
+         {Buffer["add_string"](buffer,line),Buffer["add_char"](buffer,10)}
         }
       }
     catch(exn){}

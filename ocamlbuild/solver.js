@@ -232,8 +232,8 @@ var
     
     var job_debug=Command["jobs"][1]===1?10:5;
     
-    count>1
-     ?Log["dprintf"]
+    if(count>1)
+     {Log["dprintf"]
        (job_debug,
         [/* Format */0,
          [/* String_literal */11,
@@ -244,18 +244,16 @@ var
            /* No_precision */0,
            /* End_of_format */0]],
          ">>> PARALLEL: %d"],
-        count)
-     :0;
+        count)}
     
     var opt_exn=Command["execute_many"](/* None */0,/* None */0,cmds);
     
-    count>1
-     ?Log["dprintf"]
+    if(count>1)
+     {Log["dprintf"]
        (job_debug,
         [/* Format */0,
          [/* String_literal */11,"<<< PARALLEL",/* End_of_format */0],
-         "<<< PARALLEL"])
-     :0;
+         "<<< PARALLEL"])}
     
     if(opt_exn)
      {var match$1=opt_exn[1];

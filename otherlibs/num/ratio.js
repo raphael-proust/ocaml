@@ -221,10 +221,6 @@ var
            Big_int["div_big_int"](r1[1],p1),
            Big_int["div_big_int"](r2[2],p1)];
       
-      var d2=match[2];
-      
-      var n1=match[1];
-      
       var
        match$1=
         Big_int["eq_big_int"](p2,Big_int["unit_big_int"])
@@ -233,13 +229,9 @@ var
            Big_int["div_big_int"](r2[1],p2),
            Big_int["div_big_int"](r1[2],p2)];
       
-      var d1=match$1[2];
-      
-      var n2=match$1[1];
-      
       return /* record */[0,
-              Big_int["mult_big_int"](n1,n2),
-              Big_int["mult_big_int"](d1,d2),
+              Big_int["mult_big_int"](match[1],match$1[1]),
+              Big_int["mult_big_int"](match$1[2],match[2]),
               /* true */1];
       }
     else
@@ -671,7 +663,7 @@ var
       else
        {var sign_r=sign_ratio(r);
         
-        var i=[0,n+3];
+        var i=n+3;
         
         if(sign_r===0)
          {return $$String["concat"]
@@ -709,12 +701,12 @@ var
             var str=Bytes["make"](n+m+4,48);
             
             $$String["blit"](sign_r===-1?"-1.":"+1.",0,str,0,3);
-            str[i[1]]=101;
-            i[0]++;
+            str[i]=101;
+            i=1+i;
+            
             m===0
-             ?(str[i[1]]=48,0)
-             :$$String["blit"]
-               (Pervasives["string_of_int"](1+msd),0,str,i[1],m);
+             ?(str[i]=48,0)
+             :$$String["blit"](Pervasives["string_of_int"](1+msd),0,str,i,m);
             
             return Bytes["unsafe_to_string"](str);
             }

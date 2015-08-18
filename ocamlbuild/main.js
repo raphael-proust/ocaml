@@ -67,14 +67,13 @@ var
 var
  show_tags=
   function(param)
-   {My_std["List"][5](Options["show_tags"][1])>0
-     ?Log["eprintf"]
+   {if(My_std["List"][5](Options["show_tags"][1])>0)
+     {Log["eprintf"]
        ([/* Format */0,
          [/* String_literal */11,
           "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n",
           /* End_of_format */0],
-         "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n"])
-     :0;
+         "Warning: the following tags do not include dynamically-generated tags, such as link, compile, pack, byte, native, c, pdf... (this list is by no means exhaustive).\n"])}
     
     return My_std["List"][14]
             (function(path)
@@ -150,7 +149,7 @@ var
     My_std["List"][16](Pathname["normalize"],Options["include_dirs"][1]);
     Options["exclude_dirs"][1]=
     My_std["List"][16](Pathname["normalize"],Options["exclude_dirs"][1]);
-    Options["must_clean"][1]?clean(/* () */0):0;
+    if(Options["must_clean"][1]){clean(/* () */0)}
     
     Hooks["call_hook"](/* After_options */3);
     var options_wd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
@@ -172,27 +171,25 @@ var
      (Configuration["parse_string"](/* Some */[0,Const["Source"][2]]),
       Options["tag_lines"][1]);
     Configuration["tag_any"](Options["tags"][1]);
-    Options["recursive"][1]||
-     Options["ocamlbuild_project_heuristic"](/* () */0)
-     ?Configuration["tag_any"]([/* :: */0,"traverse",/* [] */0])
-     :0;
+    if
+     (Options["recursive"][1]||
+      Options["ocamlbuild_project_heuristic"](/* () */0))
+     {Configuration["tag_any"]([/* :: */0,"traverse",/* [] */0])}
     
-    Options["use_ocamlfind"][1]
-     ?My_std["List"][14]
+    if(Options["use_ocamlfind"][1])
+     {My_std["List"][14]
        (function(pkg)
          {var tag=Param_tags["make"]("package",pkg);
           
           return Configuration["tag_any"](/* :: */[0,tag,/* [] */0]);
           },
-        Options["ocaml_pkgs"][1])
-     :0;
+        Options["ocaml_pkgs"][1])}
     
     var match=Options["ocaml_syntax"][1];
     
-    match
-     ?Configuration["tag_any"]
-       (/* :: */[0,Param_tags["make"]("syntax",match[1]),/* [] */0])
-     :/* () */0;
+    if(match)
+     {Configuration["tag_any"]
+       (/* :: */[0,Param_tags["make"]("syntax",match[1]),/* [] */0])}
     
     var newpwd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
@@ -270,9 +267,8 @@ var
         entry);
     
     Slurp["force"](hygiene_entry);
-    Options["hygiene"][1]&&!first_run_for_plugin
-     ?Fda["inspect"](hygiene_entry)
-     :0;
+    if(Options["hygiene"][1]&&!first_run_for_plugin)
+     {Fda["inspect"](hygiene_entry)}
     
     Hooks["call_hook"](/* After_hygiene */1);
     Options["include_dirs"][1]=
@@ -396,8 +392,8 @@ var
             
             switch(exit)
              {case 25:
-               Options["program_to_execute"][1]
-                ?Format["eprintf"]
+               if(Options["program_to_execute"][1])
+                {Format["eprintf"]
                   ([/* Format */0,
                     [/* String_literal */11,
                      "Warning: Won't execute ",
@@ -407,8 +403,7 @@ var
                        " whose extension is neither .byte nor .native",
                        /* End_of_format */0]]],
                     "Warning: Won't execute %s whose extension is neither .byte nor .native"],
-                   cmd)
-                :0;
+                   cmd)}
                
                return acc;
                
@@ -424,15 +419,14 @@ var
         if(match$1)
          {var cmd=match$1[1];
           
-          match$1[2]!==/* [] */0
-           ?Log["dprintf"]
+          if(match$1[2]!==/* [] */0)
+           {Log["dprintf"]
              (0,
               [/* Format */0,
                [/* String_literal */11,
                 "Warning: Using -- only run the last target",
                 /* End_of_format */0],
-               "Warning: Using -- only run the last target"])
-           :0;
+               "Warning: Using -- only run the last target"])}
           
           var
            cmd_spec=

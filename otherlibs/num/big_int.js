@@ -354,7 +354,7 @@ var
                       new_r)]];
             }
           else
-           {bi1_negatif?CamlPrimitive["set_digit_nat"](q,-1+size_q,0):0;
+           {if(bi1_negatif){CamlPrimitive["set_digit_nat"](q,-1+size_q,0)}
             
             return /* tuple */[0,
                     /* record */[0,
@@ -443,9 +443,7 @@ var
    {try
      {var n=Nat["int_of_nat"](bi[2]);return bi[1]===-1?-n:n;}
     catch(exn)
-     {var tag=exn[1];
-      
-      if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+     {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
        {return eq_big_int(bi,monster_big_int)
                 ?Int_misc["monster_int"]
                 :Pervasives["failwith"]("int_of_big_int");
@@ -479,7 +477,8 @@ var
 var
  nativeint_of_big_int=
   function(bi)
-   {num_digits_big_int(bi)>1?Pervasives["failwith"]("nativeint_of_big_int"):0;
+   {if(num_digits_big_int(bi)>1)
+     {Pervasives["failwith"]("nativeint_of_big_int")}
     
     var i=CamlPrimitive["nth_digit_nat_native"](bi[2],0);
     
@@ -514,13 +513,11 @@ var
       
       var absi=match[2];
       
-      var sg=match[1];
-      
       var res=CamlPrimitive["create_nat"](2);
       
       CamlPrimitive["set_digit_nat_native"](res,0,absi);
       CamlPrimitive["set_digit_nat_native"](res,1,absi>>32);
-      return /* record */[0,sg,res];
+      return /* record */[0,match[1],res];
       }
     };
 
@@ -584,7 +581,7 @@ var
 var
  sys_big_int_of_string_aux=
   function(s,ofs,len,sgn,base)
-   {len<1?Pervasives["failwith"]("sys_big_int_of_string"):0;
+   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}
     
     var n=Nat["sys_nat_of_string"](base,s,ofs,len);
     
@@ -596,7 +593,7 @@ var
 var
  sys_big_int_of_string_base=
   function(s,ofs,len,sgn)
-   {len<1?Pervasives["failwith"]("sys_big_int_of_string"):0;
+   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}
     
     if(len<2)
      {return sys_big_int_of_string_aux(s,ofs,len,sgn,10);}
@@ -605,19 +602,15 @@ var
       
       var match$1=s["charCodeAt"](ofs+1);
       
-      var match$2=match;
-      
-      var match$3=match$1;
-      
       var exit;
       
-      if(match$2!==48)
+      if(match!==48)
        {exit=107;}
       else
-       {if(match$3>=89)
-         {if(match$3!==98)
-           {if(match$3!==111)
-             {if(match$3!==120){exit=107;}else{exit=104;}}
+       {if(match$1>=89)
+         {if(match$1!==98)
+           {if(match$1!==111)
+             {if(match$1!==120){exit=107;}else{exit=104;}}
             else
              {exit=105;}
             }
@@ -625,9 +618,9 @@ var
            {exit=106;}
           }
         else
-         {if(match$3!==66)
-           {if(match$3!==79)
-             {if(match$3>=88){exit=104;}else{exit=107;}}
+         {if(match$1!==66)
+           {if(match$1!==79)
+             {if(match$1>=88){exit=104;}else{exit=107;}}
             else
              {exit=105;}
             }
@@ -648,7 +641,7 @@ var
 var
  sys_big_int_of_string=
   function(s,ofs,len)
-   {len<1?Pervasives["failwith"]("sys_big_int_of_string"):0;
+   {if(len<1){Pervasives["failwith"]("sys_big_int_of_string")}
     
     var match=s["charCodeAt"](ofs);
     
@@ -693,11 +686,9 @@ var
           quomod_big_int
            (sys_big_int_of_nat(nat,off,len),big_int_of_int(1+pmax));
         
-        var y=match$1[2];
-        
-        var x=match$1[1];
-        
-        var match$2=/* tuple */[0,int_of_big_int(x),int_of_big_int(y)];
+        var
+         match$2=
+          /* tuple */[0,int_of_big_int(match$1[1]),int_of_big_int(match$1[2])];
         
         var rem=match$2[2];
         
@@ -834,15 +825,11 @@ var
        {try
          {return power_big_int_positive_int(bi1,int_of_big_int(bi2));}
         catch(exn)
-         {var tag=exn[1];
-          
-          if(tag===CamlPrimitive["caml_global_data"]["Failure"])
+         {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
            {try
              {return power_int_positive_big_int(int_of_big_int(bi1),bi2);}
             catch(exn$1)
-             {var tag$1=exn$1[1];
-              
-              if(tag$1===CamlPrimitive["caml_global_data"]["Failure"])
+             {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
                {throw CamlPrimitive["caml_global_data"]["Out_of_memory"];}
               else
                {throw exn$1;}
@@ -1059,10 +1046,9 @@ var
           CamlPrimitive["blit_nat"](res,ndigits,bi[2],0,size_bi);
           var nbits=n%Nat["length_of_digit"];
           
-          nbits>0
-           ?CamlPrimitive["shift_left_nat"]
-             (res,ndigits,size_bi,res,ndigits+size_bi,nbits)
-           :0;
+          if(nbits>0)
+           {CamlPrimitive["shift_left_nat"]
+             (res,ndigits,size_bi,res,ndigits+size_bi,nbits)}
           
           return /* record */[0,bi[1],res];
           }
@@ -1163,10 +1149,9 @@ var
         
         var res=Nat["make_nat"](size_res);
         
-        ndigits<size_bi
-         ?CamlPrimitive["blit_nat"]
-           (res,0,bi[2],ndigits,Pervasives["min"](size_res,size_bi-ndigits))
-         :0;
+        if(ndigits<size_bi)
+         {CamlPrimitive["blit_nat"]
+           (res,0,bi[2],ndigits,Pervasives["min"](size_res,size_bi-ndigits))}
         
         if(bi[1]<0)
          {CamlPrimitive["complement_nat"](res,0,size_res);
@@ -1181,7 +1166,7 @@ var
                      carry_incr(i+1);
               };
           
-          carry_incr(0)?CamlPrimitive["incr_nat"](res,0,size_res,1):0;
+          if(carry_incr(0)){CamlPrimitive["incr_nat"](res,0,size_res,1)}
           }
         else
          {}

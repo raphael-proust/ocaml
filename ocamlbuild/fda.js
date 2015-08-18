@@ -99,17 +99,16 @@ var
           
           var $js;
           if(match!==0)
-           {!evil[1]
-             ?(Printf["printf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "IMPORTANT: I cannot work with leftover compiled files.\n",
-                   [/* Flush */10,/* End_of_format */0]],
-                  "IMPORTANT: I cannot work with leftover compiled files.\n%!"]),
-               evil[1]=
-               /* true */1,
-               0)
-             :0;
+           {if(!evil[1])
+             {Printf["printf"]
+               ([/* Format */0,
+                 [/* String_literal */11,
+                  "IMPORTANT: I cannot work with leftover compiled files.\n",
+                  [/* Flush */10,/* End_of_format */0]],
+                 "IMPORTANT: I cannot work with leftover compiled files.\n%!"]),
+              evil[1]=
+              /* true */1,
+              0}
             
             $js="ERROR";
             }

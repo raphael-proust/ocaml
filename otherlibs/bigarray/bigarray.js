@@ -50,11 +50,7 @@ var
 var
  map_file=
   function(fd,$staropt$star,kind,layout,shared,dims)
-   {var pos;
-    if($staropt$star)
-     {var $starsth$star=$staropt$star[1];pos=$starsth$star;}
-    else
-     {pos=0;}
+   {var pos=$staropt$star?$staropt$star[1]:0;
     
     return CamlPrimitive["caml_ba_map_file_bytecode"]
             (fd,kind,layout,shared,dims,pos);
@@ -116,10 +112,9 @@ var
     for(var i=0;i<=dim1-1;i++)
      {var row=data[i+1];
       
-      /* -1 for tag */row["length"]-1!==dim2
-       ?Pervasives["invalid_arg"]
-         ("Bigarray.Array2.of_array: non-rectangular data")
-       :0;
+      if(/* -1 for tag */row["length"]-1!==dim2)
+       {Pervasives["invalid_arg"]
+         ("Bigarray.Array2.of_array: non-rectangular data")}
       
       for(var j=0;j<=dim2-1;j++)
        {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}
@@ -176,17 +171,15 @@ var
     for(var i=0;i<=dim1-1;i++)
      {var row=data[i+1];
       
-      /* -1 for tag */row["length"]-1!==dim2
-       ?Pervasives["invalid_arg"]("Bigarray.Array3.of_array: non-cubic data")
-       :0;
+      if(/* -1 for tag */row["length"]-1!==dim2)
+       {Pervasives["invalid_arg"]("Bigarray.Array3.of_array: non-cubic data")}
       
       for(var j=0;j<=dim2-1;j++)
        {var col=row[j+1];
         
-        /* -1 for tag */col["length"]-1!==dim3
-         ?Pervasives["invalid_arg"]
-           ("Bigarray.Array3.of_array: non-cubic data")
-         :0;
+        if(/* -1 for tag */col["length"]-1!==dim3)
+         {Pervasives["invalid_arg"]
+           ("Bigarray.Array3.of_array: non-cubic data")}
         
         for(var k=0;k<=dim3-1;k++)
          {/* unknown */"Bigarray.unsafe_set[generic,unknown]"}

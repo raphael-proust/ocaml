@@ -253,7 +253,7 @@ var
               [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
              0);
-           dot_reduce[1]?Odoc_info["Dep"][1](modules_list):0;
+           if(dot_reduce[1]){Odoc_info["Dep"][1](modules_list)}
            
            /* unknown */"(sendself self-1/1203 generate_for_module/1153 fmt/1206)";
            List["iter"](0,modules_list);

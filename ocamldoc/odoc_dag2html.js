@@ -349,48 +349,47 @@ var
                       next_l=loop$2(l+1);
                       }
                     
-                    next_l>next_j
-                     ?(Printf["eprintf"]
-                        ([/* Format */0,
-                          [/* String_literal */11,
-                           "assert false i ",
-                           [/* Int */4,
-                            /* Int_d */0,
-                            /* No_padding */0,
-                            /* No_precision */0,
-                            [/* String_literal */11,
-                             " k ",
-                             [/* Int */4,
-                              /* Int_d */0,
-                              /* No_padding */0,
-                              /* No_precision */0,
-                              [/* String_literal */11,
-                               " l ",
-                               [/* Int */4,
-                                /* Int_d */0,
-                                /* No_padding */0,
-                                /* No_precision */0,
-                                [/* String_literal */11,
-                                 " next_l ",
-                                 [/* Int */4,
-                                  /* Int_d */0,
-                                  /* No_padding */0,
-                                  /* No_precision */0,
-                                  [/* String_literal */11,
-                                   " next_j ",
-                                   [/* Int */4,
-                                    /* Int_d */0,
-                                    /* No_padding */0,
-                                    /* No_precision */0,
-                                    [/* Char_literal */12,10,/* End_of_format */0]]]]]]]]]]],
-                          "assert false i %d k %d l %d next_l %d next_j %d\n"],
-                         i,
-                         k,
-                         l,
-                         next_l,
-                         next_j),
-                       Pervasives["flush"](Pervasives["stderr"]))
-                     :0;
+                    if(next_l>next_j)
+                     {Printf["eprintf"]
+                       ([/* Format */0,
+                         [/* String_literal */11,
+                          "assert false i ",
+                          [/* Int */4,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           [/* String_literal */11,
+                            " k ",
+                            [/* Int */4,
+                             /* Int_d */0,
+                             /* No_padding */0,
+                             /* No_precision */0,
+                             [/* String_literal */11,
+                              " l ",
+                              [/* Int */4,
+                               /* Int_d */0,
+                               /* No_padding */0,
+                               /* No_precision */0,
+                               [/* String_literal */11,
+                                " next_l ",
+                                [/* Int */4,
+                                 /* Int_d */0,
+                                 /* No_padding */0,
+                                 /* No_precision */0,
+                                 [/* String_literal */11,
+                                  " next_j ",
+                                  [/* Int */4,
+                                   /* Int_d */0,
+                                   /* No_padding */0,
+                                   /* No_precision */0,
+                                   [/* Char_literal */12,10,/* End_of_format */0]]]]]]]]]]],
+                         "assert false i %d k %d l %d next_l %d next_j %d\n"],
+                        i,
+                        k,
+                        l,
+                        next_l,
+                        next_j),
+                      Pervasives["flush"](Pervasives["stderr"])}
                     
                     var next_l$1=Pervasives["min"](next_l,next_j);
                     
@@ -1132,14 +1131,14 @@ var
               {switch(match$1[0])
                 {case 0:exit=253;
                  case 1:
-                  CamlPrimitive["caml_equal"]
-                    (t[1][i$2+1][j-1+1][2],t[1][i$2+1][j+1][2])
-                   ?(t[1][i$2+1+1][j+1]=
-                     /* record */[0,
-                      /* Ghost */[1,match[1]],
-                      t[1][i$2+1+1][j-1+1][2]],
-                     0)
-                   :0;
+                  if
+                   (CamlPrimitive["caml_equal"]
+                     (t[1][i$2+1][j-1+1][2],t[1][i$2+1][j+1][2]))
+                   {t[1][i$2+1+1][j+1]=
+                    /* record */[0,
+                     /* Ghost */[1,match[1]],
+                     t[1][i$2+1+1][j-1+1][2]],
+                    0}
                   
                  }}
              
@@ -1165,14 +1164,14 @@ var
               {switch(match$3[0])
                 {case 0:exit$1=252;
                  case 1:
-                  CamlPrimitive["caml_equal"]
-                    (t[1][i$2+1+1][j-1+1][1],t[1][i$2+1+1][j+1][1])
-                   ?(t[1][i$2+1][j+1]=
-                     /* record */[0,
-                      /* Ghost */[1,match$2[1]],
-                      t[1][i$2+1][j-1+1][2]],
-                     i$2>0?(t[1][i$2-1+1][j+1][2]=t[1][i$2-1+1][j-1+1][2],0):0)
-                   :0;
+                  if
+                   (CamlPrimitive["caml_equal"]
+                     (t[1][i$2+1+1][j-1+1][1],t[1][i$2+1+1][j+1][1]))
+                   {t[1][i$2+1][j+1]=
+                    /* record */[0,
+                     /* Ghost */[1,match$2[1]],
+                     t[1][i$2+1][j-1+1][2]],
+                    i$2>0?(t[1][i$2-1+1][j+1][2]=t[1][i$2-1+1][j-1+1][2],0):0}
                   
                  }}
              
@@ -1193,11 +1192,11 @@ var
       var len=/* -1 for tag */line["length"]-1;
       
       for(var j=1;j<=len-1;j++)
-       {CamlPrimitive["caml_equal"](line[j+1][1],line[j-1+1][1])&&
-         line[j+1][1]!==
-         /* Nothing */0
-         ?(line[j+1][2]=line[j-1+1][2],0)
-         :0;
+       {if
+         (CamlPrimitive["caml_equal"](line[j+1][1],line[j-1+1][1])&&
+          line[j+1][1]!==
+          /* Nothing */0)
+         {line[j+1][2]=line[j-1+1][2],0}
         }
       }
     return 0;
@@ -1663,7 +1662,7 @@ var
              {var y$1=line[j+1][2];
               
               line[j+1][2]=x;
-              i>0?(t1$1[i-1+1][j+1][2]=t1$1[i-1+1][j-1+1][2],0):0;
+              if(i>0){t1$1[i-1+1][j+1][2]=t1$1[i-1+1][j-1+1][2],0}
               
               return loop(y$1,j+1);
               }
@@ -1941,7 +1940,7 @@ var
                   {for(var k=i$2;k>=i1$1+1;k--)
                     {for(var j$1=j;j$1<=j2;j$1++)
                       {t[1][k+1][j$1+1][1]=t[1][k-1+1][j$1+1][1];
-                       k<i$2?(t[1][k+1][j$1+1][2]=t[1][k-1+1][j$1+1][2],0):0;
+                       if(k<i$2){t[1][k+1][j$1+1][2]=t[1][k-1+1][j$1+1][2],0}
                        }
                      }
                    

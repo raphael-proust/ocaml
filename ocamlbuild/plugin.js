@@ -90,19 +90,19 @@ var
         if(a&&b&&c&&we_have_a_plugin$1)
          {return /* () */0;}
         else
-         {Options["native_plugin"][1]&&
-           !My_std["sys_file_exists"]
-            (Pathname["Operators"][1]
-              (Ocamlbuild_where["libdir"][1],"ocamlbuildlib.cmxa"))
-           ?(Options["native_plugin"][1]=
-             /* false */0,
-             Log["eprintf"]
-              ([/* Format */0,
-                [/* String_literal */11,
-                 "Warning: Won't be able to compile a native plugin",
-                 /* End_of_format */0],
-                "Warning: Won't be able to compile a native plugin"]))
-           :0;
+         {if
+           (Options["native_plugin"][1]&&
+            !My_std["sys_file_exists"]
+             (Pathname["Operators"][1]
+               (Ocamlbuild_where["libdir"][1],"ocamlbuildlib.cmxa")))
+           {Options["native_plugin"][1]=
+            /* false */0,
+            Log["eprintf"]
+             ([/* Format */0,
+               [/* String_literal */11,
+                "Warning: Won't be able to compile a native plugin",
+                /* End_of_format */0],
+               "Warning: Won't be able to compile a native plugin"])}
           
           var
            plugin_config=
@@ -171,8 +171,8 @@ var
             function(file)
              {var path=Pathname["Operators"][1](dir$1,file);
               
-              !My_std["sys_file_exists"](path)
-               ?Pervasives["failwith"]
+              if(!My_std["sys_file_exists"](path))
+               {Pervasives["failwith"]
                  (Format["sprintf"]
                    ([/* Format */0,
                      [/* String_literal */11,
@@ -183,8 +183,7 @@ var
                         " in ocamlbuild -where directory",
                         /* End_of_format */0]]],
                      "Cannot find %S in ocamlbuild -where directory"],
-                    file))
-               :0;
+                    file))}
               
               return path;
               };

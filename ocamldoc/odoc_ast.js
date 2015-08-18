@@ -3167,10 +3167,9 @@ var
               
               var tt_modtype$1=Odoc_env["subst_module_type"](env,tt_modtype);
               
-              Odoc_global["filter_with_module_constraints"][1]
-               ?filter_module_with_module_type_constraint
-                 (m_base2$1,tt_modtype$1)
-               :0;
+              if(Odoc_global["filter_with_module_constraints"][1])
+               {filter_module_with_module_type_constraint
+                 (m_base2$1,tt_modtype$1)}
               
               var newrecord$3=/* unknown */"duprecord regular 11";
               

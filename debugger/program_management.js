@@ -132,7 +132,7 @@ var
        answer=
         Question["yes_or_no"]("A program is being debugged already. Kill it");
       
-      answer?kill_program(/* () */0):0;
+      if(answer){kill_program(/* () */0)}
       
       return answer;
       }
@@ -141,21 +141,18 @@ var
 var
  initialize_loading=
   function(param)
-   {Program_loading["debug_loading"][1]
-     ?(Pervasives["prerr_endline"]("Loading debugging information..."),
-       Printf["fprintf"]
-        (Pervasives["stderr"],
-         [/* Format */0,
-          [/* String_literal */11,
-           "\tProgram: [",
-           [/* String */2,
-            /* No_padding */0,
-            [/* String_literal */11,
-             "]\n",
-             [/* Flush */10,/* End_of_format */0]]]],
-          "\tProgram: [%s]\n%!"],
-         Parameters["program_name"][1]))
-     :0;
+   {if(Program_loading["debug_loading"][1])
+     {Pervasives["prerr_endline"]("Loading debugging information..."),
+      Printf["fprintf"]
+       (Pervasives["stderr"],
+        [/* Format */0,
+         [/* String_literal */11,
+          "\tProgram: [",
+          [/* String */2,
+           /* No_padding */0,
+           [/* String_literal */11,"]\n",[/* Flush */10,/* End_of_format */0]]]],
+         "\tProgram: [%s]\n%!"],
+        Parameters["program_name"][1])}
     
     try
      {Unix["access"]
@@ -173,9 +170,8 @@ var
     Config["load_path"][1]=
     Pervasives["@"](Config["load_path"][1],Symbols["program_source_dirs"][1]);
     Envaux["reset_cache"](/* () */0);
-    Program_loading["debug_loading"][1]
-     ?Pervasives["prerr_endline"]("Opening a socket...")
-     :0;
+    if(Program_loading["debug_loading"][1])
+     {Pervasives["prerr_endline"]("Opening a socket...")}
     
     return open_connection
             (Parameters["socket_name"][1],
@@ -202,9 +198,8 @@ var
       try
        {initialize_loading(/* () */0);
         Program_loading["launching_func"][1](/* () */0);
-        Program_loading["debug_loading"][1]
-         ?Pervasives["prerr_endline"]("Waiting for connection...")
-         :0;
+        if(Program_loading["debug_loading"][1])
+         {Pervasives["prerr_endline"]("Waiting for connection...")}
         
         Input_handling["main_loop"](/* () */0);
         loaded[1]=/* true */1;

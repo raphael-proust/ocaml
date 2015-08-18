@@ -2478,7 +2478,7 @@ var
                            :/* [] */0;
                    },
                  indices_names)));
-           Odoc_info["Global"][8][1]?puts_nl(chan,"@contents"):0;
+           if(Odoc_info["Global"][8][1]){puts_nl(chan,"@contents")}
            
            return puts_nl(chan,"@bye");
            }

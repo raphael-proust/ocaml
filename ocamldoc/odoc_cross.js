@@ -225,12 +225,11 @@ var
          
          var match$4=x[5];
          
-         match$4
-          ?Hashtbl["add"]
+         if(match$4)
+          {Hashtbl["add"]
             (extension_aliases,
              x[1],
-             /* tuple */[0,match$4[1][1],/* Alias_to_resolve */1])
-          :/* () */0;
+             /* tuple */[0,match$4[1][1],/* Alias_to_resolve */1])}
          
          return build_alias_list(param[2]);
          
@@ -239,12 +238,11 @@ var
          
          var match$5=e[5];
          
-         match$5
-          ?Hashtbl["add"]
+         if(match$5)
+          {Hashtbl["add"]
             (exception_aliases,
              e[1],
-             /* tuple */[0,match$5[1][1],/* Alias_to_resolve */1])
-          :/* () */0;
+             /* tuple */[0,match$5[1][1],/* Alias_to_resolve */1])}
          
          return build_alias_list(param[2]);
          
@@ -2239,8 +2237,8 @@ var
     
     var names_not_found=iter(module_list);
     
-    names_not_found
-     ?List["iter"]
+    if(names_not_found)
+     {List["iter"]
        (function(nf)
          {var $js;
           switch(nf[0])
@@ -2259,8 +2257,7 @@ var
             }
           return Odoc_global["pwarning"]($js);
           },
-        names_not_found)
-     :/* () */0;
+        names_not_found)}
     
     return associate_type_of_elements_in_comments(module_list);
     };

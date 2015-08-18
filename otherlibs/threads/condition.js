@@ -22,16 +22,7 @@ var
   function(cond)
    {var match=cond[1];
     
-    if(match)
-     {var rem=match[2];
-      
-      var th=match[1];
-      
-      cond[1]=rem;
-      return Thread["wakeup"](th);
-      }
-    else
-     {return /* () */0;}
+    return match?(cond[1]=match[2],Thread["wakeup"](match[1])):/* () */0;
     };
 
 var

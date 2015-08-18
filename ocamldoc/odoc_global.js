@@ -17,10 +17,9 @@ var warn_error=[0,/* false */0];
 var
  pwarning=
   function(s)
-   {Odoc_config["print_warnings"][1]
-     ?Pervasives["prerr_endline"]
-       (Pervasives["^"](Odoc_messages["warning"],Pervasives["^"](": ",s)))
-     :0;
+   {if(Odoc_config["print_warnings"][1])
+     {Pervasives["prerr_endline"]
+       (Pervasives["^"](Odoc_messages["warning"],Pervasives["^"](": ",s)))}
     
     return warn_error[1]?errors[0]++:0;
     };

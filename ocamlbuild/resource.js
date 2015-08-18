@@ -78,9 +78,8 @@ var
                  if(Pathname["link_to_dir"](pathname,Options["build_dir"][1]))
                   {var z=Pathname["readlink"](pathname);
                    
-                   !CamlPrimitive["caml_sys_file_exists"](z)
-                    ?Shell["rm"](pathname)
-                    :0;
+                   if(!CamlPrimitive["caml_sys_file_exists"](z))
+                    {Shell["rm"](pathname)}
                    
                    return /* false */0;
                    }
@@ -670,9 +669,8 @@ var
     var buf=Buffer["create"](1024);
     
     Buffer["add_string"](buf,f);
-    My_std["sys_file_exists"](f)
-     ?Buffer["add_string"](buf,My_std["Digest"][3](f))
-     :0;
+    if(My_std["sys_file_exists"](f))
+     {Buffer["add_string"](buf,My_std["Digest"][3](f))}
     
     return My_std["Digest"][1](Buffer["contents"](buf));
     };

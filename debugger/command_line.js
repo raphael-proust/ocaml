@@ -289,9 +289,8 @@ var
     
     try
      {while(/* true */1)
-       {Program_management["loaded"][1]
-         ?History["add_current_time"](/* () */0)
-         :0;
+       {if(Program_management["loaded"][1])
+         {History["add_current_time"](/* () */0)}
         
         var new_line=Primitives["string_trim"](Lexer["line"](line_buffer));
         
@@ -455,13 +454,12 @@ var
    {var new_directory=Parser["argument_list_eol"](Lexer["argument"],lexbuf);
     
     if(new_directory===/* [] */0)
-     {Question["yes_or_no"]("Reinitialize directory list")
-       ?(Config["load_path"][1]=
-         Parameters["default_load_path"][1],
-         Envaux["reset_cache"](/* () */0),
-         Hashtbl["clear"](Debugger_config["load_path_for"]),
-         Source["flush_buffer_list"](/* () */0))
-       :0;
+     {if(Question["yes_or_no"]("Reinitialize directory list"))
+       {Config["load_path"][1]=
+        Parameters["default_load_path"][1],
+        Envaux["reset_cache"](/* () */0),
+        Hashtbl["clear"](Debugger_config["load_path_for"]),
+        Source["flush_buffer_list"](/* () */0)}
       }
     else
      {var new_directory$prime=List["rev"](new_directory);
@@ -573,7 +571,8 @@ var
  instr_kill=
   function(ppf,lexbuf)
    {eol(lexbuf);
-    !Program_management["loaded"][1]?error("The program is not being run."):0;
+    if(!Program_management["loaded"][1])
+     {error("The program is not being run.")}
     
     return Question["yes_or_no"]("Kill the program being debugged")
             ?(Program_management["kill_program"](/* () */0),
@@ -1502,14 +1501,13 @@ var
            print_frame=
             function(first_frame,last_frame,param)
              {if(param)
-               {frame_counter[1]>=first_frame
-                 ?Show_information["show_one_frame"]
-                   (frame_counter[1],ppf,param[1])
-                 :0;
+               {if(frame_counter[1]>=first_frame)
+                 {Show_information["show_one_frame"]
+                   (frame_counter[1],ppf,param[1])}
                 
                 frame_counter[0]++;
-                frame_counter[1]>=last_frame
-                 ?Format["fprintf"]
+                if(frame_counter[1]>=last_frame)
+                 {Format["fprintf"]
                    (ppf,
                     [/* Format */0,
                      [/* String_literal */11,
@@ -1517,8 +1515,7 @@ var
                       [/* Formatting_lit */17,
                        /* Flush_newline */4,
                        /* End_of_format */0]],
-                     "(More frames follow)@."])
-                 :0;
+                     "(More frames follow)@."])}
                 
                 return frame_counter[1]<last_frame;
                 }

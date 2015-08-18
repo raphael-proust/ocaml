@@ -158,8 +158,8 @@ var
          match$1=
           fold
            (function(elt,first)
-             {!first
-               ?Format["fprintf"]
+             {if(!first)
+               {Format["fprintf"]
                  (f,
                   [/* Format */0,
                    [/* Char_literal */12,
@@ -167,8 +167,7 @@ var
                     [/* Formatting_lit */17,
                      [/* Break */0,"@ ",1,0],
                      /* End_of_format */0]],
-                   ",@ "])
-               :0;
+                   ",@ "])}
               
               M[2](f,elt);
               return /* false */0;
@@ -252,8 +251,8 @@ var
      match=
       fold_left
        (function(first,elt)
-         {!first
-           ?Format["fprintf"]
+         {if(!first)
+           {Format["fprintf"]
              (f,
               [/* Format */0,
                [/* Char_literal */12,
@@ -261,8 +260,7 @@ var
                 [/* Formatting_lit */17,
                  [/* Break */0,"@ ",1,0],
                  /* End_of_format */0]],
-               ";@ "])
-           :0;
+               ";@ "])}
           
           pp_elt(f,elt);
           return /* false */0;

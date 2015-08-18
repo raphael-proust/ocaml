@@ -763,7 +763,7 @@ var
                      var init$1=a[1][7];
                      
                      a[1][7]=/* record */[0,a2[1][7][1],init$1[2]];
-                     Odoc_global["keep_code"][1]?(a[1][6]=a2[1][6],0):0;
+                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6],0}
                      
                      return /* true */1;
                      }
@@ -809,7 +809,7 @@ var
                             m[1][7]=/* record */[0,m2[1][7][1],init$1[2]];
                             m[1][5]=merge_parameters(m[1][5],m2[1][5]);
                             Odoc_value["update_value_parameters_text"](m[1]);
-                            Odoc_global["keep_code"][1]?(m[1][6]=m2[1][6],0):0;
+                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6],0}
                             
                             return /* true */1;
                             }
@@ -860,7 +860,7 @@ var
                      var init$1=a[1][7];
                      
                      a[1][7]=/* record */[0,a2[1][7][1],init$1[2]];
-                     Odoc_global["keep_code"][1]?(a[1][6]=a2[1][6],0):0;
+                     if(Odoc_global["keep_code"][1]){a[1][6]=a2[1][6],0}
                      
                      return /* true */1;
                      }
@@ -906,7 +906,7 @@ var
                             m[1][7]=/* record */[0,m2[1][7][1],init$1[2]];
                             m[1][5]=merge_parameters(m[1][5],m2[1][5]);
                             Odoc_value["update_value_parameters_text"](m[1]);
-                            Odoc_global["keep_code"][1]?(m[1][6]=m2[1][6],0):0;
+                            if(Odoc_global["keep_code"][1]){m[1][6]=m2[1][6],0}
                             
                             return /* true */1;
                             }
@@ -979,9 +979,8 @@ var
                    
                    var match$1=List["partition"](merge_ext,exts);
                    
-                   match$1[1]!==/* [] */0
-                    ?merge_type_extension(merge_options,te,te2)
-                    :0;
+                   if(match$1[1]!==/* [] */0)
+                    {merge_type_extension(merge_options,te,te2)}
                    
                    return f(match$1[2],elems[2]);
                    
@@ -1145,7 +1144,7 @@ var
                      v[7]=/* record */[0,v2[7][1],init$1[2]];
                      v[5]=merge_parameters(v[5],v2[5]);
                      Odoc_value["update_value_parameters_text"](v);
-                     Odoc_global["keep_code"][1]?(v[6]=v2[6],0):0;
+                     if(Odoc_global["keep_code"][1]){v[6]=v2[6],0}
                      
                      return /* true */1;
                      }
@@ -1320,9 +1319,8 @@ var
                    
                    var match$5=List["partition"](merge_ext,exts);
                    
-                   match$5[1]!==/* [] */0
-                    ?merge_type_extension(merge_options,te,te2)
-                    :0;
+                   if(match$5[1]!==/* [] */0)
+                    {merge_type_extension(merge_options,te,te2)}
                    
                    return f(match$5[2],elems[2]);
                    
@@ -1481,7 +1479,7 @@ var
                   v[7]=/* record */[0,v2[7][1],init$1[2]];
                   v[5]=merge_parameters(v[5],v2[5]);
                   Odoc_value["update_value_parameters_text"](v);
-                  Odoc_global["keep_code"][1]?(v[6]=v2[6],0):0;
+                  if(Odoc_global["keep_code"][1]){v[6]=v2[6],0}
                   
                   return /* true */1;
                   }

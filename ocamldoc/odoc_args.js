@@ -985,9 +985,8 @@ var
 var
  add_option=
   function(o)
-   {!modified_options(/* () */0)
-     ?append_last_doc("\n *** custom generator options ***\n")
-     :0;
+   {if(!modified_options(/* () */0))
+     {append_last_doc("\n *** custom generator options ***\n")}
     
     var s=o[1];
     
@@ -1015,7 +1014,7 @@ var
 var
  parse=
   function(param)
-   {modified_options(/* () */0)?append_last_doc("\n"):0;
+   {if(modified_options(/* () */0)){append_last_doc("\n")}
     
     var options$1=Pervasives["@"](options[1],help_options[1]);
     

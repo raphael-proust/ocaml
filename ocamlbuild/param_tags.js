@@ -69,8 +69,8 @@ var
       
       var actions=My_std["List"][9](Hashtbl["find_all"](declared_tags,name));
       
-      actions===/* [] */0&&!quiet
-       ?Log["eprintf"]
+      if(actions===/* [] */0&&!quiet)
+       {Log["eprintf"]
          ([/* Format */0,
            [/* Alpha */15,
             [/* String_literal */11,
@@ -84,8 +84,7 @@ var
           Loc["print_loc_option"],
           maybe_loc,
           name,
-          param$2)
-       :0;
+          param$2)}
       
       return My_std["List"][14](function(f){return f(param$2);},actions);
       }

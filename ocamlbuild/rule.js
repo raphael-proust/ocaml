@@ -189,8 +189,8 @@ var
       r[3]);
     var match=r[5];
     
-    match
-     ?Format["fprintf"]
+    if(match)
+     {Format["fprintf"]
        (f,
         [/* Format */0,
          [/* String_literal */11,
@@ -210,8 +210,7 @@ var
                /* End_of_format */0]]]]]],
          '~doc:"@[<hov>%a@]"@ '],
         Format["pp_print_text"],
-        match[1])
-     :/* () */0;
+        match[1])}
     
     return Format["fprintf"]
             (f,
@@ -650,7 +649,7 @@ var
     
     var prod_digests=digest_prods(r);
     
-    !cached?My_std["List"][14](Resource["clean"],r[3]):0;
+    if(!cached){My_std["List"][14](Resource["clean"],r[3])}
     
     if(Options["nothing_should_be_rebuilt"][1]&&!cached)
      {explain_reason(-1);

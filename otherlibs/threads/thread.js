@@ -48,15 +48,7 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 0:
-         var e=match[3];
-         
-         var w=match[2];
-         
-         var r=match[1];
-         
-         return /* tuple */[0,r,w,e];
-         
+       {case 0:return /* tuple */[0,match[1],match[2],match[3]];
         default:exit$1=20;}}
     
     switch(exit$1)
@@ -118,14 +110,7 @@ var
      {switch(match){}}
     else
      {switch(match[0])
-       {case 1:
-         var status=match[2];
-         
-         var pid$1=match[1];
-         
-         return /* tuple */[0,pid$1,status];
-         
-        default:exit$1=9;}}
+       {case 1:return /* tuple */[0,match[1],match[2]];default:exit$1=9;}}
     
     switch(exit$1)
      {case 9:return Pervasives["invalid_arg"]("Thread.wait_pid");}
@@ -149,7 +134,7 @@ var
           },
         sigs);
     
-    gotsig[1]===0?sleep(/* () */0):0;
+    if(gotsig[1]===0){sleep(/* () */0)}
     
     List["iter2"](Sys["set_signal"],sigs,oldhdlrs);
     return gotsig[1];

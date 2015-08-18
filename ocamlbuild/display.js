@@ -544,7 +544,7 @@ var
     var dt=t-ds[3];
     
     if(dt>ds[8])
-     {ds[7]?(update_tagline_from_tags(ds),ds[7]=/* false */0,0):0;
+     {if(ds[7]){update_tagline_from_tags(ds),ds[7]=/* false */0,0}
       
       return redraw_sophisticated(ds);
       }
@@ -559,7 +559,7 @@ var
     ds[4]=target;
     ds[6]=tags;
     ds[10]=1+ds[10];
-    cached?(ds[11]=1+ds[11],0):0;
+    if(cached){ds[11]=1+ds[11],0}
     
     ds[5]=cached;
     ds[13]=Tags["union"](ds[13],ds[6]);

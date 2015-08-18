@@ -30,16 +30,15 @@ var
          "%s: %S failed"],
         Sys["argv"][1],
         exn[3]);
-      arg["length"]>0
-       ?Format["fprintf"]
+      if(arg["length"]>0)
+       {Format["fprintf"]
          (f,
           [/* Format */0,
            [/* String_literal */11,
             " on ",
             [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
            " on %S"],
-          arg)
-       :0;
+          arg)}
       
       return Format["fprintf"]
               (f,

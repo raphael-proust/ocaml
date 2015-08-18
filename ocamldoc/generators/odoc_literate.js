@@ -280,13 +280,12 @@ var
          switch(exit)
           {case 2:var match$2=[/* tuple */0,/* true */1,/* true */1];}
          
-         match$2[1]
-          ?p
+         if(match$2[1])
+          {p
             (b,
              [/* Format */0,
               [/* String_literal */11,"<br/>",/* End_of_format */0],
-              "<br/>"])
-          :0;
+              "<br/>"])}
          
          /* unknown */"(sendself self-1/1377 html_of_text/1388 b/1378 text/1379)";
          
