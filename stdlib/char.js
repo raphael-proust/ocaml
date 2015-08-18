@@ -45,18 +45,12 @@ var
     switch(exit)
      {case 5:
        if(CamlPrimitive["caml_is_printable"](c))
-        {return CamlPrimitive["caml_string_of_char_list"]
-                 (/* :: */[0,c,/* [] */0]);
-         }
+        {return CamlPrimitive["caml_string_of_char_array"]([/* array */0,c]);}
        else
         {var n=c;
          
-         return CamlPrimitive["caml_string_of_char_list"]
-                 (/* :: */[0,
-                   92,
-                   /* :: */[0,
-                    48+n/100,
-                    /* :: */[0,48+n/10%10,/* :: */[0,48+n%10,/* [] */0]]]]);
+         return CamlPrimitive["caml_string_of_char_array"]
+                 ([/* array */0,92,48+n/100,48+n/10%10,48+n%10]);
          }
        
       }
