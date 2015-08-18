@@ -169,17 +169,21 @@ var
 var
  fold_left=
   function(f,x,a)
-   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){r=f(x,a[i+1]);}
+   {var r=x;
     
-    return x;
+    for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){r=f(r,a[i+1]);}
+    
+    return r;
     };
 
 var
  fold_right=
   function(f,a,x)
-   {for(var i=/* -1 for tag */a["length"]-1-1;i>=0;i--){r=f(a[i+1],x);}
+   {var r=x;
     
-    return x;
+    for(var i=/* -1 for tag */a["length"]-1-1;i>=0;i--){r=f(a[i+1],r);}
+    
+    return r;
     };
 
 var Bottom=CamlPrimitive["caml_set_oo_id"]([248,"Array.Bottom",0]);
@@ -192,12 +196,14 @@ var
       function(l,i)
        {var i31=i+i+i+1;
         
+        var x=i31;
+        
         if(i31+2<l)
          {if(cmp(a[i31+1],a[i31+1+1])<0){x=i31+1;}else{}
           
-          if(cmp(a[i31+1],a[i31+2+1])<0){x=i31+2;}else{}
+          if(cmp(a[x+1],a[i31+2+1])<0){x=i31+2;}else{}
           
-          return i31;
+          return x;
           }
         else
          {if(i31+1<l&&cmp(a[i31+1],a[i31+1+1])<0)

@@ -338,19 +338,7 @@ var
      {var a=backtrace[1];
       
       for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
-       {var match=format_backtrace_slot(i,a[i+1]);
-        
-        match
-         ?Printf["fprintf"]
-           (outchan,
-            [/* Format */0,
-             [/* String */2,
-              /* No_padding */0,
-              [/* Char_literal */12,10,/* End_of_format */0]],
-             "%s\n"],
-            match[1])
-         :/* () */0;
-        }
+       {var match=format_backtrace_slot(i,a[i+1]);if(match){}}
       return 0;
       }
     else
@@ -388,19 +376,7 @@ var
       var b=Buffer["create"](1024);
       
       for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++)
-       {var match=format_backtrace_slot(i,a[i+1]);
-        
-        match
-         ?Printf["bprintf"]
-           (b,
-            [/* Format */0,
-             [/* String */2,
-              /* No_padding */0,
-              [/* Char_literal */12,10,/* End_of_format */0]],
-             "%s\n"],
-            match[1])
-         :/* () */0;
-        }
+       {var match=format_backtrace_slot(i,a[i+1]);if(match){}}
       
       return Buffer["contents"](b);
       }

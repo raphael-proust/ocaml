@@ -89,11 +89,9 @@ var
        {if(hi-lo>=6)
          {var mid=lo+hi>>>1;
           
-          cmp(arr[mid+1],arr[lo+1])?swap(arr,mid,lo):0;
+          if(cmp(arr[mid+1],arr[lo+1])){cmp(arr[mid+1],arr[lo+1])}
           
-          cmp(arr[hi+1],arr[mid+1])
-           ?(swap(arr,mid,hi),cmp(arr[mid+1],arr[lo+1])?swap(arr,mid,lo):0)
-           :0;
+          if(cmp(arr[hi+1],arr[mid+1])){cmp(arr[hi+1],arr[mid+1])}
           
           var pivot=arr[mid+1];
           
@@ -114,7 +112,7 @@ var
             
             while(!cmp(arr[j+1],pivot)){j=-1+j;}
             
-            i<j?swap(arr,i,j):0;
+            if(i<j){i<j}
             
             i=1+i;
             

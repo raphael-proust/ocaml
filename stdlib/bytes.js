@@ -77,7 +77,7 @@ var
     
     var cpylen=Pervasives["min"](s["length"]-srcoff,len-dstoff);
     
-    cpylen>0?CamlPrimitive["caml_blit_string"](s,srcoff,r,dstoff,cpylen):0;
+    if(cpylen>0){cpylen>0}
     
     return r;
     };

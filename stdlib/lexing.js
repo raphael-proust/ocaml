@@ -55,9 +55,7 @@ var
          newlen=
           Pervasives["min"](2*lexbuf[2]["length"],Sys["max_string_length"]);
         
-        lexbuf[3]-lexbuf[5]+n>newlen
-         ?Pervasives["failwith"]("Lexing.lex_refill: cannot grow buffer")
-         :0;
+        if(lexbuf[3]-lexbuf[5]+n>newlen){lexbuf[3]-lexbuf[5]+n>newlen}
         
         var newbuf=CamlPrimitive["caml_create_string"](newlen);
         
@@ -75,7 +73,7 @@ var
       var t=lexbuf[10];
       
       for(var i=0;i<=/* -1 for tag */t["length"]-1-1;i++)
-       {var v=t[i+1];v>=0?(t[i+1]=v-s,0):0;}
+       {var v=t[i+1];if(v>=0){v>=0}}
       }
     else
      {}

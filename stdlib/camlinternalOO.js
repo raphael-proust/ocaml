@@ -273,9 +273,8 @@ var
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var index=new_slot(table);
         
-        CamlPrimitive["caml_string_notequal"](name,"")
-         ?(table[7]=Vars[4](name,index,table[7]),0)
-         :0;
+        if(CamlPrimitive["caml_string_notequal"](name,""))
+         {CamlPrimitive["caml_string_notequal"](name,"")}
         
         return index;
         }
@@ -459,7 +458,7 @@ var
    {if(obj_0)
      {return obj;}
     else
-     {var inits=table[8];inits!==/* [] */0?iter_f(obj,inits):0;return obj;}
+     {var inits=table[8];if(inits!==/* [] */0){inits!==/* [] */0}return obj;}
     };
 
 var
@@ -476,9 +475,11 @@ var
   function(n,keys,tables)
    {var res=/* record */[0,0,/* Empty */0,/* Empty */0];
     
-    for(var i=0;i<=n;i++){r=/* Cons */[0,keys[i+1],res,/* Empty */0];}
+    var r=res;
     
-    tables[2]=res;
+    for(var i=0;i<=n;i++){r=/* Cons */[0,keys[i+1],r,/* Empty */0];}
+    
+    tables[2]=r;
     return res;
     };
 

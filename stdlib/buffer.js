@@ -67,9 +67,11 @@ var
   function(b,more)
    {var len=b[3];
     
-    while(b[2]+more>len){new_len=2*len;}
+    var new_len=len;
     
-    if(len>Sys["max_string_length"])
+    while(b[2]+more>new_len){new_len=2*new_len;}
+    
+    if(new_len>Sys["max_string_length"])
      {if(b[2]+more<=Sys["max_string_length"])
        {new_len=Sys["max_string_length"];}
       else
@@ -78,28 +80,27 @@ var
     else
      {}
     
-    var new_buffer=CamlPrimitive["caml_create_string"](len);
+    var new_buffer=CamlPrimitive["caml_create_string"](new_len);
     
     Bytes["blit"](b[1],0,new_buffer,0,b[2]);
     b[1]=new_buffer;
-    return b[3]=len,0;
+    return b[3]=new_len,0;
     };
 
 var
  add_char=
   function(b,c)
-   {var pos=b[2];pos>=b[3]?resize(b,1):0;b[1][pos]=c;return b[2]=pos+1,0;};
+   {var pos=b[2];if(pos>=b[3]){pos>=b[3]}b[1][pos]=c;return b[2]=pos+1,0;};
 
 var
  add_substring=
   function(b,s,offset,len)
-   {offset<0||len<0||offset+len>s["length"]
-     ?Pervasives["invalid_arg"]("Buffer.add_substring/add_subbytes")
-     :0;
+   {if(offset<0||len<0||offset+len>s["length"])
+     {offset<0||len<0||offset+len>s["length"]}
     
     var new_position=b[2]+len;
     
-    new_position>b[3]?resize(b,len):0;
+    if(new_position>b[3]){new_position>b[3]}
     
     Bytes["blit_string"](s,offset,b[1],b[2],len);
     return b[2]=new_position,0;
@@ -117,7 +118,7 @@ var
     
     var new_position=b[2]+len;
     
-    new_position>b[3]?resize(b,len):0;
+    if(new_position>b[3]){new_position>b[3]}
     
     Bytes["blit_string"](s,0,b[1],b[2],len);
     return b[2]=new_position,0;
@@ -132,11 +133,10 @@ var add_buffer=function(b,bs){return add_subbytes(b,bs[1],0,bs[2]);};
 var
  add_channel=
   function(b,ic,len)
-   {len<0||len>Sys["max_string_length"]
-     ?Pervasives["invalid_arg"]("Buffer.add_channel")
-     :0;
+   {if(len<0||len>Sys["max_string_length"])
+     {len<0||len>Sys["max_string_length"]}
     
-    b[2]+len>b[3]?resize(b,len):0;
+    if(b[2]+len>b[3]){b[2]+len>b[3]}
     
     Pervasives["really_input"](ic,b[1],b[2],len);
     return b[2]=b[2]+len,0;

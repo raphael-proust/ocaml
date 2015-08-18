@@ -21,7 +21,7 @@ var
       ib[2]=c;
       ib[3]=/* true */1;
       ib[4]=1+ib[4];
-      c===10?(ib[5]=1+ib[5],0):0;
+      if(c===10){c===10}
       
       return c;
       }
@@ -2093,11 +2093,7 @@ var
     
     Buffer["add_char"](b,34);
     for(var i=0;i<=l-1;i++)
-     {var c=s["charCodeAt"](i);
-      
-      c===34?Buffer["add_char"](b,92):0;
-      
-      Buffer["add_char"](b,c)}
+     {var c=s["charCodeAt"](i);if(c===34){c===34}Buffer["add_char"](b,c)}
     
     Buffer["add_char"](b,34);
     return Buffer["contents"](b);

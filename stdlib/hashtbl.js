@@ -331,10 +331,12 @@ var
     
     var d=h[2];
     
-    for(var i=0;i<=/* -1 for tag */d["length"]-1-1;i++)
-     {accu=do_bucket(d[i+1],init);}
+    var accu=init;
     
-    return init;
+    for(var i=0;i<=/* -1 for tag */d["length"]-1-1;i++)
+     {accu=do_bucket(d[i+1],accu);}
+    
+    return accu;
     };
 
 var

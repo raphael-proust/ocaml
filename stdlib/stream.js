@@ -77,7 +77,7 @@ var
         case 4:
          var b=d[1];
          
-         b[4]>=b[3]?fill_buff(b):0;
+         if(b[4]>=b[3]){b[4]>=b[3]}
          
          if(b[3]===0)
           {return /* Sempty */0;}
@@ -136,7 +136,7 @@ var
         case 4:
          var b=match[1];
          
-         b[4]>=b[3]?fill_buff(b):0;
+         if(b[4]>=b[3]){b[4]>=b[3]}
          
          return b[3]===0
                  ?(set_data(s,/* Sempty */0),/* None */0)

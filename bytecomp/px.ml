@@ -976,6 +976,7 @@ module rec
                        val exports :
                          Ident.t list -> J.expression list -> J.statement
                        val block_of_output : output -> J.block
+                       val is_js_pure : J.expression -> bool
                        val is_pure : Lambda.lambda -> bool
                        module Ops :
                        sig val (++) : output -> output -> output end
@@ -1432,8 +1433,9 @@ module rec
                  end and
                       Compile_lambda:sig
                                        val compile :
-                                         Env.t ->
-                                           Lambda.lambda -> Gen_util.output
+                                         string ->
+                                           Env.t ->
+                                             Lambda.lambda -> Gen_util.output
                                        val lambda_as_module :
                                          bool ->
                                            Env.t ->
@@ -1635,8 +1637,13 @@ module rec
                                            None)
                                      | (EffectCall ,false
                                         ,([],Some out1),([],Some out2)) ->
-                                         ([S.exp (E.econd e out1 out2)],
-                                           None)
+                                         if Gen_util.is_js_pure out2
+                                         then
+                                           ([S.if_ e (S.block [S.exp e])],
+                                             None)
+                                         else
+                                           ([S.exp (E.econd e out1 out2)],
+                                             None)
                                      | ((Assign _|EffectCall ),_,_,_) ->
                                          ((b @
                                              [S.if_ e
@@ -1976,7 +1983,6 @@ module rec
                         let compile_group env (x : group) =
                           (match x with
                            | Single (kind,id,lam) ->
-                               let lam = Optimizer.simplify_lets [] lam in
                                compile_lambda
                                  {
                                    st = (Declare id);
@@ -2017,7 +2023,7 @@ module rec
                                         bind_args)) :: acc) body
                            | Lsequence (l,r) -> flat (flat acc l) r
                            | x -> (Nop x) :: acc : group list)
-                        let compile env lam =
+                        let compile filename env lam =
                           (let exports = Translmod.get_export_identifiers () in
                            let () = Translmod.reset () in
                            let () = Gen_of_env.reset () in
@@ -2025,6 +2031,10 @@ module rec
                            let lam =
                              (Optimizer.simplify_lets export_idents) @@
                                (Simplif.simplify_exits lam) in
+                           let () =
+                             Printlambda.seriaize env
+                               ((Filename.chop_extension filename) ^ ".lam")
+                               lam in
                            match (lam : Lambda.lambda) with
                            | Lprim (Psetglobal id,biglambda::[]) ->
                                (match flat [] biglambda with
@@ -2072,7 +2082,7 @@ module rec
                           let out =
                             open_out
                               ((Filename.chop_extension filename) ^ ".js") in
-                          let js = compile env lam in
+                          let js = compile filename env lam in
                           let () = Gen_util.dump_output js out in
                           close_out out
                         let () =

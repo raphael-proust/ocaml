@@ -26,7 +26,10 @@ var Empty_queue=CamlPrimitive["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
 var
  peek_queue=
   function(param)
-   {var match=param[2];if(match){return match[1][1];}else{throw Empty_queue;}};
+   {var match=param[2];
+    
+    if(match){var x=match[1][1];return x;}else{throw Empty_queue;}
+    };
 
 var
  take_queue=
@@ -36,12 +39,14 @@ var
     if(match)
      {var match$1=match[1];
       
+      var x=match$1[1];
+      
       var tl=match$1[2];
       
       q[2]=tl;
-      tl===/* Nil */0?(q[1]=/* Nil */0,0):0;
+      if(tl===/* Nil */0){tl===/* Nil */0}
       
-      return match$1[1];
+      return x;
       }
     else
      {throw Empty_queue;}
@@ -110,8 +115,10 @@ var
   function(state)
    {var match=take_queue(state[27]);
     
+    var size=match[1];
+    
     state[12]=state[12]-match[3];
-    return state[9]=state[9]+match[1],0;
+    return state[9]=state[9]+size,0;
     };
 
 var
@@ -270,7 +277,7 @@ var
          
          var insertion_point$1=state[6]-state[9];
          
-         insertion_point$1>state[8]?pp_force_break_line(state):0;
+         if(insertion_point$1>state[8]){insertion_point$1>state[8]}
          
          var offset$1=state[9]-param[1];
          
@@ -356,9 +363,11 @@ var
       
       var queue_elem=match$1[2];
       
+      var size=queue_elem[1];
+      
       var t=match[2];
       
-      var size=queue_elem[1];
+      var size$1=size;
       
       if(match$1[1]<state[12])
        {return clear_scan_stack(state);}
@@ -372,11 +381,11 @@ var
          {switch($js[0])
            {case 1:exit=193;
             case 2:exit=193;
-            case 3:return !ty?(queue_elem[1]=state[13]+size,state[1]=t,0):0;
+            case 3:return !ty?(queue_elem[1]=state[13]+size$1,state[1]=t,0):0;
             default:exit=194;}}
         
         switch(exit)
-         {case 193:return ty?(queue_elem[1]=state[13]+size,state[1]=t,0):0;
+         {case 193:return ty?(queue_elem[1]=state[13]+size$1,state[1]=t,0):0;
           case 194:return /* () */0;
           }
         }
@@ -389,7 +398,7 @@ var
  scan_push=
   function(state,b,tok)
    {pp_enqueue(state,tok);
-    b?set_size(state,/* true */1):0;
+    if(b){}
     
     return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0;
     };
@@ -415,11 +424,7 @@ var
  pp_close_box=
   function(state,param)
    {if(state[14]>1)
-     {state[14]<state[15]
-       ?(pp_enqueue(state,/* record */[0,0,/* Pp_end */1,0]),
-         set_size(state,/* true */1),
-         set_size(state,/* false */0))
-       :0;
+     {if(state[14]<state[15]){state[14]<state[15]}
       
       return state[14]=state[14]-1,0;
       }
@@ -430,7 +435,7 @@ var
 var
  pp_open_tag=
   function(state,tag_name)
-   {state[21]?(state[4]=/* :: */[0,tag_name,state[4]],state[25](tag_name)):0;
+   {if(state[21]){state[21]}
     
     return state[22]
             ?pp_enqueue
@@ -441,7 +446,7 @@ var
 var
  pp_close_tag=
   function(state,param)
-   {state[22]?pp_enqueue(state,/* record */[0,0,/* Pp_close_tag */5,0]):0;
+   {if(state[22]){state[22]}
     
     if(state[21])
      {var match=state[4];
@@ -501,7 +506,7 @@ var
     
     state[13]=pp_infinity;
     advance_left(state);
-    b?pp_output_newline(state):0;
+    if(b){}
     
     return pp_rinit(state);
     };
