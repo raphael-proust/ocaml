@@ -5,22 +5,21 @@ var Marshal=require("./marshal.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var double_field=function(x,i){return x[i+1];};
+var double_field=function(x,i){return x[i+1]};
 
-var set_double_field=function(x,i,v){return x[i+1]=v,0;};
+var set_double_field=function(x,i,v){return x[i+1]=v,0};
 
 var
  marshal=
   function(obj)
-   {return CamlPrimitive["caml_output_value_to_string"](obj,/* [] */0);};
+   {return CamlPrimitive["caml_output_value_to_string"](obj,/* [] */0)};
 
 var
  unmarshal=
   function(str,pos)
    {return /* tuple */[0,
             Marshal["from_bytes"](str,pos),
-            pos+Marshal["total_size"](str,pos)];
-    };
+            pos+Marshal["total_size"](str,pos)]};
 
 var first_non_constant_constructor_tag=0;
 
@@ -79,24 +78,24 @@ var
       object_tag)
      {name=slot[1];}
     else
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     
     if(CamlPrimitive["caml_obj_tag"](name)===string_tag)
-     {return slot;}
+     {return slot}
     else
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     };
 
 var
  extension_name=
   function(x)
    {try
-     {var slot=extension_slot(x);return slot[1];}
+     {var slot=extension_slot(x);return slot[1]}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return Pervasives["invalid_arg"]("Obj.extension_name");}
+       {return Pervasives["invalid_arg"]("Obj.extension_name")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -104,12 +103,12 @@ var
  extension_id=
   function(x)
    {try
-     {var slot=extension_slot(x);return slot[2];}
+     {var slot=extension_slot(x);return slot[2]}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return Pervasives["invalid_arg"]("Obj.extension_id");}
+       {return Pervasives["invalid_arg"]("Obj.extension_id")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -117,12 +116,12 @@ var
  extension_slot$1=
   function(x)
    {try
-     {return extension_slot(x);}
+     {return extension_slot(x)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return Pervasives["invalid_arg"]("Obj.extension_slot");}
+       {return Pervasives["invalid_arg"]("Obj.extension_slot")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 

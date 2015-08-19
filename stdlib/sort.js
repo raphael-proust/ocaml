@@ -13,13 +13,12 @@ var
         
         return order(h1,h2)
                 ?/* :: */[0,h1,merge(order,l1[2],l2)]
-                :/* :: */[0,h2,merge(order,l1,l2[2])];
-        }
+                :/* :: */[0,h2,merge(order,l1,l2[2])]}
       else
-       {return l1;}
+       {return l1}
       }
     else
-     {return l2;}
+     {return l2}
     };
 
 var
@@ -40,13 +39,12 @@ var
                     order(e,e2)
                      ?/* :: */[0,e,/* :: */[0,e2,/* [] */0]]
                      :/* :: */[0,e2,/* :: */[0,e,/* [] */0]],
-                    initlist(match[2])];
-            }
+                    initlist(match[2])]}
           else
-           {return /* :: */[0,/* :: */[0,e,/* [] */0],/* [] */0];}
+           {return /* :: */[0,/* :: */[0,e,/* [] */0],/* [] */0]}
           }
         else
-         {return /* [] */0;}
+         {return /* [] */0}
         };
     
     var
@@ -58,27 +56,26 @@ var
          {var match=x[2];
           
           if(match)
-           {return /* :: */[0,merge(order,x[1],match[1]),merge2(match[2])];}
+           {return /* :: */[0,merge(order,x[1],match[1]),merge2(match[2])]}
           else
            {exit=11;}
           }
         else
          {exit=11;}
         
-        switch(exit){case 11:return x;}
+        switch(exit){case 11:return x}
         };
     
     var
      mergeall=
       function(llist)
-       {return llist?llist[2]?mergeall(merge2(llist)):llist[1]:/* [] */0;};
+       {return llist?llist[2]?mergeall(merge2(llist)):llist[1]:/* [] */0};
     
-    return mergeall(initlist(l));
-    };
+    return mergeall(initlist(l))};
 
 var
  swap=
-  function(arr,i,j){var tmp=arr[i+1];arr[i+1]=arr[j+1];return arr[j+1]=tmp,0;};
+  function(arr,i,j){var tmp=arr[i+1];arr[i+1]=arr[j+1];return arr[j+1]=tmp,0};
 
 var
  array=
@@ -103,8 +100,7 @@ var
           if(!cmp(pivot,arr[hi+1])||!cmp(arr[lo+1],pivot))
            {throw [0,
                    CamlPrimitive["caml_global_data"]["Invalid_argument"],
-                   "Sort.array"];
-            }
+                   "Sort.array"]}
           else
            {}
           
@@ -122,10 +118,9 @@ var
           
           return j-lo<=hi-i
                   ?(qsort(lo,j),qsort(i,hi))
-                  :(qsort(i,hi),qsort(lo,j));
-          }
+                  :(qsort(i,hi),qsort(lo,j))}
         else
-         {return 0;}
+         {return 0}
         };
     
     qsort(0,/* -1 for tag */arr["length"]-1-1);

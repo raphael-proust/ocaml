@@ -21,8 +21,7 @@ var
     else
      {}
     
-    return result;
-    };
+    return result};
 
 var
  new_engine=
@@ -37,8 +36,7 @@ var
     else
      {}
     
-    return result;
-    };
+    return result};
 
 var
  lex_refill=
@@ -80,8 +78,7 @@ var
      {}
     
     Bytes["blit"](aux_buffer,0,lexbuf[2],lexbuf[3],n);
-    return lexbuf[3]=lexbuf[3]+n,0;
-    };
+    return lexbuf[3]=lexbuf[3]+n,0};
 
 var zero_pos=[/* record */0,"",1,0,0];
 
@@ -100,21 +97,19 @@ var
             /* false */0,
             [/* array */0],
             zero_pos,
-            zero_pos];
-    };
+            zero_pos]};
 
 var
  from_channel=
   function(ic)
    {return from_function
-            (function(buf,n){return Pervasives["input"](ic,buf,0,n);});
-    };
+            (function(buf,n){return Pervasives["input"](ic,buf,0,n)})};
 
 var
  from_string=
   function(s)
    {return /* record */[0,
-            function(lexbuf){return lexbuf[9]=/* true */1,0;},
+            function(lexbuf){return lexbuf[9]=/* true */1,0},
             Bytes["of_string"](s),
             s["length"],
             0,
@@ -125,21 +120,19 @@ var
             /* true */1,
             [/* array */0],
             zero_pos,
-            zero_pos];
-    };
+            zero_pos]};
 
 var
  lexeme=
   function(lexbuf)
    {var len=lexbuf[6]-lexbuf[5];
     
-    return Bytes["sub_string"](lexbuf[2],lexbuf[5],len);
-    };
+    return Bytes["sub_string"](lexbuf[2],lexbuf[5],len)};
 
 var
  sub_lexeme=
   function(lexbuf,i1,i2)
-   {var len=i2-i1;return Bytes["sub_string"](lexbuf[2],i1,len);};
+   {var len=i2-i1;return Bytes["sub_string"](lexbuf[2],i1,len)};
 
 var
  sub_lexeme_opt=
@@ -147,35 +140,33 @@ var
    {if(i1>=0)
      {var len=i2-i1;
       
-      return /* Some */[0,Bytes["sub_string"](lexbuf[2],i1,len)];
-      }
+      return /* Some */[0,Bytes["sub_string"](lexbuf[2],i1,len)]}
     else
-     {return /* None */0;}
+     {return /* None */0}
     };
 
-var sub_lexeme_char=function(lexbuf,i){return lexbuf[2][i];};
+var sub_lexeme_char=function(lexbuf,i){return lexbuf[2][i]};
 
 var
  sub_lexeme_char_opt=
-  function(lexbuf,i){return i>=0?/* Some */[0,lexbuf[2][i]]:/* None */0;};
+  function(lexbuf,i){return i>=0?/* Some */[0,lexbuf[2][i]]:/* None */0};
 
-var lexeme_char=function(lexbuf,i){return lexbuf[2][lexbuf[5]+i];};
+var lexeme_char=function(lexbuf,i){return lexbuf[2][lexbuf[5]+i]};
 
-var lexeme_start=function(lexbuf){return lexbuf[11][4];};
+var lexeme_start=function(lexbuf){return lexbuf[11][4]};
 
-var lexeme_end=function(lexbuf){return lexbuf[12][4];};
+var lexeme_end=function(lexbuf){return lexbuf[12][4]};
 
-var lexeme_start_p=function(lexbuf){return lexbuf[11];};
+var lexeme_start_p=function(lexbuf){return lexbuf[11]};
 
-var lexeme_end_p=function(lexbuf){return lexbuf[12];};
+var lexeme_end_p=function(lexbuf){return lexbuf[12]};
 
 var
  new_line=
   function(lexbuf)
    {var lcp=lexbuf[12];
     
-    return lexbuf[12]=/* record */[0,lcp[1],lcp[2]+1,lcp[4],lcp[4]],0;
-    };
+    return lexbuf[12]=/* record */[0,lcp[1],lcp[2]+1,lcp[4],lcp[4]],0};
 
 var
  flush_input=
@@ -185,8 +176,7 @@ var
     var init=lb[12];
     
     lb[12]=/* record */[0,init[1],init[2],init[3],0];
-    return lb[3]=0,0;
-    };
+    return lb[3]=0,0};
 
 module["exports"]=
 {"dummy_pos":dummy_pos,

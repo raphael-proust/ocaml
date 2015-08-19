@@ -10,11 +10,11 @@ var one=1;
 
 var minus_one=-1;
 
-var succ=function(n){return n+1;};
+var succ=function(n){return n+1};
 
-var pred=function(n){return n-1;};
+var pred=function(n){return n-1};
 
-var abs=function(n){return n>=0?n:-n;};
+var abs=function(n){return n>=0?n:-n};
 
 var size=Sys["word_size"];
 
@@ -22,15 +22,15 @@ var min_int=1<<size-1;
 
 var max_int=min_int-1;
 
-var lognot=function(n){return n^-1;};
+var lognot=function(n){return n^-1};
 
 var
  to_string=
-  function(n){return CamlPrimitive["caml_nativeint_format"]("%d",n);};
+  function(n){return CamlPrimitive["caml_nativeint_format"]("%d",n)};
 
 var
  compare=
-  function(x,y){return CamlPrimitive["caml_nativeint_compare"](x,y);};
+  function(x,y){return CamlPrimitive["caml_nativeint_compare"](x,y)};
 
 module["exports"]=
 {"zero":zero,

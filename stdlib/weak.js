@@ -6,7 +6,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
-var length=function(x){return /* -1 for tag */x["length"]-1-1;};
+var length=function(x){return /* -1 for tag */x["length"]-1-1};
 
 var
  fill=
@@ -14,8 +14,7 @@ var
    {if(ofs<0||len<0||ofs+len>length(ar))
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
-             "Weak.fill"];
-      }
+             "Weak.fill"]}
     else
      {for(var i=ofs;i<=ofs+len-1;i++){CamlPrimitive["caml_weak_set"](ar,i,x)}
       return 0;
@@ -27,14 +26,14 @@ var
   function(H)
    {var
      weak_create=
-      function(prim){return CamlPrimitive["caml_weak_create"](prim);};
+      function(prim){return CamlPrimitive["caml_weak_create"](prim)};
     
     var emptybucket=weak_create(0);
     
     var
      get_index=
       function(t,h)
-       {return (h&Pervasives["max_int"])%/* -1 for tag */(t[1]["length"]-1);};
+       {return (h&Pervasives["max_int"])%/* -1 for tag */(t[1]["length"]-1)};
     
     var limit=7;
     
@@ -52,8 +51,7 @@ var
                 CamlPrimitive["caml_make_vect"](sz$2,[/* array */0]),
                 limit,
                 0,
-                0];
-        };
+                0]};
     
     var
      clear=
@@ -62,8 +60,7 @@ var
          {t[1][i+1]=emptybucket,t[2][i+1]=[/* array */0]}
         
         t[3]=limit;
-        return t[4]=0,0;
-        };
+        return t[4]=0,0};
     
     var
      fold=
@@ -72,18 +69,16 @@ var
          fold_bucket=
           function(i,b,accu)
            {if(i>=length(b))
-             {return accu;}
+             {return accu}
             else
              {var match=CamlPrimitive["caml_weak_get"](b,i);
               
               return match
                       ?fold_bucket(i+1,b,f(match[1],accu))
-                      :fold_bucket(i+1,b,accu);
-              }
+                      :fold_bucket(i+1,b,accu)}
             };
         
-        return $$Array["fold_right"](fold_bucket(0),t[1],init);
-        };
+        return $$Array["fold_right"](fold_bucket(0),t[1],init)};
     
     var
      iter=
@@ -92,16 +87,14 @@ var
          iter_bucket=
           function(i,b)
            {if(i>=length(b))
-             {return /* () */0;}
+             {return /* () */0}
             else
              {var match=CamlPrimitive["caml_weak_get"](b,i);
               
-              return match?(f(match[1]),iter_bucket(i+1,b)):iter_bucket(i+1,b);
-              }
+              return match?(f(match[1]),iter_bucket(i+1,b)):iter_bucket(i+1,b)}
             };
         
-        return $$Array["iter"](iter_bucket(0),t[1]);
-        };
+        return $$Array["iter"](iter_bucket(0),t[1])};
     
     var
      iter_weak=
@@ -110,18 +103,16 @@ var
          iter_bucket=
           function(i,j,b)
            {if(i>=length(b))
-             {return /* () */0;}
+             {return /* () */0}
             else
              {var match=CamlPrimitive["caml_weak_check"](b,i);
               
               return match!==0
                       ?(f(b,t[2][j+1],i),iter_bucket(i+1,j,b))
-                      :iter_bucket(i+1,j,b);
-              }
+                      :iter_bucket(i+1,j,b)}
             };
         
-        return $$Array["iteri"](iter_bucket(0),t[1]);
-        };
+        return $$Array["iteri"](iter_bucket(0),t[1])};
     
     var
      count_bucket=
@@ -129,18 +120,17 @@ var
        {return i>=length(b)
                 ?accu
                 :count_bucket
-                  (i+1,b,accu+(CamlPrimitive["caml_weak_check"](b,i)?1:0));
-        };
+                  (i+1,b,accu+(CamlPrimitive["caml_weak_check"](b,i)?1:0))};
     
     var
      count=
-      function(t){return $$Array["fold_right"](count_bucket(0),t[1],0);};
+      function(t){return $$Array["fold_right"](count_bucket(0),t[1],0)};
     
     var
      next_sz=
-      function(n){return Pervasives["min"](3*n/2+3,Sys["max_array_length"]);};
+      function(n){return Pervasives["min"](3*n/2+3,Sys["max_array_length"])};
     
-    var prev_sz=function(n){return ((n-3)*2+2)/3;};
+    var prev_sz=function(n){return ((n-3)*2+2)/3};
     
     var
      test_shrink_bucket=
@@ -168,8 +158,7 @@ var
                             hbucket[j+1],
                             loop(i+1,j-1))
                           :loop(i,j-1)
-                      :0;
-              };
+                      :0};
           
           loop(0,length(bucket)-1);
           prev_len===0
@@ -182,8 +171,7 @@ var
         else
          {}
         
-        return t[5]=(t[5]+1)%/* -1 for tag */(t[1]["length"]-1),0;
-        };
+        return t[5]=(t[5]+1)%/* -1 for tag */(t[1]["length"]-1),0};
     
     var
      resize=
@@ -201,22 +189,20 @@ var
              {var
                setter=
                 function(nb,ni,param)
-                 {return CamlPrimitive["caml_weak_blit"](ob,oi,nb,ni,1);};
+                 {return CamlPrimitive["caml_weak_blit"](ob,oi,nb,ni,1)};
               
               var h=oh[oi+1];
               
-              return add_aux(newt,setter,/* None */0,h,get_index(newt,h));
-              };
+              return add_aux(newt,setter,/* None */0,h,get_index(newt,h))};
           
           iter_weak(add_weak,t);
           t[1]=newt[1];
           t[2]=newt[2];
           t[3]=newt[3];
           t[4]=newt[4];
-          return t[5]=t[5]%/* -1 for tag */(newt[1]["length"]-1),0;
-          }
+          return t[5]=t[5]%/* -1 for tag */(newt[1]["length"]-1),0}
         else
-         {t[3]=Pervasives["max_int"];return t[4]=0,0;}
+         {t[3]=Pervasives["max_int"];return t[4]=0,0}
         };
     
     var
@@ -257,17 +243,14 @@ var
               
               return t[4]>/* -1 for tag */(t[1]["length"]-1)/over_limit
                       ?resize(t)
-                      :0;
-              }
+                      :0}
             else
              {return CamlPrimitive["caml_weak_check"](bucket,i)
                       ?loop(i+1)
-                      :(setter(bucket,i,d),hashes[i+1]=h,0);
-              }
+                      :(setter(bucket,i,d),hashes[i+1]=h,0)}
             };
         
-        return loop(0);
-        };
+        return loop(0)};
     
     var
      add=
@@ -277,11 +260,10 @@ var
         return add_aux
                 (t,
                  function(prim,prim$1,prim$2)
-                  {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2);},
+                  {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2)},
                  /* Some */[0,d],
                  h,
-                 get_index(t,h));
-        };
+                 get_index(t,h))};
     
     var
      find_or=
@@ -300,7 +282,7 @@ var
          loop=
           function(i)
            {if(i>=sz)
-             {return ifnotfound(h,index);}
+             {return ifnotfound(h,index)}
             else
              {if(h===hashes[i+1])
                {var match=CamlPrimitive["caml_weak_get_copy"](bucket,i);
@@ -311,23 +293,21 @@ var
                  {if(H[1](match[1],d))
                    {var match$1=CamlPrimitive["caml_weak_get"](bucket,i);
                     
-                    return match$1?match$1[1]:loop(i+1);
-                    }
+                    return match$1?match$1[1]:loop(i+1)}
                   else
                    {exit=23;}
                   }
                 else
                  {exit=23;}
                 
-                switch(exit){case 23:return loop(i+1);}
+                switch(exit){case 23:return loop(i+1)}
                 }
               else
-               {return loop(i+1);}
+               {return loop(i+1)}
               }
             };
         
-        return loop(0);
-        };
+        return loop(0)};
     
     var
      merge=
@@ -339,13 +319,11 @@ var
                   {add_aux
                     (t,
                      function(prim,prim$1,prim$2)
-                      {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2);},
+                      {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2)},
                      /* Some */[0,d],
                      h,
                      index);
-                   return d;
-                   });
-        };
+                   return d})};
     
     var
      find=
@@ -354,8 +332,7 @@ var
                 (t,
                  d,
                  function(h,index)
-                  {throw CamlPrimitive["caml_global_data"]["Not_found"];});
-        };
+                  {throw CamlPrimitive["caml_global_data"]["Not_found"]})};
     
     var
      find_shadow=
@@ -374,7 +351,7 @@ var
          loop=
           function(i)
            {if(i>=sz)
-             {return ifnotfound;}
+             {return ifnotfound}
             else
              {if(h===hashes[i+1])
                {var match=CamlPrimitive["caml_weak_get_copy"](bucket,i);
@@ -382,23 +359,19 @@ var
                 var exit;
                 
                 if(match)
-                 {if(H[1](match[1],d))
-                   {return iffound(bucket,i);}
-                  else
-                   {exit=14;}
+                 {if(H[1](match[1],d)){return iffound(bucket,i)}else{exit=14;}
                   }
                 else
                  {exit=14;}
                 
-                switch(exit){case 14:return loop(i+1);}
+                switch(exit){case 14:return loop(i+1)}
                 }
               else
-               {return loop(i+1);}
+               {return loop(i+1)}
               }
             };
         
-        return loop(0);
-        };
+        return loop(0)};
     
     var
      remove=
@@ -407,16 +380,13 @@ var
                 (t,
                  d,
                  function(w,i)
-                  {return CamlPrimitive["caml_weak_set"](w,i,/* None */0);},
-                 /* () */0);
-        };
+                  {return CamlPrimitive["caml_weak_set"](w,i,/* None */0)},
+                 /* () */0)};
     
     var
      mem=
       function(t,d)
-       {return find_shadow
-                (t,d,function(w,i){return /* true */1;},/* false */0);
-        };
+       {return find_shadow(t,d,function(w,i){return /* true */1},/* false */0)};
     
     var
      find_all=
@@ -435,7 +405,7 @@ var
          loop=
           function(i,accu)
            {if(i>=sz)
-             {return accu;}
+             {return accu}
             else
              {if(h===hashes[i+1])
                {var match=CamlPrimitive["caml_weak_get_copy"](bucket,i);
@@ -448,23 +418,21 @@ var
                     
                     return match$1
                             ?loop(i+1,/* :: */[0,match$1[1],accu])
-                            :loop(i+1,accu);
-                    }
+                            :loop(i+1,accu)}
                   else
                    {exit=5;}
                   }
                 else
                  {exit=5;}
                 
-                switch(exit){case 5:return loop(i+1,accu);}
+                switch(exit){case 5:return loop(i+1,accu)}
                 }
               else
-               {return loop(i+1,accu);}
+               {return loop(i+1,accu)}
               }
             };
         
-        return loop(0,/* [] */0);
-        };
+        return loop(0,/* [] */0)};
     
     var
      stats=
@@ -475,12 +443,12 @@ var
         
         $$Array["sort"]
          (function(prim,prim$1)
-           {return CamlPrimitive["caml_compare"](prim,prim$1);},
+           {return CamlPrimitive["caml_compare"](prim,prim$1)},
           lens);
         var
          totlen=
           $$Array["fold_left"]
-           (function(prim,prim$1){return prim+prim$1;},0,lens);
+           (function(prim,prim$1){return prim+prim$1},0,lens);
         
         return /* tuple */[0,
                 len,
@@ -488,8 +456,7 @@ var
                 totlen,
                 lens[1],
                 lens[len/2+1],
-                lens[len-1+1]];
-        };
+                lens[len-1+1]]};
     
     return [0,
             create,
@@ -503,25 +470,24 @@ var
             iter,
             fold,
             count,
-            stats];
-    };
+            stats]};
 
 module["exports"]=
-{"create":function(prim){return CamlPrimitive["caml_weak_create"](prim);},
+{"create":function(prim){return CamlPrimitive["caml_weak_create"](prim)},
  "length":length,
  "set":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2);},
+  {return CamlPrimitive["caml_weak_set"](prim,prim$1,prim$2)},
  "get":
- function(prim,prim$1){return CamlPrimitive["caml_weak_get"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["caml_weak_get"](prim,prim$1)},
  "get_copy":
  function(prim,prim$1)
-  {return CamlPrimitive["caml_weak_get_copy"](prim,prim$1);},
+  {return CamlPrimitive["caml_weak_get_copy"](prim,prim$1)},
  "check":
- function(prim,prim$1){return CamlPrimitive["caml_weak_check"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["caml_weak_check"](prim,prim$1)},
  "fill":fill,
  "blit":
  function(prim,prim$1,prim$2,prim$3,prim$4)
-  {return CamlPrimitive["caml_weak_blit"](prim,prim$1,prim$2,prim$3,prim$4);},
+  {return CamlPrimitive["caml_weak_blit"](prim,prim$1,prim$2,prim$3,prim$4)},
  "Make":Make};
 

@@ -7,7 +7,7 @@ var Pervasives=require("./pervasives.js");
 var
  Make=
   function(Ord)
-   {var height=function(param){return param?param[4]:0;};
+   {var height=function(param){return param?param[4]:0};
     
     var
      create=
@@ -16,8 +16,7 @@ var
         
         var hr=r?r[4]:0;
         
-        return /* Node */[0,l,v,r,hl>=hr?hl+1:hr+1];
-        };
+        return /* Node */[0,l,v,r,hl>=hr?hl+1:hr+1]};
     
     var
      bal=
@@ -38,10 +37,9 @@ var
                     ?create(ll,lv,create(lr,v,r))
                     :lr
                       ?create(create(ll,lv,lr[1]),lr[2],create(lr[3],v,r))
-                      :Pervasives["invalid_arg"]("Set.bal");
-            }
+                      :Pervasives["invalid_arg"]("Set.bal")}
           else
-           {return Pervasives["invalid_arg"]("Set.bal");}
+           {return Pervasives["invalid_arg"]("Set.bal")}
           }
         else
          {if(hr>hl+2)
@@ -56,13 +54,12 @@ var
                       ?create(create(l,v,rl),rv,rr)
                       :rl
                         ?create(create(l,v,rl[1]),rl[2],create(rl[3],rv,rr))
-                        :Pervasives["invalid_arg"]("Set.bal");
-              }
+                        :Pervasives["invalid_arg"]("Set.bal")}
             else
-             {return Pervasives["invalid_arg"]("Set.bal");}
+             {return Pervasives["invalid_arg"]("Set.bal")}
             }
           else
-           {return /* Node */[0,l,v,r,hl>=hr?hl+1:hr+1];}
+           {return /* Node */[0,l,v,r,hl>=hr?hl+1:hr+1]}
           }
         };
     
@@ -78,31 +75,28 @@ var
           
           var c=Ord[1](x,v);
           
-          return c===0?t:c<0?bal(add(x,l),v,r):bal(l,v,add(x,r));
-          }
+          return c===0?t:c<0?bal(add(x,l),v,r):bal(l,v,add(x,r))}
         else
-         {return /* Node */[0,/* Empty */0,x,/* Empty */0,1];}
+         {return /* Node */[0,/* Empty */0,x,/* Empty */0,1]}
         };
     
     var
      singleton=
-      function(x){return /* Node */[0,/* Empty */0,x,/* Empty */0,1];};
+      function(x){return /* Node */[0,/* Empty */0,x,/* Empty */0,1]};
     
     var
      add_min_element=
       function(v,param)
        {return param
                 ?bal(add_min_element(v,param[1]),param[2],param[3])
-                :singleton(v);
-        };
+                :singleton(v)};
     
     var
      add_max_element=
       function(v,param)
        {return param
                 ?bal(param[1],param[2],add_max_element(v,param[3]))
-                :singleton(v);
-        };
+                :singleton(v)};
     
     var
      join=
@@ -115,31 +109,30 @@ var
             
             return lh>rh+2
                     ?bal(l[1],l[2],join(l[3],v,r))
-                    :rh>lh+2?bal(join(l,v,r[1]),r[2],r[3]):create(l,v,r);
-            }
+                    :rh>lh+2?bal(join(l,v,r[1]),r[2],r[3]):create(l,v,r)}
           else
-           {return add_max_element(v,l);}
+           {return add_max_element(v,l)}
           }
         else
-         {return add_min_element(v,r);}
+         {return add_min_element(v,r)}
         };
     
     var
      min_elt=
       function(param)
        {if(param)
-         {var l=param[1];return l?min_elt(l):param[2];}
+         {var l=param[1];return l?min_elt(l):param[2]}
         else
-         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"]}
         };
     
     var
      max_elt=
       function(param)
        {if(param)
-         {var r=param[3];return r?max_elt(r):param[2];}
+         {var r=param[3];return r?max_elt(r):param[2]}
         else
-         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"]}
         };
     
     var
@@ -148,21 +141,20 @@ var
        {if(param)
          {var l=param[1];
           
-          return l?bal(remove_min_elt(l),param[2],param[3]):param[3];
-          }
+          return l?bal(remove_min_elt(l),param[2],param[3]):param[3]}
         else
-         {return Pervasives["invalid_arg"]("Set.remove_min_elt");}
+         {return Pervasives["invalid_arg"]("Set.remove_min_elt")}
         };
     
     var
      merge=
       function(t1,t2)
-       {return t1?t2?bal(t1,min_elt(t2),remove_min_elt(t2)):t1:t2;};
+       {return t1?t2?bal(t1,min_elt(t2),remove_min_elt(t2)):t1:t2};
     
     var
      concat=
       function(t1,t2)
-       {return t1?t2?join(t1,min_elt(t2),remove_min_elt(t2)):t1:t2;};
+       {return t1?t2?join(t1,min_elt(t2),remove_min_elt(t2)):t1:t2};
     
     var
      split=
@@ -177,38 +169,33 @@ var
           var c=Ord[1](x,v);
           
           if(c===0)
-           {return /* tuple */[0,l,/* true */1,r];}
+           {return /* tuple */[0,l,/* true */1,r]}
           else
            {if(c<0)
              {var match=split(x,l);
               
-              return /* tuple */[0,match[1],match[2],join(match[3],v,r)];
-              }
+              return /* tuple */[0,match[1],match[2],join(match[3],v,r)]}
             else
              {var match$1=split(x,r);
               
-              return /* tuple */[0,join(l,v,match$1[1]),match$1[2],match$1[3]];
-              }
+              return /* tuple */[0,join(l,v,match$1[1]),match$1[2],match$1[3]]}
             }
           }
         else
-         {return [/* tuple */0,/* Empty */0,/* false */0,/* Empty */0];}
+         {return [/* tuple */0,/* Empty */0,/* false */0,/* Empty */0]}
         };
     
     var empty=/* Empty */0;
     
-    var is_empty=function(param){return param?/* false */0:/* true */1;};
+    var is_empty=function(param){return param?/* false */0:/* true */1};
     
     var
      mem=
       function(x,param)
        {if(param)
-         {var c=Ord[1](x,param[2]);
-          
-          return c===0||mem(x,c<0?param[1]:param[3]);
-          }
+         {var c=Ord[1](x,param[2]);return c===0||mem(x,c<0?param[1]:param[3])}
         else
-         {return /* false */0;}
+         {return /* false */0}
         };
     
     var
@@ -225,10 +212,9 @@ var
           
           return c===0
                   ?merge(l,r)
-                  :c<0?bal(remove(x,l),v,r):bal(l,v,remove(x,r));
-          }
+                  :c<0?bal(remove(x,l),v,r):bal(l,v,remove(x,r))}
         else
-         {return /* Empty */0;}
+         {return /* Empty */0}
         };
     
     var
@@ -246,29 +232,27 @@ var
             
             if(h1>=h2)
              {if(h2===1)
-               {return add(v2,s1);}
+               {return add(v2,s1)}
               else
                {var match=split(v1,s2);
                 
-                return join(union(s1[1],match[1]),v1,union(s1[3],match[3]));
-                }
+                return join(union(s1[1],match[1]),v1,union(s1[3],match[3]))}
               }
             else
              {if(h1===1)
-               {return add(v1,s2);}
+               {return add(v1,s2)}
               else
                {var match$1=split(v2,s1);
                 
                 return join
-                        (union(match$1[1],s2[1]),v2,union(match$1[3],s2[3]));
-                }
+                        (union(match$1[1],s2[1]),v2,union(match$1[3],s2[3]))}
               }
             }
           else
-           {return s1;}
+           {return s1}
           }
         else
-         {return s2;}
+         {return s2}
         };
     
     var
@@ -288,13 +272,12 @@ var
             
             return match[2]!==0
                     ?join(inter(l1,l2),v1,inter(r1,match[3]))
-                    :concat(inter(l1,l2),inter(r1,match[3]));
-            }
+                    :concat(inter(l1,l2),inter(r1,match[3]))}
           else
-           {return /* Empty */0;}
+           {return /* Empty */0}
           }
         else
-         {return /* Empty */0;}
+         {return /* Empty */0}
         };
     
     var
@@ -314,18 +297,17 @@ var
             
             return match[2]!==0
                     ?concat(diff(l1,l2),diff(r1,match[3]))
-                    :join(diff(l1,l2),v1,diff(r1,match[3]));
-            }
+                    :join(diff(l1,l2),v1,diff(r1,match[3]))}
           else
-           {return s1;}
+           {return s1}
           }
         else
-         {return /* Empty */0;}
+         {return /* Empty */0}
         };
     
     var
      cons_enum=
-      function(s,e){return s?cons_enum(s[1],/* More */[0,s[2],s[3],e]):e;};
+      function(s,e){return s?cons_enum(s[1],/* More */[0,s[2],s[3],e]):e};
     
     var
      compare_aux=
@@ -336,22 +318,20 @@ var
             
             return c!==0
                     ?c
-                    :compare_aux(cons_enum(e1[2],e1[3]),cons_enum(e2[2],e2[3]));
-            }
+                    :compare_aux(cons_enum(e1[2],e1[3]),cons_enum(e2[2],e2[3]))}
           else
-           {return 1;}
+           {return 1}
           }
         else
-         {return e2?-1:0;}
+         {return e2?-1:0}
         };
     
     var
      compare=
       function(s1,s2)
-       {return compare_aux(cons_enum(s1,/* End */0),cons_enum(s2,/* End */0));
-        };
+       {return compare_aux(cons_enum(s1,/* End */0),cons_enum(s2,/* End */0))};
     
-    var equal=function(s1,s2){return compare(s1,s2)===0;};
+    var equal=function(s1,s2){return compare(s1,s2)===0};
     
     var
      subset=
@@ -376,41 +356,36 @@ var
                       ?subset(/* Node */[0,l1,v1,/* Empty */0,0],l2)&&
                        subset(r1,s2)
                       :subset(/* Node */[0,/* Empty */0,v1,r1,0],r2)&&
-                       subset(l1,s2);
-            }
+                       subset(l1,s2)}
           else
-           {return /* false */0;}
+           {return /* false */0}
           }
         else
-         {return /* true */1;}
+         {return /* true */1}
         };
     
     var
      iter=
       function(f,param)
-       {return param?(iter(f,param[1]),f(param[2]),iter(f,param[3])):/* () */0;
-        };
+       {return param?(iter(f,param[1]),f(param[2]),iter(f,param[3])):/* () */0};
     
     var
      fold=
-      function(f,s,accu)
-       {return s?fold(f,s[3],f(s[2],fold(f,s[1],accu))):accu;};
+      function(f,s,accu){return s?fold(f,s[3],f(s[2],fold(f,s[1],accu))):accu};
     
     var
      for_all=
       function(p,param)
        {return param
                 ?p(param[2])&&for_all(p,param[1])&&for_all(p,param[3])
-                :/* true */1;
-        };
+                :/* true */1};
     
     var
      exists=
       function(p,param)
        {return param
                 ?p(param[2])||exists(p,param[1])||exists(p,param[3])
-                :/* false */0;
-        };
+                :/* false */0};
     
     var
      filter=
@@ -424,10 +399,9 @@ var
           
           var r$prime=filter(p,param[3]);
           
-          return pv?join(l$prime,v,r$prime):concat(l$prime,r$prime);
-          }
+          return pv?join(l$prime,v,r$prime):concat(l$prime,r$prime)}
         else
-         {return /* Empty */0;}
+         {return /* Empty */0}
         };
     
     var
@@ -452,15 +426,14 @@ var
           
           return pv
                   ?/* tuple */[0,join(lt,v,rt),concat(lf,rf)]
-                  :/* tuple */[0,concat(lt,rt),join(lf,v,rf)];
-          }
+                  :/* tuple */[0,concat(lt,rt),join(lf,v,rf)]}
         else
-         {return [/* tuple */0,/* Empty */0,/* Empty */0];}
+         {return [/* tuple */0,/* Empty */0,/* Empty */0]}
         };
     
     var
      cardinal=
-      function(param){return param?cardinal(param[1])+1+cardinal(param[3]):0;};
+      function(param){return param?cardinal(param[1])+1+cardinal(param[3]):0};
     
     var
      elements_aux=
@@ -468,10 +441,9 @@ var
        {return param
                 ?elements_aux
                   (/* :: */[0,param[2],elements_aux(accu,param[3])],param[1])
-                :accu;
-        };
+                :accu};
     
-    var elements=function(s){return elements_aux(/* [] */0,s);};
+    var elements=function(s){return elements_aux(/* [] */0,s)};
     
     var
      find=
@@ -481,10 +453,9 @@ var
           
           var c=Ord[1](x,v);
           
-          return c===0?v:find(x,c<0?param[1]:param[3]);
-          }
+          return c===0?v:find(x,c<0?param[1]:param[3])}
         else
-         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"]}
         };
     
     var
@@ -504,11 +475,10 @@ var
                  if(l)
                   {return /* tuple */[0,
                            /* Node */[0,/* Empty */0,l[1],/* Empty */0,1],
-                           l[2]];
-                   }
+                           l[2]]}
                  else
                   {exit=6;}
-                 
+                 break;
                 case 2:
                  if(l)
                   {var match=l[2];
@@ -520,14 +490,13 @@ var
                               match[1],
                               /* Empty */0,
                               2],
-                             match[2]];
-                     }
+                             match[2]]}
                    else
                     {exit=6;}
                    }
                  else
                   {exit=6;}
-                 
+                 break;
                 case 3:
                  if(l)
                   {var match$1=l[2];
@@ -542,8 +511,7 @@ var
                                 match$1[1],
                                 /* Node */[0,/* Empty */0,match$2[1],/* Empty */0,1],
                                 2],
-                               match$2[2]];
-                       }
+                               match$2[2]]}
                      else
                       {exit=6;}
                      }
@@ -552,7 +520,7 @@ var
                    }
                  else
                   {exit=6;}
-                 
+                 break
                 }
               }
             
@@ -569,19 +537,16 @@ var
                  
                  return /* tuple */[0,
                          create(match$3[1],l$1[1],match$4[1]),
-                         match$4[2]];
-                 }
+                         match$4[2]]}
                else
                 {throw [0,
                         CamlPrimitive["caml_global_data"]["Assert_failure"],
-                        [0,"set.ml",372,18]];
-                 }
-               
+                        [0,"set.ml",372,18]]}
+               break
               }
             };
         
-        return sub(List["length"](l),l)[1];
-        };
+        return sub(List["length"](l),l)[1]};
     
     var
      of_list=
@@ -610,19 +575,18 @@ var
                         ?match$3[2]
                           ?of_sorted_list(List["sort_uniq"](Ord[1],l))
                           :add(match$3[1],add(x3,add(x2,add(x1,singleton(x0)))))
-                        :add(x3,add(x2,add(x1,singleton(x0))));
-                }
+                        :add(x3,add(x2,add(x1,singleton(x0))))}
               else
-               {return add(x2,add(x1,singleton(x0)));}
+               {return add(x2,add(x1,singleton(x0)))}
               }
             else
-             {return add(x1,singleton(x0));}
+             {return add(x1,singleton(x0))}
             }
           else
-           {return singleton(x0);}
+           {return singleton(x0)}
           }
         else
-         {return empty;}
+         {return empty}
         };
     
     return [0,
@@ -664,8 +628,7 @@ var
             min_elt,
             find,
             of_sorted_list,
-            of_list];
-    };
+            of_list]};
 
 module["exports"]=
 {"Make":
@@ -698,6 +661,5 @@ module["exports"]=
            $$let[36],
            $$let[14],
            $$let[37],
-           $$let[39]];
-   }};
+           $$let[39]]}};
 

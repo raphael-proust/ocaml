@@ -12,8 +12,7 @@ var
    {var s=CamlPrimitive["caml_create_string"](n);
     
     CamlPrimitive["caml_fill_string"](s,0,n,c);
-    return s;
-    };
+    return s};
 
 var
  init=
@@ -22,8 +21,7 @@ var
     
     for(var i=0;i<=n-1;i++){s[i]=f(i)}
     
-    return s;
-    };
+    return s};
 
 var empty=CamlPrimitive["caml_create_string"](0);
 
@@ -35,32 +33,30 @@ var
     var r=CamlPrimitive["caml_create_string"](len);
     
     CamlPrimitive["caml_blit_string"](s,0,r,0,len);
-    return r;
-    };
+    return r};
 
 var
  to_string=
-  function(b){return String["fromCharCode"]["apply"](null,copy(b));};
+  function(b){return String["fromCharCode"]["apply"](null,copy(b))};
 
-var of_string=function(s){return copy(s);};
+var of_string=function(s){return copy(s)};
 
 var
  sub=
   function(s,ofs,len)
    {if(ofs<0||len<0||ofs>s["length"]-len)
-     {return Pervasives["invalid_arg"]("String.sub / Bytes.sub");}
+     {return Pervasives["invalid_arg"]("String.sub / Bytes.sub")}
     else
      {var r=CamlPrimitive["caml_create_string"](len);
       
       CamlPrimitive["caml_blit_string"](s,ofs,r,0,len);
-      return r;
-      }
+      return r}
     };
 
 var
  sub_string=
   function(b,ofs,len)
-   {return String["fromCharCode"]["apply"](null,sub(b,ofs,len));};
+   {return String["fromCharCode"]["apply"](null,sub(b,ofs,len))};
 
 var
  extend=
@@ -79,32 +75,28 @@ var
     
     if(cpylen>0){CamlPrimitive["caml_blit_string"](s,srcoff,r,dstoff,cpylen)}
     
-    return r;
-    };
+    return r};
 
 var
  fill=
   function(s,ofs,len,c)
    {return ofs<0||len<0||ofs>s["length"]-len
             ?Pervasives["invalid_arg"]("String.fill / Bytes.fill")
-            :CamlPrimitive["caml_fill_string"](s,ofs,len,c);
-    };
+            :CamlPrimitive["caml_fill_string"](s,ofs,len,c)};
 
 var
  blit=
   function(s1,ofs1,s2,ofs2,len)
    {return len<0||ofs1<0||ofs1>s1["length"]-len||ofs2<0||ofs2>s2["length"]-len
             ?Pervasives["invalid_arg"]("Bytes.blit")
-            :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);
-    };
+            :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len)};
 
 var
  blit_string=
   function(s1,ofs1,s2,ofs2,len)
    {return len<0||ofs1<0||ofs1>s1["length"]-len||ofs2<0||ofs2>s2["length"]-len
             ?Pervasives["invalid_arg"]("String.blit / Bytes.blit_string")
-            :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len);
-    };
+            :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len)};
 
 var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}return 0;};
 
@@ -122,8 +114,7 @@ var
       
       var len=[0,0];
       
-      List["iter"]
-       (function(s){num[0]++;return len[1]=len[1]+s["length"],0;},l);
+      List["iter"](function(s){num[0]++;return len[1]=len[1]+s["length"],0},l);
       var
        r=
         CamlPrimitive["caml_create_string"](len[1]+sep["length"]*(num[1]-1));
@@ -136,13 +127,11 @@ var
          {CamlPrimitive["caml_blit_string"](sep,0,r,pos[1],sep["length"]);
           pos[1]=pos[1]+sep["length"];
           CamlPrimitive["caml_blit_string"](s,0,r,pos[1],s["length"]);
-          return pos[1]=pos[1]+s["length"],0;
-          },
+          return pos[1]=pos[1]+s["length"],0},
         l[2]);
-      return r;
-      }
+      return r}
     else
-     {return empty;}
+     {return empty}
     };
 
 var
@@ -156,8 +145,7 @@ var
     
     CamlPrimitive["caml_blit_string"](s1,0,r,0,l1);
     CamlPrimitive["caml_blit_string"](s2,0,r,l1,l2);
-    return r;
-    };
+    return r};
 
 var
  is_space=
@@ -171,7 +159,7 @@ var
     else
      {if(switcher!==2){exit=37;}else{exit=38;}}
     
-    switch(exit){case 38:return /* false */0;case 37:return /* true */1;}
+    switch(exit){case 38:return /* false */0;case 37:return /* true */1}
     };
 
 var
@@ -187,8 +175,7 @@ var
     
     while(j>=i&&is_space(s[j])){j=-1+j;}
     
-    return j>=i?sub(s,i,j-i+1):empty;
-    };
+    return j>=i?sub(s,i,j-i+1):empty};
 
 var
  escaped=
@@ -212,14 +199,14 @@ var
       
       var $js$1;
       switch(exit)
-       {case 30:$js$1=CamlPrimitive["caml_is_printable"](c)?1:4;
-        case 29:$js$1=2;
+       {case 30:$js$1=CamlPrimitive["caml_is_printable"](c)?1:4;break;
+        case 29:$js$1=2;break
         }
       n=n+$js$1;
       }
     
     if(n===s["length"])
-     {return copy(s);}
+     {return copy(s)}
     else
      {var s$prime=CamlPrimitive["caml_create_string"](n);
       
@@ -243,20 +230,20 @@ var
            {exit$1=27;}
           else
            {switch(34+switcher)
-             {case 0:exit$1=27;
-              case 1:exit$1=27;
-              case 2:exit$1=27;
-              case 3:exit$1=27;
-              case 4:exit$1=27;
-              case 5:exit$1=27;
-              case 6:exit$1=27;
-              case 7:exit$1=27;
-              case 8:s$prime[n]=92;n=1+n;s$prime[n]=98;
-              case 9:s$prime[n]=92;n=1+n;s$prime[n]=116;
-              case 10:s$prime[n]=92;n=1+n;s$prime[n]=110;
-              case 11:exit$1=27;
-              case 12:exit$1=27;
-              case 13:s$prime[n]=92;n=1+n;s$prime[n]=114
+             {case 0:exit$1=27;break;
+              case 1:exit$1=27;break;
+              case 2:exit$1=27;break;
+              case 3:exit$1=27;break;
+              case 4:exit$1=27;break;
+              case 5:exit$1=27;break;
+              case 6:exit$1=27;break;
+              case 7:exit$1=27;break;
+              case 8:s$prime[n]=92;n=1+n;s$prime[n]=98;break;
+              case 9:s$prime[n]=92;n=1+n;s$prime[n]=116;break;
+              case 10:s$prime[n]=92;n=1+n;s$prime[n]=110;break;
+              case 11:exit$1=27;break;
+              case 12:exit$1=27;break;
+              case 13:s$prime[n]=92;n=1+n;s$prime[n]=114;break
               }
             }
           }
@@ -278,14 +265,13 @@ var
              n=1+n;
              
              s$prime[n]=48+a%10}
-           
+           break
           }
         
         n=1+n;
         }
       
-      return s$prime;
-      }
+      return s$prime}
     };
 
 var
@@ -294,14 +280,13 @@ var
    {var l=s["length"];
     
     if(l===0)
-     {return s;}
+     {return s}
     else
      {var r=CamlPrimitive["caml_create_string"](l);
       
       for(var i=0;i<=l-1;i++){r[i]=f(s[i])}
       
-      return r;
-      }
+      return r}
     };
 
 var
@@ -310,39 +295,38 @@ var
    {var l=s["length"];
     
     if(l===0)
-     {return s;}
+     {return s}
     else
      {var r=CamlPrimitive["caml_create_string"](l);
       
       for(var i=0;i<=l-1;i++){r[i]=f(i,s[i])}
       
-      return r;
-      }
+      return r}
     };
 
-var uppercase=function(s){return map(Char["uppercase"],s);};
+var uppercase=function(s){return map(Char["uppercase"],s)};
 
-var lowercase=function(s){return map(Char["lowercase"],s);};
+var lowercase=function(s){return map(Char["lowercase"],s)};
 
 var
  apply1=
   function(f,s)
-   {if(s["length"]===0){return s;}else{var r=copy(s);r[0]=f(s[0]);return r;}};
+   {if(s["length"]===0){return s}else{var r=copy(s);r[0]=f(s[0]);return r}};
 
-var capitalize=function(s){return apply1(Char["uppercase"],s);};
+var capitalize=function(s){return apply1(Char["uppercase"],s)};
 
-var uncapitalize=function(s){return apply1(Char["lowercase"],s);};
+var uncapitalize=function(s){return apply1(Char["lowercase"],s)};
 
 var
  index_rec=
   function(s,lim,i,c)
    {if(i>=lim)
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     else
-     {return s[i]===c?i:index_rec(s,lim,i+1,c);}
+     {return s[i]===c?i:index_rec(s,lim,i+1,c)}
     };
 
-var index=function(s,c){return index_rec(s,s["length"],0,c);};
+var index=function(s,c){return index_rec(s,s["length"],0,c)};
 
 var
  index_from=
@@ -351,19 +335,18 @@ var
     
     return i<0||i>l
             ?Pervasives["invalid_arg"]("String.index_from / Bytes.index_from")
-            :index_rec(s,l,i,c);
-    };
+            :index_rec(s,l,i,c)};
 
 var
  rindex_rec=
   function(s,i,c)
    {if(i<0)
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     else
-     {return s[i]===c?i:rindex_rec(s,i-1,c);}
+     {return s[i]===c?i:rindex_rec(s,i-1,c)}
     };
 
-var rindex=function(s,c){return rindex_rec(s,s["length"]-1,c);};
+var rindex=function(s,c){return rindex_rec(s,s["length"]-1,c)};
 
 var
  rindex_from=
@@ -371,8 +354,7 @@ var
    {return i<-1||i>=s["length"]
             ?Pervasives["invalid_arg"]
               ("String.rindex_from / Bytes.rindex_from")
-            :rindex_rec(s,i,c);
-    };
+            :rindex_rec(s,i,c)};
 
 var
  contains_from=
@@ -381,42 +363,40 @@ var
     
     if(i<0||i>l)
      {return Pervasives["invalid_arg"]
-              ("String.contains_from / Bytes.contains_from");
-      }
+              ("String.contains_from / Bytes.contains_from")}
     else
      {try
-       {index_rec(s,l,i,c);return /* true */1;}
+       {index_rec(s,l,i,c);return /* true */1}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return /* false */0;}
+         {return /* false */0}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };
 
-var contains=function(s,c){return contains_from(s,0,c);};
+var contains=function(s,c){return contains_from(s,0,c)};
 
 var
  rcontains_from=
   function(s,i,c)
    {if(i<0||i>=s["length"])
      {return Pervasives["invalid_arg"]
-              ("String.rcontains_from / Bytes.rcontains_from");
-      }
+              ("String.rcontains_from / Bytes.rcontains_from")}
     else
      {try
-       {rindex_rec(s,i,c);return /* true */1;}
+       {rindex_rec(s,i,c);return /* true */1}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return /* false */0;}
+         {return /* false */0}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };
 
-var compare=function(x,y){return CamlPrimitive["caml_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_compare"](x,y)};
 
 module["exports"]=
 {"make":make,
@@ -452,6 +432,6 @@ module["exports"]=
  "uncapitalize":uncapitalize,
  "compare":compare,
  "unsafe_to_string":
- function(prim){return String["fromCharCode"]["apply"](null,prim);},
- "unsafe_of_string":function(prim){return prim;}};
+ function(prim){return String["fromCharCode"]["apply"](null,prim)},
+ "unsafe_of_string":function(prim){return prim}};
 

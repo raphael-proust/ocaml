@@ -16,20 +16,18 @@ var
     
     var s=CamlPrimitive["caml_create_string"](n$2);
     
-    return /* record */[0,s,0,n$2,s];
-    };
+    return /* record */[0,s,0,n$2,s]};
 
-var contents=function(b){return Bytes["sub_string"](b[1],0,b[2]);};
+var contents=function(b){return Bytes["sub_string"](b[1],0,b[2])};
 
-var to_bytes=function(b){return Bytes["sub"](b[1],0,b[2]);};
+var to_bytes=function(b){return Bytes["sub"](b[1],0,b[2])};
 
 var
  sub=
   function(b,ofs,len)
    {return ofs<0||len<0||ofs>b[2]-len
             ?Pervasives["invalid_arg"]("Buffer.sub")
-            :Bytes["sub_string"](b[1],ofs,len);
-    };
+            :Bytes["sub_string"](b[1],ofs,len)};
 
 var
  blit=
@@ -47,20 +45,18 @@ var
             dst["length"]-
             len
             ?Pervasives["invalid_arg"]("Buffer.blit")
-            :Bytes["blit"](src[1],srcoff,dst,dstoff,len);
-    };
+            :Bytes["blit"](src[1],srcoff,dst,dstoff,len)};
 
 var
  nth=
   function(b,ofs)
-   {return ofs<0||ofs>=b[2]?Pervasives["invalid_arg"]("Buffer.nth"):b[1][ofs];
-    };
+   {return ofs<0||ofs>=b[2]?Pervasives["invalid_arg"]("Buffer.nth"):b[1][ofs]};
 
-var length=function(b){return b[2];};
+var length=function(b){return b[2]};
 
-var clear=function(b){return b[2]=0,0;};
+var clear=function(b){return b[2]=0,0};
 
-var reset=function(b){b[2]=0;b[1]=b[4];return b[3]=b[1]["length"],0;};
+var reset=function(b){b[2]=0;b[1]=b[4];return b[3]=b[1]["length"],0};
 
 var
  resize=
@@ -84,13 +80,12 @@ var
     
     Bytes["blit"](b[1],0,new_buffer,0,b[2]);
     b[1]=new_buffer;
-    return b[3]=new_len,0;
-    };
+    return b[3]=new_len,0};
 
 var
  add_char=
   function(b,c)
-   {var pos=b[2];if(pos>=b[3]){resize(b,1)}b[1][pos]=c;return b[2]=pos+1,0;};
+   {var pos=b[2];if(pos>=b[3]){resize(b,1)}b[1][pos]=c;return b[2]=pos+1,0};
 
 var
  add_substring=
@@ -103,13 +98,12 @@ var
     if(new_position>b[3]){resize(b,len)}
     
     Bytes["blit_string"](s,offset,b[1],b[2],len);
-    return b[2]=new_position,0;
-    };
+    return b[2]=new_position,0};
 
 var
  add_subbytes=
   function(b,s,offset,len)
-   {return add_substring(b,Bytes["unsafe_to_string"](s),offset,len);};
+   {return add_substring(b,Bytes["unsafe_to_string"](s),offset,len)};
 
 var
  add_string=
@@ -121,14 +115,13 @@ var
     if(new_position>b[3]){resize(b,len)}
     
     Bytes["blit_string"](s,0,b[1],b[2],len);
-    return b[2]=new_position,0;
-    };
+    return b[2]=new_position,0};
 
 var
  add_bytes=
-  function(b,s){return add_string(b,Bytes["unsafe_to_string"](s));};
+  function(b,s){return add_string(b,Bytes["unsafe_to_string"](s))};
 
-var add_buffer=function(b,bs){return add_subbytes(b,bs[1],0,bs[2]);};
+var add_buffer=function(b,bs){return add_subbytes(b,bs[1],0,bs[2])};
 
 var
  add_channel=
@@ -139,12 +132,9 @@ var
     if(b[2]+len>b[3]){resize(b,len)}
     
     Pervasives["really_input"](ic,b[1],b[2],len);
-    return b[2]=b[2]+len,0;
-    };
+    return b[2]=b[2]+len,0};
 
-var
- output_buffer=
-  function(oc,b){return Pervasives["output"](oc,b[1],0,b[2]);};
+var output_buffer=function(oc,b){return Pervasives["output"](oc,b[1],0,b[2])};
 
 var
  closing=
@@ -153,13 +143,12 @@ var
      {if(param!==123)
        {throw [0,
                CamlPrimitive["caml_global_data"]["Assert_failure"],
-               [0,"buffer.ml",115,9]];
-        }
+               [0,"buffer.ml",115,9]]}
       else
-       {return 125;}
+       {return 125}
       }
     else
-     {return 41;}
+     {return 41}
     };
 
 var
@@ -169,18 +158,16 @@ var
      advance=
       function(k,i,lim)
        {if(i>=lim)
-         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"]}
         else
          {return s["charCodeAt"](i)===opening
                   ?advance(k+1,i+1,lim)
                   :s["charCodeAt"](i)===closing
                     ?k===0?i:advance(k-1,i+1,lim)
-                    :advance(k,i+1,lim);
-          }
+                    :advance(k,i+1,lim)}
         };
     
-    return advance(k,start,s["length"]);
-    };
+    return advance(k,start,s["length"])};
 
 var
  advance_to_non_alpha=
@@ -189,7 +176,7 @@ var
      advance=
       function(i,lim)
        {if(i>=lim)
-         {return lim;}
+         {return lim}
         else
          {var match=s["charCodeAt"](i);
           
@@ -208,18 +195,17 @@ var
              {if(match>=48){exit=14;}else{exit=15;}}
             }
           
-          switch(exit){case 15:return i;case 14:return advance(i+1,lim);}
+          switch(exit){case 15:return i;case 14:return advance(i+1,lim)}
           }
         };
     
-    return advance(start,s["length"]);
-    };
+    return advance(start,s["length"])};
 
 var
  find_ident=
   function(s,start,lim)
    {if(start>=lim)
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     else
      {var c=s["charCodeAt"](start);
       
@@ -229,8 +215,7 @@ var
        {if(c!==123)
          {var stop=advance_to_non_alpha(s,start+1);
           
-          return /* tuple */[0,$$String["sub"](s,start,stop-start),stop];
-          }
+          return /* tuple */[0,$$String["sub"](s,start,stop-start),stop]}
         else
          {exit=11;}
         }
@@ -245,8 +230,7 @@ var
          
          return /* tuple */[0,
                  $$String["sub"](s,new_start,stop$1-start-1),
-                 stop$1+1];
-         
+                 stop$1+1]
         }
       }
     };
@@ -267,27 +251,24 @@ var
                     ?(add_char(b,92),add_char(b,current),subst(32,i+1))
                     :current!==92
                       ?(add_char(b,current),subst(current,i+1))
-                      :subst(current,i+1);
-            }
+                      :subst(current,i+1)}
           else
            {if(previous===92)
-             {add_char(b,current);return subst(32,i+1);}
+             {add_char(b,current);return subst(32,i+1)}
             else
              {var j=i+1;
               
               var match=find_ident(s,j,lim);
               
               add_string(b,f(match[1]));
-              return subst(32,match[2]);
-              }
+              return subst(32,match[2])}
             }
           }
         else
-         {return previous===92?add_char(b,previous):0;}
+         {return previous===92?add_char(b,previous):0}
         };
     
-    return subst(32,0);
-    };
+    return subst(32,0)};
 
 module["exports"]=
 {"create":create,

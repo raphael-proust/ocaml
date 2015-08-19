@@ -12,7 +12,7 @@ var force_val=CamlinternalLazy["force_val"];
 var
  from_fun=
   function(f)
-   {var x=CamlPrimitive["caml_obj_block"](Obj["lazy_tag"],1);x[1]=f;return x;};
+   {var x=CamlPrimitive["caml_obj_block"](Obj["lazy_tag"],1);x[1]=f;return x};
 
 var
  from_val=
@@ -21,12 +21,11 @@ var
     
     return t===Obj["forward_tag"]||t===Obj["lazy_tag"]||t===Obj["double_tag"]
             ?CamlPrimitive["caml_lazy_make_forward"](v)
-            :v;
-    };
+            :v};
 
 var
  is_val=
-  function(l){return CamlPrimitive["caml_obj_tag"](l)!==Obj["lazy_tag"];};
+  function(l){return CamlPrimitive["caml_obj_tag"](l)!==Obj["lazy_tag"]};
 
 var lazy_from_fun=from_fun;
 

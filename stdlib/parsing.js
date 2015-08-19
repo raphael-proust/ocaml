@@ -57,15 +57,14 @@ var
     env[3]=new_start;
     $$Array["blit"](env[4],0,new_end,0,oldsize);
     env[4]=new_end;
-    return env[5]=newsize,0;
-    };
+    return env[5]=newsize,0};
 
 var
  clear_parser=
   function(param)
-   {$$Array["fill"](env[2],0,env[5],/* () */0);return env[8]=/* () */0,0;};
+   {$$Array["fill"](env[2],0,env[5],/* () */0);return env[8]=/* () */0,0};
 
-var current_lookahead_fun=[0,function(x){return /* false */0;}];
+var current_lookahead_fun=[0,function(x){return /* false */0}];
 
 var
  yyparse=
@@ -82,16 +81,13 @@ var
            env[9]=lexbuf[11];
            env[10]=lexbuf[12];
            return loop(/* Token_read */1,t);
-           
           case 1:throw Parse_error;
           case 2:
            grow_stacks(/* () */0);
            return loop(/* Stacks_grown_1 */2,/* () */0);
-           
           case 3:
            grow_stacks(/* () */0);
            return loop(/* Stacks_grown_2 */3,/* () */0);
-           
           case 4:
            var match$1;
            try
@@ -104,15 +100,13 @@ var
             {if(exn===Parse_error)
               {match$1=/* tuple */[0,/* Error_detected */5,/* () */0];}
              else
-              {throw exn;}
+              {throw exn}
              }
            
            return loop(match$1[1],match$1[2]);
-           
           case 5:
            tables[14]("syntax error");
-           return loop(/* Error_detected */5,/* () */0);
-           
+           return loop(/* Error_detected */5,/* () */0)
           }
         };
     
@@ -134,7 +128,7 @@ var
     env[7]=start;
     env[10]=lexbuf[12];
     try
-     {return loop(/* Start */0,/* () */0);}
+     {return loop(/* Start */0,/* () */0)}
     catch(exn)
      {var curr_char=env[7];
       
@@ -146,20 +140,18 @@ var
       env[8]=init_lval;
       env[16]=init_errflag;
       if(exn[1]===YYexit)
-       {return exn[2];}
+       {return exn[2]}
       else
        {current_lookahead_fun[1]=
         function(tok)
          {return CamlPrimitive["caml_obj_is_block"](tok)
                   ?tables[3][CamlPrimitive["caml_obj_tag"](tok)+1]===curr_char
-                  :tables[2][tok+1]===curr_char;
-          };
-        throw exn;
-        }
+                  :tables[2][tok+1]===curr_char};
+        throw exn}
       }
     };
 
-var peek_val=function(env,n){return env[2][env[11]-n+1];};
+var peek_val=function(env,n){return env[2][env[11]-n+1]};
 
 var
  symbol_start_pos=
@@ -168,36 +160,34 @@ var
      loop=
       function(i)
        {if(i<=0)
-         {return env[4][env[11]+1];}
+         {return env[4][env[11]+1]}
         else
          {var st=env[3][env[11]-i+1+1];
           
           var en=env[4][env[11]-i+1+1];
           
-          return CamlPrimitive["caml_notequal"](st,en)?st:loop(i-1);
-          }
+          return CamlPrimitive["caml_notequal"](st,en)?st:loop(i-1)}
         };
     
-    return loop(env[12]);
-    };
+    return loop(env[12])};
 
-var symbol_end_pos=function(param){return env[4][env[11]+1];};
+var symbol_end_pos=function(param){return env[4][env[11]+1]};
 
-var rhs_start_pos=function(n){return env[3][env[11]-(env[12]-n)+1];};
+var rhs_start_pos=function(n){return env[3][env[11]-(env[12]-n)+1]};
 
-var rhs_end_pos=function(n){return env[4][env[11]-(env[12]-n)+1];};
+var rhs_end_pos=function(n){return env[4][env[11]-(env[12]-n)+1]};
 
-var symbol_start=function(param){return symbol_start_pos(/* () */0)[4];};
+var symbol_start=function(param){return symbol_start_pos(/* () */0)[4]};
 
-var symbol_end=function(param){return symbol_end_pos(/* () */0)[4];};
+var symbol_end=function(param){return symbol_end_pos(/* () */0)[4]};
 
-var rhs_start=function(n){return rhs_start_pos(n)[4];};
+var rhs_start=function(n){return rhs_start_pos(n)[4]};
 
-var rhs_end=function(n){return rhs_end_pos(n)[4];};
+var rhs_end=function(n){return rhs_end_pos(n)[4]};
 
-var is_current_lookahead=function(tok){return current_lookahead_fun[1](tok);};
+var is_current_lookahead=function(tok){return current_lookahead_fun[1](tok)};
 
-var parse_error=function(msg){return /* () */0;};
+var parse_error=function(msg){return /* () */0};
 
 module["exports"]=
 {"symbol_start":symbol_start,
@@ -211,7 +201,7 @@ module["exports"]=
  "clear_parser":clear_parser,
  "Parse_error":Parse_error,
  "set_trace":
- function(prim){return CamlPrimitive["caml_set_parser_trace"](prim);},
+ function(prim){return CamlPrimitive["caml_set_parser_trace"](prim)},
  "YYexit":YYexit,
  "yyparse":yyparse,
  "peek_val":peek_val,

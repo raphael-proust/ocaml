@@ -40,24 +40,20 @@ var
            throw [0,
                   CamlPrimitive["caml_global_data"]
                    ["Undefined_recursive_module"],
-                  loc];
-           };
-         
+                  loc]};
         case 1:
          return [246,
                  function(param)
                   {throw [0,
                           CamlPrimitive["caml_global_data"]
                            ["Undefined_recursive_module"],
-                          loc];
-                   }];
-         
-        case 2:return CamlinternalOO["dummy_class"](loc);
+                          loc]}];
+        case 2:return CamlinternalOO["dummy_class"](loc)
         }}
     else
      {switch(shape[0])
        {case 0:return $$Array["map"](init_mod(loc),shape[1]);
-        case 1:return shape[1];
+        case 1:return shape[1]
         }}
     };
 
@@ -69,8 +65,7 @@ var
     else
      {throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
-             [0,"camlinternalMod.ml",40,2]];
-      }
+             [0,"camlinternalMod.ml",40,2]]}
     
     for(var i=0;i<=/* -1 for tag */n["length"]-1-1;i++){o[i+1]=n[i+1]}
     return 0;
@@ -91,8 +86,7 @@ var
                  ?(overwrite(o,n),
                    CamlPrimitive["caml_obj_truncate"]
                     (o,/* -1 for tag */n["length"]-1))
-                 :overwrite(o,function(x){return n(x);});
-         
+                 :overwrite(o,function(x){return n(x)});
         case 1:
          return CamlPrimitive["caml_obj_tag"](n)===Obj["lazy_tag"]
                  ?(o[1]=n[1],0)
@@ -105,7 +99,6 @@ var
                      o[1]=
                      n,
                      0);
-         
         case 2:
          if
           (CamlPrimitive["caml_obj_tag"](n)===
@@ -117,11 +110,9 @@ var
          else
           {throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
-                  [0,"camlinternalMod.ml",63,6]];
-           }
+                  [0,"camlinternalMod.ml",63,6]]}
          
-         return overwrite(o,n);
-         
+         return overwrite(o,n)
         }}
     else
      {switch(shape[0])
@@ -139,14 +130,13 @@ var
          else
           {throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
-                  [0,"camlinternalMod.ml",66,6]];
-           }
+                  [0,"camlinternalMod.ml",66,6]]}
          
          for(var i=0;i<=/* -1 for tag */comps["length"]-1-1;i++)
           {update_mod(comps[i+1],o[i+1],n[i+1])}
          return 0;
-         
-        case 1:return /* () */0;
+         break;
+        case 1:return /* () */0
         }}
     };
 

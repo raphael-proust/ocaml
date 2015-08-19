@@ -8,7 +8,7 @@ var
  Undefined=
   CamlPrimitive["caml_set_oo_id"]([248,"CamlinternalLazy.Undefined",0]);
 
-var raise_undefined=function(param){throw Undefined;};
+var raise_undefined=function(param){throw Undefined};
 
 var
  force_lazy_block=
@@ -21,9 +21,8 @@ var
       
       blk[1]=result;
       CamlPrimitive["caml_obj_set_tag"](blk,Obj["forward_tag"]);
-      return result;
-      }
-    catch(e){blk[1]=function(param){throw e;};throw e;}
+      return result}
+    catch(e){blk[1]=function(param){throw e};throw e}
     };
 
 var
@@ -36,8 +35,7 @@ var
     
     blk[1]=result;
     CamlPrimitive["caml_obj_set_tag"](blk,Obj["forward_tag"]);
-    return result;
-    };
+    return result};
 
 var
  force=
@@ -48,8 +46,7 @@ var
     
     return t===Obj["forward_tag"]
             ?x[1]
-            :t!==Obj["lazy_tag"]?x:force_lazy_block(lzv);
-    };
+            :t!==Obj["lazy_tag"]?x:force_lazy_block(lzv)};
 
 var
  force_val=
@@ -60,8 +57,7 @@ var
     
     return t===Obj["forward_tag"]
             ?x[1]
-            :t!==Obj["lazy_tag"]?x:force_val_lazy_block(lzv);
-    };
+            :t!==Obj["lazy_tag"]?x:force_val_lazy_block(lzv)};
 
 module["exports"]=
 {"Undefined":Undefined,

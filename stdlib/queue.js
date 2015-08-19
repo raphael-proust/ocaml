@@ -5,15 +5,15 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var Empty=CamlPrimitive["caml_set_oo_id"]([248,"Queue.Empty",0]);
 
-var create=function(param){return /* record */[0,0,/* None */0];};
+var create=function(param){return /* record */[0,0,/* None */0]};
 
-var clear=function(q){q[1]=0;return q[2]=/* None */0,0;};
+var clear=function(q){q[1]=0;return q[2]=/* None */0,0};
 
 var
  add=
   function(x,q)
    {if(q[1]===0)
-     {var cell=/* record */[0,x,cell];q[1]=1;return q[2]=cell,0;}
+     {var cell=/* record */[0,x,cell];q[1]=1;return q[2]=cell,0}
     else
      {var tail=q[2];
       
@@ -23,20 +23,19 @@ var
       
       q[1]=q[1]+1;
       tail[2]=cell$1;
-      return q[2]=cell$1,0;
-      }
+      return q[2]=cell$1,0}
     };
 
 var push=add;
 
-var peek=function(q){if(q[1]===0){throw Empty;}else{return q[2][2][1];}};
+var peek=function(q){if(q[1]===0){throw Empty}else{return q[2][2][1]}};
 
 var top=peek;
 
 var
  take=
   function(q)
-   {if(q[1]===0){throw Empty;}else{}
+   {if(q[1]===0){throw Empty}else{}
     
     q[1]=q[1]-1;
     var tail=q[2];
@@ -45,8 +44,7 @@ var
     
     head===tail?(q[2]=/* None */0,0):(tail[2]=head[2],0);
     
-    return head[1];
-    };
+    return head[1]};
 
 var pop=take;
 
@@ -54,7 +52,7 @@ var
  copy=
   function(q)
    {if(q[1]===0)
-     {return create(/* () */0);}
+     {return create(/* () */0)}
     else
      {var tail=q[2];
       
@@ -67,20 +65,18 @@ var
            {var res=/* record */[0,cell[1],tail$prime];
             
             prev[2]=res;
-            return copy$1(res,cell[2]);
-            }
+            return copy$1(res,cell[2])}
           else
-           {return 0;}
+           {return 0}
           };
       
       copy$1(tail$prime,tail[2]);
-      return /* record */[0,q[1],tail$prime];
-      }
+      return /* record */[0,q[1],tail$prime]}
     };
 
-var is_empty=function(q){return q[1]===0;};
+var is_empty=function(q){return q[1]===0};
 
-var length=function(q){return q[1];};
+var length=function(q){return q[1]};
 
 var
  iter=
@@ -90,19 +86,18 @@ var
       
       var
        iter$1=
-        function(cell){f(cell[1]);return cell!==tail?iter$1(cell[2]):0;};
+        function(cell){f(cell[1]);return cell!==tail?iter$1(cell[2]):0};
       
-      return iter$1(tail[2]);
-      }
+      return iter$1(tail[2])}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
  fold=
   function(f,accu,q)
    {if(q[1]===0)
-     {return accu;}
+     {return accu}
     else
      {var tail=q[2];
       
@@ -111,11 +106,9 @@ var
         function(accu,cell)
          {var accu$1=f(accu,cell[1]);
           
-          return cell===tail?accu$1:fold$1(accu$1,cell[2]);
-          };
+          return cell===tail?accu$1:fold$1(accu$1,cell[2])};
       
-      return fold$1(accu,tail[2]);
-      }
+      return fold$1(accu,tail[2])}
     };
 
 var
@@ -139,10 +132,9 @@ var
        {}
       
       q2[1]=q2[1]+length1;
-      return q2[2]=tail1,0;
-      }
+      return q2[2]=tail1,0}
     else
-     {return 0;}
+     {return 0}
     };
 
 module["exports"]=

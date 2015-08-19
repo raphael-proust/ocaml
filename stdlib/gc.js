@@ -207,16 +207,14 @@ var
                 /* No_precision */0,
                 [/* Char_literal */12,10,/* End_of_format */0]]],
               "compactions: %d\n"],
-             st[14]);
-    };
+             st[14])};
 
 var
  allocated_bytes=
   function(param)
    {var match=[0,0,0,0];
     
-    return (match[1]+match[3]-match[2])*(Sys["word_size"]/8);
-    };
+    return (match[1]+match[3]-match[2])*(Sys["word_size"]/8)};
 
 var
  call_alarm=
@@ -224,8 +222,7 @@ var
    {return arec[1][1]
             ?(CamlPrimitive["caml_final_register"](call_alarm,arec),
               arec[2](/* () */0))
-            :0;
-    };
+            :0};
 
 var
  create_alarm=
@@ -233,19 +230,18 @@ var
    {var arec=/* record */[0,[0,/* true */1],f];
     
     CamlPrimitive["caml_final_register"](call_alarm,arec);
-    return arec[1];
-    };
+    return arec[1]};
 
-var delete_alarm=function(a){return a[1]=/* false */0,0;};
+var delete_alarm=function(a){return a[1]=/* false */0,0};
 
 module["exports"]=
 {"print_stat":print_stat,
  "allocated_bytes":allocated_bytes,
  "finalise":
  function(prim,prim$1)
-  {return CamlPrimitive["caml_final_register"](prim,prim$1);},
+  {return CamlPrimitive["caml_final_register"](prim,prim$1)},
  "finalise_release":
- function(prim){return CamlPrimitive["caml_final_release"](prim);},
+ function(prim){return CamlPrimitive["caml_final_release"](prim)},
  "create_alarm":create_alarm,
  "delete_alarm":delete_alarm};
 

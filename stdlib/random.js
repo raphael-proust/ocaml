@@ -12,12 +12,12 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var
  new_state=
   function(param)
-   {return /* record */[0,CamlPrimitive["caml_make_vect"](55,0),0];};
+   {return /* record */[0,CamlPrimitive["caml_make_vect"](55,0),0]};
 
 var
  assign=
   function(st1,st2)
-   {$$Array["blit"](st2[1],0,st1[1],0,55);return st1[2]=st2[2],0;};
+   {$$Array["blit"](st2[1],0,st1[1],0,55);return st1[2]=st2[2],0};
 
 var
  full_init=
@@ -26,8 +26,7 @@ var
      combine=
       function(accu,x)
        {return Digest["string"]
-                (Pervasives["^"](accu,Pervasives["string_of_int"](x)));
-        };
+                (Pervasives["^"](accu,Pervasives["string_of_int"](x)))};
     
     var
      extract=
@@ -35,8 +34,7 @@ var
        {return d["charCodeAt"](0)+
                (d["charCodeAt"](1)<<8)+
                (d["charCodeAt"](2)<<16)+
-               (d["charCodeAt"](3)<<24);
-        };
+               (d["charCodeAt"](3)<<24)};
     
     var seed$1=/* -1 for tag */seed["length"]-1===0?[/* array */0,0]:seed;
     
@@ -55,22 +53,21 @@ var
       
       s[1][j+1]=(s[1][j+1]^extract(accu))&1073741823}
     
-    return s[2]=0,0;
-    };
+    return s[2]=0,0};
 
 var
  make=
   function(seed)
-   {var result=new_state(/* () */0);full_init(result,seed);return result;};
+   {var result=new_state(/* () */0);full_init(result,seed);return result};
 
 var
  make_self_init=
   function(param)
-   {return make(CamlPrimitive["caml_sys_random_seed"](/* () */0));};
+   {return make(CamlPrimitive["caml_sys_random_seed"](/* () */0))};
 
 var
  copy=
-  function(s){var result=new_state(/* () */0);assign(result,s);return result;};
+  function(s){var result=new_state(/* () */0);assign(result,s);return result};
 
 var
  bits=
@@ -83,21 +80,19 @@ var
     var newval30=newval&1073741823;
     
     s[1][s[2]+1]=newval30;
-    return newval30;
-    };
+    return newval30};
 
 var
  intaux=
   function(s,n)
-   {var r=bits(s);var v=r%n;return r-v>1073741823-n+1?intaux(s,n):v;};
+   {var r=bits(s);var v=r%n;return r-v>1073741823-n+1?intaux(s,n):v};
 
 var
  $$int=
   function(s,bound)
    {return bound>1073741823||bound<=0
             ?Pervasives["invalid_arg"]("Random.int")
-            :intaux(s,bound);
-    };
+            :intaux(s,bound)};
 
 var
  int32aux=
@@ -110,16 +105,14 @@ var
     
     var v=r%n;
     
-    return r-v>Int32["max_int"]-n+1?int32aux(s,n):v;
-    };
+    return r-v>Int32["max_int"]-n+1?int32aux(s,n):v};
 
 var
  int32=
   function(s,bound)
    {return bound<=0
             ?Pervasives["invalid_arg"]("Random.int32")
-            :int32aux(s,bound);
-    };
+            :int32aux(s,bound)};
 
 var
  int64aux=
@@ -134,22 +127,20 @@ var
     
     var v=r%n;
     
-    return r-v>Int64["max_int"]-n+1?int64aux(s,n):v;
-    };
+    return r-v>Int64["max_int"]-n+1?int64aux(s,n):v};
 
 var
  int64=
   function(s,bound)
    {return bound<=0
             ?Pervasives["invalid_arg"]("Random.int64")
-            :int64aux(s,bound);
-    };
+            :int64aux(s,bound)};
 
 var
  nativeint=
   Nativeint["size"]===32
-   ?function(s,bound){return int32(s,bound);}
-   :function(s,bound){return int64(s,bound);};
+   ?function(s,bound){return int32(s,bound)}
+   :function(s,bound){return int64(s,bound)};
 
 var
  rawfloat=
@@ -160,12 +151,11 @@ var
     
     var r2=bits(s);
     
-    return (r1/scale+r2)/scale;
-    };
+    return (r1/scale+r2)/scale};
 
-var $$float=function(s,bound){return rawfloat(s)*bound;};
+var $$float=function(s,bound){return rawfloat(s)*bound};
 
-var bool=function(s){return (bits(s)&1)===0;};
+var bool=function(s){return (bits(s)&1)===0};
 
 var
  State=
@@ -250,32 +240,32 @@ var
       801085050]),
    0];
 
-var bits$1=function(param){return State[7]($$default);};
+var bits$1=function(param){return State[7]($$default)};
 
-var $$int$1=function(bound){return State[9]($$default,bound);};
+var $$int$1=function(bound){return State[9]($$default,bound)};
 
-var int32$1=function(bound){return State[11]($$default,bound);};
+var int32$1=function(bound){return State[11]($$default,bound)};
 
-var nativeint$1=function(bound){return State[14]($$default,bound);};
+var nativeint$1=function(bound){return State[14]($$default,bound)};
 
-var int64$1=function(bound){return State[13]($$default,bound);};
+var int64$1=function(bound){return State[13]($$default,bound)};
 
-var $$float$1=function(scale){return State[16]($$default,scale);};
+var $$float$1=function(scale){return State[16]($$default,scale)};
 
-var bool$1=function(param){return State[17]($$default);};
+var bool$1=function(param){return State[17]($$default)};
 
-var full_init$1=function(seed){return State[3]($$default,seed);};
+var full_init$1=function(seed){return State[3]($$default,seed)};
 
-var init=function(seed){return State[3]($$default,[/* array */0,seed]);};
+var init=function(seed){return State[3]($$default,[/* array */0,seed])};
 
 var
  self_init=
   function(param)
-   {return full_init$1(CamlPrimitive["caml_sys_random_seed"](/* () */0));};
+   {return full_init$1(CamlPrimitive["caml_sys_random_seed"](/* () */0))};
 
-var get_state=function(param){return State[6]($$default);};
+var get_state=function(param){return State[6]($$default)};
 
-var set_state=function(s){return State[2]($$default,s);};
+var set_state=function(s){return State[2]($$default,s)};
 
 module["exports"]=
 {"init":init,

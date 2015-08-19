@@ -25,8 +25,7 @@ var
       }
     
     Buffer["add_char"](b,39);
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  generic_basename=
@@ -36,8 +35,7 @@ var
       function(n)
        {return n<0
                 ?$$String["sub"](name,0,1)
-                :is_dir_sep(name,n)?find_end(n-1):find_beg(n,n+1);
-        };
+                :is_dir_sep(name,n)?find_end(n-1):find_beg(n,n+1)};
     
     var
      find_beg=
@@ -46,13 +44,11 @@ var
                 ?$$String["sub"](name,0,p)
                 :is_dir_sep(name,n)
                   ?$$String["sub"](name,n+1,p-n-1)
-                  :find_beg(n-1,p);
-        };
+                  :find_beg(n-1,p)};
     
     return CamlPrimitive["caml_string_equal"](name,"")
             ?current_dir_name
-            :find_end(name["length"]-1);
-    };
+            :find_end(name["length"]-1)};
 
 var
  generic_dirname=
@@ -62,16 +58,14 @@ var
       function(n)
        {return n<0
                 ?$$String["sub"](name,0,1)
-                :is_dir_sep(name,n)?trailing_sep(n-1):base(n);
-        };
+                :is_dir_sep(name,n)?trailing_sep(n-1):base(n)};
     
     var
      base=
       function(n)
        {return n<0
                 ?current_dir_name
-                :is_dir_sep(name,n)?intermediate_sep(n):base(n-1);
-        };
+                :is_dir_sep(name,n)?intermediate_sep(n):base(n-1)};
     
     var
      intermediate_sep=
@@ -80,13 +74,11 @@ var
                 ?$$String["sub"](name,0,1)
                 :is_dir_sep(name,n)
                   ?intermediate_sep(n-1)
-                  :$$String["sub"](name,0,n+1);
-        };
+                  :$$String["sub"](name,0,n+1)};
     
     return CamlPrimitive["caml_string_equal"](name,"")
             ?current_dir_name
-            :trailing_sep(name["length"]-1);
-    };
+            :trailing_sep(name["length"]-1)};
 
 var current_dir_name=".";
 
@@ -94,9 +86,9 @@ var parent_dir_name="..";
 
 var dir_sep="/";
 
-var is_dir_sep=function(s,i){return s["charCodeAt"](i)===47;};
+var is_dir_sep=function(s,i){return s["charCodeAt"](i)===47};
 
-var is_relative=function(n){return n["length"]<1||n["charCodeAt"](0)!==47;};
+var is_relative=function(n){return n["length"]<1||n["charCodeAt"](0)!==47};
 
 var
  is_implicit=
@@ -108,8 +100,7 @@ var
            (n["length"]<
             3||
             CamlPrimitive["caml_string_notequal"]
-             ($$String["sub"](n,0,3),"../"));
-    };
+             ($$String["sub"](n,0,3),"../"))};
 
 var
  check_suffix=
@@ -119,8 +110,7 @@ var
            CamlPrimitive["caml_string_equal"]
             ($$String["sub"]
               (name,name["length"]-suff["length"],suff["length"]),
-             suff);
-    };
+             suff)};
 
 var temp_dir_name;
 try
@@ -129,7 +119,7 @@ catch(exn)
  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
    {temp_dir_name="/tmp";}
   else
-   {throw exn;}
+   {throw exn}
   }
 
 var quote=generic_quote("'\''");
@@ -161,15 +151,14 @@ var dir_sep$1="\";
 
 var
  is_dir_sep$1=
-  function(s,i){var c=s["charCodeAt"](i);return c===47||c===92||c===58;};
+  function(s,i){var c=s["charCodeAt"](i);return c===47||c===92||c===58};
 
 var
  is_relative$1=
   function(n)
    {return (n["length"]<1||n["charCodeAt"](0)!==47)&&
            (n["length"]<1||n["charCodeAt"](0)!==92)&&
-           (n["length"]<2||n["charCodeAt"](1)!==58);
-    };
+           (n["length"]<2||n["charCodeAt"](1)!==58)};
 
 var
  is_implicit$1=
@@ -188,8 +177,7 @@ var
            (n["length"]<
             3||
             CamlPrimitive["caml_string_notequal"]
-             ($$String["sub"](n,0,3),"..\"));
-    };
+             ($$String["sub"](n,0,3),"..\"))};
 
 var
  check_suffix$1=
@@ -199,8 +187,7 @@ var
     return name["length"]>=
            suff["length"]&&
            CamlPrimitive["caml_string_equal"]
-            ($$String["lowercase"](s),$$String["lowercase"](suff));
-    };
+            ($$String["lowercase"](s),$$String["lowercase"](suff))};
 
 var temp_dir_name$1;
 try
@@ -209,7 +196,7 @@ catch(exn$1)
  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
    {temp_dir_name$1=".";}
   else
-   {throw exn$1;}
+   {throw exn$1}
   }
 
 var
@@ -224,28 +211,26 @@ var
      loop=
       function(i)
        {if(i===l)
-         {return Buffer["add_char"](b,34);}
+         {return Buffer["add_char"](b,34)}
         else
          {var c=s["charCodeAt"](i);
           
           return c!==34
                   ?c!==92?(Buffer["add_char"](b,c),loop(i+1)):loop_bs(0,i)
-                  :loop_bs(0,i);
-          }
+                  :loop_bs(0,i)}
         };
     
     var
      loop_bs=
       function(n,i)
        {if(i===l)
-         {Buffer["add_char"](b,34);return add_bs(n);}
+         {Buffer["add_char"](b,34);return add_bs(n)}
         else
          {var c=s["charCodeAt"](i);
           
           return c!==34
                   ?c!==92?(add_bs(n),loop(i)):loop_bs(n+1,i+1)
-                  :(add_bs(2*n+1),Buffer["add_char"](b,34),loop(i+1));
-          }
+                  :(add_bs(2*n+1),Buffer["add_char"](b,34),loop(i+1))}
         };
     
     var
@@ -253,8 +238,7 @@ var
       function(n){for(var _j=1;_j<=n;_j++){Buffer["add_char"](b,92)}return 0;};
     
     loop(0);
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  has_drive=
@@ -269,15 +253,14 @@ var
         else
          {if(param>=65){exit=40;}else{exit=41;}}
         
-        switch(exit){case 41:return /* false */0;case 40:return /* true */1;}
+        switch(exit){case 41:return /* false */0;case 40:return /* true */1}
         };
     
     return s["length"]>=
            2&&
            is_letter(s["charCodeAt"](0))&&
            s["charCodeAt"](1)===
-           58;
-    };
+           58};
 
 var
  drive_and_path=
@@ -286,8 +269,7 @@ var
             ?/* tuple */[0,
               $$String["sub"](s,0,2),
               $$String["sub"](s,2,s["length"]-2)]
-            :/* tuple */[0,"",s];
-    };
+            :/* tuple */[0,"",s]};
 
 var
  dirname$1=
@@ -296,16 +278,14 @@ var
     
     var dir=generic_dirname(is_dir_sep$1,current_dir_name$1,match[2]);
     
-    return Pervasives["^"](match[1],dir);
-    };
+    return Pervasives["^"](match[1],dir)};
 
 var
  basename$1=
   function(s)
    {var match=drive_and_path(s);
     
-    return generic_basename(is_dir_sep$1,current_dir_name$1,match[2]);
-    };
+    return generic_basename(is_dir_sep$1,current_dir_name$1,match[2])};
 
 var
  Win32=
@@ -381,7 +361,7 @@ switch(match)
       Cygwin[9],
       Cygwin[10],
       Cygwin[11]];
-   
+   break;
   case "Unix":
    var
     match$1=
@@ -397,7 +377,7 @@ switch(match)
       Unix[9],
       Unix[10],
       Unix[11]];
-   
+   break;
   case "Win32":
    var
     match$1=
@@ -413,15 +393,14 @@ switch(match)
       Win32[9],
       Win32[13],
       Win32[12]];
-   
+   break;
   default:exit=21;}
 
 switch(exit)
  {case 21:
    throw [0,
           CamlPrimitive["caml_global_data"]["Assert_failure"],
-          [0,"filename.ml",189,9]];
-   
+          [0,"filename.ml",189,9]]
   }
 
 var dirname$3=match$1[11];
@@ -453,8 +432,7 @@ var
     
     return l===0||is_dir_sep$3(dirname,l-1)
             ?Pervasives["^"](dirname,filename)
-            :Pervasives["^"](dirname,Pervasives["^"](dir_sep$3,filename));
-    };
+            :Pervasives["^"](dirname,Pervasives["^"](dir_sep$3,filename))};
 
 var
  chop_suffix=
@@ -463,8 +441,7 @@ var
     
     return n<0
             ?Pervasives["invalid_arg"]("Filename.chop_suffix")
-            :$$String["sub"](name,0,n);
-    };
+            :$$String["sub"](name,0,n)};
 
 var
  chop_extension=
@@ -476,13 +453,11 @@ var
                 ?Pervasives["invalid_arg"]("Filename.chop_extension")
                 :name["charCodeAt"](i)===46
                   ?$$String["sub"](name,0,i)
-                  :search_dot(i-1);
-        };
+                  :search_dot(i-1)};
     
-    return search_dot(name["length"]-1);
-    };
+    return search_dot(name["length"]-1)};
 
-var prng=[246,function(param){return Random["State"][2](/* () */0);}];
+var prng=[246,function(param){return Random["State"][2](/* () */0)}];
 
 var
  temp_file_name=
@@ -511,14 +486,13 @@ var
                 "%s%06x%s"],
                prefix,
                rnd,
-               suffix));
-    };
+               suffix))};
 
 var current_temp_dir_name=[0,temp_dir_name$3];
 
-var set_temp_dir_name=function(s){return current_temp_dir_name[1]=s,0;};
+var set_temp_dir_name=function(s){return current_temp_dir_name[1]=s,0};
 
-var get_temp_dir_name=function(param){return current_temp_dir_name[1];};
+var get_temp_dir_name=function(param){return current_temp_dir_name[1]};
 
 var
  temp_file=
@@ -540,18 +514,16 @@ var
                 /* Open_creat */3,
                 [/* :: */0,/* Open_excl */5,/* [] */0]]],
               384));
-          return name;
-          }
+          return name}
         catch(e)
          {if(e[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-           {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
+           {if(counter>=1e3){throw e}else{return try_name(counter+1)}}
           else
-           {throw e;}
+           {throw e}
           }
         };
     
-    return try_name(0);
-    };
+    return try_name(0)};
 
 var
  open_temp_file=
@@ -579,18 +551,16 @@ var
                       /* Open_creat */3,
                       /* :: */[0,/* Open_excl */5,mode]]],
                     384,
-                    name)];
-          }
+                    name)]}
         catch(e)
          {if(e[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-           {if(counter>=1e3){throw e;}else{return try_name(counter+1);}}
+           {if(counter>=1e3){throw e}else{return try_name(counter+1)}}
           else
-           {throw e;}
+           {throw e}
           }
         };
     
-    return try_name(0);
-    };
+    return try_name(0)};
 
 module["exports"]=
 {"current_dir_name":current_dir_name$3,

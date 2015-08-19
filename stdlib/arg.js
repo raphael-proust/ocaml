@@ -21,10 +21,9 @@ var
    {if(l)
      {var match=l[1];
       
-      return CamlPrimitive["caml_equal"](match[1],x)?match[2]:assoc3(x,l[2]);
-      }
+      return CamlPrimitive["caml_equal"](match[1],x)?match[2]:assoc3(x,l[2])}
     else
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     };
 
 var
@@ -34,12 +33,11 @@ var
             ?Pervasives["^"]
               (List["fold_left"]
                 (function(x,y)
-                  {return Pervasives["^"](x,Pervasives["^"](sep,y));},
+                  {return Pervasives["^"](x,Pervasives["^"](sep,y))},
                  Pervasives["^"](prefix,l[1]),
                  l[2]),
                suffix)
-            :"<none>";
-    };
+            :"<none>"};
 
 var
  print_spec=
@@ -71,7 +69,6 @@ var
                   key,
                   make_symlist("{","|","}",spec[1]),
                   doc);
-         
         default:
          return Printf["bprintf"]
                  (buf,
@@ -87,14 +84,13 @@ var
                        [/* Char_literal */12,10,/* End_of_format */0]]]]],
                    "  %s %s\n"],
                   key,
-                  doc);
-         }
+                  doc)}
       }
     else
-     {return 0;}
+     {return 0}
     };
 
-var help_action=function(param){throw [0,Stop,[/* Unknown */0,"-help"]];};
+var help_action=function(param){throw [0,Stop,[/* Unknown */0,"-help"]]};
 
 var
  add_help=
@@ -113,7 +109,7 @@ var
          /* [] */0];
         }
       else
-       {throw exn;}
+       {throw exn}
       }
     
     var add2;
@@ -130,11 +126,10 @@ var
          /* [] */0];
         }
       else
-       {throw exn$1;}
+       {throw exn$1}
       }
     
-    return Pervasives["@"](speclist,Pervasives["@"](add1,add2));
-    };
+    return Pervasives["@"](speclist,Pervasives["@"](add1,add2))};
 
 var
  usage_b=
@@ -147,8 +142,7 @@ var
         [/* Char_literal */12,10,/* End_of_format */0]],
        "%s\n"],
       errmsg);
-    return List["iter"](print_spec(buf),add_help(speclist));
-    };
+    return List["iter"](print_spec(buf),add_help(speclist))};
 
 var
  usage_string=
@@ -156,8 +150,7 @@ var
    {var b=Buffer["create"](200);
     
     usage_b(b,speclist,errmsg);
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  usage=
@@ -166,8 +159,7 @@ var
             ([/* Format */0,
               [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
-             usage_string(speclist,errmsg));
-    };
+             usage_string(speclist,errmsg))};
 
 var current=[0,0];
 
@@ -193,7 +185,7 @@ var
            
            var exit;
            
-           switch(s){case "--help":case "-help":default:exit=48;}
+           switch(s){case "--help":break;case "-help":break;default:exit=48;}
            
            switch(exit)
             {case 48:
@@ -209,9 +201,10 @@ var
                     [/* String_literal */11,"'.\n",/* End_of_format */0]]]],
                  "%s: unknown option '%s'.\n"],
                 progname,
-                s)
+                s);
+              break
              }
-           
+           break;
           case 1:
            Printf["bprintf"]
             (b,
@@ -236,6 +229,7 @@ var
              error[2],
              error[1],
              error[3]);
+           break;
           case 2:
            Printf["bprintf"]
             (b,
@@ -252,6 +246,7 @@ var
               "%s: option '%s' needs an argument.\n"],
              progname,
              error[1]);
+           break;
           case 3:
            Printf["bprintf"]
             (b,
@@ -265,16 +260,17 @@ var
                  [/* String_literal */11,".\n",/* End_of_format */0]]]],
               "%s: %s.\n"],
              progname,
-             error[1])
+             error[1]);
+           break
           }
         
         usage_b(b,speclist[1],errmsg);
         if
          (CamlPrimitive["caml_equal"](error,[/* Unknown */0,"-help"])||
           CamlPrimitive["caml_equal"](error,[/* Unknown */0,"--help"]))
-         {throw [0,Help,Buffer["contents"](b)];}
+         {throw [0,Help,Buffer["contents"](b)]}
         else
-         {throw [0,Bad,Buffer["contents"](b)];}
+         {throw [0,Bad,Buffer["contents"](b)]}
         };
     
     current$1[0]++;
@@ -289,7 +285,7 @@ var
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {action=stop(/* Unknown */[0,s]);}
           else
-           {throw exn;}
+           {throw exn}
           }
         
         try
@@ -320,28 +316,27 @@ var
                      else
                       {exit$1=33;}
                      
-                     switch(exit$1){case 33:throw exn$1;}
+                     switch(exit$1){case 33:throw exn$1}
                      }
                    
-                   return current$1[0]++;
-                   }
+                   return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 2:return param[1][1]=/* true */1,0;
                 case 3:return param[1][1]=/* false */0,0;
                 case 4:
                  if(current$1[1]+1<l)
-                  {param[1](argv[current$1[1]+1+1]);return current$1[0]++;}
+                  {param[1](argv[current$1[1]+1+1]);return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 5:
                  if(current$1[1]+1<l)
-                  {param[1][1]=argv[current$1[1]+1+1];return current$1[0]++;}
+                  {param[1][1]=argv[current$1[1]+1+1];return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 6:
                  if(current$1[1]+1<l)
                   {var arg$1=argv[current$1[1]+1+1];
@@ -360,14 +355,13 @@ var
                      else
                       {exit$2=36;}
                      
-                     switch(exit$2){case 36:throw exn$2;}
+                     switch(exit$2){case 36:throw exn$2}
                      }
                    
-                   return current$1[0]++;
-                   }
+                   return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 7:
                  if(current$1[1]+1<l)
                   {var arg$2=argv[current$1[1]+1+1];
@@ -386,14 +380,13 @@ var
                      else
                       {exit$3=38;}
                      
-                     switch(exit$3){case 38:throw exn$3;}
+                     switch(exit$3){case 38:throw exn$3}
                      }
                    
-                   return current$1[0]++;
-                   }
+                   return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 8:
                  if(current$1[1]+1<l)
                   {var arg$3=argv[current$1[1]+1+1];
@@ -412,14 +405,13 @@ var
                      else
                       {exit$4=40;}
                      
-                     switch(exit$4){case 40:throw exn$4;}
+                     switch(exit$4){case 40:throw exn$4}
                      }
                    
-                   return current$1[0]++;
-                   }
+                   return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 9:
                  if(current$1[1]+1<l)
                   {var arg$4=argv[current$1[1]+1+1];
@@ -438,14 +430,13 @@ var
                      else
                       {exit$5=42;}
                      
-                     switch(exit$5){case 42:throw exn$5;}
+                     switch(exit$5){case 42:throw exn$5}
                      }
                    
-                   return current$1[0]++;
-                   }
+                   return current$1[0]++}
                  else
                   {exit=44;}
-                 
+                 break;
                 case 10:return List["iter"](treat_action,param[1]);
                 case 11:
                  var symb=param[1];
@@ -454,29 +445,28 @@ var
                   {var arg$5=argv[current$1[1]+1+1];
                    
                    if(List["mem"](arg$5,symb))
-                    {param[2](argv[current$1[1]+1+1]);return current$1[0]++;}
+                    {param[2](argv[current$1[1]+1+1]);return current$1[0]++}
                    else
                     {throw [0,
                             Stop,
                             /* Wrong */[1,
                              s,
                              arg$5,
-                             Pervasives["^"]("one of: ",make_symlist(""," ","",symb))]];
-                     }
+                             Pervasives["^"]("one of: ",make_symlist(""," ","",symb))]]}
                    }
                  else
                   {exit=44;}
-                 
+                 break;
                 case 12:
                  var f=param[1];
                  
                  while(current$1[1]<l-1)
                   {f(argv[current$1[1]+1+1]),current$1[0]++}
                  return 0;
-                 
+                 break
                 }
               
-              switch(exit){case 44:throw [0,Stop,/* Missing */[2,s]];}
+              switch(exit){case 44:throw [0,Stop,/* Missing */[2,s]]}
               };
           
           treat_action(action)}
@@ -484,7 +474,7 @@ var
          {if(exn$1[1]===Bad)
            {stop(/* Message */[3,exn$1[2]])}
           else
-           {if(exn$1[1]===Stop){stop(exn$1[2])}else{throw exn$1;}}
+           {if(exn$1[1]===Stop){stop(exn$1[2])}else{throw exn$1}}
           }
         
         current$1[0]++}
@@ -492,10 +482,7 @@ var
        {try
          {anonfun(s)}
         catch(exn$2)
-         {if(exn$2[1]===Bad)
-           {stop(/* Message */[3,exn$2[2]])}
-          else
-           {throw exn$2;}
+         {if(exn$2[1]===Bad){stop(/* Message */[3,exn$2[2]])}else{throw exn$2}
           }
         
         current$1[0]++}
@@ -509,14 +496,13 @@ var
    {var current$1=$staropt$star?$staropt$star[1]:current;
     
     return parse_argv_dynamic
-            (/* Some */[0,current$1],argv,[0,speclist],anonfun,errmsg);
-    };
+            (/* Some */[0,current$1],argv,[0,speclist],anonfun,errmsg)};
 
 var
  parse=
   function(l,f,msg)
    {try
-     {return parse_argv(/* None */0,Sys["argv"],l,f,msg);}
+     {return parse_argv(/* None */0,Sys["argv"],l,f,msg)}
     catch(exn)
      {if(exn[1]===Bad)
        {Printf["eprintf"]
@@ -524,8 +510,7 @@ var
            [/* String */2,/* No_padding */0,/* End_of_format */0],
            "%s"],
           exn[2]);
-        return Pervasives["exit"](2);
-        }
+        return Pervasives["exit"](2)}
       else
        {if(exn[1]===Help)
          {Printf["printf"]
@@ -533,10 +518,9 @@ var
              [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
             exn[2]);
-          return Pervasives["exit"](0);
-          }
+          return Pervasives["exit"](0)}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };
@@ -545,7 +529,7 @@ var
  parse_dynamic=
   function(l,f,msg)
    {try
-     {return parse_argv_dynamic(/* None */0,Sys["argv"],l,f,msg);}
+     {return parse_argv_dynamic(/* None */0,Sys["argv"],l,f,msg)}
     catch(exn)
      {if(exn[1]===Bad)
        {Printf["eprintf"]
@@ -553,8 +537,7 @@ var
            [/* String */2,/* No_padding */0,/* End_of_format */0],
            "%s"],
           exn[2]);
-        return Pervasives["exit"](2);
-        }
+        return Pervasives["exit"](2)}
       else
        {if(exn[1]===Help)
          {Printf["printf"]
@@ -562,10 +545,9 @@ var
              [/* String */2,/* No_padding */0,/* End_of_format */0],
              "%s"],
             exn[2]);
-          return Pervasives["exit"](0);
-          }
+          return Pervasives["exit"](0)}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };
@@ -577,15 +559,15 @@ var
     
     var
      loop=
-      function(n){return n>=len?len:s["charCodeAt"](n)===32?loop(n+1):n;};
+      function(n){return n>=len?len:s["charCodeAt"](n)===32?loop(n+1):n};
     
     try
-     {return loop($$String["index"](s,32));}
+     {return loop($$String["index"](s,32))}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return len;}
+       {return len}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -597,7 +579,7 @@ var
     switch(param[2][0])
      {case 11:return Pervasives["max"](cur,kwd["length"]);
       default:
-       return Pervasives["max"](cur,kwd["length"]+second_word(param[3]));}
+       return Pervasives["max"](cur,kwd["length"]+second_word(param[3]))}
     };
 
 var
@@ -622,7 +604,6 @@ var
                   kwd,
                   spec,
                   Pervasives["^"]("\n",Pervasives["^"](spaces,msg))];
-          
          default:
           var msg$1=ksd[3];
           
@@ -633,7 +614,7 @@ var
           var diff=len-kwd_len-cutcol$1;
           
           if(diff<=0)
-           {return /* tuple */[0,kwd,spec,msg$1];}
+           {return /* tuple */[0,kwd,spec,msg$1]}
           else
            {var spaces$1=$$String["make"](diff,32);
             
@@ -646,8 +627,7 @@ var
             return /* tuple */[0,
                     kwd,
                     spec,
-                    Pervasives["^"](prefix,Pervasives["^"](spaces$1,suffix))];
-            }
+                    Pervasives["^"](prefix,Pervasives["^"](spaces$1,suffix))]}
           }
        }
     };
@@ -663,8 +643,7 @@ var
     
     var len$1=Pervasives["min"](len,limit);
     
-    return List["map"](add_padding(len$1),completed);
-    };
+    return List["map"](add_padding(len$1),completed)};
 
 module["exports"]=
 {"parse":parse,

@@ -6,7 +6,7 @@ var
  erase_rel=
   function(param)
    {if(typeof param==="number")
-     {switch(param){case 0:return /* End_of_fmtty */0;}}
+     {switch(param){case 0:return /* End_of_fmtty */0}}
     else
      {switch(param[0])
        {case 0:return /* Char_ty */[0,erase_rel(param[1])];
@@ -22,12 +22,11 @@ var
          var ty1=param[1];
          
          return /* Format_subst_ty */[9,ty1,ty1,erase_rel(param[3])];
-         
         case 10:return /* Alpha_ty */[10,erase_rel(param[1])];
         case 11:return /* Theta_ty */[11,erase_rel(param[1])];
         case 12:return /* Any_ty */[12,erase_rel(param[1])];
         case 13:return /* Reader_ty */[13,erase_rel(param[1])];
-        case 14:return /* Ignored_reader_ty */[14,erase_rel(param[1])];
+        case 14:return /* Ignored_reader_ty */[14,erase_rel(param[1])]
         }}
     };
 
@@ -35,7 +34,7 @@ var
  concat_fmtty=
   function(fmtty1,fmtty2)
    {if(typeof fmtty1==="number")
-     {switch(fmtty1){case 0:return fmtty2;}}
+     {switch(fmtty1){case 0:return fmtty2}}
     else
      {switch(fmtty1[0])
        {case 0:return /* Char_ty */[0,concat_fmtty(fmtty1[1],fmtty2)];
@@ -50,19 +49,17 @@ var
          return /* Format_arg_ty */[8,
                  fmtty1[1],
                  concat_fmtty(fmtty1[2],fmtty2)];
-         
         case 9:
          return /* Format_subst_ty */[9,
                  fmtty1[1],
                  fmtty1[2],
                  concat_fmtty(fmtty1[3],fmtty2)];
-         
         case 10:return /* Alpha_ty */[10,concat_fmtty(fmtty1[1],fmtty2)];
         case 11:return /* Theta_ty */[11,concat_fmtty(fmtty1[1],fmtty2)];
         case 12:return /* Any_ty */[12,concat_fmtty(fmtty1[1],fmtty2)];
         case 13:return /* Reader_ty */[13,concat_fmtty(fmtty1[1],fmtty2)];
         case 14:
-         return /* Ignored_reader_ty */[14,concat_fmtty(fmtty1[1],fmtty2)];
+         return /* Ignored_reader_ty */[14,concat_fmtty(fmtty1[1],fmtty2)]
         }}
     };
 
@@ -70,7 +67,7 @@ var
  concat_fmt=
   function(fmt1,fmt2)
    {if(typeof fmt1==="number")
-     {switch(fmt1){case 0:return fmt2;}}
+     {switch(fmt1){case 0:return fmt2}}
     else
      {switch(fmt1[0])
        {case 0:return /* Char */[0,concat_fmt(fmt1[1],fmt2)];
@@ -85,28 +82,24 @@ var
                  fmt1[2],
                  fmt1[3],
                  concat_fmt(fmt1[4],fmt2)];
-         
         case 6:
          return /* Nativeint */[6,
                  fmt1[1],
                  fmt1[2],
                  fmt1[3],
                  concat_fmt(fmt1[4],fmt2)];
-         
         case 7:
          return /* Int64 */[7,
                  fmt1[1],
                  fmt1[2],
                  fmt1[3],
                  concat_fmt(fmt1[4],fmt2)];
-         
         case 8:
          return /* Float */[8,
                  fmt1[1],
                  fmt1[2],
                  fmt1[3],
                  concat_fmt(fmt1[4],fmt2)];
-         
         case 9:return /* Bool */[9,concat_fmt(fmt1[1],fmt2)];
         case 10:return /* Flush */[10,concat_fmt(fmt1[1],fmt2)];
         case 11:
@@ -120,7 +113,6 @@ var
                  fmt1[1],
                  fmt1[2],
                  concat_fmt(fmt1[3],fmt2)];
-         
         case 15:return /* Alpha */[15,concat_fmt(fmt1[1],fmt2)];
         case 16:return /* Theta */[16,concat_fmt(fmt1[1],fmt2)];
         case 17:
@@ -133,14 +125,13 @@ var
                  fmt1[1],
                  fmt1[2],
                  concat_fmt(fmt1[3],fmt2)];
-         
         case 21:
          return /* Scan_get_counter */[21,fmt1[1],concat_fmt(fmt1[2],fmt2)];
         case 22:return /* Scan_next_char */[22,concat_fmt(fmt1[1],fmt2)];
         case 23:
          return /* Ignored_param */[23,fmt1[1],concat_fmt(fmt1[2],fmt2)];
         case 24:
-         return /* Custom */[24,fmt1[1],fmt1[2],concat_fmt(fmt1[3],fmt2)];
+         return /* Custom */[24,fmt1[1],fmt1[2],concat_fmt(fmt1[3],fmt2)]
         }}
     };
 

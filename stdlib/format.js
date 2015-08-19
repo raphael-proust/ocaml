@@ -7,9 +7,9 @@ var Buffer=require("./buffer.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var make_queue=function(param){return /* record */[0,/* Nil */0,/* Nil */0];};
+var make_queue=function(param){return /* record */[0,/* Nil */0,/* Nil */0]};
 
-var clear_queue=function(q){q[1]=/* Nil */0;return q[2]=/* Nil */0,0;};
+var clear_queue=function(q){q[1]=/* Nil */0;return q[2]=/* Nil */0,0};
 
 var
  add_queue=
@@ -18,8 +18,7 @@ var
     
     var match=q[1];
     
-    return match?(q[1]=c,match[1][2]=c,0):(q[1]=c,q[2]=c,0);
-    };
+    return match?(q[1]=c,match[1][2]=c,0):(q[1]=c,q[2]=c,0)};
 
 var Empty_queue=CamlPrimitive["caml_set_oo_id"]([248,"Format.Empty_queue",0]);
 
@@ -28,7 +27,7 @@ var
   function(param)
    {var match=param[2];
     
-    if(match){var x=match[1][1];return x;}else{throw Empty_queue;}
+    if(match){var x=match[1][1];return x}else{throw Empty_queue}
     };
 
 var
@@ -46,28 +45,27 @@ var
       q[2]=tl;
       if(tl===/* Nil */0){q[1]=/* Nil */0,0}
       
-      return x;
-      }
+      return x}
     else
-     {throw Empty_queue;}
+     {throw Empty_queue}
     };
 
 var
  pp_enqueue=
   function(state,token)
-   {state[13]=state[13]+token[3];return add_queue(token,state[27]);};
+   {state[13]=state[13]+token[3];return add_queue(token,state[27])};
 
 var
  pp_clear_queue=
-  function(state){state[12]=1;state[13]=1;return clear_queue(state[27]);};
+  function(state){state[12]=1;state[13]=1;return clear_queue(state[27])};
 
 var pp_infinity=1000000010;
 
-var pp_output_string=function(state,s){return state[17](s,0,s["length"]);};
+var pp_output_string=function(state,s){return state[17](s,0,s["length"])};
 
-var pp_output_newline=function(state){return state[19](/* () */0);};
+var pp_output_newline=function(state){return state[19](/* () */0)};
 
-var pp_output_spaces=function(state,n){return state[20](n);};
+var pp_output_spaces=function(state,n){return state[20](n)};
 
 var
  break_new_line=
@@ -80,15 +78,14 @@ var
     
     state[10]=real_indent;
     state[9]=state[6]-state[10];
-    return pp_output_spaces(state,state[10]);
-    };
+    return pp_output_spaces(state,state[10])};
 
-var break_line=function(state,width){return break_new_line(state,0,width);};
+var break_line=function(state,width){return break_new_line(state,0,width)};
 
 var
  break_same_line=
   function(state,width)
-   {state[9]=state[9]-width;return pp_output_spaces(state,width);};
+   {state[9]=state[9]-width;return pp_output_spaces(state,width)};
 
 var
  pp_force_break_line=
@@ -104,10 +101,9 @@ var
       
       return width>state[9]
               ?bl_ty!==0?bl_ty>=5?/* () */0:break_line(state,width):/* () */0
-              :0;
-      }
+              :0}
     else
-     {return pp_output_newline(state);}
+     {return pp_output_newline(state)}
     };
 
 var
@@ -118,8 +114,7 @@ var
     var size=match[1];
     
     state[12]=state[12]-match[3];
-    return state[9]=state[9]+size,0;
-    };
+    return state[9]=state[9]+size,0};
 
 var
  format_pp_token=
@@ -140,34 +135,29 @@ var
                  
                  return CamlPrimitive["caml_lessthan"](n,x)
                          ?/* :: */[0,n,ls]
-                         :/* :: */[0,x,add_tab(n,ls[2])];
-                 }
+                         :/* :: */[0,x,add_tab(n,ls[2])]}
                else
-                {return /* :: */[0,n,/* [] */0];}
+                {return /* :: */[0,n,/* [] */0]}
                };
            
-           return tabs[1]=add_tab(state[6]-state[9],tabs[1]),0;
-           }
+           return tabs[1]=add_tab(state[6]-state[9],tabs[1]),0}
          else
-          {return /* () */0;}
-         
+          {return /* () */0}
+         break;
         case 1:
          var match$1=state[2];
          
          return match$1?(state[2]=match$1[2],0):/* () */0;
-         
         case 2:
          var match$2=state[3];
          
          return match$2?(state[3]=match$2[2],0):/* () */0;
-         
         case 3:
          var match$3=state[2];
          
          return match$3
                  ?break_line(state,match$3[1][2])
                  :pp_output_newline(state);
-         
         case 4:return state[10]!==state[6]-state[9]?pp_skip_token(state):0;
         case 5:
          var match$4=state[5];
@@ -176,11 +166,10 @@ var
           {var marker=state[24](match$4[1]);
            
            pp_output_string(state,marker);
-           return state[5]=match$4[2],0;
-           }
+           return state[5]=match$4[2],0}
          else
-          {return /* () */0;}
-         
+          {return /* () */0}
+         break
         }}
     else
      {switch(param[0])
@@ -188,7 +177,6 @@ var
          state[9]=state[9]-size;
          pp_output_string(state,param[1]);
          return state[11]=/* false */0,0;
-         
         case 1:
          var off=param[2];
          
@@ -209,7 +197,6 @@ var
               return size>state[9]
                       ?break_new_line(state,off,width)
                       :break_same_line(state,n);
-              
              case 4:
               return state[11]
                       ?break_same_line(state,n)
@@ -218,13 +205,12 @@ var
                         :state[10]>state[6]-width+off
                           ?break_new_line(state,off,width)
                           :break_same_line(state,n);
-              
-             case 5:return break_same_line(state,n);
+             case 5:return break_same_line(state,n)
              }
            }
          else
-          {return /* () */0;}
-         
+          {return /* () */0}
+         break;
         case 2:
          var insertion_point=state[6]-state[9];
          
@@ -241,10 +227,9 @@ var
                  
                  return CamlPrimitive["caml_greaterequal"](x,n)
                          ?x
-                         :find(n,param$1[2]);
-                 }
+                         :find(n,param$1[2])}
                else
-                {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+                {throw CamlPrimitive["caml_global_data"]["Not_found"]}
                };
            
            var match$8=tabs$1[1];
@@ -257,7 +242,7 @@ var
               {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                 {tab=match$8[1];}
                else
-                {throw exn;}
+                {throw exn}
                }
              }
            else
@@ -267,11 +252,10 @@ var
            
            return offset>=0
                    ?break_same_line(state,offset+param[1])
-                   :break_new_line(state,tab+param[2],state[6]);
-           }
+                   :break_new_line(state,tab+param[2],state[6])}
          else
-          {return /* () */0;}
-         
+          {return /* () */0}
+         break;
         case 3:
          var ty=param[2];
          
@@ -286,7 +270,6 @@ var
          return state[2]=
                 /* :: */[0,/* Format_elem */[0,bl_type,offset$1],state[2]],
                 0;
-         
         case 4:return state[3]=/* :: */[0,param[1],state[3]],0;
         case 5:
          var tag_name=param[1];
@@ -294,8 +277,7 @@ var
          var marker$1=state[23](tag_name);
          
          pp_output_string(state,marker$1);
-         return state[5]=/* :: */[0,tag_name,state[5]],0;
-         
+         return state[5]=/* :: */[0,tag_name,state[5]],0
         }}
     };
 
@@ -315,43 +297,40 @@ var
               match[3]+
               state[12],
               advance_loop(state))
-            :0;
-    };
+            :0};
 
 var
  advance_left=
   function(state)
    {try
-     {return advance_loop(state);}
-    catch(exn){if(exn===Empty_queue){return /* () */0;}else{throw exn;}}
+     {return advance_loop(state)}
+    catch(exn){if(exn===Empty_queue){return /* () */0}else{throw exn}}
     };
 
 var
  enqueue_advance=
-  function(state,tok){pp_enqueue(state,tok);return advance_left(state);};
+  function(state,tok){pp_enqueue(state,tok);return advance_left(state)};
 
 var
  make_queue_elem=
-  function(size,tok,len){return /* record */[0,size,tok,len];};
+  function(size,tok,len){return /* record */[0,size,tok,len]};
 
 var
  enqueue_string_as=
   function(state,size,s)
    {var len=size;
     
-    return enqueue_advance(state,make_queue_elem(size,/* Pp_text */[0,s],len));
-    };
+    return enqueue_advance(state,make_queue_elem(size,/* Pp_text */[0,s],len))};
 
 var
  enqueue_string=
-  function(state,s)
-   {var len=s["length"];return enqueue_string_as(state,len,s);};
+  function(state,s){var len=s["length"];return enqueue_string_as(state,len,s)};
 
 var q_elem=make_queue_elem(-1,[/* Pp_text */0,""],0);
 
 var scan_stack_bottom=/* :: */[0,/* Scan_elem */[0,-1,q_elem],/* [] */0];
 
-var clear_scan_stack=function(state){return state[1]=scan_stack_bottom,0;};
+var clear_scan_stack=function(state){return state[1]=scan_stack_bottom,0};
 
 var
  set_size=
@@ -370,7 +349,7 @@ var
       var size$1=size;
       
       if(match$1[1]<state[12])
-       {return clear_scan_stack(state);}
+       {return clear_scan_stack(state)}
       else
        {var exit;
         
@@ -379,19 +358,19 @@ var
          {switch($js){}}
         else
          {switch($js[0])
-           {case 1:exit=193;
-            case 2:exit=193;
+           {case 1:exit=193;break;
+            case 2:exit=193;break;
             case 3:return !ty?(queue_elem[1]=state[13]+size$1,state[1]=t,0):0;
             default:exit=194;}}
         
         switch(exit)
          {case 193:return ty?(queue_elem[1]=state[13]+size$1,state[1]=t,0):0;
-          case 194:return /* () */0;
+          case 194:return /* () */0
           }
         }
       }
     else
-     {return /* () */0;}
+     {return /* () */0}
     };
 
 var
@@ -400,8 +379,7 @@ var
    {pp_enqueue(state,tok);
     if(b){set_size(state,/* true */1)}
     
-    return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0;
-    };
+    return state[1]=/* :: */[0,/* Scan_elem */[0,state[13],tok],state[1]],0};
 
 var
  pp_open_box_gen=
@@ -410,15 +388,14 @@ var
     if(state[14]<state[15])
      {var elem=make_queue_elem(-state[13],/* Pp_begin */[3,indent,br_ty],0);
       
-      return scan_push(state,/* false */0,elem);
-      }
+      return scan_push(state,/* false */0,elem)}
     else
-     {return state[14]===state[15]?enqueue_string(state,state[16]):0;}
+     {return state[14]===state[15]?enqueue_string(state,state[16]):0}
     };
 
 var
  pp_open_sys_box=
-  function(state){return pp_open_box_gen(state,0,/* Pp_hovbox */3);};
+  function(state){return pp_open_box_gen(state,0,/* Pp_hovbox */3)};
 
 var
  pp_close_box=
@@ -429,10 +406,9 @@ var
         set_size(state,/* true */1),
         set_size(state,/* false */0)}
       
-      return state[14]=state[14]-1,0;
-      }
+      return state[14]=state[14]-1,0}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -443,8 +419,7 @@ var
     return state[22]
             ?pp_enqueue
               (state,/* record */[0,0,/* Pp_open_tag */[5,tag_name],0])
-            :0;
-    };
+            :0};
 
 var
  pp_close_tag=
@@ -454,29 +429,28 @@ var
     if(state[21])
      {var match=state[4];
       
-      return match?(state[26](match[1]),state[4]=match[2],0):/* () */0;
-      }
+      return match?(state[26](match[1]),state[4]=match[2],0):/* () */0}
     else
-     {return 0;}
+     {return 0}
     };
 
-var pp_set_print_tags=function(state,b){return state[21]=b,0;};
+var pp_set_print_tags=function(state,b){return state[21]=b,0};
 
-var pp_set_mark_tags=function(state,b){return state[22]=b,0;};
+var pp_set_mark_tags=function(state,b){return state[22]=b,0};
 
-var pp_get_print_tags=function(state,param){return state[21];};
+var pp_get_print_tags=function(state,param){return state[21]};
 
-var pp_get_mark_tags=function(state,param){return state[22];};
+var pp_get_mark_tags=function(state,param){return state[22]};
 
 var
  pp_set_tags=
   function(state,b)
-   {pp_set_print_tags(state,b);return pp_set_mark_tags(state,b);};
+   {pp_set_print_tags(state,b);return pp_set_mark_tags(state,b)};
 
 var
  pp_get_formatter_tag_functions=
   function(state,param)
-   {return /* record */[0,state[23],state[24],state[25],state[26]];};
+   {return /* record */[0,state[23],state[24],state[25],state[26]]};
 
 var
  pp_set_formatter_tag_functions=
@@ -484,8 +458,7 @@ var
    {state[23]=param[1];
     state[24]=param[2];
     state[25]=param[3];
-    return state[26]=param[4],0;
-    };
+    return state[26]=param[4],0};
 
 var
  pp_rinit=
@@ -499,8 +472,7 @@ var
     state[10]=0;
     state[14]=0;
     state[9]=state[6];
-    return pp_open_sys_box(state);
-    };
+    return pp_open_sys_box(state)};
 
 var
  pp_flush_queue=
@@ -511,88 +483,84 @@ var
     advance_left(state);
     if(b){pp_output_newline(state)}
     
-    return pp_rinit(state);
-    };
+    return pp_rinit(state)};
 
 var
  pp_print_as_size=
   function(state,size,s)
-   {return state[14]<state[15]?enqueue_string_as(state,size,s):0;};
+   {return state[14]<state[15]?enqueue_string_as(state,size,s):0};
 
 var
  pp_print_as=
-  function(state,isize,s){return pp_print_as_size(state,isize,s);};
+  function(state,isize,s){return pp_print_as_size(state,isize,s)};
 
 var
  pp_print_string=
-  function(state,s){return pp_print_as(state,s["length"],s);};
+  function(state,s){return pp_print_as(state,s["length"],s)};
 
 var
  pp_print_int=
   function(state,i)
-   {return pp_print_string(state,Pervasives["string_of_int"](i));};
+   {return pp_print_string(state,Pervasives["string_of_int"](i))};
 
 var
  pp_print_float=
   function(state,f)
-   {return pp_print_string(state,Pervasives["string_of_float"](f));};
+   {return pp_print_string(state,Pervasives["string_of_float"](f))};
 
 var
  pp_print_bool=
   function(state,b)
-   {return pp_print_string(state,Pervasives["string_of_bool"](b));};
+   {return pp_print_string(state,Pervasives["string_of_bool"](b))};
 
 var
  pp_print_char=
-  function(state,c){return pp_print_as(state,1,$$String["make"](1,c));};
+  function(state,c){return pp_print_as(state,1,$$String["make"](1,c))};
 
 var
  pp_open_hbox=
-  function(state,param){return pp_open_box_gen(state,0,/* Pp_hbox */0);};
+  function(state,param){return pp_open_box_gen(state,0,/* Pp_hbox */0)};
 
 var
  pp_open_vbox=
-  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_vbox */1);};
+  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_vbox */1)};
 
 var
  pp_open_hvbox=
-  function(state,indent)
-   {return pp_open_box_gen(state,indent,/* Pp_hvbox */2);};
+  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_hvbox */2)};
 
 var
  pp_open_hovbox=
   function(state,indent)
-   {return pp_open_box_gen(state,indent,/* Pp_hovbox */3);};
+   {return pp_open_box_gen(state,indent,/* Pp_hovbox */3)};
 
 var
  pp_open_box=
-  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_box */4);};
+  function(state,indent){return pp_open_box_gen(state,indent,/* Pp_box */4)};
 
 var
  pp_print_newline=
   function(state,param)
-   {pp_flush_queue(state,/* true */1);return state[18](/* () */0);};
+   {pp_flush_queue(state,/* true */1);return state[18](/* () */0)};
 
 var
  pp_print_flush=
   function(state,param)
-   {pp_flush_queue(state,/* false */0);return state[18](/* () */0);};
+   {pp_flush_queue(state,/* false */0);return state[18](/* () */0)};
 
 var
  pp_force_newline=
   function(state,param)
    {return state[14]<state[15]
             ?enqueue_advance(state,make_queue_elem(0,/* Pp_newline */3,0))
-            :0;
-    };
+            :0};
 
 var
  pp_print_if_newline=
   function(state,param)
    {return state[14]<state[15]
             ?enqueue_advance(state,make_queue_elem(0,/* Pp_if_newline */4,0))
-            :0;
-    };
+            :0};
 
 var
  pp_print_break=
@@ -602,15 +570,14 @@ var
        elem=
         make_queue_elem(-state[13],/* Pp_break */[1,width,offset],width);
       
-      return scan_push(state,/* true */1,elem);
-      }
+      return scan_push(state,/* true */1,elem)}
     else
-     {return 0;}
+     {return 0}
     };
 
-var pp_print_space=function(state,param){return pp_print_break(state,1,0);};
+var pp_print_space=function(state,param){return pp_print_break(state,1,0)};
 
-var pp_print_cut=function(state,param){return pp_print_break(state,0,0);};
+var pp_print_cut=function(state,param){return pp_print_break(state,0,0)};
 
 var
  pp_open_tbox=
@@ -621,10 +588,9 @@ var
        elem=
         make_queue_elem(0,/* Pp_tbegin */[4,/* Pp_tbox */[0,[0,/* [] */0]]],0);
       
-      return enqueue_advance(state,elem);
-      }
+      return enqueue_advance(state,elem)}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -635,13 +601,12 @@ var
        {var elem=make_queue_elem(0,/* Pp_tend */2,0);
         
         enqueue_advance(state,elem);
-        return state[14]=state[14]-1,0;
-        }
+        return state[14]=state[14]-1,0}
       else
-       {return 0;}
+       {return 0}
       }
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -652,13 +617,12 @@ var
        elem=
         make_queue_elem(-state[13],/* Pp_tbreak */[2,width,offset],width);
       
-      return scan_push(state,/* true */1,elem);
-      }
+      return scan_push(state,/* true */1,elem)}
     else
-     {return 0;}
+     {return 0}
     };
 
-var pp_print_tab=function(state,param){return pp_print_tbreak(state,0,0);};
+var pp_print_tab=function(state,param){return pp_print_tbreak(state,0,0)};
 
 var
  pp_set_tab=
@@ -666,10 +630,9 @@ var
    {if(state[14]<state[15])
      {var elem=make_queue_elem(0,/* Pp_stab */0,0);
       
-      return enqueue_advance(state,elem);
-      }
+      return enqueue_advance(state,elem)}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -686,10 +649,9 @@ var
               ?(pp_v(ppf,v),
                 pp_sep(ppf,/* () */0),
                 pp_print_list(/* Some */[0,pp_sep],pp_v,ppf,vs))
-              :pp_v(ppf,v);
-      }
+              :pp_v(ppf,v)}
     else
-     {return /* () */0;}
+     {return /* () */0}
     };
 
 var
@@ -706,8 +668,7 @@ var
       function(param)
        {pp_print_string(ppf,$$String["sub"](s,left[1],right[1]-left[1]));
         right[0]++;
-        return left[1]=right[1],0;
-        };
+        return left[1]=right[1],0};
     
     while(right[1]!==len)
      {var match=s["charCodeAt"](right[1]);
@@ -717,20 +678,19 @@ var
        :(flush(/* () */0),pp_force_newline(ppf,/* () */0));
       }
     
-    return left[1]!==len?flush(/* () */0):0;
-    };
+    return left[1]!==len?flush(/* () */0):0};
 
-var pp_set_max_boxes=function(state,n){return n>1?(state[15]=n,0):0;};
+var pp_set_max_boxes=function(state,n){return n>1?(state[15]=n,0):0};
 
-var pp_get_max_boxes=function(state,param){return state[15];};
+var pp_get_max_boxes=function(state,param){return state[15]};
 
-var pp_over_max_boxes=function(state,param){return state[14]===state[15];};
+var pp_over_max_boxes=function(state,param){return state[14]===state[15]};
 
-var pp_set_ellipsis_text=function(state,s){return state[16]=s,0;};
+var pp_set_ellipsis_text=function(state,s){return state[16]=s,0};
 
-var pp_get_ellipsis_text=function(state,param){return state[16];};
+var pp_get_ellipsis_text=function(state,param){return state[16]};
 
-var pp_limit=function(n){return n<pp_infinity?n:-1+pp_infinity;};
+var pp_limit=function(n){return n<pp_infinity?n:-1+pp_infinity};
 
 var
  pp_set_min_space_left=
@@ -740,17 +700,16 @@ var
       
       state[7]=n$1;
       state[8]=state[6]-state[7];
-      return pp_rinit(state);
-      }
+      return pp_rinit(state)}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
  pp_set_max_indent=
-  function(state,n){return pp_set_min_space_left(state,state[6]-n);};
+  function(state,n){return pp_set_min_space_left(state,state[6]-n)};
 
-var pp_get_max_indent=function(state,param){return state[8];};
+var pp_get_max_indent=function(state,param){return state[8]};
 
 var
  pp_set_margin=
@@ -765,13 +724,12 @@ var
          ?state[8]
          :Pervasives["max"](Pervasives["max"](state[6]-state[7],state[6]/2),1);
       
-      return pp_set_max_indent(state,new_max_indent);
-      }
+      return pp_set_max_indent(state,new_max_indent)}
     else
-     {return 0;}
+     {return 0}
     };
 
-var pp_get_margin=function(state,param){return state[6];};
+var pp_get_margin=function(state,param){return state[6]};
 
 var
  pp_set_formatter_out_functions=
@@ -779,36 +737,34 @@ var
    {state[17]=param[1];
     state[18]=param[2];
     state[19]=param[3];
-    return state[20]=param[4],0;
-    };
+    return state[20]=param[4],0};
 
 var
  pp_get_formatter_out_functions=
   function(state,param)
-   {return /* record */[0,state[17],state[18],state[19],state[20]];};
+   {return /* record */[0,state[17],state[18],state[19],state[20]]};
 
 var
  pp_set_formatter_output_functions=
-  function(state,f,g){state[17]=f;return state[18]=g,0;};
+  function(state,f,g){state[17]=f;return state[18]=g,0};
 
 var
  pp_get_formatter_output_functions=
-  function(state,param){return /* tuple */[0,state[17],state[18]];};
+  function(state,param){return /* tuple */[0,state[17],state[18]]};
 
 var
  pp_set_all_formatter_output_functions=
   function(state,f,g,h,i)
    {pp_set_formatter_output_functions(state,f,g);
     state[19]=h;
-    return state[20]=i,0;
-    };
+    return state[20]=i,0};
 
 var
  pp_get_all_formatter_output_functions=
   function(state,param)
-   {return /* tuple */[0,state[17],state[18],state[19],state[20]];};
+   {return /* tuple */[0,state[17],state[18],state[19],state[20]]};
 
-var display_newline=function(state,param){return state[17]("\n",0,1);};
+var display_newline=function(state,param){return state[17]("\n",0,1)};
 
 var blank_line=$$String["make"](80,32);
 
@@ -819,29 +775,27 @@ var
             ?n<=80
               ?state[17](blank_line,0,n)
               :(state[17](blank_line,0,80),display_blanks(state,n-80))
-            :0;
-    };
+            :0};
 
 var
  pp_set_formatter_out_channel=
   function(state,os)
    {state[17]=Pervasives["output_substring"](os);
-    state[18]=function(param){return Pervasives["flush"](os);};
+    state[18]=function(param){return Pervasives["flush"](os)};
     state[19]=display_newline(state);
-    return state[20]=display_blanks(state),0;
-    };
+    return state[20]=display_blanks(state),0};
 
 var
  default_pp_mark_open_tag=
-  function(s){return Pervasives["^"]("<",Pervasives["^"](s,">"));};
+  function(s){return Pervasives["^"]("<",Pervasives["^"](s,">"))};
 
 var
  default_pp_mark_close_tag=
-  function(s){return Pervasives["^"]("</",Pervasives["^"](s,">"));};
+  function(s){return Pervasives["^"]("</",Pervasives["^"](s,">"))};
 
-var default_pp_print_open_tag=function(prim){return prim;};
+var default_pp_print_open_tag=function(prim){return prim};
 
-var default_pp_print_close_tag=function(prim){return prim;};
+var default_pp_print_close_tag=function(prim){return prim};
 
 var
  pp_make_formatter=
@@ -882,8 +836,7 @@ var
             default_pp_mark_close_tag,
             default_pp_print_open_tag,
             default_pp_print_close_tag,
-            pp_q];
-    };
+            pp_q]};
 
 var
  make_formatter=
@@ -891,30 +844,24 @@ var
    {var
      ppf=
       pp_make_formatter
-       (output,
-        flush,
-        function(prim){return prim;},
-        function(prim){return prim;});
+       (output,flush,function(prim){return prim},function(prim){return prim});
     
     ppf[19]=display_newline(ppf);
     ppf[20]=display_blanks(ppf);
-    return ppf;
-    };
+    return ppf};
 
 var
  formatter_of_out_channel=
   function(oc)
    {return make_formatter
             (Pervasives["output_substring"](oc),
-             function(param){return Pervasives["flush"](oc);});
-    };
+             function(param){return Pervasives["flush"](oc)})};
 
 var
  formatter_of_buffer=
   function(b)
    {return make_formatter
-            (Buffer["add_substring"](b),function(prim){return prim;});
-    };
+            (Buffer["add_substring"](b),function(prim){return prim})};
 
 var stdbuf=Buffer["create"](512);
 
@@ -931,8 +878,7 @@ var
     var s=Buffer["contents"](stdbuf);
     
     Buffer["reset"](stdbuf);
-    return s;
-    };
+    return s};
 
 var
  flush_buf_formatter=
@@ -941,8 +887,7 @@ var
     var s=Buffer["contents"](buf);
     
     Buffer["reset"](buf);
-    return s;
-    };
+    return s};
 
 var open_hbox=pp_open_hbox(std_formatter);
 
@@ -1063,8 +1008,7 @@ var
     
     var len=Buffer["length"](buf);
     
-    return len<2?Buffer["contents"](buf):Buffer["sub"](buf,1,len-2);
-    };
+    return len<2?Buffer["contents"](buf):Buffer["sub"](buf,1,len-2)};
 
 var
  output_formatting_lit=
@@ -1077,13 +1021,13 @@ var
         case 3:return pp_force_newline(ppf,/* () */0);
         case 4:return pp_print_newline(ppf,/* () */0);
         case 5:return pp_print_char(ppf,64);
-        case 6:return pp_print_char(ppf,37);
+        case 6:return pp_print_char(ppf,37)
         }}
     else
      {switch(fmting_lit[0])
        {case 0:return pp_print_break(ppf,fmting_lit[2],fmting_lit[3]);
         case 1:return /* () */0;
-        case 2:pp_print_char(ppf,64);return pp_print_char(ppf,fmting_lit[1]);
+        case 2:pp_print_char(ppf,64);return pp_print_char(ppf,fmting_lit[1])
         }}
     };
 
@@ -1093,7 +1037,7 @@ var
    {var exit;
     
     if(typeof acc==="number")
-     {switch(acc){case 0:return /* () */0;}}
+     {switch(acc){case 0:return /* () */0}}
     else
      {switch(acc[0])
        {case 0:
@@ -1107,7 +1051,6 @@ var
           {case 0:
             output_acc(ppf,p);
             return pp_open_tag(ppf,compute_tag(output_acc,match[1]));
-            
            case 1:
             var match$1=output_acc(ppf,p);
             
@@ -1116,10 +1059,9 @@ var
               CamlinternalFormat["open_box_of_string"]
                (compute_tag(output_acc,match[1]));
             
-            return pp_open_box_gen(ppf,match$2[1],match$2[2]);
-            
+            return pp_open_box_gen(ppf,match$2[1],match$2[2])
            }
-         
+         break;
         case 2:
          var p$1=acc[1];
          
@@ -1137,13 +1079,21 @@ var
               else
                {switch(match$3[0])
                  {case 1:
-                   var p$2=p$1[1];var size=match$3[2];var s=acc[2];exit=32;
+                   var p$2=p$1[1];
+                   
+                   var size=match$3[2];
+                   
+                   var s=acc[2];
+                   
+                   exit=32;
+                   
+                   break;
                   default:exit$1=36;}}
-              
+              break;
              default:exit$1=36;}}
          
-         switch(exit$1){case 36:var p$3=p$1;var s$1=acc[2];exit=34;}
-         
+         switch(exit$1){case 36:var p$3=p$1;var s$1=acc[2];exit=34;break}
+         break;
         case 3:
          var p$4=acc[1];
          
@@ -1161,13 +1111,21 @@ var
               else
                {switch(match$4[0])
                  {case 1:
-                   var p$5=p$4[1];var size$1=match$4[2];var c=acc[2];exit=33;
+                   var p$5=p$4[1];
+                   
+                   var size$1=match$4[2];
+                   
+                   var c=acc[2];
+                   
+                   exit=33;
+                   
+                   break;
                   default:exit$2=38;}}
-              
+              break;
              default:exit$2=38;}}
          
-         switch(exit$2){case 38:var p$6=p$4;var c$1=acc[2];exit=35;}
-         
+         switch(exit$2){case 38:var p$6=p$4;var c$1=acc[2];exit=35;break}
+         break;
         case 4:
          var p$7=acc[1];
          
@@ -1185,13 +1143,21 @@ var
               else
                {switch(match$5[0])
                  {case 1:
-                   var p$2=p$7[1];var size=match$5[2];var s=acc[2];exit=32;
+                   var p$2=p$7[1];
+                   
+                   var size=match$5[2];
+                   
+                   var s=acc[2];
+                   
+                   exit=32;
+                   
+                   break;
                   default:exit$3=37;}}
-              
+              break;
              default:exit$3=37;}}
          
-         switch(exit$3){case 37:var p$3=p$7;var s$1=acc[2];exit=34;}
-         
+         switch(exit$3){case 37:var p$3=p$7;var s$1=acc[2];exit=34;break}
+         break;
         case 5:
          var p$8=acc[1];
          
@@ -1209,17 +1175,24 @@ var
               else
                {switch(match$6[0])
                  {case 1:
-                   var p$5=p$8[1];var size$1=match$6[2];var c=acc[2];exit=33;
+                   var p$5=p$8[1];
+                   
+                   var size$1=match$6[2];
+                   
+                   var c=acc[2];
+                   
+                   exit=33;
+                   
+                   break;
                   default:exit$4=39;}}
-              
+              break;
              default:exit$4=39;}}
          
-         switch(exit$4){case 39:var p$6=p$8;var c$1=acc[2];exit=35;}
-         
+         switch(exit$4){case 39:var p$6=p$8;var c$1=acc[2];exit=35;break}
+         break;
         case 6:output_acc(ppf,acc[1]);return acc[2](ppf);
         case 7:output_acc(ppf,acc[1]);return pp_print_flush(ppf,/* () */0);
-        case 8:
-         output_acc(ppf,acc[1]);return Pervasives["invalid_arg"](acc[2]);
+        case 8:output_acc(ppf,acc[1]);return Pervasives["invalid_arg"](acc[2])
         }}
     
     switch(exit)
@@ -1227,9 +1200,8 @@ var
       case 33:
        output_acc(ppf,p$5);
        return pp_print_as_size(ppf,size$1,$$String["make"](1,c));
-       
       case 34:output_acc(ppf,p$3);return pp_print_string(ppf,s$1);
-      case 35:output_acc(ppf,p$6);return pp_print_char(ppf,c$1);
+      case 35:output_acc(ppf,p$6);return pp_print_char(ppf,c$1)
       }
     };
 
@@ -1239,7 +1211,7 @@ var
    {var exit;
     
     if(typeof acc==="number")
-     {switch(acc){case 0:return /* () */0;}}
+     {switch(acc){case 0:return /* () */0}}
     else
      {switch(acc[0])
        {case 0:
@@ -1253,7 +1225,6 @@ var
           {case 0:
             strput_acc(ppf,p);
             return pp_open_tag(ppf,compute_tag(strput_acc,match[1]));
-            
            case 1:
             var match$1=strput_acc(ppf,p);
             
@@ -1262,10 +1233,9 @@ var
               CamlinternalFormat["open_box_of_string"]
                (compute_tag(strput_acc,match[1]));
             
-            return pp_open_box_gen(ppf,match$2[1],match$2[2]);
-            
+            return pp_open_box_gen(ppf,match$2[1],match$2[2])
            }
-         
+         break;
         case 2:
          var p$1=acc[1];
          
@@ -1283,13 +1253,21 @@ var
               else
                {switch(match$3[0])
                  {case 1:
-                   var p$2=p$1[1];var size=match$3[2];var s=acc[2];exit=21;
+                   var p$2=p$1[1];
+                   
+                   var size=match$3[2];
+                   
+                   var s=acc[2];
+                   
+                   exit=21;
+                   
+                   break;
                   default:exit$1=26;}}
-              
+              break;
              default:exit$1=26;}}
          
-         switch(exit$1){case 26:var p$3=p$1;var s$1=acc[2];exit=23;}
-         
+         switch(exit$1){case 26:var p$3=p$1;var s$1=acc[2];exit=23;break}
+         break;
         case 3:
          var p$4=acc[1];
          
@@ -1307,13 +1285,21 @@ var
               else
                {switch(match$4[0])
                  {case 1:
-                   var p$5=p$4[1];var size$1=match$4[2];var c=acc[2];exit=22;
+                   var p$5=p$4[1];
+                   
+                   var size$1=match$4[2];
+                   
+                   var c=acc[2];
+                   
+                   exit=22;
+                   
+                   break;
                   default:exit$2=28;}}
-              
+              break;
              default:exit$2=28;}}
          
-         switch(exit$2){case 28:var p$6=p$4;var c$1=acc[2];exit=24;}
-         
+         switch(exit$2){case 28:var p$6=p$4;var c$1=acc[2];exit=24;break}
+         break;
         case 4:
          var p$7=acc[1];
          
@@ -1331,13 +1317,21 @@ var
               else
                {switch(match$5[0])
                  {case 1:
-                   var p$2=p$7[1];var size=match$5[2];var s=acc[2];exit=21;
+                   var p$2=p$7[1];
+                   
+                   var size=match$5[2];
+                   
+                   var s=acc[2];
+                   
+                   exit=21;
+                   
+                   break;
                   default:exit$3=27;}}
-              
+              break;
              default:exit$3=27;}}
          
-         switch(exit$3){case 27:var p$3=p$7;var s$1=acc[2];exit=23;}
-         
+         switch(exit$3){case 27:var p$3=p$7;var s$1=acc[2];exit=23;break}
+         break;
         case 5:
          var p$8=acc[1];
          
@@ -1355,13 +1349,21 @@ var
               else
                {switch(match$6[0])
                  {case 1:
-                   var p$5=p$8[1];var size$1=match$6[2];var c=acc[2];exit=22;
+                   var p$5=p$8[1];
+                   
+                   var size$1=match$6[2];
+                   
+                   var c=acc[2];
+                   
+                   exit=22;
+                   
+                   break;
                   default:exit$4=29;}}
-              
+              break;
              default:exit$4=29;}}
          
-         switch(exit$4){case 29:var p$6=p$8;var c$1=acc[2];exit=24;}
-         
+         switch(exit$4){case 29:var p$6=p$8;var c$1=acc[2];exit=24;break}
+         break;
         case 6:
          var p$9=acc[1];
          
@@ -1381,19 +1383,17 @@ var
                  {case 1:
                    strput_acc(ppf,p$9[1]);
                    return pp_print_as_size(ppf,match$7[2],acc[2](/* () */0));
-                   
                   default:exit$5=25;}}
-              
+              break;
              default:exit$5=25;}}
          
          switch(exit$5)
           {case 25:
-            strput_acc(ppf,p$9);return pp_print_string(ppf,acc[2](/* () */0));
+            strput_acc(ppf,p$9);return pp_print_string(ppf,acc[2](/* () */0))
            }
-         
+         break;
         case 7:strput_acc(ppf,acc[1]);return pp_print_flush(ppf,/* () */0);
-        case 8:
-         strput_acc(ppf,acc[1]);return Pervasives["invalid_arg"](acc[2]);
+        case 8:strput_acc(ppf,acc[1]);return Pervasives["invalid_arg"](acc[2])
         }}
     
     switch(exit)
@@ -1401,9 +1401,8 @@ var
       case 22:
        strput_acc(ppf,p$5);
        return pp_print_as_size(ppf,size$1,$$String["make"](1,c));
-       
       case 23:strput_acc(ppf,p$3);return pp_print_string(ppf,s$1);
-      case 24:strput_acc(ppf,p$6);return pp_print_char(ppf,c$1);
+      case 24:strput_acc(ppf,p$6);return pp_print_char(ppf,c$1)
       }
     };
 
@@ -1411,33 +1410,31 @@ var
  kfprintf=
   function(k,o,param)
    {return CamlinternalFormat["make_printf"]
-            (function(o,acc){output_acc(o,acc);return k(o);},
+            (function(o,acc){output_acc(o,acc);return k(o)},
              o,
              /* End_of_acc */0,
-             param[1]);
-    };
+             param[1])};
 
 var
  ikfprintf=
   function(k,x,param)
    {return CamlinternalFormat["make_printf"]
-            (function(param$1,param$2){return k(x);},
+            (function(param$1,param$2){return k(x)},
              x,
              /* End_of_acc */0,
-             param[1]);
-    };
+             param[1])};
 
 var
  fprintf=
-  function(ppf,fmt){return kfprintf(function(prim){return prim;},ppf,fmt);};
+  function(ppf,fmt){return kfprintf(function(prim){return prim},ppf,fmt)};
 
 var
  ifprintf=
-  function(ppf,fmt){return ikfprintf(function(prim){return prim;},ppf,fmt);};
+  function(ppf,fmt){return ikfprintf(function(prim){return prim},ppf,fmt)};
 
-var printf=function(fmt){return fprintf(std_formatter,fmt);};
+var printf=function(fmt){return fprintf(std_formatter,fmt)};
 
-var eprintf=function(fmt){return fprintf(err_formatter,fmt);};
+var eprintf=function(fmt){return fprintf(err_formatter,fmt)};
 
 var
  ksprintf=
@@ -1449,13 +1446,12 @@ var
     var
      k$prime=
       function(param$1,acc)
-       {strput_acc(ppf,acc);return k(flush_buf_formatter(b,ppf));};
+       {strput_acc(ppf,acc);return k(flush_buf_formatter(b,ppf))};
     
     return CamlinternalFormat["make_printf"]
-            (k$prime,/* () */0,/* End_of_acc */0,param[1]);
-    };
+            (k$prime,/* () */0,/* End_of_acc */0,param[1])};
 
-var sprintf=function(fmt){return ksprintf(function(s){return s;},fmt);};
+var sprintf=function(fmt){return ksprintf(function(s){return s},fmt)};
 
 var
  asprintf=
@@ -1469,12 +1465,10 @@ var
       function(ppf,acc)
        {output_acc(ppf,acc);
         pp_flush_queue(ppf,/* false */0);
-        return flush_buf_formatter(b,ppf);
-        };
+        return flush_buf_formatter(b,ppf)};
     
     return CamlinternalFormat["make_printf"]
-            (k$prime,ppf,/* End_of_acc */0,param[1]);
-    };
+            (k$prime,ppf,/* End_of_acc */0,param[1])};
 
 var
  bprintf=
@@ -1482,11 +1476,10 @@ var
    {var
      k=
       function(ppf,acc)
-       {output_acc(ppf,acc);return pp_flush_queue(ppf,/* false */0);};
+       {output_acc(ppf,acc);return pp_flush_queue(ppf,/* false */0)};
     
     return CamlinternalFormat["make_printf"]
-            (k,formatter_of_buffer(b),/* End_of_acc */0,param[1]);
-    };
+            (k,formatter_of_buffer(b),/* End_of_acc */0,param[1])};
 
 var kprintf=ksprintf;
 

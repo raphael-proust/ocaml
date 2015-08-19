@@ -9,21 +9,21 @@ var one=1;
 
 var minus_one=-1;
 
-var succ=function(n){return n+1;};
+var succ=function(n){return n+1};
 
-var pred=function(n){return n-1;};
+var pred=function(n){return n-1};
 
-var abs=function(n){return n>=0?n:-n;};
+var abs=function(n){return n>=0?n:-n};
 
 var min_int=-9.22337203685477581e+18;
 
 var max_int=9.22337203685477581e+18;
 
-var lognot=function(n){return n^-1;};
+var lognot=function(n){return n^-1};
 
-var to_string=function(n){return CamlPrimitive["caml_int64_format"]("%d",n);};
+var to_string=function(n){return CamlPrimitive["caml_int64_format"]("%d",n)};
 
-var compare=function(x,y){return CamlPrimitive["caml_int64_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_int64_compare"](x,y)};
 
 module["exports"]=
 {"zero":zero,
