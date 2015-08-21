@@ -67,8 +67,6 @@ var
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
              "Digest.from_hex"]}
-    else
-     {}
     
     var
      digit=

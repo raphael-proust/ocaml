@@ -17,8 +17,7 @@ var
              "Weak.fill"]}
     else
      {for(var i=ofs;i<=ofs+len-1;i++){CamlPrimitive["caml_weak_set"](ar,i,x)}
-      return 0;
-      }
+      return 0}
     };
 
 var
@@ -168,8 +167,6 @@ var
           
           if(len>t[3]&&prev_len<=t[3]){t[4]=t[4]-1,0}
           }
-        else
-         {}
         
         return t[5]=(t[5]+1)%/* -1 for tag */(t[1]["length"]-1),0};
     
@@ -238,8 +235,6 @@ var
                {t[4]=t[4]+1;
                 for(var _i=0;_i<=over_limit;_i++){test_shrink_bucket(t)}
                 }
-              else
-               {}
               
               return t[4]>/* -1 for tag */(t[1]["length"]-1)/over_limit
                       ?resize(t)

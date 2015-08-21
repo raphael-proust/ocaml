@@ -60,16 +60,13 @@ var
 var
  overwrite=
   function(o,n)
-   {if(/* -1 for tag */o["length"]-1>=/* -1 for tag */n["length"]-1)
-     {}
-    else
+   {if(!(/* -1 for tag */o["length"]-1>=/* -1 for tag */n["length"]-1))
      {throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
              [0,"camlinternalMod.ml",40,2]]}
     
     for(var i=0;i<=/* -1 for tag */n["length"]-1-1;i++){o[i+1]=n[i+1]}
-    return 0;
-    };
+    return 0};
 
 var
  update_mod=
@@ -101,13 +98,11 @@ var
                      0);
         case 2:
          if
-          (CamlPrimitive["caml_obj_tag"](n)===
-           0&&
-           /* -1 for tag */n["length"]-
-           1===
-           4)
-          {}
-         else
+          (!(CamlPrimitive["caml_obj_tag"](n)===
+            0&&
+            /* -1 for tag */n["length"]-
+            1===
+            4))
           {throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
                   [0,"camlinternalMod.ml",63,6]]}
@@ -120,14 +115,12 @@ var
          var comps=shape[1];
          
          if
-          (CamlPrimitive["caml_obj_tag"](n)===
-           0&&
-           /* -1 for tag */n["length"]-
-           1>=
-           /* -1 for tag */comps["length"]-
-           1)
-          {}
-         else
+          (!(CamlPrimitive["caml_obj_tag"](n)===
+            0&&
+            /* -1 for tag */n["length"]-
+            1>=
+            /* -1 for tag */comps["length"]-
+            1))
           {throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
                   [0,"camlinternalMod.ml",66,6]]}
@@ -135,7 +128,6 @@ var
          for(var i=0;i<=/* -1 for tag */comps["length"]-1-1;i++)
           {update_mod(comps[i+1],o[i+1],n[i+1])}
          return 0;
-         break;
         case 1:return /* () */0
         }}
     };

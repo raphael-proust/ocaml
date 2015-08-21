@@ -235,7 +235,7 @@ var
     
     var
      add_bs=
-      function(n){for(var _j=1;_j<=n;_j++){Buffer["add_char"](b,92)}return 0;};
+      function(n){for(var _j=1;_j<=n;_j++){Buffer["add_char"](b,92)}return 0};
     
     loop(0);
     return Buffer["contents"](b)};

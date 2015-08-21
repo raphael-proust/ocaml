@@ -526,8 +526,7 @@ var
   function(buf,str)
    {for(var i=0;i<=str["length"]-1;i++)
      {bprint_char_literal(buf,str["charCodeAt"](i))}
-    return 0;
-    };
+    return 0};
 
 var
  bprint_fmtty=
@@ -1753,8 +1752,6 @@ var
                  (/* Fmtty_EBB */[0,fmt[2]],
                   /* Fmtty_EBB */[0,sub_fmtty$prime]))
                {throw Type_mismatch}
-              else
-               {}
               
               var match$27=type_format_gen(fmt[3],fmtty[2]);
               
@@ -1778,8 +1775,6 @@ var
                   /* Fmtty_EBB */[0,
                    CamlinternalFormatBasics["erase_rel"](sub_fmtty1)]))
                {throw Type_mismatch}
-              else
-               {}
               
               var
                match$28=
@@ -2110,8 +2105,6 @@ var
                  (/* Fmtty_EBB */[0,sub_fmtty[1]],
                   /* Fmtty_EBB */[0,sub2_fmtty$prime]))
                {throw Type_mismatch}
-              else
-               {}
               
               var
                match$8=
@@ -2139,8 +2132,6 @@ var
                   /* Fmtty_EBB */[0,
                    CamlinternalFormatBasics["erase_rel"](sub1_fmtty$prime)]))
                {throw Type_mismatch}
-              else
-               {}
               
               if
                (CamlPrimitive["caml_notequal"]
@@ -2149,8 +2140,6 @@ var
                   /* Fmtty_EBB */[0,
                    CamlinternalFormatBasics["erase_rel"](sub2_fmtty$prime$1)]))
                {throw Type_mismatch}
-              else
-               {}
               
               var
                sub_fmtty$prime=
@@ -4569,8 +4558,6 @@ var
           
           if(ign&&plus){incompatible_flag(pct_ind,str_ind,95,"'+'")}
           }
-        else
-         {}
         
         if(!ign_used[1]&&ign)
          {var exit$2;
@@ -4589,12 +4576,10 @@ var
             }
           
           switch(exit$2)
-           {case 28:if(legacy_behavior$1){}else{exit$2=27;}break;
+           {case 28:if(!legacy_behavior$1){exit$2=27;}break;
             case 27:incompatible_flag(pct_ind,str_ind,symb,"'_'");break
             }
           }
-        else
-         {}
         
         return fmt_result};
     
@@ -4766,8 +4751,6 @@ var
        {try
          {if(str_ind===end_ind)
            {throw CamlPrimitive["caml_global_data"]["Not_found"]}
-          else
-           {}
           
           var match=str["charCodeAt"](str_ind);
           
@@ -4778,8 +4761,6 @@ var
             
             if(ind>=end_ind)
              {throw CamlPrimitive["caml_global_data"]["Not_found"]}
-            else
-             {}
             
             var sub_str=$$String["sub"](str,str_ind,ind-str_ind+1);
             
@@ -4826,8 +4807,6 @@ var
         try
          {if(str_ind===end_ind||str["charCodeAt"](str_ind)!==60)
            {throw CamlPrimitive["caml_global_data"]["Not_found"]}
-          else
-           {}
           
           var str_ind_1=parse_spaces(str_ind+1,end_ind);
           
@@ -4863,8 +4842,6 @@ var
                  
                  if(str["charCodeAt"](str_ind_5)!==62)
                   {throw CamlPrimitive["caml_global_data"]["Not_found"]}
-                 else
-                  {}
                  
                  var s=$$String["sub"](str,str_ind-2,str_ind_5-str_ind+3);
                  
@@ -4936,8 +4913,6 @@ var
              
              if(str["charCodeAt"](str_ind_3)!==62)
               {throw CamlPrimitive["caml_global_data"]["Not_found"]}
-             else
-              {}
              
              var s=$$String["sub"](str,str_ind-2,str_ind_3-str_ind+3);
              
@@ -4990,8 +4965,7 @@ var
           function(c,c$prime)
            {for(var i=c;i<=c$prime;i++)
              {add_in_char_set(char_set,Pervasives["char_of_int"](i))}
-            return 0;
-            };
+            return 0};
         
         var
          fail_single_percent=

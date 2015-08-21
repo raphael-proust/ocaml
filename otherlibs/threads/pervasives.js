@@ -203,9 +203,7 @@ var
          {try
            {flush(param$1[1])}
           catch(exn)
-           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-             {}
-            else
+           {if(exn[1]!==CamlPrimitive["caml_global_data"]["Sys_error"])
              {throw exn}
             }
           
@@ -413,27 +411,19 @@ var
           CamlPrimitive["caml_blit_string"](buf,0,newbuf,0,pos);
           buf=newbuf;
           }
-        else
-         {}
         
         var c=input_char(ic);
         
-        if(c===10){throw Exit}else{}
+        if(c===10){throw Exit}
         
         /* unknown */"string.set";
         pos=1+pos;
         }
       }
     catch(exn)
-     {if(exn===Exit)
-       {}
-      else
+     {if(exn!==Exit)
        {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
-         {if(pos===0)
-           {throw CamlPrimitive["caml_global_data"]["End_of_file"]}
-          else
-           {}
-          }
+         {if(pos===0){throw CamlPrimitive["caml_global_data"]["End_of_file"]}}
         else
          {throw exn}
         }

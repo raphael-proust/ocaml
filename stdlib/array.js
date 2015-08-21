@@ -64,7 +64,7 @@ var
    {if(ofs<0||len<0||ofs>/* -1 for tag */a["length"]-1-len)
      {return Pervasives["invalid_arg"]("Array.fill")}
     else
-     {for(var i=ofs;i<=ofs+len-1;i++){a[i+1]=v}return 0;}
+     {for(var i=ofs;i<=ofs+len-1;i++){a[i+1]=v}return 0}
     };
 
 var
@@ -90,7 +90,7 @@ var
 var
  iter=
   function(f,a)
-   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){f(a[i+1])}return 0;};
+   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){f(a[i+1])}return 0};
 
 var
  map=
@@ -110,7 +110,7 @@ var
 var
  iteri=
   function(f,a)
-   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){f(i,a[i+1])}return 0;};
+   {for(var i=0;i<=/* -1 for tag */a["length"]-1-1;i++){f(i,a[i+1])}return 0};
 
 var
  mapi=
@@ -187,9 +187,9 @@ var
         var x=i31;
         
         if(i31+2<l)
-         {if(cmp(a[i31+1],a[i31+1+1])<0){x=i31+1;}else{}
+         {if(cmp(a[i31+1],a[i31+1+1])<0){x=i31+1;}
           
-          if(cmp(a[x+1],a[i31+2+1])<0){x=i31+2;}else{}
+          if(cmp(a[x+1],a[i31+2+1])<0){x=i31+2;}
           
           return x}
         else
@@ -232,9 +232,7 @@ var
       function(i,e)
        {var father=(i-1)/3;
         
-        if(i!==father)
-         {}
-        else
+        if(i===father)
          {throw [0,
                  CamlPrimitive["caml_global_data"]["Assert_failure"],
                  [0,"array.ml",168,4]]}
@@ -297,8 +295,7 @@ var
           while(j>=dstofs&&cmp(dst[j+1],e)>0){dst[j+1+1]=dst[j+1];j=-1+j;}
           
           dst[j+1+1]=e}
-        return 0;
-        };
+        return 0};
     
     var
      sortto=

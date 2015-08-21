@@ -27,8 +27,6 @@ var
      {var newbuffer=CamlPrimitive["caml_create_string"](2*bufpos[1]);
       
       Bytes["blit"](buffer[1],0,newbuffer,0,bufpos[1]),buffer[1]=newbuffer}
-    else
-     {}
     
     buffer[1][bufpos[1]]=c;
     return bufpos[0]++};

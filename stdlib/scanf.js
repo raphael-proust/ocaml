@@ -39,7 +39,7 @@ var
   function(ib)
    {var c=peek_char(ib);
     
-    if(ib[1]){throw CamlPrimitive["caml_global_data"]["End_of_file"]}else{}
+    if(ib[1]){throw CamlPrimitive["caml_global_data"]["End_of_file"]}
     
     return c};
 

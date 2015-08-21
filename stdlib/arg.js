@@ -462,8 +462,7 @@ var
                  
                  while(current$1[1]<l-1)
                   {f(argv[current$1[1]+1+1]),current$1[0]++}
-                 return 0;
-                 break
+                 return 0
                 }
               
               switch(exit){case 44:throw [0,Stop,/* Missing */[2,s]]}
@@ -487,8 +486,7 @@ var
         
         current$1[0]++}
       }
-    return 0;
-    };
+    return 0};
 
 var
  parse_argv=

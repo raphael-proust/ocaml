@@ -101,8 +101,6 @@ var
            {throw [0,
                    CamlPrimitive["caml_global_data"]["Invalid_argument"],
                    "Sort.array"]}
-          else
-           {}
           
           while(i<j)
            {while(!cmp(pivot,arr[i+1])){i=1+i;}
@@ -134,11 +132,8 @@ var
         while(j>=1&&!cmp(arr[j-1+1],val_i)){arr[j+1]=arr[j-1+1];j=-1+j;}
         
         arr[j+1]=val_i}
-      else
-       {}
       }
-    return 0;
-    };
+    return 0};
 
 module["exports"]={"list":list,"array":array,"merge":merge};
 

@@ -772,8 +772,7 @@ var
       var clo=method_impl(table,i,methods);
       
       set_method(table,label,clo),i[0]++}
-    return 0;
-    };
+    return 0};
 
 var
  stats=

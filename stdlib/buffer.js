@@ -73,8 +73,6 @@ var
       else
        {Pervasives["failwith"]("Buffer.add: cannot grow buffer")}
       }
-    else
-     {}
     
     var new_buffer=CamlPrimitive["caml_create_string"](new_len);
     

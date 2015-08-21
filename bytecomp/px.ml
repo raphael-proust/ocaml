@@ -1003,7 +1003,7 @@ module rec
                        val exports :
                          Ident.t list -> J.expression list -> J.statement
                        val block_of_output : output -> J.block
-                       val break_of_output : bool -> output -> J.block
+                       val break_of_output : output -> J.block
                        val is_js_pure : J.expression -> bool
                        val is_pure : Lambda.lambda -> bool
                        module Ops :
@@ -1032,7 +1032,7 @@ module rec
                 value: J.expression option;
                 finished:
                   bool[@ocaml.doc
-                        " when [finished] is true the block is already terminated,\n            otherwise, it's not necessary,  default is false \n                         "];}
+                        " \n            When [finished] is true the block is already terminated, value does not make sense\n            default is false, false is  an conservative approach \n         "];}
               type st =
                 | EffectCall
                 | Declare of J.ident
@@ -1097,16 +1097,16 @@ module rec
                       (E.obj properties)) : J.statement)
               let rec is_js_pure (x : J.expression) =
                 match x.expression_desc with
-                | J.EVar _ -> true
-                | J.ENum _ -> true
-                | J.EArr xs ->
+                | EVar _ -> true
+                | ENum _ -> true
+                | EArr xs ->
                     List.for_all
                       (function | None  -> true | Some x -> is_js_pure x) xs
                 | _ -> false
               let statement_of_opt_expr (x : J.expression option) =
                 (match x with
-                 | None  -> J_helper.Stmt.empty ()
-                 | Some x when is_js_pure x -> J_helper.Stmt.empty ()
+                 | None  -> S.empty ()
+                 | Some x when is_js_pure x -> S.empty ()
                  | Some x -> S.exp x : J.statement)
               let block_of_output (x : output) =
                 (match x with
@@ -1114,7 +1114,7 @@ module rec
                      if finished
                      then block
                      else block @ [statement_of_opt_expr opt] : J.block)
-              let break_of_output should_return (x : output) =
+              let break_of_output (x : output) =
                 (match x with
                  | { finished = true ; block;_} -> block
                  | { block; value = None ; finished } ->
@@ -1189,6 +1189,7 @@ module rec
                               val bin :
                                 ?comment:string -> J.binop -> t -> t -> t
                               val un : ?comment:string -> J.unop -> t -> t
+                              val not : t -> t
                               val call :
                                 ?comment:string ->
                                   ?loc:J.location -> t -> t list -> t
@@ -1353,6 +1354,23 @@ module rec
                        let un ?comment  op e =
                          ({ expression_desc = (EUn (op, e)); comment } : 
                          t)
+                       let not (({ expression_desc; comment } as e) : t) =
+                         (match expression_desc with
+                          | EBin ((EqEqEq |EqEq ),e0,e1) ->
+                              {
+                                expression_desc = (EBin (NotEqEq, e0, e1));
+                                comment
+                              }
+                          | EBin (NotEqEq ,e0,e1) ->
+                              {
+                                expression_desc = (EBin (EqEqEq, e0, e1));
+                                comment
+                              }
+                          | x ->
+                              {
+                                expression_desc = (EUn (Not, e));
+                                comment = None
+                              } : t)
                        let call ?comment  ?(loc= J.N)  e0 args =
                          ({
                             expression_desc = (ECall (e0, args, loc));
@@ -1751,6 +1769,53 @@ module rec
                                          else
                                            Gen_util.make_output
                                              [S.exp (E.econd e out1 out2)]
+                                     | (EffectCall ,false
+                                        ,{ block = []; value = Some out1 },_)
+                                         ->
+                                         if Gen_util.is_js_pure out1
+                                         then
+                                           Gen_util.make_output
+                                             (b @
+                                                [S.if_ (E.not e)
+                                                   (S.block
+                                                      (Gen_util.block_of_output
+                                                         @@
+                                                         (compile_lambda cxt
+                                                            f_br)))])
+                                         else
+                                           Gen_util.make_output
+                                             (b @
+                                                [S.if_ e
+                                                   (S.block
+                                                      (Gen_util.block_of_output
+                                                         @@
+                                                         (compile_lambda cxt
+                                                            t_br)))
+                                                   ~else_:(S.block
+                                                             (Gen_util.block_of_output
+                                                                @@
+                                                                (compile_lambda
+                                                                   cxt f_br)))])
+                                     | (EffectCall ,false
+                                        ,_,{ block = []; value = Some out2 })
+                                         ->
+                                         let else_ =
+                                           if Gen_util.is_js_pure out2
+                                           then None
+                                           else
+                                             Some
+                                               (S.block @@
+                                                  (Gen_util.block_of_output
+                                                     @@
+                                                     (compile_lambda cxt f_br))) in
+                                         Gen_util.make_output
+                                           (b @
+                                              [S.if_ e
+                                                 (S.block
+                                                    (Gen_util.block_of_output
+                                                       @@
+                                                       (compile_lambda cxt
+                                                          t_br))) ?else_])
                                      | ((Assign _|EffectCall ),_,_,_) ->
                                          Gen_util.make_output
                                            (b @
@@ -1781,8 +1846,7 @@ module rec
                                            (List.map
                                               (fun (x,lam)  ->
                                                  ((E.str x),
-                                                   ((Gen_util.break_of_output
-                                                       cxt.should_return)
+                                                   (Gen_util.break_of_output
                                                       @@
                                                       (compile_lambda cxt lam))))
                                               cases)
@@ -1814,9 +1878,8 @@ module rec
                                     (List.map
                                        (fun (x,lam)  ->
                                           ((E.int x),
-                                            ((Gen_util.break_of_output
-                                                cxt.should_return)
-                                               @@ (compile_lambda cxt lam))))
+                                            (Gen_util.break_of_output @@
+                                               (compile_lambda cxt lam))))
                                        table)
                                     ?default:(match default with
                                               | None  -> None
@@ -1911,9 +1974,7 @@ module rec
                                     (List.map
                                        (fun (i,handler,_)  ->
                                           ((E.int i),
-                                            ((Gen_util.break_of_output
-                                                cxt.should_return)
-                                               @@
+                                            (Gen_util.break_of_output @@
                                                (compile_lambda cxt handler))))
                                        code_table)] in
                                let jmp_table = add_jmps code_jmps jmp_table in
@@ -1965,6 +2026,7 @@ module rec
                                      | (EffectCall ,true ) ->
                                          Gen_util.make_output
                                            (block @ [S.return_unit ()])
+                                           ~finished:true
                                      | (EffectCall ,_) ->
                                          Gen_util.make_output block
                                      | (NeedValue ,_) ->
@@ -2018,6 +2080,7 @@ module rec
                                 | (EffectCall ,true ) ->
                                     Gen_util.make_output
                                       (block @ [S.return_unit ()])
+                                      ~finished:true
                                 | ((Declare _|Assign _),true ) ->
                                     Gen_util.make_output
                                       [S.unknown_lambda lam]
@@ -2048,6 +2111,7 @@ module rec
                                 | (EffectCall ,true ) ->
                                     Gen_util.make_output
                                       (block @ [S.return_unit ()])
+                                      ~finished:true
                                 | ((Declare _|Assign _),true ) ->
                                     Gen_util.make_output
                                       [S.unknown_lambda lam]

@@ -35,7 +35,7 @@ var top=peek;
 var
  take=
   function(q)
-   {if(q[1]===0){throw Empty}else{}
+   {if(q[1]===0){throw Empty}
     
     q[1]=q[1]-1;
     var tail=q[2];
@@ -128,8 +128,6 @@ var
         var head2=tail2[2];
         
         tail1[2]=head2,tail2[2]=head1}
-      else
-       {}
       
       q2[1]=q2[1]+length1;
       return q2[2]=tail1,0}

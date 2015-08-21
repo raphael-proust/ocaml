@@ -98,11 +98,9 @@ var
             ?Pervasives["invalid_arg"]("String.blit / Bytes.blit_string")
             :CamlPrimitive["caml_blit_string"](s1,ofs1,s2,ofs2,len)};
 
-var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}return 0;};
+var iter=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(a[i])}return 0};
 
-var
- iteri=
-  function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i])}return 0;};
+var iteri=function(f,a){for(var i=0;i<=a["length"]-1;i++){f(i,a[i])}return 0};
 
 var
  concat=

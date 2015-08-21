@@ -83,8 +83,7 @@ var
     var len=/* -1 for tag */h[2]["length"]-1;
     
     for(var i=0;i<=len-1;i++){h[2][i+1]=/* Empty */0}
-    return 0;
-    };
+    return 0};
 
 var
  reset=
@@ -133,8 +132,7 @@ var
           };
       
       for(var i=0;i<=osize-1;i++){insert_bucket(odata[i+1])}
-      return 0;
-      }
+      return 0}
     else
      {return 0}
     };
@@ -304,8 +302,7 @@ var
     var d=h[2];
     
     for(var i=0;i<=/* -1 for tag */d["length"]-1-1;i++){do_bucket(d[i+1])}
-    return 0;
-    };
+    return 0};
 
 var
  fold=

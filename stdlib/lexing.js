@@ -18,8 +18,6 @@ var
       var init=buf[12];
       
       buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]]}
-    else
-     {}
     
     return result};
 
@@ -33,8 +31,6 @@ var
       var init=buf[12];
       
       buf[12]=/* record */[0,init[1],init[2],init[3],buf[4]+buf[6]]}
-    else
-     {}
     
     return result};
 
@@ -74,8 +70,6 @@ var
       for(var i=0;i<=/* -1 for tag */t["length"]-1-1;i++)
        {var v=t[i+1];if(v>=0){t[i+1]=v-s,0}}
       }
-    else
-     {}
     
     Bytes["blit"](aux_buffer,0,lexbuf[2],lexbuf[3],n);
     return lexbuf[3]=lexbuf[3]+n,0};
